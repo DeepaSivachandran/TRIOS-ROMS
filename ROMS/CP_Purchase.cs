@@ -7472,7 +7472,12 @@ namespace ROMS
                         //    CellDiscAmt.Style.BackColor = Color.LightPink;
                         //}
                     }
-
+                    if (grdPurchaseList.Columns[e.ColumnIndex].Name == "clmFreeqty")
+                    {
+                        decimal varDiffQqty = 0;
+                        varDiffQqty= Math.Abs(varInvQty - (varRecQty + varFreeQty));
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
+                    }
                     //int varDecimal = Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["UT_Decimal"].Value);
 
                     //if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty"
@@ -7500,6 +7505,7 @@ namespace ROMS
                     udfnGstvalue();
                     PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0;
                 }
+                
             }
         }
 
