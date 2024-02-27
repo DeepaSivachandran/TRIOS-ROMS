@@ -161,7 +161,7 @@ namespace ROMS
         {
             try
             {
-                txtGstin.Text = MainForm.objCP_Purchase.txtGstin.Text;
+                txtGstin.Text = "";
             }
             catch (Exception ex)
             {

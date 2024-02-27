@@ -86,9 +86,9 @@ namespace ROMS
                             grdReurnDC.Rows.Clear();
                             txtQRCode.ReadOnly = false;
                             txtQRCode.Enabled = true;
-                            dpInvoiceDate.Enabled = false;
-                            txtInvoiceNo.ReadOnly = true;
-                            txtInvoiceNo.Enabled = false;
+                            //dpInvoiceDate.Enabled = false;
+                            //txtInvoiceNo.ReadOnly = true;
+                            //txtInvoiceNo.Enabled = false;
                             // grdGRN.Visible = true;
                             grdReurnDC.Visible = false;
                             grdPODetails.Visible = true;
@@ -506,11 +506,11 @@ namespace ROMS
                         {
                             grdSupplierList.Enabled = true;
                         }
-                        txtInvoiceNo.Enabled = false;
+                        //txtInvoiceNo.Enabled = false;
                         txtInvoiceamt.Enabled = false;
                         //txtLoadingchargeGrn.Enabled = false;
                         //txtFrightGrn.Enabled = false;
-                        txtInvoiceNo.ReadOnly = true;
+                        //txtInvoiceNo.ReadOnly = true;
                         txtInvoiceamt.ReadOnly = true;
                         //txtLoadingchargeGrn.ReadOnly = true;
                         //txtFrightGrn.ReadOnly = true;
@@ -1047,6 +1047,17 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                if (grdSupplierList.Rows.Count > 0)
+                {
+                    grdSupplierList.CurrentCell = grdSupplierList[5, 0];
+                }
+                if (grdPurchaseList.Rows.Count > 0)
+                {
+                    grdPurchaseList.CurrentCell = grdSupplierList[10, 0];
+                }
+            }
         }
         public void udfndisablevalue()
         {
@@ -1150,9 +1161,9 @@ namespace ROMS
                 udfnGRNDCDetailsLoadQueue();
                 udfnGRNProload();
                 txtQRCode.ReadOnly = false;
-                dpInvoiceDate.Enabled = false;
-                txtInvoiceNo.ReadOnly = true;
-                txtInvoiceNo.Enabled = false;
+                //dpInvoiceDate.Enabled = false;
+                //txtInvoiceNo.ReadOnly = true;
+                //txtInvoiceNo.Enabled = false;
                 grdPODetails.Visible = true;
                 grdReurnDC.Visible = false;
             }
@@ -3731,6 +3742,14 @@ namespace ROMS
             finally
             {
                 grdSupplierList.Sort(grdSupplierList.Columns[2], ListSortDirection.Ascending);
+                if(grdSupplierList.Rows.Count>0)
+                {
+                    grdSupplierList.CurrentCell = grdSupplierList[5,0];
+                }
+                if (grdPurchaseList.Rows.Count > 0)
+                {
+                    grdPurchaseList.CurrentCell = grdSupplierList[10, 0];
+                }
             }
         }
 
@@ -5073,17 +5092,17 @@ namespace ROMS
                             string varZero = "0";
                             int varDecimal = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["UT_Decimal"].Value);
                             varZero = 0 + objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
-                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmHSN"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["hsnid"].Value) == "0")
-                            {
-                                varcount++;
-                                varcount1++;
-                                grdPurchaseList.Rows[i].Cells["clmHSN"].Style.BackColor = Color.LightPink;
-                                grdPurchaseList.Rows[i].Cells["clmHSN"].Style.ForeColor = Color.Black;
-                            }
-                            else
-                            {
-                                grdPurchaseList.Rows[i].Cells["clmHSN"].Style.BackColor = Color.PaleGreen;
-                            }
+                            //if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmHSN"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["hsnid"].Value) == "0")
+                            //{
+                            //    varcount++;
+                            //    varcount1++;
+                            //    grdPurchaseList.Rows[i].Cells["clmHSN"].Style.BackColor = Color.LightPink;
+                            //    grdPurchaseList.Rows[i].Cells["clmHSN"].Style.ForeColor = Color.Black;
+                            //}
+                            //else
+                            //{
+                            //    grdPurchaseList.Rows[i].Cells["clmHSN"].Style.BackColor = Color.PaleGreen;
+                            //}
                             if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == 0)
                             {
                                 varcount++;
@@ -8995,7 +9014,7 @@ namespace ROMS
                             int i = irow;
                             int intsection = 0, intlvariant = 0;
                             //intsection = grdSupplierList.Columns.Count - 18;
-                            intlvariant = grdSupplierList.Columns.Count - 18;
+                            intlvariant = grdSupplierList.Columns.Count - 19;
                             //if (intsection == icolumn)
                             //{
                             //    grdSupplierList.CurrentCell = grdSupplierList[intsection, irow + 1];
@@ -9005,7 +9024,7 @@ namespace ROMS
                             //else
                             if (intlvariant == icolumn)
                             {
-                            A: if (icolumn == grdSupplierList.Columns.Count - 18)
+                            A: if (icolumn == grdSupplierList.Columns.Count - 19)
                                 {
                                     //grdProDetails.Rows.Add();
                                     if (irow < grdSupplierList.Rows.Count - 1)
@@ -9153,7 +9172,7 @@ namespace ROMS
                                     //grdProDetails.Rows.Add();
                                     if (irow < grdPurchaseList.Rows.Count - 1)
                                     {
-                                        grdPurchaseList.CurrentCell = grdPurchaseList[9, irow + 1];
+                                        grdPurchaseList.CurrentCell = grdPurchaseList[10, irow + 1];
                                         icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
                                         irow = grdPurchaseList.CurrentCell.RowIndex;
                                         //goto A;
