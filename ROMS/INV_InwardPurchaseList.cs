@@ -673,6 +673,7 @@ namespace ROMS
                                 grdInwardList.Columns["Status"].Width = 110;
                               //  grdInwardList.Columns["Created On"].Width = 140;
                                 grdInwardList.Columns["GSTIN"].Width = 120;
+                                grdInwardList.Columns["Location"].Width = 170;
                                 // grdInwardQueueList.Columns["Status"].Width = 100;
                                 grdInwardList.Columns["S.No."].Width = 60;
                                 grdInwardList.Columns["GRN ID"].Visible = false;

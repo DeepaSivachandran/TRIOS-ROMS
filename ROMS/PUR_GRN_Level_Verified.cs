@@ -483,7 +483,7 @@ namespace ROMS
                 int Verified1 = 0, Verified2 = 0;
                 Verified1 = Convert.ToInt32(cmbVerified1.SelectedValue);
                 Verified2 = Convert.ToInt32(cmbVerified2.SelectedValue);
-                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1 && Convert.ToString(cmbVerified1.SelectedValue)!=null && Verified1==Verified2)
+                if (Convert.ToInt32(cmbVerified1.SelectedValue) != -1 && Convert.ToString(cmbVerified1.SelectedValue)!=null)
                 {
                     string varVerified1 = "0";//int Verified2 = 0;Verified2 = Convert.ToInt32(cmbVerified2.SelectedValue);
                     varVerified1 = Convert.ToString(cmbVerified1.SelectedValue);

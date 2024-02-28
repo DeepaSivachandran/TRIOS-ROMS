@@ -65,7 +65,7 @@ namespace ROMS
                 MainForm.objCP_Purchase.btnSave.Text = "Update as Draft"; 
                 MainForm.objCP_Purchase.PbSTS = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["STSID"].Value.ToString()); 
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString()); 
-                MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Status"].Value.ToString()); 
+                MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Purchase Status"].Value.ToString()); 
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
             }
@@ -638,7 +638,8 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Purchase Type"].Width = 150;
                             grdPurchaseEntryList.Columns["Total Products"].Width = 100;
                             grdPurchaseEntryList.Columns["Grand Total"].Width = 100;
-                            grdPurchaseEntryList.Columns["Status"].Width = 130;
+                            grdPurchaseEntryList.Columns["Purchase Status"].Width = 130;
+                            grdPurchaseEntryList.Columns["Inward Status"].Width = 230;
                             grdPurchaseEntryList.Columns["PURID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPSCID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPID"].Visible = false; 
