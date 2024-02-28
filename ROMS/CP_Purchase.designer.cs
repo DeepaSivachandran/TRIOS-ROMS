@@ -329,6 +329,7 @@
             this.clmDCQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPURPRIDDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAddproflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAddPro = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPurchase.SuspendLayout();
@@ -1273,6 +1274,7 @@
             this.clmDCQty,
             this.clmPURPRIDDetail,
             this.clmAddproflag,
+            this.clmProductID,
             this.clmInvFlag,
             this.clmAddPro});
             this.grdSupplierList.EnableHeadersVisualStyles = false;
@@ -3344,13 +3346,18 @@
             // 
             this.clmPURPRIDDetail.HeaderText = "PURPRIDDetail";
             this.clmPURPRIDDetail.Name = "clmPURPRIDDetail";
-            this.clmPURPRIDDetail.Visible = false;
             // 
             // clmAddproflag
             // 
             this.clmAddproflag.HeaderText = "AddproFlag";
             this.clmAddproflag.Name = "clmAddproflag";
             this.clmAddproflag.Visible = false;
+            // 
+            // clmProductID
+            // 
+            this.clmProductID.HeaderText = "Product ID";
+            this.clmProductID.Name = "clmProductID";
+            this.clmProductID.ReadOnly = true;
             // 
             // clmInvFlag
             // 
@@ -3691,6 +3698,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDCQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPURPRIDDetail;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAddproflag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
     }
