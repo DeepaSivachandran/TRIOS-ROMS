@@ -773,6 +773,7 @@ namespace ROMS
                                 ///   grdInwardQueueList.Columns["Created By"].Width = 110;
                                 grdInwardQueueList.Columns["Created On"].Width = 140;
                                 grdInwardQueueList.Columns["GSTIN"].Width = 150;
+                                grdInwardQueueList.Columns["Location"].Width = 170;
                                 grdInwardQueueList.Columns["S.No."].Width = 60;
                                 grdInwardQueueList.Columns["Transaction Date"].Width = 120;
                                 grdInwardQueueList.Columns["ID"].Visible = false;

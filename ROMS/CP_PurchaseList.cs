@@ -638,7 +638,8 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Purchase Type"].Width = 150;
                             grdPurchaseEntryList.Columns["Total Products"].Width = 100;
                             grdPurchaseEntryList.Columns["Grand Total"].Width = 100;
-                            grdPurchaseEntryList.Columns["Status"].Width = 130;
+                            grdPurchaseEntryList.Columns["Purchase Status"].Width = 130;
+                            grdPurchaseEntryList.Columns["Inward Status"].Width = 230;
                             grdPurchaseEntryList.Columns["PURID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPSCID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPID"].Visible = false; 
