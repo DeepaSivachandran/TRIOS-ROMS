@@ -711,7 +711,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Purchase Type"].Width = 100;
                 DGV_SearchGrid.Columns["Total Products"].Width = 150;
                 DGV_SearchGrid.Columns["Grand Total"].Width = 150;
-                DGV_SearchGrid.Columns["Status"].Width = 130;
+                DGV_SearchGrid.Columns["Purchase Status"].Width = 130;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
@@ -1326,7 +1326,7 @@ namespace ROMS
                 for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Purchase Status"];
                     if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49")
                     {
                         cell.Style.BackColor = Color.Red;
