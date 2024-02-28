@@ -608,10 +608,6 @@ namespace ROMS
                     //    }
                     DGV_FilterProduct.Focus();
                 }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
                 if (DGV_FilterProduct.CurrentCell == null)
                 {
                     return;
@@ -676,6 +672,11 @@ namespace ROMS
                     {
                         btnView.Focus();
                     }
+                }
+
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
