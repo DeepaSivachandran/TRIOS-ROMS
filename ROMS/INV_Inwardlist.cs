@@ -1454,7 +1454,6 @@ namespace ROMS
             try
             {
                 DGV_FilterProduct.Visible = false;
-                DGV_FilterProduct.DataSource = null;
                 varUpDownKey = 0;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }

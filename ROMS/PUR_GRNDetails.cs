@@ -3509,7 +3509,7 @@ namespace ROMS
                                 grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
                                 grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
                                 grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
-                                grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                                //grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
                             }
                         }
                     }
@@ -3596,7 +3596,14 @@ namespace ROMS
                                         cell.Style.ForeColor = Color.Black;
                                     }
                                 }
-
+                                if (varBatchNo == "72" && varBatchNoGeneration == "75")
+                                {
+                                    DataGridView dataGridView = grdGrnlist;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
+                                    cell.Style.BackColor = Color.PaleGreen;
+                                    cell.Style.ForeColor = Color.Black;
+                                    cell.ReadOnly = false;
+                                }
                                 if (varBatchNo == "72" && varBatchNoGeneration == "74")
                                 {
                                     DataGridView dataGridView = grdGrnlist;
