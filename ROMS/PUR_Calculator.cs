@@ -68,7 +68,7 @@ namespace ROMS
         {
             try
             {
-                //MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
+                MainForm.objCP_Purchase.varPurchaseRate = PbValue;
             }
             catch (Exception ex)
             {
@@ -327,7 +327,7 @@ namespace ROMS
             {
                 //if (txtValue.Text.Contains("%") == true)
                 //{
-                //    string[] Var1 = txtValue.Text.Split('+','-','*');
+                //    string[] Var1 = txtValue.Text.Split('+', '-', '*');
                 //    string value = "%";
                 //    string Var2 = Array.IndexOf(Var1, value).ToString();
 
