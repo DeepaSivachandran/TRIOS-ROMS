@@ -327,13 +327,13 @@ namespace ROMS
         {
             try
             {
-                //if (txtValue.Text.Contains("%") == true)
-                //{
-                //    string[] Var = txtValue.Text.Split('+', '-', '*');
-                //    string[] Var1 = txtValue.Text.Split('%');
-                //    string value = "%";
-                //    string Var2 = Array.IndexOf(Var1, value).ToString();
-                //}
+                if (txtValue.Text.Contains("%") == true)
+                {
+                    string[] Var = txtValue.Text.Split('+', '-', '*');
+                    string[] Var1 = txtValue.Text.Split('%');
+                    string value = "%";
+                    string Var2 = Array.IndexOf(Var1, value).ToString();
+                }
                 txtValue.Text = lblFinalValue.Text;
             }
             catch (Exception ex)
@@ -406,7 +406,6 @@ namespace ROMS
         {
             try
             {
-                /*
                 if(Func=="Add")
                 {
                     varResult1 = txtValue.Text;
@@ -424,7 +423,7 @@ namespace ROMS
                         //varResult2 = Convert.ToInt32(varResult1) + var;
                     }
                     //varResult2 = varResult1+'%';
-                }*/
+                }
             }
             catch (Exception ex)
             {
