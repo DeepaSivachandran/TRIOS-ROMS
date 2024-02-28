@@ -18,6 +18,7 @@ namespace ROMS
         float varAns = 0, varNum = 0;
         int varCount = 0;
         public string PbValue = "";
+        public string varResult1 = "0", varResult2 = "0", varResult3 = "0", varResult4 = "0";
         public PUR_Calculator()
         {
             InitializeComponent();
@@ -286,6 +287,7 @@ namespace ROMS
         {
             try
             {
+                udfnCalculator("Per");
                 txtValue.Text = txtValue.Text + '%';
             }
             catch (Exception ex)
@@ -327,10 +329,10 @@ namespace ROMS
             {
                 //if (txtValue.Text.Contains("%") == true)
                 //{
-                //    string[] Var1 = txtValue.Text.Split('+', '-', '*');
+                //    string[] Var = txtValue.Text.Split('+', '-', '*');
+                //    string[] Var1 = txtValue.Text.Split('%');
                 //    string value = "%";
                 //    string Var2 = Array.IndexOf(Var1, value).ToString();
-
                 //}
                 txtValue.Text = lblFinalValue.Text;
             }
@@ -340,7 +342,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnOK_Enter(object sender, EventArgs e)
         {
             try
@@ -392,7 +393,38 @@ namespace ROMS
         {
             try
             {
+                udfnCalculator("Add");
                 txtValue.Text = txtValue.Text + '+';
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCalculator(string Func)
+        {
+            try
+            {
+                /*
+                if(Func=="Add")
+                {
+                    varResult1 = txtValue.Text;
+                    varCount = 1;
+                }
+                if(Func=="Per")
+                {
+                    if(varCount == 1)
+                    {
+                        int Res1 = 0;
+                        string[] qw=txtValue.Text.Split('+');
+                        int var =Convert.ToInt32(qw[1]);
+                        Res1 = Convert.ToInt32(varResult1) + var;
+                        varCount = varCount % var;
+                        //varResult2 = Convert.ToInt32(varResult1) + var;
+                    }
+                    //varResult2 = varResult1+'%';
+                }*/
             }
             catch (Exception ex)
             {
