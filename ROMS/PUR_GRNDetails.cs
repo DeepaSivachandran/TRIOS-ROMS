@@ -3633,6 +3633,10 @@ namespace ROMS
             finally
             {
                 grdGrnlist.Sort(grdGrnlist.Columns[2], ListSortDirection.Ascending);
+                if(grdGrnlist.Rows.Count>0)
+                {
+                    grdGrnlist.CurrentCell = grdGrnlist[6,0];
+                }
             }
         }
 
