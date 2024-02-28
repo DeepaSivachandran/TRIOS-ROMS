@@ -1039,6 +1039,8 @@ namespace ROMS
                         }
                     }
                     udfnPurchaseEntryTabLoad();
+                    if(PbSTS=="49")
+                    { this.ActiveControl = txtProductName; }
                 }
             }
             catch (Exception ex)
@@ -4617,9 +4619,12 @@ namespace ROMS
                         if (pbPurchaseno != "0")
                         {
                             objPurchaseentryDetails = udfnobjPurchaseprodDetails();
-                            if (varcount1 != 0)
+                            if (grdSupplierList.Rows.Count == grdPurchaseList.Rows.Count)
                             {
-                                tbDetails.SelectedIndex = 1;
+                                if (varcount1 != 0)
+                                {
+                                    tbDetails.SelectedIndex = 1;
+                                }
                             }
                         }
                         if (varcount == 0 && Convert.ToInt32(VarGridError) == 0 && shelfLifeError==0 && varQuantityErr==0)
