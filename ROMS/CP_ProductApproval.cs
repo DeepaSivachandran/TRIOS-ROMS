@@ -3224,8 +3224,17 @@ namespace ROMS
                         }
                     }
                 }
+                if(txtPurRack.Text.Trim()=="")
+                {
+                    varPurRackCode = "0";
+                }
+                if (txtSalesRack.Text.Trim() == "")
+                {
+                    varSalesRackCode = "0";
+                }
                 if (blnErrorFlag == false)
                 {
+                    udfnClear();
                     SPDataService objspdservice = new SPDataService();
                     string varorignator = "Product approval update";
                     result = objspdservice.udfnProductMaster(14, varproductcode, txtProductEname.Text, txtProductTname.Text, txtpicode.Text.Trim().ToUpper(),
@@ -3253,6 +3262,32 @@ namespace ROMS
                         btnUpdate.Enabled = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnClear()
+        {
+            try
+            {
+                epProductApproval.Clear();
+                txtProductEname.BackColor = Color.White;
+                txtProductTname.BackColor = Color.White;
+                txtBrand.BackColor = Color.White;
+                cmbProductCategory.BackColor = Color.White;
+                txtPurLocation.BackColor = Color.White;
+                txtSalesLocation.BackColor = Color.White;
+                txtPurRack.BackColor = Color.White;
+                txtSalesRack.BackColor = Color.White;
+                cmbUnit.BackColor = Color.White;
+                cmbBatchno.BackColor = Color.White;
+                cmbGst.BackColor = Color.White;
+                txtHsncode.BackColor = Color.White;
+                cmbPeriod.BackColor = Color.White;
+                txtSelfLife.BackColor = Color.White;
             }
             catch (Exception ex)
             {
