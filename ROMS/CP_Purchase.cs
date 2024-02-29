@@ -9034,7 +9034,7 @@ namespace ROMS
                             int i = irow;
                             int intsection = 0, intlvariant = 0;
                             intsection = grdSupplierList.Columns.Count - 1;
-                            intlvariant = grdSupplierList.Columns.Count - 19;
+                            intlvariant = grdSupplierList.Columns.Count - 20;
                             if (intsection == icolumn)
                             {
                                 grdSupplierList.CurrentCell = grdSupplierList[intsection, irow + 1];
@@ -9043,7 +9043,7 @@ namespace ROMS
                             }
                             else if (intlvariant == icolumn)
                             {
-                            A: if (icolumn == grdSupplierList.Columns.Count - 19)
+                            A: if (icolumn == grdSupplierList.Columns.Count - 20)
                                 {
                                     //grdProDetails.Rows.Add();
                                     if (irow < grdSupplierList.Rows.Count - 1)

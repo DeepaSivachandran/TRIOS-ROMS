@@ -16,9 +16,9 @@ namespace ROMS
         public bool VarSearchFlag = true;
         bool varVoucherSkip = false;
         public int varRecqty = 0, varcount = 0, SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0,
-            varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0, Currentsts=0
-            ,   varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
-        varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0, varUpDownKey=0,varCloseFlag=0, varClose = 0, varDateChange = 0;
+            varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0, Currentsts = 0
+            , varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
+        varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0, varUpDownKey = 0, varCloseFlag = 0, varClose = 0, varDateChange = 0, grid_flag = 0;
         public decimal totalKgQty = 0;
         public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "", varUPPValue = "", varOtherSupPrevious = "", varOtherSupPartial = "";
         private ToolTip tpsalesman = new ToolTip();
@@ -5613,6 +5613,146 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        {
+            try
+            {
+                if (grdsupplieradd.Focused)
+                {
+                    grid_flag = 1;
+                }
 
+                if (grid_flag == 1)
+                {
+                    if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
+                    {
+                        int icolumn = grdsupplieradd.CurrentCell.ColumnIndex;
+                        int irow = grdsupplieradd.CurrentCell.RowIndex;
+                        int i = irow;
+                        int intsection = 0, intlvariant = 0;
+                        intsection = grdsupplieradd.Columns.Count - 1;
+                        intlvariant = grdsupplieradd.Columns.Count - 3;
+                        if (intsection == icolumn)
+                        {
+                            grdsupplieradd.CurrentCell = grdsupplieradd[intsection, irow + 1];
+                            icolumn = grdsupplieradd.Columns.Count - 1;//grdProDetails.CurrentCell.ColumnIndex;
+                            irow = grdsupplieradd.CurrentCell.RowIndex;
+                        }
+                        else if (intlvariant == icolumn)
+                        {
+                        A: if (icolumn == grdsupplieradd.Columns.Count - 3)
+                            {
+                                //grdProDetails.Rows.Add();
+                                if (irow < grdsupplieradd.Rows.Count - 1)
+                                {
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[16, irow + 1];
+                                    icolumn = grdsupplieradd.CurrentCell.ColumnIndex;
+                                    irow = grdsupplieradd.CurrentCell.RowIndex;
+                                    //goto A;
+                                }
+                                else
+                                {
+                                    if (grdsupplieradd[icolumn + 1, irow].Visible == false)
+                                    {
+                                        icolumn++;
+                                        goto A;
+                                    }
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
+                                    if (grdsupplieradd.CurrentCell.ReadOnly == true)
+                                    {
+                                        icolumn++; goto A;
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
+                                if (grdsupplieradd.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                            }
+                        }
+                        else
+                        {
+                        A: if (icolumn == grdsupplieradd.Columns.Count - 1)
+                            {
+                                //grdProDetails.Rows.Add();
+                                if (irow < grdsupplieradd.Rows.Count - 1)
+                                {
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[1, irow + 1];
+                                    icolumn = grdsupplieradd.CurrentCell.ColumnIndex;
+                                    irow = grdsupplieradd.CurrentCell.RowIndex;
+                                    //goto A;
+                                }
+                                else
+                                {
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
+                                    if (grdsupplieradd.CurrentCell.ReadOnly == true)
+                                    {
+                                        icolumn++; goto A;
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                if (grdsupplieradd[icolumn + 1, irow].Visible == false)
+                                {
+                                    icolumn++;
+                                    goto A;
+                                }
+                                else
+                                {
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
+                                    if (grdsupplieradd.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                }
+                               
+                            }
+                        }
+                        //A: if (icolumn == grdProDetails.Columns.Count - 1)
+                        //{
+                        //    //grdProDetails.Rows.Add();
+                        //    if (irow < grdProDetails.Rows.Count - 1)
+                        //    {
+                        //        grdProDetails.CurrentCell = grdProDetails[1, irow + 1];
+                        //        icolumn = grdProDetails.CurrentCell.ColumnIndex;
+                        //        irow = grdProDetails.CurrentCell.RowIndex;
+                        //        goto A;
+                        //    }
+                        //    else
+                        //    {
+                        //        grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                        //        if (grdProDetails.CurrentCell.ReadOnly == true)
+                        //        {
+                        //            icolumn++; goto A;
+                        //        }
+
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                        //    if (grdProDetails.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                        //}
+
+                        grid_flag = 0;
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            //// below is for escape key return
+            //return base.ProcessCmdKey(ref msg, keyData);
+            // below is for enter key return
+            return base.ProcessCmdKey(ref msg, keyData);
+
+        }
     }
 }

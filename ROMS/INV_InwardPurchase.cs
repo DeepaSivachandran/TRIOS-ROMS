@@ -1072,7 +1072,6 @@ namespace ROMS
                 {
                     grid_flag = 1;
                 }
-
                 if (grid_flag == 1)
                 {
                     if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)

@@ -4617,14 +4617,13 @@ namespace ROMS
                             {
                                 if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmBatchno")
                                 {
-                                    icolumn += 10;
-                                    grdGrnlist.CurrentCell = grdGrnlist[icolumn,irow];
-                                }
-                                if (grdGrnlist.CurrentCell == grdGrnlist[22, irow])
-                                {
                                     grdGrnlist.CurrentCell = grdGrnlist[6, irow + 1];
                                     icolumn = grdGrnlist.CurrentCell.ColumnIndex;
                                     irow = grdGrnlist.CurrentCell.RowIndex;
+                                }
+                                else if (grdGrnlist[icolumn + 1, irow].Visible == false)
+                                {
+                                    { icolumn++; goto A; }
                                 }
                                 else
                                 {
