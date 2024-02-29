@@ -1347,7 +1347,16 @@ namespace ROMS
                     if (pbPurchaseno == "0")
                     { btnSave.Text = "Save as Draft"; }
                     else
-                    { btnSave.Text = "Update as Draft"; }
+                    {
+                        if(chkCompleted.Checked==true)
+                        {
+                            btnSave.Text = "Update";
+                        }
+                        else
+                        {
+                            btnSave.Text = "Update as Draft";
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -4463,9 +4472,10 @@ namespace ROMS
         {
             try
             {
-                decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
+                decimal lblGrandTot=0, loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
                                     otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0;
-                decimal lblGrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim());
+                if (txtGrandtot.Text != "")
+                { lblGrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim()); }
                 if (txtLoadingchargeGrn.Text != "")
                 { loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text); }
                 if (txtFrightGrn.Text != "")
@@ -7079,7 +7089,7 @@ namespace ROMS
                 decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
                 if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
                 if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
-                GrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim());
+                if (txtGrandtot.Text.Trim() != "") {GrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim());}
                 if (varDisper != 0)
                 {
                     varDisPercent = (GrandTot * varDisper) / 100;
@@ -8220,6 +8230,7 @@ namespace ROMS
                         DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
                         cell.Style.BackColor = Color.PaleGreen;
                         cell.Style.ForeColor = Color.Black;
+                        cell.ReadOnly = false;
                     }
                     string[] varShelflifevalue = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                     if (varShelflifevalue[0] != "")

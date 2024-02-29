@@ -2322,7 +2322,14 @@ namespace ROMS
                 else
                 {
                     string Qty = objValidation.udfnDecimal((txtInvoiceQty.Text).Trim(), varDecimal);
-                    txtInvoiceQty.Text = Qty;
+                    if(txtInvoiceQty.Text.Trim() == "0" || txtInvoiceQty.Text.Trim() == "00" || txtInvoiceQty.Text.Trim() == "000")
+                    {
+                        txtInvoiceQty.Text = "0" + Qty;
+                    }
+                    else
+                    {
+                        txtInvoiceQty.Text = Qty;
+                    }
                     errGRNDetails.Clear();
                     txtInvoiceQty.BackColor = Color.White;
                 }
@@ -3034,33 +3041,37 @@ namespace ROMS
                 {
                     //udfnGridaddvalue(sender, e);
                 }
-                decimal varMRP = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmmrp"].Value);
-                string mrp = string.Format("{0:0.00}", varMRP);
-                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
-                grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Value = mrp;
-
-                decimal InvoiceQty = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmInvoiceQty"].Value);
-                if (Convert.ToString(InvoiceQty) == "0" || Convert.ToString(InvoiceQty) == "")
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmmrp")
                 {
-                    grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(89);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    varErrQty = "1";
+                    decimal varMRP = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmmrp"].Value);
+                    string mrp = string.Format("{0:0.00}", varMRP);
+                    string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                    grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Value = mrp;
                 }
-                else
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmInvoiceQty")
                 {
-                    grdGrnlist.CurrentRow.Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
-                    varErrQty = "0";
+                    decimal InvoiceQty = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmInvoiceQty"].Value);
+                    if (Convert.ToString(InvoiceQty) == "0" || Convert.ToString(InvoiceQty) == "")
+                    {
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrQty = "1";
+                    }
+                    else
+                    {
+                        grdGrnlist.CurrentRow.Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                        varErrQty = "0";
+                    }
+
+                    int varDecimal = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["clmUTDecimal"].Value);
+
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value), varDecimal);
+                    grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value = Qty;
+                    //udfnGridaddvalue( sender,value);
                 }
-
-                int varDecimal = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["clmUTDecimal"].Value);
-
-                string Qty = objValidation.udfnDecimal(Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value), varDecimal);
-                grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value = Qty;
-                //udfnGridaddvalue( sender,value);
-
             }
             catch (Exception ex)
             {
@@ -3551,8 +3562,16 @@ namespace ROMS
                                 }
                                 if (txtInvoiceQty.Text != "")
                                 {
+                                    string[] Quantity = txtInvoiceQty.Text.Split('.');
                                     string Qty = objValidation.udfnDecimal((txtInvoiceQty.Text).Trim(), varDecimal);
-                                    txtInvoiceQty.Text = Qty;
+                                    if(Quantity[0].Contains("0")==true)
+                                    {
+                                        txtInvoiceQty.Text ="0" + Qty;
+                                    }
+                                    else
+                                    {
+                                        txtInvoiceQty.Text = Qty;
+                                    }
                                 }
                                 decimal varMRP = Math.Round(Convert.ToDecimal(txtmrprate.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                                 string mrp = string.Format("{0:0.00}", varMRP);

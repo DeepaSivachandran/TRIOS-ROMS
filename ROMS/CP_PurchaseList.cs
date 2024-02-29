@@ -1342,15 +1342,10 @@ namespace ROMS
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
 
-
+                    /*
                     if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "49")
                     {
                         cell2.Style.BackColor = Color.Red;
-                        cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
-                    }
-                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "50")
-                    {
-                        cell2.Style.BackColor = Color.Orange;
                         cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "50")
@@ -1363,6 +1358,7 @@ namespace ROMS
                         cell2.Style.BackColor = Color.LimeGreen;
                         cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
+                    */
                 }
             }
             catch (Exception ex)

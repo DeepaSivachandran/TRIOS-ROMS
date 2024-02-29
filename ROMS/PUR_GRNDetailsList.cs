@@ -1405,7 +1405,7 @@ namespace ROMS
                         cell2.ReadOnly = true;
                     }
 
-
+                    /*
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN Status"].Value) == "")
                     {
                         cell3.Style.BackColor = Color.Red;
@@ -1431,6 +1431,7 @@ namespace ROMS
                         cell3.Style.BackColor = Color.DarkGreen;
                         cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
+                    */
                 } 
             }
             catch (Exception ex)
