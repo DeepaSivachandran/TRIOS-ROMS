@@ -558,6 +558,8 @@ namespace ROMS
 
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
+                grdInwardList.Columns["Entry Type"].Width = 170;
+
             }
             catch (Exception ex)
             {
@@ -672,7 +674,7 @@ namespace ROMS
                                 grdInwardList.Columns["Created By"].Width = 110;
                                 grdInwardList.Columns["Status"].Width = 110;
                               //  grdInwardList.Columns["Created On"].Width = 140;
-                                grdInwardList.Columns["GSTIN"].Width = 120;
+                                grdInwardList.Columns["GSTIN"].Visible = false;
                                 grdInwardList.Columns["Location"].Width = 170;
                                 // grdInwardQueueList.Columns["Status"].Width = 100;
                                 grdInwardList.Columns["S.No."].Width = 60;
@@ -681,6 +683,7 @@ namespace ROMS
                                 grdInwardList.Columns["GIP_COMID"].Visible = false;
                                 grdInwardList.Columns["GIP_SLID"].Visible = false;
                                 grdInwardList.Columns["GIP_TypeID"].Visible = false;
+                                grdInwardList.Columns["Entry Type"].Width = 170;
                                 grdInwardList.Columns["SPID"].Visible = false;
                                 grdInwardList.Columns["GIPID"].Visible = false;
                                 grdInwardList.Columns["GIP_Date"].Visible = false;
