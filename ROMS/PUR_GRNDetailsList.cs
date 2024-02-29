@@ -1423,7 +1423,7 @@ namespace ROMS
                     }
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "23" && Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "23" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "52" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "55")
                     {
-                        cell3.Style.BackColor = Color.LimeGreen;
+                        cell3.Style.BackColor = Color.Orange;
                         cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "44" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "55" && Convert.ToString(grdGRNList.Rows[i].Cells["GRN_INVSTSID"].Value) == "23")
