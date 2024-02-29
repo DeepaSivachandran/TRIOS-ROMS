@@ -639,11 +639,12 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Total Products"].Width = 100;
                             grdPurchaseEntryList.Columns["Grand Total"].Width = 100;
                             grdPurchaseEntryList.Columns["Purchase Status"].Width = 130;
-                            grdPurchaseEntryList.Columns["Inward Status"].Width = 230;
+                            grdPurchaseEntryList.Columns["Overall Status"].Width = 230;
                             grdPurchaseEntryList.Columns["PURID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPSCID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPID"].Visible = false; 
                             grdPurchaseEntryList.Columns["STSID"].Visible = false;
+                            grdPurchaseEntryList.Columns["PUR_INVSTSID"].Visible = false;
                             grdPurchaseEntryList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseEntryList.Columns["Grand Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             grdPurchaseEntryList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -712,10 +713,12 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Total Products"].Width = 150;
                 DGV_SearchGrid.Columns["Grand Total"].Width = 150;
                 DGV_SearchGrid.Columns["Purchase Status"].Width = 130;
+                DGV_SearchGrid.Columns["Overall Status"].Width = 130;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_INVSTSID"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -1327,6 +1330,7 @@ namespace ROMS
                 {
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Purchase Status"];
+                    DataGridViewCell cell2 = dataGridView.Rows[i].Cells["Overall Status"];
                     if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49")
                     {
                         cell.Style.BackColor = Color.Red;
@@ -1336,13 +1340,39 @@ namespace ROMS
                     {
                         cell.Style.BackColor = Color.Green;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                    } 
+                    }
+
+
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "49")
+                    {
+                        cell2.Style.BackColor = Color.Red;
+                        cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "50")
+                    {
+                        cell2.Style.BackColor = Color.Orange;
+                        cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "50")
+                    {
+                        cell2.Style.BackColor = Color.Orange;
+                        cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "57" || Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "58")
+                    {
+                        cell2.Style.BackColor = Color.LimeGreen;
+                        cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdPurchaseEntryList.ClearSelection();
             }
         }
         private void GrdPurchaseEntryList_KeyDown(object sender, KeyEventArgs e)
