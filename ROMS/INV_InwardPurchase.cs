@@ -16,7 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0,varStausId=0;
-        public int varPurchaseID = 0, varID = 0, varGRNPurchaseFlag = 0, varCloseFlag = 0, varTypeID = 0, varRemarkFlag = 0;
+        public int varPurchaseID = 0, varID = 0, varGRNPurchaseFlag = 0, varCloseFlag = 0, varTypeID = 0, varRemarkFlag = 0, grid_flag = 0;
         public int varRemarkCount=0;
         DataTable dtInwardPurchase = new DataTable();
         ToolTip tpInwardNo = new ToolTip();
@@ -780,9 +780,12 @@ namespace ROMS
                                 {
                                     //grdGrnlist.Columns["U_Name"].Visible = false;
                                 }
-                                    //grdGrnlist.Columns["STS_Name"].Visible = false;
-                                    //lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
-                                
+                                //grdGrnlist.Columns["STS_Name"].Visible = false;
+                                //lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
+                                if (grdGrnlist.Rows.Count > 0)
+                                {
+                                    grdGrnlist.CurrentCell = grdGrnlist["Received Qty", 0];
+                                }
                                 if (varGRNPurchaseFlag == 3) //from Purchase DC
                                 {
                                     txtDGRNDate.Text = "DC Date";
@@ -1060,6 +1063,139 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        {
+            try
+            {
+                if (grdGrnlist.Focused)
+                {
+                    grid_flag = 1;
+                }
+
+                if (grid_flag == 1)
+                {
+                    if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
+                    {
+                        int icolumn = grdGrnlist.CurrentCell.ColumnIndex;
+                        int irow = grdGrnlist.CurrentCell.RowIndex;
+                        int i = irow;
+                        int intsection = 0, intlvariant = 0;
+                        intsection = grdGrnlist.Columns.Count - 1;
+                        intlvariant = grdGrnlist.Columns.Count - 3;
+                        if (intsection == icolumn)
+                        {
+                            grdGrnlist.CurrentCell = grdGrnlist[intsection, irow + 1];
+                            icolumn = grdGrnlist.Columns.Count - 1;//grdProDetails.CurrentCell.ColumnIndex;
+                            irow = grdGrnlist.CurrentCell.RowIndex;
+                        }
+                        else if (intlvariant == icolumn)
+                        {
+                        A: if (icolumn == grdGrnlist.Columns.Count - 3)
+                            {
+                                //grdProDetails.Rows.Add();
+                                if (irow < grdGrnlist.Rows.Count - 1)
+                                {
+                                    grdGrnlist.CurrentCell = grdGrnlist[3, irow + 1];
+                                    icolumn = grdGrnlist.CurrentCell.ColumnIndex;
+                                    irow = grdGrnlist.CurrentCell.RowIndex;
+                                    //goto A;
+                                }
+                                else
+                                {
+                                    grdGrnlist.CurrentCell = grdGrnlist[icolumn + 1, irow];
+                                    if (grdGrnlist.CurrentCell.ReadOnly == true)
+                                    {
+                                        icolumn++; goto A;
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                grdGrnlist.CurrentCell = grdGrnlist[icolumn + 1, irow];
+                                if (grdGrnlist.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                            }
+                        }
+                        else
+                        {
+                        A: if (icolumn == grdGrnlist.Columns.Count - 1)
+                            {
+                                //grdProDetails.Rows.Add();
+                                if (irow < grdGrnlist.Rows.Count - 1)
+                                {
+                                    grdGrnlist.CurrentCell = grdGrnlist["Received Qty", irow + 1];
+                                    icolumn = grdGrnlist.CurrentCell.ColumnIndex;
+                                    irow = grdGrnlist.CurrentCell.RowIndex;
+                                    //goto A;
+                                }
+                                else
+                                {
+                                    grdGrnlist.CurrentCell = grdGrnlist[icolumn + 1, irow];
+                                    if (grdGrnlist.CurrentCell.ReadOnly == true)
+                                    {
+                                        icolumn++; goto A;
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                if (grdGrnlist[icolumn + 1, irow].Visible == false)
+                                {
+                                    { icolumn++; goto A; }
+                                }
+                                else
+                                {
+                                    grdGrnlist.CurrentCell = grdGrnlist[icolumn + 1, irow];
+                                    if (grdGrnlist.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                }
+                            }
+                        }
+                        //A: if (icolumn == grdProDetails.Columns.Count - 1)
+                        //{
+                        //    //grdProDetails.Rows.Add();
+                        //    if (irow < grdProDetails.Rows.Count - 1)
+                        //    {
+                        //        grdProDetails.CurrentCell = grdProDetails[1, irow + 1];
+                        //        icolumn = grdProDetails.CurrentCell.ColumnIndex;
+                        //        irow = grdProDetails.CurrentCell.RowIndex;
+                        //        goto A;
+                        //    }
+                        //    else
+                        //    {
+                        //        grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                        //        if (grdProDetails.CurrentCell.ReadOnly == true)
+                        //        {
+                        //            icolumn++; goto A;
+                        //        }
+
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                        //    if (grdProDetails.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                        //}
+
+                        grid_flag = 0;
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            //// below is for escape key return
+            //return base.ProcessCmdKey(ref msg, keyData);
+            // below is for enter key return
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
     }
