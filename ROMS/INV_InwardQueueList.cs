@@ -90,7 +90,7 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase.varRemarkFlag = 2;
                     MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern"].Value);
                     MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
-                   MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction Date"].Value);
+                    MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction Date"].Value);
                     MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction No."].Value);
                     //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
                     //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
