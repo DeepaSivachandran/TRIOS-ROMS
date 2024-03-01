@@ -987,13 +987,6 @@ namespace ROMS
                     grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
-                else if (varStausId == 45 && varPurchaseID != 0 && varPurchaseStatus == 50)
-                {
-                    grdGrnlist.ReadOnly = true;
-                    grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightGray;
-                    grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.LightGray;
-                    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightGray;
-                }
             }
         }
         public void udfnsupplierLoad()

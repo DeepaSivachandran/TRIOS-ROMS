@@ -1746,11 +1746,7 @@ namespace ROMS
                     tsbDelete.Visible = false;
                     tssEdit.Visible = false;
                 }
-                else if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) == 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 50 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 49))
-                {
-                    tsbDelete.Visible = false;
-                    tssEdit.Visible = false;
-                }
+
             }
             catch (Exception ex)
             {
