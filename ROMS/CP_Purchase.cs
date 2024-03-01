@@ -2642,7 +2642,14 @@ namespace ROMS
             {
                 udfnLocationset();
                 udfnCmbSourceRack();
-                cmbrack.Focus();
+                if (cmbrack.Enabled==true)
+                {
+                    cmbrack.Focus();
+                }
+                else
+                {
+                    btnAdd.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -2820,7 +2827,14 @@ namespace ROMS
                 {
                     udfnLocationset();
                     udfnCmbSourceRack();
-                    cmbrack.Focus();
+                    if (cmbrack.Enabled == true)
+                    {
+                        cmbrack.Focus();
+                    }
+                    else
+                    {
+                        btnAdd.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -3775,6 +3789,8 @@ namespace ROMS
                 cmbPONo.BackColor = Color.White;
                 txtProductName.Text = "";
                 txtSourceLocation.Text = "";
+                cmbrack.Text = "";
+                cmbrack.Enabled = true;
                 lblLocationcode.Text = "0";
                 txtMrp.Text = "";
                 txtDate.Text = "";
