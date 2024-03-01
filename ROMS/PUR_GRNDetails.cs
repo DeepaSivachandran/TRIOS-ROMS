@@ -3564,7 +3564,8 @@ namespace ROMS
                                 {
                                     string[] Quantity = txtInvoiceQty.Text.Split('.');
                                     string Qty = objValidation.udfnDecimal((txtInvoiceQty.Text).Trim(), varDecimal);
-                                    if(Quantity[0].Contains("0")==true)
+                                    string QtyValue = Quantity[0];
+                                    if(QtyValue=="0")
                                     {
                                         txtInvoiceQty.Text ="0" + Qty;
                                     }

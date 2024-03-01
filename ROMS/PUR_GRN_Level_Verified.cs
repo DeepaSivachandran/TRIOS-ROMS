@@ -213,8 +213,10 @@ namespace ROMS
                             Verified2= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby2"].ToString());
                             dpVerified1.Text = objDs.Tables[0].Rows[0]["GRN1_VerfiedOn"].ToString();
                             dpVerified2.Text = objDs.Tables[0].Rows[0]["GRN2_VerfiedOn"].ToString();
-                            //cmbVerified1.SelectedValue= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby1"].ToString());
-                            //cmbVerified2.SelectedValue= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby2"].ToString());
+                            txtVerified1.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Employee1"].ToString());
+                            txtVerified2.Text= Convert.ToString(objDs.Tables[1].Rows[0]["Employee2"].ToString());
+                            lblVerified1.Text= Convert.ToString(objDs.Tables[1].Rows[0]["EMP1"].ToString());
+                            lblVerified2.Text= Convert.ToString(objDs.Tables[1].Rows[0]["EMP2"].ToString());
                             DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                             dpVerified1.MaxDate = varmaxdate;
                             dpVerified2.MaxDate = varmaxdate;
@@ -226,6 +228,8 @@ namespace ROMS
                             {
                                 dpVerified2.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
                             }
+                            lvVerified1.Visible = false;
+                            lvVerified2.Visible = false;
                         }
                     }
                 }
