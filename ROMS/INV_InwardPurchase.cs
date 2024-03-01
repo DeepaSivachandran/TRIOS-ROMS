@@ -21,7 +21,7 @@ namespace ROMS
         DataTable dtInwardPurchase = new DataTable();
         ToolTip tpInwardNo = new ToolTip();
         bool varVoucherSkip = false;
-        public int varClose = 0, varDateChange = 0;
+        public int varClose = 0, varDateChange = 0, varPurchaseStatus = 0;
         public INV_InwardPurchase()
         {
             InitializeComponent();
@@ -966,6 +966,34 @@ namespace ROMS
             {
                 grdGrnlist.ClearSelection();
                 txttotalProduct.Text = Convert.ToString(grdGrnlist.Rows.Count);
+                if(varStausId==46 && varPurchaseID==0)
+                {
+                    grdGrnlist.ReadOnly = true;
+                    grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+                else if(varStausId==46 && varPurchaseID!=0 && varPurchaseStatus==50)
+                {
+                    grdGrnlist.ReadOnly = true;
+                    grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+                else if(varStausId==46 && varPurchaseID!=0 && varPurchaseStatus==49)
+                {
+                    grdGrnlist.ReadOnly = true;
+                    grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+                else if (varStausId == 45 && varPurchaseID != 0 && varPurchaseStatus == 50)
+                {
+                    grdGrnlist.ReadOnly = true;
+                    grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightGray;
+                }
             }
         }
         public void udfnsupplierLoad()
