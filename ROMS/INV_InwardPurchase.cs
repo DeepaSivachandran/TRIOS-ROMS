@@ -966,7 +966,8 @@ namespace ROMS
             {
                 grdGrnlist.ClearSelection();
                 txttotalProduct.Text = Convert.ToString(grdGrnlist.Rows.Count);
-                if(varStausId==46 && varPurchaseID==0)
+                txttotalProduct.Enabled = false;
+                if (varStausId==46 && varPurchaseID==0)
                 {
                     grdGrnlist.ReadOnly = true;
                     grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightGray;

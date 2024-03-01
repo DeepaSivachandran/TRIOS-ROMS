@@ -917,9 +917,15 @@ namespace ROMS
             {
                 tsbEdit_Click(sender, e);
             }
-            if (e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.D)
             {
-                TsbDelete_Click(sender, e);
+                if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) == 46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 50 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 49))
+                {
+                }
+                else
+                {
+                    TsbDelete_Click(sender, e);
+                }
             }
         }
         private void GrdInwardList_DoubleClick(object sender, EventArgs e)
@@ -1736,15 +1742,20 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value)==46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value)==0)
+                //if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value)==46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value)==0)
+                //{
+                //    tsbDelete.Visible = false;
+                //    tssEdit.Visible = false;
+                //}
+                if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) == 46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==50 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==49))
                 {
                     tsbDelete.Visible = false;
                     tssEdit.Visible = false;
                 }
-                else if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) == 46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==50 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==49))
+                else
                 {
-                    tsbDelete.Visible = false;
-                    tssEdit.Visible = false;
+                    tsbDelete.Visible = true;
+                    tssEdit.Visible = true;
                 }
 
             }
