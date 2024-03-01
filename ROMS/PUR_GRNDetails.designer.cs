@@ -59,7 +59,7 @@
             this.btnVerified = new System.Windows.Forms.Button();
             this.gpAddrow = new System.Windows.Forms.GroupBox();
             this.lblUnit = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblQty = new System.Windows.Forms.Label();
             this.txtInvoiceQty = new System.Windows.Forms.TextBox();
             this.cmbPONo = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -168,7 +168,6 @@
             this.lblRemark = new System.Windows.Forms.Label();
             this.errGRNDetails = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtExcessQty = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -194,6 +193,7 @@
             this.clmPOQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cmbQtyType = new System.Windows.Forms.ComboBox();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -346,10 +346,10 @@
             // 
             // gpAddrow
             // 
+            this.gpAddrow.Controls.Add(this.cmbQtyType);
             this.gpAddrow.Controls.Add(this.label12);
-            this.gpAddrow.Controls.Add(this.txtExcessQty);
             this.gpAddrow.Controls.Add(this.lblUnit);
-            this.gpAddrow.Controls.Add(this.label11);
+            this.gpAddrow.Controls.Add(this.lblQty);
             this.gpAddrow.Controls.Add(this.txtInvoiceQty);
             this.gpAddrow.Controls.Add(this.cmbPONo);
             this.gpAddrow.Controls.Add(this.btnAdd);
@@ -379,29 +379,28 @@
             // 
             this.lblUnit.AutoSize = true;
             this.lblUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnit.Location = new System.Drawing.Point(581, 38);
+            this.lblUnit.Location = new System.Drawing.Point(609, 38);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(0, 20);
             this.lblUnit.TabIndex = 1111203;
             // 
-            // label11
+            // lblQty
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(433, 13);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(75, 20);
-            this.label11.TabIndex = 1111202;
-            this.label11.Text = "Pending Qty";
+            this.lblQty.AutoSize = true;
+            this.lblQty.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQty.Location = new System.Drawing.Point(536, 13);
+            this.lblQty.Name = "lblQty";
+            this.lblQty.Size = new System.Drawing.Size(0, 20);
+            this.lblQty.TabIndex = 1111202;
             // 
             // txtInvoiceQty
             // 
             this.txtInvoiceQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvoiceQty.Location = new System.Drawing.Point(433, 35);
+            this.txtInvoiceQty.Location = new System.Drawing.Point(536, 35);
             this.txtInvoiceQty.MaxLength = 8;
             this.txtInvoiceQty.Name = "txtInvoiceQty";
             this.txtInvoiceQty.Size = new System.Drawing.Size(69, 27);
-            this.txtInvoiceQty.TabIndex = 9;
+            this.txtInvoiceQty.TabIndex = 10;
             this.txtInvoiceQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtInvoiceQty.Enter += new System.EventHandler(this.TxtInvoiceQty_Enter);
             this.txtInvoiceQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceQty_KeyDown);
@@ -427,7 +426,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(973, 37);
+            this.btnAdd.Location = new System.Drawing.Point(998, 37);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 22);
@@ -442,7 +441,7 @@
             this.txtProductName.Location = new System.Drawing.Point(182, 35);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(245, 27);
+            this.txtProductName.Size = new System.Drawing.Size(231, 27);
             this.txtProductName.TabIndex = 8;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -452,7 +451,7 @@
             // txtBatchno
             // 
             this.txtBatchno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchno.Location = new System.Drawing.Point(879, 35);
+            this.txtBatchno.Location = new System.Drawing.Point(904, 35);
             this.txtBatchno.MaxLength = 10;
             this.txtBatchno.Name = "txtBatchno";
             this.txtBatchno.Size = new System.Drawing.Size(91, 27);
@@ -465,7 +464,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(701, 38);
+            this.label8.Location = new System.Drawing.Point(726, 38);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 1111156;
@@ -474,7 +473,7 @@
             // txtMonth
             // 
             this.txtMonth.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMonth.Location = new System.Drawing.Point(809, 35);
+            this.txtMonth.Location = new System.Drawing.Point(834, 35);
             this.txtMonth.MaxLength = 2;
             this.txtMonth.Name = "txtMonth";
             this.txtMonth.Size = new System.Drawing.Size(32, 27);
@@ -499,7 +498,7 @@
             // 
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
-            this.textBox2.Location = new System.Drawing.Point(623, 35);
+            this.textBox2.Location = new System.Drawing.Point(651, 35);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(17, 27);
@@ -519,7 +518,7 @@
             // txtDate
             // 
             this.txtDate.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDate.Location = new System.Drawing.Point(777, 35);
+            this.txtDate.Location = new System.Drawing.Point(802, 35);
             this.txtDate.MaxLength = 2;
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(32, 27);
@@ -534,7 +533,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(623, 13);
+            this.label7.Location = new System.Drawing.Point(651, 13);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 20);
             this.label7.TabIndex = 1111154;
@@ -559,7 +558,7 @@
             // 
             this.lblDD.AutoSize = true;
             this.lblDD.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDD.Location = new System.Drawing.Point(783, 14);
+            this.lblDD.Location = new System.Drawing.Point(808, 15);
             this.lblDD.Name = "lblDD";
             this.lblDD.Size = new System.Drawing.Size(20, 16);
             this.lblDD.TabIndex = 1111159;
@@ -568,7 +567,7 @@
             // txtYear
             // 
             this.txtYear.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtYear.Location = new System.Drawing.Point(841, 35);
+            this.txtYear.Location = new System.Drawing.Point(866, 35);
             this.txtYear.MaxLength = 4;
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(32, 27);
@@ -582,7 +581,7 @@
             // txtmrprate
             // 
             this.txtmrprate.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtmrprate.Location = new System.Drawing.Point(640, 35);
+            this.txtmrprate.Location = new System.Drawing.Point(668, 35);
             this.txtmrprate.MaxLength = 7;
             this.txtmrprate.Name = "txtmrprate";
             this.txtmrprate.Size = new System.Drawing.Size(55, 27);
@@ -597,7 +596,7 @@
             // 
             this.lblYYYY.AutoSize = true;
             this.lblYYYY.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYYYY.Location = new System.Drawing.Point(847, 14);
+            this.lblYYYY.Location = new System.Drawing.Point(872, 15);
             this.lblYYYY.Name = "lblYYYY";
             this.lblYYYY.Size = new System.Drawing.Size(20, 16);
             this.lblYYYY.TabIndex = 1111157;
@@ -607,7 +606,7 @@
             // 
             this.lblMM.AutoSize = true;
             this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMM.Location = new System.Drawing.Point(813, 14);
+            this.lblMM.Location = new System.Drawing.Point(838, 15);
             this.lblMM.Name = "lblMM";
             this.lblMM.Size = new System.Drawing.Size(24, 16);
             this.lblMM.TabIndex = 1111158;
@@ -617,7 +616,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(879, 13);
+            this.label9.Location = new System.Drawing.Point(904, 13);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 20);
             this.label9.TabIndex = 1111160;
@@ -1658,29 +1657,15 @@
             this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn1.Width = 50;
             // 
-            // txtExcessQty
-            // 
-            this.txtExcessQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExcessQty.Location = new System.Drawing.Point(508, 35);
-            this.txtExcessQty.MaxLength = 8;
-            this.txtExcessQty.Name = "txtExcessQty";
-            this.txtExcessQty.Size = new System.Drawing.Size(69, 27);
-            this.txtExcessQty.TabIndex = 10;
-            this.txtExcessQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtExcessQty.Enter += new System.EventHandler(this.TxtExcessQty_Enter);
-            this.txtExcessQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtExcessQty_KeyDown);
-            this.txtExcessQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtExcessQty_KeyPress);
-            this.txtExcessQty.Leave += new System.EventHandler(this.TxtExcessQty_Leave);
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(508, 13);
+            this.label12.Location = new System.Drawing.Point(419, 13);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(67, 20);
+            this.label12.Size = new System.Drawing.Size(84, 20);
             this.label12.TabIndex = 1111205;
-            this.label12.Text = "Excess Qty";
+            this.label12.Text = "Quantity Type";
             // 
             // clmsno
             // 
@@ -1741,6 +1726,7 @@
             this.clmExcessQty.DefaultCellStyle = dataGridViewCellStyle95;
             this.clmExcessQty.HeaderText = "Excess Qty";
             this.clmExcessQty.Name = "clmExcessQty";
+            this.clmExcessQty.Visible = false;
             this.clmExcessQty.Width = 90;
             // 
             // clmmrp
@@ -1850,6 +1836,20 @@
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmRemove.Width = 50;
+            // 
+            // cmbQtyType
+            // 
+            this.cmbQtyType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbQtyType.FormattingEnabled = true;
+            this.cmbQtyType.Location = new System.Drawing.Point(419, 35);
+            this.cmbQtyType.Name = "cmbQtyType";
+            this.cmbQtyType.Size = new System.Drawing.Size(111, 27);
+            this.cmbQtyType.TabIndex = 9;
+            this.cmbQtyType.SelectedIndexChanged += new System.EventHandler(this.CmbQtyType_SelectedIndexChanged);
+            this.cmbQtyType.Enter += new System.EventHandler(this.CmbQtyType_Enter);
+            this.cmbQtyType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbQtyType_KeyDown);
+            this.cmbQtyType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbQtyType_KeyPress);
+            this.cmbQtyType.Leave += new System.EventHandler(this.CmbQtyType_Leave);
             // 
             // PUR_GRNDetails
             // 
@@ -2005,7 +2005,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpendpoid;
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
         private System.Windows.Forms.TextBox txtInvoiceQty;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblQty;
         private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.Button btnVerified;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
@@ -2016,7 +2016,6 @@
         private System.Windows.Forms.Label lblVerify2;
         private System.Windows.Forms.Label lblVerify1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtExcessQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
@@ -2041,5 +2040,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPOQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        public System.Windows.Forms.ComboBox cmbQtyType;
     }
 }
