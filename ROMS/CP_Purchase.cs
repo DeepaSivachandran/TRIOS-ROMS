@@ -475,6 +475,10 @@ namespace ROMS
                             {
                                 varTempExpiryDate = "";
                             }
+                            if (Convert.ToInt16(objDs.Tables[0].Rows[i]["InvFlag"]) == 1)
+                            { 
+                                varInvoiceMrp = varMRP;
+                            }
                             grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["PONO"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[0].Rows[i]["PTNAME"]), varMRP, varInvoiceMrp,
                             Convert.ToString(varTempExpiryDate), Convert.ToString(objDs.Tables[0].Rows[i]["PRODUCTEXP"]),
@@ -490,13 +494,15 @@ namespace ROMS
                             grdSupplierList.Columns["clmGrnMrp"].Visible = true;
                             // grdSupplierList.Columns["clmAddPro"].Visible = true;
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            if (Convert.ToInt16(objDs.Tables[0].Rows[i]["InvFlag"]) == 1)
+
+                            if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1)
                             {
                                 grdSupplierList.Rows[i].ReadOnly = true;
-                            }
-                            else
-                            {
-                                grdSupplierList.Rows[i].ReadOnly = false;
+                                grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                                grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                                grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                                grdSupplierList.Rows[i].Cells["clmLocation"].Style.BackColor = Color.LightGray;
+                                grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;
                             }
                         }
                         DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
@@ -514,11 +520,11 @@ namespace ROMS
                             grdSupplierList.Enabled = true;
                         }
                         //txtInvoiceNo.Enabled = false;
-                        txtInvoiceamt.Enabled = false;
+                        //txtInvoiceamt.Enabled = false;
                         //txtLoadingchargeGrn.Enabled = false;
                         //txtFrightGrn.Enabled = false;
                         //txtInvoiceNo.ReadOnly = true;
-                        txtInvoiceamt.ReadOnly = true;
+                        //txtInvoiceamt.ReadOnly = true;
                         //txtLoadingchargeGrn.ReadOnly = true;
                         //txtFrightGrn.ReadOnly = true;
                     }
@@ -5742,7 +5748,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbTransactionType.Focus();
+                    if (cmbTransactionType.Enabled == true)
+                    {
+                        cmbTransactionType.Focus();
+                    }
+                    else { txtBroker.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -8369,6 +8379,15 @@ namespace ROMS
                     {
                         DataGridViewCell cell = dataGridView.Rows[i].Cells["rkid"];
                         cell.Style.BackColor = Color.PaleGreen;
+                    }
+                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1)
+                    {
+                         grdSupplierList.Rows[i].ReadOnly = true;
+                         grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                         grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                         grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                         grdSupplierList.Rows[i].Cells["clmLocation"].Style.BackColor = Color.LightGray;
+                         grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;
                     }
                 }
             }
