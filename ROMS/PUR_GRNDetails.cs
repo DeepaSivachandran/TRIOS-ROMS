@@ -3849,6 +3849,7 @@ namespace ROMS
                 txtYear.Text = "";
                 txtBatchno.Text = "";
                 txtInvoiceQty.Text = "";
+                txtExcessQty.Text = "";
                 txtProductName.BackColor = Color.White;
                 txtmrprate.BackColor = Color.White;
                 txtDate.BackColor = Color.White;
@@ -3856,6 +3857,7 @@ namespace ROMS
                 txtYear.BackColor = Color.White;
                 txtBatchno.BackColor = Color.White;
                 txtInvoiceQty.BackColor = Color.White;
+                txtExcessQty.BackColor = Color.White;
             }
             catch (Exception ex)
             {
