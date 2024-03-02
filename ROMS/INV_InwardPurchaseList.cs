@@ -64,6 +64,8 @@ namespace ROMS
                 MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice No."].Value);
                 MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher Date"].Value);
                 MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher No."].Value);
+                MainForm.objINV_InwardPurchase.varPurchaseStatus= Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value);
+                MainForm.objINV_InwardPurchase.varPurchaseID= Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value);
                 //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN No."].Value);
                 //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN Date"].Value);
                 picLoader.Visible = false;
@@ -689,6 +691,7 @@ namespace ROMS
                                 grdInwardList.Columns["GIP_Date"].Visible = false;
                                 grdInwardList.Columns["SPSCID"].Visible = false;
                                 grdInwardList.Columns["Status ID"].Visible = false;
+                                grdInwardList.Columns["Purchase Status"].Visible = false;
                             }
                             else
                             {
@@ -914,9 +917,15 @@ namespace ROMS
             {
                 tsbEdit_Click(sender, e);
             }
-            if (e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.D)
             {
-                TsbDelete_Click(sender, e);
+                if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) == 46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 50 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 49))
+                {
+                }
+                else
+                {
+                    TsbDelete_Click(sender, e);
+                }
             }
         }
         private void GrdInwardList_DoubleClick(object sender, EventArgs e)
@@ -1727,6 +1736,45 @@ namespace ROMS
             finally
             {
                 DGV_FilterProduct.Visible = false;
+            }
+        }
+        public void udfnDeleteHide()
+        {
+            try
+            {
+                //if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value)==46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value)==0)
+                //{
+                //    tsbDelete.Visible = false;
+                //    tssEdit.Visible = false;
+                //}
+                if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) == 46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==50 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==49))
+                {
+                    tsbDelete.Visible = false;
+                    tssEdit.Visible = false;
+                }
+                else
+                {
+                    tsbDelete.Visible = true;
+                    tssEdit.Visible = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdInwardList_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
