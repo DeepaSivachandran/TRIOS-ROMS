@@ -411,6 +411,28 @@ namespace ROMS
                             grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
                             varErrorFlag = false;
                         }
+                        //int varEntryType = 0;
+                        //varEntryType = Convert.ToInt32(cmbTransactionType.SelectedIndex);
+                        //if (varEntryType == 187) // direct and GRN
+                        //if (Convert.ToString(grdGrnlist.Rows[i].Cells["DC Quantity"].Value) != "" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmRecqty"].Value) != "")
+                        //{
+                        //    decimal varQty = 0, varFreeQuantity = 0, varRecqty = 0, varDiffQty = 0, varInvqty = 0;
+                        //    varRecqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value);
+                        //    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "")
+                        //    { varFreeQuantity = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value); }
+                        //    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value) != "")
+                        //    { varDiffQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value); }
+                        //    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "")
+                        //    { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
+
+                        //    if (varDiffQty != Math.Abs(varInvqty - (varRecqty + varFreeQuantity))) //low
+                        //    {
+                        //        varQuantityErr++;
+                        //        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
+                        //        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                        //        grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
+                        //    }
+                        //}      
                     }
                     if (ProCount == 0)
                     {

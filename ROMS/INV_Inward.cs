@@ -1918,18 +1918,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnQtyValidation()
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
         private void GrdInward_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
