@@ -326,7 +326,8 @@ namespace ROMS
         public void udfnSave()
         {
             try
-            {   
+            {
+                int ProCount = 0;
                 if (grdGrnlist.RowCount > 0)
                 {
                     bool varErrorFlag = true;
@@ -351,26 +352,37 @@ namespace ROMS
                         
                         if (varEditFlag == 0)
                         {
-                            dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["Product ID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["Unit ID"].Value),
-                                Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value), 
-                                Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value), 
-                                Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["ID"].Value));
+                            if(Convert.ToBoolean(grdGrnlist.Rows[i].Cells[0].Value)==true)
+                            {
+                                ProCount = 1;
+                                dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["Product ID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["Unit ID"].Value),
+                                    Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value),
+                                    Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value),
+                                    Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["ID"].Value));
+                            }
                         }
                         if(varEditFlag==1)
                         {
-                            dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["Product ID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["Unit ID"].Value),
+                            if (Convert.ToBoolean(grdGrnlist.Rows[i].Cells[0].Value) == true)
+                            {
+                                ProCount = 1;
+                                dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["Product ID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["Unit ID"].Value),
                                 Convert.ToInt32(varReceivedty), varShopQty, Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value),
                                 Convert.ToString(grdGrnlist.Rows[i].Cells["Expiry Date"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["Batch No."].Value),
                                 Convert.ToDecimal(grdGrnlist.Rows[i].Cells["MRP"].Value), Convert.ToString(grdGrnlist.Rows[i].Cells["GIPPR_GIPID"].Value));
+                            }
                         }
-                        if (Convert.ToInt32(varReceivedty) <=0)
+                        if (Convert.ToBoolean(grdGrnlist.Rows[i].Cells[0].Value) == true)
                         {
-                            grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightPink;
-                            varErrorFlag = false;
-                        }
-                        else
-                        {
-                            grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            if (Convert.ToInt32(varReceivedty) <= 0)
+                            {
+                                grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightPink;
+                                varErrorFlag = false;
+                            }
+                            else
+                            {
+                                grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            }
                         }
                         varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["Rack"].Value) == "")
@@ -399,7 +411,14 @@ namespace ROMS
                             grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightPink;
                             varErrorFlag = false;
                         }
-
+                    }
+                    if (ProCount == 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(80);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrorFlag = false;
                     }
                     if (varErrorFlag == true )
                     {

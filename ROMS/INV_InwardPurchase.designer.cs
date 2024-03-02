@@ -85,6 +85,7 @@
             this.lblEdit = new System.Windows.Forms.Label();
             this.epInwardPurchase = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblStatusValue = new System.Windows.Forms.Label();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
@@ -196,6 +197,8 @@
             this.grdGrnlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdGrnlist.ColumnHeadersHeight = 30;
             this.grdGrnlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdGrnlist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCheck});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -770,6 +773,14 @@
             this.lblStatusValue.TabIndex = 38;
             this.lblStatusValue.Text = "Draft";
             // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmCheck.Width = 50;
+            // 
             // INV_InwardPurchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -858,5 +869,6 @@
         public System.Windows.Forms.TextBox txtVerifiedby1;
         private System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.Label lblStatusValue;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
     }
 }
