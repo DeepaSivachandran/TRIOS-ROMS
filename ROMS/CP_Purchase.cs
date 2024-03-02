@@ -5299,6 +5299,12 @@ namespace ROMS
                                         grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
                                         grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
                                     }
+                                    if(varDiffQty!=0)
+                                    {
+                                        varcount++; varQuantityErr++;
+                                        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
+                                        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                                    }
                                 }
                             }
                             if (varEntryType == 56 || varEntryType == 55)  //Direct and against po
@@ -5347,7 +5353,7 @@ namespace ROMS
                                     if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "")
                                     { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
 
-                                    if (varDiffQty == Math.Abs(varInvqty - (varRecqty + varFreeQuantity))) //low
+                                    if (varDiffQty != Math.Abs(varInvqty - (varRecqty + varFreeQuantity))) //low
                                     {
                                         varQuantityErr++;
                                         grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
