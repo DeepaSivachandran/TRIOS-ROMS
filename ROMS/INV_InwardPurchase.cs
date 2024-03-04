@@ -21,7 +21,7 @@ namespace ROMS
         DataTable dtInwardPurchase = new DataTable();
         ToolTip tpInwardNo = new ToolTip();
         bool varVoucherSkip = false;
-        public int varClose = 0, varDateChange = 0, varPurchaseStatus = 0;
+        public int varClose = 0, varDateChange = 0, varPurchaseStatus = 0,varQuantityErr=0;
         public INV_InwardPurchase()
         {
             InitializeComponent();
@@ -327,7 +327,7 @@ namespace ROMS
         {
             try
             {
-                int ProCount = 0;
+                int ProCount = 0; varQuantityErr = 0;
                 if (grdGrnlist.RowCount > 0)
                 {
                     bool varErrorFlag = true;
@@ -414,25 +414,83 @@ namespace ROMS
                         //int varEntryType = 0;
                         //varEntryType = Convert.ToInt32(cmbTransactionType.SelectedIndex);
                         //if (varEntryType == 187) // direct and GRN
-                        //if (Convert.ToString(grdGrnlist.Rows[i].Cells["DC Quantity"].Value) != "" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmRecqty"].Value) != "")
-                        //{
-                        //    decimal varQty = 0, varFreeQuantity = 0, varRecqty = 0, varDiffQty = 0, varInvqty = 0;
-                        //    varRecqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value);
-                        //    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "")
-                        //    { varFreeQuantity = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value); }
-                        //    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value) != "")
-                        //    { varDiffQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value); }
-                        //    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "")
-                        //    { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
-
-                        //    if (varDiffQty != Math.Abs(varInvqty - (varRecqty + varFreeQuantity))) //low
+                        //    if (Convert.ToString(grdGrnlist.Rows[i].Cells["DC Quantity"].Value) != "" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmRecqty"].Value) != "")
                         //    {
-                        //        varQuantityErr++;
-                        //        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
-                        //        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
-                        //        grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
-                        //    }
-                        //}      
+                        //        decimal varQty = 0, varFreeQuantity = 0, varRecqty = 0, varDiffQty = 0, varInvqty = 0;
+                        //        varRecqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value);
+                        //        if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "")
+                        //        { varFreeQuantity = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value); }
+                        //        if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value) != "")
+                        //        { varDiffQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value); }
+                        //        if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "")
+                        //        { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
+
+                        //        if (varDiffQty != Math.Abs(varInvqty - (varRecqty + varFreeQuantity))) //low
+                        //        {
+                        //            varQuantityErr++;
+                        //            grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
+                        //            grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                        //            grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
+                        //        }
+                        //}
+
+                        if (chkCompleted.Checked == true)
+                        {
+                            if (varGRNPurchaseFlag == 3)   //From dc- Queue
+                            {
+                                decimal varDCQty = 0,  varRecqty = 0 , varShopqty = 0;
+                               
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["DC Qty"].Value) != "")
+                                { varDCQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["DC Qty"].Value); }
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["Received Qty"].Value) != "")
+                                { varRecqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["Shop Qty"].Value) != "")
+                                { varShopqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Shop Qty"].Value); }
+                                if(varDCQty != varRecqty+ varShopqty)
+                                {
+                                    varQuantityErr++;
+                                    grdGrnlist.Rows[i].Cells["DC Qty"].Style.BackColor = Color.LightPink;
+                                    grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.LightPink;
+                                    grdGrnlist.Rows[i].Cells["Shop Qty"].Style.BackColor = Color.LightPink;
+                                }
+                            }
+                            if (varGRNPurchaseFlag == 1)   //From GRN- Queue
+                            {
+                                decimal varPendingQty = 0, varRecqty = 0, varShopqty = 0;
+
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["Pending Qty"].Value) != "")
+                                { varPendingQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Pending Qty"].Value); }
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["Received Qty"].Value) != "")
+                                { varRecqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["Shop Qty"].Value) != "")
+                                { varShopqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Shop Qty"].Value); }
+                                if (varPendingQty != varRecqty + varShopqty)
+                                {
+                                    varQuantityErr++;
+                                    grdGrnlist.Rows[i].Cells["Pending Qty"].Style.BackColor = Color.LightPink;
+                                    grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.LightPink;
+                                    grdGrnlist.Rows[i].Cells["Shop Qty"].Style.BackColor = Color.LightPink;
+                                }
+                            }
+                            if (varGRNPurchaseFlag == 2)   //From Purchase- Queue
+                            {
+                                decimal varInvoiceQty = 0, varRecqty = 0, varShopqty = 0;
+
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["Invoice Qty"].Value) != "")
+                                { varInvoiceQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Invoice Qty"].Value); }
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["Received Qty"].Value) != "")
+                                { varRecqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["Shop Qty"].Value) != "")
+                                { varShopqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Shop Qty"].Value); }
+                                if (varInvoiceQty != varRecqty + varShopqty)
+                                {
+                                    varQuantityErr++;
+                                    grdGrnlist.Rows[i].Cells["Invoice Qty"].Style.BackColor = Color.LightPink;
+                                    grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.LightPink;
+                                    grdGrnlist.Rows[i].Cells["Shop Qty"].Style.BackColor = Color.LightPink;
+                                }
+                            }
+                        }
                     }
                     if (ProCount == 0)
                     {
@@ -442,7 +500,15 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
                     }
-                    if (varErrorFlag == true )
+                    if (varQuantityErr != 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(113);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrorFlag = false;
+                    }
+                    if (varErrorFlag == true && varQuantityErr==0)
                     {
                         int varStatusID = 0;
                         if (grdGrnlist.Rows.Count > 0)

@@ -5038,7 +5038,7 @@ namespace ROMS
                                                     tbDetails.SelectedIndex = 1;
                                                 }
                                                 else
-                                                { varCloseflag = 1; }
+                                                { varCloseflag = 1; udfnclose(); }
                                             }
                                             else
                                             {
@@ -5155,7 +5155,7 @@ namespace ROMS
                              , Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_DiscAmnt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_DiscPer"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["TAX"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_GSTAmnt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_NettAmnt"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]), Convert.ToString(objDs.Tables[0].Rows[i]["DC Qty"]),Convert.ToString(objDs.Tables[0].Rows[i]["Inv Flag"]));
                         }
                         grdPurchaseList.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     }
@@ -5281,7 +5281,7 @@ namespace ROMS
                             {
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "")
                                 {
-                                    decimal varQty = 0, varFreeQuantity = 0, varRecqty = 0, varDiffQty = 0,varInvqty = 0;
+                                    decimal varQty = 0, varFreeQuantity = 0, varRecqty = 0, varDiffQty = 0, varInvqty = 0, varFlag = 0,varDCQty=0 , varerrFlag=0;
                                     varRecqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value);
                                     if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "")
                                     { varFreeQuantity = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value); }
@@ -5291,19 +5291,42 @@ namespace ROMS
                                     { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
                                     if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "")
                                     { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
+
+                                    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDCQuantity"].Value) != "")
+                                    { varDCQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDCQuantity"].Value); }
+
+                                    varFlag = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmInwardFlag"].Value);
                                     // varQty = varRecqty + varFreeQuantity + varDiffQty;
                                     varQty = varRecqty + varFreeQuantity ;
-                                    if (varInvqty != varQty)
+
+                                    if (varFlag == 1)
                                     {
-                                        varcount++; varQuantityErr++;
-                                        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
-                                        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                                        if (varDCQty != varQty  || varInvqty != varQty || varInvqty != varDCQty)
+                                        {
+                                            varcount++; varQuantityErr++; varerrFlag = 1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (varInvqty != varQty)
+                                        {
+                                            varcount++; varQuantityErr++; varerrFlag = 1;
+                                        }
                                     }
                                     if(varDiffQty!=0)
                                     {
-                                        varcount++; varQuantityErr++;
+                                        varcount++; varQuantityErr++; varerrFlag = 1;
+                                        
+                                    }
+                                    if(varerrFlag ==1)
+                                    {
                                         grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
                                         grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                                    }
+                                    else
+                                    {
+                                        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
                                     }
                                 }
                             }
