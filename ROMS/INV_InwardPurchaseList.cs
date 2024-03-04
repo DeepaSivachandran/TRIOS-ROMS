@@ -919,7 +919,7 @@ namespace ROMS
             }
             if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.D)
             {
-                if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) == 46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 50 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 49))
+                if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) != 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) != 49 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 49))
                 {
                 }
                 else
@@ -1747,7 +1747,7 @@ namespace ROMS
                 //    tsbDelete.Visible = false;
                 //    tssEdit.Visible = false;
                 //}
-                if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) == 46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==50 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==49))
+                if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) != 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)!=49 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==49))
                 {
                     tsbDelete.Visible = false;
                     tssEdit.Visible = false;
