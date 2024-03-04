@@ -974,6 +974,10 @@ namespace ROMS
                             }
                         }
                     }
+                    if(varEditFlag==1 && varStausId==46)
+                    {
+                        grdGrnlist.Columns["clmCheck"].Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
