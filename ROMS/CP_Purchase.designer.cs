@@ -2283,7 +2283,7 @@
             // txtInvoiceNo
             // 
             this.txtInvoiceNo.Location = new System.Drawing.Point(88, 79);
-            this.txtInvoiceNo.MaxLength = 20;
+            this.txtInvoiceNo.MaxLength = 15;
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.Size = new System.Drawing.Size(90, 25);
             this.txtInvoiceNo.TabIndex = 6;
