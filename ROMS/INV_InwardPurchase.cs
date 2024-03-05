@@ -454,7 +454,7 @@ namespace ROMS
                                     grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.LightPink;
                                     grdGrnlist.Rows[i].Cells["Shop Qty"].Style.BackColor = Color.LightPink;
                                 }
-                            }
+                            }/*
                             if (varGRNPurchaseFlag == 1 && Convert.ToBoolean(grdGrnlist.Rows[i].Cells["clmCheck"].Value) == true)   //From GRN- Queue
                             {
                                 decimal varPendingQty = 0, varRecqty = 0, varShopqty = 0;
@@ -472,7 +472,7 @@ namespace ROMS
                                     grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.LightPink;
                                     grdGrnlist.Rows[i].Cells["Shop Qty"].Style.BackColor = Color.LightPink;
                                 }
-                            }
+                            }*/
                             if (varGRNPurchaseFlag == 2 && Convert.ToBoolean(grdGrnlist.Rows[i].Cells["clmCheck"].Value) == true)   //From Purchase- Queue
                             {
                                 decimal varInvoiceQty = 0, varRecqty = 0, varShopqty = 0;
