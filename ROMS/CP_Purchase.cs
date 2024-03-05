@@ -6938,6 +6938,11 @@ namespace ROMS
             }
         }
 
+        private void GroupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void TxtLoadingCharge_TextChanged(object sender, EventArgs e)
         {
             try
@@ -7716,6 +7721,8 @@ namespace ROMS
                             decimal varDiffQqty = 0;
                             varDiffQqty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
                             grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
+                            udfnSubtotCalc(e);
+                            udfnGstvalue();
                         }
                     }
                     if (varEntryType == 55 || varEntryType == 56) // direct and against po
@@ -7726,6 +7733,8 @@ namespace ROMS
                             varDiffQqty = 0;
                             varDiffQqty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
                             grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
+                            udfnSubtotCalc(e);
+                            udfnGstvalue();
                         }
                     }
                     
@@ -7811,8 +7820,8 @@ namespace ROMS
             try
             {
                 decimal varSubtotal = 0, varTaxTotal = 0;
-                if (Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value) != 0 || Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value) != 0)
-                {
+                //if (Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value) != 0 || Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value) != 0)
+                //{
                     for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
                     {
                         decimal varTaxValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmTax"].Value);
@@ -7820,7 +7829,7 @@ namespace ROMS
                         varSubtotal = varSubtotal + varTaxValue;
                         varTaxTotal = varTaxTotal + varGstAmt;
                     }
-                }
+                //}
                 txtSubtotal.Text = Convert.ToString(varSubtotal);
                 txtGstamt.Text = Convert.ToString(varTaxTotal);
                 txtGrandtot.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
