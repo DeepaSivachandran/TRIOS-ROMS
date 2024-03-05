@@ -4817,7 +4817,9 @@ namespace ROMS
                                         objTRN_PurchaseEntry.paraINVNo = txtInvoiceNo.Text;
                                         objTRN_PurchaseEntry.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
                                         objTRN_PurchaseEntry.paraTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
-                                        objTRN_PurchaseEntry.paraBrokerID = Convert.ToInt32(lblBrokerId.Text);
+                                        int varBrokerid = 0;
+                                        if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); } 
+                                        objTRN_PurchaseEntry.paraBrokerID = varBrokerid;
                                         objTRN_PurchaseEntry.paraGSTIN = txtGstin.Text;
                                         objTRN_PurchaseEntry.paraSaveFlag = varSaveFlag;
                                         if (chkInvoice.Checked == true)
@@ -7765,19 +7767,19 @@ namespace ROMS
             try
             {
                 int varQtyErrFlag = 0;
-                /*if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
-                { pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); }
-                else
-                { pbDiffQty = Math.Abs(varInvQty - varRecQty);  }
-                // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
-                //pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
-                // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
-                PbNetamt = (PbTaxvalue + PbGstamt);*/
+                //if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
+                //{ pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); }
+                //else
+                //{ pbDiffQty = Math.Abs(varInvQty - varRecQty); }
+                //// PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
+                //PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
+                ////pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
+                //// PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
+                //PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
+                //PbNetamt = (PbTaxvalue + PbGstamt);
 
                 //55-against po      56-Direct
-                if(varEntryType == 55 || varEntryType == 56)
+                if (varEntryType == 55 || varEntryType == 56)
                 {
                    pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
                    //if(varInvQty!=(varRecQty + varFreeQty))  //excess
@@ -7795,6 +7797,11 @@ namespace ROMS
                     pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); //Excess
                     //varInvQty = varRecQty + varFreeQty + varDiffQty; //pending
                 }
+                PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
+                //pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
+                // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
+                PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
+                PbNetamt = (PbTaxvalue + PbGstamt);
             }
             catch (Exception ex)
             {

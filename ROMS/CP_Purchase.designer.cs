@@ -1792,7 +1792,7 @@
             this.lblGrandTotal.ForeColor = System.Drawing.Color.Black;
             this.lblGrandTotal.Location = new System.Drawing.Point(1188, 548);
             this.lblGrandTotal.Name = "lblGrandTotal";
-            this.lblGrandTotal.Size = new System.Drawing.Size(32, 40);
+            this.lblGrandTotal.Size = new System.Drawing.Size(35, 43);
             this.lblGrandTotal.TabIndex = 1111150;
             this.lblGrandTotal.Text = "0";
             // 
@@ -3383,12 +3383,14 @@
             this.clmDCQuantity.HeaderText = "DC Qty";
             this.clmDCQuantity.Name = "clmDCQuantity";
             this.clmDCQuantity.ReadOnly = true;
+            this.clmDCQuantity.Visible = false;
             // 
             // clmInwardFlag
             // 
             this.clmInwardFlag.HeaderText = "Inv Flag";
             this.clmInwardFlag.Name = "clmInwardFlag";
             this.clmInwardFlag.ReadOnly = true;
+            this.clmInwardFlag.Visible = false;
             // 
             // CP_Purchase
             // 
