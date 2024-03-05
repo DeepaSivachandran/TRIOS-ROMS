@@ -3719,7 +3719,7 @@ namespace ROMS
                                 }
                                 grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDateAdd).Trim()
                                 , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), txtSourceLocation.Text, cmbrack.Text, (var_Symbol).Trim(), cmbPONo.SelectedValue,
-                                (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0,0,0);
+                                (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0,0,0,0);
                                 grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 udfnrowclear();
                                 txtProductName.Focus();
@@ -4159,44 +4159,47 @@ namespace ROMS
                                 DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmBatchno"];
                                 DataGridViewCell cell3 = dataGridView.Rows[i].Cells["clmLocation"];
                                 DataGridViewCell cell4 = dataGridView.Rows[i].Cells["clmRack"];
-                                if (VarGridError == "0")
+                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == null || Convert.ToString(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == "0")
                                 {
-                                    grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                                    cell.Style.BackColor = Color.PaleGreen;
-                                    cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                    cell1.Style.BackColor = Color.PaleGreen;
-                                    cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                    cell2.Style.BackColor = Color.PaleGreen;
-                                    cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                    cell3.Style.BackColor = Color.PaleGreen;
-                                    cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmrkcount"].Value) == "0")
+                                    if (VarGridError == "0")
                                     {
-                                        cell4.Style.BackColor = Color.LightGray;
-                                        cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                        grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                        cell.Style.BackColor = Color.PaleGreen;
+                                        cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                        cell1.Style.BackColor = Color.PaleGreen;
+                                        cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                        cell2.Style.BackColor = Color.PaleGreen;
+                                        cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                        cell3.Style.BackColor = Color.PaleGreen;
+                                        cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                        if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmrkcount"].Value) == "0")
+                                        {
+                                            cell4.Style.BackColor = Color.LightGray;
+                                            cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                        }
+                                        else
+                                        {
+                                            cell4.Style.BackColor = Color.PaleGreen;
+                                            cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                        }
+                                    }
+                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
+                                    {
+                                        cell2.Style.BackColor = Color.LightGray;
+                                        cell2.Style.ForeColor = Color.Black;
+                                        cell2.ReadOnly = true;
+                                    }
+                                    else if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "73")
+                                    {
+                                        cell2.Style.BackColor = Color.LightGray;
+                                        cell2.Style.ForeColor = Color.Black;
+                                        cell2.ReadOnly = true;
                                     }
                                     else
                                     {
-                                        cell4.Style.BackColor = Color.PaleGreen;
-                                        cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                        cell2.Style.BackColor = Color.PaleGreen;
+                                        cell2.Style.ForeColor = Color.Black;
                                     }
-                                }
-                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
-                                {
-                                    cell2.Style.BackColor = Color.LightGray;
-                                    cell2.Style.ForeColor = Color.Black;
-                                    cell2.ReadOnly = true;
-                                }
-                                else if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "73")
-                                {
-                                    cell2.Style.BackColor = Color.LightGray;
-                                    cell2.Style.ForeColor = Color.Black;
-                                    cell2.ReadOnly = true;
-                                }
-                                else
-                                {
-                                    cell2.Style.BackColor = Color.PaleGreen;
-                                    cell2.Style.ForeColor = Color.Black;
                                 }
                             }
                         }
@@ -6937,6 +6940,11 @@ namespace ROMS
             }
         }
 
+        private void GroupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void TxtLoadingCharge_TextChanged(object sender, EventArgs e)
         {
             try
@@ -7715,6 +7723,8 @@ namespace ROMS
                             decimal varDiffQqty = 0;
                             varDiffQqty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
                             grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
+                            udfnSubtotCalc(e);
+                            udfnGstvalue();
                         }
                     }
                     if (varEntryType == 55 || varEntryType == 56) // direct and against po
@@ -7725,6 +7735,8 @@ namespace ROMS
                             varDiffQqty = 0;
                             varDiffQqty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
                             grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
+                            udfnSubtotCalc(e);
+                            udfnGstvalue();
                         }
                     }
                     
@@ -7815,8 +7827,8 @@ namespace ROMS
             try
             {
                 decimal varSubtotal = 0, varTaxTotal = 0;
-                if (Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value) != 0 || Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value) != 0)
-                {
+                //if (Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value) != 0 || Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value) != 0)
+                //{
                     for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
                     {
                         decimal varTaxValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmTax"].Value);
@@ -7824,7 +7836,7 @@ namespace ROMS
                         varSubtotal = varSubtotal + varTaxValue;
                         varTaxTotal = varTaxTotal + varGstAmt;
                     }
-                }
+                //}
                 txtSubtotal.Text = Convert.ToString(varSubtotal);
                 txtGstamt.Text = Convert.ToString(varTaxTotal);
                 txtGrandtot.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
