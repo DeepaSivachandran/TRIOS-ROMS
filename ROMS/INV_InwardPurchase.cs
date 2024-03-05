@@ -1080,6 +1080,10 @@ namespace ROMS
                             }
                         }
                     }
+                    if(varEditFlag==1 && varStausId==46)
+                    {
+                        grdGrnlist.Columns["clmCheck"].Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1099,14 +1103,14 @@ namespace ROMS
                     grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
-                else if(varStausId==46 && varPurchaseID!=0 && varPurchaseStatus==50)
+                else if(varStausId!=45 && varPurchaseID!=0 && varPurchaseStatus!=49)
                 {
                     grdGrnlist.ReadOnly = true;
                     grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdGrnlist.Columns["Shop Qty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdGrnlist.Columns["Rack"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
-                else if(varStausId==46 && varPurchaseID!=0 && varPurchaseStatus==49)
+                else if(varStausId!=45 && varPurchaseID!=0 && varPurchaseStatus==49)
                 {
                     grdGrnlist.ReadOnly = true;
                     grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightGray;
