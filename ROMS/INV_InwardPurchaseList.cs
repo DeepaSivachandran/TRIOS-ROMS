@@ -66,6 +66,7 @@ namespace ROMS
                 MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher No."].Value);
                 MainForm.objINV_InwardPurchase.varPurchaseStatus= Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value);
                 MainForm.objINV_InwardPurchase.varPurchaseID= Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value);
+                MainForm.objINV_InwardPurchase.varStatus= Convert.ToString(grdInwardList.SelectedRows[0].Cells["Status"].Value);
                 //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN No."].Value);
                 //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN Date"].Value);
                 picLoader.Visible = false;
