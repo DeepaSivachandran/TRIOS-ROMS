@@ -438,7 +438,7 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
                 {
-                    if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value) != 18)
+                    if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value) == 18)
                     {
                         TsbDelete_Click(sender, e);
                     }
@@ -998,7 +998,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
-                    if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value) != 18)
+                    if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value) == 18)
                     {
                         TsbDelete_Click(sender, e);
                     }
