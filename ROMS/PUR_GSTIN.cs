@@ -82,11 +82,14 @@ namespace ROMS
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
-                       // MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
+                        this.Close();
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtGstin.BackColor = ColorTranslator.FromHtml("#fabdbd");
                     }
                 }
             }
@@ -114,8 +117,8 @@ namespace ROMS
                     {
                         errUnit.Clear();
                         udfnGSTINSave();
-                        MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
-                        this.Close();
+                        //MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
+                        //this.Close();
                     }
                 }
                 else

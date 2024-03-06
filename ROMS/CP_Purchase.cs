@@ -1542,7 +1542,7 @@ namespace ROMS
                     if (Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0)
                     {
                         MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                        MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
+                        //MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
                         MainForm.objPUR_GSTIN.ShowDialog();
                     }
                     cmbEntryType.Focus();
@@ -1866,7 +1866,7 @@ namespace ROMS
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
-                    txtGstin.Text = selectedItem.SubItems[3].Text;
+                    //txtGstin.Text = selectedItem.SubItems[3].Text;
                     //varSuppliervalue = selectedItem.SubItems[3].Text;
                     udfnSupplierDetails();
                     grdSupplierList.Rows.Clear();
