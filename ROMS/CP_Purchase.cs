@@ -9236,7 +9236,7 @@ namespace ROMS
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
-                            txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]);
+                            //txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "" && pbPurchaseno == "0")
                             {
