@@ -1882,7 +1882,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbOrderBy.Focus();
+                    if (cmbOrderBy.Enabled==true)
+                    {
+                        cmbOrderBy.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
                 }
             }
             catch (Exception ex)
