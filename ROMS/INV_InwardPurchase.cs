@@ -18,6 +18,7 @@ namespace ROMS
         public int varConcernId = 0, varSupplierId = 0, varScheduleId = 0, varLocationId = 0, VarRackId = 0, varUnitId = 0,varGRNId=0,varInwardId=0,varEditFlag=0,varStausId=0;
         public int varPurchaseID = 0, varID = 0, varGRNPurchaseFlag = 0, varCloseFlag = 0, varTypeID = 0, varRemarkFlag = 0, grid_flag = 0;
         public int varRemarkCount=0;
+        public string varStatus = "";
         DataTable dtInwardPurchase = new DataTable();
         ToolTip tpInwardNo = new ToolTip();
         bool varVoucherSkip = false;
@@ -927,7 +928,7 @@ namespace ROMS
                                     //grdGrnlist.Columns["U_Name"].Visible = false;
                                 }
                                 //grdGrnlist.Columns["STS_Name"].Visible = false;
-                                //lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["STS_Name"]);
+                                lblStatusValue.Text = varStatus;
                                 if (grdGrnlist.Rows.Count > 0)
                                 {
                                     grdGrnlist.CurrentCell = grdGrnlist["Received Qty", 0];
@@ -939,7 +940,7 @@ namespace ROMS
                                     dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Date"]);
                                     txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_No"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC User"]);
-                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC STS"]);
+                                    //lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC STS"]);
                                     grdGrnlist.Columns["DC Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["DC Qty"].Width = 100;
                                     grdGrnlist.Columns["DC Qty"].ReadOnly = true;
@@ -958,7 +959,7 @@ namespace ROMS
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN_No"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN User"]);
-                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN STS"]);
+                                        //lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN STS"]);
                                     }
                                     if (PurEntryType == "55") // Against PO
                                     {
@@ -967,7 +968,7 @@ namespace ROMS
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO_No"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO User"]);
-                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO STS"]);
+                                        //lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO STS"]);
                                     }
                                     if (PurEntryType == "57") // Against DC
                                     {
@@ -976,7 +977,7 @@ namespace ROMS
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_No"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC User"]);
-                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC STS"]);
+                                        //lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC STS"]);
 
                                     }
                                     lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR STS"]);
@@ -1032,7 +1033,7 @@ namespace ROMS
                                     txtVerifiedby1.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 1"]);
                                     txtVerifiedby2.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 2"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN User"]);
-                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN STS"]);
+                                    ////lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN STS"]);
                                     grdGrnlist.Columns["PUR_EntryType"].Visible = false;
                                 }
                                 if (varGRNPurchaseFlag == 175) //from  Purchase
@@ -1045,7 +1046,7 @@ namespace ROMS
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN_No"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN User"]);
-                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN STS"]);
+                                        //lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["GRN STS"]);
                                     }
                                     if (PurEntryType == "55") // Against PO
                                     {
@@ -1054,7 +1055,7 @@ namespace ROMS
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO_No"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO User"]);
-                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO STS"]);
+                                        //lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PO STS"]);
                                     }
                                     if (PurEntryType == "57") // Against DC
                                     {
@@ -1063,7 +1064,7 @@ namespace ROMS
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC_No"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC User"]);
-                                        lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC STS"]);
+                                        //lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC STS"]);
                                     }
                                     grdGrnlist.Columns["PUR_EntryType"].Visible = false;
                                 }
@@ -1074,7 +1075,7 @@ namespace ROMS
                                     dpGRNDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC_Date"]);
                                     txtGRNNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC_No"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC User"]);
-                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC STS"]);
+                                    //lblStatusValue.Text = Convert.ToString(objDs.Tables[2].Rows[0]["DC STS"]);
                                     grdGrnlist.Columns["PUR_EntryType"].Visible = false;
                                 }
                                 if (varEditFlag==1)
