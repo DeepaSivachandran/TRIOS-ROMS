@@ -31,6 +31,9 @@ namespace ROMS
         private ToolTip tpIssuemodeValues = new ToolTip();
         private ToolTip tpIssuemode = new ToolTip();
         private ToolTip tpIssueby = new ToolTip();
+        public string varSupplierID = "";
+        public string varSupplierScheduleID = "";
+        public string varSupplierName = "";
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "", var_MXSQ = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0",
             varcomid = "0", varSuppliervalue = "", var_BulkSymbol = "", var_TotSymbol = "";
@@ -1104,6 +1107,10 @@ namespace ROMS
                             {
                                 bulk = Convert.ToString(varFinalBulkUnit);
                             }
+                            //if (varFinalBulkUnit == 0 && varBulkunitqty !=0)
+                            //{
+                            //    bulk = Convert.ToString(varBulkunitqty);
+                            //}
                             if (varFinalUnit == 0)
                             {
                                 unit = "-";
@@ -4300,7 +4307,7 @@ namespace ROMS
                 //{
                 if (qtyFlag == 1)
                 {
-                    int varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
+                    int varDecimal = Convert.ToInt32(lblUnitDecimal.Text);
                     DataValidation objValidation = new DataValidation();
                     totalBulkqty = Convert.ToInt32(varBulkUnitQty);
                     totalOrderQty = Convert.ToDecimal(varUPP * totalBulkqty);
@@ -4761,6 +4768,30 @@ namespace ROMS
                         lblschedule.Text = selectedItem.SubItems[2].Text;
                         varSuppliervalue = selectedItem.SubItems[3].Text;
                     }
+                    if (Convert.ToInt32(grdsupplieradd.Rows.Count) != 0)
+                    {
+                        if (Convert.ToString(lblSupplierCode.Text.Trim()) != Convert.ToString(varSupplierID))
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(78);
+                            objDServ.CloseConnection();
+
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdsupplieradd.Rows.Clear();
+                                grdsupplieradd.DataSource = null;
+                                grdRepDetails.DataSource = null;
+                            }
+                            else
+                            {
+                                grdsupplieradd.Refresh();
+                                txtSupplier.Text = varSupplierName;
+                                lblSupplierCode.Text = varSupplierID;
+                                lblschedule.Text = varSupplierScheduleID;
+                            }
+                        }
+                    }
                     udfnsupplierLoad();
                     DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                     GrdPendingorder_DataBindingComplete(grdPendingorder, args);
@@ -4790,6 +4821,9 @@ namespace ROMS
         {
             try
             {
+                varSupplierID = lblSupplierCode.Text;
+                varSupplierScheduleID = lblschedule.Text;
+                varSupplierName = txtSupplier.Text;
                 pbSupplierpend = 0;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();

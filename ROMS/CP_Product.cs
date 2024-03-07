@@ -52,6 +52,7 @@ namespace ROMS
         private ToolTip tpHsnCode = new ToolTip();
         private ToolTip tpgst = new ToolTip();
         private ToolTip tpMxstock = new ToolTip();
+        private ToolTip tpUPP = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varMasterType = "0", varSalesRack="",varBrandName="", varRackDescription="", varEname = "",varGRNid="0",varNewproid="0";
@@ -117,6 +118,17 @@ namespace ROMS
                     txtBrand.BackColor = ColorTranslator.FromHtml("#fabdbd");
                     errItems.SetError(txtBrand, "Please select brand");
                     blnErrorFlag = true;
+                }
+                if(Convert.ToInt32(cmbBulkUnit.SelectedValue)!=-1)
+                {
+                    if(Convert.ToString(txtUpp.Text)=="" || Convert.ToString(txtUpp.Text)=="0")
+                    {
+                        errItems.SetError(txtUpp, "Please enter upp");
+                        txtUpp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpUPP.ShowAlways = true;
+                        tpUPP.Show("Please enter upp", txtUpp, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 //    if (Convert.ToString(txtUpp.Text).Trim() == "")
                 //    {
