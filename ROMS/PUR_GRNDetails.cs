@@ -540,6 +540,7 @@ namespace ROMS
                         varErrorFormat = 0;
                         for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                         {
+                            /*
                             if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == "")
                             {
                                 varTempExpiryDate = Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value);
@@ -655,6 +656,7 @@ namespace ROMS
                                     }
                                 }
                             }
+                            */
                             //if (error == 1)
                             //{
                             //    string varMessage = objDServ.udfnGetMessages(94);
@@ -755,6 +757,10 @@ namespace ROMS
                             result2 = objspdservice.udfnGRNEntry(objTRNS_GRN1);
                             objspdservice.CloseConnection();
                             string[] varvalue1 = result2.Split('~');
+                            if (varvalue1[0] == "0")
+                            {
+
+                            }
                             if (varvalue1[1] == "1")
                             {
                                 //MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
