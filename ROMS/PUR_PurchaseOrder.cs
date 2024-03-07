@@ -4460,6 +4460,15 @@ namespace ROMS
                             cell.Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                             cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                         }
+                        else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["prstsid"].Value) == "13")
+                        {
+                            DataGridView dataGridView = (DataGridView)sender;
+                            DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStsname"];
+                            cell.Style.BackColor = Color.SpringGreen;
+                            cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                            //grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LimeGreen;
+                            //grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        }
                         else
                         {
                             DataGridView dataGridView = (DataGridView)sender;
