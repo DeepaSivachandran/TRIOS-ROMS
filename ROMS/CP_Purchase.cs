@@ -4550,7 +4550,7 @@ namespace ROMS
                 { grandtotal = Convert.ToDecimal(txtGrandtot.Text); }
 
                 lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense - tcsamt - discountamt - damagecost - otherdiscount;
-                lblGrandTotal.Text = lblGrandTot.ToString("0.00");
+                lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
             }
             catch (Exception ex)
             {
