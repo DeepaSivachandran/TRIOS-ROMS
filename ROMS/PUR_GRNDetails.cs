@@ -757,7 +757,7 @@ namespace ROMS
                             result2 = objspdservice.udfnGRNEntry(objTRNS_GRN1);
                             objspdservice.CloseConnection();
                             string[] varvalue1 = result2.Split('~');
-                            if (varvalue1[0] == "0")
+                            if (varvalue1[0] == "5")
                             {
 
                             }
