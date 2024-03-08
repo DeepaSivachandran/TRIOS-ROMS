@@ -941,9 +941,6 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
-                                grdGrnlist.Columns["GIPPR_DCPRID"].Visible = false;
-                                grdGrnlist.Columns["GIPPR_PURPRID"].Visible = false;
-                                grdGrnlist.Columns["Qty"].Visible = false;
                                 if (varEditFlag == 0)
                                 {
                                     //grdGrnlist.Columns["U_Name"].Visible = false;

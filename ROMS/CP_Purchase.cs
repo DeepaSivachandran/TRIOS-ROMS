@@ -5596,7 +5596,10 @@ namespace ROMS
                                         }
                                         else
                                         {
-                                            grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                            if(Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value)!=1)
+                                            {
+                                                grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                            }
                                         }
                                     }
                                 }
@@ -5665,7 +5668,10 @@ namespace ROMS
                                                 }
                                                 else
                                                 {
-                                                    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                    if (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) != 1)
+                                                    {
+                                                        grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                    }
                                                 }
                                             }
                                         }
@@ -5727,7 +5733,10 @@ namespace ROMS
                             }
                             else
                             {
-                                grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                if (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) != 1)
+                                {
+                                    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                }
                             }
                         }
                         if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value) == "75")
@@ -5739,7 +5748,10 @@ namespace ROMS
                             }
                             else
                             {
-                                grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
+                                if (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) != 1)
+                                {
+                                    grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
+                                }
                             }
                         }
                         else
@@ -5750,7 +5762,10 @@ namespace ROMS
                             }
                             else
                             {
-                                grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
+                                if (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) != 1)
+                                {
+                                    grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
+                                }
                             }
                         }
                         decimal varMRP = 0, varGrnMRP = 0;
