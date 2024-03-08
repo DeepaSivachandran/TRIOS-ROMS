@@ -278,6 +278,36 @@ namespace ROMS
             }
         }
 
+        private void BtnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdGrnlist.Rows.Count; i++)
+                {
+                    grdGrnlist.Rows[i].Cells["clmCheck"].Value = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnUnselectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdGrnlist.Rows.Count; i++)
+                {
+                    grdGrnlist.Rows[i].Cells["clmCheck"].Value = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnRemarks_Leave(object sender, EventArgs e)
         {
             try
@@ -1084,6 +1114,8 @@ namespace ROMS
                     }
                     if(varEditFlag==1)
                     {
+                        btnSelectAll.Visible = false;
+                        btnUnselectAll.Visible = false;
                         grdGrnlist.Columns["clmCheck"].Visible = false;
                     }
                 }
