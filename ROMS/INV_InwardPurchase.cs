@@ -518,6 +518,26 @@ namespace ROMS
                                     grdGrnlist.Rows[i].Cells["Shop Qty"].Style.BackColor = Color.LightPink;
                                 }
                             }
+                            if(varEditFlag==1)
+                            {
+                                if (varGRNPurchaseFlag != 174)
+                                {
+                                    decimal varqty = 0, varRecqty = 0, varShopqty = 0;
+                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["Qty"].Value) != "")
+                                    { varqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Qty"].Value); }
+                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["Received Qty"].Value) != "")
+                                    { varRecqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Received Qty"].Value); }
+                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["Shop Qty"].Value) != "")
+                                    { varShopqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["Shop Qty"].Value); }
+
+                                    if (varqty != varRecqty + varShopqty)
+                                    {
+                                        varQuantityErr++;
+                                        grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.LightPink;
+                                        grdGrnlist.Rows[i].Cells["Shop Qty"].Style.BackColor = Color.LightPink;
+                                    }
+                                }
+                            }
 
                             //if (varGRNPurchaseFlag == 2 && Convert.ToBoolean(grdGrnlist.Rows[i].Cells["clmCheck"].Value) == true)   //From Purchase- Queue
                             //{
