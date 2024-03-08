@@ -538,134 +538,134 @@ namespace ROMS
                     if(grdGrnlist.Rows.Count > 0)
                     {
                         varErrorFormat = 0;
-                        for (int i = 0; i < grdGrnlist.Rows.Count; i++)
+                    /*
+                    for (int i = 0; i < grdGrnlist.Rows.Count; i++)
+                    {
+                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == "")
                         {
-                            /*
-                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == "")
+                            varTempExpiryDate = Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value);
+                            string dateString = varTempExpiryDate;
+                            if (dateString.Length != 8 && dateString != "")
                             {
-                                varTempExpiryDate = Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value);
-                                string dateString = varTempExpiryDate;
-                                if (dateString.Length != 8 && dateString != "")
+                                grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
+                                varErrorFormat = 1;
+                            }
+                            else
+                            {
+                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShelflifeenable"].Value) == "1" || dateString != "")
                                 {
-                                    grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
-                                    grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
-                                    varErrorFormat = 1;
-                                }
-                                else
-                                {
-                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShelflifeenable"].Value) == "1" || dateString != "")
+                                    varExpiryDate = "";
+
+                                    string varTempYear = "0";
+                                    object cellValue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value);
+                                    string varExpDate = "";
+                                    varExpDate = cellValue.ToString();
+                                    string[] DMY = varExpDate.Split('/');
+                                    if (DMY.Count() == 3)
                                     {
-                                        varExpiryDate = "";
-
-                                        string varTempYear = "0";
-                                        object cellValue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value);
-                                        string varExpDate = "";
-                                        varExpDate = cellValue.ToString();
-                                        string[] DMY = varExpDate.Split('/');
-                                        if (DMY.Count() == 3)
+                                        varTempYear = DMY[2];
+                                        if (varTempYear.Length == 2)
                                         {
-                                            varTempYear = DMY[2];
-                                            if (varTempYear.Length == 2)
-                                            {
-                                                cellValue = DMY[0] + "/" + DMY[1] + "/" + 20 + varTempYear;
-                                            }
+                                            cellValue = DMY[0] + "/" + DMY[1] + "/" + 20 + varTempYear;
                                         }
-                                        varTempExpiryDate = cellValue.ToString();
+                                    }
+                                    varTempExpiryDate = cellValue.ToString();
 
-                                        DataSet objDS = new DataSet();
-                                        SPDataService objdServ = new SPDataService();
-                                        objDS = objdServ.udfnMaster(8, 0, 0, varTempExpiryDate, "", 0, "", 0);
-                                        objdServ.CloseConnection();
-                                        if (objDS.Tables[0].Rows.Count > 0)
+                                    DataSet objDS = new DataSet();
+                                    SPDataService objdServ = new SPDataService();
+                                    objDS = objdServ.udfnMaster(8, 0, 0, varTempExpiryDate, "", 0, "", 0);
+                                    objdServ.CloseConnection();
+                                    if (objDS.Tables[0].Rows.Count > 0)
+                                    {
+                                        if (Convert.ToString(objDS.Tables[0].Rows[0]["DATE"]) == "0")
                                         {
-                                            if (Convert.ToString(objDS.Tables[0].Rows[0]["DATE"]) == "0")
-                                            {
-                                                grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
-                                                grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
-                                                varErrorFormat = 1;
-                                            }
-                                            else
-                                            {
-                                                grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                            }
+                                            grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                            grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
+                                            varErrorFormat = 1;
+                                        }
+                                        else
+                                        {
+                                            grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
                                         }
                                     }
                                 }
                             }
-                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == "")
+                        }
+                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == "")
+                        {
+                            string varTempYear = "0";
+                            object cellValue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value);
+                            string varExpDate = "";
+                            varExpDate = cellValue.ToString();
+                            string[] DMY = varExpDate.Split('/');
+                            if (DMY.Count() == 3)
                             {
-                                string varTempYear = "0";
-                                object cellValue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value);
-                                string varExpDate = "";
-                                varExpDate = cellValue.ToString();
-                                string[] DMY = varExpDate.Split('/');
-                                if (DMY.Count() == 3)
+                                varTempYear = DMY[2];
+                                if (varTempYear.Length == 2)
                                 {
-                                    varTempYear = DMY[2];
-                                    if (varTempYear.Length == 2)
-                                    {
-                                        cellValue = DMY[0] + "/" + DMY[1] + "/" + 20 + varTempYear;
-                                    }
+                                    cellValue = DMY[0] + "/" + DMY[1] + "/" + 20 + varTempYear;
                                 }
-                                varTempExpiryDate = cellValue.ToString();
-                                SPDataService objDServe = new SPDataService();
-                                DataSet objDS = new DataSet();
-                                objDS = objDServe.udfnMaster(10, 0, 0, dpGrnDate.Text.Trim(), varTempExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
-                                objDServe.CloseConnection();
-                                if (objDS.Tables[0].Rows.Count > 0)
+                            }
+                            varTempExpiryDate = cellValue.ToString();
+                            SPDataService objDServe = new SPDataService();
+                            DataSet objDS = new DataSet();
+                            objDS = objDServe.udfnMaster(10, 0, 0, dpGrnDate.Text.Trim(), varTempExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
+                            objDServe.CloseConnection();
+                            if (objDS.Tables[0].Rows.Count > 0)
+                            {
+                                if (objDS.Tables[0].Rows[0]["Date"].ToString() == "0")
                                 {
-                                    if (objDS.Tables[0].Rows[0]["Date"].ToString() == "0")
+                                    varErrorFormat = 1; //error = 1;
+                                }
+                                else
+                                {
+                                    int varExpiryDays = 0;
+                                    if (objDS.Tables.Count != 0)
                                     {
-                                        varErrorFormat = 1; //error = 1;
+                                        if (objDS.Tables[1].Rows.Count > 0)
+                                        {
+                                            varExpiryDays = Convert.ToInt32(objDS.Tables[1].Rows[0]["ExpiryDate"]);
+                                        }
+                                    }
+                                    if (varExpiryDays < 0)
+                                    {
+                                        varErrorFormat = 1;
+                                        grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                        grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
                                     }
                                     else
                                     {
-                                        int varExpiryDays = 0;
-                                        if (objDS.Tables.Count != 0)
+                                        if (varShelflife == 1)
                                         {
-                                            if (objDS.Tables[1].Rows.Count > 0)
+                                            if (objDS.Tables.Count > 1)
                                             {
-                                                varExpiryDays = Convert.ToInt32(objDS.Tables[1].Rows[0]["ExpiryDate"]);
-                                            }
-                                        }
-                                        if (varExpiryDays < 0)
-                                        {
-                                            varErrorFormat = 1;
-                                            grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
-                                            grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
-                                        }
-                                        else
-                                        {
-                                            if (varShelflife == 1)
-                                            {
-                                                if (objDS.Tables.Count > 1)
+                                                if (Convert.ToInt32(objDS.Tables[2].Rows[0]["DATEVALIDATE"]) == 0)
                                                 {
-                                                    if (Convert.ToInt32(objDS.Tables[2].Rows[0]["DATEVALIDATE"]) == 0)
-                                                    {
-                                                        pbDateflag = 1;
-                                                        grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
-                                                        grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
-                                                    }
-                                                    else
-                                                    {
-                                                        grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                                    }
+                                                    pbDateflag = 1;
+                                                    grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                                    grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
+                                                }
+                                                else
+                                                {
+                                                    grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
                                                 }
                                             }
                                         }
                                     }
                                 }
                             }
-                            */
-                            //if (error == 1)
-                            //{
-                            //    string varMessage = objDServ.udfnGetMessages(94);
-                            //    objDServ.CloseConnection();
-                            //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            //}
                         }
+                        //if (error == 1)
+                        //{
+                        //    string varMessage = objDServ.udfnGetMessages(94);
+                        //    objDServ.CloseConnection();
+                        //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //}
                     }
-                    if(varErrorFormat==1)
+                    */
+                    }
+                    if (varErrorFormat==1)
                     {
                         string varMessage = objDServ.udfnGetMessages(94);
                         objDServ.CloseConnection();
@@ -752,24 +752,21 @@ namespace ROMS
                             objTRNS_GRN1.paraSupplierID =Convert.ToInt32(lblSupplierCode.Text);
                             objTRNS_GRN1.paraScheduleID =Convert.ToInt32(lblschedule.Text);
                             objTRNS_GRN1.paraID = ParaSupplierAMT;
-                            objTRNS_GRN1.paraSaveFlag = 0;
+                            objTRNS_GRN1.paraSaveFlag = 1;
                             objTRNS_GRN1.paraGRNProd = objGRNProd;
                             result2 = objspdservice.udfnGRNEntry(objTRNS_GRN1);
                             objspdservice.CloseConnection();
                             string[] varvalue1 = result2.Split('~');
-                            if (varvalue1[0] == "5")
-                            {
-
-                            }
                             if (varvalue1[1] == "1")
                             {
+                                grdGrnlist.ClearSelection();
                                 //MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
                                 //MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
                                 //MainForm.objPUR_GRNApprovalVerify.ShowDialog();
                                 //varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
                                 //if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
                                 //{
-                                    varGrnId = Convert.ToInt32(pbGRNId);
+                                varGrnId = Convert.ToInt32(pbGRNId);
                                     TRN_GRN objTRNS_GRN = new TRN_GRN();
                                     objTRNS_GRN.ViewType = 3;
                                     objTRNS_GRN.ParaEditFlag = 1;
@@ -856,7 +853,8 @@ namespace ROMS
                                         }
                                     }
                                 }
-                                else {
+                                else
+                                {
                                     if (varvalue[0] == "5")
                                     {
                                         DialogResult dialogResult = MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -892,14 +890,15 @@ namespace ROMS
                             }
                             else
                             {
+                                grdGrnlist.ClearSelection();
                                 if (varvalue1[0] == "5")
                                 {
-                                    MessageBox.Show(result2.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    //string result3 = varvalue1[1];
+                                    //string[] message = result3.Split('@');
+                                    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     string varProductID = "", Expirydate = "";
                                     for (int j = 0; j < grdGrnlist.RowCount; j++)
                                     {
-                                        grdGrnlist.Rows[j].DefaultCellStyle.BackColor = Color.White;
-
                                         string[] varFirstList = varvalue1[2].Split('|');
                                         for (int i = 0; i < varFirstList.Length; i++)
                                         {
@@ -923,8 +922,25 @@ namespace ROMS
                                             varTempExpiryDate = cellValue.ToString();
                                             if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmProid"].Value) == varProductID && varTempExpiryDate == Expirydate)
                                             {
-                                                grdGrnlist.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
-                                                //grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
+                                                //if (message[1] == "1" || message[1]=="2" || message[1]=="3")
+                                                //{
+                                                    grdGrnlist.Rows[j].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                                //}
+                                                //if (message[1] == "4")
+                                                //{
+                                                //    grdGrnlist.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                                //}
+                                            }
+                                            else
+                                            {
+                                                //if (message[1] == "1" || message[1] == "2" || message[1] == "3")
+                                                //{
+                                                    grdGrnlist.Rows[j].DefaultCellStyle.BackColor = Color.White;
+                                                    grdGrnlist.Rows[j].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                    grdGrnlist.Rows[j].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                                                    grdGrnlist.Rows[j].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
+                                                    grdGrnlist.Rows[j].Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
+                                                //}
                                             }
                                         }
                                     }
@@ -3602,6 +3618,10 @@ namespace ROMS
                                         varflag = 1;
                                         grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                                     }
+                                }
+                                else
+                                {
+                                    grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
                                 }
                             }
                             else
