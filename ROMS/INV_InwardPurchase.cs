@@ -1081,6 +1081,9 @@ namespace ROMS
                                 if (varEditFlag==1)
                                 {
                                     grdGrnlist.Columns["GIPPR_GIPID"].Visible = false;
+                                    grdGrnlist.Columns["GIPPR_DCPRID"].Visible = false;
+                                    grdGrnlist.Columns["GIPPR_PURPRID"].Visible = false;
+                                    grdGrnlist.Columns["Qty"].Visible = false;
                                     if(varStausId==46)
                                     {
                                         grdGrnlist.ReadOnly = true;
