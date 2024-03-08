@@ -43,6 +43,7 @@ namespace ROMS
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2=0, flagSave=0,varTabFlag=0, varEntryType = 0;
         bool varVoucherSkip = false;
         public int grid_flag = 0, varEditProAdd=0,varEditFlag=0, varQuantityErr=0,varDiscountErr=0;
+        public string varCalculator = "0";
 
         public CP_Purchase()
         {
@@ -1491,8 +1492,11 @@ namespace ROMS
                         string columnName = grdPurchaseList.Columns[varColumn].Name;
                         if (columnName == "clmPurchaseRate")
                         {
+                            string Varvalue = Convert.ToString(grdPurchaseList.Rows[varRow].Cells[varColumn].Value);
                             MainForm.objPUR_Calculator = new PUR_Calculator();
+                            MainForm.objPUR_Calculator.PbValue = Varvalue;
                             MainForm.objPUR_Calculator.ShowDialog();
+                            varPurchaseRate = varCalculator;
                             grdPurchaseList.Rows[varRow].Cells[varColumn].Value = Convert.ToString(varPurchaseRate);
                         }
                     }
