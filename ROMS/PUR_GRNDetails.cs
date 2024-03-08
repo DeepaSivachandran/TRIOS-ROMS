@@ -4508,8 +4508,9 @@ namespace ROMS
                                     btnDC.Enabled = false;
                                     gpAddrow.Enabled = false;
                                     grpGrnDetails.Enabled = false;
+                                    grdGrnlist.ReadOnly = true;
                                     grdGrnlist.Columns["clmRemove"].Visible = false;
-                                    grdGrnlist.Enabled = false;
+                                    //grdGrnlist.Enabled = false;
                                 }
                                 else
                                 {
