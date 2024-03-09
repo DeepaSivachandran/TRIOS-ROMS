@@ -3167,7 +3167,7 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if (txtRack.Text.Trim() != "")
+                if (txtRack.Text.Trim() != "" && txtRack.Text.Trim() != "None")
                 {
                     /*check location have a rack or not*/
                     string varId_PurchaseRack = "0";
