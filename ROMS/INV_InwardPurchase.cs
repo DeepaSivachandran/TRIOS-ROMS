@@ -293,21 +293,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void BtnUnselectAll_Click(object sender, EventArgs e)
         {
-            try
-            {
-                for (int i = 0; i < grdGrnlist.Rows.Count; i++)
-                {
-                    grdGrnlist.Rows[i].Cells["clmCheck"].Value = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
+
         private void BtnRemarks_Leave(object sender, EventArgs e)
         {
             try
@@ -950,9 +941,6 @@ namespace ROMS
                                 grdGrnlist.Columns["RackCount"].Visible = false;
                                 grdGrnlist.Columns["ID"].Visible = false;
                                 grdGrnlist.Columns["UT_Decimal"].Visible = false;
-                                grdGrnlist.Columns["GIPPR_DCPRID"].Visible = false;
-                                grdGrnlist.Columns["GIPPR_PURPRID"].Visible = false;
-                                grdGrnlist.Columns["Qty"].Visible = false;
                                 if (varEditFlag == 0)
                                 {
                                     //grdGrnlist.Columns["U_Name"].Visible = false;
@@ -1140,6 +1128,8 @@ namespace ROMS
                         btnSelectAll.Visible = false;
                         btnUnselectAll.Visible = false;
                         grdGrnlist.Columns["clmCheck"].Visible = false;
+                        lblnarration.Location = new Point(12, 576);
+                        txtRemark.Location = new Point(83, 580);
                     }
                 }
             }
