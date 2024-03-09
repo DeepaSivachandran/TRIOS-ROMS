@@ -438,7 +438,10 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
                 {
-                    TsbDelete_Click(sender, e);
+                    if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value) == 18)
+                    {
+                        TsbDelete_Click(sender, e);
+                    }
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -995,7 +998,10 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
-                    TsbDelete_Click(sender, e);
+                    if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value) == 18)
+                    {
+                        TsbDelete_Click(sender, e);
+                    }
                 }
             }
             catch (Exception ex)
@@ -1224,6 +1230,40 @@ namespace ROMS
             {
                 DateTime varmindate = DateTime.ParseExact(dpDcFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpdctodate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDeleteHide()
+        {
+            try
+            {
+                if(Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value)!=18)
+                {
+                    tsbDelete.Visible = false;
+                    tssEdit.Visible = false;
+                }
+                else
+                {
+                    tsbDelete.Visible = true;
+                    tssEdit.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseDCList_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnDeleteHide();
             }
             catch (Exception ex)
             {

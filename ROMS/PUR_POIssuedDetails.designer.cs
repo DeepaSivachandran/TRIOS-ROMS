@@ -248,7 +248,7 @@
             // 
             this.txtIssuemodeValues.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtIssuemodeValues.Location = new System.Drawing.Point(403, 96);
-            this.txtIssuemodeValues.MaxLength = 100;
+            this.txtIssuemodeValues.MaxLength = 50;
             this.txtIssuemodeValues.Name = "txtIssuemodeValues";
             this.txtIssuemodeValues.Size = new System.Drawing.Size(160, 27);
             this.txtIssuemodeValues.TabIndex = 3;

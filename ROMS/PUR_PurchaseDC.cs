@@ -3167,82 +3167,90 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                /*check location have a rack or not*/
-                string varId_PurchaseRack = "0";
-                string varId_PurchaseRackCount = "0";
-                DataSet objDsPurchaseRack = new DataSet();
-                SPDataService objDServ6 = new SPDataService();
-                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblStockLocationCode.Text), 0, txtRack.Text.Trim(), 0, 0);
-                objDServ6.CloseConnection();
                 if (txtRack.Text.Trim() != "")
                 {
-                    if (lblStockLocationCode.Text != "0")
+                    /*check location have a rack or not*/
+                    string varId_PurchaseRack = "0";
+                    string varId_PurchaseRackCount = "0";
+                    DataSet objDsPurchaseRack = new DataSet();
+                    SPDataService objDServ6 = new SPDataService();
+                    objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblStockLocationCode.Text), 0, txtRack.Text.Trim(), 0, 0);
+                    objDServ6.CloseConnection();
+                    if (txtRack.Text.Trim() != "")
                     {
-                        if (objDsPurchaseRack != null)
+                        if (lblStockLocationCode.Text != "0")
                         {
-                            if (objDsPurchaseRack.Tables.Count > 0)
+                            if (objDsPurchaseRack != null)
                             {
-                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                if (objDsPurchaseRack.Tables.Count > 0)
                                 {
-                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                    if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                    }
+                                    if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRackCount = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                    }
+                                    if (varId_PurchaseRackCount == "0")
+                                    { varId_PurchaseRack = "0"; }
                                 }
-                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                            }
+                            lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                            if (Convert.ToInt32(varId_PurchaseRackCount) > 0)
+                            {
+                                if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
                                 {
-                                    varId_PurchaseRackCount = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                    epPurchaseDC.SetError(txtRack, "Please enter valid rack.");
+                                    txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                    tpRack.ShowAlways = true;
+                                    tpRack.Show("Please enter valid rack.", txtRack, 5000);
+                                    txtRack.Focus();
+                                    blnErrorFlag = true;
                                 }
-                                if(varId_PurchaseRackCount=="0")
-                                 { varId_PurchaseRack = "0"; }
                             }
                         }
-                        lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (Convert.ToInt32(varId_PurchaseRackCount) > 0)
+                    }
+                    else
+                    {
+                        if (lblStockLocationCode.Text != "0")
                         {
-                            if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
+                            if (objDsPurchaseRack != null)
                             {
-                                epPurchaseDC.SetError(txtRack, "Please enter valid rack.");
+                                if (objDsPurchaseRack.Tables.Count > 0)
+                                {
+                                    if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                    }
+                                }
+                            }
+                            lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                            if (Convert.ToInt32(varId_PurchaseRack) > 0)
+                            {
+                                epPurchaseDC.SetError(txtRack, "Please enter rack.");
                                 txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
                                 tpRack.ShowAlways = true;
-                                tpRack.Show("Please enter valid rack.", txtRack, 5000);
+                                tpRack.Show("Please enter rack.", txtRack, 5000);
                                 blnErrorFlag = true;
+                            }
+                            if (varId_PurchaseRack == "0")
+                            {
+                                txtRack.Text = "None";
+                                txtRack.Enabled = false;
+                                lblRackCode.Text = "0";
+                            }
+                            else
+                            {
+                                txtRack.Enabled = true;
                             }
                         }
                     }
                 }
                 else
                 {
-                    if (lblStockLocationCode.Text != "0")
-                    {
-                        if (objDsPurchaseRack != null)
-                        {
-                            if (objDsPurchaseRack.Tables.Count > 0)
-                            {
-                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
-                                {
-                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
-                                }
-                            }
-                        }
-                        lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (Convert.ToInt32( varId_PurchaseRack )> 0)
-                        {
-                            epPurchaseDC.SetError(txtRack, "Please enter rack.");
-                            txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpRack.ShowAlways = true;
-                            tpRack.Show("Please enter rack.", txtRack, 5000);
-                            blnErrorFlag = true;
-                        }
-                        if (varId_PurchaseRack == "0")
-                        {
-                            txtRack.Text = "None";
-                            txtRack.Enabled = false;
-                            lblRackCode.Text = "0";
-                        }
-                        else
-                        {
-                            txtRack.Enabled = true;
-                        }
-                    }
+                    lblRackCode.Text = "0";
+                    txtRack.Text = "None";
                 }
                 if (Convert.ToString(txtProductName.Text.Trim()) != "")
                 {
@@ -3735,7 +3743,7 @@ namespace ROMS
                     varRMProduction = DGV_FilterProduct.SelectedRows[0].Cells["PR_RMForProduction"].Value.ToString();
                     varPrcategory = DGV_FilterProduct.SelectedRows[0].Cells["PR_PRCTID"].Value.ToString();
                     varShelflife = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PR_ShelfLife"].Value.ToString());
-                    varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PR_ShelfLife"].Value.ToString());
+                    varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
 
                     if (varShelflife==1)

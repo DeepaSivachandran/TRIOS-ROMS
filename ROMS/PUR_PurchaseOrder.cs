@@ -16,9 +16,9 @@ namespace ROMS
         public bool VarSearchFlag = true;
         bool varVoucherSkip = false;
         public int varRecqty = 0, varcount = 0, SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0,
-            varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0, Currentsts=0
-            ,   varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
-        varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0, varUpDownKey=0,varCloseFlag=0, varClose = 0, varDateChange = 0;
+            varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0, Currentsts = 0
+            , varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
+        varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0, varUpDownKey = 0, varCloseFlag = 0, varClose = 0, varDateChange = 0, grid_flag = 0;
         public decimal totalKgQty = 0;
         public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "", varUPPValue = "", varOtherSupPrevious = "", varOtherSupPartial = "";
         private ToolTip tpsalesman = new ToolTip();
@@ -31,6 +31,9 @@ namespace ROMS
         private ToolTip tpIssuemodeValues = new ToolTip();
         private ToolTip tpIssuemode = new ToolTip();
         private ToolTip tpIssueby = new ToolTip();
+        public string varSupplierID = "";
+        public string varSupplierScheduleID = "";
+        public string varSupplierName = "";
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "", var_MXSQ = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0",
             varcomid = "0", varSuppliervalue = "", var_BulkSymbol = "", var_TotSymbol = "";
@@ -1104,6 +1107,10 @@ namespace ROMS
                             {
                                 bulk = Convert.ToString(varFinalBulkUnit);
                             }
+                            //if (varFinalBulkUnit == 0 && varBulkunitqty !=0)
+                            //{
+                            //    bulk = Convert.ToString(varBulkunitqty);
+                            //}
                             if (varFinalUnit == 0)
                             {
                                 unit = "-";
@@ -4300,7 +4307,7 @@ namespace ROMS
                 //{
                 if (qtyFlag == 1)
                 {
-                    int varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
+                    int varDecimal = Convert.ToInt32(lblUnitDecimal.Text);
                     DataValidation objValidation = new DataValidation();
                     totalBulkqty = Convert.ToInt32(varBulkUnitQty);
                     totalOrderQty = Convert.ToDecimal(varUPP * totalBulkqty);
@@ -4452,6 +4459,15 @@ namespace ROMS
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStsname"];
                             cell.Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                             cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                        }
+                        else if (Convert.ToString(grdsupplieradd.Rows[i].Cells["prstsid"].Value) == "13")
+                        {
+                            DataGridView dataGridView = (DataGridView)sender;
+                            DataGridViewCell cell = dataGridView.Rows[i].Cells["clmStsname"];
+                            cell.Style.BackColor = Color.SpringGreen;
+                            cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                            //grdsupplieradd.Rows[i].DefaultCellStyle.BackColor = Color.LimeGreen;
+                            //grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                         }
                         else
                         {
@@ -4761,6 +4777,30 @@ namespace ROMS
                         lblschedule.Text = selectedItem.SubItems[2].Text;
                         varSuppliervalue = selectedItem.SubItems[3].Text;
                     }
+                    if (Convert.ToInt32(grdsupplieradd.Rows.Count) != 0)
+                    {
+                        if (Convert.ToString(lblSupplierCode.Text.Trim()) != Convert.ToString(varSupplierID))
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(78);
+                            objDServ.CloseConnection();
+
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdsupplieradd.Rows.Clear();
+                                grdsupplieradd.DataSource = null;
+                                grdRepDetails.DataSource = null;
+                            }
+                            else
+                            {
+                                grdsupplieradd.Refresh();
+                                txtSupplier.Text = varSupplierName;
+                                lblSupplierCode.Text = varSupplierID;
+                                lblschedule.Text = varSupplierScheduleID;
+                            }
+                        }
+                    }
                     udfnsupplierLoad();
                     DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                     GrdPendingorder_DataBindingComplete(grdPendingorder, args);
@@ -4790,6 +4830,9 @@ namespace ROMS
         {
             try
             {
+                varSupplierID = lblSupplierCode.Text;
+                varSupplierScheduleID = lblschedule.Text;
+                varSupplierName = txtSupplier.Text;
                 pbSupplierpend = 0;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -5613,6 +5656,146 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        {
+            try
+            {
+                if (grdsupplieradd.Focused)
+                {
+                    grid_flag = 1;
+                }
 
+                if (grid_flag == 1)
+                {
+                    if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
+                    {
+                        int icolumn = grdsupplieradd.CurrentCell.ColumnIndex;
+                        int irow = grdsupplieradd.CurrentCell.RowIndex;
+                        int i = irow;
+                        int intsection = 0, intlvariant = 0;
+                        intsection = grdsupplieradd.Columns.Count - 1;
+                        intlvariant = grdsupplieradd.Columns.Count - 3;
+                        if (intsection == icolumn)
+                        {
+                            grdsupplieradd.CurrentCell = grdsupplieradd[intsection, irow + 1];
+                            icolumn = grdsupplieradd.Columns.Count - 1;//grdProDetails.CurrentCell.ColumnIndex;
+                            irow = grdsupplieradd.CurrentCell.RowIndex;
+                        }
+                        else if (intlvariant == icolumn)
+                        {
+                        A: if (icolumn == grdsupplieradd.Columns.Count - 3)
+                            {
+                                //grdProDetails.Rows.Add();
+                                if (irow < grdsupplieradd.Rows.Count - 1)
+                                {
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[16, irow + 1];
+                                    icolumn = grdsupplieradd.CurrentCell.ColumnIndex;
+                                    irow = grdsupplieradd.CurrentCell.RowIndex;
+                                    //goto A;
+                                }
+                                else
+                                {
+                                    if (grdsupplieradd[icolumn + 1, irow].Visible == false)
+                                    {
+                                        icolumn++;
+                                        goto A;
+                                    }
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
+                                    if (grdsupplieradd.CurrentCell.ReadOnly == true)
+                                    {
+                                        icolumn++; goto A;
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
+                                if (grdsupplieradd.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                            }
+                        }
+                        else
+                        {
+                        A: if (icolumn == grdsupplieradd.Columns.Count - 1)
+                            {
+                                //grdProDetails.Rows.Add();
+                                if (irow < grdsupplieradd.Rows.Count - 1)
+                                {
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[1, irow + 1];
+                                    icolumn = grdsupplieradd.CurrentCell.ColumnIndex;
+                                    irow = grdsupplieradd.CurrentCell.RowIndex;
+                                    //goto A;
+                                }
+                                else
+                                {
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
+                                    if (grdsupplieradd.CurrentCell.ReadOnly == true)
+                                    {
+                                        icolumn++; goto A;
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                if (grdsupplieradd[icolumn + 1, irow].Visible == false)
+                                {
+                                    icolumn++;
+                                    goto A;
+                                }
+                                else
+                                {
+                                    grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
+                                    if (grdsupplieradd.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                }
+                               
+                            }
+                        }
+                        //A: if (icolumn == grdProDetails.Columns.Count - 1)
+                        //{
+                        //    //grdProDetails.Rows.Add();
+                        //    if (irow < grdProDetails.Rows.Count - 1)
+                        //    {
+                        //        grdProDetails.CurrentCell = grdProDetails[1, irow + 1];
+                        //        icolumn = grdProDetails.CurrentCell.ColumnIndex;
+                        //        irow = grdProDetails.CurrentCell.RowIndex;
+                        //        goto A;
+                        //    }
+                        //    else
+                        //    {
+                        //        grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                        //        if (grdProDetails.CurrentCell.ReadOnly == true)
+                        //        {
+                        //            icolumn++; goto A;
+                        //        }
+
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    grdProDetails.CurrentCell = grdProDetails[icolumn + 1, irow];
+                        //    if (grdProDetails.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                        //}
+
+                        grid_flag = 0;
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            //// below is for escape key return
+            //return base.ProcessCmdKey(ref msg, keyData);
+            // below is for enter key return
+            return base.ProcessCmdKey(ref msg, keyData);
+
+        }
     }
 }

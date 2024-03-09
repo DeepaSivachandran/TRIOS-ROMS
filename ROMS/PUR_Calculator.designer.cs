@@ -64,6 +64,7 @@
             this.txtValue.TabIndex = 8;
             this.txtValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValue.TextChanged += new System.EventHandler(this.TxtValue_TextChanged);
+            this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtValue_KeyDown);
             this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassKey_KeyPress);
             // 
             // lblFinalValue

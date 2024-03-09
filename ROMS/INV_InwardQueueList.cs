@@ -90,7 +90,7 @@ namespace ROMS
                     MainForm.objINV_InwardPurchase.varRemarkFlag = 2;
                     MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern"].Value);
                     MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
-                   MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction Date"].Value);
+                    MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction Date"].Value);
                     MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction No."].Value);
                     //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
                     //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
@@ -646,6 +646,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Concern ID"].Visible = false;
                 DGV_SearchGrid.Columns["My Products"].Visible = false;
                 DGV_SearchGrid.Columns["Type ID"].Visible = false;
+                DGV_SearchGrid.Columns["Entry Type"].Width = 150;
                 DGV_SearchGrid.Columns["Concern"].Width = 80;
                 DGV_SearchGrid.Columns["Transaction Date"].Width = 100;
                 DGV_SearchGrid.Columns["Transaction No."].Width = 80;
@@ -653,7 +654,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Total Products in Invoice"].Width = 150;
                 ///   grdInwardQueueList.Columns["Created By"].Width = 110;
                 DGV_SearchGrid.Columns["Created On"].Width = 140;
-                DGV_SearchGrid.Columns["GSTIN"].Width = 150;
+                DGV_SearchGrid.Columns["GSTIN"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 60;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -772,7 +773,8 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Total Products in Invoice"].Width = 150;
                                 ///   grdInwardQueueList.Columns["Created By"].Width = 110;
                                 grdInwardQueueList.Columns["Created On"].Width = 140;
-                                grdInwardQueueList.Columns["GSTIN"].Width = 150;
+                                grdInwardQueueList.Columns["GSTIN"].Visible = false;
+                                grdInwardQueueList.Columns["Location"].Width = 170;
                                 grdInwardQueueList.Columns["S.No."].Width = 60;
                                 grdInwardQueueList.Columns["Transaction Date"].Width = 120;
                                 grdInwardQueueList.Columns["ID"].Visible = false;
@@ -784,6 +786,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["My Products"].Visible = false;
                                 grdInwardQueueList.Columns["Type ID"].Visible = false;
                                 grdInwardQueueList.Columns["Entry Date"].Visible = false;
+                                grdInwardQueueList.Columns["Entry Type"].Width = 150;
                             }
 
                             else
@@ -1879,7 +1882,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbOrderBy.Focus();
+                    if (cmbOrderBy.Enabled==true)
+                    {
+                        cmbOrderBy.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
                 }
             }
             catch (Exception ex)

@@ -69,7 +69,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Purchase.varPurchaseRate = PbValue;
+                MainForm.objCP_Purchase.varCalculator = PbValue;
             }
             catch (Exception ex)
             {
@@ -355,6 +355,25 @@ namespace ROMS
             }
         }
 
+        private void TxtValue_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    this.Close();
+                    if (lblFinalValue.Text != "0")
+                    {
+                        MainForm.objCP_Purchase.varCalculator = lblFinalValue.Text;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnOK_Leave(object sender, EventArgs e)
         {
             try
@@ -372,15 +391,15 @@ namespace ROMS
         {
             try
             {
-                if(lblFinalValue.Text != "0")
+                this.Close();
+                if (lblFinalValue.Text != "0")
                 {
-                    MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
+                    MainForm.objCP_Purchase.varCalculator = lblFinalValue.Text;
                 }
                 else
                 {
-                    MainForm.objCP_Purchase.varPurchaseRate = PbValue;
+                    MainForm.objCP_Purchase.varCalculator = PbValue;
                 }
-                this.Close();
             }
             catch (Exception ex)
             {

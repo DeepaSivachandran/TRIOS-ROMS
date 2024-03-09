@@ -595,21 +595,21 @@ namespace ROMS
 
         private void TxtIssuemodeValues_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
-            {
-                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
-                {
-                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                    {
-                        e.Handled = true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+            //    {
+            //        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            //        {
+            //            e.Handled = true;
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void PUR_POIssuedDetails_KeyDown(object sender, KeyEventArgs e)
@@ -653,15 +653,15 @@ namespace ROMS
                 {
                     txtDmode.Text = "";
                 }
-                string selectedValue = cmbIssueMode.SelectedItem.ToString();
-                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
-                {
-                    this.txtIssuemodeValues.MaxLength = 10;
-                }
-                else
-                {
-                    this.txtIssuemodeValues.MaxLength = 50;
-                }
+                //string selectedValue = cmbIssueMode.SelectedItem.ToString();
+                //if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                //{
+                //    this.txtIssuemodeValues.MaxLength = 10;
+                //}
+                //else
+                //{
+                //    this.txtIssuemodeValues.MaxLength = 50;
+                //}
             }
             catch (Exception ex)
             {
