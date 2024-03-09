@@ -4765,7 +4765,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if(varcount == 0)
+                            if(varcount == 0 && shelfLifeError==0)
                             {  flagSave = 0; }
                             else { flagSave = 1; }
                         }
@@ -5432,28 +5432,43 @@ namespace ROMS
                                             grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
                                         }
                                     }
-                                    
                                 }
                             }
-                            if (varEntryType == 54) // direct and GRN
+                            if (varEntryType == 54) //  GRN
                             {
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "")
                                 {
-                                    //decimal varQty = 0, varFreeQuantity = 0, varRecqty = 0, varDiffQty = 0, varInvqty = 0;
-                                    //varRecqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value);
-                                    //if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "")
-                                    //{ varFreeQuantity = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value); }
-                                    //if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value) != "")
-                                    //{ varDiffQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value); }
-                                    //if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "")
-                                    //{ varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
+                                    varFlag = Convert.ToInt16(grdPurchaseList.Rows[i].Cells["clmInwardFlag"].Value);
+                                    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDCQuantity"].Value) != "")
+                                    { varDCQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDCQuantity"].Value); }
+                                    varQty = Math.Abs(varInvqty - (varRecqty + varFreeQuantity));
 
-                                    if (varDiffQty != Math.Abs(varInvqty - (varRecqty + varFreeQuantity))) //low
+
+                                    if (varFlag == 1)
                                     {
-                                        varQuantityErr++;
+                                        if (varDCQty != (varRecqty + varFreeQuantity) || varDiffQty != varQty)
+                                        {
+                                            varcount++; varQuantityErr++; varerrFlag = 1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (varDiffQty != varQty) //low
+                                        {
+                                            varcount++; varQuantityErr++; varerrFlag = 1;
+                                        }
+                                    }
+                                    if (varerrFlag == 1)
+                                    {
                                         grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
                                         grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
                                         grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
+                                    }
+                                    else
+                                    {
+                                        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
+                                        grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.PaleGreen;
                                     }
                                 }
                             }
