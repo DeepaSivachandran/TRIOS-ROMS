@@ -451,6 +451,7 @@ namespace ROMS
                             grdStockTransfer.Columns["clmDestLocation"].Width = 140;
                             grdStockTransfer.Columns["clmDestRack"].Width = 140;
                             grdStockTransfer.Columns["clmUnit"].Width = 60;
+                            grdStockTransfer.Columns["clmStockQty"].Visible = true;
                             grdStockTransfer.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockTransfer.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockTransfer.Columns["clmbatchno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
