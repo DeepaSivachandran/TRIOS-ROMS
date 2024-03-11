@@ -30,7 +30,7 @@ namespace ROMS
         public int varStockRequestID = 0;
         public int varID = 0;
         public int varDecimal = 0;
-        public int varStatus = 0;
+        public int varStatus = 0, varMainStatus=0;
         public int varSLID = 0;
         public int varRKID = 0;
         public int varClose = 0, varCloseFlag = 0, varDateChange = 0, varUpDownKey=0;
@@ -226,6 +226,10 @@ namespace ROMS
             {
                 grdStockRequest.ClearSelection();
                 txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                if(varMainStatus==48 || varMainStatus==29)
+                {
+                    btnSave.Enabled = false;
+                }
             }
         }
         public void allowonlynumber(object sender, KeyPressEventArgs e)
