@@ -5603,17 +5603,16 @@ namespace ROMS
                         //        grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightPink;
                         //    }
                         //}
-                        if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == "")
-                        {
-                            varcount++;
-                            grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
-                        }
-                        if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == "" || Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == 0)
-                        {
-                            varcount++;
-                            grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightPink;
-                        }
-                        /*
+                        //if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == "")
+                        //{
+                        //    varcount++;
+                        //    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                        //}
+                        //if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == "" || Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == 0)
+                        //{
+                        //    varcount++;
+                        //    grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                        //}
                         if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == "")
                         {
                             varTempExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value);
@@ -8011,7 +8010,8 @@ namespace ROMS
                 txtSubtotal.Text = Convert.ToString(varSubtotal);
                 txtGstamt.Text = Convert.ToString(varTaxTotal);
                 txtGrandtot.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
-                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+               // lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("#,##0.00");
                 txtRoundoff.Text = Convert.ToString(Math.Abs(Convert.ToDecimal(txtGrandtot.Text) - (varSubtotal + varTaxTotal)));
             }
             catch (Exception ex)
