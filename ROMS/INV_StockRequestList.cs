@@ -141,6 +141,7 @@ namespace ROMS
                     MainForm.objINV_StockRequest.btnSave.Text = "Update";
                     MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
                     MainForm.objINV_StockRequest.varStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
+                    MainForm.objINV_StockRequest.varMainStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objINV_StockRequest.Show();
                 }
             }
