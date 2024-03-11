@@ -970,161 +970,169 @@
                                     txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
                                 }
 
-                                if (objDs.Tables[2].Rows.Count != 0) //GST DETAILS LOAD
+                            if (objDs.Tables[2].Rows.Count != 0) //GST DETAILS LOAD
+                            {
+                                for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
                                 {
-                                    for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
+                                    if (Convert.ToString(objDs.Tables[2].Rows[i]["Taxable Value"]) != "0")
                                     {
-                                        if (Convert.ToString(objDs.Tables[2].Rows[i]["Taxable Value"]) != "0")
-                                        {
-                                            grdTaxDetails.DataSource = objDs.Tables[2];
-                                            grdTaxDetails.Columns["GST%"].Width = 60;
-                                            grdTaxDetails.Columns["Taxable Value"].Width = 80;
-                                            grdTaxDetails.Columns["Tax Value"].Width = 60;
-                                            grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                            grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                            grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        }
+                                        grdTaxDetails.DataSource = objDs.Tables[2];
+                                        grdTaxDetails.Columns["GST%"].Width = 60;
+                                        grdTaxDetails.Columns["Taxable Value"].Width = 80;
+                                        grdTaxDetails.Columns["Tax Value"].Width = 60;
+                                        grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     }
-                                }
-                                else
-                                {
-                                    grdTaxDetails.DataSource = grdTaxDetails;
-                                    grdTaxDetails.Columns["GST%"].Width = 60;
-                                    grdTaxDetails.Columns["Taxable Value"].Width = 80;
-                                    grdTaxDetails.Columns["Tax Value"].Width = 60;
-                                }
-                                if (objDs.Tables[3].Rows.Count != 0) //PO DETAILS LOAD
-                                {
-                                    lblFinishedNoRecord.Visible = false;
-                                    for (int i = 0; i < objDs.Tables[3].Rows.Count; i++)
-                                    {
-                                        grdPODetails.Rows.Add(Convert.ToString(objDs.Tables[3].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[3].Rows[i]["PO_Date"]),
-                                            Convert.ToString(objDs.Tables[3].Rows[i]["POPR_PRID"]), Convert.ToString(objDs.Tables[3].Rows[i]["POID"]));
-                                    }
-                                    varTypeErrId = Convert.ToString(objDs.Tables[3].Rows[0]["POID"]);
-                                }
-                                else
-                                {
-                                    grdPODetails.Rows.Clear();
-                                    lblFinishedNoRecord.Visible = true;
-                                }
-                                if (objDs.Tables[4].Rows.Count != 0) //DC DETAILS LOAD
-                                {
-                                    lblFinishedNoRecord.Visible = false;
-                                    for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
-                                    {
-                                        grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["DC_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["DC_DATE"]),
-                                            Convert.ToString(objDs.Tables[4].Rows[i]["DCPR_PRID"]), Convert.ToString(objDs.Tables[4].Rows[i]["DCID"]));
-                                    }
-                                    grdReurnDC.Visible = true;
-                                    varTypeErrId = Convert.ToString(objDs.Tables[4].Rows[0]["DCID"]);
-                                }
-                                else
-                                {
-                                    grdReurnDC.Rows.Clear();
-                                    grdReurnDC.Visible = false;
-                                    //lblFinishedNoRecord.Visible = true;
-                                }
-                                if (objDs.Tables[5].Rows.Count != 0) //GRN DETAILS LOAD
-                                {
-                                    lblFinishedNoRecord.Visible = false;
-                                    for (int i = 0; i < objDs.Tables[5].Rows.Count; i++)
-                                    {
-                                        grdGRN.Rows.Add(Convert.ToString(objDs.Tables[5].Rows[i]["GRN_Date"]), Convert.ToString(objDs.Tables[5].Rows[i]["GRN_No"]),
-                                            Convert.ToString(objDs.Tables[5].Rows[i]["GRNPR_PRID"]), Convert.ToString(objDs.Tables[5].Rows[i]["GRNID"]));
-                                    }
-                                    txtQRCode.Text = Convert.ToString(objDs.Tables[5].Rows[0]["GRN Code"]);
-                                    grdGRN.Visible = true;
-                                    varTypeErrId = Convert.ToString(objDs.Tables[5].Rows[0]["GRNID"]);
-                                }
-                                else
-                                {
-                                    grdGRN.Rows.Clear();
-                                    grdGRN.Visible = false;
-                                    //  lblFinishedNoRecord.Visible = true;
-                                }
-                                if (grdReurnDC.Visible == true)
-                                {
-                                    grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                                }
-                                if (grdPODetails.Visible == true)
-                                {
-                                    grdPODetails.Columns["clmRemovePO"].Visible = false;
                                 }
                             }
-                        }
-                        udfnPurchaseEntryTabLoad();
-                        if (PbSTS == "49")
-                        {
-                            if (tbDetails.SelectedIndex == 0)
-                            { this.ActiveControl = txtProductName; }
+                            else
+                            {
+                                grdTaxDetails.DataSource = grdTaxDetails;
+                                grdTaxDetails.Columns["GST%"].Width = 60;
+                                grdTaxDetails.Columns["Taxable Value"].Width = 80;
+                                grdTaxDetails.Columns["Tax Value"].Width = 60;
+                            }
+                            if (objDs.Tables[3].Rows.Count != 0) //PO DETAILS LOAD
+                            {
+                                lblFinishedNoRecord.Visible = false;
+                                for (int i = 0; i < objDs.Tables[3].Rows.Count; i++)
+                                {
+                                    grdPODetails.Rows.Add(Convert.ToString(objDs.Tables[3].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[3].Rows[i]["PO_Date"]),
+                                        Convert.ToString(objDs.Tables[3].Rows[i]["POPR_PRID"]), Convert.ToString(objDs.Tables[3].Rows[i]["POID"]));
+                                }
+                                varTypeErrId = Convert.ToString(objDs.Tables[3].Rows[0]["POID"]);
+                            }
+                            else
+                            {
+                                grdPODetails.Rows.Clear();
+                                lblFinishedNoRecord.Visible = true;
+                            }
+                            if (objDs.Tables[4].Rows.Count != 0) //DC DETAILS LOAD
+                            {
+                                lblFinishedNoRecord.Visible = false;
+                                for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
+                                {
+                                    grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["DC_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["DC_DATE"]),
+                                        Convert.ToString(objDs.Tables[4].Rows[i]["DCPR_PRID"]), Convert.ToString(objDs.Tables[4].Rows[i]["DCID"]));
+                                }
+                                grdReurnDC.Visible = true;
+                                varTypeErrId = Convert.ToString(objDs.Tables[4].Rows[0]["DCID"]);
+                            }
+                            else
+                            {
+                                grdReurnDC.Rows.Clear();
+                                grdReurnDC.Visible = false;
+                                //lblFinishedNoRecord.Visible = true;
+                            }
+                            if (objDs.Tables[5].Rows.Count != 0) //GRN DETAILS LOAD
+                            {
+                                lblFinishedNoRecord.Visible = false;
+                                for (int i = 0; i < objDs.Tables[5].Rows.Count; i++)
+                                {
+                                    grdGRN.Rows.Add(Convert.ToString(objDs.Tables[5].Rows[i]["GRN_Date"]), Convert.ToString(objDs.Tables[5].Rows[i]["GRN_No"]),
+                                        Convert.ToString(objDs.Tables[5].Rows[i]["GRNPR_PRID"]), Convert.ToString(objDs.Tables[5].Rows[i]["GRNID"]));
+                                }
+                                txtQRCode.Text = Convert.ToString(objDs.Tables[5].Rows[0]["GRN Code"]);
+                                grdGRN.Visible = true;
+                                varTypeErrId = Convert.ToString(objDs.Tables[5].Rows[0]["GRNID"]);
+                            }
+                            else
+                            {
+                                grdGRN.Rows.Clear();
+                                grdGRN.Visible = false;
+                                //  lblFinishedNoRecord.Visible = true;
+                            }
+                            if (grdReurnDC.Visible == true)
+                            {
+                                grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                            }
+                            if (grdPODetails.Visible == true)
+                            {
+                                grdPODetails.Columns["clmRemovePO"].Visible = false;
+                            }
+                            if (objDs.Tables[6].Rows.Count != 0)
+                            {
+                                lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED1"]);
+                            }
+                            if (objDs.Tables[7].Rows.Count != 0)
+                            {
+                                lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[7].Rows[0]["VERIFIED2"]);
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-                finally
-                {
-                    //if (grdSupplierList.Rows.Count > 0)
-                    //{
-                    //    grdSupplierList.CurrentCell = grdSupplierList[5, 0];
-                    //}
-                    //if (grdPurchaseList.Rows.Count > 0)
-                    //{
-                    //    grdPurchaseList.CurrentCell = grdSupplierList[10, 0];
-                    //}
+                    udfnPurchaseEntryTabLoad();
+                    if (PbSTS == "49")
+                    {
+                        if (tbDetails.SelectedIndex == 0)
+                        { this.ActiveControl = txtProductName; }
+                    }
                 }
             }
-            public void udfndisablevalue()
+            catch (Exception ex)
             {
-                try
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                //if (grdSupplierList.Rows.Count > 0)
+                //{
+                //    grdSupplierList.CurrentCell = grdSupplierList[5, 0];
+                //}
+                //if (grdPurchaseList.Rows.Count > 0)
+                //{
+                //    grdPurchaseList.CurrentCell = grdSupplierList[10, 0];
+                //}
+            }
+        }
+        public void udfndisablevalue()
+        {
+            try
+            {
+                cmbConcern.Enabled = false;
+                dpVoucherDate.Enabled = false;
+                txtPENO.Enabled = false;
+                txtSupplier.Enabled = false;
+                cmbEntryType.Enabled = false;
+                txtQRCode.Enabled = false;
+                txtInvoiceamt.Enabled = false;
+                dpInvoiceDate.Enabled = false;
+                txtInvoiceNo.Enabled = false;
+                cmbTransactionType.Enabled = false;
+                txtBroker.Enabled = false;
+                tbDetails.TabPages[0].Enabled = true;
+                chkInvoice.Enabled = false;
+                if (PbSTS == "50")
                 {
-                    cmbConcern.Enabled = false;
-                    dpVoucherDate.Enabled = false;
-                    txtPENO.Enabled = false;
-                    txtSupplier.Enabled = false;
-                    cmbEntryType.Enabled = false;
-                    txtQRCode.Enabled = false;
-                    txtInvoiceamt.Enabled = false;
-                    dpInvoiceDate.Enabled = false;
-                    txtInvoiceNo.Enabled = false;
-                    cmbTransactionType.Enabled = false;
-                    txtBroker.Enabled = false;
                     tbDetails.TabPages[0].Enabled = true;
-                    chkInvoice.Enabled = false;
-                    if (PbSTS == "50")
-                    {
-                        tbDetails.TabPages[0].Enabled = true;
-                        tbDetails.TabPages[1].Enabled = true;
-                        chkCompleted.Enabled = false;
-                        chkCompleted.Checked = true;
-                        gpdiscount.Enabled = false;
-                        gpPayment.Enabled = false;
-                        grpLoadingCharge.Enabled = false;
-                        grpTCSamt.Enabled = false;
-                        gpPurchase.Enabled = false;
-                        gprate.Enabled = false;
-                        btnClear.Enabled = false;
-                        cmbPONo.Enabled = false;
-                        txtProductName.Enabled = false;
-                        txtMrp.Enabled = false;
-                        txtDate.Enabled = false;
-                        txtMonth.Enabled = false;
-                        txtYear.Enabled = false;
-                        txtSourceLocation.Enabled = false;
-                        cmbrack.Enabled = false;
-                        btnAdd.Enabled = false;
-                        grdSupplierList.ReadOnly = true;
-                    }
+                    tbDetails.TabPages[1].Enabled = true;
+                    chkCompleted.Enabled = false;
+                    chkCompleted.Checked = true;
+                    gpdiscount.Enabled = false;
+                    gpPayment.Enabled = false;
+                    grpLoadingCharge.Enabled = false;
+                    grpTCSamt.Enabled = false;
+                    gpPurchase.Enabled = false;
+                    gprate.Enabled = false;
+                    btnClear.Enabled = false;
+                    cmbPONo.Enabled = false;
+                    txtProductName.Enabled = false;
+                    txtMrp.Enabled = false;
+                    txtDate.Enabled = false;
+                    txtMonth.Enabled = false;
+                    txtYear.Enabled = false;
+                    txtSourceLocation.Enabled = false;
+                    cmbrack.Enabled = false;
+                    btnAdd.Enabled = false;
+                    grdSupplierList.ReadOnly = true;
                 }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
 
             }
             public void udfnPODropdownload()
@@ -9407,56 +9415,56 @@
                                 lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
                                 //txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]);
 
-                                if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "" && pbPurchaseno == "0")
-                                {
-                                    LV_Supplier.Visible = false;
-                                    txtGstin.Enabled = true;
-                                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                                    MainForm.objPUR_GSTIN.ShowDialog();
-                                }
-                                else
-                                {
-                                    LV_Supplier.Visible = false;
-                                    txtGstin.Enabled = false;
-                                }
-                                udfnPODropdownload();
-                            }
-                            if (objDs.Tables[7].Rows.Count > 0)
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "" && pbPurchaseno == "0")
                             {
-                                varDamage = objDs.Tables[7].Rows[0]["DAMAGE"].ToString();
-                                varReturnDC = objDs.Tables[7].Rows[0]["RETURNDC"].ToString();
+                                LV_Supplier.Visible = false;
+                                //txtGstin.Enabled = true;
+                                MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                                MainForm.objPUR_GSTIN.ShowDialog();
                             }
+                            else
+                            {
+                                LV_Supplier.Visible = false;
+                                txtGstin.Enabled = false;
+                            }
+                            udfnPODropdownload();
+                        }
+                        if (objDs.Tables[7].Rows.Count > 0)
+                        {
+                            varDamage = objDs.Tables[7].Rows[0]["DAMAGE"].ToString();
+                            varReturnDC = objDs.Tables[7].Rows[0]["RETURNDC"].ToString();
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-                finally
-                {
-                    if (varReturnDC == "0")
-                    {
-                        btnDC.Enabled = false;
-                    }
-                    else
-                    {
-                        btnDC.Enabled = true;
-                    }
-                    txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
                 }
             }
-            protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+            catch (Exception ex)
             {
-                try
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (varReturnDC == "0")
                 {
-                    if (tbDetails.SelectedIndex == 0)
+                    btnDC.Enabled = false;
+                }
+                else
+                {
+                    btnDC.Enabled = true;
+                }
+                txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
+            }
+        }
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        {
+            try
+            {
+                if (tbDetails.SelectedIndex == 0)
+                {
+                    if (grdSupplierList.Focused)
                     {
-                        if (grdSupplierList.Focused)
-                        {
-                            grid_flag = 1;
-                        }
+                        grid_flag = 1;
+                    }
 
                         if (grid_flag == 1)
                         {
