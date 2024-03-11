@@ -8002,6 +8002,10 @@ namespace ROMS
                         decimal varGstAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmGstamt"].Value);
                         varSubtotal = varSubtotal + varTaxValue;
                         varTaxTotal = varTaxTotal + varGstAmt;
+                        if(grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty")
+                        {
+                            string varInvQty= Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value);
+                        }
                     }
                 //}
                 txtSubtotal.Text = Convert.ToString(varSubtotal);
