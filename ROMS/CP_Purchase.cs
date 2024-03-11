@@ -1050,6 +1050,14 @@ namespace ROMS
                             {
                                 grdPODetails.Columns["clmRemovePO"].Visible = false;
                             }
+                            if (objDs.Tables[6].Rows.Count != 0)
+                            {
+                                lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED1"]);
+                            }
+                            if (objDs.Tables[7].Rows.Count != 0)
+                            {
+                                lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[7].Rows[0]["VERIFIED2"]);
+                            }
                         }
                     }
                     udfnPurchaseEntryTabLoad();
@@ -9330,7 +9338,7 @@ namespace ROMS
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "" && pbPurchaseno == "0")
                             {
                                 LV_Supplier.Visible = false;
-                                txtGstin.Enabled = true;
+                                //txtGstin.Enabled = true;
                                 MainForm.objPUR_GSTIN = new PUR_GSTIN();
                                 MainForm.objPUR_GSTIN.ShowDialog();
                             }
