@@ -4102,7 +4102,7 @@ namespace ROMS
                     pbDateflag = 0;
                     if (pbDateflag == 0)
                     {
-                        if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
+                        if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP")
                         {
                             if (objDS.Tables[0].Rows.Count > 0)
                             {
@@ -4112,6 +4112,8 @@ namespace ROMS
                                 }
                                 else
                                 {
+                                    grdSupplierList.CurrentCell.Style.BackColor = Color.PaleGreen;
+                                    //grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
                                     if (objDS.Tables.Count != 0)
                                     {
                                         if (objDS.Tables[1].Rows.Count > 0)
@@ -4129,12 +4131,12 @@ namespace ROMS
                                         {
                                             if (objDS.Tables.Count > 1)
                                             {
-                                                if (Convert.ToInt32(objDS.Tables[2].Rows[0]["DATEVALIDATE"]) == 0)
+                                                /*if (Convert.ToInt32(objDS.Tables[2].Rows[0]["DATEVALIDATE"]) == 0)
                                                 {
                                                     pbDateflag = 1;
                                                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == varExpiryDate)
                                                     {
-                                                        grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                                        grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                                         string varMessage = objDServ.udfnGetMessages(98);
                                                         objDServ.CloseConnection();
                                                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -4142,8 +4144,8 @@ namespace ROMS
                                                 }
                                                 else
                                                 {
-                                                    grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                                }
+                                                    grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                                }*/
                                             }
                                             else
                                             {
@@ -4161,7 +4163,7 @@ namespace ROMS
                                 if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == varExpiryDate)
                                 {
                                     varErroronGrid = 1;
-                                    grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                     string varMessage = objDServ.udfnGetMessages(94);
                                     objDServ.CloseConnection();
                                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -5603,16 +5605,17 @@ namespace ROMS
                         //        grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightPink;
                         //    }
                         //}
-                        //if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == "")
-                        //{
-                        //    varcount++;
-                        //    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
-                        //}
-                        //if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == "" || Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == 0)
-                        //{
-                        //    varcount++;
-                        //    grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightPink;
-                        //}
+                        if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == "")
+                        {
+                            varcount++;
+                            grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                        }
+                        if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == "" || Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == 0)
+                        {
+                            varcount++;
+                            grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                        }
+                        /*
                         if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == "")
                         {
                             varTempExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value);
@@ -7995,24 +7998,33 @@ namespace ROMS
                 decimal varSubtotal = 0, varTaxTotal = 0;
                 //if (Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value) != 0 || Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value) != 0)
                 //{
+                
+                    decimal varInvQty = 0;
                     for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
                     {
                         decimal varTaxValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmTax"].Value);
                         decimal varGstAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmGstamt"].Value);
                         varSubtotal = varSubtotal + varTaxValue;
                         varTaxTotal = varTaxTotal + varGstAmt;
-                        if(grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty")
+                        if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty")
                         {
-                            string varInvQty= Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value);
+                            if (varInvQty == 0)
+                            {
+                                varInvQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value);
+                            }
+                            else
+                            {
+                                varInvQty = varInvQty + Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value);
+                            }
                         }
                     }
                 //}
                 txtSubtotal.Text = Convert.ToString(varSubtotal);
                 txtGstamt.Text = Convert.ToString(varTaxTotal);
                 txtGrandtot.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
-               // lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
-                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("#,##0.00");
+                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
                 txtRoundoff.Text = Convert.ToString(Math.Abs(Convert.ToDecimal(txtGrandtot.Text) - (varSubtotal + varTaxTotal)));
+                txtTpro.Text =Convert.ToString(grdPurchaseList.RowCount) + " / " + Convert.ToString(varInvQty);
             }
             catch (Exception ex)
             {
@@ -9032,8 +9044,8 @@ namespace ROMS
                                     lblLocationcode.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SLID"]);
                                     txtSourceLocation.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SL_EName"]);
                                     udfnCmbSourceRack();
-                                    cmbrack.SelectedIndex = 0;
                                     lvSourceLocation.Visible = false;
+                                    cmbrack.SelectedIndex = 0;
                                 }
                             }
                             else
