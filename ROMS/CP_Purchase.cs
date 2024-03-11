@@ -7928,7 +7928,8 @@ namespace ROMS
                 txtSubtotal.Text = Convert.ToString(varSubtotal);
                 txtGstamt.Text = Convert.ToString(varTaxTotal);
                 txtGrandtot.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
-                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+               // lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("#,##0.00");
                 txtRoundoff.Text = Convert.ToString(Math.Abs(Convert.ToDecimal(txtGrandtot.Text) - (varSubtotal + varTaxTotal)));
             }
             catch (Exception ex)
