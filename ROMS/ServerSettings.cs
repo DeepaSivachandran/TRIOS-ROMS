@@ -202,24 +202,24 @@ namespace ROMS
                     //Data.Attributes.Append(value);
                     //XmlNode TechReport = appSettingsDoc.SelectSingleNode("//appSettings");
                     //TechReport.AppendChild(Data);
-                    XmlNodeList node = appSettingsDoc.SelectSingleNode("//applicationSettings").SelectNodes("//setting");
-                    // Read each node in config file
-                    foreach (XmlNode nodee in node) {
-                        XmlAttribute idAttribute = nodee.Attributes["name"];
-                        if (idAttribute != null)
-                        {
-                            string url = nodee.InnerText.ToString();
-                            string[] arrval = url.Split('/');
-                            string sername = arrval[arrval.Length - 1];
-                            if (sername != "ActivationService.svc")
-                            {
-                                // Over writing wcf service in config files
-                                string finalurl = " \n <value> http://"+ txtWebServiceName.Text.Trim().Replace("\n","").Replace("\r", "").Replace("http://","").Replace("http:/", "").Replace("https://", "").Replace("https:/", "") + "/" + sername.Trim() + " </value> ";
-                                nodee.InnerXml = finalurl;
-                            }
-                        }                       
-                    }
-                    appSettingsDoc.Save(Application.StartupPath + "\\"+ name + ".exe.config");
+                    //XmlNodeList node = appSettingsDoc.SelectSingleNode("//applicationSettings").SelectNodes("//setting");
+                    //// Read each node in config file
+                    //foreach (XmlNode nodee in node) {
+                    //    XmlAttribute idAttribute = nodee.Attributes["name"];
+                    //    if (idAttribute != null)
+                    //    {
+                    //        string url = nodee.InnerText.ToString();
+                    //        string[] arrval = url.Split('/');
+                    //        string sername = arrval[arrval.Length - 1];
+                    //        if (sername != "ActivationService.svc")
+                    //        {
+                    //            // Over writing wcf service in config files
+                    //            string finalurl = " \n <value> http://"+ txtWebServiceName.Text.Trim().Replace("\n","").Replace("\r", "").Replace("http://","").Replace("http:/", "").Replace("https://", "").Replace("https:/", "") + "/" + sername.Trim() + " </value> ";
+                    //            nodee.InnerXml = finalurl;
+                    //        }
+                    //    }                       
+                    //}
+                    //appSettingsDoc.Save(Application.StartupPath + "\\"+ name + ".exe.config");
                     MessageBox.Show("Server settings saved successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                     if (lblformname.Text == "login")

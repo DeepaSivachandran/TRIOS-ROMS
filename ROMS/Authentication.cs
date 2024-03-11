@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using System.Security.Cryptography;
-using System.IO;
-using System.Security.AccessControl;
-using System.Security.Principal;
-using System.Diagnostics;
-using System.Net;
 
 //[assembly: XmlConfigurator(Watch = true)]
 //[assembly: Repository()]
@@ -28,6 +24,7 @@ namespace ROMS
 
         // ***** Declaration Part *****
         public static string varUserID;
+        public string varUserName = "";
         ToolTip tpUserName = new ToolTip();
         ToolTip tpPassword = new ToolTip();
         public Authentication()
@@ -46,7 +43,7 @@ namespace ROMS
                     txtPassword.Focus();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -60,7 +57,7 @@ namespace ROMS
             {
                 txtUserName.BackColor = Color.LemonChiffon;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -74,7 +71,7 @@ namespace ROMS
             {
                 txtUserName.BackColor = Color.White;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -91,7 +88,7 @@ namespace ROMS
                     btnSignin.Focus();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -105,7 +102,7 @@ namespace ROMS
             {
                 txtPassword.BackColor = Color.LemonChiffon;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -119,7 +116,7 @@ namespace ROMS
             {
                 txtPassword.BackColor = Color.White;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -131,36 +128,49 @@ namespace ROMS
         {
             try
             {
-                DataSet objDs=new DataSet();
+                DataSet objDs = new DataSet();
                 if (txtUserName.TextLength != 0 & txtPassword.TextLength != 0)
                 {
-                    DataService objDser = new DataService();
-                    //int count = 0;
-                    //count = Convert.ToInt16(objDser.displaydata("select count(*) as count from CP_USERPROFILE where Userid='" + txtUserName.Text + "' and UserPassword='" + GenerateMD5(txtPassword.Text) + "' And StatusCode = 1"));
-                    //objDs = objDser.GetDataset("select *,B.RoleName from CP_USERPROFILE AS A INNER JOIN CP_USERROLE AS B ON A.UserRoleCode=B.RoleCode where A.StatusCode = 1 And A.Userid='" + txtUserName.Text + "' and A.UserPassword='" + GenerateMD5(txtPassword.Text) + "'; SELECT TableName FROM DEF_TABLEDETAILS;SELECT top 1 ReleaseDate from (select  convert(varchar(10),ReleaseDate, 103) AS ReleaseDate,row_number() over( ORDER BY ReleaseDate DESC) as sno FROM TRANS_RELEASEDETAILS) derv where sno=1");
-                    //objDser.CloseConnection();
-                    //if (count == 1)
-                    //{
-                        //MainForm.pbUserID = objDs.Tables[0].Rows[0]["Userid"].ToString();
-                        //MainForm.pbUserRoleId = objDs.Tables[0].Rows[0]["UserRoleCode"].ToString();
-                        //MainForm.pbUserName = objDs.Tables[0].Rows[0]["UserName"].ToString();
-                        //MainForm.pbUserRoleName = objDs.Tables[0].Rows[0]["RoleName"].ToString();
-                        //MainForm.pbVersion = lblDVersion.Text;
-                        //MainForm.pbHostName = Dns.GetHostName();
-                        //MainForm.pbLablingSoftwareName = objDs.Tables[1].Rows[0]["TableName"].ToString();
-                        //MainForm.pbRomsSoftwareName = objDs.Tables[1].Rows[1]["TableName"].ToString();
-                        //MainForm.pbReleaseDt = objDs.Tables[2].Rows[0]["ReleaseDate"].ToString();
-                        this.Hide();
-                        MainForm obj = new MainForm();
-                        obj.Show();
-                    //}
-                    //else if (count == 0)
-                    //{
-                    //    DialogResult response = MessageBox.Show("User Name or Password is incorrect", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                    //    txtUserName.Text = "";
-                    //    txtPassword.Text = "";
-                    //    txtUserName.Focus();
-                    //}
+                    SPDataService objDser = new SPDataService();
+                    int count = 0;
+                    // objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0,"");
+                    objDs = objDser.udfnUserList(0, varUserName, txtUserName.Text.Trim(), _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text), 0, 0, "");
+                    objDser.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count > 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
+                                if (count != 0)
+                                {
+                                    MainForm.pbUserID = objDs.Tables[1].Rows[0]["Userid"].ToString();
+                                    MainForm.pbUserRoleId = objDs.Tables[1].Rows[0]["UserRoleCode"].ToString();
+                                    MainForm.pbUserName = objDs.Tables[1].Rows[0]["UserName"].ToString();
+                                    MainForm.pbLoginId = objDs.Tables[1].Rows[0]["LoginId"].ToString();
+                                    MainForm.pbUserRoleName = objDs.Tables[1].Rows[0]["RoleName"].ToString();
+                                    MainForm.pbUserPassKey = objDs.Tables[1].Rows[0]["PassKey"].ToString();
+                                    MainForm.pbUserPassKeyValue = _security.Decrypt("passkey", objDs.Tables[1].Rows[0]["PasskeyValue"].ToString());
+                                    MainForm.pbVersion = lblDVersion.Text;
+                                    MainForm.pbHostName = Dns.GetHostName();
+                                    MainForm.pbSSSSoftwareName = udfnDBName();
+                                    //MainForm.pbRomsSoftwareName = objDs.Tables[2].Rows[1]["TableName"].ToString();
+                                    MainForm.pbReleaseDt = objDs.Tables[2].Rows[0]["ReleaseDate"].ToString();
+                                    this.Hide();
+                                    MainForm obj = new MainForm();
+                                    obj.Show();
+                                }
+                                else if (count == 0)
+                                {
+                                    DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                                    txtUserName.Text = "";
+                                    txtPassword.Text = "";
+                                    txtUserName.Focus();
+                                }
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -189,6 +199,25 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public string udfnDBName()
+        {
+            string varDBName = "";
+            try
+            {
+                string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+                if (File.Exists(path))
+                {
+                    string lines = File.ReadAllText(path);
+                    if (lines != null & lines != "")
+                    {
+                        string[] words = lines.Split(',');
+                        varDBName = words[1];
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            return varDBName;
         }
         public string GenerateMD5(string HashString)
         {
@@ -239,7 +268,7 @@ namespace ROMS
                                                 System.Environment.Exit(1);
                                                 varProcess.WaitForExit();
                                             }
-                                            catch (Exception ex) { objError = new DataError();objError.WriteFile(ex); }
+                                            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
                                             finally { this.Close(); }
                                         }
                                         else
@@ -266,15 +295,15 @@ namespace ROMS
         public void Authentication_Load(object sender, EventArgs e)
         {
             // Check server settings file exists or not
-            string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
-            if (File.Exists(paths))
-            {
-                lblDVersion.Text = "v1.0.0";
-                lblDVersion.BringToFront();
-                Authentication objAuthetication = new Authentication();
-                objAuthetication.Name = " - " + lblDVersion.Text;
-            }
-            else { Application.Run(new ServerSettings()); }
+            //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+            //if (File.Exists(paths))
+            //{
+            lblDVersion.Text = "v1.6.1";
+            lblDVersion.BringToFront();
+            Authentication objAuthetication = new Authentication();
+            objAuthetication.Name = " - " + lblDVersion.Text;
+            //}
+            //else { Application.Run(new ServerSettings()); }
         }
         // Author : Deepa
         // Created Date: 12-02-2020
@@ -304,9 +333,9 @@ namespace ROMS
                 {
                     udfnclose();
                 }
-               
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -343,12 +372,28 @@ namespace ROMS
         // Created Date: 12-02-2020
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try {
-               this.Hide();
+            try
+            {
+                this.Hide();
                 ServerSettings obj = new ServerSettings();
                 obj.lblformname.Text = "login";
                 obj.Show();
-            } catch (Exception ex) { objError = new DataError();objError.WriteFile(ex); }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void TxtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(linkLabel1.Text);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
     }
 }

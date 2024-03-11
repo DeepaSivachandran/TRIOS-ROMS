@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,21 +18,21 @@ namespace ROMS
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+        [HandleProcessCorruptedStateExceptions]
+        [SecurityCritical]
         public static void Main()
         {
             try
             {
                 SecurityController _security = new SecurityController();
                 //  DataService objDser = new DataService();
-                string version = "v1.0.0";
-                string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
-                if (File.Exists(path))
-                {
+                string version = "v1.6.1";
+              //  string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+                //if (File.Exists(pa th))
+                //{
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     //Application.Run(new Expandablegrd());
-
-
                     Application.Run(new Authentication());
                     //DataService objDser = new DataService();
                     ////DataSet getrelease = objDser.GetDataset("select * from TRANS_RELEASEDETAILS where VersionNumber='" + version + "'");
@@ -123,8 +125,8 @@ namespace ROMS
                     //    Application.Run(new Activation());
                     //}
 
-                }
-                else { Application.Run(new ServerSettings()); }
+                //}
+                //else { Application.Run(new ServerSettings()); }
             }
             catch (Exception ex)
             {

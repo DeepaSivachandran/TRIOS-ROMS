@@ -1,0 +1,326 @@
+﻿namespace ROMS
+{
+    partial class REPORT_CP_Broker
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.ReportBroker = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.pnlReportBroker = new System.Windows.Forms.Panel();
+            this.lvCity = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblcityid = new System.Windows.Forms.Label();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblCity = new System.Windows.Forms.Label();
+            this.btnListPrint = new System.Windows.Forms.Button();
+            this.cmbReportType = new System.Windows.Forms.ComboBox();
+            this.lblReportType = new System.Windows.Forms.Label();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.ReportBroker.SuspendLayout();
+            this.pnlReportBroker.SuspendLayout();
+            this.grpfilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // ReportBroker
+            // 
+            this.ReportBroker.BackColor = System.Drawing.Color.White;
+            this.ReportBroker.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportBroker.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ReportBroker.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ReportBroker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tspHeader});
+            this.ReportBroker.Location = new System.Drawing.Point(0, 0);
+            this.ReportBroker.Name = "ReportBroker";
+            this.ReportBroker.Size = new System.Drawing.Size(1354, 25);
+            this.ReportBroker.TabIndex = 35;
+            this.ReportBroker.Text = "Broker Report";
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(101, 22);
+            this.tspHeader.Text = "Broker Report";
+            // 
+            // pnlReportBroker
+            // 
+            this.pnlReportBroker.BackColor = System.Drawing.Color.White;
+            this.pnlReportBroker.Controls.Add(this.lvCity);
+            this.pnlReportBroker.Controls.Add(this.RPTViewer);
+            this.pnlReportBroker.Controls.Add(this.grpfilter);
+            this.pnlReportBroker.Controls.Add(this.lblNoRecordsFound);
+            this.pnlReportBroker.Controls.Add(this.picLoader);
+            this.pnlReportBroker.Location = new System.Drawing.Point(0, 29);
+            this.pnlReportBroker.Name = "pnlReportBroker";
+            this.pnlReportBroker.Size = new System.Drawing.Size(1354, 643);
+            this.pnlReportBroker.TabIndex = 958788;
+            // 
+            // lvCity
+            // 
+            this.lvCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvCity.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvCity.HideSelection = false;
+            this.lvCity.Location = new System.Drawing.Point(356, 48);
+            this.lvCity.Name = "lvCity";
+            this.lvCity.Size = new System.Drawing.Size(306, 90);
+            this.lvCity.TabIndex = 1111228;
+            this.lvCity.UseCompatibleStateImageBehavior = false;
+            this.lvCity.View = System.Windows.Forms.View.Details;
+            this.lvCity.Visible = false;
+            this.lvCity.DoubleClick += new System.EventHandler(this.LvCity_DoubleClick);
+            this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // RPTViewer
+            // 
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(3, 66);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 573);
+            this.RPTViewer.TabIndex = 1111227;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
+            // 
+            // grpfilter
+            // 
+            this.grpfilter.Controls.Add(this.lblcityid);
+            this.grpfilter.Controls.Add(this.txtCity);
+            this.grpfilter.Controls.Add(this.cmbStatus);
+            this.grpfilter.Controls.Add(this.lblStatus);
+            this.grpfilter.Controls.Add(this.lblCity);
+            this.grpfilter.Controls.Add(this.btnListPrint);
+            this.grpfilter.Controls.Add(this.cmbReportType);
+            this.grpfilter.Controls.Add(this.lblReportType);
+            this.grpfilter.Location = new System.Drawing.Point(3, 2);
+            this.grpfilter.Name = "grpfilter";
+            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
+            this.grpfilter.TabIndex = 0;
+            this.grpfilter.TabStop = false;
+            this.grpfilter.Text = "Filter By";
+            // 
+            // lblcityid
+            // 
+            this.lblcityid.AutoSize = true;
+            this.lblcityid.Location = new System.Drawing.Point(815, 22);
+            this.lblcityid.Name = "lblcityid";
+            this.lblcityid.Size = new System.Drawing.Size(0, 20);
+            this.lblcityid.TabIndex = 1111184;
+            this.lblcityid.Visible = false;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtCity.Location = new System.Drawing.Point(353, 19);
+            this.txtCity.MaxLength = 100;
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(201, 27);
+            this.txtCity.TabIndex = 1;
+            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
+            this.txtCity.Enter += new System.EventHandler(this.TxtCity_Enter);
+            this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
+            this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(611, 19);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(143, 27);
+            this.cmbStatus.TabIndex = 2;
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(560, 22);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 1111182;
+            this.lblStatus.Text = "Status";
+            // 
+            // lblCity
+            // 
+            this.lblCity.AutoSize = true;
+            this.lblCity.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCity.Location = new System.Drawing.Point(316, 22);
+            this.lblCity.Name = "lblCity";
+            this.lblCity.Size = new System.Drawing.Size(31, 20);
+            this.lblCity.TabIndex = 1111178;
+            this.lblCity.Text = "City";
+            // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(760, 18);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
+            this.btnListPrint.TabIndex = 3;
+            this.btnListPrint.Text = "View";
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
+            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
+            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
+            // 
+            // cmbReportType
+            // 
+            this.cmbReportType.FormattingEnabled = true;
+            this.cmbReportType.Location = new System.Drawing.Point(85, 19);
+            this.cmbReportType.Name = "cmbReportType";
+            this.cmbReportType.Size = new System.Drawing.Size(225, 27);
+            this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
+            this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
+            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReportType_KeyDown);
+            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReportType_KeyPress);
+            this.cmbReportType.Leave += new System.EventHandler(this.CmbReportType_Leave);
+            // 
+            // lblReportType
+            // 
+            this.lblReportType.AutoSize = true;
+            this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportType.Location = new System.Drawing.Point(6, 22);
+            this.lblReportType.Name = "lblReportType";
+            this.lblReportType.Size = new System.Drawing.Size(73, 20);
+            this.lblReportType.TabIndex = 1111176;
+            this.lblReportType.Text = "Report type";
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 357);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958789;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(3, 66);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1351, 576);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958790;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
+            // REPORT_CP_Broker
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
+            this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.Controls.Add(this.pnlReportBroker);
+            this.Controls.Add(this.ReportBroker);
+            this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "REPORT_CP_Broker";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "HSN Report";
+            this.Load += new System.EventHandler(this.REPORT_CP_Broker_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Broker_KeyDown);
+            this.ReportBroker.ResumeLayout(false);
+            this.ReportBroker.PerformLayout();
+            this.pnlReportBroker.ResumeLayout(false);
+            this.pnlReportBroker.PerformLayout();
+            this.grpfilter.ResumeLayout(false);
+            this.grpfilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ToolStrip ReportBroker;
+        private System.Windows.Forms.ToolStripLabel tspHeader;
+        private System.Windows.Forms.Panel pnlReportBroker;
+        private System.Windows.Forms.Label lblNoRecordsFound;
+        private System.Windows.Forms.GroupBox grpfilter;
+        private System.Windows.Forms.ComboBox cmbReportType;
+        private System.Windows.Forms.Label lblReportType;
+        public System.Windows.Forms.PictureBox picLoader;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
+        private System.Windows.Forms.Button btnListPrint;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label lblCity;
+        private System.Windows.Forms.TextBox txtCity;
+        public System.Windows.Forms.ListView lvCity;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label lblcityid;
+    }
+}

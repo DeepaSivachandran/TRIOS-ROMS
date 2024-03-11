@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Net;
 using System.Configuration;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace ROMS
 {
@@ -201,7 +203,7 @@ namespace ROMS
                     {
                         SSSExamCell.BackColor = System.Drawing.SystemColors.Window;
                     }
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -431,13 +433,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }    
+        }
         private List<Control> GetAllControls(Control container, List<Control> list)
         {
             foreach (Control c in container.Controls)
             {
-                if (c is TextBox) { list.Add(c);c.Font= new System.Drawing.Font("Segoe UI", 9.5F); }
-                if (c is Label) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI",9.5F); }
+                if (c is TextBox) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
+                if (c is Label) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
                 if (c is RadioButton) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
                 if (c is DataGrid) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
                 if (c is Button) { list.Add(c); c.Font = new System.Drawing.Font("Segoe UI", 9.5F); }
@@ -453,7 +455,7 @@ namespace ROMS
         {
             try
             {
-                lblTotal.Font =new System.Drawing.Font("Segoe UI", 20F);
+                lblTotal.Font = new System.Drawing.Font("Segoe UI", 20F);
             }
             catch (Exception ex)
             {
@@ -485,7 +487,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); return false; }
         }
-        public bool CheckNumeric(KeyPressEventArgs e)
+        public bool FormatAlphbeticAndNumeric(KeyPressEventArgs e)
         {
             try
             {
@@ -509,7 +511,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); return false; }
         }
-       
+
         public bool FormatAlphbeticNumericAndSpecialchar(string inputText)
         {
             try
@@ -738,6 +740,208 @@ namespace ROMS
                 file.Close();
             }
             return PrinterName;
+        }
+        //Created by Venkat
+        //created on 08/08/2023; reason validate gstin
+
+        public bool IsValidGSTIN(string gstin)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(gstin))
+                    return false;
+                return gstin.Length == 15 && Regex.IsMatch(gstin, @"^[a-zA-Z0-9]+$");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+
+
+        //Created by Venkat
+        //created on 08/08/2023; reason validate PAN
+        public bool IsValidPAN(string pan)
+        {
+            try
+            {
+                // Check if PAN is null or empty
+                if (string.IsNullOrWhiteSpace(pan))
+                    return false;
+
+                // Check if PAN matches the format: 5 alphabets, 4 numbers, 1 alphabet
+                return Regex.IsMatch(pan, @"^[A-Z]{5}\d{4}[A-Z]$");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+
+        //Created by Venkat
+        //created on 08/08/2023; reason validate esiNumber
+        public bool IsValidESINumber(string esiNumber)
+        {
+
+            try
+            {  // Check if ESI Number is null or empty
+                if (string.IsNullOrWhiteSpace(esiNumber))
+                    return false;
+
+                // Check if length is 17 characters
+                return esiNumber.Length == 17;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+
+        //Created by Venkat
+        //created on 08/08/2023; reason validate fssai
+
+        public bool IsValidFSSAI(string fssai)
+        {
+            try
+            {
+                // Check if FSSAI is null or empty
+                if (string.IsNullOrWhiteSpace(fssai))
+                    return false;
+
+                // Check if FSSAI matches the format: 14 digits
+                return Regex.IsMatch(fssai, @"^\d{14}$");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+        //Created by Venkat
+        //created on 08/08/2023; reason validate fssai
+
+        public bool IsValidEPF(string epf)
+        {
+            try
+            {
+                // Check if EPF is null or empty
+                if (string.IsNullOrWhiteSpace(epf))
+                    return false;
+
+                // Check if EPF matches the format
+                return Regex.IsMatch(epf, @"^[A-Z]{2}/[A-Z]{3}/\d{1,7}/\d{0,3}/\d{1,7}$");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+        //Created by Venkat
+        //created on 08/08/2023; reason validate fssai
+
+        public bool IsValidUrl(string url)
+        {
+            try
+            {
+                Uri uriResult;
+                bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult)
+                    && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+
+        //Created by Venkat
+        //created on 15/08/2023; reason crystal report connection
+        public void CrySqlConnection(ReportDocument objBillReport)
+        {
+            try
+            {
+                SPCall tmpspcall = new SPCall();
+                SqlConnection objConn = new SqlConnection();
+                string connectstring = tmpspcall.connectionstring();
+                objConn = new System.Data.SqlClient.SqlConnection(connectstring);
+
+                TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
+                TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
+                ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                Tables CrTables = default(Tables);
+                crConnectionInfo.ServerName = objConn.DataSource;
+                crConnectionInfo.DatabaseName = objConn.Database;
+                string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+                _security = new SecurityController();
+                if (File.Exists(path))
+                {
+                    string lines = File.ReadAllText(path);
+                    if (lines != null & lines != "")
+                    {
+                        string[] words = lines.Split(',');
+                        crConnectionInfo.UserID = words[2];
+                        // string pwd = Decrypt(words[3], "sblw-3hn8-sqoy19");
+                        string pwd = _security.Decrypt(words[2], words[3]);
+                        crConnectionInfo.Password = pwd;
+                    }
+                }
+                // crConnectionInfo.Password = System.Configuration.ConfigurationManager.AppSettings["SqlPassword"];
+                CrTables = objBillReport.Database.Tables;
+                foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                {
+                    crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                }
+                //SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["ConnStr"]);
+
+                //TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
+                //TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
+                //ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                //Tables CrTables = default(Tables);
+                //crConnectionInfo.ServerName = objConn.DataSource;
+                //crConnectionInfo.DatabaseName = objConn.Database;
+                //crConnectionInfo.UserID = ConfigurationManager.AppSettings["Sqluser"]; ;
+                //crConnectionInfo.Password = ConfigurationManager.AppSettings["SqlPassword"];
+                //CrTables = objBillReport.Database.Tables;
+                //foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                //{
+                //    crtableLogoninfo = CrTable.LogOnInfo;
+                //    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                //    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public string udfnDecimal(string qty, int decimalvalue)
+        {
+            string decimalqty = "0"; try
+            {
+                decimal value = Convert.ToDecimal(qty);
+                decimalqty = Convert.ToString(value.ToString("#." + new string('0', decimalvalue)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            return decimalqty;
         }
     }
 }
