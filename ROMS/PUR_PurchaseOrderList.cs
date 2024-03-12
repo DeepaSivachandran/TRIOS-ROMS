@@ -2349,8 +2349,6 @@ namespace ROMS
         {
             try
             {
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
                 DateTime varmindate = DateTime.ParseExact(dpPlanDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dptoPlanDate.MinDate = varmindate;
                 dptoPlanDate.MaxDate = varmaxdate; 
