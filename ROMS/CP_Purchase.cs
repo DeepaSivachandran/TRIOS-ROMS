@@ -7928,6 +7928,7 @@ namespace ROMS
                         udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                         udfnSubtotCalc(e);
                         udfnGstvalue();
+                        udfnLoadingGrandTotCalculation();
                     }
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmDiscAmt"].Index && e.RowIndex >= 0))
                     {
@@ -7936,6 +7937,7 @@ namespace ROMS
                         grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value = pbDisper.ToString("0.00");
                         udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                         udfnSubtotCalc(e);
+                        udfnLoadingGrandTotCalculation();
                     }
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmInvQty"].Index || e.ColumnIndex == grdPurchaseList.Columns["clmRecqty"].Index || e.ColumnIndex == grdPurchaseList.Columns["clmPurchaseRate"].Index) || e.ColumnIndex == grdPurchaseList.Columns["clmFreeqty"].Index && e.RowIndex >= 0)
                     {
@@ -7943,6 +7945,7 @@ namespace ROMS
                         udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                         udfnGstvalue();
                         udfnSubtotCalc(e);
+                        udfnLoadingGrandTotCalculation();
                     }
 
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmDiscPer"].Index) && e.RowIndex >= 0)
@@ -7954,7 +7957,7 @@ namespace ROMS
                         udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                         udfnSubtotCalc(e);
                         udfnGstvalue();
-
+                        udfnLoadingGrandTotCalculation();
                     }
                     if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
                     {
@@ -7965,6 +7968,7 @@ namespace ROMS
                             grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
                             udfnSubtotCalc(e);
                             udfnGstvalue();
+                            udfnLoadingGrandTotCalculation();
                         }
                     }
                     if (varEntryType == 55 || varEntryType == 56) // direct and against po
@@ -7977,6 +7981,7 @@ namespace ROMS
                             grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
                             udfnSubtotCalc(e);
                             udfnGstvalue();
+                            udfnLoadingGrandTotCalculation();
                         }
                     }
 
@@ -8008,6 +8013,7 @@ namespace ROMS
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value = Math.Round(PbTaxvalue).ToString("0.00");
                     udfnSubtotCalc(e);
                     udfnGstvalue();
+                    udfnLoadingGrandTotCalculation();
                     PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0;
                 }
             }
