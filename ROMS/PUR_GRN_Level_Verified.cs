@@ -183,9 +183,9 @@ namespace ROMS
             try
             {
                 udfnDateLoad();
-                dpVerified1.MinDate = MainForm.pbFYStartDate;
+                //dpVerified1.MinDate = MainForm.pbFYStartDate;
                 //dpVerified1.MaxDate = MainForm.pbCurrentDate;
-                dpVerified2.MinDate = MainForm.pbFYStartDate;
+                //dpVerified2.MinDate = MainForm.pbFYStartDate;
                 //dpVerified2.MaxDate = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
@@ -213,9 +213,10 @@ namespace ROMS
                             Verified2= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby2"].ToString());
                             dpVerified1.Text = objDs.Tables[0].Rows[0]["GRN1_VerfiedOn"].ToString();
                             dpVerified2.Text = objDs.Tables[0].Rows[0]["GRN2_VerfiedOn"].ToString();
+                            dpVerified2.MinDate = Convert.ToDateTime(dpVerified1.Text);
                             DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
-                            dpVerified1.MaxDate = varmaxdate;
-                            dpVerified2.MaxDate = varmaxdate;
+                            //dpVerified1.MaxDate = varmaxdate;
+                            //dpVerified2.MaxDate = varmaxdate;
                             if (Verified1 == -1)
                             {
                                 dpVerified1.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
@@ -250,7 +251,7 @@ namespace ROMS
         {
             try
             {
-                dpVerified2.MinDate = Convert.ToDateTime(dpVerified1.Text);
+                //dpVerified2.MinDate = Convert.ToDateTime(dpVerified1.Text);
             }
             catch (Exception ex)
             {
