@@ -935,6 +935,7 @@ namespace ROMS
                             grdProDetails.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Requested Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProDetails.Columns["Received Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdProDetails.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdProDetails.BringToFront();
                             DGV_SearchGridPro.BringToFront();
                             grdStockRequestList.SendToBack();
@@ -1798,6 +1799,10 @@ namespace ROMS
                             foreach (DataGridViewRow rowa in grdProDetails.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (col.Name == "Product Name")
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
                             }
                         }
                     }
