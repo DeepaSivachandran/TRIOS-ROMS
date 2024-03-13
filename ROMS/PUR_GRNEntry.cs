@@ -97,6 +97,10 @@ namespace ROMS
                     udfnUnitListGrid();
                     udfnEditLoad();
                 }
+                if(pbGRNSTS =="23" || pbGRNSTS =="44")
+                {
+                    gpGRNEntry.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1286,7 +1290,7 @@ namespace ROMS
                                         }
                                     } //objGrnP
                                     varGrnId = Convert.ToInt32(pbGRNId);
-
+                                    varUserID= MainForm.pbUserID;
                                     TRN_GRN objTRNS_GRN = new TRN_GRN();
                                     objTRNS_GRN.ViewType = varviewtype;
                                     objTRNS_GRN.ParaGRNID = varGrnId;
@@ -1316,12 +1320,13 @@ namespace ROMS
                                         MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
                                         MainForm.objPUR_GRNApprovalVerify.varTrnType = 2;
                                         MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                                        varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
                                         if (varflag == "1")
                                         {
                                             objTRNS_GRN.paraSaveFlag = 1;
                                             result = objspdservice.udfnGRNEntry(objTRNS_GRN);
-                                        objspdservice.CloseConnection();
-                                        varvalue = result.Split('~');
+                                            objspdservice.CloseConnection();
+                                             varvalue = result.Split('~');
                                             if (varvalue[0] == "3")
                                             {
                                                 MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1336,6 +1341,7 @@ namespace ROMS
                                                     objTRNS_GRN.ViewType = 5;
                                                     objTRNS_GRN.ParaGRNID = Convert.ToInt32(GrnUpdatevalue);
                                                     objTRNS_GRN.paraQrimg = (varobjBarCodeByte);
+                                                    objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                                     result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                                     objspdservice.CloseConnection();
                                                 }
