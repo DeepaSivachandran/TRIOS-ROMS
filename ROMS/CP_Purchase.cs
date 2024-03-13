@@ -5146,19 +5146,19 @@ namespace ROMS
                                                 {
                                                     //if (message[1] == "1" || message[1] == "2" || message[1] == "3")
                                                     //{
-                                                    grdSupplierList.Rows[j].DefaultCellStyle.BackColor = Color.White;
-                                                    if (Convert.ToInt32(grdSupplierList.Rows[j].Cells["clmInvFlag"].Value) != 1)
-                                                    {
-                                                        grdSupplierList.Rows[j].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                                        grdSupplierList.Rows[j].Cells["clmLocation"].Style.BackColor = Color.PaleGreen;
-                                                        grdSupplierList.Rows[j].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
-                                                    }
-                                                    grdPurchaseList.Rows[j].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
-                                                    grdPurchaseList.Rows[j].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
-                                                    grdPurchaseList.Rows[j].Cells["clmFreeqty"].Style.BackColor = Color.PaleGreen;
-                                                    grdPurchaseList.Rows[j].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
-                                                    grdPurchaseList.Rows[j].Cells["clmDiscAmt"].Style.BackColor = Color.PaleGreen;
-                                                    grdPurchaseList.Rows[j].Cells["clmDiscPer"].Style.BackColor = Color.PaleGreen;
+                                                    //grdSupplierList.Rows[j].DefaultCellStyle.BackColor = Color.White;
+                                                    //if (Convert.ToInt32(grdSupplierList.Rows[j].Cells["clmInvFlag"].Value) != 1)
+                                                    //{
+                                                    //    grdSupplierList.Rows[j].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                    //    grdSupplierList.Rows[j].Cells["clmLocation"].Style.BackColor = Color.PaleGreen;
+                                                    //    grdSupplierList.Rows[j].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
+                                                    //}
+                                                    //grdPurchaseList.Rows[j].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                                    //grdPurchaseList.Rows[j].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
+                                                    //grdPurchaseList.Rows[j].Cells["clmFreeqty"].Style.BackColor = Color.PaleGreen;
+                                                    //grdPurchaseList.Rows[j].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
+                                                    //grdPurchaseList.Rows[j].Cells["clmDiscAmt"].Style.BackColor = Color.PaleGreen;
+                                                    //grdPurchaseList.Rows[j].Cells["clmDiscPer"].Style.BackColor = Color.PaleGreen;
                                                 }
                                             }
                                         }
@@ -8017,7 +8017,6 @@ namespace ROMS
                     PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0;
                 }
             }
-
         }
 
         public void udfnValuesCalcultaion(decimal varInvQty, decimal varRecQty, decimal varDiffQty, decimal varPurchaseRate, decimal varCellDiscAmt, decimal varTaxValue, decimal varGstAmt, decimal varNetAmt, decimal varDiscPer, int varHSNGSTValue, decimal varFreeQty)

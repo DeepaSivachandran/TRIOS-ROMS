@@ -639,7 +639,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Total Products"].Width = 100;
                             grdPurchaseEntryList.Columns["Grand Total"].Width = 100;
                             grdPurchaseEntryList.Columns["Purchase Status"].Width = 130;
-                            grdPurchaseEntryList.Columns["Overall Status"].Width = 230;
+                            grdPurchaseEntryList.Columns["Overall Status"].Width = 300;
                             grdPurchaseEntryList.Columns["PURID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPSCID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPID"].Visible = false; 
@@ -1379,7 +1379,7 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
-                if (e.KeyCode == Keys.Delete)
+                if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.D)
                 {
                     tsbDelete_Click(sender, e);
                 }
