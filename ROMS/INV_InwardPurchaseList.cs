@@ -914,6 +914,7 @@ namespace ROMS
         }
         private void GrdInwardList_KeyDown(object sender, KeyEventArgs e)
         {
+            int varDeleteFlag = 0;
             if (e.KeyCode == Keys.Enter)
             {
                 tsbEdit_Click(sender, e);
@@ -922,12 +923,15 @@ namespace ROMS
             {
                 if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) != 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) != 49 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 49))
                 {
+                    varDeleteFlag = 0;
                 }
                 else
                 {
-                    TsbDelete_Click(sender, e);
+                    varDeleteFlag = 1;
                 }
             }
+            if(varDeleteFlag==1)
+            { TsbDelete_Click(sender, e); }
         }
         private void GrdInwardList_DoubleClick(object sender, EventArgs e)
         {

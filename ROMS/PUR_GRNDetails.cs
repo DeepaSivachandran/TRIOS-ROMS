@@ -766,7 +766,8 @@ namespace ROMS
                                 //varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
                                 //if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
                                 //{
-                                varGrnId = Convert.ToInt32(pbGRNId);
+                                    varGrnId = Convert.ToInt32(pbGRNId);
+                                    varUserID = MainForm.pbUserID;
                                     TRN_GRN objTRNS_GRN = new TRN_GRN();
                                     objTRNS_GRN.ViewType = 3;
                                     objTRNS_GRN.ParaEditFlag = 1;
@@ -835,6 +836,7 @@ namespace ROMS
                                     if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
                                     {
                                         objTRNS_GRN.paraSaveFlag = 1;
+                                        objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                         result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                         objspdservice.CloseConnection();
                                         varvalue = result.Split('~');
