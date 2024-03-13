@@ -1829,169 +1829,13 @@ namespace ROMS
         {
             try
             {
-                btnExport.Enabled = false;
-                lblDSupplier.Focus();
                 if (Convert.ToInt32(cmbShow.SelectedValue) == 196)
                 {
-                    if ((grdPurchaseDCList.Rows.Count > 0))
-                    {
-                        Excel._Application ExcelObj = new Excel.Application();
-                        // creating new WorkBook within Excel application  
-                        Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
-                        // creating new Excelsheet in workbook  
-                        Excel._Worksheet ExcelSheet = null;
-                        // see the excel sheet behind the program  
-                        ExcelObj.Visible = true;
-                        ExcelSheet = ExcelBook.Sheets["Sheet1"];
-                        ExcelSheet = ExcelBook.ActiveSheet;
-                        // changing the name of active sheet  
-                        ExcelSheet.Name = "Stock Transfer";
-                        int cIndex = 0;
-                        int count = 0;
-                        foreach (DataGridViewColumn col in grdPurchaseDCList.Columns)
-                        {
-                            if (col.Visible)
-                            {
-                                count += 1;
-                            }
-                        }
-                        //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
-                        //er.EntireColumn.ColumnWidth = 35;
-
-                        ExcelSheet.Cells[1, 1].Value = "Purchase DC";
-                        ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
-                        ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
-                        ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
-                        ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
-                        ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
-                        ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
-                        ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
-
-
-                        foreach (DataGridViewColumn col in grdPurchaseDCList.Columns)
-                        {
-                            if (col.Visible)
-                            {
-                                cIndex += 1;
-                                ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                                ExcelSheet.Columns[cIndex].NumberFormat = "@";
-
-                                if (col.Name == "S.No." || col.Name == "Concern")
-                                {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 10;
-                                }
-                                else if (col.Name == "Status" || col.Name == "GSTIN" || col.Name == "Created On")
-                                {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 20;
-                                }
-                                else if (col.Name == "Supplier")
-                                {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 40;
-                                }
-                                else
-                                {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 15;
-                                }
-                                if (col.Name == "S.No." || col.Name == "DC Date")
-                                {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
-                                }
-                                if (col.Name == "Total Products")
-                                {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                                }
-                                foreach (DataGridViewRow rowa in grdPurchaseDCList.Rows)
-                                {
-                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
-                                }
-                            }
-                        }
-                        //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
-                        ExcelObj.Visible = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    udfnPrint();
                 }
                 else
                 {
-                    if ((grdProDetails.Rows.Count > 0))
-                    {
-                        Excel._Application ExcelObj = new Excel.Application();
-                        // creating new WorkBook within Excel application  
-                        Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
-                        // creating new Excelsheet in workbook  
-                        Excel._Worksheet ExcelSheet = null;
-                        // see the excel sheet behind the program  
-                        ExcelObj.Visible = true;
-                        ExcelSheet = ExcelBook.Sheets["Sheet1"];
-                        ExcelSheet = ExcelBook.ActiveSheet;
-                        // changing the name of active sheet  
-                        ExcelSheet.Name = "Stock Transfer";
-                        int cIndex = 0;
-                        int count = 0;
-                        foreach (DataGridViewColumn col in grdProDetails.Columns)
-                        {
-                            if (col.Visible)
-                            {
-                                count += 1;
-                            }
-                        }
-                        //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
-                        //er.EntireColumn.ColumnWidth = 35;
-
-                        ExcelSheet.Cells[1, 1].Value = "Purchase DC";
-                        ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
-                        ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
-                        ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
-                        ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
-                        ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
-                        ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
-                        ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
-
-
-                        foreach (DataGridViewColumn col in grdProDetails.Columns)
-                        {
-                            if (col.Visible)
-                            {
-                                cIndex += 1;
-                                ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                                ExcelSheet.Columns[cIndex].NumberFormat = "@";
-
-                                if (col.Name == "S.No." || col.Name == "Concern")
-                                {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 10;
-                                }
-                                else if (col.Name == "Status")
-                                {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 20;
-                                }
-                                else if (col.Name == "Supplier")
-                                {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 40;
-                                }
-                                else
-                                {
-                                    ExcelSheet.Columns[cIndex].ColumnWidth = 15;
-                                }
-                                if (col.Name == "S.No.")
-                                {
-                                    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
-                                }
-                                foreach (DataGridViewRow rowa in grdPurchaseDCList.Rows)
-                                {
-                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
-                                }
-                            }
-                        }
-                        //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
-                        ExcelObj.Visible = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    udfnProductPrint();
                 }
             }
             catch (Exception ex)
@@ -2003,6 +1847,230 @@ namespace ROMS
             {
                 btnExport.Enabled = true;
                 btnExport.Focus();
+            }
+        }
+        public void udfnPrint()
+        {
+            try
+            {
+                btnExport.Enabled = false;
+                lblDSupplier.Focus();
+                if ((grdPurchaseDCList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Purchase DC Transaction list";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdPurchaseDCList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+
+                    ExcelSheet.Cells[1, 1].Value = "Purchase DC";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+
+                    foreach (DataGridViewColumn col in grdPurchaseDCList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+
+                            if (col.Name == "S.No." || col.Name == "Concern")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            else if (col.Name == "Status" || col.Name == "GSTIN" || col.Name == "Created On")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else if (col.Name == "Supplier")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            if (col.Name == "S.No." || col.Name == "DC Date")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            if (col.Name == "Total Products")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+                            foreach (DataGridViewRow rowa in grdPurchaseDCList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                              
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+        public void udfnProductPrint()
+        {
+            try
+            {
+                btnExport.Enabled = false;
+                lblDSupplier.Focus();
+                if ((grdProDetails.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Purchase DC Product list";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdProDetails.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+
+                    ExcelSheet.Cells[1, 1].Value = "Purchase DC Product list";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+
+                    foreach (DataGridViewColumn col in grdProDetails.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+
+                            if (col.Name == "S.No." || col.Name == "Concern")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            else if (col.Name == "Status")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else if (col.Name == "Supplier" || col.Name=="Product Name")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            if (col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            foreach (DataGridViewRow rowa in grdProDetails.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                if (cIndex == 6)
+                                {
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex].Font.Name = "Uni Ila.Sundaram-03";
+                                }
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
