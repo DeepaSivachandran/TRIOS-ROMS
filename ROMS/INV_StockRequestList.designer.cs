@@ -37,6 +37,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockRequestList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -72,6 +77,10 @@
             this.grdStockRequestList = new System.Windows.Forms.DataGridView();
             this.clmprint = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.cmbShow = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.grdProDetails = new System.Windows.Forms.DataGridView();
+            this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.tsStockRequestList.SuspendLayout();
             this.pnlStockRequestList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -80,6 +89,8 @@
             this.grbFilterBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStockRequestList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).BeginInit();
             this.SuspendLayout();
             // 
             // tsStockRequestList
@@ -175,6 +186,8 @@
             this.pnlStockRequestList.Controls.Add(this.lblNoRecordsFound);
             this.pnlStockRequestList.Controls.Add(this.grdStockRequestList);
             this.pnlStockRequestList.Controls.Add(this.picLoader);
+            this.pnlStockRequestList.Controls.Add(this.DGV_SearchGridPro);
+            this.pnlStockRequestList.Controls.Add(this.grdProDetails);
             this.pnlStockRequestList.Location = new System.Drawing.Point(0, 31);
             this.pnlStockRequestList.Name = "pnlStockRequestList";
             this.pnlStockRequestList.Size = new System.Drawing.Size(1354, 642);
@@ -226,10 +239,10 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(938, 47);
+            this.btnExport.Location = new System.Drawing.Point(1087, 47);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 29);
-            this.btnExport.TabIndex = 6;
+            this.btnExport.TabIndex = 7;
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
@@ -272,9 +285,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnPrint);
-            this.groupBox1.Location = new System.Drawing.Point(1088, 2);
+            this.groupBox1.Location = new System.Drawing.Point(1161, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(263, 88);
+            this.groupBox1.Size = new System.Drawing.Size(190, 88);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Godown && Rack group wise summary";
@@ -285,7 +298,7 @@
             this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(173, 24);
+            this.btnPrint.Location = new System.Drawing.Point(109, 24);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(75, 29);
@@ -344,6 +357,8 @@
             // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.label1);
+            this.grbFilterBy.Controls.Add(this.cmbShow);
             this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Controls.Add(this.lblStatus);
             this.grbFilterBy.Controls.Add(this.lblRequestTodate);
@@ -369,10 +384,10 @@
             // 
             this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(699, 47);
+            this.cmbStatus.Location = new System.Drawing.Point(851, 47);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(146, 27);
-            this.cmbStatus.TabIndex = 4;
+            this.cmbStatus.TabIndex = 5;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
@@ -382,7 +397,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(699, 24);
+            this.lblStatus.Location = new System.Drawing.Point(851, 24);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 1111180;
@@ -492,10 +507,10 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(853, 46);
+            this.btnView.Location = new System.Drawing.Point(1003, 46);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 5;
+            this.btnView.TabIndex = 6;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -589,6 +604,113 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // cmbShow
+            // 
+            this.cmbShow.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShow.FormattingEnabled = true;
+            this.cmbShow.Location = new System.Drawing.Point(699, 47);
+            this.cmbShow.Name = "cmbShow";
+            this.cmbShow.Size = new System.Drawing.Size(146, 27);
+            this.cmbShow.TabIndex = 4;
+            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
+            this.cmbShow.Enter += new System.EventHandler(this.CmbShow_Enter);
+            this.cmbShow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShow_KeyDown);
+            this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
+            this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(699, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 20);
+            this.label1.TabIndex = 1111182;
+            this.label1.Text = "Show";
+            // 
+            // grdProDetails
+            // 
+            this.grdProDetails.AllowUserToAddRows = false;
+            this.grdProDetails.AllowUserToDeleteRows = false;
+            this.grdProDetails.AllowUserToResizeColumns = false;
+            this.grdProDetails.AllowUserToResizeRows = false;
+            this.grdProDetails.BackgroundColor = System.Drawing.Color.White;
+            this.grdProDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdProDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.grdProDetails.ColumnHeadersHeight = 30;
+            this.grdProDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdProDetails.ColumnHeadersVisible = false;
+            this.grdProDetails.EnableHeadersVisualStyles = false;
+            this.grdProDetails.GridColor = System.Drawing.Color.White;
+            this.grdProDetails.Location = new System.Drawing.Point(3, 151);
+            this.grdProDetails.Name = "grdProDetails";
+            this.grdProDetails.ReadOnly = true;
+            this.grdProDetails.RowHeadersVisible = false;
+            this.grdProDetails.RowHeadersWidth = 100;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdProDetails.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            this.grdProDetails.RowTemplate.Height = 25;
+            this.grdProDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdProDetails.Size = new System.Drawing.Size(1348, 489);
+            this.grdProDetails.TabIndex = 111111145;
+            this.grdProDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdProDetails_DataBindingComplete);
+            this.grdProDetails.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdProDetails_Scroll);
+            // 
+            // DGV_SearchGridPro
+            // 
+            this.DGV_SearchGridPro.AllowUserToAddRows = false;
+            this.DGV_SearchGridPro.AllowUserToDeleteRows = false;
+            this.DGV_SearchGridPro.AllowUserToResizeRows = false;
+            this.DGV_SearchGridPro.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_SearchGridPro.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGridPro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.DGV_SearchGridPro.ColumnHeadersHeight = 30;
+            this.DGV_SearchGridPro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGridPro.DefaultCellStyle = dataGridViewCellStyle11;
+            this.DGV_SearchGridPro.EnableHeadersVisualStyles = false;
+            this.DGV_SearchGridPro.GridColor = System.Drawing.Color.White;
+            this.DGV_SearchGridPro.Location = new System.Drawing.Point(3, 97);
+            this.DGV_SearchGridPro.Name = "DGV_SearchGridPro";
+            this.DGV_SearchGridPro.RowHeadersVisible = false;
+            this.DGV_SearchGridPro.RowHeadersWidth = 70;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGridPro.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.DGV_SearchGridPro.RowTemplate.Height = 25;
+            this.DGV_SearchGridPro.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.DGV_SearchGridPro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_SearchGridPro.ShowRowErrors = false;
+            this.DGV_SearchGridPro.Size = new System.Drawing.Size(1348, 56);
+            this.DGV_SearchGridPro.TabIndex = 111111146;
+            this.DGV_SearchGridPro.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridPro_CellEndEdit);
+            this.DGV_SearchGridPro.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGridPro_CellPainting);
+            this.DGV_SearchGridPro.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGridPro_ColumnHeaderMouseDoubleClick);
+            this.DGV_SearchGridPro.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGridPro_ColumnWidthChanged);
+            this.DGV_SearchGridPro.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGridPro_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGridPro.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGridPro_Scroll);
+            // 
             // INV_StockRequestList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -617,6 +739,8 @@
             this.grbFilterBy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStockRequestList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -659,5 +783,9 @@
         private System.Windows.Forms.Label lblStatus;
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
         private System.Windows.Forms.DataGridViewImageColumn clmprint;
+        private System.Windows.Forms.ComboBox cmbShow;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.DataGridView grdProDetails;
+        public System.Windows.Forms.DataGridView DGV_SearchGridPro;
     }
 }
