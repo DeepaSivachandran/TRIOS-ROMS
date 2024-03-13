@@ -97,6 +97,10 @@ namespace ROMS
                     udfnUnitListGrid();
                     udfnEditLoad();
                 }
+                if(pbGRNSTS =="23" || pbGRNSTS =="44")
+                {
+                    gpGRNEntry.Enabled = false;
+                }
             }
             catch (Exception ex)
             {

@@ -4626,8 +4626,8 @@ namespace ROMS
             {
                 if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmremarks")
                 {
-                    e.Control.KeyPress -= udfnHandleKeyPress;
-                    e.Control.KeyPress += udfnHandleKeyPress; 
+                    //e.Control.KeyPress -= udfnHandleKeyPress;
+                    //e.Control.KeyPress += udfnHandleKeyPress; 
                 }
             }
             catch (Exception ex)

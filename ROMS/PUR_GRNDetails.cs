@@ -4664,6 +4664,7 @@ namespace ROMS
                     if(chkCompleted.Checked==true)
                     {
                         btnVerified.Enabled = false;
+                        btnSave.Enabled = false;
                         udfnVerifiedBy();
                     }
                     else

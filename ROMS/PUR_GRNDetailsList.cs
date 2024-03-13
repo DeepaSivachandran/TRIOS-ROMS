@@ -31,15 +31,13 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
-
-                MainForm.objPUR_GRNEntry.MdiParent = this.ParentForm;
-                MainForm.objPUR_GRNEntry.Show();
+                //MainForm.objPUR_GRNEntry.MdiParent = this.ParentForm;
+                MainForm.objPUR_GRNEntry.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         //public void udfnDate()

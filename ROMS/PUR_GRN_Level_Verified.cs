@@ -183,9 +183,9 @@ namespace ROMS
             try
             {
                 udfnDateLoad();
-                dpVerified1.MinDate = MainForm.pbFYStartDate;
+                //dpVerified1.MinDate = MainForm.pbFYStartDate;
                 //dpVerified1.MaxDate = MainForm.pbCurrentDate;
-                dpVerified2.MinDate = MainForm.pbFYStartDate;
+                //dpVerified2.MinDate = MainForm.pbFYStartDate;
                 //dpVerified2.MaxDate = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
