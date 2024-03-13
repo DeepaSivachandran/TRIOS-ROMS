@@ -1343,6 +1343,11 @@ namespace ROMS
                         grdStockRequestList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdStockRequestList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    else if(Convert.ToString(grdStockRequestList.Rows[i].Cells["StatusID"].Value) == "48")
+                    {
+                        grdStockRequestList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("108, 252, 45");
+                        grdStockRequestList.Rows[i].Cells["Status"].Style.ForeColor = Color.Black;
+                    }
                     else
                     {
                         grdStockRequestList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
