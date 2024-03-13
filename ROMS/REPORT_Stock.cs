@@ -49,8 +49,20 @@ namespace ROMS
         {
             try
             {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnList()
+        {
+            try
+            {
                 lvProduct.Visible = false;
-                if(txtProductName.Text=="")
+                if (txtProductName.Text == "")
                 {
                     lblProduct.Text = "0";
                 }
@@ -131,6 +143,7 @@ namespace ROMS
                         }
                     }
                 }
+                udfnList();
             }
             catch (Exception ex)
             {
