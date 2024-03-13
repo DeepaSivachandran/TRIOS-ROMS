@@ -5114,7 +5114,7 @@ namespace ROMS
                                         string varProductID = "", Expirydate = "";
                                         for (int j = 0; j < grdSupplierList.RowCount; j++)
                                         {
-                                            grdSupplierList.Rows[j].DefaultCellStyle.BackColor = Color.White;
+                                            //grdSupplierList.Rows[j].DefaultCellStyle.BackColor = Color.White;
 
                                             string[] varFirstList = varvalue1[2].Split('|');
                                             for (int i = 0; i < varFirstList.Length; i++)

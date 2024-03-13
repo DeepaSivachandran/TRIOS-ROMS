@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,20 +20,6 @@ namespace ROMS
             InitializeComponent();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objPUR_PurchaseApproval = new PUR_PurchaseApproval(); 
-                MainForm.objPUR_PurchaseApproval.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseApproval.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void PUR_PurchaseApprovalList_Load(object sender, EventArgs e)
         {
             try
@@ -55,6 +42,165 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnList()
+        {
+            //try
+            //{
+            //    int Varflag = 0;
+            //    string varSupplierId = "0";
+            //    if (txtSupplier.Text == "")
+            //    {
+            //        lblSupplierCode.Text = "0";
+            //        lblschedleCode.Text = "0";
+            //    }
+            //    else
+            //    {
+            //        string[] values = new string[0];
+            //        MR_Supplier objMR_Supplier = new MR_Supplier();
+            //        objMR_Supplier.ViewType = 31;
+            //        objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedleCode.Text);
+            //        objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+            //        DataSet objDsSupplierId = new DataSet();
+            //        SPDataService objDserv = new SPDataService();
+            //        objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+            //        objDserv.CloseConnection();
+            //        if (objDsSupplierId != null)
+            //        {
+            //            if (objDsSupplierId.Tables.Count > 0)
+            //            {
+            //                if (objDsSupplierId.Tables[0].Rows.Count > 0)
+            //                {
+            //                    varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+            //                    values = Convert.ToString(varSupplierId).Split(',');
+            //                }
+            //            }
+            //        }
+            //        if (values[0] == "-1")
+            //        {
+            //            errPurchaseEntryApproval.SetError(txtSupplier, "Invalid supplier.");
+            //            txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            //            tpSupplier.ShowAlways = true;
+            //            tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
+            //            lblSupplierCode.Text = "0";
+            //            lblschedleCode.Text = "0";
+            //            Varflag = 1;
+            //        }
+            //        else
+            //        {
+            //            errPurchaseEntryApproval.Clear();
+            //            lblSupplierCode.Text = values[0];
+            //            lblschedleCode.Text = values[1];
+            //            txtSupplier.BackColor = Color.White;
+
+            //        }
+            //    }
+            //    if (txtSupplier.Text == "")
+            //    {
+            //        lblSupplierCode.Text = "0";
+            //        lblschedleCode.Text = "0";
+            //    }
+            //    picLoader.Visible = true;
+            //    picLoader.BringToFront();
+            //    Application.DoEvents();
+            //    this.ActiveControl = dpFromDate;
+            //    //********** To display a data in a grid  ****************** 
+            //    grdPurchaseEntryList.DataSource = null;
+            //    errPurchaseList.Clear();
+            //    DGV_SearchGrid.DataSource = null;
+            //    SPDataService objspdservice = new SPDataService();
+            //    DataSet objDs = new DataSet();
+            //    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+            //    objTRN_PurchaseEntry.ViewType = 1;
+            //    objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+            //    objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbstatus.SelectedValue);
+            //    objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
+            //    objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
+            //    objTRN_PurchaseEntry.ParaPEToDate = dpToDate.Text;
+            //    objTRN_PurchaseEntry.paraType = Convert.ToInt32(cmbOrdertype.SelectedValue);
+            //    objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
+            //    objspdservice.CloseConnection();
+            //    if (objDs != null)
+            //    {
+            //        if (objDs.Tables.Count != 0)
+            //        {
+            //            lblNoRecordsFound.Visible = false;
+            //            if (objDs.Tables[0].Rows.Count != 0 && Varflag == 0)
+            //            {
+            //                lblNoRecordsFound.Visible = false;
+            //                lblNoRecordsFound.SendToBack();
+            //                //grdPurchaseEntryList.Columns["clmEdit"].Visible = true;
+            //                //grdPurchaseEntryList.Columns["clmEdit"].DisplayIndex = objDs.Tables[0].Columns.Count;
+            //                //grdPurchaseEntryList.Columns["clmEdit"].Width = 100; 
+            //                grdPurchaseEntryList.DataSource = objDs.Tables[0];
+            //                grdPurchaseEntryList.Columns["S.No."].Width = 50;
+            //                grdPurchaseEntryList.Columns["Company"].Width = 80;
+            //                grdPurchaseEntryList.Columns["Voucher No."].Width = 100;
+            //                grdPurchaseEntryList.Columns["Voucher Date"].Width = 100;
+            //                grdPurchaseEntryList.Columns["Supplier Name"].Width = 300;
+            //                // grdPurchaseEntryList.Columns["City"].Width = 100;
+            //                grdPurchaseEntryList.Columns["GSTIN"].Width = 120;
+            //                grdPurchaseEntryList.Columns["Invoice Date"].Width = 100;
+            //                grdPurchaseEntryList.Columns["Invoice No."].Width = 100;
+            //                grdPurchaseEntryList.Columns["Created By"].Width = 100;
+            //                grdPurchaseEntryList.Columns["Created On"].Width = 150;
+            //                grdPurchaseEntryList.Columns["Purchase Type"].Width = 150;
+            //                grdPurchaseEntryList.Columns["Total Products"].Width = 100;
+            //                grdPurchaseEntryList.Columns["Grand Total"].Width = 100;
+            //                grdPurchaseEntryList.Columns["Purchase Status"].Width = 130;
+            //                grdPurchaseEntryList.Columns["Overall Status"].Width = 300;
+            //                grdPurchaseEntryList.Columns["PURID"].Visible = false;
+            //                grdPurchaseEntryList.Columns["SPSCID"].Visible = false;
+            //                grdPurchaseEntryList.Columns["SPID"].Visible = false;
+            //                grdPurchaseEntryList.Columns["STSID"].Visible = false;
+            //                grdPurchaseEntryList.Columns["PUR_INVSTSID"].Visible = false;
+            //                grdPurchaseEntryList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //                grdPurchaseEntryList.Columns["Grand Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //                grdPurchaseEntryList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //                grdPurchaseEntryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //            }
+            //            else
+            //            {
+            //                lblNoRecordsFound.Visible = true;
+            //                lblNoRecordsFound.BringToFront();
+            //                grdPurchaseEntryList.Columns["clmEdit"].Visible = false;
+            //                Deftable = objDs.Tables[0];
+            //            }
+            //        }
+            //        else
+            //        {
+            //            lblNoRecordsFound.Visible = true;
+            //            lblNoRecordsFound.BringToFront();
+            //            grdPurchaseEntryList.Columns["clmEdit"].Visible = false;
+            //            Deftable = objDs.Tables[0];
+            //        }
+            //    }
+            //    else
+            //    {
+            //        lblNoRecordsFound.Visible = true;
+            //        lblNoRecordsFound.BringToFront();
+            //        grdPurchaseEntryList.Columns["clmEdit"].Visible = false;
+            //        Deftable = objDs.Tables[0];
+            //    }
+
+            //    udfnSearchGridHead();
+            //    if (lblNoRecordsFound.Visible == true)
+            //    {
+            //        udfnDefcolumns();
+            //    }
+            //    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+            //finally
+            //{
+            //    picLoader.Visible = false;
+            //    udfnDeleteHide();
+            //}
+
         }
         public void udfnCmbConcern()
         {
@@ -89,9 +235,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseApproval = new PUR_PurchaseApproval();
-                MainForm.objPUR_PurchaseApproval.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseApproval.Show();
+                MainForm.objPUR_PurchaseEntryApproval = new PUR_PurchaseEntryApproval();
+                MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseEntryApproval.Show();
             }
             catch (Exception ex)
             {
@@ -123,7 +269,7 @@ namespace ROMS
         {
             try
             {
-                txtSupplierName.BackColor = Color.LemonChiffon;
+                txtSupplier.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -137,9 +283,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
-                    if (lvSupplier.Items.Count == 0 || txtSupplierName.Text == "")
+                    if (lvSupplier.Items.Count == 0 || txtSupplier.Text == "")
                     {
-                        txtSupplierName.Focus();
+                        txtSupplier.Focus();
                         lvSupplier.Visible = false;
                     }
                     else
@@ -166,7 +312,7 @@ namespace ROMS
         {
             try
             {
-                txtSupplierName.BackColor = Color.White;
+                txtSupplier.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -179,11 +325,11 @@ namespace ROMS
             try
             {
                 lvSupplier.Items.Clear();
-                if (txtSupplierName.Text.Length > 0)
+                if (txtSupplier.Text.Length > 0)
                 {
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
                     objMR_Supplier.ViewType = 26;
-                    objMR_Supplier.paraSupplierName = txtSupplierName.Text;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.ParaFromDate = dpFromDate.Text;
                     objMR_Supplier.ParaToDate = dpToDate.Text;
@@ -264,10 +410,10 @@ namespace ROMS
         {
             try
             {
-                if (txtSupplierName.Text != "")
+                if (txtSupplier.Text != "")
                 {
                     ListViewItem selectedItem = lvSupplier.SelectedItems[0];
-                    txtSupplierName.Text = selectedItem.SubItems[0].Text;
+                    txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblScheduleCode.Text = selectedItem.SubItems[2].Text;
                     //varSuppliervalue = selectedItem.SubItems[3].Text;
@@ -493,7 +639,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplierName.Focus();
+                    txtSupplier.Focus();
                 }
             }
             catch (Exception ex)
@@ -531,6 +677,18 @@ namespace ROMS
             try
             {
                 btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
             }
             catch (Exception ex)
             {
