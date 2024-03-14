@@ -935,6 +935,7 @@ namespace ROMS
                                             }
                                             else
                                             {
+                                                /*
                                                 //if (message[1] == "1" || message[1] == "2" || message[1] == "3")
                                                 //{
                                                     grdGrnlist.Rows[j].DefaultCellStyle.BackColor = Color.White;
@@ -943,6 +944,7 @@ namespace ROMS
                                                     grdGrnlist.Rows[j].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
                                                     grdGrnlist.Rows[j].Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
                                                 //}
+                                                */
                                             }
                                         }
                                     }
