@@ -1399,6 +1399,19 @@ namespace ROMS
             }
         }
 
+        private void GrdGrnApprovalList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdGrnApprovalList.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbDateType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
