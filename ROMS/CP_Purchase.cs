@@ -4630,8 +4630,8 @@ namespace ROMS
                     {
                         varErrorFlag = true;
                     }
-                    if (cmbEntryType.SelectedValue.ToString() != "54")
-                    { // GRN
+                    //if (cmbEntryType.SelectedValue.ToString() != "54")
+                    //{ // GRN
                         if (txtInvoiceNo.Text == "")
                         {
                             errPurchaseentry.SetError(txtInvoiceNo, "Please enter invoice No.");
@@ -4648,7 +4648,7 @@ namespace ROMS
                             tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                             varErrorFlag = true;
                         }
-                    }
+                    //}
 
                     if (varErrorFlag == false && varerrFlag == 0)
                     {
@@ -6532,8 +6532,10 @@ namespace ROMS
             {
                 Txtdiscount.BackColor = Color.White;
                 decimal varDiscountAmt = 0, varDisPer = 0;
-                varDisPer = Convert.ToDecimal(Txtdiscount.Text);
-                varDiscountAmt = Convert.ToDecimal(varDiscountPer);
+                if (Txtdiscount.Text.Trim() != "")
+                { varDisPer = Convert.ToDecimal(Txtdiscount.Text); }
+                if (txtDiscountamt.Text.Trim() != "")
+                { varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text); }
                 Txtdiscount.Text = varDisPer.ToString("0.00");
                 txtDiscountamt.Text = varDiscountAmount.ToString("0.00");
                 if (txtDiscountamt.Text.Trim()!="" &&  Convert.ToDecimal(Txtdiscount.Text)>100)
@@ -6627,8 +6629,10 @@ namespace ROMS
             {
                 txtDiscountamt.BackColor = Color.White;
                 decimal varDiscountAmt = 0, varDisPer = 0;
-                varDisPer = Convert.ToDecimal(Txtdiscount.Text);
-                varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text);
+                if (Txtdiscount.Text.Trim() != "")
+                { varDisPer = Convert.ToDecimal(Txtdiscount.Text); }
+                if (txtDiscountamt.Text.Trim() != "")
+                { varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text); }
                 Txtdiscount.Text = varDiscountPer.ToString("0.00");
                 txtDiscountamt.Text = varDiscountAmt.ToString("0.00");
                 udfnLoadingGrandTotCalculation();

@@ -434,10 +434,12 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdPurchaseEntryApproval.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdPurchaseEntryApproval.EnableHeadersVisualStyles = false;
             this.grdPurchaseEntryApproval.GridColor = System.Drawing.Color.White;
             this.grdPurchaseEntryApproval.Location = new System.Drawing.Point(3, 130);
             this.grdPurchaseEntryApproval.Name = "grdPurchaseEntryApproval";
             this.grdPurchaseEntryApproval.ReadOnly = true;
+            this.grdPurchaseEntryApproval.RowHeadersVisible = false;
             this.grdPurchaseEntryApproval.RowHeadersWidth = 100;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
