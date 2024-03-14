@@ -69,6 +69,7 @@ namespace ROMS
                         SPDataService objDServ = new SPDataService();
                         DataSet objd = new DataSet();
                         objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "", 0);
+                        objDServ.CloseConnection();
                         if (objd.Tables[1].Rows.Count != 0)
                         {
                             DateTime varmindate = DateTime.ParseExact(objd.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -336,6 +337,7 @@ namespace ROMS
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
                             objd = objDServ.udfnMaster(4, 6, varPOID, "", "", 0, "", 0);
+                            objDServ.CloseConnection();
                             if (objd.Tables[0].Rows.Count != 0)
                             {
                                 DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
@@ -1317,7 +1319,6 @@ namespace ROMS
                                 unit = Convert.ToString(grdsupplieradd.Rows[i].Cells["clmunitorderqty"].Value);
                             }
 
-                            DataService objDser = new DataService();
                             objPurchaseOrder.Rows.Add(Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value), Convert.ToInt64(grdsupplieradd.Rows[i].Cells["clmMSQ"].Value)
                             , Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmreorderqty"].Value), bulk, Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmflag"].Value), Convert.ToInt32(lblschedule.Text),
                             Convert.ToInt32(grdsupplieradd.Rows[i].Cells["UTID"].Value), Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmeditflag"].Value),
@@ -1497,7 +1498,7 @@ namespace ROMS
                     result = objspdservice.udfnSupplierMaster(11, Convert.ToInt32(lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", "", 0,
                     0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, txtSalesManName.Text,
                     "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "", "", "", "", "", "", 0, "", 0);
-
+                    objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -2857,6 +2858,7 @@ namespace ROMS
                     //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     //} 
                     result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0);
+                    objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -2971,6 +2973,7 @@ namespace ROMS
                             objMR_Product.paraProductName = txtProductName.Text;
                         }
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                        objspdservice.CloseConnection();
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)
@@ -4623,8 +4626,8 @@ namespace ROMS
             {
                 if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmremarks")
                 {
-                    e.Control.KeyPress -= udfnHandleKeyPress;
-                    e.Control.KeyPress += udfnHandleKeyPress; 
+                    //e.Control.KeyPress -= udfnHandleKeyPress;
+                    //e.Control.KeyPress += udfnHandleKeyPress; 
                 }
             }
             catch (Exception ex)
@@ -5143,6 +5146,7 @@ namespace ROMS
                 objMR_Product.ParaProductCode = Convert.ToInt32(productcode);
                 SPDataService objspdservice = new SPDataService();
                 objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                objspdservice.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -5539,8 +5543,8 @@ namespace ROMS
                     if ((Convert.ToString(cmbReturnType.SelectedValue) == "27"))
                     {
                         vardayMonthID = 0;
-                        DataBind objDataBind = new DataBind();
-                        DataService objds = new DataService();
+                        //DataBind objDataBind = new DataBind();
+                        //DataService objds = new DataService();
                         vardayMonthID = Convert.ToInt32(cmbSecondLevel.SelectedValue);
                         varMonthID = Convert.ToInt32(cmbPolicyContent.SelectedValue);
                     }

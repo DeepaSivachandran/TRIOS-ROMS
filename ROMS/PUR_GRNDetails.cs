@@ -935,6 +935,7 @@ namespace ROMS
                                             }
                                             else
                                             {
+                                                /*
                                                 //if (message[1] == "1" || message[1] == "2" || message[1] == "3")
                                                 //{
                                                     grdGrnlist.Rows[j].DefaultCellStyle.BackColor = Color.White;
@@ -943,6 +944,7 @@ namespace ROMS
                                                     grdGrnlist.Rows[j].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
                                                     grdGrnlist.Rows[j].Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
                                                 //}
+                                                */
                                             }
                                         }
                                     }
@@ -1061,7 +1063,7 @@ namespace ROMS
                             varExcessQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value);
                         }
                         decimal varShelfPer = 0;
-                        int Shelflifevalue = 0, ProShelflife = 0, ProFlag, POno = 0;
+                        int Shelflifevalue = 0, ProShelflife = 0, ProFlag, POno = 0;decimal PoQty = 0;
                         string[] varShelflifevaluesplit = Convert.ToString(grdGrnlist.Rows[i].Cells["clmactuallife"].Value).Split(' ');
                         string[] varShelflifeper = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                         string[] varProShelfLife = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelflife"].Value).Split(' ');
@@ -1094,6 +1096,10 @@ namespace ROMS
                         ProFlag = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmprflag"].Value);
                         //}
                         //else { ProFlag = 1; } 
+                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmPOQty"].Value) == "")
+                        {
+                            PoQty = 0;
+                        }
                         varTempExpiryDate = "0";
                         string varTempYear = "0";
                         object cellValue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value);
@@ -1106,6 +1112,10 @@ namespace ROMS
                             if (varTempYear.Length == 2)
                             {
                                 cellValue = DMY[0] + "/" + DMY[1] + "/" + 20 + varTempYear;
+                            }
+                            else
+                            {
+                                cellValue = DMY[0] + "/" + DMY[1] + "/" + varTempYear;
                             }
                         }
                         //varTempDay = DMY[0];
@@ -1120,7 +1130,7 @@ namespace ROMS
                         , varShelfPer, varTempExpiryDate
                         , Convert.ToString(grdGrnlist.Rows[i].Cells["clmtam"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmShelflifeenable"].Value)
                         , Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value)
-                        , ProFlag, Shelflifevalue, Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmPOQty"].Value));
+                        , ProFlag, Shelflifevalue, PoQty);
                     }
                 }
             }
@@ -2495,6 +2505,13 @@ namespace ROMS
                             lblVerifiedBy1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMP_Name"]);
                             lblVerifiedDate1.Text = " @ " + Convert.ToString(objDs.Tables[0].Rows[0]["GRN_VerifiedOn1"]);
                         }
+                    }
+                    else
+                    {
+                        lblVerifiedBy1.Visible = true;
+                        lblVerifiedDate1.Visible = true;
+                        lblVerifiedBy1.Text = "";
+                        lblVerifiedDate1.Text = "";
                     }
                     if (objDs.Tables[1].Rows.Count != 0)
                     {
@@ -4593,8 +4610,8 @@ namespace ROMS
                             {
                                 if (Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIED1"]) != "")
                                 {
-                                    lblVerified1.Text = Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIED1"]);
-                                    lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIEDON1"]);
+                                    //lblVerified1.Text = Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIED1"]);
+                                    //lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[5].Rows[0]["VERIFIEDON1"]);
                                     btnVerify1.Enabled = false;
                                     btnVerify2.Enabled = false;
                                     btnDC.Enabled = false;
@@ -4618,8 +4635,8 @@ namespace ROMS
                             {
                                 if (Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED2"]) != "")
                                 {
-                                    lblVerified2.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED2"]);
-                                    lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIEDON2"]);
+                                    //lblVerified2.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED2"]);
+                                    //lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIEDON2"]);
                                     btnVerify2.Enabled = false;
                                 }
                                 else
@@ -4651,6 +4668,7 @@ namespace ROMS
                     if(chkCompleted.Checked==true)
                     {
                         btnVerified.Enabled = false;
+                        btnSave.Enabled = false;
                         udfnVerifiedBy();
                     }
                     else
