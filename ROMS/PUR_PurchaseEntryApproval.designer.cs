@@ -408,6 +408,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lv_Broker);
             this.groupBox1.Controls.Add(this.lblFinishedNoRecord);
             this.groupBox1.Controls.Add(this.txtInvoiceamt);
             this.groupBox1.Controls.Add(this.label35);
@@ -473,7 +474,6 @@
             this.groupBox1.Controls.Add(this.grdPODetails);
             this.groupBox1.Controls.Add(this.grdGRN);
             this.groupBox1.Controls.Add(this.grdReurnDC);
-            this.groupBox1.Controls.Add(this.lv_Broker);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.groupBox1.Location = new System.Drawing.Point(9, 0);
             this.groupBox1.Name = "groupBox1";
@@ -612,6 +612,7 @@
             // 
             // cmbConcern
             // 
+            this.cmbConcern.Enabled = false;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(3, 29);
@@ -786,12 +787,12 @@
             this.grdSupplierList.GridColor = System.Drawing.Color.White;
             this.grdSupplierList.Location = new System.Drawing.Point(6, 4);
             this.grdSupplierList.Name = "grdSupplierList";
+            this.grdSupplierList.ReadOnly = true;
             this.grdSupplierList.RowHeadersVisible = false;
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1310, 279);
             this.grdSupplierList.TabIndex = 1111200;
-            this.grdSupplierList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
             this.grdSupplierList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdSupplierList_CellFormatting);
             this.grdSupplierList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.GrdSupplierList_CellValidating);
             this.grdSupplierList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellValueChanged);
@@ -802,6 +803,7 @@
             // 
             this.clmsno.HeaderText = "S.No.";
             this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
             this.clmsno.Visible = false;
             this.clmsno.Width = 50;
             // 
@@ -851,6 +853,7 @@
             this.clmMRP.HeaderText = "Invoice MRP";
             this.clmMRP.MaxInputLength = 8;
             this.clmMRP.Name = "clmMRP";
+            this.clmMRP.ReadOnly = true;
             // 
             // clmexpirydate
             // 
@@ -858,6 +861,7 @@
             this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle5;
             this.clmexpirydate.HeaderText = "Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
+            this.clmexpirydate.ReadOnly = true;
             // 
             // clmShelflife
             // 
@@ -883,6 +887,7 @@
             this.clmBatchno.DefaultCellStyle = dataGridViewCellStyle6;
             this.clmBatchno.HeaderText = "Batch No.";
             this.clmBatchno.Name = "clmBatchno";
+            this.clmBatchno.ReadOnly = true;
             // 
             // clmLocation
             // 
@@ -890,6 +895,7 @@
             this.clmLocation.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmLocation.HeaderText = "Stock Location";
             this.clmLocation.Name = "clmLocation";
+            this.clmLocation.ReadOnly = true;
             this.clmLocation.Width = 120;
             // 
             // clmrack
@@ -898,84 +904,98 @@
             this.clmrack.DefaultCellStyle = dataGridViewCellStyle8;
             this.clmrack.HeaderText = "Rack";
             this.clmrack.Name = "clmrack";
+            this.clmrack.ReadOnly = true;
             this.clmrack.Width = 60;
             // 
             // clmid
             // 
             this.clmid.HeaderText = "ID";
             this.clmid.Name = "clmid";
+            this.clmid.ReadOnly = true;
             this.clmid.Visible = false;
             // 
             // clmProid
             // 
             this.clmProid.HeaderText = "PRID";
             this.clmProid.Name = "clmProid";
+            this.clmProid.ReadOnly = true;
             this.clmProid.Visible = false;
             // 
             // UTID
             // 
             this.UTID.HeaderText = "UTID";
             this.UTID.Name = "UTID";
+            this.UTID.ReadOnly = true;
             this.UTID.Visible = false;
             // 
             // clmBatchenable
             // 
             this.clmBatchenable.HeaderText = "Batchno";
             this.clmBatchenable.Name = "clmBatchenable";
+            this.clmBatchenable.ReadOnly = true;
             this.clmBatchenable.Visible = false;
             // 
             // clmBatchgeneration
             // 
             this.clmBatchgeneration.HeaderText = "Batchnogenration";
             this.clmBatchgeneration.Name = "clmBatchgeneration";
+            this.clmBatchgeneration.ReadOnly = true;
             this.clmBatchgeneration.Visible = false;
             // 
             // clmShelflifeenable
             // 
             this.clmShelflifeenable.HeaderText = "shelflife";
             this.clmShelflifeenable.Name = "clmShelflifeenable";
+            this.clmShelflifeenable.ReadOnly = true;
             this.clmShelflifeenable.Visible = false;
             // 
             // slid
             // 
             this.slid.HeaderText = "slid";
             this.slid.Name = "slid";
+            this.slid.ReadOnly = true;
             this.slid.Visible = false;
             // 
             // rkid
             // 
             this.rkid.HeaderText = "rkid";
             this.rkid.Name = "rkid";
+            this.rkid.ReadOnly = true;
             this.rkid.Visible = false;
             // 
             // clmrkcount
             // 
             this.clmrkcount.HeaderText = "Rackcount";
             this.clmrkcount.Name = "clmrkcount";
+            this.clmrkcount.ReadOnly = true;
             this.clmrkcount.Visible = false;
             // 
             // clmTransId
             // 
             this.clmTransId.HeaderText = "clmTransId";
             this.clmTransId.Name = "clmTransId";
+            this.clmTransId.ReadOnly = true;
             this.clmTransId.Visible = false;
             // 
             // clmTotQty
             // 
             this.clmTotQty.HeaderText = "TotQty";
             this.clmTotQty.Name = "clmTotQty";
+            this.clmTotQty.ReadOnly = true;
             this.clmTotQty.Visible = false;
             // 
             // clmGRNQty
             // 
             this.clmGRNQty.HeaderText = "GRNQty";
             this.clmGRNQty.Name = "clmGRNQty";
+            this.clmGRNQty.ReadOnly = true;
             this.clmGRNQty.Visible = false;
             // 
             // clmDCQty
             // 
             this.clmDCQty.HeaderText = "DCQty";
             this.clmDCQty.Name = "clmDCQty";
+            this.clmDCQty.ReadOnly = true;
             this.clmDCQty.Visible = false;
             // 
             // clmPURPRIDDetail
@@ -989,6 +1009,7 @@
             // 
             this.clmAddproflag.HeaderText = "AddproFlag";
             this.clmAddproflag.Name = "clmAddproflag";
+            this.clmAddproflag.ReadOnly = true;
             this.clmAddproflag.Visible = false;
             // 
             // clmProductID
@@ -1002,6 +1023,7 @@
             // 
             this.clmInvFlag.HeaderText = "InvFlag";
             this.clmInvFlag.Name = "clmInvFlag";
+            this.clmInvFlag.ReadOnly = true;
             this.clmInvFlag.Visible = false;
             // 
             // clmAddPro
@@ -1009,6 +1031,7 @@
             this.clmAddPro.HeaderText = "";
             this.clmAddPro.Image = global::ROMS.Properties.Resources.New;
             this.clmAddPro.Name = "clmAddPro";
+            this.clmAddPro.ReadOnly = true;
             this.clmAddPro.Visible = false;
             this.clmAddPro.Width = 50;
             // 
@@ -1088,6 +1111,7 @@
             this.grdPurchaseList.GridColor = System.Drawing.Color.White;
             this.grdPurchaseList.Location = new System.Drawing.Point(5, 5);
             this.grdPurchaseList.Name = "grdPurchaseList";
+            this.grdPurchaseList.ReadOnly = true;
             this.grdPurchaseList.RowHeadersVisible = false;
             this.grdPurchaseList.RowTemplate.Height = 25;
             this.grdPurchaseList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -1180,6 +1204,7 @@
             this.clmPOqty.HeaderText = "PO. Qty";
             this.clmPOqty.MaxInputLength = 8;
             this.clmPOqty.Name = "clmPOqty";
+            this.clmPOqty.ReadOnly = true;
             this.clmPOqty.Visible = false;
             this.clmPOqty.Width = 40;
             // 
@@ -1191,6 +1216,7 @@
             this.clmInvQty.HeaderText = "Invoice Qty";
             this.clmInvQty.MaxInputLength = 8;
             this.clmInvQty.Name = "clmInvQty";
+            this.clmInvQty.ReadOnly = true;
             this.clmInvQty.Width = 50;
             // 
             // clmRecqty
@@ -1201,6 +1227,7 @@
             this.clmRecqty.HeaderText = "Received Qty";
             this.clmRecqty.MaxInputLength = 8;
             this.clmRecqty.Name = "clmRecqty";
+            this.clmRecqty.ReadOnly = true;
             this.clmRecqty.Width = 50;
             // 
             // clmDiffqty
@@ -1220,6 +1247,7 @@
             this.clmFreeqty.DefaultCellStyle = dataGridViewCellStyle17;
             this.clmFreeqty.HeaderText = "Free Qty";
             this.clmFreeqty.Name = "clmFreeqty";
+            this.clmFreeqty.ReadOnly = true;
             this.clmFreeqty.Width = 50;
             // 
             // dataGridViewTextBoxColumn20
@@ -1236,6 +1264,7 @@
             this.clmPurchaseRate.DefaultCellStyle = dataGridViewCellStyle18;
             this.clmPurchaseRate.HeaderText = "Purchase Rate";
             this.clmPurchaseRate.Name = "clmPurchaseRate";
+            this.clmPurchaseRate.ReadOnly = true;
             this.clmPurchaseRate.Width = 80;
             // 
             // clmDiscAmt
@@ -1246,6 +1275,7 @@
             this.clmDiscAmt.HeaderText = "Discount Amnt";
             this.clmDiscAmt.MaxInputLength = 8;
             this.clmDiscAmt.Name = "clmDiscAmt";
+            this.clmDiscAmt.ReadOnly = true;
             this.clmDiscAmt.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.clmDiscAmt.Width = 60;
             // 
@@ -1257,6 +1287,7 @@
             this.clmDiscPer.HeaderText = "Discount %";
             this.clmDiscPer.MaxInputLength = 8;
             this.clmDiscPer.Name = "clmDiscPer";
+            this.clmDiscPer.ReadOnly = true;
             this.clmDiscPer.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.clmDiscPer.Width = 50;
             // 
@@ -1298,48 +1329,56 @@
             // 
             this.poid.HeaderText = "poid";
             this.poid.Name = "poid";
+            this.poid.ReadOnly = true;
             this.poid.Visible = false;
             // 
             // proid
             // 
             this.proid.HeaderText = "proid";
             this.proid.Name = "proid";
+            this.proid.ReadOnly = true;
             this.proid.Visible = false;
             // 
             // hsnid
             // 
             this.hsnid.HeaderText = "hsnid";
             this.hsnid.Name = "hsnid";
+            this.hsnid.ReadOnly = true;
             this.hsnid.Visible = false;
             // 
             // GstValue
             // 
             this.GstValue.HeaderText = "GstValue";
             this.GstValue.Name = "GstValue";
+            this.GstValue.ReadOnly = true;
             this.GstValue.Visible = false;
             // 
             // clmInvslid
             // 
             this.clmInvslid.HeaderText = "Invslid";
             this.clmInvslid.Name = "clmInvslid";
+            this.clmInvslid.ReadOnly = true;
             this.clmInvslid.Visible = false;
             // 
             // clmRkid
             // 
             this.clmRkid.HeaderText = "Rkid";
             this.clmRkid.Name = "clmRkid";
+            this.clmRkid.ReadOnly = true;
             this.clmRkid.Visible = false;
             // 
             // clmPURPRID
             // 
             this.clmPURPRID.HeaderText = "PURPRID";
             this.clmPURPRID.Name = "clmPURPRID";
+            this.clmPURPRID.ReadOnly = true;
             this.clmPURPRID.Visible = false;
             // 
             // UT_DECIMAL
             // 
             this.UT_DECIMAL.HeaderText = "UT_DECIMAL";
             this.UT_DECIMAL.Name = "UT_DECIMAL";
+            this.UT_DECIMAL.ReadOnly = true;
             this.UT_DECIMAL.Visible = false;
             // 
             // clmDCQuantity
@@ -1632,9 +1671,11 @@
             // 
             // txtQRCode
             // 
+            this.txtQRCode.Enabled = false;
             this.txtQRCode.Location = new System.Drawing.Point(677, 29);
             this.txtQRCode.MaxLength = 6;
             this.txtQRCode.Name = "txtQRCode";
+            this.txtQRCode.ReadOnly = true;
             this.txtQRCode.Size = new System.Drawing.Size(90, 25);
             this.txtQRCode.TabIndex = 22;
             this.txtQRCode.Enter += new System.EventHandler(this.TxtQRCode_Enter);
@@ -1682,6 +1723,7 @@
             // 
             this.txtSupplier.Location = new System.Drawing.Point(272, 29);
             this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.ReadOnly = true;
             this.txtSupplier.Size = new System.Drawing.Size(248, 25);
             this.txtSupplier.TabIndex = 3;
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -1821,6 +1863,7 @@
             // dpVoucherDate
             // 
             this.dpVoucherDate.CustomFormat = "dd/MM/yyyy";
+            this.dpVoucherDate.Enabled = false;
             this.dpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpVoucherDate.Location = new System.Drawing.Point(88, 29);
             this.dpVoucherDate.Name = "dpVoucherDate";

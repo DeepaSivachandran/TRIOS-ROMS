@@ -15,6 +15,8 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        ToolTip tpSupplier = new ToolTip();
+        DataTable Deftable = new DataTable();
         public PUR_PurchaseApprovalList()
         {
             InitializeComponent();
@@ -45,162 +47,253 @@ namespace ROMS
         }
         public void udfnList()
         {
-            //try
-            //{
-            //    int Varflag = 0;
-            //    string varSupplierId = "0";
-            //    if (txtSupplier.Text == "")
-            //    {
-            //        lblSupplierCode.Text = "0";
-            //        lblschedleCode.Text = "0";
-            //    }
-            //    else
-            //    {
-            //        string[] values = new string[0];
-            //        MR_Supplier objMR_Supplier = new MR_Supplier();
-            //        objMR_Supplier.ViewType = 31;
-            //        objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedleCode.Text);
-            //        objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
-            //        DataSet objDsSupplierId = new DataSet();
-            //        SPDataService objDserv = new SPDataService();
-            //        objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-            //        objDserv.CloseConnection();
-            //        if (objDsSupplierId != null)
-            //        {
-            //            if (objDsSupplierId.Tables.Count > 0)
-            //            {
-            //                if (objDsSupplierId.Tables[0].Rows.Count > 0)
-            //                {
-            //                    varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
-            //                    values = Convert.ToString(varSupplierId).Split(',');
-            //                }
-            //            }
-            //        }
-            //        if (values[0] == "-1")
-            //        {
-            //            errPurchaseEntryApproval.SetError(txtSupplier, "Invalid supplier.");
-            //            txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-            //            tpSupplier.ShowAlways = true;
-            //            tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
-            //            lblSupplierCode.Text = "0";
-            //            lblschedleCode.Text = "0";
-            //            Varflag = 1;
-            //        }
-            //        else
-            //        {
-            //            errPurchaseEntryApproval.Clear();
-            //            lblSupplierCode.Text = values[0];
-            //            lblschedleCode.Text = values[1];
-            //            txtSupplier.BackColor = Color.White;
+            try
+            {
+                int Varflag = 0;
+                string varSupplierId = "0";
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedleCode.Text = "0";
+                }
+                else
+                {
+                    string[] values = new string[0];
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 31;
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedleCode.Text);
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                        }
+                    }
+                    if (values[0] == "-1")
+                    {
+                        errPurchaseEntryApproval.SetError(txtSupplier, "Invalid supplier.");
+                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSupplier.ShowAlways = true;
+                        tpSupplier.Show("Invalid supplier.", txtSupplier, 5000);
+                        lblSupplierCode.Text = "0";
+                        lblschedleCode.Text = "0";
+                        Varflag = 1;
+                    }
+                    else
+                    {
+                        errPurchaseEntryApproval.Clear();
+                        lblSupplierCode.Text = values[0];
+                        lblschedleCode.Text = values[1];
+                        txtSupplier.BackColor = Color.White;
 
-            //        }
-            //    }
-            //    if (txtSupplier.Text == "")
-            //    {
-            //        lblSupplierCode.Text = "0";
-            //        lblschedleCode.Text = "0";
-            //    }
-            //    picLoader.Visible = true;
-            //    picLoader.BringToFront();
-            //    Application.DoEvents();
-            //    this.ActiveControl = dpFromDate;
-            //    //********** To display a data in a grid  ****************** 
-            //    grdPurchaseEntryList.DataSource = null;
-            //    errPurchaseList.Clear();
-            //    DGV_SearchGrid.DataSource = null;
-            //    SPDataService objspdservice = new SPDataService();
-            //    DataSet objDs = new DataSet();
-            //    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-            //    objTRN_PurchaseEntry.ViewType = 1;
-            //    objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-            //    objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbstatus.SelectedValue);
-            //    objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
-            //    objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
-            //    objTRN_PurchaseEntry.ParaPEToDate = dpToDate.Text;
-            //    objTRN_PurchaseEntry.paraType = Convert.ToInt32(cmbOrdertype.SelectedValue);
-            //    objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
-            //    objspdservice.CloseConnection();
-            //    if (objDs != null)
-            //    {
-            //        if (objDs.Tables.Count != 0)
-            //        {
-            //            lblNoRecordsFound.Visible = false;
-            //            if (objDs.Tables[0].Rows.Count != 0 && Varflag == 0)
-            //            {
-            //                lblNoRecordsFound.Visible = false;
-            //                lblNoRecordsFound.SendToBack();
-            //                //grdPurchaseEntryList.Columns["clmEdit"].Visible = true;
-            //                //grdPurchaseEntryList.Columns["clmEdit"].DisplayIndex = objDs.Tables[0].Columns.Count;
-            //                //grdPurchaseEntryList.Columns["clmEdit"].Width = 100; 
-            //                grdPurchaseEntryList.DataSource = objDs.Tables[0];
-            //                grdPurchaseEntryList.Columns["S.No."].Width = 50;
-            //                grdPurchaseEntryList.Columns["Company"].Width = 80;
-            //                grdPurchaseEntryList.Columns["Voucher No."].Width = 100;
-            //                grdPurchaseEntryList.Columns["Voucher Date"].Width = 100;
-            //                grdPurchaseEntryList.Columns["Supplier Name"].Width = 300;
-            //                // grdPurchaseEntryList.Columns["City"].Width = 100;
-            //                grdPurchaseEntryList.Columns["GSTIN"].Width = 120;
-            //                grdPurchaseEntryList.Columns["Invoice Date"].Width = 100;
-            //                grdPurchaseEntryList.Columns["Invoice No."].Width = 100;
-            //                grdPurchaseEntryList.Columns["Created By"].Width = 100;
-            //                grdPurchaseEntryList.Columns["Created On"].Width = 150;
-            //                grdPurchaseEntryList.Columns["Purchase Type"].Width = 150;
-            //                grdPurchaseEntryList.Columns["Total Products"].Width = 100;
-            //                grdPurchaseEntryList.Columns["Grand Total"].Width = 100;
-            //                grdPurchaseEntryList.Columns["Purchase Status"].Width = 130;
-            //                grdPurchaseEntryList.Columns["Overall Status"].Width = 300;
-            //                grdPurchaseEntryList.Columns["PURID"].Visible = false;
-            //                grdPurchaseEntryList.Columns["SPSCID"].Visible = false;
-            //                grdPurchaseEntryList.Columns["SPID"].Visible = false;
-            //                grdPurchaseEntryList.Columns["STSID"].Visible = false;
-            //                grdPurchaseEntryList.Columns["PUR_INVSTSID"].Visible = false;
-            //                grdPurchaseEntryList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            //                grdPurchaseEntryList.Columns["Grand Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            //                grdPurchaseEntryList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //                grdPurchaseEntryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //            }
-            //            else
-            //            {
-            //                lblNoRecordsFound.Visible = true;
-            //                lblNoRecordsFound.BringToFront();
-            //                grdPurchaseEntryList.Columns["clmEdit"].Visible = false;
-            //                Deftable = objDs.Tables[0];
-            //            }
-            //        }
-            //        else
-            //        {
-            //            lblNoRecordsFound.Visible = true;
-            //            lblNoRecordsFound.BringToFront();
-            //            grdPurchaseEntryList.Columns["clmEdit"].Visible = false;
-            //            Deftable = objDs.Tables[0];
-            //        }
-            //    }
-            //    else
-            //    {
-            //        lblNoRecordsFound.Visible = true;
-            //        lblNoRecordsFound.BringToFront();
-            //        grdPurchaseEntryList.Columns["clmEdit"].Visible = false;
-            //        Deftable = objDs.Tables[0];
-            //    }
-
-            //    udfnSearchGridHead();
-            //    if (lblNoRecordsFound.Visible == true)
-            //    {
-            //        udfnDefcolumns();
-            //    }
-            //    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
-            //    picLoader.Visible = false;
-            //    udfnDeleteHide();
-            //}
-
+                    }
+                }
+                if (txtSupplier.Text == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedleCode.Text = "0";
+                }
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                this.ActiveControl = dpFromDate;
+                //********** To display a data in a grid  ****************** 
+                grdPurchaseEntryApproval.DataSource = null;
+                errPurchaseEntryApproval.Clear();
+                DGV_SearchGrid.DataSource = null;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                objTRN_PurchaseEntry.ViewType = 12;
+                objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
+                objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
+                objTRN_PurchaseEntry.ParaPEToDate = dpToDate.Text;
+                objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0 && Varflag == 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdPurchaseEntryApproval.DataSource = objDs.Tables[0];
+                            //grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
+                            grdPurchaseEntryApproval.Columns["Concern"].Width = 80;
+                            grdPurchaseEntryApproval.Columns["Voucher No."].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Voucher Date"].Width = 100;
+                            //grdPurchaseEntryApproval.Columns["Supplier Name"].Width = 300;
+                            // grdPurchaseEntryList.Columns["City"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
+                            grdPurchaseEntryApproval.Columns["Invoice Date"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Invoice No."].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Created By"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseEntryApproval.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryApproval.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                            Deftable = objDs.Tables[0];
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                        Deftable = objDs.Tables[0];
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                    Deftable = objDs.Tables[0];
+                }
+                udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    udfnDefcolumns();
+                }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                MainForm.objPUR_PurchaseEntryApproval = new PUR_PurchaseEntryApproval();
+                MainForm.objPUR_PurchaseEntryApproval.PbSTS = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["STSID"].Value.ToString());
+                MainForm.objPUR_PurchaseEntryApproval.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value.ToString());
+                MainForm.objPUR_PurchaseEntryApproval.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
+                MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseEntryApproval.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
+        }
+        public void udfnDefcolumns()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = null;
+                DGV_SearchGrid.DataSource = Deftable;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Company"].Width = 80;
+                DGV_SearchGrid.Columns["Voucher No."].Width = 100;
+                DGV_SearchGrid.Columns["Voucher Date"].Width = 100;
+                DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
+                // DGV_SearchGrid.Columns["City"].Width = 100;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 120;
+                DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
+                DGV_SearchGrid.Columns["Invoice No."].Width = 100;
+                DGV_SearchGrid.Columns["Created By"].Width = 100;
+                DGV_SearchGrid.Columns["Created On"].Width = 150;
+                DGV_SearchGrid.Columns["Purchase Type"].Width = 100;
+                DGV_SearchGrid.Columns["Total Products"].Width = 150;
+                DGV_SearchGrid.Columns["Grand Total"].Width = 150;
+                DGV_SearchGrid.Columns["Purchase Status"].Width = 130;
+                DGV_SearchGrid.Columns["Overall Status"].Width = 130;
+                DGV_SearchGrid.Columns["PURID"].Visible = false;
+                DGV_SearchGrid.Columns["SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["SPID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_INVSTSID"].Visible = false;
+                //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnSearchGridHead()
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    udfnGridSearchHeading(grdPurchaseEntryApproval, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdPurchaseEntryApproval.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    dgv2.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in dgv1.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                            visibleColumns.Add(col.Index);
+                        }
+                    }
+                    int rowIndex = 0;
+                    dgv2.Rows.Clear();
+                    dgv2.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
         public void udfnCmbConcern()
         {
@@ -235,9 +328,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseEntryApproval = new PUR_PurchaseEntryApproval();
-                MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryApproval.Show();
+                udfnEdit();
             }
             catch (Exception ex)
             {
@@ -694,6 +785,217 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_PurchaseApprovalList_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpSupplier.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    //udfnGridSearchFilter();
+                    DataService objDser = new DataService();
+                    grdPurchaseEntryApproval.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryApproval);
+                    objDser.CloseConnection();
+                    grdPurchaseEntryApproval.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                    //DGV_SearchGrid_CellPainting(sender,e);
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+
+                    if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                        return;
+                    if (!(e.ColumnIndex == 0))   /*If not our desired columns*/
+                                                 //return;
+
+                        if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                        {
+                            e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                                & ~(DataGridViewPaintParts.ContentForeground));
+
+                            TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                                e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                            e.Handled = true;
+                        }
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    DataGridViewColumn newColumn = grdPurchaseEntryApproval.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdPurchaseEntryApproval.SortedColumn;
+                    ListSortDirection direction;
+
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
+                    {
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdPurchaseEntryApproval.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
+                    }
+                    else
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    grdPurchaseEntryApproval.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+
+                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryApproval.HorizontalScrollingOffset;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    if (grdPurchaseEntryApproval.ColumnCount > 0)
+                    {
+                        grdPurchaseEntryApproval.Columns[e.Column.Index].Width = e.Column.Width;
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryApproval.HorizontalScrollingOffset;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    if (DGV_SearchGrid.IsCurrentCellDirty)
+                    {
+                        // Commit the changes immediately
+                        DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    }
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdPurchaseEntryApproval.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryApproval);
+                objDser.CloseConnection();
+                grdPurchaseEntryApproval.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
+            }
+
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    //udfnGridSearchFilter();
+                    DataService objDser = new DataService();
+                    grdPurchaseEntryApproval.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryApproval);
+                    objDser.CloseConnection();
+                    grdPurchaseEntryApproval.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                    //DGV_SearchGrid_CellPainting(sender,e);
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    int totalWidth = 0;
+                    int offSetValue = grdPurchaseEntryApproval.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+
+                    if (totalWidth - grdPurchaseEntryApproval.Width > grdPurchaseEntryApproval.HorizontalScrollingOffset && grdPurchaseEntryApproval.HorizontalScrollingOffset > 0)
+                    {
+                        //offSetValue = offSetValue ;
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseEntryApproval_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
+                {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdPurchaseEntryApproval.ClearSelection();
             }
         }
     }

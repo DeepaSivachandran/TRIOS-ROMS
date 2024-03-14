@@ -692,11 +692,9 @@ namespace ROMS
             {
                 MainForm objMainForm = new MainForm();
                 dtTaxTable = new DataTable();
-                objMainForm.udfnGetDefaultCompany();
                 dtTaxTable.Columns.Add("GST%", typeof(string));
                 dtTaxTable.Columns.Add("Taxable Value", typeof(decimal));
                 dtTaxTable.Columns.Add("Tax Value", typeof(decimal));
-
                 udfnDropdownLoad();
                 if (pbPurchaseno == "0")
                 {
@@ -709,43 +707,11 @@ namespace ROMS
                 else
                 {
                     udfnDateset();
-                    if (Convert.ToString(cmbConcern.SelectedValue) == "-1")
-                    {
-                        this.ActiveControl = cmbConcern;
-                    }
-                    else
-                    {
-                        this.ActiveControl = txtSupplier;
-                    }
                     grdTaxDetails.DataSource = dtTaxTable;
                     grdTaxDetails.Columns["GST%"].Width = 60;
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
-                    if (varQueueFlag == 1)
-                    {
-                        cmbConcern.Enabled = false;
-                        dpVoucherDate.Enabled = false;
-                        txtSupplier.Enabled = false;
-                        cmbEntryType.Enabled = false;
-                        cmbTransactionType.Enabled = false;
-                        if (grdReurnDC.Visible == true)
-                        {
-                            grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                        }
-                        if (grdPODetails.Visible == true)
-                        {
-                            grdPODetails.Columns["clmRemovePO"].Visible = false;
-                        }
-                    }
-                    if (varRemarkCount == 0)
-                    {
-                        btnRemarks.Enabled = false;
-                    }
-                    else { btnRemarks.Enabled = true; }
-
-                    if (PbSTS == "50")
-                    { btnSave.Text = "Update"; }
                 }
             }
             catch (Exception ex)
@@ -760,7 +726,6 @@ namespace ROMS
             {
                 if (pbPurchaseno != "0")
                 {
-                    varEditFlag = 1;
                     varRemarkFlag = 1;
                     udfnRemark();
                     MainForm.objPUR_PurchaseRemarksHistory.udfnRemarkList();
@@ -855,7 +820,6 @@ namespace ROMS
                                 txtRemarks.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Remarks"]);
                                 udfnSupplierDetails();
                                 lv_Broker.Visible = false;
-                                udfndisablevalue();
                                 udfnLoadingGrandTotCalculation();
                             }
                             ////// tab1 load
@@ -1035,56 +999,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-                //if (grdSupplierList.Rows.Count > 0)
-                //{
-                //    grdSupplierList.CurrentCell = grdSupplierList[5, 0];
-                //}
-                //if (grdPurchaseList.Rows.Count > 0)
-                //{
-                //    grdPurchaseList.CurrentCell = grdSupplierList[10, 0];
-                //}
-            }
         }
-        public void udfndisablevalue()
-        {
-            try
-            {
-                cmbConcern.Enabled = false;
-                dpVoucherDate.Enabled = false;
-                txtPENO.Enabled = false;
-                txtSupplier.Enabled = false;
-                cmbEntryType.Enabled = false;
-                txtQRCode.Enabled = false;
-                txtInvoiceamt.Enabled = false;
-                dpInvoiceDate.Enabled = false;
-                txtInvoiceNo.Enabled = false;
-                cmbTransactionType.Enabled = false;
-                txtBroker.Enabled = false;
-                tbDetails.TabPages[0].Enabled = true;
-                chkInvoice.Enabled = false;
-                if (PbSTS == "50")
-                {
-                    tbDetails.TabPages[0].Enabled = true;
-                    tbDetails.TabPages[1].Enabled = true;
-                    gpdiscount.Enabled = false;
-                    gpPayment.Enabled = false;
-                    grpLoadingCharge.Enabled = false;
-                    grpTCSamt.Enabled = false;
-                    gpPurchase.Enabled = false;
-                    gprate.Enabled = false;
-                    grdSupplierList.ReadOnly = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-       
         public void udfnDropdownLoad()
         {
             SPDataService objdserv = new SPDataService();
@@ -3157,11 +3072,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void TxtDamagecost_Enter(object sender, EventArgs e)
