@@ -3191,8 +3191,9 @@ namespace ROMS
                     objTRN_PurchaseEntry.ViewType = 4;
                     objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
                     objTRN_PurchaseEntry.paraStatus = varStatus;
-                    objTRN_PurchaseEntry.paraINVDate = dpInvoiceDate.Text;
-                    objTRN_PurchaseEntry.paraINVNo = txtInvoiceNo.Text;
+                    objTRN_PurchaseEntry.paraINVDate = dpInvoiceDate.Text.Trim();
+                    objTRN_PurchaseEntry.paraINVNo = txtInvoiceNo.Text.Trim();
+                    objTRN_PurchaseEntry.paraRemarks = txtRemarks.Text.Trim();
                     objTRN_PurchaseEntry.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
                     objTRN_PurchaseEntry.paraBrokerID = varBrokerid;
                     if (chkInvoice.Checked == true)
