@@ -1467,6 +1467,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Concern"].Width = 80;
                                 grdGrnApprovalList.Columns["GRN Date"].Width = 100;
                                 grdGrnApprovalList.Columns["GRN No."].Width = 80;
+                                grdGrnApprovalList.Columns["Status"].Visible = false;
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
                                 grdGrnApprovalList.Columns["Total Products in Invoice"].Width = 150;
                                 grdGrnApprovalList.Columns["Created By"].Width = 110;

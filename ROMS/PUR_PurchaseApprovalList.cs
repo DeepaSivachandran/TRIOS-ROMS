@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,7 +117,7 @@ namespace ROMS
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                 objTRN_PurchaseEntry.ViewType = 12;
                 objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
+                //objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblScheduleCode.Text);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
@@ -138,18 +139,21 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Voucher No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Voucher Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Supplier Name"].Width = 300;
+                            grdPurchaseEntryApproval.Columns["Purchase Type"].Width = 100;
                             grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
-                            grdPurchaseEntryApproval.Columns["Status"].Width = 150;
+                            grdPurchaseEntryApproval.Columns["Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Invoice No."].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Created By"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseEntryApproval.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryApproval.Columns["Invoice Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -219,26 +223,20 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = null;
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Company"].Width = 80;
+                DGV_SearchGrid.Columns["Concern"].Width = 80;
                 DGV_SearchGrid.Columns["Voucher No."].Width = 100;
                 DGV_SearchGrid.Columns["Voucher Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
-                // DGV_SearchGrid.Columns["City"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;
                 DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
                 DGV_SearchGrid.Columns["Invoice No."].Width = 100;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
-                DGV_SearchGrid.Columns["Created On"].Width = 150;
                 DGV_SearchGrid.Columns["Purchase Type"].Width = 100;
                 DGV_SearchGrid.Columns["Total Products"].Width = 150;
-                DGV_SearchGrid.Columns["Grand Total"].Width = 150;
-                DGV_SearchGrid.Columns["Purchase Status"].Width = 130;
-                DGV_SearchGrid.Columns["Status"].Width = 150;
+                DGV_SearchGrid.Columns["Remarks"].Width = 100;
+                DGV_SearchGrid.Columns["Status"].Visible = false;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
-                DGV_SearchGrid.Columns["SPSCID"].Visible = false;
-                DGV_SearchGrid.Columns["SPID"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
-                DGV_SearchGrid.Columns["PUR_INVSTSID"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -396,7 +394,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -481,7 +479,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    cmbStatus.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -495,7 +493,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
-                cmbStatus.Focus();
+                btnView.Focus();
             }
             catch (Exception ex)
             {
@@ -671,7 +669,7 @@ namespace ROMS
         {
             try
             {
-                cmbReason.BackColor = Color.Transparent;
+                cmbReason.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -992,6 +990,16 @@ namespace ROMS
                 {
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "49")
+                    {
+                        cell.Style.BackColor = Color.Red;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
+                    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "50")
+                    {
+                        cell.Style.BackColor = Color.Green;
+                        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    }
                 }
             }
             catch (Exception ex)
@@ -1055,6 +1063,20 @@ namespace ROMS
                     DGV_SearchGrid.Invalidate();
                     udfnscrollVisible(DGV_SearchGrid, grdPurchaseEntryApproval);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
             }
             catch (Exception ex)
             {
