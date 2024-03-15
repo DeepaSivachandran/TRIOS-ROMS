@@ -4854,6 +4854,7 @@ namespace ROMS
                                 string[] varvalue1 = result2.Split('~');
                                 if (varvalue1[1] == "1")
                                 {
+                                    Label l;
                                     int passkeyflag = 0;
                                     if (chkCompleted.Checked==true)
                                     {
@@ -5115,7 +5116,7 @@ namespace ROMS
                                         else
                                         {
                                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                            goto l;
+                                            //goto l;
                                         }
                                     }
                                 }
