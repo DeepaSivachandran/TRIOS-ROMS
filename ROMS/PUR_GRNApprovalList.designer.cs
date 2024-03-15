@@ -588,6 +588,7 @@
             this.grdGrnApprovalList.TabIndex = 958797;
             this.grdGrnApprovalList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnApprovalList_CellDoubleClick);
             this.grdGrnApprovalList.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.GrdGrnApprovalList_ColumnWidthChanged);
+            this.grdGrnApprovalList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGrnApprovalList_DataBindingComplete);
             this.grdGrnApprovalList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdGrnApprovalList_Scroll);
             this.grdGrnApprovalList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGrnApprovalList_KeyDown);
             // 
