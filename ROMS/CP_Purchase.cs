@@ -43,8 +43,8 @@ namespace ROMS
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
         bool varVoucherSkip = false;
-        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0;
-        public decimal varDiscountPer=0, varDiscountAmount=0;
+        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0,varPurEditFlag=0;
+        public decimal varDiscountPer=0, varDiscountAmount=0,pbCastingRate=0;
         public string varCalculator = "0";
 
         public CP_Purchase()
@@ -771,8 +771,9 @@ namespace ROMS
                     else { btnRemarks.Enabled = true; }
 
                     if (PbSTS == "50")
-                    { btnSave.Text = "Update"; }
-                    if(PbApprovalStsid==63)
+                    { btnSave.Text = "Update"; } 
+                    //purchase entry approved then purchase can't be edit edit
+                    if(PbApprovalStsid==63 || varPurEditFlag==1) //VarPurEditFlag- if setting screen purchase entry editable days exceed purchase entry date
                     {
                         btnSave.Enabled = false;
                         txtRemarks.Enabled = false;
@@ -1066,6 +1067,10 @@ namespace ROMS
                             {
                                 lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[7].Rows[0]["VERIFIED2"]);
                             }
+                            if (objDs.Tables[8].Rows.Count != 0)
+                            {
+                                varPurEditFlag = Convert.ToInt32(objDs.Tables[8].Rows[0]["Flag"]);
+                            }
                         }
                     }
                     udfnPurchaseEntryTabLoad();
@@ -1110,7 +1115,7 @@ namespace ROMS
                 txtBroker.Enabled = false;
                 tbDetails.TabPages[0].Enabled = true;
                 chkInvoice.Enabled = false;
-                if (PbSTS == "50")
+                if (PbSTS == "50" || varPurEditFlag==1)  
                 {
                     tbDetails.TabPages[0].Enabled = true;
                     tbDetails.TabPages[1].Enabled = true;
@@ -1128,6 +1133,7 @@ namespace ROMS
                     txtMrp.Enabled = false;
                     txtDate.Enabled = false;
                     txtMonth.Enabled = false;
+                    txtBatchno.Enabled = false;
                     txtYear.Enabled = false;
                     txtSourceLocation.Enabled = false;
                     cmbrack.Enabled = false;
@@ -4597,6 +4603,7 @@ namespace ROMS
 
                 lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense - tcsamt - discountamt - damagecost - otherdiscount;
                 lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
+
             }
             catch (Exception ex)
             {
@@ -7944,6 +7951,7 @@ namespace ROMS
                         CellDiscAmt.Style.BackColor = Color.PaleGreen;
                         pbDisper = (varCellDiscAmt * 100) / (varPurchaseRate * varInvQty);
                         grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value = pbDisper.ToString("0.00");
+                        varDiscPer = pbDisper;
                         udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                         udfnSubtotCalc(e);
                         udfnLoadingGrandTotCalculation();
@@ -7963,6 +7971,7 @@ namespace ROMS
                         CellDiscPer.Style.BackColor = Color.PaleGreen;
                         PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
                         grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
+
                         udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                         udfnSubtotCalc(e);
                         udfnGstvalue();
@@ -7993,7 +8002,7 @@ namespace ROMS
                             udfnLoadingGrandTotCalculation();
                         }
                     }
-
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmCasting"].Value = pbCastingRate;
                     //int varDecimal = Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["UT_Decimal"].Value);
 
                     //if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty"
@@ -8023,7 +8032,7 @@ namespace ROMS
                     udfnSubtotCalc(e);
                     udfnGstvalue();
                     udfnLoadingGrandTotCalculation();
-                    PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0;
+                    PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0,pbCastingRate=0;
                 }
             }
         }
@@ -8063,11 +8072,21 @@ namespace ROMS
                     pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); //Excess
                                                                                 //varInvQty = varRecQty + varFreeQty + varDiffQty; //pending
                 }
-                PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
-                //pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
-                // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
-                PbNetamt = (PbTaxvalue + PbGstamt);
+                if (rbDiscountBefore.Checked == true)
+                {
+                    PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
+                    //pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
+                    // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
+                    PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
+                    PbNetamt = (PbTaxvalue + PbGstamt);
+                }
+                if(rbDiscountAfter.Checked==true)
+                {
+                    PbTaxvalue = (varPurchaseRate * varInvQty) ;
+                    PbGstamt = ((PbTaxvalue * varHSNGSTValue) / 100)- varCellDiscAmt;
+                    PbNetamt = (PbTaxvalue + PbGstamt);
+                }
+                pbCastingRate = PbNetamt / varInvQty;
             }
             catch (Exception ex)
             {
@@ -8111,6 +8130,14 @@ namespace ROMS
                 if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty")
                 {
                     txtTpro.Text = Convert.ToString(grdPurchaseList.RowCount) + " / " + Convert.ToString(varInvQty);
+                }
+                if(varSubtotal==0)
+                {
+                    gpdiscount.Enabled = true;
+                }
+                else
+                {
+                    gpdiscount.Enabled = false;
                 }
             }
             catch (Exception ex)
