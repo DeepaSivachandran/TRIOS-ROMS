@@ -4854,12 +4854,20 @@ namespace ROMS
                                 string[] varvalue1 = result2.Split('~');
                                 if (varvalue1[1] == "1")
                                 {
+                                    int passkeyflag = 0;
+                                    if (chkCompleted.Checked==true)
+                                    {
                                     l: MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
-                                    MainForm.objPUR_GRNApprovalVerify.varTrnType = 3;
-                                    MainForm.objPUR_GRNApprovalVerify.ShowDialog();
-                                    varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
-
-                                    if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
+                                        MainForm.objPUR_GRNApprovalVerify.varTrnType = 3;
+                                        MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                                        varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
+                                        passkeyflag = MainForm.objPUR_GRNApprovalVerify.flag;
+                                    }
+                                    else
+                                    {
+                                        passkeyflag = 1;
+                                    }
+                                    if (passkeyflag == 1)
                                     {
                                         TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                                         objTRN_PurchaseEntry.ViewType = varViewType;
