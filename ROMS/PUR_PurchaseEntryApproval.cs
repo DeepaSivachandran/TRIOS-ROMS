@@ -18,13 +18,6 @@ namespace ROMS
         DataError objError;
         ToolTip tpconcern = new ToolTip();
         ToolTip tpInvoice = new ToolTip();
-        ToolTip tpDiscountPer = new ToolTip();
-        ToolTip tpbatchno = new ToolTip();
-        ToolTip tpProduct = new ToolTip();
-        ToolTip tpdate = new ToolTip();
-        ToolTip tpRack = new ToolTip();
-        ToolTip tpStockLocation = new ToolTip();
-        ToolTip tpSuppliername = new ToolTip();
         ToolTip tpQRCode = new ToolTip();
         ToolTip tpinvamt = new ToolTip();
         ToolTip tpInvNo = new ToolTip();
@@ -72,8 +65,6 @@ namespace ROMS
                         grdSupplierList.Rows.Clear();
                         grdPODetails.Rows.Clear();
                     }
-                    //grdReurnDC.Rows.Clear();
-                    //  grdSupplierList.Columns["clmAddPro"].Visible = false;
                     if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
                     {
                         if (PbFlag == "0")
@@ -86,10 +77,6 @@ namespace ROMS
                             grdReurnDC.Rows.Clear();
                             txtQRCode.ReadOnly = false;
                             txtQRCode.Enabled = true;
-                            //dpInvoiceDate.Enabled = false;
-                            //txtInvoiceNo.ReadOnly = true;
-                            //txtInvoiceNo.Enabled = false;
-                            // grdGRN.Visible = true;
                             grdReurnDC.Visible = false;
                             grdPODetails.Visible = true;
                             if (grdPODetails.Rows.Count != 0)
@@ -507,14 +494,6 @@ namespace ROMS
                         {
                             grdSupplierList.Enabled = true;
                         }
-                        //txtInvoiceNo.Enabled = false;
-                        //txtInvoiceamt.Enabled = false;
-                        //txtLoadingchargeGrn.Enabled = false;
-                        //txtFrightGrn.Enabled = false;
-                        //txtInvoiceNo.ReadOnly = true;
-                        //txtInvoiceamt.ReadOnly = true;
-                        //txtLoadingchargeGrn.ReadOnly = true;
-                        //txtFrightGrn.ReadOnly = true;
                     }
                     else
                     {
@@ -535,16 +514,6 @@ namespace ROMS
                         lblFinishedNoRecord.Visible = true;
                         lblFinishedNoRecord.BringToFront();
                     }
-                    
-                    //if (objDs.Tables[4].Rows.Count != 0)
-                    //{
-                    //    for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
-                    //    {
-                    //        lblFinishedNoRecord.Visible = false;
-                    //        grdGRN.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["GRN_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRN_Date"]),
-                    //        Convert.ToString(objDs.Tables[4].Rows[i]["Procount"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRNID"]));
-                    //    }
-                    //}
                 }
             }
             catch (Exception ex)
@@ -552,9 +521,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         public void udfnclose()
         {
             try
@@ -573,10 +540,7 @@ namespace ROMS
                     {
                         this.Close();
                     }
-                    if (varQueueFlag == 1)
-                    {
-                        MainForm.objPUR_PurchaseQueue.udfnList();
-                    }
+                    MainForm.objPUR_PurchaseApprovalList.udfnList();
                 }
             }
             catch (Exception ex)
@@ -1449,7 +1413,7 @@ namespace ROMS
                 if (PbFlag == "0")
                 {
                     BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                    if (btnSave.Text == "Save as Draft")
+                    if (btnApprove.Text == "Save as Draft")
                     {
                         if (varcomid != Convert.ToString(cmbConcern.SelectedValue))
                         {
@@ -1513,7 +1477,7 @@ namespace ROMS
         {
             try
             {
-                if (btnSave.Text == "Save as Draft")
+                if (btnApprove.Text == "Save as Draft")
                 {
                     if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
                     {
@@ -2807,18 +2771,18 @@ namespace ROMS
             {
                 Txtdiscount.BackColor = Color.White;
                 decimal varDiscountAmt = 0, varDisPer = 0;
-                varDisPer = Convert.ToDecimal(Txtdiscount.Text);
-                varDiscountAmt = Convert.ToDecimal(varDiscountPer);
+                if (Txtdiscount.Text.Trim() != "")
+                { varDisPer = Convert.ToDecimal(Txtdiscount.Text); }
+                if (txtDiscountamt.Text.Trim() != "")
+                { varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text); }
                 Txtdiscount.Text = varDisPer.ToString("0.00");
                 txtDiscountamt.Text = varDiscountAmount.ToString("0.00");
                 if (txtDiscountamt.Text.Trim()!="" &&  Convert.ToDecimal(Txtdiscount.Text)>100)
                 {
-                    errPurchaseentry.SetError(Txtdiscount, "Discount percentage should not be >100");
                     Txtdiscount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 }
                 else
                 {
-                    errPurchaseentry.Clear();
                     Txtdiscount.BackColor = Color.White;
                 }
                 udfnLoadingGrandTotCalculation();
@@ -2902,8 +2866,10 @@ namespace ROMS
             {
                 txtDiscountamt.BackColor = Color.White;
                 decimal varDiscountAmt = 0, varDisPer = 0;
-                varDisPer = Convert.ToDecimal(Txtdiscount.Text);
-                varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text);
+                if (Txtdiscount.Text.Trim() != "")
+                {  varDisPer = Convert.ToDecimal(Txtdiscount.Text);  }
+                if (txtDiscountamt.Text.Trim() != "")
+                { varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text); }
                 Txtdiscount.Text = varDiscountPer.ToString("0.00");
                 txtDiscountamt.Text = varDiscountAmt.ToString("0.00");
                 udfnLoadingGrandTotCalculation();
@@ -3072,6 +3038,220 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void BtnApprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool varErrorFlag = false;
+                if (grdSupplierList.RowCount > 0)
+                {
+                    if (txtInvoiceNo.Text == "")
+                    {
+                        errPurchaseentry.SetError(txtInvoiceNo, "Please enter invoice No.");
+                        txtInvoiceNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpInvNo.ShowAlways = true;
+                        tpInvNo.Show("Please enter invoice No.", txtInvoiceNo, 5000);
+                        varErrorFlag = true;
+                    }
+                    if (Convert.ToString(txtInvoiceamt.Text) == "")
+                    {
+                        errPurchaseentry.SetError(txtInvoiceamt, "Please enter invoice amount");
+                        txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpinvamt.ShowAlways = true;
+                        tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
+                        varErrorFlag = true;
+                    }
+                    if (txtDiscountamt.Text.Trim() != "" && Convert.ToDecimal(Txtdiscount.Text) > 100)
+                    {
+                        Txtdiscount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        varErrorFlag = true;
+                    }
+                    if (varErrorFlag == false)
+                    {
+                        udfnApprove();
+                    }
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnApprove()
+        {
+            try
+            {
+                int varStatus = 0; string result = "";
+                MainForm.objCP_Verify = new CP_Verify();
+                MainForm.objCP_Verify.ShowDialog();
+                varUserID = MainForm.objCP_Verify.varUserId;
+                if (MainForm.objCP_Verify.flag == 1)
+                {
+                    varStatus = 63;
+                    int varBrokerid = 0;
+                    if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); }
+
+                    decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
+                    otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0;
+                    if (txtLoadingchargeGrn.Text != "")
+                    {
+                        loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text);
+                    }
+                    if (txtFrightGrn.Text != "")
+                    {
+                        frightgrn = Convert.ToDecimal(txtFrightGrn.Text);
+                    }
+                    if (txtLoadingCharge.Text != "")
+                    {
+                        loadcharge = Convert.ToDecimal(txtLoadingCharge.Text);
+                    }
+                    if (txtUnLoadingCharge.Text != "")
+                    {
+                        unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text);
+                    }
+                    if (txtCouriercharge.Text != "")
+                    {
+                        couriercharge = Convert.ToDecimal(txtCouriercharge.Text);
+                    }
+                    if (txtotherexpense.Text != "")
+                    {
+                        otherexpense = Convert.ToDecimal(txtotherexpense.Text);
+                    }
+                    if (Txtdiscount.Text != "")
+                    {
+                        discountper = Convert.ToDecimal(Txtdiscount.Text);
+                    }
+                    if (txtDiscountamt.Text != "")
+                    {
+                        discountamt = Convert.ToDecimal(txtDiscountamt.Text);
+                    }
+                    if (txtTcsamt.Text != "")
+                    {
+                        tcsamt = Convert.ToDecimal(txtTcsamt.Text);
+                    }
+                    if (txtDamagecost.Text != "")
+                    {
+                        damagecost = Convert.ToDecimal(txtDamagecost.Text);
+                    }
+                    if (txtOtherdiscount.Text != "")
+                    {
+                        otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text);
+                    }
+                    if (txtSubtotal.Text != "")
+                    {
+                        subtotal = Convert.ToDecimal(txtSubtotal.Text);
+                    }
+                    if (txtGstamt.Text != "")
+                    {
+                        gstamt = Convert.ToDecimal(txtGstamt.Text);
+                    }
+                    if (txtRoundoff.Text != "")
+                    {
+                        roundoff = Convert.ToDecimal(txtRoundoff.Text);
+                    }
+                    if (txtGrandtot.Text != "")
+                    {
+                        grandtotal = Convert.ToDecimal(txtGrandtot.Text);
+                    }
+
+                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                    objTRN_PurchaseEntry.ViewType = 4;
+                    objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
+                    objTRN_PurchaseEntry.paraStatus = varStatus;
+                    objTRN_PurchaseEntry.paraINVDate = dpInvoiceDate.Text.Trim();
+                    objTRN_PurchaseEntry.paraINVNo = txtInvoiceNo.Text.Trim();
+                    objTRN_PurchaseEntry.paraRemarks = txtRemarks.Text.Trim();
+                    objTRN_PurchaseEntry.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
+                    objTRN_PurchaseEntry.paraBrokerID = varBrokerid;
+                    if (chkInvoice.Checked == true)
+                    { objTRN_PurchaseEntry.paraEinvoice = "1"; }
+                    else
+                    { objTRN_PurchaseEntry.paraEinvoice = "0"; }
+                    if (rbPurchaseCash.Checked == true)
+                    {
+                        objTRN_PurchaseEntry.paraPurchaseType = 1;
+                    }
+                    if (rbPurchaseCredit.Checked == true)
+                    {
+                        objTRN_PurchaseEntry.paraPurchaseType = 2;
+                    }
+                    if (rbRateBefore.Checked == true)
+                    {
+                        objTRN_PurchaseEntry.paraRateCalculation = 1;
+                    }
+                    if (rbAfterBefore.Checked == true)
+                    {
+                        objTRN_PurchaseEntry.paraRateCalculation = 2;
+                    }
+                    if (rbPaymentCash.Checked == true)
+                    {
+                        objTRN_PurchaseEntry.paraPaymentType = 1;
+                    }
+                    if (rbPaymentCheque.Checked == true)
+                    {
+                        objTRN_PurchaseEntry.paraPaymentType = 2;
+                    }
+                    if (rbDiscountBefore.Checked == true)
+                    {
+                        objTRN_PurchaseEntry.paraDiscCalculation = 1;
+                    }
+                    if (rbDiscountAfter.Checked == true)
+                    {
+                        objTRN_PurchaseEntry.paraDiscCalculation = 2;
+                    }
+                    objTRN_PurchaseEntry.paraLoadingCharges = loadcharge;
+                    objTRN_PurchaseEntry.paraUnloadingCharges = unloadcharge;
+                    objTRN_PurchaseEntry.paraCourierCharges = couriercharge;
+                    objTRN_PurchaseEntry.paraOtherExpenses = otherexpense;
+                    objTRN_PurchaseEntry.paraDiscAmnt = discountamt;
+                    objTRN_PurchaseEntry.paraDiscPer = discountper;
+                    objTRN_PurchaseEntry.paraTcsAmnt = tcsamt;
+                    objTRN_PurchaseEntry.paraDamageCost = damagecost;
+                    objTRN_PurchaseEntry.paraOtherDisc = otherdiscount;
+                    objTRN_PurchaseEntry.paraLoadingChargesGRN = loadinggrn;
+                    objTRN_PurchaseEntry.paraFrightGRN = frightgrn;
+                    objTRN_PurchaseEntry.paraSubTotal = subtotal;
+                    objTRN_PurchaseEntry.paraGSTAmnt = gstamt;
+                    objTRN_PurchaseEntry.paraRoundOff = roundoff;
+                    objTRN_PurchaseEntry.paraGrandTotal = grandtotal;
+                    objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
+                    SPDataService objspdservice = new SPDataService(); 
+                    result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                    objspdservice.CloseConnection();
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        varModifiedFlag = 0;
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varCloseflag = 1;
+                        udfnclose();
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnReject_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void TxtDamagecost_Enter(object sender, EventArgs e)
@@ -3370,7 +3550,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.LemonChiffon;
+                btnApprove.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -3383,7 +3563,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.Transparent;
+                btnApprove.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -4362,39 +4542,11 @@ namespace ROMS
         }
         private void GrdSupplierList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-
             try
             {
                 DataGridView dataGridView = (DataGridView)sender;
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmAddproflag"].Value) == "0")
-                    {
-                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmAddPro"];
-                        cell2.Value = new Bitmap(1, 1);
-                        cell2.ReadOnly = true;
-                    }
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
-                    {
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
-                        cell.Style.BackColor = Color.LightGray;
-                        cell.Style.ForeColor = Color.Black;
-                        cell.ReadOnly = true;
-                    }
-                    else if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "73")
-                    {
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
-                        cell.Style.BackColor = Color.LightGray;
-                        cell.Style.ForeColor = Color.Black;
-                        cell.ReadOnly = true;
-                    }
-                    else
-                    {
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
-                        cell.Style.BackColor = Color.PaleGreen;
-                        cell.Style.ForeColor = Color.Black;
-                        cell.ReadOnly = false;
-                    }
                     string[] varShelflifevalue = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                     if (varShelflifevalue[0] != "")
                     {
@@ -4417,26 +4569,12 @@ namespace ROMS
                             cell.Style.ForeColor = Color.Black;
                         }
                     }
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmrkcount"].Value) == "0")
-                    {
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmrack"];
-                        cell.Style.BackColor = Color.LightGray;
-                        cell.ReadOnly = true;
-                    }
-                    else
-                    {
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["rkid"];
-                        cell.Style.BackColor = Color.PaleGreen;
-                    }
-                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1)
-                    {
-                        grdSupplierList.Rows[i].ReadOnly = true;
-                        grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
-                        grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
-                        grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
-                        grdSupplierList.Rows[i].Cells["clmLocation"].Style.BackColor = Color.LightGray;
-                        grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;
-                    }
+                    grdSupplierList.Rows[i].ReadOnly = true;
+                    grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                    grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                    grdSupplierList.Rows[i].Cells["clmLocation"].Style.BackColor = Color.LightGray;
+                    grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;
                 }
             }
             catch (Exception ex)

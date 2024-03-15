@@ -43,7 +43,7 @@ namespace ROMS
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
         bool varVoucherSkip = false;
-        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0;
+        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0;
         public decimal varDiscountPer=0, varDiscountAmount=0;
         public string varCalculator = "0";
 
@@ -772,6 +772,11 @@ namespace ROMS
 
                     if (PbSTS == "50")
                     { btnSave.Text = "Update"; }
+                    if(PbApprovalStsid==63)
+                    {
+                        btnSave.Enabled = false;
+                        txtRemarks.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -4079,7 +4084,7 @@ namespace ROMS
             {
                 if (varErrorFormat == 0)
                 {
-                    udfnGridaddvalue(sender, e);
+                    //udfnGridaddvalue(sender, e);
                 }
             }
             catch (Exception ex)
@@ -4630,8 +4635,8 @@ namespace ROMS
                     {
                         varErrorFlag = true;
                     }
-                    if (cmbEntryType.SelectedValue.ToString() != "54")
-                    { // GRN
+                    //if (cmbEntryType.SelectedValue.ToString() != "54")
+                    //{ // GRN
                         if (txtInvoiceNo.Text == "")
                         {
                             errPurchaseentry.SetError(txtInvoiceNo, "Please enter invoice No.");
@@ -4648,7 +4653,7 @@ namespace ROMS
                             tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                             varErrorFlag = true;
                         }
-                    }
+                    //}
 
                     if (varErrorFlag == false && varerrFlag == 0)
                     {
@@ -6532,8 +6537,10 @@ namespace ROMS
             {
                 Txtdiscount.BackColor = Color.White;
                 decimal varDiscountAmt = 0, varDisPer = 0;
-                varDisPer = Convert.ToDecimal(Txtdiscount.Text);
-                varDiscountAmt = Convert.ToDecimal(varDiscountPer);
+                if (Txtdiscount.Text.Trim() != "")
+                { varDisPer = Convert.ToDecimal(Txtdiscount.Text); }
+                if (txtDiscountamt.Text.Trim() != "")
+                { varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text); }
                 Txtdiscount.Text = varDisPer.ToString("0.00");
                 txtDiscountamt.Text = varDiscountAmount.ToString("0.00");
                 if (txtDiscountamt.Text.Trim()!="" &&  Convert.ToDecimal(Txtdiscount.Text)>100)
@@ -6627,8 +6634,10 @@ namespace ROMS
             {
                 txtDiscountamt.BackColor = Color.White;
                 decimal varDiscountAmt = 0, varDisPer = 0;
-                varDisPer = Convert.ToDecimal(Txtdiscount.Text);
-                varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text);
+                if (Txtdiscount.Text.Trim() != "")
+                { varDisPer = Convert.ToDecimal(Txtdiscount.Text); }
+                if (txtDiscountamt.Text.Trim() != "")
+                { varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text); }
                 Txtdiscount.Text = varDiscountPer.ToString("0.00");
                 txtDiscountamt.Text = varDiscountAmt.ToString("0.00");
                 udfnLoadingGrandTotCalculation();

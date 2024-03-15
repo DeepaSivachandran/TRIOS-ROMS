@@ -64,6 +64,7 @@ namespace ROMS
                 MainForm.objCP_Purchase = new CP_Purchase();
                 MainForm.objCP_Purchase.btnSave.Text = "Update as Draft"; 
                 MainForm.objCP_Purchase.PbSTS = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["STSID"].Value.ToString()); 
+                MainForm.objCP_Purchase.PbApprovalStsid = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString()); 
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString()); 
                 MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Purchase Status"].Value.ToString()); 
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
@@ -649,6 +650,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["SPID"].Visible = false; 
                             grdPurchaseEntryList.Columns["STSID"].Visible = false;
                             grdPurchaseEntryList.Columns["PUR_INVSTSID"].Visible = false;
+                            grdPurchaseEntryList.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseEntryList.Columns["Grand Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             grdPurchaseEntryList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
