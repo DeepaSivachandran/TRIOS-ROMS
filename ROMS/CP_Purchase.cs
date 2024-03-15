@@ -43,7 +43,7 @@ namespace ROMS
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
         bool varVoucherSkip = false;
-        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0;
+        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0;
         public decimal varDiscountPer=0, varDiscountAmount=0;
         public string varCalculator = "0";
 
@@ -772,6 +772,11 @@ namespace ROMS
 
                     if (PbSTS == "50")
                     { btnSave.Text = "Update"; }
+                    if(PbApprovalStsid==63)
+                    {
+                        btnSave.Enabled = false;
+                        txtRemarks.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)

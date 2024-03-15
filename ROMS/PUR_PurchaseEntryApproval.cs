@@ -494,14 +494,6 @@ namespace ROMS
                         {
                             grdSupplierList.Enabled = true;
                         }
-                        //txtInvoiceNo.Enabled = false;
-                        //txtInvoiceamt.Enabled = false;
-                        //txtLoadingchargeGrn.Enabled = false;
-                        //txtFrightGrn.Enabled = false;
-                        //txtInvoiceNo.ReadOnly = true;
-                        //txtInvoiceamt.ReadOnly = true;
-                        //txtLoadingchargeGrn.ReadOnly = true;
-                        //txtFrightGrn.ReadOnly = true;
                     }
                     else
                     {
@@ -522,16 +514,6 @@ namespace ROMS
                         lblFinishedNoRecord.Visible = true;
                         lblFinishedNoRecord.BringToFront();
                     }
-                    
-                    //if (objDs.Tables[4].Rows.Count != 0)
-                    //{
-                    //    for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
-                    //    {
-                    //        lblFinishedNoRecord.Visible = false;
-                    //        grdGRN.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["GRN_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRN_Date"]),
-                    //        Convert.ToString(objDs.Tables[4].Rows[i]["Procount"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRNID"]));
-                    //    }
-                    //}
                 }
             }
             catch (Exception ex)
@@ -539,9 +521,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         public void udfnclose()
         {
             try
@@ -560,10 +540,7 @@ namespace ROMS
                     {
                         this.Close();
                     }
-                    if (varQueueFlag == 1)
-                    {
-                        MainForm.objPUR_PurchaseQueue.udfnList();
-                    }
+                    MainForm.objPUR_PurchaseApprovalList.udfnList();
                 }
             }
             catch (Exception ex)
