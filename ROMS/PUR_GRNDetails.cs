@@ -832,20 +832,20 @@ namespace ROMS
                                     string[] varvalue = result.Split('~');
                                 if (result.Split('~')[1] == "1")
                                 {
-                                    int flag = 0;
+                                    int passkeyflag = 0;
                                     if (chkCompleted.Checked==true)
                                     {
                                         MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
                                         MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
                                         MainForm.objPUR_GRNApprovalVerify.ShowDialog();
                                         varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
-                                        flag = MainForm.objPUR_GRNApprovalVerify.flag;
+                                        passkeyflag = MainForm.objPUR_GRNApprovalVerify.flag;
                                     }
                                     else
                                     {
-                                        flag = 1;
+                                        passkeyflag = 1;
                                     }
-                                    if (flag == 1)
+                                    if (passkeyflag == 1)
                                     {
                                         objTRNS_GRN.paraSaveFlag = 1;
                                         objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
