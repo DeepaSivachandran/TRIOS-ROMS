@@ -9763,7 +9763,7 @@ namespace ROMS
                             int i = irow;
                             int intsection = 0, intlvariant = 0;
                             intsection = grdSupplierList.Columns.Count - 1;
-                            intlvariant = grdSupplierList.Columns.Count - 20;
+                            intlvariant = grdSupplierList.Columns.Count - 19;
                             if (intsection == icolumn)
                             {
                                 grdSupplierList.CurrentCell = grdSupplierList[intsection, irow + 1];
@@ -9772,12 +9772,12 @@ namespace ROMS
                             }
                             else if (intlvariant == icolumn)
                             {
-                                A: if (icolumn == grdSupplierList.Columns.Count - 20)
+                                A: if (icolumn == grdSupplierList.Columns.Count - 19)
                                 {
                                     //grdProDetails.Rows.Add();
                                     if (irow < grdSupplierList.Rows.Count - 1)
                                     {
-                                        grdSupplierList.CurrentCell = grdSupplierList[5, irow + 1];
+                                        grdSupplierList.CurrentCell = grdSupplierList[6, irow + 1];
                                         icolumn = grdSupplierList.CurrentCell.ColumnIndex;
                                         irow = grdSupplierList.CurrentCell.RowIndex;
                                         //goto A;
@@ -9928,18 +9928,20 @@ namespace ROMS
                                     //grdProDetails.Rows.Add();
                                     if (irow < grdPurchaseList.Rows.Count - 1)
                                     {
-                                        grdPurchaseList.CurrentCell = grdPurchaseList[10, irow + 1];
+                                        grdPurchaseList.CurrentCell = grdPurchaseList[11, irow + 1];
                                         icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
                                         irow = grdPurchaseList.CurrentCell.RowIndex;
                                         //goto A;
                                     }
                                     else
                                     {
-                                        grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
-                                        if (grdPurchaseList.CurrentCell.ReadOnly == true)
-                                        {
-                                            icolumn++; goto A;
-                                        }
+                                        //grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
+
+                                        //if (grdPurchaseList.CurrentCell.ReadOnly == true)
+                                        //{
+                                        //    icolumn++; goto A;
+                                        //}
+                                        txtLoadingCharge.Focus();
                                     }
                                 }
                                 else
