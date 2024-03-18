@@ -175,6 +175,9 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                DataBind objDBind = new DataBind();
+                objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (64) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
+                objDBind = null;
                 SPDataService objdserv = new SPDataService();
                 int varconcerntype = 3;
                 DataSet objDT = new DataSet();
@@ -1312,6 +1315,7 @@ namespace ROMS
                                     objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                     objTRNS_GRN.paraSkipped = varSkip;
                                     objTRNS_GRN.paraID = ParaSupplierAMT;
+                                    objTRNS_GRN.paraPayment = Convert.ToInt32(cmbPayment.SelectedValue);
                                     objTRNS_GRN.paraSaveFlag = 0;
                                     result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                     objspdservice.CloseConnection();
@@ -1748,6 +1752,61 @@ namespace ROMS
             }
         }
 
+        private void CmbPayment_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPayment.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPayment.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtFrieghtamount_Leave(object sender, EventArgs e)
         {
             try { txtFrieghtamount.BackColor = Color.White; }
@@ -1764,7 +1823,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    cmbPayment.Focus();
                 }
             }
             catch (Exception ex)
@@ -2155,6 +2214,7 @@ namespace ROMS
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceAmnt"]);
                                 txtLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_LoadingCharges"]);
                                 txtFrieghtamount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
+                                cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;
                                 cmbConcern.Enabled = false;
