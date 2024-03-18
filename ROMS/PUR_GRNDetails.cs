@@ -686,11 +686,14 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if(lblVerifiedBy1.Text=="" && lblVerifiedBy2.Text =="")
+                    if (chkCompleted.Checked == true)
                     {
-                        MessageBox.Show("Verification details are mandatory", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        result1 = DialogResult.No;
-                        varErrorFormat =1;
+                        if (lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "")
+                        {
+                            MessageBox.Show("Verification details are mandatory", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            result1 = DialogResult.No;
+                            varErrorFormat = 1;
+                        }
                     }
                     if (txtInvoiceamt.Text.Trim() == "")
                     {
@@ -829,11 +832,20 @@ namespace ROMS
                                     string[] varvalue = result.Split('~');
                                 if (result.Split('~')[1] == "1")
                                 {
-                                    MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
-                                    MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
-                                    MainForm.objPUR_GRNApprovalVerify.ShowDialog();
-                                    varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
-                                    if (MainForm.objPUR_GRNApprovalVerify.flag == 1)
+                                    int passkeyflag = 0;
+                                    if (chkCompleted.Checked==true)
+                                    {
+                                        MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                                        MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
+                                        MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+                                        varUserID = MainForm.objPUR_GRNApprovalVerify.varUserId;
+                                        passkeyflag = MainForm.objPUR_GRNApprovalVerify.flag;
+                                    }
+                                    else
+                                    {
+                                        passkeyflag = 1;
+                                    }
+                                    if (passkeyflag == 1)
                                     {
                                         objTRNS_GRN.paraSaveFlag = 1;
                                         objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
