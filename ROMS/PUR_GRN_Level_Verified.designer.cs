@@ -34,6 +34,7 @@
             this.dpVerified1 = new System.Windows.Forms.DateTimePicker();
             this.dpVerified2 = new System.Windows.Forms.DateTimePicker();
             this.grpVerify = new System.Windows.Forms.GroupBox();
+            this.lblVerified2 = new System.Windows.Forms.Label();
             this.txtDVerifed1 = new System.Windows.Forms.TextBox();
             this.txtDVerified2 = new System.Windows.Forms.TextBox();
             this.txtVerified2 = new System.Windows.Forms.TextBox();
@@ -46,7 +47,10 @@
             this.lvVerified2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblVerified2 = new System.Windows.Forms.Label();
+            this.mtbTime1 = new System.Windows.Forms.MaskedTextBox();
+            this.cmbFormat1 = new System.Windows.Forms.ComboBox();
+            this.mtbTime2 = new System.Windows.Forms.MaskedTextBox();
+            this.cmbFormat2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errVerified)).BeginInit();
             this.grpVerify.SuspendLayout();
             this.SuspendLayout();
@@ -57,29 +61,33 @@
             // 
             // dpVerified1
             // 
-            this.dpVerified1.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dpVerified1.CustomFormat = "dd/MM/yyyy";
             this.dpVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.dpVerified1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpVerified1.Location = new System.Drawing.Point(258, 19);
             this.dpVerified1.Name = "dpVerified1";
-            this.dpVerified1.Size = new System.Drawing.Size(177, 27);
+            this.dpVerified1.Size = new System.Drawing.Size(103, 27);
             this.dpVerified1.TabIndex = 1;
             this.dpVerified1.ValueChanged += new System.EventHandler(this.DpVerified1_ValueChanged);
             this.dpVerified1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpVerified1_KeyDown);
             // 
             // dpVerified2
             // 
-            this.dpVerified2.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dpVerified2.CustomFormat = "dd/MM/yyyy";
             this.dpVerified2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.dpVerified2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpVerified2.Location = new System.Drawing.Point(258, 46);
             this.dpVerified2.Name = "dpVerified2";
-            this.dpVerified2.Size = new System.Drawing.Size(177, 27);
-            this.dpVerified2.TabIndex = 3;
+            this.dpVerified2.Size = new System.Drawing.Size(103, 27);
+            this.dpVerified2.TabIndex = 5;
             this.dpVerified2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpVerified2_KeyDown);
             // 
             // grpVerify
             // 
+            this.grpVerify.Controls.Add(this.cmbFormat2);
+            this.grpVerify.Controls.Add(this.mtbTime2);
+            this.grpVerify.Controls.Add(this.cmbFormat1);
+            this.grpVerify.Controls.Add(this.mtbTime1);
             this.grpVerify.Controls.Add(this.lblVerified2);
             this.grpVerify.Controls.Add(this.txtDVerifed1);
             this.grpVerify.Controls.Add(this.txtDVerified2);
@@ -91,9 +99,18 @@
             this.grpVerify.Controls.Add(this.dpVerified1);
             this.grpVerify.Location = new System.Drawing.Point(12, 12);
             this.grpVerify.Name = "grpVerify";
-            this.grpVerify.Size = new System.Drawing.Size(451, 124);
+            this.grpVerify.Size = new System.Drawing.Size(454, 124);
             this.grpVerify.TabIndex = 0;
             this.grpVerify.TabStop = false;
+            // 
+            // lblVerified2
+            // 
+            this.lblVerified2.AutoSize = true;
+            this.lblVerified2.Location = new System.Drawing.Point(43, 100);
+            this.lblVerified2.Name = "lblVerified2";
+            this.lblVerified2.Size = new System.Drawing.Size(0, 20);
+            this.lblVerified2.TabIndex = 111111139;
+            this.lblVerified2.Visible = false;
             // 
             // txtDVerifed1
             // 
@@ -128,7 +145,7 @@
             this.txtVerified2.MaxLength = 100;
             this.txtVerified2.Name = "txtVerified2";
             this.txtVerified2.Size = new System.Drawing.Size(174, 27);
-            this.txtVerified2.TabIndex = 2;
+            this.txtVerified2.TabIndex = 4;
             this.txtVerified2.TextChanged += new System.EventHandler(this.TxtVerified2_TextChanged);
             this.txtVerified2.Enter += new System.EventHandler(this.TxtVerified2_Enter);
             this.txtVerified2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtVerified2_KeyDown);
@@ -161,11 +178,11 @@
             this.btnAuthorise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAuthorise.Image = global::ROMS.Properties.Resources.save;
             this.btnAuthorise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAuthorise.Location = new System.Drawing.Point(355, 81);
+            this.btnAuthorise.Location = new System.Drawing.Point(364, 81);
             this.btnAuthorise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnAuthorise.Name = "btnAuthorise";
             this.btnAuthorise.Size = new System.Drawing.Size(80, 33);
-            this.btnAuthorise.TabIndex = 13;
+            this.btnAuthorise.TabIndex = 8;
             this.btnAuthorise.Text = "Update";
             this.btnAuthorise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAuthorise.UseVisualStyleBackColor = true;
@@ -225,14 +242,59 @@
             // 
             this.columnHeader2.Width = 0;
             // 
-            // lblVerified2
+            // mtbTime1
             // 
-            this.lblVerified2.AutoSize = true;
-            this.lblVerified2.Location = new System.Drawing.Point(43, 100);
-            this.lblVerified2.Name = "lblVerified2";
-            this.lblVerified2.Size = new System.Drawing.Size(0, 20);
-            this.lblVerified2.TabIndex = 111111139;
-            this.lblVerified2.Visible = false;
+            this.mtbTime1.Location = new System.Drawing.Point(361, 18);
+            this.mtbTime1.Mask = "90:00";
+            this.mtbTime1.Name = "mtbTime1";
+            this.mtbTime1.Size = new System.Drawing.Size(42, 28);
+            this.mtbTime1.TabIndex = 2;
+            this.mtbTime1.ValidatingType = typeof(System.DateTime);
+            this.mtbTime1.Enter += new System.EventHandler(this.MtbTime1_Enter);
+            this.mtbTime1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MtbTime1_KeyDown);
+            this.mtbTime1.Leave += new System.EventHandler(this.MtbTime1_Leave);
+            // 
+            // cmbFormat1
+            // 
+            this.cmbFormat1.FormattingEnabled = true;
+            this.cmbFormat1.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.cmbFormat1.Location = new System.Drawing.Point(403, 18);
+            this.cmbFormat1.Name = "cmbFormat1";
+            this.cmbFormat1.Size = new System.Drawing.Size(41, 28);
+            this.cmbFormat1.TabIndex = 3;
+            this.cmbFormat1.Enter += new System.EventHandler(this.CmbFormat1_Enter);
+            this.cmbFormat1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbFormat1_KeyDown);
+            this.cmbFormat1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbFormat1_KeyPress);
+            this.cmbFormat1.Leave += new System.EventHandler(this.CmbFormat1_Leave);
+            // 
+            // mtbTime2
+            // 
+            this.mtbTime2.Location = new System.Drawing.Point(361, 46);
+            this.mtbTime2.Mask = "90:00";
+            this.mtbTime2.Name = "mtbTime2";
+            this.mtbTime2.Size = new System.Drawing.Size(42, 28);
+            this.mtbTime2.TabIndex = 6;
+            this.mtbTime2.ValidatingType = typeof(System.DateTime);
+            this.mtbTime2.Enter += new System.EventHandler(this.MtbTime2_Enter);
+            this.mtbTime2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MtbTime2_KeyDown);
+            this.mtbTime2.Leave += new System.EventHandler(this.MtbTime2_Leave);
+            // 
+            // cmbFormat2
+            // 
+            this.cmbFormat2.FormattingEnabled = true;
+            this.cmbFormat2.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.cmbFormat2.Location = new System.Drawing.Point(403, 46);
+            this.cmbFormat2.Name = "cmbFormat2";
+            this.cmbFormat2.Size = new System.Drawing.Size(41, 28);
+            this.cmbFormat2.TabIndex = 7;
+            this.cmbFormat2.Enter += new System.EventHandler(this.CmbFormat2_Enter);
+            this.cmbFormat2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbFormat2_KeyDown);
+            this.cmbFormat2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbFormat2_KeyPress);
+            this.cmbFormat2.Leave += new System.EventHandler(this.CmbFormat2_Leave);
             // 
             // PUR_GRN_Level_Verified
             // 
@@ -279,5 +341,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Label lblVerified2;
+        private System.Windows.Forms.MaskedTextBox mtbTime1;
+        private System.Windows.Forms.ComboBox cmbFormat2;
+        private System.Windows.Forms.MaskedTextBox mtbTime2;
+        private System.Windows.Forms.ComboBox cmbFormat1;
     }
 }

@@ -28,6 +28,7 @@ namespace ROMS
         ToolTip tpQRCode = new ToolTip();
         ToolTip tpinvamt = new ToolTip();
         ToolTip tpInvNo = new ToolTip();
+        ToolTip tpEntryType = new ToolTip();
         int flag = 0;
         public bool skipValidation = false;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
@@ -56,6 +57,7 @@ namespace ROMS
         {
             try
             {
+                errPurchaseentry.Clear();
                 if (pbPurchaseno == "0")
                 {
                     grdSupplierList.Enabled = true;
@@ -140,6 +142,7 @@ namespace ROMS
                         txtInvoiceNo.ReadOnly = false;
                         grdPODetails.Visible = true;
                         grdReurnDC.Visible = false;
+                        udfnSupplierDetails();
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                     {
@@ -1195,7 +1198,7 @@ namespace ROMS
                 }
             }
             DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (17) ORDER BY MST_DisplayText desc", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+            objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,17) AND MSTID<>0 ORDER BY MST_DisplayText desc", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
             objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID in (18) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
             objDataBind = null; //id
             if (PbFlag == "1")
@@ -1232,7 +1235,7 @@ namespace ROMS
             }
             else
             {
-                cmbEntryType.SelectedValue = "56";
+                cmbEntryType.SelectedValue = "-1";
             }
             cmbTransactionType.SelectedValue = "58";
         }
@@ -1937,7 +1940,17 @@ namespace ROMS
         {
             try
             {
-                cmbEntryType.BackColor = Color.White;
+                if(Convert.ToInt32(cmbEntryType.SelectedValue)==-1)
+                {
+                    errPurchaseentry.SetError(cmbEntryType, "Please select entry type");
+                    cmbEntryType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpEntryType.ShowAlways = true;
+                    tpEntryType.Show("Please select entry type", cmbEntryType, 5000);
+                }
+                else
+                {
+                    cmbEntryType.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -9512,8 +9525,11 @@ namespace ROMS
                             {
                                 LV_Supplier.Visible = false;
                                 //txtGstin.Enabled = true;
-                                MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                                MainForm.objPUR_GSTIN.ShowDialog();
+                                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 56)
+                                {
+                                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                                    MainForm.objPUR_GSTIN.ShowDialog();
+                                }
                             }
                             else
                             {

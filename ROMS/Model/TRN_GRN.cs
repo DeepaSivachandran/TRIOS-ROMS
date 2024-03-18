@@ -41,6 +41,10 @@ namespace ROMS.Model
         public DataTable paraGRNProd { get; set; } =null;
         public byte[] paraQrimg { get; set; } =null;
         public int paraSaveFlag { get; set; } = 0;
+        public string paraVerifiedTime1 { get; set; } = "";
+        public string paraVerifiedTime2 { get; set; } = "";
+        public string paraVerifiedFormat1 { get; set; } = "";
+        public string paraVerifiedFormat2 { get; set; } = "";
 
     }
 }

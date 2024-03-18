@@ -2467,6 +2467,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRNS_GRN.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraID", objTRNS_GRN.paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraSaveFlag", objTRNS_GRN.paraSaveFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime1", objTRNS_GRN.paraVerifiedTime1);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime2", objTRNS_GRN.paraVerifiedTime2);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat1", objTRNS_GRN.paraVerifiedFormat1);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat2", objTRNS_GRN.paraVerifiedFormat2);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
