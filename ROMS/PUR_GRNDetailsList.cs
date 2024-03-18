@@ -224,7 +224,7 @@ namespace ROMS
                             grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
                             grdGRNList.Columns["S.No."].Width = 50;
-                            grdGRNList.Columns["Company"].Width = 80;
+                            grdGRNList.Columns["Company"].Visible = false;
                             grdGRNList.Columns["GRN No."].Width = 100;
                             grdGRNList.Columns["GRN Date"].Width = 100;
                             grdGRNList.Columns["Supplier Name"].Width = 300;
@@ -233,8 +233,9 @@ namespace ROMS
                             grdGRNList.Columns["Invoice Date"].Width = 100;
                             grdGRNList.Columns["Invoice No."].Width = 100;
                             grdGRNList.Columns["Invoice Amount"].Width = 120;
-                            grdGRNList.Columns["Created By"].Width = 100;
-                            grdGRNList.Columns["Created On"].Width = 150;
+                            grdGRNList.Columns["Created By"].Width = 200;
+                            grdGRNList.Columns["Loading Charges"].Width = 150;
+                            grdGRNList.Columns["Unloading Charges"].Width = 150;
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Purchase Returns"].Width = 150;
                             grdGRNList.Columns["GRN Status"].Width = 130;
@@ -251,6 +252,8 @@ namespace ROMS
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["Loading Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNList.Columns["Unloading Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             grdGRNList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -308,7 +311,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Company"].Width = 80;
+                DGV_SearchGrid.Columns["Company"].Visible = false;
                 DGV_SearchGrid.Columns["GRN No."].Width = 100;
                 DGV_SearchGrid.Columns["GRN Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
@@ -689,6 +692,8 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.BringToFront();
+                //RPTViewer.SendToBack();
                 LV_Supplier.Items.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
@@ -1136,6 +1141,8 @@ namespace ROMS
             {
                 LV_Supplier.Visible = false;
                 lblschedleCode.Focus();
+                RPTViewer.Visible = false;
+                RPTViewer.SendToBack();
                 udfnListLoad();
             }
             catch (Exception ex)
@@ -1450,6 +1457,78 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                LV_Supplier.BringToFront();
+                picLoader.BringToFront();
+                Application.DoEvents();
+                if(txtSupplier.Text=="")
+                {
+                    txtSupplier.Text = "";
+                    lblSupplierCode.Text = "0";
+                }
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "");
+                objdserv.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_GRNDetailsList.rpt");
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("ParaGRNFromDate", Convert.ToString(dpFromDate.Text));
+                    objBillreport.SetParameterValue("ParaGRNToDate", Convert.ToString(dpToDate.Text));
+                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
+                    objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedleCode.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
+                    objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(txtSupplier.Text));
+                    objBillreport.SetParameterValue("paraOrderTypeName", Convert.ToString(cmbOrdertype.Text));
+                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraOrdertype", 0);
+                    objBillreport.SetParameterValue("paraStatus", 0);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnPrint.Enabled = true;
+                btnPrint.Focus();
+                GC.Collect();
+                LV_Supplier.BringToFront();
             }
         }
 
