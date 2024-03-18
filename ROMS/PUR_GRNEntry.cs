@@ -36,8 +36,8 @@ namespace ROMS
         {
             try
             {
-                udfnclose();
-                MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                udfnclose(sender, e);
+                MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnclose()
+        public void udfnclose(object sender,EventArgs e)
         {
 
             try
@@ -74,6 +74,7 @@ namespace ROMS
             finally
             {
                 MainForm.objPUR_GRNDetailsList.grdGRNList.ClearSelection();
+                MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender, e);
             }
         }
 
@@ -309,7 +310,7 @@ namespace ROMS
 
                 varcomid = Convert.ToString(cmbConcern.SelectedValue);
                 varDateChange = 0;
-                udfnvoucherload();
+                udfnvoucherload(sender, e);
             }
             catch (Exception ex)
             {
@@ -318,7 +319,7 @@ namespace ROMS
             }
         }
 
-        public void udfnvoucherload()
+        public void udfnvoucherload(object sender,EventArgs e)
         {
             try
             {
@@ -344,7 +345,7 @@ namespace ROMS
                             varVoucherSkip = false;
                             if (varDateChange == 0)
                             {
-                                udfnvoucheradd();
+                                udfnvoucheradd(sender, e);
                             }
                             //if (Convert.ToInt32(cmbConcern.SelectedValue) == MainForm.pbDefaultComId)
                             //{
@@ -366,7 +367,7 @@ namespace ROMS
         }
 
 
-        public void udfnvoucheradd()
+        public void udfnvoucheradd(object sender,EventArgs e)
         {
             try
             {
@@ -381,7 +382,7 @@ namespace ROMS
                     {
                         varVoucherSkip = true;
                         varClose = 1;
-                        udfnclose();
+                        udfnclose(sender, e);
                         //MainForm.objCP_Settings = new CP_Settings();
                         //MainForm.objCP_Settings.MdiParent = this.ParentForm;
                         //MainForm.objCP_Settings.Show();
@@ -1061,7 +1062,7 @@ namespace ROMS
         {
             try
             {
-                udfnSave();
+                udfnSave(sender, e);
             }
             catch (Exception ex)
             {
@@ -1074,7 +1075,7 @@ namespace ROMS
             }
         }
 
-        public void udfnSave()
+        public void udfnSave(object sender,EventArgs e)
         {
             try
             {
@@ -1183,7 +1184,7 @@ namespace ROMS
                     }
                     if (Convert.ToString(txtgrnno.Text) == "")
                     {
-                        udfnvoucheradd();
+                        udfnvoucheradd(sender, e);
                         VarErrorFlag = true;
                     }
                     if (VarErrorFlag == false)
@@ -1385,16 +1386,16 @@ namespace ROMS
                                                                     objError = new DataError();
                                                                     objError.WriteFile(ex);
                                                                 }
-                                                                udfnclose();
+                                                                udfnclose(sender, e);
                                                             }
                                                             else
                                                             {
-                                                                udfnclose();
+                                                                udfnclose(sender, e);
                                                             }
                                                         }
                                                         else
                                                         {
-                                                            udfnclose();
+                                                            udfnclose(sender, e);
                                                         }
                                                     }
                                                 }
@@ -1974,7 +1975,7 @@ namespace ROMS
             try
             {
                 varDateChange = 1;
-                udfnvoucherload();
+                udfnvoucherload(sender, e);
             }
             catch (Exception ex)
             {
@@ -2111,11 +2112,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    udfnclose();
+                    udfnclose(sender, e);
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    udfnSave();
+                    udfnSave(sender, e);
                 }
             }
             catch (Exception ex)

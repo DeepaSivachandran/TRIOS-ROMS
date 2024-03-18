@@ -40,36 +40,35 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        //public void udfnDate()
-        //{
-        //    try
-        //    {
-        //        SPDataService objDServ = new SPDataService();
-        //        DataSet objd = new DataSet(); 
-        //        objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
-        //        objDServ.CloseConnection();
-        //        if (objd.Tables[1].Rows.Count != 0)
-        //        {
-        //            varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-        //        } 
-        //        objd = null; 
-        //        objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 6);
-        //        objDServ.CloseConnection();
-        //        if (objd.Tables[0].Rows.Count != 0)
-        //        {
-        //            DateTime varmindate = MainForm.pbFYStartDate;
-        //            dpFromDate.MinDate = varmindate;
-        //            dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
-        //        }
-
-        //        dpFromDate.MaxDate = varmaxdate;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
+        public void udfnDate()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                objDServ.CloseConnection();
+                if (objd.Tables[1].Rows.Count != 0)
+                {
+                    varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                objd = null;
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 6);
+                objDServ.CloseConnection();
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime varmindate = MainForm.pbFYStartDate;
+                    dpFromDate.MinDate = varmindate;
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+                }
+                dpFromDate.MaxDate = varmaxdate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_GRNDetailsList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -118,16 +117,17 @@ namespace ROMS
             }
         }
 
-        private void PUR_GRNDetailsList_Load(object sender, EventArgs e)
+        public void PUR_GRNDetailsList_Load(object sender, EventArgs e)
         {
             try
             {
-                //udfnDate();
+                udfnDate();
                 udfnConcernLoad();
-                dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                //dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
+                txtSupplier.Text = "";
                 udfnListLoad();
             }
             catch (Exception ex)
