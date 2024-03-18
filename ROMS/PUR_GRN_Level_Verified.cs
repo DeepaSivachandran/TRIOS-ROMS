@@ -41,7 +41,7 @@ namespace ROMS
         {
             try
             {
-                bool blnErrorFlag = false;
+                bool blnErrorFlag = false; errVerified.Clear();
                 if (Convert.ToString(txtVerified1.Text.Trim()) == "" && Convert.ToString(txtVerified2.Text.Trim())=="")
                 {
                     errVerified.SetError(txtVerified1, "Please select verified by 1");
@@ -61,6 +61,38 @@ namespace ROMS
                     tpVerified1.ShowAlways = true;
                     tpVerified1.Show("Please select verified by 1", txtVerified1, 5000);
                     blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtVerified1.Text.Trim()) != "")
+                {
+                    string[] varTime = mtbTime1.Text.Split(':');
+                    if(varTime[0].Trim()=="")
+                    {
+                        errVerified.SetError(mtbTime1, "Please enter time");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
+                    if (varTime[1].Trim() == "")
+                    {
+                        errVerified.SetError(mtbTime1, "Please enter minute");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToString(txtVerified2.Text.Trim()) != "")
+                {
+                    string[] varTime = mtbTime2.Text.Split(':');
+                    if (varTime[0].Trim() == "")
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter time");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
+                    if (varTime[1].Trim() == "")
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter minute");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -98,13 +130,21 @@ namespace ROMS
                 {
                     Originator = "GRN Verifed2";
                 }
+                if(txtVerified2.Text.Trim()=="")
+                {
+                    mtbTime2.Text = "";
+                }
                 Model.TRN_GRN objTRNS_GRN = new Model.TRN_GRN();
                 objTRNS_GRN.ViewType = 2;
                 objTRNS_GRN.ParaGRNID = Convert.ToInt32(pbGRNId);
                 objTRNS_GRN.ParaVerify1 = Convert.ToInt32(V1_EMPID);
                 objTRNS_GRN.ParaVerify2 = Convert.ToInt32(V2_EMPID);
-                objTRNS_GRN.ParaVerifyDate1 = Convert.ToString(dpVerified1.Text);
-                objTRNS_GRN.ParaVerifyDate2 = Convert.ToString(dpVerified2.Text);
+                objTRNS_GRN.ParaVerifyDate1 = dpVerified1.Text;
+                objTRNS_GRN.ParaVerifyDate2 = dpVerified2.Text;
+                objTRNS_GRN.paraVerifiedTime1 = mtbTime1.Text;
+                objTRNS_GRN.paraVerifiedTime2 = mtbTime2.Text;
+                objTRNS_GRN.paraVerifiedFormat1 = cmbFormat1.Text;
+                objTRNS_GRN.paraVerifiedFormat2 = cmbFormat2.Text;
                 objTRNS_GRN.paraOriginator = Originator;
                 result = objDser.udfnGRNEntry(objTRNS_GRN);
                 objDser.CloseConnection();
@@ -152,7 +192,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAuthorise.Focus();
+                    mtbTime2.Focus();
                 }
             }
             catch (Exception ex)
@@ -168,7 +208,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtVerified2.Focus();
+                    mtbTime1.Focus();
                 }
             }
             catch (Exception ex)
@@ -183,10 +223,10 @@ namespace ROMS
             try
             {
                 udfnDateLoad();
-                //dpVerified1.MinDate = MainForm.pbFYStartDate;
-                //dpVerified1.MaxDate = MainForm.pbCurrentDate;
-                //dpVerified2.MinDate = MainForm.pbFYStartDate;
-                //dpVerified2.MaxDate = MainForm.pbCurrentDate;
+                dpVerified1.MinDate = MainForm.pbFYStartDate;
+                dpVerified1.MaxDate = MainForm.pbCurrentDate;
+                dpVerified2.MinDate = MainForm.pbFYStartDate;
+                dpVerified2.MaxDate = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
             {
@@ -213,6 +253,10 @@ namespace ROMS
                             Verified2= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby2"].ToString());
                             dpVerified1.Text = objDs.Tables[0].Rows[0]["GRN1_VerfiedOn"].ToString();
                             dpVerified2.Text = objDs.Tables[0].Rows[0]["GRN2_VerfiedOn"].ToString();
+                            mtbTime1.Text = objDs.Tables[0].Rows[0]["GRN_Verified_Time1"].ToString();
+                            mtbTime2.Text = objDs.Tables[0].Rows[0]["GRN_Verified_Time2"].ToString();
+                            cmbFormat1.Text = objDs.Tables[0].Rows[0]["GRN_Verified_format1"].ToString();
+                            cmbFormat2.Text = objDs.Tables[0].Rows[0]["GRN_Verified_format2"].ToString();
                             DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                             dpVerified1.MaxDate = varmaxdate;
                             dpVerified2.MaxDate = varmaxdate;
@@ -238,6 +282,14 @@ namespace ROMS
                         lvVerified1.Visible = false;
                         lvVerified2.Visible = false;
                     }
+                }
+                if(txtVerified1.Text.Trim()=="")
+                {
+                    cmbFormat1.SelectedIndex = 0;
+                }
+                if (txtVerified2.Text.Trim() == "")
+                {
+                    cmbFormat2.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -295,7 +347,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtVerified2.Focus();
+                    dpVerified1.Focus();
                 }
             }
             catch (Exception ex)
@@ -500,7 +552,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAuthorise.Focus();
+                    dpVerified2.Focus();
                 }
             }
             catch (Exception ex)
@@ -557,9 +609,250 @@ namespace ROMS
             finally
             {
                 lvVerified2.Visible = false;
-                btnAuthorise.Focus();
+                dpVerified2.Focus();
             }
         }
+
+        private void MtbTime1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                mtbTime1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void MtbTime1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFormat1.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void MtbTime1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                int error = 0;
+                if (txtVerified1.Text.Trim() != "")
+                {
+                    string[] varTime = mtbTime1.Text.Split(':');
+                    int Hour = varTime[0].Trim().Length;
+                    int Min = varTime[1].Trim().Length;
+                    if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour==1)
+                    {
+                        errVerified.SetError(mtbTime1, "Please enter valid hour");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        error = 1;
+                    }
+                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min==1)
+                    {
+                        errVerified.SetError(mtbTime1, "Please enter valid minute");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        error = 1;
+                    }
+                }
+                if(error==0)
+                {
+                    errVerified.Clear();
+                    mtbTime1.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void MtbTime2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                mtbTime2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void MtbTime2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFormat2.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void MtbTime2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                int error = 0;
+                if (txtVerified2.Text.Trim() != "")
+                {
+                    string[] varTime = mtbTime2.Text.Split(':');
+                    int Hour = varTime[0].Trim().Length;
+                    int Min = varTime[1].Trim().Length;
+                    if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour==1)
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter valid hour");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        error = 1;
+                    }
+                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min==1)
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter valid minute");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        error = 1;
+                    }
+                }
+                if (error == 0)
+                {
+                    errVerified.Clear();
+                    mtbTime2.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat1.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtVerified2.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnAuthorise.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnVerified1()
         {
             try
@@ -579,7 +872,7 @@ namespace ROMS
             finally
             {
                 lvVerified1.Visible = false;
-                txtVerified2.Focus();
+                dpVerified1.Focus();
             }
         }
         private void LvVerified1_DoubleClick(object sender, EventArgs e)

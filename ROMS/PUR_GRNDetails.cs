@@ -1462,6 +1462,10 @@ namespace ROMS
         {
             try
             {
+                if (txtmrprate.Text.Trim() == "")
+                {
+                    txtmrprate.Text = "0";
+                }
                 txtmrprate.BackColor = Color.White;
                 decimal varMRP = Math.Round(Convert.ToDecimal(txtmrprate.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                 string mrp = string.Format("{0:0.00}", varMRP);
@@ -3611,6 +3615,10 @@ namespace ROMS
                                 }
                             }
                         }
+                    }
+                    if(txtmrprate.Text.Trim()=="")
+                    {
+                        txtmrprate.Text = "0";
                     }
                     if (varflag == 0)
                     {

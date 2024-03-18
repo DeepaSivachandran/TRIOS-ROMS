@@ -56,16 +56,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPurchase = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -85,6 +85,9 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblFinishedNoRecord = new System.Windows.Forms.Label();
             this.txtInvoiceamt = new System.Windows.Forms.TextBox();
+            this.gprate = new System.Windows.Forms.GroupBox();
+            this.rbAfterBefore = new System.Windows.Forms.RadioButton();
+            this.rbRateBefore = new System.Windows.Forms.RadioButton();
             this.label35 = new System.Windows.Forms.Label();
             this.btnViewDataView = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -205,6 +208,7 @@
             this.UT_DECIMAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDCQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInwardFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCosting = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -286,9 +290,6 @@
             this.txtotherexpense = new System.Windows.Forms.TextBox();
             this.txtDiscountamt = new System.Windows.Forms.TextBox();
             this.Txtdiscount = new System.Windows.Forms.TextBox();
-            this.gprate = new System.Windows.Forms.GroupBox();
-            this.rbAfterBefore = new System.Windows.Forms.RadioButton();
-            this.rbRateBefore = new System.Windows.Forms.RadioButton();
             this.gpPayment = new System.Windows.Forms.GroupBox();
             this.rbPaymentCheque = new System.Windows.Forms.RadioButton();
             this.rbPaymentCash = new System.Windows.Forms.RadioButton();
@@ -300,6 +301,12 @@
             this.label25 = new System.Windows.Forms.Label();
             this.chkInvoice = new System.Windows.Forms.CheckBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
+            this.grdReurnDC = new System.Windows.Forms.DataGridView();
+            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemoveDC = new System.Windows.Forms.DataGridViewImageColumn();
             this.grdPODetails = new System.Windows.Forms.DataGridView();
             this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPODate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -311,12 +318,6 @@
             this.clmGRNNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGRNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdReurnDC = new System.Windows.Forms.DataGridView();
-            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemoveDC = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lblDPercentage = new System.Windows.Forms.Label();
             this.lblPercentage = new System.Windows.Forms.Label();
@@ -336,6 +337,7 @@
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gprate.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tbDetails.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -349,12 +351,11 @@
             this.grpTCSamt.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.grpLoadingCharge.SuspendLayout();
-            this.gprate.SuspendLayout();
             this.gpPayment.SuspendLayout();
             this.gpdiscount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRN)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errPurchaseentry)).BeginInit();
             this.SuspendLayout();
@@ -438,15 +439,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.lv_Broker);
             this.groupBox1.Controls.Add(this.lblFinishedNoRecord);
             this.groupBox1.Controls.Add(this.txtInvoiceamt);
+            this.groupBox1.Controls.Add(this.gprate);
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.btnViewDataView);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.cmbConcern);
-            this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.lblGodown);
             this.groupBox1.Controls.Add(this.tbDetails);
             this.groupBox1.Controls.Add(this.label12);
@@ -496,7 +498,6 @@
             this.groupBox1.Controls.Add(this.grpTCSamt);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.grpLoadingCharge);
-            this.groupBox1.Controls.Add(this.gprate);
             this.groupBox1.Controls.Add(this.gpPayment);
             this.groupBox1.Controls.Add(this.gpdiscount);
             this.groupBox1.Controls.Add(this.label22);
@@ -601,6 +602,47 @@
             this.txtInvoiceamt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceamt_KeyDown);
             this.txtInvoiceamt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtInvoiceamt_KeyPress);
             this.txtInvoiceamt.Leave += new System.EventHandler(this.TxtInvoiceamt_Leave);
+            // 
+            // gprate
+            // 
+            this.gprate.Controls.Add(this.rbAfterBefore);
+            this.gprate.Controls.Add(this.rbRateBefore);
+            this.gprate.Font = new System.Drawing.Font("Oswald Regular", 10F);
+            this.gprate.Location = new System.Drawing.Point(936, 60);
+            this.gprate.Name = "gprate";
+            this.gprate.Size = new System.Drawing.Size(165, 45);
+            this.gprate.TabIndex = 16;
+            this.gprate.TabStop = false;
+            this.gprate.Text = "Rate Calculation";
+            this.gprate.Visible = false;
+            // 
+            // rbAfterBefore
+            // 
+            this.rbAfterBefore.AutoSize = true;
+            this.rbAfterBefore.Location = new System.Drawing.Point(91, 17);
+            this.rbAfterBefore.Name = "rbAfterBefore";
+            this.rbAfterBefore.Size = new System.Drawing.Size(72, 23);
+            this.rbAfterBefore.TabIndex = 17;
+            this.rbAfterBefore.Text = "After Tax";
+            this.rbAfterBefore.UseVisualStyleBackColor = true;
+            this.rbAfterBefore.Enter += new System.EventHandler(this.RbAfterBefore_Enter);
+            this.rbAfterBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbAfterBefore_KeyDown);
+            this.rbAfterBefore.Leave += new System.EventHandler(this.RbAfterBefore_Leave);
+            // 
+            // rbRateBefore
+            // 
+            this.rbRateBefore.AutoSize = true;
+            this.rbRateBefore.Checked = true;
+            this.rbRateBefore.Location = new System.Drawing.Point(8, 17);
+            this.rbRateBefore.Name = "rbRateBefore";
+            this.rbRateBefore.Size = new System.Drawing.Size(80, 23);
+            this.rbRateBefore.TabIndex = 16;
+            this.rbRateBefore.TabStop = true;
+            this.rbRateBefore.Text = "Before Tax";
+            this.rbRateBefore.UseVisualStyleBackColor = true;
+            this.rbRateBefore.Enter += new System.EventHandler(this.RbRateBefore_Enter);
+            this.rbRateBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbRateBefore_KeyDown);
+            this.rbRateBefore.Leave += new System.EventHandler(this.RbRateBefore_Leave);
             // 
             // label35
             // 
@@ -741,7 +783,7 @@
             this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClear.Image = global::ROMS.Properties.Resources.reset;
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1021, 103);
+            this.btnClear.Location = new System.Drawing.Point(1021, 102);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(80, 28);
             this.btnClear.TabIndex = 200000;
@@ -1602,7 +1644,8 @@
             this.clmPURPRID,
             this.UT_DECIMAL,
             this.clmDCQuantity,
-            this.clmInwardFlag});
+            this.clmInwardFlag,
+            this.clmCosting});
             this.grdPurchaseList.EnableHeadersVisualStyles = false;
             this.grdPurchaseList.GridColor = System.Drawing.Color.White;
             this.grdPurchaseList.Location = new System.Drawing.Point(5, 5);
@@ -1617,6 +1660,7 @@
             this.grdPurchaseList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseList_CellValueChanged);
             this.grdPurchaseList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdPurchaseList_EditingControlShowing);
             this.grdPurchaseList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseList_KeyDown);
+            this.grdPurchaseList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GrdPurchaseList_KeyPress);
             this.grdPurchaseList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseList_KeyUp);
             // 
             // dataGridViewTextBoxColumn6
@@ -1756,7 +1800,7 @@
             dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle21.BackColor = System.Drawing.Color.PaleGreen;
             this.clmPurchaseRate.DefaultCellStyle = dataGridViewCellStyle21;
-            this.clmPurchaseRate.HeaderText = "Purchase Rate";
+            this.clmPurchaseRate.HeaderText = "Bill Rate";
             this.clmPurchaseRate.Name = "clmPurchaseRate";
             this.clmPurchaseRate.Width = 80;
             // 
@@ -1877,6 +1921,12 @@
             this.clmInwardFlag.Name = "clmInwardFlag";
             this.clmInwardFlag.ReadOnly = true;
             this.clmInwardFlag.Visible = false;
+            // 
+            // clmCosting
+            // 
+            this.clmCosting.HeaderText = "Costing";
+            this.clmCosting.Name = "clmCosting";
+            this.clmCosting.ReadOnly = true;
             // 
             // label12
             // 
@@ -2812,46 +2862,6 @@
             this.Txtdiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtdiscount_KeyPress);
             this.Txtdiscount.Leave += new System.EventHandler(this.Txtdiscount_Leave);
             // 
-            // gprate
-            // 
-            this.gprate.Controls.Add(this.rbAfterBefore);
-            this.gprate.Controls.Add(this.rbRateBefore);
-            this.gprate.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.gprate.Location = new System.Drawing.Point(936, 13);
-            this.gprate.Name = "gprate";
-            this.gprate.Size = new System.Drawing.Size(165, 45);
-            this.gprate.TabIndex = 16;
-            this.gprate.TabStop = false;
-            this.gprate.Text = "Rate Calculation";
-            // 
-            // rbAfterBefore
-            // 
-            this.rbAfterBefore.AutoSize = true;
-            this.rbAfterBefore.Location = new System.Drawing.Point(91, 17);
-            this.rbAfterBefore.Name = "rbAfterBefore";
-            this.rbAfterBefore.Size = new System.Drawing.Size(72, 23);
-            this.rbAfterBefore.TabIndex = 17;
-            this.rbAfterBefore.Text = "After Tax";
-            this.rbAfterBefore.UseVisualStyleBackColor = true;
-            this.rbAfterBefore.Enter += new System.EventHandler(this.RbAfterBefore_Enter);
-            this.rbAfterBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbAfterBefore_KeyDown);
-            this.rbAfterBefore.Leave += new System.EventHandler(this.RbAfterBefore_Leave);
-            // 
-            // rbRateBefore
-            // 
-            this.rbRateBefore.AutoSize = true;
-            this.rbRateBefore.Checked = true;
-            this.rbRateBefore.Location = new System.Drawing.Point(8, 17);
-            this.rbRateBefore.Name = "rbRateBefore";
-            this.rbRateBefore.Size = new System.Drawing.Size(80, 23);
-            this.rbRateBefore.TabIndex = 16;
-            this.rbRateBefore.TabStop = true;
-            this.rbRateBefore.Text = "Before Tax";
-            this.rbRateBefore.UseVisualStyleBackColor = true;
-            this.rbRateBefore.Enter += new System.EventHandler(this.RbRateBefore_Enter);
-            this.rbRateBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbRateBefore_KeyDown);
-            this.rbRateBefore.Leave += new System.EventHandler(this.RbRateBefore_Leave);
-            // 
             // gpPayment
             // 
             this.gpPayment.Controls.Add(this.rbPaymentCheque);
@@ -2897,7 +2907,7 @@
             this.gpdiscount.Controls.Add(this.rbDiscountAfter);
             this.gpdiscount.Controls.Add(this.rbDiscountBefore);
             this.gpdiscount.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.gpdiscount.Location = new System.Drawing.Point(936, 57);
+            this.gpdiscount.Location = new System.Drawing.Point(936, 13);
             this.gpdiscount.Name = "gpdiscount";
             this.gpdiscount.Size = new System.Drawing.Size(165, 47);
             this.gpdiscount.TabIndex = 18;
@@ -2985,6 +2995,91 @@
             this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
             this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
             this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
+            // 
+            // grdReurnDC
+            // 
+            this.grdReurnDC.AllowUserToAddRows = false;
+            this.grdReurnDC.AllowUserToDeleteRows = false;
+            this.grdReurnDC.AllowUserToResizeColumns = false;
+            this.grdReurnDC.AllowUserToResizeRows = false;
+            this.grdReurnDC.BackgroundColor = System.Drawing.Color.White;
+            this.grdReurnDC.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdReurnDC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            this.grdReurnDC.ColumnHeadersHeight = 30;
+            this.grdReurnDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdReurnDC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.InvoiceNo,
+            this.DCDate,
+            this.TotalProducts,
+            this.ID,
+            this.clmRemoveDC});
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReurnDC.DefaultCellStyle = dataGridViewCellStyle30;
+            this.grdReurnDC.EnableHeadersVisualStyles = false;
+            this.grdReurnDC.GridColor = System.Drawing.Color.White;
+            this.grdReurnDC.Location = new System.Drawing.Point(10, 429);
+            this.grdReurnDC.Name = "grdReurnDC";
+            this.grdReurnDC.ReadOnly = true;
+            this.grdReurnDC.RowHeadersVisible = false;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            this.grdReurnDC.RowsDefaultCellStyle = dataGridViewCellStyle31;
+            this.grdReurnDC.RowTemplate.Height = 25;
+            this.grdReurnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdReurnDC.Size = new System.Drawing.Size(442, 161);
+            this.grdReurnDC.TabIndex = 111111137;
+            this.grdReurnDC.Visible = false;
+            this.grdReurnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentClick);
+            this.grdReurnDC.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentDoubleClick);
+            // 
+            // InvoiceNo
+            // 
+            this.InvoiceNo.HeaderText = "DC No.";
+            this.InvoiceNo.Name = "InvoiceNo";
+            this.InvoiceNo.ReadOnly = true;
+            // 
+            // DCDate
+            // 
+            this.DCDate.HeaderText = "DC Date";
+            this.DCDate.Name = "DCDate";
+            this.DCDate.ReadOnly = true;
+            // 
+            // TotalProducts
+            // 
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.TotalProducts.DefaultCellStyle = dataGridViewCellStyle29;
+            this.TotalProducts.HeaderText = "Total Products";
+            this.TotalProducts.Name = "TotalProducts";
+            this.TotalProducts.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // clmRemoveDC
+            // 
+            this.clmRemoveDC.HeaderText = "Remove";
+            this.clmRemoveDC.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveDC.Name = "clmRemoveDC";
+            this.clmRemoveDC.ReadOnly = true;
+            this.clmRemoveDC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemoveDC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemoveDC.Width = 70;
             // 
             // grdPODetails
             // 
@@ -3131,91 +3226,6 @@
             this.clmGRNID.Name = "clmGRNID";
             this.clmGRNID.ReadOnly = true;
             this.clmGRNID.Visible = false;
-            // 
-            // grdReurnDC
-            // 
-            this.grdReurnDC.AllowUserToAddRows = false;
-            this.grdReurnDC.AllowUserToDeleteRows = false;
-            this.grdReurnDC.AllowUserToResizeColumns = false;
-            this.grdReurnDC.AllowUserToResizeRows = false;
-            this.grdReurnDC.BackgroundColor = System.Drawing.Color.White;
-            this.grdReurnDC.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdReurnDC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
-            this.grdReurnDC.ColumnHeadersHeight = 30;
-            this.grdReurnDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdReurnDC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.InvoiceNo,
-            this.DCDate,
-            this.TotalProducts,
-            this.ID,
-            this.clmRemoveDC});
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdReurnDC.DefaultCellStyle = dataGridViewCellStyle30;
-            this.grdReurnDC.EnableHeadersVisualStyles = false;
-            this.grdReurnDC.GridColor = System.Drawing.Color.White;
-            this.grdReurnDC.Location = new System.Drawing.Point(10, 429);
-            this.grdReurnDC.Name = "grdReurnDC";
-            this.grdReurnDC.ReadOnly = true;
-            this.grdReurnDC.RowHeadersVisible = false;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            this.grdReurnDC.RowsDefaultCellStyle = dataGridViewCellStyle31;
-            this.grdReurnDC.RowTemplate.Height = 25;
-            this.grdReurnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdReurnDC.Size = new System.Drawing.Size(442, 161);
-            this.grdReurnDC.TabIndex = 111111137;
-            this.grdReurnDC.Visible = false;
-            this.grdReurnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentClick);
-            this.grdReurnDC.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentDoubleClick);
-            // 
-            // InvoiceNo
-            // 
-            this.InvoiceNo.HeaderText = "DC No.";
-            this.InvoiceNo.Name = "InvoiceNo";
-            this.InvoiceNo.ReadOnly = true;
-            // 
-            // DCDate
-            // 
-            this.DCDate.HeaderText = "DC Date";
-            this.DCDate.Name = "DCDate";
-            this.DCDate.ReadOnly = true;
-            // 
-            // TotalProducts
-            // 
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.TotalProducts.DefaultCellStyle = dataGridViewCellStyle29;
-            this.TotalProducts.HeaderText = "Total Products";
-            this.TotalProducts.Name = "TotalProducts";
-            this.TotalProducts.ReadOnly = true;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // clmRemoveDC
-            // 
-            this.clmRemoveDC.HeaderText = "Remove";
-            this.clmRemoveDC.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemoveDC.Name = "clmRemoveDC";
-            this.clmRemoveDC.ReadOnly = true;
-            this.clmRemoveDC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemoveDC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemoveDC.Width = 70;
             // 
             // groupBox10
             // 
@@ -3419,6 +3429,8 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gprate.ResumeLayout(false);
+            this.gprate.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tbDetails.ResumeLayout(false);
@@ -3439,15 +3451,13 @@
             this.groupBox5.PerformLayout();
             this.grpLoadingCharge.ResumeLayout(false);
             this.grpLoadingCharge.PerformLayout();
-            this.gprate.ResumeLayout(false);
-            this.gprate.PerformLayout();
             this.gpPayment.ResumeLayout(false);
             this.gpPayment.PerformLayout();
             this.gpdiscount.ResumeLayout(false);
             this.gpdiscount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).EndInit();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errPurchaseentry)).EndInit();
@@ -3725,5 +3735,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UT_DECIMAL;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDCQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInwardFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCosting;
     }
 }
