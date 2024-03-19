@@ -47,6 +47,9 @@ namespace ROMS
         {
             try
             {
+                DataBind objDBind = new DataBind();
+                objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (64) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
+                objDBind = null;
                 this.ActiveControl = txtProductName;
                 udfnDropdownLoad();
                 udfnEditLoad();
@@ -755,6 +758,7 @@ namespace ROMS
                             objTRNS_GRN1.paraSupplierID =Convert.ToInt32(lblSupplierCode.Text);
                             objTRNS_GRN1.paraScheduleID =Convert.ToInt32(lblschedule.Text);
                             objTRNS_GRN1.paraID = ParaSupplierAMT;
+                            objTRNS_GRN1.paraPayment = Convert.ToInt32(cmbPayment.SelectedValue);
                             objTRNS_GRN1.paraSaveFlag = 1;
                             objTRNS_GRN1.paraGRNProd = objGRNProd;
                             result2 = objspdservice.udfnGRNEntry(objTRNS_GRN1);
@@ -784,6 +788,7 @@ namespace ROMS
                                     objTRNS_GRN.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                                     objTRNS_GRN.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                                     objTRNS_GRN.paraID = ParaSupplierAMT;
+                                    objTRNS_GRN.paraPayment = Convert.ToInt32(cmbPayment.SelectedValue);
                                     objTRNS_GRN.paraSkipped = varSkip;
                                     objTRNS_GRN.paraGRNProd = objGRNProd;
                                     objTRNS_GRN.paraGRNDate = dpGrnDate.Text;
@@ -2502,6 +2507,62 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbPayment_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPayment.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbPONo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPayment.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnVerifiedBy()
         {
             try
@@ -4070,7 +4131,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPONo.Focus();
+                    cmbPayment.Focus();
                 }
             }
             catch (Exception ex)
@@ -4453,7 +4514,8 @@ namespace ROMS
                         {
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
-                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            //lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXXX";
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
@@ -4534,6 +4596,7 @@ namespace ROMS
                                 txtInvoiceno.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceNo"]);
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceAmnt"]);
                                 txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Remarks"]);
+                                cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;
                                 cmbConcern.Enabled = false;

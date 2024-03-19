@@ -332,5 +332,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPurchaseOrder_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    string supplierid = "0", scheduleid = "0";
+                    supplierid = Convert.ToString(MainForm.objPUR_GRNEntry.lblSupplierCode.Text);
+                    scheduleid = Convert.ToString(MainForm.objPUR_GRNEntry.lblschedule.Text);
+                    switch (grdPurchaseOrder.Columns[e.ColumnIndex].Name)
+                    {
+                        case "PO.No":
+                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                            {
+                                string cellPOValue = Convert.ToString(grdPurchaseOrder.Rows[e.RowIndex].Cells["poid"].Value);
+                                MainForm.objPUR_POProducts = new PUR_POProducts();
+                                MainForm.objPUR_POProducts.pbPoid = cellPOValue;
+                                MainForm.objPUR_POProducts.pbSupplierCode = supplierid;
+                                MainForm.objPUR_POProducts.pbScheduleCode = scheduleid;
+                                MainForm.objPUR_POProducts.ShowDialog();
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
