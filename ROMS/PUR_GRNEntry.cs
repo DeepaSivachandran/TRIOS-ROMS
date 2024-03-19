@@ -887,7 +887,7 @@ namespace ROMS
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
                             //lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
-                            lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXXX";
+                            lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXX";
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy :" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();

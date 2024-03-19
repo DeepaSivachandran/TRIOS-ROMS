@@ -39,6 +39,7 @@ namespace ROMS
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0, varUpDownKey=0, varDecimal=0;
         public bool VarSearchFlag = true;
         public int PbVerified = 0,ParaSupplierAMT = 0;
+        public string varGSTIN = "1";
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -707,7 +708,43 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if (result1 == DialogResult.Yes)
+                    if(chkCompleted.Checked == true && varErrorFormat !=1)
+                    {
+                        Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                        objMR_Supplier.ViewType = 33;
+                        objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                        objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                        DataSet objDserv = new DataSet();
+                        SPDataService objspdservice = new SPDataService();
+                        objDserv = objspdservice.udfnSupplierList(objMR_Supplier);
+                        objspdservice.CloseConnection();
+                        if(objDserv !=null)
+                        {
+                            string value = "";
+                            if (objDserv.Tables.Count != 0)
+                            {
+                                if (objDserv.Tables[0].Rows.Count != 0)
+                                {
+                                    value= Convert.ToString(objDserv.Tables[0].Rows[0]["Value"]);
+                                }
+                            }
+                            if(value=="1")
+                            {
+                                varGSTIN = "0";
+                                MainForm.objGRN_GSTIN = new GRN_GSTIN();
+                                MainForm.objGRN_GSTIN.ShowDialog();
+                            }
+                            else
+                            {
+                                varGSTIN = "1";
+                            }
+                        }
+                    }
+                    if(chkCompleted.Checked==false)
+                    {
+                        varGSTIN = "1";
+                    }
+                    if (result1 == DialogResult.Yes && varGSTIN=="1")
                     {
                         errGRNDetails.Clear();
                         for (int i = 0; i < grdReurnDC.Rows.Count; i++)
@@ -971,7 +1008,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (varErrorFormat == 0)
+                        if (varErrorFormat == 0 && varGSTIN == "1")
                         {
                             udfnDcAdd();
                         }
@@ -2434,6 +2471,7 @@ namespace ROMS
                 if (PbVerified ==1)
                 {
                     udfnVerifiedBy();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -4515,7 +4553,7 @@ namespace ROMS
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
                             //lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
-                            lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXXX";
+                            lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXX";
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
