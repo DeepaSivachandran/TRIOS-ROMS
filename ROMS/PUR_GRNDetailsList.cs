@@ -234,13 +234,14 @@ namespace ROMS
                             grdGRNList.Columns["Invoice No."].Width = 100;
                             grdGRNList.Columns["Invoice Amount"].Width = 120;
                             grdGRNList.Columns["Created By"].Width = 200;
-                            grdGRNList.Columns["Loading Charges"].Width = 150;
-                            grdGRNList.Columns["Unloading Charges"].Width = 150;
+                            grdGRNList.Columns["Loading Charges"].Width = 120;
+                            grdGRNList.Columns["Unloading Charges"].Width = 120;
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Purchase Returns"].Width = 150;
                             grdGRNList.Columns["GRN Status"].Width = 130;
                             grdGRNList.Columns["Overall Status"].Width = 350;
                             grdGRNList.Columns["GRNID"].Visible = false;
+                            grdGRNList.Columns["NewSts"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
@@ -347,7 +348,7 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=7 OR STSID=0", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=7 AND STSID IN (17,23) OR STSID=0", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
