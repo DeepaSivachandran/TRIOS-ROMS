@@ -4928,9 +4928,10 @@ namespace ROMS
                             else { varSaveFlag = 1; }
                             if (varSaveFlag == 1)
                             {
+                                varUserID=Convert.ToString(MainForm.pbUserID);
                                 objTRN_PurchaseEntry1.ViewType = varViewType;
                                 objTRN_PurchaseEntry1.ParaEditFlag = 0;
-                                objTRN_PurchaseEntry1.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                objTRN_PurchaseEntry1.paraUserID = Convert.ToInt32(varUserID);
                                 objTRN_PurchaseEntry1.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
                                 objTRN_PurchaseEntry1.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                                 objTRN_PurchaseEntry1.paraScheduleID = Convert.ToInt32(lblschedule.Text);
