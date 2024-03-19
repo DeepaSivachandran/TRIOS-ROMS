@@ -55,6 +55,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID =61", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbQtyType.SelectedValue = 202;
                 if (chkCompleted.Checked == true)
                 {
                     btnVerified.Enabled = false;
@@ -419,26 +420,28 @@ namespace ROMS
 
         private void CmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53)
-            //    {
+            try
+            {
+                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 52) { cmbPONo.Enabled = false; txtProductName.Focus(); }
+                else { cmbPONo.Enabled = true; txtProductName.Focus(); }
+                //if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53)
+                //{
 
-            //        MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
-            //        MainForm.objPUR_GRNOrderType.ShowDialog();
-            //    }
-            //    else
-            //    {
-            //        MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
-            //        MainForm.objPUR_GRNOrderType.Close();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
+                //    MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+                //    MainForm.objPUR_GRNOrderType.ShowDialog();
+                //}
+                //else
+                //{
+                //    MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+                //    MainForm.objPUR_GRNOrderType.Close();
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
 
-            //}
+            }
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -2426,6 +2429,7 @@ namespace ROMS
                 MainForm.objPUR_GRN_Level_Verified = new PUR_GRN_Level_Verified();
                 MainForm.objPUR_GRN_Level_Verified.pbGRNId = pbGRNId;
                 MainForm.objPUR_GRN_Level_Verified.ShowDialog();
+                btnSave.Focus();
                 if (PbVerified ==1)
                 {
                     udfnVerifiedBy();
@@ -2456,7 +2460,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtInvoiceQty.Focus();
+                    if (txtInvoiceQty.Enabled)
+                    {
+                        txtInvoiceQty.Focus();
+                    }
+                    else
+                    {
+                        txtmrprate.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2494,7 +2505,17 @@ namespace ROMS
         {
             try
             {
-                lblQty.Text = cmbQtyType.Text + " Qty";
+                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202)
+                {
+                    lblQty.Text = "";
+                    txtInvoiceQty.Enabled = false;
+                    txtInvoiceQty.Text = "";
+                }
+                else
+                {
+                    lblQty.Text = cmbQtyType.Text + " Qty";
+                    txtInvoiceQty.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -4689,6 +4710,7 @@ namespace ROMS
                     {
                         btnVerified.Enabled = false;
                         btnSave.Enabled = false;
+                        txtRemark.Enabled = false;
                         udfnVerifiedBy();
                     }
                     else
