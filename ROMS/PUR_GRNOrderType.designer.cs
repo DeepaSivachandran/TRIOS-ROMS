@@ -118,6 +118,7 @@
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseOrder.Size = new System.Drawing.Size(456, 261);
             this.grdPurchaseOrder.TabIndex = 1;
+            this.grdPurchaseOrder.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseOrder_CellContentDoubleClick);
             // 
             // lblFinishedNoRecord
             // 

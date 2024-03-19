@@ -139,6 +139,12 @@
     <Compile Include="CP_ProductApprovalList.designer.cs">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </Compile>
+    <Compile Include="GRN_GSTIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GRN_GSTIN.designer.cs">
+      <DependentUpon>GRN_GSTIN.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_PurchaseEntryApproval.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1523,6 +1529,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductApprovalList.resx">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GRN_GSTIN.resx">
+      <DependentUpon>GRN_GSTIN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseEntryApproval.resx">
       <DependentUpon>PUR_PurchaseEntryApproval.cs</DependentUpon>
