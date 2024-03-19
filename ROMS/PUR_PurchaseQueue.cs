@@ -165,8 +165,8 @@ namespace ROMS
                             grdPurchaseEntryQueueList.Columns["Entry No."].Width = 80;
                             grdPurchaseEntryQueueList.Columns["Supplier"].Width = 250;
                             grdPurchaseEntryQueueList.Columns["Total Products"].Width = 100;
-                            grdPurchaseEntryQueueList.Columns["Created By"].Width = 110;
-                            grdPurchaseEntryQueueList.Columns["Created On"].Width = 140;
+                            grdPurchaseEntryQueueList.Columns["Created By"].Width = 200;
+                            //grdPurchaseEntryQueueList.Columns["Created On"].Width = 140;
                             grdPurchaseEntryQueueList.Columns["GSTIN"].Width = 150;
                             grdPurchaseEntryQueueList.Columns["S.No."].Width = 60;
                             grdPurchaseEntryQueueList.Columns["SPID"].Visible = false;
