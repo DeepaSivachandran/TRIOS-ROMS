@@ -1961,6 +1961,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Supplier.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_Supplier.ParaFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_Supplier.ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaGSTIN", objMR_Supplier.ParaGSTIN);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

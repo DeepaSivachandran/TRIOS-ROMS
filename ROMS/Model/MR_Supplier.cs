@@ -28,5 +28,6 @@ namespace ROMS.Model
         public string ParaFromDate = "";
         public string ParaToDate = "";
         public int paraFlag = 0;
+        public string ParaGSTIN = "";
     }
 }

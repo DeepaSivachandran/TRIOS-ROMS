@@ -156,6 +156,7 @@ namespace ROMS
         public static PUR_POIssuedDetails objPUR_POIssuedDetails;
         public static PUR_POScheduledaywise objPUR_POScheduledaywise;
         public static PUR_GSTIN objPUR_GSTIN;
+        public static GRN_GSTIN objGRN_GSTIN;
         public static PUR_PurchaseDCList objPUR_PurchaseDCList;
         public static PUR_PurchaseDC objPUR_PurchaseDC;
         public static PUR_DCDeatils objPUR_DCDeatils;
