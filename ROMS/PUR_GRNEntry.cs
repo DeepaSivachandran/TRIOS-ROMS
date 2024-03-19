@@ -36,8 +36,8 @@ namespace ROMS
         {
             try
             {
-                udfnclose();
-                MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                udfnclose(sender, e);
+                MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnclose()
+        public void udfnclose(object sender,EventArgs e)
         {
 
             try
@@ -74,6 +74,7 @@ namespace ROMS
             finally
             {
                 MainForm.objPUR_GRNDetailsList.grdGRNList.ClearSelection();
+                MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender, e);
             }
         }
 
@@ -174,6 +175,9 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                DataBind objDBind = new DataBind();
+                objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (64) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
+                objDBind = null;
                 SPDataService objdserv = new SPDataService();
                 int varconcerntype = 3;
                 DataSet objDT = new DataSet();
@@ -309,7 +313,7 @@ namespace ROMS
 
                 varcomid = Convert.ToString(cmbConcern.SelectedValue);
                 varDateChange = 0;
-                udfnvoucherload();
+                udfnvoucherload(sender, e);
             }
             catch (Exception ex)
             {
@@ -318,7 +322,7 @@ namespace ROMS
             }
         }
 
-        public void udfnvoucherload()
+        public void udfnvoucherload(object sender,EventArgs e)
         {
             try
             {
@@ -344,7 +348,7 @@ namespace ROMS
                             varVoucherSkip = false;
                             if (varDateChange == 0)
                             {
-                                udfnvoucheradd();
+                                udfnvoucheradd(sender, e);
                             }
                             //if (Convert.ToInt32(cmbConcern.SelectedValue) == MainForm.pbDefaultComId)
                             //{
@@ -366,7 +370,7 @@ namespace ROMS
         }
 
 
-        public void udfnvoucheradd()
+        public void udfnvoucheradd(object sender,EventArgs e)
         {
             try
             {
@@ -381,7 +385,7 @@ namespace ROMS
                     {
                         varVoucherSkip = true;
                         varClose = 1;
-                        udfnclose();
+                        udfnclose(sender, e);
                         //MainForm.objCP_Settings = new CP_Settings();
                         //MainForm.objCP_Settings.MdiParent = this.ParentForm;
                         //MainForm.objCP_Settings.Show();
@@ -1061,7 +1065,7 @@ namespace ROMS
         {
             try
             {
-                udfnSave();
+                udfnSave(sender, e);
             }
             catch (Exception ex)
             {
@@ -1074,7 +1078,7 @@ namespace ROMS
             }
         }
 
-        public void udfnSave()
+        public void udfnSave(object sender,EventArgs e)
         {
             try
             {
@@ -1183,7 +1187,7 @@ namespace ROMS
                     }
                     if (Convert.ToString(txtgrnno.Text) == "")
                     {
-                        udfnvoucheradd();
+                        udfnvoucheradd(sender, e);
                         VarErrorFlag = true;
                     }
                     if (VarErrorFlag == false)
@@ -1311,6 +1315,7 @@ namespace ROMS
                                     objTRNS_GRN.paraUserID = Convert.ToInt32(varUserID);
                                     objTRNS_GRN.paraSkipped = varSkip;
                                     objTRNS_GRN.paraID = ParaSupplierAMT;
+                                    objTRNS_GRN.paraPayment = Convert.ToInt32(cmbPayment.SelectedValue);
                                     objTRNS_GRN.paraSaveFlag = 0;
                                     result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                     objspdservice.CloseConnection();
@@ -1385,16 +1390,16 @@ namespace ROMS
                                                                     objError = new DataError();
                                                                     objError.WriteFile(ex);
                                                                 }
-                                                                udfnclose();
+                                                                udfnclose(sender, e);
                                                             }
                                                             else
                                                             {
-                                                                udfnclose();
+                                                                udfnclose(sender, e);
                                                             }
                                                         }
                                                         else
                                                         {
-                                                            udfnclose();
+                                                            udfnclose(sender, e);
                                                         }
                                                     }
                                                 }
@@ -1747,6 +1752,61 @@ namespace ROMS
             }
         }
 
+        private void CmbPayment_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPayment.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPayment_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPayment.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtFrieghtamount_Leave(object sender, EventArgs e)
         {
             try { txtFrieghtamount.BackColor = Color.White; }
@@ -1763,7 +1823,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    cmbPayment.Focus();
                 }
             }
             catch (Exception ex)
@@ -1974,7 +2034,7 @@ namespace ROMS
             try
             {
                 varDateChange = 1;
-                udfnvoucherload();
+                udfnvoucherload(sender, e);
             }
             catch (Exception ex)
             {
@@ -2111,11 +2171,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    udfnclose();
+                    udfnclose(sender, e);
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    udfnSave();
+                    udfnSave(sender, e);
                 }
             }
             catch (Exception ex)
@@ -2154,6 +2214,7 @@ namespace ROMS
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceAmnt"]);
                                 txtLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_LoadingCharges"]);
                                 txtFrieghtamount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
+                                cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;
                                 cmbConcern.Enabled = false;

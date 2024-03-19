@@ -40,36 +40,35 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        //public void udfnDate()
-        //{
-        //    try
-        //    {
-        //        SPDataService objDServ = new SPDataService();
-        //        DataSet objd = new DataSet(); 
-        //        objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
-        //        objDServ.CloseConnection();
-        //        if (objd.Tables[1].Rows.Count != 0)
-        //        {
-        //            varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-        //        } 
-        //        objd = null; 
-        //        objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 6);
-        //        objDServ.CloseConnection();
-        //        if (objd.Tables[0].Rows.Count != 0)
-        //        {
-        //            DateTime varmindate = MainForm.pbFYStartDate;
-        //            dpFromDate.MinDate = varmindate;
-        //            dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
-        //        }
-
-        //        dpFromDate.MaxDate = varmaxdate;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
+        public void udfnDate()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                objDServ.CloseConnection();
+                if (objd.Tables[1].Rows.Count != 0)
+                {
+                    varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                objd = null;
+                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 6);
+                objDServ.CloseConnection();
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime varmindate = MainForm.pbFYStartDate;
+                    dpFromDate.MinDate = varmindate;
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+                }
+                dpFromDate.MaxDate = varmaxdate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_GRNDetailsList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -118,16 +117,17 @@ namespace ROMS
             }
         }
 
-        private void PUR_GRNDetailsList_Load(object sender, EventArgs e)
+        public void PUR_GRNDetailsList_Load(object sender, EventArgs e)
         {
             try
             {
-                //udfnDate();
+                udfnDate();
                 udfnConcernLoad();
-                dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                //dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
+                txtSupplier.Text = "";
                 udfnListLoad();
             }
             catch (Exception ex)
@@ -229,7 +229,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN Date"].Width = 100;
                             grdGRNList.Columns["Supplier Name"].Width = 300;
                             grdGRNList.Columns["City"].Width = 100;
-                            grdGRNList.Columns["GSTIN"].Width = 120;
+                            grdGRNList.Columns["GSTIN"].Visible = false;
                             grdGRNList.Columns["Invoice Date"].Width = 100;
                             grdGRNList.Columns["Invoice No."].Width = 100;
                             grdGRNList.Columns["Invoice Amount"].Width = 120;
@@ -316,7 +316,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRN Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
                 DGV_SearchGrid.Columns["City"].Width = 100;
-                DGV_SearchGrid.Columns["GSTIN"].Width = 120;
+                DGV_SearchGrid.Columns["GSTIN"].Visible = false;
                 DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
                 DGV_SearchGrid.Columns["Invoice No."].Width = 100;
                 DGV_SearchGrid.Columns["Invoice Amount"].Width = 120;
@@ -1471,9 +1471,10 @@ namespace ROMS
                 LV_Supplier.BringToFront();
                 picLoader.BringToFront();
                 Application.DoEvents();
-                if(txtSupplier.Text=="")
+                string varSupplier = txtSupplier.Text;
+                if (varSupplier == "")
                 {
-                    txtSupplier.Text = "";
+                    varSupplier = "-All-";
                     lblSupplierCode.Text = "0";
                 }
                 int varPrint = 0;
@@ -1498,7 +1499,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
-                    objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(txtSupplier.Text));
+                    objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(varSupplier));
                     objBillreport.SetParameterValue("paraOrderTypeName", Convert.ToString(cmbOrdertype.Text));
                     objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraOrdertype", 0);
@@ -1524,11 +1525,11 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                LV_Supplier.BringToFront();
                 picLoader.SendToBack();
                 btnPrint.Enabled = true;
                 btnPrint.Focus();
                 GC.Collect();
-                LV_Supplier.BringToFront();
             }
         }
 

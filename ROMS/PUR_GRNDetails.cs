@@ -254,8 +254,8 @@ namespace ROMS
             try
             {
                 skipValidation = true;
-                udfnclose(); 
-                MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                udfnclose(sender,e); 
+                MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender,e);
             }
             catch (Exception ex)
             {
@@ -263,7 +263,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnclose()
+        public void udfnclose(object sender,EventArgs e)
         {
             try
             {
@@ -292,7 +292,7 @@ namespace ROMS
                     {
                         this.Close();
                     }
-                    MainForm.objPUR_GRNDetailsList.udfnListLoad(); 
+                    MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender,e);
                 }
             }
             catch (Exception ex)
@@ -307,7 +307,7 @@ namespace ROMS
 
             try
             {
-                udfnverify();
+                udfnverify(sender, e);
             }
             catch (Exception ex)
             {
@@ -320,7 +320,7 @@ namespace ROMS
         {
             try
             {
-                udfnverify();
+                udfnverify(sender, e);
             }
             catch (Exception ex)
             {
@@ -329,7 +329,7 @@ namespace ROMS
             }
         }
 
-        public void udfnverify()
+        public void udfnverify(object sender,EventArgs e)
         {
             try
             {
@@ -359,7 +359,7 @@ namespace ROMS
                         btnVerify2.Enabled = false;
                     } 
                     varCloseflag = 1;
-                    udfnclose();
+                    udfnclose(sender, e);
                 }
             }
             catch (Exception ex)
@@ -859,7 +859,7 @@ namespace ROMS
                                             this.ActiveControl = txtSupplier;
                                             MainForm.objPUR_GRNDetailsList.udfnListLoad();
                                             varCloseflag = 1;
-                                            udfnclose();
+                                            udfnclose(sender, e);
                                         }
                                         else
                                         {
@@ -892,7 +892,7 @@ namespace ROMS
                                             MainForm.objPUR_GRNDetailsList.udfnListLoad();
                                             varCloseflag = 1;
                                             varModifiedFlag = 0;
-                                            udfnclose();
+                                            udfnclose(sender, e);
                                         }
                                         else
                                         {
@@ -3463,7 +3463,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    udfnclose();
+                    udfnclose(sender, e);
                 }
             }
             catch (Exception ex)
