@@ -225,7 +225,7 @@ namespace ROMS
                             grdGRNList.DataSource = objDs.Tables[0];
                             grdGRNList.Columns["S.No."].Width = 30;
                             grdGRNList.Columns["Company"].Visible = false;
-                            grdGRNList.Columns["GRN No."].Width = 100;
+                            grdGRNList.Columns["GRN No."].Width = 60;
                             grdGRNList.Columns["GRN Date"].Width = 80;
                             grdGRNList.Columns["Supplier Name"].Width = 300;
                             grdGRNList.Columns["City"].Width = 100;
