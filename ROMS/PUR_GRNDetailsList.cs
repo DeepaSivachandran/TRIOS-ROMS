@@ -245,6 +245,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
+                            grdGRNList.Columns["GRN_OrderType"].Visible = false;
                             grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
@@ -1473,12 +1474,23 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 string varSupplier = txtSupplier.Text;
+                int varstsid = 0, varOrdertType=0;
                 if (varSupplier == "")
                 {
                     varSupplier = "-All-";
                     lblSupplierCode.Text = "0";
                 }
                 int varPrint = 0;
+                varstsid = Convert.ToInt32(cmbstatus.SelectedValue);
+                varOrdertType = Convert.ToInt32(cmbOrdertype.SelectedValue);
+                if(Convert.ToInt32(cmbOrdertype.SelectedValue)==0)
+                {
+                    varOrdertType = 0;
+                }
+                if (Convert.ToInt32(cmbstatus.SelectedValue) == 0)
+                {
+                    varstsid = 0;
+                }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "");
@@ -1503,8 +1515,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(varSupplier));
                     objBillreport.SetParameterValue("paraOrderTypeName", Convert.ToString(cmbOrdertype.Text));
                     objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
-                    objBillreport.SetParameterValue("paraOrdertype", 0);
-                    objBillreport.SetParameterValue("paraStatus", 0);
+                    objBillreport.SetParameterValue("paraOrdertype", varOrdertType);
+                    objBillreport.SetParameterValue("paraStatus", varstsid);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
