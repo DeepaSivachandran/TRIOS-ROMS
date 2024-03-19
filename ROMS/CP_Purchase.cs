@@ -44,7 +44,7 @@ namespace ROMS
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
         bool varVoucherSkip = false;
-        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0,varPurEditFlag=0;
+        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0,varPurEditFlag=0,varDiscountFlag=0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0";
 
@@ -776,7 +776,7 @@ namespace ROMS
                     if (PbSTS == "50")
                     { btnSave.Text = "Update"; } 
                     //purchase entry approved then purchase can't be edit edit
-                    if(PbApprovalStsid==63 || varPurEditFlag==1) //VarPurEditFlag- if setting screen purchase entry editable days exceed purchase entry date
+                    if(PbApprovalStsid==63 || varPurEditFlag==1 || PbSTS=="50") //VarPurEditFlag- if setting screen purchase entry editable days exceed purchase entry date
                     {
                         btnSave.Enabled = false;
                         txtRemarks.Enabled = false;
@@ -2561,7 +2561,7 @@ namespace ROMS
                 {
                     if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPOqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty"
                         || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiffqty"
-                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt" 
+                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer"
                         || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate")
                     {
                         if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
@@ -2574,13 +2574,13 @@ namespace ROMS
                             e.Handled = true;
                         }
                     }
-                    if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer")
-                    {
-                        if (e.KeyChar == (char)Keys.F4)
-                        {
-                            e.Handled = false;
-                        }
-                    }
+                    //if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer")
+                    //{
+                    //    if (e.KeyChar == (char)Keys.F4)
+                    //    {
+                    //        e.Handled = false;
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -4196,7 +4196,7 @@ namespace ROMS
             {
                 if (varErrorFormat == 0)
                 {
-                    //udfnGridaddvalue(sender, e);
+                   // udfnGridaddvalue(sender, e);
                 }
             }
             catch (Exception ex)
@@ -8031,6 +8031,7 @@ namespace ROMS
         {
             try
             {
+                varDiscountFlag = 0;
                 if (pbPurchaseno != "0")
                 {
                     varEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
@@ -8130,6 +8131,7 @@ namespace ROMS
                         CellDiscAmt.Style.BackColor = Color.PaleGreen;
                         //pbDisper = (varCellDiscAmt * 100) / (varPurchaseRate * varInvQty);
                         udfnDiscountToAmount(varCellDiscAmt,varDiscPer,varInvQty,varPurchaseRate);
+                        varDiscPer = pbDisper;
                         grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value = pbDisper.ToString("0.00");
                         //udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                         //udfnSubtotCalc();
@@ -8149,6 +8151,7 @@ namespace ROMS
                         CellDiscPer.Style.BackColor = Color.PaleGreen;
                         // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
                         udfnDiscountToAmount(varCellDiscAmt, varDiscPer, varInvQty, varPurchaseRate);
+                        varCellDiscAmt = PbDiscamt;
                         grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
                         //udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                         //udfnSubtotCalc();
@@ -8184,7 +8187,11 @@ namespace ROMS
                     udfnSubtotCalc();
                     udfnGstvalue();
                     udfnLoadingGrandTotCalculation();
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmCosting"].Value = pbCostingRate;
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmCosting"].Value = pbCostingRate.ToString("0.00");
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value = PbGstamt.ToString("0.00");
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value = PbNetamt.ToString("0.00");
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value = PbTaxvalue.ToString("0.00");
                     //int varDecimal = Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["UT_Decimal"].Value);
 
                     //if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty"
@@ -8202,6 +8209,7 @@ namespace ROMS
             }
             finally
             {
+                varDiscountFlag = 0;
                 if (grdPurchaseList.Columns[e.ColumnIndex].Name == "clmHSN" || grdPurchaseList.Columns[e.ColumnIndex].Name == "clmInvQty" || grdPurchaseList.Columns[e.ColumnIndex].Name == "clmRecqty" || grdPurchaseList.Columns[e.ColumnIndex].Name == "clmDiscPer" || grdPurchaseList.Columns[e.ColumnIndex].Name == "clmDiscAmt" || grdPurchaseList.Columns[e.ColumnIndex].Name == "clmPurchaseRate")
                 {
                     //grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value = Math.Round(PbGstamt).ToString("0.00");
@@ -8213,8 +8221,6 @@ namespace ROMS
                     //{
                     //    grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = pbDiffQty;
                     //}
-                    string varasdij = "";
-                    varasdij = Math.Round(PbTaxvalue).ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value = PbTaxvalue.ToString("0.00");
                     udfnSubtotCalc();
                     udfnGstvalue();
@@ -8227,14 +8233,23 @@ namespace ROMS
         {
             try
             {
+                varDiscountFlag = 1;
                 if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt")
                 {
+                    if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmDiscAmt"].Value)) != "")
+                    { varCellDiscAmt = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmDiscAmt"].Value); }
+                    PbDiscamt = varCellDiscAmt;
+
                     pbDisper = (varCellDiscAmt * 100) / (varPurchaseRate * varInvQty);
                     varDiscPer = pbDisper;
                     grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value = pbDisper.ToString("0.00");
                 }
                 if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer")
                 {
+                    if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value)) != "")
+                    { varDiscPer = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value); }
+                    pbDisper = varDiscPer;
+
                     PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
                     varCellDiscAmt = PbDiscamt;
                     grdPurchaseList.CurrentRow.Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
@@ -8265,6 +8280,14 @@ namespace ROMS
                 {
                     pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); //Excess
                                                                                 //varInvQty = varRecQty + varFreeQty + varDiffQty; //pending
+                }
+                if (varDiscountFlag == 0)
+                {
+                    //purchase rate , quantity, discount percentage  changed  then discount amount calculated 
+                    if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value)) != "")
+                    { varDiscPer = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value); }
+                    PbDiscamt = ((varPurchaseRate * varInvQty)) * ((varDiscPer) / 100);
+                    varCellDiscAmt = PbDiscamt;
                 }
                 if (rbDiscountBefore.Checked == true)
                 {
