@@ -223,14 +223,14 @@ namespace ROMS
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
                             grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
-                            grdGRNList.Columns["S.No."].Width = 50;
+                            grdGRNList.Columns["S.No."].Width = 30;
                             grdGRNList.Columns["Company"].Visible = false;
                             grdGRNList.Columns["GRN No."].Width = 100;
-                            grdGRNList.Columns["GRN Date"].Width = 100;
+                            grdGRNList.Columns["GRN Date"].Width = 80;
                             grdGRNList.Columns["Supplier Name"].Width = 300;
                             grdGRNList.Columns["City"].Width = 100;
                             grdGRNList.Columns["GSTIN"].Visible = false;
-                            grdGRNList.Columns["Invoice Date"].Width = 100;
+                            grdGRNList.Columns["Invoice Date"].Width = 85;
                             grdGRNList.Columns["Invoice No."].Width = 100;
                             grdGRNList.Columns["Invoice Amount"].Width = 120;
                             grdGRNList.Columns["Created By"].Width = 200;
@@ -347,7 +347,7 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=7 OR STSID=0 ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=7 OR STSID=0", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();

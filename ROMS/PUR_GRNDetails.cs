@@ -63,6 +63,10 @@ namespace ROMS
                 {
                     btnVerified.Enabled = true;
                 }
+                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 52)
+                {
+                    cmbPONo.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -147,7 +151,7 @@ namespace ROMS
 
             DataBind objDataBind = new DataBind();
             objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
-            objDataBind = null;
+            objDataBind = null;            
         }
 
         private void CmbConcern_Enter(object sender, EventArgs e)

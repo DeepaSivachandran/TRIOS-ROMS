@@ -39,7 +39,7 @@ namespace ROMS
         varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varExpiryDateAdd = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0", varTempExpiryDate = "0",
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0", varTypeErrId = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0, pbDisper = 0;
-        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, varExpiryError = 0, shelfLifeError = 0,
+        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, varExpiryError = 0, shelfLifeError = 0,InvoiceAmountErr = 0,
             VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0, varRMFlag = 0, varRemarkCount = 0, varRemarkFlag = 0, varerrFlag = 0;
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
@@ -4725,6 +4725,7 @@ namespace ROMS
                 grdPurchaseList.ClearSelection();
                 udfntooltiphide(); udfnrowclear();
                 bool varErrorFlag = false; varCount2 = 0; varTabFlag = 0;
+                string varGrandtotal = "";
                 if (grdSupplierList.RowCount > 0)
                 {
                     udfnEntryTypeErr();
@@ -4850,6 +4851,29 @@ namespace ROMS
                                 shelfLifeError = 0;
                             }
                         }
+                        varGrandtotal = txtGrandtot.Text;
+                        if (txtGrandtot.Text == "")
+                        {
+                            varGrandtotal = "0";
+                        }
+                        if (shelfLifeError == 0)
+                        {
+                            if (((Convert.ToDecimal(txtInvoiceamt.Text)) != (Convert.ToDecimal(varGrandtotal))) && Convert.ToDecimal(varGrandtotal) != 0)
+                            {
+                                SPDataService objDServe1 = new SPDataService();
+                                string varMessage = objDServe1.udfnGetMessages(115);
+                                objDServe1.CloseConnection();
+                                DialogResult dialogResult1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult1 == DialogResult.Yes)
+                                {
+                                    InvoiceAmountErr = 0;
+                                }
+                                else
+                                {
+                                    InvoiceAmountErr = 1;
+                                }
+                            }
+                        }
                         if (pbPurchaseno != "0")
                         {
                             if (grdSupplierList.Rows.Count == grdPurchaseList.Rows.Count)
@@ -4862,7 +4886,7 @@ namespace ROMS
                             }
                             if (grdSupplierList.Rows.Count == grdPurchaseList.Rows.Count)
                             {
-                                if (varcount == 0 && Convert.ToInt32(VarGridError) == 0 && shelfLifeError == 0 && varQuantityErr == 0 && varDiscountErr==0)
+                                if (varcount == 0 && Convert.ToInt32(VarGridError) == 0 && shelfLifeError == 0 && varQuantityErr == 0 && varDiscountErr==0 && InvoiceAmountErr==0)
                                 {
                                     flagSave = 0;
                                 }
@@ -8583,7 +8607,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbRateBefore.Focus();
+                    rbDiscountBefore.Focus();
                 }
             }
             catch (Exception ex)
@@ -9091,9 +9115,13 @@ namespace ROMS
                 //{
                 //    DGV_FilterProduct.Focus();
                 //}
-                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
+                //if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
+                //{
+                //    return;
+                //}
+                if (e.KeyCode == Keys.Enter)
                 {
-                    return;
+                    txtMrp.Focus();
                 }
                 else
                 {
@@ -9720,7 +9748,8 @@ namespace ROMS
                         {
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
-                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            //lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXX";
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
@@ -9967,6 +9996,7 @@ namespace ROMS
                                         //{
                                         //    icolumn++; goto A;
                                         //}
+                                        grdPurchaseList.ClearSelection();
                                         txtLoadingCharge.Focus();
                                     }
                                 }
