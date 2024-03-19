@@ -369,7 +369,7 @@
             this.gpAddrow.Controls.Add(this.lblYYYY);
             this.gpAddrow.Controls.Add(this.lblMM);
             this.gpAddrow.Controls.Add(this.label9);
-            this.gpAddrow.Location = new System.Drawing.Point(16, 98);
+            this.gpAddrow.Location = new System.Drawing.Point(16, 102);
             this.gpAddrow.Name = "gpAddrow";
             this.gpAddrow.Size = new System.Drawing.Size(1024, 70);
             this.gpAddrow.TabIndex = 7;
