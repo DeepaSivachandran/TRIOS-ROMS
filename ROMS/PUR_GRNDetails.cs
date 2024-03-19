@@ -3338,17 +3338,10 @@ namespace ROMS
                 if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmexpirydate")
                 {
                     int rowIndex = e.RowIndex, columnIndex = e.ColumnIndex, varProid = 0, PR_Shelflife = 0,Date=0;
-                    SPDataService objDevSer = new SPDataService();
-                    DataSet objDS = new DataSet();
-                    varProid = Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmProid"].Value);
-                    objDS = objDevSer.udfnMaster(18, 0, 0,"","", varProid, "", 0);
-                    objDevSer.CloseConnection();
-                    if(objDS!=null)
+                    
+                    if(grdGrnlist.Rows.Count>0)
                     {
-                        if(objDS.Tables[0].Rows.Count>0)
-                        {
-                            PR_Shelflife = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Shelflife"].ToString());
-                        }
+                        PR_Shelflife = Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmShelflifeenable"].Value);
                     }
                     if (PR_Shelflife == 1)
                     {
@@ -3371,7 +3364,10 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                        if (varErrorFormat != 5)
+                                        {
+                                            grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                        }
                                     }
                                 }
                             }
@@ -3462,6 +3458,7 @@ namespace ROMS
                                                     pbDateflag = 1;
                                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == varTempExpiryDate)
                                                     {
+                                                        varErrorFormat = 5;
                                                         grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                                         string varMessage = objDServ.udfnGetMessages(98);
                                                         objDServ.CloseConnection();
