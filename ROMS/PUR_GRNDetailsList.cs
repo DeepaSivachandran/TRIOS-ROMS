@@ -223,27 +223,29 @@ namespace ROMS
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
                             grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
-                            grdGRNList.Columns["S.No."].Width = 50;
+                            grdGRNList.Columns["S.No."].Width = 30;
                             grdGRNList.Columns["Company"].Visible = false;
-                            grdGRNList.Columns["GRN No."].Width = 100;
-                            grdGRNList.Columns["GRN Date"].Width = 100;
+                            grdGRNList.Columns["GRN No."].Width = 60;
+                            grdGRNList.Columns["GRN Date"].Width = 80;
                             grdGRNList.Columns["Supplier Name"].Width = 300;
                             grdGRNList.Columns["City"].Width = 100;
                             grdGRNList.Columns["GSTIN"].Visible = false;
-                            grdGRNList.Columns["Invoice Date"].Width = 100;
+                            grdGRNList.Columns["Invoice Date"].Width = 85;
                             grdGRNList.Columns["Invoice No."].Width = 100;
                             grdGRNList.Columns["Invoice Amount"].Width = 120;
                             grdGRNList.Columns["Created By"].Width = 200;
-                            grdGRNList.Columns["Loading Charges"].Width = 150;
-                            grdGRNList.Columns["Unloading Charges"].Width = 150;
+                            grdGRNList.Columns["Loading Charges"].Width = 120;
+                            grdGRNList.Columns["Unloading Charges"].Width = 120;
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Purchase Returns"].Width = 150;
                             grdGRNList.Columns["GRN Status"].Width = 130;
                             grdGRNList.Columns["Overall Status"].Width = 350;
                             grdGRNList.Columns["GRNID"].Visible = false;
+                            //grdGRNList.Columns["NewSts"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
+                            //grdGRNList.Columns["GRN_OrderType"].Visible = false;
                             grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
@@ -347,7 +349,7 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=7 OR STSID=0 ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=7 AND STSID IN (17,23) OR STSID=0", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
@@ -1472,12 +1474,23 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 string varSupplier = txtSupplier.Text;
+                int varstsid = 0, varOrdertType=0;
                 if (varSupplier == "")
                 {
                     varSupplier = "-All-";
                     lblSupplierCode.Text = "0";
                 }
                 int varPrint = 0;
+                varstsid = Convert.ToInt32(cmbstatus.SelectedValue);
+                varOrdertType = Convert.ToInt32(cmbOrdertype.SelectedValue);
+                if(Convert.ToInt32(cmbOrdertype.SelectedValue)==0)
+                {
+                    varOrdertType = 0;
+                }
+                if (Convert.ToInt32(cmbstatus.SelectedValue) == 0)
+                {
+                    varstsid = 0;
+                }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "");
@@ -1502,8 +1515,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(varSupplier));
                     objBillreport.SetParameterValue("paraOrderTypeName", Convert.ToString(cmbOrdertype.Text));
                     objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
-                    objBillreport.SetParameterValue("paraOrdertype", 0);
-                    objBillreport.SetParameterValue("paraStatus", 0);
+                    objBillreport.SetParameterValue("paraOrdertype", varOrdertType);
+                    objBillreport.SetParameterValue("paraStatus", varstsid);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);

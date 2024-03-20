@@ -17,7 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        public DataTable Deftable = new DataTable();
         public int varviewtype = 0, Varflag=0,varUpDownKey = 0;
 
         public PUR_GRNApprovalList()
@@ -1512,12 +1512,12 @@ namespace ROMS
                         lblNoRecordsFound.BringToFront();
                     }
                     udfnSearchGridHead();
-                    //if (lblNoRecordsFound.Visible == true)
-                    //{
-                    //    dtDefaultGrid = objDs.Tables[0];
-                    //    udfnDefaultSearchGrid();
-                    //}
-                    //else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        Deftable = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
+                    }
+                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
                 }
                 else
                 {
@@ -1538,6 +1538,38 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = null;
+                DGV_SearchGrid.DataSource = Deftable;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["GRN Date"].Width = 80;
+                DGV_SearchGrid.Columns["Voucher No."].Width = 100;
+                DGV_SearchGrid.Columns["Voucher Date"].Width = 100;
+                DGV_SearchGrid.Columns["Invoice No."].Width = 100;
+                DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
+                DGV_SearchGrid.Columns["Supplier"].Width = 300;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 120;
+                DGV_SearchGrid.Columns["Total Products in Invoice"].Width = 150;
+                DGV_SearchGrid.Columns["Created By"].Width = 150;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["SPID"].Visible = false;
+                DGV_SearchGrid.Columns["SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["Concern ID"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_EntryType"].Visible = false;
+                DGV_SearchGrid.Columns["Purchase Type"].Visible = false;
+                DGV_SearchGrid.Columns["Status"].Visible = false;
+
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

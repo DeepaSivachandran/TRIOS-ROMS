@@ -431,6 +431,8 @@ namespace ROMS
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTAmnt", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_NettAmnt", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("DMID", typeof(string));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_SLID", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_RKID", typeof(decimal));
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnEdit();

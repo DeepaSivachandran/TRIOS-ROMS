@@ -134,7 +134,7 @@
             // 
             // pnlinward
             // 
-            this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.BackColor = System.Drawing.Color.PapayaWhip;
             this.pnlinward.Controls.Add(this.DGV_FilterProduct);
             this.pnlinward.Controls.Add(this.lvSLocation);
             this.pnlinward.Controls.Add(this.grbFilterBy);
@@ -374,7 +374,7 @@
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
-            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.PapayaWhip;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(622, 381);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
@@ -389,7 +389,7 @@
             this.grdInwardQueueList.AllowUserToDeleteRows = false;
             this.grdInwardQueueList.AllowUserToResizeColumns = false;
             this.grdInwardQueueList.AllowUserToResizeRows = false;
-            this.grdInwardQueueList.BackgroundColor = System.Drawing.Color.White;
+            this.grdInwardQueueList.BackgroundColor = System.Drawing.Color.PapayaWhip;
             this.grdInwardQueueList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
@@ -416,7 +416,7 @@
             this.grdInwardQueueList.Name = "grdInwardQueueList";
             this.grdInwardQueueList.ReadOnly = true;
             this.grdInwardQueueList.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdInwardQueueList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdInwardQueueList.RowTemplate.Height = 25;
@@ -433,14 +433,14 @@
             this.DGV_SearchGrid.AllowUserToAddRows = false;
             this.DGV_SearchGrid.AllowUserToDeleteRows = false;
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
-            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.PapayaWhip;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Chocolate;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
