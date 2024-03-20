@@ -9839,11 +9839,13 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        grdSupplierList.CurrentCell = grdSupplierList[icolumn + 1, irow];
-                                        if (grdSupplierList.CurrentCell.ReadOnly == true)
-                                        {
-                                            icolumn++; goto A;
-                                        }
+                                        //grdSupplierList.CurrentCell = grdSupplierList[icolumn + 1, irow];
+                                        //if (grdSupplierList.CurrentCell.ReadOnly == true)
+                                        //{
+                                        //    icolumn++; goto A;
+                                        //}
+                                        grdSupplierList.ClearSelection();
+                                        txtLoadingCharge.Focus();
                                     }
                                 }
                                 else
@@ -9874,7 +9876,7 @@ namespace ROMS
                                         {
                                             icolumn++; goto A;
                                         }
-
+                                        
                                     }
                                 }
                                 else

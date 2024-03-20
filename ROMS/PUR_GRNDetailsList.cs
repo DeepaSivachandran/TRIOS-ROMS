@@ -241,11 +241,11 @@ namespace ROMS
                             grdGRNList.Columns["GRN Status"].Width = 130;
                             grdGRNList.Columns["Overall Status"].Width = 350;
                             grdGRNList.Columns["GRNID"].Visible = false;
-                            grdGRNList.Columns["NewSts"].Visible = false;
+                            //grdGRNList.Columns["NewSts"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
-                            grdGRNList.Columns["GRN_OrderType"].Visible = false;
+                            //grdGRNList.Columns["GRN_OrderType"].Visible = false;
                             grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
