@@ -676,6 +676,7 @@ namespace ROMS
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
+                    this.ActiveControl = txtInvoiceNo;
                 }
             }
             catch (Exception ex)
@@ -748,14 +749,6 @@ namespace ROMS
                                 else
                                 {
                                     rbPaymentCheque.Checked = true;
-                                }
-                                if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_RateCalculation"]) == "1")
-                                {
-                                    rbRateBefore.Checked = true;
-                                }
-                                else
-                                {
-                                    rbAfterBefore.Checked = true;
                                 }
                                 if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_DiscCalculation"]) == "1")
                                 {
@@ -1861,19 +1854,6 @@ namespace ROMS
             }
         }
 
-        private void RbRateBefore_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                rbRateBefore.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         public AutoCompleteStringCollection AutoCompleteLocationName(int varCOMID)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
@@ -2197,21 +2177,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        
-        private void RbRateBefore_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                rbRateBefore.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void GrdSupplierList_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             try
@@ -3185,14 +3150,6 @@ namespace ROMS
                     {
                         objTRN_PurchaseEntry.paraPurchaseType = 2;
                     }
-                    if (rbRateBefore.Checked == true)
-                    {
-                        objTRN_PurchaseEntry.paraRateCalculation = 1;
-                    }
-                    if (rbAfterBefore.Checked == true)
-                    {
-                        objTRN_PurchaseEntry.paraRateCalculation = 2;
-                    }
                     if (rbPaymentCash.Checked == true)
                     {
                         objTRN_PurchaseEntry.paraPaymentType = 1;
@@ -4023,17 +3980,7 @@ namespace ROMS
             try
             {
                 int varQtyErrFlag = 0;
-                //if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
-                //{ pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); }
-                //else
-                //{ pbDiffQty = Math.Abs(varInvQty - varRecQty); }
-                //// PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                //PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
-                ////pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
-                //// PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                //PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
-                //PbNetamt = (PbTaxvalue + PbGstamt);
-
+               
                 //55-against po      56-Direct
                 if (varEntryType == 55 || varEntryType == 56)
                 {
@@ -4127,66 +4074,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void RbRateBefore_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    rbAfterBefore.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void RbAfterBefore_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                rbAfterBefore.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void RbAfterBefore_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                rbAfterBefore.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void RbAfterBefore_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    rbDiscountBefore.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
         private void RbPurchaseCheque_Enter(object sender, EventArgs e)
         {
             try
@@ -4211,23 +4098,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void RbPurchaseCheque_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    rbRateBefore.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
         }
 
         private void RbDiscountBefore_KeyDown(object sender, KeyEventArgs e)

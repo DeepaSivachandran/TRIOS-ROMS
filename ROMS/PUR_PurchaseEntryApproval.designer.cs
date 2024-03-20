@@ -247,9 +247,6 @@
             this.txtotherexpense = new System.Windows.Forms.TextBox();
             this.txtDiscountamt = new System.Windows.Forms.TextBox();
             this.Txtdiscount = new System.Windows.Forms.TextBox();
-            this.gprate = new System.Windows.Forms.GroupBox();
-            this.rbAfterBefore = new System.Windows.Forms.RadioButton();
-            this.rbRateBefore = new System.Windows.Forms.RadioButton();
             this.gpPayment = new System.Windows.Forms.GroupBox();
             this.rbPaymentCheque = new System.Windows.Forms.RadioButton();
             this.rbPaymentCash = new System.Windows.Forms.RadioButton();
@@ -307,7 +304,6 @@
             this.grpTCSamt.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.grpLoadingCharge.SuspendLayout();
-            this.gprate.SuspendLayout();
             this.gpPayment.SuspendLayout();
             this.gpdiscount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).BeginInit();
@@ -466,7 +462,6 @@
             this.groupBox1.Controls.Add(this.grpTCSamt);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.grpLoadingCharge);
-            this.groupBox1.Controls.Add(this.gprate);
             this.groupBox1.Controls.Add(this.gpPayment);
             this.groupBox1.Controls.Add(this.gpdiscount);
             this.groupBox1.Controls.Add(this.label22);
@@ -1788,6 +1783,7 @@
             // 
             this.gpPurchase.Controls.Add(this.rbPurchaseCredit);
             this.gpPurchase.Controls.Add(this.rbPurchaseCash);
+            this.gpPurchase.Enabled = false;
             this.gpPurchase.Font = new System.Drawing.Font("Oswald Regular", 10F);
             this.gpPurchase.Location = new System.Drawing.Point(769, 13);
             this.gpPurchase.Name = "gpPurchase";
@@ -2366,50 +2362,11 @@
             this.Txtdiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtdiscount_KeyPress);
             this.Txtdiscount.Leave += new System.EventHandler(this.Txtdiscount_Leave);
             // 
-            // gprate
-            // 
-            this.gprate.Controls.Add(this.rbAfterBefore);
-            this.gprate.Controls.Add(this.rbRateBefore);
-            this.gprate.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.gprate.Location = new System.Drawing.Point(936, 13);
-            this.gprate.Name = "gprate";
-            this.gprate.Size = new System.Drawing.Size(165, 45);
-            this.gprate.TabIndex = 16;
-            this.gprate.TabStop = false;
-            this.gprate.Text = "Rate Calculation";
-            // 
-            // rbAfterBefore
-            // 
-            this.rbAfterBefore.AutoSize = true;
-            this.rbAfterBefore.Location = new System.Drawing.Point(91, 17);
-            this.rbAfterBefore.Name = "rbAfterBefore";
-            this.rbAfterBefore.Size = new System.Drawing.Size(72, 23);
-            this.rbAfterBefore.TabIndex = 17;
-            this.rbAfterBefore.Text = "After Tax";
-            this.rbAfterBefore.UseVisualStyleBackColor = true;
-            this.rbAfterBefore.Enter += new System.EventHandler(this.RbAfterBefore_Enter);
-            this.rbAfterBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbAfterBefore_KeyDown);
-            this.rbAfterBefore.Leave += new System.EventHandler(this.RbAfterBefore_Leave);
-            // 
-            // rbRateBefore
-            // 
-            this.rbRateBefore.AutoSize = true;
-            this.rbRateBefore.Checked = true;
-            this.rbRateBefore.Location = new System.Drawing.Point(8, 17);
-            this.rbRateBefore.Name = "rbRateBefore";
-            this.rbRateBefore.Size = new System.Drawing.Size(80, 23);
-            this.rbRateBefore.TabIndex = 16;
-            this.rbRateBefore.TabStop = true;
-            this.rbRateBefore.Text = "Before Tax";
-            this.rbRateBefore.UseVisualStyleBackColor = true;
-            this.rbRateBefore.Enter += new System.EventHandler(this.RbRateBefore_Enter);
-            this.rbRateBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbRateBefore_KeyDown);
-            this.rbRateBefore.Leave += new System.EventHandler(this.RbRateBefore_Leave);
-            // 
             // gpPayment
             // 
             this.gpPayment.Controls.Add(this.rbPaymentCheque);
             this.gpPayment.Controls.Add(this.rbPaymentCash);
+            this.gpPayment.Enabled = false;
             this.gpPayment.Font = new System.Drawing.Font("Oswald Regular", 10F);
             this.gpPayment.Location = new System.Drawing.Point(769, 57);
             this.gpPayment.Name = "gpPayment";
@@ -2428,7 +2385,6 @@
             this.rbPaymentCheque.Text = "Cheque";
             this.rbPaymentCheque.UseVisualStyleBackColor = true;
             this.rbPaymentCheque.Enter += new System.EventHandler(this.RbPurchaseCheque_Enter);
-            this.rbPaymentCheque.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbPurchaseCheque_KeyDown);
             this.rbPaymentCheque.Leave += new System.EventHandler(this.RbPurchaseCheque_Leave);
             // 
             // rbPaymentCash
@@ -2450,8 +2406,9 @@
             // 
             this.gpdiscount.Controls.Add(this.rbDiscountAfter);
             this.gpdiscount.Controls.Add(this.rbDiscountBefore);
+            this.gpdiscount.Enabled = false;
             this.gpdiscount.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.gpdiscount.Location = new System.Drawing.Point(936, 57);
+            this.gpdiscount.Location = new System.Drawing.Point(936, 13);
             this.gpdiscount.Name = "gpdiscount";
             this.gpdiscount.Size = new System.Drawing.Size(165, 47);
             this.gpdiscount.TabIndex = 18;
@@ -2973,8 +2930,6 @@
             this.groupBox5.PerformLayout();
             this.grpLoadingCharge.ResumeLayout(false);
             this.grpLoadingCharge.PerformLayout();
-            this.gprate.ResumeLayout(false);
-            this.gprate.PerformLayout();
             this.gpPayment.ResumeLayout(false);
             this.gpPayment.PerformLayout();
             this.gpdiscount.ResumeLayout(false);
@@ -3009,9 +2964,6 @@
         private System.Windows.Forms.GroupBox gpPurchase;
         private System.Windows.Forms.RadioButton rbPurchaseCredit;
         private System.Windows.Forms.RadioButton rbPurchaseCash;
-        private System.Windows.Forms.GroupBox gprate;
-        private System.Windows.Forms.RadioButton rbAfterBefore;
-        private System.Windows.Forms.RadioButton rbRateBefore;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dpInvoiceDate;
         private System.Windows.Forms.Button btnClose;
