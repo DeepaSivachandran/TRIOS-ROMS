@@ -4198,8 +4198,73 @@ namespace ROMS
             {
                 if (varErrorFormat == 0)
                 {
-                   // udfnGridaddvalue(sender, e);
+                    //udfnGridaddvalue(sender, e);
                 }
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmmrp")
+                {
+                    decimal varMRP = Convert.ToDecimal(grdSupplierList.CurrentRow.Cells["clmmrp"].Value);
+                    string mrp = string.Format("{0:0.00}", varMRP);
+                    string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                    grdSupplierList.Rows[e.RowIndex].Cells["clmmrp"].Value = mrp;
+                }
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmInvoiceQty")
+                {
+                    /*
+                    decimal InvoiceQty = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmInvoiceQty"].Value);
+                    if (Convert.ToString(InvoiceQty) == "0" || Convert.ToString(InvoiceQty) == "")
+                    {
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrQty = "1";
+                    }
+                    else
+                    {
+                        grdGrnlist.CurrentRow.Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                        varErrQty = "0";
+                    }
+                    */
+                    if (Convert.ToString(grdSupplierList.CurrentRow.Cells["clmInvoiceQty"].Value) != "" && Convert.ToString(grdSupplierList.CurrentRow.Cells["clmInvoiceQty"].Value) != "0")
+                    {
+                        int varDecimal = Convert.ToInt32(grdSupplierList.CurrentRow.Cells["clmUTDecimal"].Value);
+
+                        string Qty = objValidation.udfnDecimal(Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value), varDecimal);
+                        grdSupplierList.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value = Qty;
+                    }
+                    else
+                    {
+                        grdSupplierList.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value = "0";
+                    }
+                    //udfnGridaddvalue( sender,value);
+                }
+                /*
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmExcessQty")
+                {
+                    decimal ExcessQty = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmExcessQty"].Value);
+                    if (Convert.ToString(ExcessQty) == "0" || Convert.ToString(ExcessQty) == "")
+                    {
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrQty = "1";
+                    }
+                    else
+                    {
+                        grdGrnlist.CurrentRow.Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
+                        varErrQty = "0";
+                    }
+
+                    int varDecimal = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["clmUTDecimal"].Value);
+
+                    string Qty = objValidation.udfnDecimal(Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Value), varDecimal);
+                    grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Value = Qty;
+                    //udfnGridaddvalue( sender,value);
+                }
+                */
                 if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
                 {
                     int rowIndex = e.RowIndex, columnIndex = e.ColumnIndex, varProid = 0, PR_Shelflife = 0, Date = 0;
@@ -4666,7 +4731,7 @@ namespace ROMS
                             {
                                 varshelflife = cellValue.ToString();
                                 if (varshelflife != "" || varshelflife != null)
-                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpInvoiceDate.Text, varCellprodid, 0, "0", "");
+                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0", "");
                                 objdserv.CloseConnection();
                                 if (objDs != null)
                                 {
