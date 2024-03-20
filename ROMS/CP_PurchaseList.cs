@@ -741,7 +741,8 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (17 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=14 OR STSID=0 ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                //objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=14 OR STSID=0 ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (0,49,50) ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();

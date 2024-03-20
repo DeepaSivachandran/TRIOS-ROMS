@@ -676,6 +676,7 @@ namespace ROMS
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
+                    this.ActiveControl = txtInvoiceNo;
                 }
             }
             catch (Exception ex)
@@ -3979,17 +3980,7 @@ namespace ROMS
             try
             {
                 int varQtyErrFlag = 0;
-                //if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57) //against dc
-                //{ pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); }
-                //else
-                //{ pbDiffQty = Math.Abs(varInvQty - varRecQty); }
-                //// PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                //PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
-                ////pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
-                //// PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                //PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
-                //PbNetamt = (PbTaxvalue + PbGstamt);
-
+               
                 //55-against po      56-Direct
                 if (varEntryType == 55 || varEntryType == 56)
                 {

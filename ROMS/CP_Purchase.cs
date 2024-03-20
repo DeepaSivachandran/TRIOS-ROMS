@@ -766,6 +766,7 @@ namespace ROMS
                         {
                             grdPODetails.Columns["clmRemovePO"].Visible = false;
                         }
+                        this.ActiveControl = txtInvoiceNo;
                     }
                     if (varRemarkCount == 0)
                     {
@@ -780,6 +781,7 @@ namespace ROMS
                     {
                         btnSave.Enabled = false;
                         txtRemarks.Enabled = false;
+                        btnDC.Enabled = false;
                     }
                 }
             }
@@ -4902,24 +4904,38 @@ namespace ROMS
                     {
                         varErrorFlag = true;
                     }
+                    if (Convert.ToInt32(cmbEntryType.SelectedValue) == -1 || Convert.ToString(cmbEntryType.SelectedValue) == "")
+                    {
+                        errPurchaseentry.SetError(cmbEntryType, "Please select entry type");
+                        cmbEntryType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpEntryType.ShowAlways = true;
+                        tpEntryType.Show("Please select entry type", cmbEntryType, 5000);
+                        varErrorFlag = true;
+                    }
+                    if (Convert.ToInt32(cmbTransactionType.SelectedValue) == -1 || Convert.ToString(cmbTransactionType.SelectedValue) == "")
+                    {
+                        errPurchaseentry.SetError(cmbTransactionType, "Please select transaction type");
+                        cmbTransactionType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        varErrorFlag = true;
+                    }
                     //if (cmbEntryType.SelectedValue.ToString() != "54")
                     //{ // GRN
-                        if (txtInvoiceNo.Text == "")
-                        {
-                            errPurchaseentry.SetError(txtInvoiceNo, "Please enter invoice No.");
-                            txtInvoiceNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpInvNo.ShowAlways = true;
-                            tpInvNo.Show("Please enter invoice No.", txtInvoiceNo, 5000);
-                            varErrorFlag = true;
-                        }
-                        if (Convert.ToString(txtInvoiceamt.Text) == "")
-                        {
-                            errPurchaseentry.SetError(txtInvoiceamt, "Please enter invoice amount");
-                            txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpinvamt.ShowAlways = true;
-                            tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
-                            varErrorFlag = true;
-                        }
+                    if (txtInvoiceNo.Text == "")
+                    {
+                        errPurchaseentry.SetError(txtInvoiceNo, "Please enter invoice No.");
+                        txtInvoiceNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpInvNo.ShowAlways = true;
+                        tpInvNo.Show("Please enter invoice No.", txtInvoiceNo, 5000);
+                        varErrorFlag = true;
+                    }
+                    if (Convert.ToString(txtInvoiceamt.Text) == "")
+                    {
+                        errPurchaseentry.SetError(txtInvoiceamt, "Please enter invoice amount");
+                        txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpinvamt.ShowAlways = true;
+                        tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
+                        varErrorFlag = true;
+                    }
                     //}
 
                     if (varErrorFlag == false && varerrFlag == 0)
@@ -5090,7 +5106,7 @@ namespace ROMS
                             objTRN_PurchaseEntry1.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                             objTRN_PurchaseEntry1.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                             objTRN_PurchaseEntry1.paraPurchaseDate = dpVoucherDate.Text;
-                            objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
+                            objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                             objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                             result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
                             objspdservice.CloseConnection();
@@ -5121,7 +5137,7 @@ namespace ROMS
                                 objTRN_PurchaseEntry1.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                                 objTRN_PurchaseEntry1.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                                 objTRN_PurchaseEntry1.paraPurchaseDate = dpVoucherDate.Text;
-                                objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
+                                objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                                 objTRN_PurchaseEntry1.paraSaveFlag = varSaveFlag;
                                 objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                                 result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
@@ -5155,7 +5171,7 @@ namespace ROMS
                                         objTRN_PurchaseEntry.paraEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
                                         objTRN_PurchaseEntry.paraINVDate = dpInvoiceDate.Text;
                                         objTRN_PurchaseEntry.paraINVNo = txtInvoiceNo.Text;
-                                        objTRN_PurchaseEntry.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
+                                        objTRN_PurchaseEntry.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                                         objTRN_PurchaseEntry.paraTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
                                         int varBrokerid = 0;
                                         if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); }
@@ -5251,63 +5267,63 @@ namespace ROMS
                                         otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0;
                                         if (txtLoadingchargeGrn.Text != "")
                                         {
-                                            loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text);
+                                            loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text.Trim());
                                         }
                                         if (txtFrightGrn.Text != "")
                                         {
-                                            frightgrn = Convert.ToDecimal(txtFrightGrn.Text);
+                                            frightgrn = Convert.ToDecimal(txtFrightGrn.Text.Trim());
                                         }
                                         if (txtLoadingCharge.Text != "")
                                         {
-                                            loadcharge = Convert.ToDecimal(txtLoadingCharge.Text);
+                                            loadcharge = Convert.ToDecimal(txtLoadingCharge.Text.Trim());
                                         }
                                         if (txtUnLoadingCharge.Text != "")
                                         {
-                                            unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text);
+                                            unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text.Trim());
                                         }
                                         if (txtCouriercharge.Text != "")
                                         {
-                                            couriercharge = Convert.ToDecimal(txtCouriercharge.Text);
+                                            couriercharge = Convert.ToDecimal(txtCouriercharge.Text.Trim());
                                         }
                                         if (txtotherexpense.Text != "")
                                         {
-                                            otherexpense = Convert.ToDecimal(txtotherexpense.Text);
+                                            otherexpense = Convert.ToDecimal(txtotherexpense.Text.Trim());
                                         }
                                         if (Txtdiscount.Text != "")
                                         {
-                                            discountper = Convert.ToDecimal(Txtdiscount.Text);
+                                            discountper = Convert.ToDecimal(Txtdiscount.Text.Trim());
                                         }
                                         if (txtDiscountamt.Text != "")
                                         {
-                                            discountamt = Convert.ToDecimal(txtDiscountamt.Text);
+                                            discountamt = Convert.ToDecimal(txtDiscountamt.Text.Trim());
                                         }
                                         if (txtTcsamt.Text != "")
                                         {
-                                            tcsamt = Convert.ToDecimal(txtTcsamt.Text);
+                                            tcsamt = Convert.ToDecimal(txtTcsamt.Text.Trim());
                                         }
                                         if (txtDamagecost.Text != "")
                                         {
-                                            damagecost = Convert.ToDecimal(txtDamagecost.Text);
+                                            damagecost = Convert.ToDecimal(txtDamagecost.Text.Trim());
                                         }
                                         if (txtOtherdiscount.Text != "")
                                         {
-                                            otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text);
+                                            otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text.Trim());
                                         }
                                         if (txtSubtotal.Text != "")
                                         {
-                                            subtotal = Convert.ToDecimal(txtSubtotal.Text);
+                                            subtotal = Convert.ToDecimal(txtSubtotal.Text.Trim());
                                         }
                                         if (txtGstamt.Text != "")
                                         {
-                                            gstamt = Convert.ToDecimal(txtGstamt.Text);
+                                            gstamt = Convert.ToDecimal(txtGstamt.Text.Trim());
                                         }
                                         if (txtRoundoff.Text != "")
                                         {
-                                            roundoff = Convert.ToDecimal(txtRoundoff.Text);
+                                            roundoff = Convert.ToDecimal(txtRoundoff.Text.Trim());
                                         }
                                         if (txtGrandtot.Text != "")
                                         {
-                                            grandtotal = Convert.ToDecimal(txtGrandtot.Text);
+                                            grandtotal = Convert.ToDecimal(txtGrandtot.Text.Trim());
                                         }
 
                                         objTRN_PurchaseEntry.paraLoadingCharges = loadcharge;
@@ -5756,9 +5772,12 @@ namespace ROMS
                                     if (varDiffQty == Math.Abs(varInvqty - (varRecqty + varFreeQuantity))) //low
                                     {   // varQtyErrFlag = 1;
                                         //varQuantityErr++;
-                                        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
-                                        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
-                                        grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.PaleGreen;
+                                        if (varInvqty != 0 && varRecqty != 0)
+                                        {
+                                            grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                            grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
+                                            grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.PaleGreen;
+                                        }
                                     }
                                     else
                                     {
@@ -8494,7 +8513,7 @@ namespace ROMS
                 txtGstamt.Text = Convert.ToString(varTaxTotal);
                 txtGrandtot.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
                 lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("#,##0.00");
-                txtRoundoff.Text = Convert.ToString(Math.Abs(Convert.ToDecimal(txtGrandtot.Text) - (varSubtotal + varTaxTotal)));
+                txtRoundoff.Text = Convert.ToString(Convert.ToDecimal(txtGrandtot.Text) - (varSubtotal + varTaxTotal));
                 if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty")
                 {
                     txtTpro.Text = Convert.ToString(grdPurchaseList.RowCount) + " / " + Convert.ToString(varInvQty);
