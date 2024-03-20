@@ -9280,6 +9280,10 @@ namespace ROMS
                         txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
+                if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
+                {
+                    txtMrp.Focus();
+                }
                 /*
                 if (e.KeyCode == Keys.Enter)
                 {
@@ -9307,18 +9311,16 @@ namespace ROMS
                 {
                     DGV_FilterProduct.Focus();
                 }
-                //if (DGV_FilterProduct.RowCount > 0)
-                //{
-                //    DGV_FilterProduct.Focus();
-                //}
-                //if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
-                //{
-                //    return;
-                //}
-                if (e.KeyCode == Keys.Enter)
+                if (DGV_FilterProduct.RowCount > 0)
                 {
-                    txtMrp.Focus();
+                    DGV_FilterProduct.Focus();
                 }
+                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
+                {
+                    //txtMrp.Focus();
+                    return;
+                }
+                
                 else
                 {
                     DGV_FilterProduct.Focus();
