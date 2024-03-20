@@ -9942,7 +9942,7 @@ namespace ROMS
                             int irow = grdPurchaseList.CurrentCell.RowIndex;
                             int i = irow;
                             int intsection = 0, intlvariant = 0;
-                            //intsection = grdPurchaseList.Columns.Count - 11;
+                            intsection = grdPurchaseList.Columns.Count - 1;
                             intlvariant = grdPurchaseList.Columns.Count - 9;
                             if (intsection == icolumn)
                             {
