@@ -174,6 +174,7 @@ namespace ROMS
                             grdPurchaseEntryQueueList.Columns["ID"].Visible = false;
                             grdPurchaseEntryQueueList.Columns["Entry Date1"].Visible = false;
                             grdPurchaseEntryQueueList.Columns["Flag"].Visible = false;
+                            grdPurchaseEntryQueueList.Columns["GRN_Payment_StsID"].Visible = false;
                         }
                         else
                         {
