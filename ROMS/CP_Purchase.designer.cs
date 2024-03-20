@@ -125,7 +125,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.GRNMrp = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -830,7 +830,7 @@
             this.tabPage1.Controls.Add(this.lblSupplierCode);
             this.tabPage1.Controls.Add(this.groupBox11);
             this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.textBox9);
+            this.tabPage1.Controls.Add(this.GRNMrp);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.btnNew);
             this.tabPage1.Controls.Add(this.label20);
@@ -1119,16 +1119,16 @@
             this.label29.TabIndex = 1111218;
             this.label29.Text = "GRN MRP";
             // 
-            // textBox9
+            // GRNMrp
             // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(480, 21);
-            this.textBox9.MaxLength = 50;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(46, 25);
-            this.textBox9.TabIndex = 1111219;
+            this.GRNMrp.Enabled = false;
+            this.GRNMrp.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GRNMrp.Location = new System.Drawing.Point(480, 21);
+            this.GRNMrp.MaxLength = 50;
+            this.GRNMrp.Name = "GRNMrp";
+            this.GRNMrp.ReadOnly = true;
+            this.GRNMrp.Size = new System.Drawing.Size(46, 25);
+            this.GRNMrp.TabIndex = 1111219;
             // 
             // label14
             // 
@@ -3597,7 +3597,7 @@
         private System.Windows.Forms.TextBox textBox22;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox GRNMrp;
         private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.TextBox txtOtherdiscount;
         private System.Windows.Forms.GroupBox groupBox11;
