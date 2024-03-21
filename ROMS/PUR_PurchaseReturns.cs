@@ -2014,7 +2014,7 @@ namespace ROMS
         {
             try
             {
-                if (grdReturnDC.Rows.Count > 0)
+                if (grdReturnDC.Rows.Count > 0 && Convert.ToInt32(cmbReason.SelectedValue) !=-1)
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(78);
