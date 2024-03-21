@@ -751,6 +751,7 @@ namespace ROMS
                     udfnEditLoad();
                     if (varQueueFlag == 1)
                     {
+                        udfnSupplierDetails();
                         cmbConcern.Enabled = false;
                         dpVoucherDate.Enabled = false;
                         txtSupplier.Enabled = false;
@@ -3944,15 +3945,15 @@ namespace ROMS
             }
             finally
             {
-                grdSupplierList.Sort(grdSupplierList.Columns[2], ListSortDirection.Ascending);
-                if (grdSupplierList.Rows.Count > 0)
-                {
-                    grdSupplierList.CurrentCell = grdSupplierList[5, 0];
-                }
-                if (grdPurchaseList.Rows.Count > 0)
-                {
-                    grdPurchaseList.CurrentCell = grdSupplierList[10, 0];
-                }
+                //grdSupplierList.Sort(grdSupplierList.Columns[2], ListSortDirection.Ascending);
+                //if (grdSupplierList.Rows.Count > 0)
+                //{
+                //    grdSupplierList.CurrentCell = grdSupplierList[5, 0];
+                //}
+                //if (grdPurchaseList.Rows.Count > 0)
+                //{
+                //    grdPurchaseList.CurrentCell = grdSupplierList[10, 0];
+                //}
             }
         }
 
@@ -7976,7 +7977,10 @@ namespace ROMS
                 decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
                 if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
                 if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
-                GrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim());
+                if (txtGrandtot.Text.Trim() != "")
+                {
+                    GrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim());
+                }
                 if (vardisamt != 0)
                 {
                     varDisPercent = (vardisamt * 100) / GrandTot;
@@ -10000,8 +10004,13 @@ namespace ROMS
                         {
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
-                            //lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
-                            lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXX";
+                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            if(lblsupplierGST.Text!="URD")
+                            { lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXX";  }
+                            else
+                            {
+                                lblsupplierGST.Text = "GSTIN - "+ lblsupplierGST.Text;
+                            }
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
