@@ -2608,7 +2608,7 @@ namespace ROMS
                 }
                 if(GSTAmt != 0)
                 {
-                    NetAmt = TaxAmt + GSTAmt/100;
+                    NetAmt = TaxAmt + GSTAmt;
                 }
                 string Tax = "0", GST = "0", Net = "0";
                 if(txtQuantity.Text!="")
