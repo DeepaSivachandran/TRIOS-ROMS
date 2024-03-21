@@ -1093,6 +1093,10 @@ namespace ROMS
                         txtProductNamePICode.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
+                if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
+                {
+                    txtDLocation.Focus();
+                }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     DGV_FilterProduct.Focus();

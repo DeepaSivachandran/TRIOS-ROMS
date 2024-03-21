@@ -17,6 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public string varStockLocaionId = "",varPRID="";
+        public DataTable Deftable = new DataTable();
         public int varSTRID = 0, varSLID = 0, varUpDownKey = 0;
 
         public INV_InwardlistQueue()
@@ -827,6 +828,12 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    Deftable = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -839,6 +846,31 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = null;
+                DGV_SearchGrid.DataSource = Deftable;
+                DGV_SearchGrid.Columns["SLID"].Visible = false;
+                DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.Columns["STRID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Concern"].Width = 120;
+                DGV_SearchGrid.Columns["Transfer Date"].Width = 120;
+                DGV_SearchGrid.Columns["Transfer No"].Width = 100;
+                DGV_SearchGrid.Columns["Destination Location"].Width = 150;
+                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["Total Qty"].Width = 100;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void BtnExport_Enter(object sender, EventArgs e)

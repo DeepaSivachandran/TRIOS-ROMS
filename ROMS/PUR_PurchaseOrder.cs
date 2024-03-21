@@ -2069,6 +2069,10 @@ namespace ROMS
                 //{
                 //    txtProductQty.Focus();
                 //}
+                if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
+                {
+                    txtProductQty.Focus();
+                }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {/*
                     if (lvproduct.Items.Count == 0 || txtSupplier.Text == "")

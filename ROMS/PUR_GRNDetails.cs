@@ -4357,6 +4357,10 @@ namespace ROMS
                         lblDEGroup.Text = "Search by Product Name";
                     }
                 }
+                if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
+                {
+                    cmbQtyType.Focus();
+                }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     DGV_FilterProduct.Focus();
