@@ -4743,7 +4743,6 @@ namespace ROMS
                                                 DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
                                                 cell.Style.BackColor = Color.Red;
                                                 cell.Style.ForeColor = Color.White;
-
                                             }
                                             else if (Convert.ToDecimal(varShelflifevalue[0]) < 50)
                                             {
@@ -5483,7 +5482,10 @@ namespace ROMS
                                         else
                                         {
                                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                            goto l;
+                                            if (varvalue[0] == "5")
+                                            {
+                                                goto l;
+                                            }
                                         }
                                     }
                                 }

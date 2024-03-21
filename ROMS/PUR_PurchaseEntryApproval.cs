@@ -3057,11 +3057,12 @@ namespace ROMS
             try
             {
                 int varStatus = 0; string result = "";
-                MainForm.objCP_Verify = new CP_Verify();
+                l: MainForm.objCP_Verify = new CP_Verify();
                 MainForm.objCP_Verify.ShowDialog();
                 varUserID = MainForm.objCP_Verify.varUserId;
                 if (MainForm.objCP_Verify.flag == 1)
                 {
+                    
                     varStatus = 63;
                     int varBrokerid = 0;
                     if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); }
@@ -3182,7 +3183,7 @@ namespace ROMS
                     objTRN_PurchaseEntry.paraRoundOff = roundoff;
                     objTRN_PurchaseEntry.paraGrandTotal = grandtotal;
                     objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
-                    SPDataService objspdservice = new SPDataService(); 
+                    SPDataService objspdservice = new SPDataService();
                     result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -3196,8 +3197,13 @@ namespace ROMS
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (varvalue[0] == "5")
+                        {
+                            goto l;
+                        }
                     }
                 }
+                
             }
             catch (Exception ex)
             {
