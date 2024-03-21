@@ -690,6 +690,12 @@ namespace ROMS
                         {
                             grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.White;
                         }
+                        if (Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0 || Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0 || Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0)
+                        {
+                            varcount++; grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
+                            grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
+                            varERRQty = "1";
+                        }
                     }
                     if(varERRQty=="1")
                     {
@@ -4626,8 +4632,8 @@ namespace ROMS
             {
                 if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmremarks")
                 {
-                    //e.Control.KeyPress -= udfnHandleKeyPress;
-                    //e.Control.KeyPress += udfnHandleKeyPress; 
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
                 }
             }
             catch (Exception ex)
@@ -4641,12 +4647,12 @@ namespace ROMS
             try
             {
                 TextBox textBox = (TextBox)sender;
-                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty")
+                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     {
                         e.Handled = true;  // Disallow the character
-                    } 
+                    }
                     //if (e.KeyChar == '.' && vartb.Text.Contains('.'))
                     //{
                     //    e.Handled = true;
@@ -4657,8 +4663,8 @@ namespace ROMS
                     }
                 }
 
-                if ( grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty")
-                { 
+                if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmunitorderqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmordertotalqty" || grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty")
+                {
                     int varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
                     //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     //{
@@ -4705,7 +4711,7 @@ namespace ROMS
                         {
                             e.Handled = true;
                         }
-                    } 
+                    }
                 }
 
             }
@@ -4713,7 +4719,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         private void TxtSalesManMobile_KeyPress(object sender, KeyPressEventArgs e)
