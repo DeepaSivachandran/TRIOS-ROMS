@@ -2604,11 +2604,11 @@ namespace ROMS
                 }
                 if(TaxAmt != 0)
                 {
-                    GSTAmt = TaxAmt * varGST;
+                    GSTAmt = TaxAmt * varGST/100;
                 }
                 if(GSTAmt != 0)
                 {
-                    NetAmt = TaxAmt + GSTAmt;
+                    NetAmt = TaxAmt + GSTAmt/100;
                 }
                 string Tax = "0", GST = "0", Net = "0";
                 if(txtQuantity.Text!="")
