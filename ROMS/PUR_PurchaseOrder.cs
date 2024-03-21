@@ -690,7 +690,7 @@ namespace ROMS
                         {
                             grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.White;
                         }
-                        if (Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0 || Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0 || Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0)
+                        if (Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0 || Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0 || Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0)
                         {
                             varcount++; grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
                             grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
