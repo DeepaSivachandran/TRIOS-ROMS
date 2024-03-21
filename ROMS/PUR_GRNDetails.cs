@@ -51,15 +51,16 @@ namespace ROMS
                 DataBind objDBind = new DataBind();
                 objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (64) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
                 objDBind = null;
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID =61", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                cmbQtyType.SelectedValue = 202;
                 this.ActiveControl = txtProductName;
                 udfnDropdownLoad();
                 udfnEditLoad();
                 udfnDateSet();
                 udfnPODropdownload();
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID =61", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
-                cmbQtyType.SelectedValue = 202;
+                
                 if (chkCompleted.Checked == true)
                 {
                     btnVerified.Enabled = false;
@@ -1108,6 +1109,7 @@ namespace ROMS
                                 grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
                             }
                         }
+                       
                         decimal varMRP = 0;
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmmrp"].Value) != "")
                         {
@@ -3929,6 +3931,19 @@ namespace ROMS
                                 //string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
                                 grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), txtInvoiceQty.Text.Trim(),Convert.ToInt32(cmbQtyType.SelectedValue) ,Convert.ToDecimal(mrp), (varExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal);
+                                //for (int i=0;i< grdGrnlist.Rows.Count;i++)
+                                //{
+                                //    if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202)
+                                //    {
+                                //        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
+                                //        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                                //    }
+                                //    else
+                                //    {
+                                //        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = false;
+                                //        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                                //    }
+                                //}
                                 udfnrowclear();
                                 varModifiedFlag = 1;
                                 //grdsupplieradd.Sort(grdsupplieradd.Columns[1], ListSortDirection.Ascending);
@@ -3986,6 +4001,14 @@ namespace ROMS
                                 {
                                     DataGridView dataGridView = grdGrnlist;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
+                                    cell.Style.BackColor = Color.LightGray;
+                                    cell.Style.ForeColor = Color.Black;
+                                    cell.ReadOnly = true;
+                                }
+                                if (Convert.ToInt32(cmbQtyType.SelectedValue)==202)
+                                {
+                                    DataGridView dataGridView = grdGrnlist;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
                                     cell.Style.BackColor = Color.LightGray;
                                     cell.Style.ForeColor = Color.Black;
                                     cell.ReadOnly = true;
@@ -4828,10 +4851,21 @@ namespace ROMS
                                     grdGrnlist.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     grdGrnlist.Columns["clmInvoiceQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    if (Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value) ==202)
+                                    {
+                                        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
+                                        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                                    }
+                                    else
+                                    {
+                                        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = false;
+                                        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                                    }
                                 }
                                 txtTotalpro.Text = Convert.ToString(grdGrnlist.Rows.Count);
                                 DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                 GrdGrnlist_DataBindingComplete(grdGrnlist, args2);
+                                
                             } 
                             if (objDs.Tables[5].Rows.Count != 0)
                             {
@@ -4904,6 +4938,22 @@ namespace ROMS
                         btnVerified.Enabled = true;
                         udfnVerifiedBy();
                     }
+                    //if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202)
+                    //{
+                    //    DataGridView dataGridView = grdGrnlist;
+                    //    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
+                    //    cell.Style.BackColor = Color.LightGray;
+                    //    cell.Style.ForeColor = Color.Black;
+                    //    cell.ReadOnly = true;
+                    //}
+                    //else
+                    //{
+                    //    DataGridView dataGridView = grdGrnlist;
+                    //    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
+                    //    cell.Style.BackColor = Color.PaleGreen;
+                    //    cell.Style.ForeColor = Color.White;
+                    //    cell.ReadOnly = true;
+                    //}
                 }
             }
             catch (Exception ex)
