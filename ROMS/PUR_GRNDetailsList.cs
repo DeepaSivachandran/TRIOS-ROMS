@@ -223,7 +223,7 @@ namespace ROMS
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
                             grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
-                            grdGRNList.Columns["S.No."].Width = 30;
+                            grdGRNList.Columns["S.No."].Width = 40;
                             grdGRNList.Columns["Company"].Visible = false;
                             grdGRNList.Columns["GRN No."].Width = 60;
                             grdGRNList.Columns["GRN Date"].Width = 80;
