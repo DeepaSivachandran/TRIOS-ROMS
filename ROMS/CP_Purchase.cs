@@ -4672,106 +4672,108 @@ namespace ROMS
             //}
             try
             {
-                string varshelflife = "";
-                SPDataService objdserv = new SPDataService();
-                DataSet objDs = new DataSet();
-                int varCellprodid = 0;
-                if (grdSupplierList.Columns[e.ColumnIndex].Name == "clmexpirydate")
+                if (PbSTS == "49")
                 {
-                    int rowIndex = e.RowIndex;
-                    int columnIndex = e.ColumnIndex;
-                    if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmexpirydate"].Value) != "")
+                    string varshelflife = "";
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    int varCellprodid = 0;
+                    if (grdSupplierList.Columns[e.ColumnIndex].Name == "clmexpirydate")
                     {
-                        varCellprodid = Convert.ToInt32(grdSupplierList.Rows[e.RowIndex].Cells["clmProid"].Value);
-                        if (rowIndex >= 0 && columnIndex >= 0)
+                        int rowIndex = e.RowIndex;
+                        int columnIndex = e.ColumnIndex;
+                        if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmexpirydate"].Value) != "")
                         {
-                            string varTempYear = "0", varTempMonth = "0", varTempDay = "0";
-                            object cellValue = grdSupplierList.Rows[rowIndex].Cells[columnIndex].Value;
-                            string varExpiryDate = "";
-                            varExpiryDate = cellValue.ToString();
-                            string[] DMY = varExpiryDate.Split('/');
-                            if (DMY.Count() == 3)
+                            varCellprodid = Convert.ToInt32(grdSupplierList.Rows[e.RowIndex].Cells["clmProid"].Value);
+                            if (rowIndex >= 0 && columnIndex >= 0)
                             {
-                                varTempDay = DMY[0];
-                                varTempMonth = DMY[1];
-                                varTempYear = DMY[2];
-                                if (varTempDay.Length == 1)
+                                string varTempYear = "0", varTempMonth = "0", varTempDay = "0";
+                                object cellValue = grdSupplierList.Rows[rowIndex].Cells[columnIndex].Value;
+                                string varExpiryDate = "";
+                                varExpiryDate = cellValue.ToString();
+                                string[] DMY = varExpiryDate.Split('/');
+                                if (DMY.Count() == 3)
                                 {
-                                    varTempDay = "0" + DMY[0];
+                                    varTempDay = DMY[0];
+                                    varTempMonth = DMY[1];
+                                    varTempYear = DMY[2];
+                                    if (varTempDay.Length == 1)
+                                    {
+                                        varTempDay = "0" + DMY[0];
+                                    }
+                                    if (varTempMonth.Length == 1)
+                                    {
+                                        varTempMonth = "0" + DMY[1];
+                                    }
+                                    if (varTempYear.Length == 2)
+                                    {
+                                        varTempYear = "20" + DMY[2];
+                                    }
+                                    cellValue = varTempDay + "/" + varTempMonth + "/" + varTempYear;
                                 }
-                                if (varTempMonth.Length == 1)
+                                //varTempDay = DMY[0];
+                                //varTempMonth = DMY[1];
+                                varTempExpiryDate = cellValue.ToString();
+                                if (cellValue != null && Convert.ToString(cellValue) != "")
                                 {
-                                    varTempMonth = "0" + DMY[1];
+                                    varshelflife = cellValue.ToString();
+                                    if (varshelflife != "" || varshelflife != null)
+                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0", "");
+                                    objdserv.CloseConnection();
+                                    if (objDs != null)
+                                    {
+                                        if (objDs.Tables[0].Rows.Count != 0)
+                                        {
+                                            if (objDs.Tables[0].Rows.Count > 0)
+                                            {
+                                                grdSupplierList.Rows[rowIndex].Cells["clmshelfper"].Value = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]);
+                                            }
+                                        }
+                                        if (objDs.Tables[1].Rows.Count > 0)
+                                        {
+                                            grdSupplierList.Rows[rowIndex].Cells["clmactuallife"].Value = Convert.ToString(objDs.Tables[1].Rows[0]["ACUTAL"]);
+                                        }
+
+                                        string[] varShelflifevalue = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]).Split(' ');
+                                        if (varShelflifevalue[0] != "")
+                                        {
+                                            if (Convert.ToDecimal(varShelflifevalue[0]) < 25)
+                                            {
+                                                DataGridView dataGridView = grdSupplierList;
+                                                DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
+                                                cell.Style.BackColor = Color.Red;
+                                                cell.Style.ForeColor = Color.White;
+
+                                            }
+                                            else if (Convert.ToDecimal(varShelflifevalue[0]) < 50)
+                                            {
+                                                DataGridView dataGridView = grdSupplierList;
+                                                DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
+                                                cell.Style.BackColor = Color.Orange;
+                                                cell.Style.ForeColor = Color.Black;
+                                            }
+                                            else
+                                            {
+                                                DataGridView dataGridView = grdSupplierList;
+                                                DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
+                                                cell.Style.BackColor = Color.White;
+                                                cell.Style.ForeColor = Color.Black;
+                                            }
+                                        }
+                                    }
                                 }
-                                if (varTempYear.Length == 2)
-                                {
-                                    varTempYear = "20" + DMY[2];
-                                }
-                                cellValue = varTempDay + "/" + varTempMonth + "/" + varTempYear;
                             }
-                            //varTempDay = DMY[0];
-                            //varTempMonth = DMY[1];
-                            varTempExpiryDate = cellValue.ToString();
-                            if (cellValue != null && Convert.ToString(cellValue) != "")
-                            {
-                                varshelflife = cellValue.ToString();
-                                if (varshelflife != "" || varshelflife != null)
-                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0", "");
-                                objdserv.CloseConnection();
-                                if (objDs != null)
-                                {
-                                    if (objDs.Tables[0].Rows.Count != 0)
-                                    {
-                                        if (objDs.Tables[0].Rows.Count > 0)
-                                        {
-                                            grdSupplierList.Rows[rowIndex].Cells["clmshelfper"].Value = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]);
-                                        }
-                                    }
-                                    if (objDs.Tables[1].Rows.Count > 0)
-                                    {
-                                        grdSupplierList.Rows[rowIndex].Cells["clmactuallife"].Value = Convert.ToString(objDs.Tables[1].Rows[0]["ACUTAL"]);
-                                    }
-
-                                    string[] varShelflifevalue = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]).Split(' ');
-                                    if (varShelflifevalue[0] != "")
-                                    {
-                                        if (Convert.ToDecimal(varShelflifevalue[0]) < 25)
-                                        {
-                                            DataGridView dataGridView = grdSupplierList;
-                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
-                                            cell.Style.BackColor = Color.Red;
-                                            cell.Style.ForeColor = Color.White;
-
-                                        }
-                                        else if (Convert.ToDecimal(varShelflifevalue[0]) < 50)
-                                        {
-                                            DataGridView dataGridView = grdSupplierList;
-                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
-                                            cell.Style.BackColor = Color.Orange;
-                                            cell.Style.ForeColor = Color.Black;
-                                        }
-
-                                        else
-                                        {
-                                            DataGridView dataGridView = grdSupplierList;
-                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
-                                            cell.Style.BackColor = Color.White;
-                                            cell.Style.ForeColor = Color.Black;
-                                        }
-                                    }
-                                }
-                            }
+                            grdSupplierList.Rows[e.RowIndex].Cells["clmexpirydate"].Value = varTempExpiryDate;
+                            udfnGridaddvalue(sender, e);
                         }
-                        grdSupplierList.Rows[e.RowIndex].Cells["clmexpirydate"].Value = varTempExpiryDate;
-                        udfnGridaddvalue(sender, e);
-                    }
-                    else
-                    {
-                        grdSupplierList.Rows[rowIndex].Cells["clmactuallife"].Value = "";
-                        DataGridView dataGridView = grdSupplierList;
-                        DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
-                        cell.Style.BackColor = Color.White;
-                        cell.Style.ForeColor = Color.Black;
+                        else
+                        {
+                            grdSupplierList.Rows[rowIndex].Cells["clmactuallife"].Value = "";
+                            DataGridView dataGridView = grdSupplierList;
+                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
+                            cell.Style.BackColor = Color.White;
+                            cell.Style.ForeColor = Color.Black;
+                        }
                     }
                 }
             }
