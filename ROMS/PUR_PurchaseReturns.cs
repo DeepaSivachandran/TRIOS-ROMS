@@ -44,6 +44,8 @@ namespace ROMS
         public int varSLID = 0;
         public int varRKID = 0;
         public int varDecimal = 0;
+        public decimal varApprox = 0;
+        public int varGST = 0;
 
         public PUR_PurchaseReturns()
         {
@@ -80,7 +82,6 @@ namespace ROMS
                 lblsupplierpayment.Text = "";
                 lblSupplierOrderpolicy.Text = "";
                 lblReturn.Text = "";
-                //lblReturnType.Text = "";
                 lblSalesmanName.Text = "";
                 lblMobileNo.Text = "";
                 lblWhatsAppNo.Text = "";
@@ -361,11 +362,6 @@ namespace ROMS
             try
             {
                 SPDataService objdserv = new SPDataService();
-                int varconcerntype = 4;
-                //if (btnSave.Text == "Save")
-                //{
-                //    varconcerntype = 3;
-                //}
                 DataSet objDT = new DataSet();
                 objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();
@@ -416,9 +412,18 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=19 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
+                if(btnSave.Text=="Save")
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN(0,19) AND MSTID NOT IN(0, 61) ", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=19 OR MSTID =-1 ", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
                 txtDAmount.Visible = false;
                 txtAmount.Visible = false;
                 txtDCrNo.Visible = false;
@@ -473,6 +478,9 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Source_RKID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
+                this.grdReturnDC.Size = new System.Drawing.Size(1289, 317);
+                grdReturnDC.Location = new Point(9, 23);
+                grbProDetails.SendToBack();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
@@ -493,10 +501,6 @@ namespace ROMS
                     dpCreditNoteDate.MaxDate = MainForm.pbCurrentDate;
                     this.ActiveControl = txtSupplier;
                     txtSupplier.Focus();
-                    //if (varReturnDCID == 0)
-                    //{
-                    //    lblStatus.Text = "Pending";
-                    //}
                     if (btnSave.Text == "Save")
                     {
                         grpReason.Enabled = false;
@@ -608,7 +612,6 @@ namespace ROMS
                             }
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            //grdReturnDC.DataSource = objDs.Tables[0];
                             grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdReturnDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -634,7 +637,7 @@ namespace ROMS
                             grdReturnDC.Columns["clmRack"].Visible = false;
                             grdReturnDC.Columns["clmRemove"].Visible = false;
                             grdReturnDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            //grdReturnDC.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdReturnDC.Columns["clmUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -722,35 +725,49 @@ namespace ROMS
                                 {
                                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                     {
-                                        grdReturnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product Name"]), 0, 0, Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]),
+                                        grdReturnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product Name"]),Convert.ToString(objDs.Tables[1].Rows[i]["Location"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]),
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]),
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["Net Amt"]));
-
+                                        dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]));
                                     }
                                     lblNoRecordsFound.Visible = false;
                                     lblNoRecordsFound.SendToBack();
-                                    grdReturnDC.DataSource = objDs.Tables[1];
-                                    grdReturnDC.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                    grdReturnDC.Columns["Approximate Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdReturnDC.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdReturnDC.Columns["Taxable Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdReturnDC.Columns["GST Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdReturnDC.Columns["Net Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdReturnDC.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdReturnDC.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                    grdReturnDC.Columns["Product Name"].Width = 300;
-                                    grdReturnDC.Columns["S.No."].Width = 50;
-                                    grdReturnDC.Columns["MRP"].Width = 80;
-                                    grdReturnDC.Columns["Qty"].Width = 70;
-                                    grdReturnDC.Columns["Unit"].Width = 70;
-                                    grdReturnDC.Columns["GST%"].Width = 70;
-                                    grdReturnDC.Columns["GST Amt"].Width = 70;
-                                    grdReturnDC.Columns["Approximate Rate"].Width = 120;
-                                    grdReturnDC.Columns["DMID"].Visible = false;
-                                    grdReturnDC.Columns["PRID"].Visible = false;
-                                    grdReturnDC.Columns["UTID"].Visible = false;
-                                    grdReturnDC.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    grdReturnDC.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                    //grdReturnDC.DataSource = objDs.Tables[1];
+                                    grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmTax"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmGSTAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmNettAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    grdReturnDC.Columns["clmProduct"].Width = 300;
+                                    grdReturnDC.Columns["clmSno"].Width = 50;
+                                    grdReturnDC.Columns["clmMRP"].Width = 80;
+                                    grdReturnDC.Columns["clmQuantity"].Width = 70;
+                                    grdReturnDC.Columns["clmUnit"].Width = 70;
+                                    grdReturnDC.Columns["clmGST"].Width = 70;
+                                    grdReturnDC.Columns["clmGSTAmount"].Width = 70;
+                                    grdReturnDC.Columns["clmApprox"].Width = 120;
+                                    grdReturnDC.Columns["clmPRID"].Visible = false;
+                                    grdReturnDC.Columns["clmUTID"].Visible = false;
+                                    grdReturnDC.Columns["clmDMID"].Visible = false;
+                                    grdReturnDC.Columns["clmSLID"].Visible = false;
+                                    grdReturnDC.Columns["clmRKID"].Visible = false;
+                                    if(Convert.ToInt32(cmbReason.SelectedValue) == 203)
+                                    {
+                                        grdReturnDC.Columns["clmLocation"].Visible = true;
+                                        grdReturnDC.Columns["clmRack"].Visible = true;
+                                    }
+                                    else
+                                    {
+                                        grdReturnDC.Columns["clmLocation"].Visible = false;
+                                        grdReturnDC.Columns["clmRack"].Visible = false;
+                                    }
+                                    grdReturnDC.Columns["clmRemove"].Visible = false;
+                                    grdReturnDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    //grdReturnDC.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 }
                                 else
                                 {
@@ -1021,7 +1038,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-
                 }
             }
             catch (Exception ex)
@@ -1998,12 +2014,28 @@ namespace ROMS
         {
             try
             {
+                if (grdReturnDC.Rows.Count > 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(78);
+                    objDServ.CloseConnection();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        dtPurchaseReturnDC.Rows.Clear();
+                        grdReturnDC.DataSource = null;
+                        grdRepDetails.DataSource = null;
+                    }
+                }
                 if (Convert.ToInt32(cmbReason.SelectedValue) == 60) //damage
                 {
                     this.grdReturnDC.Size = new System.Drawing.Size(1289, 317);
                     grdReturnDC.Location = new Point(9, 23);
                     grbProDetails.SendToBack();
                     grbProDetails.Visible = false;
+                    DGV_FilterProduct.DataSource = null;
+                    DGV_FilterProduct.Visible = false;
+                    txtProductNamePICode.Text = "";
                     grdReturnDC.DataSource = null;
                     grdReturnDC.Rows.Clear();
                     txtProductName.Enabled = false;
@@ -2064,13 +2096,8 @@ namespace ROMS
                     txtExpiryDate.Text = "";
                     txtBatchNo.Text = "";
                     txtQuantity.Text = "";
+                    txtStockQty.Text = "";
                     txtLocation.Text = "";
-                    string PRID = "0";
-                    //if (varProducts != "")
-                    //{
-                    //    var strings1 = varProductsIDs.Select(xx => xx);
-                    //    PRID = (string.Join(",", strings1));
-                    //}
                     if (txtProductNamePICode.Text.Length > 0)
                     {
                         DataSet objDs = new DataSet();
@@ -2103,6 +2130,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
                                     DGV_FilterProduct.Columns["RKID"].Visible = false;
                                     DGV_FilterProduct.Columns["SLID"].Visible = false;
+                                    DGV_FilterProduct.Columns["APPROX"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
@@ -2146,29 +2174,24 @@ namespace ROMS
                                 {
                                     DGV_FilterProduct.Visible = false;
                                     DGV_FilterProduct.DataSource = null;
-                                    //lvProduct.Visible = false;
                                 }
                             }
                             else
                             {
                                 DGV_FilterProduct.Visible = false;
                                 DGV_FilterProduct.DataSource = null;
-                                //lvProduct.Visible = false;
                             }
                         }
                         else
                         {
                             DGV_FilterProduct.Visible = false;
                             DGV_FilterProduct.DataSource = null;
-                            //lvProduct.Visible = false;
                         }
                     }
                     else
                     {
                         DGV_FilterProduct.Visible = false;
                         DGV_FilterProduct.DataSource = null;
-                        //lvProduct.Visible = false;
-                        //lvProduct.Items.Clear();
                     }
                 }
             }
@@ -2212,28 +2235,6 @@ namespace ROMS
             try
             {
                 varUpDownKey = 0;
-                /*
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
-                {
-                    if (lvProduct.Items.Count == 0 || txtProductNamePICode.Text == "")
-                    {
-                        txtProductNamePICode.Focus();
-                        lvProduct.Visible = false;
-                    }
-                    else
-                    {
-                        lvProduct.Focus();
-                    }
-                    if (lvProduct.Items.Count > 0)
-                    {
-                        lvProduct.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtDLocation.Focus();
-                }
-                */
                 if (e.KeyCode == Keys.F11)
                 {
                     if (VarSearchFlag == false)
@@ -2363,6 +2364,8 @@ namespace ROMS
                     txtMRP.Text= DGV_FilterProduct.SelectedRows[0].Cells["STK_MRP"].Value.ToString();
                     txtExpiryDate.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_ExpiryDate"].Value.ToString();
                     txtBatchNo.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_BatchNo"].Value.ToString();
+                    varApprox = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["APPROX"].Value.ToString());
+                    varGST = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["GST_Value"].Value.ToString());
                     txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 }
             }
@@ -2594,7 +2597,31 @@ namespace ROMS
         {
             try
             {
-                grdReturnDC.Rows.Add(grdReturnDC.Rows.Count + 1, varPICode,varProductName,txtLocation.Text,txtRack.Text,txtMRP.Text,txtExpiryDate.Text,txtBatchNo.Text,100,txtQuantity.Text,lblUnit.Text,200,"5",250,500,lblProduct.Text,0,0,varSLID,varRKID);
+                decimal TaxAmt = 0,GSTAmt = 0,NetAmt = 0;
+                if (txtQuantity.Text.Trim() != "")
+                {
+                    TaxAmt = varApprox * Convert.ToDecimal(txtQuantity.Text);
+                }
+                if(TaxAmt != 0)
+                {
+                    GSTAmt = TaxAmt * varGST;
+                }
+                if(GSTAmt != 0)
+                {
+                    NetAmt = TaxAmt + GSTAmt;
+                }
+                string Tax = "0", GST = "0", Net = "0";
+                if(txtQuantity.Text!="")
+                {
+                    decimal value1 = 0, value2 = 0, value3 = 0;
+                    value1 = Convert.ToDecimal(TaxAmt);
+                    Tax = Convert.ToString(value1.ToString("#." + new string('0', 2)));
+                    value2 = Convert.ToDecimal(GSTAmt);
+                    GST = Convert.ToString(value2.ToString("#." + new string('0', 2)));
+                    value3 = Convert.ToDecimal(NetAmt);
+                    Net = Convert.ToString(value3.ToString("#." + new string('0', 2)));
+                }
+                grdReturnDC.Rows.Add(grdReturnDC.Rows.Count + 1, varPICode,varProductName,txtLocation.Text,txtRack.Text,txtMRP.Text,txtExpiryDate.Text,txtBatchNo.Text,varApprox,txtQuantity.Text,lblUnit.Text,Tax, varGST, GST,Net,lblProduct.Text,0,0,varSLID,varRKID);
                 dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), 0, (txtQuantity.Text).Trim(), 0,varSLID, varRKID);
                 grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
