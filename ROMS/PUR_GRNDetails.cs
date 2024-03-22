@@ -3535,8 +3535,11 @@ namespace ROMS
                                 cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                 cell2.Style.BackColor = Color.PaleGreen;
                                 cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                cell3.Style.BackColor = Color.PaleGreen;
-                                cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                if (Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value) !=202)
+                                {
+                                    cell3.Style.BackColor = Color.PaleGreen;
+                                    cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                }
                                 if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
                                 {
                                     cell2.Style.BackColor = Color.LightGray;

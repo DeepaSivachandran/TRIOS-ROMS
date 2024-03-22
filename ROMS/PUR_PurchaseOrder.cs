@@ -687,12 +687,22 @@ namespace ROMS
                             varcount++; grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
                             grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
                             varERRQty = "1";
+                            grdsupplieradd.ClearSelection();
                         }
                         else
                         {
-                            grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.White;
+                            grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.PaleGreen;
                         }
-                        if (Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0 || Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0 || Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) < 0)
+                        decimal OrderQty = 0;
+                        if(Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value)=="")
+                        {
+                            OrderQty = 0;
+                        }
+                        else
+                        {
+                            OrderQty = Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value);
+                        }
+                        if (OrderQty < 0)
                         {
                             varcount++; grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
                             grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
@@ -3757,7 +3767,7 @@ namespace ROMS
                                         {
                                             stockval = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value);
                                         }
-                                        if (stockval < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
+                                        if (stockval == Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
                                         {
                                             DataGridView dataGridView = (DataGridView)sender;
                                             DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmordertotalqty"];
@@ -3808,7 +3818,7 @@ namespace ROMS
                                             {
                                                 stockval = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value);
                                             }
-                                            if (stockval < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
+                                            if (stockval == Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
                                             {
                                                 DataGridView dataGridView = (DataGridView)sender;
                                                 DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmordertotalqty"];
@@ -3854,7 +3864,7 @@ namespace ROMS
                                             stockval = 0;
                                         }
                                         else { stockval = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value); }
-                                        if (stockval < Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
+                                        if (stockval == Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value))
                                         {
                                             DataGridView dataGridView = (DataGridView)sender;
                                             DataGridViewCell cell = dataGridView.Rows[e.RowIndex].Cells["clmordertotalqty"];

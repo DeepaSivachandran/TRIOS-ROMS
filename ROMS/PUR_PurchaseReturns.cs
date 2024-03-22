@@ -47,6 +47,7 @@ namespace ROMS
         public decimal varApprox = 0;
         public int varGST = 0;
 
+
         public PUR_PurchaseReturns()
         {
             InitializeComponent();
@@ -109,7 +110,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62 ) //received credit note
+                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 204) //received credit note
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
@@ -123,7 +124,7 @@ namespace ROMS
                     dtExchangeProducts.AcceptChanges();
                     varModifiedFlag = 1;
                 }
-                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 63) //Received Equivalent Product
+                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 63 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 205) //Received Equivalent Product
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
@@ -139,7 +140,7 @@ namespace ROMS
                     }
                     varModifiedFlag = 1;
                 }
-                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192) //Debit Note Created
+                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207) //Debit Note Created
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
@@ -562,7 +563,9 @@ namespace ROMS
                 }
                 else
                 {
-
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=65 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReasonForClosing, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
                 }
             }
             catch (Exception ex)
@@ -732,7 +735,13 @@ namespace ROMS
                                         grdReturnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product Name"]),Convert.ToString(objDs.Tables[1].Rows[i]["Location"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]),
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]),
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["Net Amt"]));
+
                                         dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]));
+
+                                        dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]),
+                                        Convert.ToDecimal(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["UTID"]),
+                                        Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST Amt"]),
+                                        Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]));
                                     }
                                     lblNoRecordsFound.Visible = false;
                                     lblNoRecordsFound.SendToBack();
@@ -786,7 +795,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
                             {
-                                if (varStatusId == 39 && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReason.SelectedValue) == 203 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192))
+                                if (varStatusId == 39 && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReason.SelectedValue) == 203 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 204 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 205 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207))
                                 {
                                     cmbReasonForClosing.SelectedValue = objDs.Tables[2].Rows[0]["PURREDC_ClosingReasonId"].ToString();
                                     txtCrNo.Text = objDs.Tables[2].Rows[0]["PURREDC_CNNo"].ToString();
@@ -1546,8 +1555,9 @@ namespace ROMS
 
                         if (grdReturnDC.Rows.Count > 0)
                         {
-                            dtPurchaseReturnDC.Rows.Clear();
-                            dtPurchaseReturnDC.AcceptChanges();
+                            //dtPurchaseReturnDC.Rows.Clear();
+                            //dtPurchaseReturnDC.AcceptChanges();
+                            /*
                             for (int i = 0; i < grdReturnDC.Rows.Count; i++)
                             {
                                 dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(grdReturnDC.Rows[i].Cells["clmPRID"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["clmMRP"].Value), Convert.ToString(grdReturnDC.Rows[i].Cells["clmExpiryDate"].Value), Convert.ToString(grdReturnDC.Rows[i].Cells["clmBatchno"].Value),
@@ -1555,6 +1565,7 @@ namespace ROMS
                                      Convert.ToDecimal(grdReturnDC.Rows[i].Cells["clmTax"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["clmGST"].Value), Convert.ToDecimal(grdReturnDC.Rows[i].Cells["clmGSTAmount"].Value),
                                     Convert.ToDecimal(grdReturnDC.Rows[i].Cells["clmNettAmount"].Value),Convert.ToInt32(grdReturnDC.Rows[i].Cells["clmDMID"].Value), Convert.ToInt32(grdReturnDC.Rows[i].Cells["clmSLID"].Value), Convert.ToInt32(grdReturnDC.Rows[i].Cells["clmRKID"].Value));
                             }
+                            */
                             if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
                             {
                                 string result = "", varorginator = ""; int varviewtype = 0;
@@ -1614,7 +1625,7 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    if (varReasonforClosingId == 63)
+                                    if (varReasonforClosingId == 63 || varReasonforClosingId == 205)
                                     {
                                         MessageBox.Show("Please add atleast one exchange product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                         varErrorFlag = false;
@@ -1771,10 +1782,8 @@ namespace ROMS
         {
             try
             {
-                
-                    BeginInvoke(new Action(() => cmbReasonForClosing.Select(int.MaxValue, 0)));
-                    udfnReasonforClosing();
-                
+                BeginInvoke(new Action(() => cmbReasonForClosing.Select(int.MaxValue, 0)));
+                udfnReasonforClosing();
             }
             catch (Exception ex)
             {
@@ -2631,6 +2640,11 @@ namespace ROMS
                 }
                 grdReturnDC.Rows.Add(grdReturnDC.Rows.Count + 1, varPICode,varProductName,txtLocation.Text,txtRack.Text,txtMRP.Text,txtExpiryDate.Text,txtBatchNo.Text,varApprox,txtQuantity.Text,lblUnit.Text,Tax, varGST, GST,Net,lblProduct.Text,0,0,varSLID,varRKID);
                 dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), 0, (txtQuantity.Text).Trim(), 0,varSLID, varRKID);
+
+                dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(lblProduct.Text), Convert.ToDecimal(txtMRP.Text), Convert.ToString(txtExpiryDate.Text), Convert.ToString(txtBatchNo.Text),
+                Convert.ToDecimal(varApprox), Convert.ToDecimal(txtQuantity.Text),0,Convert.ToDecimal(Tax), Convert.ToDecimal(varGST), Convert.ToDecimal(GST),
+                Convert.ToDecimal(Net), 0, varSLID, varRKID);
+                udfnTotal();
                 grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdReturnDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2657,6 +2671,31 @@ namespace ROMS
                 grdReturnDC.Columns["clmRemove"].Visible = true;
                 grdReturnDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 udfnProClear();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnTotal()
+        {
+            try
+            {
+                if (grdReturnDC.Rows.Count > 0)
+                {
+                    decimal TaxAmount = Convert.ToDecimal(dtPurchaseReturnDC.Compute("SUM(PURREDCPR_TaxableAmnt)", string.Empty));
+                    txtSubTotal.Text = Convert.ToString(TaxAmount);
+                    decimal GSTAmount = Convert.ToDecimal(dtPurchaseReturnDC.Compute("SUM(PURREDCPR_GSTAmnt)", string.Empty));
+                    txtTotalTax.Text = Convert.ToString(GSTAmount);
+                    txtApproxTotal.Text = Convert.ToString(TaxAmount + GSTAmount);
+                }
+                else
+                {
+                    txtSubTotal.Text = "";
+                    txtTotalTax.Text = "";
+                    txtApproxTotal.Text = "";
+                }
             }
             catch (Exception ex)
             {
@@ -2820,7 +2859,6 @@ namespace ROMS
                                 grdReturnDC.Rows.RemoveAt(this.grdReturnDC.SelectedRows[0].Index);
                                 for (int i = 0; i < grdReturnDC.RowCount; i++)
                                 {
-                                    grdReturnDC.Rows[i].Cells["clmSno"].Value = i + 1;
                                 }
                                 varModifiedFlag = 1;
                                 for (int i = 0; i < dtStock.Rows.Count; i++)
@@ -2831,6 +2869,16 @@ namespace ROMS
                                         dtStock.AcceptChanges();
                                     }
                                 }
+                                for (int i = 0; i < dtPurchaseReturnDC.Rows.Count; i++)
+                                {
+                                    if (Convert.ToInt32(dtPurchaseReturnDC.Rows[i]["PURREDCPR_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtPurchaseReturnDC.Rows[i]["PURREDCPR_MRP"]) == varMRP && Convert.ToString(dtPurchaseReturnDC.Rows[i]["PURREDCPR_ExpDate"]) == varExpiryDate && Convert.ToString(dtPurchaseReturnDC.Rows[i]["PURREDCPR_BatchNo"]) == varBatchNo && Convert.ToString(dtPurchaseReturnDC.Rows[i]["PURREDCPR_SLID"]) == varSLID && Convert.ToString(dtPurchaseReturnDC.Rows[i]["PURREDCPR_RKID"]) == varRKID)
+                                    {
+                                        dtPurchaseReturnDC.Rows[i].Delete();
+                                        dtPurchaseReturnDC.AcceptChanges();
+                                    }
+                                    //grdReturnDC.Rows[i].Cells["clmSno"].Value = i + 1;
+                                }
+                                udfnTotal();
                             }
                             break;
                     }
