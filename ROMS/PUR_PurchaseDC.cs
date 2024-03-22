@@ -2077,7 +2077,7 @@ namespace ROMS
                     }
                     for (int i = 0; i < grdPurchaseDC.Rows.Count; i++)
                     {
-                        if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmQuantity"].Value) == "0")
+                        if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmQuantity"].Value) == "" || Convert.ToDecimal(grdPurchaseDC.Rows[i].Cells["clmQuantity"].Value) == 0)
                         {
                             varErrorFlag = false;
                             grdPurchaseDC.Rows[i].Cells["clmError"].Value = 1;
@@ -2501,7 +2501,7 @@ namespace ROMS
             {
                 decimal Quantity = Convert.ToDecimal(grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Value);
                 decimal Stock = Convert.ToDecimal(grdPurchaseDC.CurrentRow.Cells["clmStockQuantity"].Value);
-                if (Convert.ToString(Quantity) == "0" || Convert.ToString(Quantity) == "")
+                if (Convert.ToDecimal(Quantity) == 0 || Convert.ToString(Quantity) == "")
                 {
                     varErrQty = "1";
                 }
@@ -2762,7 +2762,7 @@ namespace ROMS
         {
             try
             {
-                if (txtActualQty.Text.Trim() == "")
+                if (txtActualQty.Text.Trim() == ""  )
                 {
                     txtActualQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
                     epPurchaseDC.SetError(txtActualQty, "Please enter quantity.");
