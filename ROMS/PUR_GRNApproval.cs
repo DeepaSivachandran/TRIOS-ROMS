@@ -466,26 +466,26 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGrnPO = new DataTable();
                 TRN_GRNApproval objTRN_GRNApproval = new TRN_GRNApproval();
-                objTRN_GRNApproval.ViewType = 0;
-                objTRN_GRNApproval.paraPURID = varID;
-                objTRN_GRNApproval.paraRemarks = txtRemark.Text;
-                objTRN_GRNApproval.paraFlag = 0;
-                objTRN_GRNApproval.paraOriginator = varoriginator;
-                objTRN_GRNApproval.paraCompanyId = varConcernID;
-                objTRN_GRNApproval.paraSupplierID = varSupplierID;
-                objTRN_GRNApproval.paraScheduleID = varScheduleID;
-                objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRN_GRNApproval.paraReturnDC_Date = vardate;
-                objTRN_GRNApproval.paraApprovalProduct = dtApproval;
-                objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
-                result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
-                objspdservice.CloseConnection();
-                string[] varvalue = result.Split('~');
-                if (result.Split('~')[0] == "3")
-                {
-                    if (result.Split('~')[1] == "1")
-                    {
-                        MainForm.objCP_Verify = new CP_Verify();
+                //objTRN_GRNApproval.ViewType = 0;
+                //objTRN_GRNApproval.paraPURID = varID;
+                //objTRN_GRNApproval.paraRemarks = txtRemark.Text;
+                //objTRN_GRNApproval.paraFlag = 0;
+                //objTRN_GRNApproval.paraOriginator = varoriginator;
+                //objTRN_GRNApproval.paraCompanyId = varConcernID;
+                //objTRN_GRNApproval.paraSupplierID = varSupplierID;
+                //objTRN_GRNApproval.paraScheduleID = varScheduleID;
+                //objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                //objTRN_GRNApproval.paraReturnDC_Date = vardate;
+                //objTRN_GRNApproval.paraApprovalProduct = dtApproval;
+                //objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
+                //result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
+                //objspdservice.CloseConnection();
+                //string[] varvalue = result.Split('~');
+                //if (result.Split('~')[0] == "3")
+                //{
+                    //l: if (result.Split('~')[1] == "1")
+                    //{
+                       l:  MainForm.objCP_Verify = new CP_Verify();
                         MainForm.objCP_Verify.ShowDialog();
                         varUserID = MainForm.objCP_Verify.varUserId;
                         if (MainForm.objCP_Verify.flag == 1)
@@ -521,14 +521,23 @@ namespace ROMS
                                 MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 btnSave.Enabled = true;
                                 btnSave.Focus();
+                                if(varvalue1[0]=="5")
+                                {
+                                    goto l;
+                                }
                             }
                         }
-                    }
-                    else if (result.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
+                    //}
+                    //else if (result.Split('~')[0] == "4")
+                    //{
+                    //    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //}
+                    //else if (result.Split('~')[0] == "5")
+                    //{
+                    //    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        
+                    //}
+                //}
             }
             catch (Exception ex)
             {
