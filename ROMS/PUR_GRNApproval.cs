@@ -396,6 +396,19 @@ namespace ROMS
                     //Update the same column value in the DataTable
                     dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
                 }
+                for (int i = 0; i < grdGrnApproval.Rows.Count; i++)
+                {
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value))
+                    {
+                        grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.PaleGreen;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -460,73 +473,101 @@ namespace ROMS
         {
             try
             {
+                int varQtyErr = 0;
+                bool varErrorFlag = true;
+                for (int i=0;i<grdGrnApproval.Rows.Count;i++)
+                {
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)<Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value))
+                    {
+                        varQtyErr++;
+                        grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                        varErrorFlag = false;
+                    }
+                    else
+                    {
+                        //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.PaleGreen;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
+                if (varQtyErr != 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(113);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrorFlag = false;
+                }
                 DateTime varDate = DateTime.Today;
                 String vardate = Convert.ToString(varDate);
                 string varoriginator = "GRN Approval Creation";
-                SPDataService objspdservice = new SPDataService();
-                DataTable objGrnPO = new DataTable();
-                TRN_GRNApproval objTRN_GRNApproval = new TRN_GRNApproval();
-                objTRN_GRNApproval.ViewType = 0;
-                objTRN_GRNApproval.paraPURID = varID;
-                objTRN_GRNApproval.paraRemarks = txtRemark.Text;
-                objTRN_GRNApproval.paraFlag = 0;
-                objTRN_GRNApproval.paraOriginator = varoriginator;
-                objTRN_GRNApproval.paraCompanyId = varConcernID;
-                objTRN_GRNApproval.paraSupplierID = varSupplierID;
-                objTRN_GRNApproval.paraScheduleID = varScheduleID;
-                objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRN_GRNApproval.paraReturnDC_Date = vardate;
-                objTRN_GRNApproval.paraApprovalProduct = dtApproval;
-                objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
-                result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
-                objspdservice.CloseConnection();
-                string[] varvalue = result.Split('~');
-                if (result.Split('~')[0] == "3")
+                if (varQtyErr == 0 && varErrorFlag == true)
                 {
-                    if (result.Split('~')[1] == "1")
+                    SPDataService objspdservice = new SPDataService();
+                    DataTable objGrnPO = new DataTable();
+                    TRN_GRNApproval objTRN_GRNApproval = new TRN_GRNApproval();
+                    objTRN_GRNApproval.ViewType = 0;
+                    objTRN_GRNApproval.paraPURID = varID;
+                    objTRN_GRNApproval.paraRemarks = txtRemark.Text;
+                    objTRN_GRNApproval.paraFlag = 0;
+                    objTRN_GRNApproval.paraOriginator = varoriginator;
+                    objTRN_GRNApproval.paraCompanyId = varConcernID;
+                    objTRN_GRNApproval.paraSupplierID = varSupplierID;
+                    objTRN_GRNApproval.paraScheduleID = varScheduleID;
+                    objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRN_GRNApproval.paraReturnDC_Date = vardate;
+                    objTRN_GRNApproval.paraApprovalProduct = dtApproval;
+                    objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
+                    result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
+                    objspdservice.CloseConnection();
+                    string[] varvalue = result.Split('~');
+                    if (result.Split('~')[0] == "3")
                     {
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
+                        if (result.Split('~')[1] == "1")
                         {
-                            objspdservice = new SPDataService();
-                            objTRN_GRNApproval.ViewType = 0;
-                            objTRN_GRNApproval.paraPURID = varID;
-                            objTRN_GRNApproval.paraRemarks = txtRemark.Text;
-                            objTRN_GRNApproval.paraFlag = 1;
-                            objTRN_GRNApproval.paraCompanyId = varConcernID;
-                            objTRN_GRNApproval.paraSupplierID = varSupplierID;
-                            objTRN_GRNApproval.paraScheduleID = varScheduleID;
-                            objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                            objTRN_GRNApproval.paraOriginator = varoriginator;
-                            objTRN_GRNApproval.paraReturnDC_Date = vardate;
-                            objTRN_GRNApproval.paraApprovalProduct = dtApproval;
-                            objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
-                            result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
-                            objspdservice.CloseConnection();
-                            string[] varvalue1 = result.Split('~');
-                            if (varvalue1[0] == "3")
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
                             {
-                                MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //this.ActiveControl = txtProductName;
-                                MainForm.objPUR_GRNApprovalList.udfnList();
-                                //udfnClear();
-                                this.Close();
-                            }
-                            else
-                            {
-                                //epGoodsInward.Clear();
-                                //txtProductName.BackColor = Color.White;
-                                MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                btnSave.Enabled = true;
-                                btnSave.Focus();
+                                objspdservice = new SPDataService();
+                                objTRN_GRNApproval.ViewType = 0;
+                                objTRN_GRNApproval.paraPURID = varID;
+                                objTRN_GRNApproval.paraRemarks = txtRemark.Text;
+                                objTRN_GRNApproval.paraFlag = 1;
+                                objTRN_GRNApproval.paraCompanyId = varConcernID;
+                                objTRN_GRNApproval.paraSupplierID = varSupplierID;
+                                objTRN_GRNApproval.paraScheduleID = varScheduleID;
+                                objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                objTRN_GRNApproval.paraOriginator = varoriginator;
+                                objTRN_GRNApproval.paraReturnDC_Date = vardate;
+                                objTRN_GRNApproval.paraApprovalProduct = dtApproval;
+                                objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
+                                result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
+                                objspdservice.CloseConnection();
+                                string[] varvalue1 = result.Split('~');
+                                if (varvalue1[0] == "3")
+                                {
+                                    MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //this.ActiveControl = txtProductName;
+                                    MainForm.objPUR_GRNApprovalList.udfnList();
+                                    //udfnClear();
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    //epGoodsInward.Clear();
+                                    //txtProductName.BackColor = Color.White;
+                                    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    btnSave.Enabled = true;
+                                    btnSave.Focus();
+                                }
                             }
                         }
-                    }
-                    else if (result.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else if (result.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }

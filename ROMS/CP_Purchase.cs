@@ -4930,7 +4930,7 @@ namespace ROMS
                 grdSupplierList.ClearSelection();
                 grdPurchaseList.ClearSelection();
                 udfntooltiphide(); udfnrowclear();
-                bool varErrorFlag = false; varCount2 = 0; varTabFlag = 0;
+                bool varErrorFlag = false; varCount2 = 0; varTabFlag = 0; InvoiceAmountErr=0;
                 string varGrandtotal = "";
                 if (grdSupplierList.RowCount > 0)
                 {
