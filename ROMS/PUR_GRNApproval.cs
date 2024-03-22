@@ -396,6 +396,19 @@ namespace ROMS
                     //Update the same column value in the DataTable
                     dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
                 }
+                for (int i = 0; i < grdGrnApproval.Rows.Count; i++)
+                {
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value))
+                    {
+                        grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.PaleGreen;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -460,6 +473,31 @@ namespace ROMS
         {
             try
             {
+                int varQtyErr = 0;
+                bool varErrorFlag = true;
+                for (int i=0;i<grdGrnApproval.Rows.Count;i++)
+                {
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)<Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value))
+                    {
+                        varQtyErr++;
+                        grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                        varErrorFlag = false;
+                    }
+                    else
+                    {
+                        //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.PaleGreen;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
+                if (varQtyErr != 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(113);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrorFlag = false;
+                }
                 DateTime varDate = DateTime.Today;
                 String vardate = Convert.ToString(varDate);
                 string varoriginator = "GRN Approval Creation";
