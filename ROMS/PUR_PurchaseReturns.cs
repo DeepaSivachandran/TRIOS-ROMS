@@ -560,6 +560,10 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=21 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReasonForClosing, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {
@@ -782,7 +786,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
                             {
-                                if (varStatusId == 39 && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192))
+                                if (varStatusId == 39 && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReason.SelectedValue) == 203 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192))
                                 {
                                     cmbReasonForClosing.SelectedValue = objDs.Tables[2].Rows[0]["PURREDC_ClosingReasonId"].ToString();
                                     txtCrNo.Text = objDs.Tables[2].Rows[0]["PURREDC_CNNo"].ToString();
@@ -1576,7 +1580,7 @@ namespace ROMS
                                 {
                                     subtotal = Convert.ToDecimal(txtSubTotal.Text);
                                 }
-                                if (txtTotalTax.Text.Trim() == "")
+                                if (txtTotalTax.Text.Trim() != "")
                                 {
                                     TotalTax = Convert.ToDecimal(txtTotalTax.Text);
                                 }
@@ -2606,7 +2610,7 @@ namespace ROMS
                 {
                     GSTAmt = TaxAmt * varGST/100;
                 }
-                if(GSTAmt != 0)
+                if(TaxAmt != 0)
                 {
                     NetAmt = TaxAmt + GSTAmt;
                 }
@@ -2620,6 +2624,10 @@ namespace ROMS
                     GST = Convert.ToString(value2.ToString("#." + new string('0', 2)));
                     value3 = Convert.ToDecimal(NetAmt);
                     Net = Convert.ToString(value3.ToString("#." + new string('0', 2)));
+                    if (varGST == 0)
+                    {
+                        GST = 0 + GST;
+                    }
                 }
                 grdReturnDC.Rows.Add(grdReturnDC.Rows.Count + 1, varPICode,varProductName,txtLocation.Text,txtRack.Text,txtMRP.Text,txtExpiryDate.Text,txtBatchNo.Text,varApprox,txtQuantity.Text,lblUnit.Text,Tax, varGST, GST,Net,lblProduct.Text,0,0,varSLID,varRKID);
                 dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), 0, (txtQuantity.Text).Trim(), 0,varSLID, varRKID);
