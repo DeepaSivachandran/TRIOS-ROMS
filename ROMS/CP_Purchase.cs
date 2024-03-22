@@ -4674,7 +4674,7 @@ namespace ROMS
             //}
             try
             {
-                if (PbSTS == "49")
+                if (PbSTS == "49" || pbPurchaseno=="0")
                 {
                     string varshelflife = "";
                     SPDataService objdserv = new SPDataService();
