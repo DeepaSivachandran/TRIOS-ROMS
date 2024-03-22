@@ -560,6 +560,10 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=21 OR MSTID=-1 ", "MST_DisplayText,MSTID", cmbReasonForClosing, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {
@@ -782,7 +786,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
                             {
-                                if (varStatusId == 39 && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192))
+                                if (varStatusId == 39 && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReason.SelectedValue) == 203 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192))
                                 {
                                     cmbReasonForClosing.SelectedValue = objDs.Tables[2].Rows[0]["PURREDC_ClosingReasonId"].ToString();
                                     txtCrNo.Text = objDs.Tables[2].Rows[0]["PURREDC_CNNo"].ToString();
@@ -1576,7 +1580,7 @@ namespace ROMS
                                 {
                                     subtotal = Convert.ToDecimal(txtSubTotal.Text);
                                 }
-                                if (txtTotalTax.Text.Trim() == "")
+                                if (txtTotalTax.Text.Trim() != "")
                                 {
                                     TotalTax = Convert.ToDecimal(txtTotalTax.Text);
                                 }
