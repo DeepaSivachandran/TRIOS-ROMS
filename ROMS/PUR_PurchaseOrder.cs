@@ -31,6 +31,7 @@ namespace ROMS
         private ToolTip tpIssuemodeValues = new ToolTip();
         private ToolTip tpIssuemode = new ToolTip();
         private ToolTip tpIssueby = new ToolTip();
+        private ToolTip tpRemark = new ToolTip();
         public string varSupplierID = "";
         public string varSupplierScheduleID = "";
         public string varSupplierName = "";
@@ -440,6 +441,7 @@ namespace ROMS
                 cmbIssueMode.BackColor = Color.White;
                 tpIssueby.Active = false;
                 tpIssuemode.Active = false;
+                tpRemark.Active = false;
                 cmbIssueMode.BackColor = Color.White;
                 tpIssuemodeValues.BackColor = Color.White;
             }
@@ -707,7 +709,17 @@ namespace ROMS
                     //    tpsts.Show("Please select status.", cmbStatus, 5000);
                     //    varErrorFlag = false;
                     //}
-
+                    if (chkStatus.Checked == true)
+                    {
+                        if(txtRemark.Text.Trim()=="")
+                        {
+                            errPO.SetError(txtRemark, "Please enter remarks.");
+                            txtRemark.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpRemark.ShowAlways = true;
+                            tpRemark.Show("Please enter remarks.", txtRemark, 5000);
+                            varErrorFlag = false;
+                        }
+                    }
                     if (varErrorFlag == true)
                     {
                         udfntooltiphide();
