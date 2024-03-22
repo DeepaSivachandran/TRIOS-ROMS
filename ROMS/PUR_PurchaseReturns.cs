@@ -2606,7 +2606,7 @@ namespace ROMS
                 {
                     GSTAmt = TaxAmt * varGST/100;
                 }
-                if(GSTAmt != 0)
+                if(TaxAmt != 0)
                 {
                     NetAmt = TaxAmt + GSTAmt;
                 }
@@ -2620,6 +2620,10 @@ namespace ROMS
                     GST = Convert.ToString(value2.ToString("#." + new string('0', 2)));
                     value3 = Convert.ToDecimal(NetAmt);
                     Net = Convert.ToString(value3.ToString("#." + new string('0', 2)));
+                    if (varGST == 0)
+                    {
+                        GST = 0 + GST;
+                    }
                 }
                 grdReturnDC.Rows.Add(grdReturnDC.Rows.Count + 1, varPICode,varProductName,txtLocation.Text,txtRack.Text,txtMRP.Text,txtExpiryDate.Text,txtBatchNo.Text,varApprox,txtQuantity.Text,lblUnit.Text,Tax, varGST, GST,Net,lblProduct.Text,0,0,varSLID,varRKID);
                 dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), 0, (txtQuantity.Text).Trim(), 0,varSLID, varRKID);
