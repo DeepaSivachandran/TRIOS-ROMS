@@ -1162,7 +1162,9 @@ namespace ROMS
                             {
                                 dtPurchaseReturnDC.Rows.Clear();
                                 grdReturnDC.DataSource = null;
+                                grdReturnDC.Rows.Clear();
                                 grdRepDetails.DataSource = null;
+                                grdRepDetails.Rows.Clear();
                             }
                             else
                             {
@@ -1182,6 +1184,7 @@ namespace ROMS
                 }
                 else
                 {
+                    cmbReason.Enabled = true;
                     cmbReason.Focus();
                 }
             }
