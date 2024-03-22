@@ -612,7 +612,7 @@ namespace ROMS
                             {
                                 grdReturnDC.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Name"]),0,0, Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]),
                                     Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),
-                                    Convert.ToString(objDs.Tables[0].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST%"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["Net Amt"]));
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST%"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]));
                             }
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
