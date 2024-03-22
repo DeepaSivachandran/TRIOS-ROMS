@@ -1076,10 +1076,6 @@ namespace ROMS
         {
             try
             {
-                //if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
-                //{
-                //    e.Handled = true;
-                //}     
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
@@ -1300,7 +1296,7 @@ namespace ROMS
         {
             try
             {
-                if (txtActualQty.Text.Trim() == "0")
+                if (Convert.ToDecimal(txtActualQty.Text.Trim()) == 0)
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(77);
@@ -1928,7 +1924,7 @@ namespace ROMS
             try
             {
                 decimal Quantity = Convert.ToDecimal(grdInward.CurrentRow.Cells["clmactualqty"].Value);
-                if (Convert.ToString(Quantity) == "0" || Convert.ToString(Quantity) == "")
+                if (Convert.ToDecimal(Quantity) == 0 || Convert.ToString(Quantity) == "")
                 {
                     grdInward.Rows[e.RowIndex].Cells["clmactualqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     SPDataService objDServ = new SPDataService();

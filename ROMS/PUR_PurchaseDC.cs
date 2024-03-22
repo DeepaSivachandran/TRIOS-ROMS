@@ -3079,8 +3079,18 @@ namespace ROMS
                 }
                 else
                 {
-                    string Qty = objValidation.udfnDecimal((txtActualQty.Text).Trim(), varDecimal);
-                    txtActualQty.Text = Qty;
+                    if (Convert.ToDecimal(txtActualQty.Text.Trim()) == 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        string Qty = objValidation.udfnDecimal((txtActualQty.Text).Trim(), varDecimal);
+                        txtActualQty.Text = Qty;
+                    }
                 }
                 if (txtStockLocation.Text.Trim() == "")
                 {

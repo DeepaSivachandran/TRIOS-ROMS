@@ -1407,7 +1407,7 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
                 }
-                if(error==1)
+                if (error==1)
                 {
                     blnErrorFlag = false;
                     SPDataService objDServ = new SPDataService();

@@ -490,7 +490,6 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
                     txtQty.Focus();
-
                 }
                 if (blnErrorFlag == true)
                 {

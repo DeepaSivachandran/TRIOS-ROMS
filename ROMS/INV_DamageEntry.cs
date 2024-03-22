@@ -1312,7 +1312,7 @@ namespace ROMS
                 //    tpBatchNo.Show("Invalid batch no.", txtBatchNo, 5000);
                 //    blnErrorFlag = true;
                 //}
-                if (txtStockQty.Text == "")
+                if (txtStockQty.Text.Trim() == "" || Convert.ToDecimal(txtStockQty.Text.Trim())==0)
                 {
                     epDamageEntry.SetError(txtStockQty, "Invalid stock qty");
                     txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1725,6 +1725,19 @@ namespace ROMS
                 //    tpTransferNo.Show("Please enter transfer no.", txtTransferNo, 5000);
                 //    blnErrorFlag = true;
                 //}
+                for (int i = 0; i < grdDamageEntry.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdDamageEntry.Rows[i].Cells["clmQuantity"].Value) == "" || Convert.ToDecimal(grdDamageEntry.Rows[i].Cells["clmQuantity"].Value) == 0)
+                    {
+                        blnErrorFlag = true; varErrQty = "1";
+                        grdDamageEntry.Rows[i].Cells["clmQuantity"].Style.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        grdDamageEntry.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+                        grdDamageEntry.Rows[i].Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
                 if (grdDamageEntry.Rows.Count < 1)
                 {
                     SPDataService objDServ = new SPDataService();
@@ -2499,7 +2512,7 @@ namespace ROMS
                     grdDamageEntry.Rows[e.RowIndex].Cells["clmQuantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     varErrQty = "1";
                 }
-                else if(Convert.ToString(TransferQty)=="0" || Convert.ToString(TransferQty) == "")
+                else if(Convert.ToDecimal(TransferQty)==0|| Convert.ToString(TransferQty) == "")
                 {
                     grdDamageEntry.Rows[e.RowIndex].Cells["clmQuantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     SPDataService objDServ = new SPDataService();

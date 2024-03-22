@@ -1625,7 +1625,7 @@ namespace ROMS
                 //    tpBatchNo.Show("Invalid batchno", txtBatchNo, 5000);
                 //    blnErrorFlag = true;
                 //}
-                if (Convert.ToString(txtStockQty.Text).Trim() == "")
+                if (Convert.ToString(txtStockQty.Text).Trim() == "" || Convert.ToDecimal((txtStockQty.Text).Trim())==0)
                 {
                     errStockTransfer.SetError(txtStockQty, "Invalid stock qty");
                     txtStockQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1701,6 +1701,7 @@ namespace ROMS
                     tpTransferQty.Show("Please enter quentity", txtQuantity, 5000);
                     blnErrorFlag = true;
                 }
+                
                 if (blnErrorFlag == false)
                 {
                     string DRKID = "";
@@ -1987,7 +1988,7 @@ namespace ROMS
         {
             try
             {
-                errStockTransfer.Clear();
+                errStockTransfer.Clear(); varErrQty = "0";
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
@@ -2030,7 +2031,20 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
-                if(varErrQty=="1")
+                for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == "" || Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == 0)
+                    {
+                        blnErrorFlag = true; varErrQty = "1";
+                        grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        grdStockTransfer.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+                        grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
+                if (varErrQty == "1")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(89);
