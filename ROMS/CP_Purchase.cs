@@ -31,6 +31,9 @@ namespace ROMS
         ToolTip tpEntryType = new ToolTip();
         int flag = 0;
         public bool skipValidation = false;
+        public string varSupplierID = "";
+        public string varSupplierName = "";
+        public string varSupplierScheduleID = "";
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
         public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0", pbPurchaseno = "0", pbDCNo = "0", pbGRNNo = "0", PbSTS = "0", PbID = "0", PbFlag = "0";
         public bool VarSearchFlag = true;
@@ -39,7 +42,7 @@ namespace ROMS
         varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varExpiryDateAdd = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0", varTempExpiryDate = "0",
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0", varTypeErrId = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0, pbDisper = 0;
-        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, varExpiryError = 0, shelfLifeError = 0,InvoiceAmountErr = 0,
+        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, varExpiryError = 0, shelfLifeError = 0, InvoiceAmountErr = 0,
             VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0, varRMFlag = 0, varRemarkCount = 0, varRemarkFlag = 0, varerrFlag = 0;
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
@@ -2006,8 +2009,32 @@ namespace ROMS
                     lblschedule.Text = selectedItem.SubItems[2].Text;
                     //txtGstin.Text = selectedItem.SubItems[3].Text;
                     //varSuppliervalue = selectedItem.SubItems[3].Text;
+                    if (Convert.ToInt32(grdSupplierList.Rows.Count) != 0)
+                    {
+                        if (Convert.ToString(lblSupplierCode.Text.Trim()) != Convert.ToString(varSupplierID))
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(78);
+                            objDServ.CloseConnection();
+                            LV_Supplier.Visible = false;
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdSupplierList.Rows.Clear();
+                                grdSupplierList.DataSource = null;
+                            }
+                            else
+                            {
+                                LV_Supplier.Visible = false;
+                                grdSupplierList.Refresh();
+                                txtSupplier.Text = varSupplierName;
+                                lblSupplierCode.Text = varSupplierID;
+                                lblschedule.Text = varSupplierScheduleID;
+                            }
+                        }
+                    }
                     udfnSupplierDetails();
-                    grdSupplierList.Rows.Clear();
+                    //grdSupplierList.Rows.Clear();
                     grdReurnDC.Rows.Clear();
                     txtTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
                 }
@@ -9987,6 +10014,9 @@ namespace ROMS
         {
             try
             {
+                varSupplierID = lblSupplierCode.Text;
+                varSupplierScheduleID = lblschedule.Text;
+                varSupplierName = txtSupplier.Text;
                 if (Convert.ToInt32(lblSupplierCode.Text) > 0)
                 {
                     btnClear.Enabled = true;
