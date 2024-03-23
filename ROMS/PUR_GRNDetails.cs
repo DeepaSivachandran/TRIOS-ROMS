@@ -4861,7 +4861,8 @@ namespace ROMS
                                     grdGrnlist.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     grdGrnlist.Columns["clmInvoiceQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                    if (Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value) ==202)
+                                    //int varExcessQty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value);
+                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value) =="202")
                                     {
                                         grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
                                         grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;

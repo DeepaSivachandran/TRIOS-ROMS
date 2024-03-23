@@ -73,7 +73,7 @@ namespace ROMS
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
-                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0" || varTime[1].Trim() == "00")
+                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
                     {
                         errVerified.SetError(mtbTime1, "Please enter valid minute");
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -91,7 +91,7 @@ namespace ROMS
                         mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
-                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0" || varTime[1].Trim() == "00")
+                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
                     {
                         errVerified.SetError(mtbTime2, "Please enter valid minute");
                         mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -662,7 +662,7 @@ namespace ROMS
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
-                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min==1 || varTime[1].Trim() == "0" || varTime[1].Trim() == "00")
+                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min==1 || varTime[1].Trim() == "0")
                     {
                         errVerified.SetError(mtbTime1, "Please enter valid minute");
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -727,7 +727,7 @@ namespace ROMS
                         mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
-                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min==1 || varTime[1].Trim() == "0" || varTime[1].Trim() == "00")
+                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min==1 || varTime[1].Trim() == "0")
                     {
                         errVerified.SetError(mtbTime2, "Please enter valid minute");
                         mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
