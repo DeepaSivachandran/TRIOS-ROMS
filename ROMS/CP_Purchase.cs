@@ -5037,6 +5037,7 @@ namespace ROMS
                         objPurchaseentry.Columns.Add("PURPR_DCQTY", typeof(float));
                         objPurchaseentry.Columns.Add("PURPRID", typeof(int));
                         objPurchaseentry.Columns.Add("ID", typeof(int));
+                        objPurchaseentry.Columns.Add("PURPR_DiscountValue", typeof(float));
                         objPurchaseentry = udfnobjPurchaseprod();
 
                         objPurchaseentryDetails.TableName = "TRN_Purchase_Products_Details";
@@ -5059,6 +5060,7 @@ namespace ROMS
                         objPurchaseentryDetails.Columns.Add("PURPRID", typeof(int));
                         objPurchaseentryDetails.Columns.Add("ID", typeof(int));
                         objPurchaseentryDetails.Columns.Add("PURPR_Costing", typeof(decimal));
+                        objPurchaseentryDetails.Columns.Add("PURPR_DiscountValue", typeof(decimal));
                         //if (pbPurchaseno != "0" && tbDetails.TabPages[0].Enabled == false)
                         //{
                         //    objPurchaseentryDetails = udfnobjPurchaseprodDetails();
@@ -5729,6 +5731,7 @@ namespace ROMS
                     objPurchaseentryDetails.Columns.Add("PURPRID", typeof(int));
                     objPurchaseentryDetails.Columns.Add("ID", typeof(int));
                     objPurchaseentryDetails.Columns.Add("PURPR_Costing", typeof(decimal));
+                    objPurchaseentryDetails.Columns.Add("PURPR_DiscountValue", typeof(decimal));
                     if (grdPurchaseList.Rows.Count != 0)
                     {
                         for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
@@ -5946,7 +5949,7 @@ namespace ROMS
                             //{
                             //    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.PaleGreen;
                             //}
-                            decimal varFreeQty = 0, varPOqty = 0, varCosting=0;
+                            decimal varFreeQty = 0, varPOqty = 0, varCosting = 0, varDiscountValue = 0;
                             if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "0")
                             {
                                 varFreeQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value);
@@ -5959,6 +5962,14 @@ namespace ROMS
                             {
                                 varCosting = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCosting"].Value);
                             }
+                            if(rbDiscountAfter.Checked==true)
+                            {
+                                if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiscountValue"].Value) != "")
+                                {
+                                    varDiscountValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscountValue"].Value);
+                                }
+                            }
+
                             if (varcount == 0)
                             {
                                 objPurchaseentryDetails.Rows.Add(pbPurchaseno, Convert.ToInt32(grdPurchaseList.Rows[i].Cells["proid"].Value),
@@ -6029,6 +6040,7 @@ namespace ROMS
                 objPurchaseentry.Columns.Add("PURPR_DCQTY", typeof(float));
                 objPurchaseentry.Columns.Add("PURPRID", typeof(int));
                 objPurchaseentry.Columns.Add("ID", typeof(int));
+                objPurchaseentry.Columns.Add("PURPR_DiscountValue", typeof(float));
 
                 if (tbDetails.TabPages[0].Enabled == true)
                 {
@@ -6367,7 +6379,7 @@ namespace ROMS
                                     , 0, POno, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value)
                                     , Shelflifevalue, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmShelflifeenable"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmTransId"].Value)
                                     , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmTotQty"].Value), Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmGRNQty"].Value)
-                                    , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmDCQty"].Value), varPURPRID, varProductId);
+                                    , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmDCQty"].Value), varPURPRID, varProductId,0);
                                 }
                             }
                             if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
