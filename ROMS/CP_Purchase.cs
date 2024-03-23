@@ -4431,7 +4431,7 @@ namespace ROMS
                         {
                             if (pbDateflag == 0)
                             {
-                                grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                //grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
                                 DataGridViewCell cell = dataGridView.Rows[i].Cells["clmmrp"];
                                 DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmexpirydate"];
                                 DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmBatchno"];
@@ -5586,6 +5586,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         public void udfnPurchaseEntryTabLoad()
@@ -8448,14 +8452,14 @@ namespace ROMS
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value = PbGstamt.ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value = PbNetamt.ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value = PbTaxvalue.ToString("0.00");
-                    //int varDecimal = Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["UT_Decimal"].Value);
+                    int varDecimal = Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["UT_Decimal"].Value);
 
-                    //if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty"
-                    //    || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiffqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmFreeqty")
-                    //{
-                    //    string Qty = objValidation.udfnDecimal(Convert.ToString(grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
-                    //    grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
-                    //}
+                    if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty"
+                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiffqty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmFreeqty")
+                    {
+                        string Qty = objValidation.udfnDecimal(Convert.ToString(grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
+                        grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                    }
                 }
             }
             catch (Exception ex)

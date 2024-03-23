@@ -1287,6 +1287,14 @@ namespace ROMS
                     tpRequiredQty.Show("Please enter quentity", txtRequiredQty, 5000);
                     blnErrorFlag = true;
                 }
+                if(Convert.ToDecimal(txtRequiredQty.Text.Trim())==0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     VarAdd = "2";
@@ -1372,7 +1380,7 @@ namespace ROMS
         {
             try
             {
-                errStockRequest.Clear();
+                errStockRequest.Clear(); varErrQty = "0";
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
@@ -1390,14 +1398,28 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
-                //if (varErrQty == "1")
-                //{
-                //    SPDataService objDServ = new SPDataService();
-                //    string varMessage = objDServ.udfnGetMessages(89);
-                //    objDServ.CloseConnection();
-                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    blnErrorFlag = true;
-                //}
+                for (int i = 0; i < grdStockRequest.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdStockRequest.Rows[i].Cells["clmRequiredQty"].Value) == "" || Convert.ToDecimal(grdStockRequest.Rows[i].Cells["clmRequiredQty"].Value) == 0)
+                    {
+                        blnErrorFlag = true; varErrQty = "1";
+                        //grdPurchaseDC.Rows[i].Cells["clmError"].Value = 1;
+                        grdStockRequest.Rows[i].Cells["clmRequiredQty"].Style.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        grdStockRequest.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+                        grdStockRequest.Rows[i].Cells["clmRequiredQty"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
+                if (varErrQty == "1")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(89);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     errStockRequest.Clear();

@@ -682,7 +682,7 @@ namespace ROMS
                     {
                         string varZero = "0"; int varDecimal = Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmUT_Decimal"].Value);
                         varZero =0+objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
-                        if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == varZero || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "0")
+                        if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == varZero || Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == 0)
                         {
                             varcount++; grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
                             grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.ForeColor = Color.Black;
@@ -966,7 +966,7 @@ namespace ROMS
                     tpQty.Show("Please enter orderqty.", txtProductQty, 5000);
                     varErrorFlag = false;
                 }
-                if (txtProductQty.Text == "0")
+                if (txtProductQty.Text == "" || Convert.ToDecimal(txtProductQty.Text)==0)
                 {
                     errPO.SetError(txtProductQty, "Order quantity should not be 0!");
                     txtProductQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
