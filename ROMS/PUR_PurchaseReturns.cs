@@ -534,9 +534,17 @@ namespace ROMS
                             }
                         }
                         grpReturnDCSupplier.Enabled = false;
-                        if(varStatusId==39 || varStatusId==16)
+                        if(varStatusId==68)
+                        {
+                            grbProDetails.Enabled = true;
+                            chkCompleted.Checked = false;
+                            chkCompleted.Enabled = true;
+                        }
+                        else
                         {
                             grbProDetails.Enabled = false;
+                            chkCompleted.Checked = true;
+                            chkCompleted.Enabled = false;
                         }
                     }
                 }
@@ -778,15 +786,23 @@ namespace ROMS
                                     grdReturnDC.Columns["clmRKID"].Visible = false;
                                     if(Convert.ToInt32(cmbReason.SelectedValue) == 203)
                                     {
+                                        if (varStatusId == 68)
+                                        {
+                                            grdReturnDC.Columns["clmRemove"].Visible = true;
+                                        }
+                                        else
+                                        {
+                                            grdReturnDC.Columns["clmRemove"].Visible = false;
+                                        }
                                         grdReturnDC.Columns["clmLocation"].Visible = true;
                                         grdReturnDC.Columns["clmRack"].Visible = true;
                                     }
                                     else
                                     {
+                                        grdReturnDC.Columns["clmRemove"].Visible = false;
                                         grdReturnDC.Columns["clmLocation"].Visible = false;
                                         grdReturnDC.Columns["clmRack"].Visible = false;
                                     }
-                                    grdReturnDC.Columns["clmRemove"].Visible = false;
                                     grdReturnDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["clmUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     //grdReturnDC.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -1584,7 +1600,21 @@ namespace ROMS
                                 if (varReturnDCID == 0)
                                 {
                                     varviewtype = 0;
-                                    varStatusId = 15;
+                                    if (Convert.ToInt32(cmbReason.SelectedValue) == 203)
+                                    {
+                                        if (chkCompleted.Checked == true)
+                                        {
+                                            varStatusId = 15;
+                                        }
+                                        else
+                                        {
+                                            varStatusId = 68;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        varStatusId = 15;
+                                    }
                                     varorginator = "Purchase Return DC insertion";
                                 }
                                 if (varStatusId == 16)
@@ -1595,6 +1625,19 @@ namespace ROMS
                                 }
                                 if(varStatusId==15 && varReturnDCID!=0)
                                 {
+                                    varviewtype = 1;
+                                    varorginator = "Purchase Return DC updation";
+                                }
+                                if(varStatusId==68 && varReturnDCID!=0)
+                                {
+                                    if(chkCompleted.Checked==true)
+                                    {
+                                        varStatusId = 15;
+                                    }
+                                    else
+                                    {
+                                        varStatusId = 68;
+                                    }
                                     varviewtype = 1;
                                     varorginator = "Purchase Return DC updation";
                                 }
@@ -2640,11 +2683,11 @@ namespace ROMS
                 {
                     decimal value1 = 0, value2 = 0, value3 = 0;
                     value1 = Convert.ToDecimal(TaxAmt);
-                    Tax = Convert.ToString(value1.ToString("#." + new string('0', 2)));
+                    Tax = Convert.ToString(value1.ToString("0." + new string('0', 2)));
                     value2 = Convert.ToDecimal(GSTAmt);
-                    GST = Convert.ToString(value2.ToString("#." + new string('0', 2)));
+                    GST = Convert.ToString(value2.ToString("0." + new string('0', 2)));
                     value3 = Convert.ToDecimal(NetAmt);
-                    Net = Convert.ToString(value3.ToString("#." + new string('0', 2)));
+                    Net = Convert.ToString(value3.ToString("0." + new string('0', 2)));
                     if (varGST == 0)
                     {
                         GST = 0 + GST;
@@ -2729,6 +2772,7 @@ namespace ROMS
                 txtQuantity.Text = "";
                 lblUnit.Text = "";
                 txtProductNamePICode.Focus();
+                grdReturnDC.ClearSelection();
             }
             catch (Exception ex)
             {

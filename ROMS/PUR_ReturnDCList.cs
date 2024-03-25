@@ -1415,6 +1415,11 @@ namespace ROMS
                         grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "68")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Red;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
