@@ -80,12 +80,17 @@
             this.label32 = new System.Windows.Forms.Label();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lv_Broker = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnClear = new System.Windows.Forms.Button();
             this.lblFinishedNoRecord = new System.Windows.Forms.Label();
             this.txtInvoiceamt = new System.Windows.Forms.TextBox();
             this.gprate = new System.Windows.Forms.GroupBox();
@@ -199,6 +204,7 @@
             this.clmTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGstper = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGstamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDiscountValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnetamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.poid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -320,11 +326,6 @@
             this.clmGRNNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGRNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lv_Broker = new System.Windows.Forms.ListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lblDPercentage = new System.Windows.Forms.Label();
             this.lblPercentage = new System.Windows.Forms.Label();
@@ -522,20 +523,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1021, 102);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(80, 28);
-            this.btnClear.TabIndex = 200000;
-            this.btnClear.Text = "Refresh";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
             // LV_Supplier
             // 
             this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -566,6 +553,51 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
+            // 
+            // lv_Broker
+            // 
+            this.lv_Broker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader6});
+            this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lv_Broker.HideSelection = false;
+            this.lv_Broker.Location = new System.Drawing.Point(381, 104);
+            this.lv_Broker.Name = "lv_Broker";
+            this.lv_Broker.Size = new System.Drawing.Size(478, 88);
+            this.lv_Broker.TabIndex = 1111223;
+            this.lv_Broker.UseCompatibleStateImageBehavior = false;
+            this.lv_Broker.View = System.Windows.Forms.View.Details;
+            this.lv_Broker.Visible = false;
+            this.lv_Broker.DoubleClick += new System.EventHandler(this.Lv_Broker_DoubleClick);
+            this.lv_Broker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lv_Broker_KeyDown);
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 180;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 120;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 0;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(1021, 102);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(80, 28);
+            this.btnClear.TabIndex = 200000;
+            this.btnClear.Text = "Refresh";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // lblFinishedNoRecord
             // 
@@ -1624,6 +1656,7 @@
             this.clmTax,
             this.clmGstper,
             this.clmGstamt,
+            this.clmDiscountValue,
             this.clmnetamt,
             this.poid,
             this.proid,
@@ -1851,6 +1884,12 @@
             this.clmGstamt.Name = "clmGstamt";
             this.clmGstamt.ReadOnly = true;
             this.clmGstamt.Width = 80;
+            // 
+            // clmDiscountValue
+            // 
+            this.clmDiscountValue.HeaderText = "Discount Value";
+            this.clmDiscountValue.Name = "clmDiscountValue";
+            this.clmDiscountValue.ReadOnly = true;
             // 
             // clmnetamt
             // 
@@ -2924,6 +2963,7 @@
             this.rbDiscountAfter.TabIndex = 19;
             this.rbDiscountAfter.Text = "After Tax";
             this.rbDiscountAfter.UseVisualStyleBackColor = true;
+            this.rbDiscountAfter.CheckedChanged += new System.EventHandler(this.RbDiscountAfter_CheckedChanged);
             this.rbDiscountAfter.Enter += new System.EventHandler(this.RbDiscountAfter_Enter);
             this.rbDiscountAfter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbDiscountAfter_KeyDown);
             this.rbDiscountAfter.Leave += new System.EventHandler(this.RbDiscountAfter_Leave);
@@ -2939,6 +2979,7 @@
             this.rbDiscountBefore.TabStop = true;
             this.rbDiscountBefore.Text = "Before Tax";
             this.rbDiscountBefore.UseVisualStyleBackColor = true;
+            this.rbDiscountBefore.CheckedChanged += new System.EventHandler(this.RbDiscountBefore_CheckedChanged);
             this.rbDiscountBefore.Enter += new System.EventHandler(this.RbDiscountBefore_Enter);
             this.rbDiscountBefore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbDiscountBefore_KeyDown);
             this.rbDiscountBefore.Leave += new System.EventHandler(this.RbDiscountBefore_Leave);
@@ -3227,37 +3268,6 @@
             this.clmGRNID.Name = "clmGRNID";
             this.clmGRNID.ReadOnly = true;
             this.clmGRNID.Visible = false;
-            // 
-            // lv_Broker
-            // 
-            this.lv_Broker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader6});
-            this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lv_Broker.HideSelection = false;
-            this.lv_Broker.Location = new System.Drawing.Point(381, 104);
-            this.lv_Broker.Name = "lv_Broker";
-            this.lv_Broker.Size = new System.Drawing.Size(478, 88);
-            this.lv_Broker.TabIndex = 1111223;
-            this.lv_Broker.UseCompatibleStateImageBehavior = false;
-            this.lv_Broker.View = System.Windows.Forms.View.Details;
-            this.lv_Broker.Visible = false;
-            this.lv_Broker.DoubleClick += new System.EventHandler(this.Lv_Broker_DoubleClick);
-            this.lv_Broker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lv_Broker_KeyDown);
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 180;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 120;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 0;
             // 
             // groupBox10
             // 
@@ -3756,6 +3766,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTax;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGstper;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGstamt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDiscountValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnetamt;
         private System.Windows.Forms.DataGridViewTextBoxColumn poid;
         private System.Windows.Forms.DataGridViewTextBoxColumn proid;

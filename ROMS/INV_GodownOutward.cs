@@ -1937,7 +1937,7 @@ namespace ROMS
             try
             {
                 SPDataService objspservice = new SPDataService();
-                string varoriginator = ""; int ViewType = 0;
+                string varoriginator = ""; int ViewType = 0; varErrQty = 0;
                 varoriginator = "Goods Outward Creation";
                 ViewType = 0;
                 bool GOID = Convert.ToBoolean(varGOId);
@@ -2035,7 +2035,20 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
                 }
-                if(varErrQty==1)
+                for (int i = 0; i < grdGoodsOutward.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdGoodsOutward.Rows[i].Cells["clmOutward"].Value) == "" || Convert.ToDecimal(grdGoodsOutward.Rows[i].Cells["clmOutward"].Value) == 0)
+                    {
+                        varErrorFlag = false; varErrQty = 1;
+                        grdGoodsOutward.Rows[i].Cells["clmOutward"].Style.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        grdGoodsOutward.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+                        grdGoodsOutward.Rows[i].Cells["clmOutward"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
+                if (varErrQty==1)
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(89);

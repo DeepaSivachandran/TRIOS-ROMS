@@ -2077,7 +2077,7 @@ namespace ROMS
                     }
                     for (int i = 0; i < grdPurchaseDC.Rows.Count; i++)
                     {
-                        if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmQuantity"].Value) == "0")
+                        if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmQuantity"].Value) == "" || Convert.ToDecimal(grdPurchaseDC.Rows[i].Cells["clmQuantity"].Value) == 0)
                         {
                             varErrorFlag = false;
                             grdPurchaseDC.Rows[i].Cells["clmError"].Value = 1;
@@ -2501,7 +2501,7 @@ namespace ROMS
             {
                 decimal Quantity = Convert.ToDecimal(grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Value);
                 decimal Stock = Convert.ToDecimal(grdPurchaseDC.CurrentRow.Cells["clmStockQuantity"].Value);
-                if (Convert.ToString(Quantity) == "0" || Convert.ToString(Quantity) == "")
+                if (Convert.ToDecimal(Quantity) == 0 || Convert.ToString(Quantity) == "")
                 {
                     varErrQty = "1";
                 }
@@ -2762,7 +2762,7 @@ namespace ROMS
         {
             try
             {
-                if (txtActualQty.Text.Trim() == "")
+                if (txtActualQty.Text.Trim() == ""  )
                 {
                     txtActualQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
                     epPurchaseDC.SetError(txtActualQty, "Please enter quantity.");
@@ -3079,8 +3079,18 @@ namespace ROMS
                 }
                 else
                 {
-                    string Qty = objValidation.udfnDecimal((txtActualQty.Text).Trim(), varDecimal);
-                    txtActualQty.Text = Qty;
+                    if (Convert.ToDecimal(txtActualQty.Text.Trim()) == 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        string Qty = objValidation.udfnDecimal((txtActualQty.Text).Trim(), varDecimal);
+                        txtActualQty.Text = Qty;
+                    }
                 }
                 if (txtStockLocation.Text.Trim() == "")
                 {
