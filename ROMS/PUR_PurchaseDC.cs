@@ -3085,6 +3085,7 @@ namespace ROMS
                         string varMessage = objDServ.udfnGetMessages(89);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrorFlag = true;
                     }
                     else
                     {

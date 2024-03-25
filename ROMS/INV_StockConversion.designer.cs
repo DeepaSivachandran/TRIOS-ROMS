@@ -254,6 +254,7 @@
             // txtConvertBatch
             // 
             this.txtConvertBatch.Location = new System.Drawing.Point(290, 43);
+            this.txtConvertBatch.MaxLength = 10;
             this.txtConvertBatch.Name = "txtConvertBatch";
             this.txtConvertBatch.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtConvertBatch.Size = new System.Drawing.Size(115, 28);
@@ -729,6 +730,7 @@
             // 
             this.txtBatchNo.Enabled = false;
             this.txtBatchNo.Location = new System.Drawing.Point(1018, 39);
+            this.txtBatchNo.MaxLength = 10;
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.ReadOnly = true;
             this.txtBatchNo.RightToLeft = System.Windows.Forms.RightToLeft.No;

@@ -744,6 +744,7 @@
             // 
             this.txtBatchNo.Enabled = false;
             this.txtBatchNo.Location = new System.Drawing.Point(799, 40);
+            this.txtBatchNo.MaxLength = 10;
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.ReadOnly = true;
             this.txtBatchNo.Size = new System.Drawing.Size(154, 27);
