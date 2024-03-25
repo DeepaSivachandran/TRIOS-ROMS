@@ -5700,9 +5700,12 @@ namespace ROMS
                 {
                     grid_flag = 1;
                 }
-                if (grdsupplieradd.CurrentCell.Selected == true && grdsupplieradd.IsCurrentCellInEditMode == true)
+                if (grdsupplieradd.Rows.Count > 0)
                 {
-                    grid_flag = 1;
+                    if (grdsupplieradd.CurrentCell.Selected == true && grdsupplieradd.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                 }
                 if (grid_flag == 1)
                 {

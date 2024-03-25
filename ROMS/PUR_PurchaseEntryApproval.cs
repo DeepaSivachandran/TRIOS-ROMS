@@ -4560,9 +4560,12 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-                    if (grdSupplierList.CurrentCell.Selected == true && grdSupplierList.IsCurrentCellInEditMode == true)
+                    if (grdSupplierList.Rows.Count > 0)
                     {
-                        grid_flag = 1;
+                        if (grdSupplierList.CurrentCell.Selected == true && grdSupplierList.IsCurrentCellInEditMode == true)
+                        {
+                            grid_flag = 1;
+                        }
                     }
                     if (grid_flag == 1)
                     {
@@ -4685,9 +4688,12 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-                    if (grdPurchaseList.CurrentCell.Selected == true && grdPurchaseList.IsCurrentCellInEditMode == true)
+                    if (grdPurchaseList.Rows.Count > 0)
                     {
-                        grid_flag = 1;
+                        if (grdPurchaseList.CurrentCell.Selected == true && grdPurchaseList.IsCurrentCellInEditMode == true)
+                        {
+                            grid_flag = 1;
+                        }
                     }
                     if (grid_flag == 1)
                     {
