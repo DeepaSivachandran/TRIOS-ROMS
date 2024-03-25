@@ -5014,6 +5014,14 @@ namespace ROMS
                                 if (irow < grdGrnlist.Rows.Count - 1)
                                 {
                                     grdGrnlist.CurrentCell = grdGrnlist[6, irow + 1];
+                                    if (grdGrnlist.CurrentCell.ReadOnly==false)
+                                    {
+                                        grdGrnlist.CurrentCell = grdGrnlist[6, irow + 1];
+                                    }
+                                    else
+                                    {
+                                        grdGrnlist.CurrentCell = grdGrnlist[8, irow + 1];
+                                    }
                                     icolumn = grdGrnlist.CurrentCell.ColumnIndex;
                                     irow = grdGrnlist.CurrentCell.RowIndex;
                                     //goto A;
@@ -5061,6 +5069,14 @@ namespace ROMS
                                 if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmBatchno")
                                 {
                                     grdGrnlist.CurrentCell = grdGrnlist[6, irow + 1];
+                                    if (grdGrnlist.CurrentCell.ReadOnly==false)
+                                    {
+                                        grdGrnlist.CurrentCell = grdGrnlist[6, irow + 1];
+                                    }
+                                    else
+                                    {
+                                        grdGrnlist.CurrentCell = grdGrnlist[8, irow + 1];
+                                    }
                                     icolumn = grdGrnlist.CurrentCell.ColumnIndex;
                                     irow = grdGrnlist.CurrentCell.RowIndex;
                                 }
