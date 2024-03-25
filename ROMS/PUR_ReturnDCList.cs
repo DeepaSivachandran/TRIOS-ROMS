@@ -954,10 +954,10 @@ namespace ROMS
                                 grdReturnDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Total Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdReturnDCList.Columns["Concern"].Width = 100;
-                                grdReturnDCList.Columns["Reason"].Width = 120;
+                                grdReturnDCList.Columns["Concern"].Width = 80;
+                                grdReturnDCList.Columns["Reason"].Width = 110;
                                 grdReturnDCList.Columns["DC Date"].Width = 100;
-                                grdReturnDCList.Columns["DC No."].Width = 100;
+                                grdReturnDCList.Columns["DC No."].Width = 90;
                                 grdReturnDCList.Columns["Supplier"].Width = 300;
                                 grdReturnDCList.Columns["Total Products"].Width = 100;
                                 grdReturnDCList.Columns["Created On"].Width = 140;
