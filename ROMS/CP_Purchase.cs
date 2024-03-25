@@ -10175,7 +10175,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if(grdSupplierList.CurrentCell.Selected==true && grdSupplierList.IsCurrentCellInEditMode==true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
@@ -10300,7 +10303,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdPurchaseList.CurrentCell.Selected == true && grdPurchaseList.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)

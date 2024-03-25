@@ -3352,7 +3352,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdLoction.CurrentCell.Selected == true && grdLoction.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
@@ -3473,7 +3476,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdMSQ.CurrentCell.Selected == true && grdMSQ.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
@@ -3594,7 +3600,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdStock.CurrentCell.Selected == true && grdStock.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
@@ -3715,7 +3724,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdShelfLife.CurrentCell.Selected == true && grdShelfLife.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
@@ -3836,7 +3848,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdBatch.CurrentCell.Selected == true && grdBatch.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
@@ -3957,7 +3972,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdWeight.CurrentCell.Selected == true && grdWeight.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
@@ -4078,7 +4096,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdBrand.CurrentCell.Selected == true && grdBrand.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
@@ -4199,7 +4220,10 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
+                    if (grdBulkAttributes.CurrentCell.Selected == true && grdBulkAttributes.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
