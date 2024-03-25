@@ -441,6 +441,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C70DC66146224F00B16BE26E5028CDC1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CBE500F641E845D781AF9A9142668A83"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2162,6 +2168,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C70DC66146224F00B16BE26E5028CDC1"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_GRNDetailsList.rpt"
+            "TargetName" = "8:RPT_PUR_GRNDetailsList.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CBE500F641E845D781AF9A9142668A83"
             {
             "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO.rpt"
@@ -2603,7 +2629,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROMS"
         "ProductCode" = "8:{6548C5FF-10AD-4108-BB95-B4A297B5DE53}"
-        "PackageCode" = "8:{E56EB660-540B-4492-84DF-DBDBAFA297DC}"
+        "PackageCode" = "8:{35E16437-85BF-4152-BEF8-C615D9995388}"
         "UpgradeCode" = "8:{FC2AE767-A3BF-4189-A07F-0B601778A960}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
