@@ -10,6 +10,7 @@ namespace ROMS.Model
     public class TRN_PurchaseEntry
     {
         public int ViewType { get; set; } = 0;
+        public int paraSupplierType { get; set; } = 0;
         public string ParaIds { get; set; } = "";
         public int paraUserID { get; set; } = 0;
         public int paraType { get; set; } = 0;
