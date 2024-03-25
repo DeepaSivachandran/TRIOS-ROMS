@@ -643,6 +643,7 @@
             // 
             // txtTotalProducts
             // 
+            this.txtTotalProducts.Enabled = false;
             this.txtTotalProducts.Location = new System.Drawing.Point(1089, 530);
             this.txtTotalProducts.Name = "txtTotalProducts";
             this.txtTotalProducts.ReadOnly = true;
