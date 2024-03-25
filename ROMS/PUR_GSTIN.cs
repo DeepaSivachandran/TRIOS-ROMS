@@ -22,6 +22,7 @@ namespace ROMS
         private ToolTip tpgst = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
+        private const int closebtnhide = 0x200;
         public PUR_GSTIN()
         {
             InitializeComponent();
@@ -170,6 +171,15 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | closebtnhide;
+                return myCp;
             }
         }
 
