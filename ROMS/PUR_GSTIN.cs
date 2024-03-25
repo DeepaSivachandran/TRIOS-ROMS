@@ -12,7 +12,7 @@ namespace ROMS
 {
     public partial class PUR_GSTIN : Form
     {
-        DataValidation objValidation = new DataValidation();
+        DataValidation objvalidation = new DataValidation();
         DataError objError;
 
         private ToolTip tpbrandname = new ToolTip();
@@ -165,6 +165,19 @@ namespace ROMS
             try
             {
                 txtGstin.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtGstin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                objvalidation.udfnGSTIN(e);
             }
             catch (Exception ex)
             {
