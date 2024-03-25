@@ -8629,6 +8629,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void Txtgstin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                objvalidation.FormatAlphabeticWithSpaceOnly(e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbTat_Enter(object sender, EventArgs e)
         {
             try
