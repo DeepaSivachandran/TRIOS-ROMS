@@ -1082,6 +1082,8 @@ namespace ROMS
                         }
                     }
                     udfnPurchaseEntryTabLoad();
+                    DataGridViewBindingCompleteEventArgs args3 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                    GrdPurchaseList_DataBindingComplete(grdPurchaseList, args3);
                     if (PbSTS == "49")
                     {
                         if (tbDetails.SelectedIndex == 0)
@@ -7523,10 +7525,22 @@ namespace ROMS
                 if (rbDiscountAfter.Checked == true)
                 {
                     grdPurchaseList.Columns["clmDiscountValue"].Visible = true;
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex =17;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex =18;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex =19;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex =20;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex =21;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex =22;
                 }
                 if(rbDiscountBefore.Checked == true)
                 {
                     grdPurchaseList.Columns["clmDiscountValue"].Visible = false;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 17;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 18;
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 19;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 20;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 21;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 22;
                 }
             }
             catch (Exception ex)
@@ -7547,6 +7561,28 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPurchaseList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                if(PbSTS=="50")
+                {
+                    grdPurchaseList.Columns["clmInvQty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdPurchaseList.Columns["clmRecqty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdPurchaseList.Columns["clmFreeqty"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdPurchaseList.Columns["clmPurchaseRate"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdPurchaseList.Columns["clmDiscAmt"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdPurchaseList.Columns["clmDiscPer"].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void RbDiscountAfter_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -8497,7 +8533,7 @@ namespace ROMS
                     if (varEntryType == 55 || varEntryType == 56) // direct and against po
                     {
                         decimal varDiffQqty = 0;
-                        if ((e.ColumnIndex == grdPurchaseList.Columns["clmRecqty"].Index) || (e.ColumnIndex == grdPurchaseList.Columns["clmFreeqty"].Index) && e.RowIndex >= 0)
+                        if ((e.ColumnIndex == grdPurchaseList.Columns["clmInvQty"].Index) || (e.ColumnIndex == grdPurchaseList.Columns["clmRecqty"].Index) || (e.ColumnIndex == grdPurchaseList.Columns["clmFreeqty"].Index) && e.RowIndex >= 0)
                         {
                             varDiffQqty = 0;
                             varDiffQqty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
@@ -9395,7 +9431,7 @@ namespace ROMS
                         DataGridViewCell cell = dataGridView.Rows[i].Cells["rkid"];
                         cell.Style.BackColor = Color.PaleGreen;
                     }
-                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1)
+                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || PbSTS=="50")
                     {
                         grdSupplierList.Rows[i].ReadOnly = true;
                         grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
