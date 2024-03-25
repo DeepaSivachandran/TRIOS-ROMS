@@ -4038,7 +4038,7 @@ namespace ROMS
                 grdGrnlist.Sort(grdGrnlist.Columns[2], ListSortDirection.Ascending);
                 if(grdGrnlist.Rows.Count>0)
                 {
-                    grdGrnlist.CurrentCell = grdGrnlist[6,0];
+                    grdGrnlist.CurrentCell = grdGrnlist[1,0];
                 }
             }
         }
