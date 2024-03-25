@@ -91,6 +91,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtGstin.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        txtGstin.Focus();
                     }
                 }
             }
