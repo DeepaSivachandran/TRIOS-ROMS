@@ -703,7 +703,9 @@ namespace ROMS
                     {
                         if (lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "")
                         {
-                            MessageBox.Show("Verification details are mandatory", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            string varMessage = objDServ.udfnGetMessages(119);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             result1 = DialogResult.No;
                             varErrorFormat = 1;
                         }
@@ -712,7 +714,9 @@ namespace ROMS
                     {
                         if (lblVerifiedBy1.Text == "" || lblVerifiedBy2.Text == "")
                         {
-                            MessageBox.Show("Verification details are mandatory", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            string varMessage = objDServ.udfnGetMessages(120);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             result1 = DialogResult.No;
                             varErrorFormat = 1;
                         }
