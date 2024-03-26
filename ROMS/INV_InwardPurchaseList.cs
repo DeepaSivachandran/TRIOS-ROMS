@@ -562,8 +562,11 @@ namespace ROMS
 
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
-                grdInwardList.Columns["Entry Type"].Width = 170;
-
+                DGV_SearchGrid.Columns["Entry Type"].Width = 170;
+                DGV_SearchGrid.Columns["GIP_TypeID"].Visible = false;
+                DGV_SearchGrid.Columns["GIP_Date"].Visible = false;
+                DGV_SearchGrid.Columns["Purchase Status"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {

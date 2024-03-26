@@ -652,7 +652,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Transaction No."].Width = 80;
                 DGV_SearchGrid.Columns["Supplier"].Width = 250;
                 DGV_SearchGrid.Columns["Total Products in Invoice"].Width = 150;
-                ///   grdInwardQueueList.Columns["Created By"].Width = 110;
+                DGV_SearchGrid.Columns["Entry Date"].Visible = false;
                 DGV_SearchGrid.Columns["Created On"].Width = 140;
                 DGV_SearchGrid.Columns["GSTIN"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 60;

@@ -452,7 +452,9 @@ namespace ROMS
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 120;
                 DGV_SearchGrid.Columns["Source"].Width = 120;
-                DGV_SearchGrid.Columns["Created By"].Width = 100; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_SearchGrid.Columns["SRQID"].Visible = false;
+                DGV_SearchGrid.Columns["Created By"].Width = 100;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
