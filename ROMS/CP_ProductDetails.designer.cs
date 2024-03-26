@@ -87,7 +87,6 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.grdProductDetails.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdProductDetails.RowTemplate.Height = 25;
-            this.grdProductDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdProductDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdProductDetails.ShowRowErrors = false;
             this.grdProductDetails.Size = new System.Drawing.Size(683, 278);
