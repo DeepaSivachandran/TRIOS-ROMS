@@ -942,7 +942,16 @@ namespace ROMS
                                             ParaSupplierAMT = 1;
                                             objTRNS_GRN.paraSaveFlag = 1;
                                             objTRNS_GRN.paraID = ParaSupplierAMT;
-                                            goto K;
+                                            if (chkCompleted.Checked == true && (Convert.ToDecimal(txtInvoiceamt.Text)) > 25000)
+                                            {
+                                                if (lblVerifiedBy1.Text == "" || lblVerifiedBy2.Text == "")
+                                                {
+                                                    string varMessage = objDServ.udfnGetMessages(120);
+                                                    objDServ.CloseConnection();
+                                                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                    goto K;
+                                                }
+                                            }
                                         }
                                         else
                                         {
