@@ -4998,7 +4998,13 @@ namespace ROMS
                 {
                     grid_flag = 1;
                 }
-
+                if (grdGrnlist.Rows.Count > 0)
+                {
+                    if (grdGrnlist.CurrentCell.Selected == true && grdGrnlist.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
+                }
                 if (grid_flag == 1)
                 {
                     if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)

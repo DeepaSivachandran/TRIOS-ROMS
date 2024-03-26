@@ -8634,7 +8634,7 @@ namespace ROMS
         {
             try
             {
-                objvalidation.FormatAlphabeticWithSpaceOnly(e);
+                objvalidation.udfnGSTIN(e);
             }
             catch (Exception ex)
             {
