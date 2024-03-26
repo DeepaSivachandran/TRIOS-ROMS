@@ -836,49 +836,56 @@ namespace ROMS
                                                 {
                                                     POUpdatevalue = Convert.ToString(POUpdate);
                                                 }
-                                                SPDataService objDServ = new SPDataService();
-                                                string varMessage = objDServ.udfnGetMessages(87);
-                                                objDServ.CloseConnection();
-                                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                                if (result1 == DialogResult.Yes)
+                                                if (chkStatus.Checked==false)
                                                 {
-                                                    try
+                                                    SPDataService objDServ = new SPDataService();
+                                                    string varMessage = objDServ.udfnGetMessages(87);
+                                                    objDServ.CloseConnection();
+                                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                    if (result1 == DialogResult.Yes)
                                                     {
-                                                        string varHeader = "";
-                                                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO.rpt");
-                                                        varHeader = "Purchase Order";
-                                                        objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[0].Name.ToString());
-                                                        objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[1].Name.ToString());
-                                                        objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue), objBillreport.Subreports[0].Name.ToString());
-                                                        objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue), objBillreport.Subreports[1].Name.ToString());
-                                                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
-                                                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
-                                                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
-                                                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
-                                                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                                        objValidation.CrySqlConnection(objBillreport);
+                                                        try
+                                                        {
+                                                            string varHeader = "";
+                                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO.rpt");
+                                                            varHeader = "Purchase Order";
+                                                            objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[0].Name.ToString());
+                                                            objBillreport.SetParameterValue("paraPOID", Convert.ToInt32(POUpdatevalue), objBillreport.Subreports[1].Name.ToString());
+                                                            objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                                                            objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue), objBillreport.Subreports[1].Name.ToString());
+                                                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                                                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                                                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                                                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
+                                                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                                            objValidation.CrySqlConnection(objBillreport);
 
-                                                        MainForm.objReportLoad = new ReportLoad();
-                                                        MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                                        MainForm.objReportLoad.Text = varHeader;
-                                                        MainForm.objReportLoad.ShowDialog();
-                                                    }
-                                                    catch (Exception ex)
-                                                    {
-                                                        objError = new DataError();
-                                                        objError.WriteFile(ex);
-                                                    }
-                                                    finally
-                                                    {
-                                                    }
+                                                            MainForm.objReportLoad = new ReportLoad();
+                                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                                            MainForm.objReportLoad.Text = varHeader;
+                                                            MainForm.objReportLoad.ShowDialog();
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            objError = new DataError();
+                                                            objError.WriteFile(ex);
+                                                        }
+                                                        finally
+                                                        {
+                                                        }
 
-                                                    udfnClear();
-                                                    udfnclose();
+                                                        udfnClear();
+                                                        udfnclose();
+                                                    }
+                                                    else
+                                                    {
+                                                        udfnclose();
+                                                    }
                                                 }
                                                 else
                                                 {
