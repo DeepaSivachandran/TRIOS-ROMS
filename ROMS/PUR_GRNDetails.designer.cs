@@ -180,6 +180,7 @@
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmExcessQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQtyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1529,6 +1530,7 @@
             this.clmunit,
             this.clmInvoiceQty,
             this.clmExcessQty,
+            this.clmQtyType,
             this.clmmrp,
             this.clmexpirydate,
             this.clmshelflife,
@@ -1757,18 +1759,23 @@
             // 
             dataGridViewCellStyle14.BackColor = System.Drawing.Color.PaleGreen;
             this.clmInvoiceQty.DefaultCellStyle = dataGridViewCellStyle14;
-            this.clmInvoiceQty.HeaderText = "Pend./Excess Qty";
+            this.clmInvoiceQty.HeaderText = "Pending Qty";
             this.clmInvoiceQty.Name = "clmInvoiceQty";
             this.clmInvoiceQty.Width = 130;
             // 
             // clmExcessQty
             // 
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmExcessQty.DefaultCellStyle = dataGridViewCellStyle15;
             this.clmExcessQty.HeaderText = "Excess Qty";
             this.clmExcessQty.Name = "clmExcessQty";
-            this.clmExcessQty.Visible = false;
-            this.clmExcessQty.Width = 90;
+            // 
+            // clmQtyType
+            // 
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmQtyType.DefaultCellStyle = dataGridViewCellStyle15;
+            this.clmQtyType.HeaderText = "Qty type";
+            this.clmQtyType.Name = "clmQtyType";
+            this.clmQtyType.Visible = false;
+            this.clmQtyType.Width = 90;
             // 
             // clmmrp
             // 
@@ -2054,6 +2061,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmExcessQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmQtyType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmmrp;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmshelflife;

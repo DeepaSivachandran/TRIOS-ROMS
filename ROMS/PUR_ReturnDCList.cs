@@ -217,7 +217,12 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -241,11 +246,24 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -936,15 +954,16 @@ namespace ROMS
                                 grdReturnDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Total Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdReturnDCList.Columns["Concern"].Width = 100;
-                                grdReturnDCList.Columns["Reason"].Width = 120;
+                                grdReturnDCList.Columns["Concern"].Width = 80;
+                                grdReturnDCList.Columns["Reason"].Width = 110;
                                 grdReturnDCList.Columns["DC Date"].Width = 100;
-                                grdReturnDCList.Columns["DC No."].Width = 100;
+                                grdReturnDCList.Columns["DC No."].Width = 90;
                                 grdReturnDCList.Columns["Supplier"].Width = 300;
                                 grdReturnDCList.Columns["Total Products"].Width = 100;
                                 grdReturnDCList.Columns["Created On"].Width = 140;
                                 grdReturnDCList.Columns["Created By"].Width = 100;
                                 grdReturnDCList.Columns["Status"].Width = 100;
+                                grdReturnDCList.Columns["Print"].Width = 50;
                                 grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
                                 grdReturnDCList.Columns["Concern ID"].Visible = false;
@@ -1415,6 +1434,11 @@ namespace ROMS
                         grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "68")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Red;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1494,7 +1518,7 @@ namespace ROMS
                 {
                     switch (grdReturnDCList.Columns[e.ColumnIndex].Name)
                     {
-                        case "clmPrint":
+                        case "Print":
                             try
                             {
                                 string ReturnDCID = "0";
