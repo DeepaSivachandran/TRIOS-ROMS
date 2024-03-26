@@ -323,7 +323,6 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Invoice No."].Width = 100;
                 DGV_SearchGrid.Columns["Invoice Amount"].Width = 120;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
-                DGV_SearchGrid.Columns["Created On"].Width = 150;
                 DGV_SearchGrid.Columns["Order Type"].Width = 100;
                 DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;
                 DGV_SearchGrid.Columns["GRNID"].Visible = false;
