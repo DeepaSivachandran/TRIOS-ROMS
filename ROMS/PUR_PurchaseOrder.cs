@@ -5707,7 +5707,13 @@ namespace ROMS
                 {
                     grid_flag = 1;
                 }
-
+                if (grdsupplieradd.Rows.Count > 0)
+                {
+                    if (grdsupplieradd.CurrentCell.Selected == true && grdsupplieradd.IsCurrentCellInEditMode == true)
+                    {
+                        grid_flag = 1;
+                    }
+                }
                 if (grid_flag == 1)
                 {
                     if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)

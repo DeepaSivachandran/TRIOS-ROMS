@@ -66,6 +66,7 @@
             this.txtGstin.TabIndex = 1;
             this.txtGstin.Enter += new System.EventHandler(this.TxtGstin_Enter);
             this.txtGstin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGstin_KeyDown);
+            this.txtGstin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGstin_KeyPress);
             this.txtGstin.Leave += new System.EventHandler(this.TxtGstin_Leave);
             // 
             // btnSave

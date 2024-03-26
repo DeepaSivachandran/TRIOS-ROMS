@@ -943,5 +943,27 @@ namespace ROMS
             }
             return decimalqty;
         }
+        public bool udfnGSTIN(KeyPressEventArgs e)
+        {
+            try
+            {
+                if ((char.IsLetter(e.KeyChar)) || (char.IsNumber(e.KeyChar))  || e.KeyChar == (char)8)
+                {
+                    e.Handled = false;
+                    return false;
+                }
+                else
+                {
+                    e.Handled = true;
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
     }
 }

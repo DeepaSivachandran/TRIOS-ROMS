@@ -856,6 +856,7 @@
             this.txtgstin.TabIndex = 20;
             this.txtgstin.Enter += new System.EventHandler(this.Txtgstin_Enter);
             this.txtgstin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtgstin_KeyDown);
+            this.txtgstin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtgstin_KeyPress);
             this.txtgstin.Leave += new System.EventHandler(this.Txtgstin_Leave);
             // 
             // txtDSupplierType
