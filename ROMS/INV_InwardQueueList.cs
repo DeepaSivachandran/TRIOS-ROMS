@@ -149,7 +149,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                //udfnDate();
+                udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 if(Convert.ToInt32(cmbShow.SelectedValue)==189)
@@ -178,14 +178,19 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 12);
-                if (objd.Tables[0].Rows.Count != 0)
+                objd = objDServ.udfnMaster(9, 0, 0, "", "", 0, "", 15);
+                if (objd.Tables[0].Rows.Count > 0)
                 {
-                    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    //  dpDcFromDate.MaxDate = varmaxdate;
-                    dpFromDate.Text = Convert.ToString(vardate);
-                    dpToDate.MinDate = vardate;
+                    DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Transaction Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpToDate.MinDate = varDate;
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
+                objDServ.CloseConnection();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                //cmbConcern.SelectedValue = 1;
+                udfnList();
             }
             catch (Exception ex)
             {
