@@ -137,16 +137,16 @@ namespace ROMS
                         {
                             varDeleteFlag = 1;
                         }
-                        if (varvalue[0] == "5")
+                        else if(varvalue[0] == "5")
                         {
-                            DialogResult dialogResult1 = MessageBox.Show(varvalue[1], "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult1 == DialogResult.Yes)
                             {
                                 varDeleteFlag = 1;
                             }
                             else { varDeleteFlag = 0; }
                         }
-                        else
+                        else if (varvalue[0] == "4")
                         {
                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             varDeleteFlag = 0;

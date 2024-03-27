@@ -91,6 +91,8 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
+            this.grpPurchase = new System.Windows.Forms.GroupBox();
+            this.InvoiceAmount = new System.Windows.Forms.Label();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.lvStockLocation = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -115,23 +117,6 @@
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.grdPurchaseDC = new System.Windows.Forms.DataGridView();
-            this.lblTotalProducts = new System.Windows.Forms.Label();
-            this.txtTotalProducts = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtRemark = new System.Windows.Forms.TextBox();
-            this.grdPurchaseDC1 = new System.Windows.Forms.DataGridView();
-            this.grpDCSupplier = new System.Windows.Forms.GroupBox();
-            this.lblschedule = new System.Windows.Forms.Label();
-            this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.txtDcNo = new System.Windows.Forms.TextBox();
-            this.lblDEVisitDay = new System.Windows.Forms.Label();
-            this.dpDCDate = new System.Windows.Forms.DateTimePicker();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.lblDESupplier = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -155,6 +140,34 @@
             this.clmRemoveFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTotalProducts = new System.Windows.Forms.Label();
+            this.txtTotalProducts = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtRemark = new System.Windows.Forms.TextBox();
+            this.grdPurchaseDC1 = new System.Windows.Forms.DataGridView();
+            this.grpDCSupplier = new System.Windows.Forms.GroupBox();
+            this.lblschedule = new System.Windows.Forms.Label();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.txtDcNo = new System.Windows.Forms.TextBox();
+            this.lblDEVisitDay = new System.Windows.Forms.Label();
+            this.dpDCDate = new System.Windows.Forms.DateTimePicker();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.lblDESupplier = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.InvoiceDate = new System.Windows.Forms.Label();
+            this.VoucherDate = new System.Windows.Forms.Label();
+            this.lblVoucher = new System.Windows.Forms.Label();
+            this.lblInvoice = new System.Windows.Forms.Label();
+            this.lblInvoiceNo = new System.Windows.Forms.Label();
+            this.lblInvoiceDate = new System.Windows.Forms.Label();
+            this.lblVoucherNo = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblVoucherDate = new System.Windows.Forms.Label();
+            this.lblInvoiceAmount = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -164,6 +177,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRepDetails)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.grpExcessProduct.SuspendLayout();
+            this.grpPurchase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDC1)).BeginInit();
@@ -229,7 +243,6 @@
             // grpDC
             // 
             this.grpDC.Controls.Add(this.lblRackCode);
-            this.grpDC.Controls.Add(this.LV_Supplier);
             this.grpDC.Controls.Add(this.lblStockLocationCode);
             this.grpDC.Controls.Add(this.lblProductcode);
             this.grpDC.Controls.Add(this.btnAdd);
@@ -259,6 +272,7 @@
             this.grpDC.Controls.Add(this.lblProductName);
             this.grpDC.Controls.Add(this.grpExcessProduct);
             this.grpDC.Controls.Add(this.grpDCSupplier);
+            this.grpDC.Controls.Add(this.LV_Supplier);
             this.grpDC.Font = new System.Drawing.Font("Oswald Regular", 10.25F);
             this.grpDC.Location = new System.Drawing.Point(12, 4);
             this.grpDC.Name = "grpDC";
@@ -767,6 +781,7 @@
             // 
             // grpExcessProduct
             // 
+            this.grpExcessProduct.Controls.Add(this.grpPurchase);
             this.grpExcessProduct.Controls.Add(this.DGV_FilterProduct);
             this.grpExcessProduct.Controls.Add(this.lvStockLocation);
             this.grpExcessProduct.Controls.Add(this.lvRack);
@@ -784,6 +799,36 @@
             this.grpExcessProduct.Size = new System.Drawing.Size(1313, 450);
             this.grpExcessProduct.TabIndex = 1111204;
             this.grpExcessProduct.TabStop = false;
+            // 
+            // grpPurchase
+            // 
+            this.grpPurchase.Controls.Add(this.lblInvoiceAmount);
+            this.grpPurchase.Controls.Add(this.lblVoucherDate);
+            this.grpPurchase.Controls.Add(this.label7);
+            this.grpPurchase.Controls.Add(this.lblVoucherNo);
+            this.grpPurchase.Controls.Add(this.lblInvoiceDate);
+            this.grpPurchase.Controls.Add(this.lblInvoiceNo);
+            this.grpPurchase.Controls.Add(this.lblInvoice);
+            this.grpPurchase.Controls.Add(this.lblVoucher);
+            this.grpPurchase.Controls.Add(this.VoucherDate);
+            this.grpPurchase.Controls.Add(this.InvoiceDate);
+            this.grpPurchase.Controls.Add(this.InvoiceAmount);
+            this.grpPurchase.Location = new System.Drawing.Point(518, 385);
+            this.grpPurchase.Name = "grpPurchase";
+            this.grpPurchase.Size = new System.Drawing.Size(553, 60);
+            this.grpPurchase.TabIndex = 111111144;
+            this.grpPurchase.TabStop = false;
+            this.grpPurchase.Visible = false;
+            // 
+            // InvoiceAmount
+            // 
+            this.InvoiceAmount.AutoSize = true;
+            this.InvoiceAmount.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InvoiceAmount.Location = new System.Drawing.Point(359, 14);
+            this.InvoiceAmount.Name = "InvoiceAmount";
+            this.InvoiceAmount.Size = new System.Drawing.Size(81, 17);
+            this.InvoiceAmount.TabIndex = 111111145;
+            this.InvoiceAmount.Text = "Invoice Amount";
             // 
             // DGV_FilterProduct
             // 
@@ -964,7 +1009,7 @@
             // chkCompleted
             // 
             this.chkCompleted.AutoSize = true;
-            this.chkCompleted.Location = new System.Drawing.Point(891, 421);
+            this.chkCompleted.Location = new System.Drawing.Point(1081, 392);
             this.chkCompleted.Name = "chkCompleted";
             this.chkCompleted.Size = new System.Drawing.Size(82, 23);
             this.chkCompleted.TabIndex = 1111214;
@@ -1040,11 +1085,160 @@
             this.grdPurchaseDC.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDC_DataBindingComplete);
             this.grdPurchaseDC.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdPurchaseDC_EditingControlShowing);
             // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 50;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
+            // 
+            // clmProductName
+            // 
+            this.clmProductName.HeaderText = "Product Name";
+            this.clmProductName.Name = "clmProductName";
+            this.clmProductName.ReadOnly = true;
+            this.clmProductName.Width = 300;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            this.clmUnit.Width = 80;
+            // 
+            // clmQuantity
+            // 
+            this.clmQuantity.HeaderText = "Qty";
+            this.clmQuantity.Name = "clmQuantity";
+            this.clmQuantity.ReadOnly = true;
+            this.clmQuantity.Width = 80;
+            // 
+            // clmMRP
+            // 
+            this.clmMRP.HeaderText = "MRP";
+            this.clmMRP.Name = "clmMRP";
+            this.clmMRP.ReadOnly = true;
+            this.clmMRP.Width = 80;
+            // 
+            // clmExpiryDate
+            // 
+            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.ReadOnly = true;
+            // 
+            // clmshelflife
+            // 
+            this.clmshelflife.HeaderText = "Product Shelf Life";
+            this.clmshelflife.Name = "clmshelflife";
+            this.clmshelflife.Width = 130;
+            // 
+            // clmactuallife
+            // 
+            this.clmactuallife.HeaderText = "Actual Shelf Life";
+            this.clmactuallife.Name = "clmactuallife";
+            this.clmactuallife.Width = 130;
+            // 
+            // clmshelfper
+            // 
+            this.clmshelfper.HeaderText = "Shelf Life(%)";
+            this.clmshelfper.Name = "clmshelfper";
+            // 
+            // clmShelflifeenable
+            // 
+            this.clmShelflifeenable.HeaderText = "Shelf Life Type";
+            this.clmShelflifeenable.Name = "clmShelflifeenable";
+            this.clmShelflifeenable.Visible = false;
+            // 
+            // clmBatchNo
+            // 
+            this.clmBatchNo.HeaderText = "Batch No.";
+            this.clmBatchNo.Name = "clmBatchNo";
+            this.clmBatchNo.ReadOnly = true;
+            this.clmBatchNo.Width = 80;
+            // 
+            // clmStockLocation
+            // 
+            this.clmStockLocation.HeaderText = "Stock Location";
+            this.clmStockLocation.Name = "clmStockLocation";
+            this.clmStockLocation.ReadOnly = true;
+            this.clmStockLocation.Width = 180;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            // 
+            // ClmPRID
+            // 
+            this.ClmPRID.HeaderText = "PRID";
+            this.ClmPRID.Name = "ClmPRID";
+            this.ClmPRID.ReadOnly = true;
+            this.ClmPRID.Visible = false;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
+            this.clmSLID.Visible = false;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
+            this.clmRKID.Visible = false;
+            // 
+            // clmUnitID
+            // 
+            this.clmUnitID.HeaderText = "Unit ID";
+            this.clmUnitID.Name = "clmUnitID";
+            this.clmUnitID.ReadOnly = true;
+            this.clmUnitID.Visible = false;
+            // 
+            // clmUTDecimal
+            // 
+            this.clmUTDecimal.HeaderText = "Decimal";
+            this.clmUTDecimal.Name = "clmUTDecimal";
+            this.clmUTDecimal.ReadOnly = true;
+            this.clmUTDecimal.Visible = false;
+            // 
+            // clmStockQuantity
+            // 
+            this.clmStockQuantity.HeaderText = "Stock Quantity";
+            this.clmStockQuantity.Name = "clmStockQuantity";
+            this.clmStockQuantity.Visible = false;
+            // 
+            // clmRemoveFlag
+            // 
+            this.clmRemoveFlag.HeaderText = "Remove Flag";
+            this.clmRemoveFlag.Name = "clmRemoveFlag";
+            this.clmRemoveFlag.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            // 
+            // clmError
+            // 
+            this.clmError.HeaderText = "Error";
+            this.clmError.Name = "clmError";
+            this.clmError.Visible = false;
+            // 
             // lblTotalProducts
             // 
             this.lblTotalProducts.AutoSize = true;
             this.lblTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalProducts.Location = new System.Drawing.Point(978, 421);
+            this.lblTotalProducts.Location = new System.Drawing.Point(1166, 392);
             this.lblTotalProducts.Name = "lblTotalProducts";
             this.lblTotalProducts.Size = new System.Drawing.Size(87, 20);
             this.lblTotalProducts.TabIndex = 1111212;
@@ -1054,7 +1248,7 @@
             // 
             this.txtTotalProducts.Enabled = false;
             this.txtTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalProducts.Location = new System.Drawing.Point(1068, 419);
+            this.txtTotalProducts.Location = new System.Drawing.Point(1254, 390);
             this.txtTotalProducts.MaxLength = 50;
             this.txtTotalProducts.Multiline = true;
             this.txtTotalProducts.Name = "txtTotalProducts";
@@ -1098,7 +1292,7 @@
             this.txtRemark.MaxLength = 200;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(585, 58);
+            this.txtRemark.Size = new System.Drawing.Size(447, 58);
             this.txtRemark.TabIndex = 13;
             this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
             this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
@@ -1269,154 +1463,117 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // clmSno
+            // InvoiceDate
             // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 50;
+            this.InvoiceDate.AutoSize = true;
+            this.InvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InvoiceDate.Location = new System.Drawing.Point(200, 14);
+            this.InvoiceDate.Name = "InvoiceDate";
+            this.InvoiceDate.Size = new System.Drawing.Size(66, 17);
+            this.InvoiceDate.TabIndex = 111111146;
+            this.InvoiceDate.Text = "Invoice Date";
             // 
-            // clmPICode
+            // VoucherDate
             // 
-            this.clmPICode.HeaderText = "P.I Code";
-            this.clmPICode.Name = "clmPICode";
-            this.clmPICode.ReadOnly = true;
+            this.VoucherDate.AutoSize = true;
+            this.VoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VoucherDate.Location = new System.Drawing.Point(200, 37);
+            this.VoucherDate.Name = "VoucherDate";
+            this.VoucherDate.Size = new System.Drawing.Size(72, 17);
+            this.VoucherDate.TabIndex = 111111147;
+            this.VoucherDate.Text = "Voucher Date";
             // 
-            // clmProductName
+            // lblVoucher
             // 
-            this.clmProductName.HeaderText = "Product Name";
-            this.clmProductName.Name = "clmProductName";
-            this.clmProductName.ReadOnly = true;
-            this.clmProductName.Width = 300;
+            this.lblVoucher.AutoSize = true;
+            this.lblVoucher.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVoucher.Location = new System.Drawing.Point(16, 37);
+            this.lblVoucher.Name = "lblVoucher";
+            this.lblVoucher.Size = new System.Drawing.Size(65, 17);
+            this.lblVoucher.TabIndex = 111111148;
+            this.lblVoucher.Text = "Voucher No.";
             // 
-            // clmUnit
+            // lblInvoice
             // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.Width = 80;
+            this.lblInvoice.AutoSize = true;
+            this.lblInvoice.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoice.Location = new System.Drawing.Point(16, 14);
+            this.lblInvoice.Name = "lblInvoice";
+            this.lblInvoice.Size = new System.Drawing.Size(59, 17);
+            this.lblInvoice.TabIndex = 111111149;
+            this.lblInvoice.Text = "Invoice No.";
             // 
-            // clmQuantity
+            // lblInvoiceNo
             // 
-            this.clmQuantity.HeaderText = "Qty";
-            this.clmQuantity.Name = "clmQuantity";
-            this.clmQuantity.ReadOnly = true;
-            this.clmQuantity.Width = 80;
+            this.lblInvoiceNo.AutoSize = true;
+            this.lblInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceNo.Location = new System.Drawing.Point(81, 14);
+            this.lblInvoiceNo.Name = "lblInvoiceNo";
+            this.lblInvoiceNo.Size = new System.Drawing.Size(15, 17);
+            this.lblInvoiceNo.TabIndex = 111111150;
+            this.lblInvoiceNo.Text = "0";
             // 
-            // clmMRP
+            // lblInvoiceDate
             // 
-            this.clmMRP.HeaderText = "MRP";
-            this.clmMRP.Name = "clmMRP";
-            this.clmMRP.ReadOnly = true;
-            this.clmMRP.Width = 80;
+            this.lblInvoiceDate.AutoSize = true;
+            this.lblInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceDate.Location = new System.Drawing.Point(276, 14);
+            this.lblInvoiceDate.Name = "lblInvoiceDate";
+            this.lblInvoiceDate.Size = new System.Drawing.Size(15, 17);
+            this.lblInvoiceDate.TabIndex = 111111151;
+            this.lblInvoiceDate.Text = "0";
             // 
-            // clmExpiryDate
+            // lblVoucherNo
             // 
-            this.clmExpiryDate.HeaderText = "Expiry Date";
-            this.clmExpiryDate.Name = "clmExpiryDate";
-            this.clmExpiryDate.ReadOnly = true;
+            this.lblVoucherNo.AutoSize = true;
+            this.lblVoucherNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVoucherNo.Location = new System.Drawing.Point(81, 37);
+            this.lblVoucherNo.Name = "lblVoucherNo";
+            this.lblVoucherNo.Size = new System.Drawing.Size(15, 17);
+            this.lblVoucherNo.TabIndex = 111111153;
+            this.lblVoucherNo.Text = "0";
             // 
-            // clmshelflife
+            // label7
             // 
-            this.clmshelflife.HeaderText = "Product Shelf Life";
-            this.clmshelflife.Name = "clmshelflife";
-            this.clmshelflife.Width = 130;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(447, 14);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 17);
+            this.label7.TabIndex = 111111154;
+            this.label7.Text = "₹";
             // 
-            // clmactuallife
+            // lblVoucherDate
             // 
-            this.clmactuallife.HeaderText = "Actual Shelf Life";
-            this.clmactuallife.Name = "clmactuallife";
-            this.clmactuallife.Width = 130;
+            this.lblVoucherDate.AutoSize = true;
+            this.lblVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVoucherDate.Location = new System.Drawing.Point(276, 37);
+            this.lblVoucherDate.Name = "lblVoucherDate";
+            this.lblVoucherDate.Size = new System.Drawing.Size(15, 17);
+            this.lblVoucherDate.TabIndex = 111111155;
+            this.lblVoucherDate.Text = "0";
             // 
-            // clmshelfper
+            // lblInvoiceAmount
             // 
-            this.clmshelfper.HeaderText = "Shelf Life(%)";
-            this.clmshelfper.Name = "clmshelfper";
+            this.lblInvoiceAmount.AutoSize = true;
+            this.lblInvoiceAmount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceAmount.Location = new System.Drawing.Point(460, 14);
+            this.lblInvoiceAmount.Name = "lblInvoiceAmount";
+            this.lblInvoiceAmount.Size = new System.Drawing.Size(17, 20);
+            this.lblInvoiceAmount.TabIndex = 111111156;
+            this.lblInvoiceAmount.Text = "0";
             // 
-            // clmShelflifeenable
+            // lblStatus
             // 
-            this.clmShelflifeenable.HeaderText = "Shelf Life Type";
-            this.clmShelflifeenable.Name = "clmShelflifeenable";
-            this.clmShelflifeenable.Visible = false;
-            // 
-            // clmBatchNo
-            // 
-            this.clmBatchNo.HeaderText = "Batch No.";
-            this.clmBatchNo.Name = "clmBatchNo";
-            this.clmBatchNo.ReadOnly = true;
-            this.clmBatchNo.Width = 80;
-            // 
-            // clmStockLocation
-            // 
-            this.clmStockLocation.HeaderText = "Stock Location";
-            this.clmStockLocation.Name = "clmStockLocation";
-            this.clmStockLocation.ReadOnly = true;
-            this.clmStockLocation.Width = 180;
-            // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
-            // 
-            // ClmPRID
-            // 
-            this.ClmPRID.HeaderText = "PRID";
-            this.ClmPRID.Name = "ClmPRID";
-            this.ClmPRID.ReadOnly = true;
-            this.ClmPRID.Visible = false;
-            // 
-            // clmSLID
-            // 
-            this.clmSLID.HeaderText = "SLID";
-            this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
-            this.clmSLID.Visible = false;
-            // 
-            // clmRKID
-            // 
-            this.clmRKID.HeaderText = "RKID";
-            this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
-            this.clmRKID.Visible = false;
-            // 
-            // clmUnitID
-            // 
-            this.clmUnitID.HeaderText = "Unit ID";
-            this.clmUnitID.Name = "clmUnitID";
-            this.clmUnitID.ReadOnly = true;
-            this.clmUnitID.Visible = false;
-            // 
-            // clmUTDecimal
-            // 
-            this.clmUTDecimal.HeaderText = "Decimal";
-            this.clmUTDecimal.Name = "clmUTDecimal";
-            this.clmUTDecimal.ReadOnly = true;
-            this.clmUTDecimal.Visible = false;
-            // 
-            // clmStockQuantity
-            // 
-            this.clmStockQuantity.HeaderText = "Stock Quantity";
-            this.clmStockQuantity.Name = "clmStockQuantity";
-            this.clmStockQuantity.Visible = false;
-            // 
-            // clmRemoveFlag
-            // 
-            this.clmRemoveFlag.HeaderText = "Remove Flag";
-            this.clmRemoveFlag.Name = "clmRemoveFlag";
-            this.clmRemoveFlag.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            // 
-            // clmError
-            // 
-            this.clmError.HeaderText = "Error";
-            this.clmError.Name = "clmError";
-            this.clmError.Visible = false;
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(194)))), ((int)(((byte)(116)))));
+            this.lblStatus.ForeColor = System.Drawing.Color.Black;
+            this.lblStatus.Location = new System.Drawing.Point(1208, 2);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(37, 20);
+            this.lblStatus.TabIndex = 111111145;
+            this.lblStatus.Text = "Draft";
+            this.lblStatus.Visible = false;
             // 
             // PUR_PurchaseDC
             // 
@@ -1424,6 +1581,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.pnldl);
             this.Controls.Add(this.tsPurchaseInvoiceList);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1453,6 +1611,8 @@
             this.groupBox2.PerformLayout();
             this.grpExcessProduct.ResumeLayout(false);
             this.grpExcessProduct.PerformLayout();
+            this.grpPurchase.ResumeLayout(false);
+            this.grpPurchase.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDC1)).EndInit();
@@ -1579,5 +1739,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRemoveFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
+        private System.Windows.Forms.GroupBox grpPurchase;
+        private System.Windows.Forms.Label InvoiceAmount;
+        private System.Windows.Forms.Label lblVoucher;
+        private System.Windows.Forms.Label VoucherDate;
+        private System.Windows.Forms.Label InvoiceDate;
+        private System.Windows.Forms.Label lblVoucherDate;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblVoucherNo;
+        private System.Windows.Forms.Label lblInvoiceDate;
+        private System.Windows.Forms.Label lblInvoiceNo;
+        private System.Windows.Forms.Label lblInvoice;
+        private System.Windows.Forms.Label lblInvoiceAmount;
+        public System.Windows.Forms.Label lblStatus;
     }
 }
