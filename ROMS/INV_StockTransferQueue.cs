@@ -204,7 +204,7 @@ namespace ROMS
             {
                 DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpTransferToDate.MinDate = varDate;
-                dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+                dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE"]);
             }
             objspservice.CloseConnection();
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;

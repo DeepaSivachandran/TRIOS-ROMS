@@ -287,16 +287,16 @@ namespace ROMS
                 udfnConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;
-                //DataSet objDs = new DataSet();
-                //SPDataService objspservice = new SPDataService();
-                //objDs = objspservice.udfnMaster(9, 2, 0, "", "", 0, "", 9);
-                //if (objDs.Tables[0].Rows.Count > 0)
-                //{
-                //    DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //    dpToDate.MinDate = varDate;
-                //    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
-                //}
-                //objspservice.CloseConnection();
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 17);
+                if (objDs.Tables[0].Rows.Count > 0)
+                {
+                    DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpToDate.MinDate = varDate;
+                    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE"]);
+                }
+                objspservice.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;

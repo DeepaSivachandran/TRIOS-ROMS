@@ -178,12 +178,12 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 0, 0, "", "", 0, "", 15);
+                objd = objDServ.udfnMaster(9, Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0, "", 15);
                 if (objd.Tables[0].Rows.Count > 0)
                 {
                     DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Transaction Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpToDate.MinDate = varDate;
-                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["Transaction Date"]);
                 }
                 objDServ.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
