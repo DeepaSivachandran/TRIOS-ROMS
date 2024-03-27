@@ -164,6 +164,7 @@ namespace ROMS
         public static PUR_PurchaseQueue objPUR_PurchaseQueue;
         public static PUR_GRNApprovalVerify objPUR_GRNApprovalVerify;
         public static PUR_Calculator objPUR_Calculator;
+        public static PUR_ApprovalCalculator objPUR_ApprovalCalculator;
         public static PUR_POScheduleSummary objPUR_POScheduleSummary;
         public static PUR_GRN_Level_Verified objPUR_GRN_Level_Verified;
 
