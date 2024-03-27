@@ -18,7 +18,7 @@ namespace ROMS
         public int varRecqty = 0, varcount = 0, SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varUnitid = 0,
             varPOID = 0, VarStatusId = 12, pbSupplierpend = 0, pbSupplierId = 0, pbScheduleid = 0, VarPrevSupplierid = 0, varcmbunitid = 0, Currentsts = 0
             , varUPP = 0, qtyFlag = 0, varModifiedFlag = 0,
-        varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0, varUpDownKey = 0, varCloseFlag = 0, varClose = 0, varDateChange = 0, grid_flag = 0;
+        varBulkunitvalue = 0, varUnitvalue = 0, varTotalunitvalue = 0, varprodFlag = 0, productcode = 0, varUpDownKey = 0, varCloseFlag = 0, varClose = 0, varDateChange = 0, grid_flag = 0, VarGridEdit = 0;
         public decimal totalKgQty = 0;
         public string vardays = "", unitweight = "", unitperbox = "", bulkunitweight = "", varUPPValue = "", varOtherSupPrevious = "", varOtherSupPartial = "";
         private ToolTip tpsalesman = new ToolTip();
@@ -1124,11 +1124,13 @@ namespace ROMS
                             {
                                 varBulkunitqty = 0; if (txtProductQty.Text != "") { varBulkunitqty = Convert.ToDecimal(txtProductQty.Text); }
                                 qtyFlag = 1;
+                                VarGridEdit = 0;
                             }
                             if (varUnitvalue == (Convert.ToInt32(cmbUnit.SelectedValue)))
                             {
                                 varUnitqty = 0; if (txtProductQty.Text != "") { varUnitqty = Convert.ToDecimal(txtProductQty.Text); }
                                 qtyFlag = 2;
+                                VarGridEdit = 0;
                             }
 
 
@@ -4034,7 +4036,7 @@ namespace ROMS
                 {
                     if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
                     {
-                        if (txtissuemodevalue.Text == "")
+                        /*if (txtissuemodevalue.Text == "")
                         {
                             errPO.SetError(txtissuemodevalue, "Please enter number");
                             txtissuemodevalue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -4052,7 +4054,7 @@ namespace ROMS
                                 tpIssuemodeValues.Show("Please enter valid number.", txtissuemodevalue, 5000);
                                 varErrorFlag = false;
                             }
-                        }
+                        }*/
                     }
                     if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
                     {
@@ -4076,18 +4078,18 @@ namespace ROMS
                     }
                     if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 138)
                     {
-                        if (Convert.ToString(txtissuemodevalue.Text).Trim() != "" && objValidation.FormatEMail(txtissuemodevalue.Text) == false)
-                        {
-                            errPO.SetError(txtissuemodevalue, "Please enter valid email");
-                            txtissuemodevalue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpIssuemode.ShowAlways = true;
-                            tpIssuemode.Show("Please enter valid email.", txtissuemodevalue, 5000);
-                            varErrorFlag = false;
-                        }
-                        else
-                        {
-                            txtissuemodevalue.BackColor = Color.White;
-                        }
+                        //if (Convert.ToString(txtissuemodevalue.Text).Trim() != "" && objValidation.FormatEMail(txtissuemodevalue.Text) == false)
+                        //{
+                        //    errPO.SetError(txtissuemodevalue, "Please enter valid email");
+                        //    txtissuemodevalue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        //    tpIssuemode.ShowAlways = true;
+                        //    tpIssuemode.Show("Please enter valid email.", txtissuemodevalue, 5000);
+                        //    varErrorFlag = false;
+                        //}
+                        //else
+                        //{
+                        //    txtissuemodevalue.BackColor = Color.White;
+                        //}
                     }
 
                     if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1 && txtissuemodevalue.Text.Trim()=="")
@@ -4099,13 +4101,14 @@ namespace ROMS
                         tpIssuemode.Show("Please enter mode of issue.", txtissuemodevalue, 5000);
                         varErrorFlag = false;
                     }
-                    if (txtTurnAroundTime.Text == "0")
+                    if (txtTurnAroundTime.Text == "0" || txtTurnAroundTime.Text == "")
                     {
                         errPO.SetError(txtTurnAroundTime, "Invalid turn around time");
                         txtTurnAroundTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpIssueby.ShowAlways = true;
                         tpIssueby.Show("Invalid turn around time.", txtTurnAroundTime, 5000);
                         varErrorFlag = false;
+                        txtTurnAroundTime.Enabled = true;
                     }
                 }
                 if (varErrorFlag == true)
@@ -4241,18 +4244,21 @@ namespace ROMS
                         if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                         {
                             qtyFlag = 1;
+                            VarGridEdit = 1;
                         }
                         break;
                     case "clmunitorderqty":
                         if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                         {
                             qtyFlag = 2;
+                            VarGridEdit = 1;
                         }
                         break;
                     case "clmordertotalqty":
                         if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                         {
                             qtyFlag = 3;
+                            VarGridEdit = 1;
                         }
                         break;
 
@@ -4347,9 +4353,17 @@ namespace ROMS
             {
                 //if (VarStatusId == 12 || VarStatusId == 0)
                 //{
+                int varDecimal = 0;
                 if (qtyFlag == 1)
                 {
-                    int varDecimal = Convert.ToInt32(lblUnitDecimal.Text);
+                    if (VarGridEdit == 1)
+                    {
+                        varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
+                    }
+                    else
+                    {
+                        varDecimal = Convert.ToInt32(lblUnitDecimal.Text);
+                    }
                     DataValidation objValidation = new DataValidation();
                     totalBulkqty = Convert.ToInt32(varBulkUnitQty);
                     totalOrderQty = Convert.ToDecimal(varUPP * totalBulkqty);

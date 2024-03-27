@@ -358,6 +358,11 @@ namespace ROMS
         {
             try
             {
+                if(varFormFlag==1)
+                {
+                    MainForm.objCP_SubGroup.varStockLocationName = txtLocation.Text.Trim();
+                    MainForm.objCP_SubGroup.varLocationCode = Convert.ToInt16(lblLocation.Text);
+                }
                 this.Close();
             }
             catch (Exception ex)
@@ -432,6 +437,11 @@ namespace ROMS
             {
                 if (varUpdate == 0)
                 {
+                    if (varFormFlag == 1)
+                    {
+                        MainForm.objCP_SubGroup.varStockLocationName = txtLocation.Text.Trim();
+                        MainForm.objCP_SubGroup.varLocationCode = Convert.ToInt16(lblLocation.Text);
+                    }
                     DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {

@@ -92,6 +92,7 @@ namespace ROMS
                 bool varErrorFlag = true;
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
                 {
+                    /*
                     if (txtIssuemodeValues.Text == "")
                     {
                         errIssued.SetError(txtIssuemodeValues, "Please enter number");
@@ -111,6 +112,7 @@ namespace ROMS
                             varErrorFlag = false;
                         }
                     }
+                    */
                 } 
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
                 {
@@ -128,28 +130,29 @@ namespace ROMS
                     tpIssueby.Show("Please enter issuedby.", txtIssuedBY, 5000);
                     varErrorFlag = false;
                 }
-                if (txtTAT.Text == "0")
+                if (txtTAT.Text == "0" || txtTAT.Text == "")
                 {
                     errIssued.SetError(txtTAT, "Invalid turn around time");
                     txtTAT.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpIssueby.ShowAlways = true;
                     tpIssueby.Show("Invalid turn around time.", txtTAT, 5000);
                     varErrorFlag = false;
+                    txtTAT.Enabled = true;
                 }
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 138)
                 {
-                    if (Convert.ToString(txtIssuemodeValues.Text).Trim() != "" && objValidation.FormatEMail(txtIssuemodeValues.Text) == false)
-                    {
-                        errIssued.SetError(txtIssuemodeValues, "Please enter valid email");
-                        txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpIssuemode.ShowAlways = true;
-                        tpIssuemode.Show("Please enter valid email.", txtIssuemodeValues, 5000);
-                        varErrorFlag = false;
-                    }
-                    else
-                    {
-                        txtIssuemodeValues.BackColor = Color.White;
-                    }
+                    //if (Convert.ToString(txtIssuemodeValues.Text).Trim() != "" && objValidation.FormatEMail(txtIssuemodeValues.Text) == false)
+                    //{
+                    //    errIssued.SetError(txtIssuemodeValues, "Please enter valid email");
+                    //    txtIssuemodeValues.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpIssuemode.ShowAlways = true;
+                    //    tpIssuemode.Show("Please enter valid email.", txtIssuemodeValues, 5000);
+                    //    varErrorFlag = false;
+                    //}
+                    //else
+                    //{
+                    //    txtIssuemodeValues.BackColor = Color.White;
+                    //}
                 }
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1 && txtIssuemodeValues.Text.Trim() == "")
                 {

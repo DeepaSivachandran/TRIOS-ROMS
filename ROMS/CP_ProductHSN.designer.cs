@@ -63,6 +63,7 @@
             // 
             // txtHSNName
             // 
+            this.txtHSNName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtHSNName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtHSNName.Location = new System.Drawing.Point(124, 23);
             this.txtHSNName.MaxLength = 20;

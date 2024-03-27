@@ -383,8 +383,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.Label lblLocation;
         public System.Windows.Forms.ComboBox cmbConcern;
         public System.Windows.Forms.TextBox txtLocation;
+        public System.Windows.Forms.Label lblLocation;
     }
 }

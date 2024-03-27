@@ -119,10 +119,10 @@ namespace ROMS
                                 {
 
                                     grdPurchaseDC.Rows.Add(objDs.Tables[1].Rows[i]["S.No."], objDs.Tables[1].Rows[i]["P.I Code"].ToString(),
-                                    objDs.Tables[1].Rows[i]["Product Name"].ToString(), 
+                                    objDs.Tables[1].Rows[i]["Product Name"].ToString(), objDs.Tables[1].Rows[i]["Unit"].ToString(),
+                                    objDs.Tables[1].Rows[i]["Quantity"].ToString(),
                                     objDs.Tables[1].Rows[i]["MRP"].ToString(),
                                     objDs.Tables[1].Rows[i]["Expiry Date"].ToString(), objDs.Tables[1].Rows[i]["Batch No."].ToString(),
-                                    objDs.Tables[1].Rows[i]["Quantity"].ToString(), objDs.Tables[1].Rows[i]["Unit"].ToString(),
                                     objDs.Tables[1].Rows[i]["Stock Location"].ToString(), objDs.Tables[1].Rows[i]["Rack"].ToString()
                                     , objDs.Tables[1].Rows[i]["PRID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
                                     objDs.Tables[1].Rows[i]["RKID"].ToString(), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), objDs.Tables[1].Rows[i]["Stock"].ToString(),
@@ -310,6 +310,11 @@ namespace ROMS
             dtPurchaseDC.Columns.Add("DCPR_UTID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_SLID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_RKID", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLifeValue", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLifeType", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLife_Per", typeof(float));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLifeStatus", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLife_Flag", typeof(int));
         }
 
         private void PUR_PurchaseDC_Load(object sender, EventArgs e)
@@ -3275,7 +3280,8 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     DataSet objDS = new DataSet();
                     DataSet objDSExpiry = new DataSet();
-                    int flag = 0;
+                    int varflag = 0;
+                    string varShelflifevalue = "", varAcutalshelflife = "";
                     //if (varExpiryDate != "")
                     //{
                     //    //objDS = objDServ.udfnMaster(8, 0, 0,varExpiryDate, "", 0);
@@ -3559,28 +3565,80 @@ namespace ROMS
                 }
                 else
                 {
-                   // udfnExpiryDate();
-                    if (pbDateflag == 0)
+                    int varflag = 0; decimal ProShelflife = 0; int Shelflifevalue = 0,ProShelfLifeType=0;
+                    string varShelflifevalue = "", varAcutalshelflife = "";
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objDS = new DataSet();
+                    if (varExpiryDate != "")
                     {
-                        if(txtMrp.Text=="")
-                        { txtMrp.Text = "0"; }
-                        decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()),2, MidpointRounding.AwayFromZero);
-                        string mrp=string.Format("{0:0.00}",varMRP);
-                        string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
-                        grdPurchaseDC.Rows.Add(grdPurchaseDC.Rows.Count + 1, varPICode.Trim(), varTName.Trim(),Convert.ToDecimal(mrp), varExpiryDate, txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid,Convert.ToString(varDecimal));
-                        dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text));
-                        ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
-                        grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                        //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
-                        grdPurchaseDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                        udfnAddClear();
-                        txtProductName.Text = "";
-                        lblProductcode.Text = "0";
-                      //  txtProductName.BackColor = Color.White;
-                        udfnProductCount();
+                        if (expirydateFlag == 1)
+                        {
+                            objDS = objDServ.udfnMaster(7, 0, 0, dpDCDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
+                            objDServ.CloseConnection();
+                            if (objDS.Tables[0].Rows.Count > 0)
+                            {
+                                if (Convert.ToString(objDS.Tables[0].Rows[0]["DATEVALIDATE"]) == "0")
+                                {
+                                    epPurchaseDC.SetError(txtDay, "Invalid expiry date");
+                                    txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                    txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                    txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                    tpProduct.ShowAlways = true;
+                                    tpProduct.Show("Invalid expiry date", txtDay, 5000);
+                                    varflag = 1;
+                                }
+                                else
+                                {
+                                    if (objDS.Tables[1].Rows.Count > 0)
+                                    {
+                                        varShelflifevalue = Convert.ToString(objDS.Tables[1].Rows[0]["SHELFLIFE"]);
+                                        string[] varProShelfLife = varShelflifevalue.Split(' ');
+                                        if (Convert.ToString(varProShelfLife[0]) != "")
+                                        {
+                                            ProShelflife = Convert.ToDecimal(varProShelfLife[0]);
+                                        }
+                                    }
+                                    if (objDS.Tables[2].Rows.Count > 0)
+                                    {
+                                        varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
+                                        string[] varShelflifevaluesplit = varAcutalshelflife.Split(' ');
+                                        if (Convert.ToString(varShelflifevaluesplit[0]) != "")
+                                        {
+                                            Shelflifevalue = Convert.ToInt32(varShelflifevaluesplit[0]);
+                                        }
+                                    }
+                                    if (objDS.Tables[3].Rows.Count > 0)
+                                    {
+                                        ProShelfLifeType = Convert.ToInt32(objDS.Tables[3].Rows[0]["PR_ShelfLifeType"]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (varflag == 0)
+                    {
+                        if (pbDateflag == 0)
+                        {
+                            if (txtMrp.Text == "")
+                            { txtMrp.Text = "0"; }
+                            decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                            string mrp = string.Format("{0:0.00}", varMRP);
+                            string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                            grdPurchaseDC.Rows.Add(grdPurchaseDC.Rows.Count + 1, varPICode.Trim(), varTName.Trim(), lblUnit.Text, txtActualQty.Text.Trim(), Convert.ToDecimal(mrp), varExpiryDate, (flag).Trim(), varAcutalshelflife, varShelflifevalue, expirydateFlag, txtBatchNo.Text.Trim(),  txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid, Convert.ToString(varDecimal));
+                            dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text),ProShelflife, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue);
+                            ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
+                            grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
+                            grdPurchaseDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            udfnAddClear();
+                            txtProductName.Text = "";
+                            lblProductcode.Text = "0";
+                            //  txtProductName.BackColor = Color.White;
+                            udfnProductCount();
+                        }
                     }
                 }
             }
@@ -3704,7 +3762,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             varPICode = objDs.Tables[0].Rows[0]["PR_PICode"].ToString();
-                            //varEName = objDs.Tables[0].Rows[0]["PR_EName"].ToString();
+                            varEName = objDs.Tables[0].Rows[0]["PR_EName"].ToString();
                             varTName = objDs.Tables[0].Rows[0]["PR_TName"].ToString();
                             var_Symbol = objDs.Tables[0].Rows[0]["UT_Symbol"].ToString();
                             var_Text = objDs.Tables[0].Rows[0]["GST_Text"].ToString();
@@ -3716,9 +3774,8 @@ namespace ROMS
                             varorderSaleQty = "0";
                             addproductid = objDs.Tables[0].Rows[0]["PRID"].ToString();
                             varunitid = objDs.Tables[0].Rows[0]["UTID"].ToString();
-                            flag = "3";
+                            flag = objDs.Tables[0].Rows[0]["PRODUCTEXP"].ToString();
                             lblUnit.Text= objDs.Tables[0].Rows[0]["UT_Symbol"].ToString();
-                            
                         }
                     }
                 }
