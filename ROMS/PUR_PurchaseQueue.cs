@@ -98,7 +98,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Supplier"].Width = 250;
                 DGV_SearchGrid.Columns["Total Products"].Width = 100;
                 DGV_SearchGrid.Columns["Created By"].Width = 110;
-                DGV_SearchGrid.Columns["Created On"].Width = 140;
+                DGV_SearchGrid.Columns["GRN_Payment_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 150;
                 DGV_SearchGrid.Columns["S.No."].Width = 60;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;

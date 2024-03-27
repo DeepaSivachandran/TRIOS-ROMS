@@ -323,7 +323,6 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Invoice No."].Width = 100;
                 DGV_SearchGrid.Columns["Invoice Amount"].Width = 120;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
-                DGV_SearchGrid.Columns["Created On"].Width = 150;
                 DGV_SearchGrid.Columns["Order Type"].Width = 100;
                 DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;
                 DGV_SearchGrid.Columns["GRNID"].Visible = false;
@@ -350,6 +349,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=7 AND STSID IN (17,23) OR STSID=0", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                cmbstatus.SelectedValue = 17;
                 objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
