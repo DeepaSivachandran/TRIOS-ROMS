@@ -216,9 +216,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
+                    MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                    MainForm.objINV_Inwardlist.MdiParent = this.ParentForm;
+                    MainForm.objINV_Inwardlist.Show();
                     this.Close();
                 }
             }

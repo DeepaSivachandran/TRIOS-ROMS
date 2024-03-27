@@ -36,11 +36,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm objMainForm = new MainForm();
-                    objMainForm.udfnCloseChildForms();
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
+                    //MainForm objMainForm = new MainForm();
+                    //objMainForm.udfnCloseChildForms();
+                    MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                    MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
+                    MainForm.objCP_PurchaseList.Show();
                     this.Close();
                 } 
             }

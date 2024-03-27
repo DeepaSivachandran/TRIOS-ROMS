@@ -128,9 +128,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
+                    MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
+                    MainForm.objINV_InwardPurchaseList.MdiParent = this.ParentForm;
+                    MainForm.objINV_InwardPurchaseList.Show();
                     this.Close();
                 }
             }

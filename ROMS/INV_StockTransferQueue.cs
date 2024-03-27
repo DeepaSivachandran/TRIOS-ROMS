@@ -177,9 +177,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();   
+                    MainForm.objINV_StockTransferList = new INV_StockTransferList();
+                    MainForm.objINV_StockTransferList.MdiParent = this.ParentForm;
+                    MainForm.objINV_StockTransferList.Show();
                     this.Close();
                 }
             }
