@@ -1278,7 +1278,12 @@ namespace ROMS
                                     }
                                 }
                             }
-                        }  
+                        }
+                        if(objDS.Tables[3].Rows.Count>0)
+                        {
+                            varScheduleStsCount = Convert.ToInt32(objDS.Tables[3].Rows[0]["ScheduleCount"]);
+                            udfnThirdTabEnable();
+                        }
                     }
                 }
                 if(pbFormStatus==2 || varSupplierStatusID==2)

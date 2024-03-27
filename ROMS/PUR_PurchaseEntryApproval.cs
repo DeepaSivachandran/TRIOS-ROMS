@@ -32,7 +32,7 @@ namespace ROMS
         varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", VarGridError = "0", PurchaseDcIds = "0", varTypeErrId = "0";
         public decimal PbDiscamt = 0, PbTaxvalue = 0, PbGstamt = 0, PbNetamt = 0, pbDiffQty = 0, pbDisper = 0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, varExpiryError = 0, shelfLifeError = 0,
-            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0, varRMFlag = 0, varRemarkCount = 0, varRemarkFlag = 0, varerrFlag = 0;
+            VarPrevSupplierid = 0, varModifiedFlag = 0, varDecimal = 0, varQueueFlag = 0, varRMFlag = 0, varRemarkCount = 0, varRemarkFlag = 0, varerrFlag = 0, InvoiceAmountErr=0;
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
         bool varVoucherSkip = false;
@@ -979,6 +979,14 @@ namespace ROMS
                             {
                                 grdPODetails.Columns["clmRemovePO"].Visible = false;
                             }
+                            if (Convert.ToDecimal(txtSubtotal.Text) == 0)
+                            {
+                                gpdiscount.Enabled = true;
+                            }
+                            else
+                            {
+                                gpdiscount.Enabled = false;
+                            }
                         }
                     }
                     udfnPurchaseEntryTabLoad();
@@ -1283,22 +1291,12 @@ namespace ROMS
         {
             try
             {
-                if (PbSTS != "50")
+                if (e.KeyCode == Keys.F4)
                 {
-                    if (e.KeyCode == Keys.F4)
+                    //if (columnName == "clmPurchaseRate" || columnName = "clmDiscPer"
+                    if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate")
                     {
-                        int varColumn = grdPurchaseList.CurrentCellAddress.X;
-                        int varRow = grdPurchaseList.CurrentCellAddress.Y;
-                        string columnName = grdPurchaseList.Columns[varColumn].Name;
-                        if (columnName == "clmPurchaseRate")
-                        {
-                            string Varvalue = Convert.ToString(grdPurchaseList.Rows[varRow].Cells[varColumn].Value);
-                            MainForm.objPUR_Calculator = new PUR_Calculator();
-                            MainForm.objPUR_Calculator.PbValue = Varvalue;
-                            MainForm.objPUR_Calculator.ShowDialog();
-                            varPurchaseRate = varCalculator;
-                            grdPurchaseList.Rows[varRow].Cells[varColumn].Value = Convert.ToString(varPurchaseRate);
-                        }
+                        udfnCalculator();
                     }
                 }
             }
@@ -2353,9 +2351,10 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Name"]), varQty, Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["RecivedQty"]), Convert.ToString(objDs.Tables[0].Rows[i]["diffqty"]), Convert.ToString(objDs.Tables[0].Rows[i]["freeqty"])
                              , Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_PurchaseRate"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_DiscAmnt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_DiscPer"])
-                            , Convert.ToString(objDs.Tables[0].Rows[i]["TAX"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_GSTAmnt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_NettAmnt"])
+                            , Convert.ToString(objDs.Tables[0].Rows[i]["TAX"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_GSTAmnt"]), Convert.ToString(objDs.Tables[0].Rows[i]["DiscountValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_NettAmnt"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]), Convert.ToString(objDs.Tables[0].Rows[i]["DC Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Inv Flag"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["DC Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Inv Flag"]), Convert.ToString(objDs.Tables[0].Rows[i]["Costing"]));
                             if (Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"]) != "")
                             {
                                 if (varInvQty == 0)
@@ -2521,7 +2520,61 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnCalculator()
+        {
+            try
+            {
+                int varColumn = grdPurchaseList.CurrentCellAddress.X;
+                int varRow = grdPurchaseList.CurrentCellAddress.Y;
+                string columnName = grdPurchaseList.Columns[varColumn].Name;
+                string Varvalue = Convert.ToString(grdPurchaseList.Rows[varRow].Cells[varColumn].Value);
+                MainForm.objPUR_ApprovalCalculator = new PUR_ApprovalCalculator();
+                MainForm.objPUR_ApprovalCalculator.PbValue = Varvalue;
+                MainForm.objPUR_ApprovalCalculator.ShowDialog();
+                varPurchaseRate = varCalculator;
+                grdPurchaseList.Rows[varRow].Cells[varColumn].Value = Convert.ToString(varPurchaseRate);
 
+
+                decimal varInvQty = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmInvQty"].Value)) != "") { varInvQty = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmInvQty"].Value); }
+                decimal varRecQty = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmRecqty"].Value)) != "") { varRecQty = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmRecqty"].Value); }
+                decimal varDiffQty = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmDiffqty"].Value)) != "") { varDiffQty = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmDiffqty"].Value); }
+                decimal varFreeQty = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmFreeqty"].Value)) != "") { varFreeQty = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmFreeqty"].Value); }
+                decimal varPurRate = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value)) != "")
+                {
+                    string mrp = string.Format("{0:0.000}", Math.Round(Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value), 3, MidpointRounding.AwayFromZero));
+                    grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value = mrp;
+                    varPurRate = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value);
+                }
+                decimal varCellDiscAmt = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmDiscAmt"].Value)) != "") { varCellDiscAmt = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmDiscAmt"].Value); }
+                decimal varTaxValue = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmTax"].Value)) != "") { varTaxValue = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmTax"].Value); }
+                decimal varGstAmt = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmGstamt"].Value)) != "") { varGstAmt = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmGstamt"].Value); }
+                decimal varNetAmt = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmnetamt"].Value)) != "") { varNetAmt = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmnetamt"].Value); }
+                decimal varDiscPer = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value)) != "") { varDiscPer = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value); }
+                int varHSNGSTValue = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["GstValue"].Value)) != "") { varHSNGSTValue = Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["GstValue"].Value); }
+
+                udfnDiscountToAmount(varCellDiscAmt, Convert.ToDecimal(varPurchaseRate), varInvQty, varPurRate);
+                varDiscountFlag = 0;
+                udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
+                grdPurchaseList.CurrentRow.Cells["clmGstamt"].Value = PbGstamt.ToString("0.00");
+                grdPurchaseList.CurrentRow.Cells["clmnetamt"].Value = PbNetamt.ToString("0.00");
+                grdPurchaseList.CurrentRow.Cells["clmTax"].Value = PbTaxvalue.ToString("0.00");
+                grdPurchaseList.CurrentRow.Cells["clmCosting"].Value = pbCostingRate.ToString("0.00");
+                grdPurchaseList.CurrentRow.Cells["clmDiscountValue"].Value = PbDicountValue.ToString("0.00");
+                udfnSubtotCalc();
+                udfnGstvalue();
+                udfnLoadingGrandTotCalculation();
+                //grdPurchaseList.CurrentRow.Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0; pbCostingRate = 0; PbDicountValue = 0;
+            }
+        }
         public void udfnGstvalue()
         {
             try
@@ -2963,6 +3016,67 @@ namespace ROMS
             }
         }
 
+        private void GrdPurchaseList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if ( grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer"
+                        || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate" )
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDiscountColumnHide()
+        {
+            try
+            {
+                if (rbDiscountAfter.Checked == true)
+                {
+                    grdPurchaseList.Columns["clmDiscountValue"].Visible = true;
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 17;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 18;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 19;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 20;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 21;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 22;
+                }
+                if (rbDiscountBefore.Checked == true)
+                {
+                    grdPurchaseList.Columns["clmDiscountValue"].Visible = false;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 17;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 18;
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 19;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 20;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 21;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 22;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void RbDiscountBefore_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnDiscountColumnHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtTcsamt_Leave(object sender, EventArgs e)
         {
             try
@@ -3373,158 +3487,318 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public DataTable udfnobjPurchaseprodDetails()
+        {
+            varcount1 = 0; varQuantityErr = 0; varcount = 0;//used for-- if error redirect to 2nd tab
+             varDiscountErr = 0;
+            DataTable objPurchaseentryDetails = new DataTable();
+            try
+            {
+                if (pbPurchaseno != "0")
+                {
+                    objPurchaseentryDetails.TableName = "TRN_Purchase_Products_Details";
+                    objPurchaseentryDetails.Columns.Add("PURPR_PURID", typeof(int));
+                    objPurchaseentryDetails.Columns.Add("PURPR_PRID", typeof(int));
+                    objPurchaseentryDetails.Columns.Add("PURPR_HSNID", typeof(int));
+                    objPurchaseentryDetails.Columns.Add("PURPR_PurchaseRate", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_POQty", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_InvoiceQty", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_ReceivedQty", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_DiffQty", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_FreeQty", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_DiscPer", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_DiscAmnt", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_TaxableValue", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_GSTPer", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_GSTAmnt", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_NettAmnt", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_Error", typeof(int));
+                    objPurchaseentryDetails.Columns.Add("PURPRID", typeof(int));
+                    objPurchaseentryDetails.Columns.Add("ID", typeof(int));
+                    objPurchaseentryDetails.Columns.Add("PURPR_Costing", typeof(decimal));
+                    objPurchaseentryDetails.Columns.Add("PURPR_DiscountValue", typeof(decimal));
+                    if (grdPurchaseList.Rows.Count != 0)
+                    {
+                        for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
+                        {
+                            string varZero = "0";
+                            int varDecimal = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["UT_Decimal"].Value);
+                            varZero = 0 + objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
+                            
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == 0)
+                            {
+                                varcount++;
+                                varcount1++;
+                                grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightPink;
+                                grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.ForeColor = Color.Black;
+                            }
+                            else
+                            {
+                                grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
+                            }
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) != "")
+                            {
+                                if (Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) > 100)
+                                {
+                                    varcount++; varcount1++;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightPink;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.ForeColor = Color.Black;
+                                }
+                            }
+                            decimal varQty = 0, varFreeQuantity = 0, varRecqty = 0, varDiffQty = 0, varInvqty = 0, varFlag = 0, varDCQty = 0, varerrFlag = 0;
+                            varRecqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value);
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "")
+                            { varFreeQuantity = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value); }
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value) != "")
+                            { varDiffQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value); }
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "")
+                            { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
+
+                            decimal varPurchaseRate = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value)) != "")
+                            {
+                                varPurchaseRate = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value);
+                            }
+                            decimal varDiscAmt = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Value)) != "") { varDiscAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Value); }
+
+                            if ((varPurchaseRate * varInvqty) < varDiscAmt)
+                            {
+                                varDiscountErr++;
+                                grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightPink;
+                                grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.ForeColor = Color.Black;
+                            }
+                            
+                            decimal varFreeQty = 0, varPOqty = 0, varCosting = 0, varDiscountValue = 0;
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value) != "0")
+                            {
+                                varFreeQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value);
+                            }
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPOqty"].Value) != "" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPOqty"].Value) != "0")
+                            {
+                                varPOqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPOqty"].Value);
+                            }
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmCosting"].Value) != "")
+                            {
+                                varCosting = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCosting"].Value);
+                            }
+                            if (rbDiscountAfter.Checked == true)
+                            {
+                                if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiscountValue"].Value) != "")
+                                {
+                                    varDiscountValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscountValue"].Value);
+                                }
+                            }
+
+                            if (varcount == 0)
+                            {
+                                objPurchaseentryDetails.Rows.Add(pbPurchaseno, Convert.ToInt32(grdPurchaseList.Rows[i].Cells["proid"].Value),
+                                Convert.ToInt32(grdPurchaseList.Rows[i].Cells["hsnid"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value),
+                                Convert.ToDecimal(varPOqty), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value),
+                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value),
+                                varFreeQty, Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value),
+                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmTax"].Value),
+                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["GstValue"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmGstamt"].Value),
+                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmnetamt"].Value), 0, Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmPURPRID"].Value),
+                                Convert.ToInt32(grdPurchaseList.Rows[i].Cells["poid"].Value), Convert.ToDecimal(varCosting), varDiscountValue);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            return objPurchaseentryDetails;
+        }
         public void udfnApprove()
         {
             try
             {
-                int varStatus = 0; string result = "";
-                l: MainForm.objCP_Verify = new CP_Verify();
-                MainForm.objCP_Verify.ShowDialog();
-                varUserID = MainForm.objCP_Verify.varUserId;
-                if (MainForm.objCP_Verify.flag == 1)
+                DataTable objPurchaseentryDetails = new DataTable();
+                objPurchaseentryDetails.TableName = "TRN_Purchase_Products_Details";
+                objPurchaseentryDetails.Columns.Add("PURPR_PURID", typeof(int));
+                objPurchaseentryDetails.Columns.Add("PURPR_PRID", typeof(int));
+                objPurchaseentryDetails.Columns.Add("PURPR_HSNID", typeof(int));
+                objPurchaseentryDetails.Columns.Add("PURPR_PurchaseRate", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_POQty", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_InvoiceQty", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_ReceivedQty", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_DiffQty", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_FreeQty", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_DiscPer", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_DiscAmnt", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_TaxableValue", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_GSTPer", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_GSTAmnt", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_NettAmnt", typeof(float));
+                objPurchaseentryDetails.Columns.Add("PURPR_Error", typeof(int));
+                objPurchaseentryDetails.Columns.Add("PURPRID", typeof(int));
+                objPurchaseentryDetails.Columns.Add("ID", typeof(int));
+                objPurchaseentryDetails.Columns.Add("PURPR_Costing", typeof(decimal));
+                objPurchaseentryDetails.Columns.Add("PURPR_DiscountValue", typeof(decimal));
+
+                objPurchaseentryDetails = udfnobjPurchaseprodDetails();
+
+                if (varcount == 0 && Convert.ToInt32(VarGridError) == 0 && shelfLifeError == 0 && varQuantityErr == 0 && varDiscountErr == 0 && InvoiceAmountErr == 0)
                 {
-                    
-                    varStatus = 63;
-                    int varBrokerid = 0;
-                    if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); }
+                    flagSave = 0;
+                }
+                else
+                {
+                    flagSave = 1;
+                }
+                if (flagSave == 0)
+                {
+                    int varStatus = 0; string result = "";
+                l: MainForm.objCP_Verify = new CP_Verify();
+                    MainForm.objCP_Verify.ShowDialog();
+                    varUserID = MainForm.objCP_Verify.varUserId;
+                    if (MainForm.objCP_Verify.flag == 1)
+                    {
 
-                    decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
-                    otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0;
-                    if (txtLoadingchargeGrn.Text != "")
-                    {
-                        loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text);
-                    }
-                    if (txtFrightGrn.Text != "")
-                    {
-                        frightgrn = Convert.ToDecimal(txtFrightGrn.Text);
-                    }
-                    if (txtLoadingCharge.Text != "")
-                    {
-                        loadcharge = Convert.ToDecimal(txtLoadingCharge.Text);
-                    }
-                    if (txtUnLoadingCharge.Text != "")
-                    {
-                        unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text);
-                    }
-                    if (txtCouriercharge.Text != "")
-                    {
-                        couriercharge = Convert.ToDecimal(txtCouriercharge.Text);
-                    }
-                    if (txtotherexpense.Text != "")
-                    {
-                        otherexpense = Convert.ToDecimal(txtotherexpense.Text);
-                    }
-                    if (Txtdiscount.Text != "")
-                    {
-                        discountper = Convert.ToDecimal(Txtdiscount.Text);
-                    }
-                    if (txtDiscountamt.Text != "")
-                    {
-                        discountamt = Convert.ToDecimal(txtDiscountamt.Text);
-                    }
-                    if (txtTcsamt.Text != "")
-                    {
-                        tcsamt = Convert.ToDecimal(txtTcsamt.Text);
-                    }
-                    if (txtDamagecost.Text != "")
-                    {
-                        damagecost = Convert.ToDecimal(txtDamagecost.Text);
-                    }
-                    if (txtOtherdiscount.Text != "")
-                    {
-                        otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text);
-                    }
-                    if (txtSubtotal.Text != "")
-                    {
-                        subtotal = Convert.ToDecimal(txtSubtotal.Text);
-                    }
-                    if (txtGstamt.Text != "")
-                    {
-                        gstamt = Convert.ToDecimal(txtGstamt.Text);
-                    }
-                    if (txtRoundoff.Text != "")
-                    {
-                        roundoff = Convert.ToDecimal(txtRoundoff.Text);
-                    }
-                    if (txtGrandtot.Text != "")
-                    {
-                        grandtotal = Convert.ToDecimal(txtGrandtot.Text);
-                    }
+                        varStatus = 63;
+                        int varBrokerid = 0;
+                        if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); }
 
-                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                    objTRN_PurchaseEntry.ViewType = 4;
-                    objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
-                    objTRN_PurchaseEntry.paraStatus = varStatus;
-                    objTRN_PurchaseEntry.paraINVDate = dpInvoiceDate.Text.Trim();
-                    objTRN_PurchaseEntry.paraINVNo = txtInvoiceNo.Text.Trim();
-                    objTRN_PurchaseEntry.paraRemarks = txtRemarks.Text.Trim();
-                    objTRN_PurchaseEntry.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
-                    objTRN_PurchaseEntry.paraBrokerID = varBrokerid;
-                    if (chkInvoice.Checked == true)
-                    { objTRN_PurchaseEntry.paraEinvoice = "1"; }
-                    else
-                    { objTRN_PurchaseEntry.paraEinvoice = "0"; }
-                    if (rbPurchaseCash.Checked == true)
-                    {
-                        objTRN_PurchaseEntry.paraPurchaseType = 1;
-                    }
-                    if (rbPurchaseCredit.Checked == true)
-                    {
-                        objTRN_PurchaseEntry.paraPurchaseType = 2;
-                    }
-                    if (rbPaymentCash.Checked == true)
-                    {
-                        objTRN_PurchaseEntry.paraPaymentType = 1;
-                    }
-                    if (rbPaymentCheque.Checked == true)
-                    {
-                        objTRN_PurchaseEntry.paraPaymentType = 2;
-                    }
-                    if (rbDiscountBefore.Checked == true)
-                    {
-                        objTRN_PurchaseEntry.paraDiscCalculation = 1;
-                    }
-                    if (rbDiscountAfter.Checked == true)
-                    {
-                        objTRN_PurchaseEntry.paraDiscCalculation = 2;
-                    }
-                    objTRN_PurchaseEntry.paraLoadingCharges = loadcharge;
-                    objTRN_PurchaseEntry.paraUnloadingCharges = unloadcharge;
-                    objTRN_PurchaseEntry.paraCourierCharges = couriercharge;
-                    objTRN_PurchaseEntry.paraOtherExpenses = otherexpense;
-                    objTRN_PurchaseEntry.paraDiscAmnt = discountamt;
-                    objTRN_PurchaseEntry.paraDiscPer = discountper;
-                    objTRN_PurchaseEntry.paraTcsAmnt = tcsamt;
-                    objTRN_PurchaseEntry.paraDamageCost = damagecost;
-                    objTRN_PurchaseEntry.paraOtherDisc = otherdiscount;
-                    objTRN_PurchaseEntry.paraLoadingChargesGRN = loadinggrn;
-                    objTRN_PurchaseEntry.paraFrightGRN = frightgrn;
-                    objTRN_PurchaseEntry.paraSubTotal = subtotal;
-                    objTRN_PurchaseEntry.paraGSTAmnt = gstamt;
-                    objTRN_PurchaseEntry.paraRoundOff = roundoff;
-                    objTRN_PurchaseEntry.paraGrandTotal = grandtotal;
-                    objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
-                    SPDataService objspdservice = new SPDataService();
-                    result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
-                    objspdservice.CloseConnection();
-                    string[] varvalue = result.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        varModifiedFlag = 0;
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        varCloseflag = 1;
-                        udfnclose();
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        if (varvalue[0] == "5")
+                        decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
+                        otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0;
+                        if (txtLoadingchargeGrn.Text != "")
                         {
-                            goto l;
+                            loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text);
+                        }
+                        if (txtFrightGrn.Text != "")
+                        {
+                            frightgrn = Convert.ToDecimal(txtFrightGrn.Text);
+                        }
+                        if (txtLoadingCharge.Text != "")
+                        {
+                            loadcharge = Convert.ToDecimal(txtLoadingCharge.Text);
+                        }
+                        if (txtUnLoadingCharge.Text != "")
+                        {
+                            unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text);
+                        }
+                        if (txtCouriercharge.Text != "")
+                        {
+                            couriercharge = Convert.ToDecimal(txtCouriercharge.Text);
+                        }
+                        if (txtotherexpense.Text != "")
+                        {
+                            otherexpense = Convert.ToDecimal(txtotherexpense.Text);
+                        }
+                        if (Txtdiscount.Text != "")
+                        {
+                            discountper = Convert.ToDecimal(Txtdiscount.Text);
+                        }
+                        if (txtDiscountamt.Text != "")
+                        {
+                            discountamt = Convert.ToDecimal(txtDiscountamt.Text);
+                        }
+                        if (txtTcsamt.Text != "")
+                        {
+                            tcsamt = Convert.ToDecimal(txtTcsamt.Text);
+                        }
+                        if (txtDamagecost.Text != "")
+                        {
+                            damagecost = Convert.ToDecimal(txtDamagecost.Text);
+                        }
+                        if (txtOtherdiscount.Text != "")
+                        {
+                            otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text);
+                        }
+                        if (txtSubtotal.Text != "")
+                        {
+                            subtotal = Convert.ToDecimal(txtSubtotal.Text);
+                        }
+                        if (txtGstamt.Text != "")
+                        {
+                            gstamt = Convert.ToDecimal(txtGstamt.Text);
+                        }
+                        if (txtRoundoff.Text != "")
+                        {
+                            roundoff = Convert.ToDecimal(txtRoundoff.Text);
+                        }
+                        if (txtGrandtot.Text != "")
+                        {
+                            grandtotal = Convert.ToDecimal(txtGrandtot.Text);
+                        }
+
+                        TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                        objTRN_PurchaseEntry.ViewType = 4;
+                        objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
+                        objTRN_PurchaseEntry.paraStatus = varStatus;
+                        objTRN_PurchaseEntry.paraINVDate = dpInvoiceDate.Text.Trim();
+                        objTRN_PurchaseEntry.paraINVNo = txtInvoiceNo.Text.Trim();
+                        objTRN_PurchaseEntry.paraRemarks = txtRemarks.Text.Trim();
+                        objTRN_PurchaseEntry.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
+                        objTRN_PurchaseEntry.paraBrokerID = varBrokerid;
+                        if (chkInvoice.Checked == true)
+                        { objTRN_PurchaseEntry.paraEinvoice = "1"; }
+                        else
+                        { objTRN_PurchaseEntry.paraEinvoice = "0"; }
+                        if (rbPurchaseCash.Checked == true)
+                        {
+                            objTRN_PurchaseEntry.paraPurchaseType = 1;
+                        }
+                        if (rbPurchaseCredit.Checked == true)
+                        {
+                            objTRN_PurchaseEntry.paraPurchaseType = 2;
+                        }
+                        if (rbPaymentCash.Checked == true)
+                        {
+                            objTRN_PurchaseEntry.paraPaymentType = 1;
+                        }
+                        if (rbPaymentCheque.Checked == true)
+                        {
+                            objTRN_PurchaseEntry.paraPaymentType = 2;
+                        }
+                        if (rbDiscountBefore.Checked == true)
+                        {
+                            objTRN_PurchaseEntry.paraDiscCalculation = 1;
+                        }
+                        if (rbDiscountAfter.Checked == true)
+                        {
+                            objTRN_PurchaseEntry.paraDiscCalculation = 2;
+                        }
+                        objTRN_PurchaseEntry.paraLoadingCharges = loadcharge;
+                        objTRN_PurchaseEntry.paraUnloadingCharges = unloadcharge;
+                        objTRN_PurchaseEntry.paraCourierCharges = couriercharge;
+                        objTRN_PurchaseEntry.paraOtherExpenses = otherexpense;
+                        objTRN_PurchaseEntry.paraDiscAmnt = discountamt;
+                        objTRN_PurchaseEntry.paraDiscPer = discountper;
+                        objTRN_PurchaseEntry.paraTcsAmnt = tcsamt;
+                        objTRN_PurchaseEntry.paraDamageCost = damagecost;
+                        objTRN_PurchaseEntry.paraOtherDisc = otherdiscount;
+                        objTRN_PurchaseEntry.paraLoadingChargesGRN = loadinggrn;
+                        objTRN_PurchaseEntry.paraFrightGRN = frightgrn;
+                        objTRN_PurchaseEntry.paraSubTotal = subtotal;
+                        objTRN_PurchaseEntry.paraGSTAmnt = gstamt;
+                        objTRN_PurchaseEntry.paraRoundOff = roundoff;
+                        objTRN_PurchaseEntry.paraGrandTotal = grandtotal;
+                        objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
+                        objTRN_PurchaseEntry.Purchase_Products_Details = objPurchaseentryDetails;
+                        SPDataService objspdservice = new SPDataService();
+                        result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                        objspdservice.CloseConnection();
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            varModifiedFlag = 0;
+                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            varCloseflag = 1;
+                            udfnclose();
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            if (varvalue[0] == "5")
+                            {
+                                goto l;
+                            }
                         }
                     }
                 }
-                
             }
             catch (Exception ex)
             {
@@ -4307,15 +4581,10 @@ namespace ROMS
             try
             {
                 int varQtyErrFlag = 0;
-               
-                //55-against po      56-Direct
-                if (varEntryType == 55 || varEntryType == 56)
+
+                if (varEntryType == 55 || varEntryType == 56)    //55-against po      56-Direct
                 {
                     pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
-                    //if(varInvQty!=(varRecQty + varFreeQty))  //excess
-                    //{ varQtyErrFlag = 0; }
-                    //if(varDiffQty==varInvQty-(varRecQty+varFreeQty)) //low
-                    //{ varQtyErrFlag = 1; }
                 }
                 if (varEntryType == 57)   //against purchase dc 
                 {
@@ -4327,11 +4596,42 @@ namespace ROMS
                     pbDiffQty = Math.Abs(varInvQty - (varRecQty + varFreeQty)); //Excess
                                                                                 //varInvQty = varRecQty + varFreeQty + varDiffQty; //pending
                 }
-                PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
-                //pbDisper = (varCellDiscAmt * 100) / varPurchaseRate;
-                // PbDiscamt = ((varPurchaseRate * varInvQty) * (varDiscPer)) / 100;
-                PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
-                PbNetamt = (PbTaxvalue + PbGstamt);
+                if (varDiscountFlag == 0)
+                {
+                    //purchase rate , quantity, discount percentage  changed  then discount amount calculated 
+                    if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value)) != "")
+                    { varDiscPer = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmDiscPer"].Value); }
+                    PbDiscamt = ((varPurchaseRate * varInvQty)) * ((varDiscPer) / 100);
+                    varCellDiscAmt = PbDiscamt;
+                }
+                if (rbDiscountBefore.Checked == true)
+                {
+                    PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
+                    PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
+                    if (varSupplierType == 30) //GSTIN registered supplier
+                    {
+                        PbNetamt = (PbTaxvalue + PbGstamt);
+                    }
+                    else
+                    {
+                        PbNetamt = (PbTaxvalue);
+                    }
+                }
+                if (rbDiscountAfter.Checked == true)
+                {
+                    PbTaxvalue = (varPurchaseRate * varInvQty);
+                    PbGstamt = ((PbTaxvalue * varHSNGSTValue) / 100);
+                    if (varSupplierType == 30) //GSTIN registered supplier
+                    {
+                        PbNetamt = (PbTaxvalue + PbGstamt - varCellDiscAmt);
+                    }
+                    else
+                    {
+                        PbNetamt = (PbTaxvalue - varCellDiscAmt);
+                    }
+                    PbDicountValue = (PbTaxvalue - varCellDiscAmt);
+                }
+                pbCostingRate = PbNetamt / varInvQty;
             }
             catch (Exception ex)
             {
@@ -4829,6 +5129,13 @@ namespace ROMS
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
                             lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            varSupplierType = Convert.ToInt32(objDs.Tables[0].Rows[0]["SP_SupplierType"].ToString());
+                            if (lblsupplierGST.Text != "URD")
+                            { lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXX"; }
+                            else
+                            {
+                                lblsupplierGST.Text = "GSTIN - " + lblsupplierGST.Text;
+                            }
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
@@ -4836,9 +5143,11 @@ namespace ROMS
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "" && pbPurchaseno == "0")
                             {
-                                //txtGstin.Enabled = true;
-                                MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                                MainForm.objPUR_GSTIN.ShowDialog();
+                                if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1))
+                                {
+                                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                                    MainForm.objPUR_GSTIN.ShowDialog();
+                                }
                             }
                             else
                             {
