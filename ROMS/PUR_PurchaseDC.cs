@@ -122,8 +122,9 @@ namespace ROMS
                                     objDs.Tables[1].Rows[i]["Product Name"].ToString(), objDs.Tables[1].Rows[i]["Unit"].ToString(),
                                     objDs.Tables[1].Rows[i]["Quantity"].ToString(),
                                     objDs.Tables[1].Rows[i]["MRP"].ToString(),
-                                    objDs.Tables[1].Rows[i]["Expiry Date"].ToString(), objDs.Tables[1].Rows[i]["Batch No."].ToString(),
-                                    objDs.Tables[1].Rows[i]["Stock Location"].ToString(), objDs.Tables[1].Rows[i]["Rack"].ToString()
+                                    objDs.Tables[1].Rows[i]["Expiry Date"].ToString(), objDs.Tables[1].Rows[i]["PRODUCTEXP"].ToString(), objDs.Tables[1].Rows[i]["Actuallife"].ToString(),
+                                     objDs.Tables[1].Rows[i]["Shelflifeper"].ToString(), objDs.Tables[1].Rows[i]["PR_ShelfLife"].ToString(), objDs.Tables[1].Rows[i]["Batch No."].ToString(),
+                                     objDs.Tables[1].Rows[i]["Stock Location"].ToString(), objDs.Tables[1].Rows[i]["Rack"].ToString()
                                     , objDs.Tables[1].Rows[i]["PRID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
                                     objDs.Tables[1].Rows[i]["RKID"].ToString(), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), objDs.Tables[1].Rows[i]["Stock"].ToString(),
                                     objDs.Tables[1].Rows[i]["Remove Flag"].ToString());
@@ -136,7 +137,8 @@ namespace ROMS
                                     string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), objDs.Tables[1].Rows[i]["Expiry Date"].ToString(),
                                     objDs.Tables[1].Rows[i]["Batch No."].ToString(),objDs.Tables[1].Rows[i]["Quantity"].ToString(),
                                     objDs.Tables[1].Rows[i]["UTID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
-                                    objDs.Tables[1].Rows[i]["RKID"].ToString());
+                                    objDs.Tables[1].Rows[i]["RKID"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeValue"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeType"].ToString()
+                                    , objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Per"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeStatus"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Flag"].ToString());
                                 }
                             }
                             grdPurchaseDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2735,10 +2737,11 @@ namespace ROMS
                                     grdPurchaseDC.Rows[i].Cells["clmSno"].Value = i + 1;
                                 }
                                 udfnProductCount();
+
+                                varDiscardFlag = false;
                             }
                             break;
                     }
-                    varDiscardFlag = false;
                 }
             }
             catch (Exception ex)
@@ -3355,8 +3358,8 @@ namespace ROMS
                 if (blnErrorFlag == false && pbDateflag == 0)
                 {
                     udfnAdd();
+                    varDiscardFlag = false;
                 }
-                varDiscardFlag = false;
             }
             catch (Exception ex)
             {
