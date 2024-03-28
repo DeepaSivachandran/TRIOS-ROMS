@@ -58,7 +58,8 @@ namespace ROMS
         private ToolTip tpIfsCode = new ToolTip();
         public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varProCount =0, 
             varMappedCount =0,varScheduleStsCount=0;
-        public string pbSupplierid = "0", varstatusid = "0", varsupplierID = "0";
+        public string pbSupplierid = "0", varstatusid = "0", varsupplierID = "0", varTINNo = "0";
+        string varfirstValue = "", varsecValue = "";
         public CP_Supplier()
         {
             InitializeComponent();
@@ -438,6 +439,8 @@ namespace ROMS
             try
             {
                 btnSave.Enabled = false;
+                varfirstValue = "";
+                varsecValue = "";
                 bool blnErrorFlag = false;
                 if (txtContactNumber.Text == "" && txtAContactNumber.Text == "" && txtwhatsapp.Text == "")
                 {
@@ -513,6 +516,25 @@ namespace ROMS
                     tpgst.Show("Please enter supplier GSTIN.", txtgstin, 5000);
                     blnErrorFlag = true;
                 }
+                  string varGSTIN = txtgstin.Text;
+                  varfirstValue = Convert.ToString(varGSTIN[0]);
+                  varsecValue = Convert.ToString(varGSTIN[1]);
+                if (varfirstValue != Convert.ToString(varTINNo[0]) || varsecValue != Convert.ToString(varTINNo[1]))
+                {
+                    errCompany.SetError(txtgstin, "Invalid GSTIN");
+                    txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpgst.ShowAlways = true;
+                    tpgst.Show("Invalid GSTIN", txtgstin, 5000);
+                    blnErrorFlag = true;
+                }
+                //if (txtgstin.Text  && txtgstin.Enabled == true)
+                //{
+                //    errCompany.SetError(txtgstin, "Please enter supplier GSTIN");
+                //    txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpgst.ShowAlways = true;
+                //    tpgst.Show("Please enter supplier GSTIN.", txtgstin, 5000);
+                //    blnErrorFlag = true;
+                //}
                 //if (txtContactNumber.Text != "")
                 //{
                 //    if (txtContactNumber.Text.Length < 10)
@@ -1185,9 +1207,9 @@ namespace ROMS
                             txtBankShortName.Text = objDS.Tables[0].Rows[0]["SP_BankShortName"].ToString().Replace("''", "'");
                             txtIFScode.Text = objDS.Tables[0].Rows[0]["SP_IFSC"].ToString().Replace("''", "'");
                             txtOtherBrands.Text = objDS.Tables[0].Rows[0]["SP_Brand"].ToString().Replace("''", "'");
-
+                            varTINNo= objDS.Tables[0].Rows[0]["ST_TIN"].ToString().Replace("''", "'");
                             //cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
-                             varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
+                            varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnTypeID = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
                             cmbReturnPolicy.SelectedValue = Convert.ToInt64(varReturPolicyId);
@@ -2089,10 +2111,27 @@ namespace ROMS
 
                     }
                     else
-                    {
-                        errCompany.Clear();
-                        txtgstin.BackColor = Color.White;
-                        tpgst.Hide(txtgstin);
+                    {                      
+                        if(txtgstin.Text.Length>0)
+                        {
+                            //string[] varGSTIN = txtgstin.Text.Split(' ');
+                            string varGSTIN = txtgstin.Text;
+                            varfirstValue = Convert.ToString(varGSTIN[0]);
+                            varsecValue = Convert.ToString(varGSTIN[1]);
+                            if (varfirstValue!=Convert.ToString(varTINNo[0]) || varsecValue != Convert.ToString(varTINNo[1]))
+                            {
+                                errCompany.SetError(txtgstin, "Invalid GSTIN");
+                                txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpgst.ShowAlways = true;
+                                tpgst.Show("Invalid GSTIN", txtgstin, 5000);
+                            }
+                            else
+                            {
+                                errCompany.Clear();
+                                tpgst.Hide(txtgstin);
+                                txtgstin.BackColor = Color.White;
+                            }
+                        }
                     }
                 }
             }
@@ -3891,7 +3930,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString(), objDs.Tables[0].Rows[i]["ST_TIN"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvCity.Items.Add(objList);
                                 }
@@ -6409,6 +6448,7 @@ namespace ROMS
                     ListViewItem selectedItem = lvCity.SelectedItems[0];
                     txtCity.Text = selectedItem.SubItems[0].Text;
                     lblcity.Text = selectedItem.SubItems[2].Text;
+                    varTINNo = selectedItem.SubItems[3].Text;
                     lvCity.Visible = false;
                 }
 

@@ -1134,9 +1134,9 @@ namespace ROMS
                 txtSupplier.Enabled = false;
                 cmbEntryType.Enabled = false;
                 txtQRCode.Enabled = false;
-                txtInvoiceamt.Enabled = false;
+                txtInvoiceamt.Enabled = true;
                 dpInvoiceDate.Enabled = false;
-                txtInvoiceNo.Enabled = false;
+                txtInvoiceNo.Enabled = true;
                 cmbTransactionType.Enabled = false;
                 txtBroker.Enabled = false;
                 tbDetails.TabPages[0].Enabled = true;
@@ -1165,6 +1165,14 @@ namespace ROMS
                     cmbrack.Enabled = false;
                     btnAdd.Enabled = false;
                     grdSupplierList.ReadOnly = true;
+                }
+                if(Convert.ToInt32(cmbEntryType.SelectedValue)==56)
+                {
+                    btnClear.Enabled = true;
+                }
+                else
+                {
+                    btnClear.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -5649,7 +5657,7 @@ namespace ROMS
                     txtSupplier.Enabled = false;
                     cmbEntryType.Enabled = false;
                     btnViewDataView.Visible = false;
-                    btnClear.Enabled = false;
+                    //btnClear.Enabled = false;
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
