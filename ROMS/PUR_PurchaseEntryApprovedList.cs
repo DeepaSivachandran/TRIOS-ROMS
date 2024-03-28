@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
         DataTable Deftable = new DataTable();
+        Boolean BlnSearchImageYN = false;
         public PUR_PurchaseEntryApprovedList()
         {
             InitializeComponent();
@@ -135,6 +136,8 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseEntryApproval.DataSource = objDs.Tables[0];
+                            grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = true;
+                            grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
                             grdPurchaseEntryApproval.Columns["Concern"].Width = 80;
                             grdPurchaseEntryApproval.Columns["Voucher No."].Width = 100;
@@ -156,6 +159,7 @@ namespace ROMS
                         else
                         {
                             lblNoRecordsFound.Visible = true;
+                            grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = false;
                             lblNoRecordsFound.BringToFront();
                             Deftable = objDs.Tables[0];
                         }
@@ -163,6 +167,7 @@ namespace ROMS
                     else
                     {
                         lblNoRecordsFound.Visible = true;
+                        grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = false;
                         lblNoRecordsFound.BringToFront();
                         Deftable = objDs.Tables[0];
                     }
@@ -170,6 +175,7 @@ namespace ROMS
                 else
                 {
                     lblNoRecordsFound.Visible = true;
+                    grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = false;
                     lblNoRecordsFound.BringToFront();
                     Deftable = objDs.Tables[0];
                 }
@@ -261,7 +267,12 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -272,6 +283,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
+                    //dgv2.DataSource = null;
                     dgv2.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
                     foreach (DataGridViewColumn col in dgv1.Columns)
@@ -283,11 +295,24 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -1231,6 +1256,59 @@ namespace ROMS
                 MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
                 MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
                 MainForm.objPUR_PurchaseApprovalList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseEntryApproval_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPurchaseEntryApproval.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmUnapproved":
+                            try
+                            {
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(121);
+                                objDServ.CloseConnection();
+                                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    string varorginator = "Purchase Unapproved",result = "";
+                                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                                    objTRN_PurchaseEntry.ViewType = 5;
+                                    objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                    objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                                    objTRN_PurchaseEntry.paraOriginator = varorginator;
+                                    objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                                    SPDataService objspdservice = new SPDataService();
+                                    result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                                    objspdservice.CloseConnection();
+                                    string[] varvalue = result.Split('~');
+                                    if (varvalue[0] == "3")
+                                    {
+                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
             }
             catch (Exception ex)
             {
