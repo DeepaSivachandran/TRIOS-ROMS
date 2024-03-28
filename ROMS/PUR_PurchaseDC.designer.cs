@@ -47,11 +47,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.grpDC = new System.Windows.Forms.GroupBox();
             this.lblRackCode = new System.Windows.Forms.Label();
-            this.LV_Supplier = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblStockLocationCode = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -92,6 +87,16 @@
             this.lblProductName = new System.Windows.Forms.Label();
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
             this.grpPurchase = new System.Windows.Forms.GroupBox();
+            this.lblInvoiceAmount = new System.Windows.Forms.Label();
+            this.lblVoucherDate = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblVoucherNo = new System.Windows.Forms.Label();
+            this.lblInvoiceDate = new System.Windows.Forms.Label();
+            this.lblInvoiceNo = new System.Windows.Forms.Label();
+            this.lblInvoice = new System.Windows.Forms.Label();
+            this.lblVoucher = new System.Windows.Forms.Label();
+            this.VoucherDate = new System.Windows.Forms.Label();
+            this.InvoiceDate = new System.Windows.Forms.Label();
             this.InvoiceAmount = new System.Windows.Forms.Label();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.lvStockLocation = new System.Windows.Forms.ListView();
@@ -157,16 +162,11 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.InvoiceDate = new System.Windows.Forms.Label();
-            this.VoucherDate = new System.Windows.Forms.Label();
-            this.lblVoucher = new System.Windows.Forms.Label();
-            this.lblInvoice = new System.Windows.Forms.Label();
-            this.lblInvoiceNo = new System.Windows.Forms.Label();
-            this.lblInvoiceDate = new System.Windows.Forms.Label();
-            this.lblVoucherNo = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblVoucherDate = new System.Windows.Forms.Label();
-            this.lblInvoiceAmount = new System.Windows.Forms.Label();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
@@ -289,37 +289,6 @@
             this.lblRackCode.TabIndex = 1111247;
             this.lblRackCode.Text = "0";
             this.lblRackCode.Visible = false;
-            // 
-            // LV_Supplier
-            // 
-            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader1});
-            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(115, 125);
-            this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
-            this.LV_Supplier.TabIndex = 1111208;
-            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
-            this.LV_Supplier.View = System.Windows.Forms.View.Details;
-            this.LV_Supplier.Visible = false;
-            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
-            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 180;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Width = 120;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Width = 0;
             // 
             // lblStockLocationCode
             // 
@@ -819,6 +788,106 @@
             this.grpPurchase.TabIndex = 111111144;
             this.grpPurchase.TabStop = false;
             this.grpPurchase.Visible = false;
+            // 
+            // lblInvoiceAmount
+            // 
+            this.lblInvoiceAmount.AutoSize = true;
+            this.lblInvoiceAmount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceAmount.Location = new System.Drawing.Point(460, 14);
+            this.lblInvoiceAmount.Name = "lblInvoiceAmount";
+            this.lblInvoiceAmount.Size = new System.Drawing.Size(17, 20);
+            this.lblInvoiceAmount.TabIndex = 111111156;
+            this.lblInvoiceAmount.Text = "0";
+            // 
+            // lblVoucherDate
+            // 
+            this.lblVoucherDate.AutoSize = true;
+            this.lblVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVoucherDate.Location = new System.Drawing.Point(276, 37);
+            this.lblVoucherDate.Name = "lblVoucherDate";
+            this.lblVoucherDate.Size = new System.Drawing.Size(15, 17);
+            this.lblVoucherDate.TabIndex = 111111155;
+            this.lblVoucherDate.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(447, 14);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 17);
+            this.label7.TabIndex = 111111154;
+            this.label7.Text = "₹";
+            // 
+            // lblVoucherNo
+            // 
+            this.lblVoucherNo.AutoSize = true;
+            this.lblVoucherNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVoucherNo.Location = new System.Drawing.Point(81, 37);
+            this.lblVoucherNo.Name = "lblVoucherNo";
+            this.lblVoucherNo.Size = new System.Drawing.Size(15, 17);
+            this.lblVoucherNo.TabIndex = 111111153;
+            this.lblVoucherNo.Text = "0";
+            // 
+            // lblInvoiceDate
+            // 
+            this.lblInvoiceDate.AutoSize = true;
+            this.lblInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceDate.Location = new System.Drawing.Point(276, 14);
+            this.lblInvoiceDate.Name = "lblInvoiceDate";
+            this.lblInvoiceDate.Size = new System.Drawing.Size(15, 17);
+            this.lblInvoiceDate.TabIndex = 111111151;
+            this.lblInvoiceDate.Text = "0";
+            // 
+            // lblInvoiceNo
+            // 
+            this.lblInvoiceNo.AutoSize = true;
+            this.lblInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceNo.Location = new System.Drawing.Point(81, 14);
+            this.lblInvoiceNo.Name = "lblInvoiceNo";
+            this.lblInvoiceNo.Size = new System.Drawing.Size(15, 17);
+            this.lblInvoiceNo.TabIndex = 111111150;
+            this.lblInvoiceNo.Text = "0";
+            // 
+            // lblInvoice
+            // 
+            this.lblInvoice.AutoSize = true;
+            this.lblInvoice.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoice.Location = new System.Drawing.Point(16, 14);
+            this.lblInvoice.Name = "lblInvoice";
+            this.lblInvoice.Size = new System.Drawing.Size(59, 17);
+            this.lblInvoice.TabIndex = 111111149;
+            this.lblInvoice.Text = "Invoice No.";
+            // 
+            // lblVoucher
+            // 
+            this.lblVoucher.AutoSize = true;
+            this.lblVoucher.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVoucher.Location = new System.Drawing.Point(16, 37);
+            this.lblVoucher.Name = "lblVoucher";
+            this.lblVoucher.Size = new System.Drawing.Size(65, 17);
+            this.lblVoucher.TabIndex = 111111148;
+            this.lblVoucher.Text = "Voucher No.";
+            // 
+            // VoucherDate
+            // 
+            this.VoucherDate.AutoSize = true;
+            this.VoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VoucherDate.Location = new System.Drawing.Point(200, 37);
+            this.VoucherDate.Name = "VoucherDate";
+            this.VoucherDate.Size = new System.Drawing.Size(72, 17);
+            this.VoucherDate.TabIndex = 111111147;
+            this.VoucherDate.Text = "Voucher Date";
+            // 
+            // InvoiceDate
+            // 
+            this.InvoiceDate.AutoSize = true;
+            this.InvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InvoiceDate.Location = new System.Drawing.Point(200, 14);
+            this.InvoiceDate.Name = "InvoiceDate";
+            this.InvoiceDate.Size = new System.Drawing.Size(66, 17);
+            this.InvoiceDate.TabIndex = 111111146;
+            this.InvoiceDate.Text = "Invoice Date";
             // 
             // InvoiceAmount
             // 
@@ -1463,105 +1532,36 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // InvoiceDate
+            // LV_Supplier
             // 
-            this.InvoiceDate.AutoSize = true;
-            this.InvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InvoiceDate.Location = new System.Drawing.Point(200, 14);
-            this.InvoiceDate.Name = "InvoiceDate";
-            this.InvoiceDate.Size = new System.Drawing.Size(66, 17);
-            this.InvoiceDate.TabIndex = 111111146;
-            this.InvoiceDate.Text = "Invoice Date";
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader1});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(115, 125);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
+            this.LV_Supplier.TabIndex = 1111208;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
             // 
-            // VoucherDate
+            // columnHeader5
             // 
-            this.VoucherDate.AutoSize = true;
-            this.VoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VoucherDate.Location = new System.Drawing.Point(200, 37);
-            this.VoucherDate.Name = "VoucherDate";
-            this.VoucherDate.Size = new System.Drawing.Size(72, 17);
-            this.VoucherDate.TabIndex = 111111147;
-            this.VoucherDate.Text = "Voucher Date";
+            this.columnHeader5.Width = 180;
             // 
-            // lblVoucher
+            // columnHeader8
             // 
-            this.lblVoucher.AutoSize = true;
-            this.lblVoucher.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVoucher.Location = new System.Drawing.Point(16, 37);
-            this.lblVoucher.Name = "lblVoucher";
-            this.lblVoucher.Size = new System.Drawing.Size(65, 17);
-            this.lblVoucher.TabIndex = 111111148;
-            this.lblVoucher.Text = "Voucher No.";
+            this.columnHeader8.Width = 120;
             // 
-            // lblInvoice
+            // columnHeader9
             // 
-            this.lblInvoice.AutoSize = true;
-            this.lblInvoice.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoice.Location = new System.Drawing.Point(16, 14);
-            this.lblInvoice.Name = "lblInvoice";
-            this.lblInvoice.Size = new System.Drawing.Size(59, 17);
-            this.lblInvoice.TabIndex = 111111149;
-            this.lblInvoice.Text = "Invoice No.";
-            // 
-            // lblInvoiceNo
-            // 
-            this.lblInvoiceNo.AutoSize = true;
-            this.lblInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceNo.Location = new System.Drawing.Point(81, 14);
-            this.lblInvoiceNo.Name = "lblInvoiceNo";
-            this.lblInvoiceNo.Size = new System.Drawing.Size(15, 17);
-            this.lblInvoiceNo.TabIndex = 111111150;
-            this.lblInvoiceNo.Text = "0";
-            // 
-            // lblInvoiceDate
-            // 
-            this.lblInvoiceDate.AutoSize = true;
-            this.lblInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceDate.Location = new System.Drawing.Point(276, 14);
-            this.lblInvoiceDate.Name = "lblInvoiceDate";
-            this.lblInvoiceDate.Size = new System.Drawing.Size(15, 17);
-            this.lblInvoiceDate.TabIndex = 111111151;
-            this.lblInvoiceDate.Text = "0";
-            // 
-            // lblVoucherNo
-            // 
-            this.lblVoucherNo.AutoSize = true;
-            this.lblVoucherNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVoucherNo.Location = new System.Drawing.Point(81, 37);
-            this.lblVoucherNo.Name = "lblVoucherNo";
-            this.lblVoucherNo.Size = new System.Drawing.Size(15, 17);
-            this.lblVoucherNo.TabIndex = 111111153;
-            this.lblVoucherNo.Text = "0";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(447, 14);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(16, 17);
-            this.label7.TabIndex = 111111154;
-            this.label7.Text = "₹";
-            // 
-            // lblVoucherDate
-            // 
-            this.lblVoucherDate.AutoSize = true;
-            this.lblVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVoucherDate.Location = new System.Drawing.Point(276, 37);
-            this.lblVoucherDate.Name = "lblVoucherDate";
-            this.lblVoucherDate.Size = new System.Drawing.Size(15, 17);
-            this.lblVoucherDate.TabIndex = 111111155;
-            this.lblVoucherDate.Text = "0";
-            // 
-            // lblInvoiceAmount
-            // 
-            this.lblInvoiceAmount.AutoSize = true;
-            this.lblInvoiceAmount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceAmount.Location = new System.Drawing.Point(460, 14);
-            this.lblInvoiceAmount.Name = "lblInvoiceAmount";
-            this.lblInvoiceAmount.Size = new System.Drawing.Size(17, 20);
-            this.lblInvoiceAmount.TabIndex = 111111156;
-            this.lblInvoiceAmount.Text = "0";
+            this.columnHeader9.Width = 0;
             // 
             // lblStatus
             // 
@@ -1573,7 +1573,6 @@
             this.lblStatus.Size = new System.Drawing.Size(37, 20);
             this.lblStatus.TabIndex = 111111145;
             this.lblStatus.Text = "Draft";
-            this.lblStatus.Visible = false;
             // 
             // PUR_PurchaseDC
             // 

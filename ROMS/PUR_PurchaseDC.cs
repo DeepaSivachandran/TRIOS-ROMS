@@ -142,13 +142,11 @@ namespace ROMS
                             if (objDs.Tables[2].Rows.Count != 0)
                             {
                                 grpPurchase.Visible = true;
-                                lblStatus.Visible = true;
                                 lblVoucherNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_VoucherNo"]);
                                 lblVoucherDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_VoucherDate"]);
                                 lblInvoiceNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_InvoiceNo"]);
                                 lblInvoiceAmount.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_InvAmt"]);
                                 lblInvoiceDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_InvoiceDate"]);
-                                lblStatus.Text= Convert.ToString(objDs.Tables[2].Rows[0]["Status"]);
                             }
                             grdPurchaseDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

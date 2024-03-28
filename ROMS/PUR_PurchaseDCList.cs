@@ -244,6 +244,7 @@ namespace ROMS
                     //MainForm.objPUR_PurchaseDC.btnSave.Text = "Update";
                     MainForm.objPUR_PurchaseDC.pbScheduleid = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPSCID"].Value.ToString());
                     MainForm.objPUR_PurchaseDC.pbSupplierId = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPID"].Value.ToString());
+                    MainForm.objPUR_PurchaseDC.lblStatus.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["Status"].Value.ToString());
                     if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value.ToString()) == 18)
                     {
                         MainForm.objPUR_PurchaseDC.editFlag = 1;
