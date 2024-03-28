@@ -168,7 +168,7 @@ namespace ROMS
                     }
                     grdSupplierList.Enabled = true;
                 }
-                if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0")
+                if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0" && varQueueFlag == 0)
                 {
                     MainForm.objPUR_GSTIN = new PUR_GSTIN();
                     //MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
@@ -771,6 +771,11 @@ namespace ROMS
                         if (grdPODetails.Visible == true)
                         {
                             grdPODetails.Columns["clmRemovePO"].Visible = false;
+                        }
+                        if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
+                        {
+                            MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                            MainForm.objPUR_GSTIN.ShowDialog();
                         }
                         this.ActiveControl = txtInvoiceNo;
                     }
@@ -10206,7 +10211,7 @@ namespace ROMS
                             {
                                 LV_Supplier.Visible = false;
                                 //txtGstin.Enabled = true;
-                                if (Convert.ToInt32(cmbEntryType.SelectedValue) !=54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1))
+                                if (Convert.ToInt32(cmbEntryType.SelectedValue) !=54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag==0)
                                 {
                                     MainForm.objPUR_GSTIN = new PUR_GSTIN();
                                     MainForm.objPUR_GSTIN.ShowDialog();
