@@ -151,6 +151,12 @@
     <Compile Include="PUR_ApprovalCalculator.designer.cs">
       <DependentUpon>PUR_ApprovalCalculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseEntryApprovedList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseEntryApprovedList.designer.cs">
+      <DependentUpon>PUR_PurchaseEntryApprovedList.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_PurchaseEntryApproval.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1541,6 +1547,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_ApprovalCalculator.resx">
       <DependentUpon>PUR_ApprovalCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseEntryApprovedList.resx">
+      <DependentUpon>PUR_PurchaseEntryApprovedList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseEntryApproval.resx">
       <DependentUpon>PUR_PurchaseEntryApproval.cs</DependentUpon>

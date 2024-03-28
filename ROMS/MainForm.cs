@@ -113,6 +113,7 @@ namespace ROMS
         public static INV_Inward objINV_Inward;
         public static INV_StockTransfer objINV_StockTransfer;
         public static INV_StockTransferQueue objINV_StockTransferQueue;
+        public static PUR_PurchaseEntryApprovedList objPUR_PurchaseEntryApprovedList;
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;

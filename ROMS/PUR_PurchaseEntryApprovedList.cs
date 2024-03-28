@@ -13,13 +13,13 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
-    public partial class PUR_PurchaseApprovalList : Form
+    public partial class PUR_PurchaseEntryApprovedList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
         DataTable Deftable = new DataTable();
-        public PUR_PurchaseApprovalList()
+        public PUR_PurchaseEntryApprovedList()
         {
             InitializeComponent();
         }
@@ -116,13 +116,13 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                objTRN_PurchaseEntry.ViewType = 12;
+                objTRN_PurchaseEntry.ViewType = 13;
                 objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 //objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblScheduleCode.Text);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
-                objTRN_PurchaseEntry.ParaPEToDate = dpToDate.Text;
+                objTRN_PurchaseEntry.paraFromDate = dpFromDate.Text;
+                objTRN_PurchaseEntry.paraToDate = dpToDate.Text;
                 objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                 objspdservice.CloseConnection();
                 if (objDs != null)
@@ -140,19 +140,16 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Voucher No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Voucher Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Supplier Name"].Width = 300;
-                            grdPurchaseEntryApproval.Columns["Purchase Type"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Purchase Type"].Width = 140;
                             grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
-                            grdPurchaseEntryApproval.Columns["Status"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Invoice No."].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Created By"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Remarks"].Width = 150;
+                            grdPurchaseEntryApproval.Columns["Created By"].Width = 200;
+                            grdPurchaseEntryApproval.Columns["Approved By"].Width = 200;
                             grdPurchaseEntryApproval.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseEntryApproval.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseEntryApproval.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["Invoice Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
@@ -235,10 +232,6 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Purchase Type"].Width = 100;
                 DGV_SearchGrid.Columns["Total Products"].Width = 150;
                 DGV_SearchGrid.Columns["Remarks"].Width = 100;
-                DGV_SearchGrid.Columns["Status"].Visible = false;
-                DGV_SearchGrid.Columns["PURID"].Visible = false;
-                DGV_SearchGrid.Columns["STSID"].Visible = false;
-                //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -1235,9 +1228,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseEntryApprovedList = new PUR_PurchaseEntryApprovedList();
-                MainForm.objPUR_PurchaseEntryApprovedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryApprovedList.Show();
+                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseApprovalList.Show();
             }
             catch (Exception ex)
             {
