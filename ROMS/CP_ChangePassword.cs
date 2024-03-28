@@ -430,8 +430,8 @@ namespace ROMS
         {
             try
             {
-                string varPassword = _security.Encrypt(MainForm.pbUserName.Trim().ToLower(), txtOldPassword.Text.Trim());
-                if ((_security.Encrypt(MainForm.pbUserName.Trim().ToLower(), txtOldPassword.Text.Trim())!=varPassword))
+                string varPassword = _security.Encrypt(MainForm.pbLoginId.Trim().ToLower(), txtOldPassword.Text.Trim());
+                if ((_security.Encrypt(MainForm.pbLoginId.Trim().ToLower(), txtOldPassword.Text.Trim())!=varPassword))
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(68);
@@ -513,7 +513,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varOriginator = "Password Updation", varPassword = "";
-                    varPassword = _security.Encrypt(MainForm.pbUserName.Trim().ToLower(), txtNewPassword.Text.Trim());
+                    varPassword = _security.Encrypt(MainForm.pbLoginId.Trim().ToLower(), txtNewPassword.Text.Trim());
                     varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0,"", varOriginator,MainForm.pbUserID,0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
