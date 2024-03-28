@@ -242,6 +242,7 @@
             // 
             // grpDC
             // 
+            this.grpDC.Controls.Add(this.LV_Supplier);
             this.grpDC.Controls.Add(this.lblRackCode);
             this.grpDC.Controls.Add(this.lblStockLocationCode);
             this.grpDC.Controls.Add(this.lblProductcode);
@@ -272,7 +273,6 @@
             this.grpDC.Controls.Add(this.lblProductName);
             this.grpDC.Controls.Add(this.grpExcessProduct);
             this.grpDC.Controls.Add(this.grpDCSupplier);
-            this.grpDC.Controls.Add(this.LV_Supplier);
             this.grpDC.Font = new System.Drawing.Font("Oswald Regular", 10.25F);
             this.grpDC.Location = new System.Drawing.Point(12, 4);
             this.grpDC.Name = "grpDC";
