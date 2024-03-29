@@ -38,7 +38,7 @@ namespace ROMS
         int grid_flag = 0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0, varUpDownKey=0, varDecimal=0;
         public bool VarSearchFlag = true;
-        public int PbVerified = 0,ParaSupplierAMT = 0;
+        public int PbVerified = 0,ParaSupplierAMT = 0, varSupplierType = 0;
         public string varGSTIN = "1";
         decimal varExcessQuantity = 0, varPendingQty = 0;
         public PUR_GRNDetails()
@@ -699,7 +699,7 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if (chkCompleted.Checked == true && (Convert.ToDecimal(txtInvoiceamt.Text)) < 25000)
+                    if (chkCompleted.Checked == true && ((Convert.ToDecimal(txtInvoiceamt.Text)) < 25000 || ((Convert.ToDecimal(txtInvoiceamt.Text)) > 25000 && varSupplierType != 32)))
                     {
                         if (lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "")
                         {
@@ -710,7 +710,7 @@ namespace ROMS
                             varErrorFormat = 1;
                         }
                     }
-                    if (chkCompleted.Checked == true && (Convert.ToDecimal(txtInvoiceamt.Text))>25000)
+                    if (chkCompleted.Checked == true && (Convert.ToDecimal(txtInvoiceamt.Text))>25000 && varSupplierType==32)
                     {
                         if (lblVerifiedBy1.Text == "" || lblVerifiedBy2.Text == "")
                         {
@@ -942,16 +942,7 @@ namespace ROMS
                                             ParaSupplierAMT = 1;
                                             objTRNS_GRN.paraSaveFlag = 1;
                                             objTRNS_GRN.paraID = ParaSupplierAMT;
-                                            if (chkCompleted.Checked == true && (Convert.ToDecimal(txtInvoiceamt.Text)) > 25000)
-                                            {
-                                                if (lblVerifiedBy1.Text == "" || lblVerifiedBy2.Text == "")
-                                                {
-                                                    string varMessage = objDServ.udfnGetMessages(120);
-                                                    objDServ.CloseConnection();
-                                                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                                    goto K;
-                                                }
-                                            }
+                                            goto K;                                           
                                         }
                                         else
                                         {

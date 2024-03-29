@@ -177,9 +177,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();   
+                    MainForm.objINV_StockTransferList = new INV_StockTransferList();
+                    MainForm.objINV_StockTransferList.MdiParent = this.ParentForm;
+                    MainForm.objINV_StockTransferList.Show();
                     this.Close();
                 }
             }
@@ -204,7 +204,7 @@ namespace ROMS
             {
                 DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpTransferToDate.MinDate = varDate;
-                dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+                dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE"]);
             }
             objspservice.CloseConnection();
             dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;

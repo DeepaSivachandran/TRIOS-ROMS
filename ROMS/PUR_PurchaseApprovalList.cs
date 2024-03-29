@@ -32,6 +32,7 @@ namespace ROMS
                 //cmbConcern.Focus();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                udfnDate();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (14) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,56) AND MSTID !=-1", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
@@ -40,6 +41,32 @@ namespace ROMS
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDate()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(9, Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0, "", 18);
+                if (objd.Tables[0].Rows.Count > 0)
+                {
+                    DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Transaction Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpToDate.MinDate = varDate;
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["Transaction Date"]);
+                }
+                objDServ.CloseConnection();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                //cmbConcern.SelectedValue = 1;
                 udfnList();
             }
             catch (Exception ex)
