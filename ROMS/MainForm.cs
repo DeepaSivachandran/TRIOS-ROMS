@@ -15,7 +15,7 @@ namespace ROMS
         //------- Servic Class object declaration
         DataValidation objValidation = new DataValidation();
         public DataError objError = new DataError();
-
+        public int DeleteFlag = 0;
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
@@ -1567,6 +1567,23 @@ namespace ROMS
                 MainForm.objREPORT_PUR_Purchaseorder_Summary = new REPORT_PUR_Purchaseorder_Summary();
                 MainForm.objREPORT_PUR_Purchaseorder_Summary.MdiParent = this;
                 MainForm.objREPORT_PUR_Purchaseorder_Summary.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ClearTransactionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+
             }
             catch (Exception ex)
             {
