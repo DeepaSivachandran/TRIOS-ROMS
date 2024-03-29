@@ -6047,9 +6047,9 @@ namespace ROMS
                             {
                                 varCGSTAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGSTamt"].Value);
                             }
-                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmISGSTamt"].Value) != "" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmISGSTamt"].Value) != "0")
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value) != "" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value) != "0")
                             {
-                                varIGSTAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmISGSTamt"].Value);
+                                varIGSTAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value);
                             }
                             if (varcount == 0)
                             {
@@ -6064,7 +6064,7 @@ namespace ROMS
                                 Convert.ToInt32(grdPurchaseList.Rows[i].Cells["poid"].Value),Convert.ToDecimal(varCosting), varDiscountValue, 
                                 Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGSTamt"].Value),
                                 Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGSTamt"].Value),
-                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmISGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmISGSTamt"].Value));
+                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value));
                             }
                         }
                     }
