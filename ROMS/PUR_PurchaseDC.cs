@@ -139,6 +139,15 @@ namespace ROMS
                                     objDs.Tables[1].Rows[i]["RKID"].ToString());
                                 }
                             }
+                            if (objDs.Tables[2].Rows.Count != 0)
+                            {
+                                grpPurchase.Visible = true;
+                                lblVoucherNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_VoucherNo"]);
+                                lblVoucherDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_VoucherDate"]);
+                                lblInvoiceNo.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_InvoiceNo"]);
+                                lblInvoiceAmount.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_InvAmt"]);
+                                lblInvoiceDate.Text = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_InvoiceDate"]);
+                            }
                             grdPurchaseDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1618,6 +1627,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_ShelfLife"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
                                     DGV_FilterProduct.Columns["pr_retailrate"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_HSNID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 340;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 340;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
@@ -2486,6 +2496,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
 
         private void Lvproduct_DoubleClick(object sender, EventArgs e)
         {
