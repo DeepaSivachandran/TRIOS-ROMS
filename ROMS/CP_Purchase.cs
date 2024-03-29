@@ -1440,7 +1440,7 @@ namespace ROMS
                         }
                         else
                         {
-                            btnSave.Text = "Update as Draft";
+                            btnSave.Text = "Save as Draft";
                         }
                     }
                 }
@@ -5483,7 +5483,7 @@ namespace ROMS
                                                 grdSupplierList.Rows.Clear();
                                                 grdPODetails.Rows.Clear();
                                                 grdReurnDC.Rows.Clear();
-                                                btnSave.Text = "Update as Draft";
+                                                //btnSave.Text = "Update as Draft";
                                                 //CP_Purchase_Load(sender, e);
                                                 udfnEditLoad();
                                                 udfnPurchaseEntryTabLoad(); //tab2 load
@@ -5494,7 +5494,7 @@ namespace ROMS
                                                 else
                                                 { varCloseflag = 1; }
                                             }
-                                            else if (btnSave.Text == "Update as Draft")
+                                            else if (btnSave.Text == "Save as Draft")
                                             {
                                                 grdSupplierList.Rows.Clear();
                                                 grdPODetails.Rows.Clear();
