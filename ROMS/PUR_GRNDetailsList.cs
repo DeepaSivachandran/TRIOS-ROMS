@@ -1496,11 +1496,12 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "");
+                objDs = objdserv.udfnGrnListLoad(10, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "");
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
+                    string Type = Convert.ToString(objDs.Tables[0].Rows[0]["Type"].ToString());
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
@@ -1523,6 +1524,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("varHeader", Type);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
