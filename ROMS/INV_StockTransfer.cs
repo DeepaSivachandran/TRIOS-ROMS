@@ -1493,6 +1493,7 @@ namespace ROMS
                 udfnTransferNo();
                 grdStockTransfer.Rows.Clear();
                 dtStock.Rows.Clear();
+                udfnProductClear();
                 txttotalitem.Text = "";
                 if (btnSave.Text == "Save")
                 {
