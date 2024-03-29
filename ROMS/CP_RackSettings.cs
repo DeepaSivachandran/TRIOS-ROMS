@@ -90,6 +90,8 @@ namespace ROMS
                 DGV_SearchGridMove.Columns.Add("clmStock", "Stock Qty");
                 DGV_SearchGrid.Columns["clmProductName"].Width = 250;
                 DGV_SearchGridMove.Columns["clmProductName"].Width = 250;
+                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_SearchGridMove.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -2050,7 +2052,7 @@ namespace ROMS
         {
             try
             {
-                var vScrollbar = grdViewProduct.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdMoveProduct.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -2268,19 +2270,20 @@ namespace ROMS
 
         private void DGV_SearchGridMove_Scroll(object sender, ScrollEventArgs e)
         {
-            try
+           try
             {
                 int totalWidth = 0;
                 int offSetValue = grdMoveProduct.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGridMove.Columns)
                     totalWidth += col.Width;
-                if (totalWidth - DGV_SearchGridMove.Width > grdMoveProduct.HorizontalScrollingOffset && grdMoveProduct.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdMoveProduct.Width > grdMoveProduct.HorizontalScrollingOffset && grdMoveProduct.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue;
                 }
                 DGV_SearchGridMove.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGridMove.Invalidate();
                 udfnscrollVisibleMOve(DGV_SearchGridMove, grdMoveProduct);
+
             }
             catch (Exception ex)
             {

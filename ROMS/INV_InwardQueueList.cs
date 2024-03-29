@@ -625,6 +625,7 @@ namespace ROMS
                 DGV_ProdSearchGrid.Columns["Batch No."].Width = 100;
                 DGV_ProdSearchGrid.Columns["Invoice No."].Width = 100;
                 DGV_ProdSearchGrid.Columns["Invoice Date"].Width = 80;
+                DGV_ProdSearchGrid.Columns["SLID"].Visible = false;
                 DGV_ProdSearchGrid.Columns["Transaction Date"].Width = 80;
                 DGV_ProdSearchGrid.Columns["Transaction No."].Width = 80;
                 DGV_ProdSearchGrid.Columns["Supplier"].Width = 200;

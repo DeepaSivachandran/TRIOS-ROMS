@@ -286,20 +286,7 @@ namespace ROMS
             {
                 udfnConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                this.ActiveControl = cmbConcern;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 17);
-                if (objDs.Tables[0].Rows.Count > 0)
-                {
-                    DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpToDate.MinDate = varDate;
-                    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE"]);
-                }
-                objspservice.CloseConnection();
-                dpFromDate.MinDate = MainForm.pbFYStartDate;
-                dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                this.ActiveControl = cmbConcern;              
                 udfnList();
             }
             catch (Exception ex)
@@ -307,6 +294,23 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnDate()
+        {
+            DataSet objDs = new DataSet();
+            SPDataService objspservice = new SPDataService();
+            objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 17);
+            if (objDs.Tables[0].Rows.Count > 0)
+            {
+                DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varDate;
+                dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE"]);
+            }
+            objspservice.CloseConnection();
+            dpFromDate.MinDate = MainForm.pbFYStartDate;
+            dpFromDate.MaxDate = MainForm.pbCurrentDate;
+            dpToDate.MaxDate = MainForm.pbCurrentDate;
+            udfnList();
         }
         private void DpFromDate_Enter(object sender, EventArgs e)
         {

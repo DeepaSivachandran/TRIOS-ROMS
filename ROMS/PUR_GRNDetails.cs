@@ -41,6 +41,7 @@ namespace ROMS
         public int PbVerified = 0,ParaSupplierAMT = 0, varSupplierType = 0;
         public string varGSTIN = "1";
         decimal varExcessQuantity = 0, varPendingQty = 0;
+        public int varOrderType = 0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -1133,6 +1134,10 @@ namespace ROMS
                         }
                         decimal varPendingQty = 0;
                         decimal varExcessQuantity = 0;
+                        if(Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value)=="")
+                        {
+                            grdGrnlist.Rows[i].Cells["clmQtyType"].Value = 0;
+                        }
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value) != "" && Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmQtyType"].Value)==193)
                         {
                             varPendingQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value);
@@ -4895,6 +4900,7 @@ namespace ROMS
                                 {
                                     lblNoRecordsFound.Visible = false;
                                     string varMRP = "";
+                                    decimal varPendingQty = 0, varExcessQty = 0;
                                     if (Convert.ToString(objDs.Tables[3].Rows[i]["GRNPR_MRP"]) == "0")
                                     {
                                         varMRP = "";
@@ -4927,10 +4933,18 @@ namespace ROMS
                                     {
                                         varTempExpiryDate = "";
                                     }
+                                    if (Convert.ToString(objDs.Tables[3].Rows[i]["GRNPR_QTY"]) != "")
+                                    {
+                                        varPendingQty = Convert.ToDecimal(objDs.Tables[3].Rows[i]["GRNPR_QTY"]);
+                                    }
+                                    if (Convert.ToString(objDs.Tables[3].Rows[i]["GRNPR_ExcessQty"]) != "")
+                                    {
+                                        varExcessQty = Convert.ToDecimal(objDs.Tables[3].Rows[i]["GRNPR_ExcessQty"]);
+                                    }
                                     grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, Convert.ToString(objDs.Tables[3].Rows[i]["PONO"])
                                     , Convert.ToString(objDs.Tables[3].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[3].Rows[i]["PENAME"])
-                                    , Convert.ToString(objDs.Tables[3].Rows[i]["PTNAME"]), Convert.ToString(objDs.Tables[3].Rows[i]["UNIT"]), 
-                                    Convert.ToDecimal(objDs.Tables[3].Rows[i]["GRNPR_QTY"]), Convert.ToDecimal(objDs.Tables[3].Rows[i]["GRNPR_ExcessQty"]), Convert.ToString(objDs.Tables[3].Rows[i]["GRNPR_Qty_Type"])
+                                    , Convert.ToString(objDs.Tables[3].Rows[i]["PTNAME"]), Convert.ToString(objDs.Tables[3].Rows[i]["UNIT"]),
+                                    varPendingQty, varExcessQty, Convert.ToString(objDs.Tables[3].Rows[i]["GRNPR_Qty_Type"])
                                     , varMRP, varTempExpiryDate
                                     , Convert.ToString(objDs.Tables[3].Rows[i]["PRODUCTEXP"]), Convert.ToString(objDs.Tables[3].Rows[i]["actuallife"]),
                                     Convert.ToString(objDs.Tables[3].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[3].Rows[i]["BATCHDate"]),
@@ -5125,9 +5139,14 @@ namespace ROMS
                                     {
                                         grdGrnlist.CurrentCell = grdGrnlist[6, irow + 1];
                                     }
+                                    else if(grdGrnlist[7, irow + 1].ReadOnly=false)
+                                    {
+                                        grdGrnlist.CurrentCell = grdGrnlist[7, irow + 1];
+                                    }
                                     else
                                     {
-                                        grdGrnlist.CurrentCell = grdGrnlist[8, irow + 1];
+                                        grdGrnlist.CurrentCell = grdGrnlist[9, irow + 1];
+
                                     }
                                     icolumn = grdGrnlist.CurrentCell.ColumnIndex;
                                     irow = grdGrnlist.CurrentCell.RowIndex;
@@ -5180,9 +5199,14 @@ namespace ROMS
                                     {
                                         grdGrnlist.CurrentCell = grdGrnlist[6, irow + 1];
                                     }
+                                    else if (grdGrnlist[7, irow + 1].ReadOnly == false)
+                                    {
+                                        grdGrnlist.CurrentCell = grdGrnlist[7, irow + 1];
+                                    }
                                     else
                                     {
-                                        grdGrnlist.CurrentCell = grdGrnlist[8, irow + 1];
+                                        grdGrnlist.CurrentCell = grdGrnlist[9, irow + 1];
+
                                     }
                                     icolumn = grdGrnlist.CurrentCell.ColumnIndex;
                                     irow = grdGrnlist.CurrentCell.RowIndex;

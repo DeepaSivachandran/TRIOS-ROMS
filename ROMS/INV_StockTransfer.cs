@@ -2206,6 +2206,7 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objINV_StockTransferQueue.udfnDate();
                         MainForm.objINV_StockTransferQueue.udfnList();
                         varModifiedFlag = 0;
                         try
