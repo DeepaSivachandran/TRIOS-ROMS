@@ -245,7 +245,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
-                            //grdGRNList.Columns["GRN_OrderType"].Visible = false;
+                            grdGRNList.Columns["GRN_OrderType"].Visible = false;
                             grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["SP_SupplierType"].Visible = false;
