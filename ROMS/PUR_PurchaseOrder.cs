@@ -4405,8 +4405,11 @@ namespace ROMS
                         else
                         {
                             totalUnitqty = Convert.ToDecimal(varUnitQty);
-                            totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
-                            totalUnitqty = totalUnitqty % varUPP;
+                            if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                            {
+                                totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
+                                totalUnitqty = totalUnitqty % varUPP;
+                            }
                             totalOrderQty = Convert.ToDecimal(varUnitQty);
                             totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
@@ -4447,8 +4450,11 @@ namespace ROMS
                         {
                             totalUnitqty = Convert.ToDecimal(varTotalQty);
                             totalOrderQty = totalUnitqty;
-                            totalBulkqty = Math.Floor( Convert.ToDouble(totalUnitqty / varUPP));
-                            totalUnitqty = totalUnitqty % varUPP;
+                            if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                            {
+                                totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
+                                totalUnitqty = totalUnitqty % varUPP;
+                            }
                             totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
                             varFinalUnit = totalUnitqty;
@@ -4536,7 +4542,7 @@ namespace ROMS
                             //grdsupplieradd.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                         }
                     }
-                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value) == "0" || Convert.ToString(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value) == "-1")
+                    if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmUPP"].Value) == "0" || Convert.ToString(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value) == "0" || Convert.ToString(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value) == "-1")
                     {
                         DataGridView dataGridView = (DataGridView)sender;
                         DataGridViewCell cell = dataGridView.Rows[i].Cells["clmOrderqty"];
@@ -5010,6 +5016,15 @@ namespace ROMS
                                      Convert.ToString(objDs.Tables[3].Rows[i]["B.UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["T.UTID"]),"", 
                                      Convert.ToString(objDs.Tables[3].Rows[i]["UT_Decimal"])
                                      );
+                                    if(Convert.ToInt32(objDs.Tables[3].Rows[i]["PR_UPP"])==0)
+                                    {
+                                        grdsupplieradd.Rows[i].Cells["clmOrderqty"].ReadOnly = true;
+                                        //grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
+                                    }
+                                    else
+                                    {
+                                        grdsupplieradd.Rows[i].Cells["clmOrderqty"].ReadOnly = false;
+                                    }
                                     //grdsupplieradd.Columns[10].ReadOnly = true;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     Grdsupplieradd_DataBindingComplete(grdsupplieradd, args2);
