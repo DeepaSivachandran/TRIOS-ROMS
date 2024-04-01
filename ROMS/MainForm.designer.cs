@@ -40,8 +40,8 @@ namespace ROMS
             this.tsmpurchaseSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGRN = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmGRNApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseDC = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGRNApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAccounts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseEntry1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchaseReturn = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,6 +112,9 @@ namespace ROMS
             this.summaryDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearTransactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
@@ -182,37 +185,37 @@ namespace ROMS
             // tsmpurchaseSupplier
             // 
             this.tsmpurchaseSupplier.Name = "tsmpurchaseSupplier";
-            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(180, 22);
+            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(164, 22);
             this.tsmpurchaseSupplier.Text = "PO Schedule";
             this.tsmpurchaseSupplier.Click += new System.EventHandler(this.TsmpurchaseSupplier_Click);
             // 
             // tsmPurchaseOrder
             // 
             this.tsmPurchaseOrder.Name = "tsmPurchaseOrder";
-            this.tsmPurchaseOrder.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseOrder.Size = new System.Drawing.Size(164, 22);
             this.tsmPurchaseOrder.Text = "Purchase Order";
             this.tsmPurchaseOrder.Click += new System.EventHandler(this.TsmPurchaseOrder_Click_1);
             // 
             // tsmGRN
             // 
             this.tsmGRN.Name = "tsmGRN";
-            this.tsmGRN.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRN.Size = new System.Drawing.Size(164, 22);
             this.tsmGRN.Text = "GRN Entry";
             this.tsmGRN.Click += new System.EventHandler(this.TsmGRN_Click);
-            // 
-            // tsmGRNApproval
-            // 
-            this.tsmGRNApproval.Name = "tsmGRNApproval";
-            this.tsmGRNApproval.Size = new System.Drawing.Size(180, 22);
-            this.tsmGRNApproval.Text = "Purchase Approval";
-            this.tsmGRNApproval.Click += new System.EventHandler(this.TsmGRNApproval_Click);
             // 
             // tsmPurchaseDC
             // 
             this.tsmPurchaseDC.Name = "tsmPurchaseDC";
-            this.tsmPurchaseDC.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseDC.Size = new System.Drawing.Size(164, 22);
             this.tsmPurchaseDC.Text = "Purchase DC";
             this.tsmPurchaseDC.Click += new System.EventHandler(this.TsmPurchaseDC_Click);
+            // 
+            // tsmGRNApproval
+            // 
+            this.tsmGRNApproval.Name = "tsmGRNApproval";
+            this.tsmGRNApproval.Size = new System.Drawing.Size(164, 22);
+            this.tsmGRNApproval.Text = "Purchase Approval";
+            this.tsmGRNApproval.Click += new System.EventHandler(this.TsmGRNApproval_Click);
             // 
             // tsmAccounts
             // 
@@ -792,6 +795,7 @@ namespace ROMS
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmProfile,
+            this.clearDatabaseToolStripMenuItem,
             this.tsmLogout});
             this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -806,14 +810,36 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
+            // 
+            // clearDatabaseToolStripMenuItem
+            // 
+            this.clearDatabaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearTransactionToolStripMenuItem,
+            this.clearMasterToolStripMenuItem});
+            this.clearDatabaseToolStripMenuItem.Name = "clearDatabaseToolStripMenuItem";
+            this.clearDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearDatabaseToolStripMenuItem.Text = "Clear Database";
+            // 
+            // clearTransactionToolStripMenuItem
+            // 
+            this.clearTransactionToolStripMenuItem.Name = "clearTransactionToolStripMenuItem";
+            this.clearTransactionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearTransactionToolStripMenuItem.Text = "Clear Transactions";
+            this.clearTransactionToolStripMenuItem.Click += new System.EventHandler(this.ClearTransactionToolStripMenuItem_Click);
+            // 
+            // clearMasterToolStripMenuItem
+            // 
+            this.clearMasterToolStripMenuItem.Name = "clearMasterToolStripMenuItem";
+            this.clearMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearMasterToolStripMenuItem.Text = "Clear Masters";
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -929,5 +955,8 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem productWiseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem summaryDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productApprovalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearTransactionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearMasterToolStripMenuItem;
     }
 }
