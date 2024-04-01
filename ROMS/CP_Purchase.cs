@@ -47,7 +47,7 @@ namespace ROMS
         public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0,varPurEditFlag=0,varDiscountFlag=0,
             varSupplierType=0, pbRefreshFlag=0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
-        public string varCalculator = "0";
+        public string varCalculator = "0", varGRNPaymentType="0";
 
         public CP_Purchase()
         {
@@ -525,6 +525,27 @@ namespace ROMS
                         txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["invamt"]);
                         txtLoadingchargeGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_LoadingCharges"]);
                         txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
+                        varGRNPaymentType = Convert.ToString(objDs.Tables[0].Rows[0]["PaymentType"]);
+                        if (varGRNPaymentType == "199" || varGRNPaymentType == "200") //199-GRN cash issued ,200- NONE
+                        {
+                            rbPurchaseCash.Checked = true;
+                            rbPaymentCash.Checked = true;
+                        }
+                        if (varGRNPaymentType == "201")  //Cheque issued
+                        {
+                            rbPurchaseCredit.Checked = true;
+                            rbPaymentCheque.Checked = true;
+                        }
+                        if (varGRNPaymentType == "200")
+                        {
+                            gpPurchase.Enabled = true;
+                            gpPayment.Enabled = true;
+                        }
+                        else
+                        {
+                            gpPurchase.Enabled = false;
+                            gpPayment.Enabled = false;
+                        }
                         if (Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "45" || Convert.ToString(objDs.Tables[0].Rows[0]["STSID"]) == "46")
                         {
                             grdSupplierList.Enabled = false;
