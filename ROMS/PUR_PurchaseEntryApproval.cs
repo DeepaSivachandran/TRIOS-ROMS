@@ -8227,7 +8227,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbAfterBefore.Focus();
+                    //rbAfterBefore.Focus();
                 }
             }
             catch (Exception ex)
@@ -8241,7 +8241,7 @@ namespace ROMS
         {
             try
             {
-                rbAfterBefore.BackColor = Color.LemonChiffon;
+               // rbAfterBefore.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -8254,7 +8254,7 @@ namespace ROMS
         {
             try
             {
-                rbAfterBefore.BackColor = Color.White;
+                //rbAfterBefore.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -9478,7 +9478,7 @@ namespace ROMS
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "" && pbPurchaseno == "0")
                             {
-                                LV_Supplier.Visible = false;
+                                //LV_Supplier.Visible = false;
                                 //txtGstin.Enabled = true;
                                 if (Convert.ToInt32(cmbEntryType.SelectedValue) !=54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag==0)
                                 {
@@ -9488,7 +9488,7 @@ namespace ROMS
                             }
                             else
                             {
-                                LV_Supplier.Visible = false;
+                               // LV_Supplier.Visible = false;
                                 txtGstin.Enabled = false;
                             }
                             udfnPODropdownload();
