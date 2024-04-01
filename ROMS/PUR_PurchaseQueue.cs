@@ -99,7 +99,7 @@ namespace ROMS
                 {
                     DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Entry Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpToDate.MinDate = varDate;
-                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["Entry Date"]);
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
                 objDServ.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
