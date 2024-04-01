@@ -756,14 +756,14 @@
             this.DGV_ProdSearchGrid.AllowUserToAddRows = false;
             this.DGV_ProdSearchGrid.AllowUserToDeleteRows = false;
             this.DGV_ProdSearchGrid.AllowUserToResizeRows = false;
-            this.DGV_ProdSearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_ProdSearchGrid.BackgroundColor = System.Drawing.Color.PapayaWhip;
             this.DGV_ProdSearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Chocolate;
             dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Empty;
             dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_ProdSearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_ProdSearchGrid.ColumnHeadersHeight = 50;
@@ -777,7 +777,7 @@
             dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGV_ProdSearchGrid.DefaultCellStyle = dataGridViewCellStyle13;
             this.DGV_ProdSearchGrid.EnableHeadersVisualStyles = false;
-            this.DGV_ProdSearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_ProdSearchGrid.GridColor = System.Drawing.SystemColors.Window;
             this.DGV_ProdSearchGrid.Location = new System.Drawing.Point(3, 81);
             this.DGV_ProdSearchGrid.Name = "DGV_ProdSearchGrid";
             this.DGV_ProdSearchGrid.RowHeadersVisible = false;
