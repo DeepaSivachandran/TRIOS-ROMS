@@ -34,6 +34,7 @@
             this.txtDPasskey = new System.Windows.Forms.TextBox();
             this.txtGstin = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,7 +75,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.approve;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(162, 47);
+            this.btnSave.Location = new System.Drawing.Point(82, 47);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(86, 33);
@@ -86,12 +87,27 @@
             this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(172, 47);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(76, 33);
+            this.btnClose.TabIndex = 21;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
             // PUR_GSTIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(259, 91);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtDPasskey);
             this.Controls.Add(this.txtGstin);
@@ -117,5 +133,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtDPasskey;
         public System.Windows.Forms.TextBox txtGstin;
+        private System.Windows.Forms.Button btnClose;
     }
 }
