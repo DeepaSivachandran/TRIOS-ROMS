@@ -4826,6 +4826,89 @@ namespace ROMS
             }
         }
 
+        private void GrdPurchaseList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPurchaseList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmHSN":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Error"));
+                                cm.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                            }
+                            break;
+                        case "clmPurchaseRate":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Error"));
+                                cm.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                            }
+                            break;
+                        case "clmInvQty":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Error"));
+                                cm.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                            }
+                            break;
+                        case "clmRecqty":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Error"));
+                                cm.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                            }
+                            break;
+                        case "clmFreeqty":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Error"));
+                                cm.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                            }
+                            break;
+                        case "clmDiscAmt":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Error"));
+                                cm.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                            }
+                            break;
+                        case "clmDiscPer":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                grdPurchaseList.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Error"));
+                                cm.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally { grdPurchaseList.ClearSelection(); }
+        }
+
         private void TxtDamagecost_KeyDown(object sender, KeyEventArgs e)
         {
             try
