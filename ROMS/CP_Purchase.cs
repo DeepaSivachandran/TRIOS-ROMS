@@ -363,7 +363,20 @@ namespace ROMS
             }
             finally { lblTpro.Text = Convert.ToString(grdSupplierList.Rows.Count); }
         }
-
+        public void udfnDisableDiscount()
+        {
+            txtLoadingCharge.Enabled = false;
+            txtUnLoadingCharge.Enabled = false;
+            txtCouriercharge.Enabled = false;
+            txtotherexpense.Enabled = false;
+            txtTcsamt.Enabled = false;
+            txtLoadingchargeGrn.Enabled = false;
+            txtFrightGrn.Enabled = false;
+            Txtdiscount.Enabled = false;
+            txtDiscountamt.Enabled = false;
+            txtOtherdiscount.Enabled = false;
+            txtDamagecost.Enabled = false;
+        }
         public void udfnPendingPOLoad()
         {
             try
@@ -1526,6 +1539,7 @@ namespace ROMS
                                                           // tbDetails.TabPages[1].Enabled = true; // Second tab 
 
                     udfnPurchaseEntryTabLoad(); //tab2 load
+                    udfnDisableDiscount();
                 }
                 else
                 {
@@ -7133,7 +7147,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    Txtdiscount.Focus();
+                    txtTcsamt.Focus();
                 }
             }
             catch (Exception ex)
@@ -7265,7 +7279,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtTcsamt.Focus();
+                    txtOtherdiscount.Focus();
                 }
             }
             catch (Exception ex)
@@ -7349,7 +7363,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDamagecost.Focus();
+                    txtLoadingchargeGrn.Focus();
                 }
             }
             catch (Exception ex)
@@ -7405,7 +7419,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtOtherdiscount.Focus();
+                    txtRemarks.Focus();
                 }
             }
             catch (Exception ex)
@@ -7474,7 +7488,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtLoadingchargeGrn.Focus();
+                    txtDamagecost.Focus();
                 }
             }
             catch (Exception ex)
@@ -7740,7 +7754,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRemarks.Focus();
+                    Txtdiscount.Focus();
                 }
             }
             catch (Exception ex)

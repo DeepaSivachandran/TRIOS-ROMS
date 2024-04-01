@@ -45,6 +45,7 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new System.Windows.Forms.Button();
             this.grdPurchaseEntryApproval = new System.Windows.Forms.DataGridView();
+            this.clmUnapproved = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmUnapproved = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
@@ -223,6 +223,15 @@
             this.grdPurchaseEntryApproval.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseEntryApproval_DataBindingComplete);
             this.grdPurchaseEntryApproval.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseEntryApproval_Scroll);
             this.grdPurchaseEntryApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
+            this.grdPurchaseEntryApproval.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseEntryApproval_KeyDown);
+            // 
+            // clmUnapproved
+            // 
+            this.clmUnapproved.HeaderText = "Un Approved";
+            this.clmUnapproved.Image = global::ROMS.Properties.Resources.reset;
+            this.clmUnapproved.Name = "clmUnapproved";
+            this.clmUnapproved.ReadOnly = true;
+            this.clmUnapproved.Width = 90;
             // 
             // lblNoRecordsFound
             // 
@@ -517,14 +526,6 @@
             // errPurchaseEntryApproval
             // 
             this.errPurchaseEntryApproval.ContainerControl = this;
-            // 
-            // clmUnapproved
-            // 
-            this.clmUnapproved.HeaderText = "Un Approved";
-            this.clmUnapproved.Image = global::ROMS.Properties.Resources.reset;
-            this.clmUnapproved.Name = "clmUnapproved";
-            this.clmUnapproved.ReadOnly = true;
-            this.clmUnapproved.Width = 90;
             // 
             // PUR_PurchaseEntryApprovedList
             // 

@@ -124,6 +124,7 @@ namespace ROMS
         public static INV_StockConversion objINV_StockConversion;
         public static INV_InwardQueueList objINV_InwardQueueList;
         public static INV_InwardlistQueue objINV_InwardlistQueue;
+        public static PUR_PurchaseEntryApproval_Copy objPUR_PurchaseEntryApproval_Copy;
         public static PUR_PurchaseEntryApproval objPUR_PurchaseEntryApproval;
 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
