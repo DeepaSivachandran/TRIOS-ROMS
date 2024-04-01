@@ -31,6 +31,7 @@ namespace ROMS
                 Application.DoEvents();
                 udfnlistcmbdata();
                 MainForm.objCP_Items = new CP_Product();
+                MainForm.objCP_Items.varProductload = 1;
                 MainForm.objCP_Items.ShowDialog();
             }
             catch (Exception ex)

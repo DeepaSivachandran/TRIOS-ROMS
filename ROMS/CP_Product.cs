@@ -24,6 +24,7 @@ namespace ROMS
         public string varSubgroupId = "";
         public string vargroupId = "";
         public string varupdate = "0";
+        public int varProductload = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -3357,6 +3358,11 @@ namespace ROMS
                 cmbBatchNoEntry.SelectedValue = 72;
                 cmbBatchNoGeneration.SelectedValue = -1;
                 cbExpiry.Checked = true;
+                if(varProductload==1)
+                {
+                    txtPurLocation.Enabled = false;
+                    txtPurRack.Enabled = false;
+                }
                 udfnEdit();
             }
             catch (Exception ex)
@@ -4149,6 +4155,7 @@ namespace ROMS
                 {
                     udfnSubGroupAutocomplete();
                     txtGroup.Focus();
+                    lvGroup.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -5402,12 +5409,29 @@ namespace ROMS
 
         private void LvSaleRack_DoubleClick(object sender, EventArgs e)
         {
-            udfnSaleRackAutocomplete();
+            try
+            {
+                udfnSaleRackAutocomplete();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void LvSubGroup_DoubleClick(object sender, EventArgs e)
         {
-            udfnSubGroupAutocomplete();
+            try
+            {
+                udfnSubGroupAutocomplete();
+                lvGroup.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfnEdit()
@@ -5534,6 +5558,11 @@ namespace ROMS
                 {
                     udfnDisable();
                 }
+                if (varProductload ==0)
+                {
+                    txtPurRack.Enabled = true;
+                    txtPurLocation.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -5601,7 +5630,6 @@ namespace ROMS
                     txtPurRack.Enabled = false;
                 }
                 txtSubGroup.Focus();
-                lvSubGroup.Visible = false;
                 lvGroup.Visible = false;
             }
             catch (Exception ex)
