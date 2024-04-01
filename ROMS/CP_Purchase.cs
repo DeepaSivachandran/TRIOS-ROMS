@@ -5121,8 +5121,8 @@ namespace ROMS
                         objPurchaseentryDetails.Columns.Add("PURPR_Costing", typeof(decimal));
                         objPurchaseentryDetails.Columns.Add("PURPR_DiscountValue", typeof(decimal));
                         objPurchaseentryDetails.Columns.Add("PURPR_CGSTPer", typeof(float));
-                        objPurchaseentryDetails.Columns.Add("PURPR_CGSTAmnt", typeof(float));
                         objPurchaseentryDetails.Columns.Add("PURPR_SGSTPer", typeof(float));
+                        objPurchaseentryDetails.Columns.Add("PURPR_CGSTAmnt", typeof(float));
                         objPurchaseentryDetails.Columns.Add("PURPR_SGSTAmnt", typeof(float));
                         objPurchaseentryDetails.Columns.Add("PURPR_ISGSTPer", typeof(float));
                         objPurchaseentryDetails.Columns.Add("PURPR_IGSTAmnt", typeof(float));
@@ -5827,8 +5827,8 @@ namespace ROMS
                     objPurchaseentryDetails.Columns.Add("PURPR_Costing", typeof(decimal));
                     objPurchaseentryDetails.Columns.Add("PURPR_DiscountValue", typeof(decimal));
                     objPurchaseentryDetails.Columns.Add("PURPR_CGSTPer", typeof(float));
-                    objPurchaseentryDetails.Columns.Add("PURPR_CGSTAmnt", typeof(float));
                     objPurchaseentryDetails.Columns.Add("PURPR_SGSTPer", typeof(float));
+                    objPurchaseentryDetails.Columns.Add("PURPR_CGSTAmnt", typeof(float));
                     objPurchaseentryDetails.Columns.Add("PURPR_SGSTAmnt", typeof(float));
                     objPurchaseentryDetails.Columns.Add("PURPR_ISGSTPer", typeof(float));
                     objPurchaseentryDetails.Columns.Add("PURPR_IGSTAmnt", typeof(float));
@@ -6105,8 +6105,8 @@ namespace ROMS
                                 Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["GstValue"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmGstamt"].Value),
                                 Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmnetamt"].Value), 0, Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmPURPRID"].Value), 
                                 Convert.ToInt32(grdPurchaseList.Rows[i].Cells["poid"].Value),Convert.ToDecimal(varCosting), varDiscountValue, 
-                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGSTamt"].Value),
-                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGSTamt"].Value),
+                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGST"].Value),
+                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGSTamt"].Value),Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGSTamt"].Value),
                                 Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value));
                             }
                         }
@@ -7652,10 +7652,6 @@ namespace ROMS
             }
         }
 
-        private void TxtFrightGrn_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void TxtFrightGrn_KeyDown(object sender, KeyEventArgs e)
         {
