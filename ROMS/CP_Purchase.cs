@@ -605,6 +605,7 @@ namespace ROMS
                     }
                     if (varQueueFlag == 1)
                     {
+                        MainForm.objPUR_PurchaseQueue.udfnDate();
                         MainForm.objPUR_PurchaseQueue.udfnList();
                     }
                 }

@@ -44,6 +44,7 @@ namespace ROMS
         public string varErrQty = "0"; int expirydateFlag = 0;
         public int editFlag=0;
         public string varSupplierID = "";
+        decimal ProShelflife = 0;
         public string varSupplierScheduleID = "";
         public string varSupplierName = "";
         bool varVoucherSkip = false;
@@ -128,7 +129,31 @@ namespace ROMS
                                     , objDs.Tables[1].Rows[i]["PRID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
                                     objDs.Tables[1].Rows[i]["RKID"].ToString(), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), objDs.Tables[1].Rows[i]["Stock"].ToString(),
                                     objDs.Tables[1].Rows[i]["Remove Flag"].ToString());
-
+                                    string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
+                                    if (varShelflifeper[0] != "")
+                                    {
+                                        if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                        {
+                                            DataGridView dataGridView = grdPurchaseDC;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                            cell.Style.BackColor = Color.Orange;
+                                            cell.Style.ForeColor = Color.Black;
+                                        }
+                                        else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                        {
+                                            DataGridView dataGridView = grdPurchaseDC;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                            cell.Style.BackColor = Color.Red;
+                                            cell.Style.ForeColor = Color.White;
+                                        }
+                                        else
+                                        {
+                                            DataGridView dataGridView = grdPurchaseDC;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                            cell.Style.BackColor = Color.White;
+                                            cell.Style.ForeColor = Color.Black;
+                                        }
+                                    }
                                     if (objDs.Tables[1].Rows[i]["Remove Flag"].ToString() == "1")
                                     {                           
                                         ((DataGridViewImageCell)grdPurchaseDC.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
@@ -3579,7 +3604,7 @@ namespace ROMS
                 }
                 else
                 {
-                    int varflag = 0; decimal ProShelflife = 0; int Shelflifevalue = 0,ProShelfLifeType=0;
+                    int varflag = 0;  ProShelflife = 0; int Shelflifevalue = 0,ProShelfLifeType=0;
                     string varShelflifevalue = "", varAcutalshelflife = "";
                     SPDataService objDServ = new SPDataService();
                     DataSet objDS = new DataSet();
@@ -3652,6 +3677,7 @@ namespace ROMS
                             lblProductcode.Text = "0";
                             //  txtProductName.BackColor = Color.White;
                             udfnProductCount();
+                            udfnShelflifeCheck();
                         }
                     }
                 }
@@ -3664,6 +3690,42 @@ namespace ROMS
             finally
             {
                 grdPurchaseDC.ClearSelection();
+            }
+        }
+        public void udfnShelflifeCheck()
+        {
+            try
+            {
+                string[] varShelflifeper = Convert.ToString(ProShelflife).Split(' ');
+                if (varShelflifeper[0] != "")
+                {
+                    if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                    {
+                        DataGridView dataGridView = grdPurchaseDC;
+                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                        cell.Style.BackColor = Color.Orange;
+                        cell.Style.ForeColor = Color.Black;
+                    }
+                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                    {
+                        DataGridView dataGridView = grdPurchaseDC;
+                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                        cell.Style.BackColor = Color.Red;
+                        cell.Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        DataGridView dataGridView = grdPurchaseDC;
+                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                        cell.Style.BackColor = Color.White;
+                        cell.Style.ForeColor = Color.Black;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnVocherno()

@@ -349,6 +349,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.ActiveControl = txtProductName;
+                        MainForm.objINV_InwardlistQueue.udfnDate();
                         MainForm.objINV_InwardlistQueue.udfnList();
                         //udfnClear();
                         this.Close();
