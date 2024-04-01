@@ -5743,6 +5743,8 @@ namespace ROMS
                     }
                     if(varSupplierType==151)  //Supplier type IGST
                     {
+                        grdPurchaseList.Columns["clmGstper"].Visible = false;
+                        grdPurchaseList.Columns["clmGstamt"].Visible = false;
                         grdPurchaseList.Columns["clmCGST"].Visible = false;
                         grdPurchaseList.Columns["clmCGSTamt"].Visible = false;
                         grdPurchaseList.Columns["clmSGST"].Visible = false;
@@ -5752,6 +5754,8 @@ namespace ROMS
                     }
                     else
                     {
+                        grdPurchaseList.Columns["clmGstper"].Visible = true;
+                        grdPurchaseList.Columns["clmGstamt"].Visible = true;
                         grdPurchaseList.Columns["clmCGST"].Visible = true;
                         grdPurchaseList.Columns["clmCGSTamt"].Visible = true;
                         grdPurchaseList.Columns["clmSGST"].Visible = true;
@@ -6841,9 +6845,9 @@ namespace ROMS
                             GSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value)),
 
 
-                            IGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value)), 
-                            CGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value) / 2),
-                            SGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value) / 2),
+                            IGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value)),
+                            CGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
+                            SGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
 
                             IGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value)),
                             CGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2),
@@ -6853,13 +6857,22 @@ namespace ROMS
                 
                 dtTaxTable = varTaxData.Select(item => dtTaxTable.LoadDataRow(new object[] 
                 { item.GST, Math.Round(item.Tax).ToString("0.00"), Math.Round(item.GSTamount).ToString("0.00"),
-                item.CGSTTax,item.SGSTTax,item.IGSTTax,item.CGSTamount,item.SGSTamount,item.IGSTamount
+                item.CGSTTax,item.SGSTTax,item.IGSTTax,Math.Round(item.CGSTamount).ToString("0.00"),Math.Round(item.SGSTamount).ToString("0.00"),
+                    Math.Round(item.IGSTamount).ToString("0.00")
                 }, false)).CopyToDataTable();
                 grdTaxDetails.DataSource = dtTaxTable;
                 grdTaxDetails.Columns["GST%"].Width = 60;
                 grdTaxDetails.Columns["Taxable Value"].Width = 80;
                 grdTaxDetails.Columns["Tax Value"].Width = 60;
+                grdTaxDetails.Columns["IGST%"].Width = 60;
+                grdTaxDetails.Columns["CGST%"].Width = 60;
+                grdTaxDetails.Columns["SGST%"].Width = 60;
+                grdTaxDetails.Columns["IGST Tax Value"].Width = 80;
+                grdTaxDetails.Columns["CGST Tax Value"].Width = 80;
+                grdTaxDetails.Columns["SGST Tax Value"].Width = 80;
                 grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
