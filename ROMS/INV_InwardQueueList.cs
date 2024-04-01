@@ -128,9 +128,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
+                    MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
+                    MainForm.objINV_InwardPurchaseList.MdiParent = this.ParentForm;
+                    MainForm.objINV_InwardPurchaseList.Show();
                     this.Close();
                 }
             }
@@ -178,12 +178,12 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 0, 0, "", "", 0, "", 15);
+                objd = objDServ.udfnMaster(9, Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0, "", 15);
                 if (objd.Tables[0].Rows.Count > 0)
                 {
                     DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Transaction Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpToDate.MinDate = varDate;
-                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["Transaction Date"]);
                 }
                 objDServ.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
@@ -625,6 +625,7 @@ namespace ROMS
                 DGV_ProdSearchGrid.Columns["Batch No."].Width = 100;
                 DGV_ProdSearchGrid.Columns["Invoice No."].Width = 100;
                 DGV_ProdSearchGrid.Columns["Invoice Date"].Width = 80;
+                DGV_ProdSearchGrid.Columns["SLID"].Visible = false;
                 DGV_ProdSearchGrid.Columns["Transaction Date"].Width = 80;
                 DGV_ProdSearchGrid.Columns["Transaction No."].Width = 80;
                 DGV_ProdSearchGrid.Columns["Supplier"].Width = 200;

@@ -605,6 +605,7 @@ namespace ROMS
                     }
                     if (varQueueFlag == 1)
                     {
+                        MainForm.objPUR_PurchaseQueue.udfnDate();
                         MainForm.objPUR_PurchaseQueue.udfnList();
                     }
                 }
@@ -1162,9 +1163,9 @@ namespace ROMS
                 txtSupplier.Enabled = false;
                 cmbEntryType.Enabled = false;
                 txtQRCode.Enabled = false;
-                txtInvoiceamt.Enabled = false;
+                txtInvoiceamt.Enabled = true;
                 dpInvoiceDate.Enabled = false;
-                txtInvoiceNo.Enabled = false;
+                txtInvoiceNo.Enabled = true;
                 cmbTransactionType.Enabled = false;
                 txtBroker.Enabled = false;
                 tbDetails.TabPages[0].Enabled = true;
@@ -1193,6 +1194,14 @@ namespace ROMS
                     cmbrack.Enabled = false;
                     btnAdd.Enabled = false;
                     grdSupplierList.ReadOnly = true;
+                }
+                if(Convert.ToInt32(cmbEntryType.SelectedValue)==56)
+                {
+                    btnClear.Enabled = true;
+                }
+                else
+                {
+                    btnClear.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -1460,7 +1469,7 @@ namespace ROMS
                         }
                         else
                         {
-                            btnSave.Text = "Update as Draft";
+                            btnSave.Text = "Save as Draft";
                         }
                     }
                 }
@@ -3915,7 +3924,14 @@ namespace ROMS
                                 {
                                     varGrnMrp = 0;
                                 }
-                                grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), (var_Symbol).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDateAdd).Trim()
+                                var maxSno = 0;
+                                if(grdSupplierList.Rows.Count>0)
+                                {
+                                    maxSno = (from row in grdSupplierList.Rows.Cast<DataGridViewRow>()
+                                                  let snoValue = string.IsNullOrEmpty(Convert.ToString(row.Cells["clmsno"].Value)) ? 0 : Convert.ToInt32(row.Cells["clmsno"].Value)
+                                                  select snoValue).Max();
+                                }
+                                grdSupplierList.Rows.Add(maxSno + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varTName).Trim(), (var_Symbol).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDateAdd).Trim()
                                 , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), txtSourceLocation.Text, cmbrack.Text, cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0, 0, 0, 0,varHSNid);
                                 grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -3992,7 +4008,7 @@ namespace ROMS
             }
             finally
             {
-                //grdSupplierList.Sort(grdSupplierList.Columns[2], ListSortDirection.Ascending);
+                grdSupplierList.Sort(grdSupplierList.Columns[0], ListSortDirection.Descending);
                 //if (grdSupplierList.Rows.Count > 0)
                 //{
                 //    grdSupplierList.CurrentCell = grdSupplierList[5, 0];
@@ -4003,7 +4019,6 @@ namespace ROMS
                 //}
             }
         }
-
         public void udfnrowclear()
         {
             try
@@ -5520,7 +5535,7 @@ namespace ROMS
                                                 grdSupplierList.Rows.Clear();
                                                 grdPODetails.Rows.Clear();
                                                 grdReurnDC.Rows.Clear();
-                                                btnSave.Text = "Update as Draft";
+                                                //btnSave.Text = "Update as Draft";
                                                 //CP_Purchase_Load(sender, e);
                                                 udfnEditLoad();
                                                 udfnPurchaseEntryTabLoad(); //tab2 load
@@ -5531,7 +5546,7 @@ namespace ROMS
                                                 else
                                                 { varCloseflag = 1; }
                                             }
-                                            else if (btnSave.Text == "Update as Draft")
+                                            else if (btnSave.Text == "Save as Draft")
                                             {
                                                 grdSupplierList.Rows.Clear();
                                                 grdPODetails.Rows.Clear();
@@ -5694,7 +5709,7 @@ namespace ROMS
                     txtSupplier.Enabled = false;
                     cmbEntryType.Enabled = false;
                     btnViewDataView.Visible = false;
-                    btnClear.Enabled = false;
+                    //btnClear.Enabled = false;
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
@@ -6176,6 +6191,7 @@ namespace ROMS
                 objPurchaseentry.Columns.Add("PURPR_IGSTAmnt", typeof(float));
                 if (tbDetails.TabPages[0].Enabled == true)
                 {
+                    grdSupplierList.Sort(grdSupplierList.Columns[0], ListSortDirection.Ascending);
                     for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                     {
                         //if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC

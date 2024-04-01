@@ -1340,7 +1340,7 @@ namespace ROMS
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Purchase Status"];
                     DataGridViewCell cell2 = dataGridView.Rows[i].Cells["Overall Status"];
-                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49")
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "70")
                     {
                         cell.Style.BackColor = Color.Red;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
@@ -1350,7 +1350,11 @@ namespace ROMS
                         cell.Style.BackColor = Color.Green;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
-
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49")
+                    {
+                        cell.Style.BackColor = Color.Pink;
+                        cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                    }
                     /*
                     if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "49")
                     {

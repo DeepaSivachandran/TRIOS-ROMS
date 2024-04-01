@@ -646,6 +646,7 @@ namespace ROMS
                                     udfnclose();
                                     if (varEditFlag == 0)
                                     {
+                                        MainForm.objINV_InwardQueueList.udfnDate();
                                         MainForm.objINV_InwardQueueList.udfnList();
                                     }
                                     else

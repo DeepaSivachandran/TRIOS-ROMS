@@ -13,13 +13,14 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
-    public partial class PUR_PurchaseApprovalList : Form
+    public partial class PUR_PurchaseEntryApprovedList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
         DataTable Deftable = new DataTable();
-        public PUR_PurchaseApprovalList()
+        Boolean BlnSearchImageYN = false;
+        public PUR_PurchaseEntryApprovedList()
         {
             InitializeComponent();
         }
@@ -32,7 +33,6 @@ namespace ROMS
                 //cmbConcern.Focus();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                udfnDate();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (14) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,56) AND MSTID !=-1", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
@@ -41,32 +41,6 @@ namespace ROMS
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
-                udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnDate()
-        {
-            try
-            {
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0, "", 18);
-                if (objd.Tables[0].Rows.Count > 0)
-                {
-                    DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Transaction Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpToDate.MinDate = varDate;
-                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["Transaction Date"]);
-                }
-                objDServ.CloseConnection();
-                dpFromDate.MinDate = MainForm.pbFYStartDate;
-                dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                dpToDate.MaxDate = MainForm.pbCurrentDate;
-                //cmbConcern.SelectedValue = 1;
                 udfnList();
             }
             catch (Exception ex)
@@ -143,13 +117,13 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                objTRN_PurchaseEntry.ViewType = 12;
+                objTRN_PurchaseEntry.ViewType = 13;
                 objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 //objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblScheduleCode.Text);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
-                objTRN_PurchaseEntry.ParaPEToDate = dpToDate.Text;
+                objTRN_PurchaseEntry.paraFromDate = dpFromDate.Text;
+                objTRN_PurchaseEntry.paraToDate = dpToDate.Text;
                 objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                 objspdservice.CloseConnection();
                 if (objDs != null)
@@ -162,30 +136,30 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseEntryApproval.DataSource = objDs.Tables[0];
+                            grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = true;
+                            grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
                             grdPurchaseEntryApproval.Columns["Concern"].Width = 80;
                             grdPurchaseEntryApproval.Columns["Voucher No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Voucher Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Supplier Name"].Width = 300;
-                            grdPurchaseEntryApproval.Columns["Purchase Type"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Purchase Type"].Width = 140;
                             grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
-                            grdPurchaseEntryApproval.Columns["Status"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Invoice No."].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Created By"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Remarks"].Width = 150;
+                            grdPurchaseEntryApproval.Columns["Created By"].Width = 200;
+                            grdPurchaseEntryApproval.Columns["Approved By"].Width = 200;
                             grdPurchaseEntryApproval.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseEntryApproval.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseEntryApproval.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["Invoice Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
+                            grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = false;
                             lblNoRecordsFound.BringToFront();
                             Deftable = objDs.Tables[0];
                         }
@@ -193,6 +167,7 @@ namespace ROMS
                     else
                     {
                         lblNoRecordsFound.Visible = true;
+                        grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = false;
                         lblNoRecordsFound.BringToFront();
                         Deftable = objDs.Tables[0];
                     }
@@ -200,6 +175,7 @@ namespace ROMS
                 else
                 {
                     lblNoRecordsFound.Visible = true;
+                    grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = false;
                     lblNoRecordsFound.BringToFront();
                     Deftable = objDs.Tables[0];
                 }
@@ -262,10 +238,6 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Purchase Type"].Width = 100;
                 DGV_SearchGrid.Columns["Total Products"].Width = 150;
                 DGV_SearchGrid.Columns["Remarks"].Width = 100;
-                DGV_SearchGrid.Columns["Status"].Visible = false;
-                DGV_SearchGrid.Columns["PURID"].Visible = false;
-                DGV_SearchGrid.Columns["STSID"].Visible = false;
-                //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -295,7 +267,12 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -306,6 +283,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
+                    //dgv2.DataSource = null;
                     dgv2.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
                     foreach (DataGridViewColumn col in dgv1.Columns)
@@ -317,11 +295,24 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -1262,9 +1253,62 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseEntryApprovedList = new PUR_PurchaseEntryApprovedList();
-                MainForm.objPUR_PurchaseEntryApprovedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryApprovedList.Show();
+                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseApprovalList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseEntryApproval_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPurchaseEntryApproval.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmUnapproved":
+                            try
+                            {
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(121);
+                                objDServ.CloseConnection();
+                                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    string varorginator = "Purchase Unapproved",result = "";
+                                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                                    objTRN_PurchaseEntry.ViewType = 5;
+                                    objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                    objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                                    objTRN_PurchaseEntry.paraOriginator = varorginator;
+                                    objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                                    SPDataService objspdservice = new SPDataService();
+                                    result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                                    objspdservice.CloseConnection();
+                                    string[] varvalue = result.Split('~');
+                                    if (varvalue[0] == "3")
+                                    {
+                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
             }
             catch (Exception ex)
             {

@@ -718,8 +718,10 @@
             this.grdProDetails.AllowUserToDeleteRows = false;
             this.grdProDetails.AllowUserToResizeColumns = false;
             this.grdProDetails.AllowUserToResizeRows = false;
-            this.grdProDetails.BackgroundColor = System.Drawing.Color.White;
+            this.grdProDetails.BackgroundColor = System.Drawing.Color.PapayaWhip;
+            this.grdProDetails.CausesValidation = false;
             this.grdProDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdProDetails.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);

@@ -245,9 +245,10 @@ namespace ROMS
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
-                            //grdGRNList.Columns["GRN_OrderType"].Visible = false;
+                            grdGRNList.Columns["GRN_OrderType"].Visible = false;
                             grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
+                            grdGRNList.Columns["SP_SupplierType"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
                             grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -328,6 +329,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRNID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
+                DGV_SearchGrid.Columns["SP_SupplierType"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_OrderType"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_INVSTSID"].Visible = false;
                 if (DGV_SearchGrid.Columns.Contains("clmPrint") == true) { DGV_SearchGrid.Columns["clmPrint"].Visible = false; }
@@ -462,7 +465,8 @@ namespace ROMS
                 MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
                 MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
-                //MainForm.objPUR_GRNDetails.pbPOIdS = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
+                MainForm.objPUR_GRNDetails.varSupplierType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["SP_SupplierType"].Value);
+                MainForm.objPUR_GRNDetails.varOrderType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_OrderType"].Value);
                 MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)
@@ -1493,11 +1497,12 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "");
+                objDs = objdserv.udfnGrnListLoad(10, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "");
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
+                    string Type = Convert.ToString(objDs.Tables[0].Rows[0]["Type"].ToString());
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
@@ -1520,6 +1525,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("varHeader", Type);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();

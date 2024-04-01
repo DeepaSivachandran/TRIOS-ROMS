@@ -72,7 +72,14 @@ namespace ROMS
         {
             try
             {
-                udfnclose();
+                if (varDiscardFlag == false)
+                {
+                    udfnDiscard();
+                }
+                else
+                {
+                    udfnclose();
+                }
             }
             catch (Exception ex)
             {
@@ -80,7 +87,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnDiscard()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to discard changes ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -1415,10 +1437,10 @@ namespace ROMS
                                     grdProductExchage.Rows[i].Cells["clmSno"].Value = i + 1;
                                 }
                                 udfnProductCount();
+                                varDiscardFlag = false;
                             }
                             break;
                     }
-                    varDiscardFlag = false;
                 }
             }
             catch (Exception ex)
@@ -2176,8 +2198,8 @@ namespace ROMS
                 if (blnErrorFlag == false && pbDateflag == 0)
                 {
                     udfnAdd();
+                    varDiscardFlag = false;
                 }
-                varDiscardFlag = false;
             }
             catch (Exception ex)
             {

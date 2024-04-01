@@ -36,11 +36,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm objMainForm = new MainForm();
-                    objMainForm.udfnCloseChildForms();
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
+                    //MainForm objMainForm = new MainForm();
+                    //objMainForm.udfnCloseChildForms();
+                    MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                    MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
+                    MainForm.objCP_PurchaseList.Show();
                     this.Close();
                 } 
             }
@@ -71,6 +71,7 @@ namespace ROMS
                 //cmbEntryType.Items.Add("From GRN");
                 //cmbEntryType.Items.Add("From DC");
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                udfnDate();
                 udfncmbDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
@@ -79,6 +80,32 @@ namespace ROMS
                 this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();
                 // cmbStatus.SelectedValue = 18; //pending
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDate()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(9, 0, 0, "", "", 0, "", 16);
+                if (objd.Tables[0].Rows.Count > 0)
+                {
+                    DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Entry Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpToDate.MinDate = varDate;
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["Entry Date"]);
+                }
+                objDServ.CloseConnection();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                //cmbConcern.SelectedValue = 1;
                 udfnList();
             }
             catch (Exception ex)

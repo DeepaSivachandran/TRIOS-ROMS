@@ -15,7 +15,7 @@ namespace ROMS
         //------- Servic Class object declaration
         DataValidation objValidation = new DataValidation();
         public DataError objError = new DataError();
-
+        public int DeleteFlag = 0;
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
@@ -113,6 +113,7 @@ namespace ROMS
         public static INV_Inward objINV_Inward;
         public static INV_StockTransfer objINV_StockTransfer;
         public static INV_StockTransferQueue objINV_StockTransferQueue;
+        public static PUR_PurchaseEntryApprovedList objPUR_PurchaseEntryApprovedList;
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;
@@ -1566,6 +1567,23 @@ namespace ROMS
                 MainForm.objREPORT_PUR_Purchaseorder_Summary = new REPORT_PUR_Purchaseorder_Summary();
                 MainForm.objREPORT_PUR_Purchaseorder_Summary.MdiParent = this;
                 MainForm.objREPORT_PUR_Purchaseorder_Summary.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ClearTransactionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+
             }
             catch (Exception ex)
             {
