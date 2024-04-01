@@ -44,7 +44,8 @@ namespace ROMS
         public string pbQRCode = "";
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
         bool varVoucherSkip = false;
-        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0,varPurEditFlag=0,varDiscountFlag=0,varSupplierType=0;
+        public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0,varPurEditFlag=0,varDiscountFlag=0,
+            varSupplierType=0, pbRefreshFlag=0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0";
 
@@ -247,7 +248,8 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["Batchnogeneration"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_ShelfLife"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["DCID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
-                            , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), Convert.ToInt16(objDs.Tables[0].Rows[i]["DCPRID"]), 0, Convert.ToInt16(objDs.Tables[0].Rows[i]["DCPRID"]), Convert.ToInt16(objDs.Tables[0].Rows[i]["InvFlag"]));
+                            , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), Convert.ToInt16(objDs.Tables[0].Rows[i]["DCPRID"]), 0, Convert.ToInt16(objDs.Tables[0].Rows[i]["DCPRID"]),
+                            Convert.ToInt16(objDs.Tables[0].Rows[i]["InvFlag"]),Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]));
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
@@ -501,7 +503,8 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["Batchnogeneration"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_ShelfLife"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
-                            , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["GRNPR_PRFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["InvFlag"]));
+                            , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["GRNPR_PRFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["GRNPRID"]),
+                            Convert.ToInt32(objDs.Tables[0].Rows[i]["InvFlag"]),Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]));
                             grdSupplierList.Columns["clmGrnMrp"].Visible = true;
                             // grdSupplierList.Columns["clmAddPro"].Visible = true;
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
@@ -729,11 +732,11 @@ namespace ROMS
                 dtTaxTable.Columns.Add("Taxable Value", typeof(decimal));
                 dtTaxTable.Columns.Add("Tax Value", typeof(decimal));
                 dtTaxTable.Columns.Add("IGST%", typeof(decimal));
-                dtTaxTable.Columns.Add("CGST%", typeof(decimal));
-                dtTaxTable.Columns.Add("SGST%", typeof(decimal)); 
                 dtTaxTable.Columns.Add("IGST Tax Value", typeof(decimal));
-                dtTaxTable.Columns.Add("CGST Tax Value", typeof(decimal));
+                dtTaxTable.Columns.Add("SGST%", typeof(decimal)); 
                 dtTaxTable.Columns.Add("SGST Tax Value", typeof(decimal));
+                dtTaxTable.Columns.Add("CGST%", typeof(decimal));
+                dtTaxTable.Columns.Add("CGST Tax Value", typeof(decimal));
                 udfnDropdownLoad();
                 if (pbPurchaseno == "0")
                 {
@@ -926,9 +929,9 @@ namespace ROMS
                                     // grdPODetails.Visible = true;
                                     grdGRN.Visible = true;
                                     grdSupplierList.Columns["clmGrnMrp"].Visible = true;
-                                    gpPurchase.Enabled = false;
-                                    gpPayment.Enabled = false;
                                 }
+                                gpPurchase.Enabled = false;
+                                gpPayment.Enabled = false;
                                 if (cmbEntryType.SelectedValue.ToString() == "55") // PO
                                 {
                                     grdPODetails.Visible = true;
@@ -1015,10 +1018,21 @@ namespace ROMS
                                         grdTaxDetails.Columns["GST%"].Width = 60;
                                         grdTaxDetails.Columns["Taxable Value"].Width = 80;
                                         grdTaxDetails.Columns["Tax Value"].Width = 60;
+                                        grdTaxDetails.Columns["IGST%"].Width = 60;
+                                        grdTaxDetails.Columns["CGST%"].Width = 60;
+                                        grdTaxDetails.Columns["SGST%"].Width = 60;
+                                        grdTaxDetails.Columns["IGST Tax Value"].Width = 80;
+                                        grdTaxDetails.Columns["CGST Tax Value"].Width = 80;
+                                        grdTaxDetails.Columns["SGST Tax Value"].Width = 80;
                                         grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["IGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["CGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["SGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        if(varSupplierType==151) //IGST
+                                        if (varSupplierType==151) //IGST
                                         {
                                             grdTaxDetails.Columns["SGST%"].Visible = false;
                                             grdTaxDetails.Columns["CGST%"].Visible = false;
@@ -5267,6 +5281,7 @@ namespace ROMS
                             objTRN_PurchaseEntry1.paraPurchaseDate = dpVoucherDate.Text;
                             objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                             objTRN_PurchaseEntry1.paraSupplierType = varSupplierType;
+                            objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
                             objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                             result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
                             objspdservice.CloseConnection();
@@ -5300,6 +5315,7 @@ namespace ROMS
                                 objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                                 objTRN_PurchaseEntry1.paraSaveFlag = varSaveFlag;
                                 objTRN_PurchaseEntry1.paraSupplierType = varSupplierType;
+                                objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
                                 objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                                 result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
                                 objspdservice.CloseConnection();
@@ -5332,6 +5348,7 @@ namespace ROMS
                                         objTRN_PurchaseEntry.paraEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
                                         objTRN_PurchaseEntry.paraINVDate = dpInvoiceDate.Text;
                                         objTRN_PurchaseEntry.paraINVNo = txtInvoiceNo.Text;
+                                        objTRN_PurchaseEntry.paraRefreshFlag = pbRefreshFlag;
                                         objTRN_PurchaseEntry.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                                         objTRN_PurchaseEntry.paraTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
                                         int varBrokerid = 0;
@@ -6860,21 +6877,22 @@ namespace ROMS
                             Tax = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value)),
                             GSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value)),
 
+                            //IGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value)),
+                            //CGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
+                            //SGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
 
-                            IGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value)),
-                            CGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
-                            SGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
+                            IGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value)),
+                            CGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value) / 2),
+                            SGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value) / 2)
 
-                            IGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value)),
-                            CGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2),
-                            SGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2)
                         };
                     }).ToList();
                 
                 dtTaxTable = varTaxData.Select(item => dtTaxTable.LoadDataRow(new object[] 
                 { item.GST, Math.Round(item.Tax).ToString("0.00"), Math.Round(item.GSTamount).ToString("0.00"),
-                item.CGSTTax,item.SGSTTax,item.IGSTTax,Math.Round(item.CGSTamount).ToString("0.00"),Math.Round(item.SGSTamount).ToString("0.00"),
-                    Math.Round(item.IGSTamount).ToString("0.00")
+                 Convert.ToDecimal(item.GST),Math.Round(item.IGSTamount).ToString("0.00"),
+                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.SGSTamount).ToString("0.00"),
+                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.CGSTamount).ToString("0.00")
                 }, false)).CopyToDataTable();
                 grdTaxDetails.DataSource = dtTaxTable;
                 grdTaxDetails.Columns["GST%"].Width = 60;
@@ -6890,7 +6908,29 @@ namespace ROMS
                 grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["IGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["CGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["SGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                if (varSupplierType == 151) //IGST
+                {
+                    grdTaxDetails.Columns["SGST%"].Visible = false;
+                    grdTaxDetails.Columns["CGST%"].Visible = false;
+                    grdTaxDetails.Columns["SGST Tax Value"].Visible = false;
+                    grdTaxDetails.Columns["CGST Tax Value"].Visible = false;
+                }
+                else
+                {
+                    grdTaxDetails.Columns["GST%"].Visible = true;
+                    grdTaxDetails.Columns["CGST%"].Visible = true;
+                    grdTaxDetails.Columns["SGST Tax Value"].Visible = true;
+                    grdTaxDetails.Columns["CGST Tax Value"].Visible = true;
+                    grdTaxDetails.Columns["GST%"].Visible = true;
+                    grdTaxDetails.Columns["CGST%"].Visible = true;
+                    grdTaxDetails.Columns["IGST%"].Visible = false;
+                    grdTaxDetails.Columns["IGST Tax Value"].Visible = false;
+                }
 
                 //dtTaxTable.Columns.Add("IGST%", typeof(decimal));
                 //dtTaxTable.Columns.Add("CGST%", typeof(decimal));
@@ -9041,6 +9081,7 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        pbRefreshFlag = 1;
                         for (int i = grdSupplierList.Rows.Count - 1; i >= 0; i--)
                         {
                             grdSupplierList.Rows.RemoveAt(i);
