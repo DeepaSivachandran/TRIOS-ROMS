@@ -516,16 +516,19 @@ namespace ROMS
                     tpgst.Show("Please enter supplier GSTIN.", txtgstin, 5000);
                     blnErrorFlag = true;
                 }
-                  string varGSTIN = txtgstin.Text;
-                  varfirstValue = Convert.ToString(varGSTIN[0]);
-                  varsecValue = Convert.ToString(varGSTIN[1]);
-                if (varfirstValue != Convert.ToString(varTINNo[0]) || varsecValue != Convert.ToString(varTINNo[1]))
+                if (txtgstin.Text.Trim() != "")
                 {
-                    errCompany.SetError(txtgstin, "Invalid GSTIN");
-                    txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpgst.ShowAlways = true;
-                    tpgst.Show("Invalid GSTIN", txtgstin, 5000);
-                    blnErrorFlag = true;
+                    string varGSTIN = txtgstin.Text;
+                    varfirstValue = Convert.ToString(varGSTIN[0]);
+                    varsecValue = Convert.ToString(varGSTIN[1]);
+                    if (varfirstValue != Convert.ToString(varTINNo[0]) || varsecValue != Convert.ToString(varTINNo[1]))
+                    {
+                        errCompany.SetError(txtgstin, "Invalid GSTIN");
+                        txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpgst.ShowAlways = true;
+                        tpgst.Show("Invalid GSTIN", txtgstin, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 //if (txtgstin.Text  && txtgstin.Enabled == true)
                 //{
@@ -1311,6 +1314,13 @@ namespace ROMS
                 if(pbFormStatus==2 || varSupplierStatusID==2)
                 {
                     udfnDisable();
+                }
+                if(varSupplierStatusID == 1)
+                {
+                    grbform.Enabled = true;
+                    grbEnvelopeDetails.Enabled = true;
+                    groupBox4.Enabled = true;
+                    groupBox5.Enabled = true;
                 }
             }
             catch (Exception ex)

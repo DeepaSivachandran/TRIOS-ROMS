@@ -3094,6 +3094,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_PurchaseEntry.paraGRNID);
                 varSqlCommand.Parameters.AddWithValue("@paraSaveFlag", objTRN_PurchaseEntry.paraSaveFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierType", objTRN_PurchaseEntry.paraSupplierType);
+                varSqlCommand.Parameters.AddWithValue("@paraRefreshFlag", objTRN_PurchaseEntry.paraRefreshFlag);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
