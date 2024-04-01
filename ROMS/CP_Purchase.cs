@@ -1642,6 +1642,9 @@ namespace ROMS
                 grdPurchaseList.CurrentRow.Cells["clmTax"].Value = PbTaxvalue.ToString("0.00");
                 grdPurchaseList.CurrentRow.Cells["clmCosting"].Value = pbCostingRate.ToString("0.00");
                 grdPurchaseList.CurrentRow.Cells["clmDiscountValue"].Value = PbDicountValue.ToString("0.00");
+                grdPurchaseList.CurrentRow.Cells["clmSGstamt"].Value = PbSGstamt.ToString("0.00");
+                grdPurchaseList.CurrentRow.Cells["clmCGstamt"].Value = PbCGstamt.ToString("0.00");
+                grdPurchaseList.CurrentRow.Cells["clmIGstamt"].Value = PbIGstamt.ToString("0.00");
                 udfnSubtotCalc();
                 udfnGstvalue();
                 udfnLoadingGrandTotCalculation();
@@ -8828,6 +8831,9 @@ namespace ROMS
                     //grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value = Math.Round(PbNetamt).ToString("0.00");
 
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value = PbGstamt.ToString("0.00");
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmSGstamt"].Value = PbSGstamt.ToString("0.00");
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmCGstamt"].Value = PbCGstamt.ToString("0.00");
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmIGstamt"].Value = PbIGstamt.ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value = PbNetamt.ToString("0.00");
                     //if (varEntryType == 55 || varEntryType == 56)
                     //{
@@ -8837,7 +8843,7 @@ namespace ROMS
                     udfnSubtotCalc();
                     udfnGstvalue();
                     udfnLoadingGrandTotCalculation();
-                    PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0; pbCostingRate=0;
+                    PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0; pbCostingRate=0; PbSGstamt = 0; PbCGstamt = 0; PbIGstamt = 0;
                 }
             }
         }
@@ -8928,9 +8934,15 @@ namespace ROMS
                     }
                     PbDicountValue = (PbTaxvalue - varCellDiscAmt);
                 }
-                PbCGstamt= PbGstamt / 2;
-                PbSGstamt= PbGstamt / 2;
-                PbIGstamt = PbGstamt;
+                if (varSupplierType == 151)
+                {
+                    PbIGstamt = PbGstamt;
+                }
+                else
+                {
+                    PbCGstamt = PbGstamt / 2;
+                    PbSGstamt = PbGstamt / 2;
+                }
                 pbCostingRate = PbNetamt / varInvQty;
             }
             catch (Exception ex)
