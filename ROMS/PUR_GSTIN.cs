@@ -196,5 +196,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+                MainForm.objCP_Purchase.Close();
+                MainForm.objCP_PurchaseList.udfnListLoad();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
