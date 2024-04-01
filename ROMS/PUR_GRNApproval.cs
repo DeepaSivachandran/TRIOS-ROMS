@@ -550,7 +550,7 @@ namespace ROMS
                         if (varvalue1[0] == "3")
                         {
                             MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //this.ActiveControl = txtProductName;
+                            MainForm.objPUR_GRNApprovalList.udfnDate();
                             MainForm.objPUR_GRNApprovalList.udfnList();
                             //udfnClear();
                             this.Close();

@@ -61,12 +61,12 @@ namespace ROMS
                 cmbConcern.Focus();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                udfnDate();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (57) OR MSTID =0", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
-                //udfnDate();
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 udfnList();
             }
@@ -82,13 +82,15 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9,Convert.ToInt32(cmbDateType.SelectedValue), 0, "", "", 0, "", 13);
+                objd = objDServ.udfnMaster(9,Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0, "", 19);
                 if (objd.Tables[0].Rows.Count != 0)
                 {
-                    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpFromDate.Text = Convert.ToString(vardate);
+                    DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["Transaction Date"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpToDate.MinDate = vardate;
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+                    udfnList();
                 }
+                objDServ.CloseConnection();
             }
             catch (Exception ex)
             {
