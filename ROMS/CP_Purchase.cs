@@ -5035,7 +5035,7 @@ namespace ROMS
                 additionalValue = loadcharge + unloadcharge + couriercharge + otherexpense + tcsamt + loadinggrn + frightgrn;
                 DiscountValue = discountamt + otherdiscount + damagecost;
                 lblAdditionalValue.Text= additionalValue.ToString("#,##0.00");
-                lblDiscount.Text= additionalValue.ToString("#,##0.00");
+                lblDiscount.Text= DiscountValue.ToString("#,##0.00");
             }
             catch (Exception ex)
             {
