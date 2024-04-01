@@ -835,6 +835,7 @@ namespace ROMS
             this.clearMasterToolStripMenuItem.Name = "clearMasterToolStripMenuItem";
             this.clearMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearMasterToolStripMenuItem.Text = "Clear Masters";
+            this.clearMasterToolStripMenuItem.Click += new System.EventHandler(this.ClearMasterToolStripMenuItem_Click);
             // 
             // tsmLogout
             // 

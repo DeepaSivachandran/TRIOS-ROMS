@@ -116,8 +116,14 @@ namespace ROMS
                             count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
                             if (count != 0)
                             {
-                                //flag = 1;
-                                MainForm.objCP_ChangePassword.varPasswordFlag = 0;
+                                if (flag == 0)
+                                {
+                                    MainForm.objCP_ChangePassword.varPasswordFlag = 0;
+                                }
+                                else
+                                {
+                                    MainForm.PbDeleteFlag = 1;
+                                }
                                 this.Close();
                             }
                             else if (count == 0)
