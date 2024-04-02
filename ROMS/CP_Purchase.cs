@@ -10572,7 +10572,7 @@ namespace ROMS
                                     //grdProDetails.Rows.Add();
                                     if (irow < grdSupplierList.Rows.Count - 1)
                                     {
-                                        grdSupplierList.CurrentCell = grdSupplierList[5, irow + 1];
+                                        grdSupplierList.CurrentCell = grdSupplierList[6, irow + 1];
                                         icolumn = grdSupplierList.CurrentCell.ColumnIndex;
                                         irow = grdSupplierList.CurrentCell.RowIndex;
                                         //goto A;
