@@ -21,7 +21,7 @@ namespace ROMS
         public int SearchFlag = 0;
         public string varcompanycode;
         public int pbFormStatus=0;
-        public string varstatecode = "", varupdate = "0", vardays = "", varUserID="";
+        public string varstatecode = "", varupdate = "0", vardays = "", varUserID = "", varCityname = "";
         public int varOrderid = 0, scheduleselectedIndex = -1;
         public int varBrandId = 0;
         public int varGroupId = 0;
@@ -613,7 +613,7 @@ namespace ROMS
                         //VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
                         DataSet objDsCity = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0, 0);
+                        objDsCity = objDserv.udfnCitylist(2, varCityname, Convert.ToInt32(cmbState.SelectedValue), 0);
                         objDserv.CloseConnection();
                         if (objDsCity != null)
                         {
@@ -6457,6 +6457,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvCity.SelectedItems[0];
                     txtCity.Text = selectedItem.SubItems[0].Text;
+                    varCityname = selectedItem.SubItems[0].Text;
                     lblcity.Text = selectedItem.SubItems[2].Text;
                     varTINNo = selectedItem.SubItems[3].Text;
                     lvCity.Visible = false;
