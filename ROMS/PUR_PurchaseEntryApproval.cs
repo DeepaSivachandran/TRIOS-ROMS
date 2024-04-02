@@ -6797,6 +6797,7 @@ namespace ROMS
                             varModifiedFlag = 0;
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             varCloseflag = 1;
+                            MainForm.objPUR_PurchaseApprovalList.udfnList();
                             udfnclose();
                         }
                         else
