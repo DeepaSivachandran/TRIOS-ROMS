@@ -10589,7 +10589,13 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    if (grdSupplierList[icolumn + 1, irow].Visible == false)
+                                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmrack")
+                                    {
+                                        grdSupplierList.CurrentCell = grdSupplierList[6, irow + 1];
+                                        icolumn = grdSupplierList.CurrentCell.ColumnIndex;
+                                        irow = grdSupplierList.CurrentCell.RowIndex;
+                                    }
+                                    else if (grdSupplierList[icolumn + 1, irow].Visible == false)
                                     {
                                         { icolumn++; goto A; }
                                     }
