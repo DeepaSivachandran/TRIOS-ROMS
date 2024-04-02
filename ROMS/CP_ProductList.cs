@@ -1014,7 +1014,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1,100) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 cmbConcern.SelectedValue = varconcern;
@@ -1505,9 +1505,14 @@ namespace ROMS
                         grdItemList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdItemList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else
+                    else if(Convert.ToString(grdItemList.Rows[i].Cells["STSID"].Value) == "2")
                     {
                         grdItemList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdItemList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdItemList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdItemList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                 }

@@ -613,7 +613,7 @@ namespace ROMS
                         //VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
                         DataSet objDsCity = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        objDsCity = objDserv.udfnCitylist(2, varCityname, Convert.ToInt32(cmbState.SelectedValue), 0);
+                        objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), Convert.ToInt32(cmbState.SelectedValue), 0);
                         objDserv.CloseConnection();
                         if (objDsCity != null)
                         {
@@ -663,13 +663,13 @@ namespace ROMS
 
                     int cityid = 0; string varpincode = "";
                     double creditlimit = 0, openingvalue = 0;
-                    if (lblcity.Text == "")
+                    if (lblcityid.Text == "")
                     {
                         cityid = 0;
                     }
                     else
                     {
-                        cityid = Convert.ToInt32(lblcity.Text);
+                        cityid = Convert.ToInt32(lblcityid.Text);
                     }
                     if (txtPincode.Text == "")
                     {
@@ -747,7 +747,7 @@ namespace ROMS
 
                         }
                     } 
-                    result = objspdservice.udfnSupplierMaster(varviewtype, SupplierUpdate, txtName.Text, txtArea.Text, txtaddress2.Text, cityid
+                    result = objspdservice.udfnSupplierMaster(varviewtype, SupplierUpdate, txtName.Text, txtArea.Text, txtaddress2.Text, Convert.ToInt32(cityid)
                    , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
                    Convert.ToInt32(cmbPaymentTerm.SelectedValue), varreturnapplicable, varretuencycle, Convert.ToInt32(cmbfinance.SelectedValue), openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, Convert.ToInt32(cmbDesignation.SelectedValue), txtcontactName.Text, creditlimit, -1, -1, -1, -1, "",
