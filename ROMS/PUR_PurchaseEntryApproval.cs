@@ -3645,11 +3645,11 @@ namespace ROMS
                             //Error product status
                             if(varMRPerr==0 && varPurchaseRateErr==0 &&  varExpiryErr ==0 &&  varBatchErr==0 && varInvoiceQtyErr==0 && varReceivedQtyErr==0 && varFreeQtyErr==0 && varDisAmtErr==0 && varDisPerErr==0)
                             {
-                                varError = 69; // Status no error 
+                                varError = 73; // Status no error 
                             }
                             else
                             {
-                                varError = 68; //status error
+                                varError = 72; //status error
                             }
                             if (varcount==0)
                             {
