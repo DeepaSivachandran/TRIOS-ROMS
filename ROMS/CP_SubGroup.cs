@@ -1518,13 +1518,16 @@ namespace ROMS
                     MainForm.objCP_Rack.lblLocation.Text = lblLocation.Text;
                     MainForm.objCP_Rack.txtLocation.Enabled = false;
                     MainForm.objCP_Rack.ShowDialog();
-                    txtLocation.Text = varStockLocationName;
-                    lblLocation.Text = Convert.ToString(varLocationCode);
-                    txtRack.Text = varRackName;
-                    lblRack.Text = Convert.ToString(varRackCode);
-                    //  lvRack.Visible = false;
-                    udfnLoadRackList();
-                    btnSave.Focus();
+                    if (MainForm.objCP_Rack.varSaveFlag == 1)
+                    {
+                        txtLocation.Text = varStockLocationName;
+                        lblLocation.Text = Convert.ToString(varLocationCode);
+                        txtRack.Text = varRackName;
+                        lblRack.Text = Convert.ToString(varRackCode);
+                        //  lvRack.Visible = false;
+                        udfnLoadRackList();
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

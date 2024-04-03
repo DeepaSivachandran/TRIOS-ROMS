@@ -285,6 +285,7 @@ namespace ROMS
             try
             {
                 udfnConcern();
+                udfnDate();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;              
                 udfnList();
@@ -304,7 +305,7 @@ namespace ROMS
             {
                 DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpToDate.MinDate = varDate;
-                dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE"]);
+                dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
             }
             objspservice.CloseConnection();
             dpFromDate.MinDate = MainForm.pbFYStartDate;

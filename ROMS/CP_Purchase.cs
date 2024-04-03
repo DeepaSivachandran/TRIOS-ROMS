@@ -5584,7 +5584,7 @@ namespace ROMS
                                             {
                                                 grdPODetails.Columns["clmRemovePO"].Visible = false;
                                             }
-                                            if (btnSave.Text == "Save as Draft")
+                                            if (btnSave.Text == "Save as Draft" && varEditFlag==0)
                                             {
                                                 pbPurchaseno = varvalue[2];
                                                 grdSupplierList.Rows.Clear();
@@ -5601,7 +5601,7 @@ namespace ROMS
                                                 else
                                                 { varCloseflag = 1; }
                                             }
-                                            else if (btnSave.Text == "Save as Draft")
+                                            else if (btnSave.Text == "Save as Draft" && varEditFlag==1)
                                             {
                                                 grdSupplierList.Rows.Clear();
                                                 grdPODetails.Rows.Clear();
@@ -5754,9 +5754,12 @@ namespace ROMS
                         txtDate.Enabled = false;
                         txtMonth.Enabled = false;
                         txtYear.Enabled = false;
+                        txtInvoiceamt.Enabled = false;
+                        txtInvoiceNo.Enabled = false;
                         txtSourceLocation.Enabled = false;
                         cmbrack.Enabled = false;
                         btnAdd.Enabled = false;
+                        btnClear.Enabled = false;
                         grdSupplierList.ReadOnly = true;
                     }
 
@@ -10572,7 +10575,7 @@ namespace ROMS
                                     //grdProDetails.Rows.Add();
                                     if (irow < grdSupplierList.Rows.Count - 1)
                                     {
-                                        grdSupplierList.CurrentCell = grdSupplierList[5, irow + 1];
+                                        grdSupplierList.CurrentCell = grdSupplierList[6, irow + 1];
                                         icolumn = grdSupplierList.CurrentCell.ColumnIndex;
                                         irow = grdSupplierList.CurrentCell.RowIndex;
                                         //goto A;
@@ -10589,7 +10592,13 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    if (grdSupplierList[icolumn + 1, irow].Visible == false)
+                                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmrack")
+                                    {
+                                        grdSupplierList.CurrentCell = grdSupplierList[6, irow + 1];
+                                        icolumn = grdSupplierList.CurrentCell.ColumnIndex;
+                                        irow = grdSupplierList.CurrentCell.RowIndex;
+                                    }
+                                    else if (grdSupplierList[icolumn + 1, irow].Visible == false)
                                     {
                                         { icolumn++; goto A; }
                                     }

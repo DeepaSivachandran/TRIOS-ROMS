@@ -178,6 +178,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbCompleted = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -1676,11 +1677,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(689, 628);
+            this.btnSave.Location = new System.Drawing.Point(658, 628);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(82, 29);
+            this.btnSave.Size = new System.Drawing.Size(113, 29);
             this.btnSave.TabIndex = 37;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save as Draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -1917,12 +1918,24 @@
             // 
             this.columnHeader31.Width = 0;
             // 
+            // cbCompleted
+            // 
+            this.cbCompleted.AutoSize = true;
+            this.cbCompleted.Location = new System.Drawing.Point(567, 631);
+            this.cbCompleted.Name = "cbCompleted";
+            this.cbCompleted.Size = new System.Drawing.Size(86, 24);
+            this.cbCompleted.TabIndex = 1111216;
+            this.cbCompleted.Text = "Completed";
+            this.cbCompleted.UseVisualStyleBackColor = true;
+            this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(859, 674);
+            this.Controls.Add(this.cbCompleted);
             this.Controls.Add(this.lvHsnCode);
             this.Controls.Add(this.lvGroup);
             this.Controls.Add(this.lvBrand);
@@ -2135,5 +2148,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader30;
         private System.Windows.Forms.ColumnHeader columnHeader31;
         public System.Windows.Forms.Label lblHsnName;
+        private System.Windows.Forms.CheckBox cbCompleted;
     }
 }

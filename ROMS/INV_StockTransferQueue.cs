@@ -197,6 +197,7 @@ namespace ROMS
             //objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
             //objDataBind = null;
             //cmbStatus.SelectedValue = 0;
+            udfnDate();
             udfnList();
         }
         public void udfnDate()
@@ -210,7 +211,7 @@ namespace ROMS
                 {
                     DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpTransferToDate.MinDate = varDate;
-                    dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE"]);
+                    dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
                 }
                 objspservice.CloseConnection();
                 dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;

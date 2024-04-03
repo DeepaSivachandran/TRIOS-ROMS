@@ -1342,7 +1342,7 @@
             // 
             this.txtInvoiceamt.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvoiceamt.Location = new System.Drawing.Point(686, 56);
-            this.txtInvoiceamt.MaxLength = 8;
+            this.txtInvoiceamt.MaxLength = 10;
             this.txtInvoiceamt.Name = "txtInvoiceamt";
             this.txtInvoiceamt.Size = new System.Drawing.Size(110, 27);
             this.txtInvoiceamt.TabIndex = 6;

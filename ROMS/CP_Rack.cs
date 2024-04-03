@@ -20,6 +20,7 @@ namespace ROMS
         private ToolTip tpDescription = new ToolTip();
         public int varRackcode=0;
         public int varstatus;
+        public int varSaveFlag = 0;
         public string PbRackName = "";
         public string PbShortName = "";
         public string PbLocationName = "";
@@ -148,6 +149,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
+                varSaveFlag = 0;
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "Rack Creation";
@@ -201,6 +203,7 @@ namespace ROMS
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
+                        varSaveFlag = 1;
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         /*modified by deepa on 15-09-2023*/
                         if (varFormFlag == 1)
