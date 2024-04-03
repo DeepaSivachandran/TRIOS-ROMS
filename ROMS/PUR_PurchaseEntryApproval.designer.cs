@@ -2582,6 +2582,7 @@
             this.clmMRPError.Name = "clmMRPError";
             this.clmMRPError.ReadOnly = true;
             this.clmMRPError.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmMRPError.Visible = false;
             // 
             // clmexpirydate
             // 
@@ -2599,6 +2600,7 @@
             this.clmExpiryDateError.Name = "clmExpiryDateError";
             this.clmExpiryDateError.ReadOnly = true;
             this.clmExpiryDateError.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmExpiryDateError.Visible = false;
             // 
             // clmShelflife
             // 
@@ -2640,6 +2642,7 @@
             this.clmBatchError.Name = "clmBatchError";
             this.clmBatchError.ReadOnly = true;
             this.clmBatchError.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmBatchError.Visible = false;
             // 
             // clmLocation
             // 
@@ -3223,6 +3226,7 @@
             this.clmInvoiceError.Name = "clmInvoiceError";
             this.clmInvoiceError.ReadOnly = true;
             this.clmInvoiceError.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmInvoiceError.Visible = false;
             // 
             // clmReceivedErr
             // 
@@ -3230,6 +3234,7 @@
             this.clmReceivedErr.Name = "clmReceivedErr";
             this.clmReceivedErr.ReadOnly = true;
             this.clmReceivedErr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmReceivedErr.Visible = false;
             // 
             // clmPurchaseRateErr
             // 
@@ -3237,6 +3242,7 @@
             this.clmPurchaseRateErr.Name = "clmPurchaseRateErr";
             this.clmPurchaseRateErr.ReadOnly = true;
             this.clmPurchaseRateErr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPurchaseRateErr.Visible = false;
             // 
             // clmDiscountErr
             // 
@@ -3244,6 +3250,7 @@
             this.clmDiscountErr.Name = "clmDiscountErr";
             this.clmDiscountErr.ReadOnly = true;
             this.clmDiscountErr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmDiscountErr.Visible = false;
             // 
             // clmDisPerErr
             // 
@@ -3251,6 +3258,7 @@
             this.clmDisPerErr.Name = "clmDisPerErr";
             this.clmDisPerErr.ReadOnly = true;
             this.clmDisPerErr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmDisPerErr.Visible = false;
             // 
             // clmFreeQtyErr
             // 
@@ -3258,6 +3266,7 @@
             this.clmFreeQtyErr.Name = "clmFreeQtyErr";
             this.clmFreeQtyErr.ReadOnly = true;
             this.clmFreeQtyErr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmFreeQtyErr.Visible = false;
             // 
             // PUR_PurchaseEntryApproval
             // 
