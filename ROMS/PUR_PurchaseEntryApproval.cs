@@ -5741,6 +5741,7 @@ namespace ROMS
                                         { varDCID = varDCID + ',' + varDC[i]; }
                                     }
                                 }
+
                                 pbDCNo = varDCID;
                                 if (Convert.ToInt32(pbDCNo) == 0)
                                 { grdSupplierList.Rows.Clear(); }
