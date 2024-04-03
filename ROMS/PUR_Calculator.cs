@@ -28,6 +28,14 @@ namespace ROMS
         {
             try
             {
+                if ((char.IsNumber(e.KeyChar)) || e.KeyChar == (char)8 || e.KeyChar == (char)37 || e.KeyChar == (char)47 || e.KeyChar == (char)42 || e.KeyChar == (char)45 || e.KeyChar == (char)43 || e.KeyChar == (char)46)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -89,6 +97,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void Btn2_Click(object sender, EventArgs e)
@@ -101,6 +114,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
 
@@ -115,6 +133,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void Btn4_Click(object sender, EventArgs e)
@@ -127,6 +150,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
 
@@ -141,6 +169,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void Btn6_Click(object sender, EventArgs e)
@@ -153,6 +186,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
 
@@ -167,6 +205,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void Btn8_Click(object sender, EventArgs e)
@@ -179,6 +222,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
 
@@ -193,6 +241,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void Btn0_Click(object sender, EventArgs e)
@@ -205,6 +258,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
 
@@ -219,6 +277,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
@@ -231,6 +294,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
         public void udfnCompute()
@@ -281,6 +349,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void BtnPer_Click(object sender, EventArgs e)
@@ -295,6 +368,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void BtnDiv_Click(object sender, EventArgs e)
@@ -308,6 +386,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void BtnMul_Click(object sender, EventArgs e)
@@ -320,6 +403,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
 
@@ -340,6 +428,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
         private void BtnOK_Enter(object sender, EventArgs e)
@@ -406,6 +499,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
+            }
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -419,6 +517,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtValue.Focus();
+                txtValue.SelectionStart = txtValue.Text.Length;
             }
         }
         public void udfnCalculator(string Func)

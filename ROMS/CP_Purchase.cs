@@ -10488,6 +10488,18 @@ namespace ROMS
                             varDamage = objDs.Tables[7].Rows[0]["DAMAGE"].ToString();
                             varReturnDC = objDs.Tables[7].Rows[0]["RETURNDC"].ToString();
                         }
+                        if (objDs.Tables[10].Rows.Count > 0)
+                        {
+                            int count = Convert.ToInt32(objDs.Tables[10].Rows[0]["COUNT"].ToString());
+                            if (count > 0)
+                            {
+                                btnDC.Enabled = true;
+                            }
+                            else
+                            {
+                                btnDC.Enabled = false;
+                            }
+                        }
                     }
                 }
             }

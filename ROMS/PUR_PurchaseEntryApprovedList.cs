@@ -149,7 +149,8 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Invoice No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Remarks"].Width = 150;
                             grdPurchaseEntryApproval.Columns["Created By"].Width = 200;
-                            grdPurchaseEntryApproval.Columns["Approved By"].Width = 200;
+                            grdPurchaseEntryApproval.Columns["Approved By1"].Width = 200;
+                            grdPurchaseEntryApproval.Columns["Approved By2"].Width = 200;
                             grdPurchaseEntryApproval.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseEntryApproval.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

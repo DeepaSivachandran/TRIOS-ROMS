@@ -5191,6 +5191,7 @@ namespace ROMS
         {
             try
             {
+                bool blnErrorFlag = false;
                 btnSaveOrderType.Enabled = false;
                 SPDataService objspdservice = new SPDataService();
                 string result = "", varoriginator = "";
@@ -5204,21 +5205,37 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                if (btnSaveOrderType.Text == "Update")
+                if(cmbReturnType.SelectedValue==null)
                 {
-                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0,"",0,0);
-                }
-
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_Supplierlist.udfnList();
-                    cmbReturnPolicy.Focus();
+                    errCompany.SetError(cmbReturnType, "Please select return cycle");
+                    cmbReturnType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please select return cycle", cmbReturnType, 5000);
+                    blnErrorFlag = true;
                 }
                 else
                 {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbReturnType.BackColor = Color.White;
+                    errCompany.Clear();
+                }
+                if (blnErrorFlag == false)
+                {
+                    if (btnSaveOrderType.Text == "Update")
+                    {
+                        result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0);
+                    }
+
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objCP_Supplierlist.udfnList();
+                        cmbReturnPolicy.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
             catch (Exception ex)
@@ -5232,7 +5249,6 @@ namespace ROMS
                 btnSaveOrderType.Focus();
             }
         }
-
         private void Txtsalesmanmobile_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
