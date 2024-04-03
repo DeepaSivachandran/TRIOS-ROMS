@@ -4355,16 +4355,16 @@ namespace ROMS
                 //if (VarStatusId == 12 || VarStatusId == 0)
                 //{
                 int varDecimal = 0;
+                if (VarGridEdit == 1)
+                {
+                    varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
+                }
+                else
+                {
+                    varDecimal = Convert.ToInt32(lblUnitDecimal.Text);
+                }
                 if (qtyFlag == 1)
                 {
-                    if (VarGridEdit == 1)
-                    {
-                        varDecimal = Convert.ToInt32(grdsupplieradd.CurrentRow.Cells["clmUT_Decimal"].Value);
-                    }
-                    else
-                    {
-                        varDecimal = Convert.ToInt32(lblUnitDecimal.Text);
-                    }
                     DataValidation objValidation = new DataValidation();
                     totalBulkqty = Convert.ToInt32(varBulkUnitQty);
                     totalOrderQty = Convert.ToDecimal(varUPP * totalBulkqty);
@@ -4387,7 +4387,7 @@ namespace ROMS
                         varFinalUnit = totalUnitqty;
                         varFinalBulkUnit = 0;
                         varFinalTotalQty = totalOrderQty;
-                        varFinalTotalKg = totalKgQty;
+                        varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
                     }
                     else
                     {
@@ -4400,12 +4400,20 @@ namespace ROMS
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = 0;
                             varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = totalKgQty;
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
                         }
                         else
                         {
                             totalUnitqty = Convert.ToDecimal(varUnitQty);
-                            if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                            if (VarGridEdit == 1)
+                            {
+                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                                {
+                                    totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
+                                    totalUnitqty = totalUnitqty % varUPP;
+                                }
+                            }
+                            else
                             {
                                 totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
                                 totalUnitqty = totalUnitqty % varUPP;
@@ -4416,7 +4424,7 @@ namespace ROMS
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = totalKgQty;
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
                         }
                     }
                 }
@@ -4431,7 +4439,7 @@ namespace ROMS
                         varFinalUnit = totalUnitqty;
                         varFinalBulkUnit = 0;
                         varFinalTotalQty = totalOrderQty;
-                        varFinalTotalKg = totalKgQty;
+                        varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
                     }
                     else
                     {
@@ -4444,13 +4452,21 @@ namespace ROMS
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = 0;
                             varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = totalKgQty;
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
                         }
                         else if (varUPP > 0)
                         {
                             totalUnitqty = Convert.ToDecimal(varTotalQty);
                             totalOrderQty = totalUnitqty;
-                            if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                            if (VarGridEdit == 1)
+                            {
+                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                                {
+                                    totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
+                                    totalUnitqty = totalUnitqty % varUPP;
+                                }
+                            }
+                            else
                             {
                                 totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
                                 totalUnitqty = totalUnitqty % varUPP;
@@ -4460,7 +4476,7 @@ namespace ROMS
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = totalKgQty;
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
                         }
                         else
                         {
@@ -4472,7 +4488,7 @@ namespace ROMS
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = totalKgQty;
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
                         }
                     }
                     // }

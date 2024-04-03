@@ -15,7 +15,7 @@ namespace ROMS
         //------- Servic Class object declaration
         DataValidation objValidation = new DataValidation();
         public DataError objError = new DataError();
-        public int DeleteFlag = 0;
+        public static int PbDeleteFlag = 0;
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
@@ -1583,8 +1583,57 @@ namespace ROMS
                 MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
+                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
                 MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+                if(PbDeleteFlag==1)
+                {
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "", varoriginator = "";
+                    varoriginator = "Clear Transactions";
+                    varResult = objspservice.udfnDBClearTransaction(0, varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void ClearMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
+                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+                if (PbDeleteFlag == 1)
+                {
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "", varoriginator = "";
+                    varoriginator = "Clear Masters";
+                    varResult = objspservice.udfnDBClearMaster(0, varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             catch (Exception ex)
             {
