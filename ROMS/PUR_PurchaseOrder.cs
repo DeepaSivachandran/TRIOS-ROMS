@@ -5087,6 +5087,23 @@ namespace ROMS
                                 btnDC.Enabled = false;
                             }
                         }
+                        if (objDs.Tables[11].Rows.Count > 0)
+                        {
+                            string COUNTING = "";
+                            COUNTING = Convert.ToString(objDs.Tables[11].Rows[0]["COUNTING"].ToString());
+                            if(COUNTING=="1")
+                            {
+                                tsbEdit.Visible = true; 
+                            }
+                            else
+                            {
+                                tsbEdit.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            tsbEdit.Visible = false;
+                        }
                     }
                 }
             }
