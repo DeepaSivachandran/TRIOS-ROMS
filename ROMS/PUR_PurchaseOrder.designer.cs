@@ -72,6 +72,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPOList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
             this.LV_Supplier = new System.Windows.Forms.ListView();
@@ -239,7 +240,6 @@
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
@@ -269,7 +269,7 @@
             this.tsbEdit});
             this.tsPOList.Location = new System.Drawing.Point(0, 0);
             this.tsPOList.Name = "tsPOList";
-            this.tsPOList.Size = new System.Drawing.Size(1354, 27);
+            this.tsPOList.Size = new System.Drawing.Size(1354, 31);
             this.tsPOList.TabIndex = 35;
             this.tsPOList.Text = "Purchase Order";
             // 
@@ -280,8 +280,20 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(109, 24);
+            this.tspHeader.Size = new System.Drawing.Size(109, 28);
             this.tspHeader.Text = "Purchase Order";
+            // 
+            // tsbEdit
+            // 
+            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.add;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEdit.Size = new System.Drawing.Size(141, 28);
+            this.tsbEdit.Text = "&Return DC Pending";
             // 
             // pnlpurchaseorder
             // 
@@ -1934,6 +1946,7 @@
             this.grdsupplieradd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdsupplieradd.Size = new System.Drawing.Size(1325, 277);
             this.grdsupplieradd.TabIndex = 10;
+            this.grdsupplieradd.Visible = false;
             this.grdsupplieradd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grdsupplieradd_CellContentClick);
             this.grdsupplieradd.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grdsupplieradd_CellEndEdit);
             this.grdsupplieradd.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grdsupplieradd_CellLeave);
@@ -2296,18 +2309,6 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 70;
-            // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
-            this.tsbEdit.Text = "&Edit";
             // 
             // PUR_PurchaseOrder
             // 
