@@ -832,7 +832,7 @@ namespace ROMS
                     }
                     else
                     {
-                        varStatus = "73";
+                        varStatus = "71";
                     }
                     if (cbExpiry.Checked == true)
                     {

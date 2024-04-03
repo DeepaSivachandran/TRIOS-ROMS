@@ -62,7 +62,7 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 MainForm.objCP_Purchase = new CP_Purchase();
-                MainForm.objCP_Purchase.btnSave.Text = "Update as Draft"; 
+                MainForm.objCP_Purchase.btnSave.Text = "Save as Draft"; 
                 MainForm.objCP_Purchase.PbSTS = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["STSID"].Value.ToString()); 
                 MainForm.objCP_Purchase.PbApprovalStsid = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString()); 
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString()); 
