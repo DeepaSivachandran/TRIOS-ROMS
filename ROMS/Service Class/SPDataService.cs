@@ -3038,7 +3038,78 @@ namespace ROMS
             }
             return ds;
         }
-         
+        //Added by Sivabhaarthi on 02/04/2024 --Purchase entry approval 
+        public string udfnSetPurchaseEntryApproval(TRN_PurchaseEntryApproval objTRN_PurchaseEntryApproval)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Purchase_Entry_Approval]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_PurchaseEntryApproval.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_PurchaseEntryApproval.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_PurchaseEntryApproval.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseId", objTRN_PurchaseEntryApproval.paraPurchaseId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_PurchaseEntryApproval.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_PurchaseEntryApproval.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_PurchaseEntryApproval.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseDate", objTRN_PurchaseEntryApproval.paraPurchaseDate);
+                varSqlCommand.Parameters.AddWithValue("@paraINVDate", objTRN_PurchaseEntryApproval.paraINVDate);
+                varSqlCommand.Parameters.AddWithValue("@paraBrokerID", objTRN_PurchaseEntryApproval.paraBrokerID);
+                varSqlCommand.Parameters.AddWithValue("@paraINVNo", objTRN_PurchaseEntryApproval.paraINVNo);
+                varSqlCommand.Parameters.AddWithValue("@ParaInvAmt", objTRN_PurchaseEntryApproval.ParaInvAmt);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_PurchaseEntryApproval.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@ParaPurchaseDC", objTRN_PurchaseEntryApproval.ParaPurchaseDC);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRN_PurchaseEntryApproval.paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_PurchaseEntryApproval.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaEditFlag", objTRN_PurchaseEntryApproval.ParaEditFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRN_PurchaseEntryApproval.paraQrimg);
+                varSqlCommand.Parameters.AddWithValue("@paraEntryType", objTRN_PurchaseEntryApproval.paraEntryType);
+                varSqlCommand.Parameters.AddWithValue("@paraGSTIN", objTRN_PurchaseEntryApproval.paraGSTIN);
+                varSqlCommand.Parameters.AddWithValue("@paraTransactionType", objTRN_PurchaseEntryApproval.paraTransactionType);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseType", objTRN_PurchaseEntryApproval.paraPurchaseType);
+                varSqlCommand.Parameters.AddWithValue("@paraPaymentType", objTRN_PurchaseEntryApproval.paraPaymentType);
+                varSqlCommand.Parameters.AddWithValue("@paraRateCalculation", objTRN_PurchaseEntryApproval.paraRateCalculation);
+                varSqlCommand.Parameters.AddWithValue("@paraDiscCalculation", objTRN_PurchaseEntryApproval.paraDiscCalculation);
+                varSqlCommand.Parameters.AddWithValue("@paraEinvoice", objTRN_PurchaseEntryApproval.paraEinvoice);
+                varSqlCommand.Parameters.AddWithValue("@paraLoadingCharges", objTRN_PurchaseEntryApproval.paraLoadingCharges);
+                varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                varSqlCommand.Parameters.AddWithValue("@paraCourierCharges", objTRN_PurchaseEntryApproval.paraCourierCharges);
+                varSqlCommand.Parameters.AddWithValue("@paraOtherExpenses", objTRN_PurchaseEntryApproval.paraOtherExpenses);
+                varSqlCommand.Parameters.AddWithValue("@paraDiscPer", objTRN_PurchaseEntryApproval.paraDiscPer);
+                varSqlCommand.Parameters.AddWithValue("@paraDiscAmnt", objTRN_PurchaseEntryApproval.paraDiscAmnt);
+                varSqlCommand.Parameters.AddWithValue("@paraTcsAmnt", objTRN_PurchaseEntryApproval.paraTcsAmnt);
+                varSqlCommand.Parameters.AddWithValue("@paraDamageCost", objTRN_PurchaseEntryApproval.paraDamageCost);
+                varSqlCommand.Parameters.AddWithValue("@paraOtherDisc", objTRN_PurchaseEntryApproval.paraOtherDisc);
+                varSqlCommand.Parameters.AddWithValue("@paraSubTotal", objTRN_PurchaseEntryApproval.paraSubTotal);
+                varSqlCommand.Parameters.AddWithValue("@paraGSTAmnt", objTRN_PurchaseEntryApproval.paraGSTAmnt);
+                varSqlCommand.Parameters.AddWithValue("@paraRoundOff", objTRN_PurchaseEntryApproval.paraRoundOff);
+                varSqlCommand.Parameters.AddWithValue("@paraGrandTotal", objTRN_PurchaseEntryApproval.paraGrandTotal);
+                varSqlCommand.Parameters.AddWithValue("@paraLoadingChargesGRN", objTRN_PurchaseEntryApproval.paraLoadingChargesGRN);
+                varSqlCommand.Parameters.AddWithValue("@paraFrightGRN", objTRN_PurchaseEntryApproval.paraFrightGRN);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_PurchaseEntryApproval.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraSaveFlag", objTRN_PurchaseEntryApproval.paraSaveFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierType", objTRN_PurchaseEntryApproval.paraSupplierType);
+                varSqlCommand.Parameters.AddWithValue("@paraRefreshFlag", objTRN_PurchaseEntryApproval.paraRefreshFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Error", objTRN_PurchaseEntryApproval.ParaTRN_Purchase_Products_Error);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+
         public string udfnSetPurchaseEntry(TRN_PurchaseEntry objTRN_PurchaseEntry)
         {
             string result = "";

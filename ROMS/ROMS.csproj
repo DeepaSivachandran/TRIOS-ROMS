@@ -139,6 +139,7 @@
     <Compile Include="CP_ProductApprovalList.designer.cs">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
     <Compile Include="PUR_PurchaseEntryApproval.cs">
       <SubType>Form</SubType>
     </Compile>

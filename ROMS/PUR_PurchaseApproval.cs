@@ -220,14 +220,17 @@ namespace ROMS
                             break;
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { GrdGRNList.ClearSelection(); }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

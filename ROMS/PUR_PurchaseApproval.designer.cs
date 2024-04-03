@@ -631,10 +631,10 @@
             // lblRupee
             // 
             this.lblRupee.AutoSize = true;
-            this.lblRupee.Font = new System.Drawing.Font("Rupee Foradian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRupee.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRupee.Location = new System.Drawing.Point(1214, 558);
             this.lblRupee.Name = "lblRupee";
-            this.lblRupee.Size = new System.Drawing.Size(23, 28);
+            this.lblRupee.Size = new System.Drawing.Size(27, 29);
             this.lblRupee.TabIndex = 1111165;
             this.lblRupee.Text = "₹";
             // 
@@ -1517,6 +1517,7 @@
             this.btnSave.Text = "Approve";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // label32
             // 
