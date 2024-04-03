@@ -872,13 +872,6 @@
     <Compile Include="REPORT_Stock.designer.cs">
       <DependentUpon>REPORT_Stock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources\RPT_PUR_SupplierProductList.cs">
-      <DependentUpon>RPT_PUR_SupplierProductList.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Reports\RPT_PUR_SupplierScheduleProductDayWise.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2345,11 +2338,6 @@
     <None Include="Resources\clipboard.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
-    <Content Include="Resources\RPT_PUR_SupplierProductList.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="REPORT_Stock.resx">
       <DependentUpon>REPORT_Stock.cs</DependentUpon>
     </EmbeddedResource>
