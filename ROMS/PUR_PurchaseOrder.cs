@@ -254,6 +254,11 @@ namespace ROMS
                                 }
                                 udfnsupplierLoad();
                                 grdsupplieradd.Columns["clmStsname"].Visible = true;
+                                errPO.Clear();
+                                if(txtSupplier.Text.Trim() != "")
+                                {
+                                    txtSupplier.BackColor = SystemColors.Control;
+                                }
                             }
 
                             udfnIssuedDEtails();
@@ -524,7 +529,6 @@ namespace ROMS
                         {
                             this.Close();
                         }
-
                     }
                 }
             }
@@ -911,9 +915,8 @@ namespace ROMS
                                                         }
                                                     }
                                                 }
-
+                                                this.ActiveControl = txtProductName;
                                             }
-                                            this.ActiveControl = txtProductName;
                                         }
                                     }
                                     else
@@ -3800,8 +3803,6 @@ namespace ROMS
                                             cell3.Style.BackColor = Color.PaleGreen;
                                             cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color}
                                         }
-
-
                                     }
                                     // }
                                     break;
