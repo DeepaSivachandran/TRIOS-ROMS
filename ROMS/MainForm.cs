@@ -15,8 +15,9 @@ namespace ROMS
         //------- Servic Class object declaration
         DataValidation objValidation = new DataValidation();
         public DataError objError = new DataError();
-        public static int PbDeleteFlag = 0;
         //------- Variable Declaration
+        public static int PbDeleteFlag = 0;
+        public static string PbCurrentForm = "0";
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
         public static string pbVersion = "1.0.1";
@@ -557,6 +558,7 @@ namespace ROMS
                 MainForm.objCP_ChangePassword = new CP_ChangePassword();
                 MainForm.objCP_ChangePassword.MdiParent = this;
                 MainForm.objCP_ChangePassword.Show();
+                PbCurrentForm = "8.1";
             }
             catch (Exception ex)
             {
@@ -574,6 +576,7 @@ namespace ROMS
                 MainForm.objCP_BrandList = new CP_BrandList();
                 MainForm.objCP_BrandList.MdiParent = this;
                 MainForm.objCP_BrandList.Show();
+                PbCurrentForm = "5.6";
             }
             catch (Exception ex)
             {
@@ -591,6 +594,7 @@ namespace ROMS
                 MainForm.objCP_Companylist = new CP_Companylist();
                 MainForm.objCP_Companylist.MdiParent = this;
                 MainForm.objCP_Companylist.Show();
+                PbCurrentForm = "5.2";
             }
             catch (Exception ex)
             {
@@ -608,6 +612,7 @@ namespace ROMS
                 MainForm.objCP_Supplierlist = new CP_Supplierlist();
                 MainForm.objCP_Supplierlist.MdiParent = this;
                 MainForm.objCP_Supplierlist.Show();
+                PbCurrentForm = "5.16";
             }
             catch (Exception ex)
             {
@@ -625,6 +630,7 @@ namespace ROMS
                 MainForm.objCP_Unitlist = new CP_Unitlist();
                 MainForm.objCP_Unitlist.MdiParent = this;
                 MainForm.objCP_Unitlist.Show();
+                PbCurrentForm = "5.7";
             }
             catch (Exception ex)
             {
@@ -642,6 +648,7 @@ namespace ROMS
                 MainForm.objCP_Citylist = new CP_Citylist();
                 MainForm.objCP_Citylist.MdiParent = this;
                 MainForm.objCP_Citylist.Show();
+                PbCurrentForm = "5.1";
             }
             catch (Exception ex)
             {
@@ -659,6 +666,7 @@ namespace ROMS
                 MainForm.objCP_GroupList = new CP_GroupList();
                 MainForm.objCP_GroupList.MdiParent = this;
                 MainForm.objCP_GroupList.Show();
+                PbCurrentForm = "5.4";
             }
             catch (Exception ex)
             {
@@ -676,6 +684,7 @@ namespace ROMS
                 MainForm.objCP_SubGroupList = new CP_SubGroupList();
                 MainForm.objCP_SubGroupList.MdiParent = this;
                 MainForm.objCP_SubGroupList.Show();
+                PbCurrentForm = "5.5";
             }
             catch (Exception ex)
             {
@@ -693,6 +702,7 @@ namespace ROMS
                 MainForm.objCP_Userlist = new CP_UserList();
                 MainForm.objCP_Userlist.MdiParent = this;
                 MainForm.objCP_Userlist.Show();
+                PbCurrentForm = "5.15";
             }
             catch (Exception ex)
             {
@@ -710,6 +720,7 @@ namespace ROMS
                 MainForm.objCP_LocationList = new CP_LocationList();
                 MainForm.objCP_LocationList.MdiParent = this;
                 MainForm.objCP_LocationList.Show();
+                PbCurrentForm = "5.8";
             }
             catch (Exception ex)
             {
@@ -729,6 +740,7 @@ namespace ROMS
                 MainForm.objCP_PurchaseList = new CP_PurchaseList();
                 MainForm.objCP_PurchaseList.MdiParent = this;
                 MainForm.objCP_PurchaseList.Show();
+                PbCurrentForm = "2.1";
             }
             catch (Exception ex)
             {
@@ -747,6 +759,7 @@ namespace ROMS
                 MainForm.objPUR_PurchaseOrderList = new PUR_PurchaseOrderList();
                 MainForm.objPUR_PurchaseOrderList.MdiParent = this;
                 MainForm.objPUR_PurchaseOrderList.Show();
+                PbCurrentForm = "1.2";
             }
             catch (Exception ex)
             {
@@ -782,6 +795,7 @@ namespace ROMS
                 MainForm.objCP_RackSettings = new CP_RackSettings();
                 MainForm.objCP_RackSettings.MdiParent = this;
                 MainForm.objCP_RackSettings.Show();
+                PbCurrentForm = "3.1";
             }
             catch (Exception ex)
             {
@@ -799,6 +813,7 @@ namespace ROMS
                 MainForm.objCP_Itemlist = new CP_ProductList();
                 MainForm.objCP_Itemlist.MdiParent = this;
                 MainForm.objCP_Itemlist.Show();
+                PbCurrentForm = "5.11";
             }
             catch (Exception ex)
             {
@@ -822,6 +837,7 @@ namespace ROMS
                 MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
                 MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
                 MainForm.objPUR_PurchaseApprovalList.Show();
+                PbCurrentForm = "2.3";
             }
             catch (Exception ex)
             {
@@ -840,6 +856,7 @@ namespace ROMS
                 MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
                 MainForm.objPUR_SupplierScheduleList.MdiParent = this;
                 MainForm.objPUR_SupplierScheduleList.Show();
+                PbCurrentForm ="1.1";
             }
             catch (Exception ex)
             {
@@ -858,6 +875,7 @@ namespace ROMS
                 MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
                 MainForm.objPUR_GRNDetailsList.MdiParent = this;
                 MainForm.objPUR_GRNDetailsList.Show();
+                PbCurrentForm = "1.3";
             }
             catch (Exception ex)
             {
@@ -875,6 +893,7 @@ namespace ROMS
                 MainForm.objCP_RackList = new CP_RackList();
                 MainForm.objCP_RackList.MdiParent = this;
                 MainForm.objCP_RackList.Show();
+                PbCurrentForm = "5.9";
             }
             catch (Exception ex)
             {
@@ -892,6 +911,7 @@ namespace ROMS
                 MainForm.objCP_RackGroupList = new CP_RackGroupList();
                 MainForm.objCP_RackGroupList.MdiParent = this;
                 MainForm.objCP_RackGroupList.Show();
+                PbCurrentForm = "5.10";
             }
             catch (Exception ex)
             {
@@ -927,6 +947,7 @@ namespace ROMS
                 MainForm.objINV_StockTransferList = new INV_StockTransferList();
                 MainForm.objINV_StockTransferList.MdiParent = this;
                 MainForm.objINV_StockTransferList.Show();
+                PbCurrentForm = "3.6";
             }
             catch (Exception ex)
             {
@@ -945,6 +966,7 @@ namespace ROMS
                 MainForm.objINV_GodownOutwardList = new INV_GodownOutwardList();
                 MainForm.objINV_GodownOutwardList.MdiParent = this;
                 MainForm.objINV_GodownOutwardList.Show();
+                PbCurrentForm = "3.5";
             }
             catch (Exception ex)
             {
@@ -963,6 +985,7 @@ namespace ROMS
                 MainForm.objINV_StockRequestList = new INV_StockRequestList();
                 MainForm.objINV_StockRequestList.MdiParent = this;
                 MainForm.objINV_StockRequestList.Show();
+                PbCurrentForm = "3.4";
             }
             catch (Exception ex)
             {
@@ -980,6 +1003,7 @@ namespace ROMS
                 MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
                 MainForm.objCP_GeneralSettings.MdiParent = this;
                 MainForm.objCP_GeneralSettings.Show();
+                PbCurrentForm = "6.2";
             }
             catch (Exception ex)
             {
@@ -997,6 +1021,7 @@ namespace ROMS
                 MainForm.objCP_CP_BrokerList = new CP_BrokerList();
                 MainForm.objCP_CP_BrokerList.MdiParent = this;
                 MainForm.objCP_CP_BrokerList.Show();
+                PbCurrentForm = "5.17";
             }
             catch (Exception ex)
             {
@@ -1014,6 +1039,7 @@ namespace ROMS
                 MainForm.objCP_ProductHSNlist = new CP_ProductHSNList();
                 MainForm.objCP_ProductHSNlist.MdiParent = this;
                 MainForm.objCP_ProductHSNlist.Show();
+                PbCurrentForm = "5.3";
             }
             catch (Exception ex)
             {
@@ -1033,6 +1059,7 @@ namespace ROMS
                 MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
                 MainForm.objINV_SalesInvoiceList.MdiParent = this;
                 MainForm.objINV_SalesInvoiceList.Show();
+                PbCurrentForm = "2.2";
             }
             catch (Exception ex)
             {
@@ -1050,6 +1077,7 @@ namespace ROMS
                 MainForm.objPAY_SupplierPaymentList = new PAY_SupplierPaymentList();
                 MainForm.objPAY_SupplierPaymentList.MdiParent = this;
                 MainForm.objPAY_SupplierPaymentList.Show();
+                PbCurrentForm = "4.1";
             }
             catch (Exception ex)
             {
@@ -1067,6 +1095,7 @@ namespace ROMS
                 MainForm.objCP_UserCategoryList = new CP_UserCategoryList();
                 MainForm.objCP_UserCategoryList.MdiParent = this;
                 MainForm.objCP_UserCategoryList.Show();
+                PbCurrentForm = "5.13";
             }
             catch (Exception ex)
             {
@@ -1103,6 +1132,7 @@ namespace ROMS
                 MainForm.objINV_DamageEntryList = new INV_DamageEntryList();
                 MainForm.objINV_DamageEntryList.MdiParent = this;
                 MainForm.objINV_DamageEntryList.Show();
+                PbCurrentForm = "3.7";
             }
             catch (Exception ex)
             {
@@ -1121,6 +1151,7 @@ namespace ROMS
                 MainForm.objINV_Inwardlist = new INV_Inwardlist();
                 MainForm.objINV_Inwardlist.MdiParent = this;
                 MainForm.objINV_Inwardlist.Show();
+                PbCurrentForm = "3.2.2";
             }
             catch (Exception ex)
             {
@@ -1139,6 +1170,7 @@ namespace ROMS
                 MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
                 MainForm.objINV_InwardPurchaseList.MdiParent = this;
                 MainForm.objINV_InwardPurchaseList.Show();
+                PbCurrentForm = "3.2.1";
             }
             catch (Exception ex)
             {
@@ -1157,6 +1189,7 @@ namespace ROMS
                 MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
                 MainForm.objPUR_GRNApprovalList.MdiParent = this;
                 MainForm.objPUR_GRNApprovalList.Show();
+                PbCurrentForm = "1.5";
             }
             catch (Exception ex)
             {
@@ -1175,6 +1208,7 @@ namespace ROMS
                 MainForm.objPUR_PurchaseDCList = new PUR_PurchaseDCList();
                 MainForm.objPUR_PurchaseDCList.MdiParent = this;
                 MainForm.objPUR_PurchaseDCList.Show();
+                PbCurrentForm = "1.4";
             }
             catch (Exception ex)
             {
@@ -1192,6 +1226,7 @@ namespace ROMS
                 MainForm.objCP_Settings = new CP_Settings();
                 MainForm.objCP_Settings.MdiParent = this;
                 MainForm.objCP_Settings.Show();
+                PbCurrentForm = "6.1";
             }
             catch (Exception ex)
             {
@@ -1209,6 +1244,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
             }
             catch (Exception ex)
             {
@@ -1226,6 +1262,7 @@ namespace ROMS
                 MainForm.objPAY_ChequePrint = new PAY_ChequePrint();
                 MainForm.objPAY_ChequePrint.MdiParent = this;
                 MainForm.objPAY_ChequePrint.Show();
+                PbCurrentForm = "4.2";
             }
             catch (Exception ex)
             {
@@ -1244,6 +1281,7 @@ namespace ROMS
                 MainForm.objINV_StockHold = new INV_StockHold();
                 MainForm.objINV_StockHold.MdiParent = this;
                 MainForm.objINV_StockHold.Show();
+                PbCurrentForm = "3.3";
             }
             catch (Exception ex)
             {
@@ -1262,6 +1300,7 @@ namespace ROMS
                 MainForm.objINV_StockConversionList = new INV_StockConversionList();
                 MainForm.objINV_StockConversionList.MdiParent = this;
                 MainForm.objINV_StockConversionList.Show();
+                PbCurrentForm = "3.8";
             }
             catch (Exception ex)
             {
@@ -1279,6 +1318,7 @@ namespace ROMS
                 MainForm.objPAY_DebitNoteList = new PAY_DebitNoteList();
                 MainForm.objPAY_DebitNoteList.MdiParent = this;
                 MainForm.objPAY_DebitNoteList.Show();
+                PbCurrentForm = "4.3";
             }
             catch (Exception ex)
             {
@@ -1296,6 +1336,7 @@ namespace ROMS
                 MainForm.objCP_RepresentativeList = new CP_RepresentativeList();
                 MainForm.objCP_RepresentativeList.MdiParent = this;
                 MainForm.objCP_RepresentativeList.Show();
+                PbCurrentForm = "5.19";
             }
             catch (Exception ex)
             {
@@ -1313,6 +1354,7 @@ namespace ROMS
                 MainForm.objCP_EmployeeList = new CP_EmployeeList();
                 MainForm.objCP_EmployeeList.MdiParent = this;
                 MainForm.objCP_EmployeeList.Show();
+                PbCurrentForm = "5.14";
             }
             catch (Exception ex)
             {
@@ -1330,6 +1372,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_City = new REPORT_CP_City();
                 MainForm.objREPORT_CP_City.MdiParent = this;
                 MainForm.objREPORT_CP_City.Show();
+                PbCurrentForm = "7.1.1";
             }
             catch (Exception ex)
             {
@@ -1347,6 +1390,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_State = new REPORT_CP_State();
                 MainForm.objREPORT_CP_State.MdiParent = this;
                 MainForm.objREPORT_CP_State.Show();
+                PbCurrentForm = "7.1.2";
             }
             catch (Exception ex)
             {
@@ -1364,6 +1408,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Company = new REPORT_CP_Company();
                 MainForm.objREPORT_CP_Company.MdiParent = this;
                 MainForm.objREPORT_CP_Company.Show();
+                PbCurrentForm = "7.1.3";
             }
             catch (Exception ex)
             {
@@ -1381,6 +1426,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_HSN = new REPORT_CP_HSN();
                 MainForm.objREPORT_CP_HSN.MdiParent = this;
                 MainForm.objREPORT_CP_HSN.Show();
+                PbCurrentForm = "7.1.4";
             }
             catch (Exception ex)
             {
@@ -1398,6 +1444,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Product_Group = new REPORT_CP_Product_Group();
                 MainForm.objREPORT_CP_Product_Group.MdiParent = this;
                 MainForm.objREPORT_CP_Product_Group.Show();
+                PbCurrentForm = "7.1.5";
             }
             catch (Exception ex)
             {
@@ -1415,6 +1462,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Broker = new REPORT_CP_Broker();
                 MainForm.objREPORT_CP_Broker.MdiParent = this;
                 MainForm.objREPORT_CP_Broker.Show();
+                PbCurrentForm = "7.1.6";
             }
             catch (Exception ex)
             {
@@ -1432,6 +1480,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Brand = new REPORT_CP_Brand();
                 MainForm.objREPORT_CP_Brand.MdiParent = this;
                 MainForm.objREPORT_CP_Brand.Show();
+                PbCurrentForm = "7.1.7";
             }
             catch (Exception ex)
             {
@@ -1449,6 +1498,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Product_Subgroup = new REPORT_CP_Product_Subgroup();
                 MainForm.objREPORT_CP_Product_Subgroup.MdiParent = this;
                 MainForm.objREPORT_CP_Product_Subgroup.Show();
+                PbCurrentForm = "7.1.8";
             }
             catch (Exception ex)
             {
@@ -1466,6 +1516,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_StockLocation = new REPORT_CP_StockLocation();
                 MainForm.objREPORT_CP_StockLocation.MdiParent = this;
                 MainForm.objREPORT_CP_StockLocation.Show();
+                PbCurrentForm = "7.1.9";
             }
             catch (Exception ex)
             {
@@ -1483,6 +1534,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Rack = new REPORT_CP_Rack();
                 MainForm.objREPORT_CP_Rack.MdiParent = this;
                 MainForm.objREPORT_CP_Rack.Show();
+                PbCurrentForm = "7.1.10";
             }
             catch (Exception ex)
             {
@@ -1500,6 +1552,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Rackgroup = new REPORT_CP_Rackgroup();
                 MainForm.objREPORT_CP_Rackgroup.MdiParent = this;
                 MainForm.objREPORT_CP_Rackgroup.Show();
+                PbCurrentForm = "7.1.11";
             }
             catch (Exception ex)
             {
@@ -1517,6 +1570,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Supplier = new REPORT_CP_Supplier();
                 MainForm.objREPORT_CP_Supplier.MdiParent = this;
                 MainForm.objREPORT_CP_Supplier.Show();
+                PbCurrentForm = "7.1.12";
             }
             catch (Exception ex)
             {
@@ -1534,6 +1588,7 @@ namespace ROMS
                 MainForm.objREPORT_PUR_PurchaseOrder = new REPORT_PUR_PurchaseOrder();
                 MainForm.objREPORT_PUR_PurchaseOrder.MdiParent = this;
                 MainForm.objREPORT_PUR_PurchaseOrder.Show();
+                PbCurrentForm = "7.3.1";
             }
             catch (Exception ex)
             {
@@ -1551,6 +1606,7 @@ namespace ROMS
                 MainForm.objCP_ProductApprovalList = new CP_ProductApprovalList();
                 MainForm.objCP_ProductApprovalList.MdiParent = this;
                 MainForm.objCP_ProductApprovalList.Show();
+                PbCurrentForm = "5.12";
             }
             catch (Exception ex)
             {
@@ -1568,6 +1624,7 @@ namespace ROMS
                 MainForm.objREPORT_PUR_Purchaseorder_Summary = new REPORT_PUR_Purchaseorder_Summary();
                 MainForm.objREPORT_PUR_Purchaseorder_Summary.MdiParent = this;
                 MainForm.objREPORT_PUR_Purchaseorder_Summary.Show();
+                PbCurrentForm = "7.3.2";
             }
             catch (Exception ex)
             {
@@ -1587,6 +1644,7 @@ namespace ROMS
                 MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
                 if(PbDeleteFlag==1)
                 {
+                    int Result = 0;
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varoriginator = "";
                     varoriginator = "Clear Transactions";
@@ -1595,10 +1653,247 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Result = 1;
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Result = 0;
+                    }
+                    if(Result==1)
+                    {
+                        if(PbCurrentForm == "1.1")
+                        {
+                            MainForm.objPUR_SupplierScheduleList.udfnList();
+                        }
+                        if(PbCurrentForm == "1.2")
+                        {
+                            MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
+                        }
+                        if (PbCurrentForm == "1.3")
+                        {
+                            MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                        }
+                        if (PbCurrentForm == "1.4")
+                        {
+                            MainForm.objPUR_PurchaseDCList.udfnList();
+                        }
+                        if (PbCurrentForm == "1.5")
+                        {
+                            MainForm.objPUR_PurchaseApprovalList.udfnList();
+                        }
+                        if (PbCurrentForm == "2.1")
+                        {
+                            MainForm.objCP_PurchaseList.udfnListLoad();
+                        }
+                        if (PbCurrentForm == "2.2")
+                        {
+                            MainForm.objINV_SalesInvoiceList.udfnList();
+                        }
+                        if (PbCurrentForm == "2.3")
+                        {
+                            MainForm.objPUR_PurchaseApprovalList.udfnList();
+                        }
+                        if (PbCurrentForm == "3.1")
+                        {
+
+                        }
+                        if (PbCurrentForm == "3.2.1")
+                        {
+                            MainForm.objINV_InwardPurchaseList.udfnList();
+                        }
+                        if (PbCurrentForm == "3.2.2")
+                        {
+                            MainForm.objINV_Inwardlist.udfnList();
+                        }
+                        if (PbCurrentForm == "3.3")
+                        {
+                            MainForm.objINV_StockHold.udfnList();
+                        }
+                        if (PbCurrentForm == "3.4")
+                        {
+                            MainForm.objINV_StockRequestList.udfnList();
+                        }
+                        if (PbCurrentForm == "3.5")
+                        {
+                            MainForm.objINV_GodownOutwardList.udfnList();
+                        }
+                        if (PbCurrentForm == "3.6")
+                        {
+                            MainForm.objINV_StockTransferList.udfnList();
+                        }
+                        if (PbCurrentForm == "3.7")
+                        {
+                            MainForm.objINV_DamageEntryList.udfnTransList();
+                        }
+                        if (PbCurrentForm == "3.8")
+                        {
+                            MainForm.objINV_StockConversionList.udfnList();
+                        }
+                        if (PbCurrentForm == "4.1")
+                        {
+
+                        }
+                        if (PbCurrentForm == "4.2")
+                        {
+
+                        }
+                        if (PbCurrentForm == "4.3")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.1")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.2")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.3")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.4")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.5")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.6")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.7")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.8")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.9")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.10")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.11")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.12")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.13")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.14")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.15")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.16")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.17")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.18")
+                        {
+
+                        }
+                        if (PbCurrentForm == "5.19")
+                        {
+
+                        }
+                        if (PbCurrentForm == "6.1")
+                        {
+
+                        }
+                        if (PbCurrentForm == "6.2")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.1")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.2")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.3")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.4")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.5")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.6")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.7")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.8")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.9")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.10")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.11")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.12")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.1.13")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.2.1")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.3.1")
+                        {
+
+                        }
+                        if (PbCurrentForm == "7.3.2")
+                        {
+
+                        }
+                        if (PbCurrentForm == "8.1")
+                        {
+
+                        }
                     }
                 }
             }
@@ -1651,6 +1946,7 @@ namespace ROMS
                 MainForm.objREPORT_CP_Product = new REPORT_CP_Product();
                 MainForm.objREPORT_CP_Product.MdiParent = this;
                 MainForm.objREPORT_CP_Product.Show();
+                PbCurrentForm = "7.1.13";
             }
             catch (Exception ex)
             {
@@ -1668,6 +1964,7 @@ namespace ROMS
                 MainForm.objREPORT_Stock = new REPORT_Stock();
                 MainForm.objREPORT_Stock.MdiParent = this;
                 MainForm.objREPORT_Stock.Show();
+                PbCurrentForm = "7.2.1";
             }
             catch (Exception ex)
             {
