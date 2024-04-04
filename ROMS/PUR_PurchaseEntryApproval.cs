@@ -762,14 +762,8 @@ namespace ROMS
                         cmbEntryType.Enabled = false;
                         btnViewDataView.Enabled = false;
                         cmbTransactionType.Enabled = false;
-                        if (grdReurnDC.Visible == true)
-                        {
-                            grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                        }
-                        if (grdPODetails.Visible == true)
-                        {
-                            grdPODetails.Columns["clmRemovePO"].Visible = false;
-                        }
+                        grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                        grdPODetails.Columns["clmRemovePO"].Visible = false;
                         if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
                         {
                             MainForm.objPUR_GSTIN = new PUR_GSTIN();
@@ -1079,14 +1073,16 @@ namespace ROMS
                                 grdGRN.Visible = false;
                                 //  lblFinishedNoRecord.Visible = true;
                             }
-                            if (grdReurnDC.Visible == true)
-                            {
-                                grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                            }
-                            if (grdPODetails.Visible == true)
-                            {
-                                grdPODetails.Columns["clmRemovePO"].Visible = false;
-                            }
+                            grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                            grdPODetails.Columns["clmRemovePO"].Visible = false;
+                            //if (grdReurnDC.Visible == true)
+                            //{
+                            //    grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                            //}
+                            //if (grdPODetails.Visible == true)
+                            //{
+                            //    grdPODetails.Columns["clmRemovePO"].Visible = false;
+                            //}
                             if (objDs.Tables[8].Rows.Count != 0)
                             {
                                 varPurEditFlag = Convert.ToInt32(objDs.Tables[8].Rows[0]["Flag"]);

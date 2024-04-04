@@ -252,6 +252,8 @@ namespace ROMS
                             Convert.ToInt16(objDs.Tables[0].Rows[i]["InvFlag"]),Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]));
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
+                            grdSupplierList.Columns["clmPono"].Visible = false;
+                            ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                             grdSupplierList.Enabled = true;
@@ -345,6 +347,7 @@ namespace ROMS
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                             grdSupplierList.Columns["clmPono"].Visible = true;
+                            ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                         }
@@ -531,6 +534,7 @@ namespace ROMS
                                 grdSupplierList.Rows[i].Cells["clmLocation"].Style.BackColor = Color.LightGray;
                                 grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;
                             }
+                            ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
                         }
                         DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                         GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -801,20 +805,17 @@ namespace ROMS
                     {
                         udfnSupplierDetails();
                         cmbConcern.Enabled = false;
+                        btnClear.Enabled = false;
                         dpVoucherDate.Enabled = false;
                         txtSupplier.Enabled = false;
                         cmbEntryType.Enabled = false;
                         btnViewDataView.Enabled = false;
                         LV_Supplier.Visible = false;
                         cmbTransactionType.Enabled = false;
-                        if (grdReurnDC.Visible == true)
-                        {
-                            grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                        }
-                        if (grdPODetails.Visible == true)
-                        {
-                            grdPODetails.Columns["clmRemovePO"].Visible = false;
-                        }
+                        txtQRCode.ReadOnly = true;
+                        txtQRCode.Enabled = false;
+                        grdPODetails.Columns["clmRemovePO"].Visible = false;
+                        grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                         if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
                         {
                             MainForm.objPUR_GSTIN = new PUR_GSTIN();
@@ -944,7 +945,7 @@ namespace ROMS
                                 lblSubtotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_SubTotal"]);
                                 lblGstamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GSTAmnt"]);
                                 lblRoundoff.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_RoundOff"]);
-                                txtGrandtot.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GrandTotal"]);
+                                lblTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GrandTotal"]);
                                 lblGrandTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GrandTotal"]);
                                 txtLoadingchargeGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_LoadingChargesGRN"]);
                                 txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_UnloadingChargesGRN"]);
@@ -1181,14 +1182,10 @@ namespace ROMS
                                 grdGRN.Visible = false;
                                 //  lblFinishedNoRecord.Visible = true;
                             }
-                            if (grdReurnDC.Visible == true)
-                            {
-                                grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                            }
-                            if (grdPODetails.Visible == true)
-                            {
-                                grdPODetails.Columns["clmRemovePO"].Visible = false;
-                            }
+                           
+                            grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                            grdPODetails.Columns["clmRemovePO"].Visible = false;
+                            
                             if (objDs.Tables[6].Rows.Count != 0)
                             {
                                 lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED1"]);
@@ -1599,6 +1596,17 @@ namespace ROMS
                         //tbDetails.TabPages[0].Enabled = false; // First tab 
                         // tbDetails.TabPages[1].Enabled = true; // Second tab  
                         //udfnPurchaseEntryTabLoad(); //tab2 load
+                    }
+                }
+                if (pbPurchaseno != "0")
+                {
+                    if (grdReurnDC.Visible == true)
+                    {
+                        grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                    }
+                    if (grdPODetails.Visible == true)
+                    {
+                        grdPODetails.Columns["clmRemovePO"].Visible = false;
                     }
                 }
             }
@@ -5038,8 +5046,8 @@ namespace ROMS
             {
                 decimal lblGrandTot = 0, loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
                                     otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0,additionalValue=0,DiscountValue=0;
-                if (txtGrandtot.Text != "")
-                { lblGrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim()); }
+                if (lblTotal.Text != "")
+                { lblGrandTot = Convert.ToDecimal(lblTotal.Text.Trim()); }
                 if (txtLoadingchargeGrn.Text != "")
                 { loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text); }
                 if (txtFrightGrn.Text != "")
@@ -5068,8 +5076,8 @@ namespace ROMS
                 { gstamt = Convert.ToDecimal(lblGstamt.Text); }
                 if (lblRoundoff.Text != "")
                 { roundoff = Convert.ToDecimal(lblRoundoff.Text); }
-                if (txtGrandtot.Text != "")
-                { grandtotal = Convert.ToDecimal(txtGrandtot.Text); }
+                if (lblTotal.Text != "")
+                { grandtotal = Convert.ToDecimal(lblTotal.Text); }
 
                 lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense - tcsamt - discountamt - damagecost - otherdiscount;
                 lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
@@ -5250,8 +5258,8 @@ namespace ROMS
                                 shelfLifeError = 0;
                             }
                         }
-                        varGrandtotal = txtGrandtot.Text;
-                        if (txtGrandtot.Text == "")
+                        varGrandtotal = lblTotal.Text;
+                        if (lblTotal.Text == "")
                         {
                             varGrandtotal = "0";
                         }
@@ -5579,9 +5587,9 @@ namespace ROMS
                                         {
                                             roundoff = Convert.ToDecimal(lblRoundoff.Text.Trim());
                                         }
-                                        if (txtGrandtot.Text != "")
+                                        if (lblTotal.Text != "")
                                         {
-                                            grandtotal = Convert.ToDecimal(txtGrandtot.Text.Trim());
+                                            grandtotal = Convert.ToDecimal(lblTotal.Text.Trim());
                                         }
 
                                         objTRN_PurchaseEntry.paraLoadingCharges = loadcharge;
@@ -8440,7 +8448,7 @@ namespace ROMS
                 decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
                 if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
                 if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
-                if (txtGrandtot.Text.Trim() != "") { GrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim()); }
+                if (lblTotal.Text.Trim() != "") { GrandTot = Convert.ToDecimal(lblTotal.Text.Trim()); }
                 if (varDisper != 0)
                 {
                     varDisPercent = (GrandTot * varDisper) / 100;
@@ -8461,9 +8469,9 @@ namespace ROMS
                 decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
                 if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
                 if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
-                if (txtGrandtot.Text.Trim() != "")
+                if (lblTotal.Text.Trim() != "")
                 {
-                    GrandTot = Convert.ToDecimal(txtGrandtot.Text.Trim());
+                    GrandTot = Convert.ToDecimal(lblTotal.Text.Trim());
                 }
                 if (vardisamt != 0)
                 {
@@ -9155,16 +9163,16 @@ namespace ROMS
                 if (varSupplierType == 30) //GSTIN registered suppplier
                 {
                     lblGstamt.Text = varTaxTotal.ToString("0.00");
-                    txtGrandtot.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+                    lblTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
                 }
                 else
                 {
                     varTaxTotal = 0;
                     lblGstamt.Text = varTaxTotal.ToString("0.00");
-                    txtGrandtot.Text = Math.Round(varSubtotal).ToString("0.00");
+                    lblTotal.Text = Math.Round(varSubtotal).ToString("0.00");
                 }
                 lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("#,##0.00");
-                lblRoundoff.Text = Convert.ToString(Convert.ToDecimal(txtGrandtot.Text) - (varSubtotal + varTaxTotal));
+                lblRoundoff.Text = Convert.ToString(Convert.ToDecimal(lblTotal.Text) - (varSubtotal + varTaxTotal));
                 if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty")
                 {
                     lblTpro.Text = Convert.ToString(grdPurchaseList.RowCount) + " / " + Convert.ToString(varInvQty);
@@ -9248,7 +9256,6 @@ namespace ROMS
 
             }
         }
-
         private void BtnClear_Click(object sender, EventArgs e)
         {
             try
