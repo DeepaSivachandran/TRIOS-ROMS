@@ -4416,7 +4416,7 @@ namespace ROMS
             try
             {
                 txtPurRack.Text = "";
-                txtPurRack.Enabled = true;
+                //txtPurRack.Enabled = true;
                 lvPurLocation.Items.Clear();
                 if (txtPurLocation.Text.Length > 0)
                 {
@@ -5527,7 +5527,7 @@ namespace ROMS
                             txtWMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WMINSALE QTY"].ToString().Replace("''", "'"));
                             txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
                             txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
-                            cmbGst.SelectedValue = objDS.Tables[0].Rows[0]["GSTID"].ToString();
+                            cmbGst.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["GSTID"]);
                             lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
                             txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
                             txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));

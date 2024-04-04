@@ -190,7 +190,7 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 //cmbConcern.SelectedValue = 1;
-                udfnList();
+                //udfnList();
             }
             catch (Exception ex)
             {

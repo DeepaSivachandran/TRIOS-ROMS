@@ -1364,7 +1364,7 @@ namespace ROMS
                 if (txtSupplier.Text.Length > 0)
                 {
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 15;
+                    objMR_Supplier.ViewType = 30;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
