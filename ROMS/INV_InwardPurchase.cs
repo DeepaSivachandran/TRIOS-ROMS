@@ -451,12 +451,15 @@ namespace ROMS
                         {
                             if (Convert.ToInt32(varReceivedQty) <= 0)
                             {
-                                grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightPink;
+                                grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.LightPink;
+                                //grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.LightPink;
+                                InvalidQty = 1;
                                 varErrorFlag = false;
                             }
                             else
                             {
-                                grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.PaleGreen;
+                                //grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             }
                         }
                         varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
