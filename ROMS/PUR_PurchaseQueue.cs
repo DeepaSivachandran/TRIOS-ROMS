@@ -80,7 +80,7 @@ namespace ROMS
                 this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();
                 // cmbStatus.SelectedValue = 18; //pending
-                udfnList();
+                //udfnList();
             }
             catch (Exception ex)
             {
