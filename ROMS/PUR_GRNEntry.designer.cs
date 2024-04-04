@@ -860,7 +860,7 @@
             // 
             this.txtInvoiceno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvoiceno.Location = new System.Drawing.Point(266, 83);
-            this.txtInvoiceno.MaxLength = 20;
+            this.txtInvoiceno.MaxLength = 15;
             this.txtInvoiceno.Name = "txtInvoiceno";
             this.txtInvoiceno.Size = new System.Drawing.Size(105, 27);
             this.txtInvoiceno.TabIndex = 6;
