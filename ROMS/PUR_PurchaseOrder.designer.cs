@@ -269,7 +269,7 @@
             this.tsbEdit});
             this.tsPOList.Location = new System.Drawing.Point(0, 0);
             this.tsPOList.Name = "tsPOList";
-            this.tsPOList.Size = new System.Drawing.Size(1354, 25);
+            this.tsPOList.Size = new System.Drawing.Size(1354, 27);
             this.tsPOList.TabIndex = 35;
             this.tsPOList.Text = "Purchase Order";
             // 
@@ -280,19 +280,18 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(109, 22);
+            this.tspHeader.Size = new System.Drawing.Size(109, 24);
             this.tspHeader.Text = "Purchase Order";
             // 
             // tsbEdit
             // 
             this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.add;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.right_arrow;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(141, 28);
+            this.tsbEdit.Size = new System.Drawing.Size(133, 24);
             this.tsbEdit.Text = "&Return DC Pending";
             this.tsbEdit.Visible = false;
             // 
