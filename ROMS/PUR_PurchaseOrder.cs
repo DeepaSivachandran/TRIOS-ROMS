@@ -254,6 +254,11 @@ namespace ROMS
                                 }
                                 udfnsupplierLoad();
                                 grdsupplieradd.Columns["clmStsname"].Visible = true;
+                                errPO.Clear();
+                                if(txtSupplier.Text.Trim() != "")
+                                {
+                                    txtSupplier.BackColor = SystemColors.Control;
+                                }
                             }
 
                             udfnIssuedDEtails();
@@ -524,7 +529,6 @@ namespace ROMS
                         {
                             this.Close();
                         }
-
                     }
                 }
             }
@@ -911,9 +915,8 @@ namespace ROMS
                                                         }
                                                     }
                                                 }
-
+                                                this.ActiveControl = txtProductName;
                                             }
-                                            this.ActiveControl = txtProductName;
                                         }
                                     }
                                     else
@@ -3800,8 +3803,6 @@ namespace ROMS
                                             cell3.Style.BackColor = Color.PaleGreen;
                                             cell3.Style.ForeColor = Color.Black;// Set the background color to the default background color}
                                         }
-
-
                                     }
                                     // }
                                     break;
@@ -4274,12 +4275,12 @@ namespace ROMS
                 //grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value = varDecimalUnitOrderqty;
                 //grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value = varDecimalTotalOrderqty; 
 
-                int varUPP = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value) != "-") { varUPP = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value); }
-                decimal varNettWeight = 0; if (Convert.ToString(Convert.ToDouble(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value)) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value) != "-") { varNettWeight = Convert.ToDecimal(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value); }
-                decimal varBulkUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "-") { varBulkUnitQty = Convert.ToDecimal((Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value))); }
-                decimal varUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "-") { varUnitQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value), varDecimal)); }
-                decimal varTotalQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "-") { varTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value), varDecimal)); }
-                int varBulkUTID = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "-") { varBulkUTID = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value); }
+                int varUPP = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value) != "-") { varUPP = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["clmUPP"].Value); } else { varUPP = 0; }
+                decimal varNettWeight = 0; if (Convert.ToString(Convert.ToDouble(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value)) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value) != "-") { varNettWeight = Convert.ToDecimal(grdsupplieradd.Rows[e.RowIndex].Cells["clmNettWeight"].Value); } else { varNettWeight = 0; }
+                decimal varBulkUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value) != "-") { varBulkUnitQty = Convert.ToDecimal((Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmOrderqty"].Value))); } else { varBulkUnitQty = 0; }
+                decimal varUnitQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value) != "-") { varUnitQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmunitorderqty"].Value), varDecimal)); } else { varUnitQty = 0; }
+                decimal varTotalQty = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value) != "-") { varTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmordertotalqty"].Value), varDecimal)); } else { varTotalQty = 0; }
+                int varBulkUTID = 0; if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value) != "-") { varBulkUTID = Convert.ToInt32(grdsupplieradd.Rows[e.RowIndex].Cells["BulkUTID"].Value); } else { varBulkUTID = 0; }
 
                 if (grdsupplieradd.CurrentCell.OwningColumn.Name == "clmOrderqty")
                 {
@@ -4404,6 +4405,7 @@ namespace ROMS
                         }
                         else
                         {
+                            totalBulkqty = Convert.ToInt32(varBulkUnitQty);
                             totalUnitqty = Convert.ToDecimal(varUnitQty);
                             if (VarGridEdit == 1)
                             {
@@ -4415,8 +4417,11 @@ namespace ROMS
                             }
                             else
                             {
-                                totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
-                                totalUnitqty = totalUnitqty % varUPP;
+                                if (varUPP != 0)
+                                {
+                                    totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
+                                    totalUnitqty = totalUnitqty % varUPP;
+                                }
                             }
                             totalOrderQty = Convert.ToDecimal(varUnitQty);
                             totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
@@ -4468,8 +4473,11 @@ namespace ROMS
                             }
                             else
                             {
-                                totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
-                                totalUnitqty = totalUnitqty % varUPP;
+                                if (varUPP != 0)
+                                {
+                                    totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
+                                    totalUnitqty = totalUnitqty % varUPP;
+                                }
                             }
                             totalKgQty = varNettWeight * Convert.ToDecimal(totalOrderQty);
                             // Update the column value
