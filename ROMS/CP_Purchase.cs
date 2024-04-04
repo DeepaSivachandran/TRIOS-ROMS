@@ -859,6 +859,7 @@ namespace ROMS
                     varEditFlag = 1;
                     varRemarkFlag = 1;
                     udfnRemark();
+                    grdSupplierList.Rows.Clear();
                     MainForm.objPUR_PurchaseRemarksHistory.udfnRemarkList();
                     if (varRemarkCount == 0)
                     {
@@ -9782,7 +9783,6 @@ namespace ROMS
         }
         private void GrdSupplierList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-
             try
             {
                 DataGridView dataGridView = (DataGridView)sender;
