@@ -227,6 +227,8 @@ namespace ROMS
             {
                 DGV_SearchGrid.DataSource = null;
                 DGV_SearchGrid.DataSource = Deftable;
+                DGV_SearchGrid.Columns["PURID"].Visible = false;
+                DGV_SearchGrid.Columns["clmUnapproved"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Concern"].Width = 80;
                 DGV_SearchGrid.Columns["Voucher No."].Width = 100;

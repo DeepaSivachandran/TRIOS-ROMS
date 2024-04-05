@@ -384,7 +384,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void MainForm_Resize(object sender, EventArgs e)
         {
             try
@@ -397,7 +396,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ntfy_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -412,7 +410,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ntfy_Click(object sender, EventArgs e)
         {
             try
@@ -470,7 +467,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnClose() {
             try {
                 if (pbCloseForm == 0)
@@ -548,7 +544,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void tsmChangePassword_Click(object sender, EventArgs e)
         {
             try
@@ -566,7 +561,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmBrand_Click(object sender, EventArgs e)
         {
             try
@@ -584,7 +578,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmCompany_Click(object sender, EventArgs e)
         {
             try
@@ -602,7 +595,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmSuppliyer_Click(object sender, EventArgs e)
         {
             try
@@ -620,7 +612,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmUnit_Click(object sender, EventArgs e)
         {
             try
@@ -638,7 +629,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void StateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -656,7 +646,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmGroup_Click(object sender, EventArgs e)
         {
             try
@@ -674,7 +663,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmSubGroup_Click(object sender, EventArgs e)
         {
             try
@@ -692,7 +680,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmUser_Click(object sender, EventArgs e)
         {
             try
@@ -710,7 +697,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmLocation_Click(object sender, EventArgs e)
         {
             try
@@ -727,9 +713,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void Tsmpurchaseentry_Click(object sender, EventArgs e)
         {
             try
@@ -748,7 +732,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmPurchaseOrder_Click_1(object sender, EventArgs e)
         {
             try
@@ -766,9 +749,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            
         }
-
         private void TsmsupplierMapping_Click(object sender, EventArgs e)
         {
             try
@@ -785,7 +766,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmrackSettings_Click(object sender, EventArgs e)
         {
             try
@@ -803,7 +783,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Tsmitem_Click(object sender, EventArgs e)
         {
             try
@@ -821,12 +800,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Tsminward_Click(object sender, EventArgs e)
         {
           
         }
-
         private void TsmpurchaseApprove_Click(object sender, EventArgs e)
         {
             try
@@ -845,7 +822,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmpurchaseSupplier_Click(object sender, EventArgs e)
         {
             try
@@ -864,7 +840,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmGRN_Click(object sender, EventArgs e)
         {
             try
@@ -883,7 +858,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmRack_Click(object sender, EventArgs e)
         {
             try
@@ -901,7 +875,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmRackGroup_Click(object sender, EventArgs e)
         {
             try
@@ -919,7 +892,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Tsmbatchno_Click(object sender, EventArgs e)
         {
             try
@@ -936,7 +908,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmStockTransfer_Click(object sender, EventArgs e)
         {
             try
@@ -955,7 +926,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmOutward_Click(object sender, EventArgs e)
         {
             try
@@ -974,7 +944,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmStockRequest_Click(object sender, EventArgs e)
         {
             try
@@ -993,7 +962,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmgenralSettings_Click(object sender, EventArgs e)
         {
             try
@@ -1011,7 +979,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Tsmbroker_Click(object sender, EventArgs e)
         {
             try
@@ -1029,7 +996,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmHSN_Click(object sender, EventArgs e)
         {
             try
@@ -1047,8 +1013,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
- 
-
         private void TsmpurchaseReturn_Click(object sender, EventArgs e)
         {
             try
@@ -1066,8 +1030,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             } 
-    }
-
+        }
         private void SupplierPaymentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1085,7 +1048,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmuserCategory_Click(object sender, EventArgs e)
         {
             try
@@ -1103,7 +1065,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmSupplierOrder_Click(object sender, EventArgs e)
         {
             
@@ -1121,7 +1082,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DamageEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1140,7 +1100,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmfromOtherStockLocation_Click(object sender, EventArgs e)
         {
             try
@@ -1159,7 +1118,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmfromPurchase_Click(object sender, EventArgs e)
         {
             try
@@ -1178,7 +1136,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmGRNApproval_Click(object sender, EventArgs e)
         {
             try
@@ -1197,7 +1154,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmPurchaseDC_Click(object sender, EventArgs e)
         {
             try
@@ -1216,7 +1172,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmgeneralSettings_Click(object sender, EventArgs e)
         { 
             try
@@ -1234,7 +1189,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmBulkAttr_Click(object sender, EventArgs e)
         {
             try
@@ -1252,7 +1206,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsbDirectCheque_Click(object sender, EventArgs e)
         {
             try
@@ -1270,7 +1223,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmStockHold_Click(object sender, EventArgs e)
         {
             try
@@ -1289,7 +1241,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsbStockConversion_Click(object sender, EventArgs e)
         {
             try
@@ -1308,7 +1259,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsbDebitNote_Click(object sender, EventArgs e)
         {
             try
@@ -1326,7 +1276,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmRepresentative_Click(object sender, EventArgs e)
         {
             try
@@ -1344,7 +1293,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TsmEmployee_Click(object sender, EventArgs e)
         {
             try
@@ -1362,7 +1310,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1380,7 +1327,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void StateToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             try
@@ -1398,7 +1344,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CompanyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1416,7 +1361,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void HSNToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1434,7 +1378,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ProductGroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1452,7 +1395,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BrokerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1470,7 +1412,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BrandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1488,7 +1429,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ProductSubgroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1506,7 +1446,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void StockLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1524,7 +1463,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1542,7 +1480,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RackGroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1560,7 +1497,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void SupplierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1578,7 +1514,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ProductWiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1596,7 +1531,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ProductApprovalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1614,7 +1548,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void SummaryDetailToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1632,7 +1565,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ClearTransactionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1662,238 +1594,7 @@ namespace ROMS
                     }
                     if(Result==1)
                     {
-                        if(PbCurrentForm == "1.1")
-                        {
-                            MainForm.objPUR_SupplierScheduleList.udfnList();
-                        }
-                        if(PbCurrentForm == "1.2")
-                        {
-                            MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
-                        }
-                        if (PbCurrentForm == "1.3")
-                        {
-                            MainForm.objPUR_GRNDetailsList.udfnListLoad();
-                        }
-                        if (PbCurrentForm == "1.4")
-                        {
-                            MainForm.objPUR_PurchaseDCList.udfnList();
-                        }
-                        if (PbCurrentForm == "1.5")
-                        {
-                            MainForm.objPUR_PurchaseApprovalList.udfnList();
-                        }
-                        if (PbCurrentForm == "2.1")
-                        {
-                            MainForm.objCP_PurchaseList.udfnListLoad();
-                        }
-                        if (PbCurrentForm == "2.2")
-                        {
-                            MainForm.objINV_SalesInvoiceList.udfnList();
-                        }
-                        if (PbCurrentForm == "2.3")
-                        {
-                            MainForm.objPUR_PurchaseApprovalList.udfnList();
-                        }
-                        if (PbCurrentForm == "3.1")
-                        {
-
-                        }
-                        if (PbCurrentForm == "3.2.1")
-                        {
-                            MainForm.objINV_InwardPurchaseList.udfnList();
-                        }
-                        if (PbCurrentForm == "3.2.2")
-                        {
-                            MainForm.objINV_Inwardlist.udfnList();
-                        }
-                        if (PbCurrentForm == "3.3")
-                        {
-                            MainForm.objINV_StockHold.udfnList();
-                        }
-                        if (PbCurrentForm == "3.4")
-                        {
-                            MainForm.objINV_StockRequestList.udfnList();
-                        }
-                        if (PbCurrentForm == "3.5")
-                        {
-                            MainForm.objINV_GodownOutwardList.udfnList();
-                        }
-                        if (PbCurrentForm == "3.6")
-                        {
-                            MainForm.objINV_StockTransferList.udfnList();
-                        }
-                        if (PbCurrentForm == "3.7")
-                        {
-                            MainForm.objINV_DamageEntryList.udfnTransList();
-                        }
-                        if (PbCurrentForm == "3.8")
-                        {
-                            MainForm.objINV_StockConversionList.udfnList();
-                        }
-                        if (PbCurrentForm == "4.1")
-                        {
-
-                        }
-                        if (PbCurrentForm == "4.2")
-                        {
-
-                        }
-                        if (PbCurrentForm == "4.3")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.1")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.2")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.3")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.4")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.5")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.6")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.7")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.8")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.9")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.10")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.11")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.12")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.13")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.14")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.15")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.16")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.17")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.18")
-                        {
-
-                        }
-                        if (PbCurrentForm == "5.19")
-                        {
-
-                        }
-                        if (PbCurrentForm == "6.1")
-                        {
-
-                        }
-                        if (PbCurrentForm == "6.2")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.1")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.2")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.3")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.4")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.5")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.6")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.7")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.8")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.9")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.10")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.11")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.12")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.1.13")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.2.1")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.3.1")
-                        {
-
-                        }
-                        if (PbCurrentForm == "7.3.2")
-                        {
-
-                        }
-                        if (PbCurrentForm == "8.1")
-                        {
-
-                        }
+                        udfnFormLoad();
                     }
                 }
             }
@@ -1903,7 +1604,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void ClearMasterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1915,6 +1615,7 @@ namespace ROMS
                 MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
                 if (PbDeleteFlag == 1)
                 {
+                    int Result = 0;
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varoriginator = "";
                     varoriginator = "Clear Masters";
@@ -1923,10 +1624,16 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Result = 1;
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Result = 0;
+                    }
+                    if (Result == 1)
+                    {
+                        udfnFormLoad();
                     }
                 }
             }
@@ -1936,7 +1643,249 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnFormLoad()
+        {
+            try
+            {
+                if (PbCurrentForm == "1.1")
+                {
+                    MainForm.objPUR_SupplierScheduleList.udfnList();
+                }
+                if (PbCurrentForm == "1.2")
+                {
+                    MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
+                }
+                if (PbCurrentForm == "1.3")
+                {
+                    MainForm.objPUR_GRNDetailsList.udfnListLoad();
+                }
+                if (PbCurrentForm == "1.4")
+                {
+                    MainForm.objPUR_PurchaseDCList.udfnList();
+                }
+                if (PbCurrentForm == "1.5")
+                {
+                    MainForm.objPUR_PurchaseApprovalList.udfnList();
+                }
+                if (PbCurrentForm == "2.1")
+                {
+                    MainForm.objCP_PurchaseList.udfnListLoad();
+                }
+                if (PbCurrentForm == "2.2")
+                {
+                    MainForm.objINV_SalesInvoiceList.udfnList();
+                }
+                if (PbCurrentForm == "2.3")
+                {
+                    MainForm.objPUR_PurchaseApprovalList.udfnList();
+                }
+                if (PbCurrentForm == "3.1")
+                {
 
+                }
+                if (PbCurrentForm == "3.2.1")
+                {
+                    MainForm.objINV_InwardPurchaseList.udfnList();
+                }
+                if (PbCurrentForm == "3.2.2")
+                {
+                    MainForm.objINV_Inwardlist.udfnList();
+                }
+                if (PbCurrentForm == "3.3")
+                {
+                    MainForm.objINV_StockHold.udfnList();
+                }
+                if (PbCurrentForm == "3.4")
+                {
+                    MainForm.objINV_StockRequestList.udfnList();
+                }
+                if (PbCurrentForm == "3.5")
+                {
+                    MainForm.objINV_GodownOutwardList.udfnList();
+                }
+                if (PbCurrentForm == "3.6")
+                {
+                    MainForm.objINV_StockTransferList.udfnList();
+                }
+                if (PbCurrentForm == "3.7")
+                {
+                    MainForm.objINV_DamageEntryList.udfnTransList();
+                }
+                if (PbCurrentForm == "3.8")
+                {
+                    MainForm.objINV_StockConversionList.udfnList();
+                }
+                if (PbCurrentForm == "4.1")
+                {
+
+                }
+                if (PbCurrentForm == "4.2")
+                {
+
+                }
+                if (PbCurrentForm == "4.3")
+                {
+                    MainForm.objPAY_DebitNoteList.udfnList();
+                }
+                if (PbCurrentForm == "5.1")
+                {
+                    MainForm.objCP_Citylist.udfnList();
+                }
+                if (PbCurrentForm == "5.2")
+                {
+                    MainForm.objCP_Companylist.udfnList();
+                }
+                if (PbCurrentForm == "5.3")
+                {
+                    MainForm.objCP_ProductHSNlist.udfnList();
+                }
+                if (PbCurrentForm == "5.4")
+                {
+                    MainForm.objCP_GroupList.udfnList();
+                }
+                if (PbCurrentForm == "5.5")
+                {
+                    MainForm.objCP_SubGroupList.udfnList();
+                }
+                if (PbCurrentForm == "5.6")
+                {
+                    MainForm.objCP_BrandList.udfnList();
+                }
+                if (PbCurrentForm == "5.7")
+                {
+                    MainForm.objCP_Unitlist.udfnList();
+                }
+                if (PbCurrentForm == "5.8")
+                {
+                    MainForm.objCP_LocationList.udfnList();
+                }
+                if (PbCurrentForm == "5.9")
+                {
+                    MainForm.objCP_RackList.udfnList();
+                }
+                if (PbCurrentForm == "5.10")
+                {
+                    MainForm.objCP_RackGroupList.udfnList();
+                }
+                if (PbCurrentForm == "5.11")
+                {
+                    MainForm.objCP_Itemlist.udfnList();
+                }
+                if (PbCurrentForm == "5.12")
+                {
+                    MainForm.objCP_ProductApprovalList.udfnList();
+                }
+                if (PbCurrentForm == "5.13")
+                {
+                    MainForm.objCP_UserCategoryList.udfnList();
+                }
+                if (PbCurrentForm == "5.14")
+                {
+                    MainForm.objCP_EmployeeList.udfnList();
+                }
+                if (PbCurrentForm == "5.15")
+                {
+                    MainForm.objCP_Userlist.udfnList();
+                }
+                if (PbCurrentForm == "5.16")
+                {
+                    MainForm.objCP_Supplierlist.udfnList();
+                }
+                if (PbCurrentForm == "5.17")
+                {
+                    MainForm.objCP_CP_BrokerList.udfnList();
+                }
+                if (PbCurrentForm == "5.18")
+                {
+                    MainForm.objCP_BulkAttributes.udfnList();
+                }
+                if (PbCurrentForm == "5.19")
+                {
+                    MainForm.objCP_RepresentativeList.udfnlist();
+                }
+                if (PbCurrentForm == "6.1")
+                {
+                    MainForm.objCP_Settings.udfnList();
+                }
+                if (PbCurrentForm == "6.2")
+                {
+                    MainForm.objCP_GeneralSettings.udfnList();
+                }
+                if (PbCurrentForm == "7.1.1")
+                {
+                    MainForm.objREPORT_CP_City.udfnCity();
+                }
+                if (PbCurrentForm == "7.1.2")
+                {
+                    MainForm.objREPORT_CP_State.udfnState();
+                }
+                if (PbCurrentForm == "7.1.3")
+                {
+                    MainForm.objREPORT_CP_Company.udfnList();
+                }
+                if (PbCurrentForm == "7.1.4")
+                {
+                    MainForm.objREPORT_CP_HSN.udfnHSN();
+                }
+                if (PbCurrentForm == "7.1.5")
+                {
+                    MainForm.objREPORT_CP_Product_Group.udfnProductGroup();
+                }
+                if (PbCurrentForm == "7.1.6")
+                {
+                    MainForm.objREPORT_CP_Broker.udfnContact();
+                }
+                if (PbCurrentForm == "7.1.7")
+                {
+                    MainForm.objREPORT_CP_Brand.udfnBrand();
+                }
+                if (PbCurrentForm == "7.1.8")
+                {
+                    MainForm.objREPORT_CP_Product_Subgroup.udfnSubgroup();
+                }
+                if (PbCurrentForm == "7.1.9")
+                {
+                    MainForm.objREPORT_CP_StockLocation.udfnLocation();
+                }
+                if (PbCurrentForm == "7.1.10")
+                {
+                    MainForm.objREPORT_CP_Rack.udfnRack();
+                }
+                if (PbCurrentForm == "7.1.11")
+                {
+                    MainForm.objREPORT_CP_Rackgroup.udfnRG();
+                }
+                if (PbCurrentForm == "7.1.12")
+                {
+                    MainForm.objREPORT_CP_Supplier.udfnSupplier();
+                }
+                if (PbCurrentForm == "7.1.13")
+                {
+                    MainForm.objREPORT_CP_Product.udfnProductGST();
+                }
+                if (PbCurrentForm == "7.2.1")
+                {
+                    MainForm.objREPORT_Stock.udfnList();
+                }
+                if (PbCurrentForm == "7.3.1")
+                {
+                    MainForm.objREPORT_PUR_PurchaseOrder.udfnProductDetails();
+                }
+                if (PbCurrentForm == "7.3.2")
+                {
+                    MainForm.objREPORT_PUR_Purchaseorder_Summary.udfnProductDetails();
+                }
+                if (PbCurrentForm == "8.1")
+                {
+                    MainForm.objCP_ChangePassword.udfnLoad();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void ProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1954,7 +1903,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
