@@ -1159,8 +1159,8 @@ namespace ROMS
                     DGV_SearchGrid.Columns["Issue Date"].Width = 100;
                     DGV_SearchGrid.Columns["Issued By"].Width = 100;
                     DGV_SearchGrid.Columns["Status"].Width = 100;
-                    DGV_SearchGrid.Columns["clmView"].Width = 50;
-                    DGV_SearchGrid.Columns["clmPrint"].Width = 50;
+                    //DGV_SearchGrid.Columns["clmView"].Width = 50;
+                    //DGV_SearchGrid.Columns["clmPrint"].Width = 50;
                     DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 }
                 else

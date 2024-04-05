@@ -99,24 +99,27 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdInwardQueueList, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdInwardQueueList.Columns)
-                {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
-                }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    udfnGridSearchHeading(grdInwardQueueList, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdInwardQueueList.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }

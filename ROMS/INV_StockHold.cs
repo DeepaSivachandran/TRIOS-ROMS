@@ -1116,28 +1116,31 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdStockHold, DGV_SearchGrid);
-                DGV_SearchGrid.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdStockHold.Columns)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-                    visibleColumns.Add(col.Index);
+                    udfnGridSearchHeading(grdStockHold, DGV_SearchGrid);
+                    DGV_SearchGrid.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdStockHold.Columns)
+                    {
+                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGrid.Rows.Clear();
+                    DGV_SearchGrid.Rows.Add();
+                    DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                    DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
+                    for (int i = 2; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
-                int rowIndex = 0;
-                DGV_SearchGrid.Rows.Clear();
-                DGV_SearchGrid.Rows.Add();
-                DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
-                DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
-                for (int i = 2; i < visibleColumns.Count; i++)
-                {
-                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-                }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                DGV_SearchGrid.Columns[0].ReadOnly = true;
-                DGV_SearchGrid.Columns[1].ReadOnly = true;
-                DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
-                DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
