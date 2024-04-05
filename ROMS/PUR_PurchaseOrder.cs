@@ -4374,7 +4374,7 @@ namespace ROMS
                     varFinalUnit = 0;
                     varFinalBulkUnit = Convert.ToDouble(varBulkUnitQty);
                     varFinalTotalQty =  Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
-                    varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal));
+                    varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3));
 
                 }
                 if (qtyFlag == 2)
@@ -4387,8 +4387,8 @@ namespace ROMS
                         // Update the column value
                         varFinalUnit = totalUnitqty;
                         varFinalBulkUnit = 0;
-                        varFinalTotalQty = totalOrderQty;
-                        varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
+                        varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
+                        varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
                     }
                     else
                     {
@@ -4400,8 +4400,8 @@ namespace ROMS
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = 0;
-                            varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
+                            varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
                         }
                         else
                         {
@@ -4428,8 +4428,8 @@ namespace ROMS
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
-                            varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
+                            varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
                         }
                     }
                 }
@@ -4443,8 +4443,8 @@ namespace ROMS
                         // Update the column value
                         varFinalUnit = totalUnitqty;
                         varFinalBulkUnit = 0;
-                        varFinalTotalQty = totalOrderQty;
-                        varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
+                        varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
+                        varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
                     }
                     else
                     {
@@ -4456,8 +4456,8 @@ namespace ROMS
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = 0;
-                            varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
+                            varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
                         }
                         else if (varUPP > 0)
                         {
@@ -4483,8 +4483,8 @@ namespace ROMS
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
-                            varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
+                            varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
                         }
                         else
                         {
@@ -4495,8 +4495,8 @@ namespace ROMS
                             // Update the column value
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
-                            varFinalTotalQty = totalOrderQty;
-                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), varDecimal)); ;
+                            varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
                         }
                     }
                     // }
