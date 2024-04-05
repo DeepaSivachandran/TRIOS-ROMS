@@ -731,43 +731,7 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if(chkCompleted.Checked == true && varErrorFormat !=1)
-                    {
-                        Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                        objMR_Supplier.ViewType = 33;
-                        objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
-                        objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
-                        DataSet objDserv = new DataSet();
-                        SPDataService objspdservice = new SPDataService();
-                        objDserv = objspdservice.udfnSupplierList(objMR_Supplier);
-                        objspdservice.CloseConnection();
-                        if(objDserv !=null)
-                        {
-                            string value = "";
-                            if (objDserv.Tables.Count != 0)
-                            {
-                                if (objDserv.Tables[0].Rows.Count != 0)
-                                {
-                                    value= Convert.ToString(objDserv.Tables[0].Rows[0]["Value"]);
-                                }
-                            }
-                            if(value=="1")
-                            {
-                                varGSTIN = "0";
-                                MainForm.objGRN_GSTIN = new GRN_GSTIN();
-                                MainForm.objGRN_GSTIN.ShowDialog();
-                            }
-                            else
-                            {
-                                varGSTIN = "1";
-                            }
-                        }
-                    }
-                    if(chkCompleted.Checked==false)
-                    {
-                        varGSTIN = "1";
-                    }
-                    if (result1 == DialogResult.Yes && varGSTIN=="1")
+                    if (result1 == DialogResult.Yes)
                     {
                         errGRNDetails.Clear();
                         for (int i = 0; i < grdReurnDC.Rows.Count; i++)
@@ -898,8 +862,44 @@ namespace ROMS
                                     string[] varvalue = result.Split('~');
                                 if (result.Split('~')[1] == "1")
                                 {
+                                    if (chkCompleted.Checked == true)
+                                    {
+                                        Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                                        objMR_Supplier.ViewType = 33;
+                                        objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                                        objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                                        DataSet objDserv = new DataSet();
+                                        SPDataService objspdser = new SPDataService();
+                                        objDserv = objspdser.udfnSupplierList(objMR_Supplier);
+                                        objspdser.CloseConnection();
+                                        if (objDserv != null)
+                                        {
+                                            string value = "";
+                                            if (objDserv.Tables.Count != 0)
+                                            {
+                                                if (objDserv.Tables[0].Rows.Count != 0)
+                                                {
+                                                    value = Convert.ToString(objDserv.Tables[0].Rows[0]["Value"]);
+                                                }
+                                            }
+                                            if (value == "1")
+                                            {
+                                                varGSTIN = "0";
+                                                MainForm.objGRN_GSTIN = new GRN_GSTIN();
+                                                MainForm.objGRN_GSTIN.ShowDialog();
+                                            }
+                                            else
+                                            {
+                                                varGSTIN = "1";
+                                            }
+                                        }
+                                    }
+                                    if (chkCompleted.Checked == false)
+                                    {
+                                        varGSTIN = "1";
+                                    }
                                     int passkeyflag = 0;
-                                    if (chkCompleted.Checked==true)
+                                    if (chkCompleted.Checked== true && varGSTIN == "1")
                                     {
                                         MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
                                         MainForm.objPUR_GRNApprovalVerify.varTrnType = 1;
@@ -1032,7 +1032,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (varErrorFormat == 0 && varGSTIN == "1")
+                        if (varErrorFormat == 0)
                         {
                             udfnDcAdd();
                         }
@@ -1088,6 +1088,7 @@ namespace ROMS
                 objGRNProd.Columns.Add("GRNPR_POQty", typeof(float));
                 if (chkCompleted.Enabled == true)
                 {
+                    grdGrnlist.ClearSelection();
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                     {
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShelflifeenable"].Value) == "1")
@@ -4060,6 +4061,11 @@ namespace ROMS
                                 if (Convert.ToInt32(cmbQtyType.SelectedValue) == 193)
                                 {
                                     varPendingQty = Convert.ToDecimal(txtInvoiceQty.Text);
+                                    varExcessQuantity = 0;
+                                }
+                                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202)
+                                {
+                                    varPendingQty = 0;
                                     varExcessQuantity = 0;
                                 }
                                 decimal varMRP = Math.Round(Convert.ToDecimal(txtmrprate.Text.Trim()), 2, MidpointRounding.AwayFromZero);

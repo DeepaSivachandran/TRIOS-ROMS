@@ -49,6 +49,18 @@ namespace ROMS
         {
             try
             {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnList()
+        {
+            try
+            {
                 btnListPrint.Enabled = false;
                 lblCompany.Focus();
                 lblNoRecordsFound.Visible = false;
