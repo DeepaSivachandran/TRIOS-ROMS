@@ -4063,6 +4063,11 @@ namespace ROMS
                                     varPendingQty = Convert.ToDecimal(txtInvoiceQty.Text);
                                     varExcessQuantity = 0;
                                 }
+                                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202)
+                                {
+                                    varPendingQty = 0;
+                                    varExcessQuantity = 0;
+                                }
                                 decimal varMRP = Math.Round(Convert.ToDecimal(txtmrprate.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                                 string mrp = string.Format("{0:0.00}", varMRP);
                                 string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
