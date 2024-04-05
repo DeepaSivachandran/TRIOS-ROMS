@@ -1033,7 +1033,7 @@ namespace ROMS
 
                                     grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     //grdSupplierList.Columns["clmAddPro"].Visible = false;
-                                    grdSupplierList.Columns["clmRemove"].Visible = false;
+                                    //grdSupplierList.Columns["clmPono"].Visible = true;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                                     if (Convert.ToInt16(objDs.Tables[1].Rows[i]["InvFlag"]) == 1)
@@ -1216,6 +1216,10 @@ namespace ROMS
                         {
                             gpdiscount.Enabled = false;
                         }
+                    }
+                    if(PbSTS=="50")
+                    {
+                        grdSupplierList.Columns["clmRemove"].Visible = false;
                     }
                 }
             }
