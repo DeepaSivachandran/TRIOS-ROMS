@@ -131,14 +131,13 @@ namespace ROMS
                     txtPODate.Text = objDs.Tables[6].Rows[0]["PO_Date"].ToString();
                     txtUserData.Text = objDs.Tables[6].Rows[0]["MakerDetails"].ToString();
                     txtPOSts.Text = objDs.Tables[6].Rows[0]["PO Status"].ToString();
-                    grdPurchaseOrder.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                    grdPurchaseOrder.Columns["clmProduct"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     grdPurchaseOrder.Rows.Clear();
                 }
-                 
                 grdPurchaseOrder.ClearSelection();
             }
             catch (Exception ex)
