@@ -52,8 +52,9 @@ namespace ROMS
         public CP_Purchase()
         {
             InitializeComponent();
+            // Timer ticked after 2 minutes, so load the other form
             timer = new Timer();
-            timer.Interval = 120000; // 2 minutes in milliseconds
+            timer.Interval = 2; // 2 seconds
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
         }
@@ -826,6 +827,8 @@ namespace ROMS
                         //    MainForm.objPUR_GSTIN = new PUR_GSTIN();
                         //    MainForm.objPUR_GSTIN.ShowDialog();
                         //}
+                        //udfnLoadOtherForm();
+                        //Timer_Tick( sender,  e);
                         this.ActiveControl = txtInvoiceNo;
                     }
                     if (varRemarkCount == 0)
@@ -857,16 +860,24 @@ namespace ROMS
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            // Timer ticked after 2 minutes, so load the other form
-            timer.Stop(); // Stop the timer to prevent further ticks
-            udfnLoadOtherForm();
+            try
+            {
+                timer.Stop();
+                udfnLoadGSTIN();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-        public void udfnLoadOtherForm()
+        public void udfnLoadGSTIN()
         {
             try
             {
                 if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
                 {
+                    
                     MainForm.objPUR_GSTIN = new PUR_GSTIN();
                     MainForm.objPUR_GSTIN.ShowDialog();
                 }
