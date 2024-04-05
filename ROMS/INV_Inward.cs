@@ -3057,13 +3057,13 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UTID"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Visible = true;
                                     DGV_FilterProduct.Columns["PR_BatchNo"].Visible = false;
-                                    DGV_FilterProduct.Columns["ShelfLife"].Visible = false;
+                                    DGV_FilterProduct.Columns["Product Shelf Life"].Width = 120;
                                     DGV_FilterProduct.Columns["PR_ShelfLifeType"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_ShelfLife"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_ShelfLifeValue"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_BatchNoGeneration"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
-                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
+                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 115;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 60;
                                     DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
