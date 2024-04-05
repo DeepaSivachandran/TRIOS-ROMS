@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -46,6 +46,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
+            this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.lblPartial = new System.Windows.Forms.Label();
@@ -73,21 +74,6 @@
             this.lblDEGroup = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdbillamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCreaedon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmmode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdinwarddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.lblscheduleName = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -138,12 +124,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpProFilter.SuspendLayout();
             this.grpGroupBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).BeginInit();
             this.grpfilter.SuspendLayout();
             this.pnlProduct.SuspendLayout();
             this.pnlPO.SuspendLayout();
@@ -257,6 +243,53 @@
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
             this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
             this.pnlpurchaseapproval.TabIndex = 958789;
+            // 
+            // DGV_SearchGridPro
+            // 
+            this.DGV_SearchGridPro.AllowUserToAddRows = false;
+            this.DGV_SearchGridPro.AllowUserToDeleteRows = false;
+            this.DGV_SearchGridPro.AllowUserToResizeRows = false;
+            this.DGV_SearchGridPro.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_SearchGridPro.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGridPro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_SearchGridPro.ColumnHeadersHeight = 30;
+            this.DGV_SearchGridPro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGridPro.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_SearchGridPro.EnableHeadersVisualStyles = false;
+            this.DGV_SearchGridPro.GridColor = System.Drawing.Color.White;
+            this.DGV_SearchGridPro.Location = new System.Drawing.Point(4, 104);
+            this.DGV_SearchGridPro.Name = "DGV_SearchGridPro";
+            this.DGV_SearchGridPro.RowHeadersVisible = false;
+            this.DGV_SearchGridPro.RowHeadersWidth = 70;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGridPro.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_SearchGridPro.RowTemplate.Height = 25;
+            this.DGV_SearchGridPro.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.DGV_SearchGridPro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_SearchGridPro.ShowRowErrors = false;
+            this.DGV_SearchGridPro.Size = new System.Drawing.Size(1350, 56);
+            this.DGV_SearchGridPro.TabIndex = 1111184;
+            this.DGV_SearchGridPro.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridPro_CellEndEdit);
+            this.DGV_SearchGridPro.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGridPro_CellPainting);
+            this.DGV_SearchGridPro.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGridPro_ColumnHeaderMouseClick);
+            this.DGV_SearchGridPro.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGridPro_ColumnWidthChanged);
+            this.DGV_SearchGridPro.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGridPro_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGridPro.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGridPro_Scroll);
             // 
             // groupBox1
             // 
@@ -581,21 +614,6 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmdsno,
-            this.clmdconcern,
-            this.clmdpono,
-            this.clmddate,
-            this.clmdsupplier,
-            this.clmdtotalitem,
-            this.clmdtotalqty,
-            this.clmdbillamt,
-            this.clmcreated,
-            this.clmCreaedon,
-            this.clmmode,
-            this.clmdinwarddate,
-            this.clmdenterby,
-            this.clmdstatus});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -624,141 +642,6 @@
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.Width = 75;
-            // 
-            // clmdconcern
-            // 
-            this.clmdconcern.HeaderText = "Concern";
-            this.clmdconcern.Name = "clmdconcern";
-            this.clmdconcern.ReadOnly = true;
-            // 
-            // clmdpono
-            // 
-            this.clmdpono.HeaderText = "PO No.";
-            this.clmdpono.MinimumWidth = 6;
-            this.clmdpono.Name = "clmdpono";
-            // 
-            // clmddate
-            // 
-            this.clmddate.HeaderText = "PO Date";
-            this.clmddate.MinimumWidth = 6;
-            this.clmddate.Name = "clmddate";
-            // 
-            // clmdsupplier
-            // 
-            this.clmdsupplier.HeaderText = "Supplier Name";
-            this.clmdsupplier.Name = "clmdsupplier";
-            this.clmdsupplier.ReadOnly = true;
-            this.clmdsupplier.Width = 200;
-            // 
-            // clmdtotalitem
-            // 
-            this.clmdtotalitem.HeaderText = "Total Products";
-            this.clmdtotalitem.Name = "clmdtotalitem";
-            this.clmdtotalitem.ReadOnly = true;
-            // 
-            // clmdtotalqty
-            // 
-            this.clmdtotalqty.HeaderText = "Total Qty";
-            this.clmdtotalqty.Name = "clmdtotalqty";
-            this.clmdtotalqty.ReadOnly = true;
-            // 
-            // clmdbillamt
-            // 
-            this.clmdbillamt.HeaderText = "Turn Around Time";
-            this.clmdbillamt.Name = "clmdbillamt";
-            this.clmdbillamt.ReadOnly = true;
-            this.clmdbillamt.Width = 120;
-            // 
-            // clmcreated
-            // 
-            this.clmcreated.HeaderText = "Created By";
-            this.clmcreated.Name = "clmcreated";
-            this.clmcreated.ReadOnly = true;
-            // 
-            // clmCreaedon
-            // 
-            this.clmCreaedon.HeaderText = "Created On";
-            this.clmCreaedon.Name = "clmCreaedon";
-            this.clmCreaedon.ReadOnly = true;
-            // 
-            // clmmode
-            // 
-            this.clmmode.HeaderText = "Mode of Issue";
-            this.clmmode.Name = "clmmode";
-            this.clmmode.ReadOnly = true;
-            // 
-            // clmdinwarddate
-            // 
-            this.clmdinwarddate.HeaderText = "Issue Date";
-            this.clmdinwarddate.Name = "clmdinwarddate";
-            this.clmdinwarddate.ReadOnly = true;
-            // 
-            // clmdenterby
-            // 
-            this.clmdenterby.HeaderText = "Issued By";
-            this.clmdenterby.Name = "clmdenterby";
-            this.clmdenterby.ReadOnly = true;
-            this.clmdenterby.Width = 150;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
-            this.clmdstatus.ReadOnly = true;
-            // 
-            // DGV_SearchGridPro
-            // 
-            this.DGV_SearchGridPro.AllowUserToAddRows = false;
-            this.DGV_SearchGridPro.AllowUserToDeleteRows = false;
-            this.DGV_SearchGridPro.AllowUserToResizeRows = false;
-            this.DGV_SearchGridPro.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_SearchGridPro.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGridPro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGV_SearchGridPro.ColumnHeadersHeight = 30;
-            this.DGV_SearchGridPro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGridPro.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DGV_SearchGridPro.EnableHeadersVisualStyles = false;
-            this.DGV_SearchGridPro.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGridPro.Location = new System.Drawing.Point(4, 103);
-            this.DGV_SearchGridPro.Name = "DGV_SearchGridPro";
-            this.DGV_SearchGridPro.RowHeadersVisible = false;
-            this.DGV_SearchGridPro.RowHeadersWidth = 70;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGridPro.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.DGV_SearchGridPro.RowTemplate.Height = 25;
-            this.DGV_SearchGridPro.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.DGV_SearchGridPro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_SearchGridPro.ShowRowErrors = false;
-            this.DGV_SearchGridPro.Size = new System.Drawing.Size(1350, 56);
-            this.DGV_SearchGridPro.TabIndex = 1111184;
-            this.DGV_SearchGridPro.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGridPro_CellEndEdit);
-            this.DGV_SearchGridPro.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGridPro_CellPainting);
-            this.DGV_SearchGridPro.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGridPro_ColumnHeaderMouseClick);
-            this.DGV_SearchGridPro.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGridPro_ColumnWidthChanged);
-            this.DGV_SearchGridPro.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGridPro_CurrentCellDirtyStateChanged);
-            this.DGV_SearchGridPro.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGridPro_Scroll);
             // 
             // lblscheduleName
             // 
@@ -1370,6 +1253,7 @@
             this.tsBrandList.PerformLayout();
             this.pnlpurchaseapproval.ResumeLayout(false);
             this.pnlpurchaseapproval.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1379,7 +1263,6 @@
             this.grpGroupBy.ResumeLayout(false);
             this.grpGroupBy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).EndInit();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             this.pnlProduct.ResumeLayout(false);
@@ -1416,20 +1299,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdconcern;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmddate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsupplier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalitem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalqty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdbillamt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcreated;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmCreaedon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmmode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdinwarddate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdenterby;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblDelayed;
         private System.Windows.Forms.Label label8;
