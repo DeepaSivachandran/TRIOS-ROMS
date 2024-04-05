@@ -3383,7 +3383,7 @@ namespace ROMS
         public void udfnUnitLoad() {
             try {
                 int varViewType = 2, varBulkViewType = 6;
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Save as Draft")
                 {
                     varViewType = 1; varBulkViewType = 5;
                 }
@@ -5539,12 +5539,18 @@ namespace ROMS
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1")
                             {
                                 rbActive.Checked = true;
+                                pnlStatus.Enabled = true;
+                            }
+                            else if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "71")
+                            {
+                                pnlStatus.Enabled = false;
                             }
                             else
                             {
                                 rbInActive.Checked = true;
+                                pnlStatus.Enabled = true;
                             }
-                            if(Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1" || Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "2")
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1" || Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "2")
                             {
                                 cbCompleted.Checked = true;
                                 cbCompleted.Enabled = false;
@@ -5569,7 +5575,7 @@ namespace ROMS
                             //}
 
                             btnSave.Text = "Update";
-                            pnlStatus.Enabled = true;
+                            //pnlStatus.Enabled = true;
                         }
                     }
                 }
