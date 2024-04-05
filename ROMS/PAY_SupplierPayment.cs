@@ -254,6 +254,9 @@ namespace ROMS
                 dpDate.MaxDate = MainForm.pbCurrentDate;
                 dtChequeDate.MinDate = MainForm.pbFYStartDate;
                 dtChequeDate.MaxDate = MainForm.pbCurrentDate;
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -297,28 +300,28 @@ namespace ROMS
         {
             try
             {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDT = new DataSet();
-                Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                objMR_Supplier.ViewType = 16;
-                objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
-                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
-                objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objDT = objdserv.udfnSupplierList(objMR_Supplier);
-                objdserv.CloseConnection();
-                cmbPaymentmode.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[9].Rows.Count > 0)
-                        {
-                            cmbPaymentmode.ValueMember = "SPP_PaymentMode";
-                            cmbPaymentmode.DisplayMember = "MST_DisplayText";
-                            cmbPaymentmode.DataSource = objDT.Tables[9];
-                        }
-                    }
-                }
+                //SPDataService objdserv = new SPDataService();
+                //DataSet objDT = new DataSet();
+                //Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                //objMR_Supplier.ViewType = 16;
+                //objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                //objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                //objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                //objDT = objdserv.udfnSupplierList(objMR_Supplier);
+                //objdserv.CloseConnection();
+                //cmbPaymentmode.DataSource = null;
+                //if (objDT != null)
+                //{
+                //    if (objDT.Tables.Count > 0)
+                //    {
+                //        if (objDT.Tables[9].Rows.Count > 0)
+                //        {
+                //            cmbPaymentmode.ValueMember = "SPP_PaymentMode";
+                //            cmbPaymentmode.DisplayMember = "MST_DisplayText";
+                //            cmbPaymentmode.DataSource = objDT.Tables[9];
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {

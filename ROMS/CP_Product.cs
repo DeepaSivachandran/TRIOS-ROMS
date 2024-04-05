@@ -2658,7 +2658,10 @@ namespace ROMS
         {
             try
             {
-                //BeginInvoke(new Action(() => cmbBulkUnit.Select(int.MaxValue, 0)));
+                if(Convert.ToInt32(cmbBulkUnit.SelectedValue)==-1)
+                {
+                    txtUpp.Text = "0";
+                }
             }
             catch (Exception ex)
 
