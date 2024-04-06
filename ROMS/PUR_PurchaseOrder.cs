@@ -3054,7 +3054,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_RMForProduction"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PRCTID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_ShelfLife"].Visible = false;
-                                    DGV_FilterProduct.Columns["Product Shelf Life"].Width = 115;
+                                    DGV_FilterProduct.Columns["Product Shelf Life"].Width = 110;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_HSNID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
