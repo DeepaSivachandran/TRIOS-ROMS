@@ -48,10 +48,15 @@ namespace ROMS
             varSupplierType=0, pbRefreshFlag=0,pbConcernTin=0,pbSupplierTin=0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0", varGRNPaymentType="0";
-
+        private Timer timer;
         public CP_Purchase()
         {
             InitializeComponent();
+            // Timer ticked after 2 seconds, so load the other form
+            timer = new Timer();
+            timer.Interval = 2; // 2 seconds
+            timer.Tick += Timer_Tick;
+            timer.Enabled = true;
         }
 
         private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
@@ -817,11 +822,13 @@ namespace ROMS
                         txtQRCode.Enabled = false;
                         grdPODetails.Columns["clmRemovePO"].Visible = false;
                         grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                        if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
-                        {
-                            MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                            MainForm.objPUR_GSTIN.ShowDialog();
-                        }
+                        //if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
+                        //{
+                        //    MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                        //    MainForm.objPUR_GSTIN.ShowDialog();
+                        //}
+                        //udfnLoadOtherForm();
+                        //Timer_Tick( sender,  e);
                         this.ActiveControl = txtInvoiceNo;
                     }
                     if (varRemarkCount == 0)
@@ -843,6 +850,36 @@ namespace ROMS
                     {
                         btnSave.Enabled = true;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                timer.Stop();
+                udfnLoadGSTIN();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLoadGSTIN()
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
+                {
+                    
+                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                    MainForm.objPUR_GSTIN.ShowDialog();
                 }
             }
             catch (Exception ex)
