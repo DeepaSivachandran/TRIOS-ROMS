@@ -33,25 +33,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_061517005E724B058D8E34FB2FB3CE24"
+        "MsmKey" = "8:_06281C53ECCF4ABB8140B34FBF05FDB5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_07053B620D8A4A88A3FE9B331529E818"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0AB10561D26D45609D9304EA9CDB173B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0B6DC17D67DB4D57A0FA69BB12DA571A"
+        "MsmKey" = "8:_0B7AFA98EAD64E31B148452B9C169063"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -63,85 +51,97 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_192AE4FF01094254859E23FC4418EAF1"
+        "MsmKey" = "8:_0CD289F53A9E438CBE47CC001D4FF11C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_22F53ABEE4894EB2942017DFB738F211"
+        "MsmKey" = "8:_0FA36B388DFC4757BDF011DDC7547AB2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_23197280766944259B85271E6AF54EDD"
+        "MsmKey" = "8:_103A3C4181CB4ABAB491DFDB3B7C6A4F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_24558EC948B04FEFB67FA2E6D11A8D2E"
+        "MsmKey" = "8:_13E8AF0570CD4D50A7CE36FC9EA8D7BD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_270AC73CAC8848AABA435B2DD954A36D"
+        "MsmKey" = "8:_1A356A7FC7EF4C3E9E11F26B955952B9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_28DD458B08CE46F893A11E764D305534"
+        "MsmKey" = "8:_1ABFC7B0DD2E41D4A53847430B9E7905"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_2A83BA82F57948959E7DBE945AA5E685"
+        "MsmKey" = "8:_2491F8CE8E0C4F3D84E3C78110DAB823"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_35BA7F992B284C3FAE79A7568FABA4AC"
+        "MsmKey" = "8:_28F18A73D95A4BCAB25881A3C36713E0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_377511663C9B41E894B0A8A6844185DF"
+        "MsmKey" = "8:_2E684EF738434BA4B6144948F5C2CC32"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3B1291D5DF3A44DB97BB6747210909FB"
+        "MsmKey" = "8:_2F4DAED9A9D84F6A8E74E67D04473BF3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3C9189AB7AE14E47BCA525613E954E7B"
+        "MsmKey" = "8:_3277935DD4A743238D17E54CB032B965"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3E0AA8891BA748F8934D92752590ED94"
+        "MsmKey" = "8:_38411D963BC5471D8E42847A85D79886"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4039ECB6D0AD45C9B1C0E7AA83014D00"
+        "MsmKey" = "8:_3EE9543E7066476C916BFD1C906C7E5C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4258408550A0428C8FFE3109C4FE2F90"
+        "MsmKey" = "8:_40084DF56F4C4D9A8767E59F608C4FAA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_427B646321FB4402A8B1057F5D1CD270"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_42E654F8095D4D1AB2B1EBF5B271E120"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -153,7 +153,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_46CE615ED32D4A8FA9E4ABD0523E6A7E"
+        "MsmKey" = "8:_4608A9ACAF9A4C89BAB4745810A7E96F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_46D7E98EFECD407CBA38B2370B98A2E7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -171,19 +177,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4EAA0F150474415EB09DF4767F410EDB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4F26EBC95AA24A37AD2F7893388E55A9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4F63EADBA5454BCDA9D0CCA63AF57DEB"
+        "MsmKey" = "8:_4EA3917A2DA7405C9A3BC59D94CF9F6D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -195,31 +189,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5BE15028B41B46C6A4C57162DFE1FD59"
+        "MsmKey" = "8:_5EAAF7C3923F4E20BCB02FD12487EB69"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5CD6520D9C0C4A55A5F10FB0CDBAB438"
+        "MsmKey" = "8:_5F84ACDC02BA484D8742A3E9F85C9A83"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5E4E6359F2EC4454A20BEB2C8D3CB659"
+        "MsmKey" = "8:_646FCA2A55D9493F87ED0DE27550F3F9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_601EA9DD54B04A5480FD003659D3CD9C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_64BA2D88E4764D438C86D9A4F830B176"
+        "MsmKey" = "8:_64A2D096D419437B8887C2B06113E727"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -231,19 +219,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_67A0E808DC3D499885FCD2ABBB4DF8DF"
+        "MsmKey" = "8:_65A0F1774B0A41A58E9F481E9C98698F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6DA17CAE45AF4BB8BC7584AC244E6CA9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6DCCAA6F540042E3B6432BCAA3B2DBE8"
+        "MsmKey" = "8:_69EEE7A1A0BE4F3694D8B565E8E16269"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -255,31 +237,37 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6ECBF17DFCA7468CB647F57ACFCC4FE0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_726D2524B58C5D513B0A5D464BB96AC9"
         "OwnerKey" = "8:_DCCAE3AE69B94517A9F7D4085598888D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7B0AE544E8B44E6BAAF1D401678BF4D4"
+        "MsmKey" = "8:_7701DE1F4F794BF2A1567B85B08BE8B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7BAFA06A841A46DEAF8E449FD5248FEC"
+        "MsmKey" = "8:_779AEE3E38B9456A828BEB30C09B9B76"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7C1F72CE33E646ABB23AF99D49D712F3"
+        "MsmKey" = "8:_7FC52268040A43119086F17379509589"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8107535DB32142D692931A0F1A417BF7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_84CB2C7EBC2047D89D57B00BC8C66CF0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -291,19 +279,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_88A0AEDCD94E42C0B391083F7FCA028F"
+        "MsmKey" = "8:_8B4365F409AE455DA62F1D09A81AA692"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_89048316B61E41C7BAE892B02D1CA695"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8DA997A851F94F0DA4E0A141871B468E"
+        "MsmKey" = "8:_8C1912D923CC475482A7C5D7C2FC187B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -315,7 +297,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8F1E890B8D4E4D35AC12594EDC00059E"
+        "MsmKey" = "8:_8E4BCF3E85504946AFBA5E9DE9DDC40C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -327,85 +309,85 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_920E470072AB401296EE8B5F51127F2B"
+        "MsmKey" = "8:_922B1666DD0D45DFA4B6542BCDFD95F5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_962B5FE96C4648F8B49CE015F100E531"
+        "MsmKey" = "8:_949271571D974BA584853AB23EF52816"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_98267C1F61F64938BAE061DE973CADAA"
+        "MsmKey" = "8:_94DE109C841549ADB9D406F7A7D21274"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9826BAF043BF4F60A1A41FA91343CF49"
+        "MsmKey" = "8:_9734286808BA416CAEBCA20EB163D204"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_99685A2F219B40D594A8AD95028B55BA"
+        "MsmKey" = "8:_9A43B45B296642B09D65FC92BD905123"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9DF5834B2AED4D90B41AAA6628640CD7"
+        "MsmKey" = "8:_9B0980F7D8D84E53A2903B4061F95D67"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9FE3F468357D430DA420DB7BB0518795"
+        "MsmKey" = "8:_A2BF37E6B34D497FAB54337C2625E7C4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A46024F1809F492987C22922FA2180B7"
+        "MsmKey" = "8:_A41BD18F2A964043859F5D37CEBD8C4B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A50B73876518415BBBD715269519B580"
+        "MsmKey" = "8:_A4E78FD18C644E5B9C17CB6469E4CED6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AAFB5309FF894C09894DD01A5BC82CF8"
+        "MsmKey" = "8:_A600D95560044C6595A99064C42C93A3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_ACBA9E4814134ACB819A1A091AB3AFC2"
+        "MsmKey" = "8:_AC5BCA381B8D4DB3A975D07E766F1743"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B00CD8EC04134E7487300BB028F91D87"
+        "MsmKey" = "8:_B4C4261760824CA0A11934E432FFBD37"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B2741B72E60742FB8E09BC6824610B38"
+        "MsmKey" = "8:_B6BC16B0EB324CA69566632A93C63FCA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B4AE1D7037F1451599469EFC2A7984A2"
+        "MsmKey" = "8:_B720C4C23FBA4B1FA3C2D2726BB313AB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -417,19 +399,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B956591D685D4F15811541947B015415"
+        "MsmKey" = "8:_BABB80916276463E93C4BFB4FEA6F82E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BE465B30EA5042C9A02967DB2D0F2E07"
+        "MsmKey" = "8:_BADAF9A135AC47BF87D7E7FE41ED016D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BEDE216DB4D84BEE81F194973A4D2EF6"
+        "MsmKey" = "8:_BC9BBADD15C54897BE1D784E4C70CD8B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -441,7 +423,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C2ACFC9EF0594BE5BF5D3E9F6C9A4899"
+        "MsmKey" = "8:_C1ED14624F1E495C91904AA6337A746A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -453,31 +435,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C63AFB8768624939BCB9DD9D9C57BC83"
+        "MsmKey" = "8:_CF6E4B9EBFAE425F9855C0D39B955328"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CD50AB3A2F714C219A880D8B36190065"
+        "MsmKey" = "8:_CF96AAC3DDAC4B0D8F3682F262C06289"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CE04FBE7ED884E4992096788B1915CCA"
+        "MsmKey" = "8:_D074B694B9CA4DA08ADB66955DCB2426"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D2D3D5BD25D74A4A8154D33D6996FC84"
+        "MsmKey" = "8:_D1094BDE2FC64225A2B1A6797C3EF8B5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D81552612A004844B97A8568B9893834"
+        "MsmKey" = "8:_D850931C447C46ADB3EB752E6B1800AD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -495,7 +477,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DA8088C5780E4EC5A4CEF68432D35558"
+        "MsmKey" = "8:_DB45086EC65145BDBAB361A75EF726F6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -507,25 +489,43 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DE436CAE0EE442D5BDEEC06BAFFCB400"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DE73EF8180104EA29B12560BCFD6F0D2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E021610F1D4140B898C81F20A08EBF6A"
+        "MsmKey" = "8:_E0768F0C9A414D429234D875640499EA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E4848F232DDD4E9CA771A55678789F0B"
+        "MsmKey" = "8:_E437445B23E04B07A7EEFA45210FDAE4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E442FE7211FC42BDB9B8D161548D2E41"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E48B8880119B4401985AE32C1DBA4722"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E6E689B711E2418E87CD9CEDC03F756B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EA40A80470054C6A8EED592CD2FD1305"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -537,7 +537,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EE3C244667054ACB94DB1E945566477E"
+        "MsmKey" = "8:_EE1F579CA7CB4554992D4D88050AB0A6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -549,25 +549,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F020927AC05B4B4A892BFE3973327732"
+        "MsmKey" = "8:_F0CD43590C3140CA85C4DA7BCC14F8EE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F3F299A1D339495CA24D06AC143B28A2"
+        "MsmKey" = "8:_F7BFCFD3DC584030B7159BA4E8C31360"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F7E4BEACDE4443688A1E885833D18123"
+        "MsmKey" = "8:_FDA80DCB3E3A40EF8B3B9F8D496B97CD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F989EC30F4CA42D9B650D7AE02F629FA"
+        "MsmKey" = "8:_FEA42139714D4FA584524BC5DE4B7496"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -765,10 +765,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_061517005E724B058D8E34FB2FB3CE24"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_06281C53ECCF4ABB8140B34FBF05FDB5"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Subgroup.cs"
-            "TargetName" = "8:RPT_CP_HSN_Subgroup.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Master.rpt"
+            "TargetName" = "8:RPT_CP_HSN_Master.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -785,50 +785,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_07053B620D8A4A88A3FE9B331529E818"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B7AFA98EAD64E31B148452B9C169063"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO-SubReport.cs"
-            "TargetName" = "8:RPT_PUR_PO-SubReport.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0AB10561D26D45609D9304EA9CDB173B"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Product.cs"
-            "TargetName" = "8:RPT_CP_HSN_Product.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B6DC17D67DB4D57A0FA69BB12DA571A"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Rate.cs"
-            "TargetName" = "8:RPT_CP_Product_Rate.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier.rpt"
+            "TargetName" = "8:RPT_INV_Damage_Supplier.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -865,10 +825,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_192AE4FF01094254859E23FC4418EAF1"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0CD289F53A9E438CBE47CC001D4FF11C"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product.cs"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Detail_Sub-Report.rpt"
+            "TargetName" = "8:RPT_PUR_PO_Detail_Sub-Report.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -885,10 +845,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_22F53ABEE4894EB2942017DFB738F211"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FA36B388DFC4757BDF011DDC7547AB2"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Detail_Sub-Report.cs"
-            "TargetName" = "8:RPT_PUR_PO_Detail_Sub-Report.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Group.rpt"
+            "TargetName" = "8:RPT_CP_Product_Group.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -905,10 +865,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_23197280766944259B85271E6AF54EDD"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_103A3C4181CB4ABAB491DFDB3B7C6A4F"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_StockLocation.cs"
-            "TargetName" = "8:RPT_CP_StockLocation.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Address.rpt"
+            "TargetName" = "8:RPT_CP_Supplier_Address.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -925,10 +885,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_24558EC948B04FEFB67FA2E6D11A8D2E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_13E8AF0570CD4D50A7CE36FC9EA8D7BD"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_ReturnDC_SupplierWise.cs"
-            "TargetName" = "8:RPT_PUR_ReturnDC_SupplierWise.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock.rpt"
+            "TargetName" = "8:RPT_Stock.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -945,10 +905,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_270AC73CAC8848AABA435B2DD954A36D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1A356A7FC7EF4C3E9E11F26B955952B9"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier.cs"
-            "TargetName" = "8:RPT_INV_Damage_Supplier.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO-SubReport.rpt"
+            "TargetName" = "8:RPT_PUR_PO-SubReport.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -965,10 +925,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_28DD458B08CE46F893A11E764D305534"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1ABFC7B0DD2E41D4A53847430B9E7905"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Summary_Report.cs"
-            "TargetName" = "8:RPT_PUR_PO_Summary_Report.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Broker_Address.rpt"
+            "TargetName" = "8:RPT_CP_Broker_Address.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -985,10 +945,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2A83BA82F57948959E7DBE945AA5E685"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2491F8CE8E0C4F3D84E3C78110DAB823"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierScheduleList.cs"
-            "TargetName" = "8:RPT_PUR_SupplierScheduleList.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier.rpt"
+            "TargetName" = "8:RPT_CP_Supplier.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1005,10 +965,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_35BA7F992B284C3FAE79A7568FABA4AC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_28F18A73D95A4BCAB25881A3C36713E0"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Detail_Report.cs"
-            "TargetName" = "8:RPT_PUR_PO_Detail_Report.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_Shop_Stock_Issued.rpt"
+            "TargetName" = "8:RPT_TP_INV_Shop_Stock_Issued.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1025,10 +985,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_377511663C9B41E894B0A8A6844185DF"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2E684EF738434BA4B6144948F5C2CC32"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_GoodsInwardQueue_Products.cs"
-            "TargetName" = "8:RPT_INV_GoodsInwardQueue_Products.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_SupplierWise.rpt"
+            "TargetName" = "8:RPT_INV_Damage_SupplierWise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1045,10 +1005,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B1291D5DF3A44DB97BB6747210909FB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2F4DAED9A9D84F6A8E74E67D04473BF3"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rack_Rackgroup.cs"
-            "TargetName" = "8:RPT_CP_Rack_Rackgroup.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rack_Rackgroup.rpt"
+            "TargetName" = "8:RPT_CP_Rack_Rackgroup.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1065,10 +1025,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3C9189AB7AE14E47BCA525613E954E7B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3277935DD4A743238D17E54CB032B965"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Product.cs"
-            "TargetName" = "8:RPT_INV_Damage_Product.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup.rpt"
+            "TargetName" = "8:RPT_CP_Product_Subgroup.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1085,10 +1045,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3E0AA8891BA748F8934D92752590ED94"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_38411D963BC5471D8E42847A85D79886"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Group_Subgroup.cs"
-            "TargetName" = "8:RPT_CP_Product_Group_Subgroup.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList.rpt"
+            "TargetName" = "8:RPT_PUR_PO_ProductList.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1105,10 +1065,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4039ECB6D0AD45C9B1C0E7AA83014D00"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3EE9543E7066476C916BFD1C906C7E5C"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList_PO_wise.cs"
-            "TargetName" = "8:RPT_PUR_PO_ProductList_PO_wise.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand_Product.rpt"
+            "TargetName" = "8:RPT_CP_Brand_Product.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1125,10 +1085,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4258408550A0428C8FFE3109C4FE2F90"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_40084DF56F4C4D9A8767E59F608C4FAA"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Broker_Contact.cs"
-            "TargetName" = "8:RPT_CP_Broker_Contact.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_StockLocation.rpt"
+            "TargetName" = "8:RPT_CP_Product_Subgroup_StockLocation.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_427B646321FB4402A8B1057F5D1CD270"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Group_Subgroup.rpt"
+            "TargetName" = "8:RPT_CP_Product_Group_Subgroup.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42E654F8095D4D1AB2B1EBF5B271E120"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_Group_Brand.rpt"
+            "TargetName" = "8:RPT_CP_Product_Subgroup_Group_Brand.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1176,10 +1176,30 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_46CE615ED32D4A8FA9E4ABD0523E6A7E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4608A9ACAF9A4C89BAB4745810A7E96F"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand.cs"
-            "TargetName" = "8:RPT_CP_Brand.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_StockHold.rpt"
+            "TargetName" = "8:RPT_INV_StockHold.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_46D7E98EFECD407CBA38B2370B98A2E7"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierProductList.rpt"
+            "TargetName" = "8:RPT_PUR_SupplierProductList.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1247,50 +1267,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4EAA0F150474415EB09DF4767F410EDB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4EA3917A2DA7405C9A3BC59D94CF9F6D"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rack.cs"
-            "TargetName" = "8:RPT_CP_Rack.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F26EBC95AA24A37AD2F7893388E55A9"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_State.cs"
-            "TargetName" = "8:RPT_CP_State.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F63EADBA5454BCDA9D0CCA63AF57DEB"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup.cs"
-            "TargetName" = "8:RPT_CP_Product_Subgroup.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Company.rpt"
+            "TargetName" = "8:RPT_CP_Company.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1338,10 +1318,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5BE15028B41B46C6A4C57162DFE1FD59"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5EAAF7C3923F4E20BCB02FD12487EB69"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_Shop_Stock_Issued.cs"
-            "TargetName" = "8:RPT_TP_INV_Shop_Stock_Issued.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Rate.rpt"
+            "TargetName" = "8:RPT_CP_Product_Rate.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1358,10 +1338,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5CD6520D9C0C4A55A5F10FB0CDBAB438"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5F84ACDC02BA484D8742A3E9F85C9A83"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Master.cs"
-            "TargetName" = "8:RPT_CP_HSN_Master.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Stock_Shelflife.rpt"
+            "TargetName" = "8:RPT_CP_Product_Stock_Shelflife.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1378,10 +1358,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E4E6359F2EC4454A20BEB2C8D3CB659"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_646FCA2A55D9493F87ED0DE27550F3F9"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Default_Stock.cs"
-            "TargetName" = "8:RPT_CP_Product_Default_Stock.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_LP_GRN_QRCode.rpt"
+            "TargetName" = "8:RPT_LP_GRN_QRCode.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1398,30 +1378,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_601EA9DD54B04A5480FD003659D3CD9C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64A2D096D419437B8887C2B06113E727"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Min_Sales_Qty.cs"
-            "TargetName" = "8:RPT_CP_Product_Min_Sales_Qty.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64BA2D88E4764D438C86D9A4F830B176"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Products.cs"
-            "TargetName" = "8:RPT_CP_Supplier_Products.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier_Detail.rpt"
+            "TargetName" = "8:RPT_INV_Damage_Supplier_Detail.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1458,10 +1418,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67A0E808DC3D499885FCD2ABBB4DF8DF"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_65A0F1774B0A41A58E9F481E9C98698F"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Company.cs"
-            "TargetName" = "8:RPT_CP_Company.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Summary_Report.rpt"
+            "TargetName" = "8:RPT_PUR_PO_Summary_Report.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1478,30 +1438,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6DA17CAE45AF4BB8BC7584AC244E6CA9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_69EEE7A1A0BE4F3694D8B565E8E16269"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_Shop_Stock_Request.cs"
-            "TargetName" = "8:RPT_TP_INV_Shop_Stock_Request.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6DCCAA6F540042E3B6432BCAA3B2DBE8"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_LP_GRN_QRCode.cs"
-            "TargetName" = "8:RPT_LP_GRN_QRCode.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Products.rpt"
+            "TargetName" = "8:RPT_CP_Supplier_Products.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1538,26 +1478,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6ECBF17DFCA7468CB647F57ACFCC4FE0"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_Group_Brand.cs"
-            "TargetName" = "8:RPT_CP_Product_Subgroup_Group_Brand.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_726D2524B58C5D513B0A5D464BB96AC9"
             {
             "AssemblyRegister" = "3:1"
@@ -1589,10 +1509,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B0AE544E8B44E6BAAF1D401678BF4D4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7701DE1F4F794BF2A1567B85B08BE8B8"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList_Product_wise.cs"
-            "TargetName" = "8:RPT_PUR_PO_ProductList_Product_wise.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_GoodsInwardQueue_Products.rpt"
+            "TargetName" = "8:RPT_INV_GoodsInwardQueue_Products.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1609,10 +1529,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7BAFA06A841A46DEAF8E449FD5248FEC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_779AEE3E38B9456A828BEB30C09B9B76"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Group.cs"
-            "TargetName" = "8:RPT_CP_Product_Group.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand.rpt"
+            "TargetName" = "8:RPT_CP_Brand.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1629,10 +1549,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7C1F72CE33E646ABB23AF99D49D712F3"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7FC52268040A43119086F17379509589"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.cs"
-            "TargetName" = "8:RPT_PUR_SupplierScheduleProductDayWise.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier_DamageEntry_Wise.rpt"
+            "TargetName" = "8:RPT_INV_Damage_Supplier_DamageEntry_Wise.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8107535DB32142D692931A0F1A417BF7"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_ReturnDC_SupplierWise.rpt"
+            "TargetName" = "8:RPT_PUR_ReturnDC_SupplierWise.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_84CB2C7EBC2047D89D57B00BC8C66CF0"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product.rpt"
+            "TargetName" = "8:RPT_CP_Rackgroup_Product.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1669,10 +1629,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_88A0AEDCD94E42C0B391083F7FCA028F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8B4365F409AE455DA62F1D09A81AA692"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO.cs"
-            "TargetName" = "8:RPT_PUR_PO.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_PUR_ReturnDC.rpt"
+            "TargetName" = "8:RPT_TP_PUR_ReturnDC.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1689,30 +1649,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_89048316B61E41C7BAE892B02D1CA695"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8C1912D923CC475482A7C5D7C2FC187B"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand_Subgroup.cs"
-            "TargetName" = "8:RPT_CP_Brand_Subgroup.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8DA997A851F94F0DA4E0A141871B468E"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_GST.cs"
-            "TargetName" = "8:RPT_CP_Product_GST.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup.rpt"
+            "TargetName" = "8:RPT_CP_Rackgroup.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1749,10 +1689,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F1E890B8D4E4D35AC12594EDC00059E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8E4BCF3E85504946AFBA5E9DE9DDC40C"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_SupplierWise.cs"
-            "TargetName" = "8:RPT_INV_Damage_SupplierWise.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Min_Sales_Qty.rpt"
+            "TargetName" = "8:RPT_CP_Product_Min_Sales_Qty.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1789,10 +1729,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_920E470072AB401296EE8B5F51127F2B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_922B1666DD0D45DFA4B6542BCDFD95F5"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_PO_Details.cs"
-            "TargetName" = "8:RPT_CP_Supplier_PO_Details.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_State.rpt"
+            "TargetName" = "8:RPT_CP_State.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1809,10 +1749,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_962B5FE96C4648F8B49CE015F100E531"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_949271571D974BA584853AB23EF52816"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_GRNDetailsList.cs"
-            "TargetName" = "8:RPT_PUR_GRNDetailsList.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList_Supplier_wise.rpt"
+            "TargetName" = "8:RPT_PUR_PO_ProductList_Supplier_wise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1829,10 +1769,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_98267C1F61F64938BAE061DE973CADAA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_94DE109C841549ADB9D406F7A7D21274"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Address.cs"
-            "TargetName" = "8:RPT_CP_Supplier_Address.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Alphabetic.rpt"
+            "TargetName" = "8:RPT_CP_Product_Alphabetic.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1849,10 +1789,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9826BAF043BF4F60A1A41FA91343CF49"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9734286808BA416CAEBCA20EB163D204"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Stock_Shelflife.cs"
-            "TargetName" = "8:RPT_CP_Product_Stock_Shelflife.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierScheduleList.rpt"
+            "TargetName" = "8:RPT_PUR_SupplierScheduleList.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1869,10 +1809,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99685A2F219B40D594A8AD95028B55BA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A43B45B296642B09D65FC92BD905123"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Msq.cs"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Msq.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Detail_Report.rpt"
+            "TargetName" = "8:RPT_PUR_PO_Detail_Report.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1889,10 +1829,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9DF5834B2AED4D90B41AAA6628640CD7"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B0980F7D8D84E53A2903B4061F95D67"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Alphabetic.cs"
-            "TargetName" = "8:RPT_CP_Product_Alphabetic.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList_PO_wise.rpt"
+            "TargetName" = "8:RPT_PUR_PO_ProductList_PO_wise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1909,10 +1849,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9FE3F468357D430DA420DB7BB0518795"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A2BF37E6B34D497FAB54337C2625E7C4"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList.cs"
-            "TargetName" = "8:RPT_PUR_PO_ProductList.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt"
+            "TargetName" = "8:RPT_CP_Rackgroup_Product_RackMin_Qty.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1929,10 +1869,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A46024F1809F492987C22922FA2180B7"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A41BD18F2A964043859F5D37CEBD8C4B"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_Product.cs"
-            "TargetName" = "8:RPT_CP_Product_Subgroup_Product.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand_Subgroup.rpt"
+            "TargetName" = "8:RPT_CP_Brand_Subgroup.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1949,10 +1889,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A50B73876518415BBBD715269519B580"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A4E78FD18C644E5B9C17CB6469E4CED6"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier_Detail.cs"
-            "TargetName" = "8:RPT_INV_Damage_Supplier_Detail.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Stock_Nett_Gross.rpt"
+            "TargetName" = "8:RPT_CP_Product_Stock_Nett_Gross.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1969,10 +1909,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AAFB5309FF894C09894DD01A5BC82CF8"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A600D95560044C6595A99064C42C93A3"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Stock_Nett_Gross.cs"
-            "TargetName" = "8:RPT_CP_Product_Stock_Nett_Gross.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO.rpt"
+            "TargetName" = "8:RPT_PUR_PO.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -1989,10 +1929,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACBA9E4814134ACB819A1A091AB3AFC2"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC5BCA381B8D4DB3A975D07E766F1743"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Broker_Address.cs"
-            "TargetName" = "8:RPT_CP_Broker_Address.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_List.rpt"
+            "TargetName" = "8:RPT_CP_Supplier_List.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2009,10 +1949,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B00CD8EC04134E7487300BB028F91D87"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4C4261760824CA0A11934E432FFBD37"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Supplier_DamageEntry_Wise.cs"
-            "TargetName" = "8:RPT_INV_Damage_Supplier_DamageEntry_Wise.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_StockLocation_Product.rpt"
+            "TargetName" = "8:RPT_CP_StockLocation_Product.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2029,10 +1969,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2741B72E60742FB8E09BC6824610B38"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B6BC16B0EB324CA69566632A93C63FCA"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierProductList.cs"
-            "TargetName" = "8:RPT_PUR_SupplierProductList.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Barcode.rpt"
+            "TargetName" = "8:RPT_CP_Rackgroup_Product_Barcode.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2049,10 +1989,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4AE1D7037F1451599469EFC2A7984A2"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B720C4C23FBA4B1FA3C2D2726BB313AB"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Barcode.cs"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Barcode.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt"
+            "TargetName" = "8:RPT_PUR_SupplierScheduleProductDayWise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2100,10 +2040,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B956591D685D4F15811541947B015415"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BABB80916276463E93C4BFB4FEA6F82E"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_StockLocation.cs"
-            "TargetName" = "8:RPT_CP_Product_Subgroup_StockLocation.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_GST.rpt"
+            "TargetName" = "8:RPT_CP_Product_GST.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2120,10 +2060,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE465B30EA5042C9A02967DB2D0F2E07"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BADAF9A135AC47BF87D7E7FE41ED016D"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup.cs"
-            "TargetName" = "8:RPT_CP_Rackgroup.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Product.rpt"
+            "TargetName" = "8:RPT_CP_HSN_Product.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2140,10 +2080,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BEDE216DB4D84BEE81F194973A4D2EF6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC9BBADD15C54897BE1D784E4C70CD8B"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Contact.cs"
-            "TargetName" = "8:RPT_CP_Supplier_Contact.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_StockLocation_Details.rpt"
+            "TargetName" = "8:RPT_CP_Product_StockLocation_Details.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2180,10 +2120,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C2ACFC9EF0594BE5BF5D3E9F6C9A4899"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C1ED14624F1E495C91904AA6337A746A"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_StockLocation_Product.cs"
-            "TargetName" = "8:RPT_CP_StockLocation_Product.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Subgroup_Product.rpt"
+            "TargetName" = "8:RPT_CP_Product_Subgroup_Product.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2220,10 +2160,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C63AFB8768624939BCB9DD9D9C57BC83"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CF6E4B9EBFAE425F9855C0D39B955328"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.cs"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_RackMin_Qty.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_StockLocation.rpt"
+            "TargetName" = "8:RPT_CP_StockLocation.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2240,10 +2180,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CD50AB3A2F714C219A880D8B36190065"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CF96AAC3DDAC4B0D8F3682F262C06289"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Purchase_Order_List.cs"
-            "TargetName" = "8:RPT_Purchase_Order_List.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Msq.rpt"
+            "TargetName" = "8:RPT_CP_Rackgroup_Product_Msq.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2260,10 +2200,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CE04FBE7ED884E4992096788B1915CCA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D074B694B9CA4DA08ADB66955DCB2426"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_StockLocation_Details.cs"
-            "TargetName" = "8:RPT_CP_Product_StockLocation_Details.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_Shop_Stock_Request_Transfer.rpt"
+            "TargetName" = "8:RPT_TP_INV_Shop_Stock_Request_Transfer.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2280,10 +2220,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D2D3D5BD25D74A4A8154D33D6996FC84"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D1094BDE2FC64225A2B1A6797C3EF8B5"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_PUR_ReturnDC.cs"
-            "TargetName" = "8:RPT_TP_PUR_ReturnDC.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Weight.rpt"
+            "TargetName" = "8:RPT_CP_Rackgroup_Product_Weight.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2300,10 +2240,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D81552612A004844B97A8568B9893834"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D850931C447C46ADB3EB752E6B1800AD"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_List.cs"
-            "TargetName" = "8:RPT_CP_Supplier_List.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Product_Default_Stock.rpt"
+            "TargetName" = "8:RPT_CP_Product_Default_Stock.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2351,30 +2291,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DA8088C5780E4EC5A4CEF68432D35558"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DB45086EC65145BDBAB361A75EF726F6"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier.cs"
-            "TargetName" = "8:RPT_CP_Supplier.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE436CAE0EE442D5BDEEC06BAFFCB400"
-            {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_City.cs"
-            "TargetName" = "8:RPT_CP_City.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_HSN_Subgroup.rpt"
+            "TargetName" = "8:RPT_CP_HSN_Subgroup.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2411,10 +2331,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E021610F1D4140B898C81F20A08EBF6A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E0768F0C9A414D429234D875640499EA"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList_Supplier_wise.cs"
-            "TargetName" = "8:RPT_PUR_PO_ProductList_Supplier_wise.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_GRNDetailsList.rpt"
+            "TargetName" = "8:RPT_PUR_GRNDetailsList.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2431,10 +2351,90 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E4848F232DDD4E9CA771A55678789F0B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E437445B23E04B07A7EEFA45210FDAE4"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Stock.cs"
-            "TargetName" = "8:RPT_Stock.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_PO_Details.rpt"
+            "TargetName" = "8:RPT_CP_Supplier_PO_Details.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E442FE7211FC42BDB9B8D161548D2E41"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rack.rpt"
+            "TargetName" = "8:RPT_CP_Rack.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E48B8880119B4401985AE32C1DBA4722"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Broker_Contact.rpt"
+            "TargetName" = "8:RPT_CP_Broker_Contact.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E6E689B711E2418E87CD9CEDC03F756B"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Report_Product.rpt"
+            "TargetName" = "8:RPT_PUR_PO_Report_Product.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EA40A80470054C6A8EED592CD2FD1305"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_Damage_Product.rpt"
+            "TargetName" = "8:RPT_INV_Damage_Product.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2471,10 +2471,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EE3C244667054ACB94DB1E945566477E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EE1F579CA7CB4554992D4D88050AB0A6"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Rackgroup_Product_Weight.cs"
-            "TargetName" = "8:RPT_CP_Rackgroup_Product_Weight.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_Purchase_Order_List.rpt"
+            "TargetName" = "8:RPT_Purchase_Order_List.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2511,10 +2511,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F020927AC05B4B4A892BFE3973327732"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F0CD43590C3140CA85C4DA7BCC14F8EE"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Brand_Product.cs"
-            "TargetName" = "8:RPT_CP_Brand_Product.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt"
+            "TargetName" = "8:RPT_TP_INV_Shop_Stock_Request.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2531,10 +2531,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F3F299A1D339495CA24D06AC143B28A2"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F7BFCFD3DC584030B7159BA4E8C31360"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_Report_Product.cs"
-            "TargetName" = "8:RPT_PUR_PO_Report_Product.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_Supplier_Contact.rpt"
+            "TargetName" = "8:RPT_CP_Supplier_Contact.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2551,10 +2551,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F7E4BEACDE4443688A1E885833D18123"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FDA80DCB3E3A40EF8B3B9F8D496B97CD"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_INV_StockHold.cs"
-            "TargetName" = "8:RPT_INV_StockHold.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_PO_ProductList_Product_wise.rpt"
+            "TargetName" = "8:RPT_PUR_PO_ProductList_Product_wise.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2571,10 +2571,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F989EC30F4CA42D9B650D7AE02F629FA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FEA42139714D4FA584524BC5DE4B7496"
             {
-            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_TP_INV_Shop_Stock_Request_Transfer.cs"
-            "TargetName" = "8:RPT_TP_INV_Shop_Stock_Request_Transfer.cs"
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_CP_City.rpt"
+            "TargetName" = "8:RPT_CP_City.rpt"
             "Tag" = "8:"
             "Folder" = "8:_B198CE041B734750B0A71D5424ACA430"
             "Condition" = "8:"
@@ -2681,7 +2681,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROMS"
         "ProductCode" = "8:{82002968-566C-4150-A5AE-78D300C31BAC}"
-        "PackageCode" = "8:{9A665FB8-1F46-4A75-984F-07E9560E891D}"
+        "PackageCode" = "8:{CEC1D85A-A16B-4FCC-9E3A-17304C89D41C}"
         "UpgradeCode" = "8:{FC2AE767-A3BF-4189-A07F-0B601778A960}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
