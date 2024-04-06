@@ -909,7 +909,10 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        passkeyflag = 1;
+                                        if (varGSTIN == "1")
+                                        {
+                                            passkeyflag = 1;
+                                        }
                                     }
                                     if (passkeyflag == 1)
                                     {
