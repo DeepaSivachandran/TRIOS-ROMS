@@ -45,7 +45,7 @@ namespace ROMS
         public int varClose = 0, varDateChange = 0, varCloseFalg = 0, varEntryTypeRefresh = 0, varUpDownKey = 0, varcount1 = 0, varCount2 = 0, flagSave = 0, varTabFlag = 0, varEntryType = 0;
         bool varVoucherSkip = false;
         public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0,varPurEditFlag=0,varDiscountFlag=0,
-            varSupplierType=0, pbRefreshFlag=0,pbConcernTin=0,pbSupplierTin=0;
+            varSupplierType=0, pbRefreshFlag=0,pbConcernTin=0,pbSupplierTin=0,varTinFlag=0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0", varGRNPaymentType="0";
         private Timer timer;
@@ -5425,6 +5425,7 @@ namespace ROMS
                             objTRN_PurchaseEntry1.paraPurchaseDate = dpVoucherDate.Text;
                             objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                             objTRN_PurchaseEntry1.paraSupplierType = varSupplierType;
+                            objTRN_PurchaseEntry1.paraTinFlag = varTinFlag;
                             objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
                             objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                             result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
@@ -5459,6 +5460,7 @@ namespace ROMS
                                 objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                                 objTRN_PurchaseEntry1.paraSaveFlag = varSaveFlag;
                                 objTRN_PurchaseEntry1.paraSupplierType = varSupplierType;
+                                objTRN_PurchaseEntry1.paraTinFlag = varTinFlag;
                                 objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
                                 objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                                 result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
@@ -5666,6 +5668,7 @@ namespace ROMS
                                         objTRN_PurchaseEntry.ParaEditFlag = 1;
                                         objTRN_PurchaseEntry.ParaPurchaseDC = PurchaseDcIds;
                                         objTRN_PurchaseEntry.paraSupplierType = varSupplierType;
+                                        objTRN_PurchaseEntry.paraTinFlag = varTinFlag;
                                         objTRN_PurchaseEntry.paraGRNID = Convert.ToInt32(pbGRNNo);
                                         objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
                                         objTRN_PurchaseEntry.Purchase_Products_Details = objPurchaseentryDetails;
@@ -9043,17 +9046,21 @@ namespace ROMS
                     udfnSubtotCalc();
                     udfnGstvalue();
                     udfnLoadingGrandTotCalculation();
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmCosting"].Value = pbCostingRate.ToString("0.00");
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value = PbGstamt.ToString("0.00");
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmSGstamt"].Value = PbSGstamt.ToString("0.00");
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmCGstamt"].Value = PbCGstamt.ToString("0.00");
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmIGstamt"].Value = PbIGstamt.ToString("0.00");
-
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmCGST"].Value = varCGSTPer;
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmIGST"].Value = varIGSTPer;
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmSGST"].Value = varSGSTPer;
-
+                    if (pbConcernTin != pbSupplierTin)
+                    {
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmIGstamt"].Value = PbIGstamt.ToString("0.00");
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmIGST"].Value = varIGSTPer;
+                    }
+                    else
+                    {
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmCosting"].Value = pbCostingRate.ToString("0.00");
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value = PbGstamt.ToString("0.00");
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmSGstamt"].Value = PbSGstamt.ToString("0.00");
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmCGstamt"].Value = PbCGstamt.ToString("0.00");
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmCGST"].Value = varCGSTPer;
+                        grdPurchaseList.Rows[e.RowIndex].Cells["clmSGST"].Value = varSGSTPer;
+                    }
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value = PbNetamt.ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value = PbTaxvalue.ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscountValue"].Value = PbDicountValue.ToString("0.00");
@@ -10710,7 +10717,16 @@ namespace ROMS
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
                             lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
                             varSupplierType =Convert.ToInt32(objDs.Tables[0].Rows[0]["SP_SupplierType"].ToString());
-                            if(lblsupplierGST.Text!="URD")
+                            pbSupplierTin= Convert.ToInt32(objDs.Tables[0].Rows[0]["SP_Tin"].ToString());
+                            if(pbSupplierTin==33)
+                            {
+                                varTinFlag = 0;
+                            }
+                            else
+                            {
+                                varTinFlag = 1;
+                            }
+                            if (lblsupplierGST.Text!="URD")
                             { lblsupplierGST.Text = "GSTIN - XXXXXXXXXXXXXXX";  }
                             else
                             {
