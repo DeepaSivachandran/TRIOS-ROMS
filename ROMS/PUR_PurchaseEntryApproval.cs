@@ -983,36 +983,38 @@ namespace ROMS
                                         grdTaxDetails.Columns["IGST%"].Width = 60;
                                         grdTaxDetails.Columns["CGST%"].Width = 60;
                                         grdTaxDetails.Columns["SGST%"].Width = 60;
-                                        grdTaxDetails.Columns["IGST Tax Value"].Width = 80;
-                                        grdTaxDetails.Columns["CGST Tax Value"].Width = 80;
-                                        grdTaxDetails.Columns["SGST Tax Value"].Width = 80;
+                                        grdTaxDetails.Columns["IGST"].Width = 80;
+                                        grdTaxDetails.Columns["CGST"].Width = 80;
+                                        grdTaxDetails.Columns["SGST"].Width = 80;
                                         grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        grdTaxDetails.Columns["CGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        grdTaxDetails.Columns["IGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        grdTaxDetails.Columns["CGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        grdTaxDetails.Columns["SGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["IGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["CGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["SGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         if (varSupplierType==151) //IGST
                                         {
                                             grdTaxDetails.Columns["SGST%"].Visible = false;
                                             grdTaxDetails.Columns["CGST%"].Visible = false;
-                                            grdTaxDetails.Columns["SGST Tax Value"].Visible = false;
-                                            grdTaxDetails.Columns["CGST Tax Value"].Visible = false;
+                                            grdTaxDetails.Columns["SGST"].Visible = false;
+                                            grdTaxDetails.Columns["CGST"].Visible = false;
+                                            grdTaxDetails.Columns["IGST%"].Visible = true;
+                                            grdTaxDetails.Columns["IGST"].Visible = true;
                                         }
                                         else
                                         {
                                             grdTaxDetails.Columns["GST%"].Visible = true;
                                             grdTaxDetails.Columns["CGST%"].Visible = true;
-                                            grdTaxDetails.Columns["SGST Tax Value"].Visible = true;
-                                            grdTaxDetails.Columns["CGST Tax Value"].Visible = true;
+                                            grdTaxDetails.Columns["SGST"].Visible = true;
+                                            grdTaxDetails.Columns["CGST"].Visible = true;
                                             grdTaxDetails.Columns["GST%"].Visible = true;
                                             grdTaxDetails.Columns["CGST%"].Visible = true;
                                             grdTaxDetails.Columns["IGST%"].Visible = false;
-                                            grdTaxDetails.Columns["IGST Tax Value"].Visible = false;
+                                            grdTaxDetails.Columns["IGST"].Visible = false;
                                         }
+                                        grdTaxDetails.Columns["Taxable Value"].Visible = false;
                                     }
                                 }
                             }
@@ -1022,6 +1024,7 @@ namespace ROMS
                                 grdTaxDetails.Columns["GST%"].Width = 60;
                                 grdTaxDetails.Columns["Taxable Value"].Width = 80;
                                 grdTaxDetails.Columns["Tax Value"].Width = 60;
+                                grdTaxDetails.Columns["Taxable Value"].Visible = false;
                             }
                             if (objDs.Tables[3].Rows.Count != 0) //PO DETAILS LOAD
                             {
@@ -3957,13 +3960,13 @@ namespace ROMS
                             //SGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
 
                             IGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value)),
-                            CGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value) / 2),
-                            SGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value) / 2)
+                            CGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2),
+                            SGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2)
 
                         };
                     }).ToList();
-                
-                dtTaxTable = varTaxData.Select(item => dtTaxTable.LoadDataRow(new object[] 
+
+                dtTaxTable = varTaxData.Select(item => dtTaxTable.LoadDataRow(new object[]
                 { item.GST, Math.Round(item.Tax).ToString("0.00"), Math.Round(item.GSTamount).ToString("0.00"),
                  Convert.ToDecimal(item.GST),Math.Round(item.IGSTamount).ToString("0.00"),
                 (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.SGSTamount).ToString("0.00"),
@@ -3976,38 +3979,41 @@ namespace ROMS
                 grdTaxDetails.Columns["IGST%"].Width = 60;
                 grdTaxDetails.Columns["CGST%"].Width = 60;
                 grdTaxDetails.Columns["SGST%"].Width = 60;
-                grdTaxDetails.Columns["IGST Tax Value"].Width = 80;
-                grdTaxDetails.Columns["CGST Tax Value"].Width = 80;
-                grdTaxDetails.Columns["SGST Tax Value"].Width = 80;
+                grdTaxDetails.Columns["IGST"].Width = 80;
+                grdTaxDetails.Columns["CGST"].Width = 80;
+                grdTaxDetails.Columns["SGST"].Width = 80;
                 grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdTaxDetails.Columns["CGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdTaxDetails.Columns["IGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdTaxDetails.Columns["CGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdTaxDetails.Columns["SGST Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["IGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["CGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["SGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 if (varSupplierType == 151) //IGST
                 {
-                    grdTaxDetails.Columns["SGST%"].Visible = false;
-                    grdTaxDetails.Columns["CGST%"].Visible = false;
-                    grdTaxDetails.Columns["SGST Tax Value"].Visible = false;
-                    grdTaxDetails.Columns["CGST Tax Value"].Visible = false;
+                    grdPurchaseList.Columns["clmGstper"].Visible = false;
+                    grdPurchaseList.Columns["clmGstamt"].Visible = false;
+                    grdPurchaseList.Columns["clmCGST"].Visible = false;
+                    grdPurchaseList.Columns["clmCGSTamt"].Visible = false;
+                    grdPurchaseList.Columns["clmSGST"].Visible = false;
+                    grdPurchaseList.Columns["clmSGSTamt"].Visible = false;
+                    grdPurchaseList.Columns["clmIGST"].Visible = true;
+                    grdPurchaseList.Columns["clmIGSTamt"].Visible = true;
                 }
                 else
                 {
                     grdTaxDetails.Columns["GST%"].Visible = true;
                     grdTaxDetails.Columns["CGST%"].Visible = true;
-                    grdTaxDetails.Columns["SGST Tax Value"].Visible = true;
-                    grdTaxDetails.Columns["CGST Tax Value"].Visible = true;
+                    grdTaxDetails.Columns["SGST"].Visible = true;
+                    grdTaxDetails.Columns["CGST"].Visible = true;
                     grdTaxDetails.Columns["GST%"].Visible = true;
                     grdTaxDetails.Columns["CGST%"].Visible = true;
                     grdTaxDetails.Columns["IGST%"].Visible = false;
-                    grdTaxDetails.Columns["IGST Tax Value"].Visible = false;
+                    grdTaxDetails.Columns["IGST"].Visible = false;
                 }
-
+                grdTaxDetails.Columns["Taxable Value"].Visible = false;
                 //dtTaxTable.Columns.Add("IGST%", typeof(decimal));
                 //dtTaxTable.Columns.Add("CGST%", typeof(decimal));
                 //dtTaxTable.Columns.Add("SGST%", typeof(decimal));
