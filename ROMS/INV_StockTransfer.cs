@@ -788,6 +788,11 @@ namespace ROMS
                 lvProduct.Visible = false;
                 DGV_FilterProduct.Visible = false;
                 txtDLocation.BackColor = Color.LemonChiffon;
+                if(txtProductNamePICode.Text.Trim()!="")
+                {
+                    txtProductNamePICode.BackColor = Color.White;
+                    errStockTransfer.Clear();
+                }
             }
             catch (Exception ex)
             {

@@ -2469,6 +2469,11 @@ namespace ROMS
                 DGV_FilterProduct.DataSource = null;
                 varUpDownKey = 0;
                 txtQuantity.BackColor = Color.LemonChiffon;
+                if(txtProductNamePICode.Text.Trim()!="")
+                {
+                    txtProductNamePICode.BackColor = Color.White;
+                    epReturnDc.Clear();
+                }
             }
             catch (Exception ex)
             {
