@@ -34,6 +34,10 @@
             this.dpVerified1 = new System.Windows.Forms.DateTimePicker();
             this.dpVerified2 = new System.Windows.Forms.DateTimePicker();
             this.grpVerify = new System.Windows.Forms.GroupBox();
+            this.cmbFormat2 = new System.Windows.Forms.ComboBox();
+            this.mtbTime2 = new System.Windows.Forms.MaskedTextBox();
+            this.cmbFormat1 = new System.Windows.Forms.ComboBox();
+            this.mtbTime1 = new System.Windows.Forms.MaskedTextBox();
             this.lblVerified2 = new System.Windows.Forms.Label();
             this.txtDVerifed1 = new System.Windows.Forms.TextBox();
             this.txtDVerified2 = new System.Windows.Forms.TextBox();
@@ -47,10 +51,6 @@
             this.lvVerified2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.mtbTime1 = new System.Windows.Forms.MaskedTextBox();
-            this.cmbFormat1 = new System.Windows.Forms.ComboBox();
-            this.mtbTime2 = new System.Windows.Forms.MaskedTextBox();
-            this.cmbFormat2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errVerified)).BeginInit();
             this.grpVerify.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +102,60 @@
             this.grpVerify.Size = new System.Drawing.Size(454, 124);
             this.grpVerify.TabIndex = 0;
             this.grpVerify.TabStop = false;
+            // 
+            // cmbFormat2
+            // 
+            this.cmbFormat2.FormattingEnabled = true;
+            this.cmbFormat2.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.cmbFormat2.Location = new System.Drawing.Point(403, 46);
+            this.cmbFormat2.Name = "cmbFormat2";
+            this.cmbFormat2.Size = new System.Drawing.Size(41, 28);
+            this.cmbFormat2.TabIndex = 7;
+            this.cmbFormat2.Enter += new System.EventHandler(this.CmbFormat2_Enter);
+            this.cmbFormat2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbFormat2_KeyDown);
+            this.cmbFormat2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbFormat2_KeyPress);
+            this.cmbFormat2.Leave += new System.EventHandler(this.CmbFormat2_Leave);
+            // 
+            // mtbTime2
+            // 
+            this.mtbTime2.Location = new System.Drawing.Point(361, 46);
+            this.mtbTime2.Mask = "90:00";
+            this.mtbTime2.Name = "mtbTime2";
+            this.mtbTime2.Size = new System.Drawing.Size(42, 28);
+            this.mtbTime2.TabIndex = 6;
+            this.mtbTime2.ValidatingType = typeof(System.DateTime);
+            this.mtbTime2.Enter += new System.EventHandler(this.MtbTime2_Enter);
+            this.mtbTime2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MtbTime2_KeyDown);
+            this.mtbTime2.Leave += new System.EventHandler(this.MtbTime2_Leave);
+            // 
+            // cmbFormat1
+            // 
+            this.cmbFormat1.FormattingEnabled = true;
+            this.cmbFormat1.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.cmbFormat1.Location = new System.Drawing.Point(403, 18);
+            this.cmbFormat1.Name = "cmbFormat1";
+            this.cmbFormat1.Size = new System.Drawing.Size(41, 28);
+            this.cmbFormat1.TabIndex = 3;
+            this.cmbFormat1.Enter += new System.EventHandler(this.CmbFormat1_Enter);
+            this.cmbFormat1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbFormat1_KeyDown);
+            this.cmbFormat1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbFormat1_KeyPress);
+            this.cmbFormat1.Leave += new System.EventHandler(this.CmbFormat1_Leave);
+            // 
+            // mtbTime1
+            // 
+            this.mtbTime1.Location = new System.Drawing.Point(361, 18);
+            this.mtbTime1.Mask = "90:00";
+            this.mtbTime1.Name = "mtbTime1";
+            this.mtbTime1.Size = new System.Drawing.Size(42, 28);
+            this.mtbTime1.TabIndex = 2;
+            this.mtbTime1.ValidatingType = typeof(System.DateTime);
+            this.mtbTime1.Enter += new System.EventHandler(this.MtbTime1_Enter);
+            this.mtbTime1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MtbTime1_KeyDown);
+            this.mtbTime1.Leave += new System.EventHandler(this.MtbTime1_Leave);
             // 
             // lblVerified2
             // 
@@ -242,60 +296,6 @@
             // 
             this.columnHeader2.Width = 0;
             // 
-            // mtbTime1
-            // 
-            this.mtbTime1.Location = new System.Drawing.Point(361, 18);
-            this.mtbTime1.Mask = "90:00";
-            this.mtbTime1.Name = "mtbTime1";
-            this.mtbTime1.Size = new System.Drawing.Size(42, 28);
-            this.mtbTime1.TabIndex = 2;
-            this.mtbTime1.ValidatingType = typeof(System.DateTime);
-            this.mtbTime1.Enter += new System.EventHandler(this.MtbTime1_Enter);
-            this.mtbTime1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MtbTime1_KeyDown);
-            this.mtbTime1.Leave += new System.EventHandler(this.MtbTime1_Leave);
-            // 
-            // cmbFormat1
-            // 
-            this.cmbFormat1.FormattingEnabled = true;
-            this.cmbFormat1.Items.AddRange(new object[] {
-            "AM",
-            "PM"});
-            this.cmbFormat1.Location = new System.Drawing.Point(403, 18);
-            this.cmbFormat1.Name = "cmbFormat1";
-            this.cmbFormat1.Size = new System.Drawing.Size(41, 28);
-            this.cmbFormat1.TabIndex = 3;
-            this.cmbFormat1.Enter += new System.EventHandler(this.CmbFormat1_Enter);
-            this.cmbFormat1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbFormat1_KeyDown);
-            this.cmbFormat1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbFormat1_KeyPress);
-            this.cmbFormat1.Leave += new System.EventHandler(this.CmbFormat1_Leave);
-            // 
-            // mtbTime2
-            // 
-            this.mtbTime2.Location = new System.Drawing.Point(361, 46);
-            this.mtbTime2.Mask = "90:00";
-            this.mtbTime2.Name = "mtbTime2";
-            this.mtbTime2.Size = new System.Drawing.Size(42, 28);
-            this.mtbTime2.TabIndex = 6;
-            this.mtbTime2.ValidatingType = typeof(System.DateTime);
-            this.mtbTime2.Enter += new System.EventHandler(this.MtbTime2_Enter);
-            this.mtbTime2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MtbTime2_KeyDown);
-            this.mtbTime2.Leave += new System.EventHandler(this.MtbTime2_Leave);
-            // 
-            // cmbFormat2
-            // 
-            this.cmbFormat2.FormattingEnabled = true;
-            this.cmbFormat2.Items.AddRange(new object[] {
-            "AM",
-            "PM"});
-            this.cmbFormat2.Location = new System.Drawing.Point(403, 46);
-            this.cmbFormat2.Name = "cmbFormat2";
-            this.cmbFormat2.Size = new System.Drawing.Size(41, 28);
-            this.cmbFormat2.TabIndex = 7;
-            this.cmbFormat2.Enter += new System.EventHandler(this.CmbFormat2_Enter);
-            this.cmbFormat2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbFormat2_KeyDown);
-            this.cmbFormat2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbFormat2_KeyPress);
-            this.cmbFormat2.Leave += new System.EventHandler(this.CmbFormat2_Leave);
-            // 
             // PUR_GRN_Level_Verified
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -314,8 +314,9 @@
             this.MinimizeBox = false;
             this.Name = "PUR_GRN_Level_Verified";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Verified Process";
+            this.Text = "Verification Process";
             this.Load += new System.EventHandler(this.PUR_GRN_Level_Verified_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRN_Level_Verified_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errVerified)).EndInit();
             this.grpVerify.ResumeLayout(false);
             this.grpVerify.PerformLayout();
