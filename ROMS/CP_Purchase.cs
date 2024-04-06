@@ -343,7 +343,7 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["Batchnogeneration"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_ShelfLife"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["POID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
-                            , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, 0, Convert.ToInt16(objDs.Tables[0].Rows[i]["POPRID"]), 0);
+                            , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, 0, Convert.ToInt16(objDs.Tables[0].Rows[i]["POPRID"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]));
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                             grdSupplierList.Columns["clmPono"].Visible = true;
@@ -1053,6 +1053,11 @@ namespace ROMS
                                     , Convert.ToDecimal(objDs.Tables[1].Rows[i]["DCQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]), 0, Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["InvFlag"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_HSNID"]));
 
                                     grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+
+                                    if(Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmProductID"].Value)!=0)
+                                    {
+                                        ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
+                                    }
                                     //grdSupplierList.Columns["clmAddPro"].Visible = false;
                                     //grdSupplierList.Columns["clmPono"].Visible = true;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
@@ -1228,7 +1233,7 @@ namespace ROMS
                     }
                     if(PbSTS=="50")
                     {
-                        grdSupplierList.Columns["clmRemove"].Visible = false;
+                        //grdSupplierList.Columns["clmRemove"].Visible = false;
                         txtInvoiceNo.Visible = false;
                         txtInvoiceamt.Visible = false;
                     }
@@ -5293,10 +5298,6 @@ namespace ROMS
                                 {
                                     InvoiceAmountErr = 0;
                                 }
-                                else
-                                {
-                                    InvoiceAmountErr = 1;
-                                }
                             }
                         }
                         if (pbPurchaseno != "0")
@@ -5362,7 +5363,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varcount == 0 && shelfLifeError == 0)
+                            if (varcount == 0 && shelfLifeError == 0 && InvoiceAmountErr == 0 )
                             { flagSave = 0; }
                             else { flagSave = 1; }
                         }
@@ -8291,7 +8292,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -8751,6 +8751,20 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
                                 DataGridViewRow row = grdSupplierList.Rows[e.RowIndex];
+                                string varPurid = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPURPRIDDetail"].Value);
+                                if (pbPurchaseno!="0")
+                                {    
+                                    if (grdPurchaseList.RowCount != 0)
+                                    {
+                                        for (int i = 0; i < grdPurchaseList.RowCount; i++)
+                                        {
+                                            if (varPurid == Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPURPRID"].Value))
+                                            {
+                                                grdPurchaseList.Rows.RemoveAt(i);
+                                            }
+                                        }
+                                    }
+                                }
                                 grdSupplierList.Rows.Remove(row);
                             }
                             break;
