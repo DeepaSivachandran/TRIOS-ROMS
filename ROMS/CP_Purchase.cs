@@ -174,7 +174,7 @@ namespace ROMS
                     }
                     grdSupplierList.Enabled = true;
                 }
-                if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0" && varQueueFlag == 0)
+                if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0" && varQueueFlag == 0 && varSupplierType!=32)
                 {
                     MainForm.objPUR_GSTIN = new PUR_GSTIN();
                     //MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
@@ -1883,7 +1883,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 &&  (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1))
+                    if (Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 &&  (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varSupplierType!=32)
                     {
                         MainForm.objPUR_GSTIN = new PUR_GSTIN();
                         //MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
@@ -4425,12 +4425,12 @@ namespace ROMS
                 {
                     //udfnGridaddvalue(sender, e);
                 }
-                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmmrp")
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP")
                 {
-                    decimal varMRP = Convert.ToDecimal(grdSupplierList.CurrentRow.Cells["clmmrp"].Value);
+                    decimal varMRP = Convert.ToDecimal(grdSupplierList.CurrentRow.Cells["clmMRP"].Value);
                     string mrp = string.Format("{0:0.00}", varMRP);
                     string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
-                    grdSupplierList.Rows[e.RowIndex].Cells["clmmrp"].Value = mrp;
+                    grdSupplierList.Rows[e.RowIndex].Cells["clmMRP"].Value = mrp;
                 }
                 if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmInvoiceQty")
                 {
@@ -8635,11 +8635,14 @@ namespace ROMS
                         txtQRCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         txtQRCode.Text = varQRCode;
                     }
-                    if (varGrnId != -1 && varGrnId != 0)
+                    if (pbPurchaseno == "0")
                     {
-                        MainForm.objPUR_Purchase_GRNDetails.QRFlag = 1;
-                        pbGRNNo = Convert.ToString(varGrnId);
-                        udfnGRNProload();
+                        if (varGrnId != -1 && varGrnId != 0)
+                        {
+                            MainForm.objPUR_Purchase_GRNDetails.QRFlag = 1;
+                            pbGRNNo = Convert.ToString(varGrnId);
+                            udfnGRNProload();
+                        }
                     }
                 }
             }
@@ -8800,9 +8803,52 @@ namespace ROMS
                                                 grdPurchaseList.Rows.RemoveAt(i);
                                             }
                                         }
+
                                     }
                                 }
                                 grdSupplierList.Rows.Remove(row);
+                                //reset the calculation
+                                if(grdPurchaseList.RowCount!=0)
+                                {
+                                    for(int i=0;i<grdPurchaseList.RowCount;i++)
+                                    {
+                                        PbGstamt = 0; PbNetamt = 0; pbDiffQty = 0; PbDiscamt = 0; PbTaxvalue = 0; pbDisper = 0; pbCostingRate = 0; PbSGstamt = 0; PbCGstamt = 0; PbIGstamt = 0;
+                                        decimal varInvQty = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmInvQty"].Value)) != "") { varInvQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
+                                        decimal varRecQty = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmRecqty"].Value)) != "") { varRecQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value); }
+                                        decimal varDiffQty = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value)) != "") { varDiffQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value); }
+                                        decimal varFreeQty = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value)) != "") { varFreeQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value); }
+                                        decimal varPurchaseRate = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value)) != "")
+                                        {
+                                            string mrp = string.Format("{0:0.000}", Math.Round(Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value), 3, MidpointRounding.AwayFromZero));
+                                            grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value = mrp;
+                                            varPurchaseRate = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value);
+                                        }
+                                        decimal varCellDiscAmt = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Value)) != "") { varCellDiscAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Value); }
+                                        decimal varTaxValue = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmTax"].Value)) != "") { varTaxValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmTax"].Value); }
+                                        decimal varGstAmt = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmGstamt"].Value)) != "") { varGstAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmGstamt"].Value); }
+                                        decimal varNetAmt = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmnetamt"].Value)) != "") { varNetAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmnetamt"].Value); }
+                                        decimal varDiscPer = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value)) != "") { varDiscPer = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value); }
+                                        int varHSNGSTValue = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["GstValue"].Value)) != "") { varHSNGSTValue = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["GstValue"].Value); }
+                                        udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
+                                        udfnSubtotCalc();
+                                        udfnGstvalue();
+                                        udfnLoadingGrandTotCalculation();
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value = PbDiscamt.ToString("0.00");
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmCosting"].Value = pbCostingRate.ToString("0.00");
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value = PbGstamt.ToString("0.00");
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmSGstamt"].Value = PbSGstamt.ToString("0.00");
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmCGstamt"].Value = PbCGstamt.ToString("0.00");
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmIGstamt"].Value = PbIGstamt.ToString("0.00");
+
+                                        //grdPurchaseList.Rows[e.RowIndex].Cells["clmCGST"].Value = varCGSTPer;
+                                        //grdPurchaseList.Rows[e.RowIndex].Cells["clmIGST"].Value = varIGSTPer;
+                                        //grdPurchaseList.Rows[e.RowIndex].Cells["clmSGST"].Value = varSGSTPer;
+
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value = PbNetamt.ToString("0.00");
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value = PbTaxvalue.ToString("0.00");
+                                        grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscountValue"].Value = PbDicountValue.ToString("0.00");
+                                    }
+                                }
                             }
                             break;
                     }
@@ -8828,48 +8874,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPurchaseGridValue(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                DataGridView dataGridView = (DataGridView)sender;
-                DataGridViewCell cellHSNname = dataGridView.Rows[e.RowIndex].Cells["clmHSN"];
-                DataGridViewCell cellHSNid = dataGridView.Rows[e.RowIndex].Cells["hsnid"];
-                DataGridViewCell CellHSNGSTper = dataGridView.Rows[e.RowIndex].Cells["clmGstper"];
-                DataGridViewCell CellHSNGSTValue = dataGridView.Rows[e.RowIndex].Cells["GstValue"];
-                DataGridViewCell CellInvQty = dataGridView.Rows[e.RowIndex].Cells["clmInvQty"];
-                //DataGridViewCell CellRecQty = dataGridView.Rows[e.RowIndex].Cells["clmRecqty"];
-                //DataGridViewCell CellDiffQty = dataGridView.Rows[e.RowIndex].Cells["clmDiffqty"];
-                DataGridViewCell CellPurchaseRate = dataGridView.Rows[e.RowIndex].Cells["clmPurchaseRate"];
-                DataGridViewCell CellDiscPer = dataGridView.Rows[e.RowIndex].Cells["clmDiscPer"];
-                DataGridViewCell CellDiscAmt = dataGridView.Rows[e.RowIndex].Cells["clmDiscAmt"];
-                DataGridViewCell CellFreeQty = dataGridView.Rows[e.RowIndex].Cells["clmFreeqty"];
-                //DataGridViewCell CellTaxValue = dataGridView.Rows[e.RowIndex].Cells["clmTax"];
-                // DataGridViewCell CellGstAmt = dataGridView.Rows[e.RowIndex].Cells["clmGstamt"];
-                //DataGridViewCell CellNetAmt = dataGridView.Rows[e.RowIndex].Cells["clmnetamt"];   
-                decimal varInvQty = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmInvQty"].Value)) != "") { varInvQty = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmInvQty"].Value); }
-                decimal varRecQty = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmRecqty"].Value)) != "") { varRecQty = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmRecqty"].Value); }
-                decimal varDiffQty = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value)) != "") { varDiffQty = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value); }
-                decimal varFreeQty = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmFreeqty"].Value)) != "") { varFreeQty = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmFreeqty"].Value); }
-                decimal varPurchaseRate = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value)) != "")
-                {
-                    string mrp = string.Format("{0:0.000}", Math.Round(Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value), 3, MidpointRounding.AwayFromZero));
-                    grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value = mrp;
-                    varPurchaseRate = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value);
-                }
-                decimal varCellDiscAmt = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value)) != "") { varCellDiscAmt = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscAmt"].Value); }
-                decimal varTaxValue = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value)) != "") { varTaxValue = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value); }
-                decimal varGstAmt = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value)) != "") { varGstAmt = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value); }
-                decimal varNetAmt = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value)) != "") { varNetAmt = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value); }
-                decimal varDiscPer = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value)) != "") { varDiscPer = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscPer"].Value); }
-                int varHSNGSTValue = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["GstValue"].Value)) != "") { varHSNGSTValue = Convert.ToInt32(grdPurchaseList.Rows[e.RowIndex].Cells["GstValue"].Value); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
         private void GrdPurchaseList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -10718,7 +10723,7 @@ namespace ROMS
                             {
                                 LV_Supplier.Visible = false;
                                 //txtGstin.Enabled = true;
-                                if (Convert.ToInt32(cmbEntryType.SelectedValue) !=54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag==0)
+                                if (Convert.ToInt32(cmbEntryType.SelectedValue) !=54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag==0 && varSupplierType !=32)
                                 {
                                     MainForm.objPUR_GSTIN = new PUR_GSTIN();
                                     MainForm.objPUR_GSTIN.ShowDialog();

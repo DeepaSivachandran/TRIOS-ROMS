@@ -1027,7 +1027,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 9F);
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(612, 157);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(612, 218);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(84, 16);
             this.lblNoRecordsFound.TabIndex = 1111225;
