@@ -3268,37 +3268,6 @@ namespace ROMS
                         cell.Style.ForeColor = Color.Black;
                     }
                 }
-                string QtyType = Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmQtyType"].Value); 
-                if (Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmQtyType"].Value)=="")
-                {
-                    QtyType = "0";
-                }
-                if (varOrderType==53 && QtyType == "0")
-                {
-                    if (Convert.ToDecimal(grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value) == 0)
-                    {
-                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].ReadOnly = false;
-                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
-                    }
-                    else
-                    {
-                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].ReadOnly = true;
-                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                    }
-
-
-                    if (Convert.ToDecimal(grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Value) == 0)
-                    {
-                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].ReadOnly = false;
-                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
-                    }
-                    else
-                    {
-                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].ReadOnly = true;
-                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
-                    }
-                }
-                
             }
             catch (Exception ex)
             {
@@ -3527,6 +3496,38 @@ namespace ROMS
                         }
                     }
                 }
+
+                string QtyType = Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmQtyType"].Value);
+                if (Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmQtyType"].Value) == "")
+                {
+                    QtyType = "0";
+                }
+                if (varOrderType == 53 && QtyType == "0")
+                {
+                    if (Convert.ToDecimal(grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Value) == 0)
+                    {
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].ReadOnly = false;
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
+                    }
+                    else
+                    {
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].ReadOnly = true;
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                    }
+
+
+                    if (Convert.ToDecimal(grdGrnlist.Rows[e.RowIndex].Cells["clmExcessQty"].Value) == 0)
+                    {
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].ReadOnly = false;
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                    }
+                    else
+                    {
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].ReadOnly = true;
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                    }
+                }
+
             }
             catch (Exception ex)
             {
