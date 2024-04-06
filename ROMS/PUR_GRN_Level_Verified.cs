@@ -857,6 +857,26 @@ namespace ROMS
             }
         }
 
+        private void PUR_GRN_Level_Verified_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnAuthorise_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnVerified1()
         {
             try
