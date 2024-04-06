@@ -458,8 +458,11 @@ namespace ROMS
                             }
                             else
                             {
-                                grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.PaleGreen;
-                                //grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                if (InvalidQty != 1)
+                                {
+                                    grdGrnlist.Rows[i].Cells["Received Qty"].Style.BackColor = Color.PaleGreen;
+                                    //grdGrnlist.Columns["Received Qty"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                }
                             }
                         }
                         varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["Rack ID"].Value);
