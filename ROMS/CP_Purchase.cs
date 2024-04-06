@@ -1271,8 +1271,8 @@ namespace ROMS
                     if(PbSTS=="50")
                     {
                         //grdSupplierList.Columns["clmRemove"].Visible = false;
-                        txtInvoiceNo.Visible = false;
-                        txtInvoiceamt.Visible = false;
+                        txtInvoiceNo.Enabled = false;
+                        txtInvoiceamt.Enabled = false;
                     }
                 }
             }
@@ -7128,12 +7128,14 @@ namespace ROMS
                 grdTaxDetails.Columns["SGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                if (varSupplierType == 151) //IGST
+                if (pbSupplierTin != pbConcernTin) //IGST
                 {
                     grdTaxDetails.Columns["SGST%"].Visible = false;
                     grdTaxDetails.Columns["CGST%"].Visible = false;
                     grdTaxDetails.Columns["SGST"].Visible = false;
                     grdTaxDetails.Columns["CGST"].Visible = false;
+                    grdTaxDetails.Columns["IGST%"].Visible = true;
+                    grdTaxDetails.Columns["IGST"].Visible = true;
                 }
                 else
                 {
@@ -9048,9 +9050,9 @@ namespace ROMS
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmCGstamt"].Value = PbCGstamt.ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmIGstamt"].Value = PbIGstamt.ToString("0.00");
 
-                    //grdPurchaseList.Rows[e.RowIndex].Cells["clmCGST"].Value = varCGSTPer;
-                    //grdPurchaseList.Rows[e.RowIndex].Cells["clmIGST"].Value = varIGSTPer;
-                    //grdPurchaseList.Rows[e.RowIndex].Cells["clmSGST"].Value = varSGSTPer;
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmCGST"].Value = varCGSTPer;
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmIGST"].Value = varIGSTPer;
+                    grdPurchaseList.Rows[e.RowIndex].Cells["clmSGST"].Value = varSGSTPer;
 
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmnetamt"].Value = PbNetamt.ToString("0.00");
                     grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value = PbTaxvalue.ToString("0.00");
