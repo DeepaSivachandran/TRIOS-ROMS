@@ -127,6 +127,12 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Tally.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Tally.designer.cs">
+      <DependentUpon>CP_Tally.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_ProductApproval.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1536,6 +1542,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Tally.resx">
+      <DependentUpon>CP_Tally.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductApproval.resx">
       <DependentUpon>CP_ProductApproval.cs</DependentUpon>

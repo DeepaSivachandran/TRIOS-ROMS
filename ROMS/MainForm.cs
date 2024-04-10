@@ -102,6 +102,7 @@ namespace ROMS
         public static ReportLoad objReportLoad;
         public static CP_ProductApprovalList objCP_ProductApprovalList;
         public static CP_ProductApproval objCP_ProductApproval;
+        public static CP_Tally objCP_Tally;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -1886,6 +1887,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void ExportTallyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Tally = new CP_Tally();
+                MainForm.objCP_Tally.MdiParent = this;
+                MainForm.objCP_Tally.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void ProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
