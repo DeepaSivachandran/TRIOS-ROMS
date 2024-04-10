@@ -4519,13 +4519,13 @@ namespace ROMS
                                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                         grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                     }
-                                    //else
-                                    //{
-                                    //    if (varErrorFormat != 5)
-                                    //    {
-                                    //        grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                    //    }
-                                    //}
+                                    else
+                                    {
+                                        if (varErrorFormat != 5)
+                                        {
+                                            grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -4622,10 +4622,10 @@ namespace ROMS
                                                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                                     }
                                                 }
-                                                //else
-                                                //{
-                                                //    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                                //}
+                                                else
+                                                {
+                                                    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                }
                                             }
                                             else
                                             {
@@ -5707,10 +5707,6 @@ namespace ROMS
                                                 {
                                                     tbDetails.SelectedIndex = 1;
                                                 }
-                                                else if(tbDetails.SelectedIndex==1)
-                                                {
-                                                    tbDetails.SelectedIndex = 2;
-                                                }
                                                 else
                                                 { varCloseflag = 1; }
                                             }
@@ -5725,14 +5721,8 @@ namespace ROMS
                                                 {
                                                     tbDetails.SelectedIndex = 1;
                                                 }
-                                                else if (tbDetails.SelectedIndex == 1)
-                                                {
-                                                    tbDetails.SelectedIndex = 2;
-                                                }
                                                 else
-                                                {
-                                                    varCloseflag = 1; udfnclose();
-                                                }
+                                                { varCloseflag = 1; udfnclose(); }
                                             }
                                             else
                                             {
@@ -7109,7 +7099,7 @@ namespace ROMS
                             //CGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
                             //SGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
 
-                            IGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value)),
+                            IGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value)),
                             CGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2),
                             SGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2)
 
