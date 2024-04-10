@@ -26,7 +26,7 @@ namespace ROMS
             {
                 SecurityController _security = new SecurityController();
                 //  DataService objDser = new DataService();
-                string VersionNo = "v1.6.4";
+                string VersionNo = System.Configuration.ConfigurationManager.AppSettings["versionno"];
               //  string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
 
                 ////////////  Enter Version No Here   /////////////

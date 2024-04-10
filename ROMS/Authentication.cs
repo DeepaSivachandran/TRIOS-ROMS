@@ -298,7 +298,10 @@ namespace ROMS
             //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
             //if (File.Exists(paths))
             //{
-            lblDVersion.Text = "v1.6.4";
+            DataService objDserv = new DataService();
+            string VersionName = objDserv.displaydata("SELECT TOP(1) RLS_VersionName FROM TRN_RELEASEDETAILS ORDER BY RLSID DESC");
+            objDserv.CloseConnection();
+            lblDVersion.Text = VersionName;
             lblDVersion.BringToFront();
             Authentication objAuthetication = new Authentication();
             objAuthetication.Name = " - " + lblDVersion.Text;
