@@ -565,12 +565,20 @@ namespace ROMS
                     blnErrorFlag = true;
                 }
                 string path = txtbackuppath.Text;
-                if (!Directory.Exists(path))
+                if (!Directory.Exists(path) && path!="")
                 {
                     epGeneralSettings.SetError(txtbackuppath, "Please enter a correct path");
                     txtbackuppath.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpbackuppath.ShowAlways = true;
                     tpbackuppath.Show("Please enter a correct path", txtbackuppath, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtbackuppath.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtbackuppath, "Please enter a path");
+                    txtbackuppath.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpbackuppath.ShowAlways = true;
+                    tpbackuppath.Show("Please enter a path", txtbackuppath, 5000);
                     blnErrorFlag = true;
                 }
 
@@ -1159,10 +1167,10 @@ namespace ROMS
             {
                 if (txtbackuppath.Text=="")
                 {
-                    epGeneralSettings.SetError(txtbackuppath, "Please enter a correct path");
+                    epGeneralSettings.SetError(txtbackuppath, "Please enter a path");
                     txtbackuppath.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpTransactionType.ShowAlways = true;
-                    tpTransactionType.Show("Please enter a correct path", txtbackuppath, 5000);
+                    tpTransactionType.Show("Please enter a path", txtbackuppath, 5000);
                 }
                 else
                 {
