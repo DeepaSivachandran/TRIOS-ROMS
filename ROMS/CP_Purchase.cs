@@ -1112,7 +1112,7 @@ namespace ROMS
                                         if (Convert.ToInt16(objDs.Tables[1].Rows[i]["BatchNoErr"]) == 1)
                                         {
                                             grdSupplierList.Rows[i].Cells["clmBatchno"].ReadOnly = false;
-                                            grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightPink;
+                                            grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                         }
                                         else
                                         {
@@ -1122,7 +1122,7 @@ namespace ROMS
                                         if (Convert.ToInt16(objDs.Tables[1].Rows[i]["ExpiryDateErr"])==1)
                                         {
                                             grdSupplierList.Rows[i].Cells["clmexpirydate"].ReadOnly = false;
-                                            grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                            grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                         }
                                         else
                                         {
@@ -1132,7 +1132,7 @@ namespace ROMS
                                         if (Convert.ToInt16(objDs.Tables[1].Rows[i]["InvoiceMRPErr"])==1)
                                         {
                                             grdSupplierList.Rows[i].Cells["clmMRP"].ReadOnly = false;
-                                            grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                                            grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                         }
                                         else
                                         {
@@ -5894,7 +5894,7 @@ namespace ROMS
                                 if (Convert.ToInt16(objDs.Tables[0].Rows[i]["PurchaseRateErr"]) == 1)
                                 {
                                     grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = false;
-                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightPink;
+                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                 }
                                 else
                                 {
@@ -5904,7 +5904,7 @@ namespace ROMS
                                 if (Convert.ToInt16(objDs.Tables[0].Rows[i]["DiscAmtErr"]) == 1)
                                 {
                                     grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = false;
-                                    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightPink;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                 }
                                 else
                                 {
@@ -5914,7 +5914,7 @@ namespace ROMS
                                 if (Convert.ToInt16(objDs.Tables[0].Rows[i]["DisPerErr"]) == 1)
                                 {
                                     grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = false;
-                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightPink;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                 }
                                 else
                                 {
@@ -5924,7 +5924,7 @@ namespace ROMS
                                 if (Convert.ToInt16(objDs.Tables[0].Rows[i]["InvoiceQtyErr"]) == 1)
                                 {
                                     grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = false;
-                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
+                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                 }
                                 else
                                 {
@@ -5934,7 +5934,7 @@ namespace ROMS
                                 if (Convert.ToInt16(objDs.Tables[0].Rows[i]["ReceivedQtyErr"]) == 1)
                                 {
                                     grdPurchaseList.Rows[i].Cells["clmRecqty"].ReadOnly = false;
-                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                 }
                                 else
                                 {
@@ -5944,7 +5944,7 @@ namespace ROMS
                                 if (Convert.ToInt16(objDs.Tables[0].Rows[i]["FreeQtyErr"]) == 1)
                                 {
                                     grdPurchaseList.Rows[i].Cells["clmFreeqty"].ReadOnly = false;
-                                    grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
+                                    grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                                 }
                                 else
                                 {

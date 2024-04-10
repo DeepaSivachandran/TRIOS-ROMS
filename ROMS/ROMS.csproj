@@ -866,6 +866,12 @@
     <Compile Include="ReportLoad.designer.cs">
       <DependentUpon>ReportLoad.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT_ItemMovementAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_ItemMovementAnalysis.designer.cs">
+      <DependentUpon>REPORT_ItemMovementAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_Stock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2339,6 +2345,9 @@
     <None Include="Resources\clipboard.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
+    <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">
+      <DependentUpon>REPORT_ItemMovementAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock.resx">
       <DependentUpon>REPORT_Stock.cs</DependentUpon>
     </EmbeddedResource>
