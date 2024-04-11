@@ -30,24 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tsFy_Process = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlFy_Process = new System.Windows.Forms.Panel();
+            this.PicloadComplete = new System.Windows.Forms.PictureBox();
             this.lblProcess = new System.Windows.Forms.Label();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.PbBackup = new System.Windows.Forms.ProgressBar();
-            this.tmrProcess = new System.Windows.Forms.Timer(this.components);
-            this.PicloadComplete = new System.Windows.Forms.PictureBox();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.Pic_Settings = new System.Windows.Forms.PictureBox();
             this.Pic_Move = new System.Windows.Forms.PictureBox();
             this.Pic_Restore = new System.Windows.Forms.PictureBox();
             this.Pic_Backup = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.Pic_Clear = new System.Windows.Forms.PictureBox();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.PbBackup = new System.Windows.Forms.ProgressBar();
+            this.tmrProcess = new System.Windows.Forms.Timer(this.components);
             this.tsFy_Process.SuspendLayout();
             this.pnlFy_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicloadComplete)).BeginInit();
@@ -72,6 +72,16 @@
             this.tsFy_Process.TabIndex = 35;
             this.tsFy_Process.Text = "Fy Settings";
             // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(144, 22);
+            this.tspHeader.Text = "Financial Year Process";
+            // 
             // pnlFy_Process
             // 
             this.pnlFy_Process.BackColor = System.Drawing.Color.White;
@@ -95,67 +105,6 @@
             this.pnlFy_Process.Size = new System.Drawing.Size(1354, 642);
             this.pnlFy_Process.TabIndex = 958797;
             // 
-            // lblProcess
-            // 
-            this.lblProcess.AutoSize = true;
-            this.lblProcess.Location = new System.Drawing.Point(646, 572);
-            this.lblProcess.Name = "lblProcess";
-            this.lblProcess.Size = new System.Drawing.Size(63, 20);
-            this.lblProcess.TabIndex = 958801;
-            this.lblProcess.Text = "Loading ...";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1006, 348);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 20);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Final Settings";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(842, 348);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 20);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Move Stock";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(626, 348);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 20);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Clear Transaction";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(451, 348);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 20);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "DB Restore";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(273, 348);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 20);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "DB Backup";
-            // 
-            // PbBackup
-            // 
-            this.PbBackup.Location = new System.Drawing.Point(274, 296);
-            this.PbBackup.Name = "PbBackup";
-            this.PbBackup.Size = new System.Drawing.Size(774, 5);
-            this.PbBackup.TabIndex = 0;
-            // 
             // PicloadComplete
             // 
             this.PicloadComplete.BackColor = System.Drawing.Color.White;
@@ -163,13 +112,23 @@
             this.PicloadComplete.ErrorImage = null;
             this.PicloadComplete.Image = global::ROMS.Properties.Resources.internet_on;
             this.PicloadComplete.InitialImage = null;
-            this.PicloadComplete.Location = new System.Drawing.Point(637, 451);
+            this.PicloadComplete.Location = new System.Drawing.Point(637, 441);
             this.PicloadComplete.Name = "PicloadComplete";
             this.PicloadComplete.Size = new System.Drawing.Size(80, 80);
             this.PicloadComplete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicloadComplete.TabIndex = 958802;
             this.PicloadComplete.TabStop = false;
             this.PicloadComplete.Visible = false;
+            // 
+            // lblProcess
+            // 
+            this.lblProcess.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProcess.Location = new System.Drawing.Point(613, 572);
+            this.lblProcess.Name = "lblProcess";
+            this.lblProcess.Size = new System.Drawing.Size(141, 40);
+            this.lblProcess.TabIndex = 958801;
+            this.lblProcess.Text = "Loading ...";
+            this.lblProcess.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // picLoader
             // 
@@ -178,13 +137,58 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.loader;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(327, 411);
+            this.picLoader.Location = new System.Drawing.Point(327, 392);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(700, 160);
+            this.picLoader.Size = new System.Drawing.Size(700, 179);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958800;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1034, 348);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 20);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Final Settings";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(847, 348);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 20);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Move Stock";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(637, 348);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 20);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Clear Transaction";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(462, 348);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 20);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "DB Restore";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(270, 348);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 20);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "DB Backup";
             // 
             // Pic_Settings
             // 
@@ -253,15 +257,12 @@
             this.Pic_Clear.TabIndex = 8;
             this.Pic_Clear.TabStop = false;
             // 
-            // tspHeader
+            // PbBackup
             // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(144, 22);
-            this.tspHeader.Text = "Financial Year Process";
+            this.PbBackup.Location = new System.Drawing.Point(274, 296);
+            this.PbBackup.Name = "PbBackup";
+            this.PbBackup.Size = new System.Drawing.Size(774, 5);
+            this.PbBackup.TabIndex = 0;
             // 
             // Financial_Year_Process
             // 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;   // Check Directory default Function
+using System.Xml;
 
 
 namespace ROMS
@@ -17,6 +18,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        private SecurityController _security;
         public int varBackupProcess = 0;
         public int varTimer = 0;
         public Financial_Year_Process()
@@ -98,8 +100,29 @@ namespace ROMS
                 udfnDbRestore();
                 udfnClearTransactions();
                 udfnMoveStock();
+                udfnFinalSettings();
+                if(varBackupProcess == 6)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(126);
+                    objDServ.CloseConnection();
+                    DialogResult Response = MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (Response == DialogResult.OK)
+                    {
+                        string name = System.Diagnostics.Process.GetCurrentProcess().ProcessName.Replace(".vshost", "");
+                        MainForm.varCloseFlag = 1;
+                        System.Windows.Forms.Application.Exit();
 
+                        // Read config file
+                        XmlDocument appSettingsDoc = new XmlDocument();
+                        appSettingsDoc.Load(Application.StartupPath + "\\" + name + ".exe.config");
 
+                        //Authentication au = new Authentication();
+                        //au.Show();
+                        //Program.Main();
+                        Program.varFormClose = 1;
+                    }
+                }
                 //tmrProcess.Tick += new EventHandler(udfnDbBackup);
                 //tmrProcess.Tick += new EventHandler(udfnDbRestore);
                 //tmrProcess.Tick += new EventHandler(udfnClearTransactions);
@@ -360,30 +383,45 @@ namespace ROMS
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
-                        varBackupProcess = 0;
+                        varBackupProcess = 6;
                         varTimer = 1;
+                        if (varTimer == 1)
+                        {
+                            PbBackup.Value = 100;
+                            Pic_Settings.Image = ROMS.Properties.Resources.Settings_Color;
+                            picLoader.Visible = false;
+                            PicloadComplete.Visible = true;
+                            lblProcess.Text = "Completed";
+                            PicloadComplete.BringToFront();
+                            picLoader.SendToBack();
+                        }
+                        string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+                        string ServerName = "", DataBaseName = "", UserName = "", Password = "", WebService = "";
+                        DataBaseName = varvalue[2];
+                        if (File.Exists(path))
+                        {
+                            string lines = File.ReadAllText(path);
+                            if (lines != null & lines != "")
+                            {
+                                string[] words = lines.Split(',');
+                                ServerName = words[0]; UserName = words[2]; Password = words[3]; WebService = words[4];
+                            }
+                        }
+                        // Check server settings file exists
+                        if (File.Exists(path))
+                        { File.Delete(path); }
+                        File.Create(path).Close();
+
+                        using (var tw = new StreamWriter(path, true))
+                        {
+                            tw.WriteLine(ServerName + "," + DataBaseName + "," + UserName + "," + Password + "," + WebService.Trim().Replace("\n", "").Replace("\r", "").Replace("http://", "").Replace("http:/", "").Replace("https://", "").Replace("https:/", ""));
+                        }
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varBackupProcess = 0;
                     }
-                }
-                if (varTimer == 1)
-                {
-                    PbBackup.Value = 100;
-                    Pic_Move.Image = ROMS.Properties.Resources.Move_Color;
-                    /*
-                    if (PbBackup.Value != 80)
-                    {
-                        PbBackup.Value++;
-                    }
-                    else
-                    {
-                        tmrProcess.Stop();
-                        Pic_Move.Image = ROMS.Properties.Resources.Move_Color;
-                    }
-                    */
                 }
             }
             catch (Exception ex)
