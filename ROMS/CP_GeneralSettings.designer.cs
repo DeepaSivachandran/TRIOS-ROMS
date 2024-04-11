@@ -39,6 +39,8 @@
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpGeneralsettings = new System.Windows.Forms.GroupBox();
+            this.txtbackuppath = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.rbNo = new System.Windows.Forms.RadioButton();
             this.rbYes = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
@@ -117,6 +119,8 @@
             // 
             // grpGeneralsettings
             // 
+            this.grpGeneralsettings.Controls.Add(this.txtbackuppath);
+            this.grpGeneralsettings.Controls.Add(this.label8);
             this.grpGeneralsettings.Controls.Add(this.rbNo);
             this.grpGeneralsettings.Controls.Add(this.rbYes);
             this.grpGeneralsettings.Controls.Add(this.label2);
@@ -146,6 +150,25 @@
             this.grpGeneralsettings.Size = new System.Drawing.Size(1339, 633);
             this.grpGeneralsettings.TabIndex = 958794;
             this.grpGeneralsettings.TabStop = false;
+            // 
+            // txtbackuppath
+            // 
+            this.txtbackuppath.Location = new System.Drawing.Point(152, 274);
+            this.txtbackuppath.MaxLength = 500;
+            this.txtbackuppath.Name = "txtbackuppath";
+            this.txtbackuppath.Size = new System.Drawing.Size(402, 27);
+            this.txtbackuppath.TabIndex = 1111213;
+            this.txtbackuppath.Enter += new System.EventHandler(this.Txtbackuppath_Enter);
+            this.txtbackuppath.Leave += new System.EventHandler(this.Txtbackuppath_Leave);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(19, 277);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(95, 20);
+            this.label8.TabIndex = 1111212;
+            this.label8.Text = "DB backup path";
             // 
             // rbNo
             // 
@@ -652,5 +675,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton rbNo;
         private System.Windows.Forms.RadioButton rbYes;
+        private System.Windows.Forms.TextBox txtbackuppath;
+        private System.Windows.Forms.Label label8;
     }
 }

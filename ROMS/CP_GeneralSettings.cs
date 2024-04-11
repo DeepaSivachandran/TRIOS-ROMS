@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,6 +21,7 @@ namespace ROMS
         private ToolTip tpGRNQty = new ToolTip();
         private ToolTip tpReturnAlertDays = new ToolTip();
         private ToolTip tpInvoiceEditDays = new ToolTip();
+        private ToolTip tpbackuppath = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
         private ToolTip tpReportText = new ToolTip();
         DataSet objDs = new DataSet();
@@ -103,6 +105,7 @@ namespace ROMS
                             txtGRNQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_GRNQty"]);
                             txtReturnAlertDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_RAD"]);
                             txtInvoiceEditDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_IED"]);
+                            txtbackuppath.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_DBPath"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -174,7 +177,7 @@ namespace ROMS
                 {
                     objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock);
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock,txtbackuppath.Text);
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -561,6 +564,24 @@ namespace ROMS
                     tpInvoiceEditDays.Show("Please enter days.", txtInvoiceEditDays, 5000);
                     blnErrorFlag = true;
                 }
+                string path = txtbackuppath.Text;
+                if (!Directory.Exists(path) && path!="")
+                {
+                    epGeneralSettings.SetError(txtbackuppath, "Please enter a correct path");
+                    txtbackuppath.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpbackuppath.ShowAlways = true;
+                    tpbackuppath.Show("Please enter a correct path", txtbackuppath, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtbackuppath.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtbackuppath, "Please enter a path");
+                    txtbackuppath.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpbackuppath.ShowAlways = true;
+                    tpbackuppath.Show("Please enter a path", txtbackuppath, 5000);
+                    blnErrorFlag = true;
+                }
+
                 if (blnErrorFlag == false)
                 {
                     udfnUpdate();
@@ -1119,6 +1140,43 @@ namespace ROMS
             {
                 rbNo.BackColor = Color.LemonChiffon;
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtbackuppath_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtbackuppath.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtbackuppath_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtbackuppath.Text=="")
+                {
+                    epGeneralSettings.SetError(txtbackuppath, "Please enter a path");
+                    txtbackuppath.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTransactionType.ShowAlways = true;
+                    tpTransactionType.Show("Please enter a path", txtbackuppath, 5000);
+                }
+                else
+                {
+                    epGeneralSettings.Clear();
+                    txtbackuppath.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {

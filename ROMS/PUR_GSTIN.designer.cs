@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GSTIN));
-            this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errGSTIN = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtDPasskey = new System.Windows.Forms.TextBox();
             this.txtGstin = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errGSTIN)).BeginInit();
             this.SuspendLayout();
             // 
-            // errUnit
+            // errGSTIN
             // 
-            this.errUnit.ContainerControl = this;
+            this.errGSTIN.ContainerControl = this;
             // 
             // txtDPasskey
             // 
@@ -122,14 +122,14 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GSTIN";
             this.Load += new System.EventHandler(this.PUR_GSTIN_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errGSTIN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ErrorProvider errUnit;
+        private System.Windows.Forms.ErrorProvider errGSTIN;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtDPasskey;
         public System.Windows.Forms.TextBox txtGstin;

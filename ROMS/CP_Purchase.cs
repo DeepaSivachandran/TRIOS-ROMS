@@ -1944,7 +1944,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["GSTIN"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["GSTIN"].ToString(), objDs.Tables[0].Rows[i]["ST_TIN"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -2217,7 +2217,7 @@ namespace ROMS
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
-                    //txtGstin.Text = selectedItem.SubItems[3].Text;
+                    pbSupplierTin = Convert.ToInt32(selectedItem.SubItems[5].Text);
                     //varSuppliervalue = selectedItem.SubItems[3].Text;
                     udfnSupplierDetails();
                     //udfnGetTinNo();
