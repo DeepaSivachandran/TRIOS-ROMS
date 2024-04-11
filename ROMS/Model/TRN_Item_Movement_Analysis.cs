@@ -12,8 +12,9 @@ namespace ROMS.Model
         public int paraProductId { get; set; } = 0;
         public int paraCompanyId { get; set; } = 0;
         public int paraRackId { get; set; } = 0;
+        public string paratodate { get; set; } = "";
         public int paraLocationId { get; set; } = 0;
         public string parafromdate { get; set; } = "";
-        public string paratodate { get; set; } = "";
+       
     }
 }
