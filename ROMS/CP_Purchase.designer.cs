@@ -826,13 +826,12 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.DGV_FilterProduct);
+            this.tabPage1.Controls.Add(this.lvSourceLocation);
             this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.btnAdd);
             this.tabPage1.Controls.Add(this.cmbPONo);
             this.tabPage1.Controls.Add(this.label34);
             this.tabPage1.Controls.Add(this.lblLocationcode);
-            this.tabPage1.Controls.Add(this.lvSourceLocation);
-            this.tabPage1.Controls.Add(this.txtSourceLocation);
             this.tabPage1.Controls.Add(this.lblProductcode);
             this.tabPage1.Controls.Add(this.lblNoRecordsFound);
             this.tabPage1.Controls.Add(this.lblBrokerId);
@@ -856,6 +855,7 @@
             this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.label24);
+            this.tabPage1.Controls.Add(this.txtSourceLocation);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -975,7 +975,7 @@
             this.lvSourceLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvSourceLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSourceLocation.HideSelection = false;
-            this.lvSourceLocation.Location = new System.Drawing.Point(736, 47);
+            this.lvSourceLocation.Location = new System.Drawing.Point(760, 47);
             this.lvSourceLocation.Name = "lvSourceLocation";
             this.lvSourceLocation.Size = new System.Drawing.Size(312, 93);
             this.lvSourceLocation.TabIndex = 111111132;

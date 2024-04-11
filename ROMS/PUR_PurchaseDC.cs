@@ -338,6 +338,7 @@ namespace ROMS
             //objPurchaseDC.Columns.Add("PR_PICode", typeof(string));
             // objPurchaseDC.Columns.Add("PR_EName", typeof(string));
             //objPurchaseDC.Columns.Add("DCPR_DCID", typeof(int));
+            dtPurchaseDC.Columns.Add("SNo", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_PRID", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_MRP", typeof(decimal));
             dtPurchaseDC.Columns.Add("DCPR_ExpiryDate", typeof(string));
@@ -2588,7 +2589,12 @@ namespace ROMS
                 grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
                 //Update the same column value in the DataTable
                 object varEditQty = grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                dtPurchaseDC.Rows[e.RowIndex]["DCPR_Qty"] = varEditQty;
+                int varsno=Convert.ToInt16(grdPurchaseDC.Rows[e.RowIndex].Cells["clmSno"].Value);
+                var vardtSno = from r in dtPurchaseDC.AsEnumerable()
+                                where (r.Field<string>("SNo").Equals(varsno)) group r by r.Field<int>("SNo") into g
+                                select g.Key;
+                int varSINO = Convert.ToInt16(vardtSno);
+                dtPurchaseDC.Rows[varSINO]["DCPR_Qty"] = varEditQty;
             }
             catch (Exception ex)
             {
@@ -3664,8 +3670,15 @@ namespace ROMS
                             decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                             string mrp = string.Format("{0:0.00}", varMRP);
                             string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
-                            grdPurchaseDC.Rows.Add(grdPurchaseDC.Rows.Count + 1, varPICode.Trim(), varTName.Trim(), lblUnit.Text, txtActualQty.Text.Trim(), Convert.ToDecimal(mrp), varExpiryDate, (flag).Trim(), varAcutalshelflife, varShelflifevalue, expirydateFlag, txtBatchNo.Text.Trim(),  txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid, Convert.ToString(varDecimal));
-                            dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text),ProShelflife, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue);
+                            var maxSno = 0;
+                            if (grdPurchaseDC.Rows.Count > 0)
+                            {
+                                maxSno = (from row in grdPurchaseDC.Rows.Cast<DataGridViewRow>()
+                                          let snoValue = string.IsNullOrEmpty(Convert.ToString(row.Cells["clmSno"].Value)) ? 0 : Convert.ToInt32(row.Cells["clmSno"].Value)
+                                          select snoValue).Max();
+                            }
+                            grdPurchaseDC.Rows.Add(maxSno, varPICode.Trim(), varTName.Trim(), lblUnit.Text, txtActualQty.Text.Trim(), Convert.ToDecimal(mrp), varExpiryDate, (flag).Trim(), varAcutalshelflife, varShelflifevalue, expirydateFlag, txtBatchNo.Text.Trim(),  txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid, Convert.ToString(varDecimal));
+                            dtPurchaseDC.Rows.Add(Convert.ToInt16(maxSno),Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text),ProShelflife, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue);
                             ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
                             grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;

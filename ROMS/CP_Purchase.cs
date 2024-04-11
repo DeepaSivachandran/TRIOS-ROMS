@@ -627,7 +627,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         public void udfnclose()
@@ -822,7 +821,7 @@ namespace ROMS
                         grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                         if (Convert.ToInt32(cmbEntryType.SelectedValue)==57) //against dc
                         {
-                            txtGST.Text = "";
+                            txtGstin.Text = "";
                         }
                         //udfnLoadOtherForm();
                         //Timer_Tick( sender,  e);
@@ -864,7 +863,6 @@ namespace ROMS
                 {
                     udfnGSTINPopup();
                 }
-                
             }
             catch (Exception ex)
             {
@@ -877,6 +875,7 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
                 MainForm.objPUR_GSTIN.ShowDialog();
             }
             catch (Exception ex)
@@ -1267,7 +1266,7 @@ namespace ROMS
                     }
                     if(PbSTS=="50")
                     {
-                        //grdSupplierList.Columns["clmRemove"].Visible = false;
+                        grdSupplierList.Columns["clmRemove"].Visible = false;
                         txtInvoiceNo.Enabled = false;
                         txtInvoiceamt.Enabled = false;
                     }
@@ -7064,10 +7063,10 @@ namespace ROMS
                     }).ToList();
                 
                 dtTaxTable = varTaxData.Select(item => dtTaxTable.LoadDataRow(new object[] 
-                { item.GST, Math.Round(item.Tax).ToString("0.00"), Math.Round(item.GSTamount).ToString("0.00"),
-                 Convert.ToDecimal(item.GST),Math.Round(item.IGSTamount).ToString("0.00"),
-                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.SGSTamount).ToString("0.00"),
-                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.CGSTamount).ToString("0.00")
+                { item.GST, item.Tax.ToString("0.00"),(item.GSTamount).ToString("0.00"),
+                 Convert.ToDecimal(item.GST),(item.IGSTamount).ToString("0.00"),
+                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),(item.SGSTamount).ToString("0.00"),
+                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),(item.CGSTamount).ToString("0.00")
                 }, false)).CopyToDataTable();
                 grdTaxDetails.DataSource = dtTaxTable;
                 grdTaxDetails.Columns["GST%"].Width = 60;
