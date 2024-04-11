@@ -283,7 +283,7 @@ namespace ROMS
             try
             {
 
-                dpissuedateandtime.Enabled = true;
+                dpissuedateandtime.Enabled = false;
                 txtIssuedBy.Enabled = true;
                 txtissuemodevalue.Enabled = true;
                 txtTurnAroundTime.Enabled = true;
@@ -4485,7 +4485,7 @@ namespace ROMS
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
-                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); 
                         }
                         else
                         {

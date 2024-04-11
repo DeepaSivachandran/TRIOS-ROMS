@@ -305,9 +305,24 @@ namespace ROMS
                                 dpissuedateandtime.MinDate = varmindate;
                                 dpissuedateandtime.MaxDate = varmaxdate;
                             }
+                            udfnDisableValue();
                         } 
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+        public void udfnDisableValue()
+        {
+            try
+            {
+                dpissuedateandtime.Enabled = false;
+                this.ActiveControl = txtIssuedBY;
             }
             catch (Exception ex)
             {
