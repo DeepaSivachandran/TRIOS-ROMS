@@ -3382,7 +3382,7 @@ namespace ROMS
             }
             return varResult;
         }
-        //Added By Sathish ON : 11-04-2024 For DB Restore
+        //Added By Sathish ON : 11-04-2024 For Financial Settings
         public string udfnFinalSettings(int ViewType, string paraOriginator)
         {
             string varResult = "";
