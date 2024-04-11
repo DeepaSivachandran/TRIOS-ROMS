@@ -98,7 +98,7 @@
             // lblProcess
             // 
             this.lblProcess.AutoSize = true;
-            this.lblProcess.Location = new System.Drawing.Point(647, 554);
+            this.lblProcess.Location = new System.Drawing.Point(646, 572);
             this.lblProcess.Name = "lblProcess";
             this.lblProcess.Size = new System.Drawing.Size(63, 20);
             this.lblProcess.TabIndex = 958801;
@@ -163,7 +163,7 @@
             this.PicloadComplete.ErrorImage = null;
             this.PicloadComplete.Image = global::ROMS.Properties.Resources.internet_on;
             this.PicloadComplete.InitialImage = null;
-            this.PicloadComplete.Location = new System.Drawing.Point(637, 441);
+            this.PicloadComplete.Location = new System.Drawing.Point(637, 451);
             this.PicloadComplete.Name = "PicloadComplete";
             this.PicloadComplete.Size = new System.Drawing.Size(80, 80);
             this.PicloadComplete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -180,7 +180,7 @@
             this.picLoader.InitialImage = null;
             this.picLoader.Location = new System.Drawing.Point(327, 411);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(700, 140);
+            this.picLoader.Size = new System.Drawing.Size(700, 160);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958800;
             this.picLoader.TabStop = false;

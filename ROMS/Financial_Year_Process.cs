@@ -86,18 +86,18 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                lblProcess.Visible = true;
                 //tmrProcess.Tick += new EventHandler(timer1_Tick);
                 this.PbBackup.Maximum = 100;
                 this.PbBackup.Minimum = 1;
                 this.PbBackup.Step = 1;
                 varBackupProcess = 1;
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                lblProcess.Visible = true;
                 udfnDbBackup();
-                //udfnDbRestore();
-                //udfnClearTransactions();
-                //udfnMoveStock();
+                udfnDbRestore();
+                udfnClearTransactions();
+                udfnMoveStock();
 
 
                 //tmrProcess.Tick += new EventHandler(udfnDbBackup);
@@ -169,6 +169,9 @@ namespace ROMS
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        lblProcess.Visible = true;
                         varBackupProcess = 2;
                         varTimer = 1;
                     }
@@ -205,7 +208,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnDbRestore(object sender, EventArgs e)
+        public void udfnDbRestore()
         {
             try
             {
@@ -230,6 +233,9 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
+                    PbBackup.Value = 33;
+                    Pic_Restore.Image = ROMS.Properties.Resources.Db_Restore_Color;
+                    /*
                     if (PbBackup.Value != 32)
                     {
                         PbBackup.Value++;
@@ -239,6 +245,7 @@ namespace ROMS
                         tmrProcess.Stop();
                         Pic_Restore.Image = ROMS.Properties.Resources.Db_Restore_Color;
                     }
+                    */
                 }
             }
             catch (Exception ex)
@@ -247,7 +254,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnClearTransactions(object sender, EventArgs e)
+        public void udfnClearTransactions()
         {
             try
             {
@@ -272,6 +279,9 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
+                    PbBackup.Value = 56;
+                    Pic_Clear.Image = ROMS.Properties.Resources.Clear_Transaction_Color;
+                    /*
                     if (PbBackup.Value != 55)
                     {
                         PbBackup.Value++;
@@ -281,6 +291,7 @@ namespace ROMS
                         tmrProcess.Stop();
                         Pic_Clear.Image = ROMS.Properties.Resources.Clear_Transaction_Color;
                     }
+                    */
                 }
             }
             catch (Exception ex)
@@ -289,7 +300,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnMoveStock(object sender, EventArgs e)
+        public void udfnMoveStock()
         {
             try
             {
@@ -314,6 +325,9 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
+                    PbBackup.Value = 81;
+                    Pic_Move.Image = ROMS.Properties.Resources.Move_Color;
+                    /*
                     if (PbBackup.Value != 80)
                     {
                         PbBackup.Value++;
@@ -323,6 +337,53 @@ namespace ROMS
                         tmrProcess.Stop();
                         Pic_Move.Image = ROMS.Properties.Resources.Move_Color;
                     }
+                    */
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFinalSettings()
+        {
+            try
+            {
+                if (varBackupProcess == 5)
+                {
+                    varTimer = 0;
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "", varoriginator = "";
+                    varoriginator = "Final Settings";
+                    varResult = objspservice.udfnFinalSettings(0,varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        varBackupProcess = 0;
+                        varTimer = 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varBackupProcess = 0;
+                    }
+                }
+                if (varTimer == 1)
+                {
+                    PbBackup.Value = 100;
+                    Pic_Move.Image = ROMS.Properties.Resources.Move_Color;
+                    /*
+                    if (PbBackup.Value != 80)
+                    {
+                        PbBackup.Value++;
+                    }
+                    else
+                    {
+                        tmrProcess.Stop();
+                        Pic_Move.Image = ROMS.Properties.Resources.Move_Color;
+                    }
+                    */
                 }
             }
             catch (Exception ex)
