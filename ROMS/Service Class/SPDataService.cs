@@ -817,6 +817,39 @@ namespace ROMS
             }
             return ds;
         }
+        //Added By Sivabharathi  on 11/04/2024
+        public DataSet udfnItemMovementAnalysis(TRN_Item_Movement_Analysis objTRN_Item_Movement_Analysis)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_REPORT_ITEM_MOVEMENT_ANALYSIS]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@Viewtype", objTRN_Item_Movement_Analysis.Viewtype);
+                varSqlCommand.Parameters.AddWithValue("@paraProductId", objTRN_Item_Movement_Analysis.paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_Item_Movement_Analysis.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationId", objTRN_Item_Movement_Analysis.paraLocationId);
+                varSqlCommand.Parameters.AddWithValue("@paraRackId", objTRN_Item_Movement_Analysis.paraRackId);
+                varSqlCommand.Parameters.AddWithValue("@parafromdate", objTRN_Item_Movement_Analysis.parafromdate);
+                varSqlCommand.Parameters.AddWithValue("@paratodate", objTRN_Item_Movement_Analysis.paratodate);
+                varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIpAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
         // added by venkat on 16/10/2023 for purchase damage list
         public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername)
         {
