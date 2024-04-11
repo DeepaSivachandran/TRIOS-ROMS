@@ -30,7 +30,7 @@ namespace ROMS
                 tmrProcess.Enabled = true;
                 tmrProcess.Start();
                 tmrProcess.Interval = 1500;
-
+                lblProcess.Visible = false;
             }
             catch (Exception ex)
             {
@@ -91,7 +91,19 @@ namespace ROMS
                 this.PbBackup.Minimum = 1;
                 this.PbBackup.Step = 1;
                 varBackupProcess = 1;
-                tmrProcess.Tick += new EventHandler(udfnDbBackup);
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                lblProcess.Visible = true;
+                udfnDbBackup();
+                //udfnDbRestore();
+                //udfnClearTransactions();
+                //udfnMoveStock();
+
+
+                //tmrProcess.Tick += new EventHandler(udfnDbBackup);
+                //tmrProcess.Tick += new EventHandler(udfnDbRestore);
+                //tmrProcess.Tick += new EventHandler(udfnClearTransactions);
+                //tmrProcess.Tick += new EventHandler(udfnMoveStock);
                 //udfnDbBackup();
                 //ProgressLoad.Style = ProgressBarStyle.Marquee;
                 //ProgressLoad.MarqueeAnimationSpeed = 6;
@@ -143,12 +155,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnDbBackup(object sender, EventArgs e)
+        public void udfnDbBackup()
         {
             try
             {
                 if (varBackupProcess == 1)
                 {
+                    varTimer = 0;
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varoriginator = "";
                     varoriginator = "Database Backup";
@@ -167,7 +180,10 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
-                    if (PbBackup.Value != 25)
+                    PbBackup.Value = 10;
+                    Pic_Backup.Image = ROMS.Properties.Resources.Db_backup_Color;
+                    /*
+                    if (PbBackup.Value != 9)
                     {
                         PbBackup.Value++;
                         picLoader.Visible = true;
@@ -178,7 +194,9 @@ namespace ROMS
                     else
                     {
                         tmrProcess.Stop();
+                        Pic_Backup.Image = ROMS.Properties.Resources.Db_backup_Color;
                     }
+                    */
                 }
             }
             catch (Exception ex)
@@ -187,12 +205,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnDbRestore()
+        public void udfnDbRestore(object sender, EventArgs e)
         {
             try
             {
                 if (varBackupProcess == 2)
                 {
+                    varTimer = 0;
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varoriginator = "";
                     varoriginator = "Database Restore";
@@ -211,17 +230,14 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
-                    if (PbBackup.Value != 50)
+                    if (PbBackup.Value != 32)
                     {
                         PbBackup.Value++;
-                        picLoader.Visible = true;
-                        PicloadComplete.Visible = false;
-                        lblProcess.BringToFront();
-                        picLoader.BringToFront();
                     }
                     else
                     {
                         tmrProcess.Stop();
+                        Pic_Restore.Image = ROMS.Properties.Resources.Db_Restore_Color;
                     }
                 }
             }
@@ -231,12 +247,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnClearTransactions()
+        public void udfnClearTransactions(object sender, EventArgs e)
         {
             try
             {
                 if (varBackupProcess == 3)
                 {
+                    varTimer = 0;
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varoriginator = "";
                     varoriginator = "Clear Transactions";
@@ -255,17 +272,14 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
-                    if (PbBackup.Value != 75)
+                    if (PbBackup.Value != 55)
                     {
                         PbBackup.Value++;
-                        picLoader.Visible = true;
-                        PicloadComplete.Visible = false;
-                        lblProcess.BringToFront();
-                        picLoader.BringToFront();
                     }
                     else
                     {
                         tmrProcess.Stop();
+                        Pic_Clear.Image = ROMS.Properties.Resources.Clear_Transaction_Color;
                     }
                 }
             }
@@ -275,12 +289,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnMoveStock()
+        public void udfnMoveStock(object sender, EventArgs e)
         {
             try
             {
                 if (varBackupProcess == 4)
                 {
+                    varTimer = 0;
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varoriginator = "";
                     varoriginator = "Move Stock";
@@ -299,17 +314,14 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
-                    if (PbBackup.Value != 75)
+                    if (PbBackup.Value != 80)
                     {
                         PbBackup.Value++;
-                        picLoader.Visible = true;
-                        PicloadComplete.Visible = false;
-                        lblProcess.BringToFront();
-                        picLoader.BringToFront();
                     }
                     else
                     {
                         tmrProcess.Stop();
+                        Pic_Move.Image = ROMS.Properties.Resources.Move_Color;
                     }
                 }
             }

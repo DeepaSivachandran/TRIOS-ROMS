@@ -29,26 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Financial_Year_Process));
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsFy_Process = new System.Windows.Forms.ToolStrip();
             this.pnlFy_Process = new System.Windows.Forms.Panel();
-            this.PicloadComplete = new System.Windows.Forms.PictureBox();
             this.lblProcess = new System.Windows.Forms.Label();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.PbBackup = new System.Windows.Forms.ProgressBar();
+            this.tmrProcess = new System.Windows.Forms.Timer(this.components);
+            this.PicloadComplete = new System.Windows.Forms.PictureBox();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.Pic_Settings = new System.Windows.Forms.PictureBox();
             this.Pic_Move = new System.Windows.Forms.PictureBox();
             this.Pic_Restore = new System.Windows.Forms.PictureBox();
             this.Pic_Backup = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.Pic_Clear = new System.Windows.Forms.PictureBox();
-            this.PbBackup = new System.Windows.Forms.ProgressBar();
-            this.tmrProcess = new System.Windows.Forms.Timer(this.components);
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsFy_Process.SuspendLayout();
             this.pnlFy_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicloadComplete)).BeginInit();
@@ -59,16 +58,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Backup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Clear)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(144, 22);
-            this.tspHeader.Text = "Financial Year Process";
             // 
             // tsFy_Process
             // 
@@ -106,44 +95,14 @@
             this.pnlFy_Process.Size = new System.Drawing.Size(1354, 642);
             this.pnlFy_Process.TabIndex = 958797;
             // 
-            // PicloadComplete
-            // 
-            this.PicloadComplete.BackColor = System.Drawing.Color.White;
-            this.PicloadComplete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.PicloadComplete.ErrorImage = null;
-            this.PicloadComplete.Image = global::ROMS.Properties.Resources.internet_on;
-            this.PicloadComplete.InitialImage = null;
-            this.PicloadComplete.Location = new System.Drawing.Point(637, 441);
-            this.PicloadComplete.Name = "PicloadComplete";
-            this.PicloadComplete.Size = new System.Drawing.Size(80, 80);
-            this.PicloadComplete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PicloadComplete.TabIndex = 958802;
-            this.PicloadComplete.TabStop = false;
-            this.PicloadComplete.Visible = false;
-            // 
             // lblProcess
             // 
             this.lblProcess.AutoSize = true;
-            this.lblProcess.Location = new System.Drawing.Point(647, 556);
+            this.lblProcess.Location = new System.Drawing.Point(647, 554);
             this.lblProcess.Name = "lblProcess";
             this.lblProcess.Size = new System.Drawing.Size(63, 20);
             this.lblProcess.TabIndex = 958801;
             this.lblProcess.Text = "Loading ...";
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackColor = System.Drawing.Color.White;
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(327, 411);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(700, 140);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958800;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
             // 
             // label5
             // 
@@ -190,10 +149,47 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "DB Backup";
             // 
+            // PbBackup
+            // 
+            this.PbBackup.Location = new System.Drawing.Point(274, 296);
+            this.PbBackup.Name = "PbBackup";
+            this.PbBackup.Size = new System.Drawing.Size(774, 5);
+            this.PbBackup.TabIndex = 0;
+            // 
+            // PicloadComplete
+            // 
+            this.PicloadComplete.BackColor = System.Drawing.Color.White;
+            this.PicloadComplete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.PicloadComplete.ErrorImage = null;
+            this.PicloadComplete.Image = global::ROMS.Properties.Resources.internet_on;
+            this.PicloadComplete.InitialImage = null;
+            this.PicloadComplete.Location = new System.Drawing.Point(637, 441);
+            this.PicloadComplete.Name = "PicloadComplete";
+            this.PicloadComplete.Size = new System.Drawing.Size(80, 80);
+            this.PicloadComplete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicloadComplete.TabIndex = 958802;
+            this.PicloadComplete.TabStop = false;
+            this.PicloadComplete.Visible = false;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackColor = System.Drawing.Color.White;
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(327, 411);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(700, 140);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958800;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
             // Pic_Settings
             // 
-            this.Pic_Settings.Image = ((System.Drawing.Image)(resources.GetObject("Pic_Settings.Image")));
-            this.Pic_Settings.Location = new System.Drawing.Point(1017, 268);
+            this.Pic_Settings.Image = global::ROMS.Properties.Resources.Settings;
+            this.Pic_Settings.Location = new System.Drawing.Point(1045, 268);
             this.Pic_Settings.Name = "Pic_Settings";
             this.Pic_Settings.Size = new System.Drawing.Size(60, 60);
             this.Pic_Settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -202,8 +198,8 @@
             // 
             // Pic_Move
             // 
-            this.Pic_Move.Image = ((System.Drawing.Image)(resources.GetObject("Pic_Move.Image")));
-            this.Pic_Move.Location = new System.Drawing.Point(847, 268);
+            this.Pic_Move.Image = global::ROMS.Properties.Resources.Move;
+            this.Pic_Move.Location = new System.Drawing.Point(852, 268);
             this.Pic_Move.Name = "Pic_Move";
             this.Pic_Move.Size = new System.Drawing.Size(60, 60);
             this.Pic_Move.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -212,8 +208,8 @@
             // 
             // Pic_Restore
             // 
-            this.Pic_Restore.Image = ((System.Drawing.Image)(resources.GetObject("Pic_Restore.Image")));
-            this.Pic_Restore.Location = new System.Drawing.Point(456, 268);
+            this.Pic_Restore.Image = global::ROMS.Properties.Resources.Db_Restore;
+            this.Pic_Restore.Location = new System.Drawing.Point(467, 268);
             this.Pic_Restore.Name = "Pic_Restore";
             this.Pic_Restore.Size = new System.Drawing.Size(60, 60);
             this.Pic_Restore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -222,8 +218,8 @@
             // 
             // Pic_Backup
             // 
-            this.Pic_Backup.Image = ((System.Drawing.Image)(resources.GetObject("Pic_Backup.Image")));
-            this.Pic_Backup.Location = new System.Drawing.Point(277, 268);
+            this.Pic_Backup.Image = global::ROMS.Properties.Resources.Db_backup;
+            this.Pic_Backup.Location = new System.Drawing.Point(274, 268);
             this.Pic_Backup.Name = "Pic_Backup";
             this.Pic_Backup.Size = new System.Drawing.Size(60, 60);
             this.Pic_Backup.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -249,20 +245,23 @@
             // 
             // Pic_Clear
             // 
-            this.Pic_Clear.Image = ((System.Drawing.Image)(resources.GetObject("Pic_Clear.Image")));
-            this.Pic_Clear.Location = new System.Drawing.Point(647, 268);
+            this.Pic_Clear.Image = global::ROMS.Properties.Resources.Clear_Transaction;
+            this.Pic_Clear.Location = new System.Drawing.Point(658, 268);
             this.Pic_Clear.Name = "Pic_Clear";
             this.Pic_Clear.Size = new System.Drawing.Size(60, 60);
             this.Pic_Clear.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Pic_Clear.TabIndex = 8;
             this.Pic_Clear.TabStop = false;
             // 
-            // PbBackup
+            // tspHeader
             // 
-            this.PbBackup.Location = new System.Drawing.Point(277, 296);
-            this.PbBackup.Name = "PbBackup";
-            this.PbBackup.Size = new System.Drawing.Size(800, 5);
-            this.PbBackup.TabIndex = 0;
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(144, 22);
+            this.tspHeader.Text = "Financial Year Process";
             // 
             // Financial_Year_Process
             // 
