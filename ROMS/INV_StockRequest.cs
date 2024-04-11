@@ -1025,6 +1025,11 @@ namespace ROMS
                 varUpDownKey = 0;
                 //lvProduct.Visible = false; 
                 txtRequiredQty.BackColor = Color.LemonChiffon;
+                if(txtProductNamePICode.Text.Trim() !="")
+                {
+                    txtProductNamePICode.BackColor = Color.White;
+                    errStockRequest.Clear();
+                }
             }
             catch (Exception ex)
             {

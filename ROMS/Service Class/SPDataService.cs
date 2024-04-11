@@ -3218,6 +3218,7 @@ namespace ROMS
             }
             return result;
         }
+        //Added By Sathish ON : 01-04-2024 For Delete Transactions
         public string udfnDBClearTransaction(int ViewType,string paraOriginator)
         {
             string varResult = "";
@@ -3245,6 +3246,7 @@ namespace ROMS
             }
             return varResult;
         }
+        //Added By Sathish ON : 01-04-2024 For Delete Masters
         public string udfnDBClearMaster(int ViewType, string paraOriginator)
         {
             string varResult = "";
@@ -3271,6 +3273,33 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return varResult;
+        }
+        //Added By Sathish ON : 05-04-2024 For Save Release Version
+        public DataSet udfnReleaseVersion(string paraVersionNo)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_RELEASEDETAILS]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraVersionNo", paraVersionNo);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
     }
 
