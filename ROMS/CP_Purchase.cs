@@ -176,9 +176,7 @@ namespace ROMS
                 }
                 if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0" && varQueueFlag == 0 && varSupplierType!=32)
                 {
-                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                    //MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
-                    MainForm.objPUR_GSTIN.ShowDialog();
+                    udfnGSTINPopup();
                 }
             }
             catch (Exception ex)
@@ -822,11 +820,10 @@ namespace ROMS
                         txtQRCode.Enabled = false;
                         grdPODetails.Columns["clmRemovePO"].Visible = false;
                         grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                        //if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
-                        //{
-                        //    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                        //    MainForm.objPUR_GSTIN.ShowDialog();
-                        //}
+                        if (Convert.ToInt32(cmbEntryType.SelectedValue)==57) //against dc
+                        {
+                            txtGST.Text = "";
+                        }
                         //udfnLoadOtherForm();
                         //Timer_Tick( sender,  e);
                         this.ActiveControl = txtInvoiceNo;
@@ -863,7 +860,11 @@ namespace ROMS
             try
             {
                 timer.Stop();
-                udfnLoadGSTIN();
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1 && varSupplierType != 32)
+                {
+                    udfnGSTINPopup();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -871,16 +872,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnLoadGSTIN()
+        public void udfnGSTINPopup()
         {
             try
             {
-                if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
-                {
-                    
-                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                    MainForm.objPUR_GSTIN.ShowDialog();
-                }
+                MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                MainForm.objPUR_GSTIN.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1885,9 +1882,7 @@ namespace ROMS
                 {
                     if (Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 &&  (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varSupplierType!=32)
                     {
-                        MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                        //MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
-                        MainForm.objPUR_GSTIN.ShowDialog();
+                        udfnGSTINPopup();
                     }
                     cmbEntryType.Focus();
                 }
@@ -10708,8 +10703,7 @@ namespace ROMS
                                 //txtGstin.Enabled = true;
                                 if (Convert.ToInt32(cmbEntryType.SelectedValue) !=54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag==0 && varSupplierType !=32)
                                 {
-                                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                                    MainForm.objPUR_GSTIN.ShowDialog();
+                                    udfnGSTINPopup();
                                 }
                             }
                             else
