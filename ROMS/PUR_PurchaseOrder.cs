@@ -4410,7 +4410,7 @@ namespace ROMS
                             totalUnitqty = Convert.ToDecimal(varUnitQty);
                             if (VarGridEdit == 1)
                             {
-                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
                                 {
                                     totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
                                     totalUnitqty = totalUnitqty % varUPP;
@@ -4466,7 +4466,7 @@ namespace ROMS
                             totalOrderQty = totalUnitqty;
                             if (VarGridEdit == 1)
                             {
-                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
                                 {
                                     totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
                                     totalUnitqty = totalUnitqty % varUPP;
