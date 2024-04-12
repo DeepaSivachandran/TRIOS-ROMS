@@ -226,6 +226,7 @@ namespace ROMS
                     if (varsts == 11) //issued po
                     {
                         dpissuedateandtime.Enabled = false;
+                        //dpissuedateandtime.Readonly = true;
                         txtTAT.Enabled = false;
                         this.ActiveControl = txtIssuedBY;
                     }
