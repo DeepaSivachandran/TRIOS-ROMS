@@ -159,7 +159,7 @@ namespace ROMS
                                     {                           
                                         ((DataGridViewImageCell)grdPurchaseDC.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
                                     }
-                                    dtPurchaseDC.Rows.Add(objDs.Tables[1].Rows[i]["PRID"],
+                                    dtPurchaseDC.Rows.Add(objDs.Tables[1].Rows[i]["SINO"], objDs.Tables[1].Rows[i]["PRID"],
                                     string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), objDs.Tables[1].Rows[i]["Expiry Date"].ToString(),
                                     objDs.Tables[1].Rows[i]["Batch No."].ToString(),objDs.Tables[1].Rows[i]["Quantity"].ToString(),
                                     objDs.Tables[1].Rows[i]["UTID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
@@ -2893,6 +2893,16 @@ namespace ROMS
                     {
                         foreach (var row in varRowsToUpdate)
                         { row.SetField("DCPR_BatchNo", BatchNo); }
+                    }
+                    if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmStockLocation")
+                    {
+                        foreach (var row in varRowsToUpdate)
+                        { row.SetField("DCPR_SLID", slid); }
+                    }
+                    if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmRack")
+                    {
+                        foreach (var row in varRowsToUpdate)
+                        { row.SetField("DCPR_RKID", rkid); }
                     }
                 }
                 else
