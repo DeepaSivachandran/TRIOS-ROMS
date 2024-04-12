@@ -25,6 +25,7 @@ namespace ROMS
         bool varErrorFlag = false;
         string varfirstValue = "", varsecValue = "", varTINNo = "0";
         private const int closebtnhide = 0x200;
+        public int pbPurchaseQueueFlag = 0;
         public PUR_GSTIN()
         {
             InitializeComponent();
@@ -223,8 +224,10 @@ namespace ROMS
             try
             {
                 this.Close();
-                MainForm.objCP_Purchase.Close();
-                MainForm.objCP_PurchaseList.udfnListLoad();
+                
+                    MainForm.objCP_Purchase.varCloseflag = 1;
+               
+                MainForm.objCP_Purchase.udfnclose();
             }
             catch (Exception ex)
             {

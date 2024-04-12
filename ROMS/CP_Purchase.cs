@@ -176,9 +176,7 @@ namespace ROMS
                 }
                 if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0" && varQueueFlag == 0 && varSupplierType!=32)
                 {
-                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                    //MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
-                    MainForm.objPUR_GSTIN.ShowDialog();
+                    udfnGSTINPopup();
                 }
             }
             catch (Exception ex)
@@ -629,7 +627,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         public void udfnclose()
@@ -822,11 +819,10 @@ namespace ROMS
                         txtQRCode.Enabled = false;
                         grdPODetails.Columns["clmRemovePO"].Visible = false;
                         grdReurnDC.Columns["clmRemoveDC"].Visible = false;
-                        //if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
-                        //{
-                        //    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                        //    MainForm.objPUR_GSTIN.ShowDialog();
-                        //}
+                        if (Convert.ToInt32(cmbEntryType.SelectedValue)==57) //against dc
+                        {
+                            txtGstin.Text = "";
+                        }
                         //udfnLoadOtherForm();
                         //Timer_Tick( sender,  e);
                         this.ActiveControl = txtInvoiceNo;
@@ -863,7 +859,10 @@ namespace ROMS
             try
             {
                 timer.Stop();
-                udfnLoadGSTIN();
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1 && varSupplierType != 32)
+                {
+                    udfnGSTINPopup();
+                }
             }
             catch (Exception ex)
             {
@@ -871,16 +870,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnLoadGSTIN()
+        public void udfnGSTINPopup()
         {
             try
             {
-                if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 1)
-                {
-                    
-                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                    MainForm.objPUR_GSTIN.ShowDialog();
-                }
+                MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
+                MainForm.objPUR_GSTIN.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1270,7 +1266,7 @@ namespace ROMS
                     }
                     if(PbSTS=="50")
                     {
-                        //grdSupplierList.Columns["clmRemove"].Visible = false;
+                        grdSupplierList.Columns["clmRemove"].Visible = false;
                         txtInvoiceNo.Enabled = false;
                         txtInvoiceamt.Enabled = false;
                     }
@@ -1885,9 +1881,7 @@ namespace ROMS
                 {
                     if (Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 &&  (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varSupplierType!=32)
                     {
-                        MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                        //MainForm.objPUR_GSTIN.txtGstin.Text = txtGstin.Text.Trim();
-                        MainForm.objPUR_GSTIN.ShowDialog();
+                        udfnGSTINPopup();
                     }
                     cmbEntryType.Focus();
                 }
@@ -7069,10 +7063,10 @@ namespace ROMS
                     }).ToList();
                 
                 dtTaxTable = varTaxData.Select(item => dtTaxTable.LoadDataRow(new object[] 
-                { item.GST, Math.Round(item.Tax).ToString("0.00"), Math.Round(item.GSTamount).ToString("0.00"),
-                 Convert.ToDecimal(item.GST),Math.Round(item.IGSTamount).ToString("0.00"),
-                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.SGSTamount).ToString("0.00"),
-                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.CGSTamount).ToString("0.00")
+                { item.GST, item.Tax.ToString("0.00"),(item.GSTamount).ToString("0.00"),
+                 Convert.ToDecimal(item.GST),(item.IGSTamount).ToString("0.00"),
+                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),(item.SGSTamount).ToString("0.00"),
+                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),(item.CGSTamount).ToString("0.00")
                 }, false)).CopyToDataTable();
                 grdTaxDetails.DataSource = dtTaxTable;
                 grdTaxDetails.Columns["GST%"].Width = 60;
@@ -10708,8 +10702,7 @@ namespace ROMS
                                 //txtGstin.Enabled = true;
                                 if (Convert.ToInt32(cmbEntryType.SelectedValue) !=54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag==0 && varSupplierType !=32)
                                 {
-                                    MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                                    MainForm.objPUR_GSTIN.ShowDialog();
+                                    udfnGSTINPopup();
                                 }
                             }
                             else
