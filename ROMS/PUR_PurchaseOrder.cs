@@ -740,10 +740,7 @@ namespace ROMS
                             varErrorFlag = false;
                         }
                     }
-                    if (dpissuedateandtime.Enabled == true)
-                    {
-                        issuedon();
-                    }
+
                     if (varErrorFlag == true)
                     {
                         udfntooltiphide();
@@ -843,6 +840,10 @@ namespace ROMS
                                                 else
                                                 {
                                                     POUpdatevalue = Convert.ToString(POUpdate);
+                                                }
+                                                if (dpissuedateandtime.Enabled == true)
+                                                {
+                                                    issuedon();
                                                 }
                                                 if (chkStatus.Checked==false)
                                                 {
