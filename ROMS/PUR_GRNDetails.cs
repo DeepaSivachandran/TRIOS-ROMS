@@ -700,7 +700,7 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if (chkCompleted.Checked == true && ((Convert.ToDecimal(txtInvoiceamt.Text)) < 25000 || ((Convert.ToDecimal(txtInvoiceamt.Text)) > 25000 && varSupplierType != 32)))
+                    if (chkCompleted.Checked == true && ((Convert.ToDecimal(txtInvoiceamt.Text)) < (MainForm.objCP_GeneralSettings.varBillAmnt) || ((Convert.ToDecimal(txtInvoiceamt.Text)) > (MainForm.objCP_GeneralSettings.varBillAmnt) && varSupplierType != 32)))
                     {
                         if (lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "")
                         {
@@ -711,7 +711,7 @@ namespace ROMS
                             varErrorFormat = 1;
                         }
                     }
-                    if (chkCompleted.Checked == true && (Convert.ToDecimal(txtInvoiceamt.Text))>25000 && varSupplierType==32)
+                    if (chkCompleted.Checked == true && (Convert.ToDecimal(txtInvoiceamt.Text))> (MainForm.objCP_GeneralSettings.varBillAmnt) && varSupplierType==32)
                     {
                         if (lblVerifiedBy1.Text == "" || lblVerifiedBy2.Text == "")
                         {

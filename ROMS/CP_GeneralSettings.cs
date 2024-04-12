@@ -25,8 +25,8 @@ namespace ROMS
         private ToolTip tpTransactionType = new ToolTip();
         private ToolTip tpReportText = new ToolTip();
         DataSet objDs = new DataSet();
-
         public int varSettingID = 0;
+        public int varBillAmnt = 0;
         public CP_GeneralSettings()
         {
             InitializeComponent();
@@ -102,6 +102,7 @@ namespace ROMS
                             varSettingID = Convert.ToInt32(objDs.Tables[0].Rows[0]["GSID"]);
                             txtcashpurchase.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_CPA"]);
                             txtBillAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_DVA"]);
+                            varBillAmnt= Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_DVA"]);
                             txtGRNQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_GRNQty"]);
                             txtReturnAlertDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_RAD"]);
                             txtInvoiceEditDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_IED"]);
