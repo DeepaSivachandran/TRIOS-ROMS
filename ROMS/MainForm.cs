@@ -20,6 +20,7 @@ namespace ROMS
         public static string PbCurrentForm = "0";
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
+        public static int varFormDisable = 0;
         public static string pbVersion = "1.0.1";
         public static string pbUserID = "";
         public static string pbUserName = "";
@@ -335,28 +336,40 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
+                if (varFormDisable == 0)
                 {
-                    if (pbCloseForm == 0)
+                    if (varCloseFlag == 0)
                     {
-                        DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                        if ((objResponse == DialogResult.Yes))
+                        if (pbCloseForm == 0)
+                        {
+                            DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if ((objResponse == DialogResult.Yes))
+                            {
+                                e.Cancel = false;
+                                varCloseFlag = 1;
+                                System.Windows.Forms.Application.Exit();
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                            }
+                        }
+                        else
                         {
                             e.Cancel = false;
                             varCloseFlag = 1;
                             System.Windows.Forms.Application.Exit();
                         }
-                        else
-                        {
-                            e.Cancel = true;
-                        }
                     }
-                    else
-                    {
-                        e.Cancel = false;
-                        varCloseFlag = 1;
-                        System.Windows.Forms.Application.Exit();
-                    }
+                }
+                if(varFormDisable == 1)
+                {
+                    this.Cursor = Cursors.No;
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.Cursor = Cursors.Default;
                 }
             }
             catch (Exception ex)
@@ -1924,6 +1937,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        public void Ms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            try
+            {
+                if (varFormDisable == 1)
+                {
+                    DisablePageControls(false);
+                }
+                else
+                {
+                    DisablePageControls(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1939,6 +1973,17 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        public void DisablePageControls(bool status)
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c is ToolStrip)
+                    ((ToolStrip)c).Enabled = status;
+                if (c is MainForm)
+                    ((MainForm)c).Enabled = status;
+                //c.Enabled = status;
             }
         }
     } 

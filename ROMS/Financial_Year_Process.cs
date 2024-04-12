@@ -96,13 +96,14 @@ namespace ROMS
                 this.PbBackup.Maximum = 100;
                 this.PbBackup.Minimum = 1;
                 this.PbBackup.Step = 1;
-                varBackupProcess=0;
+                MainForm.varFormDisable = 1;
+                //varBackupProcess=0;
                 udfnDbBackup();
                 udfnDbRestore();
                 udfnClearTransactions();
                 udfnMoveStock();
                 udfnFinalSettings();
-                if(varBackupProcess == 6)
+                if (varBackupProcess == 6)
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(126);
@@ -112,6 +113,7 @@ namespace ROMS
                     {
                         string name = System.Diagnostics.Process.GetCurrentProcess().ProcessName.Replace(".vshost", "");
                         MainForm.varCloseFlag = 1;
+                        MainForm.varFormDisable = 0;
                         System.Windows.Forms.Application.Exit();
 
                         // Read config file
