@@ -2546,6 +2546,9 @@ namespace ROMS
             {
                 decimal Quantity = Convert.ToDecimal(grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Value);
                 decimal Stock = Convert.ToDecimal(grdPurchaseDC.CurrentRow.Cells["clmStockQuantity"].Value);
+                decimal MRP = Convert.ToDecimal(grdPurchaseDC.CurrentRow.Cells["clmMRP"].Value);
+                string ExpiryDate = Convert.ToString(grdPurchaseDC.CurrentRow.Cells["clmExpiryDate"].Value);
+                string BatchNo = Convert.ToString(grdPurchaseDC.CurrentRow.Cells["clmBatchNo"].Value);
                 if (Convert.ToDecimal(Quantity) == 0 || Convert.ToString(Quantity) == "")
                 {
                     varErrQty = "1";
@@ -2586,15 +2589,41 @@ namespace ROMS
                 int varDecimal = Convert.ToInt32(grdPurchaseDC.CurrentRow.Cells["clmUTDecimal"].Value);
 
                 string Qty = objValidation.udfnDecimal(Convert.ToString(grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Value), varDecimal);
-                grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
+                grdPurchaseDC.Rows[e.RowIndex].Cells["clmQuantity"].Value = Qty;
+                grdPurchaseDC.Rows[e.RowIndex].Cells["clmMRP"].Value = MRP;
+                grdPurchaseDC.Rows[e.RowIndex].Cells["clmExpiryDate"].Value = ExpiryDate;
+                grdPurchaseDC.Rows[e.RowIndex].Cells["clmBatchNo"].Value = BatchNo;
                 //Update the same column value in the DataTable
                 object varEditQty = grdPurchaseDC.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                int varsno=Convert.ToInt16(grdPurchaseDC.Rows[e.RowIndex].Cells["clmSno"].Value);
-                var vardtSno = from r in dtPurchaseDC.AsEnumerable()
-                                where (r.Field<string>("SNo").Equals(varsno)) group r by r.Field<int>("SNo") into g
+                int varsno=Convert.ToInt16(grdPurchaseDC.Rows[e.RowIndex].Cells["clmsino"].Value);
+                
+                
+                var varRMCode = from r in dtPurchaseDC.AsEnumerable()
+                                where ( r.Field<decimal>("DCPR_MRP").Equals(MRP) &&
+                                         r.Field<string>("DCPR_ExpiryDate").Equals(ExpiryDate) && 
+                                         r.Field<string>("DCPR_BatchNo").Equals(BatchNo) && 
+                                         r.Field<int>("DCPR_SLID").Equals(grdPurchaseDC.Rows[e.RowIndex].Cells["clmSLID"].Value) && 
+                                         r.Field<int>("DCPR_RKID").Equals(grdPurchaseDC.Rows[e.RowIndex].Cells["clmRKID"].Value) && 
+                                         r.Field<int>("SNo")!=Convert.ToInt16(grdPurchaseDC.Rows[e.RowIndex].Cells["clmsino"].Value) 
+                                         )
+                                group r by r.Field<int>("SNo") into g
                                 select g.Key;
-                int varSINO = Convert.ToInt16(vardtSno);
-                dtPurchaseDC.Rows[varSINO]["DCPR_Qty"] = varEditQty;
+                if (varRMCode.Count() == 0)
+                {
+                    var varRowsToUpdate = dtPurchaseDC.AsEnumerable().Where(r => r.Field<int>("SNo") == Convert.ToInt16(varsno));
+                    foreach (var row in varRowsToUpdate)
+                    {
+                        row.SetField("DCPR_MRP", MRP);
+                    }
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(93); 
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -3674,11 +3703,11 @@ namespace ROMS
                             if (grdPurchaseDC.Rows.Count > 0)
                             {
                                 maxSno = (from row in grdPurchaseDC.Rows.Cast<DataGridViewRow>()
-                                          let snoValue = string.IsNullOrEmpty(Convert.ToString(row.Cells["clmSno"].Value)) ? 0 : Convert.ToInt32(row.Cells["clmSno"].Value)
+                                          let snoValue = string.IsNullOrEmpty(Convert.ToString(row.Cells["clmsino"].Value)) ? 0 : Convert.ToInt32(row.Cells["clmsino"].Value)
                                           select snoValue).Max();
                             }
-                            grdPurchaseDC.Rows.Add(maxSno, varPICode.Trim(), varTName.Trim(), lblUnit.Text, txtActualQty.Text.Trim(), Convert.ToDecimal(mrp), varExpiryDate, (flag).Trim(), varAcutalshelflife, varShelflifevalue, expirydateFlag, txtBatchNo.Text.Trim(),  txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid, Convert.ToString(varDecimal));
-                            dtPurchaseDC.Rows.Add(Convert.ToInt16(maxSno),Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text),ProShelflife, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue);
+                            grdPurchaseDC.Rows.Add( maxSno + 1,grdPurchaseDC.RowCount+1, varPICode.Trim(), varTName.Trim(), lblUnit.Text, txtActualQty.Text.Trim(), Convert.ToDecimal(mrp), varExpiryDate, (flag).Trim(), varAcutalshelflife, varShelflifevalue, expirydateFlag, txtBatchNo.Text.Trim(),  txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid, Convert.ToString(varDecimal));
+                            dtPurchaseDC.Rows.Add(Convert.ToInt16(maxSno + 1),Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text),ProShelflife, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue);
                             ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
                             grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;

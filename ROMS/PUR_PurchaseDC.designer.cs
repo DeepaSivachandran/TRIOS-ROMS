@@ -148,6 +148,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.clmsino = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1138,6 +1139,7 @@
             this.grdPurchaseDC.ColumnHeadersHeight = 30;
             this.grdPurchaseDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseDC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmsino,
             this.clmSno,
             this.clmPICode,
             this.clmProductName,
@@ -1427,6 +1429,12 @@
             this.lblStatus.Size = new System.Drawing.Size(37, 20);
             this.lblStatus.TabIndex = 111111145;
             this.lblStatus.Text = "Draft";
+            // 
+            // clmsino
+            // 
+            this.clmsino.HeaderText = "SINO";
+            this.clmsino.Name = "clmsino";
+            this.clmsino.ReadOnly = true;
             // 
             // clmSno
             // 
@@ -1734,6 +1742,7 @@
         private System.Windows.Forms.Label lblInvoice;
         private System.Windows.Forms.Label lblInvoiceAmount;
         public System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsino;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductName;
