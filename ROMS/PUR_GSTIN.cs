@@ -224,9 +224,7 @@ namespace ROMS
             try
             {
                 this.Close();
-                
-                    MainForm.objCP_Purchase.varCloseflag = 1;
-               
+                MainForm.objCP_Purchase.varCloseflag = 1;
                 MainForm.objCP_Purchase.udfnclose();
             }
             catch (Exception ex)
