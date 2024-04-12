@@ -2793,6 +2793,52 @@ namespace ROMS
                     grdPurchaseDC.Rows[e.RowIndex].Cells["clmError"].Value = varErrQty;
                 }
 
+                if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmexpirydate")
+                {
+                    int rowIndex = e.RowIndex, columnIndex = e.ColumnIndex, varProid = 0, PR_Shelflife = 0, Date = 0;
+                    varTempExpiryDate = Convert.ToString(grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Value);
+                    if (grdPurchaseDC.Rows.Count > 0)
+                    {
+                        PR_Shelflife = Convert.ToInt32(grdPurchaseDC.Rows[rowIndex].Cells["clmShelflifeenable"].Value);
+                    }
+                    if (PR_Shelflife == 1)
+                    {
+                        if (grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Value != null && Convert.ToString(grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Value) != "0")
+                        {
+                            MessageBox.Show("Please enter expirydate.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
+                        }
+                    }
+                    if (grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Value == null && Convert.ToString(grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Value) == "0")
+                    {
+                        DataSet objDSer = new DataSet();
+                        SPDataService objdServ = new SPDataService();
+                        objDSer = objdServ.udfnMaster(8, 0, 0, varTempExpiryDate, "", 0, "", 0);
+                        objdServ.CloseConnection();
+                        if (objDSer != null)
+                        {
+                            if (objDSer.Tables[0].Rows.Count > 0)
+                            {
+                                Date = Convert.ToInt32(objDSer.Tables[0].Rows[0]["Date"].ToString());
+                                if (Date == 0)
+                                {
+                                    string varMessage = objdServ.udfnGetMessages(95);
+                                    objdServ.CloseConnection();
+                                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
+                                }
+                                //else
+                                //{
+                                //    if (varErrorFormat != 5)
+                                //    {
+                                //        grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                //    }
+                                //}
+                            }
+                        }
+                    }
+                }
+
                 int varDecimal = Convert.ToInt32(grdPurchaseDC.CurrentRow.Cells["clmUTDecimal"].Value);
 
                 string Qty = objValidation.udfnDecimal(Convert.ToString(grdPurchaseDC.CurrentRow.Cells["clmQuantity"].Value), varDecimal);
@@ -2821,7 +2867,7 @@ namespace ROMS
                     if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmQuantity")
                     {
                         foreach (var row in varRowsToUpdate)
-                        {   row.SetField("DCPR_Qty", Quantity);    }
+                        {   row.SetField("DCPR_Qty", Qty);    }
                     }
                     if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmMRP")
                     {

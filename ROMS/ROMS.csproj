@@ -301,6 +301,16 @@
     <Compile Include="INV_InwardQueueList_Remarks.designer.cs">
       <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Brand1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_Brand.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_HSN_Subgroup1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_HSN_Subgroup.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Product_Alphabetic.cs">
       <DependentUpon>RPT_CP_Product_Alphabetic.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
