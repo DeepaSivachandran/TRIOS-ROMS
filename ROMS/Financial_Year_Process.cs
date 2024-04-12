@@ -208,7 +208,7 @@ namespace ROMS
                 if (varTimer == 1)
                 {
                     varTimer = 0;
-                    PbBackup.Value = 10;
+                    PbBackup.Value = 14;
                     Pic_Backup.Image = ROMS.Properties.Resources.Db_backup_Color;
                     /*
                     if (PbBackup.Value != 9)
