@@ -1311,6 +1311,7 @@
             this.btnIssued.Size = new System.Drawing.Size(24, 27);
             this.btnIssued.TabIndex = 5;
             this.btnIssued.UseVisualStyleBackColor = false;
+            this.btnIssued.Visible = false;
             this.btnIssued.Click += new System.EventHandler(this.BtnIssued_Click);
             this.btnIssued.Enter += new System.EventHandler(this.BtnIssued_Enter);
             this.btnIssued.Leave += new System.EventHandler(this.BtnIssued_Leave);

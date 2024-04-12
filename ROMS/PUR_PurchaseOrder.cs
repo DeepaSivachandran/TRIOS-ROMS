@@ -283,7 +283,7 @@ namespace ROMS
             try
             {
 
-                dpissuedateandtime.Enabled = false;
+                dpissuedateandtime.Enabled = true;
                 txtIssuedBy.Enabled = true;
                 txtissuemodevalue.Enabled = true;
                 txtTurnAroundTime.Enabled = true;
@@ -740,6 +740,10 @@ namespace ROMS
                             varErrorFlag = false;
                         }
                     }
+                    if (dpissuedateandtime.Enabled == true)
+                    {
+                        issuedon();
+                    }
                     if (varErrorFlag == true)
                     {
                         udfntooltiphide();
@@ -895,6 +899,7 @@ namespace ROMS
                                                 {
                                                     udfnclose();
                                                 }
+
                                             }
                                             else
                                             {
@@ -4146,11 +4151,11 @@ namespace ROMS
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.ActiveControl = dpissuedateandtime;
                             MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
                             varupdate = "1";
-                            udfnclose();
+                            //udfnclose();
                         }
                         else
                         {
