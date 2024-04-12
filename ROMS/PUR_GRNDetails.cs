@@ -29,6 +29,7 @@ namespace ROMS
         ToolTip tpExcessQty = new ToolTip();
         ToolTip tpInvoiceNo = new ToolTip();
         ToolTip tpInvoiceAMT = new ToolTip();
+        DataSet objDs = new DataSet();
 
         public bool skipValidation = false;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
@@ -42,6 +43,7 @@ namespace ROMS
         public string varGSTIN = "1";
         decimal varExcessQuantity = 0, varPendingQty = 0;
         public int varOrderType = 0;
+        public double varDVA = 0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -74,6 +76,31 @@ namespace ROMS
                 if (Convert.ToInt32(cmbOrderType.SelectedValue) == 52)
                 {
                     cmbPONo.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGeneralSettingsList()
+        {
+            try
+            {
+
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnGeneralSettingList(0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            varDVA = Convert.ToDouble(objDs.Tables[0].Rows[0]["GS_DVA"]);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -700,7 +727,7 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if (chkCompleted.Checked == true && ((Convert.ToDecimal(txtInvoiceamt.Text)) < (MainForm.objCP_GeneralSettings.varBillAmnt) || ((Convert.ToDecimal(txtInvoiceamt.Text)) > (MainForm.objCP_GeneralSettings.varBillAmnt) && varSupplierType != 32)))
+                    if (chkCompleted.Checked == true && ((Convert.ToDouble(txtInvoiceamt.Text)) < varDVA || ((Convert.ToDouble(txtInvoiceamt.Text)) > varDVA && varSupplierType != 32)))
                     {
                         if (lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "")
                         {
@@ -711,7 +738,7 @@ namespace ROMS
                             varErrorFormat = 1;
                         }
                     }
-                    if (chkCompleted.Checked == true && (Convert.ToDecimal(txtInvoiceamt.Text))> (MainForm.objCP_GeneralSettings.varBillAmnt) && varSupplierType==32)
+                    if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text))> varDVA && varSupplierType==32)
                     {
                         if (lblVerifiedBy1.Text == "" || lblVerifiedBy2.Text == "")
                         {
