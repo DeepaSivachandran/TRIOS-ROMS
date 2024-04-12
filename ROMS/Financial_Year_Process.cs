@@ -33,6 +33,7 @@ namespace ROMS
                 tmrProcess.Start();
                 tmrProcess.Interval = 1500;
                 lblProcess.Visible = false;
+                varBackupProcess = 1;
             }
             catch (Exception ex)
             {
@@ -95,7 +96,7 @@ namespace ROMS
                 this.PbBackup.Maximum = 100;
                 this.PbBackup.Minimum = 1;
                 this.PbBackup.Step = 1;
-                varBackupProcess = 1;
+                varBackupProcess=0;
                 udfnDbBackup();
                 udfnDbRestore();
                 udfnClearTransactions();
@@ -206,6 +207,7 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
+                    varTimer = 0;
                     PbBackup.Value = 10;
                     Pic_Backup.Image = ROMS.Properties.Resources.Db_backup_Color;
                     /*
@@ -256,6 +258,7 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
+                    varTimer = 0;
                     PbBackup.Value = 33;
                     Pic_Restore.Image = ROMS.Properties.Resources.Db_Restore_Color;
                     /*
@@ -287,7 +290,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varoriginator = "";
                     varoriginator = "Clear Transactions";
-                    varResult = objspservice.udfnDBClearTransaction(1, varoriginator);
+                    varResult = objspservice.udfnDBClearTransaction(0, varoriginator);
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -302,6 +305,7 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
+                    varTimer = 0;
                     PbBackup.Value = 56;
                     Pic_Clear.Image = ROMS.Properties.Resources.Clear_Transaction_Color;
                     /*
@@ -348,6 +352,7 @@ namespace ROMS
                 }
                 if (varTimer == 1)
                 {
+                    varTimer = 0;
                     PbBackup.Value = 81;
                     Pic_Move.Image = ROMS.Properties.Resources.Move_Color;
                     /*
