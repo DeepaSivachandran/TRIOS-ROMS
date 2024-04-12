@@ -102,7 +102,7 @@ namespace ROMS
                     {
                         btnSave.Enabled = true;
                     }
-                    if (Currentsts == 38 || Currentsts == 51)
+                    if (Currentsts == 38 || Currentsts == 51 || Currentsts==11)
                     {
                         gpissued.Enabled = false;
                         btnAdd.Enabled = false;
@@ -295,7 +295,7 @@ namespace ROMS
                 {
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
-                    if (Currentsts == 38 || Currentsts == 51)
+                    if (Currentsts == 38 || Currentsts == 51 || Currentsts==11)
                     {
                         grdsupplieradd.Columns["clmRemove"].Visible = false;
                         grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
@@ -3762,7 +3762,7 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "-")
                     {
-                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38 || Currentsts != 51)
+                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38 || Currentsts != 51 || Currentsts!=11)
                         {
                             switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                             {
@@ -4583,7 +4583,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51)
+                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51 || Currentsts==11)
                         {
 
                             DataGridView dataGridView = (DataGridView)sender;
@@ -4643,7 +4643,7 @@ namespace ROMS
             }
             finally
             {
-                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51)
+                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51 || Currentsts==11)
                 {
                     grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
                     grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
