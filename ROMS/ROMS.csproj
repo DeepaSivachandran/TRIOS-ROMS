@@ -307,15 +307,11 @@
     <Compile Include="INV_InwardQueueList_Remarks.designer.cs">
       <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RPT_CP_Brand1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_CP_Brand.rpt</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\RPT_CP_HSN_Subgroup1.cs">
+    <Compile Include="Reports\RPT_CP_HSN_Subgroup.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_HSN_Subgroup.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Alphabetic.cs">
       <DependentUpon>RPT_CP_Product_Alphabetic.rpt</DependentUpon>
@@ -701,13 +697,6 @@
       <DependentUpon>RPT_CP_Company.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Reports\RPT_CP_HSN_Subgroup.cs">
-      <DependentUpon>RPT_CP_HSN_Subgroup.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_CP_HSN_Product.cs">
       <DependentUpon>RPT_CP_HSN_Product.rpt</DependentUpon>
@@ -2236,11 +2225,6 @@
       <LastGenOutput>RPT_CP_Brand_Subgroup.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_CP_Brand.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LastGenOutput>RPT_CP_Brand1.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Broker_Address.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Broker_Address.cs</LastGenOutput>
@@ -2259,7 +2243,7 @@
     <Content Include="Reports\RPT_CP_HSN_Subgroup.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LastGenOutput>RPT_CP_HSN_Subgroup1.cs</LastGenOutput>
+      <LastGenOutput>RPT_CP_HSN_Subgroup.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\RPT_CP_Supplier_Address.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
