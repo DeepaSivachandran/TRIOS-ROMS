@@ -176,6 +176,8 @@
             this.clmRemoveFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpiryErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBartchErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -1168,7 +1170,9 @@
             this.clmStockQuantity,
             this.clmRemoveFlag,
             this.clmRemove,
-            this.clmError});
+            this.clmError,
+            this.clmExpiryErr,
+            this.clmBartchErr});
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 10.25F);
@@ -1194,6 +1198,7 @@
             this.grdPurchaseDC.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDC_CellEndEdit);
             this.grdPurchaseDC.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDC_CellLeave);
             this.grdPurchaseDC.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDC_CellValueChanged);
+            this.grdPurchaseDC.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdPurchaseDC_CurrentCellDirtyStateChanged);
             this.grdPurchaseDC.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDC_DataBindingComplete);
             this.grdPurchaseDC.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdPurchaseDC_EditingControlShowing);
             // 
@@ -1442,6 +1447,7 @@
             this.clmsino.HeaderText = "SINO";
             this.clmsino.Name = "clmsino";
             this.clmsino.ReadOnly = true;
+            this.clmsino.Visible = false;
             // 
             // clmSno
             // 
@@ -1550,12 +1556,14 @@
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
             this.clmSLID.ReadOnly = true;
+            this.clmSLID.Visible = false;
             // 
             // clmRKID
             // 
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
             this.clmRKID.ReadOnly = true;
+            this.clmRKID.Visible = false;
             // 
             // clmUnitID
             // 
@@ -1576,12 +1584,14 @@
             this.clmBatchEnable.HeaderText = "BatchEnable";
             this.clmBatchEnable.Name = "clmBatchEnable";
             this.clmBatchEnable.ReadOnly = true;
+            this.clmBatchEnable.Visible = false;
             // 
             // clmBatchGeneration
             // 
             this.clmBatchGeneration.HeaderText = "BatchGenertaion";
             this.clmBatchGeneration.Name = "clmBatchGeneration";
             this.clmBatchGeneration.ReadOnly = true;
+            this.clmBatchGeneration.Visible = false;
             // 
             // clmStockQuantity
             // 
@@ -1606,6 +1616,20 @@
             this.clmError.HeaderText = "Error";
             this.clmError.Name = "clmError";
             this.clmError.Visible = false;
+            // 
+            // clmExpiryErr
+            // 
+            this.clmExpiryErr.HeaderText = "ExpiryDateError";
+            this.clmExpiryErr.Name = "clmExpiryErr";
+            this.clmExpiryErr.ReadOnly = true;
+            this.clmExpiryErr.Visible = false;
+            // 
+            // clmBartchErr
+            // 
+            this.clmBartchErr.HeaderText = "BatchErr";
+            this.clmBartchErr.Name = "clmBartchErr";
+            this.clmBartchErr.ReadOnly = true;
+            this.clmBartchErr.Visible = false;
             // 
             // PUR_PurchaseDC
             // 
@@ -1787,5 +1811,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRemoveFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryErr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBartchErr;
     }
 }
