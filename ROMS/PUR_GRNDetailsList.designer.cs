@@ -168,7 +168,6 @@
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
-            this.pnlpurchaseapproval.Controls.Add(this.LV_Supplier);
             this.pnlpurchaseapproval.Controls.Add(this.btnPrint);
             this.pnlpurchaseapproval.Controls.Add(this.lblNoRecordsFound);
             this.pnlpurchaseapproval.Controls.Add(this.label3);
@@ -192,7 +191,7 @@
             this.columnHeader3});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(576, 57);
+            this.LV_Supplier.Location = new System.Drawing.Point(576, 88);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(362, 93);
             this.LV_Supplier.TabIndex = 1111179;
@@ -585,6 +584,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.Controls.Add(this.LV_Supplier);
             this.Controls.Add(this.pnlpurchaseapproval);
             this.Controls.Add(this.tsBrandList);
             this.Controls.Add(this.RPTViewer);
