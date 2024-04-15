@@ -2339,7 +2339,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    BtnSave_Click(sender, e);
+                    udfnUpdate();
                 }
             }
             catch (Exception ex)
