@@ -15,6 +15,11 @@ namespace ROMS.Model
         public string paratodate { get; set; } = "";
         public int paraLocationId { get; set; } = 0;
         public string parafromdate { get; set; } = "";
+        public int paraLocation { get; set; } = 0;
+        public int paraRack { get; set; } = 0;
+        public int paraMRP { get; set; } = 0;
+        public int paraBatchNo { get; set; } = 0;
+        public int paraExpiryDate { get; set; } = 0;
        
     }
 }

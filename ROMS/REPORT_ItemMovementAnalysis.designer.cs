@@ -132,7 +132,7 @@
             // btnReset
             // 
             this.btnReset.Image = global::ROMS.Properties.Resources.reset;
-            this.btnReset.Location = new System.Drawing.Point(1314, 38);
+            this.btnReset.Location = new System.Drawing.Point(895, 44);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(34, 32);
             this.btnReset.TabIndex = 8;
@@ -145,7 +145,7 @@
             // btnView
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.Location = new System.Drawing.Point(1237, 38);
+            this.btnView.Location = new System.Drawing.Point(818, 44);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(34, 32);
             this.btnView.TabIndex = 6;
@@ -158,12 +158,13 @@
             // btnExport
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.Location = new System.Drawing.Point(1275, 38);
+            this.btnExport.Location = new System.Drawing.Point(856, 44);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(34, 32);
             this.btnExport.TabIndex = 7;
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
             this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
@@ -280,6 +281,7 @@
             this.grpShow.TabIndex = 1;
             this.grpShow.TabStop = false;
             this.grpShow.Text = "Show";
+            this.grpShow.Visible = false;
             this.grpShow.Enter += new System.EventHandler(this.GrpShow_Enter);
             // 
             // chkExpirydate
@@ -332,6 +334,7 @@
             this.chkLocation.TabIndex = 0;
             this.chkLocation.Text = "Stock Location";
             this.chkLocation.UseVisualStyleBackColor = true;
+            this.chkLocation.CheckedChanged += new System.EventHandler(this.ChkLocation_CheckedChanged);
             // 
             // label2
             // 
@@ -424,6 +427,7 @@
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(104, 27);
             this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
             // 
             // txtLocation

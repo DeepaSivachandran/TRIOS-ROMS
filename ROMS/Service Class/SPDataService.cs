@@ -825,7 +825,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_REPORT_ITEM_MOVEMENT_ANALYSIS]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Report_ItemMovementAnalaysis]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@Viewtype", objTRN_Item_Movement_Analysis.Viewtype);
                 varSqlCommand.Parameters.AddWithValue("@paraProductId", objTRN_Item_Movement_Analysis.paraProductId);
@@ -834,6 +834,11 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRackId", objTRN_Item_Movement_Analysis.paraRackId);
                 varSqlCommand.Parameters.AddWithValue("@parafromdate", objTRN_Item_Movement_Analysis.parafromdate);
                 varSqlCommand.Parameters.AddWithValue("@paratodate", objTRN_Item_Movement_Analysis.paratodate);
+                varSqlCommand.Parameters.AddWithValue("@paraLocation", objTRN_Item_Movement_Analysis.paraLocation);
+                varSqlCommand.Parameters.AddWithValue("@paraRack", objTRN_Item_Movement_Analysis.paraRack);
+                varSqlCommand.Parameters.AddWithValue("@paraMRP", objTRN_Item_Movement_Analysis.paraMRP);
+                varSqlCommand.Parameters.AddWithValue("@paraBatchNo", objTRN_Item_Movement_Analysis.paraBatchNo);
+                varSqlCommand.Parameters.AddWithValue("@paraExpiryDate", objTRN_Item_Movement_Analysis.paraExpiryDate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIpAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
 
 namespace ROMS
 {
@@ -50,20 +53,20 @@ namespace ROMS
         {
             try
             {
-                bool varErrorFlag = true;
-                if (txtProductName.Text.Trim() == "")
-                {
-                    lblProduct.Text = "0";
-                    epItemAnalysis.SetError(txtProductName, "Please enter product.");
-                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpProduct.ShowAlways = true;
-                    tpProduct.Show("Please enter product.", txtProductName, 5000);
-                    varErrorFlag = false;
-                }
-                if (varErrorFlag == true)
-                {
-                    udfnList();
-                }
+                //bool varErrorFlag = true;
+                //if (txtProductName.Text.Trim() == "")
+                //{
+                //    lblProduct.Text = "0";
+                //    epItemAnalysis.SetError(txtProductName, "Please enter product.");
+                //    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpProduct.ShowAlways = true;
+                //    tpProduct.Show("Please enter product.", txtProductName, 5000);
+                //    varErrorFlag = false;
+                //}
+                //if (varErrorFlag == true)
+                //{
+                //    udfnList();
+                //}
             }
             catch (Exception ex)
             {
@@ -76,7 +79,7 @@ namespace ROMS
             try
             {
                 lvProduct.Visible = false;
-                
+
                 btnView.Enabled = false;
                 lblConcern.Focus();
                 lblNoRecordsFound.Visible = false;
@@ -85,6 +88,27 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                if (txtProductName.Text == "")
+                {
+                    epItemAnalysis.SetError(txtProductName, "Please enter product name");
+                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter product name", txtProductName, 5000);
+                    lblProduct.Text = "0";
+                    varPrint = 1;
+                }
+                else
+                {
+                    epItemAnalysis.Clear();
+                }
+                if(txtLocation.Text=="")
+                {
+                    varStockLocationId = 0;
+                }
+                if(txtRack.Text=="")
+                {
+                    lblRackCode.Text = "0";
+                }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 Model.TRN_Item_Movement_Analysis objTRN_Item_Movement_Analysis = new Model.TRN_Item_Movement_Analysis();
@@ -95,31 +119,58 @@ namespace ROMS
                 objTRN_Item_Movement_Analysis.paraRackId = Convert.ToInt32(lblRackCode.Text);
                 objTRN_Item_Movement_Analysis.parafromdate = dpFromDate.Text;
                 objTRN_Item_Movement_Analysis.paratodate = dptodate.Text;
+                objTRN_Item_Movement_Analysis.paraLocation = 1;
+                objTRN_Item_Movement_Analysis.paraRack = 1;
+                objTRN_Item_Movement_Analysis.paraMRP = 1;
+                objTRN_Item_Movement_Analysis.paraBatchNo = 1;
+                objTRN_Item_Movement_Analysis.paraExpiryDate = 1;
                 objDs = objspservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
                 objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
+
+                if (objDs != null)
                 {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    //RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_ItemMovementAnalysis.rpt");
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraProductId ", Convert.ToInt32(lblProduct.Text.Trim()));
-                    objBillreport.SetParameterValue("paraCompanyId ", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraRackId ", Convert.ToInt32(lblRackCode.Text.Trim()));
-                    objBillreport.SetParameterValue("paraLocationId ", Convert.ToInt32(varStockLocationId));
-                    objBillreport.SetParameterValue("parafromdate ", dpFromDate.Text);
-                    objBillreport.SetParameterValue("paratodate ", dptodate.Text);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    //RPTViewer.Refresh();
+                    if (objDs.Tables.Count > 0)
+                    {
+                        DataSet objDd = new DataSet();
+                        SPDataService objservice = new SPDataService();
+                        objTRN_Item_Movement_Analysis.Viewtype = 1;
+                        objTRN_Item_Movement_Analysis.paraProductId = Convert.ToInt32(lblProduct.Text.Trim());
+                        objTRN_Item_Movement_Analysis.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objTRN_Item_Movement_Analysis.paraLocationId = Convert.ToInt32(varStockLocationId);
+                        objTRN_Item_Movement_Analysis.paraRackId = Convert.ToInt32(lblRackCode.Text);
+                        objTRN_Item_Movement_Analysis.parafromdate = dpFromDate.Text;
+                        objTRN_Item_Movement_Analysis.paratodate = dptodate.Text;
+                        objDd = objservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
+                        objspservice.CloseConnection();
+                        if (objDs.Tables[0].Rows.Count > 0 && varPrint == 0)
+                        {
+                            RPTViewer.Visible = true;
+                            RPTViewer.BringToFront();
+                            RPTViewer.ReuseParameterValuesOnRefresh = true;
+                            //RPTViewer.RefreshReport();
+                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_ItemMovementAnalysis.rpt");
+                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                            objBillreport.SetParameterValue("paraProductId ", Convert.ToInt32(lblProduct.Text.Trim()));
+                            objBillreport.SetParameterValue("paraCompanyId ", Convert.ToInt32(cmbConcern.SelectedValue));
+                            objBillreport.SetParameterValue("paraRackId ", Convert.ToInt32(lblRackCode.Text.Trim()));
+                            objBillreport.SetParameterValue("paraLocationId ", Convert.ToInt32(varStockLocationId));
+                            objBillreport.SetParameterValue("paralocationflag", 1);
+                            objBillreport.SetParameterValue("paraRackflag", 1);
+                            objBillreport.SetParameterValue("paraMrpflag", 1);
+                            objBillreport.SetParameterValue("paraBatchflag", 1);
+                            objBillreport.SetParameterValue("paraExpirydateflag", 1);
+                            objBillreport.SetParameterValue("parafromdate ", dpFromDate.Text);
+                            objBillreport.SetParameterValue("paratodate ", dptodate.Text);
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objValidation.CrySqlConnection(objBillreport);
+                            RPTViewer.ReportSource = objBillreport;
+                            //RPTViewer.Refresh();
+                        }
+                    }
                 }
                 else
                 {
@@ -139,6 +190,7 @@ namespace ROMS
                 btnView.Focus();
                 GC.Collect();
             }
+
         }
         private void REPORT_CP_Product_Load(object sender, EventArgs e)
         {
@@ -164,7 +216,10 @@ namespace ROMS
                 }
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 checkdata();
-                udfnList();
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dptodate.MaxDate = MainForm.pbCurrentDate;
+                //udfnList();
             }
             catch (Exception ex)
             {
@@ -769,6 +824,13 @@ namespace ROMS
                 txtProductName.Text = "";
                 txtRack.Text = "";
                 txtLocation.Text = "";
+                dpFromDate.Value = DateTime.Today;
+                dptodate.Value = DateTime.Today;
+                chkBatchno.Checked = false;
+                chkLocation.Checked = false;
+                chkRack.Checked = false;
+                chkMrp.Checked = false;
+                chkExpirydate.Checked = false;
             }
             catch (Exception ex)
             {
@@ -900,5 +962,124 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void ChkLocation_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dptodate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPrint()
+        {
+            try
+            {
+                btnExport.Enabled = false;
+                lblProduct.Focus();
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                Model.TRN_Item_Movement_Analysis objTRN_Item_Movement_Analysis = new Model.TRN_Item_Movement_Analysis();
+                objTRN_Item_Movement_Analysis.Viewtype = 0;
+                objTRN_Item_Movement_Analysis.paraProductId = Convert.ToInt32(lblProduct.Text.Trim());
+                objTRN_Item_Movement_Analysis.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_Item_Movement_Analysis.paraLocationId = Convert.ToInt32(varStockLocationId);
+                objTRN_Item_Movement_Analysis.paraRackId = Convert.ToInt32(lblRackCode.Text);
+                objTRN_Item_Movement_Analysis.parafromdate = dpFromDate.Text;
+                objTRN_Item_Movement_Analysis.paratodate = dptodate.Text;
+                objTRN_Item_Movement_Analysis.paraLocation = 1;
+                objTRN_Item_Movement_Analysis.paraRack = 1;
+                objTRN_Item_Movement_Analysis.paraMRP = 1;
+                objTRN_Item_Movement_Analysis.paraBatchNo = 1;
+                objTRN_Item_Movement_Analysis.paraExpiryDate = 1;
+                objDs = objspservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
+                objspservice.CloseConnection();
+
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        DataSet objDd = new DataSet();
+                        SPDataService objservice = new SPDataService();
+                        objTRN_Item_Movement_Analysis.Viewtype = 1;
+                        objTRN_Item_Movement_Analysis.paraProductId = Convert.ToInt32(lblProduct.Text.Trim());
+                        objTRN_Item_Movement_Analysis.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objTRN_Item_Movement_Analysis.paraLocationId = Convert.ToInt32(varStockLocationId);
+                        objTRN_Item_Movement_Analysis.paraRackId = Convert.ToInt32(lblRackCode.Text);
+                        objTRN_Item_Movement_Analysis.parafromdate = dpFromDate.Text;
+                        objTRN_Item_Movement_Analysis.paratodate = dptodate.Text;
+                        objDd = objservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
+                        objspservice.CloseConnection();
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            DataTable objDt = new DataTable();
+                            //objDt = objDtExcel.Copy();
+                            objDt.Columns.Remove("GroupCode");
+                            using (XLWorkbook wb = new XLWorkbook())
+                            {
+                                SaveFileDialog sv = new SaveFileDialog();
+                                sv.Filter = "Execl files (*.xls)|*.xls";
+                                sv.FilterIndex = 0;
+                                if (sv.ShowDialog() == DialogResult.OK)
+                                {
+                                    var sheet = wb.Worksheets.Add("Group List");
+                                    //sheet.Cell(1, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                                    //sheet.Cell(1, 1).Style.Fill.BackgroundColor = XLColor.White;
+                                    //sheet.Cell(1, 1).Style.Font.Bold = true;
+                                    //sheet.Cell(1, 1).Style.Font.FontSize = 15; 
+
+                                    sheet.Cell(1, 1).InsertTable(objDt);
+
+                                    //   sheet.Cell(objDt.Rows.Count + 4, 1).InsertData(objDt.Rows);
+                                    sheet.Tables.FirstOrDefault().ShowAutoFilter = false;
+                                    wb.SaveAs(sv.FileName);
+                                    MessageBox.Show("Successfully Downloaded", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+        }
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnPrint();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
+
 }
