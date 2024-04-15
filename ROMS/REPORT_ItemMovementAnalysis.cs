@@ -103,7 +103,7 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                    //RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_ItemMovementAnalysis.rpt");
@@ -111,11 +111,15 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraProductId ", Convert.ToInt32(lblProduct.Text.Trim()));
                     objBillreport.SetParameterValue("paraCompanyId ", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackId ", Convert.ToInt32(lblRackCode.Text.Trim()));
+                    objBillreport.SetParameterValue("paraLocationId ", Convert.ToInt32(varStockLocationId));
+                    objBillreport.SetParameterValue("parafromdate ", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paratodate ", dptodate.Text);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    //objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    //RPTViewer.Refresh();
                 }
                 else
                 {
@@ -158,7 +162,25 @@ namespace ROMS
                         }
                     }
                 }
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                checkdata();
                 udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void checkdata()
+        {
+            try
+            {
+                chkBatchno.Checked = true;
+                chkLocation.Checked = true;
+                chkRack.Checked = true;
+                chkMrp.Checked = true;
+                chkExpirydate.Checked = true;
             }
             catch (Exception ex)
             {
@@ -202,7 +224,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    dpFromDate.Focus();
                 }
             }
             catch (Exception ex)
@@ -415,6 +437,7 @@ namespace ROMS
         {
             try
             {
+                lvProduct.Visible = false;
                 txtLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -440,6 +463,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 txtRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -577,6 +601,7 @@ namespace ROMS
             try
             {
                 lvRack.Items.Clear();
+                lvRack.BringToFront();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtRack.Text.Length > 0)
@@ -669,6 +694,7 @@ namespace ROMS
             try
             {
                 lvLocation.Items.Clear();
+                lvLocation.BringToFront();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtLocation.Text.Length > 0)
@@ -709,6 +735,169 @@ namespace ROMS
             finally
             {
                 txtLocation.Focus();
+            }
+        }
+
+        private void LvRack_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkExpirydate_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.SelectedValue = 0;
+                txtProductName.Text = "";
+                txtRack.Text = "";
+                txtLocation.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvRack.Visible = false;
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnReset_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnReset.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnReset_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnReset.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Dptodate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dptodate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrpShow_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvRack.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
