@@ -199,6 +199,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdPurchaseorderlist.ClearSelection();
+            }
         }
         public void udfnDate()
         {
@@ -308,7 +312,7 @@ namespace ROMS
         {
             try
             {
-                udfngridchanges();
+                udfngridchanges(); 
             }
             catch (Exception ex)
             {
@@ -322,7 +326,7 @@ namespace ROMS
         {
 
             try
-            { 
+            {
                 RPTViewer.Visible = false;
                 RPTViewer.SendToBack();
                 if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
@@ -356,7 +360,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
+            }
+            finally { 
+                grdPurchaseorderlist.ClearSelection();
+                grdProDetails.ClearSelection();
             }
         }
 
@@ -2391,33 +2398,32 @@ namespace ROMS
         {
             try
             {
-                grdProDetails.ClearSelection();
                 for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
-                { 
+                {
                     DataGridView dataGridView = (DataGridView)sender;
                     DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
-                    DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmView"]; 
+                    DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmView"];
                     if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) != 12)
-                    { 
-                        cell1.Style.BackColor = Color.LightGray; 
-                    } 
+                    {
+                        cell1.Style.BackColor = Color.LightGray;
+                    }
                     if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "1")
-                    { 
+                    {
                         cell.Style.BackColor = Color.Olive;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "2")
-                    { 
+                    {
                         cell.Style.BackColor = Color.BlueViolet;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "3")
-                    { 
+                    {
                         cell.Style.BackColor = Color.LimeGreen;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     else if (Convert.ToString(grdPurchaseorderlist.Rows[i].Cells["STS1"].Value) == "4")
-                    { 
+                    {
                         cell.Style.BackColor = Color.Tomato;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
@@ -2435,6 +2441,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdPurchaseorderlist.ClearSelection();
+            }
         }
 
         private void GrdProDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -2442,7 +2452,6 @@ namespace ROMS
 
             try
             {
-                grdProDetails.ClearSelection();
                 for (int i = 0; i < grdProDetails.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
@@ -2459,7 +2468,7 @@ namespace ROMS
                         cell.Style.BackColor = Color.RoyalBlue;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
-                     
+
                     if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "1")
                     {
                         cell1.Style.BackColor = Color.Olive;
@@ -2481,7 +2490,7 @@ namespace ROMS
                         cell1.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
                     else if (Convert.ToString(grdProDetails.Rows[i].Cells["STS1"].Value) == "5")
-                    { 
+                    {
                         cell1.Style.BackColor = Color.SteelBlue;
                         cell1.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
@@ -2491,6 +2500,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdProDetails.ClearSelection();
             }
         }
 

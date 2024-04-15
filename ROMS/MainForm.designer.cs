@@ -90,6 +90,8 @@ namespace ROMS
             this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tallyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportTallyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mastersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +109,7 @@ namespace ROMS
             this.productToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemMovementAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productWiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.summaryDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,6 +154,7 @@ namespace ROMS
             this.lblTime,
             this.mastersToolStripMenuItem,
             this.tsmControlPanel,
+            this.tallyToolStripMenuItem,
             this.reportToolStripMenuItem,
             this.tsmMyProfile,
             this.toolStripMenuItem1});
@@ -635,11 +639,28 @@ namespace ROMS
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
             // 
+            // tallyToolStripMenuItem
+            // 
+            this.tallyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportTallyToolStripMenuItem});
+            this.tallyToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tallyToolStripMenuItem.Name = "tallyToolStripMenuItem";
+            this.tallyToolStripMenuItem.Size = new System.Drawing.Size(42, 21);
+            this.tallyToolStripMenuItem.Text = "Tally";
+            // 
+            // exportTallyToolStripMenuItem
+            // 
+            this.exportTallyToolStripMenuItem.Name = "exportTallyToolStripMenuItem";
+            this.exportTallyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportTallyToolStripMenuItem.Text = "Export Tally";
+            this.exportTallyToolStripMenuItem.Click += new System.EventHandler(this.ExportTallyToolStripMenuItem_Click);
+            // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mastersToolStripMenuItem1,
             this.stockReportToolStripMenuItem,
+            this.itemMovementAnalysisToolStripMenuItem,
             this.purchaseOrderToolStripMenuItem});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
@@ -663,7 +684,7 @@ namespace ROMS
             this.supplierToolStripMenuItem,
             this.productToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
-            this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+            this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
             this.mastersToolStripMenuItem1.Text = "Masters";
             // 
             // cityToolStripMenuItem
@@ -762,7 +783,7 @@ namespace ROMS
             this.stockReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stockToolStripMenuItem});
             this.stockReportToolStripMenuItem.Name = "stockReportToolStripMenuItem";
-            this.stockReportToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.stockReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.stockReportToolStripMenuItem.Text = "Stock Report";
             // 
             // stockToolStripMenuItem
@@ -772,13 +793,20 @@ namespace ROMS
             this.stockToolStripMenuItem.Text = "Stock";
             this.stockToolStripMenuItem.Click += new System.EventHandler(this.StockToolStripMenuItem_Click);
             // 
+            // itemMovementAnalysisToolStripMenuItem
+            // 
+            this.itemMovementAnalysisToolStripMenuItem.Name = "itemMovementAnalysisToolStripMenuItem";
+            this.itemMovementAnalysisToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.itemMovementAnalysisToolStripMenuItem.Text = "Item Movement Analysis";
+            this.itemMovementAnalysisToolStripMenuItem.Click += new System.EventHandler(this.ItemMovementAnalysisToolStripMenuItem_Click);
+            // 
             // purchaseOrderToolStripMenuItem
             // 
             this.purchaseOrderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.productWiseToolStripMenuItem,
             this.summaryDetailToolStripMenuItem});
             this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
-            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
             // 
             // productWiseToolStripMenuItem
@@ -980,6 +1008,9 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem productWiseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem summaryDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productApprovalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tallyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportTallyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemMovementAnalysisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem tspClearTransactions;

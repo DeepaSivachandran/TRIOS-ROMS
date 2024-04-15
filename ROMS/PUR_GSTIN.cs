@@ -22,7 +22,10 @@ namespace ROMS
         private ToolTip tpgst = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
+        bool varErrorFlag = false;
+        string varfirstValue = "", varsecValue = "", varTINNo = "0";
         private const int closebtnhide = 0x200;
+        public int pbPurchaseQueueFlag = 0;
         public PUR_GSTIN()
         {
             InitializeComponent();
@@ -72,26 +75,29 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text)!=0)
+                if (varErrorFlag == false)
                 {
-                    SPDataService objspdservice = new SPDataService();
-                    string result = "";
-                    result = objspdservice.udfnSupplierMaster(12, Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "",txtGstin.Text.Trim() , 0,
-                    0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
-                    "","", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0);
+                    if (Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text) != 0)
+                    {
+                        SPDataService objspdservice = new SPDataService();
+                        string result = "";
+                        result = objspdservice.udfnSupplierMaster(12, Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", txtGstin.Text.Trim(), 0,
+                        0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
+                        "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0);
 
-                    string[] varvalue = result.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        // MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtGstin.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                        txtGstin.Focus();
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            // MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtGstin.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                            txtGstin.Focus();
+                        }
                     }
                 }
             }
@@ -105,26 +111,42 @@ namespace ROMS
         {
             try
             {
+                varErrorFlag = false;
                 if (txtGstin.Text != "")
                 {
                     if (txtGstin.Text.Length < 15)
                     {
                         txtGstin.Focus();
-                        errUnit.SetError(txtGstin, "Please enter valid supplier GSTIN");
+                        errGSTIN.SetError(txtGstin, "Please enter valid supplier GSTIN");
                         txtGstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpgst.ShowAlways = true;
                         tpgst.Show("Please enter valid supplier GSTIN.", txtGstin, 5000); 
                     }
                     else
                     {
-                        errUnit.Clear();
-                        udfnGSTINSave();
+                        errGSTIN.Clear();
                         //MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
                         //this.Close();
                     }
-                }
-                else
-                { 
+                    string varGSTIN = txtGstin.Text;
+                    varTINNo = Convert.ToString(MainForm.objCP_Purchase.pbSupplierTin);
+                    varfirstValue = Convert.ToString(varGSTIN[0]);
+                    varsecValue = Convert.ToString(varGSTIN[1]);
+                    if (varfirstValue != Convert.ToString(varTINNo[0]) || varsecValue != Convert.ToString(varTINNo[1]))
+                    {
+                        errGSTIN.SetError(txtGstin, "Invalid GSTIN");
+                        txtGstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpgst.ShowAlways = true;
+                        tpgst.Show("Invalid GSTIN", txtGstin, 5000);
+                        varErrorFlag = true;
+                    }
+                    else
+                    {
+                        errGSTIN.Clear();
+                        //MainForm.objCP_Purchase.txtGstin.Text = txtGstin.Text;
+                        //this.Close();
+                    }
+                    udfnGSTINSave();
                 }
             }
             catch (Exception ex)
@@ -202,8 +224,10 @@ namespace ROMS
             try
             {
                 this.Close();
-                MainForm.objCP_Purchase.Close();
-                MainForm.objCP_PurchaseList.udfnListLoad();
+                
+                    MainForm.objCP_Purchase.varCloseflag = 1;
+               
+                MainForm.objCP_Purchase.udfnclose();
             }
             catch (Exception ex)
             {

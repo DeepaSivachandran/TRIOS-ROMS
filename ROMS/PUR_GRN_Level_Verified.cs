@@ -227,10 +227,23 @@ namespace ROMS
             try
             {
                 udfnDateLoad();
-                dpVerified1.MinDate = MainForm.pbFYStartDate;
-                dpVerified1.MaxDate = MainForm.pbCurrentDate;
-                dpVerified2.MinDate = MainForm.pbFYStartDate;
-                dpVerified2.MaxDate = MainForm.pbCurrentDate;
+                //dpVerified1.MinDate = MainForm.pbFYStartDate;
+                //dpVerified1.MaxDate = MainForm.pbCurrentDate;
+                //dpVerified2.MinDate = MainForm.pbFYStartDate;
+                //dpVerified2.MaxDate = MainForm.pbCurrentDate;
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(19, 0, 0, "", "", 0, "", 0);
+                if (objd.Tables[0].Rows.Count > 0)
+                {
+                    DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpVerified1.MaxDate = varmaxDate;
+                    dpVerified2.MinDate = varminDate;
+                    dpVerified1.MinDate = varminDate;
+                    dpVerified2.MaxDate = varmaxDate;
+                }
+                objDServ.CloseConnection();
             }
             catch (Exception ex)
             {

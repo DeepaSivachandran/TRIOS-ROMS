@@ -1198,6 +1198,10 @@ namespace ROMS
                 lvLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
+                if(txtLocation.Text=="")
+                {
+                    this.grdRackList.DataSource = null;
+                }
                 if (txtLocation.Text.Length > 0)
                 {
 

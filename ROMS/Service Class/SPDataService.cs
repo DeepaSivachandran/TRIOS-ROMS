@@ -206,7 +206,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 05/10/2023    Description: General Settings
-        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable)
+        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable,string paraDBPath)
         {
             string varResult = "";
             try
@@ -227,6 +227,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraStockenable", paraStockenable);
+                varSqlCommand.Parameters.AddWithValue("@paraDBPath", paraDBPath);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -800,6 +801,39 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_Stock.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_Stock.paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraCOMID", objTRNG_Stock.paraCOMID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIpAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        //Added By Sivabharathi  on 11/04/2024
+        public DataSet udfnItemMovementAnalysis(TRN_Item_Movement_Analysis objTRN_Item_Movement_Analysis)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_REPORT_ITEM_MOVEMENT_ANALYSIS]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@Viewtype", objTRN_Item_Movement_Analysis.Viewtype);
+                varSqlCommand.Parameters.AddWithValue("@paraProductId", objTRN_Item_Movement_Analysis.paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_Item_Movement_Analysis.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationId", objTRN_Item_Movement_Analysis.paraLocationId);
+                varSqlCommand.Parameters.AddWithValue("@paraRackId", objTRN_Item_Movement_Analysis.paraRackId);
+                varSqlCommand.Parameters.AddWithValue("@parafromdate", objTRN_Item_Movement_Analysis.parafromdate);
+                varSqlCommand.Parameters.AddWithValue("@paratodate", objTRN_Item_Movement_Analysis.paratodate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIpAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -3166,6 +3200,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSaveFlag", objTRN_PurchaseEntry.paraSaveFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierType", objTRN_PurchaseEntry.paraSupplierType);
                 varSqlCommand.Parameters.AddWithValue("@paraRefreshFlag", objTRN_PurchaseEntry.paraRefreshFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTinFlag", objTRN_PurchaseEntry.paraTinFlag);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();

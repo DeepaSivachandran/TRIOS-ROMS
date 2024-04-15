@@ -102,7 +102,7 @@ namespace ROMS
                     {
                         btnSave.Enabled = true;
                     }
-                    if (Currentsts == 38 || Currentsts == 51)
+                    if (Currentsts == 38 || Currentsts == 51 || Currentsts==11)
                     {
                         gpissued.Enabled = false;
                         btnAdd.Enabled = false;
@@ -295,7 +295,7 @@ namespace ROMS
                 {
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
-                    if (Currentsts == 38 || Currentsts == 51)
+                    if (Currentsts == 38 || Currentsts == 51 || Currentsts==11)
                     {
                         grdsupplieradd.Columns["clmRemove"].Visible = false;
                         grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
@@ -740,6 +740,7 @@ namespace ROMS
                             varErrorFlag = false;
                         }
                     }
+
                     if (varErrorFlag == true)
                     {
                         udfntooltiphide();
@@ -840,6 +841,10 @@ namespace ROMS
                                                 {
                                                     POUpdatevalue = Convert.ToString(POUpdate);
                                                 }
+                                                if (dpissuedateandtime.Enabled == true)
+                                                {
+                                                    issuedon();
+                                                }
                                                 if (chkStatus.Checked==false)
                                                 {
                                                     SPDataService objDServ = new SPDataService();
@@ -895,6 +900,7 @@ namespace ROMS
                                                 {
                                                     udfnclose();
                                                 }
+
                                             }
                                             else
                                             {
@@ -3756,7 +3762,7 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "-")
                     {
-                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38 || Currentsts != 51)
+                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38 || Currentsts != 51 || Currentsts!=11)
                         {
                             switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                             {
@@ -4146,11 +4152,11 @@ namespace ROMS
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.ActiveControl = dpissuedateandtime;
                             MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
                             varupdate = "1";
-                            udfnclose();
+                            //udfnclose();
                         }
                         else
                         {
@@ -4410,7 +4416,7 @@ namespace ROMS
                             totalUnitqty = Convert.ToDecimal(varUnitQty);
                             if (VarGridEdit == 1)
                             {
-                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
                                 {
                                     totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
                                     totalUnitqty = totalUnitqty % varUPP;
@@ -4466,7 +4472,7 @@ namespace ROMS
                             totalOrderQty = totalUnitqty;
                             if (VarGridEdit == 1)
                             {
-                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "" && Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
+                                if (Convert.ToString(grdsupplieradd.CurrentRow.Cells["clmOrderqty"].Value) != "-")
                                 {
                                     totalBulkqty = Math.Floor(Convert.ToDouble(totalUnitqty / varUPP));
                                     totalUnitqty = totalUnitqty % varUPP;
@@ -4485,7 +4491,7 @@ namespace ROMS
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
-                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); ;
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); 
                         }
                         else
                         {
@@ -4577,7 +4583,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51)
+                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51 || Currentsts==11)
                         {
 
                             DataGridView dataGridView = (DataGridView)sender;
@@ -4637,7 +4643,7 @@ namespace ROMS
             }
             finally
             {
-                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51)
+                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51 || Currentsts==11)
                 {
                     grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
                     grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;

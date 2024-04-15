@@ -103,6 +103,7 @@ namespace ROMS
         public static ReportLoad objReportLoad;
         public static CP_ProductApprovalList objCP_ProductApprovalList;
         public static CP_ProductApproval objCP_ProductApproval;
+        public static CP_Tally objCP_Tally;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -191,6 +192,7 @@ namespace ROMS
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
         public static REPORT_CP_Product objREPORT_CP_Product;
         public static REPORT_Stock objREPORT_Stock;
+        public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
         public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
 
@@ -1863,6 +1865,43 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void ExportTallyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Tally = new CP_Tally();
+                MainForm.objCP_Tally.MdiParent = this;
+                MainForm.objCP_Tally.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ItemMovementAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_ItemMovementAnalysis = new REPORT_ItemMovementAnalysis();
+                MainForm.objREPORT_ItemMovementAnalysis.MdiParent = this;
+                MainForm.objREPORT_ItemMovementAnalysis.Show();
+                PbCurrentForm = "7.2.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
 
         private void TspClearMasters_Click(object sender, EventArgs e)
         {

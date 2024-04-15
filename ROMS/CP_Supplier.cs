@@ -1065,7 +1065,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (10,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDesignation, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (12,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentTerm, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbfinance, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbMappingordertype, "", "MST_DisplayText", "MSTID");
@@ -1090,6 +1090,26 @@ namespace ROMS
             finally
             {
 
+            }
+        }
+        public void udfnSuppliertypeLoad()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt16(cmbState.SelectedValue)==27)
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0,151) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID  IN (-1,151) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void BindDataGrid()
@@ -1422,7 +1442,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    btnSave_Click(sender, e);
+                    if(tcSupplier.SelectedIndex==0 )
+                    {
+                        btnSave_Click(sender, e);
+                    }
+                    else if(tcSupplier.SelectedIndex == 2)
+                    {
+                        BtnMappingsave_Click(sender, e);
+                    }
                 }
             }
             catch (Exception ex)
@@ -2433,6 +2460,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
                 txtCity.Text = "";
+                udfnSuppliertypeLoad();
             }
             catch (Exception ex)
 

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ROMS</RootNamespace>
     <AssemblyName>ROMS</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -59,10 +59,18 @@
     <Reference Include="ClosedXML, Version=0.102.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.102.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Gma.QrCodeNet.0.4.1.2\lib\net40\Gma.QrCodeNet.Encoding.dll</HintPath>
     </Reference>
@@ -133,6 +141,12 @@
     <Compile Include="Financial_Year_Process.designer.cs">
       <DependentUpon>Financial_Year_Process.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Tally.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Tally.designer.cs">
+      <DependentUpon>CP_Tally.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_ProductApproval.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +160,7 @@
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
+    <Compile Include="Model\TRN_Item_Movement_Analysis.cs" />
     <Compile Include="PUR_PurchaseEntryApproval.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,12 +321,24 @@
     <Compile Include="INV_InwardQueueList_Remarks.designer.cs">
       <DependentUpon>INV_InwardQueueList_Remarks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_HSN_Subgroup.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_HSN_Subgroup.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Product_Alphabetic.cs">
       <DependentUpon>RPT_CP_Product_Alphabetic.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_ItemMovementAnalysis.cs">
+      <DependentUpon>RPT_ItemMovementAnalysis.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Product.cs">
       <AutoGen>True</AutoGen>
@@ -685,13 +712,6 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\RPT_CP_HSN_Subgroup.cs">
-      <DependentUpon>RPT_CP_HSN_Subgroup.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Reports\RPT_CP_HSN_Product.cs">
       <DependentUpon>RPT_CP_HSN_Product.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -871,6 +891,12 @@
     </Compile>
     <Compile Include="ReportLoad.designer.cs">
       <DependentUpon>ReportLoad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_ItemMovementAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_ItemMovementAnalysis.designer.cs">
+      <DependentUpon>REPORT_ItemMovementAnalysis.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_Stock.cs">
       <SubType>Form</SubType>
@@ -1550,6 +1576,9 @@
     <EmbeddedResource Include="Financial_Year_Process.resx">
       <DependentUpon>Financial_Year_Process.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_Tally.resx">
+      <DependentUpon>CP_Tally.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductApproval.resx">
       <DependentUpon>CP_ProductApproval.cs</DependentUpon>
     </EmbeddedResource>
@@ -2072,6 +2101,11 @@
       <LastGenOutput>RPT_CP_Product_StockLocation_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_ItemMovementAnalysis.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_ItemMovementAnalysis.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Supplier_List.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Supplier_List.cs</LastGenOutput>
@@ -2212,11 +2246,6 @@
       <LastGenOutput>RPT_CP_Brand_Subgroup.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_CP_Brand.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LastGenOutput>RPT_CP_Brand1.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Broker_Address.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Broker_Address.cs</LastGenOutput>
@@ -2235,7 +2264,7 @@
     <Content Include="Reports\RPT_CP_HSN_Subgroup.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LastGenOutput>RPT_CP_HSN_Subgroup1.cs</LastGenOutput>
+      <LastGenOutput>RPT_CP_HSN_Subgroup.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\RPT_CP_Supplier_Address.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2358,6 +2387,9 @@
     <None Include="Resources\Clear Transaction Color.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
+    <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">
+      <DependentUpon>REPORT_ItemMovementAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock.resx">
       <DependentUpon>REPORT_Stock.cs</DependentUpon>
     </EmbeddedResource>

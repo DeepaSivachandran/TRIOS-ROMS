@@ -2921,7 +2921,7 @@ namespace ROMS
                 varBatchNo =  DGV_FilterProduct.SelectedRows[0].Cells["PR_BatchNo"].Value.ToString();
                 varBatchNoGeneration = DGV_FilterProduct.SelectedRows[0].Cells["PR_BatchNoGeneration"].Value.ToString();
                 varShelflife = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PR_ShelfLife"].Value.ToString());
-                Shelflife = DGV_FilterProduct.SelectedRows[0].Cells["ShelfLife"].Value.ToString();
+                Shelflife = DGV_FilterProduct.SelectedRows[0].Cells["Product Shelf Life"].Value.ToString();
                 ProductShelflifeValue = DGV_FilterProduct.SelectedRows[0].Cells["PR_ShelfLifeValue"].Value.ToString();
                 ProductShelflifeType = DGV_FilterProduct.SelectedRows[0].Cells["PR_ShelfLifeType"].Value.ToString();
                 varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());

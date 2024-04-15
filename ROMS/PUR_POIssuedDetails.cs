@@ -226,6 +226,7 @@ namespace ROMS
                     if (varsts == 11) //issued po
                     {
                         dpissuedateandtime.Enabled = false;
+                        //dpissuedateandtime.Readonly = true;
                         txtTAT.Enabled = false;
                         this.ActiveControl = txtIssuedBY;
                     }
@@ -305,9 +306,24 @@ namespace ROMS
                                 dpissuedateandtime.MinDate = varmindate;
                                 dpissuedateandtime.MaxDate = varmaxdate;
                             }
+                            udfnDisableValue();
                         } 
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+        public void udfnDisableValue()
+        {
+            try
+            {
+                dpissuedateandtime.Enabled = false;
+                this.ActiveControl = txtIssuedBY;
             }
             catch (Exception ex)
             {
