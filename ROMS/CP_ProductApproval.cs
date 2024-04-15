@@ -34,6 +34,7 @@ namespace ROMS
         private ToolTip tpsalesrack = new ToolTip();
         private ToolTip tpSalelocation = new ToolTip();
         private ToolTip tpunit = new ToolTip();
+        private ToolTip tpPicode = new ToolTip();
         
         public CP_ProductApproval()
         {
@@ -2856,7 +2857,14 @@ namespace ROMS
                     varStatus = "2";
 
                 }
-
+                if (Convert.ToString(txtpicode.Text).Trim() == "")
+                {
+                    epProductApproval.SetError(txtpicode, "Please enter picode");
+                    txtpicode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPicode.ShowAlways = true;
+                    tpPicode.Show("Please enter picode", txtpicode, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtProductEname.Text).Trim() == "")
                 {
                     epProductApproval.SetError(txtProductEname, "Please enter product name in english");
