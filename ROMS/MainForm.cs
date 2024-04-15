@@ -20,6 +20,7 @@ namespace ROMS
         public static string PbCurrentForm = "0";
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
+        public static int varFormDisable = 0;
         public static string pbVersion = "1.0.1";
         public static string pbUserID = "";
         public static string pbUserName = "";
@@ -194,7 +195,9 @@ namespace ROMS
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
         public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
-         
+
+
+        public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -335,28 +338,40 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
+                if (varFormDisable == 0)
                 {
-                    if (pbCloseForm == 0)
+                    if (varCloseFlag == 0)
                     {
-                        DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                        if ((objResponse == DialogResult.Yes))
+                        if (pbCloseForm == 0)
+                        {
+                            DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if ((objResponse == DialogResult.Yes))
+                            {
+                                e.Cancel = false;
+                                varCloseFlag = 1;
+                                System.Windows.Forms.Application.Exit();
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                            }
+                        }
+                        else
                         {
                             e.Cancel = false;
                             varCloseFlag = 1;
                             System.Windows.Forms.Application.Exit();
                         }
-                        else
-                        {
-                            e.Cancel = true;
-                        }
                     }
-                    else
-                    {
-                        e.Cancel = false;
-                        varCloseFlag = 1;
-                        System.Windows.Forms.Application.Exit();
-                    }
+                }
+                if(varFormDisable == 1)
+                {
+                    this.Cursor = Cursors.No;
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.Cursor = Cursors.Default;
                 }
             }
             catch (Exception ex)
@@ -1567,84 +1582,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void ClearTransactionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
-                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
-                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
-                if(PbDeleteFlag==1)
-                {
-                    int Result = 0;
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = "", varoriginator = "";
-                    varoriginator = "Clear Transactions";
-                    varResult = objspservice.udfnDBClearTransaction(0, varoriginator);
-                    string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Result = 1;
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        Result = 0;
-                    }
-                    if(Result==1)
-                    {
-                        udfnFormLoad();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void ClearMasterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
-                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
-                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
-                if (PbDeleteFlag == 1)
-                {
-                    int Result = 0;
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = "", varoriginator = "";
-                    varoriginator = "Clear Masters";
-                    varResult = objspservice.udfnDBClearMaster(0, varoriginator);
-                    string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Result = 1;
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        Result = 0;
-                    }
-                    if (Result == 1)
-                    {
-                        udfnFormLoad();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         public void udfnFormLoad()
         {
             try
@@ -1889,6 +1826,46 @@ namespace ROMS
             }
         }
 
+        private void TspClearTransactions_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
+                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+                if (PbDeleteFlag == 1)
+                {
+                    int Result = 0;
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "", varoriginator = "";
+                    varoriginator = "Clear Transactions";
+                    varResult = objspservice.udfnDBClearTransaction(0, varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Result = 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Result = 0;
+                    }
+                    if (Result == 1)
+                    {
+                        udfnFormLoad();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void ExportTallyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1925,6 +1902,63 @@ namespace ROMS
             }
         }
 
+
+        private void TspClearMasters_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
+                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+                if (PbDeleteFlag == 1)
+                {
+                    int Result = 0;
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "", varoriginator = "";
+                    varoriginator = "Clear Masters";
+                    varResult = objspservice.udfnDBClearMaster(0, varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Result = 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Result = 0;
+                    }
+                    if (Result == 1)
+                    {
+                        udfnFormLoad();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void FinancialYearProcessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objFinancial_Year_Process = new Financial_Year_Process();
+                MainForm.objFinancial_Year_Process.MdiParent = this;
+                MainForm.objFinancial_Year_Process.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void ProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1942,6 +1976,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        public void Ms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            try
+            {
+                if (varFormDisable == 1)
+                {
+                    DisablePageControls(false);
+                }
+                else
+                {
+                    DisablePageControls(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1957,6 +2012,17 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        public void DisablePageControls(bool status)
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c is ToolStrip)
+                    ((ToolStrip)c).Enabled = status;
+                if (c is MainForm)
+                    ((MainForm)c).Enabled = status;
+                //c.Enabled = status;
             }
         }
     } 

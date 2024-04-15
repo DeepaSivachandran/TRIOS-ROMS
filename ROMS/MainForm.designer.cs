@@ -115,10 +115,12 @@ namespace ROMS
             this.summaryDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearTransactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
+            this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
+            this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,13 +156,15 @@ namespace ROMS
             this.tsmControlPanel,
             this.tallyToolStripMenuItem,
             this.reportToolStripMenuItem,
-            this.tsmMyProfile});
+            this.tsmMyProfile,
+            this.toolStripMenuItem1});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
             this.ms.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.ms.Size = new System.Drawing.Size(1275, 25);
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
+            this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
             // tsbLogo
             // 
@@ -823,7 +827,6 @@ namespace ROMS
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmProfile,
-            this.clearDatabaseToolStripMenuItem,
             this.tsmLogout});
             this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -838,39 +841,60 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(149, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
-            // 
-            // clearDatabaseToolStripMenuItem
-            // 
-            this.clearDatabaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearTransactionToolStripMenuItem,
-            this.clearMasterToolStripMenuItem});
-            this.clearDatabaseToolStripMenuItem.Name = "clearDatabaseToolStripMenuItem";
-            this.clearDatabaseToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.clearDatabaseToolStripMenuItem.Text = "Clear Database";
-            // 
-            // clearTransactionToolStripMenuItem
-            // 
-            this.clearTransactionToolStripMenuItem.Name = "clearTransactionToolStripMenuItem";
-            this.clearTransactionToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.clearTransactionToolStripMenuItem.Text = "Clear Transactions";
-            this.clearTransactionToolStripMenuItem.Click += new System.EventHandler(this.ClearTransactionToolStripMenuItem_Click);
-            // 
-            // clearMasterToolStripMenuItem
-            // 
-            this.clearMasterToolStripMenuItem.Name = "clearMasterToolStripMenuItem";
-            this.clearMasterToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.clearMasterToolStripMenuItem.Text = "Clear Masters";
-            this.clearMasterToolStripMenuItem.Click += new System.EventHandler(this.ClearMasterToolStripMenuItem_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(149, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3,
+            this.financialYearProcessToolStripMenuItem});
+            this.toolStripMenuItem1.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
+            this.toolStripMenuItem1.ShowShortcutKeys = false;
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(72, 21);
+            this.toolStripMenuItem1.Text = "&Fy Settings";
+            this.toolStripMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tspClearTransactions,
+            this.tspClearMasters});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(182, 22);
+            this.toolStripMenuItem3.Text = "Clear Database";
+            // 
+            // tspClearTransactions
+            // 
+            this.tspClearTransactions.Name = "tspClearTransactions";
+            this.tspClearTransactions.Size = new System.Drawing.Size(165, 22);
+            this.tspClearTransactions.Text = "Clear Transactions";
+            this.tspClearTransactions.Click += new System.EventHandler(this.TspClearTransactions_Click);
+            // 
+            // tspClearMasters
+            // 
+            this.tspClearMasters.Name = "tspClearMasters";
+            this.tspClearMasters.Size = new System.Drawing.Size(165, 22);
+            this.tspClearMasters.Text = "Clear Masters";
+            this.tspClearMasters.Click += new System.EventHandler(this.TspClearMasters_Click);
+            // 
+            // financialYearProcessToolStripMenuItem
+            // 
+            this.financialYearProcessToolStripMenuItem.Name = "financialYearProcessToolStripMenuItem";
+            this.financialYearProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
+            this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -984,11 +1008,13 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem productWiseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem summaryDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productApprovalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearDatabaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearTransactionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearMasterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tallyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportTallyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem itemMovementAnalysisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem tspClearTransactions;
+        private System.Windows.Forms.ToolStripMenuItem tspClearMasters;
+        private System.Windows.Forms.ToolStripMenuItem financialYearProcessToolStripMenuItem;
     }
 }
