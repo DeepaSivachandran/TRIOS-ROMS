@@ -294,6 +294,7 @@ namespace ROMS
         // Created Date: 12-02-2020
         public void Authentication_Load(object sender, EventArgs e)
         {
+            string VersionName = "";
             // Check server settings file exists or not
             //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
             //if (File.Exists(paths))
@@ -301,7 +302,21 @@ namespace ROMS
             //DataService objDserv = new DataService();
             //string VersionName = objDserv.displaydata("SELECT TOP(1) RLS_VersionName FROM TRN_RELEASEDETAILS ORDER BY RLSID DESC");
             //objDserv.CloseConnection();
-            string VersionName = System.Configuration.ConfigurationManager.AppSettings["versionno"];
+            //string VersionName = System.Configuration.ConfigurationManager.AppSettings["versionno"];
+            SPDataService objdserv = new SPDataService();
+            DataSet objDT = new DataSet();
+            objDT = objdserv.udfnMaster(20,0,0,"","",0,"",0);
+            objdserv.CloseConnection();
+            if (objDT != null)
+            {
+                if (objDT.Tables.Count > 0)
+                {
+                    if (objDT.Tables[0].Rows.Count > 0)
+                    {
+                        VersionName = objDT.Tables[0].Rows[0]["RLS_VersionNo"].ToString();
+                    }
+                }
+            }
             lblDVersion.Text = VersionName;
             lblDVersion.BringToFront();
             Authentication objAuthetication = new Authentication();
