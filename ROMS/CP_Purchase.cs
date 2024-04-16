@@ -547,6 +547,10 @@ namespace ROMS
                         txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
                         varGRNPaymentType = Convert.ToString(objDs.Tables[0].Rows[0]["PaymentType"]);
                         txtQRCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN Code"]);
+                        if(Convert.ToInt32(cmbEntryType.SelectedValue)==54)
+                        {
+                            dpInvoiceDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceDate"]);
+                        }
                         if (varGRNPaymentType == "199" || varGRNPaymentType == "200") //199- NONE,200-  GRN cash issued
                         {
                             rbPurchaseCash.Checked = true;

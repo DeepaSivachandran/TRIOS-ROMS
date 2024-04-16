@@ -2772,7 +2772,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtPurLocation.Focus();
+                    if(txtPurLocation.Enabled==true)
+                    {
+                        txtPurLocation.Focus();
+                    }
+                    else if(txtPurRack.Enabled==true)
+                    {
+                        txtPurRack.Focus();
+                    }
+                    else
+                    {
+                        txtSaleLocation.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -4080,7 +4091,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtGroup.Focus();
+                    txtBrand.Focus();
                 }
             }
             catch (Exception ex)
