@@ -14,6 +14,7 @@ namespace ROMS
 {
     static class Program
     {
+        public static int varFormClose = 0;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -26,7 +27,7 @@ namespace ROMS
             {
                 SecurityController _security = new SecurityController();
                 //  DataService objDser = new DataService();
-                string VersionNo = "v1.6.5";
+                string VersionNo = System.Configuration.ConfigurationManager.AppSettings["versionno"];
               //  string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
 
                 ////////////  Enter Version No Here   /////////////
@@ -40,6 +41,11 @@ namespace ROMS
                     Application.SetCompatibleTextRenderingDefault(false);
                     //Application.Run(new Expandablegrd());
                     Application.Run(new Authentication());
+                if (varFormClose == 1)
+                {
+                    varFormClose = 0;
+                    System.Diagnostics.Process.Start(Application.ExecutablePath);
+                }
                 //DataService objDser = new DataService();
                 //DataSet getrelease = objDser.GetDataset("SELECT * FROM TRN_RELEASEDETAILS WHERE RLS_VersionName ='" + version + "'");
                 //if (getrelease.Tables[0].Rows.Count == 0)
