@@ -651,7 +651,7 @@ namespace ROMS
             // exportTallyToolStripMenuItem
             // 
             this.exportTallyToolStripMenuItem.Name = "exportTallyToolStripMenuItem";
-            this.exportTallyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportTallyToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.exportTallyToolStripMenuItem.Text = "Export Tally";
             this.exportTallyToolStripMenuItem.Click += new System.EventHandler(this.ExportTallyToolStripMenuItem_Click);
             // 
@@ -862,8 +862,8 @@ namespace ROMS
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
             this.toolStripMenuItem1.ShowShortcutKeys = false;
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(72, 21);
-            this.toolStripMenuItem1.Text = "&Fy Settings";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(73, 21);
+            this.toolStripMenuItem1.Text = "&FY Settings";
             this.toolStripMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripMenuItem3

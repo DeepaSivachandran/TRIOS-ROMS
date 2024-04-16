@@ -257,6 +257,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                udfnDefaultRows();
             }
             catch (Exception ex)
             {
@@ -266,6 +267,20 @@ namespace ROMS
             finally
             {
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+            }
+        }
+        public void udfnDefaultRows()
+        {
+            try
+            {
+                grdSupplierPayment.Rows.Add(false,1, "02/04/24", "PUR01", "02/04/24", "#1", "User1", "User2", "5400", "270", "5670", "0", "5670");
+                grdSupplierPayment.Rows.Add(false,2, "04/04/24", "PUR10", "03/04/24", "#2", "User1", "User2", "1,10,000", "19,800", "1,29,800", "0", "1,29,800");
+                grdSupplierPayment.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnCmbConcern()
