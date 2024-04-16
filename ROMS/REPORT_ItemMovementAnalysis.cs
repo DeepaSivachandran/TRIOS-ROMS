@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using ClosedXML.Excel;
+using CrystalDecisions.Shared;
 
 namespace ROMS
 {
@@ -989,14 +990,177 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPrint()
+        //public void udfnPrint()
+        //{
+        //    try
+        //    {
+        //        btnExport.Enabled = false;
+        //        lblProduct.Focus();
+        //        DataSet objDs = new DataSet();
+        //        SPDataService objspservice = new SPDataService();
+        //        Model.TRN_Item_Movement_Analysis objTRN_Item_Movement_Analysis = new Model.TRN_Item_Movement_Analysis();
+        //        objTRN_Item_Movement_Analysis.Viewtype = 0;
+        //        objTRN_Item_Movement_Analysis.paraProductId = Convert.ToInt32(lblProduct.Text.Trim());
+        //        objTRN_Item_Movement_Analysis.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+        //        objTRN_Item_Movement_Analysis.paraLocationId = Convert.ToInt32(varStockLocationId);
+        //        objTRN_Item_Movement_Analysis.paraRackId = Convert.ToInt32(lblRackCode.Text);
+        //        objTRN_Item_Movement_Analysis.parafromdate = dpFromDate.Text;
+        //        objTRN_Item_Movement_Analysis.paratodate = dptodate.Text;
+        //        objTRN_Item_Movement_Analysis.paraLocation = 1;
+        //        objTRN_Item_Movement_Analysis.paraRack = 1;
+        //        objTRN_Item_Movement_Analysis.paraMRP = 1;
+        //        objTRN_Item_Movement_Analysis.paraBatchNo = 1;
+        //        objTRN_Item_Movement_Analysis.paraExpiryDate = 1;
+        //        objDs = objspservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
+        //        objspservice.CloseConnection();
+
+        //        if (objDs != null)
+        //        {
+        //            if (objDs.Tables.Count > 0)
+        //            {
+        //                DataSet objDd = new DataSet();
+        //                SPDataService objservice = new SPDataService();
+        //                objTRN_Item_Movement_Analysis.Viewtype = 1;
+        //                objTRN_Item_Movement_Analysis.paraProductId = Convert.ToInt32(lblProduct.Text.Trim());
+        //                objTRN_Item_Movement_Analysis.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+        //                objTRN_Item_Movement_Analysis.paraLocationId = Convert.ToInt32(varStockLocationId);
+        //                objTRN_Item_Movement_Analysis.paraRackId = Convert.ToInt32(lblRackCode.Text);
+        //                objTRN_Item_Movement_Analysis.parafromdate = dpFromDate.Text;
+        //                objTRN_Item_Movement_Analysis.paratodate = dptodate.Text;
+        //                objDd = objservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
+        //                objspservice.CloseConnection();
+        //                if (objDs.Tables[0].Rows.Count > 0)
+        //                {
+        //                    DataTable objDt = new DataTable();
+        //                    //objDt = objDtExcel.Copy();
+        //                    //objDt.Columns.Remove("GroupCode");
+        //                    using (XLWorkbook wb = new XLWorkbook())
+        //                    {
+        //                        SaveFileDialog sv = new SaveFileDialog();
+        //                        sv.Filter = "Execl files (*.xls)|*.xls";
+        //                        sv.FilterIndex = 0;
+        //                        if (sv.ShowDialog() == DialogResult.OK)
+        //                        {
+        //                            var sheet = wb.Worksheets.Add("Group List");
+        //                            //sheet.Cell(1, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+        //                            //sheet.Cell(1, 1).Style.Fill.BackgroundColor = XLColor.White;
+        //                            //sheet.Cell(1, 1).Style.Font.Bold = true;
+        //                            //sheet.Cell(1, 1).Style.Font.FontSize = 15; 
+
+        //                            sheet.Cell(1, 1).InsertTable(objDt);
+
+        //                            //   sheet.Cell(objDt.Rows.Count + 4, 1).InsertData(objDt.Rows);
+        //                            sheet.Tables.FirstOrDefault().ShowAutoFilter = false;
+        //                            wb.SaveAs(sv.FileName);
+        //                            MessageBox.Show("Successfully Downloaded", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //                        }
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //                }
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            objError = new DataError();
+        //            objError.WriteFile(ex);
+        //        }
+        //}
+
+        private void udfnExcel()
         {
             try
             {
-                btnExport.Enabled = false;
-                lblProduct.Focus();
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
+                DataSet ds = new DataSet();
+                SPDataService spservice = new SPDataService();
+                string data = "";
+                Microsoft.Office.Interop.Excel._Application ExcelObj = new Microsoft.Office.Interop.Excel.Application();
+                Microsoft.Office.Interop.Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                Microsoft.Office.Interop.Excel._Worksheet ExcelSheet = null;
+                //     ExcelObj.Visible = true;
+                ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                ExcelSheet = ExcelBook.ActiveSheet;
+                ExcelSheet.Name = "Item movement analysis report";
+                int count = 0;
+
+
+                int IntReportType = 0;
+                //if (Convert.ToInt32(Cmb_ReportList.SelectedValue.ToString()) == 4)
+                //{
+                //    IntReportType = 1;
+                //}
+                //else if (Convert.ToInt32(Cmb_ReportList.SelectedValue.ToString()) == 5)
+                //{
+                //    IntReportType = 2;
+                //}
+                //else if (Convert.ToInt32(Cmb_ReportList.SelectedValue.ToString()) == 6)
+                //{
+                //    IntReportType = 3;
+                //}
+                //else if (Convert.ToInt32(Cmb_ReportList.SelectedValue.ToString()) == 7)
+                //{
+                //    IntReportType = 4;
+                //}
+                //else if (Convert.ToInt32(Cmb_ReportList.SelectedValue.ToString()) == 8)
+                //{
+                //    IntReportType = 5;
+                //}
+
+                //int IntType = 0; IntType = 0;
+                //int IntExport = 1;
+                //int IntIndividualPrint = 0;
+
+
+
+                ////string varCompName = "Company : All", varGroupName = "Group : All", varRawName = "Rawmaterial : All", varLocation = "Location : All";
+                ////if (cmbCompany.SelectedValue.ToString() != "0") { varCompName = "Company : " + cmbCompany.Text; }
+                ////if (Txt_Group.Text != "") { varGroupName = "Group : " + Txt_Group.Text; }
+                ////if (Txt_RawMaterial.Text != "") { varRawName = "Rawmaterial : " + Txt_RawMaterial.Text; }
+                ////if (txtLocation.Text != "") { varLocation = "Location : " + txtLocation.Text; }
+
+                ////Microsoft.Office.Interop.Excel.Range range1 = ExcelSheet.UsedRange;
+                ////Microsoft.Office.Interop.Excel.Range cell = range1.Cells[1][1];
+                ////Microsoft.Office.Interop.Excel.Borders border = cell.Borders;
+                //int varAll = 0;
+                //int varinstk = 0;
+                //int varzerostock = 0;
+                //int varnegstk = 0;
+                //if (chkAll.Checked == true)
+                //{
+                //    varAll = 1;
+                //}
+                //else
+                //{
+                //    varAll = 0;
+                //}
+                //if (chkinstock.Checked == true)
+                //{
+                //    varinstk = 1;
+                //}
+                //else
+                //{
+                //    varinstk = 0;
+                //}
+                //if (chkzerostock.Checked == true)
+                //{
+                //    varzerostock = 1;
+                //}
+                //else
+                //{
+                //    varzerostock = 0;
+                //}
+
+
+                //if (chk_NegativeStk.Checked == true)
+                //{
+
+                //    varnegstk = 0;
+                //}
+                var DOP = "";
+
                 Model.TRN_Item_Movement_Analysis objTRN_Item_Movement_Analysis = new Model.TRN_Item_Movement_Analysis();
                 objTRN_Item_Movement_Analysis.Viewtype = 0;
                 objTRN_Item_Movement_Analysis.paraProductId = Convert.ToInt32(lblProduct.Text.Trim());
@@ -1010,69 +1174,109 @@ namespace ROMS
                 objTRN_Item_Movement_Analysis.paraMRP = 1;
                 objTRN_Item_Movement_Analysis.paraBatchNo = 1;
                 objTRN_Item_Movement_Analysis.paraExpiryDate = 1;
-                objDs = objspservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
-                objspservice.CloseConnection();
+                ds = spservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
+                spservice.CloseConnection();
+                count = ds.Tables[0].Columns.Count;
+                String VarReportHead = "";
+                VarReportHead = "As on Date " + dpFromDate.Text;
+                //ExcelSheet.Cells[1, 1].Value = Cmb_ReportList.Text;
+                ExcelSheet.Cells[2, 1].Value = VarReportHead;
+                //ExcelSheet.Cells[2, 1].Value = varCompName;
+                //ExcelSheet.Cells[2, 2].Value = varGroupName;
+                //ExcelSheet.Cells[2, 3].Value = varRawName;
+                //ExcelSheet.Cells[2, 4].Value = varLocation;
+                ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+                ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Excel.XlRgbColor.rgbGray;
+                ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Bold = true;
+                ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.color = Color.White;
+                ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Merge();
+                ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
+                ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.Black;
+                ExcelSheet.Range[ExcelSheet.Cells[3, 1], ExcelSheet.Cells[3, count]].Font.color = Color.White;
+                ExcelSheet.Range[ExcelSheet.Cells[3, 1], ExcelSheet.Cells[3, count]].Interior.Color = Excel.XlRgbColor.rgbSlateGray;
 
-                if (objDs != null)
+
+                //Excel.Range _range;
+                //_range = ExcelSheet.get_Range(ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]);
+                //Excel.Borders borders = _range.Borders;
+                //borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+
+                string[] varcolumnname = new string[ds.Tables[0].Columns.Count];
+                int k = 0;
+                //if (Mainform.objemployeelist.grdEmployeelist.Rows.Count > 0)
+                //{
+                foreach (DataColumn column in ds.Tables[0].Columns)
                 {
-                    if (objDs.Tables.Count > 0)
+                    if (k < ds.Tables[0].Columns.Count)
                     {
-                        DataSet objDd = new DataSet();
-                        SPDataService objservice = new SPDataService();
-                        objTRN_Item_Movement_Analysis.Viewtype = 1;
-                        objTRN_Item_Movement_Analysis.paraProductId = Convert.ToInt32(lblProduct.Text.Trim());
-                        objTRN_Item_Movement_Analysis.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                        objTRN_Item_Movement_Analysis.paraLocationId = Convert.ToInt32(varStockLocationId);
-                        objTRN_Item_Movement_Analysis.paraRackId = Convert.ToInt32(lblRackCode.Text);
-                        objTRN_Item_Movement_Analysis.parafromdate = dpFromDate.Text;
-                        objTRN_Item_Movement_Analysis.paratodate = dptodate.Text;
-                        objDd = objservice.udfnItemMovementAnalysis(objTRN_Item_Movement_Analysis);
-                        objspservice.CloseConnection();
-                        if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            DataTable objDt = new DataTable();
-                            //objDt = objDtExcel.Copy();
-                            objDt.Columns.Remove("GroupCode");
-                            using (XLWorkbook wb = new XLWorkbook())
-                            {
-                                SaveFileDialog sv = new SaveFileDialog();
-                                sv.Filter = "Execl files (*.xls)|*.xls";
-                                sv.FilterIndex = 0;
-                                if (sv.ShowDialog() == DialogResult.OK)
-                                {
-                                    var sheet = wb.Worksheets.Add("Group List");
-                                    //sheet.Cell(1, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                                    //sheet.Cell(1, 1).Style.Fill.BackgroundColor = XLColor.White;
-                                    //sheet.Cell(1, 1).Style.Font.Bold = true;
-                                    //sheet.Cell(1, 1).Style.Font.FontSize = 15; 
+                        ExcelSheet.Cells[3, k + 1] = column.ColumnName;
+                        ExcelSheet.Cells[3, k + 1].font.Bold = true;
 
-                                    sheet.Cell(1, 1).InsertTable(objDt);
+                        //range1 = ExcelSheet.UsedRange;
+                        //cell = range1.Cells[3][k + 1];
+                        //border = cell.Borders;
+                        //border[Excel.XlBordersIndex.xlEdgeLeft].LineStyle =
+                        //Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //border[Excel.XlBordersIndex.xlEdgeTop].LineStyle =
+                        //    Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //border[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
+                        //    Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //border[Excel.XlBordersIndex.xlEdgeRight].LineStyle =
+                        //    Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    }
+                    k++;
+                }
+                for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j <= ds.Tables[0].Columns.Count - 1; j++)
+                    {
+                        data = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                        ExcelSheet.Cells[i + 4, j + 1] = data;
 
-                                    //   sheet.Cell(objDt.Rows.Count + 4, 1).InsertData(objDt.Rows);
-                                    sheet.Tables.FirstOrDefault().ShowAutoFilter = false;
-                                    wb.SaveAs(sv.FileName);
-                                    MessageBox.Show("Successfully Downloaded", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        }
+                        //range1 = ExcelSheet.UsedRange;
+                        //cell = range1.Cells[i + 4][j + 1];
+                        //border = cell.Borders;
+                        //border[Excel.XlBordersIndex.xlEdgeLeft].LineStyle =
+                        //Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //border[Excel.XlBordersIndex.xlEdgeTop].LineStyle =
+                        //    Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //border[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
+                        //    Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //border[Excel.XlBordersIndex.xlEdgeRight].LineStyle =
+                        //    Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     }
                 }
-                catch (Exception ex)
+
+
+                //foreach (Excel.Range cell in range.Rows[1].Cells)
+                //{
+                //    cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                //    cell.Font.Bold = true;
+                //}
+                //range.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                //}
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Execl files (*.xls)|*.xls";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
+                    objBillreport.ExportToDisk(ExportFormatType.Excel, saveFileDialog.FileName);//+ ".xls"
+                    MessageBox.Show("Report Exported Succesful..");
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void BtnExport_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnPrint();
+                udfnExcel();
             }
             catch (Exception ex)
             {
