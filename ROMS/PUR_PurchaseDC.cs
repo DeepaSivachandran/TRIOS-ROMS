@@ -359,13 +359,13 @@ namespace ROMS
             //objPurchaseDC.Columns.Add("DCPR_DCID", typeof(int));
             dtPurchaseDC.Columns.Add("SNo", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_PRID", typeof(int));
-            dtPurchaseDC.Columns.Add("DCPR_MRP", typeof(decimal));
+            dtPurchaseDC.Columns.Add("DCPR_MRP", typeof(string));
             dtPurchaseDC.Columns.Add("DCPR_ExpiryDate", typeof(string));
             dtPurchaseDC.Columns.Add("DCPR_BatchNo", typeof(string));
             dtPurchaseDC.Columns.Add("DCPR_Qty", typeof(decimal));
             dtPurchaseDC.Columns.Add("DCPR_UTID", typeof(int));
-            dtPurchaseDC.Columns.Add("DCPR_SLID", typeof(int));
-            dtPurchaseDC.Columns.Add("DCPR_RKID", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_SLID", typeof(string));
+            dtPurchaseDC.Columns.Add("DCPR_RKID", typeof(string));
             dtPurchaseDC.Columns.Add("DCPR_ShelfLifeValue", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_ShelfLifeType", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_ShelfLife_Per", typeof(float));
@@ -2949,14 +2949,15 @@ namespace ROMS
                 
                 
                 var varDuplicateProuct = from r in dtPurchaseDC.AsEnumerable()
-                                where ( r.Field<decimal>("DCPR_MRP").Equals(mrp1) &&
+                                where ( r.Field<string>("DCPR_MRP").Equals(mrp1) &&
                                          r.Field<string>("DCPR_ExpiryDate").Equals(ExpiryDate) && 
                                          r.Field<string>("DCPR_BatchNo").Equals(BatchNo) && 
-                                         r.Field<int>("DCPR_SLID").Equals(slid) && 
-                                         r.Field<int>("DCPR_RKID").Equals(rkid) && 
+                                         r.Field<string>("DCPR_SLID").Equals(slid) && 
+                                         r.Field<string>("DCPR_RKID").Equals(rkid) && 
                                          r.Field<int>("SNo")!=Convert.ToInt16(grdPurchaseDC.Rows[e.RowIndex].Cells["clmsino"].Value) 
                                          )
-                                group r by r.Field<int>("DCPR_PRID") into g
+                                group r by r.Field<int>("SNo") 
+                                into g
                                 select g.Key;
                 var varRowsToUpdate = dtPurchaseDC.AsEnumerable().Where(r => r.Field<int>("SNo") == Convert.ToInt16(varsno));
                 if (varDuplicateProuct.Count() == 0)
