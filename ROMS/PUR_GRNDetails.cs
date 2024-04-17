@@ -3600,9 +3600,9 @@ namespace ROMS
                 varProid = Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmProid"].Value);
                 objDS = objDServ.udfnMaster(10, 0, 0, dpGrnDate.Text.Trim(), varTempExpiryDate, varProid, "", 0);
                 objDServ.CloseConnection();
-                for (int i = 0; i < grdGrnlist.Rows.Count; i++)
-                {
-                    varShelflife = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmShelflifeenable"].Value);
+                //for (int i = 0; i < grdGrnlist.Rows.Count; i++)
+                //{
+                    varShelflife = Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmShelflifeenable"].Value);
                     pbDateflag = 0;
                     if (pbDateflag == 0)
                     {
@@ -3636,10 +3636,10 @@ namespace ROMS
                                                 if (Convert.ToInt32(objDS.Tables[2].Rows[0]["DATEVALIDATE"]) == 0)
                                                 {
                                                     pbDateflag = 1;
-                                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == varTempExpiryDate)
+                                                    if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Value) == varTempExpiryDate)
                                                     {
                                                         varErrorFormat = 5;
-                                                        grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                                        grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                                         string varMessage = objDServ.udfnGetMessages(98);
                                                         objDServ.CloseConnection();
                                                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -3647,7 +3647,7 @@ namespace ROMS
                                                 }
                                                 else
                                                 {
-                                                    grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                    grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
                                                 }
                                             }
                                             else
@@ -3663,10 +3663,10 @@ namespace ROMS
                         {   
                             if (varTempExpiryDate != "")
                             {
-                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == varTempExpiryDate)
+                                if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Value) == varTempExpiryDate)
                                 {
                                     varErroronGrid = 1;
-                                    grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                    grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                     string varMessage = objDServ.udfnGetMessages(94);
                                     objDServ.CloseConnection();
                                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -3677,12 +3677,12 @@ namespace ROMS
                         {
                             if (pbDateflag == 0)
                             {
-                                grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                                DataGridViewCell cell = dataGridView.Rows[i].Cells["clmmrp"];
-                                DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmexpirydate"];
-                                DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmBatchno"];
-                                DataGridViewCell cell3 = dataGridView.Rows[i].Cells["clmInvoiceQty"];
-                                DataGridViewCell cell4 = dataGridView.Rows[i].Cells["clmExcessQty"];
+                                grdGrnlist.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
+                                DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmmrp"];
+                                DataGridViewCell cell1 = dataGridView.Rows[rowIndex].Cells["clmexpirydate"];
+                                DataGridViewCell cell2 = dataGridView.Rows[rowIndex].Cells["clmBatchno"];
+                                DataGridViewCell cell3 = dataGridView.Rows[rowIndex].Cells["clmInvoiceQty"];
+                                DataGridViewCell cell4 = dataGridView.Rows[rowIndex].Cells["clmExcessQty"];
                                 cell.Style.BackColor = Color.PaleGreen;
                                 cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                 cell1.Style.BackColor = Color.PaleGreen;
@@ -3696,13 +3696,13 @@ namespace ROMS
                                 //    cell4.Style.BackColor = Color.PaleGreen;
                                 //    cell4.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                 //}
-                                if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
+                                if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmBatchgeneration"].Value) == "74")
                                 {
                                     cell2.Style.BackColor = Color.LightGray;
                                     cell2.Style.ForeColor = Color.Black;
                                     cell2.ReadOnly = true;
                                 }
-                                else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "73")
+                                else if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmBatchenable"].Value) == "73")
                                 {
                                     cell2.Style.BackColor = Color.LightGray;
                                     cell2.Style.ForeColor = Color.Black;
@@ -3756,7 +3756,7 @@ namespace ROMS
                             */
                         }
                     }
-                }
+                //}
             }
             catch (Exception ex)
             {
