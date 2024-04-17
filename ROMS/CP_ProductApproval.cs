@@ -134,6 +134,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchno, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchGen, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("MR_QtyUnit", " QUT_STSID =1", "QUT_Symbol,QUTID", cmbUnit, "", "QUT_Symbol", "QUTID");
                 objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  not in (0)", "GST_Text,GSTID", cmbGst, "", "GST_Text", "GSTID");
@@ -146,7 +147,8 @@ namespace ROMS
                 cmbProductCategory.SelectedValue = -1;
                 cmbPeriod.SelectedValue = -1;
                 cmbBatchno.SelectedValue = 72;
-                
+                cmbBatchGen.SelectedValue = -1;
+
                 //cmbBatchNoGeneration.SelectedValue = -1;
                 udfnUnitLoad();
                 udfnEdit();
@@ -175,6 +177,7 @@ namespace ROMS
                         if (objDT.Tables[0].Rows.Count > 0)
                         {
                             cmbBatchno.SelectedValue = objDT.Tables[0].Rows[0]["MSBT_BatchNo"].ToString();
+                            cmbBatchGen.SelectedValue = objDT.Tables[0].Rows[0]["MSBT_BatchNoGeneration"].ToString();
                         }
                     }
                 }
@@ -1903,13 +1906,15 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbBatchno.Select(int.MaxValue, 0)));
-                //if (Convert.ToString(cmbBatchno.SelectedValue) == "72")
-                //{
-                //}
-                //else
-                //{
-  
-                //}
+                if (Convert.ToString(cmbBatchno.SelectedValue) == "72")
+                {
+                    cmbBatchGen.Enabled = true;
+                }
+                else
+                {
+                    cmbBatchGen.SelectedValue = -1;
+                    cmbBatchGen.Enabled = false;
+                }
             }
             catch (Exception ex)
 
@@ -2173,7 +2178,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cbShelflife.Focus();
+                    if(cmbBatchGen.Enabled==true)
+                    {
+                        cmbBatchGen.Focus();
+                    }
+                    else
+                    {
+                        cbShelflife.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2562,6 +2574,62 @@ namespace ROMS
             try
             {
                 grdCategory.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBatchGen_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBatchGen.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBatchGen_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBatchGen.BackColor = Color.White;
+                epProductApproval.Clear();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBatchGen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBatchGen_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    cbShelflife.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -2991,6 +3059,7 @@ namespace ROMS
                             varSalesRackCode = objDS.Tables[0].Rows[0]["RACK SALES"].ToString();
                             txtSalesRack.Text = objDS.Tables[0].Rows[0]["RACK SALES Name"].ToString();
                             cmbBatchno.SelectedValue = objDS.Tables[0].Rows[0]["BATCHNO"].ToString();
+                            cmbBatchGen.SelectedValue = objDS.Tables[0].Rows[0]["BARCODE GENERATION"].ToString();
                             cmbPeriod.SelectedValue = objDS.Tables[0].Rows[0]["SHELF LIFE TYPE"].ToString();
                             txtSelfLife.Text = Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE VALUE"].ToString().Replace("''", "'"));
                             cmbGst.SelectedValue = objDS.Tables[0].Rows[0]["GSTID"].ToString();
@@ -3142,6 +3211,25 @@ namespace ROMS
                     cmbGst.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpgst.ShowAlways = true;
                     tpgst.Show("Please select GST%", cmbGst, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToInt32(cmbBatchno.SelectedValue) == 72)
+                {
+                    if (Convert.ToString(cmbBatchGen.SelectedValue) == "" || Convert.ToString(cmbBatchGen.SelectedValue) == "-1")
+                    {
+                        epProductApproval.SetError(cmbBatchGen, "Please select Batch No. generation");
+                        cmbBatchGen.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpcompanyname.ShowAlways = true;
+                        tpcompanyname.Show("Please select sales Batch No. generation", cmbBatchGen, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToInt32(cmbBatchno.SelectedValue) == 72 && Convert.ToInt32(cmbBatchGen.SelectedValue) == -1)
+                {
+                    epProductApproval.SetError(cmbBatchGen, "Please select batcn no. generation");
+                    cmbBatchGen.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcompanyname.ShowAlways = true;
+                    tpcompanyname.Show("Please select sales batcn no. generation", cmbBatchGen, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtHsncode.Text).Trim() == "")
@@ -3455,7 +3543,7 @@ namespace ROMS
                     result = objspdservice.udfnProductMaster(14, varproductcode, txtProductEname.Text, txtProductTname.Text, txtpicode.Text.Trim().ToUpper(),
                     0, Convert.ToInt32(cmbProductCategory.SelectedValue), 0, Convert.ToInt32(varSubgroupCode), Convert.ToInt32(varBrand),
                     Convert.ToInt32(cmbUnit.SelectedValue), 0, "", Convert.ToInt32(varPurLocationCode), Convert.ToInt32(varSalesLocationCode)
-                    , Convert.ToInt32(varPurRackCode), Convert.ToInt32(varSalesRackCode), 0, Convert.ToInt32(cmbBatchno.SelectedValue), 0
+                    , Convert.ToInt32(varPurRackCode), Convert.ToInt32(varSalesRackCode), 0, Convert.ToInt32(cmbBatchno.SelectedValue), Convert.ToInt32(cmbBatchGen.SelectedValue)
                     , varshelflife, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(varHsnCode), 0, shelflife,
                     Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "",0,0,0,0);
 

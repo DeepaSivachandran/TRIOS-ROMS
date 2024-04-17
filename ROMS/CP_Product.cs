@@ -4429,7 +4429,17 @@ namespace ROMS
         {
             try
             {
+                if (chkSameasPurchase.Checked==true)
+                {
+                    chkSameasPurchase.Checked = false;
+                    txtSaleLocation.Text = "";
+                    txtSaleRack.Text = "";
+                    txtRackDescriptionSales.Text = "";
+                    lblSaleLocationCode.Text = "0";
+                    lblSaleRackCode.Text = "0";
+                }
                 txtPurRack.Text = "";
+                txtRackDescription.Text = "";
                 //txtPurRack.Enabled = true;
                 lvPurLocation.Items.Clear();
                 if (txtPurLocation.Text.Length > 0)
@@ -4564,6 +4574,15 @@ namespace ROMS
         {
             try
             {
+                if (chkSameasPurchase.Checked==true)
+                {
+                    chkSameasPurchase.Checked = false;
+                    txtSaleLocation.Text = "";
+                    txtSaleRack.Text = "";
+                    txtRackDescriptionSales.Text = "";
+                    lblSaleLocationCode.Text = "0";
+                    lblSaleRackCode.Text = "0";
+                }
                 lvPurRack.Items.Clear();
                 if (txtPurRack.Text.Length > 0)
                 {
@@ -4700,6 +4719,7 @@ namespace ROMS
             try
             {
                 txtSaleRack.Text = "";
+                txtRackDescriptionSales.Text = "";
                 txtSaleRack.Enabled = true;
                 lvSaleLocation.Items.Clear();
                 if (txtSaleLocation.Text.Length > 0)
@@ -5311,6 +5331,44 @@ namespace ROMS
             }
         }
 
+        private void ChkSameasPurchase_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkSameasPurchase.Checked == true)
+                {
+                    if (txtPurLocation.Text!="")
+                    {
+                        txtSaleLocation.Text = txtPurLocation.Text;
+                        txtSaleRack.Text = txtPurRack.Text;
+                        txtRackDescriptionSales.Text = txtRackDescription.Text;
+                        lblSaleLocationCode.Text = lblPurLocationCode.Text;
+                        lblSaleRackCode.Text = lblPurRackCode.Text;
+                        lvSaleLocation.Visible = false;
+                        lvSaleRack.Visible = false;
+                        txtSaleRack.Enabled = false;
+                        txtSaleRack.ReadOnly = true;
+                        txtSaleLocation.Enabled = false;
+                        txtSaleLocation.ReadOnly = true;
+                        txtRackDescriptionSales.Enabled = false;
+                        txtRackDescriptionSales.ReadOnly = true;
+                    }
+                }
+                else
+                {                    
+                    txtSaleRack.Enabled = true;
+                    txtSaleRack.ReadOnly = false;
+                    txtSaleLocation.Enabled = true;
+                    txtSaleLocation.ReadOnly = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -5573,6 +5631,14 @@ namespace ROMS
                             {
                                 cbCompleted.Checked = false;
                                 cbCompleted.Enabled = true;
+                            }
+                            if((txtPurLocation.Text==txtSaleLocation.Text) && (txtSaleRack.Text==txtPurRack.Text) && (txtRackDescription.Text==txtRackDescriptionSales.Text))
+                            {
+                                chkSameasPurchase.Checked = true;
+                            }
+                            else
+                            {
+                                chkSameasPurchase.Checked = false;
                             }
                             //objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
                             //objdservice.CloseConnection();
