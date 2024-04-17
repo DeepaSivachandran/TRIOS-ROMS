@@ -4366,31 +4366,34 @@ namespace ROMS
         {
             try
             {
+                if (lvPurLocation.Items.Count == 0 || txtPurLocation.Text == "")
                 {
-                    if (lvPurLocation.Items.Count == 0 || txtPurLocation.Text == "")
-                    {
-                        txtPurLocation.Focus();
-                        lvPurLocation.Visible = false;
-                    }
-                    else
-                    {
-                        lvPurLocation.Focus();
-                    }
-                    if (lvPurLocation.Items.Count > 0)
-                    {
-                        lvPurLocation.Items[0].Selected = true;
-                    }
+                    txtPurLocation.Focus();
+                    lvPurLocation.Visible = false;
                 }
+                else
+                {
+                    lvPurLocation.Focus();
+                }
+                if (lvPurLocation.Items.Count > 0)
+                {
+                    lvPurLocation.Items[0].Selected = true;
+                }    
                 if (e.KeyCode == Keys.Enter)
                 {
                     if (txtPurRack.Enabled == true)
                     {
                         txtPurRack.Focus();
                     }
+                    else if (chkSameasPurchase.Checked == true)
+                    {
+                        txtRackMOQQty.Focus();
+                    }
                     else
                     {
                         txtSaleLocation.Focus();
                     }
+                    
                 }
             }
             catch (Exception ex)
@@ -4492,7 +4495,14 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnPurLocationAutocomplete();
-                    txtPurRack.Focus();
+                    if (txtPurRack.Enabled==true)
+                    {
+                        txtPurRack.Focus();
+                    }
+                    else
+                    {
+                        txtSaleLocation.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -4504,7 +4514,23 @@ namespace ROMS
 
         private void LvPurLocation_DoubleClick(object sender, EventArgs e)
         {
-            udfnPurLocationAutocomplete();
+            try
+            {
+                udfnPurLocationAutocomplete();
+                if(txtPurRack.Enabled==true)
+                {
+                    txtPurRack.Focus();
+                }
+                else
+                {
+                    txtSaleLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtPurRack_Enter(object sender, EventArgs e)
@@ -5352,6 +5378,14 @@ namespace ROMS
                         txtSaleLocation.ReadOnly = true;
                         txtRackDescriptionSales.Enabled = false;
                         txtRackDescriptionSales.ReadOnly = true;
+                    }
+                    else
+                    {
+                        txtSaleLocation.Text = "";
+                        txtSaleRack.Text = "";
+                        txtRackDescriptionSales.Text = "";
+                        lblSaleLocationCode.Text = "0";
+                        lblSaleRackCode.Text = "0";
                     }
                 }
                 else
