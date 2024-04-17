@@ -55,6 +55,7 @@ namespace ROMS
         OpenFileDialog objfilelogo = new OpenFileDialog();
         public string pbLogoPath = "", pbCompanypath = "";
         public int varDefaultBank = 0;
+        public string varDefault = "";
         public CP_Company()
         {
             InitializeComponent();
@@ -514,7 +515,7 @@ namespace ROMS
             {
                 bool blnErrorFlag = false;
                 int varflag = 0;
-
+                varDefault = "";
                 if (Convert.ToString(txtBankname.Text).Trim() == "")
                 {
                     epCompany.SetError(txtBankname, "Please enter bank name");
@@ -609,14 +610,16 @@ namespace ROMS
                         if(chkDefaultBank.Checked==true)
                         {
                             varDefaultBank = 1;
+                            varDefault = "Yes";
                         }
                         else
                         {
                             varDefaultBank = 0;
+                            varDefault = "No";
                         }
                         if (varSlNo == "0")
                         {
-                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid,0, varDefaultBank);
+                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid,0, varDefaultBank, varDefault);
                             grdBankDetails.Columns["clmStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             varCompanyModifiedFlag = 1;
                         }
@@ -630,6 +633,7 @@ namespace ROMS
                                     grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
                                     grdBankDetails.Rows[i].Cells["clmStatus"].Value = varstatusid;
                                     grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value = varDefaultBank;
+                                    grdBankDetails.Rows[i].Cells["clmDefault"].Value = varDefault;
                                     varCompanyModifiedFlag = 1;
                                 }
                             }
@@ -3850,19 +3854,22 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
                             {
+                                if (Convert.ToInt32(objDS.Tables[2].Rows[i]["Default Bank"]) == 1)
+                                {
+                                    varDefault = "Yes";
+                                }
+                                else
+                                {
+                                    varDefault = "No";
+                                }
                                 grdBankDetails.Rows.Add(Convert.ToString(objDS.Tables[2].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[2].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[2].Rows[i]["SHORTNAME"]),
                                 Convert.ToString(objDS.Tables[2].Rows[i]["BRANCH"]), Convert.ToString(objDS.Tables[2].Rows[i]["ACCOUNT"]), Convert.ToString(objDS.Tables[2].Rows[i]["IFSC"])
-                                , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]), Convert.ToString(objDS.Tables[2].Rows[i]["Default Bank"]));
+                                , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]), Convert.ToString(objDS.Tables[2].Rows[i]["Default Bank"]),varDefault);
                                 grdBankDetails.Columns["clmStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 if(Convert.ToInt32(grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value)==1)
                                 {
                                     chkDefaultBank.Checked = false;
                                     chkDefaultBank.Enabled = false;
-                                    break;
-                                }
-                                else
-                                {
-                                    chkDefaultBank.Enabled = true;
                                 }
                             }
                             btnSave.Text = "Update";

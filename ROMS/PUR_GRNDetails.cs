@@ -3944,10 +3944,10 @@ namespace ROMS
                     DataSet objDS = new DataSet();
                     if (varExpiryDate != "")
                     {
+                        objDS = objDServ.udfnMaster(7, 0, 0, dpGrnDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
+                        objDServ.CloseConnection();
                         if (expirydateFlag == 1)
                         {
-                            objDS = objDServ.udfnMaster(7, 0, 0, dpGrnDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
-                            objDServ.CloseConnection();
                             if (objDS.Tables[0].Rows.Count > 0)
                             {
                                 if (Convert.ToString(objDS.Tables[0].Rows[0]["DATEVALIDATE"]) == "0")
@@ -3971,6 +3971,13 @@ namespace ROMS
                                         varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
                                     }
                                 }
+                            }
+                        }
+                        else
+                        {
+                            if (objDS.Tables[2].Rows.Count > 0)
+                            {
+                                varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
                             }
                         }
                     }

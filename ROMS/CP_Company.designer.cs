@@ -171,6 +171,7 @@
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdefaultbnk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDefault = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
@@ -734,6 +735,7 @@
             this.clmStatus,
             this.clmsts,
             this.clmdefaultbnk,
+            this.clmDefault,
             this.clmEdit,
             this.clmremovebank});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1828,6 +1830,11 @@
             this.clmdefaultbnk.Name = "clmdefaultbnk";
             this.clmdefaultbnk.Visible = false;
             // 
+            // clmDefault
+            // 
+            this.clmDefault.HeaderText = "Default";
+            this.clmDefault.Name = "clmDefault";
+            // 
             // clmEdit
             // 
             this.clmEdit.HeaderText = "Edit";
@@ -2030,6 +2037,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdefaultbnk;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDefault;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
     }
