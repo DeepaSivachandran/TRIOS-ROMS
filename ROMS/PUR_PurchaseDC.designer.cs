@@ -151,6 +151,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.txtSupplierDCNo = new System.Windows.Forms.TextBox();
+            this.lblSuppllierDCNo = new System.Windows.Forms.Label();
             this.clmsino = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -180,8 +182,6 @@
             this.clmExpiryErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBartchErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDuplicateErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSupplierDCNo = new System.Windows.Forms.TextBox();
-            this.lblSuppllierDCNo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -1449,6 +1449,28 @@
             this.lblStatus.TabIndex = 111111145;
             this.lblStatus.Text = "Draft";
             // 
+            // txtSupplierDCNo
+            // 
+            this.txtSupplierDCNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplierDCNo.Location = new System.Drawing.Point(217, 34);
+            this.txtSupplierDCNo.MaxLength = 30;
+            this.txtSupplierDCNo.Name = "txtSupplierDCNo";
+            this.txtSupplierDCNo.Size = new System.Drawing.Size(184, 27);
+            this.txtSupplierDCNo.TabIndex = 2;
+            this.txtSupplierDCNo.Enter += new System.EventHandler(this.TxtSupplierDCNo_Enter);
+            this.txtSupplierDCNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplierDCNo_KeyDown);
+            this.txtSupplierDCNo.Leave += new System.EventHandler(this.TxtSupplierDCNo_Leave);
+            // 
+            // lblSuppllierDCNo
+            // 
+            this.lblSuppllierDCNo.AutoSize = true;
+            this.lblSuppllierDCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSuppllierDCNo.Location = new System.Drawing.Point(217, 11);
+            this.lblSuppllierDCNo.Name = "lblSuppllierDCNo";
+            this.lblSuppllierDCNo.Size = new System.Drawing.Size(93, 20);
+            this.lblSuppllierDCNo.TabIndex = 1111174;
+            this.lblSuppllierDCNo.Text = "Supplier DC No.";
+            // 
             // clmsino
             // 
             this.clmsino.HeaderText = "SINO";
@@ -1645,28 +1667,7 @@
             this.clmDuplicateErr.HeaderText = "Duplicate Err";
             this.clmDuplicateErr.Name = "clmDuplicateErr";
             this.clmDuplicateErr.ReadOnly = true;
-            // 
-            // txtSupplierDCNo
-            // 
-            this.txtSupplierDCNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplierDCNo.Location = new System.Drawing.Point(217, 34);
-            this.txtSupplierDCNo.MaxLength = 30;
-            this.txtSupplierDCNo.Name = "txtSupplierDCNo";
-            this.txtSupplierDCNo.Size = new System.Drawing.Size(184, 27);
-            this.txtSupplierDCNo.TabIndex = 2;
-            this.txtSupplierDCNo.Enter += new System.EventHandler(this.TxtSupplierDCNo_Enter);
-            this.txtSupplierDCNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplierDCNo_KeyDown);
-            this.txtSupplierDCNo.Leave += new System.EventHandler(this.TxtSupplierDCNo_Leave);
-            // 
-            // lblSuppllierDCNo
-            // 
-            this.lblSuppllierDCNo.AutoSize = true;
-            this.lblSuppllierDCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuppllierDCNo.Location = new System.Drawing.Point(217, 11);
-            this.lblSuppllierDCNo.Name = "lblSuppllierDCNo";
-            this.lblSuppllierDCNo.Size = new System.Drawing.Size(93, 20);
-            this.lblSuppllierDCNo.TabIndex = 1111174;
-            this.lblSuppllierDCNo.Text = "Supplier DC No.";
+            this.clmDuplicateErr.Visible = false;
             // 
             // PUR_PurchaseDC
             // 
@@ -1822,6 +1823,8 @@
         private System.Windows.Forms.Label lblInvoice;
         private System.Windows.Forms.Label lblInvoiceAmount;
         public System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtSupplierDCNo;
+        private System.Windows.Forms.Label lblSuppllierDCNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsino;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
@@ -1851,7 +1854,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryErr;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBartchErr;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDuplicateErr;
-        private System.Windows.Forms.TextBox txtSupplierDCNo;
-        private System.Windows.Forms.Label lblSuppllierDCNo;
     }
 }

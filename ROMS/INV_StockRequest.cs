@@ -168,7 +168,9 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
-                                grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
+                                grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), 
+                                    Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status"]),
+                                    Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status ID"]));
                                 dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), 0, 0, Convert.ToDecimal(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]),0);
 
                                 varProductsIDs.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
@@ -1760,6 +1762,21 @@ namespace ROMS
                         cell.Style.ForeColor = Color.Black;
                         cell.ReadOnly = false;
                     }
+                    if (Convert.ToString(grdStockRequest.Rows[i].Cells["clmStatusID"].Value) == "47")
+                    {
+                        grdStockRequest.Rows[i].Cells["clmStatus"].Style.BackColor = Color.Orange;
+                        grdStockRequest.Rows[i].Cells["clmStatus"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdStockRequest.Rows[i].Cells["clmStatusID"].Value) == "48")
+                    {
+                        grdStockRequest.Rows[i].Cells["clmStatus"].Style.BackColor = Color.LimeGreen;
+                        grdStockRequest.Rows[i].Cells["clmStatus"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdStockRequest.Rows[i].Cells["clmStatus"].Style.BackColor = Color.Tomato;
+                        grdStockRequest.Rows[i].Cells["clmStatus"].Style.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1771,6 +1788,7 @@ namespace ROMS
             {
 
             }
+
         }
         private void GrdStockRequest_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
