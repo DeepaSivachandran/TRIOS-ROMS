@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNDetails));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -44,6 +43,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNDetails));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -51,12 +51,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
-            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlSupplierMapping = new System.Windows.Forms.Panel();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
-            this.btnVerified = new System.Windows.Forms.Button();
             this.gpAddrow = new System.Windows.Forms.GroupBox();
             this.cmbQtyType = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -64,7 +62,6 @@
             this.lblQty = new System.Windows.Forms.Label();
             this.txtInvoiceQty = new System.Windows.Forms.TextBox();
             this.cmbPONo = new System.Windows.Forms.ComboBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtBatchno = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -74,7 +71,6 @@
             this.lblDEGroup = new System.Windows.Forms.Label();
             this.txtDate = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.BtnNew = new System.Windows.Forms.Button();
             this.lblDD = new System.Windows.Forms.Label();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtmrprate = new System.Windows.Forms.TextBox();
@@ -92,10 +88,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnVerify2 = new System.Windows.Forms.Button();
-            this.btnVerify1 = new System.Windows.Forms.Button();
             this.txtDLevel2 = new System.Windows.Forms.TextBox();
-            this.btnDamage = new System.Windows.Forms.Button();
             this.txtDLevel1 = new System.Windows.Forms.TextBox();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.grdPODetails = new System.Windows.Forms.DataGridView();
@@ -111,7 +104,6 @@
             this.lblPercentage = new System.Windows.Forms.Label();
             this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
             this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
-            this.btnDC = new System.Windows.Forms.Button();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
             this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -119,8 +111,6 @@
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtRemark = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.grpGrnDetails = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cmbPayment = new System.Windows.Forms.ComboBox();
@@ -172,6 +162,24 @@
             this.lblRemark = new System.Windows.Forms.Label();
             this.errGRNDetails = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnVerified = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.BtnNew = new System.Windows.Forms.Button();
+            this.btnVerify2 = new System.Windows.Forms.Button();
+            this.btnVerify1 = new System.Windows.Forms.Button();
+            this.btnDamage = new System.Windows.Forms.Button();
+            this.btnDC = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPO = new System.Windows.Forms.ToolStripButton();
+            this.tssQueue = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbAdded = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbProducts = new System.Windows.Forms.ToolStripButton();
+            this.lbltotProduct = new System.Windows.Forms.Label();
+            this.lblAddProduct = new System.Windows.Forms.Label();
+            this.lblRemainProduct = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -219,22 +227,17 @@
             this.tsSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsSupplierMapping.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsSupplierMapping.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspSupplierMapping});
+            this.tspSupplierMapping,
+            this.tsbPO,
+            this.tssQueue,
+            this.tsbAdded,
+            this.toolStripSeparator1,
+            this.tsbProducts});
             this.tsSupplierMapping.Location = new System.Drawing.Point(0, 0);
             this.tsSupplierMapping.Name = "tsSupplierMapping";
-            this.tsSupplierMapping.Size = new System.Drawing.Size(1354, 25);
+            this.tsSupplierMapping.Size = new System.Drawing.Size(1354, 27);
             this.tsSupplierMapping.TabIndex = 35;
             this.tsSupplierMapping.Text = "Goods Receipt";
-            // 
-            // tspSupplierMapping
-            // 
-            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspSupplierMapping.Name = "tspSupplierMapping";
-            this.tspSupplierMapping.Size = new System.Drawing.Size(137, 22);
-            this.tspSupplierMapping.Text = "Goods Received Note";
             // 
             // lblNoRecordsFound
             // 
@@ -333,20 +336,6 @@
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
             this.DGV_FilterProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
             // 
-            // btnVerified
-            // 
-            this.btnVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnVerified.Image = ((System.Drawing.Image)(resources.GetObject("btnVerified.Image")));
-            this.btnVerified.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerified.Location = new System.Drawing.Point(407, 513);
-            this.btnVerified.Name = "btnVerified";
-            this.btnVerified.Size = new System.Drawing.Size(146, 29);
-            this.btnVerified.TabIndex = 700000001;
-            this.btnVerified.Text = "Verification Details";
-            this.btnVerified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVerified.UseVisualStyleBackColor = true;
-            this.btnVerified.Click += new System.EventHandler(this.BtnVerified_Click);
-            // 
             // gpAddrow
             // 
             this.gpAddrow.Controls.Add(this.cmbQtyType);
@@ -436,6 +425,7 @@
             // 
             // cmbPONo
             // 
+            this.cmbPONo.Enabled = false;
             this.cmbPONo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPONo.FormattingEnabled = true;
             this.cmbPONo.Location = new System.Drawing.Point(6, 35);
@@ -447,21 +437,6 @@
             this.cmbPONo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPONo_KeyDown);
             this.cmbPONo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPONo_KeyPress);
             this.cmbPONo.Leave += new System.EventHandler(this.CmbPONo_Leave);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(998, 37);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 22);
-            this.btnAdd.TabIndex = 16;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
             // txtProductName
             // 
@@ -517,9 +492,9 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.Size = new System.Drawing.Size(52, 20);
             this.label2.TabIndex = 1111200;
-            this.label2.Text = "PO No. ~ PO Date";
+            this.label2.Text = "PO Type";
             // 
             // textBox2
             // 
@@ -565,21 +540,6 @@
             this.label7.Size = new System.Drawing.Size(34, 20);
             this.label7.TabIndex = 1111154;
             this.label7.Text = "MRP";
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.Enabled = false;
-            this.BtnNew.Image = global::ROMS.Properties.Resources.New;
-            this.BtnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnNew.Location = new System.Drawing.Point(461, 35);
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(104, 27);
-            this.BtnNew.TabIndex = 900;
-            this.BtnNew.Text = "New Product";
-            this.BtnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnNew.UseVisualStyleBackColor = true;
-            this.BtnNew.Visible = false;
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // lblDD
             // 
@@ -761,36 +721,6 @@
             // 
             this.columnHeader9.Width = 0;
             // 
-            // btnVerify2
-            // 
-            this.btnVerify2.Enabled = false;
-            this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
-            this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerify2.Location = new System.Drawing.Point(869, 506);
-            this.btnVerify2.Name = "btnVerify2";
-            this.btnVerify2.Size = new System.Drawing.Size(31, 30);
-            this.btnVerify2.TabIndex = 5;
-            this.btnVerify2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVerify2.UseVisualStyleBackColor = true;
-            this.btnVerify2.Visible = false;
-            this.btnVerify2.Click += new System.EventHandler(this.BtnVerify2_Click);
-            // 
-            // btnVerify1
-            // 
-            this.btnVerify1.Enabled = false;
-            this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
-            this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerify1.Location = new System.Drawing.Point(787, 506);
-            this.btnVerify1.Name = "btnVerify1";
-            this.btnVerify1.Size = new System.Drawing.Size(31, 30);
-            this.btnVerify1.TabIndex = 6;
-            this.btnVerify1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVerify1.UseVisualStyleBackColor = true;
-            this.btnVerify1.Visible = false;
-            this.btnVerify1.Click += new System.EventHandler(this.BtnVerify1_Click);
-            // 
             // txtDLevel2
             // 
             this.txtDLevel2.BackColor = System.Drawing.SystemColors.Control;
@@ -804,21 +734,6 @@
             this.txtDLevel2.TabStop = false;
             this.txtDLevel2.Text = "Level 2";
             this.txtDLevel2.Visible = false;
-            // 
-            // btnDamage
-            // 
-            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
-            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(514, 513);
-            this.btnDamage.Name = "btnDamage";
-            this.btnDamage.Size = new System.Drawing.Size(90, 29);
-            this.btnDamage.TabIndex = 1111204;
-            this.btnDamage.Text = "Damages";
-            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDamage.UseVisualStyleBackColor = true;
-            this.btnDamage.Visible = false;
-            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
             // 
             // txtDLevel1
             // 
@@ -927,7 +842,7 @@
             // 
             this.txtTotalProducts.AutoSize = true;
             this.txtTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalProducts.Location = new System.Drawing.Point(1201, 144);
+            this.txtTotalProducts.Location = new System.Drawing.Point(1201, 147);
             this.txtTotalProducts.Name = "txtTotalProducts";
             this.txtTotalProducts.Size = new System.Drawing.Size(87, 20);
             this.txtTotalProducts.TabIndex = 1111201;
@@ -937,7 +852,7 @@
             // 
             this.txtTotalpro.Enabled = false;
             this.txtTotalpro.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalpro.Location = new System.Drawing.Point(1291, 141);
+            this.txtTotalpro.Location = new System.Drawing.Point(1291, 144);
             this.txtTotalpro.MaxLength = 50;
             this.txtTotalpro.Name = "txtTotalpro";
             this.txtTotalpro.ReadOnly = true;
@@ -1000,20 +915,6 @@
             this.txtDGPercentageCheck.Name = "txtDGPercentageCheck";
             this.txtDGPercentageCheck.Size = new System.Drawing.Size(27, 16);
             this.txtDGPercentageCheck.TabIndex = 1111156;
-            // 
-            // btnDC
-            // 
-            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
-            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDC.Location = new System.Drawing.Point(300, 513);
-            this.btnDC.Name = "btnDC";
-            this.btnDC.Size = new System.Drawing.Size(101, 29);
-            this.btnDC.TabIndex = 1111181;
-            this.btnDC.Text = "Return DC";
-            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDC.UseVisualStyleBackColor = true;
-            this.btnDC.Click += new System.EventHandler(this.BtnDC_Click);
             // 
             // grdReurnDC
             // 
@@ -1106,38 +1007,6 @@
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(201, 88);
             this.txtRemark.TabIndex = 16;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1255, 596);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 20;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1130, 596);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(123, 29);
-            this.btnSave.TabIndex = 19;
-            this.btnSave.Text = "Update as Draft";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // grpGrnDetails
             // 
@@ -1711,6 +1580,227 @@
             this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn1.Width = 50;
             // 
+            // btnVerified
+            // 
+            this.btnVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerified.Image = ((System.Drawing.Image)(resources.GetObject("btnVerified.Image")));
+            this.btnVerified.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerified.Location = new System.Drawing.Point(407, 513);
+            this.btnVerified.Name = "btnVerified";
+            this.btnVerified.Size = new System.Drawing.Size(146, 29);
+            this.btnVerified.TabIndex = 700000001;
+            this.btnVerified.Text = "Verification Details";
+            this.btnVerified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerified.UseVisualStyleBackColor = true;
+            this.btnVerified.Click += new System.EventHandler(this.BtnVerified_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(998, 37);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 22);
+            this.btnAdd.TabIndex = 16;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
+            // BtnNew
+            // 
+            this.BtnNew.Enabled = false;
+            this.BtnNew.Image = global::ROMS.Properties.Resources.New;
+            this.BtnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnNew.Location = new System.Drawing.Point(461, 35);
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(104, 27);
+            this.BtnNew.TabIndex = 900;
+            this.BtnNew.Text = "New Product";
+            this.BtnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Visible = false;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // btnVerify2
+            // 
+            this.btnVerify2.Enabled = false;
+            this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
+            this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerify2.Location = new System.Drawing.Point(869, 506);
+            this.btnVerify2.Name = "btnVerify2";
+            this.btnVerify2.Size = new System.Drawing.Size(31, 30);
+            this.btnVerify2.TabIndex = 5;
+            this.btnVerify2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerify2.UseVisualStyleBackColor = true;
+            this.btnVerify2.Visible = false;
+            this.btnVerify2.Click += new System.EventHandler(this.BtnVerify2_Click);
+            // 
+            // btnVerify1
+            // 
+            this.btnVerify1.Enabled = false;
+            this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
+            this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerify1.Location = new System.Drawing.Point(787, 506);
+            this.btnVerify1.Name = "btnVerify1";
+            this.btnVerify1.Size = new System.Drawing.Size(31, 30);
+            this.btnVerify1.TabIndex = 6;
+            this.btnVerify1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerify1.UseVisualStyleBackColor = true;
+            this.btnVerify1.Visible = false;
+            this.btnVerify1.Click += new System.EventHandler(this.BtnVerify1_Click);
+            // 
+            // btnDamage
+            // 
+            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDamage.Image = global::ROMS.Properties.Resources.damage24;
+            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDamage.Location = new System.Drawing.Point(514, 513);
+            this.btnDamage.Name = "btnDamage";
+            this.btnDamage.Size = new System.Drawing.Size(90, 29);
+            this.btnDamage.TabIndex = 1111204;
+            this.btnDamage.Text = "Damages";
+            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDamage.UseVisualStyleBackColor = true;
+            this.btnDamage.Visible = false;
+            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
+            // 
+            // btnDC
+            // 
+            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
+            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDC.Location = new System.Drawing.Point(300, 513);
+            this.btnDC.Name = "btnDC";
+            this.btnDC.Size = new System.Drawing.Size(101, 29);
+            this.btnDC.TabIndex = 1111181;
+            this.btnDC.Text = "Return DC";
+            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDC.UseVisualStyleBackColor = true;
+            this.btnDC.Click += new System.EventHandler(this.BtnDC_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1255, 596);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 20;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1130, 596);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(123, 29);
+            this.btnSave.TabIndex = 19;
+            this.btnSave.Text = "Update as Draft";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // tspSupplierMapping
+            // 
+            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspSupplierMapping.Name = "tspSupplierMapping";
+            this.tspSupplierMapping.Size = new System.Drawing.Size(137, 24);
+            this.tspSupplierMapping.Text = "Goods Received Note";
+            // 
+            // tsbPO
+            // 
+            this.tsbPO.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPO.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPO.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPO.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbPO.Name = "tsbPO";
+            this.tsbPO.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPO.Size = new System.Drawing.Size(136, 24);
+            this.tsbPO.Text = "Remaing Products :& &  & & & &";
+            this.tsbPO.Click += new System.EventHandler(this.TsbPO_Click);
+            // 
+            // tssQueue
+            // 
+            this.tssQueue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssQueue.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssQueue.Name = "tssQueue";
+            this.tssQueue.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbAdded
+            // 
+            this.tsbAdded.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbAdded.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbAdded.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAdded.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbAdded.Name = "tsbAdded";
+            this.tsbAdded.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbAdded.Size = new System.Drawing.Size(114, 24);
+            this.tsbAdded.Text = "&Added Products :& & & &";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbProducts
+            // 
+            this.tsbProducts.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbProducts.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbProducts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbProducts.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbProducts.Name = "tsbProducts";
+            this.tsbProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbProducts.Size = new System.Drawing.Size(95, 24);
+            this.tsbProducts.Text = "&PO Products :& & & &";
+            this.tsbProducts.ToolTipText = "PO Products :      ";
+            // 
+            // lbltotProduct
+            // 
+            this.lbltotProduct.AutoSize = true;
+            this.lbltotProduct.Location = new System.Drawing.Point(1017, 3);
+            this.lbltotProduct.Name = "lbltotProduct";
+            this.lbltotProduct.Size = new System.Drawing.Size(16, 20);
+            this.lbltotProduct.TabIndex = 958765;
+            this.lbltotProduct.Text = "0";
+            // 
+            // lblAddProduct
+            // 
+            this.lblAddProduct.AutoSize = true;
+            this.lblAddProduct.Location = new System.Drawing.Point(1163, 3);
+            this.lblAddProduct.Name = "lblAddProduct";
+            this.lblAddProduct.Size = new System.Drawing.Size(16, 20);
+            this.lblAddProduct.TabIndex = 958766;
+            this.lblAddProduct.Text = "0";
+            // 
+            // lblRemainProduct
+            // 
+            this.lblRemainProduct.AutoSize = true;
+            this.lblRemainProduct.Location = new System.Drawing.Point(1322, 3);
+            this.lblRemainProduct.Name = "lblRemainProduct";
+            this.lblRemainProduct.Size = new System.Drawing.Size(16, 20);
+            this.lblRemainProduct.TabIndex = 958767;
+            this.lblRemainProduct.Text = "0";
+            // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
@@ -1724,6 +1814,7 @@
             this.clmpo.HeaderText = "PO No.";
             this.clmpo.Name = "clmpo";
             this.clmpo.ReadOnly = true;
+            this.clmpo.Visible = false;
             // 
             // clmpicode
             // 
@@ -1893,6 +1984,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 674);
+            this.Controls.Add(this.lblRemainProduct);
+            this.Controls.Add(this.lblAddProduct);
+            this.Controls.Add(this.lbltotProduct);
             this.Controls.Add(this.pnlSupplierMapping);
             this.Controls.Add(this.tsSupplierMapping);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -2055,6 +2149,14 @@
         public System.Windows.Forms.ComboBox cmbQtyType;
         private System.Windows.Forms.Label label11;
         public System.Windows.Forms.ComboBox cmbPayment;
+        public System.Windows.Forms.ToolStripButton tsbPO;
+        public System.Windows.Forms.ToolStripSeparator tssQueue;
+        public System.Windows.Forms.ToolStripButton tsbAdded;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.ToolStripButton tsbProducts;
+        private System.Windows.Forms.Label lbltotProduct;
+        private System.Windows.Forms.Label lblRemainProduct;
+        private System.Windows.Forms.Label lblAddProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;

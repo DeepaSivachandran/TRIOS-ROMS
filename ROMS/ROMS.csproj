@@ -161,6 +161,12 @@
     </Compile>
     <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
     <Compile Include="Model\TRN_Item_Movement_Analysis.cs" />
+    <Compile Include="PO_Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PO_Details.designer.cs">
+      <DependentUpon>PO_Details.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_PurchaseEntryApproval.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1584,6 +1590,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductApprovalList.resx">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PO_Details.resx">
+      <DependentUpon>PO_Details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseEntryApproval.resx">
       <DependentUpon>PUR_PurchaseEntryApproval.cs</DependentUpon>
