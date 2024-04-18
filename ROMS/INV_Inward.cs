@@ -44,6 +44,7 @@ namespace ROMS
         private ToolTip tprack = new ToolTip();
         bool varVoucherSkip = false;
         public int varClose = 0, varDateChange = 0;
+        public int varDateEnable = 0;
 
         public INV_Inward()
         {
@@ -980,7 +981,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDay.Focus();
+                    if (txtDay.Enabled == true)
+                    {
+                        txtDay.Focus();
+                    }
+                    else
+                    {
+                        if (txtBatchNo.Enabled == true)
+                        {
+                            txtBatchNo.Focus();
+                        }
+                        else
+                        {
+                            txtActualQty.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1331,6 +1346,14 @@ namespace ROMS
                         txttotalitem.Text = Convert.ToString(grdInward.Rows.Count);
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
                         grdInward.Columns["clmactualqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                        if(varDateEnable==1)
+                        {
+                            grdInward.Columns["clmexpirydate"].ReadOnly = true;
+                        }
+                        else
+                        {
+                            grdInward.Columns["clmexpirydate"].ReadOnly = false;
+                        }
                         ////grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
                         grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -2920,6 +2943,7 @@ namespace ROMS
         {
             try
             {
+                varDateEnable = 0;
                 varPRID  = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                 varPICode = DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString();
                 varUTID = DGV_FilterProduct.SelectedRows[0].Cells["UTID"].Value.ToString();
@@ -2934,7 +2958,25 @@ namespace ROMS
                 txtunit.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
                 txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 if (varShelflife == 1)
-                { expirydateFlag = 1; }
+                {
+                    expirydateFlag = 1;
+                    txtDay.ReadOnly = false;
+                    txtMonth.ReadOnly = false;
+                    txtYear.ReadOnly = false;
+                    txtDay.Enabled = true;
+                    txtMonth.Enabled = true;
+                    txtYear.Enabled = true;
+                }
+                else
+                {
+                    txtDay.ReadOnly = true;
+                    txtMonth.ReadOnly = true;
+                    txtYear.ReadOnly = true;
+                    txtDay.Enabled = false;
+                    txtMonth.Enabled = false;
+                    txtYear.Enabled = false;
+                    varDateEnable = 1;
+                }
                 //udfnProductAdd(); 
                 if (Convert.ToInt32(varBatchNo) == 73)  //disabled
                 {
@@ -3216,7 +3258,6 @@ namespace ROMS
         {
             try
             {
-                
                 if (varGIId != 0)
                 {
                     Application.DoEvents();
@@ -3263,6 +3304,17 @@ namespace ROMS
                                 grdInward.Columns["clmactualqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmshelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                                if(Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"])=="0")
+                                {
+                                    grdInward.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
+                                    grdInward.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                                }
+                                else
+                                {
+                                    grdInward.Rows[i].Cells["clmexpirydate"].ReadOnly = false;
+                                }
+
                                 string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
                                 if (varShelflifeper[0] != "")
                                 {

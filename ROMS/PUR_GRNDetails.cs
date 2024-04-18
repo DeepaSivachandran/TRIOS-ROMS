@@ -152,8 +152,18 @@ namespace ROMS
                             cmbPONo.DisplayMember = "MST_DisplayText";
                             cmbPONo.DataSource = objDT.Tables[0];
                         }
+                        if (objDT.Tables[1].Rows.Count > 0)
+                        {
+                            if(Convert.ToInt32(objDT.Tables[1].Rows[0]["Count"])>0)
+                            {
+                                cmbPONo.SelectedValue = 215;
+                            }
+                            else
+                            {
+                                cmbPONo.SelectedValue = 214;
+                            }
+                        }
                     }
-                    cmbPONo.Enabled = false;
                 }
             }
             catch (Exception ex)
