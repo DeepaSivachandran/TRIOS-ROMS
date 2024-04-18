@@ -709,7 +709,7 @@ namespace ROMS
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                 objTRN_PurchaseEntry.ViewType = 14;
                 objTRN_PurchaseEntry.paraType = 1;
-                objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                //objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                 objspdservice.CloseConnection();
                 if (objDs != null)
