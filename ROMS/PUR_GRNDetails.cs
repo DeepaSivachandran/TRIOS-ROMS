@@ -2762,17 +2762,20 @@ namespace ROMS
         {
             try
             {
-                string PRID = "0";
-                var strings1 = varProductsIDs.Select(xx => xx);
-                PRID = (string.Join(",", strings1));
-                if(PRID=="")
+                if (Convert.ToString(lblRemainProduct.Text) != "0")
                 {
-                    PRID = "0";
+                    string PRID = "0";
+                    var strings1 = varProductsIDs.Select(xx => xx);
+                    PRID = (string.Join(",", strings1));
+                    if (PRID == "")
+                    {
+                        PRID = "0";
+                    }
+                    MainForm.objPO_Details = new PO_Details();
+                    MainForm.objPO_Details.PbvarGRNID = pbGRNId;
+                    MainForm.objPO_Details.varProducts = PRID;
+                    MainForm.objPO_Details.ShowDialog();
                 }
-                MainForm.objPO_Details = new PO_Details();
-                MainForm.objPO_Details.PbvarGRNID = pbGRNId;
-                MainForm.objPO_Details.varProducts = PRID;
-                MainForm.objPO_Details.ShowDialog();
             }
             catch (Exception ex)
             {
