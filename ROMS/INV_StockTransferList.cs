@@ -1065,6 +1065,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Source_RKID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
+                dtStock.Columns.Add("STK_ProType", typeof(int));
                 if (grdStockTransfer.SelectedRows.Count > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
