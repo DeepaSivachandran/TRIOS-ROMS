@@ -193,6 +193,7 @@
     </Compile>
     <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
     <Compile Include="Model\TRN_Item_Movement_Analysis.cs" />
+    <Compile Include="Model\TRN_Supplier_Payment.cs" />
     <Compile Include="PUR_PurchaseEntryApproval.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -3450,6 +3450,35 @@ namespace ROMS
             }
             return varResult;
         }
+        public DataSet udfnGetSupplierPayment(TRN_Supplier_Payment objTRN_Supplier_Payment)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Supplier_Payment]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_Supplier_Payment.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierid", objTRN_Supplier_Payment.paraSupplierid);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_Supplier_Payment.paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_Supplier_Payment.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }
