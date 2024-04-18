@@ -49,6 +49,8 @@ namespace ROMS
         public string varSupplierScheduleID = "";
         public string varSupplierName = "";
         bool varVoucherSkip = false;
+        public int varDateEnable = 0;
+
 
         public PUR_PurchaseDC()
         {
@@ -132,6 +134,12 @@ namespace ROMS
                                     objDs.Tables[1].Rows[i]["RKID"].ToString(), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MST_DisplayText"]), Convert.ToString(objDs.Tables[1].Rows[i]["BATCHNO"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["Batchnogeneration"]), objDs.Tables[1].Rows[i]["Stock"].ToString(),
                                     objDs.Tables[1].Rows[i]["Remove Flag"].ToString());
+
+                                    if (Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]) == "0")
+                                    {
+                                        grdPurchaseDC.Rows[i].Cells["clmExpiryDate"].ReadOnly = true;
+                                        grdPurchaseDC.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                    }
                                     string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
                                     if (varShelflifeper[0] != "")
                                     {
@@ -171,7 +179,7 @@ namespace ROMS
                                         }
                                         else if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmBatchGeneration"].Value) == "75") //Manual
                                         {
-                                            grdPurchaseDC.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                            grdPurchaseDC.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
                                             grdPurchaseDC.Rows[i].Cells["clmBatchNo"].ReadOnly = false;
                                         }
                                     }
@@ -286,6 +294,7 @@ namespace ROMS
                 txtStockLocation.BackColor = Color.White;
                 txtRack.Enabled = true;
                 txtBatchNo.Enabled = true;
+                varExpiryDate = "";
             }
             catch (Exception ex)
             {
@@ -1226,7 +1235,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDay.Focus();
+                    if (txtDay.Enabled == true)
+                    {
+                        txtDay.Focus();
+                    }
+                    else
+                    {
+                        if(txtBatchNo.Enabled==true)
+                        {
+                            txtBatchNo.Focus();
+                        }
+                        else
+                        {
+                            txtActualQty.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -4461,25 +4484,35 @@ namespace ROMS
                             grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            if (varDateEnable == 1)
+                            {
+                                DataGridView dataGridView = grdPurchaseDC;
+                                DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmExpiryDate"];
+                                cell.Style.BackColor = Color.LightGray;
+                                cell.Style.ForeColor = Color.Black;
+                                cell.ReadOnly = true;
+                            }
+                            DataGridView dataGridView1 = grdPurchaseDC;
+                            DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmBatchNo"];
                             if (varBatchNo == "73") //Disabled
                             {
-                                grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
-                                grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].Style.ForeColor = Color.Black;
-                                grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].ReadOnly = true;
+                                cell1.Style.BackColor = Color.LightGray;
+                                cell1.Style.ForeColor = Color.Black;
+                                cell1.ReadOnly = true;
                             }
                             else if (varBatchNo == "72")//Enabled
                             {
                                 if (varBatchNoGeneration == "74") //Auto
                                 {
-                                    grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
-                                    grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].Style.ForeColor = Color.Black;
-                                    grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].ReadOnly = true;
+                                    cell1.Style.BackColor = Color.LightGray;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = true;
                                 }
                                 else if (varBatchNoGeneration == "75") //Manual
                                 {
-                                    grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
-                                    grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].Style.ForeColor = Color.Black;
-                                    grdPurchaseDC.Rows[maxSno].Cells["clmBatchNo"].ReadOnly = false;
+                                    cell1.Style.BackColor = Color.PaleGreen;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = false;
                                 }
                             }
                             udfnAddClear();
@@ -4516,7 +4549,7 @@ namespace ROMS
                         cell.Style.BackColor = Color.Orange;
                         cell.Style.ForeColor = Color.Black;
                     }
-                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                    else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
                     {
                         DataGridView dataGridView = grdPurchaseDC;
                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
@@ -4682,6 +4715,7 @@ namespace ROMS
             {
                 if (txtProductName.Text != "")
                 {
+                    varDateEnable = 0;
                     varBatchNo = "0"; varBatchNoGeneration = "0"; varShelflife = 0;expirydateFlag = 0;
                     /*
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
@@ -4703,8 +4737,27 @@ namespace ROMS
                     varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
 
-                    if (varShelflife==1)
-                    { expirydateFlag = 1; }
+                    if (varShelflife == 1)
+                    {
+                        expirydateFlag = 1;
+                        txtDay.ReadOnly = false;
+                        txtMonth.ReadOnly = false;
+                        txtYear.ReadOnly = false;
+                        txtDay.Enabled = true;
+                        txtMonth.Enabled = true;
+                        txtYear.Enabled = true;
+                    }
+                    else
+                    {
+                        expirydateFlag = 0;
+                        txtDay.ReadOnly = true;
+                        txtMonth.ReadOnly = true;
+                        txtYear.ReadOnly = true;
+                        txtDay.Enabled = false;
+                        txtMonth.Enabled = false;
+                        txtYear.Enabled = false;
+                        varDateEnable = 1;
+                    }
                     udfnProductAdd();
                     udfnDefalutLocation();
                     if (Convert.ToInt32(varBatchNo) == 73)  //disabled
