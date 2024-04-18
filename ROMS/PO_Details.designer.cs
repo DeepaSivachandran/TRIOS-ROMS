@@ -49,7 +49,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(512, 275);
+            this.btnClose.Location = new System.Drawing.Point(739, 390);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
@@ -89,7 +89,7 @@
             this.grdPODetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grdPODetails.RowTemplate.Height = 25;
             this.grdPODetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPODetails.Size = new System.Drawing.Size(572, 261);
+            this.grdPODetails.Size = new System.Drawing.Size(799, 375);
             this.grdPODetails.TabIndex = 1111144;
             // 
             // lblNoRecordsFound
@@ -97,7 +97,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(245, 127);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(358, 184);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 1111211;
@@ -109,7 +109,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(596, 317);
+            this.ClientSize = new System.Drawing.Size(823, 428);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.grdPODetails);
             this.Controls.Add(this.btnClose);
@@ -122,7 +122,7 @@
             this.MinimizeBox = false;
             this.Name = "PO_Details";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PO Remaing Products";
+            this.Text = "PO - Remaing Products";
             this.Load += new System.EventHandler(this.PUR_DCDeatils_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PO_Details_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();

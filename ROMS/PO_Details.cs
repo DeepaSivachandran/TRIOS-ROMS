@@ -80,7 +80,7 @@ namespace ROMS
                             grdPODetails.BringToFront();
                             grdPODetails.DataSource = objDs.Tables[0];
                             grdPODetails.Columns["PRID"].Visible = false;
-                            grdPODetails.Columns["Product Name"].Width = 320;
+                            grdPODetails.Columns["Product Name"].Width = 500;
                             grdPODetails.Columns["PI Code"].Width = 120;
                             grdPODetails.Columns["Unit"].Width = 60;
                             grdPODetails.Columns["S.No."].Width = 60;

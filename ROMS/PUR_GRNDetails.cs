@@ -2749,9 +2749,11 @@ namespace ROMS
             try
             {
                 string PRID = "0";
-                if(varProducts !="")
+                var strings1 = varProductsIDs.Select(xx => xx);
+                PRID = (string.Join(",", strings1));
+                if(PRID=="")
                 {
-                    PRID = varProducts;
+                    PRID = "0";
                 }
                 MainForm.objPO_Details = new PO_Details();
                 MainForm.objPO_Details.PbvarGRNID = pbGRNId;
@@ -4316,7 +4318,7 @@ namespace ROMS
                 grdGrnlist.Sort(grdGrnlist.Columns[2], ListSortDirection.Ascending);
                 if(grdGrnlist.Rows.Count>0)
                 {
-                    grdGrnlist.CurrentCell = grdGrnlist[1,0];
+                    grdGrnlist.CurrentCell = grdGrnlist[2,0];
                 }
             }
         }
@@ -5257,6 +5259,10 @@ namespace ROMS
                             {
                                lbltotProduct.Text= Convert.ToString(objDs.Tables[8].Rows[0]["TotalPro"]);
                             }
+                            int Remaining = 0;
+                            lblAddProduct.Text = Convert.ToString(grdGrnlist.Rows.Count);
+                            Remaining = Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblAddProduct.Text);
+                            lblRemainProduct.Text = Convert.ToString(Remaining);
                         }
                     }
                     if(chkCompleted.Checked==true)
