@@ -1065,9 +1065,13 @@ namespace ROMS
                                         txtDGRNNo.Text = "DC No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_No"]);
-                                        txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC User"]);
+                                        textBox5.Text = "DC Created by";
+                                        txtVerifiedby2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC User"]);
+                                        textBox5.Visible = true;
+                                        txtVerifiedby2.Visible = true;
+                                        txtVerifiedby2.Size = new Size(123, 25);
+                                        txtVerifiedby2.Font = new Font("Oswald Regular", 9.75f);
                                         //lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC STS"]);
-
                                     }
                                     lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR STS"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR User"]);
@@ -1106,8 +1110,8 @@ namespace ROMS
                                 {
                                     textBox4.Visible = false;
                                     txtVerifiedby1.Visible = false;
-                                    textBox5.Visible = false;
-                                    txtVerifiedby2.Visible = false;
+                                    //textBox5.Visible = false;
+                                    //txtVerifiedby2.Visible = false;
                                 }
                                 if (varGRNPurchaseFlag == 174) //from  grn
                                 {
