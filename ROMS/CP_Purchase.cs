@@ -4575,11 +4575,11 @@ namespace ROMS
                 varProid = Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmProid"].Value);
                 objDS = objDServ.udfnMaster(10, 0, 0, dpVoucherDate.Text.Trim(), varTempExpiryDate, varProid, "", 0);
                 objDServ.CloseConnection();
-                for (int i = 0; i < grdSupplierList.Rows.Count; i++)
-                {
-                    varShelflife = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmShelflifeenable"].Value);
+                //for (int i = 0; i < grdSupplierList.Rows.Count; i++)
+                //{
+                    varShelflife = Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmShelflifeenable"].Value);
                     pbDateflag = 0;varInvFlag = 0;
-                    varInvFlag = Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value);
+                    varInvFlag = Convert.ToInt16(grdSupplierList.Rows[rowIndex].Cells["clmInvFlag"].Value);
                     if (pbDateflag == 0)
                     {
                         if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
@@ -4612,19 +4612,19 @@ namespace ROMS
                                                 if (Convert.ToInt32(objDS.Tables[2].Rows[0]["DATEVALIDATE"]) == 0)
                                                 {
                                                     pbDateflag = 1;
-                                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == varTempExpiryDate)
+                                                    if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Value) == varTempExpiryDate)
                                                     {
                                                         varErrorFormat = 5;
-                                                        grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                                        grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                                         string varMessage = objDServ.udfnGetMessages(98);
                                                         objDServ.CloseConnection();
                                                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                                     }
                                                 }
-                                                //else
-                                                //{
-                                                //    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                                //}
+                                                else
+                                                {
+                                                    grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                }
                                             }
                                             else
                                             {
@@ -4639,10 +4639,10 @@ namespace ROMS
                         {
                             if (varTempExpiryDate != "")
                             {
-                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == varTempExpiryDate)
+                                if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Value) == varTempExpiryDate)
                                 {
                                     varErroronGrid = 1;
-                                    grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                    grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                     string varMessage = objDServ.udfnGetMessages(94);
                                     objDServ.CloseConnection();
                                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -4686,7 +4686,7 @@ namespace ROMS
                         //    }
                         //}
                     }
-                }
+                //}
             }
             catch (Exception ex)
             {
