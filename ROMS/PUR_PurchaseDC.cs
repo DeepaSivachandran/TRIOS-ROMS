@@ -400,7 +400,8 @@ namespace ROMS
                 }
                 else
                 {
-                    this.ActiveControl = txtSupplier;
+                    //this.ActiveControl = txtSupplier;
+                    this.ActiveControl = txtSupplierDCNo;
                     txtSupplier.Focus();
                     if (editFlag == 0)
                     {
@@ -2212,7 +2213,7 @@ namespace ROMS
                                 grdPurchaseDC.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmStockLocation"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseDC.Rows[i].Cells["clmRemove"].Style.BackColor = Color.PaleGreen;
+                                grdPurchaseDC.Rows[i].Cells["clmRemove"].Style.BackColor = Color.White;
                                 if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmBatchEnable"].Value) == "73") //Disabled
                                 {
                                     grdPurchaseDC.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
