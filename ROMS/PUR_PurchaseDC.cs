@@ -2097,14 +2097,6 @@ namespace ROMS
                         tpcompanyname.Show("Please select company.", cmbConcern, 5000);
                         varErrorFlag = false;
                     }
-                    if (txtSupplierDCNo.Text == "")
-                    {
-                        epPurchaseDC.SetError(txtSupplier, "Please enter supplier DC No.");
-                        txtSupplierDCNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpSupplierDCNo.ShowAlways = true;
-                        tpSupplierDCNo.Show("Please enter supplier DC No.", txtSupplierDCNo, 5000);
-                        varErrorFlag = false;
-                    }
                     if (Convert.ToString(txtSupplier.Text) != "")
                     {
                         string varSupplierId = "0";
@@ -2629,19 +2621,7 @@ namespace ROMS
         {
             try
             {
-                if (txtSupplierDCNo.Text == "")
-                {
-                    epPurchaseDC.SetError(txtSupplier, "Please enter supplier DC No.");
-                    txtSupplierDCNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSupplierDCNo.ShowAlways = true;
-                    tpSupplierDCNo.Show("Please enter supplier DC No.", txtSupplierDCNo, 5000);
-                }
-                else
-                {
-                    epPurchaseDC.Clear();
-                    txtSupplierDCNo.BackColor = Color.White;
-                    tpSupplierDCNo.Active = false;
-                }
+                txtSupplierDCNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
