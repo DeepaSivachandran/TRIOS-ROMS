@@ -54,6 +54,8 @@ namespace ROMS
         string varNewfile = ""; string varFile = "";
         OpenFileDialog objfilelogo = new OpenFileDialog();
         public string pbLogoPath = "", pbCompanypath = "";
+        public int varDefaultBank = 0;
+        public string varDefault = "";
         public CP_Company()
         {
             InitializeComponent();
@@ -513,7 +515,7 @@ namespace ROMS
             {
                 bool blnErrorFlag = false;
                 int varflag = 0;
-
+                varDefault = "";
                 if (Convert.ToString(txtBankname.Text).Trim() == "")
                 {
                     epCompany.SetError(txtBankname, "Please enter bank name");
@@ -605,9 +607,19 @@ namespace ROMS
                         {
                             varstatusid = "Inactive";
                         }
+                        if(chkDefaultBank.Checked==true)
+                        {
+                            varDefaultBank = 1;
+                            varDefault = "Yes";
+                        }
+                        else
+                        {
+                            varDefaultBank = 0;
+                            varDefault = "No";
+                        }
                         if (varSlNo == "0")
                         {
-                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid);
+                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid,0, varDefaultBank, varDefault);
                             grdBankDetails.Columns["clmStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             varCompanyModifiedFlag = 1;
                         }
@@ -620,8 +632,24 @@ namespace ROMS
                                     grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
                                     grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
                                     grdBankDetails.Rows[i].Cells["clmStatus"].Value = varstatusid;
+                                    grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value = varDefaultBank;
+                                    grdBankDetails.Rows[i].Cells["clmDefault"].Value = varDefault;
                                     varCompanyModifiedFlag = 1;
                                 }
+                            }
+                        }
+                        for(int i=0;i<grdBankDetails.Rows.Count;i++)
+                        {
+                            if(Convert.ToInt32(grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value)==1)
+                            {
+                                chkDefaultBank.Enabled = false;
+                                chkDefaultBank.Checked = false;
+                                break;
+                            }
+                            else
+                            {
+                                chkDefaultBank.Enabled = true;
+
                             }
                         }
                         udfnBankclear();
@@ -2252,6 +2280,7 @@ namespace ROMS
                 objBankTable.Columns.Add("CMBNK_AccNo", typeof(string));
                 objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
                 objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
+                objBankTable.Columns.Add("CMBNK_Default", typeof(string));
                 for (int i = 0; i < grdBankDetails.Rows.Count; i++)
                 {
                     DataService objDser = new DataService();
@@ -2276,7 +2305,7 @@ namespace ROMS
                     }
                     objBankTable.Rows.Add(Convert.ToString(grdBankDetails.Rows[i].Cells["clmbankname"].Value), Convert.ToString(grdBankDetails.Rows[i].Cells["clmBankShortName"].Value),
                     Convert.ToString(grdBankDetails.Rows[i].Cells["clmbranch"].Value), Convert.ToString(grdBankDetails.Rows[i].Cells["clmaccno"].Value),
-                    Convert.ToString(grdBankDetails.Rows[i].Cells["clmifscode"].Value), varStatus); 
+                    Convert.ToString(grdBankDetails.Rows[i].Cells["clmifscode"].Value), varStatus,Convert.ToString(grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value)); 
                 }
                 
             }
@@ -3289,6 +3318,7 @@ namespace ROMS
                 objBankTable.Columns.Add("CMBNK_AccNo", typeof(string));
                 objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
                 objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
+                objBankTable.Columns.Add("CMBNK_Default", typeof(string));
 
                 for (int i = 0; i < grdContactManager.Rows.Count; i++)
                 {
@@ -3695,6 +3725,10 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                if(Convert.ToInt32(grdBankDetails.SelectedRows[0].Cells["clmdefaultbnk"].Value)==1)
+                                {
+                                    chkDefaultBank.Enabled = true;
+                                }
                                 grdBankDetails.Rows.RemoveAt(this.grdBankDetails.SelectedRows[0].Index);
                                 for (int i = 0; i < grdBankDetails.RowCount; i++)
                                 {
@@ -3704,28 +3738,37 @@ namespace ROMS
                             }
                             break;
                         case "clmEdit":
-                            txtBankname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbankname"].Value);
-                            txtBankShortName.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmBankShortName"].Value);
-                            txtbranchname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbranch"].Value);
-                            txtAccno.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmaccno"].Value);
-                            txtIFScode.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmifscode"].Value);
-                            varSlNo = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmsno"].Value);
-                            varstatusid = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmStatus"].Value);
-                            pnlBStatus.Enabled = true;
-                            if (varstatusid=="Active")
+                        txtBankname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbankname"].Value);
+                        txtBankShortName.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmBankShortName"].Value);
+                        txtbranchname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbranch"].Value);
+                        txtAccno.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmaccno"].Value);
+                        txtIFScode.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmifscode"].Value);
+                        varSlNo = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmsno"].Value);
+                        varstatusid = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmStatus"].Value);
+                            if(Convert.ToUInt32(grdBankDetails.Rows[e.RowIndex].Cells["clmdefaultbnk"].Value)==1)
                             {
-                                rbBankActive.Checked = true;
+                                chkDefaultBank.Checked = true;
+                                chkDefaultBank.Enabled = true;
                             }
                             else
                             {
-                                rbBankInActive.Checked = true;
+                                chkDefaultBank.Checked = false;
                             }
-                            btnAdd.Image = ROMS.Properties.Resources.save16x16;
-                            txtBankname.BackColor = Color.White;
-                            tpBankName.Active = false;
-                            epCompany.Clear();
-                            txtBankname.Focus();
-                            break;
+                        pnlBStatus.Enabled = true;
+                        if (varstatusid=="Active")
+                        {
+                            rbBankActive.Checked = true;
+                        }
+                        else
+                        {
+                            rbBankInActive.Checked = true;
+                        }
+                        btnAdd.Image = ROMS.Properties.Resources.save16x16;
+                        txtBankname.BackColor = Color.White;
+                        tpBankName.Active = false;
+                        epCompany.Clear();
+                        txtBankname.Focus();
+                        break;
 
                     }
                 }
@@ -3811,10 +3854,23 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
                             {
+                                if (Convert.ToInt32(objDS.Tables[2].Rows[i]["Default Bank"]) == 1)
+                                {
+                                    varDefault = "Yes";
+                                }
+                                else
+                                {
+                                    varDefault = "No";
+                                }
                                 grdBankDetails.Rows.Add(Convert.ToString(objDS.Tables[2].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[2].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[2].Rows[i]["SHORTNAME"]),
                                 Convert.ToString(objDS.Tables[2].Rows[i]["BRANCH"]), Convert.ToString(objDS.Tables[2].Rows[i]["ACCOUNT"]), Convert.ToString(objDS.Tables[2].Rows[i]["IFSC"])
-                                , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]));
+                                , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]), Convert.ToString(objDS.Tables[2].Rows[i]["Default Bank"]),varDefault);
                                 grdBankDetails.Columns["clmStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                if(Convert.ToInt32(grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value)==1)
+                                {
+                                    chkDefaultBank.Checked = false;
+                                    chkDefaultBank.Enabled = false;
+                                }
                             }
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; 

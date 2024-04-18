@@ -547,6 +547,10 @@ namespace ROMS
                         txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
                         varGRNPaymentType = Convert.ToString(objDs.Tables[0].Rows[0]["PaymentType"]);
                         txtQRCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN Code"]);
+                        if(Convert.ToInt32(cmbEntryType.SelectedValue)==54)
+                        {
+                            dpInvoiceDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceDate"]);
+                        }
                         if (varGRNPaymentType == "199" || varGRNPaymentType == "200") //199- NONE,200-  GRN cash issued
                         {
                             rbPurchaseCash.Checked = true;
@@ -3976,10 +3980,10 @@ namespace ROMS
                     DataSet objDS = new DataSet();
                     if (varExpiryDate != "")
                     {
+                        objDS = objDServ.udfnMaster(7, 0, 0, dpVoucherDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
+                        objDServ.CloseConnection();
                         if (expirydateFlag == 1)
                         {
-                            objDS = objDServ.udfnMaster(7, 0, 0, dpVoucherDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
-                            objDServ.CloseConnection();
                             if (objDS.Tables[0].Rows.Count > 0)
                             {
                                 if (Convert.ToString(objDS.Tables[0].Rows[0]["DATEVALIDATE"]) == "0")
@@ -4003,6 +4007,13 @@ namespace ROMS
                                         varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
                                     }
                                 }
+                            }
+                        }
+                        else
+                        {
+                            if (objDS.Tables[2].Rows.Count > 0)
+                            {
+                                varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
                             }
                         }
                     }
@@ -5097,12 +5108,11 @@ namespace ROMS
                 { roundoff = Convert.ToDecimal(lblRoundoff.Text); }
                 if (lblTotal.Text != "")
                 { grandtotal = Convert.ToDecimal(lblTotal.Text); }
-
-                lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense - tcsamt - discountamt - damagecost - otherdiscount;
-                lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
-
                 additionalValue = loadcharge + unloadcharge + couriercharge + otherexpense + tcsamt + loadinggrn + frightgrn;
                 DiscountValue = discountamt + otherdiscount + damagecost;
+                //lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense + tcsamt - discountamt - damagecost - otherdiscount;
+                lblGrandTot = additionalValue - DiscountValue;
+                lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
                 lblAdditionalValue.Text= additionalValue.ToString("#,##0.00");
                 lblDiscount.Text= DiscountValue.ToString("#,##0.00");
             }

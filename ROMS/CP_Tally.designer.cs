@@ -114,7 +114,7 @@
             this.btnExport.Location = new System.Drawing.Point(223, 177);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
-            this.btnExport.TabIndex = 7;
+            this.btnExport.TabIndex = 4;
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             this.btnClose.Location = new System.Drawing.Point(307, 177);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 6;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -144,7 +144,7 @@
             this.cmbTransactiontype.Location = new System.Drawing.Point(189, 134);
             this.cmbTransactiontype.Name = "cmbTransactiontype";
             this.cmbTransactiontype.Size = new System.Drawing.Size(193, 27);
-            this.cmbTransactiontype.TabIndex = 5;
+            this.cmbTransactiontype.TabIndex = 2;
             this.cmbTransactiontype.Enter += new System.EventHandler(this.CmbTransactiontype_Enter);
             this.cmbTransactiontype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactiontype_KeyDown);
             this.cmbTransactiontype.Leave += new System.EventHandler(this.CmbTransactiontype_Leave);
@@ -155,7 +155,7 @@
             this.cmbModule.Location = new System.Drawing.Point(189, 88);
             this.cmbModule.Name = "cmbModule";
             this.cmbModule.Size = new System.Drawing.Size(193, 27);
-            this.cmbModule.TabIndex = 4;
+            this.cmbModule.TabIndex = 1;
             this.cmbModule.Enter += new System.EventHandler(this.CmbModule_Enter);
             this.cmbModule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbModule_KeyDown);
             this.cmbModule.Leave += new System.EventHandler(this.CmbModule_Leave);
@@ -166,7 +166,7 @@
             this.cmbConcern.Location = new System.Drawing.Point(189, 43);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(193, 27);
-            this.cmbConcern.TabIndex = 3;
+            this.cmbConcern.TabIndex = 0;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);

@@ -130,6 +130,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdBrand = new System.Windows.Forms.DataGridView();
             this.btnBrand = new System.Windows.Forms.Button();
+            this.cmbBatchGen = new System.Windows.Forms.ComboBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -208,7 +210,7 @@
             this.columnHeader25});
             this.lvSalesRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSalesRack.HideSelection = false;
-            this.lvSalesRack.Location = new System.Drawing.Point(830, 117);
+            this.lvSalesRack.Location = new System.Drawing.Point(828, 117);
             this.lvSalesRack.Name = "lvSalesRack";
             this.lvSalesRack.Size = new System.Drawing.Size(271, 108);
             this.lvSalesRack.TabIndex = 166;
@@ -243,7 +245,7 @@
             this.columnHeader21});
             this.lvPurRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurRack.HideSelection = false;
-            this.lvPurRack.Location = new System.Drawing.Point(830, 90);
+            this.lvPurRack.Location = new System.Drawing.Point(828, 91);
             this.lvPurRack.Name = "lvPurRack";
             this.lvPurRack.Size = new System.Drawing.Size(275, 106);
             this.lvPurRack.TabIndex = 165;
@@ -553,8 +555,10 @@
             // 
             // grplocation
             // 
-            this.grplocation.Controls.Add(this.txtDStatus);
             this.grplocation.Controls.Add(this.lvBrand);
+            this.grplocation.Controls.Add(this.textBox5);
+            this.grplocation.Controls.Add(this.cmbBatchGen);
+            this.grplocation.Controls.Add(this.txtDStatus);
             this.grplocation.Controls.Add(this.txtSubgroup);
             this.grplocation.Controls.Add(this.btnClose);
             this.grplocation.Controls.Add(this.btnUpdate);
@@ -619,7 +623,7 @@
             this.columnHeader3});
             this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvBrand.HideSelection = false;
-            this.lvBrand.Location = new System.Drawing.Point(588, 49);
+            this.lvBrand.Location = new System.Drawing.Point(588, 48);
             this.lvBrand.Name = "lvBrand";
             this.lvBrand.Size = new System.Drawing.Size(295, 84);
             this.lvBrand.TabIndex = 162;
@@ -788,7 +792,7 @@
             this.cbShelflife.Location = new System.Drawing.Point(923, 23);
             this.cbShelflife.Name = "cbShelflife";
             this.cbShelflife.Size = new System.Drawing.Size(77, 24);
-            this.cbShelflife.TabIndex = 12;
+            this.cbShelflife.TabIndex = 13;
             this.cbShelflife.Text = "Shelf Life";
             this.cbShelflife.UseVisualStyleBackColor = true;
             this.cbShelflife.CheckedChanged += new System.EventHandler(this.CbShelflife_CheckedChanged);
@@ -802,7 +806,7 @@
             this.txtSelfLife.MaxLength = 3;
             this.txtSelfLife.Name = "txtSelfLife";
             this.txtSelfLife.Size = new System.Drawing.Size(58, 27);
-            this.txtSelfLife.TabIndex = 13;
+            this.txtSelfLife.TabIndex = 14;
             this.txtSelfLife.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSelfLife.Visible = false;
             this.txtSelfLife.Enter += new System.EventHandler(this.TxtSelfLife_Enter);
@@ -816,7 +820,7 @@
             this.cmbPeriod.Location = new System.Drawing.Point(1060, 20);
             this.cmbPeriod.Name = "cmbPeriod";
             this.cmbPeriod.Size = new System.Drawing.Size(103, 27);
-            this.cmbPeriod.TabIndex = 14;
+            this.cmbPeriod.TabIndex = 15;
             this.cmbPeriod.Visible = false;
             this.cmbPeriod.Enter += new System.EventHandler(this.CmbPeriod_Enter);
             this.cmbPeriod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPeriod_KeyDown);
@@ -843,7 +847,7 @@
             this.cmbGst.Location = new System.Drawing.Point(1228, 20);
             this.cmbGst.Name = "cmbGst";
             this.cmbGst.Size = new System.Drawing.Size(80, 27);
-            this.cmbGst.TabIndex = 15;
+            this.cmbGst.TabIndex = 16;
             this.cmbGst.SelectedIndexChanged += new System.EventHandler(this.CmbGst_SelectedIndexChanged);
             this.cmbGst.Enter += new System.EventHandler(this.CmbGst_Enter);
             this.cmbGst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGst_KeyDown);
@@ -934,7 +938,7 @@
             this.txtHsncode.MaxLength = 100;
             this.txtHsncode.Name = "txtHsncode";
             this.txtHsncode.Size = new System.Drawing.Size(306, 27);
-            this.txtHsncode.TabIndex = 16;
+            this.txtHsncode.TabIndex = 17;
             this.txtHsncode.TextChanged += new System.EventHandler(this.TxtHsncode_TextChanged);
             this.txtHsncode.Enter += new System.EventHandler(this.TxtHsncode_Enter);
             this.txtHsncode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHsncode_KeyDown);
@@ -1210,6 +1214,28 @@
             this.btnBrand.UseVisualStyleBackColor = true;
             this.btnBrand.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // cmbBatchGen
+            // 
+            this.cmbBatchGen.FormattingEnabled = true;
+            this.cmbBatchGen.Location = new System.Drawing.Point(818, 101);
+            this.cmbBatchGen.Name = "cmbBatchGen";
+            this.cmbBatchGen.Size = new System.Drawing.Size(99, 27);
+            this.cmbBatchGen.TabIndex = 12;
+            this.cmbBatchGen.Enter += new System.EventHandler(this.CmbBatchGen_Enter);
+            this.cmbBatchGen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchGen_KeyDown);
+            this.cmbBatchGen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBatchGen_KeyPress);
+            this.cmbBatchGen.Leave += new System.EventHandler(this.CmbBatchGen_Leave);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Enabled = false;
+            this.textBox5.Location = new System.Drawing.Point(734, 102);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(84, 27);
+            this.textBox5.TabIndex = 170;
+            this.textBox5.Text = "Batch No.Generation";
+            // 
             // CP_ProductApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1342,5 +1368,7 @@
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.RadioButton rbInactive;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox cmbBatchGen;
     }
 }

@@ -18,6 +18,8 @@ namespace ROMS
         public int varGroupId = 0;
         public int varSubGroupId = 0;
         public string varUserID = "";
+        int varActiveCount = 0, varInactiveCount = 0;
+
         public CP_BrandList()
         {
             InitializeComponent();
@@ -357,6 +359,7 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                lblProductCount.Text = Convert.ToString(grdBrandList.Rows.Count);
             }
         }
         public void udfnDefaultSearchGrid()
@@ -718,18 +721,20 @@ namespace ROMS
         {
             try
             {
-
+                varActiveCount = 0; varInactiveCount = 0;
                 for (int i = 0; i < grdBrandList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdBrandList.Rows[i].Cells["Status ID"].Value) == "1")
                     {
                         grdBrandList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdBrandList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        varActiveCount++;
                     }
                     else
                     {
                         grdBrandList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdBrandList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        varInactiveCount++;
                     }
                 }
             }
@@ -741,6 +746,8 @@ namespace ROMS
             finally
             {
                 grdBrandList.ClearSelection();
+                lblActiveCount.Text = Convert.ToString(varActiveCount);
+                lblInactiveCount.Text = Convert.ToString(varInactiveCount);
             }
         }
 
@@ -1308,15 +1315,27 @@ namespace ROMS
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (DGV_SearchGrid.IsCurrentCellDirty)
+            try
             {
-                // Commit the changes immediately
-                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdBrandList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdBrandList);
+                objDser.CloseConnection();
+                grdBrandList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
             }
-            DataService objDser = new DataService();
-            grdBrandList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdBrandList);
-            objDser.CloseConnection();
-            grdBrandList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblProductCount.Text = Convert.ToString(grdBrandList.Rows.Count);
+            }
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)

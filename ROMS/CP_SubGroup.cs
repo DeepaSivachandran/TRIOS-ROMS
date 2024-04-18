@@ -212,7 +212,9 @@ namespace ROMS
                 grdRackList.Columns["Column1"].HeaderText = "";
                 grdRackList.Columns["Column1"].Width = 80;
                 grdRackList.Columns["Rack Name"].Width = 80;
+                grdRackList.Columns["Rack Name"].ReadOnly = true;
                 grdRackList.Columns["Rack Description"].Width = 270;
+                grdRackList.Columns["Rack Description"].ReadOnly = true;
                 grdRackList.Columns["RKID"].Visible = false;
                 grdRackList.Columns[0].Width = 30;
                 varStatusid = varStatus;
@@ -1311,7 +1313,9 @@ namespace ROMS
                                 //grdRackList.Columns["RK_Description"].Visible = true;
                                 grdRackList.Columns["Column1"].Width = 80;
                                 grdRackList.Columns["Rack Name"].Width = 80;
+                                grdRackList.Columns["Rack Name"].ReadOnly = true;
                                 grdRackList.Columns["Rack Description"].Width = 270;
+                                grdRackList.Columns["Rack Description"].ReadOnly = true;
                                 grdRackList.Columns[0].Width = 30;
                             }
                         }
