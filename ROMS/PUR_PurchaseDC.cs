@@ -400,7 +400,8 @@ namespace ROMS
                 }
                 else
                 {
-                    this.ActiveControl = txtSupplier;
+                    //this.ActiveControl = txtSupplier;
+                    this.ActiveControl = txtSupplierDCNo;
                     txtSupplier.Focus();
                     if (editFlag == 0)
                     {
@@ -2096,14 +2097,6 @@ namespace ROMS
                         tpcompanyname.Show("Please select company.", cmbConcern, 5000);
                         varErrorFlag = false;
                     }
-                    if (txtSupplierDCNo.Text == "")
-                    {
-                        epPurchaseDC.SetError(txtSupplier, "Please enter supplier DC No.");
-                        txtSupplierDCNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpSupplierDCNo.ShowAlways = true;
-                        tpSupplierDCNo.Show("Please enter supplier DC No.", txtSupplierDCNo, 5000);
-                        varErrorFlag = false;
-                    }
                     if (Convert.ToString(txtSupplier.Text) != "")
                     {
                         string varSupplierId = "0";
@@ -2212,7 +2205,7 @@ namespace ROMS
                                 grdPurchaseDC.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmStockLocation"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseDC.Rows[i].Cells["clmRemove"].Style.BackColor = Color.PaleGreen;
+                                grdPurchaseDC.Rows[i].Cells["clmRemove"].Style.BackColor = Color.White;
                                 if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmBatchEnable"].Value) == "73") //Disabled
                                 {
                                     grdPurchaseDC.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
@@ -2628,19 +2621,7 @@ namespace ROMS
         {
             try
             {
-                if (txtSupplierDCNo.Text == "")
-                {
-                    epPurchaseDC.SetError(txtSupplier, "Please enter supplier DC No.");
-                    txtSupplierDCNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSupplierDCNo.ShowAlways = true;
-                    tpSupplierDCNo.Show("Please enter supplier DC No.", txtSupplierDCNo, 5000);
-                }
-                else
-                {
-                    epPurchaseDC.Clear();
-                    txtSupplierDCNo.BackColor = Color.White;
-                    tpSupplierDCNo.Active = false;
-                }
+                txtSupplierDCNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
