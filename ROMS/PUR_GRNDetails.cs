@@ -86,6 +86,8 @@ namespace ROMS
                     lbltotProduct.Visible = false;
                     lblAddProduct.Visible = false;
                     lblRemainProduct.Visible = false;
+                    tss1.Visible = false;
+                    tss2.Visible = false;
                 }
                 else
                 {
@@ -95,6 +97,8 @@ namespace ROMS
                     lbltotProduct.Visible = true;
                     lblAddProduct.Visible = true;
                     lblRemainProduct.Visible = true;
+                    tss1.Visible = true;
+                    tss2.Visible = true;
                 }
             }
             catch (Exception ex)
