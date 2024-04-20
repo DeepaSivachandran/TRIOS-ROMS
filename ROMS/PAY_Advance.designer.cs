@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PAY_Advance));
             this.txtDReceiptN0 = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.txtReceiptNo = new System.Windows.Forms.TextBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblschedule = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtAdvanceAmt = new System.Windows.Forms.TextBox();
             this.epAdvance = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtReceiptNo = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epAdvance)).BeginInit();
             this.SuspendLayout();
@@ -94,6 +94,17 @@
             this.grbform.Size = new System.Drawing.Size(727, 195);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
+            // 
+            // txtReceiptNo
+            // 
+            this.txtReceiptNo.Enabled = false;
+            this.txtReceiptNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceiptNo.Location = new System.Drawing.Point(139, 52);
+            this.txtReceiptNo.MaxLength = 50;
+            this.txtReceiptNo.Name = "txtReceiptNo";
+            this.txtReceiptNo.ReadOnly = true;
+            this.txtReceiptNo.Size = new System.Drawing.Size(107, 27);
+            this.txtReceiptNo.TabIndex = 1111215;
             // 
             // txtConcern
             // 
@@ -155,6 +166,8 @@
             this.LV_Supplier.UseCompatibleStateImageBehavior = false;
             this.LV_Supplier.View = System.Windows.Forms.View.Details;
             this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
             // 
             // columnHeader5
             // 
@@ -299,17 +312,6 @@
             // epAdvance
             // 
             this.epAdvance.ContainerControl = this;
-            // 
-            // txtReceiptNo
-            // 
-            this.txtReceiptNo.Enabled = false;
-            this.txtReceiptNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReceiptNo.Location = new System.Drawing.Point(139, 52);
-            this.txtReceiptNo.MaxLength = 50;
-            this.txtReceiptNo.Name = "txtReceiptNo";
-            this.txtReceiptNo.ReadOnly = true;
-            this.txtReceiptNo.Size = new System.Drawing.Size(107, 27);
-            this.txtReceiptNo.TabIndex = 1111215;
             // 
             // PAY_Advance
             // 

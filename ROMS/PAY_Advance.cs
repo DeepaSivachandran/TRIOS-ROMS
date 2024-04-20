@@ -417,6 +417,37 @@ namespace ROMS
             }
         }
 
+        private void LV_Supplier_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnListViewData();
+                txtAmount.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LV_Supplier_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnListViewData();
+                    txtAmount.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void PAY_Advance_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -437,7 +468,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnListViewData()
+        {
+            try
+            {
+                if (txtSupplier.Text != "")
+                {
+                    ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
+                    txtSupplier.Text = selectedItem.SubItems[0].Text;
+                    lblSupplierCode.Text = selectedItem.SubItems[1].Text;
+                    lblschedule.Text = selectedItem.SubItems[2].Text;
+                }
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    cmbConcern.Focus();
+                    cmbConcern.BackColor = Color.LemonChiffon;
+                }
+                else
+                {
+                    txtAmount.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                LV_Supplier.Visible = false;
+            }
+        }
         private void PAY_Advance_Load(object sender, EventArgs e)
         {
             try
