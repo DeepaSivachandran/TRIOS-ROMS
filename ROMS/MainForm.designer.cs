@@ -121,6 +121,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -354,6 +355,7 @@ namespace ROMS
             // paymentToolStripMenuItem
             // 
             this.paymentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.advanceToolStripMenuItem,
             this.supplierPaymentToolStripMenuItem,
             this.tsbDirectCheque,
             this.tsbDebitNote});
@@ -896,6 +898,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // advanceToolStripMenuItem
+            // 
+            this.advanceToolStripMenuItem.Name = "advanceToolStripMenuItem";
+            this.advanceToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.advanceToolStripMenuItem.Text = "Advance";
+            this.advanceToolStripMenuItem.Click += new System.EventHandler(this.AdvanceToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1016,5 +1025,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tspClearTransactions;
         private System.Windows.Forms.ToolStripMenuItem tspClearMasters;
         private System.Windows.Forms.ToolStripMenuItem financialYearProcessToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem advanceToolStripMenuItem;
     }
 }
