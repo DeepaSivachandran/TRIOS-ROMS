@@ -13,6 +13,7 @@ namespace ROMS
     public partial class CP_Purchase : Form
     {
         DataTable dtTaxTable = new DataTable();
+        DataTable dtPurchaseAutoComplete = new DataTable();
         DateTime varmaxdate;
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -768,6 +769,28 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDtProductAutocomplte()
+        {
+            try
+            {
+                dtPurchaseAutoComplete = new DataTable();
+                dtPurchaseAutoComplete.Columns.Add("Sno", typeof(int));
+                dtPurchaseAutoComplete.Columns.Add("PRID", typeof(string));
+                dtPurchaseAutoComplete.Columns.Add("MRP", typeof(decimal));
+                dtPurchaseAutoComplete.Columns.Add("ExpiryDate", typeof(string));
+                dtPurchaseAutoComplete.Columns.Add("BatchNo", typeof(string));
+                dtPurchaseAutoComplete.Columns.Add("UTID", typeof(int));
+                dtPurchaseAutoComplete.Columns.Add("SLID", typeof(int));
+                dtPurchaseAutoComplete.Columns.Add("RKID", typeof(int));
+                dtPurchaseAutoComplete.Columns.Add("ShelfLife_Flag", typeof(int));
+                dtPurchaseAutoComplete.Columns.Add("Flag", typeof(int));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_Purchase_Load(object sender, EventArgs e)
         {
             try
@@ -785,6 +808,7 @@ namespace ROMS
                 dtTaxTable.Columns.Add("CGST%", typeof(decimal));
                 dtTaxTable.Columns.Add("CGST", typeof(decimal));
                 udfnDropdownLoad();
+                udfnDtProductAutocomplte();
                 if (pbPurchaseno == "0")
                 {
                     cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -4078,7 +4102,7 @@ namespace ROMS
                                 cmbrack.BackColor = Color.White;
                                 string[] varpono = cmbPONo.Text.Split('~');
                                 string productCode = "0", varRackCount = "0", varRackId = "0";
-                                double varGrnMrp = 0;
+                                double varGrnMrp = 0;int invFlag = 0;
                                 productCode = lblProductcode.Text;
                                 if (cmbrack.Enabled == true)
                                 {
@@ -4105,6 +4129,7 @@ namespace ROMS
                                 , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), txtSourceLocation.Text, cmbrack.Text, cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0, 0, 0, 0,varHSNid);
                                 grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, (txtMrp.Text).Trim(), varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text, varRackId, expirydateFlag, invFlag);
                                 udfnrowclear();
                                 txtProductName.Text = "";
                                 lblProductcode.Text = "0";
@@ -10427,10 +10452,17 @@ namespace ROMS
         }
 
         private void TxtProductName_TextChanged(object sender, EventArgs e)
-        {
+         {
             try
             {
                 int varViewType = 0; string PRID = "0";
+                int varflag=0;
+                if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
+                {  varflag = 1;  }
+                else if(Convert.ToString(cmbEntryType.SelectedValue) == "55" || Convert.ToString(cmbEntryType.SelectedValue) == "56") //PO
+                { varflag = 0; }
+                else if(Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
+                {  varflag = 2;   }
                 if (varProducts != "")
                 {
                     var strings1 = varProductsIDs.Select(xx => xx);
@@ -10458,7 +10490,7 @@ namespace ROMS
                     }
                     //DGV_FilterProduct.Items.Clear();
                     varNewFlag = "0";
-                    int GRNID = 0, varRMFlag = 0;
+                    int GRNID = 0, varRMFlag = 0; string POID = "0" ,DCID="0";
                     if (Convert.ToInt32(cmbPONo.SelectedValue) == 0)
                     {
                         GRNID = 0;
@@ -10472,14 +10504,16 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(cmbPONo.SelectedValue) == 214) //none
                         {
-                            GRNID = 0;
+                            POID = "0";
                             varViewType = 29;
                         }
                         else if (Convert.ToInt32(cmbPONo.SelectedValue) == 215)  //Against Po
                         {
-                            GRNID = Convert.ToInt32(pbGRNId);
-                            varViewType = 59;
+                            POID = Convert.ToString(pbPONO);
+                            varViewType = 60;
                         }
+                        varViewType = 60;
+                        GRNID = Convert.ToInt32(pbGRNNo);
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = varViewType;
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -10488,7 +10522,11 @@ namespace ROMS
                         objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                         objMR_Product.ParaProductsCode = varProductsCodes;
                         objMR_Product.ParaGRNID = GRNID;
+                        objMR_Product.ParaPOID = POID;
+                        objMR_Product.ParaDCID = DCID;
                         objMR_Product.ParaProductsCode = PRID;
+                        objMR_Product.paraFlag = varflag;
+                        objMR_Product.paraPurchaseAutoComplete = dtPurchaseAutoComplete;
                         if (VarSearchFlag == true)
                         {
                             objMR_Product.paraPicode = txtProductName.Text;
