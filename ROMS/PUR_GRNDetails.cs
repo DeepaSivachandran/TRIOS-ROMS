@@ -2120,11 +2120,6 @@ namespace ROMS
                 if (varUpDownKey == 0)
                 {
                     int paraViewType = 0; string PRID = "0";
-                    if (varProducts != "")
-                    {
-                        var strings1 = varProductsIDs.Select(xx => xx);
-                        PRID = (string.Join(",", strings1));
-                    }
                     txtBatchno.BackColor = SystemColors.Control;
                     string varProductsCodes = "0";
                     //lvproduct.Items.Clear();
@@ -2143,6 +2138,12 @@ namespace ROMS
                         {
                             GRNID = Convert.ToInt32(pbGRNId);
                             paraViewType = 59;
+
+                            if (varProducts != "")
+                            {
+                                var strings1 = varProductsIDs.Select(xx => xx);
+                                PRID = (string.Join(",", strings1));
+                            }
                         }
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = paraViewType;

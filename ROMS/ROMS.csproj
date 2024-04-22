@@ -167,6 +167,7 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Advance.cs" />
     <Compile Include="PAY_Advance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1609,6 +1610,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\Unapprove.jpg" />
     <None Include="Resources\Move Color.png" />
     <None Include="Resources\Settings Color.png" />
     <None Include="Resources\Settings.png" />

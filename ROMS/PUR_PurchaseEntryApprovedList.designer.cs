@@ -522,7 +522,7 @@
             // clmUnapproved
             // 
             this.clmUnapproved.HeaderText = "Unapprove";
-            this.clmUnapproved.Image = global::ROMS.Properties.Resources.reset;
+            this.clmUnapproved.Image = global::ROMS.Properties.Resources.Unapprove;
             this.clmUnapproved.Name = "clmUnapproved";
             this.clmUnapproved.ReadOnly = true;
             this.clmUnapproved.Width = 90;
