@@ -177,6 +177,7 @@ namespace ROMS
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static PAY_ChequePrint objPAY_ChequePrint;
         public static PAY_DebitNoteList objPAY_DebitNoteList;
+        public static PAY_Advance_Popup objPAY_Advance_Popup;
 
         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;

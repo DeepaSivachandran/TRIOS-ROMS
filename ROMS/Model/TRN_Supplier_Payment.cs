@@ -14,5 +14,6 @@ namespace ROMS.Model
         public int paraCompanyId { get; set; } = 0;
         public int paraUserID { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
+        public int paraID { get; set; } = 0;
     }
 }
