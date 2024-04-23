@@ -496,6 +496,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_PAY_Advance-SubReport.cs">
+      <DependentUpon>RPT_PAY_Advance-SubReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_ReturnDC_SupplierWise.cs">
       <DependentUpon>RPT_PUR_ReturnDC_SupplierWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1592,6 +1599,7 @@
     <Compile Include="ServerSettings.designer.cs">
       <DependentUpon>ServerSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service Class\Currency.cs" />
     <Compile Include="Service Class\DataBind.cs" />
     <Compile Include="Service Class\DataError.cs" />
     <Compile Include="Service Class\DataService.cs" />
@@ -2185,6 +2193,11 @@
     <EmbeddedResource Include="Reports\RPT_PUR_GRNDetailsList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_GRNDetailsList.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PAY_Advance-SubReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PAY_Advance-SubReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_ReturnDC_SupplierWise.rpt">
