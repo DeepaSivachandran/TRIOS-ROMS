@@ -75,6 +75,7 @@ namespace ROMS
                 dtAdvance.Columns.Add("S.No.", typeof(string));
                 dtAdvance.Columns.Add("Advance Date", typeof(string));
                 dtAdvance.Columns.Add("Advance Amount", typeof(float));
+                dtAdvance.Columns.Add("ADID", typeof(string));
                 TRN_Advance objTRN_Advance = new TRN_Advance();
                 objTRN_Advance.ViewType = 2;
                 objTRN_Advance.paraUserID = Convert.ToInt32(MainForm.pbUserID);
@@ -96,7 +97,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                dtAdvance.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], objDs.Tables[0].Rows[i]["Advance Amount"]);
+                                dtAdvance.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], objDs.Tables[0].Rows[i]["Advance Amount"], objDs.Tables[0].Rows[i]["ADID"]);
                             }
                             grdAdvance.DataSource = dtAdvance;
                             grdAdvance.Columns[0].HeaderText = "";
@@ -107,6 +108,8 @@ namespace ROMS
                             grdAdvance.Columns["S.No."].ReadOnly = true;
                             grdAdvance.Columns["Advance Date"].ReadOnly = true;
                             grdAdvance.Columns["Advance Amount"].ReadOnly = true;
+                            grdAdvance.Columns["ADID"].ReadOnly = true;
+                            grdAdvance.Columns["ADID"].Visible = true;
                             grdAdvance.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -139,6 +142,7 @@ namespace ROMS
         {
             try
             {
+                udfnAdvanceAdd();
             }
             catch (Exception ex)
             {
@@ -147,7 +151,56 @@ namespace ROMS
 
             } 
         }
-        
+        public void udfnAdvanceAdd()
+        {
+            try
+            {
+                int VARFLAG = 0;
+                string AdvID = "0";
+                MainForm.objPAY_SupplierPayment.varAdvanceID = "0";
+                for (int i = 0; i < grdAdvance.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdAdvance.Rows[i].Cells[0].Value) == true)
+                    {
+                        VARFLAG = 1;
+                        if (AdvID == "0")
+                        {
+                            AdvID = Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
+                        }
+                        else
+                        {
+                            AdvID = AdvID + ',' + Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
+                        }
+                    }
+                }
+                if (VARFLAG != 0)
+                {
+                    MainForm.objPAY_SupplierPayment.varAdvanceID = AdvID;
+                    this.Close();
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    if (grdAdvance.Rows.Count > 0)
+                    {
+                        string varMessage = objDServ.udfnGetMessages(105);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        string varMessage = objDServ.udfnGetMessages(41);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void INV_GRNPODamaged_KeyDown(object sender, KeyEventArgs e)
         {
             try

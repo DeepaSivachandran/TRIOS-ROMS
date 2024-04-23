@@ -83,7 +83,7 @@
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.txtTransactionno = new System.Windows.Forms.TextBox();
+            this.txtTransactionNo = new System.Windows.Forms.TextBox();
             this.lblTransactionNo = new System.Windows.Forms.Label();
             this.lblConcern = new System.Windows.Forms.Label();
             this.dpDate = new System.Windows.Forms.DateTimePicker();
@@ -106,6 +106,10 @@
             this.clmReturnAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPayAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblSubtotal = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -142,6 +146,10 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.label1);
+            this.pnlinward.Controls.Add(this.label2);
+            this.pnlinward.Controls.Add(this.lblSubtotal);
+            this.pnlinward.Controls.Add(this.label33);
             this.pnlinward.Controls.Add(this.btnAdvance);
             this.pnlinward.Controls.Add(this.grdReurnDC);
             this.pnlinward.Controls.Add(this.lblRupee);
@@ -247,7 +255,7 @@
             // 
             this.lblRupee.AutoSize = true;
             this.lblRupee.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRupee.Location = new System.Drawing.Point(1215, 544);
+            this.lblRupee.Location = new System.Drawing.Point(1248, 556);
             this.lblRupee.Name = "lblRupee";
             this.lblRupee.Size = new System.Drawing.Size(27, 29);
             this.lblRupee.TabIndex = 1111232;
@@ -256,7 +264,7 @@
             // l
             // 
             this.l.AutoSize = true;
-            this.l.Location = new System.Drawing.Point(1138, 550);
+            this.l.Location = new System.Drawing.Point(1171, 562);
             this.l.Name = "l";
             this.l.Size = new System.Drawing.Size(77, 20);
             this.l.TabIndex = 1111211;
@@ -391,7 +399,7 @@
             this.lblGrandTotal.AutoSize = true;
             this.lblGrandTotal.Font = new System.Drawing.Font("Oswald Regular", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGrandTotal.ForeColor = System.Drawing.Color.Black;
-            this.lblGrandTotal.Location = new System.Drawing.Point(1241, 536);
+            this.lblGrandTotal.Location = new System.Drawing.Point(1274, 548);
             this.lblGrandTotal.Name = "lblGrandTotal";
             this.lblGrandTotal.Size = new System.Drawing.Size(68, 40);
             this.lblGrandTotal.TabIndex = 1111173;
@@ -692,7 +700,7 @@
             this.grbgodown.Controls.Add(this.lblschedule);
             this.grbgodown.Controls.Add(this.lblSupplierCode);
             this.grbgodown.Controls.Add(this.cmbConcern);
-            this.grbgodown.Controls.Add(this.txtTransactionno);
+            this.grbgodown.Controls.Add(this.txtTransactionNo);
             this.grbgodown.Controls.Add(this.lblTransactionNo);
             this.grbgodown.Controls.Add(this.lblConcern);
             this.grbgodown.Controls.Add(this.dpDate);
@@ -741,14 +749,14 @@
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
             this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
-            // txtTransactionno
+            // txtTransactionNo
             // 
-            this.txtTransactionno.Enabled = false;
-            this.txtTransactionno.Location = new System.Drawing.Point(243, 36);
-            this.txtTransactionno.Name = "txtTransactionno";
-            this.txtTransactionno.ReadOnly = true;
-            this.txtTransactionno.Size = new System.Drawing.Size(92, 27);
-            this.txtTransactionno.TabIndex = 2;
+            this.txtTransactionNo.Enabled = false;
+            this.txtTransactionNo.Location = new System.Drawing.Point(243, 36);
+            this.txtTransactionNo.Name = "txtTransactionNo";
+            this.txtTransactionNo.ReadOnly = true;
+            this.txtTransactionNo.Size = new System.Drawing.Size(92, 27);
+            this.txtTransactionNo.TabIndex = 2;
             // 
             // lblTransactionNo
             // 
@@ -915,6 +923,46 @@
             this.clmID.Name = "clmID";
             this.clmID.Visible = false;
             // 
+            // lblSubtotal
+            // 
+            this.lblSubtotal.AutoSize = true;
+            this.lblSubtotal.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtotal.Location = new System.Drawing.Point(1233, 511);
+            this.lblSubtotal.Name = "lblSubtotal";
+            this.lblSubtotal.Size = new System.Drawing.Size(37, 20);
+            this.lblSubtotal.TabIndex = 111111141;
+            this.lblSubtotal.Text = "0.00";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(1170, 513);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(65, 17);
+            this.label33.TabIndex = 111111140;
+            this.label33.Text = "Sub Total  : ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1227, 535);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 20);
+            this.label1.TabIndex = 111111143;
+            this.label1.Text = "0.00";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1171, 537);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 17);
+            this.label2.TabIndex = 111111142;
+            this.label2.Text = "Advance  : ";
+            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -966,7 +1014,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DateTimePicker dpDate;
         private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.TextBox txtTransactionno;
+        private System.Windows.Forms.TextBox txtTransactionNo;
         private System.Windows.Forms.Label lblTransactionNo;
         private System.Windows.Forms.Label lblConcern;
         private System.Windows.Forms.ComboBox cmbPaymentmode;
@@ -1021,5 +1069,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnAmt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPayAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
+        private System.Windows.Forms.Label lblSubtotal;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

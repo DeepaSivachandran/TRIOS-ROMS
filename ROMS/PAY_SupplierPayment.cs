@@ -16,13 +16,15 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataSet objDs = new DataSet();
-
+        DataTable dtPayment = new DataTable();
         private ToolTip tpcompanyname = new ToolTip();
         private ToolTip tpSuppliername = new ToolTip();
         public int varSupplierPaymentID = 0, VarPrevSupplierid = 0;
         public string varSupplierID = "", varSupplierScheduleID = "";
         public string varSupplierName="";
         public Decimal varNeftAmount = 0;
+        public string varAdvanceID = "";
+        bool varVoucherSkip = false;
         public int id = 0;
 
         public PAY_SupplierPayment()
@@ -61,7 +63,74 @@ namespace ROMS
         {
             try
             {
+                epSupplier.Clear();
+                bool blnErrorFlag = false;
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epSupplier.SetError(cmbConcern, "Please select concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcompanyname.ShowAlways = true;
+                    tpcompanyname.Show("Please select concern", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtsuppliername.Text) == "")
+                {
+                    epSupplier.SetError(txtsuppliername, "Please enter supplier name");
+                    txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSuppliername.ShowAlways = true;
+                    tpSuppliername.Show("Please enter supplier name", txtsuppliername, 5000);
+                    blnErrorFlag = true;
+                }
+                if(blnErrorFlag==false)
+                {
+                    epSupplier.Clear();
+                    btnSave.Enabled = false;
+                    udfnSave();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        public void udfnSave()
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int ViewType = 0;
 
+                if(btnSave.Text=="Save")
+                {
+                    ViewType = 0;
+                    varoriginator = "Supplier payment creation";
+                }
+                Model.TRN_Supplier_Payment objTRN_Supplier_Payment = new Model.TRN_Supplier_Payment();
+                objTRN_Supplier_Payment.ViewType = ViewType;
+                objTRN_Supplier_Payment.paraPYID = varSupplierPaymentID;
+                objTRN_Supplier_Payment.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_Supplier_Payment.paraPaymentDate = dpDate.Text;
+                objTRN_Supplier_Payment.paraRemarks = txtRemark.Text;
+                objTRN_Supplier_Payment.paraSupplierid = Convert.ToInt32(lblSupplier.Text);
+                objTRN_Supplier_Payment.paraScheduleId = Convert.ToInt32(lblschedule.Text);
+                objTRN_Supplier_Payment.paraTotalAmnt = Convert.ToInt32(lblGrandTotal.Text);
+                objTRN_Supplier_Payment.paraChequeNo = txtChequeNo.Text;
+                objTRN_Supplier_Payment.paraChequeDate = txtChequeDate.Text;
+                objTRN_Supplier_Payment.paraPaymode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                objTRN_Supplier_Payment.paraPayType = Convert.ToInt32(cmbPaymentType.SelectedValue);
+                objTRN_Supplier_Payment.paraChequeDate = txtChequeDate.Text;
+                objTRN_Supplier_Payment.paraRemarks = txtRemark.Text;
+                //objTRN_Supplier_Payment.paraSTSID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_Supplier_Payment.paraOriginator = varoriginator;
+                objTRN_Supplier_Payment.paraPayment = ;
+                varResult = objspservice.udfnSetPayment(objTRN_Supplier_Payment);
+                objspservice.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -199,7 +268,8 @@ namespace ROMS
                     txtDChequeNo.Text = "DD No.";
                     txtChequeDate.Text = "DD Date";
                 }
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 97 || Convert.ToInt32(cmbPaymentType.SelectedValue) == 98) {
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 97 || Convert.ToInt32(cmbPaymentType.SelectedValue) == 98)
+                {
                     txtChequeDate.Visible = true;
                     txtChequeNo.Visible = true;
                     dtChequeDate.Visible = true;
@@ -207,7 +277,8 @@ namespace ROMS
                     txtDChequeNo.Text = "UTR/Ref No.";
                     txtChequeDate.Text = "Transaction Date";
                 }
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 94 && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89) {
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 94 && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
+                {
                     txtChequeDate.Visible = true;
                     txtChequeNo.Visible = true;
                     dtChequeDate.Visible = true;
@@ -253,6 +324,10 @@ namespace ROMS
         {
             try
             {
+                dtPayment.TableName = "TRN_Supplier_Payment";
+                dtPayment.Columns.Add("PY_PURID", typeof(int));
+                dtPayment.Columns.Add("PY_Amount", typeof(float));
+                dtPayment.Columns.Add("PY_STSID", typeof(int));
                 udfnCmbConcern();
                 ClearSupplier();
                 dpDate.MinDate = MainForm.pbFYStartDate;
@@ -699,7 +774,7 @@ namespace ROMS
                             grdSupplierPayment.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Advance"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Pay Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]));
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Pay Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]));
                                 grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdSupplierPayment.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -708,7 +783,8 @@ namespace ROMS
                                 grdSupplierPayment.Columns["clmInvoiceAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmPayAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmReturnAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"])==0)
+                                dtPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pay Amount"]),0);
+                                if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"])==0)
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = true;
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = false;
@@ -718,12 +794,21 @@ namespace ROMS
                                     Total = GrandTot + Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value);
                                     lblGrandTotal.Text = Total.ToString("#,##0.00");
                                 }
-                                else
+                                else if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 1)
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = false;
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Style.BackColor = Color.LightGray;
                                 }
+                                else
+                                {
+                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;
+                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Style.BackColor = Color.LightGray;
+                                    DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
+                                    c.Value = "";
+                                    grdSupplierPayment.Rows[i].Cells["clmcheck"] = c;
+                                }
+
                             }
                         }
                     }
@@ -924,14 +1009,14 @@ namespace ROMS
                     string[] varvalue = varResult.Split('~');
                     if (varResult != "")
                     {
-                        txtTransactionno.Text = varvalue[0];
+                        txtTransactionNo.Text = varvalue[0];
                     }
                     else
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(75);
                         objDServ.CloseConnection();
-                        txtTransactionno.Text = "";
+                        txtTransactionNo.Text = "";
                         DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
@@ -946,7 +1031,7 @@ namespace ROMS
                 }
                 else
                 {
-                    txtTransactionno.Text = "";
+                    txtTransactionNo.Text = "";
                 }
             }
         }
@@ -954,6 +1039,7 @@ namespace ROMS
         {
             try
             {
+
                 udfnTransferNo();
             }
             catch (Exception ex)
