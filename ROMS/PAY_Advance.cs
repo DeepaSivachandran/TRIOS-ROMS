@@ -689,6 +689,9 @@ namespace ROMS
                 MainForm objMainForm = new MainForm();
                 objMainForm.udfnGetDefaultCompany();
                 udfnCmbConcern();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 if (varClose == 1)
                 {
                     this.BeginInvoke(new MethodInvoker(Close));
@@ -698,6 +701,7 @@ namespace ROMS
                     cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                     dpAdvanceDate.MinDate = MainForm.pbFYStartDate;
                     dpAdvanceDate.MaxDate = MainForm.pbCurrentDate;
+                    dtChequeDate.MinDate = MainForm.pbCurrentDate;
                     txtSupplier.Focus();
                     this.ActiveControl = txtSupplier;
                     varDateChange = 0;
@@ -810,6 +814,180 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbPaymentmode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnShowHideTextBoxes();
+                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 88) { }
+                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
+                {
+                    txtDPaymentType.Visible = true;
+                    cmbPaymentType.Visible = true;
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 OR MSTID=91", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 90)
+                {
+                    txtDPaymentType.Visible = true;
+                    cmbPaymentType.Visible = true;
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=33 OR MSTID=95", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentmode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPaymentmode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentmode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (cmbPaymentType.Visible == true)
+                    {
+                        cmbPaymentType.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentmode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentmode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPaymentmode.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPaymentType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    dtChequeDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPaymentType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemark_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemark.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemark_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemark.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnvoucheradd(object sender, EventArgs e)
         {
             try
