@@ -254,13 +254,14 @@
             // txtChequeNo
             // 
             this.txtChequeNo.Location = new System.Drawing.Point(360, 53);
-            this.txtChequeNo.MaxLength = 50;
+            this.txtChequeNo.MaxLength = 30;
             this.txtChequeNo.Name = "txtChequeNo";
             this.txtChequeNo.Size = new System.Drawing.Size(107, 28);
             this.txtChequeNo.TabIndex = 9;
             this.txtChequeNo.Visible = false;
             this.txtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
             this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown);
+            this.txtChequeNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtChequeNo_KeyPress);
             this.txtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
             // txtDPaymentType

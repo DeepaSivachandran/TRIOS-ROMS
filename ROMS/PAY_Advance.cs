@@ -19,6 +19,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpSupplier = new ToolTip();
         private ToolTip tpReceipt = new ToolTip();
+        private ToolTip tpCheque = new ToolTip();
         public string varcomid = "0";
         public int varstatus; 
         public int PbStatus=0;
@@ -93,9 +94,12 @@ namespace ROMS
                 objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedule.Text);
                 objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text);
                 objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
-                objTRN_Advance.paraPaymentType = Convert.ToInt32(cmbPaymentType.SelectedValue);
-                objTRN_Advance.paraChequeDate = dtChequeDate.Text;
-                objTRN_Advance.paraChequeNo = txtChequeNo.Text;
+                if (cmbPaymentType.Visible == true)
+                {
+                    objTRN_Advance.paraPaymentType = Convert.ToInt32(cmbPaymentType.SelectedValue);
+                    objTRN_Advance.paraChequeDate = dtChequeDate.Text;
+                    objTRN_Advance.paraChequeNo = txtChequeNo.Text;
+                }
                 objTRN_Advance.paraRemarks = txtRemark.Text;
                 objTRN_Advance.paraOriginator = varoriginator;
                 varResult = objspservice.udfnAdvance(objTRN_Advance);
@@ -124,14 +128,19 @@ namespace ROMS
                         result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (result1 == DialogResult.Yes)
                         {
+                            /*
                             string varHeader = "";
                             CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt");
-                            varHeader = "Shop Stock Request";
+                            varHeader = "Advance Receipt";
 
-                            objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(ADID));
-                            objBillreport.SetParameterValue("paraConcern", Convert.ToInt32(cmbConcern.SelectedValue));
+                            objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[0].Name.ToString());
+                            objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[1].Name.ToString());
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                             objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -142,6 +151,7 @@ namespace ROMS
                             MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                             MainForm.objReportLoad.Text = varHeader;
                             MainForm.objReportLoad.ShowDialog();
+                            */
                         }
                     }
                     catch (Exception ex)
@@ -211,6 +221,17 @@ namespace ROMS
                     tpReceipt.ShowAlways = true;
                     tpReceipt.Show("Please enter receipt no.", txtReceiptNo, 5000);
                     blnErrorFlag = true;
+                }
+                if(txtChequeNo.Visible==true)
+                {
+                    if (Convert.ToString(txtChequeNo.Text).Trim() == "")
+                    {
+                        epAdvance.SetError(txtChequeNo, "Please enter cheque no.");
+                        txtChequeNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCheque.ShowAlways = true;
+                        tpCheque.Show("Please enter cheque no.", txtChequeNo, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -745,6 +766,8 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count != 0)
                     {
+                        MainForm.objPAY_AdvanceList.picLoader.Visible = false;
+                        MainForm.objPAY_AdvanceList.picLoader.SendToBack();
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
                             cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_COMID"]);
@@ -754,14 +777,15 @@ namespace ROMS
                             txtSupplier.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
                             txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
                             cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);
-                            cmbPaymentType.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]);
-                            dtChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
-                            txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]);
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]) != "0")
+                            {
+                                cmbPaymentType.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]);
+                                dtChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
+                                txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]);
+                            }
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Remarks"]);
                             LV_Supplier.Visible = false;
                         }
-                        MainForm.objPAY_AdvanceList.picLoader.Visible = false;
-                        MainForm.objPAY_AdvanceList.picLoader.SendToBack();
                     }
                 }
                 if (PbStatus != 75)
@@ -917,7 +941,7 @@ namespace ROMS
                     }
                     else
                     {
-                        btnSave.Focus();
+                        txtRemark.Focus();
                     }
                 }
             }
@@ -1202,6 +1226,22 @@ namespace ROMS
                     txtDChequeNo.Visible = true;
                     txtDChequeNo.Text = "UTR/Ref No.";
                     txtChequeDate.Text = "Transaction Date";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
                 }
             }
             catch (Exception ex)
