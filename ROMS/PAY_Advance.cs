@@ -92,6 +92,11 @@ namespace ROMS
                 objTRN_Advance.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedule.Text);
                 objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text);
+                objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                objTRN_Advance.paraPaymentType = Convert.ToInt32(cmbPaymentType.SelectedValue);
+                objTRN_Advance.paraChequeDate = dtChequeDate.Text;
+                objTRN_Advance.paraChequeNo = txtChequeNo.Text;
+                objTRN_Advance.paraRemarks = txtRemark.Text;
                 objTRN_Advance.paraOriginator = varoriginator;
                 varResult = objspservice.udfnAdvance(objTRN_Advance);
                 objspservice.CloseConnection();
@@ -439,7 +444,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    cmbPaymentmode.Focus();
                 }
             }
             catch (Exception ex)
@@ -702,12 +707,15 @@ namespace ROMS
                     dpAdvanceDate.MinDate = MainForm.pbFYStartDate;
                     dpAdvanceDate.MaxDate = MainForm.pbCurrentDate;
                     dtChequeDate.MinDate = MainForm.pbCurrentDate;
-                    txtSupplier.Focus();
-                    this.ActiveControl = txtSupplier;
                     varDateChange = 0;
                     if (btnSave.Text == "Update")
                     {
+                        this.ActiveControl = txtAmount;
                         udfnEdit();
+                    }
+                    else
+                    {
+                        this.ActiveControl = txtSupplier;
                     }
                 }
             }
@@ -724,39 +732,43 @@ namespace ROMS
         {
             try
             {
-                if(PbStatus !=75)
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                Model.TRN_Advance objTRN_Advance = new Model.TRN_Advance();
+                objTRN_Advance.ViewType = 1;
+                objTRN_Advance.paraAdvanceId = pbADID;
+                objDs = objdserv.udfnAdvanceList(objTRN_Advance);
+                objdserv.CloseConnection();
+                //objDs = objdserv.udfnAdvanceList(1, pbADID, 0,"","",0, 0, 0);
+                //objdserv.CloseConnection();
+                if (objDs != null)
                 {
-                    SPDataService objdserv = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    Model.TRN_Advance objTRN_Advance = new Model.TRN_Advance();
-                    objTRN_Advance.ViewType = 1;
-                    objTRN_Advance.paraAdvanceId = pbADID;
-                    objDs = objdserv.udfnAdvanceList(objTRN_Advance);
-                    objdserv.CloseConnection();
-                    //objDs = objdserv.udfnAdvanceList(1, pbADID, 0,"","",0, 0, 0);
-                    //objdserv.CloseConnection();
-                    if (objDs != null)
+                    if (objDs.Tables.Count != 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_COMID"]);
-                                txtReceiptNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ReceiptNo"]);
-                                dpAdvanceDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_AdvanceDate"]);
-                                dpEntryDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_EntryDate"]);
-                                txtSupplier.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
-                                txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
-                                LV_Supplier.Visible = false;
-                                txtAmount.Focus();
-                                cmbConcern.Enabled = false;
-                                dpAdvanceDate.Enabled = false;
-                                txtSupplier.Enabled = false;
-                            }
-                            MainForm.objPAY_AdvanceList.picLoader.Visible = false;
-                            MainForm.objPAY_AdvanceList.picLoader.SendToBack();
+                            cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_COMID"]);
+                            txtReceiptNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ReceiptNo"]);
+                            dpAdvanceDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_AdvanceDate"]);
+                            dpEntryDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_EntryDate"]);
+                            txtSupplier.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
+                            txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
+                            cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);
+                            cmbPaymentType.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]);
+                            dtChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
+                            txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]);
+                            txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Remarks"]);
+                            LV_Supplier.Visible = false;
                         }
+                        MainForm.objPAY_AdvanceList.picLoader.Visible = false;
+                        MainForm.objPAY_AdvanceList.picLoader.SendToBack();
                     }
+                }
+                if (PbStatus != 75)
+                {
+                    txtSupplier.Enabled = false;
+                    cmbConcern.Enabled = false;
+                    txtAmount.Focus();
                 }
                 else
                 {
@@ -765,6 +777,10 @@ namespace ROMS
                     txtSupplier.Enabled = false;
                     txtAmount.Enabled = false;
                     btnSave.Enabled = false;
+                    grbPayment.Enabled = false;
+                    txtRemark.Enabled = false;
+                    this.ActiveControl = btnClose;
+                    btnClose.Focus();
                 }
             }
             catch (Exception ex)
@@ -819,7 +835,7 @@ namespace ROMS
         {
             try
             {
-                //udfnShowHideTextBoxes();
+                udfnShowHideTextBoxes();
                 if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 88) { }
                 if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
                 {
@@ -844,7 +860,38 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnShowHideTextBoxes()
+        {
+            try
+            {
+                txtDPaymentType.Visible = false;
+                cmbPaymentType.Visible = false;
+                udfnShowHideTextBoxes2ndlevel();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnShowHideTextBoxes2ndlevel()
+        {
+            try
+            {
+                txtChequeDate.Visible = false;
+                txtChequeNo.Visible = false;
+                dtChequeDate.Visible = false;
+                txtDChequeNo.Visible = false;
+                txtDChequeNo.Text = "";
+                txtChequeDate.Text = "";
+                txtChequeNo.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbPaymentmode_Enter(object sender, EventArgs e)
         {
             try
@@ -980,6 +1027,182 @@ namespace ROMS
             try
             {
                 txtRemark.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtChequeNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode==Keys.Enter)
+                {
+                    txtRemark.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtChequeNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRemark_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DtChequeDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dtChequeDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DtChequeDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtChequeNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DtChequeDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dtChequeDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnShowHideTextBoxes2ndlevel();
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 91)
+                {
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "Cheque No.";
+                    txtChequeDate.Text = "Cheque Date";
+                }
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 92)
+                {
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "DD No.";
+                    txtChequeDate.Text = "DD Date";
+                }
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 97 || Convert.ToInt32(cmbPaymentType.SelectedValue) == 98)
+                {
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "UTR/Ref No.";
+                    txtChequeDate.Text = "Transaction Date";
+                }
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 94 && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
+                {
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "Cheque No.";
+                    txtChequeDate.Text = "Cheque Date";
+                }
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 93 && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
+                {
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "Cheque No.";
+                    txtChequeDate.Text = "Cheque Date";
+                }
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 96 && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 90)
+                {
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "UTR/Ref No.";
+                    txtChequeDate.Text = "Transaction Date";
+                }
+                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 95 && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 90)
+                {
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "UTR/Ref No.";
+                    txtChequeDate.Text = "Transaction Date";
+                }
             }
             catch (Exception ex)
             {
