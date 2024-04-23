@@ -178,6 +178,8 @@ namespace ROMS
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static PAY_ChequePrint objPAY_ChequePrint;
         public static PAY_DebitNoteList objPAY_DebitNoteList;
+        public static PAY_AdvanceList objPAY_AdvanceList;
+        public static PAY_Advance objPAY_Advance;
 
         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;
@@ -1990,6 +1992,23 @@ namespace ROMS
                 {
                     DisablePageControls(true);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void AdvanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_AdvanceList = new PAY_AdvanceList();
+                MainForm.objPAY_AdvanceList.MdiParent = this;
+                MainForm.objPAY_AdvanceList.Show();
             }
             catch (Exception ex)
             {

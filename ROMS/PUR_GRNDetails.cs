@@ -45,6 +45,7 @@ namespace ROMS
         public int varOrderType = 0;
         public double varDVA = 0;
         public string varProducts = "";
+        public int varDateEnable = 0;
         List<int> varProductsIDs = new List<int>();
         public PUR_GRNDetails()
         {
@@ -1598,7 +1599,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDate.Focus();
+                    if (txtDate.Enabled == true)
+                    {
+                        txtDate.Focus();
+                    }
+                    else
+                    {
+                        if(txtBatchno.Enabled==true)
+                        {
+                            txtBatchno.Focus();
+                        }
+                        else
+                        {
+                            btnAdd.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -2115,11 +2130,6 @@ namespace ROMS
                 if (varUpDownKey == 0)
                 {
                     int paraViewType = 0; string PRID = "0";
-                    if (varProducts != "")
-                    {
-                        var strings1 = varProductsIDs.Select(xx => xx);
-                        PRID = (string.Join(",", strings1));
-                    }
                     txtBatchno.BackColor = SystemColors.Control;
                     string varProductsCodes = "0";
                     //lvproduct.Items.Clear();
@@ -2138,6 +2148,12 @@ namespace ROMS
                         {
                             GRNID = Convert.ToInt32(pbGRNId);
                             paraViewType = 59;
+
+                            if (varProducts != "")
+                            {
+                                var strings1 = varProductsIDs.Select(xx => xx);
+                                PRID = (string.Join(",", strings1));
+                            }
                         }
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = paraViewType;
@@ -4198,7 +4214,14 @@ namespace ROMS
                                 //string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
                                 grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), varPendingQty,varExcessQuantity,Convert.ToInt32(cmbQtyType.SelectedValue) ,Convert.ToDecimal(mrp), (varExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal);
-
+                                if (varDateEnable == 1)
+                                {
+                                    DataGridView dataGridView = grdGrnlist;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmexpirydate"];
+                                    cell.Style.BackColor = Color.LightGray;
+                                    cell.Style.ForeColor = Color.Black;
+                                    cell.ReadOnly = true;
+                                }
                                 if (varProducts == "")
                                 {
                                     varProducts = Convert.ToString(lblProductcode.Text);
@@ -4824,6 +4847,7 @@ namespace ROMS
             {
                 if (txtProductName.Text != "")
                 {
+                    varDateEnable = 0;
                     txtmrprate.Text = "";
                     txtDate.Text = "";
                     txtMonth.Text = "";
@@ -4850,7 +4874,26 @@ namespace ROMS
                     varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                     if (varShelflife == 1)
-                    { expirydateFlag = 1; }
+                    {
+                        expirydateFlag = 1;
+                        txtDate.ReadOnly = false;
+                        txtMonth.ReadOnly = false;
+                        txtYear.ReadOnly = false;
+                        txtDate.Enabled = true;
+                        txtMonth.Enabled = true;
+                        txtYear.Enabled = true;
+                    }
+                    else
+                    {
+                        expirydateFlag = 0;
+                        txtDate.ReadOnly = true;
+                        txtMonth.ReadOnly = true;
+                        txtYear.ReadOnly = true;
+                        txtDate.Enabled = false;
+                        txtMonth.Enabled = false;
+                        txtYear.Enabled = false;
+                        varDateEnable = 1;
+                    }
                     udfnProductAdd();
 
                     if (Convert.ToInt32(varBatchNo) == 73)  //disabled
@@ -5174,6 +5217,11 @@ namespace ROMS
                                         , Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[3].Rows[i]["newproflag"])
                                         , Convert.ToString(objDs.Tables[3].Rows[i]["PO_Qty"]), Convert.ToString(objDs.Tables[3].Rows[i]["MST_DisplayText"])
                                         );
+                                        if (Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]) == "0")
+                                        {
+                                            grdGrnlist.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
+                                            grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                                        }
                                         if (varProducts == "")
                                         {
                                             varProducts = Convert.ToString(grdGrnlist.Rows[i].Cells["clmProid"].Value);

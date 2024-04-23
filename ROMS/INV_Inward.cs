@@ -1360,6 +1360,14 @@ namespace ROMS
                         grdInward.Columns["clmactualqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmshelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        if (varDateEnable == 1)
+                        {
+                            DataGridView dataGridView = grdInward;
+                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmexpirydate"];
+                            cell.Style.BackColor = Color.LightGray;
+                            cell.Style.ForeColor = Color.Black;
+                            cell.ReadOnly = true;
+                        }
                         udfnProductClear();
                         txtProductName.Focus();
                         txtProductName.Text = "";
@@ -2969,6 +2977,7 @@ namespace ROMS
                 }
                 else
                 {
+                    expirydateFlag = 0;
                     txtDay.ReadOnly = true;
                     txtMonth.ReadOnly = true;
                     txtYear.ReadOnly = true;
@@ -3289,14 +3298,21 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
-                                object shelflife=objDs.Tables[1].Rows[i]["Shelflifeper"];
-                                if (Convert.ToDouble(shelflife) < 0)
+                                if (Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]) != "")
                                 {
-                                    objDs.Tables[1].Rows[i]["Shelflifeper"] = "0";
+                                    object shelflife = objDs.Tables[1].Rows[i]["Shelflifeper"];
+                                    if (Convert.ToDouble(shelflife) < 0)
+                                    {
+                                        objDs.Tables[1].Rows[i]["Shelflifeper"] = "0";
+                                    }
                                 }
                                 grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLifeFlag"]), Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]),
                                 Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]));
+                                if (Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]) == "")
+                                {
+                                    objDs.Tables[1].Rows[i]["Shelflifeper"] = "0";
+                                }
                                 dtInward.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeValue"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLifeType"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]));
                                 grdInward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmtransferqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -3305,45 +3321,43 @@ namespace ROMS
                                 grdInward.Columns["clmshelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                                if(Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"])=="0")
+                                if (Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]) == "0")
                                 {
                                     grdInward.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
                                     grdInward.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
                                 }
-                                else
+                                if (Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]) != "")
                                 {
-                                    grdInward.Rows[i].Cells["clmexpirydate"].ReadOnly = false;
+                                    string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
+                                    if (varShelflifeper[0] != "")
+                                    {
+                                        if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                        {
+                                            DataGridView dataGridView = grdInward;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                            cell.Style.BackColor = Color.Orange;
+                                            cell.Style.ForeColor = Color.Black;
+                                            txtORPercentageCheck.Enabled = true;
+                                            lblFivetyPercentage.Enabled = true;
+                                        }
+                                        else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                        {
+                                            DataGridView dataGridView = grdInward;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                            cell.Style.BackColor = Color.Red;
+                                            cell.Style.ForeColor = Color.White;
+                                            txtRDPercentageCheck.Enabled = true;
+                                            lbltwentyfiveper.Enabled = true;
+                                        }
+                                        else
+                                        {
+                                            DataGridView dataGridView = grdInward;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                            cell.Style.BackColor = Color.White;
+                                            cell.Style.ForeColor = Color.Black;
+                                        }
+                                    }
                                 }
-
-                                string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
-                                if (varShelflifeper[0] != "")
-                                {
-                                    if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
-                                    {
-                                        DataGridView dataGridView = grdInward;
-                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
-                                        cell.Style.BackColor = Color.Orange;
-                                        cell.Style.ForeColor = Color.Black;
-                                        txtORPercentageCheck.Enabled = true;
-                                        lblFivetyPercentage.Enabled = true;
-                                    }
-                                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
-                                    {
-                                        DataGridView dataGridView = grdInward;
-                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
-                                        cell.Style.BackColor = Color.Red;
-                                        cell.Style.ForeColor = Color.White;
-                                        txtRDPercentageCheck.Enabled = true;
-                                        lbltwentyfiveper.Enabled = true;
-                                    }
-                                    else
-                                    {
-                                        DataGridView dataGridView = grdInward;
-                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
-                                        cell.Style.BackColor = Color.White;
-                                        cell.Style.ForeColor = Color.Black;
-                                    }
-                                } 
                             }
                         }
                     }

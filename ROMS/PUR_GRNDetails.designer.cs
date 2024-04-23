@@ -258,8 +258,9 @@
             this.tsbPO.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.tsbPO.Name = "tsbPO";
             this.tsbPO.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPO.Size = new System.Drawing.Size(146, 24);
-            this.tsbPO.Text = "Remaining Products :& &  & & & &";
+            this.tsbPO.Size = new System.Drawing.Size(136, 24);
+            this.tsbPO.Text = "Remaing Products :& &  & & & &";
+            this.tsbPO.ToolTipText = "Remaing Products :";
             this.tsbPO.Click += new System.EventHandler(this.TsbPO_Click);
             // 
             // tss2
@@ -280,6 +281,7 @@
             this.tsbAdded.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbAdded.Size = new System.Drawing.Size(120, 24);
             this.tsbAdded.Text = "&Added Products :& & & & & &";
+            this.tsbAdded.ToolTipText = "&Added Products :";
             // 
             // tss1
             // 

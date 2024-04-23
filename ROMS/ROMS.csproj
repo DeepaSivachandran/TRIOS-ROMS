@@ -167,6 +167,19 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Advance.cs" />
+    <Compile Include="PAY_Advance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_Advance.designer.cs">
+      <DependentUpon>PAY_Advance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_AdvanceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_AdvanceList.designer.cs">
+      <DependentUpon>PAY_AdvanceList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financial_Year_Process.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1597,6 +1610,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\Unapprove.jpg" />
     <None Include="Resources\Move Color.png" />
     <None Include="Resources\Settings Color.png" />
     <None Include="Resources\Settings.png" />
@@ -1610,6 +1624,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_Advance.resx">
+      <DependentUpon>PAY_Advance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_AdvanceList.resx">
+      <DependentUpon>PAY_AdvanceList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financial_Year_Process.resx">
       <DependentUpon>Financial_Year_Process.cs</DependentUpon>
