@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsAdvanceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -49,6 +49,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.lblschedleCode = new System.Windows.Forms.Label();
@@ -63,10 +64,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdAdvanceList = new System.Windows.Forms.DataGridView();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnExport = new System.Windows.Forms.Button();
             this.tsAdvanceList.SuspendLayout();
             this.pnlunitlist.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -190,6 +190,8 @@
             this.LV_Supplier.UseCompatibleStateImageBehavior = false;
             this.LV_Supplier.View = System.Windows.Forms.View.Details;
             this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
             // 
             // columnHeader5
             // 
@@ -224,6 +226,20 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // btnExport
+            // 
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(1110, 25);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(34, 33);
+            this.btnExport.TabIndex = 1111185;
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
+            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
             // label5
             // 
@@ -351,6 +367,7 @@
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
             this.dpFromDate.Leave += new System.EventHandler(this.DpFromDate_Leave);
@@ -372,33 +389,33 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle13;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -420,14 +437,14 @@
             this.grdAdvanceList.AllowUserToResizeRows = false;
             this.grdAdvanceList.BackgroundColor = System.Drawing.Color.White;
             this.grdAdvanceList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdAdvanceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdAdvanceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.grdAdvanceList.ColumnHeadersHeight = 30;
             this.grdAdvanceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdAdvanceList.ColumnHeadersVisible = false;
@@ -440,9 +457,9 @@
             this.grdAdvanceList.ReadOnly = true;
             this.grdAdvanceList.RowHeadersVisible = false;
             this.grdAdvanceList.RowHeadersWidth = 100;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.White;
-            this.grdAdvanceList.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            this.grdAdvanceList.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.grdAdvanceList.RowTemplate.Height = 25;
             this.grdAdvanceList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdAdvanceList.Size = new System.Drawing.Size(1348, 510);
@@ -451,6 +468,13 @@
             this.grdAdvanceList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUnitList_Scroll);
             this.grdAdvanceList.DoubleClick += new System.EventHandler(this.GrdAdvanceList_DoubleClick);
             this.grdAdvanceList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdAdvanceList_KeyDown);
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
             // 
             // lblNoRecordsFound
             // 
@@ -478,27 +502,6 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1110, 25);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(34, 33);
-            this.btnExport.TabIndex = 1111185;
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
-            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
-            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
             // PAY_AdvanceList
             // 

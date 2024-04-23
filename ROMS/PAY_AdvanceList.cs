@@ -169,6 +169,7 @@ namespace ROMS
                 objTRN_Advance.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRN_Advance.paraFromDate = dpFromDate.Text;
                 objTRN_Advance.paraToDate = dpToDate.Text;
+                objTRN_Advance.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedleCode.Text);
                 objTRN_Advance.paraStatusID = Convert.ToInt32(cmbstatus.SelectedValue);
                 objDs = objspservice.udfnAdvanceList(objTRN_Advance);
@@ -186,6 +187,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdAdvanceList.DataSource = objDs.Tables[0];
 
+                            grdAdvanceList.Columns["clmPrint"].Visible = true;
                             grdAdvanceList.Columns["ADID"].Visible = false;
                             grdAdvanceList.Columns["AD_COMID"].Visible = false;
                             grdAdvanceList.Columns["AD_SPID"].Visible = false;
@@ -195,8 +197,11 @@ namespace ROMS
                             grdAdvanceList.Columns["Status"].Width = 80;
                             grdAdvanceList.Columns["Transaction Date"].Width = 120;
                             grdAdvanceList.Columns["Supplier Name"].Width = 350;
+                            grdAdvanceList.Columns["GSTIN"].Width = 150;
+                            grdAdvanceList.Columns["clmPrint"].Width = 50;
                             grdAdvanceList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAdvanceList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdAdvanceList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAdvanceList.Columns["Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
@@ -243,6 +248,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["AD_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 150;
                 DGV_SearchGrid.Columns["Transaction Date"].Width = 120;
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 350; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -698,6 +704,38 @@ namespace ROMS
             {
                 LV_Supplier.Visible = false;
                 lblschedleCode.Focus();
+                if (Convert.ToString(txtSupplier.Text).Trim() != "")
+                {
+                    //txtSupplier.BackColor = Color.White;
+                    string[] values = new string[0];
+                    string varSupplierId = "0";
+                    Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                    objMR_Supplier.ViewType = 23;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                        }
+                    }
+                    lblSupplierCode.Text = values[0];
+                    lblschedleCode.Text = values[1];
+                    txtSupplier.BackColor = Color.White;
+                }
+                else
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedleCode.Text = "0";
+                }
                 udfnList();
             }
             catch (Exception ex)
@@ -1230,6 +1268,83 @@ namespace ROMS
             {
                 btnExport.Enabled = true;
                 btnExport.Focus();
+            }
+        }
+
+        private void DpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
+                dpToDate.MaxDate = varmaxdate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LV_Supplier_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnListViewData();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LV_Supplier_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnListViewData();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnListViewData()
+        {
+            try
+            {
+                if (txtSupplier.Text != "")
+                {
+                    ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
+                    txtSupplier.Text = selectedItem.SubItems[0].Text;
+                    lblSupplierCode.Text = selectedItem.SubItems[1].Text;
+                    lblschedleCode.Text = selectedItem.SubItems[2].Text;
+                    //varSuppliervalue = selectedItem.SubItems[3].Text;
+                    //udfnsupplierLoad();
+                }
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    cmbConcern.Focus();
+                    cmbConcern.BackColor = Color.LemonChiffon;
+                }
+                else
+                {
+                    cmbstatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                LV_Supplier.Visible = false;
             }
         }
     }

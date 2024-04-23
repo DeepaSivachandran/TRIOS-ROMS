@@ -16,6 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        DataSet objDs = new DataSet();
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpSupplier = new ToolTip();
         private ToolTip tpReceipt = new ToolTip();
@@ -24,6 +25,7 @@ namespace ROMS
         public int varstatus; 
         public int PbStatus=0;
         public int varUpdate = 0;
+        public decimal varNeftAmount = 0;
         public int pbADID = 0,varDateChange=0, varClose = 0, varCloseFlag=0;
         bool varVoucherSkip = false;
         public PAY_Advance()
@@ -109,9 +111,17 @@ namespace ROMS
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
+                    string varAmountInWords = "";
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     try
                     {
+                        if(txtAmount.Text.Trim()!="")
+                        {
+                            decimal varMRP = Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                            txtAmount.Text = string.Format("{0:0}", varMRP);
+                            int varAmount = Convert.ToInt32(txtAmount.Text);
+                            varAmountInWords = Currency.NumbersToWords(varAmount);
+                        }
                         string ADID = "0";
                         if (pbADID == 0)
                         {
@@ -451,6 +461,7 @@ namespace ROMS
                 string AMT = string.Format("{0:0.00}", varInvoiceAMT);
                 string AMT1 = string.Format("{0:G29}", decimal.Parse(AMT));
                 txtAmount.Text = AMT;
+                udfnCheckAmt();
             }
             catch (Exception ex)
             {
@@ -716,8 +727,8 @@ namespace ROMS
                 objMainForm.udfnGetDefaultCompany();
                 udfnCmbConcern();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 AND MSTID IN (88,89)", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID"); objDataBind = null;
+                udfnGeneralSettingsList();
                 if (varClose == 1)
                 {
                     this.BeginInvoke(new MethodInvoker(Close));
@@ -747,6 +758,30 @@ namespace ROMS
             }
             finally
             {
+            }
+        }
+        public void udfnGeneralSettingsList()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnGeneralSettingList(0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            varNeftAmount = Convert.ToDecimal(objDs.Tables[0].Rows[0]["GS_NEFT_Amount"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnEdit()
@@ -857,32 +892,7 @@ namespace ROMS
 
         private void CmbPaymentmode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                udfnShowHideTextBoxes();
-                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 88) { }
-                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
-                {
-                    txtDPaymentType.Visible = true;
-                    cmbPaymentType.Visible = true;
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 OR MSTID=91", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
-                    objDataBind = null;
-                }
-                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 90)
-                {
-                    txtDPaymentType.Visible = true;
-                    cmbPaymentType.Visible = true;
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=33 OR MSTID=95", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
-                    objDataBind = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            udfnCheckAmt();
         }
         public void udfnShowHideTextBoxes()
         {
@@ -909,6 +919,35 @@ namespace ROMS
                 txtDChequeNo.Text = "";
                 txtChequeDate.Text = "";
                 txtChequeNo.Text = "";
+                dtChequeDate.Value = MainForm.pbCurrentDate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCheckAmt()
+        {
+            try
+            {
+                udfnShowHideTextBoxes();
+                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89 && (Convert.ToDecimal(txtAmount.Text) < varNeftAmount))
+                {
+                    txtDPaymentType.Visible = true;
+                    cmbPaymentType.Visible = true;
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 AND MSTID IN(91,94)", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else if ((Convert.ToDecimal(txtAmount.Text) >= varNeftAmount) && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
+                {
+                    txtDPaymentType.Visible = true;
+                    cmbPaymentType.Visible = true;
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 AND MSTID IN(91,93)", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
             }
             catch (Exception ex)
             {
@@ -1161,6 +1200,7 @@ namespace ROMS
 
         private void CmbPaymentType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             try
             {
                 udfnShowHideTextBoxes2ndlevel();
@@ -1233,6 +1273,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            
         }
 
         private void TxtChequeNo_KeyPress(object sender, KeyPressEventArgs e)

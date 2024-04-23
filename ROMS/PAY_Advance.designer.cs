@@ -128,9 +128,9 @@
             this.columnHeader6});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(140, 106);
+            this.LV_Supplier.Location = new System.Drawing.Point(139, 104);
             this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(329, 109);
+            this.LV_Supplier.Size = new System.Drawing.Size(335, 120);
             this.LV_Supplier.TabIndex = 1111209;
             this.LV_Supplier.UseCompatibleStateImageBehavior = false;
             this.LV_Supplier.View = System.Windows.Forms.View.Details;
@@ -189,9 +189,10 @@
             this.txtDPaymentMode.Enabled = false;
             this.txtDPaymentMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtDPaymentMode.Location = new System.Drawing.Point(10, 27);
+            this.txtDPaymentMode.Multiline = true;
             this.txtDPaymentMode.Name = "txtDPaymentMode";
             this.txtDPaymentMode.ReadOnly = true;
-            this.txtDPaymentMode.Size = new System.Drawing.Size(122, 27);
+            this.txtDPaymentMode.Size = new System.Drawing.Size(122, 28);
             this.txtDPaymentMode.TabIndex = 1111221;
             this.txtDPaymentMode.TabStop = false;
             this.txtDPaymentMode.Text = "Payment Mode";
@@ -202,9 +203,10 @@
             this.txtDChequeNo.Enabled = false;
             this.txtDChequeNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtDChequeNo.Location = new System.Drawing.Point(238, 54);
+            this.txtDChequeNo.Multiline = true;
             this.txtDChequeNo.Name = "txtDChequeNo";
             this.txtDChequeNo.ReadOnly = true;
-            this.txtDChequeNo.Size = new System.Drawing.Size(122, 27);
+            this.txtDChequeNo.Size = new System.Drawing.Size(122, 28);
             this.txtDChequeNo.TabIndex = 1111219;
             this.txtDChequeNo.TabStop = false;
             this.txtDChequeNo.Text = "Cheque No";
@@ -216,9 +218,10 @@
             this.txtChequeDate.Enabled = false;
             this.txtChequeDate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtChequeDate.Location = new System.Drawing.Point(238, 27);
+            this.txtChequeDate.Multiline = true;
             this.txtChequeDate.Name = "txtChequeDate";
             this.txtChequeDate.ReadOnly = true;
-            this.txtChequeDate.Size = new System.Drawing.Size(122, 27);
+            this.txtChequeDate.Size = new System.Drawing.Size(122, 28);
             this.txtChequeDate.TabIndex = 1111220;
             this.txtChequeDate.TabStop = false;
             this.txtChequeDate.Text = "Cheque Date";
@@ -240,7 +243,7 @@
             // cmbPaymentType
             // 
             this.cmbPaymentType.FormattingEnabled = true;
-            this.cmbPaymentType.Location = new System.Drawing.Point(132, 53);
+            this.cmbPaymentType.Location = new System.Drawing.Point(132, 54);
             this.cmbPaymentType.Name = "cmbPaymentType";
             this.cmbPaymentType.Size = new System.Drawing.Size(107, 28);
             this.cmbPaymentType.TabIndex = 7;
@@ -253,7 +256,7 @@
             // 
             // txtChequeNo
             // 
-            this.txtChequeNo.Location = new System.Drawing.Point(360, 53);
+            this.txtChequeNo.Location = new System.Drawing.Point(360, 54);
             this.txtChequeNo.MaxLength = 30;
             this.txtChequeNo.Name = "txtChequeNo";
             this.txtChequeNo.Size = new System.Drawing.Size(107, 28);
@@ -270,9 +273,10 @@
             this.txtDPaymentType.Enabled = false;
             this.txtDPaymentType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtDPaymentType.Location = new System.Drawing.Point(10, 54);
+            this.txtDPaymentType.Multiline = true;
             this.txtDPaymentType.Name = "txtDPaymentType";
             this.txtDPaymentType.ReadOnly = true;
-            this.txtDPaymentType.Size = new System.Drawing.Size(122, 27);
+            this.txtDPaymentType.Size = new System.Drawing.Size(122, 28);
             this.txtDPaymentType.TabIndex = 1111222;
             this.txtDPaymentType.TabStop = false;
             this.txtDPaymentType.Text = "Payment Type";
@@ -331,9 +335,10 @@
             this.txtConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConcern.Location = new System.Drawing.Point(17, 24);
             this.txtConcern.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtConcern.Multiline = true;
             this.txtConcern.Name = "txtConcern";
             this.txtConcern.ReadOnly = true;
-            this.txtConcern.Size = new System.Drawing.Size(122, 28);
+            this.txtConcern.Size = new System.Drawing.Size(122, 27);
             this.txtConcern.TabIndex = 1111214;
             this.txtConcern.Text = "Concern";
             // 
@@ -374,10 +379,11 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(139, 79);
+            this.txtSupplier.Location = new System.Drawing.Point(139, 77);
             this.txtSupplier.MaxLength = 150;
+            this.txtSupplier.Multiline = true;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(335, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(335, 28);
             this.txtSupplier.TabIndex = 4;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -389,7 +395,7 @@
             this.dpEntryDate.CustomFormat = "dd/MM/yyyy";
             this.dpEntryDate.Enabled = false;
             this.dpEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpEntryDate.Location = new System.Drawing.Point(367, 51);
+            this.dpEntryDate.Location = new System.Drawing.Point(367, 50);
             this.dpEntryDate.Name = "dpEntryDate";
             this.dpEntryDate.Size = new System.Drawing.Size(107, 28);
             this.dpEntryDate.TabIndex = 3;
@@ -398,7 +404,7 @@
             // 
             this.dpAdvanceDate.CustomFormat = "dd/MM/yyyy";
             this.dpAdvanceDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpAdvanceDate.Location = new System.Drawing.Point(139, 51);
+            this.dpAdvanceDate.Location = new System.Drawing.Point(139, 50);
             this.dpAdvanceDate.Name = "dpAdvanceDate";
             this.dpAdvanceDate.Size = new System.Drawing.Size(107, 28);
             this.dpAdvanceDate.TabIndex = 2;
@@ -410,7 +416,7 @@
             this.txtDEntryDate.BackColor = System.Drawing.SystemColors.Control;
             this.txtDEntryDate.Enabled = false;
             this.txtDEntryDate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEntryDate.Location = new System.Drawing.Point(245, 51);
+            this.txtDEntryDate.Location = new System.Drawing.Point(245, 50);
             this.txtDEntryDate.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDEntryDate.Name = "txtDEntryDate";
             this.txtDEntryDate.ReadOnly = true;
@@ -423,7 +429,7 @@
             this.txtDSupplier.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSupplier.Enabled = false;
             this.txtDSupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDSupplier.Location = new System.Drawing.Point(17, 78);
+            this.txtDSupplier.Location = new System.Drawing.Point(17, 77);
             this.txtDSupplier.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDSupplier.Name = "txtDSupplier";
             this.txtDSupplier.ReadOnly = true;
@@ -436,7 +442,7 @@
             this.txtDAdvanceDate.BackColor = System.Drawing.SystemColors.Control;
             this.txtDAdvanceDate.Enabled = false;
             this.txtDAdvanceDate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDAdvanceDate.Location = new System.Drawing.Point(17, 51);
+            this.txtDAdvanceDate.Location = new System.Drawing.Point(17, 50);
             this.txtDAdvanceDate.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDAdvanceDate.Name = "txtDAdvanceDate";
             this.txtDAdvanceDate.ReadOnly = true;
@@ -447,11 +453,12 @@
             // txtAmount
             // 
             this.txtAmount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmount.Location = new System.Drawing.Point(139, 105);
+            this.txtAmount.Location = new System.Drawing.Point(139, 103);
             this.txtAmount.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtAmount.MaxLength = 10;
+            this.txtAmount.MaxLength = 8;
+            this.txtAmount.Multiline = true;
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(107, 28);
+            this.txtAmount.Size = new System.Drawing.Size(107, 29);
             this.txtAmount.TabIndex = 5;
             this.txtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
             this.txtAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAmount_KeyDown);
@@ -498,7 +505,7 @@
             this.txtAdvanceAmt.BackColor = System.Drawing.SystemColors.Control;
             this.txtAdvanceAmt.Enabled = false;
             this.txtAdvanceAmt.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdvanceAmt.Location = new System.Drawing.Point(17, 105);
+            this.txtAdvanceAmt.Location = new System.Drawing.Point(17, 104);
             this.txtAdvanceAmt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtAdvanceAmt.Name = "txtAdvanceAmt";
             this.txtAdvanceAmt.ReadOnly = true;
