@@ -173,6 +173,7 @@ namespace ROMS
         public static PUR_POScheduleSummary objPUR_POScheduleSummary;
         public static PUR_GRN_Level_Verified objPUR_GRN_Level_Verified;
         public static PO_Details objPO_Details;
+        public static PUR_RemainingProductList objPUR_RemainingProductList;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;

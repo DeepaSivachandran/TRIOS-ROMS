@@ -158,10 +158,11 @@ namespace ROMS
 
         public void udfnAddGRN()
         {
-            try {
+            try
+            {
                 //{
                 int VARFLAG = 0;
-                string GRNno = "0", varGRNQRCode="";
+                string GRNno = "0", varGRNQRCode="" , varProCount="0";
                 MainForm.objCP_Purchase.pbGRNNo = "0";
                 //if(QRFlag==1)
                 //{
@@ -182,12 +183,16 @@ namespace ROMS
                             GRNno = GRNno + ',' + Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
                         }
                         varGRNQRCode= Convert.ToString(grdGRNDetails.Rows[i].Cells["QRCode"].Value);
+                        varProCount = Convert.ToString(grdGRNDetails.Rows[i].Cells["Total Products"].Value);
                     }
                 }
                 if (VARFLAG != 0)
                 { 
                     MainForm.objCP_Purchase.pbGRNNo = GRNno;
                     MainForm.objCP_Purchase.pbQRCode = varGRNQRCode;
+                    MainForm.objCP_Purchase.varGRNProCount = varProCount;
+                    MainForm.objCP_Purchase.lbltotProduct.Text = varProCount;
+                    MainForm.objCP_Purchase.lblRemainProduct.Text = varProCount;
                     this.Close();
                 }
                 else
