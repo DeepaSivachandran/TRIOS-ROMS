@@ -1293,7 +1293,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPAY_Advance_Popup = new PAY_Advance_Popup();
+                MainForm.objPAY_Advance_Popup = new PAY_ADV();
                 MainForm.objPAY_Advance_Popup.ShowDialog();
             }
             catch (Exception ex)

@@ -11,28 +11,20 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class PAY_Advance_Popup : Form
+    public partial class PAY_ADV : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtAdvance = new DataTable();
 
-        public PAY_Advance_Popup()
+        public PAY_ADV()
         {
             InitializeComponent();
         }
 
-        private void BtnClo_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            udfnclose();
         }
         public void udfnclose()
         {
@@ -49,12 +41,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void PAY_Advance_Popup_Load(object sender, EventArgs e)
+        } 
+        private void INV_GRNPODamaged_Load(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 udfnList();
             }
             catch (Exception ex)
@@ -63,6 +54,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         public void udfnList()
         {
             try
@@ -96,15 +88,15 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count != 0)
                     {
-                        lblNoRecordFound.Visible = false;
+                        lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
                             grdAdvance.DataSource = null;
-                            lblNoRecordFound.Visible = false;
-                            lblNoRecordFound.SendToBack();
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                dtAdvance.Rows.Add(false,  objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], objDs.Tables[0].Rows[i]["Advance Amount"]);
+                                dtAdvance.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], objDs.Tables[0].Rows[i]["Advance Amount"]);
                             }
                             grdAdvance.DataSource = dtAdvance;
                             grdAdvance.Columns[0].HeaderText = "";
@@ -121,21 +113,98 @@ namespace ROMS
                         }
                         else
                         {
-                            lblNoRecordFound.Visible = true;
-                            lblNoRecordFound.BringToFront();
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
-                        lblNoRecordFound.Visible = true;
-                        lblNoRecordFound.BringToFront();
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
                     }
                 }
                 else
                 {
-                    lblNoRecordFound.Visible = true;
-                    lblNoRecordFound.BringToFront();
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnOk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            } 
+        }
+        
+        private void INV_GRNPODamaged_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            { 
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnselectall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                foreach (DataGridViewRow row in grdAdvance.Rows)
+                {
+                    row.Cells[0].Value = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnunselectall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                foreach (DataGridViewRow row in grdAdvance.Rows)
+                {
+                    row.Cells[0].Value = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PAY_ADV_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
             }
             catch (Exception ex)
             {

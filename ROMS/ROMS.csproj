@@ -191,13 +191,13 @@
     <Compile Include="CP_ProductApprovalList.designer.cs">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\TRN_Advance.cs" />
-    <Compile Include="PAY_Advance_Popup.cs">
+    <Compile Include="PAY_ADV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PAY_Advance_Popup.designer.cs">
-      <DependentUpon>PAY_Advance_Popup.cs</DependentUpon>
+    <Compile Include="PAY_ADV.designer.cs">
+      <DependentUpon>PAY_ADV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Advance.cs" />
     <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
     <Compile Include="Model\TRN_Item_Movement_Analysis.cs" />
     <Compile Include="Model\TRN_Supplier_Payment.cs" />
@@ -1625,8 +1625,8 @@
     <EmbeddedResource Include="CP_ProductApprovalList.resx">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PAY_Advance_Popup.resx">
-      <DependentUpon>PAY_Advance_Popup.cs</DependentUpon>
+    <EmbeddedResource Include="PAY_ADV.resx">
+      <DependentUpon>PAY_ADV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseEntryApproval.resx">
       <DependentUpon>PUR_PurchaseEntryApproval.cs</DependentUpon>
