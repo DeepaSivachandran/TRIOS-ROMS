@@ -503,6 +503,13 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_PAY_Advance_Receipt.cs">
+      <DependentUpon>RPT_PAY_Advance_Receipt.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_ReturnDC_SupplierWise.cs">
       <DependentUpon>RPT_PUR_ReturnDC_SupplierWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2198,6 +2205,11 @@
     <EmbeddedResource Include="Reports\RPT_PAY_Advance-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PAY_Advance-SubReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PAY_Advance_Receipt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PAY_Advance_Receipt.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_ReturnDC_SupplierWise.rpt">

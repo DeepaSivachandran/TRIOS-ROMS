@@ -138,15 +138,16 @@ namespace ROMS
                         result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (result1 == DialogResult.Yes)
                         {
-                            /*
                             string varHeader = "";
                             CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt");
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_Advance_Receipt.rpt");
                             varHeader = "Advance Receipt";
 
                             objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[0].Name.ToString());
+                            objBillreport.SetParameterValue("paraAmountName", Convert.ToString(varAmountInWords), objBillreport.Subreports[0].Name.ToString());
                             objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[1].Name.ToString());
+                            objBillreport.SetParameterValue("paraAmountName", Convert.ToString(varAmountInWords), objBillreport.Subreports[1].Name.ToString());
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
@@ -161,7 +162,6 @@ namespace ROMS
                             MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                             MainForm.objReportLoad.Text = varHeader;
                             MainForm.objReportLoad.ShowDialog();
-                            */
                         }
                     }
                     catch (Exception ex)

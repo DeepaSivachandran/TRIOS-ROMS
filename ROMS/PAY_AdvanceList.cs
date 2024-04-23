@@ -1347,5 +1347,73 @@ namespace ROMS
                 LV_Supplier.Visible = false;
             }
         }
+
+        private void GrdAdvanceList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdAdvanceList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            try
+                            {
+                                int ADID = 0;string varAmountInWords = "";
+                                ADID = Convert.ToInt32((grdAdvanceList.SelectedRows[0].Cells["ADID"].Value.ToString()));
+                                string varAmountvalue = Convert.ToString((grdAdvanceList.SelectedRows[0].Cells["Amount"].Value.ToString()));
+                                decimal varMRP = Math.Round(Convert.ToDecimal(varAmountvalue), 2, MidpointRounding.AwayFromZero);
+                                varAmountvalue = string.Format("{0:0}", varMRP);
+                                int varAmount = Convert.ToInt32(varAmountvalue);
+                                varAmountInWords = Currency.NumbersToWords(varAmount);
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_Advance_Receipt.rpt");
+                                    varHeader = "Advance Receipt";
+
+                                    objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraAmountName", Convert.ToString(varAmountInWords), objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraAmountName", Convert.ToString(varAmountInWords), objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
