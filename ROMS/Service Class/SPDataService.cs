@@ -3473,6 +3473,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraChequeDate", objTRN_Advance.paraChequeDate);
                 varSqlCommand.Parameters.AddWithValue("@paraChequeNo", objTRN_Advance.paraChequeNo);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_Advance.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraBankId", objTRN_Advance.paraBankId);
+                varSqlCommand.Parameters.AddWithValue("@paraModeOfIssue", objTRN_Advance.paraModeOfIssue);
+                varSqlCommand.Parameters.AddWithValue("@paraIssueDetails", objTRN_Advance.paraIssueDetails);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_Advance.paraStatusID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Advance.paraOriginator);

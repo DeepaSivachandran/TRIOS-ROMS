@@ -21,6 +21,7 @@ namespace ROMS
         private ToolTip tpSupplier = new ToolTip();
         private ToolTip tpReceipt = new ToolTip();
         private ToolTip tpCheque = new ToolTip();
+        private ToolTip tpIssue = new ToolTip();
         public string varcomid = "0";
         public string varSupplierID = "", varSupplierScheduleID = "", varSupplierName = "";
         public int varstatus; 
@@ -78,7 +79,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnCompanyList(12, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objDT = objdserv.udfnCompanyList(12, Convert.ToInt32(cmbConcern.SelectedValue), MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();
                 cmbPaymentmode.DataSource = null;
                 if (objDT != null)
@@ -124,12 +125,30 @@ namespace ROMS
                 objTRN_Advance.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedule.Text);
                 objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text);
-                objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
                 if (cmbPaymentType.Visible == true)
                 {
                     objTRN_Advance.paraPaymentType = Convert.ToInt32(cmbPaymentType.SelectedValue);
                     objTRN_Advance.paraChequeDate = dtChequeDate.Text;
                     objTRN_Advance.paraChequeNo = txtChequeNo.Text;
+                }
+                if(Convert.ToInt32(cmbPaymentmode.SelectedValue)!=88)
+                {
+                    objTRN_Advance.paraBankId =Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                    objTRN_Advance.paraPaymentMode = 89;
+                }
+                else
+                {
+                    objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                }
+                objTRN_Advance.paraModeOfIssue =Convert.ToInt32(cmbIssueMode.SelectedValue);
+                if(Convert.ToInt32(cmbIssueMode.SelectedValue)==-1)
+                {
+                    objTRN_Advance.paraStatusID = 74;
+                }
+                else
+                {
+                    objTRN_Advance.paraIssueDetails = txtIssue.Text;
+                    objTRN_Advance.paraStatusID = 80;
                 }
                 objTRN_Advance.paraRemarks = txtRemark.Text;
                 objTRN_Advance.paraOriginator = varoriginator;
@@ -272,8 +291,20 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
+                if(Convert.ToInt32(cmbIssueMode.SelectedValue)!=-1)
+                {
+                    if (Convert.ToString(txtIssue.Text).Trim() == "")
+                    {
+                        epAdvance.SetError(txtIssue, "Please enter mode of issue");
+                        txtIssue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIssue.ShowAlways = true;
+                        tpIssue.Show("Please enter mode of issue", txtIssue, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
+                    epAdvance.Clear();
                     btnSave.Enabled = false;
                     udfnSave(sender, e);
                 }
@@ -377,30 +408,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void PAY_Advance_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                if (varUpdate == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -486,11 +493,15 @@ namespace ROMS
             try
             {
                 txtAmount.BackColor = Color.White;
-                decimal varInvoiceAMT = Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero);
-                string AMT = string.Format("{0:0.00}", varInvoiceAMT);
-                string AMT1 = string.Format("{0:G29}", decimal.Parse(AMT));
-                txtAmount.Text = AMT;
+                txtAmount.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
                 udfnCheckAmt();
+                if (txtAmount.Text.Trim() != "")
+                {
+                    decimal varMRP = Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                    string varAmt = string.Format("{0:0}", varMRP);
+                    int varAmount = Convert.ToInt32(varAmt);
+                    txtAmountInWords.Text = Currency.NumbersToWords(varAmount);
+                }
             }
             catch (Exception ex)
             {
@@ -752,6 +763,8 @@ namespace ROMS
                             varReturnApplicable = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnType = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURNCYCLEID"].ToString());
                             lblReturn.Text = objDs.Tables[0].Rows[0]["RETURNAPPLICABLE"].ToString();
+                            lblContactNo.Text = objDs.Tables[0].Rows[0]["Mobile No"].ToString();
+                            lblEmailId.Text = objDs.Tables[0].Rows[0]["Email"].ToString();
                         }
                         if (objDs.Tables[8].Rows.Count > 0)
                         {
@@ -783,6 +796,7 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 //In this Event call only on Form Load Event ==> concern changed wise show popup message multiple times not handled
                 udfnvoucherload(sender, e);
+                udfnPaymentMode();
             }
             catch (Exception ex)
             {
@@ -833,7 +847,7 @@ namespace ROMS
                     varDateChange = 0;
                     if (btnSave.Text == "Update")
                     {
-                        this.ActiveControl = txtAmount;
+                        this.ActiveControl = cmbIssueMode;
                         udfnEdit();
                     }
                     else
@@ -904,26 +918,42 @@ namespace ROMS
                             lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPID"]);
                             lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPSCID"]);
                             txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
-                            cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]) == "88")
+                            {
+                                cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);
+                            }
+                            else
+                            {
+                                cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_CMBNK_ID"]);
+                            }
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]) != "0")
                             {
                                 cmbPaymentType.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]);
                                 dtChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
                                 txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]);
                             }
+                            cmbIssueMode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["AD_ModeOfIssue"]);
+                            txtIssue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ModeOfIssue_Details"]);
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Remarks"]);
+                            if (txtAmount.Text.Trim() != "")
+                            {
+                                decimal varMRP = Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                                string varAmt = string.Format("{0:0}", varMRP);
+                                int varAmount = Convert.ToInt32(varAmt);
+                                txtAmountInWords.Text = Currency.NumbersToWords(varAmount);
+                            }
                             LV_Supplier.Visible = false;
                             udfnsupplierLoad();
                         }
                     }
                 }
-                if (PbStatus != 75)
+                if (PbStatus == 74 || PbStatus == 80)
                 {
                     txtSupplier.Enabled = false;
                     cmbConcern.Enabled = false;
-                    txtAmount.Focus();
+                    cmbIssueMode.Focus();
                 }
-                else
+                if (PbStatus == 75)
                 {
                     cmbConcern.Enabled = false;
                     dpAdvanceDate.Enabled = false;
@@ -933,6 +963,8 @@ namespace ROMS
                     grbPayment.Enabled = false;
                     txtRemark.Enabled = false;
                     grbSupplierDetails.Enabled = false;
+                    grbBankDetails.Enabled = false;
+                    grbIssuedDetails.Enabled = false;
                     this.ActiveControl = btnClose;
                     btnClose.Focus();
                 }
@@ -1075,7 +1107,7 @@ namespace ROMS
                     }
                     else
                     {
-                        txtRemark.Focus();
+                        cmbIssueMode.Focus();
                     }
                 }
             }
@@ -1212,7 +1244,7 @@ namespace ROMS
             {
                 if (e.KeyCode==Keys.Enter)
                 {
-                    txtRemark.Focus();
+                    cmbIssueMode.Focus();
                 }
             }
             catch (Exception ex)
@@ -1297,7 +1329,124 @@ namespace ROMS
         {
             if(Convert.ToInt32(cmbIssueMode.SelectedValue)==-1)
             {
+                txtTypeName.Visible = false;
+                txtIssue.Visible = false;
+            }
+            if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 221 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 223)
+            {
+                txtTypeName.Visible = true;
+                txtIssue.Visible = true;
+                txtTypeName.Text = "Person Name";
+            }
+            if(Convert.ToInt32(cmbIssueMode.SelectedValue)==222)
+            {
+                txtTypeName.Visible = true;
+                txtIssue.Visible = true;
+                txtTypeName.Text = "Courier No.";
+            }
+        }
 
+        private void CmbIssueMode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbIssueMode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbIssueMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if(txtIssue.Visible==true)
+                    {
+                        txtIssue.Focus();
+                    }
+                    else
+                    {
+                        txtRemark.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbIssueMode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbIssueMode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbIssueMode.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssue_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIssue.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssue_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtRemark.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssue_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIssue.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

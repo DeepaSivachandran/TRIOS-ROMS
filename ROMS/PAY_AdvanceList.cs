@@ -138,10 +138,11 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objPAY_Advance = new PAY_Advance();
+                    MainForm.objPAY_Advance.MdiParent = ParentForm;
                     MainForm.objPAY_Advance.btnSave.Text = "Update";
                     MainForm.objPAY_Advance.pbADID = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
                     MainForm.objPAY_Advance.PbStatus = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["AD_STSID"].Value);
-                    MainForm.objPAY_Advance.ShowDialog();
+                    MainForm.objPAY_Advance.Show();
                 }
             }
             catch (Exception ex)
@@ -779,12 +780,17 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdAdvanceList.Rows[i].Cells["AD_STSID"].Value) == "75")
                     {
-                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Green;
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if(Convert.ToString(grdAdvanceList.Rows[i].Cells["AD_STSID"].Value) == "80")
+                    {
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     else
                     {
-                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     grdAdvanceList.ClearSelection();
