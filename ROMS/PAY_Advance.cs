@@ -22,6 +22,7 @@ namespace ROMS
         private ToolTip tpReceipt = new ToolTip();
         private ToolTip tpCheque = new ToolTip();
         public string varcomid = "0";
+        public string varSupplierID = "", varSupplierScheduleID = "", varSupplierName = "";
         public int varstatus; 
         public int PbStatus=0;
         public int varUpdate = 0;
@@ -678,6 +679,7 @@ namespace ROMS
                 {
                     txtAmount.Focus();
                 }
+                udfnsupplierLoad();
             }
             catch (Exception ex)
             {
@@ -687,6 +689,53 @@ namespace ROMS
             finally
             {
                 LV_Supplier.Visible = false;
+            }
+        }
+        public void udfnsupplierLoad()
+        {
+            try
+            {
+                //pbSupplierpend = 0;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                varSupplierID = lblSupplierCode.Text;
+                varSupplierScheduleID = lblschedule.Text;
+                varSupplierName = txtSupplier.Text;
+                if (lblSupplierCode.Text.Length > 0)
+                {
+                    int varReturnApplicable = 0, varReturnType = 0;
+                    Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                    objMR_Supplier.ViewType = 16;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
+                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
+                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
+                            lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
+                            lblSupplierOrderpolicy.Text = "Return Policy - " + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
+                            varReturnApplicable = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURN"].ToString());
+                            varReturnType = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURNCYCLEID"].ToString());
+                            lblReturn.Text = objDs.Tables[0].Rows[0]["RETURNAPPLICABLE"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
 
@@ -810,6 +859,8 @@ namespace ROMS
                             dpAdvanceDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_AdvanceDate"]);
                             dpEntryDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_EntryDate"]);
                             txtSupplier.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
+                            lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPID"]);
+                            lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPSCID"]);
                             txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
                             cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]) != "0")
@@ -820,6 +871,7 @@ namespace ROMS
                             }
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Remarks"]);
                             LV_Supplier.Visible = false;
+                            udfnsupplierLoad();
                         }
                     }
                 }
@@ -838,6 +890,7 @@ namespace ROMS
                     btnSave.Enabled = false;
                     grbPayment.Enabled = false;
                     txtRemark.Enabled = false;
+                    grbSupplierDetails.Enabled = false;
                     this.ActiveControl = btnClose;
                     btnClose.Focus();
                 }
