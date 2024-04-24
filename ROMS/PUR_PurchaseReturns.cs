@@ -86,6 +86,8 @@ namespace ROMS
                 lblSalesmanName.Text = "";
                 lblMobileNo.Text = "";
                 lblWhatsAppNo.Text = "";
+                lblInvoiceDate.Text = "";
+                lblInvoiceNo.Text = "";
                 grdRepDetails.DataSource = null;
             }
             catch (Exception ex)
@@ -828,6 +830,13 @@ namespace ROMS
                                     txtAmount.Text = objDs.Tables[2].Rows[0]["PURREDC_Amnt"].ToString();
                                     dpCreditNoteDate.Text = objDs.Tables[2].Rows[0]["PURREDC_CNDate"].ToString();
                                 }
+                            }
+                            if (objDs.Tables[3].Rows.Count > 0)
+                            {
+                                if (objDs.Tables[3].Rows[0]["InvoiceNo"].ToString() != "")
+                                { lblInvoiceNo.Text = "Invoice No. - " + objDs.Tables[3].Rows[0]["InvoiceNo"].ToString(); }
+                                if (objDs.Tables[3].Rows[0]["InvoiceDate"].ToString() != "")
+                                { lblInvoiceDate.Text = "Invoice Date - " + objDs.Tables[3].Rows[0]["InvoiceDate"].ToString(); }
                             }
                         }
                     }
