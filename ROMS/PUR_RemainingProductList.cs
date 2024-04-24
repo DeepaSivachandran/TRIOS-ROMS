@@ -65,7 +65,7 @@ namespace ROMS
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 60;
                 objMR_Product.paraId = 1;
-                objMR_Product.paraFlag = 1;
+                objMR_Product.paraFlag = varFlag;
                 objMR_Product.ParaGRNID = pbGRNid;
                 objMR_Product.ParaPOID = pbPOid;
                 objMR_Product.ParaDCID = pbDCid;
@@ -84,7 +84,7 @@ namespace ROMS
                             grdPODetails.BringToFront();
                             grdPODetails.DataSource = objDs.Tables[0];
                             grdPODetails.Columns["PRID"].Visible = false;
-                            grdPODetails.Columns["Product Name"].Width = 500;
+                            grdPODetails.Columns["Product Name"].Width = 200;
                             grdPODetails.Columns["PI Code"].Width = 120;
                             grdPODetails.Columns["Unit"].Width = 60;
                             grdPODetails.Columns["S.No."].Width = 60;
