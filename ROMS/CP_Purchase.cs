@@ -4025,7 +4025,7 @@ namespace ROMS
                         }
                     }
                 }
-                if (expirydateFlag == 1)
+                if (varShelflife == 1)
                 {
                     if (txtMonth.Text.Trim() == "")
                     {
@@ -4242,9 +4242,13 @@ namespace ROMS
                                 {
                                     grdSupplierList.Rows[maxSno].ReadOnly = true;
                                 }
-                                    decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
-                                string mrp = string.Format("{0:0.00}", varMRP);
-                                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                                decimal varMRP = 0; string mrp = "", mrp1 = "";
+                                if (txtMrp.Text.Trim() != "")
+                                {
+                                     varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                                     mrp = string.Format("{0:0.00}", varMRP);
+                                     mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                                }
                                 dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text, varRackId, expirydateFlag, invFlag);
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text));
                                 udfnrowclear();
@@ -4361,6 +4365,7 @@ namespace ROMS
                 txtYear.Enabled = true;
                 txtBatchno.Enabled = true;
                 txtSourceLocation.Enabled = true;
+                txtMrp.Enabled = true;
                 cmbrack.Enabled = true;
                 cmbrack.DataSource = null;
             }
@@ -7874,6 +7879,19 @@ namespace ROMS
 
         }
 
+        private void CmbPONo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnrowclear();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtRemarks_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -10414,7 +10432,18 @@ namespace ROMS
                     varHSNid = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PR_HSNID"].Value);
 
                     if (varShelflife == 1)
-                    { expirydateFlag = 1; }
+                    {
+                        expirydateFlag = 1;
+                        txtMonth.Enabled = true;
+                        txtDate.Enabled = true;
+                        txtYear.Enabled = true;
+                    }
+                    else
+                    {
+                        txtMonth.Enabled = false;
+                        txtDate.Enabled = false;
+                        txtYear.Enabled = false;
+                    }
                     udfnProductAdd();
                     if (varPOdropdownFlag == 1)
                     {
@@ -10432,8 +10461,10 @@ namespace ROMS
                         varPrInvFlag = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["InvFlag"].Value);
                         varPrslid = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["Slid"].Value);
                         varPrRkid = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["Rkid"].Value);
-                        //varId = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["ID"].Value);
-                     
+                        if (Convert.ToInt32(cmbPONo.SelectedValue) == 218) //GRN
+                        {
+                            varId = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["ID"].Value);
+                        }
                         txtBatchno.Text = varPrBatch;
                         txtMrp.Text = varPrMRP;
                         txtDate.Text = varPrDate;
@@ -10843,6 +10874,8 @@ namespace ROMS
                                         //DGV_FilterProduct.Columns["Month"].Visible = false;
                                         //DGV_FilterProduct.Columns["Year"].Visible = false;
                                     }
+                                    if (Convert.ToInt32(cmbPONo.SelectedValue) == 218) //GRN
+                                    { DGV_FilterProduct.Columns["ID"].Visible = false; }
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 340;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 340;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
