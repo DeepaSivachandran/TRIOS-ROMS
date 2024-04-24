@@ -3462,6 +3462,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierid", objTRN_Supplier_Payment.paraSupplierid);
                 varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_Supplier_Payment.paraScheduleId);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_Supplier_Payment.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_Supplier_Payment.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaToDate", objTRN_Supplier_Payment.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_Supplier_Payment.paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
@@ -3573,6 +3575,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraTotalAmnt", objTRN_Supplier_Payment.paraTotalAmnt);
                 varSqlCommand.Parameters.AddWithValue("@paraSTSID", objTRN_Supplier_Payment.paraSTSID);
                 varSqlCommand.Parameters.AddWithValue("@paraAdvanceID", objTRN_Supplier_Payment.paraAdvanceID);
+                varSqlCommand.Parameters.AddWithValue("@paraSubTotal", objTRN_Supplier_Payment.paraSubTotal);
+                varSqlCommand.Parameters.AddWithValue("@paraAdvanceAmnt", objTRN_Supplier_Payment.paraAdvanceAmnt);              
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Supplier_Payment.paraOriginator);

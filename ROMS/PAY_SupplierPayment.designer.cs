@@ -221,9 +221,11 @@
             // 
             // btnAdvance
             // 
+            this.btnAdvance.Image = global::ROMS.Properties.Resources.Advance;
+            this.btnAdvance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdvance.Location = new System.Drawing.Point(10, 99);
             this.btnAdvance.Name = "btnAdvance";
-            this.btnAdvance.Size = new System.Drawing.Size(75, 29);
+            this.btnAdvance.Size = new System.Drawing.Size(89, 29);
             this.btnAdvance.TabIndex = 111111139;
             this.btnAdvance.Text = "Advance";
             this.btnAdvance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

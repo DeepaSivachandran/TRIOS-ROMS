@@ -26,7 +26,11 @@ namespace ROMS.Model
         public decimal paraTotalAmnt { get; set; } = 0;
         public int paraSTSID { get; set; } = 0;
         public int paraID { get; set; } = 0;
+        public decimal paraAdvanceAmnt { get; set; } = 0;
+        public decimal paraSubTotal { get; set; } = 0;
         public string paraAdvanceID { get; set; } = "";
+        public string ParaToDate { get; set; } = "";
+        public string paraFromDate { get; set; } = "";
         public DataTable paraPayment { get; set; } = null;
     }
 }

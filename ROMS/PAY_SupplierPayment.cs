@@ -132,6 +132,7 @@ namespace ROMS
                         dtPayment.Rows.Add(Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value), Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value), varStatusID);
                     }
                 }
+
                 Model.TRN_Supplier_Payment objTRN_Supplier_Payment = new Model.TRN_Supplier_Payment();
                 objTRN_Supplier_Payment.ViewType = ViewType;
                 objTRN_Supplier_Payment.paraPYID = varSupplierPaymentID;
@@ -146,6 +147,9 @@ namespace ROMS
                 objTRN_Supplier_Payment.paraPayType = Convert.ToInt32(cmbPaymentType.SelectedValue);
                 objTRN_Supplier_Payment.paraChequeDate = dtChequeDate.Text;
                 objTRN_Supplier_Payment.paraRemarks = txtRemark.Text;
+                objTRN_Supplier_Payment.paraAdvanceAmnt = Convert.ToDecimal(lblAdvance.Text);
+                objTRN_Supplier_Payment.paraSubTotal = Convert.ToDecimal(lblSubtotal.Text);
+                objTRN_Supplier_Payment.paraRemarks = txtRemark.Text;
                 objTRN_Supplier_Payment.paraSTSID = varStatusID;
                 objTRN_Supplier_Payment.paraOriginator = varoriginator;
                 objTRN_Supplier_Payment.paraPayment = dtPayment;
@@ -157,7 +161,7 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.ActiveControl = txtsuppliername;
-                    //MainForm.objINV_GodownOutwardList.udfnList();
+                    MainForm.objPAY_SupplierPaymentList.udfnList();
                     //udfnClear();
                     this.Close();
                 }

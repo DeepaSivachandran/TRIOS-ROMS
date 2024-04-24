@@ -2428,6 +2428,7 @@
     <None Include="Resources\Db Restore Color.png" />
     <None Include="Resources\Db backup Color.png" />
     <None Include="Resources\Clear Transaction Color.png" />
+    <None Include="Resources\Advance.jpg" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">
