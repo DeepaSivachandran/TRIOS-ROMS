@@ -30,8 +30,8 @@ namespace ROMS
             try
             {
                 MainForm.objPAY_Advance = new PAY_Advance();
-                MainForm.objPAY_Advance.FormBorderStyle = FormBorderStyle.FixedSingle;
-                MainForm.objPAY_Advance.ShowDialog();
+                MainForm.objPAY_Advance.MdiParent = this.ParentForm;
+                MainForm.objPAY_Advance.Show();
             }
             catch (Exception ex)
             {
