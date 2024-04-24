@@ -23,9 +23,10 @@ namespace ROMS.Model
         public string paraChequeDate { get; set; } = "";
         public string paraChequeNo { get; set; } = "";
         public int paraPYID { get; set; } = 0;
-        public int paraTotalAmnt { get; set; } = 0;
+        public decimal paraTotalAmnt { get; set; } = 0;
         public int paraSTSID { get; set; } = 0;
         public int paraID { get; set; } = 0;
+        public string paraAdvanceID { get; set; } = "";
         public DataTable paraPayment { get; set; } = null;
     }
 }

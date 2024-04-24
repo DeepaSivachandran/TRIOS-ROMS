@@ -109,7 +109,7 @@ namespace ROMS
                             grdAdvance.Columns["Advance Date"].ReadOnly = true;
                             grdAdvance.Columns["Advance Amount"].ReadOnly = true;
                             grdAdvance.Columns["ADID"].ReadOnly = true;
-                            grdAdvance.Columns["ADID"].Visible = true;
+                            grdAdvance.Columns["ADID"].Visible = false;
                             grdAdvance.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -157,7 +157,10 @@ namespace ROMS
             {
                 int VARFLAG = 0;
                 string AdvID = "0";
+                decimal varGrandTotal = 0;
+                decimal varAdvanceAmnt = 0;
                 MainForm.objPAY_SupplierPayment.varAdvanceID = "0";
+                MainForm.objPAY_SupplierPayment.lblAdvance.Text = "0";
                 for (int i = 0; i < grdAdvance.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdAdvance.Rows[i].Cells[0].Value) == true)
@@ -166,16 +169,21 @@ namespace ROMS
                         if (AdvID == "0")
                         {
                             AdvID = Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
+                            varAdvanceAmnt = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
                         }
                         else
                         {
                             AdvID = AdvID + ',' + Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
+                            varAdvanceAmnt = varAdvanceAmnt + Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
                         }
                     }
                 }
                 if (VARFLAG != 0)
                 {
                     MainForm.objPAY_SupplierPayment.varAdvanceID = AdvID;
+                    MainForm.objPAY_SupplierPayment.lblAdvance.Text = Convert.ToString(varAdvanceAmnt);
+                    varGrandTotal = Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblSubtotal.Text) - Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblAdvance.Text);
+                    MainForm.objPAY_SupplierPayment.lblGrandTotal.Text = Convert.ToString(varGrandTotal);
                     this.Close();
                 }
                 else
