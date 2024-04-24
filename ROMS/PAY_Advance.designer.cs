@@ -32,6 +32,33 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PAY_Advance));
             this.txtDReceiptN0 = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTypeName = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.cmbIssueMode = new System.Windows.Forms.ComboBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txtAccName = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtBankShortName = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtbranchname = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.txtIFScode = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtAccno = new System.Windows.Forms.TextBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.txtBankname = new System.Windows.Forms.TextBox();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
             this.lblReturn = new System.Windows.Forms.Label();
@@ -41,14 +68,6 @@
             this.lblsupplierGST = new System.Windows.Forms.Label();
             this.lblSupplierCity = new System.Windows.Forms.Label();
             this.lblSuppliername = new System.Windows.Forms.Label();
-            this.LV_Supplier = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbPayment = new System.Windows.Forms.GroupBox();
             this.txtDPaymentMode = new System.Windows.Forms.TextBox();
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
@@ -70,7 +89,6 @@
             this.txtDEntryDate = new System.Windows.Forms.TextBox();
             this.txtDSupplier = new System.Windows.Forms.TextBox();
             this.txtDAdvanceDate = new System.Windows.Forms.TextBox();
-            this.txtAmount = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtAdvanceAmt = new System.Windows.Forms.TextBox();
@@ -79,32 +97,16 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.txtAccName = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtBankShortName = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.txtbranchname = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.txtIFScode = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.txtAccno = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.txtBankname = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtTypeName = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.cmbIssueMode = new System.Windows.Forms.ComboBox();
+            this.lblContactNo = new System.Windows.Forms.Label();
+            this.lblEmailId = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.grbSupplierDetails.SuspendLayout();
             this.grbPayment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epAdvance)).BeginInit();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDReceiptN0
@@ -153,120 +155,227 @@
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
-            // txtSupplier
+            // groupBox1
             // 
-            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(139, 77);
-            this.txtSupplier.MaxLength = 150;
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(335, 27);
-            this.txtSupplier.TabIndex = 12345348;
-            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
-            this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
-            this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
-            this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
+            this.groupBox1.Controls.Add(this.txtTypeName);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.cmbIssueMode);
+            this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(489, 218);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(358, 91);
+            this.groupBox1.TabIndex = 12345357;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Issue Details";
             // 
-            // grbSupplierDetails
+            // txtTypeName
             // 
-            this.grbSupplierDetails.Controls.Add(this.lblReturn);
-            this.grbSupplierDetails.Controls.Add(this.lblSupplierOrderpolicy);
-            this.grbSupplierDetails.Controls.Add(this.lblsupplierpayment);
-            this.grbSupplierDetails.Controls.Add(this.lblsupplierScheduletype);
-            this.grbSupplierDetails.Controls.Add(this.lblsupplierGST);
-            this.grbSupplierDetails.Controls.Add(this.lblSupplierCity);
-            this.grbSupplierDetails.Controls.Add(this.lblSuppliername);
-            this.grbSupplierDetails.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbSupplierDetails.Location = new System.Drawing.Point(489, 17);
-            this.grbSupplierDetails.Name = "grbSupplierDetails";
-            this.grbSupplierDetails.Size = new System.Drawing.Size(209, 122);
-            this.grbSupplierDetails.TabIndex = 12345347;
-            this.grbSupplierDetails.TabStop = false;
-            this.grbSupplierDetails.Text = "Supplier Details";
+            this.txtTypeName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtTypeName.Enabled = false;
+            this.txtTypeName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtTypeName.Location = new System.Drawing.Point(6, 53);
+            this.txtTypeName.Name = "txtTypeName";
+            this.txtTypeName.ReadOnly = true;
+            this.txtTypeName.Size = new System.Drawing.Size(150, 27);
+            this.txtTypeName.TabIndex = 12345360;
+            this.txtTypeName.Text = "Person Name";
             // 
-            // lblReturn
+            // textBox1
             // 
-            this.lblReturn.AutoSize = true;
-            this.lblReturn.BackColor = System.Drawing.Color.White;
-            this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReturn.Location = new System.Drawing.Point(166, 88);
-            this.lblReturn.Name = "lblReturn";
-            this.lblReturn.Size = new System.Drawing.Size(37, 16);
-            this.lblReturn.TabIndex = 1111207;
-            this.lblReturn.Text = "Return";
-            this.lblReturn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblReturn.Visible = false;
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox1.Location = new System.Drawing.Point(6, 27);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(150, 27);
+            this.textBox1.TabIndex = 12345359;
+            this.textBox1.Text = "Mode of Issue";
             // 
-            // lblSupplierOrderpolicy
+            // textBox3
             // 
-            this.lblSupplierOrderpolicy.AutoSize = true;
-            this.lblSupplierOrderpolicy.BackColor = System.Drawing.Color.White;
-            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(6, 98);
-            this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
-            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(61, 16);
-            this.lblSupplierOrderpolicy.TabIndex = 1111206;
-            this.lblSupplierOrderpolicy.Text = "Order policy";
-            this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.textBox3.Location = new System.Drawing.Point(156, 52);
+            this.textBox3.MaxLength = 30;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(193, 28);
+            this.textBox3.TabIndex = 12345358;
             // 
-            // lblsupplierpayment
+            // cmbIssueMode
             // 
-            this.lblsupplierpayment.AutoSize = true;
-            this.lblsupplierpayment.BackColor = System.Drawing.Color.White;
-            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsupplierpayment.Location = new System.Drawing.Point(6, 81);
-            this.lblsupplierpayment.Name = "lblsupplierpayment";
-            this.lblsupplierpayment.Size = new System.Drawing.Size(46, 16);
-            this.lblsupplierpayment.TabIndex = 1111205;
-            this.lblsupplierpayment.Text = "Payment";
-            this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.cmbIssueMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbIssueMode.FormattingEnabled = true;
+            this.cmbIssueMode.Items.AddRange(new object[] {
+            "Inperson",
+            "Mail",
+            "WhatsApp",
+            "Phone",
+            "Mobile App"});
+            this.cmbIssueMode.Location = new System.Drawing.Point(156, 27);
+            this.cmbIssueMode.Name = "cmbIssueMode";
+            this.cmbIssueMode.Size = new System.Drawing.Size(193, 27);
+            this.cmbIssueMode.TabIndex = 12345357;
             // 
-            // lblsupplierScheduletype
+            // groupBox5
             // 
-            this.lblsupplierScheduletype.AutoSize = true;
-            this.lblsupplierScheduletype.BackColor = System.Drawing.Color.White;
-            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsupplierScheduletype.Location = new System.Drawing.Point(6, 65);
-            this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
-            this.lblsupplierScheduletype.Size = new System.Drawing.Size(70, 16);
-            this.lblsupplierScheduletype.TabIndex = 1111204;
-            this.lblsupplierScheduletype.Text = "Schedule Type";
-            this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.groupBox5.Controls.Add(this.textBox13);
+            this.groupBox5.Controls.Add(this.txtAccName);
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.txtBankShortName);
+            this.groupBox5.Controls.Add(this.textBox8);
+            this.groupBox5.Controls.Add(this.txtbranchname);
+            this.groupBox5.Controls.Add(this.textBox15);
+            this.groupBox5.Controls.Add(this.txtIFScode);
+            this.groupBox5.Controls.Add(this.textBox7);
+            this.groupBox5.Controls.Add(this.txtAccno);
+            this.groupBox5.Controls.Add(this.textBox19);
+            this.groupBox5.Controls.Add(this.txtBankname);
+            this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(853, 17);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(281, 195);
+            this.groupBox5.TabIndex = 12345349;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Supplier Bank Details";
             // 
-            // lblsupplierGST
+            // textBox13
             // 
-            this.lblsupplierGST.AutoSize = true;
-            this.lblsupplierGST.BackColor = System.Drawing.Color.White;
-            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsupplierGST.Location = new System.Drawing.Point(6, 46);
-            this.lblsupplierGST.Name = "lblsupplierGST";
-            this.lblsupplierGST.Size = new System.Drawing.Size(21, 16);
-            this.lblsupplierGST.TabIndex = 1111203;
-            this.lblsupplierGST.Text = "gst";
-            this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.textBox13.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox13.Enabled = false;
+            this.textBox13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox13.Location = new System.Drawing.Point(6, 104);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
+            this.textBox13.Size = new System.Drawing.Size(100, 27);
+            this.textBox13.TabIndex = 1111142;
+            this.textBox13.Text = "Account Name";
             // 
-            // lblSupplierCity
+            // txtAccName
             // 
-            this.lblSupplierCity.AutoSize = true;
-            this.lblSupplierCity.BackColor = System.Drawing.Color.White;
-            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSupplierCity.Location = new System.Drawing.Point(6, 30);
-            this.lblSupplierCity.Name = "lblSupplierCity";
-            this.lblSupplierCity.Size = new System.Drawing.Size(25, 16);
-            this.lblSupplierCity.TabIndex = 1111202;
-            this.lblSupplierCity.Text = "city";
-            this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.txtAccName.Enabled = false;
+            this.txtAccName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtAccName.Location = new System.Drawing.Point(106, 104);
+            this.txtAccName.MaxLength = 20;
+            this.txtAccName.Name = "txtAccName";
+            this.txtAccName.ReadOnly = true;
+            this.txtAccName.Size = new System.Drawing.Size(165, 27);
+            this.txtAccName.TabIndex = 20;
             // 
-            // lblSuppliername
+            // textBox2
             // 
-            this.lblSuppliername.AutoSize = true;
-            this.lblSuppliername.BackColor = System.Drawing.Color.White;
-            this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuppliername.Location = new System.Drawing.Point(6, 13);
-            this.lblSuppliername.Name = "lblSuppliername";
-            this.lblSuppliername.Size = new System.Drawing.Size(46, 17);
-            this.lblSuppliername.TabIndex = 1111201;
-            this.lblSuppliername.Text = "supplier";
-            this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox2.Location = new System.Drawing.Point(6, 50);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(100, 27);
+            this.textBox2.TabIndex = 1111140;
+            this.textBox2.Text = "Bank Short Name";
+            // 
+            // txtBankShortName
+            // 
+            this.txtBankShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBankShortName.Enabled = false;
+            this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBankShortName.Location = new System.Drawing.Point(106, 50);
+            this.txtBankShortName.MaxLength = 20;
+            this.txtBankShortName.Name = "txtBankShortName";
+            this.txtBankShortName.ReadOnly = true;
+            this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
+            this.txtBankShortName.TabIndex = 18;
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox8.Location = new System.Drawing.Point(6, 77);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(100, 27);
+            this.textBox8.TabIndex = 1111138;
+            this.textBox8.Text = "Branch Name";
+            // 
+            // txtbranchname
+            // 
+            this.txtbranchname.Enabled = false;
+            this.txtbranchname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtbranchname.Location = new System.Drawing.Point(106, 77);
+            this.txtbranchname.MaxLength = 50;
+            this.txtbranchname.Name = "txtbranchname";
+            this.txtbranchname.ReadOnly = true;
+            this.txtbranchname.Size = new System.Drawing.Size(165, 27);
+            this.txtbranchname.TabIndex = 19;
+            // 
+            // textBox15
+            // 
+            this.textBox15.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox15.Enabled = false;
+            this.textBox15.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox15.Location = new System.Drawing.Point(6, 158);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.ReadOnly = true;
+            this.textBox15.Size = new System.Drawing.Size(100, 27);
+            this.textBox15.TabIndex = 200000;
+            this.textBox15.Text = "IFS Code";
+            // 
+            // txtIFScode
+            // 
+            this.txtIFScode.Enabled = false;
+            this.txtIFScode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtIFScode.Location = new System.Drawing.Point(106, 158);
+            this.txtIFScode.MaxLength = 11;
+            this.txtIFScode.Name = "txtIFScode";
+            this.txtIFScode.ReadOnly = true;
+            this.txtIFScode.Size = new System.Drawing.Size(165, 27);
+            this.txtIFScode.TabIndex = 22;
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox7.Enabled = false;
+            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox7.Location = new System.Drawing.Point(6, 131);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(100, 27);
+            this.textBox7.TabIndex = 20000;
+            this.textBox7.Text = "Acc. No.";
+            // 
+            // txtAccno
+            // 
+            this.txtAccno.Enabled = false;
+            this.txtAccno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtAccno.Location = new System.Drawing.Point(106, 131);
+            this.txtAccno.MaxLength = 20;
+            this.txtAccno.Name = "txtAccno";
+            this.txtAccno.ReadOnly = true;
+            this.txtAccno.Size = new System.Drawing.Size(165, 27);
+            this.txtAccno.TabIndex = 21;
+            // 
+            // textBox19
+            // 
+            this.textBox19.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox19.Enabled = false;
+            this.textBox19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox19.Location = new System.Drawing.Point(6, 23);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.ReadOnly = true;
+            this.textBox19.Size = new System.Drawing.Size(100, 27);
+            this.textBox19.TabIndex = 200000;
+            this.textBox19.Text = "Bank Name";
+            // 
+            // txtBankname
+            // 
+            this.txtBankname.Enabled = false;
+            this.txtBankname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBankname.Location = new System.Drawing.Point(106, 23);
+            this.txtBankname.MaxLength = 50;
+            this.txtBankname.Name = "txtBankname";
+            this.txtBankname.ReadOnly = true;
+            this.txtBankname.Size = new System.Drawing.Size(165, 27);
+            this.txtBankname.TabIndex = 17;
             // 
             // LV_Supplier
             // 
@@ -317,6 +426,132 @@
             // columnHeader6
             // 
             this.columnHeader6.Width = 10;
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmount.Location = new System.Drawing.Point(139, 103);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtAmount.MaxLength = 8;
+            this.txtAmount.Multiline = true;
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(107, 41);
+            this.txtAmount.TabIndex = 5;
+            this.txtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
+            this.txtAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAmount_KeyDown);
+            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAmount_KeyPress);
+            this.txtAmount.Leave += new System.EventHandler(this.TxtAmount_Leave);
+            // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(139, 77);
+            this.txtSupplier.MaxLength = 150;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(335, 27);
+            this.txtSupplier.TabIndex = 12345348;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
+            this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
+            this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
+            this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
+            // 
+            // grbSupplierDetails
+            // 
+            this.grbSupplierDetails.Controls.Add(this.lblEmailId);
+            this.grbSupplierDetails.Controls.Add(this.lblContactNo);
+            this.grbSupplierDetails.Controls.Add(this.lblReturn);
+            this.grbSupplierDetails.Controls.Add(this.lblSupplierOrderpolicy);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierpayment);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierScheduletype);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierGST);
+            this.grbSupplierDetails.Controls.Add(this.lblSupplierCity);
+            this.grbSupplierDetails.Controls.Add(this.lblSuppliername);
+            this.grbSupplierDetails.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbSupplierDetails.Location = new System.Drawing.Point(489, 17);
+            this.grbSupplierDetails.Name = "grbSupplierDetails";
+            this.grbSupplierDetails.Size = new System.Drawing.Size(358, 195);
+            this.grbSupplierDetails.TabIndex = 12345347;
+            this.grbSupplierDetails.TabStop = false;
+            this.grbSupplierDetails.Text = "Supplier Details";
+            // 
+            // lblReturn
+            // 
+            this.lblReturn.AutoSize = true;
+            this.lblReturn.BackColor = System.Drawing.Color.White;
+            this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturn.Location = new System.Drawing.Point(166, 159);
+            this.lblReturn.Name = "lblReturn";
+            this.lblReturn.Size = new System.Drawing.Size(47, 20);
+            this.lblReturn.TabIndex = 1111207;
+            this.lblReturn.Text = "Return";
+            this.lblReturn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblReturn.Visible = false;
+            // 
+            // lblSupplierOrderpolicy
+            // 
+            this.lblSupplierOrderpolicy.AutoSize = true;
+            this.lblSupplierOrderpolicy.BackColor = System.Drawing.Color.White;
+            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(6, 130);
+            this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(0, 20);
+            this.lblSupplierOrderpolicy.TabIndex = 1111206;
+            this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierpayment
+            // 
+            this.lblsupplierpayment.AutoSize = true;
+            this.lblsupplierpayment.BackColor = System.Drawing.Color.White;
+            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierpayment.Location = new System.Drawing.Point(6, 108);
+            this.lblsupplierpayment.Name = "lblsupplierpayment";
+            this.lblsupplierpayment.Size = new System.Drawing.Size(0, 20);
+            this.lblsupplierpayment.TabIndex = 1111205;
+            this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierScheduletype
+            // 
+            this.lblsupplierScheduletype.AutoSize = true;
+            this.lblsupplierScheduletype.BackColor = System.Drawing.Color.White;
+            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierScheduletype.Location = new System.Drawing.Point(6, 86);
+            this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(0, 20);
+            this.lblsupplierScheduletype.TabIndex = 1111204;
+            this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierGST
+            // 
+            this.lblsupplierGST.AutoSize = true;
+            this.lblsupplierGST.BackColor = System.Drawing.Color.White;
+            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsupplierGST.Location = new System.Drawing.Point(6, 64);
+            this.lblsupplierGST.Name = "lblsupplierGST";
+            this.lblsupplierGST.Size = new System.Drawing.Size(0, 20);
+            this.lblsupplierGST.TabIndex = 1111203;
+            this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblSupplierCity
+            // 
+            this.lblSupplierCity.AutoSize = true;
+            this.lblSupplierCity.BackColor = System.Drawing.Color.White;
+            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupplierCity.Location = new System.Drawing.Point(6, 42);
+            this.lblSupplierCity.Name = "lblSupplierCity";
+            this.lblSupplierCity.Size = new System.Drawing.Size(0, 20);
+            this.lblSupplierCity.TabIndex = 1111202;
+            this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblSuppliername
+            // 
+            this.lblSuppliername.AutoSize = true;
+            this.lblSuppliername.BackColor = System.Drawing.Color.White;
+            this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSuppliername.Location = new System.Drawing.Point(6, 20);
+            this.lblSuppliername.Name = "lblSuppliername";
+            this.lblSuppliername.Size = new System.Drawing.Size(0, 20);
+            this.lblSuppliername.TabIndex = 1111201;
+            this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // grbPayment
             // 
@@ -588,27 +823,12 @@
             this.txtDAdvanceDate.TabIndex = 10453535;
             this.txtDAdvanceDate.Text = "Payment Date";
             // 
-            // txtAmount
-            // 
-            this.txtAmount.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmount.Location = new System.Drawing.Point(139, 103);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtAmount.MaxLength = 8;
-            this.txtAmount.Multiline = true;
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(107, 41);
-            this.txtAmount.TabIndex = 5;
-            this.txtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
-            this.txtAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAmount_KeyDown);
-            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAmount_KeyPress);
-            this.txtAmount.Leave += new System.EventHandler(this.TxtAmount_Leave);
-            // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(905, 401);
+            this.btnClose.Location = new System.Drawing.Point(1044, 575);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
@@ -625,7 +845,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(819, 401);
+            this.btnSave.Location = new System.Drawing.Point(958, 575);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
@@ -689,227 +909,29 @@
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 37;
             // 
-            // groupBox5
+            // lblContactNo
             // 
-            this.groupBox5.Controls.Add(this.textBox13);
-            this.groupBox5.Controls.Add(this.txtAccName);
-            this.groupBox5.Controls.Add(this.textBox2);
-            this.groupBox5.Controls.Add(this.txtBankShortName);
-            this.groupBox5.Controls.Add(this.textBox8);
-            this.groupBox5.Controls.Add(this.txtbranchname);
-            this.groupBox5.Controls.Add(this.textBox15);
-            this.groupBox5.Controls.Add(this.txtIFScode);
-            this.groupBox5.Controls.Add(this.textBox7);
-            this.groupBox5.Controls.Add(this.txtAccno);
-            this.groupBox5.Controls.Add(this.textBox19);
-            this.groupBox5.Controls.Add(this.txtBankname);
-            this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(704, 17);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(281, 195);
-            this.groupBox5.TabIndex = 12345349;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Supplier Bank Details";
+            this.lblContactNo.AutoSize = true;
+            this.lblContactNo.BackColor = System.Drawing.Color.White;
+            this.lblContactNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContactNo.Location = new System.Drawing.Point(6, 152);
+            this.lblContactNo.Name = "lblContactNo";
+            this.lblContactNo.Size = new System.Drawing.Size(78, 20);
+            this.lblContactNo.TabIndex = 1111208;
+            this.lblContactNo.Text = "9876543212";
+            this.lblContactNo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // textBox13
+            // lblEmailId
             // 
-            this.textBox13.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox13.Enabled = false;
-            this.textBox13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox13.Location = new System.Drawing.Point(6, 104);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(100, 27);
-            this.textBox13.TabIndex = 1111142;
-            this.textBox13.Text = "Account Name";
-            // 
-            // txtAccName
-            // 
-            this.txtAccName.Enabled = false;
-            this.txtAccName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAccName.Location = new System.Drawing.Point(106, 104);
-            this.txtAccName.MaxLength = 20;
-            this.txtAccName.Name = "txtAccName";
-            this.txtAccName.ReadOnly = true;
-            this.txtAccName.Size = new System.Drawing.Size(165, 27);
-            this.txtAccName.TabIndex = 20;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox2.Location = new System.Drawing.Point(6, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(100, 27);
-            this.textBox2.TabIndex = 1111140;
-            this.textBox2.Text = "Bank Short Name";
-            // 
-            // txtBankShortName
-            // 
-            this.txtBankShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBankShortName.Enabled = false;
-            this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBankShortName.Location = new System.Drawing.Point(106, 50);
-            this.txtBankShortName.MaxLength = 20;
-            this.txtBankShortName.Name = "txtBankShortName";
-            this.txtBankShortName.ReadOnly = true;
-            this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
-            this.txtBankShortName.TabIndex = 18;
-            // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(6, 77);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(100, 27);
-            this.textBox8.TabIndex = 1111138;
-            this.textBox8.Text = "Branch Name";
-            // 
-            // txtbranchname
-            // 
-            this.txtbranchname.Enabled = false;
-            this.txtbranchname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtbranchname.Location = new System.Drawing.Point(106, 77);
-            this.txtbranchname.MaxLength = 50;
-            this.txtbranchname.Name = "txtbranchname";
-            this.txtbranchname.ReadOnly = true;
-            this.txtbranchname.Size = new System.Drawing.Size(165, 27);
-            this.txtbranchname.TabIndex = 19;
-            // 
-            // textBox15
-            // 
-            this.textBox15.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox15.Enabled = false;
-            this.textBox15.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox15.Location = new System.Drawing.Point(6, 158);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(100, 27);
-            this.textBox15.TabIndex = 200000;
-            this.textBox15.Text = "IFS Code";
-            // 
-            // txtIFScode
-            // 
-            this.txtIFScode.Enabled = false;
-            this.txtIFScode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtIFScode.Location = new System.Drawing.Point(106, 158);
-            this.txtIFScode.MaxLength = 11;
-            this.txtIFScode.Name = "txtIFScode";
-            this.txtIFScode.ReadOnly = true;
-            this.txtIFScode.Size = new System.Drawing.Size(165, 27);
-            this.txtIFScode.TabIndex = 22;
-            // 
-            // textBox7
-            // 
-            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox7.Enabled = false;
-            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(6, 131);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(100, 27);
-            this.textBox7.TabIndex = 20000;
-            this.textBox7.Text = "Acc. No.";
-            // 
-            // txtAccno
-            // 
-            this.txtAccno.Enabled = false;
-            this.txtAccno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAccno.Location = new System.Drawing.Point(106, 131);
-            this.txtAccno.MaxLength = 20;
-            this.txtAccno.Name = "txtAccno";
-            this.txtAccno.ReadOnly = true;
-            this.txtAccno.Size = new System.Drawing.Size(165, 27);
-            this.txtAccno.TabIndex = 21;
-            // 
-            // textBox19
-            // 
-            this.textBox19.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox19.Enabled = false;
-            this.textBox19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox19.Location = new System.Drawing.Point(6, 23);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(100, 27);
-            this.textBox19.TabIndex = 200000;
-            this.textBox19.Text = "Bank Name";
-            // 
-            // txtBankname
-            // 
-            this.txtBankname.Enabled = false;
-            this.txtBankname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBankname.Location = new System.Drawing.Point(106, 23);
-            this.txtBankname.MaxLength = 50;
-            this.txtBankname.Name = "txtBankname";
-            this.txtBankname.ReadOnly = true;
-            this.txtBankname.Size = new System.Drawing.Size(165, 27);
-            this.txtBankname.TabIndex = 17;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtTypeName);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.cmbIssueMode);
-            this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(489, 218);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(496, 91);
-            this.groupBox1.TabIndex = 12345357;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Issued Details";
-            // 
-            // txtTypeName
-            // 
-            this.txtTypeName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtTypeName.Enabled = false;
-            this.txtTypeName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtTypeName.Location = new System.Drawing.Point(6, 53);
-            this.txtTypeName.Name = "txtTypeName";
-            this.txtTypeName.ReadOnly = true;
-            this.txtTypeName.Size = new System.Drawing.Size(150, 27);
-            this.txtTypeName.TabIndex = 12345360;
-            this.txtTypeName.Text = "Person Name";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox1.Location = new System.Drawing.Point(6, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(150, 27);
-            this.textBox1.TabIndex = 12345359;
-            this.textBox1.Text = "Mode of Issue";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(156, 52);
-            this.textBox3.MaxLength = 30;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(330, 28);
-            this.textBox3.TabIndex = 12345358;
-            // 
-            // cmbIssueMode
-            // 
-            this.cmbIssueMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbIssueMode.FormattingEnabled = true;
-            this.cmbIssueMode.Items.AddRange(new object[] {
-            "Inperson",
-            "Mail",
-            "WhatsApp",
-            "Phone",
-            "Mobile App"});
-            this.cmbIssueMode.Location = new System.Drawing.Point(156, 27);
-            this.cmbIssueMode.Name = "cmbIssueMode";
-            this.cmbIssueMode.Size = new System.Drawing.Size(330, 27);
-            this.cmbIssueMode.TabIndex = 12345357;
+            this.lblEmailId.AutoSize = true;
+            this.lblEmailId.BackColor = System.Drawing.Color.White;
+            this.lblEmailId.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmailId.Location = new System.Drawing.Point(6, 172);
+            this.lblEmailId.Name = "lblEmailId";
+            this.lblEmailId.Size = new System.Drawing.Size(143, 20);
+            this.lblEmailId.TabIndex = 1111209;
+            this.lblEmailId.Text = "testsupplier@gmail.com";
+            this.lblEmailId.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PAY_Advance
             // 
@@ -932,6 +954,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_Advance_KeyDown);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.grbSupplierDetails.ResumeLayout(false);
             this.grbSupplierDetails.PerformLayout();
             this.grbPayment.ResumeLayout(false);
@@ -940,10 +966,6 @@
             this.tsInwardList.ResumeLayout(false);
             this.tsInwardList.PerformLayout();
             this.pnlinward.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1017,5 +1039,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox cmbIssueMode;
+        private System.Windows.Forms.Label lblEmailId;
+        private System.Windows.Forms.Label lblContactNo;
     }
 }
