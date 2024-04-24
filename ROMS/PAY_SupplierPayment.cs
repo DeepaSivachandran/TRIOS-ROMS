@@ -105,7 +105,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
-                varoriginator = ""; int ViewType = 0, varStatusID = 0, varSaveFlag=0;
+                varoriginator = ""; int ViewType = 0, varStatusID = 0;
                 bool varCheck = true;
                 if(btnSave.Text=="Save")
                 {
@@ -143,7 +143,6 @@ namespace ROMS
                 objTRN_Supplier_Payment.paraScheduleId = Convert.ToInt32(lblschedule.Text);
                 objTRN_Supplier_Payment.paraTotalAmnt = Convert.ToDecimal(lblGrandTotal.Text);
                 objTRN_Supplier_Payment.paraChequeNo = txtChequeNo.Text;
-                objTRN_Supplier_Payment.paraPaymode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
                 objTRN_Supplier_Payment.paraPayType = Convert.ToInt32(cmbPaymentType.SelectedValue);
                 objTRN_Supplier_Payment.paraChequeDate = dtChequeDate.Text;
                 objTRN_Supplier_Payment.paraRemarks = txtRemark.Text;
@@ -154,6 +153,15 @@ namespace ROMS
                 objTRN_Supplier_Payment.paraOriginator = varoriginator;
                 objTRN_Supplier_Payment.paraPayment = dtPayment;
                 objTRN_Supplier_Payment.paraAdvanceID = varAdvanceID;
+                if(Convert.ToInt32(cmbPaymentmode.SelectedValue)==88)
+                {
+                    objTRN_Supplier_Payment.paraPaymode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                }
+                else if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 88)
+                {
+                    objTRN_Supplier_Payment.paraPaymode = 89;
+                    objTRN_Supplier_Payment.paraBankID = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                }
                 varResult = objspservice.udfnSetPayment(objTRN_Supplier_Payment);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
@@ -232,7 +240,7 @@ namespace ROMS
             try
             {
                 udfnShowHideTextBoxes();
-                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89 && (Convert.ToDecimal(lblSubtotal.Text) < varNeftAmount))
+                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 88 && (Convert.ToDecimal(lblSubtotal.Text) < varNeftAmount))
                 {
                     txtDPaymentType.Visible = true;
                     cmbPaymentType.Visible = true;
@@ -240,7 +248,7 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 AND MSTID IN(91,94)", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
-                else if((Convert.ToDecimal(lblSubtotal.Text)>=varNeftAmount) && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 89)
+                else if((Convert.ToDecimal(lblSubtotal.Text)>=varNeftAmount) && Convert.ToInt32(cmbPaymentmode.SelectedValue) != 88)
                 {
                     txtDPaymentType.Visible = true;
                     cmbPaymentType.Visible = true;
@@ -370,6 +378,7 @@ namespace ROMS
                 dtPayment.Columns.Add("PY_Amount", typeof(float));
                 dtPayment.Columns.Add("PY_STSID", typeof(int));
                 udfnCmbConcern();
+                udfnPaymentMode();
                 ClearSupplier();
                 dpDate.MinDate = MainForm.pbFYStartDate;
                 dpDate.MaxDate = MainForm.pbCurrentDate;
@@ -379,6 +388,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 AND MSTID IN (88,89)", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 udfnGeneralSettingsList();
+                udfnEditLoad();
             }
             catch (Exception ex)
             {
@@ -1020,6 +1030,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnPaymentMode()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnCompanyList(12, Convert.ToInt32(cmbConcern.SelectedValue), MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objdserv.CloseConnection();
+                cmbPaymentmode.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbPaymentmode.ValueMember = "ID";
+                            cmbPaymentmode.DisplayMember = "Payment Mode";
+                            cmbPaymentmode.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1030,6 +1068,8 @@ namespace ROMS
                 {
                     txtsuppliername.Text = "";
                 }
+                udfnPaymentMode();
+
             }
             catch (Exception ex)
             {
@@ -1514,6 +1554,54 @@ namespace ROMS
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEditLoad()
+        {
+            try
+            {
+                if (varSupplierPaymentID != 0)
+                {
+                    Application.DoEvents();
+                    //********** To display a data in a grid  ******************  
+                    DataSet objDs = new DataSet();
+                    //**** To call the function from SP ***************
+                    SPDataService objspservice = new SPDataService();
+                    SPDataService objdserv = new SPDataService();
+                    TRN_Supplier_Payment objTRN_Supplier_Payment = new TRN_Supplier_Payment();
+                    objTRN_Supplier_Payment.ViewType = 2;
+                    objTRN_Supplier_Payment.paraPYID = varSupplierPaymentID;
+                    objDs = objdserv.udfnGetSupplierPayment(objTRN_Supplier_Payment);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_COMID"]);
+                            dpDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Date"]);
+                            txtTransactionNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_No"]);
+                            txtsuppliername.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_Name"]);
+                            txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Remarks"]);
+                            cmbPaymentmode.SelectedValue =  Convert.ToInt32(objDs.Tables[0].Rows[0]["PAY_PaymentMode"]);
+                            cmbPaymentType.SelectedValue =  Convert.ToInt32(objDs.Tables[0].Rows[0]["PAY_PaymentType"]);
+                            dtChequeDate.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeDate"]);
+                            txtChequeNo.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeNo"]);                          
+                            lblSubtotal.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Subtotal"]);                          
+                            lblAdvance.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Advance"]);                          
+                            lblGrandTotal.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Total"]);                          
+                            lblSupplierCode.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPID"]);                          
+                            lblschedule.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPSCID"]);                          
+                        }
+                    }
+                }
+                LV_Supplier.Visible = false;
+                udfnsupplierLoad();
+                udfnGridLoad();
             }
             catch (Exception ex)
             {

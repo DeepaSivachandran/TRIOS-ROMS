@@ -143,6 +143,7 @@
             this.grdSupllierPaymentList.Size = new System.Drawing.Size(1348, 515);
             this.grdSupllierPaymentList.TabIndex = 1;
             this.grdSupllierPaymentList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupllierPaymentList_DataBindingComplete);
+            this.grdSupllierPaymentList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSupllierPaymentList_KeyDown);
             // 
             // lblNoRecordsFound
             // 

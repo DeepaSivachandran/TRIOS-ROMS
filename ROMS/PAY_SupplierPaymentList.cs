@@ -41,12 +41,42 @@ namespace ROMS
         private void tsbEdit_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                udfnEditLoad();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        public void udfnEditLoad()
+        {
+            try
+            {
+                
+                if (grdSupllierPaymentList.SelectedRows.Count > 0)
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
+                    MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
+                    MainForm.objPAY_SupplierPayment.btnSave.Text = "Update";
+                    MainForm.objPAY_SupplierPayment.varSupplierPaymentID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
+                    MainForm.objPAY_SupplierPayment.Show();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -665,6 +695,7 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["Grand Total"].Width = 100;
                             grdSupllierPaymentList.Columns["Payment Mode"].Width = 100;
                             grdSupllierPaymentList.Columns["PAY_PaymentMode"].Visible = false;
+                            grdSupllierPaymentList.Columns["PAYID"].Visible = false;
                             grdSupllierPaymentList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["Advance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -730,6 +761,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Grand Total"].Width = 100;
                 DGV_SearchGrid.Columns["Payment Mode"].Width = 150;
                 DGV_SearchGrid.Columns["PAY_PaymentMode"].Visible = false;
+                DGV_SearchGrid.Columns["PAYID"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -972,6 +1004,19 @@ namespace ROMS
             try
             {
                 grdSupllierPaymentList.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupllierPaymentList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                udfnEditLoad();
             }
             catch (Exception ex)
             {
