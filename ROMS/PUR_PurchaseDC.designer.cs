@@ -140,6 +140,8 @@
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.grdPurchaseDC1 = new System.Windows.Forms.DataGridView();
             this.grpDCSupplier = new System.Windows.Forms.GroupBox();
+            this.txtSupplierDCNo = new System.Windows.Forms.TextBox();
+            this.lblSuppllierDCNo = new System.Windows.Forms.Label();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -151,8 +153,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.txtSupplierDCNo = new System.Windows.Forms.TextBox();
-            this.lblSuppllierDCNo = new System.Windows.Forms.Label();
             this.clmsino = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -177,6 +177,7 @@
             this.clmBatchGeneration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStockQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemoveFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMRPFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmExpiryErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1173,6 +1174,7 @@
             this.clmBatchGeneration,
             this.clmStockQuantity,
             this.clmRemoveFlag,
+            this.clmMRPFlag,
             this.clmRemove,
             this.clmError,
             this.clmExpiryErr,
@@ -1327,6 +1329,28 @@
             this.grpDCSupplier.TabIndex = 0;
             this.grpDCSupplier.TabStop = false;
             // 
+            // txtSupplierDCNo
+            // 
+            this.txtSupplierDCNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplierDCNo.Location = new System.Drawing.Point(217, 34);
+            this.txtSupplierDCNo.MaxLength = 30;
+            this.txtSupplierDCNo.Name = "txtSupplierDCNo";
+            this.txtSupplierDCNo.Size = new System.Drawing.Size(184, 27);
+            this.txtSupplierDCNo.TabIndex = 2;
+            this.txtSupplierDCNo.Enter += new System.EventHandler(this.TxtSupplierDCNo_Enter);
+            this.txtSupplierDCNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplierDCNo_KeyDown);
+            this.txtSupplierDCNo.Leave += new System.EventHandler(this.TxtSupplierDCNo_Leave);
+            // 
+            // lblSuppllierDCNo
+            // 
+            this.lblSuppllierDCNo.AutoSize = true;
+            this.lblSuppllierDCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSuppllierDCNo.Location = new System.Drawing.Point(217, 11);
+            this.lblSuppllierDCNo.Name = "lblSuppllierDCNo";
+            this.lblSuppllierDCNo.Size = new System.Drawing.Size(93, 20);
+            this.lblSuppllierDCNo.TabIndex = 1111174;
+            this.lblSuppllierDCNo.Text = "Supplier DC No.";
+            // 
             // lblschedule
             // 
             this.lblschedule.AutoSize = true;
@@ -1448,28 +1472,6 @@
             this.lblStatus.Size = new System.Drawing.Size(37, 20);
             this.lblStatus.TabIndex = 111111145;
             this.lblStatus.Text = "Draft";
-            // 
-            // txtSupplierDCNo
-            // 
-            this.txtSupplierDCNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplierDCNo.Location = new System.Drawing.Point(217, 34);
-            this.txtSupplierDCNo.MaxLength = 30;
-            this.txtSupplierDCNo.Name = "txtSupplierDCNo";
-            this.txtSupplierDCNo.Size = new System.Drawing.Size(184, 27);
-            this.txtSupplierDCNo.TabIndex = 2;
-            this.txtSupplierDCNo.Enter += new System.EventHandler(this.TxtSupplierDCNo_Enter);
-            this.txtSupplierDCNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplierDCNo_KeyDown);
-            this.txtSupplierDCNo.Leave += new System.EventHandler(this.TxtSupplierDCNo_Leave);
-            // 
-            // lblSuppllierDCNo
-            // 
-            this.lblSuppllierDCNo.AutoSize = true;
-            this.lblSuppllierDCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuppllierDCNo.Location = new System.Drawing.Point(217, 11);
-            this.lblSuppllierDCNo.Name = "lblSuppllierDCNo";
-            this.lblSuppllierDCNo.Size = new System.Drawing.Size(93, 20);
-            this.lblSuppllierDCNo.TabIndex = 1111174;
-            this.lblSuppllierDCNo.Text = "Supplier DC No.";
             // 
             // clmsino
             // 
@@ -1635,6 +1637,12 @@
             this.clmRemoveFlag.HeaderText = "Remove Flag";
             this.clmRemoveFlag.Name = "clmRemoveFlag";
             this.clmRemoveFlag.Visible = false;
+            // 
+            // clmMRPFlag
+            // 
+            this.clmMRPFlag.HeaderText = "MRP Flag";
+            this.clmMRPFlag.Name = "clmMRPFlag";
+            this.clmMRPFlag.Visible = false;
             // 
             // clmRemove
             // 
@@ -1849,6 +1857,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchGeneration;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStockQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRemoveFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMRPFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryErr;

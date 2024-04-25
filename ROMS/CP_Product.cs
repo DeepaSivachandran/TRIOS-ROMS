@@ -818,7 +818,7 @@ namespace ROMS
                     string result = "";
                     string varStatus = "1";
                     double netweight = 0, grossweight = 0, minstk = 0, maxstk = 0, reorderqty = 0, rminsale = 0, retailrate = 0, wminsaleqty = 0, wsalesrate = 0;
-                    int shelflife = 0, rackmoq = 0, varshelflife = 0, varrmproduction = 0;
+                    int shelflife = 0, rackmoq = 0, varshelflife = 0, varrmproduction = 0, varMRPflag = 0;
                     errItems.Clear();
                     udfncolorchange();
 
@@ -972,13 +972,21 @@ namespace ROMS
                         varGRNID = Convert.ToInt32(MainForm.objCP_Purchase.pbGRNNo);
                         varNewPRoid = Convert.ToInt32(varNewproid);
                     }
+                    if(chkMRP.Checked==true)
+                    {
+                        varMRPflag = 1;
+                    }
+                    else
+                    {
+                        varMRPflag = 0;
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(lblPurLocationCode.Text), Convert.ToInt32(lblSaleLocationCode.Text)
                     ,Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction, 
                     shelflife,Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue),null,0,"",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid);
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -5641,6 +5649,7 @@ namespace ROMS
                             lvHsnCode.Visible = false;
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["PR_MRPflag"]) == "1") { chkMRP.Checked = true; } else { chkMRP.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1")
                             {
