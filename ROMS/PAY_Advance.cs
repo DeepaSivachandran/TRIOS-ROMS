@@ -843,7 +843,6 @@ namespace ROMS
                     cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                     dpAdvanceDate.MinDate = MainForm.pbFYStartDate;
                     dpAdvanceDate.MaxDate = MainForm.pbCurrentDate;
-                    dtChequeDate.MinDate = MainForm.pbCurrentDate;
                     varDateChange = 0;
                     if (btnSave.Text == "Update")
                     {
@@ -853,6 +852,7 @@ namespace ROMS
                     else
                     {
                         this.ActiveControl = txtSupplier;
+                        dtChequeDate.MinDate = MainForm.pbCurrentDate;
                     }
                 }
             }
