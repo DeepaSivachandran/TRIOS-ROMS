@@ -1190,6 +1190,7 @@ namespace ROMS
                                         txtRemark.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GIP_Remarks"]);
                                     }
                                 }
+                                grdGrnlist.Columns["clmRemove"].DisplayIndex = 14;
                             }
                             else
                             {
