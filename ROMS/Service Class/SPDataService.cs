@@ -3585,6 +3585,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Supplier_Payment.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraPayment", objTRN_Supplier_Payment.paraPayment);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Supplier_Payment.paraDeleteFlag);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

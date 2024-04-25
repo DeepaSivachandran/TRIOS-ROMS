@@ -32,6 +32,8 @@ namespace ROMS.Model
         public string paraAdvanceID { get; set; } = "";
         public string ParaToDate { get; set; } = "";
         public string paraFromDate { get; set; } = "";
+        public int paraDeleteFlag { get; set; } = 0;
+        public string paraHostName { get; set; } = "";
         public DataTable paraPayment { get; set; } = null;
     }
 }

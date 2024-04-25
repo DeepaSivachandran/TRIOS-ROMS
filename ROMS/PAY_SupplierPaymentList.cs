@@ -99,6 +99,11 @@ namespace ROMS
             try
             {
                 int Viewtype = 0;
+                DataTable dtPayment = new DataTable();
+                dtPayment.TableName = "TRN_Supplier_Payment";
+                dtPayment.Columns.Add("PY_PURID", typeof(int));
+                dtPayment.Columns.Add("PY_Amount", typeof(float));
+                dtPayment.Columns.Add("PY_STSID", typeof(int));
                 if (grdSupllierPaymentList.SelectedRows.Count > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -110,8 +115,8 @@ namespace ROMS
                         TRN_Supplier_Payment objTRN_Supplier_Payment = new TRN_Supplier_Payment();
                         objTRN_Supplier_Payment.ViewType = Viewtype;
                         objTRN_Supplier_Payment.paraPYID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
-                        objTRN_Supplier_Payment.paraAdvanceID = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["PAYAD_ADID"].Value);
                         objTRN_Supplier_Payment.paraSTSID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
+                        objTRN_Supplier_Payment.paraDeleteFlag = 0;
                         objTRN_Supplier_Payment.paraUserID = varUserID;
                         objTRN_Supplier_Payment.paraIPAddress = MainForm.pbIpAddress;
                         objTRN_Supplier_Payment.paraOriginator = varoriginator;
@@ -128,12 +133,28 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                    objTRN_Supplier_Payment.ViewType = Viewtype;
+                                    objTRN_Supplier_Payment.paraPYID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
+                                    objTRN_Supplier_Payment.paraSTSID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
+                                    objTRN_Supplier_Payment.paraDeleteFlag = 1;
                                     objTRN_Supplier_Payment.paraUserID = varUserID;
-                                    MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    Viewtype = 0;
-                                    udfnList();
+                                    objTRN_Supplier_Payment.paraIPAddress = MainForm.pbIpAddress;
+                                    objTRN_Supplier_Payment.paraOriginator = varoriginator;
+                                    result = objspdservice.udfnSetPayment(objTRN_Supplier_Payment);
+                                    objspdservice.CloseConnection();
+                                    if (result.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        Viewtype = 0;
+                                        udfnList();
+                                    }
+                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
+                        }
+                        else if (result.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -751,7 +772,6 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["PAY_PaymentMode"].Visible = false;
                             grdSupllierPaymentList.Columns["PAYID"].Visible = false;
                             grdSupllierPaymentList.Columns["PAY_STSID"].Visible = false;
-                            grdSupllierPaymentList.Columns["PAYAD_ADID"].Visible = false;
                             grdSupllierPaymentList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["Advance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -820,7 +840,6 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PAYID"].Visible = false;
                 DGV_SearchGrid.Columns["Status"].Width = 150;
                 DGV_SearchGrid.Columns["PAY_STSID"].Visible = false;
-                DGV_SearchGrid.Columns["PAYAD_ADID"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
