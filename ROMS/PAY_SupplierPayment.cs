@@ -69,7 +69,6 @@ namespace ROMS
             try
             {
                 udfnclose();
-                MainForm.objPAY_SupplierPaymentList.udfnList();
             }
             catch (Exception ex)
             {
