@@ -3925,6 +3925,7 @@ namespace ROMS
                 //}
                 /*Checking valid product or not */
                 if (Convert.ToString(txtProductName.Text) != "")
+
                 {
                     string varproductID = "0";
                     MR_Product objMR_Product = new MR_Product();
