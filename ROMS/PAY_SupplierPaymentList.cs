@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
@@ -17,6 +19,7 @@ namespace ROMS
         DataError objError;
         DataTable Deftable = new DataTable();
         public Boolean BlnSearchImageYN = false;
+        public int varUserID = 0;
 
         public PAY_SupplierPaymentList()
         {
@@ -83,7 +86,57 @@ namespace ROMS
         {
             try
             {
-                //udfndelete();
+                udfndelete();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfndelete()
+        {
+            try
+            {
+                int Viewtype = 0;
+                if (grdSupllierPaymentList.SelectedRows.Count > 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        Viewtype = 2;
+                        String varoriginator = "Supplier payment Delete";
+                        DataTable objGrnPO = new DataTable();
+                        TRN_Supplier_Payment objTRN_Supplier_Payment = new TRN_Supplier_Payment();
+                        objTRN_Supplier_Payment.ViewType = Viewtype;
+                        objTRN_Supplier_Payment.paraPYID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
+                        objTRN_Supplier_Payment.paraAdvanceID = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["PAYAD_ADID"].Value);
+                        objTRN_Supplier_Payment.paraSTSID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
+                        objTRN_Supplier_Payment.paraUserID = varUserID;
+                        objTRN_Supplier_Payment.paraIPAddress = MainForm.pbIpAddress;
+                        objTRN_Supplier_Payment.paraOriginator = varoriginator;
+                        SPDataService objspdservice = new SPDataService();
+                        string result = objspdservice.udfnSetPayment(objTRN_Supplier_Payment);
+                        objspdservice.CloseConnection();
+                        string[] varvalue = result.Split('~');
+                        if (result.Split('~')[0] == "3")
+                        {
+                            if (result.Split('~')[1] == "1")
+                            {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                    objTRN_Supplier_Payment.paraUserID = varUserID;
+                                    MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    Viewtype = 0;
+                                    udfnList();
+                                }
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -694,8 +747,11 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["Sub Total"].Width = 100;
                             grdSupllierPaymentList.Columns["Grand Total"].Width = 100;
                             grdSupllierPaymentList.Columns["Payment Mode"].Width = 100;
+                            grdSupllierPaymentList.Columns["Status"].Width = 120;
                             grdSupllierPaymentList.Columns["PAY_PaymentMode"].Visible = false;
                             grdSupllierPaymentList.Columns["PAYID"].Visible = false;
+                            grdSupllierPaymentList.Columns["PAY_STSID"].Visible = false;
+                            grdSupllierPaymentList.Columns["PAYAD_ADID"].Visible = false;
                             grdSupllierPaymentList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["Advance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -762,6 +818,9 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Payment Mode"].Width = 150;
                 DGV_SearchGrid.Columns["PAY_PaymentMode"].Visible = false;
                 DGV_SearchGrid.Columns["PAYID"].Visible = false;
+                DGV_SearchGrid.Columns["Status"].Width = 150;
+                DGV_SearchGrid.Columns["PAY_STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PAYAD_ADID"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -774,12 +833,113 @@ namespace ROMS
         {
             try
             {
-
+                udfnExport();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        public void udfnExport()
+        {
+            try
+            {
+                btnExport.Enabled = false;
+                if ((grdSupllierPaymentList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Supplier payment List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdSupllierPaymentList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+
+                    ExcelSheet.Cells[1, 1].Value = "Supplier Payment List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+
+                    foreach (DataGridViewColumn col in grdSupllierPaymentList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            if(col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            if (col.Name == "Transaction Date" || col.Name == "Transaction No." || col.Name == "Advance" || col.Name == "Subtotal" || col.Name == "Grandtotal" || col.Name == "Payment Mode")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else if (col.Name == "GSTIN")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else if (col.Name == "Supplier")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            if (col.Name == "Transaction Date")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+
+                            if (col.Name == "Sub Total" || col.Name == "Grand Total" || col.Name == "Advance" || col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+                            foreach (DataGridViewRow rowa in grdSupllierPaymentList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
         private void BtnExport_Enter(object sender, EventArgs e)
@@ -1017,6 +1177,19 @@ namespace ROMS
             try
             {
                 udfnEditLoad();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupllierPaymentList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                tsbEdit_Click(sender, e);
             }
             catch (Exception ex)
             {

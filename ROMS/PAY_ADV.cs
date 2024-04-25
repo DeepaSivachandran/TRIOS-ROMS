@@ -54,18 +54,17 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnList()
         {
             try
             {
                 Application.DoEvents();
                 //********** To display a data in a grid  ****************** 
-
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0;
+                bool varCheck = false;
                 varSupplierid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblSupplierCode.Text);
                 varScheduleid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblschedule.Text);
                 varcompanyid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.cmbConcern.SelectedValue);
@@ -76,8 +75,10 @@ namespace ROMS
                 dtAdvance.Columns.Add("Advance Date", typeof(string));
                 dtAdvance.Columns.Add("Advance Amount", typeof(float));
                 dtAdvance.Columns.Add("ADID", typeof(string));
+                dtAdvance.Columns.Add("PAYID", typeof(int));
                 TRN_Advance objTRN_Advance = new TRN_Advance();
                 objTRN_Advance.ViewType = 2;
+                objTRN_Advance.paraPAYID = MainForm.objPAY_SupplierPayment.varSupplierPaymentID;
                 objTRN_Advance.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_Advance.paraIPAddress = MainForm.pbIpAddress;
                 objTRN_Advance.paraSupplierId = Convert.ToInt32(varSupplierid);
@@ -97,7 +98,15 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                dtAdvance.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], objDs.Tables[0].Rows[i]["Advance Amount"], objDs.Tables[0].Rows[i]["ADID"]);
+                                if (Convert.ToInt32(objDs.Tables[0].Rows[i]["PAYID"]) != 0)
+                                {
+                                    varCheck = true;
+                                }
+                                else
+                                {
+                                    varCheck = false;
+                                }
+                                dtAdvance.Rows.Add(varCheck, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], objDs.Tables[0].Rows[i]["Advance Amount"], objDs.Tables[0].Rows[i]["ADID"], objDs.Tables[0].Rows[i]["PAYID"]);                               
                             }
                             grdAdvance.DataSource = dtAdvance;
                             grdAdvance.Columns[0].HeaderText = "";
@@ -109,7 +118,9 @@ namespace ROMS
                             grdAdvance.Columns["Advance Date"].ReadOnly = true;
                             grdAdvance.Columns["Advance Amount"].ReadOnly = true;
                             grdAdvance.Columns["ADID"].ReadOnly = true;
+                            grdAdvance.Columns["PAYID"].ReadOnly = true;
                             grdAdvance.Columns["ADID"].Visible = false;
+                            grdAdvance.Columns["PAYID"].Visible = false;
                             grdAdvance.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

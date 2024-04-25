@@ -3535,6 +3535,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_Advance.paraToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierId", objTRN_Advance.paraSupplierId);
                 varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_Advance.paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraPAYID", objTRN_Advance.paraPAYID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_Advance.paraStatusID);

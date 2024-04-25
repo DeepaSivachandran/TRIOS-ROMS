@@ -24,7 +24,7 @@ namespace ROMS
         public string varSupplierName="";
         public Decimal varNeftAmount = 0;
         public string varAdvanceID = "";
-        public int id = 0;
+        public int id = 0, varEditFlag=0;
         decimal varGrandTot = 0, varTotal = 0, varamt = 0;
 
 
@@ -132,7 +132,6 @@ namespace ROMS
                         dtPayment.Rows.Add(Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value), Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value), varStatusID);
                     }
                 }
-
                 Model.TRN_Supplier_Payment objTRN_Supplier_Payment = new Model.TRN_Supplier_Payment();
                 objTRN_Supplier_Payment.ViewType = ViewType;
                 objTRN_Supplier_Payment.paraPYID = varSupplierPaymentID;
@@ -1502,6 +1501,7 @@ namespace ROMS
         {
             try
             {
+                varEditFlag = 1;
                 MainForm.objPAY_Advance_Popup = new PAY_ADV();
                 MainForm.objPAY_Advance_Popup.ShowDialog();
             }
@@ -1567,6 +1567,7 @@ namespace ROMS
             {
                 if (varSupplierPaymentID != 0)
                 {
+                    varEditFlag = 1;
                     Application.DoEvents();
                     //********** To display a data in a grid  ******************  
                     DataSet objDs = new DataSet();
@@ -1587,21 +1588,38 @@ namespace ROMS
                             txtTransactionNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_No"]);
                             txtsuppliername.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_Name"]);
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Remarks"]);
-                            cmbPaymentmode.SelectedValue =  Convert.ToInt32(objDs.Tables[0].Rows[0]["PAY_PaymentMode"]);
-                            cmbPaymentType.SelectedValue =  Convert.ToInt32(objDs.Tables[0].Rows[0]["PAY_PaymentType"]);
-                            dtChequeDate.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeDate"]);
-                            txtChequeNo.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeNo"]);                          
-                            lblSubtotal.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Subtotal"]);                          
-                            lblAdvance.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Advance"]);                          
-                            lblGrandTotal.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Total"]);                          
-                            lblSupplierCode.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPID"]);                          
-                            lblschedule.Text =  Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPSCID"]);                          
+                            cmbPaymentmode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Payment Mode"]);
+                            cmbPaymentType.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["PAY_PaymentType"]);
+                            dtChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeDate"]);
+                            txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeNo"]);
+                            lblSubtotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Subtotal"]);
+                            lblAdvance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Advance"]);
+                            lblGrandTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Total"]);
+                            lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPID"]);
+                            lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPSCID"]);
+                        }
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                            {
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["ID"]));
+                                dtPayment.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYI_STSID"]));
+                                grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdSupplierPayment.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdSupplierPayment.Columns["clmTaxableAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmTaxAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmInvoiceAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmPayAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmReturnAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = true;
+                            }
                         }
                     }
                 }
                 LV_Supplier.Visible = false;
                 udfnsupplierLoad();
-                udfnGridLoad();
+                grdSupplierPayment.ClearSelection();
             }
             catch (Exception ex)
             {
