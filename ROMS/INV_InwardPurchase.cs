@@ -310,6 +310,126 @@ namespace ROMS
             }
         }
 
+        private void GrdGrnlist_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdGrnlist.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmConvert":
+                            try
+                            {
+                                grdGrnlist.AllowUserToAddRows = true;
+
+                                DataGridView dgv = sender as DataGridView;
+
+                                // If button clicked
+                                if (e.ColumnIndex != 0)
+                                {
+
+
+
+
+                                    int count = grdGrnlist.ColumnCount;
+                                    // Get values what you want to use, the Cell 2 is already increased
+                                    string Sno =Convert.ToString(dgv.Rows[e.RowIndex].Cells["S.No."].Value);
+                                    string PICode = Convert.ToString(dgv.Rows[e.RowIndex].Cells["P.I Code"].Value);
+                                    //var PEName = dgv.Rows[e.RowIndex].Cells["Product Name in English"].Value;
+                                    string PTName = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Product Name in Tamil"].Value);
+                                    string MRP = Convert.ToString(dgv.Rows[e.RowIndex].Cells["MRP"].Value);
+                                    string ExpiryDate = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Expiry Date"].Value);
+                                    string BatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Batch No."].Value);
+                                    string PendingQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Pending Qty"].Value);
+                                    string ReceivedQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Received Qty"].Value);
+                                    string ShopQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Shop Qty"].Value);
+                                    string Unit = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Unit"].Value);
+                                    string Rack = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Rack"].Value);
+                                    string PRID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Product ID"].Value);
+                                    string UTID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Unit ID"].Value);
+                                    string SLID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Location ID"].Value);
+                                    string RKID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["Rack ID"].Value);
+                                    string GRN_DC_PUR_ID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["ID"].Value);
+                                    string UT_Decimal = Convert.ToString(dgv.Rows[e.RowIndex].Cells["UT_Decimal"].Value);
+
+
+                                    DataTable table = new DataTable();
+                                    table.TableName = "Test";
+                                    table.Columns.Add("", typeof(bool));
+                                    table.Columns.Add("Sno", typeof(int));
+                                    table.Columns.Add("PICode", typeof(string));
+                                    table.Columns.Add("PTName", typeof(string));
+                                    table.Columns.Add("MRP", typeof(string));
+                                    table.Columns.Add("ExpiryDate", typeof(string));
+                                    table.Columns.Add("BatchNo", typeof(string));
+                                    table.Columns.Add("PendingQty", typeof(string));
+                                    table.Columns.Add("ReceivedQty", typeof(string));
+                                    table.Columns.Add("ShopQty", typeof(string));
+                                    table.Columns.Add("Unit", typeof(string));
+                                    table.Columns.Add("Rack", typeof(string));
+                                    DataRow newRow = table.NewRow();
+                                    int countss = table.Columns.Count;
+                                    // Add the row to the rows collection.
+                                    table.Rows.Add(false, Sno, PICode, PTName, MRP, ExpiryDate, BatchNo,
+                                    PendingQty, ReceivedQty, ShopQty, Unit, Rack);//, UT_Decimal, PRID, UTID, SLID, RKID, GRN_DC_PUR_ID,"","","","","","","","","","");
+
+
+
+                                    int countsss = grdGrnlist.Rows.Count;
+                                    //grdGrnlist.Rows.Add(false, Sno, PICode, PTName, MRP, ExpiryDate, BatchNo,
+                                    // PendingQty, ReceivedQty, ShopQty, Unit, Rack, UT_Decimal, PRID, UTID, SLID, RKID, GRN_DC_PUR_ID,"","","","","","","","","","");
+                                    //((DataGridViewImageCell)dgv.Rows[e.RowIndex].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+
+                                    grdGrnlist.DataSource = table;
+                                    /*
+                                    // Define the maximum id and the row index of it
+                                    int maxId = Convert.ToInt32(Sno);
+                                    int latestRowIndex = e.RowIndex;
+
+                                    for (int i = 0; i < dgv.Rows.Count; i++)
+                                    {
+                                        // Select the highest id of selected item and get its row index
+                                        if (dgv.Rows[i].Cells[3].Value == Sno)
+                                        {
+                                            maxId = Convert.ToInt32(dgv.Rows[i].Cells[4].Value);
+                                            latestRowIndex = i;
+                                        }
+                                    }
+
+                                    // Insert a new row behind max id one
+                                    dgv.Rows.Insert(latestRowIndex + 1);
+
+                                    // Set the previously stored values and increase the stored Cell 2 value
+                                    dgv.Rows[latestRowIndex + 1].Cells[1].Value = Sno;
+                                    dgv.Rows[latestRowIndex + 1].Cells[2].Value = maxId + 1;
+                                    */
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public DataGridViewRow CloneWithValues(DataGridViewRow row)
+        {
+            DataGridViewRow clonedRow = (DataGridViewRow)row.Clone();
+            for (Int32 index = 0; index < row.Cells.Count; index++)
+            {
+                clonedRow.Cells[index].Value = row.Cells[index].Value;
+            }
+            return clonedRow;
+        }
         private void BtnRemarks_Leave(object sender, EventArgs e)
         {
             try
@@ -1005,6 +1125,7 @@ namespace ROMS
                                 ((DataGridViewTextBoxColumn)grdGrnlist.Columns["Shop Qty"]).MaxInputLength = 8;
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
+                                grdGrnlist.Columns["Convert"].Visible = false;
                                 grdGrnlist.Columns["Product ID"].Visible = false;
                                 grdGrnlist.Columns["Unit ID"].Visible = false;
                                 grdGrnlist.Columns["Location ID"].Visible = false;
