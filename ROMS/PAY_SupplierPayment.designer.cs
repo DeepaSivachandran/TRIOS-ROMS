@@ -986,6 +986,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Supplier Payment";
             this.Load += new System.EventHandler(this.PAY_SupplierPayment_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_SupplierPayment_KeyDown);
             this.tsSupplierPayment.ResumeLayout(false);
             this.tsSupplierPayment.PerformLayout();
             this.pnlinward.ResumeLayout(false);

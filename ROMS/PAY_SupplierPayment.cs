@@ -24,9 +24,9 @@ namespace ROMS
         public string varSupplierName="";
         public Decimal varNeftAmount = 0;
         public string varAdvanceID = "";
-        public int id = 0, varEditFlag=0;
+        public int id = 0, varEditFlag = 0, varModifiedFlag = 0;
         decimal varGrandTot = 0, varTotal = 0, varamt = 0;
-
+        public int varCloseFlag = 0, varClose = 0;
 
         public PAY_SupplierPayment()
         {
@@ -36,10 +36,26 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {  
-                    this.Close();
+                udfntooltiphide();
+                if (varModifiedFlag == 1)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objPAY_SupplierPaymentList.udfnList();
+                    }
+                    else
+                    { btnSave.Focus(); }
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objPAY_SupplierPaymentList.udfnList();
+                    }
                 }
             }
             catch (Exception ex)
@@ -52,7 +68,8 @@ namespace ROMS
         {
             try
             {
-                udfnclose();  
+                udfnclose();
+                MainForm.objPAY_SupplierPaymentList.udfnList();
             }
             catch (Exception ex)
             {
@@ -169,7 +186,8 @@ namespace ROMS
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.ActiveControl = txtsuppliername;
                     MainForm.objPAY_SupplierPaymentList.udfnList();
-                    //udfnClear();
+                    varModifiedFlag = 0;
+                    udfnClear();
                     this.Close();
                 }
                 else
@@ -179,6 +197,22 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnClear()
+        {
+            try
+            {
+                cmbConcern.SelectedValue = -1;
+                txtsuppliername.Text = "";
+                txtChequeNo.Text = "";
+                cmbPaymentmode.SelectedValue = -1;
+                cmbPaymentType.SelectedValue = -1;
             }
             catch (Exception ex)
             {
@@ -834,6 +868,7 @@ namespace ROMS
                                 grdSupplierPayment.Columns["clmPayAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmReturnAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 //dtPayment.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pay Amount"]),0);
+                                varModifiedFlag = 1;
                                 if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"])==0)
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = true;
@@ -1369,6 +1404,7 @@ namespace ROMS
                     }
 
                 }
+                varModifiedFlag = 1;
                 udfnSubtotalCalc();
                 if ((Convert.ToDecimal(lblSubtotal.Text)>=varNeftAmount) && Convert.ToInt32(cmbPaymentmode.SelectedValue)==89)
                 {
@@ -1497,6 +1533,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfntooltiphide()
+        {
+            try
+            {
+                tpcompanyname.Active = false;
+                tpSuppliername.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void PAY_SupplierPayment_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    LV_Supplier.Visible = false;
+                    udfntooltiphide();
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    BtnSave_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnAddAdvance()
         {
             try

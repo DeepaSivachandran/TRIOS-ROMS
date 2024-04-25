@@ -251,7 +251,6 @@ namespace ROMS
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
-                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -437,7 +436,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
-                    //udfndelete();
+                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -927,12 +926,12 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            if (col.Name == "Transaction Date")
+                            if (col.Name == "Transaction Date" || col.Name == "S.No.")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
 
-                            if (col.Name == "Sub Total" || col.Name == "Grand Total" || col.Name == "Advance" || col.Name == "S.No.")
+                            if (col.Name == "Sub Total" || col.Name == "Grand Total" || col.Name == "Advance")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -1195,7 +1194,10 @@ namespace ROMS
         {
             try
             {
-                udfnEditLoad();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEditLoad();
+                }
             }
             catch (Exception ex)
             {

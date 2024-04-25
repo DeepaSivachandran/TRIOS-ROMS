@@ -111,7 +111,7 @@ namespace ROMS
                             grdAdvance.DataSource = dtAdvance;
                             grdAdvance.Columns[0].HeaderText = "";
                             grdAdvance.Columns[0].Width = 30;
-                            grdAdvance.Columns["S.No."].Width = 70;
+                            grdAdvance.Columns["S.No."].Width = 50;
                             grdAdvance.Columns["Advance Date"].Width = 120;
                             grdAdvance.Columns["Advance Amount"].Width = 120;
                             grdAdvance.Columns["S.No."].ReadOnly = true;
@@ -121,7 +121,7 @@ namespace ROMS
                             grdAdvance.Columns["PAYID"].ReadOnly = true;
                             grdAdvance.Columns["ADID"].Visible = false;
                             grdAdvance.Columns["PAYID"].Visible = false;
-                            grdAdvance.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdAdvance.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
