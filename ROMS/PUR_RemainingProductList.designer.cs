@@ -83,6 +83,7 @@
             this.grdPODetails.GridColor = System.Drawing.Color.White;
             this.grdPODetails.Location = new System.Drawing.Point(12, 7);
             this.grdPODetails.Name = "grdPODetails";
+            this.grdPODetails.ReadOnly = true;
             this.grdPODetails.RowHeadersVisible = false;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;

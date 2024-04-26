@@ -51,8 +51,8 @@ namespace ROMS
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0", varGRNPaymentType="0";
         public string varPrMRP = "", varPrDate = "", varPrMonth = "", varPrYear = "", varPrLocation = "", varPrRack = "", varPrBatch = "" , varPrInvFlag ="",
-            varPrslid="0",varPrRkid="0" , varGRNProCount="0",varId="0";
-        public int varPOdropdownFlag = 0,varPrCountFlag=0,varPrCount=0;
+            varPrslid="0",varPrRkid="0" , varGRNProCount="0",varId="0", varPrid = "0";
+        public int varPOdropdownFlag = 0, varPrCountFlag = 0, varPrCount = 0; 
         private Timer timer;
         public string varProducts = "";
         List<int> varProductsIDs = new List<int>();
@@ -3860,11 +3860,26 @@ namespace ROMS
                 int Remaining = 0;
                 pbDateflag = 0;
                 udfnAddProductsgrid();
-                if (Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "220") //po,grn,dc
+                if (Convert.ToString(cmbPONo.SelectedValue) == "218"  || Convert.ToString(cmbPONo.SelectedValue) == "220") //grn,dc
                 {
                     lblAddProduct.Text = Convert.ToString(grdSupplierList.Rows.Count);
                     Remaining = Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblAddProduct.Text);
                     lblRemainProduct.Text = Convert.ToString(Remaining);
+                }
+                if (Convert.ToString(cmbPONo.SelectedValue) == "215") //po
+                {
+                    if (varPrid != "")
+                    {
+                        for (int i = 0; i < varProductsIDs.Count; i++)
+                        {
+                            if (varProductsIDs[i].Equals(Convert.ToInt16(varPrid)))
+                            {
+                                lblAddProduct.Text = Convert.ToString(grdSupplierList.Rows.Count);
+                                Remaining = Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblAddProduct.Text);
+                                lblRemainProduct.Text = Convert.ToString(Remaining);
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -3928,7 +3943,7 @@ namespace ROMS
             {
                 bool varErrorFlag = false;
                 DGV_FilterProduct.Visible = false;
-                varExpiryDate = ""; varExpiryDateAdd = "";
+                varExpiryDate = ""; varExpiryDateAdd = ""; varPrid = "0";
                 int varSourceLocationID = 0;
                 /* Check  source location is valid or not*/
                 if (txtSourceLocation.Text != "" && varRMFlag != 59 && Convert.ToString(cmbPONo.SelectedValue)!="220")
@@ -3966,8 +3981,6 @@ namespace ROMS
                     tpProduct.Show("Please enter product.", txtProductName, 5000);
                     varErrorFlag = true;
                 }
-
-
                 /*check location have a rack or not*/
                 if (varRMFlag != 59 && Convert.ToString(cmbPONo.SelectedValue) != "220")
                 {
@@ -4236,6 +4249,7 @@ namespace ROMS
                                 string productCode = "0", varRackCount = "0", varRackId = "0";
                                 double varGrnMrp = 0;int invFlag = 0;
                                 productCode = lblProductcode.Text;
+                                varPrid = productCode;
                                 if (cmbrack.Enabled == true)
                                 {
                                     varRackCount = "1";
@@ -9104,6 +9118,7 @@ namespace ROMS
                                                          group r by r.Field<string>("PRID")
                                                          into g
                                                       select g.Key;
+
                                 if (varRemoveProuct.Count() != 0)
                                 {
                                     lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
