@@ -3070,6 +3070,7 @@ namespace ROMS
                             lvHsnCode.Visible = false;
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbShelflife.Checked = true; } else { cbShelflife.Checked = false; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["PR_MRPflag"]) == "1") { chkMrp.Checked = true; } else { chkMrp.Checked = false; }
                             //if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
 
@@ -3115,7 +3116,7 @@ namespace ROMS
             {
                 bool blnErrorFlag = false;
                 string result = "", varStatus = "";
-                int varshelflife = 0, shelflife = 0;
+                int varshelflife = 0, shelflife = 0, varMRPflag = 0;
                 if (cbShelflife.Checked == true)
                 {
                     varshelflife = 1;
@@ -3123,6 +3124,14 @@ namespace ROMS
                 else
                 {
                     varshelflife = 0;
+                }
+                if (chkMrp.Checked == true)
+                {
+                    varMRPflag = 1;
+                }
+                else
+                {
+                    varMRPflag = 0;
                 }
                 if (txtSelfLife.Text == "")
                 {
@@ -3553,7 +3562,7 @@ namespace ROMS
                     Convert.ToInt32(cmbUnit.SelectedValue), 0, "", Convert.ToInt32(varPurLocationCode), Convert.ToInt32(varSalesLocationCode)
                     , Convert.ToInt32(varPurRackCode), Convert.ToInt32(varSalesRackCode), 0, Convert.ToInt32(cmbBatchno.SelectedValue), Convert.ToInt32(cmbBatchGen.SelectedValue)
                     , varshelflife, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(varHsnCode), 0, shelflife,
-                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "",0,0,0,0,0);
+                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "",0,0,0,0,varMRPflag);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
