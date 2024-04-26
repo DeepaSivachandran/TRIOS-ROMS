@@ -84,6 +84,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPurchase = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPO = new System.Windows.Forms.ToolStripButton();
+            this.tss2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbAdded = new System.Windows.Forms.ToolStripButton();
+            this.tss1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbProducts = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
@@ -126,7 +131,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cmbPONo = new System.Windows.Forms.ComboBox();
-            this.label34 = new System.Windows.Forms.Label();
+            this.lblPOdropDown = new System.Windows.Forms.Label();
             this.lblLocationcode = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -363,7 +368,14 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblstatusvalue = new System.Windows.Forms.Label();
             this.errPurchaseentry = new System.Windows.Forms.ErrorProvider(this.components);
+            this.crToolStripTextBox1 = new CrystalDecisions.Windows.Forms.CRToolStripTextBox();
+            this.lblRemainProduct = new System.Windows.Forms.Label();
+            this.lblAddProduct = new System.Windows.Forms.Label();
+            this.lbltotProduct = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -396,7 +408,12 @@
             this.tsPurchase.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.tsPurchase.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsPurchase.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbPO,
+            this.tss2,
+            this.tsbAdded,
+            this.tss1,
+            this.tsbProducts});
             this.tsPurchase.Location = new System.Drawing.Point(0, 0);
             this.tsPurchase.Name = "tsPurchase";
             this.tsPurchase.Size = new System.Drawing.Size(1354, 27);
@@ -412,6 +429,64 @@
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(102, 24);
             this.tspHeader.Text = "Purchase Entry";
+            // 
+            // tsbPO
+            // 
+            this.tsbPO.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPO.BackColor = System.Drawing.Color.White;
+            this.tsbPO.Enabled = false;
+            this.tsbPO.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPO.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPO.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbPO.Name = "tsbPO";
+            this.tsbPO.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPO.Size = new System.Drawing.Size(136, 24);
+            this.tsbPO.Text = "Remaing Products :& &  & & & &";
+            this.tsbPO.Visible = false;
+            this.tsbPO.Click += new System.EventHandler(this.TsbPO_Click);
+            // 
+            // tss2
+            // 
+            this.tss2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tss2.Name = "tss2";
+            this.tss2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbAdded
+            // 
+            this.tsbAdded.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbAdded.BackColor = System.Drawing.Color.White;
+            this.tsbAdded.Enabled = false;
+            this.tsbAdded.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbAdded.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAdded.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbAdded.Name = "tsbAdded";
+            this.tsbAdded.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbAdded.Size = new System.Drawing.Size(120, 24);
+            this.tsbAdded.Text = "&Added Products :& & & & & &";
+            this.tsbAdded.Visible = false;
+            // 
+            // tss1
+            // 
+            this.tss1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tss1.Name = "tss1";
+            this.tss1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbProducts
+            // 
+            this.tsbProducts.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbProducts.BackColor = System.Drawing.Color.White;
+            this.tsbProducts.Enabled = false;
+            this.tsbProducts.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbProducts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbProducts.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbProducts.Name = "tsbProducts";
+            this.tsbProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbProducts.Size = new System.Drawing.Size(107, 24);
+            this.tsbProducts.Text = "&PO Products :& & & & & & & &";
+            this.tsbProducts.ToolTipText = "PO Products :      ";
+            this.tsbProducts.Visible = false;
             // 
             // panel1
             // 
@@ -830,7 +905,7 @@
             this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.btnAdd);
             this.tabPage1.Controls.Add(this.cmbPONo);
-            this.tabPage1.Controls.Add(this.label34);
+            this.tabPage1.Controls.Add(this.lblPOdropDown);
             this.tabPage1.Controls.Add(this.lblLocationcode);
             this.tabPage1.Controls.Add(this.lblProductcode);
             this.tabPage1.Controls.Add(this.lblNoRecordsFound);
@@ -901,7 +976,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(642, 218);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(893, 218);
             this.DGV_FilterProduct.TabIndex = 111111144;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.DoubleClick += new System.EventHandler(this.DGV_FilterProduct_DoubleClick);
@@ -976,15 +1051,15 @@
             this.cmbPONo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPONo_KeyPress);
             this.cmbPONo.Leave += new System.EventHandler(this.CmbPONo_Leave);
             // 
-            // label34
+            // lblPOdropDown
             // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.label34.Location = new System.Drawing.Point(8, 3);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(89, 17);
-            this.label34.TabIndex = 111111135;
-            this.label34.Text = "PO No. ~ PO Date";
+            this.lblPOdropDown.AutoSize = true;
+            this.lblPOdropDown.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.lblPOdropDown.Location = new System.Drawing.Point(8, 3);
+            this.lblPOdropDown.Name = "lblPOdropDown";
+            this.lblPOdropDown.Size = new System.Drawing.Size(89, 17);
+            this.lblPOdropDown.TabIndex = 111111135;
+            this.lblPOdropDown.Text = "PO No. ~ PO Date";
             // 
             // lblLocationcode
             // 
@@ -1353,7 +1428,7 @@
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.AliceBlue;
             this.clmPono.DefaultCellStyle = dataGridViewCellStyle6;
             this.clmPono.Frozen = true;
-            this.clmPono.HeaderText = "PO No.";
+            this.clmPono.HeaderText = "Type";
             this.clmPono.Name = "clmPono";
             this.clmPono.ReadOnly = true;
             // 
@@ -3597,6 +3672,50 @@
             // 
             this.errPurchaseentry.ContainerControl = this;
             // 
+            // crToolStripTextBox1
+            // 
+            this.crToolStripTextBox1.Name = "crToolStripTextBox1";
+            this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
+            // 
+            // lblRemainProduct
+            // 
+            this.lblRemainProduct.AutoSize = true;
+            this.lblRemainProduct.BackColor = System.Drawing.Color.White;
+            this.lblRemainProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemainProduct.ForeColor = System.Drawing.Color.Red;
+            this.lblRemainProduct.Location = new System.Drawing.Point(1321, 3);
+            this.lblRemainProduct.Name = "lblRemainProduct";
+            this.lblRemainProduct.Size = new System.Drawing.Size(18, 21);
+            this.lblRemainProduct.TabIndex = 958770;
+            this.lblRemainProduct.Text = "0";
+            this.lblRemainProduct.Visible = false;
+            // 
+            // lblAddProduct
+            // 
+            this.lblAddProduct.AutoSize = true;
+            this.lblAddProduct.BackColor = System.Drawing.Color.White;
+            this.lblAddProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddProduct.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblAddProduct.Location = new System.Drawing.Point(1157, 3);
+            this.lblAddProduct.Name = "lblAddProduct";
+            this.lblAddProduct.Size = new System.Drawing.Size(18, 21);
+            this.lblAddProduct.TabIndex = 958769;
+            this.lblAddProduct.Text = "0";
+            this.lblAddProduct.Visible = false;
+            // 
+            // lbltotProduct
+            // 
+            this.lbltotProduct.AutoSize = true;
+            this.lbltotProduct.BackColor = System.Drawing.Color.White;
+            this.lbltotProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltotProduct.ForeColor = System.Drawing.Color.Blue;
+            this.lbltotProduct.Location = new System.Drawing.Point(1002, 3);
+            this.lbltotProduct.Name = "lbltotProduct";
+            this.lbltotProduct.Size = new System.Drawing.Size(18, 21);
+            this.lbltotProduct.TabIndex = 958768;
+            this.lbltotProduct.Text = "0";
+            this.lbltotProduct.Visible = false;
+            // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.HeaderText = "";
@@ -3605,12 +3724,42 @@
             this.dataGridViewImageColumn1.Visible = false;
             this.dataGridViewImageColumn1.Width = 50;
             // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Remove";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn2.Width = 50;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Remove";
+            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn3.Width = 70;
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Remove";
+            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn4.Width = 70;
+            // 
             // CP_Purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.Controls.Add(this.lblRemainProduct);
+            this.Controls.Add(this.lblAddProduct);
+            this.Controls.Add(this.lbltotProduct);
             this.Controls.Add(this.lblstatusvalue);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tsPurchase);
@@ -3813,7 +3962,7 @@
         private System.Windows.Forms.TextBox txtSourceLocation;
         public System.Windows.Forms.Label lblLocationcode;
         public System.Windows.Forms.ComboBox cmbPONo;
-        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label lblPOdropDown;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnViewDataView;
         private System.Windows.Forms.Label label35;
@@ -3915,6 +4064,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCosting;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblTotal1;
+        private CrystalDecisions.Windows.Forms.CRToolStripTextBox crToolStripTextBox1;
+        public System.Windows.Forms.ToolStripButton tsbPO;
+        public System.Windows.Forms.ToolStripSeparator tss2;
+        public System.Windows.Forms.ToolStripButton tsbAdded;
+        public System.Windows.Forms.ToolStripSeparator tss1;
+        public System.Windows.Forms.ToolStripButton tsbProducts;
+        private System.Windows.Forms.Label lblAddProduct;
+        public System.Windows.Forms.Label lbltotProduct;
+        public System.Windows.Forms.Label lblRemainProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPono;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
@@ -3949,5 +4107,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmHSNid;
         private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
     }
 }

@@ -38,9 +38,9 @@
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.tsbQue = new System.Windows.Forms.ToolStripButton();
-            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbQueue = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
@@ -94,9 +94,9 @@
             this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.toolStripButton1,
-            this.tsbQue,
-            this.tsbDelete,
+            this.tsbQueue,
             this.toolStripSeparator1,
+            this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
@@ -128,18 +128,25 @@
             this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStripButton1.Size = new System.Drawing.Size(23, 24);
             // 
-            // tsbQue
+            // tsbQueue
             // 
-            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
-            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbQue.Name = "tsbQue";
-            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbQue.Size = new System.Drawing.Size(63, 24);
-            this.tsbQue.Text = "Queue";
-            this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
+            this.tsbQueue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbQueue.Image = global::ROMS.Properties.Resources.queue;
+            this.tsbQueue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbQueue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbQueue.Name = "tsbQueue";
+            this.tsbQueue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbQueue.Size = new System.Drawing.Size(63, 24);
+            this.tsbQueue.Text = "Queue";
+            this.tsbQueue.Click += new System.EventHandler(this.TsbQue_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbDelete
             // 
@@ -153,13 +160,6 @@
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
             this.tsbDelete.Text = "Delete";
             this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tssEdit
             // 
@@ -635,7 +635,7 @@
 
         private System.Windows.Forms.ToolStrip tsBrandList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
-        public System.Windows.Forms.ToolStripButton tsbDelete;
+        public System.Windows.Forms.ToolStripButton tsbQueue;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbEdit;
         public System.Windows.Forms.ToolStripSeparator tssNew;
@@ -646,8 +646,6 @@
         public System.Windows.Forms.DataGridView grdPurchaseEntryList;
         private System.Windows.Forms.GroupBox grpFilterby;
         private System.Windows.Forms.Button btnView;
-        public System.Windows.Forms.ToolStripButton tsbQue;
-        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         public System.Windows.Forms.ListView LV_Supplier;
         private System.Windows.Forms.ColumnHeader columnHeader5;
@@ -675,5 +673,7 @@
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         public System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Label lblQueueCount;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.ToolStripButton tsbDelete;
     }
 }
