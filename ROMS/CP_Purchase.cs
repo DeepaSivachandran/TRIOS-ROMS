@@ -1328,17 +1328,20 @@ namespace ROMS
                             }
                             if (objDs.Tables.Count > 8)
                             {
-                                if (objDs.Tables[9].Rows.Count != 0)
+                                if (Convert.ToString(cmbEntryType.SelectedValue) != "56")
                                 {
-                                    lblAddProduct.Text = Convert.ToString(objDs.Tables[9].Rows[0]["AddedCount"]);
+                                    if (objDs.Tables[9].Rows.Count != 0)
+                                    {
+                                        lblAddProduct.Text = Convert.ToString(objDs.Tables[9].Rows[0]["AddedCount"]);
+                                    }
+                                    if (objDs.Tables[10].Rows.Count != 0)
+                                    {
+                                        lbltotProduct.Text = Convert.ToString(objDs.Tables[10].Rows[0]["TotalProducts"]);
+                                    }
+                                    int Remaining = 0;
+                                    Remaining = Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblAddProduct.Text);
+                                    lblRemainProduct.Text = Convert.ToString(Remaining);
                                 }
-                                if (objDs.Tables[10].Rows.Count != 0)
-                                {
-                                    lbltotProduct.Text = Convert.ToString(objDs.Tables[10].Rows[0]["TotalProducts"]);
-                                }
-                                int Remaining = 0;
-                                Remaining = Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblAddProduct.Text);
-                                lblRemainProduct.Text = Convert.ToString(Remaining);
                             }
                         }
                     }
