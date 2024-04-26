@@ -131,6 +131,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
             this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
+            this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
             this.txtSaleRack = new System.Windows.Forms.TextBox();
             this.txtSaleLocation = new System.Windows.Forms.TextBox();
             this.txtRackDescriptionSales = new System.Windows.Forms.TextBox();
@@ -179,7 +180,7 @@
             this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbCompleted = new System.Windows.Forms.CheckBox();
-            this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
+            this.chkMRP = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -261,11 +262,11 @@
             // 
             // txtItemNameTamil
             // 
-            this.txtItemNameTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtItemNameTamil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtItemNameTamil.Location = new System.Drawing.Point(160, 104);
             this.txtItemNameTamil.MaxLength = 100;
             this.txtItemNameTamil.Name = "txtItemNameTamil";
-            this.txtItemNameTamil.Size = new System.Drawing.Size(363, 27);
+            this.txtItemNameTamil.Size = new System.Drawing.Size(363, 26);
             this.txtItemNameTamil.TabIndex = 4;
             this.txtItemNameTamil.Enter += new System.EventHandler(this.TxtItemNameTamil_Enter);
             this.txtItemNameTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtItemNameTamil_KeyDown);
@@ -1289,6 +1290,7 @@
             // 
             // grpExpire
             // 
+            this.grpExpire.Controls.Add(this.chkMRP);
             this.grpExpire.Controls.Add(this.txtSelfLife);
             this.grpExpire.Controls.Add(this.cmbPeriod);
             this.grpExpire.Controls.Add(this.cbExpiry);
@@ -1437,6 +1439,17 @@
             this.grbSalesStockLocation.TabIndex = 15;
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
+            // 
+            // chkSameasPurchase
+            // 
+            this.chkSameasPurchase.AutoSize = true;
+            this.chkSameasPurchase.Location = new System.Drawing.Point(7, 24);
+            this.chkSameasPurchase.Name = "chkSameasPurchase";
+            this.chkSameasPurchase.Size = new System.Drawing.Size(125, 24);
+            this.chkSameasPurchase.TabIndex = 93;
+            this.chkSameasPurchase.Text = "Same as Purchase";
+            this.chkSameasPurchase.UseVisualStyleBackColor = true;
+            this.chkSameasPurchase.CheckedChanged += new System.EventHandler(this.ChkSameasPurchase_CheckedChanged);
             // 
             // txtSaleRack
             // 
@@ -1721,7 +1734,7 @@
             // 
             // txtRTamilName
             // 
-            this.txtRTamilName.Font = new System.Drawing.Font("Baamini", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRTamilName.ForeColor = System.Drawing.Color.Red;
             this.txtRTamilName.Location = new System.Drawing.Point(7, 74);
             this.txtRTamilName.Name = "txtRTamilName";
@@ -1931,16 +1944,15 @@
             this.cbCompleted.UseVisualStyleBackColor = true;
             this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
             // 
-            // chkSameasPurchase
+            // chkMRP
             // 
-            this.chkSameasPurchase.AutoSize = true;
-            this.chkSameasPurchase.Location = new System.Drawing.Point(7, 24);
-            this.chkSameasPurchase.Name = "chkSameasPurchase";
-            this.chkSameasPurchase.Size = new System.Drawing.Size(125, 24);
-            this.chkSameasPurchase.TabIndex = 93;
-            this.chkSameasPurchase.Text = "Same as Purchase";
-            this.chkSameasPurchase.UseVisualStyleBackColor = true;
-            this.chkSameasPurchase.CheckedChanged += new System.EventHandler(this.ChkSameasPurchase_CheckedChanged);
+            this.chkMRP.AutoSize = true;
+            this.chkMRP.Location = new System.Drawing.Point(204, 54);
+            this.chkMRP.Name = "chkMRP";
+            this.chkMRP.Size = new System.Drawing.Size(53, 24);
+            this.chkMRP.TabIndex = 22;
+            this.chkMRP.Text = "MRP";
+            this.chkMRP.UseVisualStyleBackColor = true;
             // 
             // CP_Product
             // 
@@ -2163,5 +2175,6 @@
         public System.Windows.Forms.Label lblHsnName;
         private System.Windows.Forms.CheckBox cbCompleted;
         private System.Windows.Forms.CheckBox chkSameasPurchase;
+        private System.Windows.Forms.CheckBox chkMRP;
     }
 }
