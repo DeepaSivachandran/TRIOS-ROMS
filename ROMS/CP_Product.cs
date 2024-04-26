@@ -4099,7 +4099,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBrand.Focus();
+                    txtGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -4185,7 +4185,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSubGroupAutocomplete();
-                    txtGroup.Focus();
+                    txtBrand.Focus();
                     lvGroup.Visible = false;
                 }
             }
@@ -5371,30 +5371,21 @@ namespace ROMS
             {
                 if (chkSameasPurchase.Checked == true)
                 {
-                    if (txtPurLocation.Text!="")
-                    {
-                        txtSaleLocation.Text = txtPurLocation.Text;
-                        txtSaleRack.Text = txtPurRack.Text;
-                        txtRackDescriptionSales.Text = txtRackDescription.Text;
-                        lblSaleLocationCode.Text = lblPurLocationCode.Text;
-                        lblSaleRackCode.Text = lblPurRackCode.Text;
-                        lvSaleLocation.Visible = false;
-                        lvSaleRack.Visible = false;
-                        txtSaleRack.Enabled = false;
-                        txtSaleRack.ReadOnly = true;
-                        txtSaleLocation.Enabled = false;
-                        txtSaleLocation.ReadOnly = true;
-                        txtRackDescriptionSales.Enabled = false;
-                        txtRackDescriptionSales.ReadOnly = true;
-                    }
-                    else
-                    {
-                        txtSaleLocation.Text = "";
-                        txtSaleRack.Text = "";
-                        txtRackDescriptionSales.Text = "";
-                        lblSaleLocationCode.Text = "0";
-                        lblSaleRackCode.Text = "0";
-                    }
+                    
+                    txtSaleLocation.Text = txtPurLocation.Text;
+                    txtSaleRack.Text = txtPurRack.Text;
+                    txtRackDescriptionSales.Text = txtRackDescription.Text;
+                    lblSaleLocationCode.Text = lblPurLocationCode.Text;
+                    lvSaleLocation.Visible = false;
+                    lblSaleRackCode.Text = lblPurRackCode.Text;
+                    lvSaleRack.Visible = false;
+                    txtSaleRack.Enabled = false;
+                    txtSaleRack.ReadOnly = true;
+                    txtSaleLocation.Enabled = false;
+                    txtSaleLocation.ReadOnly = true;
+                    txtRackDescriptionSales.Enabled = false;
+                    txtRackDescriptionSales.ReadOnly = true;
+                   
                 }
                 else
                 {                    
@@ -5572,6 +5563,7 @@ namespace ROMS
             {
                 udfnSubGroupAutocomplete();
                 lvGroup.Visible = false;
+                txtBrand.Focus();
             }
             catch (Exception ex)
             {

@@ -49,6 +49,12 @@ namespace ROMS
             try
             {
                 udfnLoad();
+                if(varFlag==0)//po
+                { this.Text = "PO - Remaing Products"; }
+                else if (varFlag == 1)//GRN
+                { this.Text = "GRN - Remaing Products"; }
+                else if (varFlag == 2)//DC
+                { this.Text = "DC - Remaing Products"; }
             }
             catch (Exception ex)
             {
@@ -84,16 +90,23 @@ namespace ROMS
                             grdPODetails.BringToFront();
                             grdPODetails.DataSource = objDs.Tables[0];
                             grdPODetails.Columns["PRID"].Visible = false;
-                            grdPODetails.Columns["Product Name"].Width = 200;
+                            if (varFlag != 0)
+                            {
+                                grdPODetails.Columns["ID"].Visible = false;
+                            }
+                            grdPODetails.Columns["Product Name"].Width = 250;
                             grdPODetails.Columns["PI Code"].Width = 120;
                             grdPODetails.Columns["Unit"].Width = 60;
-                            grdPODetails.Columns["S.No."].Width = 60;
-                            grdPODetails.Columns["S.No."].DisplayIndex = 1;
+                            grdPODetails.Columns["S.No."].Width = 50;
+                            grdPODetails.Columns["Expiry Date"].Width = 100;
+                            grdPODetails.Columns["MRP"].Width = 80;
                             grdPODetails.Columns["PI Code"].DisplayIndex = 2;
                             grdPODetails.Columns["Unit"].DisplayIndex = 4;
                             grdPODetails.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdPODetails.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPODetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPODetails.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPODetails.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPODetails.ClearSelection();
                             grdPODetails.ReadOnly = true;
                         }
