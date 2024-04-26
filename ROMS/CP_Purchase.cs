@@ -113,7 +113,7 @@ namespace ROMS
                             grdPODetails.Visible = true;
                             if (grdPODetails.Rows.Count != 0)
                             {
-                                grdSupplierList.Columns["clmPono"].Visible = true;
+                                //grdSupplierList.Columns["clmPono"].Visible = true;
                                 //cmbPONo.Enabled = true;
                             }
                            // cmbPONo.Enabled = true;
@@ -397,7 +397,7 @@ namespace ROMS
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, 0, Convert.ToInt16(objDs.Tables[0].Rows[i]["POPRID"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]));
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
-                            grdSupplierList.Columns["clmPono"].Visible = true;
+                            //grdSupplierList.Columns["clmPono"].Visible = true;
                             ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
@@ -3854,9 +3854,12 @@ namespace ROMS
                 int Remaining = 0;
                 pbDateflag = 0;
                 udfnAddProductsgrid();
-                lblAddProduct.Text = Convert.ToString(grdSupplierList.Rows.Count);
-                Remaining = Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblAddProduct.Text);
-                lblRemainProduct.Text = Convert.ToString(Remaining);
+                if (Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "220") //po,grn,dc
+                {
+                    lblAddProduct.Text = Convert.ToString(grdSupplierList.Rows.Count);
+                    Remaining = Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblAddProduct.Text);
+                    lblRemainProduct.Text = Convert.ToString(Remaining);
+                }
             }
             catch (Exception ex)
             {
@@ -10255,7 +10258,7 @@ namespace ROMS
                         DataGridViewCell cell = dataGridView.Rows[i].Cells["rkid"];
                         cell.Style.BackColor = Color.PaleGreen;
                     }
-                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || PbSTS=="50")
+                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) =="220" || PbSTS=="50")
                     {
                         grdSupplierList.Rows[i].ReadOnly = true;
                         grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
