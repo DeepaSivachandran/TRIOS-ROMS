@@ -1093,27 +1093,48 @@ namespace ROMS
                     {
                         if (objDs.Tables.Count != 0)
                         {
+                            string Quantity = "";
                             if (objDs.Tables[0].Rows.Count > 0)
                             {
-                                textBox4.Visible = true;
-                                txtVerifiedby1.Visible = true;
-                                textBox5.Visible = true;
-                                txtVerifiedby2.Visible = true;
-                                txtDGRNDate.Text = "GRN Date";
-                                txtDGRNNo.Text = "GRN No.";
-                                dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
-                                txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_No"]);
-                                txtVerifiedby1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 1"]);
-                                txtVerifiedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 2"]);
-                                txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN User"]);
-                                lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN STS"]);
+                                if (varGRNPurchaseFlag == 1)
+                                {
+                                    Quantity = "Pending Qty";
+                                    textBox4.Visible = true;
+                                    txtVerifiedby1.Visible = true;
+                                    textBox5.Visible = true;
+                                    txtVerifiedby2.Visible = true;
+                                    txtDGRNDate.Text = "GRN Date";
+                                    txtDGRNNo.Text = "GRN No.";
+                                    dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
+                                    txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_No"]);
+                                    txtVerifiedby1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 1"]);
+                                    txtVerifiedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 2"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN User"]);
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN STS"]);
+                                    grdGrnlist.Columns["clmQty"].HeaderText = Quantity;
+                                }
+                                if(varGRNPurchaseFlag==2)
+                                {
+                                    Quantity = "Invoice Qty";
+                                    grdGrnlist.Columns["clmQty"].HeaderText = Quantity;
+                                }
+                                if (varGRNPurchaseFlag == 3)
+                                {
+                                    Quantity = "DC Qty";
+                                    txtDGRNDate.Text = "DC Date";
+                                    txtDGRNNo.Text = "DC No.";
+                                    dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Date"]);
+                                    txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_No"]);
+                                    txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC User"]);
+                                    grdGrnlist.Columns["clmQty"].HeaderText = Quantity;
+                                }
                             }
                             if (objDs.Tables[1].Rows.Count > 0)
                             {
                                 for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                 {
                                     grdGrnlist.Rows.Add(false, null, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product Name in Tamil"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]),
-                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Pending Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shop Qty"]),
+                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i][Quantity]), Convert.ToString(objDs.Tables[1].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shop Qty"]),
                                          Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack ID"]),
                                            Convert.ToString(objDs.Tables[1].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Convert"]));
                                 }

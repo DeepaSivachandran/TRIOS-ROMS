@@ -902,7 +902,6 @@
             // 
             this.clmQty.HeaderText = "Qty";
             this.clmQty.Name = "clmQty";
-            this.clmQty.Width = 80;
             // 
             // clmReceivedQty
             // 
