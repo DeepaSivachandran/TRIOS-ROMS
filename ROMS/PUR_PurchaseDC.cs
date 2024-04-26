@@ -1716,7 +1716,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
                                     DGV_FilterProduct.Columns["pr_retailrate"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_HSNID"].Visible = false;
-                                    DGV_FilterProduct.Columns["PR_MRPflag"].Visible = true;
+                                    DGV_FilterProduct.Columns["PR_MRPflag"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 340;
                                     DGV_FilterProduct.Columns["Product Shelf Life"].Width = 105;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 340;
@@ -2629,7 +2629,22 @@ namespace ROMS
             {
                 varUpDownKey = 1;
                 udfnListviewProduct();
-                txtMrp.Focus();
+                //if (txtMrp.Enabled==true)
+                //{
+                //    txtMrp.Focus();
+                //}
+                //else if(txtDay.Enabled ==true)
+                //{
+                //    txtDay.Focus();
+                //}
+                //else if(txtBatchNo.Enabled==true)
+                //{
+                //    txtBatchNo.Focus();
+                //}
+                //else
+                //{
+                //    txtActualQty.Focus();
+                //}
             }
             catch (Exception ex)
             {
@@ -2907,7 +2922,22 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtMrp.Focus();
+                        if (txtMrp.Enabled == true)
+                        {
+                            txtMrp.Focus();
+                        }
+                        else if(txtDay.Enabled==true)
+                        {
+                            txtDay.Focus();
+                        }
+                        else if (txtBatchNo.Enabled==true)
+                        {
+                            txtBatchNo.Focus();
+                        }
+                        else
+                        {
+                            txtActualQty.Focus();
+                        }
                     }
                 }
             }
@@ -4849,8 +4879,22 @@ namespace ROMS
                         }
                     }
                 }
-                
-                txtMrp.Focus();
+                if (txtMrp.Enabled == true)
+                {
+                    txtMrp.Focus();
+                }
+                else if (txtDay.Enabled == true)
+                {
+                    txtDay.Focus();
+                }
+                else if (txtBatchNo.Enabled == true)
+                {
+                    txtBatchNo.Focus();
+                }
+                else
+                {
+                    txtActualQty.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -4859,7 +4903,7 @@ namespace ROMS
             }
             finally
             {
-                lvproduct.Visible = false;
+                DGV_FilterProduct.Visible = false;
             }
         }
         private void Lvproduct_KeyDown(object sender, KeyEventArgs e)
