@@ -1634,6 +1634,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_Product.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNID", objMR_Product.ParaGRNID);
                 varSqlCommand.Parameters.AddWithValue("@ParaRMFlag", objMR_Product.ParaRMFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Product.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaPOID", objMR_Product.ParaPOID);
+                varSqlCommand.Parameters.AddWithValue("@ParaDCID", objMR_Product.ParaDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseAutoComplete", objMR_Product.paraPurchaseAutoComplete);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -3208,6 +3212,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierType", objTRN_PurchaseEntry.paraSupplierType);
                 varSqlCommand.Parameters.AddWithValue("@paraRefreshFlag", objTRN_PurchaseEntry.paraRefreshFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraTinFlag", objTRN_PurchaseEntry.paraTinFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraPOID", objTRN_PurchaseEntry.paraPOID);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
@@ -3474,6 +3479,76 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraChequeDate", objTRN_Advance.paraChequeDate);
                 varSqlCommand.Parameters.AddWithValue("@paraChequeNo", objTRN_Advance.paraChequeNo);
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_Advance.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraBankId", objTRN_Advance.paraBankId);
+                varSqlCommand.Parameters.AddWithValue("@paraModeOfIssue", objTRN_Advance.paraModeOfIssue);
+                varSqlCommand.Parameters.AddWithValue("@paraIssueDetails", objTRN_Advance.paraIssueDetails);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_Advance.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Advance.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        public DataSet udfnGetSupplierPayment(TRN_Supplier_Payment objTRN_Supplier_Payment)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Supplier_Payment]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_Supplier_Payment.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierid", objTRN_Supplier_Payment.paraSupplierid);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_Supplier_Payment.paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_Supplier_Payment.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_Supplier_Payment.paraID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
+        //Added By Sathish on: 22-04-2024
+        public string udfnAdvance(TRN_Advance objTRN_Advance)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Advance]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Advance.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraAdvanceId", objTRN_Advance.paraAdvanceId);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objTRN_Advance.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraAdvanceDate", objTRN_Advance.paraAdvanceDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierId", objTRN_Advance.paraSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_Advance.paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@ParaAmt", objTRN_Advance.ParaAmt);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Advance.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Advance.paraOriginator);

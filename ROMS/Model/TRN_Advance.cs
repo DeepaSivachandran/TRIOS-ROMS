@@ -25,6 +25,9 @@ namespace ROMS.Model
         public string paraIPAddress { get; set; } = "";
         public int paraPaymentMode { get; set; } = 0;
         public int paraPaymentType { get; set; } = 0;
+        public int paraBankId { get; set; } = 0;
+        public int paraModeOfIssue { get; set; } = 0;
+        public string paraIssueDetails { get; set; } = "";
         public string paraChequeDate { get; set; } = "";
         public string paraChequeNo { get; set; } = "";
         public string paraRemarks { get; set; } = "";

@@ -173,6 +173,7 @@ namespace ROMS
         public static PUR_POScheduleSummary objPUR_POScheduleSummary;
         public static PUR_GRN_Level_Verified objPUR_GRN_Level_Verified;
         public static PO_Details objPO_Details;
+        public static PUR_RemainingProductList objPUR_RemainingProductList;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
@@ -180,6 +181,7 @@ namespace ROMS
         public static PAY_DebitNoteList objPAY_DebitNoteList;
         public static PAY_AdvanceList objPAY_AdvanceList;
         public static PAY_Advance objPAY_Advance;
+        public static PAY_Advance_Popup objPAY_Advance_Popup;
 
         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;

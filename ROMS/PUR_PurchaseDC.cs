@@ -3608,7 +3608,6 @@ namespace ROMS
                                     grdPurchaseDC.Rows[i].Cells["clmSno"].Value = i + 1;
                                 }
                                 udfnProductCount();
-
                                 varDiscardFlag = false;
                             }
                             break;

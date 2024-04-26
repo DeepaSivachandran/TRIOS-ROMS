@@ -204,8 +204,22 @@
     <Compile Include="CP_ProductApprovalList.designer.cs">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Advance.cs" />
+    <Compile Include="PAY_Advance_Popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_Advance_Popup.designer.cs">
+      <DependentUpon>PAY_Advance_Popup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
     <Compile Include="Model\TRN_Item_Movement_Analysis.cs" />
+    <Compile Include="Model\TRN_Supplier_Payment.cs" />
+    <Compile Include="PUR_RemainingProductList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_RemainingProductList.designer.cs">
+      <DependentUpon>PUR_RemainingProductList.cs</DependentUpon>
+    </Compile>
     <Compile Include="PO_Details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -502,6 +516,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_PAY_Advance_Receipt.cs">
+      <DependentUpon>RPT_PAY_Advance_Receipt.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_PUR_ReturnDC_SupplierWise.cs">
       <DependentUpon>RPT_PUR_ReturnDC_SupplierWise.rpt</DependentUpon>
@@ -1651,6 +1672,12 @@
     <EmbeddedResource Include="CP_ProductApprovalList.resx">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PAY_Advance_Popup.resx">
+      <DependentUpon>PAY_Advance_Popup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_RemainingProductList.resx">
+      <DependentUpon>PUR_RemainingProductList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PO_Details.resx">
       <DependentUpon>PO_Details.cs</DependentUpon>
     </EmbeddedResource>
@@ -2198,6 +2225,11 @@
     <EmbeddedResource Include="Reports\RPT_PAY_Advance-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PAY_Advance-SubReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PAY_Advance_Receipt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PAY_Advance_Receipt.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_ReturnDC_SupplierWise.rpt">
