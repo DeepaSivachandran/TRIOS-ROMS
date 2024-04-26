@@ -89,6 +89,25 @@
             this.lblStatusValue = new System.Windows.Forms.Label();
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmConvert = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReceivedQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmShopQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRackCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConvertType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -232,6 +251,25 @@
             this.grdGrnlist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmCheck,
             this.clmConvert,
+            this.clmSno,
+            this.clmPICode,
+            this.clmProductName,
+            this.clmMRP,
+            this.clmExpiryDate,
+            this.clmBatchNo,
+            this.clmQty,
+            this.clmReceivedQty,
+            this.clmShopQty,
+            this.clmUnit,
+            this.clmRack,
+            this.clmPRID,
+            this.clmSLID,
+            this.clmRKID,
+            this.clmUTID,
+            this.clmID,
+            this.clmUTDecimal,
+            this.clmRackCount,
+            this.clmConvertType,
             this.clmRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -824,6 +862,127 @@
             this.clmConvert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmConvert.Width = 50;
             // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.Width = 50;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.Name = "clmPICode";
+            // 
+            // clmProductName
+            // 
+            this.clmProductName.HeaderText = "Product Name in Tamil";
+            this.clmProductName.Name = "clmProductName";
+            this.clmProductName.Width = 250;
+            // 
+            // clmMRP
+            // 
+            this.clmMRP.HeaderText = "MRP";
+            this.clmMRP.Name = "clmMRP";
+            this.clmMRP.Width = 80;
+            // 
+            // clmExpiryDate
+            // 
+            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.Width = 80;
+            // 
+            // clmBatchNo
+            // 
+            this.clmBatchNo.HeaderText = "Batch No.";
+            this.clmBatchNo.Name = "clmBatchNo";
+            this.clmBatchNo.Width = 80;
+            // 
+            // clmQty
+            // 
+            this.clmQty.HeaderText = "Qty";
+            this.clmQty.Name = "clmQty";
+            this.clmQty.Width = 80;
+            // 
+            // clmReceivedQty
+            // 
+            this.clmReceivedQty.HeaderText = "Received Qty";
+            this.clmReceivedQty.Name = "clmReceivedQty";
+            this.clmReceivedQty.Width = 120;
+            // 
+            // clmShopQty
+            // 
+            this.clmShopQty.HeaderText = "Shop Qty";
+            this.clmShopQty.Name = "clmShopQty";
+            this.clmShopQty.Width = 80;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.Width = 50;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.Width = 80;
+            // 
+            // clmPRID
+            // 
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.Visible = false;
+            this.clmPRID.Width = 10;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.Visible = false;
+            this.clmSLID.Width = 10;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.Visible = false;
+            this.clmRKID.Width = 10;
+            // 
+            // clmUTID
+            // 
+            this.clmUTID.HeaderText = "UTID";
+            this.clmUTID.Name = "clmUTID";
+            this.clmUTID.Visible = false;
+            this.clmUTID.Width = 10;
+            // 
+            // clmID
+            // 
+            this.clmID.HeaderText = "ID";
+            this.clmID.Name = "clmID";
+            this.clmID.Visible = false;
+            this.clmID.Width = 10;
+            // 
+            // clmUTDecimal
+            // 
+            this.clmUTDecimal.HeaderText = "Decimal";
+            this.clmUTDecimal.Name = "clmUTDecimal";
+            this.clmUTDecimal.Visible = false;
+            this.clmUTDecimal.Width = 10;
+            // 
+            // clmRackCount
+            // 
+            this.clmRackCount.HeaderText = "Rack Count";
+            this.clmRackCount.Name = "clmRackCount";
+            this.clmRackCount.Visible = false;
+            this.clmRackCount.Width = 10;
+            // 
+            // clmConvertType
+            // 
+            this.clmConvertType.HeaderText = "Convert Type";
+            this.clmConvertType.Name = "clmConvertType";
+            this.clmConvertType.Visible = false;
+            this.clmConvertType.Width = 10;
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -924,6 +1083,25 @@
         public System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
         private System.Windows.Forms.DataGridViewImageColumn clmConvert;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmReceivedQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShopQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRackCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmConvertType;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
