@@ -1464,6 +1464,9 @@ namespace ROMS
                 lbltotProduct.Visible = true;
                 lblRemainProduct.Visible = true;
                 lblAddProduct.Visible = true;
+                tss1.Visible = true;
+                tss2.Visible = true;
+                tss3.Visible = true;
                 if (varQueueFlag == 0)
                 {
                     lbltotProduct.Text = "0";
@@ -1489,7 +1492,7 @@ namespace ROMS
                     lblPOdropDown.Text = "DC Type";
                     tsbProducts.Text = "&DC Products :& & & & & & & &";
                 }
-                else if (varEntryType == 56) // Direct
+                else if (varEntryType == 56 || varEntryType == -1) // Direct
                 {
                     tsbProducts.Visible = false;
                     tsbProducts.Enabled = false;
@@ -1498,6 +1501,9 @@ namespace ROMS
                     lbltotProduct.Visible = false;
                     lblRemainProduct.Visible = false;
                     lblAddProduct.Visible = false;
+                    tss1.Visible = false;
+                    tss2.Visible = false;
+                    tss3.Visible = false;
                 }
                 objDataBind = null;
                 cmbPONo.Enabled = true;
@@ -10756,7 +10762,7 @@ namespace ROMS
                         }
                         else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                         {
-                            if (varPOdropdownFlag == 2 && Convert.ToInt16(cmbPONo.SelectedValue) != 214)
+                            if (varPOdropdownFlag == 2 && Convert.ToString(cmbPONo.SelectedValue) != "214" || Convert.ToString(cmbPONo.SelectedValue) != null)
                             {
                                 objDs = objspdservice.udfnMaster(14, 0, 0, "", "", 0, "", 0);
                                 objspdservice.CloseConnection();
