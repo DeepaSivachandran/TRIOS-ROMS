@@ -10756,7 +10756,7 @@ namespace ROMS
                         }
                         else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                         {
-                            if (varPOdropdownFlag == 2 && Convert.ToInt16(cmbPONo.SelectedValue) != 214)
+                            if (varPOdropdownFlag == 2 && Convert.ToString(cmbPONo.SelectedValue) != "214" || Convert.ToString(cmbPONo.SelectedValue) != null)
                             {
                                 objDs = objspdservice.udfnMaster(14, 0, 0, "", "", 0, "", 0);
                                 objspdservice.CloseConnection();
