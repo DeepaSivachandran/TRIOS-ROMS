@@ -3531,42 +3531,6 @@ namespace ROMS
             }
             return ds;
         }
-
-        //Added By Sathish on: 22-04-2024
-        public string udfnAdvance(TRN_Advance objTRN_Advance)
-        {
-            string varResult = "";
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Advance]", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Advance.ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraAdvanceId", objTRN_Advance.paraAdvanceId);
-                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objTRN_Advance.ParaCompanycode);
-                varSqlCommand.Parameters.AddWithValue("@paraAdvanceDate", objTRN_Advance.paraAdvanceDate);
-                varSqlCommand.Parameters.AddWithValue("@paraSupplierId", objTRN_Advance.paraSupplierId);
-                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_Advance.paraScheduleId);
-                varSqlCommand.Parameters.AddWithValue("@ParaAmt", objTRN_Advance.ParaAmt);
-                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Advance.paraDeleteFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Advance.paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
-                varSqlCommand.CommandTimeout = 0;
-                varResult = varSqlCommand.ExecuteScalar().ToString();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return varResult;
-        }
         //Added By Sathish On: 22-04-2024
         public DataSet udfnAdvanceList(TRN_Advance objTRN_Advance)
         {

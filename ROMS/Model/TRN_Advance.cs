@@ -31,5 +31,6 @@ namespace ROMS.Model
         public string paraChequeDate { get; set; } = "";
         public string paraChequeNo { get; set; } = "";
         public string paraRemarks { get; set; } = "";
+        public int paraPAYID { get; set; } = 0;
     }
 }
