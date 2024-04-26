@@ -916,6 +916,9 @@ namespace ROMS
                 MainForm.objCP_Purchase.lblSupplierCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPID"].Value.ToString());
                 MainForm.objCP_Purchase.txtSupplier.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SUPPLIER"].Value.ToString());
                 MainForm.objCP_Purchase.txtGstin.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["GSTIN"].Value.ToString());
+                MainForm.objCP_Purchase.lbltotProduct.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Total Products"].Value.ToString());
+                MainForm.objCP_Purchase.lblRemainProduct.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Total Products"].Value.ToString());
+                MainForm.objCP_Purchase.txtQRCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["QR Code"].Value.ToString());
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
             }
