@@ -2926,11 +2926,11 @@ namespace ROMS
                         {
                             txtMrp.Focus();
                         }
-                        else if(txtDay.Enabled==true)
+                        else if(txtDay.Enabled == true)
                         {
                             txtDay.Focus();
                         }
-                        else if (txtBatchNo.Enabled==true)
+                        else if (txtBatchNo.Enabled == true)
                         {
                             txtBatchNo.Focus();
                         }
