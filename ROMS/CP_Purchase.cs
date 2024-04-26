@@ -3928,7 +3928,7 @@ namespace ROMS
             {
                 bool varErrorFlag = false;
                 DGV_FilterProduct.Visible = false;
-                varExpiryDate = "";
+                varExpiryDate = ""; varExpiryDateAdd = "";
                 int varSourceLocationID = 0;
                 /* Check  source location is valid or not*/
                 if (txtSourceLocation.Text != "" && varRMFlag != 59 && Convert.ToString(cmbPONo.SelectedValue)!="220")
@@ -4253,6 +4253,8 @@ namespace ROMS
                                     varGrnMrp = 0;
                                 }
                                 var maxSno = 0;
+                                if(Convert.ToString(cmbPONo.SelectedValue) == "220") //Dc type
+                                { varRackId = varPrRkid; }
                                 if(grdSupplierList.Rows.Count>0)
                                 {
                                     maxSno = (from row in grdSupplierList.Rows.Cast<DataGridViewRow>()
@@ -6996,9 +6998,12 @@ namespace ROMS
                         //}
 
                     }
-                    if(Convert.ToInt16(lbltotProduct.Text)!=varPrCount && chkCompleted.Checked==true)
+                    if (Convert.ToString(cmbEntryType.SelectedValue) == "57" || Convert.ToString(cmbEntryType.SelectedValue) == "54")
                     {
-                        varPrCountFlag = 1;
+                        if (Convert.ToInt16(lbltotProduct.Text) != varPrCount && chkCompleted.Checked == true)
+                        {
+                            varPrCountFlag = 1;
+                        }
                     }
                 }
             }
@@ -10562,22 +10567,25 @@ namespace ROMS
                         cmbrack.Text = varPrRack;
                         udfnAddrowEnable();
                     }
-                    if (Convert.ToInt32(varBatchNo) == 73)  //disabled
+                    if (Convert.ToString(cmbPONo.SelectedValue) != "220")
                     {
-                        txtBatchno.Text = "";
-                        txtBatchno.Enabled = false;
-                        //  txtBatchNo.ReadOnly = true;
-                    }
-                    else if (Convert.ToInt32(varBatchNo) == 72) //enabled
-                    {
-                        if (Convert.ToInt32(varBatchNoGeneration) == 75)  //manual
+                        if (Convert.ToInt32(varBatchNo) == 73)  //disabled
                         {
-                            txtBatchno.Enabled = true;
-                            //txtBatchNo.ReadOnly = false;
-                        }
-                        else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
-                        {
+                            txtBatchno.Text = "";
                             txtBatchno.Enabled = false;
+                            //  txtBatchNo.ReadOnly = true;
+                        }
+                        else if (Convert.ToInt32(varBatchNo) == 72) //enabled
+                        {
+                            if (Convert.ToInt32(varBatchNoGeneration) == 75)  //manual
+                            {
+                                txtBatchno.Enabled = true;
+                                //txtBatchNo.ReadOnly = false;
+                            }
+                            else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
+                            {
+                                txtBatchno.Enabled = false;
+                            }
                         }
                     }
                     //if (Convert.ToInt32(varBatchNo) == 73)  //disabled
@@ -10964,7 +10972,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
                                     DGV_FilterProduct.Columns["pr_retailrate"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_HSNID"].Visible = false;
-                                    if (varViewType != 29 && Convert.ToInt32(cmbPONo.SelectedValue) != 214)
+                                    if (varViewType != 29 && Convert.ToInt32(cmbPONo.SelectedValue) != 214 && Convert.ToInt32(cmbPONo.SelectedValue) != 215)
                                     {
                                         DGV_FilterProduct.Columns["Slid"].Visible = false;
                                         DGV_FilterProduct.Columns["Rkid"].Visible = false;
