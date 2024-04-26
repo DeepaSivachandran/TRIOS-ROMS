@@ -167,7 +167,6 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\TRN_Advance.cs" />
     <Compile Include="PAY_Advance.cs">
       <SubType>Form</SubType>
     </Compile>
