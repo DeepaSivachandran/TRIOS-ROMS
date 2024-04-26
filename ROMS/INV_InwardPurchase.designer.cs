@@ -30,9 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -272,24 +274,24 @@
             this.clmRackCount,
             this.clmConvertType,
             this.clmRemove});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(3, 122);
             this.grdGrnlist.Name = "grdGrnlist";
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdGrnlist.RowTemplate.Height = 25;
-            this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1338, 449);
             this.grdGrnlist.TabIndex = 958827;
             this.grdGrnlist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnlist_CellContentClick);
@@ -867,41 +869,48 @@
             // 
             this.clmSno.HeaderText = "S.No.";
             this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
             this.clmSno.Width = 50;
             // 
             // clmPICode
             // 
             this.clmPICode.HeaderText = "P.I Code";
             this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
             // 
             // clmProductName
             // 
             this.clmProductName.HeaderText = "Product Name in Tamil";
             this.clmProductName.Name = "clmProductName";
-            this.clmProductName.Width = 250;
+            this.clmProductName.ReadOnly = true;
+            this.clmProductName.Width = 300;
             // 
             // clmMRP
             // 
             this.clmMRP.HeaderText = "MRP";
             this.clmMRP.Name = "clmMRP";
+            this.clmMRP.ReadOnly = true;
             this.clmMRP.Width = 80;
             // 
             // clmExpiryDate
             // 
             this.clmExpiryDate.HeaderText = "Expiry Date";
             this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.ReadOnly = true;
             this.clmExpiryDate.Width = 80;
             // 
             // clmBatchNo
             // 
             this.clmBatchNo.HeaderText = "Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
+            this.clmBatchNo.ReadOnly = true;
             this.clmBatchNo.Width = 80;
             // 
             // clmQty
             // 
             this.clmQty.HeaderText = "Qty";
             this.clmQty.Name = "clmQty";
+            this.clmQty.ReadOnly = true;
             // 
             // clmReceivedQty
             // 
@@ -914,6 +923,9 @@
             // 
             // clmShopQty
             // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.clmShopQty.DefaultCellStyle = dataGridViewCellStyle3;
             this.clmShopQty.HeaderText = "Shop Qty";
             this.clmShopQty.Name = "clmShopQty";
             this.clmShopQty.Width = 80;
@@ -922,10 +934,14 @@
             // 
             this.clmUnit.HeaderText = "Unit";
             this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
             this.clmUnit.Width = 50;
             // 
             // clmRack
             // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.clmRack.DefaultCellStyle = dataGridViewCellStyle4;
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
             this.clmRack.Width = 80;
@@ -934,6 +950,7 @@
             // 
             this.clmPRID.HeaderText = "PRID";
             this.clmPRID.Name = "clmPRID";
+            this.clmPRID.ReadOnly = true;
             this.clmPRID.Visible = false;
             this.clmPRID.Width = 10;
             // 
@@ -941,6 +958,7 @@
             // 
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
             this.clmSLID.Visible = false;
             this.clmSLID.Width = 10;
             // 
@@ -948,6 +966,7 @@
             // 
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
             this.clmRKID.Visible = false;
             this.clmRKID.Width = 10;
             // 
@@ -955,6 +974,7 @@
             // 
             this.clmUTID.HeaderText = "UTID";
             this.clmUTID.Name = "clmUTID";
+            this.clmUTID.ReadOnly = true;
             this.clmUTID.Visible = false;
             this.clmUTID.Width = 10;
             // 
@@ -962,6 +982,7 @@
             // 
             this.clmID.HeaderText = "ID";
             this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
             this.clmID.Visible = false;
             this.clmID.Width = 10;
             // 
@@ -969,6 +990,7 @@
             // 
             this.clmUTDecimal.HeaderText = "Decimal";
             this.clmUTDecimal.Name = "clmUTDecimal";
+            this.clmUTDecimal.ReadOnly = true;
             this.clmUTDecimal.Visible = false;
             this.clmUTDecimal.Width = 10;
             // 
@@ -976,6 +998,7 @@
             // 
             this.clmRackCount.HeaderText = "Rack Count";
             this.clmRackCount.Name = "clmRackCount";
+            this.clmRackCount.ReadOnly = true;
             this.clmRackCount.Visible = false;
             this.clmRackCount.Width = 10;
             // 
@@ -983,6 +1006,7 @@
             // 
             this.clmConvertType.HeaderText = "Convert Type";
             this.clmConvertType.Name = "clmConvertType";
+            this.clmConvertType.ReadOnly = true;
             this.clmConvertType.Visible = false;
             this.clmConvertType.Width = 10;
             // 
