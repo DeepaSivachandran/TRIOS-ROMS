@@ -10751,7 +10751,8 @@ namespace ROMS
                         if (Convert.ToInt32(varBatchNoGeneration) == 75)  //manual
                         {
                             txtBatchno.Enabled = true;
-                            //txtBatchNo.ReadOnly = false;
+                            txtBatchno.ReadOnly = false;
+                            txtBatchno.BackColor = Color.White;
                         }
                         else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                         {
