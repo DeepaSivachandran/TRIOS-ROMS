@@ -22,6 +22,7 @@ namespace ROMS
         private ToolTip tpReceipt = new ToolTip();
         private ToolTip tpCheque = new ToolTip();
         private ToolTip tpIssue = new ToolTip();
+        private ToolTip tpAmount = new ToolTip();
         public string varcomid = "0";
         public string varSupplierID = "", varSupplierScheduleID = "", varSupplierName = "";
         public int varstatus; 
@@ -124,12 +125,12 @@ namespace ROMS
                 objTRN_Advance.paraAdvanceDate = dpAdvanceDate.Text;
                 objTRN_Advance.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedule.Text);
-                objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text);
+                objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text.Trim());
                 if (cmbPaymentType.Visible == true)
                 {
                     objTRN_Advance.paraPaymentType = Convert.ToInt32(cmbPaymentType.SelectedValue);
                     objTRN_Advance.paraChequeDate = dtChequeDate.Text;
-                    objTRN_Advance.paraChequeNo = txtChequeNo.Text;
+                    objTRN_Advance.paraChequeNo = txtChequeNo.Text.Trim();
                 }
                 if(Convert.ToInt32(cmbPaymentmode.SelectedValue)!=88)
                 {
@@ -138,6 +139,7 @@ namespace ROMS
                 }
                 else
                 {
+                    objTRN_Advance.paraBankId = 0;
                     objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
                 }
                 objTRN_Advance.paraModeOfIssue =Convert.ToInt32(cmbIssueMode.SelectedValue);
@@ -147,10 +149,10 @@ namespace ROMS
                 }
                 else
                 {
-                    objTRN_Advance.paraIssueDetails = txtIssue.Text;
+                    objTRN_Advance.paraIssueDetails = txtIssue.Text.Trim();
                     objTRN_Advance.paraStatusID = 80;
                 }
-                objTRN_Advance.paraRemarks = txtRemark.Text;
+                objTRN_Advance.paraRemarks = txtRemark.Text.Trim();
                 objTRN_Advance.paraOriginator = varoriginator;
                 varResult = objspservice.udfnAdvance(objTRN_Advance);
                 objspservice.CloseConnection();
@@ -268,9 +270,20 @@ namespace ROMS
                 {
                     epAdvance.SetError(txtAmount, "Please enter amount.");
                     txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSupplier.ShowAlways = true;
-                    tpSupplier.Show("Please enter amount.", txtAmount, 5000);
+                    tpAmount.ShowAlways = true;
+                    tpAmount.Show("Please enter amount.", txtAmount, 5000);
                     blnErrorFlag = true;
+                }
+                else
+                {
+                    if(Convert.ToDecimal(txtAmount.Text)==0)
+                    {
+                        epAdvance.SetError(txtAmount, "Please enter valid amount.");
+                        txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpAmount.ShowAlways = true;
+                        tpAmount.Show("Please enter valid amount.", txtAmount, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 if (Convert.ToString(txtReceiptNo.Text).Trim() == "")
                 {
