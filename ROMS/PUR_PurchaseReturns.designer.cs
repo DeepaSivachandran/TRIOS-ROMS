@@ -50,6 +50,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
+            this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.grbProDetails = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -163,7 +164,9 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtDMrp = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.chkCompleted = new System.Windows.Forms.CheckBox();
+            this.grpInvoiceDetails = new System.Windows.Forms.GroupBox();
+            this.lblInvoiceDate = new System.Windows.Forms.Label();
+            this.lblInvoiceNo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -178,6 +181,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRepDetails)).BeginInit();
             this.grbSupplierDetails.SuspendLayout();
             this.grpReturnDCSupplier.SuspendLayout();
+            this.grpInvoiceDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // epReturnDc
@@ -220,6 +224,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.grpInvoiceDetails);
             this.groupBox1.Controls.Add(this.LV_Supplier);
             this.groupBox1.Controls.Add(this.grpExcessProduct);
             this.groupBox1.Controls.Add(this.groupBox5);
@@ -306,6 +311,16 @@
             this.grpExcessProduct.Size = new System.Drawing.Size(1313, 490);
             this.grpExcessProduct.TabIndex = 1111204;
             this.grpExcessProduct.TabStop = false;
+            // 
+            // chkCompleted
+            // 
+            this.chkCompleted.AutoSize = true;
+            this.chkCompleted.Location = new System.Drawing.Point(1038, 445);
+            this.chkCompleted.Name = "chkCompleted";
+            this.chkCompleted.Size = new System.Drawing.Size(86, 24);
+            this.chkCompleted.TabIndex = 111111144;
+            this.chkCompleted.Text = "Completed";
+            this.chkCompleted.UseVisualStyleBackColor = true;
             // 
             // DGV_FilterProduct
             // 
@@ -1095,10 +1110,10 @@
             this.groupBox5.Controls.Add(this.lblWhatsAppNo);
             this.groupBox5.Controls.Add(this.lblMobileNo);
             this.groupBox5.Controls.Add(this.lblSalesmanName);
-            this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 9F);
             this.groupBox5.Location = new System.Drawing.Point(669, 15);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(208, 121);
+            this.groupBox5.Size = new System.Drawing.Size(208, 70);
             this.groupBox5.TabIndex = 1111239;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Salesman Details";
@@ -1107,10 +1122,10 @@
             // 
             this.lblWhatsAppNo.AutoSize = true;
             this.lblWhatsAppNo.BackColor = System.Drawing.Color.White;
-            this.lblWhatsAppNo.Font = new System.Drawing.Font("Oswald Regular", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWhatsAppNo.Location = new System.Drawing.Point(5, 68);
+            this.lblWhatsAppNo.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWhatsAppNo.Location = new System.Drawing.Point(5, 51);
             this.lblWhatsAppNo.Name = "lblWhatsAppNo";
-            this.lblWhatsAppNo.Size = new System.Drawing.Size(74, 19);
+            this.lblWhatsAppNo.Size = new System.Drawing.Size(64, 16);
             this.lblWhatsAppNo.TabIndex = 1111214;
             this.lblWhatsAppNo.Text = "WhatsApp no";
             this.lblWhatsAppNo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1119,10 +1134,10 @@
             // 
             this.lblMobileNo.AutoSize = true;
             this.lblMobileNo.BackColor = System.Drawing.Color.White;
-            this.lblMobileNo.Font = new System.Drawing.Font("Oswald Regular", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobileNo.Location = new System.Drawing.Point(5, 44);
+            this.lblMobileNo.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMobileNo.Location = new System.Drawing.Point(5, 33);
             this.lblMobileNo.Name = "lblMobileNo";
-            this.lblMobileNo.Size = new System.Drawing.Size(58, 19);
+            this.lblMobileNo.Size = new System.Drawing.Size(51, 16);
             this.lblMobileNo.TabIndex = 1111213;
             this.lblMobileNo.Text = "Mobile No";
             this.lblMobileNo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1131,10 +1146,10 @@
             // 
             this.lblSalesmanName.AutoSize = true;
             this.lblSalesmanName.BackColor = System.Drawing.Color.White;
-            this.lblSalesmanName.Font = new System.Drawing.Font("Oswald Regular", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalesmanName.Location = new System.Drawing.Point(5, 21);
+            this.lblSalesmanName.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSalesmanName.Location = new System.Drawing.Point(5, 16);
             this.lblSalesmanName.Name = "lblSalesmanName";
-            this.lblSalesmanName.Size = new System.Drawing.Size(58, 19);
+            this.lblSalesmanName.Size = new System.Drawing.Size(49, 16);
             this.lblSalesmanName.TabIndex = 1111212;
             this.lblSalesmanName.Text = "Salesman";
             this.lblSalesmanName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1195,7 +1210,7 @@
             this.grbSupplierDetails.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.grbSupplierDetails.Location = new System.Drawing.Point(455, 15);
             this.grbSupplierDetails.Name = "grbSupplierDetails";
-            this.grbSupplierDetails.Size = new System.Drawing.Size(208, 121);
+            this.grbSupplierDetails.Size = new System.Drawing.Size(208, 123);
             this.grbSupplierDetails.TabIndex = 1111238;
             this.grbSupplierDetails.TabStop = false;
             this.grbSupplierDetails.Text = "Supplier Details";
@@ -1432,7 +1447,7 @@
             this.grpReturnDCSupplier.Controls.Add(this.cmbReason);
             this.grpReturnDCSupplier.Location = new System.Drawing.Point(9, 14);
             this.grpReturnDCSupplier.Name = "grpReturnDCSupplier";
-            this.grpReturnDCSupplier.Size = new System.Drawing.Size(440, 121);
+            this.grpReturnDCSupplier.Size = new System.Drawing.Size(440, 123);
             this.grpReturnDCSupplier.TabIndex = 1111221;
             this.grpReturnDCSupplier.TabStop = false;
             // 
@@ -1625,15 +1640,41 @@
             this.lblStatus.Size = new System.Drawing.Size(0, 20);
             this.lblStatus.TabIndex = 38;
             // 
-            // chkCompleted
+            // grpInvoiceDetails
             // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.Location = new System.Drawing.Point(1038, 445);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(86, 24);
-            this.chkCompleted.TabIndex = 111111144;
-            this.chkCompleted.Text = "Completed";
-            this.chkCompleted.UseVisualStyleBackColor = true;
+            this.grpInvoiceDetails.Controls.Add(this.lblInvoiceDate);
+            this.grpInvoiceDetails.Controls.Add(this.lblInvoiceNo);
+            this.grpInvoiceDetails.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.grpInvoiceDetails.Location = new System.Drawing.Point(667, 84);
+            this.grpInvoiceDetails.Name = "grpInvoiceDetails";
+            this.grpInvoiceDetails.Size = new System.Drawing.Size(208, 54);
+            this.grpInvoiceDetails.TabIndex = 1111240;
+            this.grpInvoiceDetails.TabStop = false;
+            this.grpInvoiceDetails.Text = "Invoice Details";
+            // 
+            // lblInvoiceDate
+            // 
+            this.lblInvoiceDate.AutoSize = true;
+            this.lblInvoiceDate.BackColor = System.Drawing.Color.White;
+            this.lblInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceDate.Location = new System.Drawing.Point(5, 32);
+            this.lblInvoiceDate.Name = "lblInvoiceDate";
+            this.lblInvoiceDate.Size = new System.Drawing.Size(62, 16);
+            this.lblInvoiceDate.TabIndex = 1111214;
+            this.lblInvoiceDate.Text = "Invoice Date";
+            this.lblInvoiceDate.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInvoiceNo
+            // 
+            this.lblInvoiceNo.AutoSize = true;
+            this.lblInvoiceNo.BackColor = System.Drawing.Color.White;
+            this.lblInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceNo.Location = new System.Drawing.Point(5, 16);
+            this.lblInvoiceNo.Name = "lblInvoiceNo";
+            this.lblInvoiceNo.Size = new System.Drawing.Size(50, 16);
+            this.lblInvoiceNo.TabIndex = 1111212;
+            this.lblInvoiceNo.Text = "InvoiceNo";
+            this.lblInvoiceNo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PUR_PurchaseReturns
             // 
@@ -1680,6 +1721,8 @@
             this.grbSupplierDetails.PerformLayout();
             this.grpReturnDCSupplier.ResumeLayout(false);
             this.grpReturnDCSupplier.PerformLayout();
+            this.grpInvoiceDetails.ResumeLayout(false);
+            this.grpInvoiceDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1811,5 +1854,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.CheckBox chkCompleted;
+        private System.Windows.Forms.GroupBox grpInvoiceDetails;
+        private System.Windows.Forms.Label lblInvoiceDate;
+        private System.Windows.Forms.Label lblInvoiceNo;
     }
 }
