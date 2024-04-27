@@ -551,6 +551,7 @@ namespace ROMS
                         }
                     }
                 }
+                ChkCompleted_CheckedChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -744,6 +745,10 @@ namespace ROMS
                                 udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
+                            }
+                            if(varStatusId==81)
+                            {
+                                chkVerified.Checked = true;
                             }
                             if (objDs.Tables.Count != 0)
                             {
@@ -3023,6 +3028,26 @@ namespace ROMS
                 if(chkVerified.Checked==true)
                 {
 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(chkCompleted.Checked==true)
+                {
+                    chkVerified.Enabled = true;
+                }
+                else
+                {
+                    chkVerified.Enabled = false;
                 }
             }
             catch (Exception ex)

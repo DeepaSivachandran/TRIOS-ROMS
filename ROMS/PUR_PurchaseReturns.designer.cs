@@ -359,6 +359,7 @@
             this.chkCompleted.TabIndex = 111111144;
             this.chkCompleted.Text = "Completed";
             this.chkCompleted.UseVisualStyleBackColor = true;
+            this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
             // 
             // DGV_FilterProduct
             // 
