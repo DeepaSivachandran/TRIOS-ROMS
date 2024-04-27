@@ -3850,22 +3850,23 @@ namespace ROMS
         {
             try
             {
-                var Prid = from r in dtPurchaseAutoComplete.AsEnumerable()
-                                where (r.Field<string>("Flag").Equals("215"))
+                varPrid = "";
+                var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
+                                where (r.Field<int>("Flag").Equals(215))
                                 group r by r.Field<string>("PRID") into g
                                 select g.Key;
-                if (varPrid == "0")
+                if (varPrid == "")
                 {
-                    varPrid = Convert.ToString(Prid);
+                    varPrid = Convert.ToString(varProIds);
                 }
                 else
                 {
-                    varPrid = varPrid + ',' + Convert.ToString(Prid);
+                    for (int i = 0; i < varProIds.Count(); i++) {
+                        varPrid = varPrid + ',' + varProIds.ToList()[i];
+                    }
                 }
-                //if (varRMCode.Count() > 0)
-                //{
-                //    grdProDetails.Rows[i].Cells[j].ReadOnly = false;
-                //}
+                lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
             }
             catch (Exception ex)
             {
