@@ -73,7 +73,7 @@ namespace ROMS
                 dtAdvance.Columns.Add("", typeof(Boolean));
                 dtAdvance.Columns.Add("S.No.", typeof(string));
                 dtAdvance.Columns.Add("Advance Date", typeof(string));
-                dtAdvance.Columns.Add("Advance Amount", typeof(float));
+                dtAdvance.Columns.Add("Advance Amount", typeof(decimal));
                 dtAdvance.Columns.Add("ADID", typeof(string));
                 dtAdvance.Columns.Add("PAYID", typeof(int));
                 TRN_Advance objTRN_Advance = new TRN_Advance();
@@ -106,7 +106,7 @@ namespace ROMS
                                 {
                                     varCheck = false;
                                 }
-                                dtAdvance.Rows.Add(varCheck, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], objDs.Tables[0].Rows[i]["Advance Amount"], objDs.Tables[0].Rows[i]["ADID"], objDs.Tables[0].Rows[i]["PAYID"]);                               
+                                dtAdvance.Rows.Add(varCheck, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Advance Amount"]), objDs.Tables[0].Rows[i]["ADID"], objDs.Tables[0].Rows[i]["PAYID"]);                               
                             }
                             grdAdvance.DataSource = dtAdvance;
                             grdAdvance.Columns[0].HeaderText = "";

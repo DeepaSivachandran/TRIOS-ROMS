@@ -147,8 +147,8 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        grdPurchaseDC.Rows[i].Cells["clmMRP"].ReadOnly = true;
-                                        grdPurchaseDC.Rows[i].Cells["clmMRP"].Style.BackColor = Color.White;
+                                        grdPurchaseDC.Rows[i].Cells["clmMRP"].ReadOnly = false;
+                                        grdPurchaseDC.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
                                     }
                                     string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
                                     if (varShelflifeper[0] != "")
@@ -4146,6 +4146,14 @@ namespace ROMS
                     lblRackCode.Text = "0";
                     txtRack.Text = "None";
                 }
+                if(varMRPFlag==1 && (txtMrp.Text=="" || Convert.ToDecimal(txtMrp.Text)==0))
+                {
+                    txtMrp.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    epPurchaseDC.SetError(txtMrp, "Please enter MRP.");
+                    tpMRP.ShowAlways = true;
+                    tpMRP.Show("Please enter MRP.", txtMrp, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtProductName.Text.Trim()) != "")
                 {
                     if (expirydateFlag == 1|| txtDay.Text!="" || txtMonth.Text!="" || txtYear.Text!="")
@@ -4546,9 +4554,9 @@ namespace ROMS
                             {
                                 DataGridView dataGridView = grdPurchaseDC;
                                 DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMRP"];
-                                cell.Style.BackColor = Color.White;
+                                cell.Style.BackColor = Color.PaleGreen;
                                 cell.Style.ForeColor = Color.Black;
-                                cell.ReadOnly = true;
+                                cell.ReadOnly = false;
                             }
                             DataGridView dataGridView1 = grdPurchaseDC;
                             DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmBatchNo"];
