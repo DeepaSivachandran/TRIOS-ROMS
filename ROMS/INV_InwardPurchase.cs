@@ -377,13 +377,13 @@ namespace ROMS
                                     dtInwardPurchase.Rows.Add(Convert.ToInt32(Sno), varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(MRP), GRN_DC_PUR_ID);
 
                                         grdGrnlist.Rows.Add(false, null, Sno, PICode, PTName, MRP, ExpiryDate, BatchNo,
-                                     PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType);
+                                     PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType, varChildRowNo);
                                     
 
                                     DataGridView dataGridView = grdGrnlist;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"];
                                     cell.Value= new System.Drawing.Bitmap(1, 1);
-
+                                    string orderid=Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmOrder"].Value);
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdGrnlist_DataBindingComplete(grdGrnlist, args2);
 
@@ -420,7 +420,7 @@ namespace ROMS
             finally
             {
                 //grdGrnlist.Sort(grdGrnlist.Columns["clmConvert"], ListSortDirection.Descending);
-                grdGrnlist.Sort(grdGrnlist.Columns["clmSno"], ListSortDirection.Ascending);
+                grdGrnlist.Sort(grdGrnlist.Columns["clmOrder"], ListSortDirection.Ascending);
             }
         }
         private void BtnRemarks_Leave(object sender, EventArgs e)
@@ -961,41 +961,44 @@ namespace ROMS
         {
             try
             {
-                if (e.ColumnIndex == grdGrnlist.Columns["clmRack"].Index && e.RowIndex >= 0)
+                if (grdGrnlist.Rows.Count > 0)
                 {
-                    DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cellRkname = dataGridView.Rows[e.RowIndex].Cells["clmRack"];
-                    DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["clmRKID"];
-                    if (Convert.ToString(varLocationId) != "-1")
+                    if (e.ColumnIndex == grdGrnlist.Columns["clmRack"].Index && e.RowIndex >= 0)
                     {
-                        string SelectedRackName = grdGrnlist.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString();
-                        if (!string.IsNullOrEmpty(SelectedRackName))
+                        DataGridView dataGridView = (DataGridView)sender;
+                        DataGridViewCell cellRkname = dataGridView.Rows[e.RowIndex].Cells["clmRack"];
+                        DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["clmRKID"];
+                        if (Convert.ToString(varLocationId) != "-1")
                         {
-                            /*check location have a rack or not*/
-                            string varId_PurchaseRack = "0";
-                            DataSet objDsPurchaseRack = new DataSet();
-                            SPDataService objDServ6 = new SPDataService();
-                            objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(varLocationId), 0, SelectedRackName, 0, 0);
-                            objDServ6.CloseConnection();
-                            if (objDsPurchaseRack != null)
+                            string SelectedRackName = grdGrnlist.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString();
+                            if (!string.IsNullOrEmpty(SelectedRackName))
                             {
-                                if (objDsPurchaseRack.Tables.Count > 0)
+                                /*check location have a rack or not*/
+                                string varId_PurchaseRack = "0";
+                                DataSet objDsPurchaseRack = new DataSet();
+                                SPDataService objDServ6 = new SPDataService();
+                                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(varLocationId), 0, SelectedRackName, 0, 0);
+                                objDServ6.CloseConnection();
+                                if (objDsPurchaseRack != null)
                                 {
-                                    if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                    if (objDsPurchaseRack.Tables.Count > 0)
                                     {
-                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                        if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                        {
+                                            varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                        }
                                     }
                                 }
-                            }
-                            if (varId_PurchaseRack != "-1")
-                            {
-                                cellRkname.Style.BackColor = Color.PaleGreen;
-                                cellRkid.Value = Convert.ToString(varId_PurchaseRack);
-                            }
-                            else
-                            {
-                                cellRkname.Style.BackColor = Color.LightPink;
-                                cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                if (varId_PurchaseRack != "-1")
+                                {
+                                    cellRkname.Style.BackColor = Color.PaleGreen;
+                                    cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                }
+                                else
+                                {
+                                    cellRkname.Style.BackColor = Color.LightPink;
+                                    cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                }
                             }
                         }
                     }
@@ -1165,7 +1168,7 @@ namespace ROMS
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i][Quantity]), Convert.ToString(objDs.Tables[1].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shop Qty"]),
                                          Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack ID"]),
                                            Convert.ToString(objDs.Tables[1].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]));
-                                    decimal ReceivedQty = 0, ShopQty = 0;int OrderId = 0;
+                                    decimal ReceivedQty = 0, ShopQty = 0;
                                     if(Convert.ToString(objDs.Tables[1].Rows[i]["Received Qty"])!="")
                                     {
                                         ReceivedQty = Convert.ToDecimal(objDs.Tables[1].Rows[i]["Received Qty"]);
@@ -1175,7 +1178,7 @@ namespace ROMS
                                         ShopQty = Convert.ToDecimal(objDs.Tables[1].Rows[i]["Shop Qty"]);
                                     }
 
-                                    dtInwardPurchase.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["S.No."]), OrderId, Convert.ToInt32(objDs.Tables[1].Rows[i]["Product ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Unit ID"]), ReceivedQty,ShopQty, Convert.ToInt32(objDs.Tables[1].Rows[i]["Rack ID"]),
+                                    dtInwardPurchase.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToInt32(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Product ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Unit ID"]), ReceivedQty,ShopQty, Convert.ToInt32(objDs.Tables[1].Rows[i]["Rack ID"]),
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]));
 
                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value)== "1")

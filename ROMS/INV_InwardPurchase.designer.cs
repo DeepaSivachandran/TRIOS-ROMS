@@ -861,7 +861,7 @@
             // 
             // clmConvert
             // 
-            this.clmConvert.HeaderText = "Convert";
+            this.clmConvert.HeaderText = "";
             this.clmConvert.Image = global::ROMS.Properties.Resources.undo16x16;
             this.clmConvert.Name = "clmConvert";
             this.clmConvert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
