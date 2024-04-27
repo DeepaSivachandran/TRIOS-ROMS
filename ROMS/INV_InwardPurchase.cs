@@ -349,9 +349,9 @@ namespace ROMS
                                     string PICode = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmPICode"].Value);
                                     //var PEName = dgv.Rows[e.RowIndex].Cells["Product Name in English"].Value;
                                     string PTName = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmProductName"].Value);
-                                    string MRP = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
-                                    string ExpiryDate = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
-                                    string BatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
+                                    string MRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
+                                    string ExpiryDate = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
+                                    string BatchNo = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
                                     string PendingQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmQty"].Value);
                                     string ReceivedQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmReceivedQty"].Value);
                                     string ShopQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShopQty"].Value);
@@ -367,14 +367,13 @@ namespace ROMS
                                     string ConvertType = "0";
 
                                     //SNO Order Here
-
                                     var varChildRowCount = from r in dtInwardPurchase.AsEnumerable()
                                                              where (r.Field<int>("GIPPR_SNO").Equals(Convert.ToInt32(Sno))
                                                              )group r by r.Field<int>("GIPPR_OrderID") into g
                                                              select g.Key;
                                     int varChildRowNo = Convert.ToInt32( Convert.ToString(Sno) + Convert.ToString(varChildRowCount.Count()));
 
-                                    dtInwardPurchase.Rows.Add(Convert.ToInt32(Sno), varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(MRP), GRN_DC_PUR_ID);
+                                    dtInwardPurchase.Rows.Add(Convert.ToInt32(Sno), varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(0), GRN_DC_PUR_ID);
 
                                         grdGrnlist.Rows.Add(false, null, Sno, PICode, PTName, MRP, ExpiryDate, BatchNo,
                                      PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType, Convert.ToString(varChildRowNo));
@@ -383,7 +382,26 @@ namespace ROMS
                                     DataGridView dataGridView = grdGrnlist;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"];
                                     cell.Value= new System.Drawing.Bitmap(1, 1);
-                                    string orderid=Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmOrder"].Value);
+                                    //MRP
+                                    DataGridView dataGridView1 = grdGrnlist;
+                                    DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmMRP"];
+                                    cell1.Style.BackColor = Color.PaleGreen;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = false;
+                                    //Expiry Date
+                                    DataGridView dataGridView2 = grdGrnlist;
+                                    DataGridViewCell cell2 = dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells["clmExpiryDate"];
+                                    cell2.Style.BackColor = Color.PaleGreen;
+                                    cell2.Style.ForeColor = Color.Black;
+                                    cell2.ReadOnly = false;
+                                    //Batch No
+                                    DataGridView dataGridView3 = grdGrnlist;
+                                    DataGridViewCell cell3 = dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells["clmBatchNo"];
+                                    cell3.Style.BackColor = Color.PaleGreen;
+                                    cell3.Style.ForeColor = Color.Black;
+                                    cell3.ReadOnly = false;
+
+
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdGrnlist_DataBindingComplete(grdGrnlist, args2);
 
@@ -404,6 +422,14 @@ namespace ROMS
                             if (Convert.ToString(grdGrnlist.CurrentRow.Cells["clmReceivedQty"].Value) == "")
                             {
                                 grdGrnlist.Rows.RemoveAt(this.grdGrnlist.Rows[e.RowIndex].Index);
+                                for (int i = 0; i < dtInwardPurchase.Rows.Count; i++)
+                                {
+                                    if (Convert.ToInt32(dtInwardPurchase.Rows[i]["GIPPR_OrderID"]) == Convert.ToInt32(grdGrnlist.CurrentRow.Cells["clmOrder"].Value))
+                                    {
+                                        dtInwardPurchase.Rows[i].Delete();
+                                        dtInwardPurchase.AcceptChanges();
+                                    }
+                                }
                             }
                             else
                             {
