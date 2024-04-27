@@ -32,6 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PAY_Advance));
             this.txtDReceiptN0 = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtAmountInWords = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.grbIssuedDetails = new System.Windows.Forms.GroupBox();
             this.txtTypeName = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -50,14 +60,6 @@
             this.txtAccno = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.txtBankname = new System.Windows.Forms.TextBox();
-            this.LV_Supplier = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
@@ -99,8 +101,6 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.txtAmountInWords = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.grbIssuedDetails.SuspendLayout();
             this.grbBankDetails.SuspendLayout();
@@ -158,6 +158,83 @@
             this.grbform.Size = new System.Drawing.Size(1330, 630);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader6});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(139, 104);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(335, 120);
+            this.LV_Supplier.TabIndex = 1111209;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 200;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 10;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 10;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 10;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 10;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 10;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 10;
+            // 
+            // txtAmountInWords
+            // 
+            this.txtAmountInWords.Enabled = false;
+            this.txtAmountInWords.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmountInWords.Location = new System.Drawing.Point(139, 140);
+            this.txtAmountInWords.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtAmountInWords.MaxLength = 100;
+            this.txtAmountInWords.Multiline = true;
+            this.txtAmountInWords.Name = "txtAmountInWords";
+            this.txtAmountInWords.ReadOnly = true;
+            this.txtAmountInWords.Size = new System.Drawing.Size(335, 49);
+            this.txtAmountInWords.TabIndex = 12345359;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(17, 140);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(122, 49);
+            this.textBox3.TabIndex = 12345358;
+            this.textBox3.Text = "Amount in Words";
             // 
             // grbIssuedDetails
             // 
@@ -389,62 +466,12 @@
             this.txtBankname.Size = new System.Drawing.Size(165, 27);
             this.txtBankname.TabIndex = 176757;
             // 
-            // LV_Supplier
-            // 
-            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader6});
-            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(139, 104);
-            this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(335, 120);
-            this.LV_Supplier.TabIndex = 1111209;
-            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
-            this.LV_Supplier.View = System.Windows.Forms.View.Details;
-            this.LV_Supplier.Visible = false;
-            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
-            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 200;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Width = 10;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 10;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 10;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 10;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 10;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Width = 10;
-            // 
             // txtAmount
             // 
             this.txtAmount.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmount.Location = new System.Drawing.Point(139, 103);
             this.txtAmount.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtAmount.MaxLength = 8;
+            this.txtAmount.MaxLength = 10;
             this.txtAmount.Multiline = true;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(107, 41);
@@ -942,33 +969,6 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 37;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(17, 140);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(122, 49);
-            this.textBox3.TabIndex = 12345358;
-            this.textBox3.Text = "Amount in Words";
-            // 
-            // txtAmountInWords
-            // 
-            this.txtAmountInWords.Enabled = false;
-            this.txtAmountInWords.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmountInWords.Location = new System.Drawing.Point(139, 140);
-            this.txtAmountInWords.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtAmountInWords.MaxLength = 100;
-            this.txtAmountInWords.Multiline = true;
-            this.txtAmountInWords.Name = "txtAmountInWords";
-            this.txtAmountInWords.ReadOnly = true;
-            this.txtAmountInWords.Size = new System.Drawing.Size(335, 49);
-            this.txtAmountInWords.TabIndex = 12345359;
             // 
             // PAY_Advance
             // 
