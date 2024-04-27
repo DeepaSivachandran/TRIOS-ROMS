@@ -368,30 +368,13 @@ namespace ROMS
 
                                     //SNO Order Here
 
-                                    var varDuplicateProuct = from r in dtInwardPurchase.AsEnumerable()
-                                                             where (r.Field<int>("GIPPR_SNO").Equals(Sno) &&
-                                                             r.Field<int>("GIPPR_OrderID").Equals(0) &&
-                                                             r.Field<int>("GIPPR_PRID").Equals(PRID) &&
-                                                             r.Field<int>("GIPPR_UTID").Equals(UTID) &&
-                                                             r.Field<decimal>("GIPPR_ReceivedQty").Equals(ReceivedQty) &&
-                                                             r.Field<decimal>("GIPPR_ShopQty").Equals(ShopQty) &&
-                                                             r.Field<int>("GIPPR_RKID").Equals(RKID) &&
-                                                             r.Field<string>("GIPPR_ExpiryDate").Equals(ExpiryDate) &&
-                                                             r.Field<string>("GIPPR_BatchNo").Equals(BatchNo) &&
-                                                             r.Field<decimal>("GIPPR_MRP").Equals(MRP) &&
-                                                             r.Field<string>("IDS").Equals(GRN_DC_PUR_ID) &&
-                                                             r.Field<int>("GIPPR_SNO") != Convert.ToInt16(grdGrnlist.Rows[e.RowIndex].Cells["clmSno"].Value)
-                                                             )group r by r.Field<int>("GIPPR_SNO") into g
+                                    var varChildRowCount = from r in dtInwardPurchase.AsEnumerable()
+                                                             where (r.Field<int>("GIPPR_SNO").Equals(Convert.ToInt32(Sno))
+                                                             )group r by r.Field<int>("GIPPR_OrderID") into g
                                                              select g.Key;
+                                    int varChildRowNo = Convert.ToInt32( Convert.ToString(Sno) + Convert.ToString(varChildRowCount.Count()));
 
-                                    var varRowsToUpdate = dtInwardPurchase.AsEnumerable().Where(r => r.Field<int>("GIPPR_SNO") == Convert.ToInt16(Sno));
-
-
-
-
-
-
-                                    dtInwardPurchase.Rows.Add(Convert.ToInt32(Sno), 0, Convert.ToInt32(PRID), Convert.ToInt32(UTID), Convert.ToDecimal(ReceivedQty), Convert.ToDecimal(ShopQty), Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(MRP), GRN_DC_PUR_ID);
+                                    dtInwardPurchase.Rows.Add(Convert.ToInt32(Sno), varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(MRP), GRN_DC_PUR_ID);
 
                                         grdGrnlist.Rows.Add(false, null, Sno, PICode, PTName, MRP, ExpiryDate, BatchNo,
                                      PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType);
