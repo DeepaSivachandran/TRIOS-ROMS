@@ -377,7 +377,7 @@ namespace ROMS
                                     dtInwardPurchase.Rows.Add(Convert.ToInt32(Sno), varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(MRP), GRN_DC_PUR_ID);
 
                                         grdGrnlist.Rows.Add(false, null, Sno, PICode, PTName, MRP, ExpiryDate, BatchNo,
-                                     PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType, varChildRowNo);
+                                     PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType, Convert.ToString(varChildRowNo));
                                     
 
                                     DataGridView dataGridView = grdGrnlist;
@@ -393,6 +393,11 @@ namespace ROMS
                             {
                                 objError = new DataError();
                                 objError.WriteFile(ex);
+                            }
+                            finally
+                            {
+                                //grdGrnlist.Sort(grdGrnlist.Columns["clmConvert"], ListSortDirection.Descending);
+                                grdGrnlist.Sort(grdGrnlist.Columns["clmOrder"], ListSortDirection.Ascending);
                             }
                             break;
                         case "clmRemove":
@@ -416,11 +421,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                //grdGrnlist.Sort(grdGrnlist.Columns["clmConvert"], ListSortDirection.Descending);
-                grdGrnlist.Sort(grdGrnlist.Columns["clmOrder"], ListSortDirection.Ascending);
             }
         }
         private void BtnRemarks_Leave(object sender, EventArgs e)
