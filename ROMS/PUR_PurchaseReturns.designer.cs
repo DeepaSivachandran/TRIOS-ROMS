@@ -167,14 +167,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtDMrp = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.cmbFormat = new System.Windows.Forms.ComboBox();
-            this.mtbTime = new System.Windows.Forms.MaskedTextBox();
-            this.txtVerified = new System.Windows.Forms.TextBox();
-            this.dpVerified = new System.Windows.Forms.DateTimePicker();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lvVerified = new System.Windows.Forms.ListView();
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chkVerified = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -331,12 +324,7 @@
             // 
             // grpExcessProduct
             // 
-            this.grpExcessProduct.Controls.Add(this.lvVerified);
-            this.grpExcessProduct.Controls.Add(this.label13);
-            this.grpExcessProduct.Controls.Add(this.cmbFormat);
-            this.grpExcessProduct.Controls.Add(this.mtbTime);
-            this.grpExcessProduct.Controls.Add(this.txtVerified);
-            this.grpExcessProduct.Controls.Add(this.dpVerified);
+            this.grpExcessProduct.Controls.Add(this.chkVerified);
             this.grpExcessProduct.Controls.Add(this.chkCompleted);
             this.grpExcessProduct.Controls.Add(this.DGV_FilterProduct);
             this.grpExcessProduct.Controls.Add(this.grbProDetails);
@@ -1114,7 +1102,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(355, 400);
+            this.label5.Location = new System.Drawing.Point(355, 362);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 1111173;
@@ -1123,11 +1111,11 @@
             // txtRemarks
             // 
             this.txtRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(430, 395);
+            this.txtRemarks.Location = new System.Drawing.Point(412, 357);
             this.txtRemarks.MaxLength = 200;
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(557, 87);
+            this.txtRemarks.Size = new System.Drawing.Size(575, 72);
             this.txtRemarks.TabIndex = 6;
             this.txtRemarks.Enter += new System.EventHandler(this.TxtRemarks_Enter);
             this.txtRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemarks_KeyDown);
@@ -1690,78 +1678,16 @@
             this.lblStatus.Size = new System.Drawing.Size(0, 20);
             this.lblStatus.TabIndex = 38;
             // 
-            // cmbFormat
+            // chkVerified
             // 
-            this.cmbFormat.FormattingEnabled = true;
-            this.cmbFormat.Items.AddRange(new object[] {
-            "AM",
-            "PM"});
-            this.cmbFormat.Location = new System.Drawing.Point(749, 358);
-            this.cmbFormat.Name = "cmbFormat";
-            this.cmbFormat.Size = new System.Drawing.Size(41, 28);
-            this.cmbFormat.TabIndex = 111111148;
-            // 
-            // mtbTime
-            // 
-            this.mtbTime.Location = new System.Drawing.Point(707, 358);
-            this.mtbTime.Mask = "90:00";
-            this.mtbTime.Name = "mtbTime";
-            this.mtbTime.Size = new System.Drawing.Size(42, 28);
-            this.mtbTime.TabIndex = 111111147;
-            this.mtbTime.ValidatingType = typeof(System.DateTime);
-            // 
-            // txtVerified
-            // 
-            this.txtVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtVerified.Location = new System.Drawing.Point(430, 359);
-            this.txtVerified.MaxLength = 100;
-            this.txtVerified.Name = "txtVerified";
-            this.txtVerified.Size = new System.Drawing.Size(174, 27);
-            this.txtVerified.TabIndex = 111111145;
-            this.txtVerified.TextChanged += new System.EventHandler(this.TxtVerified_TextChanged);
-            // 
-            // dpVerified
-            // 
-            this.dpVerified.CustomFormat = "dd/MM/yyyy";
-            this.dpVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.dpVerified.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpVerified.Location = new System.Drawing.Point(604, 359);
-            this.dpVerified.Name = "dpVerified";
-            this.dpVerified.Size = new System.Drawing.Size(103, 27);
-            this.dpVerified.TabIndex = 111111146;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(355, 364);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(68, 20);
-            this.label13.TabIndex = 111111149;
-            this.label13.Text = "Verified By";
-            // 
-            // lvVerified
-            // 
-            this.lvVerified.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader23,
-            this.columnHeader24});
-            this.lvVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvVerified.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvVerified.HideSelection = false;
-            this.lvVerified.Location = new System.Drawing.Point(430, 386);
-            this.lvVerified.Name = "lvVerified";
-            this.lvVerified.Size = new System.Drawing.Size(276, 86);
-            this.lvVerified.TabIndex = 111111150;
-            this.lvVerified.UseCompatibleStateImageBehavior = false;
-            this.lvVerified.View = System.Windows.Forms.View.Details;
-            this.lvVerified.Visible = false;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 120;
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Width = 0;
+            this.chkVerified.AutoSize = true;
+            this.chkVerified.Location = new System.Drawing.Point(953, 445);
+            this.chkVerified.Name = "chkVerified";
+            this.chkVerified.Size = new System.Drawing.Size(70, 24);
+            this.chkVerified.TabIndex = 111111145;
+            this.chkVerified.Text = "Verified";
+            this.chkVerified.UseVisualStyleBackColor = true;
+            this.chkVerified.CheckedChanged += new System.EventHandler(this.ChkVerified_CheckedChanged);
             // 
             // PUR_PurchaseReturns
             // 
@@ -1944,13 +1870,6 @@
         private System.Windows.Forms.GroupBox grpInvoiceDetails;
         private System.Windows.Forms.Label lblInvoiceDate;
         private System.Windows.Forms.Label lblInvoiceNo;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cmbFormat;
-        private System.Windows.Forms.MaskedTextBox mtbTime;
-        private System.Windows.Forms.TextBox txtVerified;
-        private System.Windows.Forms.DateTimePicker dpVerified;
-        public System.Windows.Forms.ListView lvVerified;
-        private System.Windows.Forms.ColumnHeader columnHeader23;
-        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.CheckBox chkVerified;
     }
 }

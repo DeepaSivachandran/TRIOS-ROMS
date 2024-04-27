@@ -1475,6 +1475,7 @@ namespace ROMS
                 if (grdReturnDC.RowCount > 0)
                 {
                     bool varErrorFlag = true;
+                    int varVerified = 0, varVerifiedflag=0;
                     if (txtSupplier.Text == "")
                     {
                         epReturnDc.SetError(txtSupplier, "Please enter supplier.");
@@ -1660,6 +1661,11 @@ namespace ROMS
                                 {
                                     TotalTax = Convert.ToDecimal(txtTotalTax.Text);
                                 }
+                                if(chkVerified.Checked==true)
+                                {
+                                    varVerifiedflag = 1;
+                                    varStatusId = 81;
+                                }
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
                                 objTRN_PurchaseReturnDC.paraViewType = varviewtype;
                                 objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
@@ -1681,6 +1687,7 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                 objTRN_PurchaseReturnDC.paraPurchaseId = 0;
+                                objTRN_PurchaseReturnDC.paraFlag = varVerifiedflag;
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
                                 if (dtExchangeProducts.Rows.Count != 0)
                                 {
@@ -1701,10 +1708,45 @@ namespace ROMS
                                 objspdservice.CloseConnection();
 
                                 string[] varvalue = result.Split('~');
-                                if (varvalue[0] == "3")
+                                if (result.Split('~')[0] == "3")
                                 {
-                                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    this.ActiveControl = txtSupplier;
+                                    if (result.Split('~')[1] == "1")
+                                    {
+                                        MainForm.objCP_Verify = new CP_Verify();
+                                        MainForm.objCP_Verify.ShowDialog();
+                                        varVerified = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                        if (MainForm.objCP_Verify.flag == 1)
+                                        {
+                                            objTRN_PurchaseReturnDC.paraViewType = varviewtype;
+                                            objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                            objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                                            objTRN_PurchaseReturnDC.paraOriginator = varorginator;
+                                            objTRN_PurchaseReturnDC.paraReturnDCID = varReturnDCID;
+                                            objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
+                                            objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                                            objTRN_PurchaseReturnDC.paraReturnDC_Date = dpReturnDCDate.Text;
+                                            objTRN_PurchaseReturnDC.ParaSubtotal = subtotal;
+                                            objTRN_PurchaseReturnDC.paraTax = TotalTax;
+                                            objTRN_PurchaseReturnDC.paraReturnDC_NO = txtReturnDcNo.Text.Trim();
+                                            objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
+                                            objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
+                                            objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
+                                            objTRN_PurchaseReturnDC.paraStatusID = varStatusId;
+                                            objTRN_PurchaseReturnDC.paraClosingReasonId = varReasonforClosingId;
+                                            objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(varReturnDcAmount);
+                                            objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
+                                            objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
+                                            objTRN_PurchaseReturnDC.paraPurchaseId = 0;
+                                            objTRN_PurchaseReturnDC.paraFlag = 0;
+                                            objTRN_PurchaseReturnDC.paraVerifiedBy = varVerified;
+                                            result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
+                                        }
+                                    }
+                                    string[] varvalue1 = result.Split('~');
+                                    if (varvalue1[0] == "3")
+                                    {
+                                        MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); this.ActiveControl = txtSupplier;
+                                    }
                                     if (varReturnDCID != 0)
                                     {
                                         varCloseFlag = 1;
@@ -2974,12 +3016,14 @@ namespace ROMS
                 }
             }
         }
-
-        private void TxtVerified_TextChanged(object sender, EventArgs e)
+        private void ChkVerified_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
+                if(chkVerified.Checked==true)
+                {
 
+                }
             }
             catch (Exception ex)
             {
