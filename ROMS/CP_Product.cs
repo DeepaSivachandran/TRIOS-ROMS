@@ -3085,7 +3085,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtWeight.Focus();
+                    chkMRP.Focus();
                 }
             }
             catch (Exception ex)
@@ -5394,6 +5394,74 @@ namespace ROMS
                     txtSaleLocation.Enabled = true;
                     txtSaleLocation.ReadOnly = false;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkMRP_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtWeight.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkMRP_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkMRP.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkMRP_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkMRP.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CbCompleted_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cbCompleted.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CbCompleted_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cbCompleted.BackColor = Color.White;
             }
             catch (Exception ex)
             {

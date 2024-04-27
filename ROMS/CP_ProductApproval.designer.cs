@@ -84,6 +84,7 @@
             this.grdSubgroup = new System.Windows.Forms.DataGridView();
             this.btnSubgroup = new System.Windows.Forms.Button();
             this.grplocation = new System.Windows.Forms.GroupBox();
+            this.chkMrp = new System.Windows.Forms.CheckBox();
             this.lvBrand = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -132,7 +133,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdBrand = new System.Windows.Forms.DataGridView();
             this.btnBrand = new System.Windows.Forms.Button();
-            this.chkMrp = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -280,9 +280,9 @@
             this.columnHeader31});
             this.lvHsnCode.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvHsnCode.HideSelection = false;
-            this.lvHsnCode.Location = new System.Drawing.Point(1135, 89);
+            this.lvHsnCode.Location = new System.Drawing.Point(996, 89);
             this.lvHsnCode.Name = "lvHsnCode";
-            this.lvHsnCode.Size = new System.Drawing.Size(185, 104);
+            this.lvHsnCode.Size = new System.Drawing.Size(320, 104);
             this.lvHsnCode.TabIndex = 167;
             this.lvHsnCode.UseCompatibleStateImageBehavior = false;
             this.lvHsnCode.View = System.Windows.Forms.View.Details;
@@ -604,6 +604,19 @@
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Product Details";
             // 
+            // chkMrp
+            // 
+            this.chkMrp.AutoSize = true;
+            this.chkMrp.Location = new System.Drawing.Point(1243, 75);
+            this.chkMrp.Name = "chkMrp";
+            this.chkMrp.Size = new System.Drawing.Size(53, 24);
+            this.chkMrp.TabIndex = 18;
+            this.chkMrp.Text = "MRP";
+            this.chkMrp.UseVisualStyleBackColor = true;
+            this.chkMrp.Enter += new System.EventHandler(this.ChkMrp_Enter);
+            this.chkMrp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChkMrp_KeyDown);
+            this.chkMrp.Leave += new System.EventHandler(this.ChkMrp_Leave);
+            // 
             // lvBrand
             // 
             this.lvBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -690,7 +703,7 @@
             this.btnClose.Location = new System.Drawing.Point(1234, 101);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
-            this.btnClose.TabIndex = 20;
+            this.btnClose.TabIndex = 21;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -706,7 +719,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(1149, 101);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(82, 29);
-            this.btnUpdate.TabIndex = 19;
+            this.btnUpdate.TabIndex = 20;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -722,7 +735,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(988, 101);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(155, 27);
-            this.pnlStatus.TabIndex = 18;
+            this.pnlStatus.TabIndex = 19;
             this.pnlStatus.TabStop = true;
             this.pnlStatus.Enter += new System.EventHandler(this.PnlStatus_Enter);
             // 
@@ -734,7 +747,7 @@
             this.rbActive.Location = new System.Drawing.Point(3, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 19;
+            this.rbActive.TabIndex = 20;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -749,7 +762,7 @@
             this.rbInactive.Location = new System.Drawing.Point(67, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(71, 24);
-            this.rbInactive.TabIndex = 20;
+            this.rbInactive.TabIndex = 21;
             this.rbInactive.TabStop = true;
             this.rbInactive.Text = "InActive";
             this.rbInactive.UseVisualStyleBackColor = true;
@@ -868,7 +881,7 @@
             // 
             this.cmbGst.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGst.FormattingEnabled = true;
-            this.cmbGst.Location = new System.Drawing.Point(988, 47);
+            this.cmbGst.Location = new System.Drawing.Point(1231, 20);
             this.cmbGst.Name = "cmbGst";
             this.cmbGst.Size = new System.Drawing.Size(74, 27);
             this.cmbGst.TabIndex = 16;
@@ -886,7 +899,7 @@
             this.txtHsnname.MaxLength = 100;
             this.txtHsnname.Name = "txtHsnname";
             this.txtHsnname.ReadOnly = true;
-            this.txtHsnname.Size = new System.Drawing.Size(320, 27);
+            this.txtHsnname.Size = new System.Drawing.Size(243, 27);
             this.txtHsnname.TabIndex = 17;
             this.txtHsnname.TextChanged += new System.EventHandler(this.TxtHsnname_TextChanged);
             // 
@@ -895,7 +908,7 @@
             this.textBox12.BackColor = System.Drawing.SystemColors.Control;
             this.textBox12.Enabled = false;
             this.textBox12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox12.Location = new System.Drawing.Point(1062, 47);
+            this.textBox12.Location = new System.Drawing.Point(923, 47);
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(64, 27);
@@ -908,7 +921,7 @@
             this.textBox18.BackColor = System.Drawing.SystemColors.Control;
             this.textBox18.Enabled = false;
             this.textBox18.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox18.Location = new System.Drawing.Point(923, 47);
+            this.textBox18.Location = new System.Drawing.Point(1166, 20);
             this.textBox18.Name = "textBox18";
             this.textBox18.ReadOnly = true;
             this.textBox18.Size = new System.Drawing.Size(65, 27);
@@ -958,10 +971,10 @@
             // txtHsncode
             // 
             this.txtHsncode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsncode.Location = new System.Drawing.Point(1124, 47);
+            this.txtHsncode.Location = new System.Drawing.Point(985, 47);
             this.txtHsncode.MaxLength = 100;
             this.txtHsncode.Name = "txtHsncode";
-            this.txtHsncode.Size = new System.Drawing.Size(184, 27);
+            this.txtHsncode.Size = new System.Drawing.Size(320, 27);
             this.txtHsncode.TabIndex = 17;
             this.txtHsncode.TextChanged += new System.EventHandler(this.TxtHsncode_TextChanged);
             this.txtHsncode.Enter += new System.EventHandler(this.TxtHsncode_Enter);
@@ -1237,16 +1250,6 @@
             this.btnBrand.TabIndex = 23;
             this.btnBrand.UseVisualStyleBackColor = true;
             this.btnBrand.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // chkMrp
-            // 
-            this.chkMrp.AutoSize = true;
-            this.chkMrp.Location = new System.Drawing.Point(1189, 23);
-            this.chkMrp.Name = "chkMrp";
-            this.chkMrp.Size = new System.Drawing.Size(53, 24);
-            this.chkMrp.TabIndex = 171;
-            this.chkMrp.Text = "MRP";
-            this.chkMrp.UseVisualStyleBackColor = true;
             // 
             // CP_ProductApproval
             // 

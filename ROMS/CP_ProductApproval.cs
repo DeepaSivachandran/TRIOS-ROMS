@@ -1124,21 +1124,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled == true)
-                    {
-                        if (rbActive.Checked == true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInactive.Focus();
-                        }
-                    }
-                    else
-                    {
-                        btnUpdate.Focus();
-                    }
+                    chkMrp.Focus();
                 }
             }
             catch (Exception ex)
@@ -1219,7 +1205,7 @@ namespace ROMS
                     else
                     {
 
-                        txtHsncode.Focus();
+                        cmbGst.Focus();
                     }
                 }
             }
@@ -2633,6 +2619,63 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkMrp_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnUpdate.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkMrp_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkMrp.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkMrp_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkMrp.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
