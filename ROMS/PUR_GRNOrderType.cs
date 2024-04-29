@@ -217,7 +217,7 @@ namespace ROMS
         {
             try
             {
-               int VARFLAG = 0;
+               int VARFLAG = 0; 
                 if (varMasterType == 1) //---Grn screen Po add---\\
                 {
                     for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
@@ -290,10 +290,10 @@ namespace ROMS
                             MainForm.objCP_Purchase.lblFinishedNoRecord.Visible = false;
                         }
                         MainForm.objCP_Purchase.grdPODetails.Sort(MainForm.objCP_Purchase.grdPODetails.Columns["clmPODate"], ListSortDirection.Descending); 
-
                         MainForm.objCP_Purchase.pbPONO = pono;
                         MainForm.objCP_Purchase.lbltotProduct.Text = Convert.ToString(varTotProCount);
                         MainForm.objCP_Purchase.lblRemainProduct.Text = Convert.ToString(varTotProCount);
+                        MainForm.objCP_Purchase.varEntryTypeViewFlag = 1;
                         udfnclose();
                     }
                     else

@@ -53,7 +53,7 @@ namespace ROMS
         public string varCalculator = "0", varGRNPaymentType="0";
         public string varPrMRP = "", varPrDate = "", varPrMonth = "", varPrYear = "", varPrLocation = "", varPrRack = "", varPrBatch = "", varPrInvFlag = "",
             varPrslid = "0", varPrRkid = "0", varGRNProCount = "0", varId = "0",varPrid="0", varPrMRPFlag="0";
-        public int varPOdropdownFlag = 0, varPrCountFlag = 0, varPrCount = 0; 
+        public int varPOdropdownFlag = 0, varPrCountFlag = 0, varPrCount = 0, varEntryTypeViewFlag=0; 
         private Timer timer;
         public string varProducts = "";
         List<int> varProductsIDs = new List<int>();
@@ -194,6 +194,10 @@ namespace ROMS
                     }
                     grdSupplierList.Enabled = true;
                 }
+                if (varEntryTypeViewFlag == 1 || varQueueFlag==1)
+                {
+                    udfnToalProCount();
+                }
                 if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0" && varQueueFlag == 0 && varSupplierType!=32)
                 {
                     udfnGSTINPopup();
@@ -213,14 +217,29 @@ namespace ROMS
         {
             try
             {
+                int varFlag = 0; string varID = "0";
+                if (Convert.ToString(cmbEntryType.SelectedValue) == "54")//GRN
+                {
+                    varFlag = 1;
+                    varID = pbGRNNo;
+                }
+                else if (Convert.ToString(cmbEntryType.SelectedValue) == "55")//po
+                {
+                    varFlag = 0;
+                    varID = pbPONO;
+                }
+                else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
+                {
+                    varFlag = 2; varID = pbDCNo;
+                }
                 dtProductDetails = null;
                 dtProductDetails = new DataTable();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                 objTRN_PurchaseEntry.ViewType = 15;
-                objTRN_PurchaseEntry.paraType = 1;
-                objTRN_PurchaseEntry.ParaIds = pbGRNNo;
+                objTRN_PurchaseEntry.paraType = varFlag;
+                objTRN_PurchaseEntry.ParaIds = varID;
                 objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                 objspdservice.CloseConnection();
                 dtProductDetails = objDs.Tables[0];
@@ -3895,9 +3914,11 @@ namespace ROMS
                         varPrid = varPrid + ',' + varProIds.ToList()[i];
                     }
                 }
-                lblAddProduct.Text = Convert.ToString(varProIds.Count());
-                lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
-
+                if(Convert.ToString(cmbPONo.SelectedValue)=="215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "218")
+                {
+                    lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                    lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                }
                 //if (Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220") //grn,dc
                 //{
                 //    lblAddProduct.Text = Convert.ToString(grdSupplierList.Rows.Count);
@@ -8214,6 +8235,63 @@ namespace ROMS
                 MainForm.objPUR_RemainingProductList.pbPOid = POID;
                 MainForm.objPUR_RemainingProductList.varProducts = PRID;
                 MainForm.objPUR_RemainingProductList.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnToalProCount()
+        {
+            try
+            {
+                int varFlag = 0; string varID = "0";
+                if(Convert.ToString(cmbEntryType.SelectedValue)=="54")//GRN
+                {
+                    varFlag = 1;
+                    varID = pbGRNNo;
+                }
+                else if (Convert.ToString(cmbEntryType.SelectedValue) == "55")//po
+                {
+                    varFlag = 0;
+                    varID = pbPONO;
+                }
+                else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
+                {
+                    varFlag = 2; varID = pbDCNo;
+                }
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                objTRN_PurchaseEntry.ViewType = 15;
+                objTRN_PurchaseEntry.paraType = varFlag;
+                objTRN_PurchaseEntry.ParaIds = varID;
+                objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
+                objspdservice.CloseConnection();
+                
+                if(varFlag == 0)
+                {
+                    if(objDs.Tables.Count!=0)
+                    {
+                        if(objDs.Tables[0].Rows.Count!=0)
+                        {
+                            lbltotProduct.Text =Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
+                            lblRemainProduct.Text =Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
+                        }
+                    }
+                }
+                else
+                {
+                    if (objDs.Tables.Count >0)
+                    {
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            lbltotProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
+                            lblRemainProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -196,6 +196,7 @@ namespace ROMS
                     MainForm.objCP_Purchase.varGRNProCount = varProCount;
                     MainForm.objCP_Purchase.lbltotProduct.Text = varProCount;
                     MainForm.objCP_Purchase.lblRemainProduct.Text = varProCount;
+                    MainForm.objCP_Purchase.varEntryTypeViewFlag= 1;
                     this.Close();
                 }
                 else
