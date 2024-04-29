@@ -2060,6 +2060,7 @@ namespace ROMS
         {
             try
             {
+
                 if(txtSupplier.Text.Trim()=="")
                 {
                     lblSupplierCode.Text = "0";
