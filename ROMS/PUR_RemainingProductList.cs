@@ -98,15 +98,18 @@ namespace ROMS
                             grdPODetails.Columns["PI Code"].Width = 120;
                             grdPODetails.Columns["Unit"].Width = 60;
                             grdPODetails.Columns["S.No."].Width = 50;
-                            grdPODetails.Columns["Expiry Date"].Width = 100;
-                            grdPODetails.Columns["MRP"].Width = 80;
                             grdPODetails.Columns["PI Code"].DisplayIndex = 2;
                             grdPODetails.Columns["Unit"].DisplayIndex = 4;
                             grdPODetails.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdPODetails.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPODetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPODetails.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPODetails.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            if (varFlag != 0)
+                            {
+                                grdPODetails.Columns["Expiry Date"].Width = 100;
+                                grdPODetails.Columns["MRP"].Width = 80;
+                                grdPODetails.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPODetails.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            }
                             grdPODetails.ClearSelection();
                             grdPODetails.ReadOnly = true;
                         }

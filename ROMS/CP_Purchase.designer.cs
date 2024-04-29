@@ -64,13 +64,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -85,7 +85,7 @@
             this.tsPurchase = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbStatus = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbPO = new System.Windows.Forms.ToolStripButton();
             this.tss2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbAdded = new System.Windows.Forms.ToolStripButton();
@@ -101,11 +101,6 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lv_Broker = new System.Windows.Forms.ListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClear = new System.Windows.Forms.Button();
             this.txtInvoiceamt = new System.Windows.Forms.TextBox();
             this.gprate = new System.Windows.Forms.GroupBox();
@@ -224,6 +219,11 @@
             this.textBox25 = new System.Windows.Forms.TextBox();
             this.txtDamagecost = new System.Windows.Forms.TextBox();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
+            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemoveDC = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtLoadingchargeGrn = new System.Windows.Forms.TextBox();
             this.grdPODetails = new System.Windows.Forms.DataGridView();
             this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -316,6 +316,11 @@
             this.label25 = new System.Windows.Forms.Label();
             this.chkInvoice = new System.Windows.Forms.CheckBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
+            this.lv_Broker = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lblDPercentage = new System.Windows.Forms.Label();
             this.lblPercentage = new System.Windows.Forms.Label();
@@ -339,11 +344,6 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemoveDC = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -376,6 +376,7 @@
             this.clmProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmHSNid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMrpFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAddPro = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPurchase.SuspendLayout();
@@ -412,7 +413,7 @@
             this.tsPurchase.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbStatus,
-            this.toolStripSeparator1,
+            this.tss3,
             this.tsbPO,
             this.tss2,
             this.tsbAdded,
@@ -449,12 +450,12 @@
             this.tsbStatus.Size = new System.Drawing.Size(82, 24);
             this.tsbStatus.Text = "& & & & & & & & & & & & & & & & & & & & & & & &";
             // 
-            // toolStripSeparator1
+            // tss3
             // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.tss3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss3.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tss3.Name = "tss3";
+            this.tss3.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbPO
             // 
@@ -469,7 +470,6 @@
             this.tsbPO.Size = new System.Drawing.Size(136, 24);
             this.tsbPO.Text = "Remaing Products :& &  & & & &";
             this.tsbPO.ToolTipText = "Remaing Products ";
-            this.tsbPO.Visible = false;
             this.tsbPO.Click += new System.EventHandler(this.TsbPO_Click);
             // 
             // tss2
@@ -492,7 +492,6 @@
             this.tsbAdded.Size = new System.Drawing.Size(120, 24);
             this.tsbAdded.Text = "&Added Products :& & & & & &";
             this.tsbAdded.ToolTipText = "Added Products ";
-            this.tsbAdded.Visible = false;
             // 
             // tss1
             // 
@@ -514,7 +513,6 @@
             this.tsbProducts.Size = new System.Drawing.Size(107, 24);
             this.tsbProducts.Text = "&PO Products :& & & & & & & &";
             this.tsbProducts.ToolTipText = "PO Products      ";
-            this.tsbProducts.Visible = false;
             // 
             // panel1
             // 
@@ -669,37 +667,6 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
-            // 
-            // lv_Broker
-            // 
-            this.lv_Broker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader6});
-            this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lv_Broker.HideSelection = false;
-            this.lv_Broker.Location = new System.Drawing.Point(381, 104);
-            this.lv_Broker.Name = "lv_Broker";
-            this.lv_Broker.Size = new System.Drawing.Size(478, 88);
-            this.lv_Broker.TabIndex = 1111223;
-            this.lv_Broker.UseCompatibleStateImageBehavior = false;
-            this.lv_Broker.View = System.Windows.Forms.View.Details;
-            this.lv_Broker.Visible = false;
-            this.lv_Broker.DoubleClick += new System.EventHandler(this.Lv_Broker_DoubleClick);
-            this.lv_Broker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lv_Broker_KeyDown);
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 180;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 120;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 0;
             // 
             // btnClear
             // 
@@ -1421,6 +1388,7 @@
             this.clmProductID,
             this.clmInvFlag,
             this.clmHSNid,
+            this.clmMrpFlag,
             this.clmAddPro,
             this.clmRemove});
             this.grdSupplierList.EnableHeadersVisualStyles = false;
@@ -2216,6 +2184,44 @@
             this.grdReurnDC.Visible = false;
             this.grdReurnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentClick);
             this.grdReurnDC.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentDoubleClick);
+            // 
+            // InvoiceNo
+            // 
+            this.InvoiceNo.HeaderText = "DC No.";
+            this.InvoiceNo.Name = "InvoiceNo";
+            this.InvoiceNo.ReadOnly = true;
+            // 
+            // DCDate
+            // 
+            this.DCDate.HeaderText = "DC Date";
+            this.DCDate.Name = "DCDate";
+            this.DCDate.ReadOnly = true;
+            // 
+            // TotalProducts
+            // 
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.TotalProducts.DefaultCellStyle = dataGridViewCellStyle45;
+            this.TotalProducts.HeaderText = "Total Products";
+            this.TotalProducts.Name = "TotalProducts";
+            this.TotalProducts.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // clmRemoveDC
+            // 
+            this.clmRemoveDC.HeaderText = "Remove";
+            this.clmRemoveDC.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveDC.Name = "clmRemoveDC";
+            this.clmRemoveDC.ReadOnly = true;
+            this.clmRemoveDC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemoveDC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemoveDC.Visible = false;
+            this.clmRemoveDC.Width = 70;
             // 
             // txtLoadingchargeGrn
             // 
@@ -3249,6 +3255,37 @@
             this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
             this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
             // 
+            // lv_Broker
+            // 
+            this.lv_Broker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader6});
+            this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lv_Broker.HideSelection = false;
+            this.lv_Broker.Location = new System.Drawing.Point(381, 104);
+            this.lv_Broker.Name = "lv_Broker";
+            this.lv_Broker.Size = new System.Drawing.Size(478, 88);
+            this.lv_Broker.TabIndex = 1111223;
+            this.lv_Broker.UseCompatibleStateImageBehavior = false;
+            this.lv_Broker.View = System.Windows.Forms.View.Details;
+            this.lv_Broker.Visible = false;
+            this.lv_Broker.DoubleClick += new System.EventHandler(this.Lv_Broker_DoubleClick);
+            this.lv_Broker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lv_Broker_KeyDown);
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 180;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 120;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 0;
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.lblDPercentage);
@@ -3422,7 +3459,6 @@
             // 
             // crToolStripTextBox1
             // 
-            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 
@@ -3500,44 +3536,6 @@
             this.dataGridViewImageColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn4.Width = 70;
             // 
-            // InvoiceNo
-            // 
-            this.InvoiceNo.HeaderText = "DC No.";
-            this.InvoiceNo.Name = "InvoiceNo";
-            this.InvoiceNo.ReadOnly = true;
-            // 
-            // DCDate
-            // 
-            this.DCDate.HeaderText = "DC Date";
-            this.DCDate.Name = "DCDate";
-            this.DCDate.ReadOnly = true;
-            // 
-            // TotalProducts
-            // 
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.TotalProducts.DefaultCellStyle = dataGridViewCellStyle45;
-            this.TotalProducts.HeaderText = "Total Products";
-            this.TotalProducts.Name = "TotalProducts";
-            this.TotalProducts.ReadOnly = true;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // clmRemoveDC
-            // 
-            this.clmRemoveDC.HeaderText = "Remove";
-            this.clmRemoveDC.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemoveDC.Name = "clmRemoveDC";
-            this.clmRemoveDC.ReadOnly = true;
-            this.clmRemoveDC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemoveDC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemoveDC.Visible = false;
-            this.clmRemoveDC.Width = 70;
-            // 
             // clmsno
             // 
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.AliceBlue;
@@ -3593,6 +3591,7 @@
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
             this.clmGrnMrp.DefaultCellStyle = dataGridViewCellStyle10;
+            this.clmGrnMrp.Frozen = true;
             this.clmGrnMrp.HeaderText = "GRN MRP";
             this.clmGrnMrp.MaxInputLength = 8;
             this.clmGrnMrp.Name = "clmGrnMrp";
@@ -3603,6 +3602,7 @@
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.PaleGreen;
             this.clmMRP.DefaultCellStyle = dataGridViewCellStyle11;
+            this.clmMRP.Frozen = true;
             this.clmMRP.HeaderText = "Invoice MRP";
             this.clmMRP.MaxInputLength = 8;
             this.clmMRP.Name = "clmMRP";
@@ -3611,23 +3611,27 @@
             // 
             dataGridViewCellStyle12.BackColor = System.Drawing.Color.PaleGreen;
             this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle12;
+            this.clmexpirydate.Frozen = true;
             this.clmexpirydate.HeaderText = "Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
             // 
             // clmShelflife
             // 
+            this.clmShelflife.Frozen = true;
             this.clmShelflife.HeaderText = "Product Shelf Life";
             this.clmShelflife.Name = "clmShelflife";
             this.clmShelflife.ReadOnly = true;
             // 
             // clmactuallife
             // 
+            this.clmactuallife.Frozen = true;
             this.clmactuallife.HeaderText = "Actual Shelf Life";
             this.clmactuallife.Name = "clmactuallife";
             this.clmactuallife.ReadOnly = true;
             // 
             // clmshelfper
             // 
+            this.clmshelfper.Frozen = true;
             this.clmshelfper.HeaderText = "Shelf Life (%)";
             this.clmshelfper.Name = "clmshelfper";
             this.clmshelfper.ReadOnly = true;
@@ -3636,6 +3640,7 @@
             // 
             dataGridViewCellStyle13.BackColor = System.Drawing.Color.PaleGreen;
             this.clmBatchno.DefaultCellStyle = dataGridViewCellStyle13;
+            this.clmBatchno.Frozen = true;
             this.clmBatchno.HeaderText = "Batch No.";
             this.clmBatchno.Name = "clmBatchno";
             // 
@@ -3643,6 +3648,7 @@
             // 
             dataGridViewCellStyle14.BackColor = System.Drawing.Color.PaleGreen;
             this.clmLocation.DefaultCellStyle = dataGridViewCellStyle14;
+            this.clmLocation.Frozen = true;
             this.clmLocation.HeaderText = "Stock Location";
             this.clmLocation.Name = "clmLocation";
             this.clmLocation.Width = 120;
@@ -3651,30 +3657,35 @@
             // 
             dataGridViewCellStyle15.BackColor = System.Drawing.Color.PaleGreen;
             this.clmrack.DefaultCellStyle = dataGridViewCellStyle15;
+            this.clmrack.Frozen = true;
             this.clmrack.HeaderText = "Rack";
             this.clmrack.Name = "clmrack";
             this.clmrack.Width = 60;
             // 
             // clmid
             // 
+            this.clmid.Frozen = true;
             this.clmid.HeaderText = "ID";
             this.clmid.Name = "clmid";
             this.clmid.Visible = false;
             // 
             // clmProid
             // 
+            this.clmProid.Frozen = true;
             this.clmProid.HeaderText = "PRID";
             this.clmProid.Name = "clmProid";
             this.clmProid.Visible = false;
             // 
             // UTID
             // 
+            this.UTID.Frozen = true;
             this.UTID.HeaderText = "UTID";
             this.UTID.Name = "UTID";
             this.UTID.Visible = false;
             // 
             // clmBatchenable
             // 
+            this.clmBatchenable.Frozen = true;
             this.clmBatchenable.HeaderText = "Batchno";
             this.clmBatchenable.Name = "clmBatchenable";
             this.clmBatchenable.ReadOnly = true;
@@ -3682,60 +3693,70 @@
             // 
             // clmBatchgeneration
             // 
+            this.clmBatchgeneration.Frozen = true;
             this.clmBatchgeneration.HeaderText = "Batchnogenration";
             this.clmBatchgeneration.Name = "clmBatchgeneration";
             this.clmBatchgeneration.Visible = false;
             // 
             // clmShelflifeenable
             // 
+            this.clmShelflifeenable.Frozen = true;
             this.clmShelflifeenable.HeaderText = "shelflife";
             this.clmShelflifeenable.Name = "clmShelflifeenable";
             this.clmShelflifeenable.Visible = false;
             // 
             // slid
             // 
+            this.slid.Frozen = true;
             this.slid.HeaderText = "slid";
             this.slid.Name = "slid";
             this.slid.Visible = false;
             // 
             // rkid
             // 
+            this.rkid.Frozen = true;
             this.rkid.HeaderText = "rkid";
             this.rkid.Name = "rkid";
             this.rkid.Visible = false;
             // 
             // clmrkcount
             // 
+            this.clmrkcount.Frozen = true;
             this.clmrkcount.HeaderText = "Rackcount";
             this.clmrkcount.Name = "clmrkcount";
             this.clmrkcount.Visible = false;
             // 
             // clmTransId
             // 
+            this.clmTransId.Frozen = true;
             this.clmTransId.HeaderText = "clmTransId";
             this.clmTransId.Name = "clmTransId";
             this.clmTransId.Visible = false;
             // 
             // clmTotQty
             // 
+            this.clmTotQty.Frozen = true;
             this.clmTotQty.HeaderText = "TotQty";
             this.clmTotQty.Name = "clmTotQty";
             this.clmTotQty.Visible = false;
             // 
             // clmGRNQty
             // 
+            this.clmGRNQty.Frozen = true;
             this.clmGRNQty.HeaderText = "GRNQty";
             this.clmGRNQty.Name = "clmGRNQty";
             this.clmGRNQty.Visible = false;
             // 
             // clmDCQty
             // 
+            this.clmDCQty.Frozen = true;
             this.clmDCQty.HeaderText = "DCQty";
             this.clmDCQty.Name = "clmDCQty";
             this.clmDCQty.Visible = false;
             // 
             // clmPURPRIDDetail
             // 
+            this.clmPURPRIDDetail.Frozen = true;
             this.clmPURPRIDDetail.HeaderText = "PURPRIDDetail";
             this.clmPURPRIDDetail.Name = "clmPURPRIDDetail";
             this.clmPURPRIDDetail.ReadOnly = true;
@@ -3743,12 +3764,14 @@
             // 
             // clmAddproflag
             // 
+            this.clmAddproflag.Frozen = true;
             this.clmAddproflag.HeaderText = "AddproFlag";
             this.clmAddproflag.Name = "clmAddproflag";
             this.clmAddproflag.Visible = false;
             // 
             // clmProductID
             // 
+            this.clmProductID.Frozen = true;
             this.clmProductID.HeaderText = "Product ID";
             this.clmProductID.Name = "clmProductID";
             this.clmProductID.ReadOnly = true;
@@ -3756,19 +3779,30 @@
             // 
             // clmInvFlag
             // 
+            this.clmInvFlag.Frozen = true;
             this.clmInvFlag.HeaderText = "InvFlag";
             this.clmInvFlag.Name = "clmInvFlag";
             this.clmInvFlag.Visible = false;
             // 
             // clmHSNid
             // 
+            this.clmHSNid.Frozen = true;
             this.clmHSNid.HeaderText = "hsnid";
             this.clmHSNid.Name = "clmHSNid";
             this.clmHSNid.ReadOnly = true;
             this.clmHSNid.Visible = false;
             // 
+            // clmMrpFlag
+            // 
+            this.clmMrpFlag.Frozen = true;
+            this.clmMrpFlag.HeaderText = "MRP Flag";
+            this.clmMrpFlag.Name = "clmMrpFlag";
+            this.clmMrpFlag.ReadOnly = true;
+            this.clmMrpFlag.Visible = false;
+            // 
             // clmAddPro
             // 
+            this.clmAddPro.Frozen = true;
             this.clmAddPro.HeaderText = "";
             this.clmAddPro.Image = global::ROMS.Properties.Resources.New;
             this.clmAddPro.Name = "clmAddPro";
@@ -3777,6 +3811,7 @@
             // 
             // clmRemove
             // 
+            this.clmRemove.Frozen = true;
             this.clmRemove.HeaderText = "Remove";
             this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemove.Name = "clmRemove";
@@ -4105,7 +4140,7 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
         public System.Windows.Forms.TextBox txtQRCode;
         public System.Windows.Forms.ToolStripButton tsbStatus;
-        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.ToolStripSeparator tss3;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
@@ -4143,6 +4178,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmHSNid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMrpFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }

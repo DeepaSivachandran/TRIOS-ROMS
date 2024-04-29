@@ -367,7 +367,7 @@ namespace ROMS
                     if (txtInwardNo.Text == "")
                     {
                         epInwardPurchase.SetError(txtInwardNo, "Inward No. is empty.");
-                        //txtDcNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        ////txtDcNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpInwardNo.ShowAlways = true;
                         tpInwardNo.Show("DC No. is empty.", txtInwardNo, 5000);
                         varErrorFlag = false;
