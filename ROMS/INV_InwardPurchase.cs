@@ -597,10 +597,6 @@ namespace ROMS
 
 
 
-
-
-
-
                                     /*
                                     if (varGRNPurchaseFlag == 3)
                                     {
