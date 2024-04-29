@@ -112,6 +112,7 @@
             this.clmRackCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmConvertType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -275,6 +276,7 @@
             this.clmRackCount,
             this.clmConvertType,
             this.clmOrder,
+            this.clmError,
             this.clmRemove});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -1019,6 +1021,13 @@
             this.clmOrder.Visible = false;
             this.clmOrder.Width = 10;
             // 
+            // clmError
+            // 
+            this.clmError.HeaderText = "Error";
+            this.clmError.Name = "clmError";
+            this.clmError.Visible = false;
+            this.clmError.Width = 10;
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -1139,6 +1148,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRackCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConvertType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOrder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
