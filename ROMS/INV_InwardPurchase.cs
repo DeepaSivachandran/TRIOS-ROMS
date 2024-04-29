@@ -455,6 +455,50 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdGrnlist_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdGrnlist.Columns[e.ColumnIndex].Name == "clmExpiryDate")
+                {
+                    if (Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmExpiryDate"].Value) != "")
+                    {
+                        string varTempYear = "0", varTempMonth = "0", varTempDay = "0";
+                        object cellValue = grdGrnlist.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                        string varExpiryDate = "";
+                        varExpiryDate = cellValue.ToString();
+                        string[] DMY = varExpiryDate.Split('/');
+                        if (DMY.Count() == 3)
+                        {
+                            varTempDay = DMY[0];
+                            varTempMonth = DMY[1];
+                            varTempYear = DMY[2];
+                            if (varTempDay.Length == 1)
+                            {
+                                varTempDay = "0" + DMY[0];
+                            }
+                            if (varTempMonth.Length == 1)
+                            {
+                                varTempMonth = "0" + DMY[1];
+                            }
+                            if (varTempYear.Length == 2)
+                            {
+                                varTempYear = "20" + DMY[2];
+                            }
+                            cellValue = varTempDay + "/" + varTempMonth + "/" + varTempYear;
+                            grdGrnlist.Rows[e.RowIndex].Cells["clmexpirydate"].Value = cellValue;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void BtnRemarks_Leave(object sender, EventArgs e)
         {
             try
@@ -508,6 +552,8 @@ namespace ROMS
                 int ProCount = 0, InvalidQty = 0; varQuantityErr = 0;
                 if (grdGrnlist.RowCount > 0)
                 {
+                    decimal varQty1 = 0, varTotalQty1 = 0;
+                    decimal varShopQty1 = 0, varReceivedQty1 = 0;
                     bool varErrorFlag = true;
                     if (txtInwardNo.Text == "")
                     {
@@ -532,28 +578,30 @@ namespace ROMS
 
                         if (varEditFlag == 0)
                         {
+                            
                             if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value) == "1")
                             {
                                 if (Convert.ToBoolean(grdGrnlist.Rows[i].Cells["clmCheck"].Value) == true)
                                 {
                                     ProCount = 1;
                                     int varPRID =Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmPRID"].Value);
-                                    for (int j = 0; j < grdGrnlist.Rows.Count; i++)
-                                    {
-                                        if(Convert.ToInt32(grdGrnlist.Rows[j].Cells["clmPRID"].Value)==varPRID)
-                                        {
-                                            if (varReceivedQty == 0)
-                                            {
-                                                varReceivedQty = Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value);
-                                            }
-                                            else
-                                            {
-                                                varReceivedQty = varReceivedQty + Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value);
-                                            }
-                                        }
-                                    }
+                                    varQty1 = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value);
+
+                                    var varDuplicateProuct = from r in dtInwardPurchase.AsEnumerable()
+                                                             where (r.Field<int>("GIPPR_PRID").Equals(varPRID))
+                                                             group r by r.Field<int>("GIPPR_OrderID")
+                                                             into g
+                                                             select g.Key;
+                                    var varRowsToUpdate = dtInwardPurchase.AsEnumerable().Where(r => r.Field<int>("GIPPR_OrderID") == Convert.ToInt16(varOrderID));
 
 
+
+
+
+
+
+
+                                    /*
                                     if (varGRNPurchaseFlag == 3)
                                     {
                                         varQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value);
@@ -580,6 +628,7 @@ namespace ROMS
                                         }
                                         varTotalQty = varReceivedQty + varShopQty;
                                     }
+                                    */
                                     if (varQty > varTotalQty || varQty == varTotalQty)
                                     {
                                         dtInwardPurchase.Rows.Add(Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmPRID"].Value), Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmUTID"].Value),
@@ -601,6 +650,7 @@ namespace ROMS
                                     }
                                 }
                             }
+                            
                         }
 
 
