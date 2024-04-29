@@ -87,6 +87,8 @@ namespace ROMS
                     txtLoadingchargeGrn.Text = "";
                     if (varEntryTypeRefresh == 0)
                     {
+                        dtProductDetails.Rows.Clear();
+                        dtPurchaseAutoComplete.Rows.Clear();
                         grdSupplierList.Rows.Clear();
                         grdPODetails.Rows.Clear();
                     }
@@ -6443,6 +6445,7 @@ namespace ROMS
 
                             if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57)  //Against DC
                             {
+                                int varProductType = 0;
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "" &&
                                     Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != 0 && Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != 0)
                                 {
@@ -6452,7 +6455,7 @@ namespace ROMS
                                     varFlag = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmInwardFlag"].Value);
                                     // varQty = varRecqty + varFreeQuantity + varDiffQty;
                                     varQty = varRecqty + varFreeQuantity;
-
+                                    varProductType = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["poid"].Value);
                                     if (varFlag == 1)
                                     {
                                         if (varDCQty != varQty || varInvqty != varQty || varInvqty != varDCQty)
@@ -6462,9 +6465,19 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        if (varInvqty != varQty)
+                                        if (varProductType == 220) //dc products
                                         {
-                                            varcount++; varQuantityErr++; varerrFlag = 1;
+                                            if (varDCQty != varQty || varInvqty != varQty || varInvqty != varDCQty)
+                                            {
+                                                varcount++; varQuantityErr++; varerrFlag = 1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (varInvqty != varQty )
+                                            {
+                                                varcount++; varQuantityErr++; varerrFlag = 1;
+                                            }
                                         }
                                     }
                                     if (varDiffQty != 0)
@@ -8864,8 +8877,9 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varPrMRPFlag == "0")
+                            if (varPrMRPFlag == "1")
                             {
+
                                 txtMrp.ReadOnly = true;
                                 txtMrp.Enabled = false;
                                 txtMrp.Focus();
@@ -10675,10 +10689,10 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varPrMRPFlag == "0")
+                            if (varPrMRPFlag == "1")
                             {
-                                txtMrp.ReadOnly = true;
-                                txtMrp.Enabled = false;
+                                txtMrp.ReadOnly = false;
+                                txtMrp.Enabled = true;
                                 txtMrp.Focus();
                                 //if (txtDate.Enabled == true)
                                 //{ txtDate.Focus(); }
@@ -10692,8 +10706,8 @@ namespace ROMS
                             }
                             else
                             {
-                                txtMrp.ReadOnly = false;
-                                txtMrp.Enabled = true;
+                                txtMrp.ReadOnly = true;
+                                txtMrp.Enabled = false;
                                 if (varShelflife == 1 && txtMonth.Enabled == true && txtMonth.ReadOnly == false)
                                 {
                                     txtDate.Focus();
@@ -10784,12 +10798,18 @@ namespace ROMS
                         txtMonth.Enabled = true;
                         txtDate.Enabled = true;
                         txtYear.Enabled = true;
+                        txtMonth.ReadOnly = false;
+                        txtDate.ReadOnly = false;
+                        txtYear.ReadOnly = false;
                     }
                     else
                     {
                         txtMonth.Enabled = false;
                         txtDate.Enabled = false;
                         txtYear.Enabled = false;
+                        txtMonth.ReadOnly = true;
+                        txtDate.ReadOnly = true;
+                        txtYear.ReadOnly = true;
                     }
                     udfnProductAdd();
                     if (varPOdropdownFlag == 1)
@@ -10901,16 +10921,16 @@ namespace ROMS
                 }
                 else
                 {
-                    if(varPrMRPFlag=="0" )
+                    if(varPrMRPFlag=="1" )
                     {
-                        txtMrp.ReadOnly = true;
-                        txtMrp.Enabled = false;
+                        txtMrp.ReadOnly = false;
+                        txtMrp.Enabled = true;
                         txtMrp.Focus();
                     }
                     else
                     {
-                        txtMrp.ReadOnly = false;
-                        txtMrp.Enabled = true;
+                        txtMrp.ReadOnly = true;
+                        txtMrp.Enabled = false;
                         if (varShelflife == 1 && txtMonth.Enabled == true && txtMonth.ReadOnly == false)
                         {
                             txtMonth.Focus();
@@ -11159,6 +11179,7 @@ namespace ROMS
                         if (varShelflife == 1)
                         {
                             txtDate.Enabled = true;
+                            txtMonth.Enabled = true;
                             txtMonth.Enabled = true;
                             txtDate.ReadOnly = false;
                             txtMonth.ReadOnly = false;
