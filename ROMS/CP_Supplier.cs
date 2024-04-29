@@ -28,7 +28,7 @@ namespace ROMS
         public int varSubGroupId = 0,varSLNO = 0;
         public int varModifiedFlag = 0;
         public int PoScheduleFlag = 0;
-        public int varSupplierStatusID = 0;
+        public int varSupplierStatusID = 0, varPurchaseSPID = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -1243,7 +1243,7 @@ namespace ROMS
                             cmbPaymentTerm.SelectedValue = objDS.Tables[0].Rows[0]["PAYMENT"].ToString();
                             cmbfinance.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString();
                             varSupplierStatusID = Convert.ToInt32(objDS.Tables[0].Rows[0]["STS"]);
-
+                            varPurchaseSPID = Convert.ToInt32(objDS.Tables[0].Rows[0]["PUR_SPID"]);
                             //RETURN
                             //    DAYID
                             //    WEEKID
@@ -1256,6 +1256,13 @@ namespace ROMS
                             //    cmbPolicyContent.SelectedValue = 0;
                             //    cmbSecondLevel.SelectedValue = 0;
                             //}
+                            if(varPurchaseSPID!=0)
+                            {
+                                txtgstin.Enabled = false;
+                                txtgstin.ReadOnly = true;
+                                cmbSupplierType.Enabled = false;
+                                cmbState.Enabled = false;
+                            }
                             if ((Convert.ToString(cmbReturnType.SelectedValue) == "23"))
                             {
                                 cmbPolicyContent.SelectedValue = 0;
