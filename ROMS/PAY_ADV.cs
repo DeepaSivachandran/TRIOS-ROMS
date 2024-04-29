@@ -16,7 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtAdvance = new DataTable();
-
+        string AdvID="";
         public PAY_ADV()
         {
             InitializeComponent();
@@ -106,7 +106,11 @@ namespace ROMS
                                 {
                                     varCheck = false;
                                 }
-                                dtAdvance.Rows.Add(varCheck, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Advance Amount"]), objDs.Tables[0].Rows[i]["ADID"], objDs.Tables[0].Rows[i]["PAYID"]);                               
+                                dtAdvance.Rows.Add(varCheck, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Advance Amount"]), objDs.Tables[0].Rows[i]["ADID"], objDs.Tables[0].Rows[i]["PAYID"]);     
+                                if(Convert.ToString(AdvID)== Convert.ToString(objDs.Tables[0].Rows[i]["ADID"]))
+                                {
+                                    objDs.Tables[0].Rows[i][0] = true;
+                                }
                             }
                             grdAdvance.DataSource = dtAdvance;
                             grdAdvance.Columns[0].HeaderText = "";

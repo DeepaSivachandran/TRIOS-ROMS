@@ -129,7 +129,12 @@ namespace ROMS
                     varoriginator = "Supplier payment creation";
                     varStatusID = 78;
                 }
-                for(int i=0;i<grdSupplierPayment.Rows.Count;i++)
+                else if (btnSave.Text == "Update")
+                {
+                    ViewType = 1;
+                    varoriginator = "Supplier payment updation";
+                }
+                for (int i=0;i<grdSupplierPayment.Rows.Count;i++)
                 {
                     if(Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmcheck"].Value)=="")
                     {
@@ -882,19 +887,20 @@ namespace ROMS
                                 grdSupplierPayment.Columns["clmReturnAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 //dtPayment.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pay Amount"]),0);
                                 varModifiedFlag = 1;
-                                if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"])==0)
-                                {
-                                    grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = true;
-                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = false;
-                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Style.BackColor = Color.PaleGreen;
-                                    decimal GrandTot = 0,subtotal=0, Total = 0;
-                                    subtotal = Convert.ToDecimal(lblSubtotal.Text);
-                                    Total = subtotal + Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value);
-                                    lblSubtotal.Text = Total.ToString("#,##0.00");
-                                    GrandTot = Total - (Convert.ToDecimal(lblAdvance.Text));
-                                    lblGrandTotal.Text = GrandTot.ToString("#,##0.00");
-                                }
-                                else if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 1)
+                                //if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"])==0)
+                                //{
+                                //    grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = true;
+                                //    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = false;
+                                //    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Style.BackColor = Color.PaleGreen;
+                                //    decimal GrandTot = 0,subtotal=0, Total = 0;
+                                //    subtotal = Convert.ToDecimal(lblSubtotal.Text);
+                                //    Total = subtotal + Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value);
+                                //    lblSubtotal.Text = Total.ToString("#,##0.00");
+                                //    GrandTot = Total - (Convert.ToDecimal(lblAdvance.Text));
+                                //    lblGrandTotal.Text = GrandTot.ToString("#,##0.00");
+                                //}
+                                //else 
+                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 1 || Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0)
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = false;
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;
