@@ -4372,7 +4372,7 @@ namespace ROMS
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
                                     cell.Style.BackColor = Color.LightGray;
                                     cell.Style.ForeColor = Color.Black;
-                                    cell.ReadOnly = true;
+                                    cell.ReadOnly = true; 
                                 }
                                 if (varEditFlag == 1 && varEditProAdd == 1)
                                 {
@@ -4397,7 +4397,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            {
+            { 
+
                 grdSupplierList.Sort(grdSupplierList.Columns[0], ListSortDirection.Descending);
                 //if (grdSupplierList.Rows.Count > 0)
                 //{
