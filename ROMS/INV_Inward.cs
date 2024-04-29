@@ -2176,7 +2176,33 @@ namespace ROMS
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
                                 break;
-                            }
+                            }                         
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        if (txtMrp.Enabled == true)
+                        {
+                            txtMrp.Focus();
+                        }
+                        else if (txtDay.Enabled == true)
+                        {
+                            txtDay.Focus();
+                        }
+                        else if (txtBatchNo.Enabled == true)
+                        {
+                            txtBatchNo.Focus();
+                        }
+                        else
+                        {
+                            txtActualQty.Focus();
+                        }
                     }
                 }
             }
@@ -2192,8 +2218,24 @@ namespace ROMS
             try
             {
                 varUpDownKey = 1;
-                udfnListviewProduct();
-                txtMrp.Focus();
+                udfnListviewProduct();             
+                if (txtMrp.Enabled == true)
+                {
+                    txtMrp.Focus();
+                }
+                else if (txtDay.Enabled == true)
+                {
+                    txtDay.Focus();
+                }
+                else if (txtBatchNo.Enabled == true)
+                {
+                    txtBatchNo.Focus();
+                }
+                else
+                {
+                    txtActualQty.Focus();
+                }
+                
             }
             catch (Exception ex)
             {

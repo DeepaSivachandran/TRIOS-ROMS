@@ -1283,6 +1283,15 @@ namespace ROMS
                                 cellValue = DMY[0] + "/" + DMY[1] + "/" + varTempYear;
                             }
                         }
+                        if ((Convert.ToString(grdGrnlist.Rows[i].Cells["clmMRPflag"].Value) == "1") && ((Convert.ToString(grdGrnlist.Rows[i].Cells["clmmrp"].Value) == "") || (Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmmrp"].Value) == 0)))
+                        {
+                            grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.LightPink;
+                            varcount++;
+                        }
+                        else if ((Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmMRPflag"].Value) == 1) && (Convert.ToString(grdGrnlist.Rows[i].Cells["clmmrp"].Value) != ""))
+                        {
+                            grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
+                        }
                         //varTempDay = DMY[0];
                         //varTempMonth = DMY[1];
                         varTempExpiryDate = cellValue.ToString();
@@ -3690,6 +3699,14 @@ namespace ROMS
                         grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].ReadOnly = true;
                         grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
                     }
+                }
+                if (Convert.ToDecimal(grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Value) == 0 && Convert.ToInt32(grdGrnlist.Rows[e.RowIndex].Cells["clmMRPflag"].Value) == 1)
+                {
+                    grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Style.BackColor = Color.LightPink;
+                }
+                else if (Convert.ToDecimal(grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Value) != 0 && Convert.ToInt32(grdGrnlist.Rows[e.RowIndex].Cells["clmMRPflag"].Value) == 1)
+                {
+                    grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
                 }
 
             }

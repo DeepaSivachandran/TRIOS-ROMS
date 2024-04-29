@@ -202,7 +202,7 @@ namespace ROMS
                                     objDs.Tables[1].Rows[i]["Batch No."].ToString(),objDs.Tables[1].Rows[i]["Quantity"].ToString(),
                                     objDs.Tables[1].Rows[i]["UTID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
                                     objDs.Tables[1].Rows[i]["RKID"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeValue"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeType"].ToString()
-                                    , objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Per"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeStatus"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Flag"].ToString());
+                                    , objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Per"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeStatus"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Flag"].ToString(), objDs.Tables[1].Rows[i]["PR_MRPflag"].ToString());
                                 }
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
@@ -1103,7 +1103,6 @@ namespace ROMS
                                 {
                                     varUpDownKey = 1;
                                     udfnListviewProduct();
-                                    txtMrp.Focus();
                                     DGV_FilterProduct.Visible = false;
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
@@ -1121,7 +1120,22 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtMrp.Focus();
+                        if (txtMrp.Enabled == true)
+                        {
+                            txtMrp.Focus();
+                        }
+                        else if (txtDay.Enabled == true)
+                        {
+                            txtDay.Focus();
+                        }
+                        else if (txtBatchNo.Enabled == true)
+                        {
+                            txtBatchNo.Focus();
+                        }
+                        else
+                        {
+                            txtActualQty.Focus();
+                        }
                     }
                 }
             }
@@ -2234,9 +2248,9 @@ namespace ROMS
                                 grdPurchaseDC.Rows[i].Cells["clmUnit"].Style.BackColor = Color.White;
                                 grdPurchaseDC.Rows[i].Cells["clmshelfper"].Style.BackColor = Color.White;
                                 grdPurchaseDC.Rows[i].Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseDC.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                                //grdPurchaseDC.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseDC.Rows[i].Cells["clmshelflife"].Style.BackColor = Color.PaleGreen;
+                                //grdPurchaseDC.Rows[i].Cells["clmshelflife"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmStockLocation"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
@@ -2260,6 +2274,15 @@ namespace ROMS
                                     }
                                 }
                             }
+                        }
+                        if((Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmMRPFlag"].Value)=="1") && ((Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmMRP"].Value) == "") || (Convert.ToDecimal(grdPurchaseDC.Rows[i].Cells["clmMRP"].Value) == 0)))
+                        {
+                            grdPurchaseDC.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                            varErrorFlag = false;
+                        }
+                        else if ((Convert.ToInt32(grdPurchaseDC.Rows[i].Cells["clmMRPFlag"].Value) == 1) && (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmMRP"].Value)!= ""))
+                        {
+                            grdPurchaseDC.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
                         }
                     }
                     if (varErrorFlag == true && varErrQty == "0")
@@ -2907,7 +2930,6 @@ namespace ROMS
                                 {
                                     varUpDownKey = 1;
                                     udfnListviewProduct();
-                                    txtMrp.Focus();
                                     DGV_FilterProduct.Visible = false;
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
@@ -3196,7 +3218,15 @@ namespace ROMS
                     string varMessage = objDServ.udfnGetMessages(127); 
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }  
+                }
+                if(Convert.ToDecimal(grdPurchaseDC.Rows[e.RowIndex].Cells["clmMRP"].Value)==0 && Convert.ToInt32(grdPurchaseDC.Rows[e.RowIndex].Cells["clmMRPFlag"].Value) == 1)
+                {
+                    grdPurchaseDC.Rows[e.RowIndex].Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                }
+                else if (Convert.ToDecimal(grdPurchaseDC.Rows[e.RowIndex].Cells["clmMRP"].Value) != 0 && Convert.ToInt32(grdPurchaseDC.Rows[e.RowIndex].Cells["clmMRPFlag"].Value) == 1)
+                {
+                    grdPurchaseDC.Rows[e.RowIndex].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                }
             }
             catch (Exception ex)
             {
