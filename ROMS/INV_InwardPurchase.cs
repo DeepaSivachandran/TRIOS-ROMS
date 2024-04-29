@@ -563,7 +563,7 @@ namespace ROMS
                         tpInwardNo.Show("DC No. is empty.", txtInwardNo, 5000);
                         varErrorFlag = false;
                     }
-                    dtInwardPurchase.Rows.Clear();
+                    //dtInwardPurchase.Rows.Clear();
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                     {
                         decimal varQty = 0, varTotalQty = 0;
@@ -588,15 +588,17 @@ namespace ROMS
                                     varQty1 = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value);
 
                                     var varDuplicateProuct = from r in dtInwardPurchase.AsEnumerable()
-                                                             where (r.Field<int>("GIPPR_PRID").Equals(varPRID))
-                                                             group r by r.Field<int>("GIPPR_OrderID")
+                                                             where (r.Field<int>("GIPPR_PRID").Equals(varPRID)
+                                                             )
+                                                             group r by r.Field<int>("GIPPR_PRID")
                                                              into g
                                                              select g.Key;
-                                    var varRowsToUpdate = dtInwardPurchase.AsEnumerable().Where(r => r.Field<int>("GIPPR_OrderID") == Convert.ToInt16(varOrderID));
 
+                                    var varDuplicateProuct1 = dtInwardPurchase.AsEnumerable()
+                                                            .Where(y => y.Field<int>("GIPPR_PRID").Equals(varPRID))
+                                                             .Sum(x => x.Field<int>("GIPPR_ReceivedQty")).ToString();
 
-
-
+                                    decimal value = Convert.ToDecimal(varDuplicateProuct1);
                                     /*
                                     if (varGRNPurchaseFlag == 3)
                                     {
@@ -1113,7 +1115,7 @@ namespace ROMS
                         object varRKID = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["clmRKID"].Value);
                         dtInwardPurchase.Rows[e.RowIndex]["GIPPR_BatchNo"] = varRKID;
                     } */
-                    if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmMRP" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmExpiryDate" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmBatchNo" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmRack")
+                    if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmMRP" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmExpiryDate" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmBatchNo" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmRack" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmReceivedQty" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmShopQty")
                     {
                         grdGrnlist.Rows[e.RowIndex].Cells["clmError"].Value = 1;
                         var varDuplicateProuct = from r in dtInwardPurchase.AsEnumerable()
