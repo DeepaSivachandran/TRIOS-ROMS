@@ -3178,7 +3178,15 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDate.Focus();
+                    if (txtDate.Enabled == true)
+                    { txtDate.Focus();  }
+                    else if (txtBatchno.Enabled == true)
+                    { txtBatchno.Focus(); }
+                    else if(txtSourceLocation.Enabled==true)
+                    { txtSourceLocation.Focus();   }
+                    else if(cmbrack.Enabled==true)
+                    { cmbrack.Focus(); }
+                    else { btnAdd.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -3679,7 +3687,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSourceLocation.Focus();
+                    if (txtSourceLocation.Enabled == true)
+                    { txtSourceLocation.Focus(); }
+                    else if (cmbrack.Enabled == true)
+                    { cmbrack.Focus(); }
+                    else { btnAdd.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -4316,7 +4328,7 @@ namespace ROMS
                                 {
                                     grdSupplierList.Rows[grdSupplierList.RowCount-1].ReadOnly = true;
                                 }
-                                decimal varMRP = 0; string mrp = "", mrp1 = "";
+                                decimal varMRP = 0; string mrp = "0", mrp1 = "0";
                                 if (txtMrp.Text.Trim() != "")
                                 {
                                      varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
@@ -4397,8 +4409,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            { 
-
+            {
                 grdSupplierList.Sort(grdSupplierList.Columns[0], ListSortDirection.Descending);
                 //if (grdSupplierList.Rows.Count > 0)
                 //{
@@ -5643,7 +5654,7 @@ namespace ROMS
                                             Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmnetamt"].Value), 0, Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmPURPRID"].Value),
                                             Convert.ToInt32(grdPurchaseList.Rows[i].Cells["poid"].Value), Convert.ToDecimal(varCosting), varDiscountValue, Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGST"].Value),
                                             Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGSTamt"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGSTamt"].Value),
-                                            Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value));
+                                            Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value),0);
                                         }
                                     }
                                 }
@@ -6963,6 +6974,25 @@ namespace ROMS
                                 {
                                     varMRP = Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmMRP"].Value);
                                 }
+                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmMrpFlag"].Value) == "1")
+                                {
+                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value) == "" || Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmMRP"].Value)==0)
+                                    {
+                                        varcount++; varCount2++;
+                                        grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                                    }
+                                    else
+                                    {
+                                        if (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmMrpFlag"].Value) == 1)
+                                        {
+                                            grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                                        }
+                                        else
+                                        {
+                                            grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                                        }
+                                    }
+                                }
                                 if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmGrnMrp"].Value) != "")
                                 {
                                     varGrnMRP = Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmGrnMrp"].Value);
@@ -7002,7 +7032,7 @@ namespace ROMS
                                     {
                                          varPrCount++;
                                     }
-                                    if (Convert.ToInt16(cmbEntryType.SelectedValue) == 57 && POno == 220) //GRN product count
+                                    if (Convert.ToInt16(cmbEntryType.SelectedValue) == 57 && POno == 220) //DC product count
                                     {
                                         varPrCount++;
                                     }
@@ -8724,7 +8754,6 @@ namespace ROMS
                                     txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
                                 }
                             }
-
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
                             e.Handled = true;
@@ -8756,32 +8785,38 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varPrMRPFlag == "0" && txtMrp.Enabled == true && txtMrp.ReadOnly == false)
+                            if (varPrMRPFlag == "0")
                             {
+                                txtMrp.ReadOnly = true;
+                                txtMrp.Enabled = false;
                                 txtMrp.Focus();
+                                //if (txtDate.Enabled == true)
+                                //{ txtDate.Focus(); }
+                                //else if (txtBatchno.Enabled == true)
+                                //{ txtBatchno.Focus(); }
+                                //else if (txtSourceLocation.Enabled == true)
+                                //{ txtSourceLocation.Focus(); }
+                                //else if (cmbrack.Enabled == true)
+                                //{ cmbrack.Focus(); }
+                                //else { btnAdd.Focus(); }
                             }
                             else
                             {
-                                if (varShelflife == 0 && txtMonth.Enabled == true && txtMonth.ReadOnly == false)
+                                txtMrp.ReadOnly = false;
+                                txtMrp.Enabled = true;
+                                if (varShelflife == 1 && txtMonth.Enabled == true && txtMonth.ReadOnly == false)
                                 {
-                                    txtMonth.Focus();
+                                    txtDate.Focus();
                                 }
                                 else
                                 {
-                                    if (varBatchNo == "73")
-                                    {
-                                        txtSourceLocation.Focus();
-                                    }
-                                    else if (varBatchNoGeneration == "75")
-                                    {
-                                        txtSourceLocation.Focus();
-                                    }
-                                    else if (varBatchNoGeneration == "74")
+                                    if (txtBatchno.Enabled == true)
                                     { txtBatchno.Focus(); }
-                                    else
-                                    {
-                                        txtSourceLocation.Focus();
-                                    }
+                                    else if (txtSourceLocation.Enabled == true)
+                                    { txtSourceLocation.Focus(); }
+                                    else if (cmbrack.Enabled == true)
+                                    { cmbrack.Focus(); }
+                                    else { btnAdd.Focus(); }
                                 }
                             }
                         }
@@ -10354,6 +10389,24 @@ namespace ROMS
                         DataGridViewCell cell = dataGridView.Rows[i].Cells["rkid"];
                         cell.Style.BackColor = Color.PaleGreen;
                     }
+                    if (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmMrpFlag"].Value) == 1)
+                    {
+                        grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                    }
+                    else
+                    {
+                        grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                        grdSupplierList.Rows[i].Cells["clmMRP"].ReadOnly = true;
+                    }
+                    if (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmShelflifeenable"].Value) == 1)
+                    {
+                        grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                    }
+                    else
+                    {
+                        grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                        grdSupplierList.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
+                    }
                     if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) =="220" || PbSTS=="50")
                     {
                         grdSupplierList.Rows[i].ReadOnly = true;
@@ -10519,7 +10572,7 @@ namespace ROMS
                                 {
                                     varUpDownKey = 1;
                                     udfnListviewProduct();
-                                    txtMrp.Focus();
+                                   // txtMrp.Focus();
                                     DGV_FilterProduct.Visible = false;
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
@@ -10537,7 +10590,47 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtMrp.Focus();
+                        if (varPrInvFlag == "1" || Convert.ToString(cmbPONo.SelectedValue) == "220")
+                        {
+                            btnAdd.Focus();
+                        }
+                        else
+                        {
+                            if (varPrMRPFlag == "0")
+                            {
+                                txtMrp.ReadOnly = true;
+                                txtMrp.Enabled = false;
+                                txtMrp.Focus();
+                                //if (txtDate.Enabled == true)
+                                //{ txtDate.Focus(); }
+                                //else if (txtBatchno.Enabled == true)
+                                //{ txtBatchno.Focus(); }
+                                //else if (txtSourceLocation.Enabled == true)
+                                //{ txtSourceLocation.Focus(); }
+                                //else if (cmbrack.Enabled == true)
+                                //{ cmbrack.Focus(); }
+                                //else { btnAdd.Focus(); }
+                            }
+                            else
+                            {
+                                txtMrp.ReadOnly = false;
+                                txtMrp.Enabled = true;
+                                if (varShelflife == 1 && txtMonth.Enabled == true && txtMonth.ReadOnly == false)
+                                {
+                                    txtDate.Focus();
+                                }
+                                else
+                                {
+                                    if (txtBatchno.Enabled == true)
+                                    { txtBatchno.Focus(); }
+                                    else if (txtSourceLocation.Enabled == true)
+                                    { txtSourceLocation.Focus(); }
+                                    else if (cmbrack.Enabled == true)
+                                    { cmbrack.Focus(); }
+                                    else { btnAdd.Focus(); }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -10650,8 +10743,9 @@ namespace ROMS
                         udfnCmbSourceRack();
                         cmbrack.SelectedValue = varPrRkid;
                         cmbrack.Text = varPrRack;
-                        udfnAddrowEnable();
+                       
                     }
+                    udfnAddrowEnable();
                     if (Convert.ToString(cmbPONo.SelectedValue) != "220")
                     {
                         if (Convert.ToInt32(varBatchNo) == 73)  //disabled
@@ -10728,32 +10822,43 @@ namespace ROMS
                 }
                 else
                 {
-                    if(varPrMRPFlag=="0" && txtMrp.Enabled==true && txtMrp.ReadOnly==false)
+                    if(varPrMRPFlag=="0" )
                     {
+                        txtMrp.ReadOnly = true;
+                        txtMrp.Enabled = false;
                         txtMrp.Focus();
                     }
                     else
                     {
-                        if(varShelflife == 0 && txtMonth.Enabled == true && txtMonth.ReadOnly == false)
+                        txtMrp.ReadOnly = false;
+                        txtMrp.Enabled = true;
+                        if (varShelflife == 1 && txtMonth.Enabled == true && txtMonth.ReadOnly == false)
                         {
                             txtMonth.Focus();
                         }
                         else
                         {
-                            if(varBatchNo=="73")
-                            {
-                                txtSourceLocation.Focus();
-                            }
-                            else if(varBatchNoGeneration=="75")
-                            {
-                                txtSourceLocation.Focus();
-                            }
-                            else if(varBatchNoGeneration == "74" )
+                            //if(varBatchNo=="73")
+                            //{
+                            //    txtSourceLocation.Focus();
+                            //}
+                            //else if(varBatchNoGeneration=="75")
+                            //{
+                            //    txtSourceLocation.Focus();
+                            //}
+                            //else if(varBatchNoGeneration == "74" )
+                            //{ txtBatchno.Focus(); }
+                            //else
+                            //{
+                            //    txtSourceLocation.Focus();
+                            //}
+                            if (txtBatchno.Enabled == true)
                             { txtBatchno.Focus(); }
-                            else
-                            {
-                                txtSourceLocation.Focus();
-                            }
+                            else if (txtSourceLocation.Enabled == true)
+                            { txtSourceLocation.Focus(); }
+                            else if (cmbrack.Enabled == true)
+                            { cmbrack.Focus(); }
+                            else { btnAdd.Focus(); }
                         }
                     }
                 }
@@ -10946,6 +11051,11 @@ namespace ROMS
                     txtYear.Enabled = false;
                     txtSourceLocation.Enabled = false;
                     cmbrack.Enabled = false;
+                    txtMrp.ReadOnly = true;
+                    txtDate.ReadOnly = true;
+                    txtMonth.ReadOnly = true;
+                    txtYear.ReadOnly = true;
+                    txtSourceLocation.ReadOnly = true;
                 }
                 else
                 {
@@ -10958,16 +11068,40 @@ namespace ROMS
                         txtYear.Enabled = false;
                         txtSourceLocation.Enabled = false;
                         cmbrack.Enabled = false;
+                        txtMrp.ReadOnly = true;
+                        txtDate.ReadOnly = true;
+                        txtMonth.ReadOnly = true;
+                        txtYear.ReadOnly = true;
+                        txtSourceLocation.ReadOnly = true;
                     }
                     else
                     {
-                       // txtBatchno.Enabled = true;
-                        txtMrp.Enabled = true;
-                        txtDate.Enabled = true;
-                        txtMonth.Enabled = true;
-                        txtYear.Enabled = true;
+                        // txtBatchno.Enabled = true;
+                        if (varShelflife == 1)
+                        {
+                            txtDate.Enabled = true;
+                            txtMonth.Enabled = true;
+                            txtDate.ReadOnly = false;
+                            txtMonth.ReadOnly = false;
+                            txtYear.ReadOnly = false;
+                        }
+                        else
+                        {
+                            txtDate.Enabled = false;
+                            txtMonth.Enabled = false;
+                            txtYear.Enabled = false;
+                            txtDate.ReadOnly = true;
+                            txtMonth.ReadOnly = true;
+                            txtYear.ReadOnly = true;
+                        }
+                        if(varPrMRPFlag=="1")
+                        { txtMrp.Enabled = true; txtMrp.ReadOnly = false; }
+                        else { txtMrp.Enabled = false; txtMrp.ReadOnly = true; }
                         txtSourceLocation.Enabled = true;
                         cmbrack.Enabled = true;
+                        
+                        
+                        txtSourceLocation.ReadOnly = false;
                     }
                 }
                 lvSourceLocation.Visible = false;
