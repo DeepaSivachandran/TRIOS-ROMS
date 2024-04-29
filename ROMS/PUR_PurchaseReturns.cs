@@ -45,7 +45,7 @@ namespace ROMS
         public int varRKID = 0;
         public int varDecimal = 0;
         public decimal varApprox = 0;
-        public int varGST = 0;
+        public int varGST = 0, VerifiedBy=0;
 
 
         public PUR_PurchaseReturns()
@@ -742,11 +742,16 @@ namespace ROMS
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
                                 varStatusId = Convert.ToInt32(objDs.Tables[0].Rows[0]["Status ID"]);
                                 lblStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
+                                VerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["PURREDC_VerifiedBy"]);                              
                                 udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
                             }
                             if(varStatusId==81)
+                            {
+                                chkVerified.Checked = true;
+                            }
+                            if(VerifiedBy!=0)
                             {
                                 chkVerified.Checked = true;
                             }
@@ -1480,7 +1485,8 @@ namespace ROMS
                 if (grdReturnDC.RowCount > 0)
                 {
                     bool varErrorFlag = true;
-                    int varVerified = 0, varVerifiedflag=0;
+                    int  varVerifiedflag=0;
+                    string varVerified = "";
                     if (txtSupplier.Text == "")
                     {
                         epReturnDc.SetError(txtSupplier, "Please enter supplier.");
@@ -1629,7 +1635,7 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        varStatusId = 15;
+                                        varStatusId = 68;
                                     }
                                     varorginator = "Purchase Return DC insertion";
                                 }
@@ -1639,7 +1645,7 @@ namespace ROMS
                                     varorginator = "Purchase Return DC updation";
                                     //varStatusId = 39;
                                 }
-                                if(varStatusId==15 && varReturnDCID!=0)
+                                if((varStatusId==15 && varReturnDCID!=0) || varStatusId==81)
                                 {
                                     varviewtype = 1;
                                     varorginator = "Purchase Return DC updation";
@@ -1719,7 +1725,7 @@ namespace ROMS
                                     {
                                         MainForm.objCP_Verify = new CP_Verify();
                                         MainForm.objCP_Verify.ShowDialog();
-                                        varVerified = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                        varVerified = Convert.ToString(MainForm.objCP_Verify.varUserId);
                                         if (MainForm.objCP_Verify.flag == 1)
                                         {
                                             objTRN_PurchaseReturnDC.paraViewType = varviewtype;
@@ -1743,22 +1749,21 @@ namespace ROMS
                                             objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
                                             objTRN_PurchaseReturnDC.paraPurchaseId = 0;
                                             objTRN_PurchaseReturnDC.paraFlag = 0;
-                                            objTRN_PurchaseReturnDC.paraVerifiedBy = varVerified;
+                                            objTRN_PurchaseReturnDC.paraVerifiedBy = Convert.ToInt32(varVerified);
                                             result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
                                         }
                                     }
                                     string[] varvalue1 = result.Split('~');
                                     if (varvalue1[0] == "3")
                                     {
-                                        MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); this.ActiveControl = txtSupplier;
-                                    }
-                                    if (varReturnDCID != 0)
-                                    {
-                                        varCloseFlag = 1;
-                                        varModifiedFlag = 0;
-                                    }
-                                    try
-                                    {
+                                        if (varvalue1[1] != "1")
+                                        {
+                                            MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); this.ActiveControl = txtSupplier;                                      
+                                        if (varReturnDCID != 0)
+                                        {
+                                            varCloseFlag = 1;
+                                            varModifiedFlag = 0;
+                                        }
                                         string ReturnDCID = "0";
                                         if (varReturnDCID == 0)
                                         {
@@ -1793,15 +1798,12 @@ namespace ROMS
                                             MainForm.objReportLoad.Text = varHeader;
                                             MainForm.objReportLoad.ShowDialog();
                                         }
+
+                                        udfnClear();      
+                                        this.Close();
+                                        MainForm.objINV_SalesInvoiceList.udfnList();
                                     }
-                                    catch (Exception ex)
-                                    {
-                                        objError = new DataError();
-                                        objError.WriteFile(ex);
-                                    }
-                                    udfnClear();
-                                    this.Close();
-                                    MainForm.objINV_SalesInvoiceList.udfnList();
+                                }
                                 }
                                 else if (varvalue[0] == "4")
                                 {
@@ -3041,13 +3043,18 @@ namespace ROMS
         {
             try
             {
-                if(chkCompleted.Checked==true)
+                if(chkCompleted.Checked==true && chkVerified.Checked==true)
+                {
+                    chkVerified.Enabled = false;
+                }
+                else if(chkCompleted.Checked== true && chkVerified.Checked == false)
                 {
                     chkVerified.Enabled = true;
                 }
                 else
                 {
                     chkVerified.Enabled = false;
+                    chkVerified.Checked = false;
                 }
             }
             catch (Exception ex)
@@ -3112,6 +3119,7 @@ namespace ROMS
         {
             try
             {
+                udfnTooltipHide();
                 udfnTooltipHide();
             }
             catch (Exception ex)

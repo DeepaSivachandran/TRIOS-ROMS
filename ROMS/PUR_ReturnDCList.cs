@@ -60,7 +60,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false && grdReturnDCList.SelectedRows.Count == 1)
                 {
-                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 61)
+                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 61 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 81)
                     {
                         tsbDelete.Visible = false;
                         varDeleteFlag = 0;
