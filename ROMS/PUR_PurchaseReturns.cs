@@ -773,6 +773,7 @@ namespace ROMS
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST Amt"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]));
                                     }
+                                    grdReturnDC.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lblNoRecordsFound.Visible = false;
                                     lblNoRecordsFound.SendToBack();
                                     //grdReturnDC.DataSource = objDs.Tables[1];
@@ -2757,6 +2758,7 @@ namespace ROMS
                         GST = 0 + GST;
                     }
                 }
+                grdReturnDC.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                 grdReturnDC.Rows.Add(grdReturnDC.Rows.Count + 1, varPICode,varProductName,txtLocation.Text,txtRack.Text,txtMRP.Text,txtExpiryDate.Text,txtBatchNo.Text,varApprox,txtQuantity.Text,lblUnit.Text,Tax, varGST, GST,Net,lblProduct.Text,0,0,varSLID,varRKID);
                 dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), 0, (txtQuantity.Text).Trim(), 0,varSLID, varRKID,0);
 

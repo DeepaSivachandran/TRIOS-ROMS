@@ -30,12 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseOrderDamage));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
@@ -52,12 +51,16 @@
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmApproxRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTaxableAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmgstper = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmgstamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnettamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
@@ -90,12 +93,16 @@
             this.clmsno,
             this.clmpicode,
             this.clmproduct,
+            this.Column1,
+            this.clmExpiry,
+            this.Column3,
+            this.clmApproxRate,
             this.clmtotqty,
             this.clmunit,
-            this.Column1,
-            this.Column4,
-            this.Column2,
-            this.Column3,
+            this.clmTaxableAmt,
+            this.clmgstper,
+            this.clmgstamt,
+            this.clmnettamt,
             this.id});
             this.grdPurchaseOrder.EnableHeadersVisualStyles = false;
             this.grdPurchaseOrder.GridColor = System.Drawing.Color.White;
@@ -103,9 +110,9 @@
             this.grdPurchaseOrder.Name = "grdPurchaseOrder";
             this.grdPurchaseOrder.ReadOnly = true;
             this.grdPurchaseOrder.RowHeadersVisible = false;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPurchaseOrder.RowTemplate.Height = 25;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseOrder.Size = new System.Drawing.Size(1006, 343);
@@ -220,14 +227,14 @@
             this.clmsno.ReadOnly = true;
             this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 70;
+            this.clmsno.Width = 50;
             // 
             // clmpicode
             // 
             this.clmpicode.HeaderText = "P.I Code";
             this.clmpicode.Name = "clmpicode";
             this.clmpicode.ReadOnly = true;
-            this.clmpicode.Width = 120;
+            this.clmpicode.Width = 80;
             // 
             // clmproduct
             // 
@@ -238,10 +245,39 @@
             this.clmproduct.ReadOnly = true;
             this.clmproduct.Width = 240;
             // 
-            // clmtotqty
+            // Column1
             // 
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmtotqty.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column1.HeaderText = "MRP";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 80;
+            // 
+            // clmExpiry
+            // 
+            this.clmExpiry.HeaderText = "Expiry Date";
+            this.clmExpiry.Name = "clmExpiry";
+            this.clmExpiry.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Batch No.";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 80;
+            // 
+            // clmApproxRate
+            // 
+            this.clmApproxRate.HeaderText = "Approximate Rate";
+            this.clmApproxRate.Name = "clmApproxRate";
+            this.clmApproxRate.ReadOnly = true;
+            this.clmApproxRate.Width = 120;
+            // 
+            // clmtotqty
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmtotqty.DefaultCellStyle = dataGridViewCellStyle5;
             this.clmtotqty.HeaderText = "Qty";
             this.clmtotqty.Name = "clmtotqty";
             this.clmtotqty.ReadOnly = true;
@@ -254,35 +290,32 @@
             this.clmunit.ReadOnly = true;
             this.clmunit.Width = 70;
             // 
-            // Column1
+            // clmTaxableAmt
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column1.HeaderText = "MRP";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 80;
+            this.clmTaxableAmt.HeaderText = "Taxable Amt";
+            this.clmTaxableAmt.Name = "clmTaxableAmt";
+            this.clmTaxableAmt.ReadOnly = true;
             // 
-            // Column4
+            // clmgstper
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Column4.HeaderText = "Last Purchase Rate";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 150;
+            this.clmgstper.HeaderText = "GST%";
+            this.clmgstper.Name = "clmgstper";
+            this.clmgstper.ReadOnly = true;
+            this.clmgstper.Width = 80;
             // 
-            // Column2
+            // clmgstamt
             // 
-            this.Column2.HeaderText = "Expiry";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.clmgstamt.HeaderText = "GST Amt";
+            this.clmgstamt.Name = "clmgstamt";
+            this.clmgstamt.ReadOnly = true;
+            this.clmgstamt.Width = 80;
             // 
-            // Column3
+            // clmnettamt
             // 
-            this.Column3.HeaderText = "Batch No.";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.clmnettamt.HeaderText = "Nett Amt";
+            this.clmnettamt.Name = "clmnettamt";
+            this.clmnettamt.ReadOnly = true;
+            this.clmnettamt.Width = 80;
             // 
             // id
             // 
@@ -337,12 +370,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmApproxRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTaxableAmt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmgstper;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmgstamt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnettamt;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
     }
 }

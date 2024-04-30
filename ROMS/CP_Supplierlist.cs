@@ -241,12 +241,17 @@ namespace ROMS
                     lblschedule.Text = "0";
                     lblSupplierCode.Text = "0";
                 }
+                else if(lblschedule.Text=="")
+                {
+                    lblschedule.Text = "0";
+                }
                 else
                 {
                     string[] values = new string[0];
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 31;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
                     objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();

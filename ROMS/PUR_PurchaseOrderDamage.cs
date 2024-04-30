@@ -119,7 +119,14 @@ namespace ROMS
 
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdPurchaseOrder.Rows.Add(objDs.Tables[0].Rows[i]["SINO"], objDs.Tables[0].Rows[i]["PICODE"], objDs.Tables[0].Rows[i]["PRODUCT"], objDs.Tables[0].Rows[i]["QTY"], objDs.Tables[0].Rows[i]["UNIT"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["PURCHASERATE"], objDs.Tables[0].Rows[i]["EXPIRY"], objDs.Tables[0].Rows[i]["BATCH"], objDs.Tables[0].Rows[i]["ID"]);
+                                grdPurchaseOrder.Rows.Add(objDs.Tables[0].Rows[i]["SINO"], objDs.Tables[0].Rows[i]["PICODE"], objDs.Tables[0].Rows[i]["PRODUCT"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["EXPIRY"], objDs.Tables[0].Rows[i]["BATCH"], objDs.Tables[0].Rows[i]["Approximate Rate"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["Taxable Amt"], objDs.Tables[0].Rows[i]["Gst%"], objDs.Tables[0].Rows[i]["GST Amt"], objDs.Tables[0].Rows[i]["Nett Amt"], objDs.Tables[0].Rows[i]["ID"]);
+                                grdPurchaseOrder.Columns["clmApproxRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPurchaseOrder.Columns["clmtotqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPurchaseOrder.Columns["clmTaxableAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPurchaseOrder.Columns["clmgstamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPurchaseOrder.Columns["clmnettamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPurchaseOrder.Columns["clmunit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdPurchaseOrder.Columns["clmExpiry"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             }
                         }
                         else
