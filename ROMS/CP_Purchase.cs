@@ -4285,7 +4285,7 @@ namespace ROMS
                                     {
                                         if (Convert.ToString(cmbPONo.SelectedValue) == varPoid)
                                         {
-                                            lblProductcode.Text = "0";
+                                            //lblProductcode.Text = "0";
                                             //errPurchaseentry.SetError(txtProductName, "Product already Exist for this location");
                                             //txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                                             //tpdate.ShowAlways = true;
