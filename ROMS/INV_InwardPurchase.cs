@@ -267,6 +267,7 @@ namespace ROMS
             {
                 dtInwardPurchase.TableName = "TRN_GoodsInward_Purchase_Products";
                 dtInwardPurchase.Columns.Add("GIPPR_SNO", typeof(int));
+                dtInwardPurchase.Columns.Add("GIPPR_ConvertType", typeof(int));
                 dtInwardPurchase.Columns.Add("GIPPR_OrderID", typeof(int));
                 dtInwardPurchase.Columns.Add("GIPPR_PRID", typeof(int));
                 dtInwardPurchase.Columns.Add("GIPPR_UTID", typeof(int));
@@ -823,6 +824,43 @@ namespace ROMS
                             {
                                 if (varGRNPurchaseFlag != 174)
                                 {
+                                    int varIDvalue = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmSno"].Value);
+
+                                    var varSumRequestQty = dtInwardPurchase.AsEnumerable()
+                                                            .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
+                                                             .Sum(x => x.Field<decimal>("GIPPR_ReceivedQty")).ToString();
+                                    var varSumShopQty = dtInwardPurchase.AsEnumerable()
+                                                            .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
+                                                             .Sum(x => x.Field<decimal>("GIPPR_ShopQty")).ToString();
+
+                                    varQty1 = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value);
+                                    if (varQty1 != 0)
+                                    {
+                                        varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
+
+                                        //if (varQty1 != varSumRequestQty + varSumShopQty)
+                                        //{
+                                        //    varQuantityErr++;
+                                        //    grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                        //    grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                        //}
+                                        //if (varQty1 > varTotalQty1 || varQty1 == varTotalQty1)
+                                        //{
+
+                                        //}
+                                        //else
+                                        //{
+                                        //    InvalidQty = 1;
+                                        //    grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.Pink;
+                                        //    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShopQty"].Value) != "")
+                                        //    {
+                                        //        grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.Pink;
+                                        //    }
+                                        //    varErrorFlag = false;
+                                        //}
+                                    }
+
+
                                     decimal varqty = 0, varRecqty = 0, varShopqty = 0;
                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQty"].Value) != "")
                                     { varqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value); }
@@ -831,12 +869,12 @@ namespace ROMS
                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShopQty"].Value) != "")
                                     { varShopqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmShopQty"].Value); }
 
-                                    if (varqty != varRecqty + varShopqty)
-                                    {
-                                        varQuantityErr++;
-                                        grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                        grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
-                                    }
+                                    //if (varqty != varRecqty + varShopqty)
+                                    //{
+                                    //    varQuantityErr++;
+                                    //    grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                    //    grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                    //}
                                 }
                             }
 
@@ -1477,7 +1515,7 @@ namespace ROMS
                             {
                                 if(varEditFlag==1)
                                 {
-                                    Quantity = "EditLoad";
+                                    Quantity = "Qty";
                                 }
                                 for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                 {
