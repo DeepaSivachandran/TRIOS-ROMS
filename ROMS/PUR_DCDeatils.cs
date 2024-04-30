@@ -185,6 +185,7 @@ namespace ROMS
                 }
                 MainForm.objCP_Purchase.lbltotProduct.Text = Convert.ToString(varTotProCount);
                 MainForm.objCP_Purchase.lblRemainProduct.Text = Convert.ToString(varTotProCount);
+                MainForm.objCP_Purchase.varEntryTypeViewFlag = 1;
                 if (VARFLAG != 0)
                 {
                     MainForm.objCP_Purchase.grdReurnDC.Sort(MainForm.objCP_Purchase.grdReurnDC.Columns["DCDate"], ListSortDirection.Descending);
