@@ -1038,6 +1038,7 @@ namespace ROMS
                                 txtBroker.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Broker"]);
                                 lblBrokerId.Text = Convert.ToString(objDs.Tables[0].Rows[0]["BRID"]);
                                 txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GSTIN"]);
+                                
                                 if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Einvoice"]) == "0")
                                 {
                                     chkInvoice.Checked = false;
@@ -1104,6 +1105,8 @@ namespace ROMS
                                 lv_Broker.Visible = false;
                                 udfndisablevalue();
                                 udfnLoadingGrandTotCalculation();
+                                if (Convert.ToString(cmbEntryType.SelectedValue) == "56")//Direct
+                                { cmbPONo.Enabled = false; }
                             }
                             ////// tab1 load
                             if (objDs.Tables[1].Rows.Count != 0)
@@ -4362,6 +4365,12 @@ namespace ROMS
                                 dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text,(varRackId), expirydateFlag,Convert.ToInt16(cmbPONo.SelectedValue));
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text));
                                 udfnrowclear();
+                                if (Convert.ToString(cmbEntryType.SelectedValue) == "54") //Grn
+                                { cmbPONo.SelectedValue = 218; }
+                                else if (Convert.ToString(cmbEntryType.SelectedValue) == "55") //Po
+                                { cmbPONo.SelectedValue = 215; }
+                                else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
+                                { cmbPONo.SelectedValue = 220; }
                                 txtProductName.Text = "";
                                 lblProductcode.Text = "0";
                                 txtProductName.BackColor = Color.White;
@@ -4478,12 +4487,6 @@ namespace ROMS
                 txtMrp.Enabled = true;
                 cmbrack.Enabled = true;
                 cmbrack.DataSource = null;
-                if (Convert.ToString(cmbEntryType.SelectedValue) == "54") //Grn
-                { cmbPONo.SelectedValue = 218; }
-                else if (Convert.ToString(cmbEntryType.SelectedValue) == "55") //Po
-                { cmbPONo.SelectedValue = 215; }
-                else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
-                { cmbPONo.SelectedValue = 220; }
             }
             catch (Exception ex)
             {
@@ -5589,6 +5592,7 @@ namespace ROMS
                         {
                             if (((Convert.ToDecimal(txtInvoiceamt.Text)) != (Convert.ToDecimal(varGrandtotal))) && Convert.ToDecimal(varGrandtotal) != 0)
                             {
+                                InvoiceAmountErr = 1;
                                 SPDataService objDServe1 = new SPDataService();
                                 string varMessage = objDServe1.udfnGetMessages(115);
                                 objDServe1.CloseConnection();
@@ -8225,37 +8229,40 @@ namespace ROMS
         {
             try
             {
-                string PRID = "0";
-                int GRNID = 0, varPRFlag = 0; string POID = "0", DCID = "0";
-                var strings1 = varProductsIDs.Select(xx => xx);
-                PRID = (string.Join(",", strings1));
-                if (PRID == "")
+                if (lblRemainProduct.Text != "0")
                 {
-                    PRID = "0";
+                    string PRID = "0";
+                    int GRNID = 0, varPRFlag = 0; string POID = "0", DCID = "0";
+                    var strings1 = varProductsIDs.Select(xx => xx);
+                    PRID = (string.Join(",", strings1));
+                    if (PRID == "")
+                    {
+                        PRID = "0";
+                    }
+                    MainForm.objPUR_RemainingProductList = new PUR_RemainingProductList();
+                    MainForm.objPUR_RemainingProductList.PbvarGRNID = pbGRNNo;
+                    if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55)  //Against Po
+                    {
+                        varPRFlag = 0;
+                        POID = Convert.ToString(pbPONO);
+                    }
+                    else if (Convert.ToInt32(cmbEntryType.SelectedValue) == 54)  //Against GRN
+                    {
+                        varPRFlag = 1;
+                        GRNID = Convert.ToInt16(pbGRNNo);
+                    }
+                    else if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57)  //Against DC
+                    {
+                        DCID = Convert.ToString(pbDCNo);
+                        varPRFlag = 2;
+                    }
+                    MainForm.objPUR_RemainingProductList.varFlag = varPRFlag;
+                    MainForm.objPUR_RemainingProductList.pbGRNid = GRNID;
+                    MainForm.objPUR_RemainingProductList.pbDCid = DCID;
+                    MainForm.objPUR_RemainingProductList.pbPOid = POID;
+                    MainForm.objPUR_RemainingProductList.varProducts = PRID;
+                    MainForm.objPUR_RemainingProductList.ShowDialog();
                 }
-                MainForm.objPUR_RemainingProductList = new PUR_RemainingProductList();
-                MainForm.objPUR_RemainingProductList.PbvarGRNID = pbGRNNo;
-                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55)  //Against Po
-                {
-                    varPRFlag = 0;
-                    POID = Convert.ToString(pbPONO);
-                }
-                else if (Convert.ToInt32(cmbEntryType.SelectedValue) == 54)  //Against GRN
-                {
-                    varPRFlag = 1;
-                    GRNID = Convert.ToInt16(pbGRNNo);
-                }
-                else if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57)  //Against DC
-                {
-                    DCID = Convert.ToString(pbDCNo);
-                    varPRFlag = 2;
-                }
-                MainForm.objPUR_RemainingProductList.varFlag = varPRFlag;
-                MainForm.objPUR_RemainingProductList.pbGRNid = GRNID;
-                MainForm.objPUR_RemainingProductList.pbDCid = DCID;
-                MainForm.objPUR_RemainingProductList.pbPOid = POID;
-                MainForm.objPUR_RemainingProductList.varProducts = PRID;
-                MainForm.objPUR_RemainingProductList.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -8271,7 +8278,9 @@ namespace ROMS
                 if(Convert.ToString(cmbEntryType.SelectedValue)=="54")//GRN
                 {
                     varFlag = 1;
-                    varID = pbGRNNo;
+                    if(varQueueFlag==1)
+                    { varID = PbID; }
+                    else { varID = pbGRNNo; }
                 }
                 else if (Convert.ToString(cmbEntryType.SelectedValue) == "55")//po
                 {
@@ -8280,7 +8289,10 @@ namespace ROMS
                 }
                 else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
                 {
-                    varFlag = 2; varID = pbDCNo;
+                    varFlag = 2;
+                    if (varQueueFlag == 1)
+                    { varID = PbID; }
+                    else { varID = pbDCNo; }
                 }
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
