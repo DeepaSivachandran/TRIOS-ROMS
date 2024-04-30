@@ -4269,6 +4269,7 @@ namespace ROMS
                                 string mrp = string.Format("{0:0.00}", varMRP);
                                 string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                                 //string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
+                                grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), varPendingQty,varExcessQuantity,Convert.ToInt32(cmbQtyType.SelectedValue) ,Convert.ToDecimal(mrp), (varExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal,varMRPFlag);
                                 if (varDateEnable == 1)
@@ -5295,6 +5296,7 @@ namespace ROMS
                                         , Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[3].Rows[i]["newproflag"])
                                         , Convert.ToString(objDs.Tables[3].Rows[i]["PO_Qty"]), Convert.ToString(objDs.Tables[3].Rows[i]["MST_DisplayText"]), Convert.ToString(objDs.Tables[3].Rows[i]["GRNPR_MRPflag"])
                                         );
+                                        grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                         if (Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]) == "0")
                                         {
                                             grdGrnlist.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
