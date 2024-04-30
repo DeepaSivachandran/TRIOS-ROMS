@@ -1424,7 +1424,7 @@ namespace ROMS
 
                 }
                 varModifiedFlag = 1;
-                udfnSubtotalCalc();
+                //udfnSubtotalCalc();
                 if ((Convert.ToDecimal(lblSubtotal.Text)>=varNeftAmount) && Convert.ToInt32(cmbPaymentmode.SelectedValue)==89)
                 {
                     DataBind objDataBind = new DataBind();
@@ -1552,6 +1552,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdSupplierPayment_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnSubtotalCalc();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfntooltiphide()
         {
             try
