@@ -380,6 +380,12 @@ namespace ROMS
                                     string GRN_DC_PUR_ID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmID"].Value);
                                     string UT_Decimal = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmUTDecimal"].Value);
                                     string RackCount = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmRackCount"].Value);
+
+                                    string clmBatchNoStatus = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNoStatus"].Value);
+                                    string clmBatchGeneration = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNoGeneration"].Value);
+                                    string clmShelflifeStatus = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShelflifeStatus"].Value);
+                                    string clmMRPFlag = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRPFlag"].Value);
+                                    string clmDisable = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmDisable"].Value);
                                     int ConvertType = 0;
 
                                     //SNO Order Here
@@ -392,32 +398,60 @@ namespace ROMS
                                     dtInwardPurchase.Rows.Add(false,Convert.ToInt32(Sno), ConvertType, varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(0), GRN_DC_PUR_ID);
 
                                         grdGrnlist.Rows.Add(false, null, " ", PICode, PTName, MRP, ExpiryDate, BatchNo,
-                                     PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType, Convert.ToString(varChildRowNo),0);
+                                     PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType, Convert.ToString(varChildRowNo),0,clmBatchNoStatus,clmBatchNoGeneration,clmShelflifeStatus,clmMRPFlag,clmDisable);
                                     
 
                                     DataGridView dataGridView = grdGrnlist;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"];
                                     cell.Value= new System.Drawing.Bitmap(1, 1);
                                     //MRP
-                                    DataGridView dataGridView1 = grdGrnlist;
-                                    DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmMRP"];
-                                    cell1.Style.BackColor = Color.PaleGreen;
-                                    cell1.Style.ForeColor = Color.Black;
-                                    cell1.ReadOnly = false;
-                                    //Expiry Date
-                                    DataGridView dataGridView2 = grdGrnlist;
-                                    DataGridViewCell cell2 = dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells["clmExpiryDate"];
-                                    cell2.Style.BackColor = Color.PaleGreen;
-                                    cell2.Style.ForeColor = Color.Black;
-                                    cell2.ReadOnly = false;
-                                    //Batch No
-                                    DataGridView dataGridView3 = grdGrnlist;
-                                    DataGridViewCell cell3 = dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells["clmBatchNo"];
-                                    cell3.Style.BackColor = Color.PaleGreen;
-                                    cell3.Style.ForeColor = Color.Black;
-                                    cell3.ReadOnly = false;
-
-
+                                    if (varEditFlag == 0)
+                                    {
+                                        DataGridView dataGridView1 = grdGrnlist;
+                                        DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmMRP"];
+                                        if (clmMRPFlag == "1")
+                                        {
+                                            cell1.Style.BackColor = Color.PaleGreen;
+                                            cell1.Style.ForeColor = Color.Black;
+                                            cell1.ReadOnly = false;
+                                        }
+                                        else
+                                        {
+                                            cell1.Style.BackColor = Color.LightGray;
+                                            cell1.Style.ForeColor = Color.Black;
+                                            cell1.ReadOnly = true;
+                                        }
+                                        //Expiry Date
+                                        DataGridView dataGridView2 = grdGrnlist;
+                                        DataGridViewCell cell2 = dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells["clmExpiryDate"];
+                                        if (clmShelflifeStatus == "1")
+                                        {
+                                            cell2.Style.BackColor = Color.PaleGreen;
+                                            cell2.Style.ForeColor = Color.Black;
+                                            cell2.ReadOnly = false;
+                                        }
+                                        else
+                                        {
+                                            cell2.Style.BackColor = Color.LightGray;
+                                            cell2.Style.ForeColor = Color.Black;
+                                            cell2.ReadOnly = true;
+                                        }
+                                        //Batch No
+                                        DataGridView dataGridView3 = grdGrnlist;
+                                        DataGridViewCell cell3 = dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells["clmBatchNo"];
+                                        if (clmBatchNoStatus == "72" && clmBatchGeneration == "75")
+                                        {
+                                            cell3.Style.BackColor = Color.PaleGreen;
+                                            cell3.Style.ForeColor = Color.Black;
+                                            cell3.ReadOnly = false;
+                                        }
+                                        else
+                                        {
+                                            cell3.Style.BackColor = Color.LightGray;
+                                            cell3.Style.ForeColor = Color.Black;
+                                            cell3.ReadOnly = true;
+                                        }
+                                    }
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdGrnlist_DataBindingComplete(grdGrnlist, args2);
 
@@ -1633,7 +1667,8 @@ namespace ROMS
                                     grdGrnlist.Rows.Add(false, null, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product Name in Tamil"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]),
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i][Quantity]), Convert.ToString(objDs.Tables[1].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shop Qty"]),
                                          Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack ID"]),
-                                           Convert.ToString(objDs.Tables[1].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[1].Rows[i][OrderID]),0);
+                                           Convert.ToString(objDs.Tables[1].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[1].Rows[i][OrderID]),0
+                                            ,Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["Disable"]));
 
                                     decimal ReceivedQty = 0, ShopQty = 0;
                                     if(Convert.ToString(objDs.Tables[1].Rows[i]["Received Qty"])!="")
@@ -1651,6 +1686,10 @@ namespace ROMS
                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value)== "1")
                                     {
                                         ((DataGridViewImageCell)grdGrnlist.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
+                                    }
+                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmDisable"].Value) == "1")
+                                    {
+                                        ((DataGridViewImageCell)grdGrnlist.Rows[i].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
                                     }
                                 }
                                 grdGrnlist.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
