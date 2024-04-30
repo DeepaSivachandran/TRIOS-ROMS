@@ -3919,7 +3919,7 @@ namespace ROMS
                         varPrid = varPrid + ',' + varProIds.ToList()[i];
                     }
                 }
-                if(Convert.ToString(cmbPONo.SelectedValue)=="215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "218")
+                if(Convert.ToString(cmbPONo.SelectedValue)=="215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
                 {
                     lblAddProduct.Text = Convert.ToString(varProIds.Count());
                     lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
