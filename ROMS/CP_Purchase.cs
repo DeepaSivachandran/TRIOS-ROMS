@@ -5483,8 +5483,8 @@ namespace ROMS
                         objPurchaseentry.Columns.Add("PURPR_PURID", typeof(int));
                         objPurchaseentry.Columns.Add("PURPR_PRID", typeof(int));
                         objPurchaseentry.Columns.Add("PURPR_UTID", typeof(int));
-                        objPurchaseentry.Columns.Add("PURPR_GRNMRP", typeof(float));
-                        objPurchaseentry.Columns.Add("PURPR_InvoiceMRP", typeof(float));
+                        objPurchaseentry.Columns.Add("PURPR_GRNMRP", typeof(decimal));
+                        objPurchaseentry.Columns.Add("PURPR_InvoiceMRP", typeof(decimal));
                         objPurchaseentry.Columns.Add("PURPR_ExpiryDate", typeof(string));
                         objPurchaseentry.Columns.Add("PURPR_Batch", typeof(string));
                         objPurchaseentry.Columns.Add("PURPR_SLID", typeof(int));
@@ -6700,8 +6700,8 @@ namespace ROMS
                 objPurchaseentry.Columns.Add("PURPR_PURID", typeof(int));
                 objPurchaseentry.Columns.Add("PURPR_PRID", typeof(int));
                 objPurchaseentry.Columns.Add("PURPR_UTID", typeof(int));
-                objPurchaseentry.Columns.Add("PURPR_GRNMRP", typeof(float));
-                objPurchaseentry.Columns.Add("PURPR_InvoiceMRP", typeof(float));
+                objPurchaseentry.Columns.Add("PURPR_GRNMRP", typeof(decimal));
+                objPurchaseentry.Columns.Add("PURPR_InvoiceMRP", typeof(decimal));
                 objPurchaseentry.Columns.Add("PURPR_ExpiryDate", typeof(string));
                 objPurchaseentry.Columns.Add("PURPR_Batch", typeof(string));
                 objPurchaseentry.Columns.Add("PURPR_SLID", typeof(int));
