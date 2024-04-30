@@ -362,13 +362,13 @@ namespace ROMS
 
                                 if (e.ColumnIndex != 0)
                                 {
-                                    string Sno =Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmSno"].Value);
+                                    string Sno = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmSno"].Value);
                                     string PICode = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmPICode"].Value);
                                     string PTName = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmProductName"].Value);
                                     string MRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
                                     string ExpiryDate = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
                                     string BatchNo = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
-                                    string PendingQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmQty"].Value);
+                                    string PendingQty = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmQty"].Value);
                                     string ReceivedQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmReceivedQty"].Value);
                                     string ShopQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShopQty"].Value);
                                     string Unit = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmUnit"].Value);
@@ -391,7 +391,7 @@ namespace ROMS
 
                                     dtInwardPurchase.Rows.Add(false,Convert.ToInt32(Sno), ConvertType, varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(0), GRN_DC_PUR_ID);
 
-                                        grdGrnlist.Rows.Add(false, null, Sno, PICode, PTName, MRP, ExpiryDate, BatchNo,
+                                        grdGrnlist.Rows.Add(false, null, " ", PICode, PTName, MRP, ExpiryDate, BatchNo,
                                      PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType, Convert.ToString(varChildRowNo),0);
                                     
 
@@ -1917,6 +1917,10 @@ namespace ROMS
             }
             finally
             {
+                if(varEditFlag==1)
+                {
+                    grdGrnlist.Sort(grdGrnlist.Columns["clmOrder"], ListSortDirection.Ascending);
+                }
                 grdGrnlist.ClearSelection();
                 txttotalProduct.Text = Convert.ToString(grdGrnlist.Rows.Count);
                 txttotalProduct.Enabled = false;
