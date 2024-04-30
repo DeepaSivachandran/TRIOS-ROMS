@@ -11278,6 +11278,7 @@ namespace ROMS
                         {
                             varViewType = 29;
                             varPOdropdownFlag = 1;
+                            DGV_FilterProduct.Width = 660;
                         }
                         else if (Convert.ToInt32(cmbPONo.SelectedValue) == 215)  //Against Po
                         {
@@ -11285,6 +11286,7 @@ namespace ROMS
                             POID = Convert.ToString(pbPONO);
                             varViewType = 60;
                             varPOdropdownFlag = 2;
+                            DGV_FilterProduct.Width = 660;
                         }
                         else if (Convert.ToInt32(cmbPONo.SelectedValue) == 218)  //Against GRN
                         {
@@ -11292,6 +11294,7 @@ namespace ROMS
                             GRNID = Convert.ToInt16(pbGRNNo);
                             varViewType = 60;
                             varPOdropdownFlag = 2;
+                            DGV_FilterProduct.Width = 1110;
                         }
                         else if (Convert.ToInt32(cmbPONo.SelectedValue) == 220)  //Against DC
                         {
@@ -11299,10 +11302,11 @@ namespace ROMS
                             varViewType = 60;
                             varflag = 2;
                             varPOdropdownFlag = 2;
+                            DGV_FilterProduct.Width = 1110;
                         }
                         else
                         {
-                            varViewType = 29;
+                            varViewType = 29; DGV_FilterProduct.Width = 660;
                         }
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = varViewType;
