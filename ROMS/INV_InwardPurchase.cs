@@ -1230,7 +1230,8 @@ namespace ROMS
                         decimal varMRP1 = Math.Round(Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmMRP"].Value), 2, MidpointRounding.AwayFromZero);
                         string mrp = string.Format("{0:0.00}", varMRP1);
                         string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
-                        varMRP = Convert.ToDecimal(mrp1);
+                        varMRP = Convert.ToDecimal(mrp);
+                        grdGrnlist.Rows[e.RowIndex].Cells["clmMRP"].Value = mrp;
                     }
 
                     string ExpiryDate = Convert.ToString(grdGrnlist.CurrentRow.Cells["clmExpiryDate"].Value);
