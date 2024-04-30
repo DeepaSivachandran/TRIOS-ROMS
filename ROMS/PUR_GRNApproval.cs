@@ -649,7 +649,7 @@ namespace ROMS
                                     txtORPercentageCheck.Enabled = true;
                                     lblFivetyPercentage.Enabled = true;
                                 }
-                                else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];

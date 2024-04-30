@@ -1816,6 +1816,7 @@
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
             this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmStatus.Width = 80;
             // 
             // clmsts
             // 
@@ -1834,6 +1835,7 @@
             // 
             this.clmDefault.HeaderText = "Default";
             this.clmDefault.Name = "clmDefault";
+            this.clmDefault.Width = 60;
             // 
             // clmEdit
             // 
@@ -1843,13 +1845,14 @@
             this.clmEdit.ReadOnly = true;
             this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmEdit.Width = 60;
             // 
             // clmremovebank
             // 
             this.clmremovebank.HeaderText = "Remove";
             this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
             this.clmremovebank.Name = "clmremovebank";
-            this.clmremovebank.Width = 80;
+            this.clmremovebank.Width = 60;
             // 
             // CP_Company
             // 

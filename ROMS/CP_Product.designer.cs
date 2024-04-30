@@ -211,7 +211,7 @@
             // 
             this.txtPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPICode.Location = new System.Drawing.Point(160, 50);
+            this.txtPICode.Location = new System.Drawing.Point(160, 51);
             this.txtPICode.MaxLength = 20;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(337, 27);
@@ -238,7 +238,7 @@
             // txtItemNameEnglish
             // 
             this.txtItemNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtItemNameEnglish.Location = new System.Drawing.Point(160, 77);
+            this.txtItemNameEnglish.Location = new System.Drawing.Point(160, 78);
             this.txtItemNameEnglish.MaxLength = 100;
             this.txtItemNameEnglish.Name = "txtItemNameEnglish";
             this.txtItemNameEnglish.Size = new System.Drawing.Size(363, 27);
@@ -263,7 +263,7 @@
             // txtItemNameTamil
             // 
             this.txtItemNameTamil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtItemNameTamil.Location = new System.Drawing.Point(160, 104);
+            this.txtItemNameTamil.Location = new System.Drawing.Point(160, 105);
             this.txtItemNameTamil.MaxLength = 100;
             this.txtItemNameTamil.Name = "txtItemNameTamil";
             this.txtItemNameTamil.Size = new System.Drawing.Size(363, 26);
@@ -679,7 +679,7 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(160, 24);
+            this.cmbConcern.Location = new System.Drawing.Point(160, 25);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(363, 27);
             this.cmbConcern.TabIndex = 1;

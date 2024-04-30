@@ -123,6 +123,7 @@ namespace ROMS
                 string varResult = "",
                 varoriginator = ""; int ViewType = 0, varStatusID = 0;
                 bool varCheck = true;
+                int varUpdateFlag = 0;
                 if(btnSave.Text=="Save")
                 {
                     ViewType = 0;
@@ -133,6 +134,7 @@ namespace ROMS
                 {
                     ViewType = 1;
                     varoriginator = "Supplier payment updation";
+                    varUpdateFlag = 1;
                 }
                 for (int i=0;i<grdSupplierPayment.Rows.Count;i++)
                 {
@@ -148,9 +150,13 @@ namespace ROMS
                     {
                         varCheck = false;
                     }
-                    if (Convert.ToBoolean(varCheck) ==true)
+                    if(varUpdateFlag==1)
                     {
-                        dtPayment.Rows.Add(Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value), Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value), varStatusID);
+
+                    }
+                    if (Convert.ToBoolean(varCheck) ==true && varSupplierPaymentID==0)
+                    {
+                        dtPayment.Rows.Add(Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value), Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value), varStatusID,0);
                     }
                 }
                 Model.TRN_Supplier_Payment objTRN_Supplier_Payment = new Model.TRN_Supplier_Payment();
@@ -158,17 +164,14 @@ namespace ROMS
                 objTRN_Supplier_Payment.paraPYID = varSupplierPaymentID;
                 objTRN_Supplier_Payment.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRN_Supplier_Payment.paraPaymentDate = dpDate.Text;
-                objTRN_Supplier_Payment.paraRemarks = txtRemark.Text;
                 objTRN_Supplier_Payment.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_Supplier_Payment.paraScheduleId = Convert.ToInt32(lblschedule.Text);
                 objTRN_Supplier_Payment.paraTotalAmnt = Convert.ToDecimal(lblGrandTotal.Text);
                 objTRN_Supplier_Payment.paraChequeNo = txtChequeNo.Text;
                 objTRN_Supplier_Payment.paraPayType = Convert.ToInt32(cmbPaymentType.SelectedValue);
                 objTRN_Supplier_Payment.paraChequeDate = dtChequeDate.Text;
-                objTRN_Supplier_Payment.paraRemarks = txtRemark.Text;
                 objTRN_Supplier_Payment.paraAdvanceAmnt = Convert.ToDecimal(lblAdvance.Text);
                 objTRN_Supplier_Payment.paraSubTotal = Convert.ToDecimal(lblSubtotal.Text);
-                objTRN_Supplier_Payment.paraRemarks = txtRemark.Text;
                 objTRN_Supplier_Payment.paraSTSID = varStatusID;
                 objTRN_Supplier_Payment.paraOriginator = varoriginator;
                 objTRN_Supplier_Payment.paraPayment = dtPayment;
@@ -414,6 +417,7 @@ namespace ROMS
                 dtPayment.Columns.Add("PY_PURID", typeof(int));
                 dtPayment.Columns.Add("PY_Amount", typeof(float));
                 dtPayment.Columns.Add("PY_STSID", typeof(int));
+                dtPayment.Columns.Add("PAYIID", typeof(int));
                 udfnCmbConcern();
                 udfnPaymentMode();
                 ClearSupplier();
@@ -900,7 +904,7 @@ namespace ROMS
                                 //    lblGrandTotal.Text = GrandTot.ToString("#,##0.00");
                                 //}
                                 //else 
-                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 1 || Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0)
+                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0)
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = false;
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;
@@ -1437,6 +1441,11 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 AND MSTID IN(91,94)", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
+                object varEditQty = grdSupplierPayment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                // Update the same column value in the DataTable
+                dtPayment.Rows[e.RowIndex]["PY_Amount"] = varEditQty;
+                //string Qty = objValidation.udfnDecimal(Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
+                //grdSupplierPayment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
 
             }
             catch (Exception ex)
@@ -1558,6 +1567,42 @@ namespace ROMS
             try
             {
                 udfnSubtotalCalc();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupplierPayment_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int varpurchaseId = 0, payid = 0;
+                if (e.RowIndex != -1)
+                {
+                    if (grdSupplierPayment.Columns[e.ColumnIndex].Name== "clmcheck")
+                    {
+                        if (varSupplierPaymentID!=0 && Convert.ToBoolean(grdSupplierPayment.Rows[e.RowIndex].Cells["clmcheck"].Value)==false)
+                        {
+                            varpurchaseId = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
+                            payid = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPAYIID"].Value);
+                            for (int i = 0; i < grdSupplierPayment.RowCount; i++)
+                            {
+                                grdSupplierPayment.Rows[i].Cells["clmdsno"].Value = i + 1;
+                            }
+                            for (int i = 0; i < dtPayment.Rows.Count; i++)
+                            {
+                                if (Convert.ToInt32(dtPayment.Rows[i]["PY_PURID"]) == Convert.ToInt32(varpurchaseId) &&  Convert.ToInt32(dtPayment.Rows[i]["PAYIID"]) == payid)
+                                {
+                                    dtPayment.Rows[i].Delete();
+                                    dtPayment.AcceptChanges();
+                                }
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1706,8 +1751,8 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["ID"]));
-                                dtPayment.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYI_STSID"]));
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYIID"]));
+                                dtPayment.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYI_STSID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]));
                                 grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdSupplierPayment.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1720,6 +1765,12 @@ namespace ROMS
                             }
                         }
                     }
+                    cmbConcern.Enabled = false;
+                    dpDate.Enabled = false;
+                    txtTransactionNo.Enabled = false;
+                    txtTransactionNo.ReadOnly = true;
+                    txtsuppliername.ReadOnly = true;
+                    txtsuppliername.Enabled = false;
                 }
                 LV_Supplier.Visible = false;
                 udfnsupplierLoad();
@@ -1729,6 +1780,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                
             }
         }
     }
