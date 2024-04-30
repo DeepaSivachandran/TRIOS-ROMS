@@ -2491,6 +2491,8 @@
     <None Include="Resources\Db backup Color.png" />
     <None Include="Resources\Clear Transaction Color.png" />
     <None Include="Resources\Advance.jpg" />
+    <None Include="Resources\Convert.jpg" />
+    <None Include="Resources\Convertion.jpg" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">
