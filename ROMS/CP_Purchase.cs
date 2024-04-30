@@ -1496,19 +1496,19 @@ namespace ROMS
                 //objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, pbPONO, 0, 0, 0, 0, 0, Convert.ToInt32(pbGRNId));
                 if (varEntryType == 54)  //GRN
                 {
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (69)  ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (69)  ORDER BY MSTID DESC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
                     lblPOdropDown.Text="GRN Type";
                     tsbProducts.Text = "&GRN Products :& & & & & & & &";
                 }
                 else if(varEntryType == 55) //PO
                 {
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (68)  ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (68)  ORDER BY MSTID DESC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
                     lblPOdropDown.Text = "PO Type";
                     tsbProducts.Text = "&PO Products :& & & & & & & &";
                 }
                 else if(varEntryType == 57) // DC
                 {
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (70)  ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (70)  ORDER BY MSTID DESC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
                     lblPOdropDown.Text = "DC Type";
                     tsbProducts.Text = "&DC Products :& & & & & & & &";
                 }
@@ -4478,6 +4478,12 @@ namespace ROMS
                 txtMrp.Enabled = true;
                 cmbrack.Enabled = true;
                 cmbrack.DataSource = null;
+                if (Convert.ToString(cmbEntryType.SelectedValue) == "54") //Grn
+                { cmbPONo.SelectedValue = 218; }
+                else if (Convert.ToString(cmbEntryType.SelectedValue) == "55") //Po
+                { cmbPONo.SelectedValue = 215; }
+                else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
+                { cmbPONo.SelectedValue = 220; }
             }
             catch (Exception ex)
             {
