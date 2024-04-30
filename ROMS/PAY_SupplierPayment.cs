@@ -1441,9 +1441,11 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 AND MSTID IN(91,94)", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
-                object varEditQty = grdSupplierPayment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                // Update the same column value in the DataTable
-                dtPayment.Rows[e.RowIndex]["PY_Amount"] = varEditQty;
+                if (grdSupplierPayment.CurrentCell.OwningColumn.Name == "clmPayAmount")
+                {
+                    object varEditQty = grdSupplierPayment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    // Update the same column value in the DataTable
+                    dtPayment.Rows[e.RowIndex]["PY_Amount"] = varEditQty; }
                 //string Qty = objValidation.udfnDecimal(Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
                 //grdSupplierPayment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
 
@@ -1475,16 +1477,17 @@ namespace ROMS
         {
             try
             {
-                id = 0;
-                if (grdSupplierPayment.Rows.Count > 0)
-                {
-                    if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmReturnAmt")
-                    {
-                        id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
-                        udfnReturnDCLoad();
+                //id = 0;              
+                //if (grdSupplierPayment.Rows.Count > 0)
+                //{
+                //    if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmReturnAmt")
+                //    {
+                //        id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
+                //        udfnReturnDCLoad();
 
-                    }
-                }
+                //    }
+                //}
+                //udfnCheckProcess(sender, e);
             }
             catch (Exception ex)
             {
@@ -1579,12 +1582,51 @@ namespace ROMS
         {
             try
             {
+                //int varpurchaseId = 0, payid = 0;
+                //if (e.RowIndex != -1)
+                //{
+                //    if (grdSupplierPayment.Columns[e.ColumnIndex].Name== "clmcheck")
+                //    {
+                //       // bool value = Convert.ToBoolean(grdSupplierPayment.SelectedCells[0].Value);
+                //        if (varSupplierPaymentID!=0 && Convert.ToBoolean(grdSupplierPayment.SelectedCells[0].Value)==false)
+                //        {
+                //            varpurchaseId = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
+                //            payid = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPAYIID"].Value);
+                //            for (int i = 0; i < grdSupplierPayment.RowCount; i++)
+                //            {
+                //                grdSupplierPayment.Rows[i].Cells["clmdsno"].Value = i + 1;
+                //            }
+                //            for (int i = 0; i < dtPayment.Rows.Count; i++)
+                //            {
+                //                if (Convert.ToInt32(dtPayment.Rows[i]["PY_PURID"]) == Convert.ToInt32(varpurchaseId) &&  Convert.ToInt32(dtPayment.Rows[i]["PAYIID"]) == payid)
+                //                {
+                //                    dtPayment.Rows[i].Delete();
+                //                    dtPayment.AcceptChanges();
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+               
+                udfnCheckProcess(sender, e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCheckProcess(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
                 int varpurchaseId = 0, payid = 0;
                 if (e.RowIndex != -1)
                 {
-                    if (grdSupplierPayment.Columns[e.ColumnIndex].Name== "clmcheck")
+                    if (grdSupplierPayment.Columns[e.ColumnIndex].Name == "clmcheck")
                     {
-                        if (varSupplierPaymentID!=0 && Convert.ToBoolean(grdSupplierPayment.Rows[e.RowIndex].Cells["clmcheck"].Value)==false)
+                        // bool value = Convert.ToBoolean(grdSupplierPayment.SelectedCells[0].Value);
+                        if (varSupplierPaymentID != 0 && Convert.ToBoolean(grdSupplierPayment.SelectedCells[0].EditedFormattedValue) == false)
                         {
                             varpurchaseId = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
                             payid = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPAYIID"].Value);
@@ -1594,13 +1636,35 @@ namespace ROMS
                             }
                             for (int i = 0; i < dtPayment.Rows.Count; i++)
                             {
-                                if (Convert.ToInt32(dtPayment.Rows[i]["PY_PURID"]) == Convert.ToInt32(varpurchaseId) &&  Convert.ToInt32(dtPayment.Rows[i]["PAYIID"]) == payid)
+                                if (Convert.ToInt32(dtPayment.Rows[i]["PY_PURID"]) == Convert.ToInt32(varpurchaseId) && Convert.ToInt32(dtPayment.Rows[i]["PAYIID"]) == payid)
                                 {
                                     dtPayment.Rows[i].Delete();
                                     dtPayment.AcceptChanges();
                                 }
                             }
                         }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupplierPayment_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                id = 0;
+                if (grdSupplierPayment.Rows.Count > 0)
+                {
+                    if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmReturnAmt")
+                    {
+                        id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
+                        udfnReturnDCLoad();
+
                     }
                 }
             }
