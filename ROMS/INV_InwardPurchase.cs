@@ -2040,6 +2040,7 @@ namespace ROMS
                                 lblNoRecordsFound.BringToFront();
                             }
                             */
+                            udfnsupplierLoad();
                         }
 
                     }
