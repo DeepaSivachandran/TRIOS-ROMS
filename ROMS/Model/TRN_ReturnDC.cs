@@ -42,6 +42,7 @@ namespace ROMS.Model
         public decimal paraTax { get; set; } = 0;
         public int paraPurchaseId { get; set; } = 0;
         public int paraFlag { get; set; } = 0;
+        public int paraUpdateflag { get; set; } = 0;
         public int paraVerifiedBy { get; set; } = 0;
         public DataTable paraTRN_Purchase_ReturnDC { get; set; } = null;
         public DataTable ParaTRN_ReturnDCProducts { get; set; } = null;

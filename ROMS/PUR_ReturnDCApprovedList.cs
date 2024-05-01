@@ -13,7 +13,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
-    public partial class PUR_ReturnDCList : Form
+    public partial class PUR_ReturnDCApprovedList : Form
     {
 
         DataValidation objValidation = new DataValidation();
@@ -21,9 +21,9 @@ namespace ROMS
         public int Varflag = 0, varviewtype=0;
         private ToolTip tpSuppliername = new ToolTip();
         private DataTable dtDefaultGrid = new DataTable();
-        public int varDeleteFlag = 0;
+        public int varDeleteFlag = 0, varApprovedFlag = 0;
         Boolean BlnSearchImageYN = false;
-        public PUR_ReturnDCList()
+        public PUR_ReturnDCApprovedList()
         {
             InitializeComponent();
         }
@@ -32,9 +32,9 @@ namespace ROMS
         {
             try
             { 
-                MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseReturns.Show();
+                MainForm.objPUR_ReturnApprovedList = new PUR_ReturnDCApprovedList();
+                MainForm.objPUR_ReturnApprovedList.MdiParent = this.ParentForm;
+                MainForm.objPUR_ReturnApprovedList.Show();
             }
             catch (Exception ex)
             {
@@ -62,14 +62,12 @@ namespace ROMS
                 {
                     if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 61 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 81)
                     {
-                        tsbDelete.Visible = false;
-                        tssEdit.Visible = false;
+                        //tsbDelete.Visible = false;
                         varDeleteFlag = 0;
                     }
                     else
                     {
-                        tsbDelete.Visible = true;
-                        tssEdit.Visible = true;
+                        //tsbDelete.Visible = true;
                         varDeleteFlag = 1;
                     }
                 }
@@ -146,7 +144,6 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", " STS_ModuleID=5 OR STSID=0 ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=19 OR MSTID=0", "MST_DisplayText,MSTID", cmbDCType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
@@ -178,12 +175,13 @@ namespace ROMS
                     picLoader.Visible = true; 
                     picLoader.BringToFront();
                     Application.DoEvents();
+                    varApprovedFlag = 1;
                     MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
                     MainForm.objPUR_PurchaseReturns.varReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
                     MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Schedule ID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.vareditflag = 0;
+                    MainForm.objPUR_PurchaseReturns.vareditflag = 1;
                     MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
                     MainForm.objPUR_PurchaseReturns.Show();
                 }
@@ -722,7 +720,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    //cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -759,7 +757,7 @@ namespace ROMS
         {
             try
             {
-                cmbStatus.BackColor = Color.LemonChiffon;
+                //cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -798,7 +796,7 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
+                //BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -930,12 +928,12 @@ namespace ROMS
                 {
                     SPDataService objdserv = new SPDataService();
                     TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
-                    objTRN_PurchaseReturnDC.paraViewType = 3;
+                    objTRN_PurchaseReturnDC.paraViewType = 9;
                     objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                     objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text);
-                    objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                   // objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                     objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbDCType.SelectedValue);
                     objTRN_PurchaseReturnDC.paraFromDate = dpFromDate.Text;
                     objTRN_PurchaseReturnDC.paraToDate = dpToDate.Text;
@@ -1194,7 +1192,7 @@ namespace ROMS
         {
             try
             {
-                cmbStatus.BackColor = Color.White;
+                //cmbStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1658,7 +1656,7 @@ namespace ROMS
                 objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text);
-                objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                //objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbDCType.SelectedValue);
                 objTRN_PurchaseReturnDC.paraFromDate = dpFromDate.Text;
                 objTRN_PurchaseReturnDC.paraToDate = dpToDate.Text;
@@ -1678,7 +1676,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedule.Text));
-                    objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    //objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraReasonId", Convert.ToInt32(cmbDCType.SelectedValue));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -1708,9 +1706,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_ReturnApprovedList = new PUR_ReturnDCApprovedList();
-                MainForm.objPUR_ReturnApprovedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_ReturnApprovedList.Show();
+                MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
+                MainForm.objINV_SalesInvoiceList.MdiParent = this.ParentForm;
+                MainForm.objINV_SalesInvoiceList.Show();
             }
             catch (Exception ex)
             {

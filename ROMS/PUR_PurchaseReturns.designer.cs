@@ -53,6 +53,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
+            this.chkVerified = new System.Windows.Forms.CheckBox();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.grbProDetails = new System.Windows.Forms.GroupBox();
@@ -167,7 +168,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtDMrp = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.chkVerified = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -349,6 +349,17 @@
             this.grpExcessProduct.Size = new System.Drawing.Size(1313, 490);
             this.grpExcessProduct.TabIndex = 1111204;
             this.grpExcessProduct.TabStop = false;
+            // 
+            // chkVerified
+            // 
+            this.chkVerified.AutoSize = true;
+            this.chkVerified.Location = new System.Drawing.Point(953, 445);
+            this.chkVerified.Name = "chkVerified";
+            this.chkVerified.Size = new System.Drawing.Size(70, 24);
+            this.chkVerified.TabIndex = 111111145;
+            this.chkVerified.Text = "Verified";
+            this.chkVerified.UseVisualStyleBackColor = true;
+            this.chkVerified.CheckedChanged += new System.EventHandler(this.ChkVerified_CheckedChanged);
             // 
             // chkCompleted
             // 
@@ -1679,17 +1690,6 @@
             this.lblStatus.Size = new System.Drawing.Size(0, 20);
             this.lblStatus.TabIndex = 38;
             // 
-            // chkVerified
-            // 
-            this.chkVerified.AutoSize = true;
-            this.chkVerified.Location = new System.Drawing.Point(953, 445);
-            this.chkVerified.Name = "chkVerified";
-            this.chkVerified.Size = new System.Drawing.Size(70, 24);
-            this.chkVerified.TabIndex = 111111145;
-            this.chkVerified.Text = "Verified";
-            this.chkVerified.UseVisualStyleBackColor = true;
-            this.chkVerified.CheckedChanged += new System.EventHandler(this.ChkVerified_CheckedChanged);
-            // 
             // PUR_PurchaseReturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1871,6 +1871,6 @@
         private System.Windows.Forms.GroupBox grpInvoiceDetails;
         private System.Windows.Forms.Label lblInvoiceDate;
         private System.Windows.Forms.Label lblInvoiceNo;
-        private System.Windows.Forms.CheckBox chkVerified;
+        public System.Windows.Forms.CheckBox chkVerified;
     }
 }
