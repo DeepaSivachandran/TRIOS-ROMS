@@ -64,9 +64,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdAdvanceList = new System.Windows.Forms.DataGridView();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsAdvanceList.SuspendLayout();
             this.pnlunitlist.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -467,15 +467,9 @@
             this.grdAdvanceList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdAdvanceList_CellContentClick);
             this.grdAdvanceList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdAdvanceList_DataBindingComplete);
             this.grdAdvanceList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUnitList_Scroll);
+            this.grdAdvanceList.SelectionChanged += new System.EventHandler(this.GrdAdvanceList_SelectionChanged);
             this.grdAdvanceList.DoubleClick += new System.EventHandler(this.GrdAdvanceList_DoubleClick);
             this.grdAdvanceList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdAdvanceList_KeyDown);
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
             // 
             // lblNoRecordsFound
             // 
@@ -503,6 +497,14 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Width = 50;
             // 
             // PAY_AdvanceList
             // 
@@ -570,7 +572,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }

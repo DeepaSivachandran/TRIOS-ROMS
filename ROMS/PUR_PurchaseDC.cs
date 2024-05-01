@@ -202,7 +202,7 @@ namespace ROMS
                                     objDs.Tables[1].Rows[i]["Batch No."].ToString(),objDs.Tables[1].Rows[i]["Quantity"].ToString(),
                                     objDs.Tables[1].Rows[i]["UTID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
                                     objDs.Tables[1].Rows[i]["RKID"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeValue"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeType"].ToString()
-                                    , objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Per"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeStatus"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Flag"].ToString(), objDs.Tables[1].Rows[i]["PR_MRPflag"].ToString());
+                                    , objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Per"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeStatus"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Flag"].ToString(), objDs.Tables[1].Rows[i]["PR_MRPflag"].ToString(), objDs.Tables[1].Rows[i]["BATCHNO"].ToString(), objDs.Tables[1].Rows[i]["Batchnogeneration"].ToString());
                                 }
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
@@ -393,6 +393,8 @@ namespace ROMS
             dtPurchaseDC.Columns.Add("DCPR_ShelfLifeStatus", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_ShelfLife_Flag", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_MRPFlag", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_BatchNoStatus", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_BatchNoGenration", typeof(int));
         }
 
         private void PUR_PurchaseDC_Load(object sender, EventArgs e)
@@ -4556,7 +4558,7 @@ namespace ROMS
                                 txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid, Convert.ToString(varDecimal),varBatchNo,varBatchNoGeneration,0,0,varMRPFlag);
                             dtPurchaseDC.Rows.Add(Convert.ToInt16(maxSno + 1),Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), 
                                 Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), 
-                                Convert.ToInt32(lblRackCode.Text),ProShelflife, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue,varMRPFlag);
+                                Convert.ToInt32(lblRackCode.Text),ProShelflife, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue,varMRPFlag, varBatchNo, varBatchNoGeneration);
                             ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
                             //grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
