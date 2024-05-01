@@ -321,7 +321,10 @@ namespace ROMS
             {
                 for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                 {
-                    grdGrnlist.Rows[i].Cells["clmCheck"].Value = true;
+                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value) == "1")
+                    {
+                        grdGrnlist.Rows[i].Cells["clmCheck"].Value = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -337,7 +340,10 @@ namespace ROMS
             {
                 for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                 {
-                    grdGrnlist.Rows[i].Cells["clmCheck"].Value = false;
+                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value) == "1")
+                    {
+                        grdGrnlist.Rows[i].Cells["clmCheck"].Value = false;
+                    }
                 }
             }
             catch (Exception ex)
