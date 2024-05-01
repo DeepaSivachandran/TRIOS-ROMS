@@ -62,70 +62,73 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void PUR_GRNDeatils_Load(object sender, EventArgs e)
+        public  void udfnlist()
         {
-
-            try
+            dtPurchaseGRN = new DataTable();
+            dtPurchaseGRN.Columns.Add("", typeof(Boolean));
+            dtPurchaseGRN.Columns.Add("S.No.", typeof(string));
+            dtPurchaseGRN.Columns.Add("GRN No.", typeof(string));
+            dtPurchaseGRN.Columns.Add("GRN Date", typeof(string));
+            dtPurchaseGRN.Columns.Add("Total Products", typeof(string));
+            dtPurchaseGRN.Columns.Add("GRNID", typeof(string));
+            dtPurchaseGRN.Columns.Add("QRCode", typeof(string));
+            int supplierid = 0, scheduleid = 0;
+            string GRNNo = "0";
+            supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
+            scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
+            GRNNo = MainForm.objCP_Purchase.pbGRNNo;
+            varGRNID = MainForm.objCP_Purchase.pbGRNNo;
+            if (supplierid != 0 && scheduleid != 0)
             {
-                dtPurchaseGRN = new DataTable();
-                dtPurchaseGRN.Columns.Add("", typeof(Boolean));
-                dtPurchaseGRN.Columns.Add("S.No.", typeof(string));
-                dtPurchaseGRN.Columns.Add("GRN No.", typeof(string));
-                dtPurchaseGRN.Columns.Add("GRN Date", typeof(string));
-                dtPurchaseGRN.Columns.Add("Total Products", typeof(string));
-                dtPurchaseGRN.Columns.Add("GRNID", typeof(string));
-                dtPurchaseGRN.Columns.Add("QRCode", typeof(string));
-                int supplierid = 0, scheduleid = 0;
-                string GRNNo= "0"; 
-                supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
-                scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
-                GRNNo = MainForm.objCP_Purchase.pbGRNNo;
-                varGRNID = MainForm.objCP_Purchase.pbGRNNo;
-                if (supplierid != 0 && scheduleid != 0)
-                {  
-                    SPDataService objdserv = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0,GRNNo,"");
-                    objdserv.CloseConnection(); 
-                    if (objDs.Tables[0].Rows.Count > 0)
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, GRNNo, "");
+                objdserv.CloseConnection();
+                if (objDs.Tables[0].Rows.Count > 0)
+                {
+                    grdGRNDetails.Rows.Clear();
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                        grdGRNDetails.Rows.Clear();
-                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            dtPurchaseGRN.Rows.Add(false, dtPurchaseGRN.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["GRNNo"]),Convert.ToString(objDs.Tables[0].Rows[i]["GRNDate"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["QRCode"]) 
-                            );
-                        }
-                        grdGRNDetails.DataSource = dtPurchaseGRN;
-                        grdGRNDetails.Columns[0].HeaderText = "";
-                        grdGRNDetails.Columns[0].Width = 30;
-                        grdGRNDetails.Columns[0].ReadOnly = false;
-                        grdGRNDetails.Columns["S.No."].ReadOnly = true;
-                        grdGRNDetails.Columns["GRN No."].ReadOnly = true;
-                        grdGRNDetails.Columns["GRN Date"].ReadOnly = true;
-                        grdGRNDetails.Columns["Total Products"].ReadOnly = true;
-                        grdGRNDetails.Columns["S.No."].Width = 50;
-                        grdGRNDetails.Columns["GRN No."].Width = 100;
-                        grdGRNDetails.Columns["GRN Date"].Width = 100;
-                        grdGRNDetails.Columns["Total Products"].Width = 100;
-                        grdGRNDetails.Columns["GRNID"].Visible = false;
-                        grdGRNDetails.Columns["QRCode"].Visible = false;
-                        grdGRNDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdGRNDetails.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        udfnGRNCheckTrue();
+                        lblNoRecordsFound.Visible = false;
+                        dtPurchaseGRN.Rows.Add(false, dtPurchaseGRN.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["GRNNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["GRNDate"]),
+                        Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["QRCode"])
+                        );
                     }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        grdGRNDetails.DataSource = null;
-                    }
-                } 
+                    grdGRNDetails.DataSource = dtPurchaseGRN;
+                    grdGRNDetails.Columns[0].HeaderText = "";
+                    grdGRNDetails.Columns[0].Width = 30;
+                    grdGRNDetails.Columns[0].ReadOnly = false;
+                    grdGRNDetails.Columns["S.No."].ReadOnly = true;
+                    grdGRNDetails.Columns["GRN No."].ReadOnly = true;
+                    grdGRNDetails.Columns["GRN Date"].ReadOnly = true;
+                    grdGRNDetails.Columns["Total Products"].ReadOnly = true;
+                    grdGRNDetails.Columns["S.No."].Width = 50;
+                    grdGRNDetails.Columns["GRN No."].Width = 100;
+                    grdGRNDetails.Columns["GRN Date"].Width = 100;
+                    grdGRNDetails.Columns["Total Products"].Width = 100;
+                    grdGRNDetails.Columns["GRNID"].Visible = false;
+                    grdGRNDetails.Columns["QRCode"].Visible = false;
+                    grdGRNDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdGRNDetails.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    udfnGRNCheckTrue();
+                }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     grdGRNDetails.DataSource = null;
                 }
+            }
+            else
+            {
+                lblNoRecordsFound.Visible = true;
+                grdGRNDetails.DataSource = null;
+            }
+        }
+        private void PUR_GRNDeatils_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnlist();
             }
             catch (Exception ex)
             {
@@ -158,10 +161,11 @@ namespace ROMS
 
         public void udfnAddGRN()
         {
-            try {
+            try
+            {
                 //{
                 int VARFLAG = 0;
-                string GRNno = "0", varGRNQRCode="";
+                string GRNno = "0", varGRNQRCode="" , varProCount="0";
                 MainForm.objCP_Purchase.pbGRNNo = "0";
                 //if(QRFlag==1)
                 //{
@@ -182,12 +186,17 @@ namespace ROMS
                             GRNno = GRNno + ',' + Convert.ToString(grdGRNDetails.Rows[i].Cells["GRNID"].Value);
                         }
                         varGRNQRCode= Convert.ToString(grdGRNDetails.Rows[i].Cells["QRCode"].Value);
+                        varProCount = Convert.ToString(grdGRNDetails.Rows[i].Cells["Total Products"].Value);
                     }
                 }
                 if (VARFLAG != 0)
                 { 
                     MainForm.objCP_Purchase.pbGRNNo = GRNno;
                     MainForm.objCP_Purchase.pbQRCode = varGRNQRCode;
+                    MainForm.objCP_Purchase.varGRNProCount = varProCount;
+                    MainForm.objCP_Purchase.lbltotProduct.Text = varProCount;
+                    MainForm.objCP_Purchase.lblRemainProduct.Text = varProCount;
+                    MainForm.objCP_Purchase.varEntryTypeViewFlag= 1;
                     this.Close();
                 }
                 else

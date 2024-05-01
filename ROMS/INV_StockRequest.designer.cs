@@ -75,15 +75,6 @@
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.lblRemarks = new System.Windows.Forms.Label();
             this.grdStockRequest = new System.Windows.Forms.DataGridView();
-            this.txtStockQty = new System.Windows.Forms.TextBox();
-            this.lblRequiredQty = new System.Windows.Forms.Label();
-            this.txtProductNamePICode = new System.Windows.Forms.TextBox();
-            this.lblDEProductName = new System.Windows.Forms.Label();
-            this.txtRequestNo = new System.Windows.Forms.TextBox();
-            this.lblRequestNo = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,6 +89,15 @@
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtStockQty = new System.Windows.Forms.TextBox();
+            this.lblRequiredQty = new System.Windows.Forms.Label();
+            this.txtProductNamePICode = new System.Windows.Forms.TextBox();
+            this.lblDEProductName = new System.Windows.Forms.Label();
+            this.txtRequestNo = new System.Windows.Forms.TextBox();
+            this.lblRequestNo = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.errStockRequest = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
@@ -577,108 +577,6 @@
             this.grdStockRequest.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockRequest_DataBindingComplete);
             this.grdStockRequest.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdStockRequest_EditingControlShowing);
             // 
-            // txtStockQty
-            // 
-            this.txtStockQty.Enabled = false;
-            this.txtStockQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockQty.Location = new System.Drawing.Point(582, 48);
-            this.txtStockQty.MaxLength = 50;
-            this.txtStockQty.Name = "txtStockQty";
-            this.txtStockQty.ReadOnly = true;
-            this.txtStockQty.Size = new System.Drawing.Size(71, 27);
-            this.txtStockQty.TabIndex = 4;
-            this.txtStockQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblRequiredQty
-            // 
-            this.lblRequiredQty.AutoSize = true;
-            this.lblRequiredQty.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequiredQty.Location = new System.Drawing.Point(537, 51);
-            this.lblRequiredQty.Name = "lblRequiredQty";
-            this.lblRequiredQty.Size = new System.Drawing.Size(39, 20);
-            this.lblRequiredQty.TabIndex = 1111164;
-            this.lblRequiredQty.Text = "Stock";
-            // 
-            // txtProductNamePICode
-            // 
-            this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductNamePICode.Location = new System.Drawing.Point(163, 48);
-            this.txtProductNamePICode.MaxLength = 50;
-            this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(368, 27);
-            this.txtProductNamePICode.TabIndex = 3;
-            this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
-            this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
-            this.txtProductNamePICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductNamePICode_KeyDown);
-            this.txtProductNamePICode.Leave += new System.EventHandler(this.TxtProductNamePICode_Leave);
-            // 
-            // lblDEProductName
-            // 
-            this.lblDEProductName.AutoSize = true;
-            this.lblDEProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEProductName.Location = new System.Drawing.Point(12, 51);
-            this.lblDEProductName.Name = "lblDEProductName";
-            this.lblDEProductName.Size = new System.Drawing.Size(108, 20);
-            this.lblDEProductName.TabIndex = 1111161;
-            this.lblDEProductName.Text = "Search by P.I Code";
-            // 
-            // txtRequestNo
-            // 
-            this.txtRequestNo.Enabled = false;
-            this.txtRequestNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRequestNo.Location = new System.Drawing.Point(448, 18);
-            this.txtRequestNo.MaxLength = 50;
-            this.txtRequestNo.Name = "txtRequestNo";
-            this.txtRequestNo.ReadOnly = true;
-            this.txtRequestNo.Size = new System.Drawing.Size(83, 27);
-            this.txtRequestNo.TabIndex = 2;
-            // 
-            // lblRequestNo
-            // 
-            this.lblRequestNo.AutoSize = true;
-            this.lblRequestNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequestNo.Location = new System.Drawing.Point(368, 21);
-            this.lblRequestNo.Name = "lblRequestNo";
-            this.lblRequestNo.Size = new System.Drawing.Size(74, 20);
-            this.lblRequestNo.TabIndex = 1111158;
-            this.lblRequestNo.Text = "Request No.";
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1240, 590);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 11;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1121, 590);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(113, 29);
-            this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "Save && Print";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
-            // 
-            // errStockRequest
-            // 
-            this.errStockRequest.ContainerControl = this;
-            // 
             // clmSno
             // 
             this.clmSno.HeaderText = "S.No.";
@@ -780,6 +678,108 @@
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.Width = 50;
+            // 
+            // txtStockQty
+            // 
+            this.txtStockQty.Enabled = false;
+            this.txtStockQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStockQty.Location = new System.Drawing.Point(582, 48);
+            this.txtStockQty.MaxLength = 50;
+            this.txtStockQty.Name = "txtStockQty";
+            this.txtStockQty.ReadOnly = true;
+            this.txtStockQty.Size = new System.Drawing.Size(71, 27);
+            this.txtStockQty.TabIndex = 4;
+            this.txtStockQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblRequiredQty
+            // 
+            this.lblRequiredQty.AutoSize = true;
+            this.lblRequiredQty.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredQty.Location = new System.Drawing.Point(537, 51);
+            this.lblRequiredQty.Name = "lblRequiredQty";
+            this.lblRequiredQty.Size = new System.Drawing.Size(39, 20);
+            this.lblRequiredQty.TabIndex = 1111164;
+            this.lblRequiredQty.Text = "Stock";
+            // 
+            // txtProductNamePICode
+            // 
+            this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtProductNamePICode.Location = new System.Drawing.Point(163, 48);
+            this.txtProductNamePICode.MaxLength = 50;
+            this.txtProductNamePICode.Name = "txtProductNamePICode";
+            this.txtProductNamePICode.Size = new System.Drawing.Size(368, 27);
+            this.txtProductNamePICode.TabIndex = 3;
+            this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
+            this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
+            this.txtProductNamePICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductNamePICode_KeyDown);
+            this.txtProductNamePICode.Leave += new System.EventHandler(this.TxtProductNamePICode_Leave);
+            // 
+            // lblDEProductName
+            // 
+            this.lblDEProductName.AutoSize = true;
+            this.lblDEProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDEProductName.Location = new System.Drawing.Point(12, 51);
+            this.lblDEProductName.Name = "lblDEProductName";
+            this.lblDEProductName.Size = new System.Drawing.Size(108, 20);
+            this.lblDEProductName.TabIndex = 1111161;
+            this.lblDEProductName.Text = "Search by P.I Code";
+            // 
+            // txtRequestNo
+            // 
+            this.txtRequestNo.Enabled = false;
+            this.txtRequestNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRequestNo.Location = new System.Drawing.Point(448, 18);
+            this.txtRequestNo.MaxLength = 50;
+            this.txtRequestNo.Name = "txtRequestNo";
+            this.txtRequestNo.ReadOnly = true;
+            this.txtRequestNo.Size = new System.Drawing.Size(83, 27);
+            this.txtRequestNo.TabIndex = 2;
+            // 
+            // lblRequestNo
+            // 
+            this.lblRequestNo.AutoSize = true;
+            this.lblRequestNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequestNo.Location = new System.Drawing.Point(368, 21);
+            this.lblRequestNo.Name = "lblRequestNo";
+            this.lblRequestNo.Size = new System.Drawing.Size(74, 20);
+            this.lblRequestNo.TabIndex = 1111158;
+            this.lblRequestNo.Text = "Request No.";
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1240, 590);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 11;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1121, 590);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(113, 29);
+            this.btnSave.TabIndex = 10;
+            this.btnSave.Text = "Save && Print";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // errStockRequest
+            // 
+            this.errStockRequest.ContainerControl = this;
             // 
             // INV_StockRequest
             // 

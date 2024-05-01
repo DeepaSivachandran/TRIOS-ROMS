@@ -621,7 +621,7 @@ namespace ROMS
                             //int actualShelfLife = Convert.ToInt32(varActualShelflife);
                             grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["POID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]));
                             dtApproval.Rows.Add( Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(""), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]));
                             dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0);
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -637,7 +637,7 @@ namespace ROMS
                             string[] varShelflifeper = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]).Split(' ');
                             varInvoiceQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Qty"]);
                             VarReceivedQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Received Qty"]);
-                            varPOID = Convert.ToInt32(objDs.Tables[0].Rows[i]["POID"]);
+                            //varPOID = Convert.ToInt32(objDs.Tables[0].Rows[i]["POID"]);
                             if (varShelflifeper[0] != "")
                             {
                                 if (Convert.ToDecimal(varShelflifeper[0]) > 24 && Convert.ToDecimal(varShelflifeper[0]) < 50)
@@ -649,7 +649,7 @@ namespace ROMS
                                     txtORPercentageCheck.Enabled = true;
                                     lblFivetyPercentage.Enabled = true;
                                 }
-                                else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];

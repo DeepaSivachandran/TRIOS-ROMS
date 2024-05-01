@@ -24,6 +24,7 @@ namespace ROMS
         DataTable dtReturnDC = new DataTable();
         public string pbFormStatus;
         public string varDCID="";
+        public int varTotProCount = 0;
         public PUR_DCDeatils()
         {
             InitializeComponent();
@@ -162,8 +163,8 @@ namespace ROMS
             try
             {
                 int VARFLAG = 0;
-                string dcno = "0";
-                MainForm.objCP_Purchase.pbDCNo = "0";
+                string dcno = "0"; varTotProCount = 0;
+                MainForm.objCP_Purchase.pbDCNo = "0"; 
                 //MainForm.objPUR_GRNEntry.grdReurnDC.Rows.Clear();
                 for (int i = 0; i < grdDCDetails.Rows.Count; i++)
                 {
@@ -179,8 +180,12 @@ namespace ROMS
                         {
                             dcno = dcno + ',' + Convert.ToString(grdDCDetails.Rows[i].Cells["DCID"].Value);
                         }
+                        varTotProCount = varTotProCount + Convert.ToInt16(grdDCDetails.Rows[i].Cells["Total Products"].Value);
                     }
                 }
+                MainForm.objCP_Purchase.lbltotProduct.Text = Convert.ToString(varTotProCount);
+                MainForm.objCP_Purchase.lblRemainProduct.Text = Convert.ToString(varTotProCount);
+                MainForm.objCP_Purchase.varEntryTypeViewFlag = 1;
                 if (VARFLAG != 0)
                 {
                     MainForm.objCP_Purchase.grdReurnDC.Sort(MainForm.objCP_Purchase.grdReurnDC.Columns["DCDate"], ListSortDirection.Descending);

@@ -172,6 +172,7 @@
             this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdefaultbnk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDefault = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBankID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
@@ -736,6 +737,7 @@
             this.clmsts,
             this.clmdefaultbnk,
             this.clmDefault,
+            this.clmBankID,
             this.clmEdit,
             this.clmremovebank});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1816,6 +1818,7 @@
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
             this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmStatus.Width = 80;
             // 
             // clmsts
             // 
@@ -1834,6 +1837,13 @@
             // 
             this.clmDefault.HeaderText = "Default";
             this.clmDefault.Name = "clmDefault";
+            this.clmDefault.Width = 60;
+            // 
+            // clmBankID
+            // 
+            this.clmBankID.HeaderText = "Bank ID";
+            this.clmBankID.Name = "clmBankID";
+            this.clmBankID.Visible = false;
             // 
             // clmEdit
             // 
@@ -1843,13 +1853,14 @@
             this.clmEdit.ReadOnly = true;
             this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmEdit.Width = 60;
             // 
             // clmremovebank
             // 
             this.clmremovebank.HeaderText = "Remove";
             this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
             this.clmremovebank.Name = "clmremovebank";
-            this.clmremovebank.Width = 80;
+            this.clmremovebank.Width = 60;
             // 
             // CP_Company
             // 
@@ -2038,6 +2049,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdefaultbnk;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDefault;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBankID;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
     }

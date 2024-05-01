@@ -121,6 +121,7 @@
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.grpExpire = new System.Windows.Forms.GroupBox();
+            this.chkMRP = new System.Windows.Forms.CheckBox();
             this.txtSelfLife = new System.Windows.Forms.TextBox();
             this.cmbPeriod = new System.Windows.Forms.ComboBox();
             this.cbRMFromProduction = new System.Windows.Forms.CheckBox();
@@ -131,6 +132,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
             this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
+            this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
             this.txtSaleRack = new System.Windows.Forms.TextBox();
             this.txtSaleLocation = new System.Windows.Forms.TextBox();
             this.txtRackDescriptionSales = new System.Windows.Forms.TextBox();
@@ -179,7 +181,6 @@
             this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbCompleted = new System.Windows.Forms.CheckBox();
-            this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -210,7 +211,7 @@
             // 
             this.txtPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPICode.Location = new System.Drawing.Point(160, 50);
+            this.txtPICode.Location = new System.Drawing.Point(160, 51);
             this.txtPICode.MaxLength = 20;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(337, 27);
@@ -237,7 +238,7 @@
             // txtItemNameEnglish
             // 
             this.txtItemNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtItemNameEnglish.Location = new System.Drawing.Point(160, 77);
+            this.txtItemNameEnglish.Location = new System.Drawing.Point(160, 78);
             this.txtItemNameEnglish.MaxLength = 100;
             this.txtItemNameEnglish.Name = "txtItemNameEnglish";
             this.txtItemNameEnglish.Size = new System.Drawing.Size(363, 27);
@@ -261,11 +262,11 @@
             // 
             // txtItemNameTamil
             // 
-            this.txtItemNameTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtItemNameTamil.Location = new System.Drawing.Point(160, 104);
+            this.txtItemNameTamil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtItemNameTamil.Location = new System.Drawing.Point(160, 105);
             this.txtItemNameTamil.MaxLength = 100;
             this.txtItemNameTamil.Name = "txtItemNameTamil";
-            this.txtItemNameTamil.Size = new System.Drawing.Size(363, 27);
+            this.txtItemNameTamil.Size = new System.Drawing.Size(363, 26);
             this.txtItemNameTamil.TabIndex = 4;
             this.txtItemNameTamil.Enter += new System.EventHandler(this.TxtItemNameTamil_Enter);
             this.txtItemNameTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtItemNameTamil_KeyDown);
@@ -678,7 +679,7 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(160, 24);
+            this.cmbConcern.Location = new System.Drawing.Point(160, 25);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(363, 27);
             this.cmbConcern.TabIndex = 1;
@@ -859,7 +860,7 @@
             this.cmbNetQty.Location = new System.Drawing.Point(222, 23);
             this.cmbNetQty.Name = "cmbNetQty";
             this.cmbNetQty.Size = new System.Drawing.Size(45, 27);
-            this.cmbNetQty.TabIndex = 116;
+            this.cmbNetQty.TabIndex = 25;
             // 
             // textBox3
             // 
@@ -880,7 +881,7 @@
             this.txtGrossWeight.MaxLength = 10;
             this.txtGrossWeight.Name = "txtGrossWeight";
             this.txtGrossWeight.Size = new System.Drawing.Size(100, 27);
-            this.txtGrossWeight.TabIndex = 23;
+            this.txtGrossWeight.TabIndex = 26;
             this.txtGrossWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGrossWeight.Enter += new System.EventHandler(this.TxtGrossWeight_Enter);
             this.txtGrossWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGrossWeight_KeyDown);
@@ -907,7 +908,7 @@
             this.txtReOrderQty.MaxLength = 10;
             this.txtReOrderQty.Name = "txtReOrderQty";
             this.txtReOrderQty.Size = new System.Drawing.Size(145, 27);
-            this.txtReOrderQty.TabIndex = 26;
+            this.txtReOrderQty.TabIndex = 29;
             this.txtReOrderQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtReOrderQty.Enter += new System.EventHandler(this.TxtReOrderQty_Enter);
             this.txtReOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReOrderQty_KeyDown);
@@ -934,7 +935,7 @@
             this.txtMinStock.MaxLength = 10;
             this.txtMinStock.Name = "txtMinStock";
             this.txtMinStock.Size = new System.Drawing.Size(145, 27);
-            this.txtMinStock.TabIndex = 24;
+            this.txtMinStock.TabIndex = 27;
             this.txtMinStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMinStock.Enter += new System.EventHandler(this.TxtMinStock_Enter);
             this.txtMinStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMinStock_KeyDown);
@@ -961,7 +962,7 @@
             this.txtMaxStock.MaxLength = 10;
             this.txtMaxStock.Name = "txtMaxStock";
             this.txtMaxStock.Size = new System.Drawing.Size(145, 27);
-            this.txtMaxStock.TabIndex = 25;
+            this.txtMaxStock.TabIndex = 28;
             this.txtMaxStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMaxStock.Enter += new System.EventHandler(this.TxtMaxStock_Enter);
             this.txtMaxStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxStock_KeyDown);
@@ -988,7 +989,7 @@
             this.txtWeight.MaxLength = 10;
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(100, 27);
-            this.txtWeight.TabIndex = 22;
+            this.txtWeight.TabIndex = 24;
             this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWeight.Enter += new System.EventHandler(this.TxtWeight_Enter);
             this.txtWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWeight_KeyDown);
@@ -1041,7 +1042,7 @@
             this.txtRMinSaleQty.MaxLength = 10;
             this.txtRMinSaleQty.Name = "txtRMinSaleQty";
             this.txtRMinSaleQty.Size = new System.Drawing.Size(145, 27);
-            this.txtRMinSaleQty.TabIndex = 28;
+            this.txtRMinSaleQty.TabIndex = 30;
             this.txtRMinSaleQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRMinSaleQty.Enter += new System.EventHandler(this.TxtRMinSaleQty_Enter);
             this.txtRMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRMinSaleQty_KeyDown);
@@ -1082,7 +1083,7 @@
             this.txtBarcode.MaxLength = 20;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(145, 27);
-            this.txtBarcode.TabIndex = 32;
+            this.txtBarcode.TabIndex = 34;
             this.txtBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBarcode.Enter += new System.EventHandler(this.TxtBarcode_Enter);
             this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarcode_KeyDown);
@@ -1108,7 +1109,7 @@
             this.txtWSaleRate.MaxLength = 10;
             this.txtWSaleRate.Name = "txtWSaleRate";
             this.txtWSaleRate.Size = new System.Drawing.Size(145, 27);
-            this.txtWSaleRate.TabIndex = 31;
+            this.txtWSaleRate.TabIndex = 33;
             this.txtWSaleRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWSaleRate.Enter += new System.EventHandler(this.TxtWSaleRate_Enter);
             this.txtWSaleRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWSaleRate_KeyDown);
@@ -1148,7 +1149,7 @@
             this.txtRetailRate.MaxLength = 10;
             this.txtRetailRate.Name = "txtRetailRate";
             this.txtRetailRate.Size = new System.Drawing.Size(145, 27);
-            this.txtRetailRate.TabIndex = 29;
+            this.txtRetailRate.TabIndex = 31;
             this.txtRetailRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRetailRate.Enter += new System.EventHandler(this.TxtRetailRate_Enter);
             this.txtRetailRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRetailRate_KeyDown);
@@ -1181,7 +1182,7 @@
             this.txtWMinSaleQty.MaxLength = 10;
             this.txtWMinSaleQty.Name = "txtWMinSaleQty";
             this.txtWMinSaleQty.Size = new System.Drawing.Size(145, 27);
-            this.txtWMinSaleQty.TabIndex = 30;
+            this.txtWMinSaleQty.TabIndex = 32;
             this.txtWMinSaleQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWMinSaleQty.Enter += new System.EventHandler(this.TxtWMinSaleQty_Enter);
             this.txtWMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWMinSaleQty_KeyDown);
@@ -1284,11 +1285,12 @@
             this.pnlStatus.Location = new System.Drawing.Point(689, 596);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(158, 27);
-            this.pnlStatus.TabIndex = 35;
+            this.pnlStatus.TabIndex = 37;
             this.pnlStatus.TabStop = true;
             // 
             // grpExpire
             // 
+            this.grpExpire.Controls.Add(this.chkMRP);
             this.grpExpire.Controls.Add(this.txtSelfLife);
             this.grpExpire.Controls.Add(this.cmbPeriod);
             this.grpExpire.Controls.Add(this.cbExpiry);
@@ -1298,6 +1300,19 @@
             this.grpExpire.Size = new System.Drawing.Size(273, 90);
             this.grpExpire.TabIndex = 19;
             this.grpExpire.TabStop = false;
+            // 
+            // chkMRP
+            // 
+            this.chkMRP.AutoSize = true;
+            this.chkMRP.Location = new System.Drawing.Point(204, 54);
+            this.chkMRP.Name = "chkMRP";
+            this.chkMRP.Size = new System.Drawing.Size(53, 24);
+            this.chkMRP.TabIndex = 23;
+            this.chkMRP.Text = "MRP";
+            this.chkMRP.UseVisualStyleBackColor = true;
+            this.chkMRP.Enter += new System.EventHandler(this.ChkMRP_Enter);
+            this.chkMRP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChkMRP_KeyDown);
+            this.chkMRP.Leave += new System.EventHandler(this.ChkMRP_Leave);
             // 
             // txtSelfLife
             // 
@@ -1319,7 +1334,7 @@
             this.cmbPeriod.Location = new System.Drawing.Point(154, 24);
             this.cmbPeriod.Name = "cmbPeriod";
             this.cmbPeriod.Size = new System.Drawing.Size(103, 27);
-            this.cmbPeriod.TabIndex = 20;
+            this.cmbPeriod.TabIndex = 21;
             this.cmbPeriod.Visible = false;
             this.cmbPeriod.SelectedIndexChanged += new System.EventHandler(this.CmbPeriod_SelectedIndexChanged);
             this.cmbPeriod.Enter += new System.EventHandler(this.CmbPeriod_Enter);
@@ -1333,7 +1348,7 @@
             this.cbRMFromProduction.Location = new System.Drawing.Point(5, 54);
             this.cbRMFromProduction.Name = "cbRMFromProduction";
             this.cbRMFromProduction.Size = new System.Drawing.Size(126, 24);
-            this.cbRMFromProduction.TabIndex = 21;
+            this.cbRMFromProduction.TabIndex = 22;
             this.cbRMFromProduction.Text = "RM for Production";
             this.cbRMFromProduction.UseVisualStyleBackColor = true;
             this.cbRMFromProduction.Enter += new System.EventHandler(this.CbRMFromProduction_Enter);
@@ -1437,6 +1452,17 @@
             this.grbSalesStockLocation.TabIndex = 15;
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
+            // 
+            // chkSameasPurchase
+            // 
+            this.chkSameasPurchase.AutoSize = true;
+            this.chkSameasPurchase.Location = new System.Drawing.Point(7, 24);
+            this.chkSameasPurchase.Name = "chkSameasPurchase";
+            this.chkSameasPurchase.Size = new System.Drawing.Size(125, 24);
+            this.chkSameasPurchase.TabIndex = 93;
+            this.chkSameasPurchase.Text = "Same as Purchase";
+            this.chkSameasPurchase.UseVisualStyleBackColor = true;
+            this.chkSameasPurchase.CheckedChanged += new System.EventHandler(this.ChkSameasPurchase_CheckedChanged);
             // 
             // txtSaleRack
             // 
@@ -1561,7 +1587,7 @@
             this.cmbGst.Location = new System.Drawing.Point(122, 22);
             this.cmbGst.Name = "cmbGst";
             this.cmbGst.Size = new System.Drawing.Size(145, 27);
-            this.cmbGst.TabIndex = 33;
+            this.cmbGst.TabIndex = 35;
             this.cmbGst.SelectedIndexChanged += new System.EventHandler(this.CmbGst_SelectedIndexChanged);
             this.cmbGst.Enter += new System.EventHandler(this.CmbGst_Enter);
             this.cmbGst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGst_KeyDown);
@@ -1575,7 +1601,7 @@
             this.txtHSNCode.MaxLength = 8;
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
-            this.txtHSNCode.TabIndex = 33;
+            this.txtHSNCode.TabIndex = 36;
             this.txtHSNCode.TextChanged += new System.EventHandler(this.TxtHSNCode_TextChanged);
             this.txtHSNCode.Enter += new System.EventHandler(this.TxtHSNCode_Enter);
             this.txtHSNCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHSNCode_KeyDown);
@@ -1682,7 +1708,7 @@
             this.btnSave.Location = new System.Drawing.Point(658, 638);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(113, 29);
-            this.btnSave.TabIndex = 37;
+            this.btnSave.TabIndex = 39;
             this.btnSave.Text = "Save as Draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -1699,7 +1725,7 @@
             this.btnClose.Location = new System.Drawing.Point(773, 638);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
-            this.btnClose.TabIndex = 38;
+            this.btnClose.TabIndex = 40;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1721,7 +1747,7 @@
             // 
             // txtRTamilName
             // 
-            this.txtRTamilName.Font = new System.Drawing.Font("Baamini", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRTamilName.ForeColor = System.Drawing.Color.Red;
             this.txtRTamilName.Location = new System.Drawing.Point(7, 74);
             this.txtRTamilName.Name = "txtRTamilName";
@@ -1926,21 +1952,12 @@
             this.cbCompleted.Location = new System.Drawing.Point(567, 641);
             this.cbCompleted.Name = "cbCompleted";
             this.cbCompleted.Size = new System.Drawing.Size(86, 24);
-            this.cbCompleted.TabIndex = 1111216;
+            this.cbCompleted.TabIndex = 38;
             this.cbCompleted.Text = "Completed";
             this.cbCompleted.UseVisualStyleBackColor = true;
             this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
-            // 
-            // chkSameasPurchase
-            // 
-            this.chkSameasPurchase.AutoSize = true;
-            this.chkSameasPurchase.Location = new System.Drawing.Point(7, 24);
-            this.chkSameasPurchase.Name = "chkSameasPurchase";
-            this.chkSameasPurchase.Size = new System.Drawing.Size(125, 24);
-            this.chkSameasPurchase.TabIndex = 93;
-            this.chkSameasPurchase.Text = "Same as Purchase";
-            this.chkSameasPurchase.UseVisualStyleBackColor = true;
-            this.chkSameasPurchase.CheckedChanged += new System.EventHandler(this.ChkSameasPurchase_CheckedChanged);
+            this.cbCompleted.Enter += new System.EventHandler(this.CbCompleted_Enter);
+            this.cbCompleted.Leave += new System.EventHandler(this.CbCompleted_Leave);
             // 
             // CP_Product
             // 
@@ -2163,5 +2180,6 @@
         public System.Windows.Forms.Label lblHsnName;
         private System.Windows.Forms.CheckBox cbCompleted;
         private System.Windows.Forms.CheckBox chkSameasPurchase;
+        private System.Windows.Forms.CheckBox chkMRP;
     }
 }

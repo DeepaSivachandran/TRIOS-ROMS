@@ -93,6 +93,16 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Advance {
+            get {
+                object obj = ResourceManager.GetObject("Advance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap approve {
             get {
                 object obj = ResourceManager.GetObject("approve", resourceCulture);
@@ -186,6 +196,26 @@ namespace ROMS.Properties {
         internal static System.Drawing.Bitmap comment {
             get {
                 object obj = ResourceManager.GetObject("comment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Convert {
+            get {
+                object obj = ResourceManager.GetObject("Convert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Convertion {
+            get {
+                object obj = ResourceManager.GetObject("Convertion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

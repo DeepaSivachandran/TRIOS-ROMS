@@ -44,6 +44,9 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpInvoiceDetails = new System.Windows.Forms.GroupBox();
+            this.lblInvoiceDate = new System.Windows.Forms.Label();
+            this.lblInvoiceNo = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -164,13 +167,12 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtDMrp = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.grpInvoiceDetails = new System.Windows.Forms.GroupBox();
-            this.lblInvoiceDate = new System.Windows.Forms.Label();
-            this.lblInvoiceNo = new System.Windows.Forms.Label();
+            this.chkVerified = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.grpInvoiceDetails.SuspendLayout();
             this.grpExcessProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.grbProDetails.SuspendLayout();
@@ -181,7 +183,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRepDetails)).BeginInit();
             this.grbSupplierDetails.SuspendLayout();
             this.grpReturnDCSupplier.SuspendLayout();
-            this.grpInvoiceDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // epReturnDc
@@ -254,6 +255,42 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // grpInvoiceDetails
+            // 
+            this.grpInvoiceDetails.Controls.Add(this.lblInvoiceDate);
+            this.grpInvoiceDetails.Controls.Add(this.lblInvoiceNo);
+            this.grpInvoiceDetails.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.grpInvoiceDetails.Location = new System.Drawing.Point(667, 84);
+            this.grpInvoiceDetails.Name = "grpInvoiceDetails";
+            this.grpInvoiceDetails.Size = new System.Drawing.Size(208, 54);
+            this.grpInvoiceDetails.TabIndex = 1111240;
+            this.grpInvoiceDetails.TabStop = false;
+            this.grpInvoiceDetails.Text = "Invoice Details";
+            // 
+            // lblInvoiceDate
+            // 
+            this.lblInvoiceDate.AutoSize = true;
+            this.lblInvoiceDate.BackColor = System.Drawing.Color.White;
+            this.lblInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceDate.Location = new System.Drawing.Point(5, 32);
+            this.lblInvoiceDate.Name = "lblInvoiceDate";
+            this.lblInvoiceDate.Size = new System.Drawing.Size(62, 16);
+            this.lblInvoiceDate.TabIndex = 1111214;
+            this.lblInvoiceDate.Text = "Invoice Date";
+            this.lblInvoiceDate.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInvoiceNo
+            // 
+            this.lblInvoiceNo.AutoSize = true;
+            this.lblInvoiceNo.BackColor = System.Drawing.Color.White;
+            this.lblInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceNo.Location = new System.Drawing.Point(5, 16);
+            this.lblInvoiceNo.Name = "lblInvoiceNo";
+            this.lblInvoiceNo.Size = new System.Drawing.Size(50, 16);
+            this.lblInvoiceNo.TabIndex = 1111212;
+            this.lblInvoiceNo.Text = "InvoiceNo";
+            this.lblInvoiceNo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // LV_Supplier
             // 
             this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -287,6 +324,7 @@
             // 
             // grpExcessProduct
             // 
+            this.grpExcessProduct.Controls.Add(this.chkVerified);
             this.grpExcessProduct.Controls.Add(this.chkCompleted);
             this.grpExcessProduct.Controls.Add(this.DGV_FilterProduct);
             this.grpExcessProduct.Controls.Add(this.grbProDetails);
@@ -321,6 +359,7 @@
             this.chkCompleted.TabIndex = 111111144;
             this.chkCompleted.Text = "Completed";
             this.chkCompleted.UseVisualStyleBackColor = true;
+            this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
             // 
             // DGV_FilterProduct
             // 
@@ -478,7 +517,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.textBox5.Location = new System.Drawing.Point(552, 40);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -687,7 +726,7 @@
             // 
             // clmProduct
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clmProduct.DefaultCellStyle = dataGridViewCellStyle5;
             this.clmProduct.HeaderText = "Product Name";
             this.clmProduct.Name = "clmProduct";
@@ -945,7 +984,7 @@
             // textBox7
             // 
             this.textBox7.Enabled = false;
-            this.textBox7.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.textBox7.Location = new System.Drawing.Point(1134, 373);
             this.textBox7.MaxLength = 50;
             this.textBox7.Name = "textBox7";
@@ -958,7 +997,7 @@
             // textBox9
             // 
             this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.textBox9.Location = new System.Drawing.Point(1134, 346);
             this.textBox9.MaxLength = 50;
             this.textBox9.Name = "textBox9";
@@ -971,12 +1010,12 @@
             // textBox8
             // 
             this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Rupee Foradian", 16.25F);
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
             this.textBox8.Location = new System.Drawing.Point(1134, 400);
             this.textBox8.MaxLength = 50;
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(22, 33);
+            this.textBox8.Size = new System.Drawing.Size(22, 32);
             this.textBox8.TabIndex = 1111204;
             this.textBox8.Text = "₹";
             this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1064,7 +1103,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(349, 360);
+            this.label5.Location = new System.Drawing.Point(355, 362);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 1111173;
@@ -1073,11 +1112,11 @@
             // txtRemarks
             // 
             this.txtRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(407, 360);
+            this.txtRemarks.Location = new System.Drawing.Point(412, 357);
             this.txtRemarks.MaxLength = 200;
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(580, 87);
+            this.txtRemarks.Size = new System.Drawing.Size(575, 72);
             this.txtRemarks.TabIndex = 6;
             this.txtRemarks.Enter += new System.EventHandler(this.TxtRemarks_Enter);
             this.txtRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemarks_KeyDown);
@@ -1302,22 +1341,22 @@
             // 
             // textBox14
             // 
-            this.textBox14.Font = new System.Drawing.Font("Rupee Foradian", 13F);
+            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.textBox14.Location = new System.Drawing.Point(757, 96);
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(17, 28);
+            this.textBox14.Size = new System.Drawing.Size(17, 27);
             this.textBox14.TabIndex = 1111237;
             this.textBox14.Text = "₹";
             this.textBox14.Visible = false;
             // 
             // textBox13
             // 
-            this.textBox13.Font = new System.Drawing.Font("Rupee Foradian", 13F);
+            this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.textBox13.Location = new System.Drawing.Point(611, 96);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(17, 28);
+            this.textBox13.Size = new System.Drawing.Size(17, 27);
             this.textBox13.TabIndex = 1111236;
             this.textBox13.Text = "₹";
             this.textBox13.Visible = false;
@@ -1612,11 +1651,11 @@
             // 
             // textBox4
             // 
-            this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 13F);
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.textBox4.Location = new System.Drawing.Point(400, 96);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(17, 28);
+            this.textBox4.Size = new System.Drawing.Size(17, 27);
             this.textBox4.TabIndex = 1111235;
             this.textBox4.Text = "₹";
             this.textBox4.Visible = false;
@@ -1640,41 +1679,16 @@
             this.lblStatus.Size = new System.Drawing.Size(0, 20);
             this.lblStatus.TabIndex = 38;
             // 
-            // grpInvoiceDetails
+            // chkVerified
             // 
-            this.grpInvoiceDetails.Controls.Add(this.lblInvoiceDate);
-            this.grpInvoiceDetails.Controls.Add(this.lblInvoiceNo);
-            this.grpInvoiceDetails.Font = new System.Drawing.Font("Oswald Regular", 9F);
-            this.grpInvoiceDetails.Location = new System.Drawing.Point(667, 84);
-            this.grpInvoiceDetails.Name = "grpInvoiceDetails";
-            this.grpInvoiceDetails.Size = new System.Drawing.Size(208, 54);
-            this.grpInvoiceDetails.TabIndex = 1111240;
-            this.grpInvoiceDetails.TabStop = false;
-            this.grpInvoiceDetails.Text = "Invoice Details";
-            // 
-            // lblInvoiceDate
-            // 
-            this.lblInvoiceDate.AutoSize = true;
-            this.lblInvoiceDate.BackColor = System.Drawing.Color.White;
-            this.lblInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceDate.Location = new System.Drawing.Point(5, 32);
-            this.lblInvoiceDate.Name = "lblInvoiceDate";
-            this.lblInvoiceDate.Size = new System.Drawing.Size(62, 16);
-            this.lblInvoiceDate.TabIndex = 1111214;
-            this.lblInvoiceDate.Text = "Invoice Date";
-            this.lblInvoiceDate.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblInvoiceNo
-            // 
-            this.lblInvoiceNo.AutoSize = true;
-            this.lblInvoiceNo.BackColor = System.Drawing.Color.White;
-            this.lblInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceNo.Location = new System.Drawing.Point(5, 16);
-            this.lblInvoiceNo.Name = "lblInvoiceNo";
-            this.lblInvoiceNo.Size = new System.Drawing.Size(50, 16);
-            this.lblInvoiceNo.TabIndex = 1111212;
-            this.lblInvoiceNo.Text = "InvoiceNo";
-            this.lblInvoiceNo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.chkVerified.AutoSize = true;
+            this.chkVerified.Location = new System.Drawing.Point(953, 445);
+            this.chkVerified.Name = "chkVerified";
+            this.chkVerified.Size = new System.Drawing.Size(70, 24);
+            this.chkVerified.TabIndex = 111111145;
+            this.chkVerified.Text = "Verified";
+            this.chkVerified.UseVisualStyleBackColor = true;
+            this.chkVerified.CheckedChanged += new System.EventHandler(this.ChkVerified_CheckedChanged);
             // 
             // PUR_PurchaseReturns
             // 
@@ -1705,6 +1719,8 @@
             this.pnldl.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.grpInvoiceDetails.ResumeLayout(false);
+            this.grpInvoiceDetails.PerformLayout();
             this.grpExcessProduct.ResumeLayout(false);
             this.grpExcessProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
@@ -1721,8 +1737,6 @@
             this.grbSupplierDetails.PerformLayout();
             this.grpReturnDCSupplier.ResumeLayout(false);
             this.grpReturnDCSupplier.PerformLayout();
-            this.grpInvoiceDetails.ResumeLayout(false);
-            this.grpInvoiceDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1857,5 +1871,6 @@
         private System.Windows.Forms.GroupBox grpInvoiceDetails;
         private System.Windows.Forms.Label lblInvoiceDate;
         private System.Windows.Forms.Label lblInvoiceNo;
+        private System.Windows.Forms.CheckBox chkVerified;
     }
 }

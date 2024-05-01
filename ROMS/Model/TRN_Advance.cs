@@ -21,6 +21,7 @@ namespace ROMS.Model
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
         public int paraStatusID { get; set; } = 0;
+        public int paraPAYID { get; set; } = 0;
         public int paraUserID { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
         public int paraPaymentMode { get; set; } = 0;

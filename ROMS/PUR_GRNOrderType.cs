@@ -23,8 +23,9 @@ namespace ROMS
         public string varbrandcode;
         public string pbFormStatus;
         public DataTable dtPendingPO;
-        public int varMasterType = 0;
+        public int varMasterType = 0, varTotProCount = 0;
         public string varPOID = "";
+        
         public PUR_GRNOrderType()
         {
             InitializeComponent();
@@ -216,7 +217,7 @@ namespace ROMS
         {
             try
             {
-               int VARFLAG = 0;
+               int VARFLAG = 0; 
                 if (varMasterType == 1) //---Grn screen Po add---\\
                 {
                     for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
@@ -260,7 +261,7 @@ namespace ROMS
                 if (varMasterType == 2) //---purchase screen Po add---\\
                 {
                     string pono = "0";
-                    MainForm.objCP_Purchase.pbPONO = "0";
+                    MainForm.objCP_Purchase.pbPONO = "0"; varTotProCount = 0;
                     for (int i = 0; i < grdPurchaseOrder.Rows.Count; i++)
                     {
                         if (Convert.ToBoolean(grdPurchaseOrder.Rows[i].Cells[0].Value) == true)
@@ -274,7 +275,8 @@ namespace ROMS
                             else
                             {
                                 pono = pono + ',' + Convert.ToString(grdPurchaseOrder.Rows[i].Cells["poid"].Value);
-                            } 
+                            }
+                            varTotProCount = varTotProCount + Convert.ToInt16(grdPurchaseOrder.Rows[i].Cells["Total Products"].Value);
                         }
                     }
                     if (VARFLAG != 0)
@@ -288,8 +290,10 @@ namespace ROMS
                             MainForm.objCP_Purchase.lblFinishedNoRecord.Visible = false;
                         }
                         MainForm.objCP_Purchase.grdPODetails.Sort(MainForm.objCP_Purchase.grdPODetails.Columns["clmPODate"], ListSortDirection.Descending); 
-
                         MainForm.objCP_Purchase.pbPONO = pono;
+                        MainForm.objCP_Purchase.lbltotProduct.Text = Convert.ToString(varTotProCount);
+                        MainForm.objCP_Purchase.lblRemainProduct.Text = Convert.ToString(varTotProCount);
+                        MainForm.objCP_Purchase.varEntryTypeViewFlag = 1;
                         udfnclose();
                     }
                     else

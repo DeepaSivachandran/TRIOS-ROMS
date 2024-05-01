@@ -167,7 +167,6 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\TRN_Advance.cs" />
     <Compile Include="PAY_Advance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,8 +203,22 @@
     <Compile Include="CP_ProductApprovalList.designer.cs">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAY_ADV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_ADV.designer.cs">
+      <DependentUpon>PAY_ADV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TRN_Advance.cs" />
     <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
     <Compile Include="Model\TRN_Item_Movement_Analysis.cs" />
+    <Compile Include="Model\TRN_Supplier_Payment.cs" />
+    <Compile Include="PUR_RemainingProductList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_RemainingProductList.designer.cs">
+      <DependentUpon>PUR_RemainingProductList.cs</DependentUpon>
+    </Compile>
     <Compile Include="PO_Details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1658,6 +1671,12 @@
     <EmbeddedResource Include="CP_ProductApprovalList.resx">
       <DependentUpon>CP_ProductApprovalList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PAY_ADV.resx">
+      <DependentUpon>PAY_ADV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_RemainingProductList.resx">
+      <DependentUpon>PUR_RemainingProductList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PO_Details.resx">
       <DependentUpon>PO_Details.cs</DependentUpon>
     </EmbeddedResource>
@@ -2471,6 +2490,9 @@
     <None Include="Resources\Db Restore Color.png" />
     <None Include="Resources\Db backup Color.png" />
     <None Include="Resources\Clear Transaction Color.png" />
+    <None Include="Resources\Advance.jpg" />
+    <None Include="Resources\Convert.jpg" />
+    <None Include="Resources\Convertion.jpg" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">

@@ -10,9 +10,12 @@ namespace ROMS.Model
     public class MR_Product
     {
         public int paraViewType = 0;
+        public int paraFlag = 0;
         public int ParaProductCode = 0;
         public int paraUserID = 0;
         public string paraIPAddress = "";
+        public string ParaPOID = "";
+        public string ParaDCID = "";
         public int ParaCompanycode = 0;
         public int paraProductCategory = 0;
         public int paraGroup = 0;
@@ -38,6 +41,7 @@ namespace ROMS.Model
         public string ParaProductsCode = "";
         public string paraHSNCode = "";
         public DataTable paraStockTransfer = null;
+        public DataTable paraPurchaseAutoComplete = null;
         public int paraId = 0;
         public int ParaGRNID = 0;
         public DataTable paraDamageEntry = null;

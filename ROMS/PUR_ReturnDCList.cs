@@ -60,7 +60,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false && grdReturnDCList.SelectedRows.Count == 1)
                 {
-                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 61)
+                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 61 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 81)
                     {
                         tsbDelete.Visible = false;
                         varDeleteFlag = 0;
@@ -1437,6 +1437,11 @@ namespace ROMS
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "68")
                     {
                         grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Red;
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "81")
+                    {
+                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#0000FF");
                         grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                 }

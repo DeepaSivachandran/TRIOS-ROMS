@@ -2090,7 +2090,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.Enabled = false;
+                btnSave.Enabled = true;
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 string varStatus = "1";
@@ -2281,6 +2281,7 @@ namespace ROMS
                 objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
                 objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
                 objBankTable.Columns.Add("CMBNK_Default", typeof(string));
+                objBankTable.Columns.Add("CMBNK_ID", typeof(string));
                 for (int i = 0; i < grdBankDetails.Rows.Count; i++)
                 {
                     DataService objDser = new DataService();
@@ -2305,7 +2306,7 @@ namespace ROMS
                     }
                     objBankTable.Rows.Add(Convert.ToString(grdBankDetails.Rows[i].Cells["clmbankname"].Value), Convert.ToString(grdBankDetails.Rows[i].Cells["clmBankShortName"].Value),
                     Convert.ToString(grdBankDetails.Rows[i].Cells["clmbranch"].Value), Convert.ToString(grdBankDetails.Rows[i].Cells["clmaccno"].Value),
-                    Convert.ToString(grdBankDetails.Rows[i].Cells["clmifscode"].Value), varStatus,Convert.ToString(grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value)); 
+                    Convert.ToString(grdBankDetails.Rows[i].Cells["clmifscode"].Value), varStatus,Convert.ToString(grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value), Convert.ToString(grdBankDetails.Rows[i].Cells["clmBankID"].Value)); 
                 }
                 
             }
@@ -3319,6 +3320,7 @@ namespace ROMS
                 objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
                 objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
                 objBankTable.Columns.Add("CMBNK_Default", typeof(string));
+                objBankTable.Columns.Add("CMBNK_ID", typeof(int));
 
                 for (int i = 0; i < grdContactManager.Rows.Count; i++)
                 {
@@ -3864,7 +3866,7 @@ namespace ROMS
                                 }
                                 grdBankDetails.Rows.Add(Convert.ToString(objDS.Tables[2].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[2].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[2].Rows[i]["SHORTNAME"]),
                                 Convert.ToString(objDS.Tables[2].Rows[i]["BRANCH"]), Convert.ToString(objDS.Tables[2].Rows[i]["ACCOUNT"]), Convert.ToString(objDS.Tables[2].Rows[i]["IFSC"])
-                                , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]), Convert.ToString(objDS.Tables[2].Rows[i]["Default Bank"]),varDefault);
+                                , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]), Convert.ToString(objDS.Tables[2].Rows[i]["Default Bank"]),varDefault, Convert.ToInt32(objDS.Tables[2].Rows[i]["CMBNK_ID"]));
                                 grdBankDetails.Columns["clmStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 if(Convert.ToInt32(grdBankDetails.Rows[i].Cells["clmdefaultbnk"].Value)==1)
                                 {
