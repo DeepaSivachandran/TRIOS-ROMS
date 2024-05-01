@@ -3947,6 +3947,11 @@ namespace ROMS
                 pbDateflag = 0;
                 udfnAddProductsgrid();
                 udfnProductCount();
+                if(grdSupplierList.Rows.Count==0)
+                {    grdReurnDC.Columns["clmRemoveDC"].Visible = true;
+                    grdPODetails.Columns["clmRemovePO"].Visible = true;   }
+                else { grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                    grdPODetails.Columns["clmRemovePO"].Visible = false;  }
             }
             catch (Exception ex)
             {
