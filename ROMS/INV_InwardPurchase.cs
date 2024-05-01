@@ -515,14 +515,13 @@ namespace ROMS
                                         {
                                             dtInwardPurchase.Rows[i]["Column1"] = true;
                                         }
-                                        else
-                                        {
-                                            dtInwardPurchase.Rows[i]["Column1"] = false;
-                                        }
                                     }
                                     else
                                     {
-                                        dtInwardPurchase.Rows[i]["Column1"] = false;
+                                        if (Convert.ToInt32(dtInwardPurchase.Rows[i]["GIPPR_SNO"]) == varSNo)
+                                        {
+                                            dtInwardPurchase.Rows[i]["Column1"] = false;
+                                        }
                                     }
                                 }
                             }
@@ -872,20 +871,63 @@ namespace ROMS
                                 if (varGRNPurchaseFlag == 3 && Convert.ToBoolean(grdGrnlist.Rows[i].Cells["clmCheck"].Value) == true)   //From dc- Queue
                                 {
                                     decimal varDCQty = 0, varRecqty = 0, varShopqty = 0;
+                                    int varIDvalue = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmSno"].Value);
+                                    varQty1 = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value);
 
-                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQty"].Value) != "")
-                                    { varDCQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value); }
-                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmReceivedQty"].Value) != "")
-                                    { varRecqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmReceivedQty"].Value); }
-                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShopQty"].Value) != "")
-                                    { varShopqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmShopQty"].Value); }
-                                    if (varDCQty != varRecqty + varShopqty)
+                                    //var varDuplicateProuct = from r in dtInwardPurchase.AsEnumerable()
+                                    //                         where (r.Field<int>("GIPPR_PRID").Equals(PRID) &&
+                                    //                                r.Field<decimal>("GIPPR_MRP").Equals(varMRP) &&
+                                    //                                r.Field<string>("GIPPR_ExpiryDate").Equals(ExpiryDate) &&
+                                    //                                r.Field<string>("GIPPR_BatchNo").Equals(BatchNo) &&
+                                    //                                r.Field<int>("GIPPR_RKID").Equals(RackID) &&
+                                    //                                r.Field<int>("GIPPR_OrderID") != Convert.ToInt16(grdGrnlist.Rows[e.RowIndex].Cells["clmOrder"].Value)
+                                    //                                 )
+                                    //                         group r by r.Field<int>("GIPPR_OrderID")
+                                    //                         into g
+                                    //                         select g.Key;
+
+
+
+
+                                    var varSumRequestQty = dtInwardPurchase.AsEnumerable()
+                                                            .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
+                                                             .Sum(x => x.Field<decimal>("GIPPR_ReceivedQty")).ToString();
+                                    var varSumShopQty = dtInwardPurchase.AsEnumerable()
+                                                            .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
+                                                             .Sum(x => x.Field<decimal>("GIPPR_ShopQty")).ToString();
+
+                                    varQty1 = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value);
+                                    if (varQty1 != 0)
                                     {
-                                        varQuantityErr++;
-                                        grdGrnlist.Rows[i].Cells["clmQty"].Style.BackColor = Color.LightPink;
-                                        grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                        grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                        varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
+                                        if (varQty1 > varTotalQty1 || varQty1 == varTotalQty1)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            InvalidQty = 1;
+                                            grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.Pink;
+                                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShopQty"].Value) != "")
+                                            {
+                                                grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.Pink;
+                                            }
+                                            varErrorFlag = false;
+                                        }
                                     }
+                                    //if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQty"].Value) != "")
+                                    //{ varDCQty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmQty"].Value); }
+                                    //if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmReceivedQty"].Value) != "")
+                                    //{ varRecqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmReceivedQty"].Value); }
+                                    //if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmShopQty"].Value) != "")
+                                    //{ varShopqty = Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmShopQty"].Value); }
+                                    //if (varDCQty != varRecqty + varShopqty)
+                                    //{
+                                    //    varQuantityErr++;
+                                    //    grdGrnlist.Rows[i].Cells["clmQty"].Style.BackColor = Color.LightPink;
+                                    //    grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                    //    grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                    //}
                                 }
                             }
                             //if (varGRNPurchaseFlag == 1 && Convert.ToBoolean(grdGrnlist.Rows[i].Cells["clmCheck"].Value) == true)   //From GRN- Queue
@@ -1998,6 +2040,7 @@ namespace ROMS
                                 lblNoRecordsFound.BringToFront();
                             }
                             */
+                            udfnsupplierLoad();
                         }
 
                     }
