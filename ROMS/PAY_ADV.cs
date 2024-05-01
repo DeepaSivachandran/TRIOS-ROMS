@@ -16,7 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtAdvance = new DataTable();
-        string AdvID="";
+        public string AdvID = ""; public string varEditAdv = "";
         public PAY_ADV()
         {
             InitializeComponent();
@@ -107,10 +107,10 @@ namespace ROMS
                                     varCheck = false;
                                 }
                                 dtAdvance.Rows.Add(varCheck, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Advance Amount"]), objDs.Tables[0].Rows[i]["ADID"], objDs.Tables[0].Rows[i]["PAYID"]);     
-                                if(Convert.ToString(AdvID)== Convert.ToString(objDs.Tables[0].Rows[i]["ADID"]))
-                                {
-                                    objDs.Tables[0].Rows[i][0] = true;
-                                }
+                                //if(Convert.ToString(AdvID)== Convert.ToString(objDs.Tables[0].Rows[i]["ADID"]))
+                                //{
+                                //    objDs.Tables[0].Rows[i][0] = true;
+                                //}
                             }
                             grdAdvance.DataSource = dtAdvance;
                             grdAdvance.Columns[0].HeaderText = "";
@@ -146,6 +146,20 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
+                if (MainForm.objPAY_SupplierPayment.varSupplierPaymentID == 0)
+                {
+                    string[] tokens = MainForm.objPAY_SupplierPayment.varAdvanceID.Split(',');
+                    for (int i = 0; i < tokens.Count(); i++)
+                    {
+                        for (int j = 0; j < grdAdvance.Rows.Count; j++)
+                        {
+                            if (Convert.ToString(tokens[i]) == Convert.ToString(grdAdvance.Rows[j].Cells["ADID"].Value))
+                            {
+                                dtAdvance.Rows[j][0] = true;
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -171,7 +185,7 @@ namespace ROMS
             try
             {
                 int VARFLAG = 0;
-                string AdvID = "0";
+                AdvID = "0";
                 decimal varGrandTotal = 0;
                 decimal varAdvanceAmnt = 0;
                 MainForm.objPAY_SupplierPayment.varAdvanceID = "0";
@@ -192,6 +206,7 @@ namespace ROMS
                             varAdvanceAmnt = varAdvanceAmnt + Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
                         }
                     }
+
                 }
                 if (VARFLAG != 0)
                 {
@@ -217,6 +232,26 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfndvidSplit()
+        {
+            try
+            {
+                //string[] tokens = AdvID.Split(',');
+                //for (int i=0;i<grdAdvance.Rows.Count;i++)
+                //{
+                //    if (tokens[i]==Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value))
+                //    {
+                //        this.grdAdvance.Rows[i].Cells[]
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -281,6 +316,7 @@ namespace ROMS
             try
             {
                 udfnList();
+                              
             }
             catch (Exception ex)
             {

@@ -27,7 +27,7 @@ namespace ROMS
         public int id = 0, varEditFlag = 0, varModifiedFlag = 0;
         decimal varGrandTot = 0, varTotal = 0, varamt = 0;
         public int varCloseFlag = 0, varClose = 0;
-
+        public string advanceid = "";
         public PAY_SupplierPayment()
         {
             InitializeComponent();
