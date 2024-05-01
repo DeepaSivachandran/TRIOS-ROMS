@@ -4892,6 +4892,10 @@ namespace ROMS
                         cmbQtyType.Focus();
                     }
                 }
+                if (e.KeyCode == Keys.F10)
+                {
+                    udfnProDataChange();
+                }
             }
             catch (Exception ex)
             {
@@ -4899,7 +4903,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnProDataChange()
+        {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void Lvproduct_KeyDown(object sender, KeyEventArgs e)
         {
             try

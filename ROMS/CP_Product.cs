@@ -3370,7 +3370,10 @@ namespace ROMS
                 {
                     this.ActiveControl = txtPICode;
                 }
-                udfnDropDownload(); 
+                if (btnSave.Text == "Save")
+                {
+                    udfnDropDownload();
+                }
                 DataBind objDataBind = new DataBind(); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
@@ -3380,10 +3383,13 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  not in (0)", "GST_Text,GSTID", cmbGst, "", "GST_Text", "GSTID");
                 objDataBind = null;
                 //cmbConcern.SelectedValue = -1;
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 //cmbHSNName.SelectedValue = -1;
-                cmbUnit.SelectedValue = -1;
-                cmbBulkUnit.SelectedValue = -1;
+                if (btnSave.Text == "Save")
+                {
+                    cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                    cmbUnit.SelectedValue = -1;
+                    cmbBulkUnit.SelectedValue = -1;
+                }
                 cmbProductCategory.SelectedValue = -1;
                 cmbPeriod.SelectedValue = -1;
                 cmbBatchNoEntry.SelectedValue = 72;
@@ -5660,29 +5666,38 @@ namespace ROMS
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
-                            cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
-                            cmbConcern.Enabled = false;
+                            //cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();//
+                            varcompanyid = Convert.ToInt32(objDS.Tables[0].Rows[0]["COMPANY"].ToString());
+                            //cmbConcern.Enabled = false;//
                             txtPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
                             txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
                             txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
                             cmbProductCategory.SelectedValue = objDS.Tables[0].Rows[0]["PRODUCTCATEGORY"].ToString();
+                            varSubGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["SUBGROUP"].ToString());
                             lblSubGroupCode.Text = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
                             txtSubGroup.Text = objDS.Tables[0].Rows[0]["SubGroup Name"].ToString();
                             //CmbSubGroup_SelectedIndexChanged(cmbSubGroup, EventArgs.Empty);
+                            varGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["GROUP"].ToString());
                             lblGroupCode.Text = objDS.Tables[0].Rows[0]["GROUP"].ToString();
                             txtGroup.Text = objDS.Tables[0].Rows[0]["Group Name"].ToString();
+                            varBrandId = Convert.ToInt32(objDS.Tables[0].Rows[0]["BRAND"].ToString());
                             lblBrand.Text = objDS.Tables[0].Rows[0]["BRAND"].ToString();
                             txtBrand.Text = objDS.Tables[0].Rows[0]["BRAND Name"].ToString();
-                            cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
-                            cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
+                            varUnitid = Convert.ToInt32(objDS.Tables[0].Rows[0]["UNIT"].ToString());//
+                            //cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();//
+                            //cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();//
+                            varPURSLID = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"]);
                             lblPurLocationCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"]);
                             txtPurLocation.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION PURCHASE Name"]);
+                            varSALESLID = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION SALES"]);
                             lblSaleLocationCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION SALES"]);
                             txtSaleLocation.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION SALES Name"]);
                             txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
+                            varPURRKID = Convert.ToInt32(objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString());
                             lblPurRackCode.Text = objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString();
                             txtPurRack.Text = objDS.Tables[0].Rows[0]["RACK LOCATION Name"].ToString();
                             txtRackDescription.Text = objDS.Tables[0].Rows[0]["Rack_Description"].ToString();
+                            varSALERKID = Convert.ToInt32(objDS.Tables[0].Rows[0]["RACK SALES"].ToString());
                             lblSaleRackCode.Text = objDS.Tables[0].Rows[0]["RACK SALES"].ToString();
                             txtSaleRack.Text = objDS.Tables[0].Rows[0]["RACK SALES Name"].ToString();
                             txtRackDescriptionSales.Text = objDS.Tables[0].Rows[0]["Sales_Rack_Description"].ToString();
@@ -5702,6 +5717,7 @@ namespace ROMS
                             txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
                             txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
                             cmbGst.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["GSTID"]);
+                            varHsnId = Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString());
                             lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
                             txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
                             txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));
@@ -5743,6 +5759,14 @@ namespace ROMS
                             {
                                 chkSameasPurchase.Checked = false;
                             }
+                            udfnDropDownload();
+
+                            cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
+                            cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
+                            cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
+                            cmbConcern.Enabled = false;
+
+
                             //objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
                             //objdservice.CloseConnection();
                             //if (objDS != null)
