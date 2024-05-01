@@ -3364,7 +3364,29 @@ namespace ROMS
                             //string varExpiryDate = "";
                             varExpiryDate = cellValue.ToString();
                             string[] DMY = varExpiryDate.Split('/');
-                            if (DMY.Count() == 3)
+                            if (DMY.Count() == 2 || DMY.Count() == 3 && DMY[0] == "")
+                            {
+                                string varDate = "";
+                                if (DMY[0] == "")
+                                {
+                                    varDate = "01" + "/" + DMY[1] + "/" + "20" + DMY[2];
+                                }
+                                else
+                                {
+                                    varDate = "01" + "/" + DMY[0] + "/" + "20" + DMY[1];
+                                }
+                                DataSet objDSer = new DataSet();
+                                SPDataService objdServ = new SPDataService();
+                                objDSer = objdServ.udfnMaster(5, 0, 0, varDate, "", 0, "", 0);
+                                objdServ.CloseConnection();
+                                if (objDSer.Tables[0].Rows.Count > 0)
+                                {
+                                    varTempExpiryDate = objDSer.Tables[0].Rows[0]["DD/MM/YYYY"].ToString();
+
+                                    cellValue = varTempExpiryDate;
+                                }
+                            }
+                            else if (DMY.Count() == 3)
                             {
                                 varTempDay = DMY[0];
                                 varTempMonth = DMY[1];

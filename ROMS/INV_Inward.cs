@@ -1362,14 +1362,7 @@ namespace ROMS
                         txttotalitem.Text = Convert.ToString(grdInward.Rows.Count);
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
                         grdInward.Columns["clmactualqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                        if(varDateEnable==1)
-                        {
-                            grdInward.Columns["clmexpirydate"].ReadOnly = true;
-                        }
-                        else
-                        {
-                            grdInward.Columns["clmexpirydate"].ReadOnly = false;
-                        }
+                        
                         if(varMRPEditFlag==1)
                         {
                             grdInward.Columns["clmMRPFlag"].ReadOnly = false;

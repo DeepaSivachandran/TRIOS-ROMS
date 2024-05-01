@@ -3347,7 +3347,29 @@ namespace ROMS
                             string varExpiryDate = "";
                             varExpiryDate = cellValue.ToString();
                             string[] DMY = varExpiryDate.Split('/');
-                            if(DMY.Count()==3)
+                            if(DMY.Count()==2 || DMY.Count()==3 && DMY[0]=="")
+                            {
+                                string varDate = "";
+                                if (DMY[0] == "")
+                                {
+                                    varDate = "01" + "/" + DMY[1] + "/" + "20" + DMY[2];
+                                }
+                                else
+                                {
+                                    varDate = "01" + "/" + DMY[0] + "/" + "20" + DMY[1];
+                                }
+                                DataSet objDSer = new DataSet();
+                                SPDataService objdServ = new SPDataService();
+                                objDSer = objdServ.udfnMaster(5, 0, 0, varDate, "", 0, "", 0);
+                                objdServ.CloseConnection();
+                                if (objDSer.Tables[0].Rows.Count > 0)
+                                {
+                                    varTempExpiryDate = objDSer.Tables[0].Rows[0]["DD/MM/YYYY"].ToString();
+
+                                    cellValue = varTempExpiryDate;
+                                }
+                            }
+                            else if(DMY.Count()==3)
                             {
                                 varTempDay = DMY[0];
                                 varTempMonth = DMY[1];
@@ -3366,8 +3388,6 @@ namespace ROMS
                                 }
                                 cellValue = varTempDay + "/" + varTempMonth + "/" + varTempYear;
                             }
-                            //varTempDay = DMY[0];
-                            //varTempMonth = DMY[1];
                             varTempExpiryDate = cellValue.ToString();
                             if (cellValue != null && Convert.ToString(cellValue) != "")
                             {
@@ -3384,11 +3404,13 @@ namespace ROMS
                                             grdGrnlist.Rows[rowIndex].Cells["clmshelfper"].Value = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]);
                                         }
                                     }
+                                    if (objDs.Tables[1].Rows.Count != 0)
+                                    {
                                         if (objDs.Tables[1].Rows.Count > 0)
                                         {
                                             grdGrnlist.Rows[rowIndex].Cells["clmactuallife"].Value = Convert.ToString(objDs.Tables[1].Rows[0]["ACUTAL"]);
                                         }
-
+                                    }
                                     string[] varShelflifevalue = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]).Split(' ');
                                     if (varShelflifevalue[0] != "")
                                     {
