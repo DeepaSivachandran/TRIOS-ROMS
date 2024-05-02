@@ -2334,6 +2334,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPurchaseId", objTRN_PurchaseReturnDC.paraPurchaseId);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedBy", objTRN_PurchaseReturnDC.paraVerifiedBy);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_PurchaseReturnDC.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraUpdateflag", objTRN_PurchaseReturnDC.paraUpdateflag);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

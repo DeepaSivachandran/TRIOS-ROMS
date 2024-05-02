@@ -106,6 +106,7 @@ namespace ROMS
         public static CP_Tally objCP_Tally;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
+        public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
         public static INV_SalesInvoice objINV_SalesInvoice;
         public static INV_GRNPODamaged objINV_GRNPODamaged;
         public static INV_StockRequestList objINV_StockRequestList;

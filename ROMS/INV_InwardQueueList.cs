@@ -778,7 +778,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Supplier"].Width = 250;
                                 grdInwardQueueList.Columns["Total Products in Invoice"].Width = 150;
                                 ///   grdInwardQueueList.Columns["Created By"].Width = 110;
-                                grdInwardQueueList.Columns["Created On"].Width = 140;
+                                grdInwardQueueList.Columns["Created By"].Width = 200;
                                 grdInwardQueueList.Columns["GSTIN"].Visible = false;
                                 grdInwardQueueList.Columns["Location"].Width = 170;
                                 grdInwardQueueList.Columns["S.No."].Width = 60;

@@ -226,6 +226,11 @@ namespace ROMS
                 this.Close();
                 MainForm.objCP_Purchase.varCloseflag = 1;
                 MainForm.objCP_Purchase.udfnclose();
+                //this.Hide();
+                //MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                //MainForm.objCP_PurchaseList.Closed += (s, args) => this.Close();
+                //MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
+                //MainForm.objCP_PurchaseList.Show();
             }
             catch (Exception ex)
             {
