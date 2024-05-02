@@ -1004,14 +1004,8 @@ namespace ROMS
                         }
                         else if (varMasterType == "2")
                         {
-                            MainForm.objPUR_GRNDetails.varDataChanged = 1;
-                            MainForm.objPUR_GRNDetails.varBatchNo = "0";
-                            MainForm.objPUR_GRNDetails.varBatchNoGeneration = "0";
-                            MainForm.objPUR_GRNDetails.varRMProduction = "0";
-                            MainForm.objPUR_GRNDetails.varPrcategory = "";
-                            MainForm.objPUR_GRNDetails.varShelflife = 0;
-                            MainForm.objPUR_GRNDetails.varMRPFlag = 0; ;
-                            MainForm.objPUR_GRNDetails.lblUnit.Text = "";
+                            MainForm.objPUR_GRNDetails.PbDataChanged = 1;
+                            MainForm.objPUR_GRNDetails.varEditPRID = Convert.ToString(varproductcode);
                             varupdate = "1";
                             this.Close();
                         }
@@ -5779,7 +5773,7 @@ namespace ROMS
                             cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
                             cmbConcern.Enabled = false;
-
+                            txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
 
                             //objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
                             //objdservice.CloseConnection();
