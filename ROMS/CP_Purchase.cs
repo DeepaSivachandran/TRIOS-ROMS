@@ -60,13 +60,12 @@ namespace ROMS
         public CP_Purchase()
         {
             InitializeComponent();
-            Timer ticked after 2 seconds, so load the other form
+            //Timer ticked after 2 seconds, so load the other form
            timer = new Timer();
             timer.Interval = 2; // 2 seconds
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
         }
-
         private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

@@ -905,6 +905,7 @@
             this.clmsno.HeaderText = "S.No.";
             this.clmsno.Name = "clmsno";
             this.clmsno.ReadOnly = true;
+            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmsno.Width = 50;
             // 
             // Column1
@@ -913,6 +914,7 @@
             this.Column1.HeaderText = "Rack";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column1.Width = 60;
             // 
             // clmpicode
@@ -921,6 +923,7 @@
             this.clmpicode.HeaderText = "P.I Code";
             this.clmpicode.Name = "clmpicode";
             this.clmpicode.ReadOnly = true;
+            this.clmpicode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmproductname
             // 
@@ -928,6 +931,7 @@
             this.clmproductname.HeaderText = "Product Name";
             this.clmproductname.Name = "clmproductname";
             this.clmproductname.ReadOnly = true;
+            this.clmproductname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmproductname.Width = 300;
             // 
             // clmmrp
@@ -936,6 +940,7 @@
             this.clmmrp.HeaderText = "MRP";
             this.clmmrp.Name = "clmmrp";
             this.clmmrp.ReadOnly = true;
+            this.clmmrp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmmrp.Width = 80;
             // 
             // clmexpirydate
@@ -944,6 +949,7 @@
             this.clmexpirydate.HeaderText = "Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
             this.clmexpirydate.ReadOnly = true;
+            this.clmexpirydate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmshelflife
             // 
@@ -952,6 +958,7 @@
             this.clmshelflife.HeaderText = "Product Shelf Life";
             this.clmshelflife.Name = "clmshelflife";
             this.clmshelflife.ReadOnly = true;
+            this.clmshelflife.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmshelflife.Width = 120;
             // 
             // clmactualshelflife
@@ -961,6 +968,7 @@
             this.clmactualshelflife.HeaderText = "Actual Shelf Life";
             this.clmactualshelflife.Name = "clmactualshelflife";
             this.clmactualshelflife.ReadOnly = true;
+            this.clmactualshelflife.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmactualshelflife.Width = 110;
             // 
             // clmshelflifeper
@@ -969,6 +977,7 @@
             this.clmshelflifeper.HeaderText = "Shelf Life (%)";
             this.clmshelflifeper.Name = "clmshelflifeper";
             this.clmshelflifeper.ReadOnly = true;
+            this.clmshelflifeper.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmshelflifeper.Width = 90;
             // 
             // clmbatchno
@@ -977,6 +986,7 @@
             this.clmbatchno.HeaderText = "Batch No.";
             this.clmbatchno.Name = "clmbatchno";
             this.clmbatchno.ReadOnly = true;
+            this.clmbatchno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmbatchno.Width = 80;
             // 
             // clmactualqty
@@ -984,6 +994,7 @@
             this.clmactualqty.Frozen = true;
             this.clmactualqty.HeaderText = "Qty";
             this.clmactualqty.Name = "clmactualqty";
+            this.clmactualqty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmactualqty.Width = 70;
             // 
             // clmtransferqty
@@ -992,6 +1003,7 @@
             this.clmtransferqty.HeaderText = "Transfered Qty";
             this.clmtransferqty.Name = "clmtransferqty";
             this.clmtransferqty.ReadOnly = true;
+            this.clmtransferqty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmtransferqty.Width = 140;
             // 
             // clmreceivedqty
@@ -1000,6 +1012,7 @@
             this.clmreceivedqty.HeaderText = "Received Qty";
             this.clmreceivedqty.Name = "clmreceivedqty";
             this.clmreceivedqty.ReadOnly = true;
+            this.clmreceivedqty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmreceivedqty.Width = 140;
             // 
             // clmunit
@@ -1008,6 +1021,7 @@
             this.clmunit.HeaderText = "Unit";
             this.clmunit.Name = "clmunit";
             this.clmunit.ReadOnly = true;
+            this.clmunit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmunit.Width = 50;
             // 
             // clmPRID
@@ -1016,6 +1030,7 @@
             this.clmPRID.HeaderText = "PRID";
             this.clmPRID.Name = "clmPRID";
             this.clmPRID.ReadOnly = true;
+            this.clmPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmPRID.Visible = false;
             // 
             // clmRKID
@@ -1024,6 +1039,7 @@
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
             this.clmRKID.ReadOnly = true;
+            this.clmRKID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmRKID.Visible = false;
             // 
             // clmSLID
@@ -1032,6 +1048,7 @@
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
             this.clmSLID.ReadOnly = true;
+            this.clmSLID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmSLID.Visible = false;
             // 
             // clmUTID
@@ -1040,6 +1057,7 @@
             this.clmUTID.HeaderText = "UTID";
             this.clmUTID.Name = "clmUTID";
             this.clmUTID.ReadOnly = true;
+            this.clmUTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmUTID.Visible = false;
             // 
             // clmUnitDecimal
@@ -1048,6 +1066,7 @@
             this.clmUnitDecimal.HeaderText = "Unit Decimal";
             this.clmUnitDecimal.Name = "clmUnitDecimal";
             this.clmUnitDecimal.ReadOnly = true;
+            this.clmUnitDecimal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmUnitDecimal.Visible = false;
             // 
             // clmMRPFlag
@@ -1055,6 +1074,7 @@
             this.clmMRPFlag.Frozen = true;
             this.clmMRPFlag.HeaderText = "MRP Flag";
             this.clmMRPFlag.Name = "clmMRPFlag";
+            this.clmMRPFlag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmMRPFlag.Visible = false;
             // 
             // clmremove
@@ -1064,7 +1084,6 @@
             this.clmremove.Image = global::ROMS.Properties.Resources.remove;
             this.clmremove.Name = "clmremove";
             this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmremove.Width = 70;
             // 
             // INV_Inward

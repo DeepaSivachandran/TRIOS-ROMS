@@ -36,11 +36,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnUnselectAll = new System.Windows.Forms.Button();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.btnRemarks = new System.Windows.Forms.Button();
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtVerifiedby2 = new System.Windows.Forms.TextBox();
@@ -83,15 +85,13 @@
             this.lblsupplierScheduletype = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.lblnarration = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epInwardPurchase = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblStatusValue = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.btnRemarks = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmConvert = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -136,6 +136,17 @@
             this.tsInwardList.Size = new System.Drawing.Size(1354, 25);
             this.tsInwardList.TabIndex = 35;
             this.tsInwardList.Text = "Inward";
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(311, 22);
+            this.tspHeader.Text = "Goods Inward List from Purchase,GRN &&Purchase DC";
+            this.tspHeader.Click += new System.EventHandler(this.TspHeader_Click);
             // 
             // pnlinward
             // 
@@ -208,6 +219,23 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblNoRecordsFound.Visible = false;
+            // 
+            // btnRemarks
+            // 
+            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
+            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemarks.Location = new System.Drawing.Point(663, 580);
+            this.btnRemarks.Name = "btnRemarks";
+            this.btnRemarks.Size = new System.Drawing.Size(111, 29);
+            this.btnRemarks.TabIndex = 1;
+            this.btnRemarks.Text = "See Remarks";
+            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemarks.UseVisualStyleBackColor = true;
+            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
+            this.btnRemarks.Enter += new System.EventHandler(this.BtnRemarks_Enter);
+            this.btnRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnRemarks_KeyDown);
+            this.btnRemarks.Leave += new System.EventHandler(this.BtnRemarks_Leave);
             // 
             // grdGrnlist
             // 
@@ -773,6 +801,38 @@
             this.lblnarration.TabIndex = 958812;
             this.lblnarration.Text = "Remarks";
             // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1153, 608);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(110, 29);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Save as draft";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1266, 608);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
+            // 
             // lblEdit
             // 
             this.lblEdit.AutoSize = true;
@@ -813,72 +873,11 @@
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn2.Width = 50;
             // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(311, 22);
-            this.tspHeader.Text = "Goods Inward List from Purchase,GRN &&Purchase DC";
-            this.tspHeader.Click += new System.EventHandler(this.TspHeader_Click);
-            // 
-            // btnRemarks
-            // 
-            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
-            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemarks.Location = new System.Drawing.Point(663, 580);
-            this.btnRemarks.Name = "btnRemarks";
-            this.btnRemarks.Size = new System.Drawing.Size(111, 29);
-            this.btnRemarks.TabIndex = 1;
-            this.btnRemarks.Text = "See Remarks";
-            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemarks.UseVisualStyleBackColor = true;
-            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
-            this.btnRemarks.Enter += new System.EventHandler(this.BtnRemarks_Enter);
-            this.btnRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnRemarks_KeyDown);
-            this.btnRemarks.Leave += new System.EventHandler(this.BtnRemarks_Leave);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1153, 608);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 29);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Save as draft";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1266, 608);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
             // clmCheck
             // 
             this.clmCheck.HeaderText = "";
             this.clmCheck.Name = "clmCheck";
             this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmCheck.Width = 50;
             // 
             // clmConvert
@@ -894,6 +893,7 @@
             this.clmSno.HeaderText = "S.No.";
             this.clmSno.Name = "clmSno";
             this.clmSno.ReadOnly = true;
+            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmSno.Width = 50;
             // 
             // clmPICode
@@ -901,12 +901,14 @@
             this.clmPICode.HeaderText = "P.I Code";
             this.clmPICode.Name = "clmPICode";
             this.clmPICode.ReadOnly = true;
+            this.clmPICode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmProductName
             // 
             this.clmProductName.HeaderText = "Product Name in Tamil";
             this.clmProductName.Name = "clmProductName";
             this.clmProductName.ReadOnly = true;
+            this.clmProductName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmProductName.Width = 300;
             // 
             // clmMRP
@@ -914,6 +916,7 @@
             this.clmMRP.HeaderText = "MRP";
             this.clmMRP.Name = "clmMRP";
             this.clmMRP.ReadOnly = true;
+            this.clmMRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmMRP.Width = 80;
             // 
             // clmExpiryDate
@@ -921,6 +924,7 @@
             this.clmExpiryDate.HeaderText = "Expiry Date";
             this.clmExpiryDate.Name = "clmExpiryDate";
             this.clmExpiryDate.ReadOnly = true;
+            this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmExpiryDate.Width = 80;
             // 
             // clmBatchNo
@@ -928,6 +932,7 @@
             this.clmBatchNo.HeaderText = "Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
             this.clmBatchNo.ReadOnly = true;
+            this.clmBatchNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmBatchNo.Width = 80;
             // 
             // clmQty
@@ -935,6 +940,7 @@
             this.clmQty.HeaderText = "Qty";
             this.clmQty.Name = "clmQty";
             this.clmQty.ReadOnly = true;
+            this.clmQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmReceivedQty
             // 
@@ -943,6 +949,7 @@
             this.clmReceivedQty.DefaultCellStyle = dataGridViewCellStyle2;
             this.clmReceivedQty.HeaderText = "Received Qty";
             this.clmReceivedQty.Name = "clmReceivedQty";
+            this.clmReceivedQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmReceivedQty.Width = 120;
             // 
             // clmShopQty
@@ -952,6 +959,7 @@
             this.clmShopQty.DefaultCellStyle = dataGridViewCellStyle3;
             this.clmShopQty.HeaderText = "Shop Qty";
             this.clmShopQty.Name = "clmShopQty";
+            this.clmShopQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmShopQty.Width = 80;
             // 
             // clmUnit
@@ -959,6 +967,7 @@
             this.clmUnit.HeaderText = "Unit";
             this.clmUnit.Name = "clmUnit";
             this.clmUnit.ReadOnly = true;
+            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmUnit.Width = 50;
             // 
             // clmRack
@@ -968,6 +977,7 @@
             this.clmRack.DefaultCellStyle = dataGridViewCellStyle4;
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
+            this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmRack.Width = 80;
             // 
             // clmPRID
@@ -975,6 +985,7 @@
             this.clmPRID.HeaderText = "PRID";
             this.clmPRID.Name = "clmPRID";
             this.clmPRID.ReadOnly = true;
+            this.clmPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmPRID.Visible = false;
             this.clmPRID.Width = 10;
             // 
@@ -983,6 +994,7 @@
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
             this.clmSLID.ReadOnly = true;
+            this.clmSLID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmSLID.Visible = false;
             this.clmSLID.Width = 10;
             // 
@@ -991,6 +1003,7 @@
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
             this.clmRKID.ReadOnly = true;
+            this.clmRKID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmRKID.Visible = false;
             this.clmRKID.Width = 10;
             // 
@@ -999,6 +1012,7 @@
             this.clmUTID.HeaderText = "UTID";
             this.clmUTID.Name = "clmUTID";
             this.clmUTID.ReadOnly = true;
+            this.clmUTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmUTID.Visible = false;
             this.clmUTID.Width = 10;
             // 
@@ -1007,6 +1021,7 @@
             this.clmID.HeaderText = "ID";
             this.clmID.Name = "clmID";
             this.clmID.ReadOnly = true;
+            this.clmID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmID.Visible = false;
             this.clmID.Width = 10;
             // 
@@ -1015,6 +1030,7 @@
             this.clmUTDecimal.HeaderText = "Decimal";
             this.clmUTDecimal.Name = "clmUTDecimal";
             this.clmUTDecimal.ReadOnly = true;
+            this.clmUTDecimal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmUTDecimal.Visible = false;
             this.clmUTDecimal.Width = 10;
             // 
@@ -1023,6 +1039,7 @@
             this.clmRackCount.HeaderText = "Rack Count";
             this.clmRackCount.Name = "clmRackCount";
             this.clmRackCount.ReadOnly = true;
+            this.clmRackCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmRackCount.Visible = false;
             this.clmRackCount.Width = 10;
             // 
@@ -1031,6 +1048,7 @@
             this.clmConvertType.HeaderText = "Convert Type";
             this.clmConvertType.Name = "clmConvertType";
             this.clmConvertType.ReadOnly = true;
+            this.clmConvertType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmConvertType.Visible = false;
             this.clmConvertType.Width = 10;
             // 
@@ -1038,6 +1056,7 @@
             // 
             this.clmOrder.HeaderText = "Order";
             this.clmOrder.Name = "clmOrder";
+            this.clmOrder.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmOrder.Visible = false;
             this.clmOrder.Width = 10;
             // 
@@ -1045,6 +1064,7 @@
             // 
             this.clmError.HeaderText = "Error";
             this.clmError.Name = "clmError";
+            this.clmError.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmError.Visible = false;
             this.clmError.Width = 10;
             // 
@@ -1146,6 +1166,8 @@
         public System.Windows.Forms.Label lblStatusValue;
         public System.Windows.Forms.Button btnUnselectAll;
         public System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
         private System.Windows.Forms.DataGridViewImageColumn clmConvert;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
@@ -1170,7 +1192,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOrder;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
     }
 }
