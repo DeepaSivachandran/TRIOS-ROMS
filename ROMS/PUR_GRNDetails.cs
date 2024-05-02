@@ -47,6 +47,7 @@ namespace ROMS
         public string varProducts = "";
         public int varDateEnable = 0;
         List<int> varProductsIDs = new List<int>();
+        public int varDataChanged = 0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -4907,7 +4908,12 @@ namespace ROMS
         {
             try
             {
-
+                MainForm.objCP_Items = new CP_Product();
+                MainForm.objCP_Items.varproductcode = Convert.ToInt32(lblProductcode.Text);
+                MainForm.objCP_Items.varMasterType ="2";
+                MainForm.objCP_Items.PbProDataChange = 1;
+                MainForm.objCP_Items.btnSave.Text = "Update";
+                MainForm.objCP_Items.ShowDialog();
             }
             catch (Exception ex)
             {
