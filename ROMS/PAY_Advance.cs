@@ -960,12 +960,20 @@ namespace ROMS
                         }
                     }
                 }
-                if (PbStatus == 74 || PbStatus == 80)
+                if (PbStatus == 74 )
                 {
                     txtSupplier.Enabled = false;
                     cmbConcern.Enabled = false;
                     cmbIssueMode.Focus();
                 }
+                if(PbStatus == 80)
+                {
+                    txtSupplier.Enabled = false;
+                    cmbConcern.Enabled = false;
+                    cmbIssueMode.Focus();
+                    grbIssuedDetails.Enabled = false;
+                }
+
                 if (PbStatus == 75)
                 {
                     cmbConcern.Enabled = false;

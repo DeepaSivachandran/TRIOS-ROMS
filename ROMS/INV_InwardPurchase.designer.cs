@@ -115,6 +115,11 @@
             this.clmConvertType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchNoStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchNoGeneration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmShelflifeStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMRPFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDisable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -279,6 +284,11 @@
             this.clmConvertType,
             this.clmOrder,
             this.clmError,
+            this.clmBatchNoStatus,
+            this.clmBatchNoGeneration,
+            this.clmShelflifeStatus,
+            this.clmMRPFlag,
+            this.clmDisable,
             this.clmRemove});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -1068,6 +1078,36 @@
             this.clmError.Visible = false;
             this.clmError.Width = 10;
             // 
+            // clmBatchNoStatus
+            // 
+            this.clmBatchNoStatus.HeaderText = "BatchNo Status";
+            this.clmBatchNoStatus.Name = "clmBatchNoStatus";
+            this.clmBatchNoStatus.Visible = false;
+            // 
+            // clmBatchNoGeneration
+            // 
+            this.clmBatchNoGeneration.HeaderText = "BatchNoGeneration";
+            this.clmBatchNoGeneration.Name = "clmBatchNoGeneration";
+            this.clmBatchNoGeneration.Visible = false;
+            // 
+            // clmShelflifeStatus
+            // 
+            this.clmShelflifeStatus.HeaderText = "ShelflifeStatus";
+            this.clmShelflifeStatus.Name = "clmShelflifeStatus";
+            this.clmShelflifeStatus.Visible = false;
+            // 
+            // clmMRPFlag
+            // 
+            this.clmMRPFlag.HeaderText = "MRPFlag";
+            this.clmMRPFlag.Name = "clmMRPFlag";
+            this.clmMRPFlag.Visible = false;
+            // 
+            // clmDisable
+            // 
+            this.clmDisable.HeaderText = "Disable";
+            this.clmDisable.Name = "clmDisable";
+            this.clmDisable.Visible = false;
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -1191,6 +1231,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConvertType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOrder;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchNoStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchNoGeneration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflifeStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMRPFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDisable;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

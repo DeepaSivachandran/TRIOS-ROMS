@@ -150,6 +150,7 @@ namespace ROMS
                         grdPODetails.Rows.Clear();
                         grdReurnDC.Rows.Clear();
                         cmbPONo.Enabled = false;
+                        cmbPONo.Text = "";
                         lblPOdropDown.Text = "";
                         grdSupplierList.Columns["clmGrnMrp"].Visible = false;
                         grdSupplierList.Columns["clmPono"].Visible = false;
@@ -1516,6 +1517,7 @@ namespace ROMS
                 }
                 else if (varEntryType == 56 || varEntryType == -1) // Direct
                 {
+                    cmbPONo.Text = "";
                     tsbProducts.Visible = false;
                     tsbProducts.Enabled = false;
                     tsbAdded.Visible = false; tsbAdded.Enabled = false;
@@ -10831,7 +10833,7 @@ namespace ROMS
                         txtYear.ReadOnly = true;
                     }
                     udfnProductAdd();
-                    if (varPOdropdownFlag == 1)
+                    if (varPOdropdownFlag == 1 || varPOdropdownFlag == 0  || Convert.ToString(cmbPONo.SelectedValue) == "215") //po , direct and none
                     {
                         udfnDefalutLocation();
                     }
@@ -10861,7 +10863,6 @@ namespace ROMS
                         udfnCmbSourceRack();
                         cmbrack.SelectedValue = varPrRkid;
                         cmbrack.Text = varPrRack;
-                       
                     }
                     udfnAddrowEnable();
                     if (Convert.ToString(cmbPONo.SelectedValue) != "220")
@@ -11035,7 +11036,8 @@ namespace ROMS
                                     txtSourceLocation.Text = Convert.ToString(ObjsLocation.Tables[0].Rows[0]["SL_EName"]);
                                     udfnCmbSourceRack();
                                     lvSourceLocation.Visible = false;
-                                    cmbrack.SelectedIndex = 0;
+                                    if (cmbrack.Text != "None")
+                                    { cmbrack.SelectedIndex = 0; }
                                 }
                             }
                             else
@@ -11224,6 +11226,8 @@ namespace ROMS
                     }
                 }
                 lvSourceLocation.Visible = false;
+                if (cmbrack.Text == "None")
+                { cmbrack.Enabled = false; }
             }
             catch (Exception ex)
             {
