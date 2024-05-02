@@ -182,7 +182,7 @@ namespace ROMS
             {
                 if (varClose == 0)
                 {
-                    if (varStatusId == 39)
+                    if (varStatusId == 39 || varStatusId==81)
                     {
                         this.Close();
                     }
@@ -546,6 +546,8 @@ namespace ROMS
                             txtRemarks.Enabled = false;
                             btnSave.Enabled = false;
                             cmbReasonForClosing.Enabled = false;
+                            dpCreditNoteDate.Enabled = false;
+                            txtCrNo.Enabled = false;
                         }
                         else
                         {
