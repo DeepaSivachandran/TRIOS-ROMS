@@ -1009,6 +1009,13 @@ namespace ROMS
                             varupdate = "1";
                             this.Close();
                         }
+                        else if (varMasterType == "3")
+                        {
+                            MainForm.objPUR_PurchaseDC.PbDataChanged = 1;
+                            MainForm.objPUR_PurchaseDC.varEditPRID = Convert.ToString(varproductcode);
+                            varupdate = "1";
+                            this.Close();
+                        }
                         else
                         {
                             MainForm.objCP_Itemlist.udfnDropdownbind();
