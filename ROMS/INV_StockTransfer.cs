@@ -478,6 +478,8 @@ namespace ROMS
                     //    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                     //    GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
                     //}
+                    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                    GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
                     lvSLocation.Visible = false;
                     lvDLocation.Visible = false;
                     cmbConcern.Enabled = false;
@@ -2807,7 +2809,16 @@ namespace ROMS
                         cell.Style.ForeColor = Color.Black;
                         cell.ReadOnly = false;
                     }
+                    DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+                    comboBoxColumn.Items.Add("Option 1");
+                    comboBoxColumn.Items.Add("Option 2");
+                    comboBoxColumn.Items.Add("Option 3");
+                    DataGridView dataGridView1 = (DataGridView)sender;
+                    DataGridViewCell cell1 = dataGridView1.Rows[i].Cells["clmStatus"];
+                    dataGridView1.Columns.Add(comboBoxColumn);
                 }
+                //comboBoxColumn.HeaderText = "Choose Option";
+                //comboBoxColumn.Name = "cmbColumn";
             }
             catch (Exception ex)
             {
