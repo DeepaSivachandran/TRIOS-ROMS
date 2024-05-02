@@ -94,8 +94,8 @@ namespace ROMS
                             {
                                 grdPODetails.Columns["ID"].Visible = false;
                             }
-                            grdPODetails.Columns["Product Name"].Width = 250;
-                            grdPODetails.Columns["PI Code"].Width = 120;
+                            grdPODetails.Columns["Product Name"].Width = 400;
+                            grdPODetails.Columns["PI Code"].Width = 150;
                             grdPODetails.Columns["Unit"].Width = 60;
                             grdPODetails.Columns["S.No."].Width = 50;
                             grdPODetails.Columns["PI Code"].DisplayIndex = 2;
@@ -105,7 +105,8 @@ namespace ROMS
                             grdPODetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             if (varFlag != 0)
                             {
-                                grdPODetails.Columns["Expiry Date"].Width = 100;
+                                grdPODetails.Columns["Product Name"].Width = 250;
+                                grdPODetails.Columns["PI Code"].Width = 120;
                                 grdPODetails.Columns["MRP"].Width = 80;
                                 grdPODetails.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdPODetails.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

@@ -5372,9 +5372,11 @@ namespace ROMS
 
                         TRN_PurchaseEntryApproval objTRN_PurchaseEntryApproval = new TRN_PurchaseEntryApproval();
                         objTRN_PurchaseEntryApproval.ViewType = 0;
+                        objTRN_PurchaseEntryApproval.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                         objTRN_PurchaseEntryApproval.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
                         objTRN_PurchaseEntryApproval.paraStatus = varStatus;
                         objTRN_PurchaseEntryApproval.paraINVDate = dpInvoiceDate.Text.Trim();
+                        objTRN_PurchaseEntryApproval.paraPurchaseDate = dpVoucherDate.Text.Trim();
                         objTRN_PurchaseEntryApproval.paraINVNo = txtInvoiceNo.Text.Trim();
                         objTRN_PurchaseEntryApproval.paraRemarks = txtRemarks.Text.Trim();
                         objTRN_PurchaseEntryApproval.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
