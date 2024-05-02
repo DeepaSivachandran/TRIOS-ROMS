@@ -1083,6 +1083,19 @@ namespace ROMS
                             //    }
                             //}
                         }
+
+                        if (varEditFlag == 0)
+                        {
+                            string value = "";
+                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value) == "1")
+                            {
+                                if (Convert.ToBoolean(grdGrnlist.Rows[i].Cells["clmCheck"].Value) == true)
+                                {
+                                    value = Convert.ToString(grdGrnlist.Rows[i].Cells["clmSno"].Value);
+                                }
+                            }
+
+                        }
                     }
                     if (ProCount == 0)
                     {
@@ -1108,7 +1121,7 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
                     }
-                    if (varErrorFlag == true && varQuantityErr==0)
+                    if (varErrorFlag == false && varQuantityErr==10)
                     {
                         if (varEditFlag == 0)
                         {
