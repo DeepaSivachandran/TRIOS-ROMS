@@ -628,7 +628,22 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtMrp.Focus();
+                        if (txtMrp.Enabled == true)
+                        {
+                            txtMrp.Focus();
+                        }
+                        else if (txtDay.Enabled == true)
+                        {
+                            txtDay.Focus();
+                        }
+                        else if (txtBatchNo.Enabled == true)
+                        {
+                            txtBatchNo.Focus();
+                        }
+                        else
+                        {
+                            txtActualQty.Focus();
+                        }
                     }
                 }
             }
@@ -678,7 +693,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDay.Focus();
+                    if(txtDay.Enabled==true)
+                    {
+                        txtDay.Focus();
+                    }
+                    else if (txtBatchNo.Enabled==true)
+                    {
+                        txtBatchNo.Focus();
+                    }
+                    else
+                    {
+                        txtActualQty.Focus();
+                    }
                 }
             }
             catch (Exception ex)

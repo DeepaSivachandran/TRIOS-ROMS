@@ -137,7 +137,7 @@ namespace ROMS
                     dpCreditNoteDate.Visible = false;
                     dpDCreditNoteDate.Visible = false;
                     btnView.Visible = true;
-                    if (varStatusId != 39)
+                    if (varStatusId != 39 && varStatusId!=81)
                     {
                         udfnView();
                     }
@@ -1643,8 +1643,8 @@ namespace ROMS
                                 if (varReturnDCID == 0)
                                 {
                                     varviewtype = 0;
-                                    if (Convert.ToInt32(cmbReason.SelectedValue) == 203)
-                                    {
+                                    //if (Convert.ToInt32(cmbReason.SelectedValue) == 203)
+                                    //{
                                         if (chkCompleted.Checked == true)
                                         {
                                             varStatusId = 15;
@@ -1653,11 +1653,11 @@ namespace ROMS
                                         {
                                             varStatusId = 68;
                                         }
-                                    }
-                                    else
-                                    {
-                                        varStatusId = 68;
-                                    }
+                                    //}
+                                    //else
+                                    //{
+                                        //varStatusId = 68;
+                                    //}
                                     varorginator = "Purchase Return DC insertion";
                                 }
                                 if (varStatusId == 16 || varStatusId==39)
@@ -1689,7 +1689,7 @@ namespace ROMS
                                 {
                                     subtotal = Convert.ToDecimal(txtSubTotal.Text);
                                 }
-                                if (txtTotalTax.Text.Trim() != "")
+                                 if (txtTotalTax.Text.Trim() != "")
                                 {
                                     TotalTax = Convert.ToDecimal(txtTotalTax.Text);
                                 }
@@ -1722,18 +1722,21 @@ namespace ROMS
                                 objTRN_PurchaseReturnDC.paraFlag = varVerifiedflag;
                                 objTRN_PurchaseReturnDC.paraUpdateflag = 0;
                                 objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
-                                if (dtExchangeProducts.Rows.Count != 0)
+                                if (vareditflag==0)
                                 {
-                                    objTRN_PurchaseReturnDC.paraDeleteFlag = 1;
-                                    objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtExchangeProducts;
-                                    objTRN_PurchaseReturnDC.paraExchangeRemarks = varExchangeRemarks;
-                                }
-                                else
-                                {
-                                    if (varReasonforClosingId == 63 || varReasonforClosingId == 205)
+                                    if (dtExchangeProducts.Rows.Count != 0)
                                     {
-                                        MessageBox.Show("Please add atleast one exchange product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                        varErrorFlag = false;
+                                        objTRN_PurchaseReturnDC.paraDeleteFlag = 1;
+                                        objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtExchangeProducts;
+                                        objTRN_PurchaseReturnDC.paraExchangeRemarks = varExchangeRemarks;
+                                    }
+                                    else
+                                    {
+                                        if (varReasonforClosingId == 63 || varReasonforClosingId == 205)
+                                        {
+                                            MessageBox.Show("Please add atleast one exchange product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            varErrorFlag = false;
+                                        }
                                     }
                                 }
                                 SPDataService objspdservice = new SPDataService();
@@ -1796,31 +1799,34 @@ namespace ROMS
                                         {
                                             ReturnDCID = Convert.ToString(varReturnDCID);
                                         }
-                                        DialogResult result1;
-                                        SPDataService objDServ = new SPDataService();
-                                        string varMessage = objDServ.udfnGetMessages(87);
-                                        objDServ.CloseConnection();
-                                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if (result1 == DialogResult.Yes)
-                                        {
-                                            string varHeader = "";
-                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_ReturnDC.rpt");
-                                            varHeader = "Purchase Return DC";
+                                            if (vareditflag==0)
+                                            {
+                                                DialogResult result1;
+                                                SPDataService objDServ = new SPDataService();
+                                                string varMessage = objDServ.udfnGetMessages(87);
+                                                objDServ.CloseConnection();
+                                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                if (result1 == DialogResult.Yes)
+                                                {
+                                                    string varHeader = "";
+                                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_ReturnDC.rpt");
+                                                    varHeader = "Purchase Return DC";
 
-                                            objBillreport.SetParameterValue("paraReturnDCID", Convert.ToInt32(ReturnDCID));
-                                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                            objValidation.CrySqlConnection(objBillreport);
+                                                    objBillreport.SetParameterValue("paraReturnDCID", Convert.ToInt32(ReturnDCID));
+                                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                                    objValidation.CrySqlConnection(objBillreport);
 
-                                            MainForm.objReportLoad = new ReportLoad();
-                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                            MainForm.objReportLoad.Text = varHeader;
-                                            MainForm.objReportLoad.ShowDialog();
-                                        }
+                                                    MainForm.objReportLoad = new ReportLoad();
+                                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                                    MainForm.objReportLoad.Text = varHeader;
+                                                    MainForm.objReportLoad.ShowDialog();
+                                                }
+                                            }
 
                                         udfnClear();      
                                         this.Close();
