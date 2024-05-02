@@ -401,7 +401,12 @@ namespace ROMS
                                                              select g.Key;
                                     int varChildRowNo = Convert.ToInt32( Convert.ToString(Sno) + Convert.ToString(varChildRowCount.Count()));
 
-                                    dtInwardPurchase.Rows.Add(false,Convert.ToInt32(Sno), ConvertType, varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(0), GRN_DC_PUR_ID);
+                                    bool value = false;
+                                    if(Convert.ToBoolean(dgv.Rows[e.RowIndex].Cells["clmCheck"].Value)==true)
+                                    {
+                                        value = true;
+                                    }
+                                    dtInwardPurchase.Rows.Add(value, Convert.ToInt32(Sno), ConvertType, varChildRowNo, Convert.ToInt32(PRID), Convert.ToInt32(UTID), 0, 0, Convert.ToInt32(RKID), ExpiryDate, BatchNo, Convert.ToDecimal(0), GRN_DC_PUR_ID);
 
                                         grdGrnlist.Rows.Add(false, null, " ", PICode, PTName, MRP, ExpiryDate, BatchNo,
                                      PendingQty, ReceivedQty, ShopQty, Unit, Rack, PRID, SLID, RKID, UTID,GRN_DC_PUR_ID,UT_Decimal,RackCount,ConvertType, Convert.ToString(varChildRowNo),0,clmBatchNoStatus,clmBatchNoGeneration,clmShelflifeStatus,clmMRPFlag,clmDisable);
