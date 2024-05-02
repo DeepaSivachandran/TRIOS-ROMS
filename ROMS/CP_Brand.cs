@@ -13,7 +13,7 @@ namespace ROMS
 {
     public partial class CP_Brand : Form
     {
-        DataValidation objValidation = new DataValidation();
+        //DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varbrandcode = 0;
 
