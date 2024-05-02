@@ -1566,8 +1566,8 @@ namespace ROMS
             }
             catch (Exception ex)
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                //objError = new DataError();
+                //objError.WriteFile(ex);
             }
         }
         private void SummaryDetailToolStripMenuItem_Click(object sender, EventArgs e)
