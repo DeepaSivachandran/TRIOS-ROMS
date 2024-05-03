@@ -57,7 +57,6 @@ namespace ROMS
         private Timer timer;
         public string varProducts = "";
         List<int> varProductsIDs = new List<int>();
-        public int PbDataChanged = 0;
         public int varAutocompleteProduct = 0;
         public string varEditPRID = "0";
         public CP_Purchase()
@@ -454,7 +453,7 @@ namespace ROMS
         {
             try
             {
-                pbPONO = "0";
+               // pbPONO = "0";
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
                     if (pbPONO == "0")
@@ -481,7 +480,7 @@ namespace ROMS
         {
             try
             {
-                pbDCNo = "0";
+                //pbDCNo = "0";
                 for (int i = 0; i < grdReurnDC.Rows.Count; i++)
                 {
                     if (pbDCNo == "0")
@@ -507,7 +506,7 @@ namespace ROMS
         {
             try
             {
-                pbGRNNo = "0";
+                //pbGRNNo = "0";
                 if (grdSupplierList.Rows.Count != 0)
                 {
                     pbGRNNo = Convert.ToString(grdSupplierList.Rows[0].Cells["clmTransId"].Value);
@@ -8818,8 +8817,9 @@ namespace ROMS
                                 if (Convert.ToInt32(pbDCNo) == 0)
                                 { grdSupplierList.Rows.Clear(); }
                                 else
-                                { udfnDefGrnGridLoad(); udfnDefReturnDc(); }
-
+                                { //udfnDefGrnGridLoad(); //udfnDefReturnDc();
+                                     }
+                                udfnToalProCount(); udfnProductDetails();
                             }
                             break;
                     }
@@ -9032,8 +9032,9 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    udfnDefGrnGridLoad();
+                                    // udfnDefGrnGridLoad();
                                 }
+                                udfnToalProCount(); udfnProductDetails();
                             }
                             break;
                     }
@@ -10867,7 +10868,6 @@ namespace ROMS
                     varEditPRID = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                     varAutocompleteProduct = 1;
-                    PbDataChanged = 1;
                     udfnProductWiseDetails();
 
                     lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
@@ -11308,7 +11308,8 @@ namespace ROMS
         {
             try
             {
-                if (PbDataChanged == 1)
+
+                if (varEditPRID != "0")
                 {
                     MR_Product objMR_Product = new MR_Product();
                     objMR_Product.paraViewType = 1;
@@ -11490,14 +11491,10 @@ namespace ROMS
             {
                 MainForm.objCP_Items = new CP_Product();
                 MainForm.objCP_Items.varproductcode = Convert.ToInt32(varEditPRID);
-                MainForm.objCP_Items.varMasterType ="1";
-                //MainForm.objCP_Items.PbProDataChange = 1;
+                MainForm.objCP_Items.varMasterType = "1";
                 MainForm.objCP_Items.btnSave.Text = "Update";
                 MainForm.objCP_Items.ShowDialog();
-                if(PbDataChanged == 1)
-                {
-                    udfnProductWiseDetails();
-                }
+                udfnProductWiseDetails();
             }
             catch (Exception ex)
             {
