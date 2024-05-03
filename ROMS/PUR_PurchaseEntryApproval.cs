@@ -18,13 +18,6 @@ namespace ROMS
         DataError objError;
         ToolTip tpconcern = new ToolTip();
         ToolTip tpInvoice = new ToolTip();
-        ToolTip tpDiscountPer = new ToolTip();
-        ToolTip tpbatchno = new ToolTip();
-        ToolTip tpProduct = new ToolTip();
-        ToolTip tpdate = new ToolTip();
-        ToolTip tpRack = new ToolTip();
-        ToolTip tpStockLocation = new ToolTip();
-        ToolTip tpSuppliername = new ToolTip();
         ToolTip tpQRCode = new ToolTip();
         ToolTip tpinvamt = new ToolTip();
         ToolTip tpInvNo = new ToolTip();
@@ -91,10 +84,6 @@ namespace ROMS
                             grdReurnDC.Rows.Clear();
                             txtQRCode.ReadOnly = false;
                             txtQRCode.Enabled = true;
-                            //dpInvoiceDate.Enabled = false;
-                            //txtInvoiceNo.ReadOnly = true;
-                            //txtInvoiceNo.Enabled = false;
-                            // grdGRN.Visible = true;
                             grdReurnDC.Visible = false;
                             grdPODetails.Visible = true;
                             if (grdPODetails.Rows.Count != 0)
@@ -4721,6 +4710,20 @@ namespace ROMS
                 udfnButtonChange();
             }
         }
+
+        private void TxtFrightGrn_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLoadingGrandTotCalculation();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void clear_Click(object sender, EventArgs e)
         {
             try
