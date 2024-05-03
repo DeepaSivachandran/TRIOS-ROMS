@@ -20,6 +20,7 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         public int varUpDownKey = 0;
+        public int varErrQty = 0;
         Boolean BlnSearchImageYN = false;
         public INV_StockTransferQueue()
         {
@@ -1075,6 +1076,7 @@ namespace ROMS
                 objDser.CloseConnection();
                 grdStockTransfer.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
+
             }
             catch (Exception ex)
             {

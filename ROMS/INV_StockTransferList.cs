@@ -32,6 +32,7 @@ namespace ROMS
             {
                 MainForm.objINV_StockTransfer = new INV_StockTransfer();
                 MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
+                MainForm.objINV_StockTransfer.EditFlag = 0;
                 MainForm.objINV_StockTransfer.Show();
             }
             catch (Exception ex)
@@ -384,6 +385,7 @@ namespace ROMS
                             grdStockTransfer.Columns["STRID"].Visible = false;
                             grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["Transfer Qty"].Visible = false;
+                            grdStockTransfer.Columns["STR_TransactionType"].Visible = false;
                             //grdStockTransfer.Columns["Product STSID"].Width = 100;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["clmPrint"].Width = 50;
@@ -1035,6 +1037,7 @@ namespace ROMS
                         MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
                         MainForm.objINV_StockTransfer.varSTSRQID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                         MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objINV_StockTransfer.varTransactionType = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STR_TransactionType"].Value);
                         MainForm.objINV_StockTransfer.Show();
                     }
                 }
