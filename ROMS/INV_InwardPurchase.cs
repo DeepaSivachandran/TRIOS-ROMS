@@ -600,19 +600,10 @@ namespace ROMS
                             cellValue = varTempDay + "/" + varTempMonth + "/" + varTempYear;
                             grdGrnlist.Rows[e.RowIndex].Cells["clmexpirydate"].Value = cellValue;
                         }
-                        if(varGRNPurchaseFlag==1)
+                        if(varCheckDate!="")
                         {
 
                         }
-                        if(varGRNPurchaseFlag==2)
-                        {
-
-                        }
-                        if(varGRNPurchaseFlag==3)
-                        {
-
-                        }
-
                     }
                 }
             }
