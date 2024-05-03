@@ -945,6 +945,7 @@
             this.clmQty.HeaderText = "Qty";
             this.clmQty.Name = "clmQty";
             this.clmQty.ReadOnly = true;
+            this.clmQty.Visible = false;
             // 
             // clmReceivedQty
             // 
