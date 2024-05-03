@@ -627,7 +627,7 @@ namespace ROMS
                             rbPurchaseCredit.Checked = true;
                             rbPaymentCheque.Checked = true;
                         }
-                        if (varGRNPaymentType == "199")
+                        if (varGRNPaymentType == "199") //None
                         {
                             gpPurchase.Enabled = true;
                             gpPayment.Enabled = true;
@@ -4322,7 +4322,7 @@ namespace ROMS
                                 cmbrack.BackColor = Color.White;
                                 string[] varpono = cmbPONo.Text.Split('~');
                                 string productCode = "0", varRackCount = "0", varRackId = "0";
-                                double varGrnMrp = 0;int invFlag = 0;
+                                decimal varGrnMrp = 0;int invFlag = 0;
                                 productCode = lblProductcode.Text;
                                 //varPrid = productCode;
                                 if (cmbrack.Enabled == true)
@@ -4337,9 +4337,9 @@ namespace ROMS
                                     varRackCount = "0";
                                     varRackId = "0";
                                 }
-                                if (cmbEntryType.SelectedValue.ToString() == "55") // PO
+                                if (cmbEntryType.SelectedValue.ToString() == "54") // PO
                                 {
-                                    varGrnMrp = 0;
+                                    varGrnMrp = Convert.ToDecimal(txtGRNMrp.Text.Trim());
                                 }
                                 var maxSno = 0;
                                 if(Convert.ToString(cmbPONo.SelectedValue) == "220" || varPrInvFlag=="1") //Dc type -- Inward Received
@@ -6209,6 +6209,49 @@ namespace ROMS
                         {
                             grdSupplierList.ReadOnly = false;
                             grdPurchaseList.ReadOnly = false;
+
+                            grdSupplierList.Columns["clmPicode"].ReadOnly = true;
+                            grdSupplierList.Columns["clmProTname"].ReadOnly = true;
+                            grdSupplierList.Columns["clmUnit"].ReadOnly = true;
+                            grdSupplierList.Columns["clmGrnMrp"].ReadOnly = true;
+                            grdSupplierList.Columns["clmMRP"].ReadOnly = true;
+                            grdSupplierList.Columns["clmexpirydate"].ReadOnly = true;
+                            grdSupplierList.Columns["clmShelflife"].ReadOnly = true;
+                            grdSupplierList.Columns["clmactuallife"].ReadOnly = true;
+                            grdSupplierList.Columns["clmshelfper"].ReadOnly = true;
+                            grdSupplierList.Columns["clmBatchno"].ReadOnly = true;
+                            grdSupplierList.Columns["clmLocation"].ReadOnly = true;
+                            grdSupplierList.Columns["clmrack"].ReadOnly = true;
+
+                            grdPurchaseList.Columns["sno"].ReadOnly = true;
+                            grdPurchaseList.Columns["picode"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmProductName"].ReadOnly = true;
+                            grdPurchaseList.Columns["clminvMRP"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmExpdate"].ReadOnly = true;
+                            grdPurchaseList.Columns["clminvoiceBatch"].ReadOnly = true;
+                            grdPurchaseList.Columns["clminvLocation"].ReadOnly = true;
+                            grdPurchaseList.Columns["clminvRack"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmHSN"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmInvQty"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmRecqty"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmDiffqty"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmFreeqty"].ReadOnly = true;
+                            grdPurchaseList.Columns["unit"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmPurchaseRate"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmDiscAmt"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmDiscPer"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmTax"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmGstper"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmGstamt"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmCGST"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmCGSTamt"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmSGST"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmSGSTamt"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmIGST"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmIGSTamt"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmDiscountValue"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmnetamt"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmCosting"].ReadOnly = true;
                         }
                     }
 
@@ -8135,6 +8178,19 @@ namespace ROMS
             }
         }
 
+        private void TxtFrightGrn_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLoadingGrandTotCalculation();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtRemarks_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -8540,6 +8596,13 @@ namespace ROMS
                     grdPurchaseList.Columns["clmPurchaseRate"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdPurchaseList.Columns["clmDiscAmt"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdPurchaseList.Columns["clmDiscPer"].DefaultCellStyle.BackColor = Color.LightGray;
+
+                    grdPurchaseList.Columns["clmInvQty"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmRecqty"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmFreeqty"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmPurchaseRate"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmDiscAmt"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmDiscPer"].ReadOnly = true;
                 }
             }
             catch (Exception ex)
