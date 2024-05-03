@@ -303,7 +303,6 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 objDT = objdserv.udfnStockTransferList(6,0,0,0,0,0,0,"","",0,0);
                 objdserv.CloseConnection();
-                //objdserv.DataSource = null;
                 if (objDT != null)
                 {
                     if (objDT.Tables.Count > 0)
