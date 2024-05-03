@@ -950,6 +950,7 @@
             this.clmQty.HeaderText = "Qty";
             this.clmQty.Name = "clmQty";
             this.clmQty.ReadOnly = true;
+            this.clmQty.Visible = false;
             this.clmQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmReceivedQty

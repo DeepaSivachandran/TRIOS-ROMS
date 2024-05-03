@@ -55,7 +55,6 @@ namespace ROMS
         private ToolTip tpMxstock = new ToolTip();
         private ToolTip tpUPP = new ToolTip();
 
-        public int PbProDataChange = 0;
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varMasterType = "0", varSalesRack="",varBrandName="", varRackDescription="", varEname = "",varGRNid="0",varNewproid="0";
         public CP_Product()
@@ -1002,17 +1001,8 @@ namespace ROMS
                             varupdate = "1";
                             this.Close();
                         }
-                        else if (varMasterType == "2")
+                        else if(varMasterType != "0")
                         {
-                            MainForm.objPUR_GRNDetails.PbDataChanged = 1;
-                            MainForm.objPUR_GRNDetails.varEditPRID = Convert.ToString(varproductcode);
-                            varupdate = "1";
-                            this.Close();
-                        }
-                        else if (varMasterType == "3")
-                        {
-                            MainForm.objPUR_PurchaseDC.PbDataChanged = 1;
-                            MainForm.objPUR_PurchaseDC.varEditPRID = Convert.ToString(varproductcode);
                             varupdate = "1";
                             this.Close();
                         }
