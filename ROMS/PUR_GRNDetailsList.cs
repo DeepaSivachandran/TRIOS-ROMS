@@ -239,7 +239,7 @@ namespace ROMS
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Purchase Returns"].Width = 150;
                             grdGRNList.Columns["GRN Status"].Width = 130;
-                            grdGRNList.Columns["Overall Status"].Width = 350;
+                            grdGRNList.Columns["Overall Status"].Width = 250;
                             grdGRNList.Columns["GRNID"].Visible = false;
                             //grdGRNList.Columns["NewSts"].Visible = false;
                             grdGRNList.Columns["GRN_SPSCID"].Visible = false;

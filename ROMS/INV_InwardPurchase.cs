@@ -24,6 +24,8 @@ namespace ROMS
         ToolTip tpInwardNo = new ToolTip();
         bool varVoucherSkip = false;
         public int varClose = 0, varDateChange = 0, varPurchaseStatus = 0,varQuantityErr=0;
+        public string varCheckDate = "";
+
         public INV_InwardPurchase()
         {
             InitializeComponent();
@@ -598,6 +600,19 @@ namespace ROMS
                             cellValue = varTempDay + "/" + varTempMonth + "/" + varTempYear;
                             grdGrnlist.Rows[e.RowIndex].Cells["clmexpirydate"].Value = cellValue;
                         }
+                        if(varGRNPurchaseFlag==1)
+                        {
+
+                        }
+                        if(varGRNPurchaseFlag==2)
+                        {
+
+                        }
+                        if(varGRNPurchaseFlag==3)
+                        {
+
+                        }
+
                     }
                 }
             }
@@ -1719,6 +1734,7 @@ namespace ROMS
                                     txtDGRNDate.Text = "GRN Date";
                                     txtDGRNNo.Text = "GRN No.";
                                     dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
+                                    varCheckDate = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
                                     txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_No"]);
                                     txtVerifiedby1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 1"]);
                                     txtVerifiedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Verified BY 2"]);
@@ -1735,6 +1751,7 @@ namespace ROMS
                                         txtDGRNDate.Text = "GRN Date";
                                         txtDGRNNo.Text = "GRN No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
+                                        varCheckDate = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_No"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN User"]);
                                     }
@@ -1743,12 +1760,14 @@ namespace ROMS
                                         txtDGRNDate.Text = "PO Date";
                                         txtDGRNNo.Text = "PO No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PO_Date"]);
+                                        varCheckDate = Convert.ToString(objDs.Tables[0].Rows[0]["PO_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PO_No"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PO User"]);
                                     }
                                     if(PurEntryType=="56") // Direct Purchase
                                     {
                                         lblStatusValue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR STS"]);
+                                        varCheckDate = Convert.ToString(objDs.Tables[0].Rows[0]["[PUR Date]"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR User"]);
                                     }
                                     if (PurEntryType == "57") // Against DC
@@ -1756,6 +1775,7 @@ namespace ROMS
                                         txtDGRNDate.Text = "DC Date";
                                         txtDGRNNo.Text = "DC No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Date"]);
+                                        varCheckDate = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Date"]);
                                         txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_No"]);
                                         textBox5.Text = "DC Created by";
                                         txtVerifiedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC User"]);
@@ -1772,6 +1792,7 @@ namespace ROMS
                                     txtDGRNDate.Text = "DC Date";
                                     txtDGRNNo.Text = "DC No.";
                                     dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Date"]);
+                                    varCheckDate = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Date"]);
                                     txtGRNNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC_No"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DC User"]);
                                     grdGrnlist.Columns["clmQty"].HeaderText = Quantity;

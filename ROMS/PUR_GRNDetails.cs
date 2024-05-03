@@ -104,6 +104,7 @@ namespace ROMS
                     tss1.Visible = true;
                     tss2.Visible = true;
                 }
+                udfnGeneralSettingsList();
             }
             catch (Exception ex)
             {
@@ -776,7 +777,7 @@ namespace ROMS
                             varErrorFormat = 1;
                         }
                     }
-                    if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text))> varDVA && varSupplierType==32)
+                    if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text))> varDVA)
                     {
                         if (lblVerifiedBy1.Text == "" || lblVerifiedBy2.Text == "")
                         {
