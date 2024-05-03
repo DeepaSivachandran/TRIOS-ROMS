@@ -295,6 +295,39 @@ namespace ROMS
             {
             }
         }
+        public void udfnStatus()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnStockTransferList(6,0,0,0,0,0,0,"","",0,0);
+                objdserv.CloseConnection();
+                //objdserv.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+                            comboBoxColumn.ValueMember = "ID";
+                            comboBoxColumn.DisplayMember = "Status";
+                            comboBoxColumn.DataSource = objDT.Tables[0];
+                            grdStockTransfer.Columns.Add(comboBoxColumn);
+                            comboBoxColumn.V = "Status";
+                            grdStockTransfer.Columns[19].HeaderText = "Status";
+                            grdStockTransfer.Columns[19].DisplayIndex = 18;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnEdit()
         {
             try
@@ -2772,6 +2805,39 @@ namespace ROMS
             }
         }
 
+        private void GrdStockTransfer_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            try
+            {
+                e.Cancel = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockTransfer_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //string val = grdStockTransfer.Columns[e.ColumnIndex].Name;
+                //if (grdStockTransfer.Columns[e.ColumnIndex].Name=="Status")
+                //{
+                //    // Handle the value change here
+                //    var selectedValue = grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                //    // Do something with the selected value
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        
+        }
+
         private void ChkStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2809,16 +2875,9 @@ namespace ROMS
                         cell.Style.ForeColor = Color.Black;
                         cell.ReadOnly = false;
                     }
-                    DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-                    comboBoxColumn.Items.Add("Option 1");
-                    comboBoxColumn.Items.Add("Option 2");
-                    comboBoxColumn.Items.Add("Option 3");
-                    DataGridView dataGridView1 = (DataGridView)sender;
-                    DataGridViewCell cell1 = dataGridView1.Rows[i].Cells["clmStatus"];
-                    dataGridView1.Columns.Add(comboBoxColumn);
+                    udfnStatus();
                 }
-                //comboBoxColumn.HeaderText = "Choose Option";
-                //comboBoxColumn.Name = "cmbColumn";
+
             }
             catch (Exception ex)
             {
