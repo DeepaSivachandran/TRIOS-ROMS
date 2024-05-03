@@ -4218,7 +4218,13 @@ namespace ROMS
                     DataSet objDS = new DataSet();
                     if (varExpiryDate != "")
                     {
-                        objDS = objDServ.udfnMaster(7, 0, 0, dpVoucherDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
+                        string vardate = "";
+                        if (Convert.ToString(cmbPONo.SelectedValue) != "218")
+                        {
+                            vardate = varGRNDate;
+                        }
+                        else { vardate = varVoucherDate; }
+                        objDS = objDServ.udfnMaster(7, 0, 0, vardate, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
                         objDServ.CloseConnection();
                         if (expirydateFlag == 1)
                         {
@@ -4861,9 +4867,13 @@ namespace ROMS
                     //varTempMonth = DMY[1];
                     varTempExpiryDate = cellValue.ToString();
                 }
-                int varInvFlag = 0;
+                int varInvFlag = 0; string varDate = "";
                 varProid = Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmProid"].Value);
-                objDS = objDServ.udfnMaster(10, 0, 0, dpVoucherDate.Text.Trim(), varTempExpiryDate, varProid, "", 0);
+                if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == "218")
+                { varDate = varGRNDate; }
+                else { varDate = varVoucherDate; }
+                //objDS = objDServ.udfnMaster(10, 0, 0, dpVoucherDate.Text.Trim(), varTempExpiryDate, varProid, "", 0);
+                objDS = objDServ.udfnMaster(10, 0, 0, varDate, varTempExpiryDate, varProid, "", 0);
                 objDServ.CloseConnection();
                 //for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 //{
@@ -4911,10 +4921,10 @@ namespace ROMS
                                                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                                }
+                                                //else
+                                                //{
+                                                //    grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                //}
                                             }
                                             else
                                             {
@@ -7996,11 +8006,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.F10)
                 {
-                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProTname" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmPicode")
+                    if (Convert.ToString(grdSupplierList.CurrentRow.Cells["clmid"].Value) != "220" && Convert.ToString(grdSupplierList.CurrentRow.Cells["clmInvFlag"].Value) != "1")
                     {
-                        varEditPRID = Convert.ToString(grdSupplierList.CurrentRow.Cells["clmProid"].Value);
-                        varAutocompleteProduct = 2;
-                        udfnProDataChange();
+                        if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProTname" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmPicode")
+                        {
+                            varEditPRID = Convert.ToString(grdSupplierList.CurrentRow.Cells["clmProid"].Value);
+                            varAutocompleteProduct = 2;
+                            udfnProDataChange();
+                        }
                     }
                 }
             }
@@ -10702,7 +10715,10 @@ namespace ROMS
                 {
                     varEditPRID = lblProductcode.Text;
                     varAutocompleteProduct = 1;
-                    udfnProDataChange();
+                    if (varPrInvFlag != "1" && Convert.ToString(cmbPONo.SelectedValue) != "220")
+                    {
+                        udfnProDataChange();
+                    }
                 }
             }
             catch (Exception ex)
