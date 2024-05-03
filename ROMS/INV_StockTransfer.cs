@@ -293,6 +293,7 @@ namespace ROMS
             }
             finally
             {
+                udfnStatus();
             }
         }
         public void udfnStatus()
@@ -309,14 +310,14 @@ namespace ROMS
                     {
                         if (objDT.Tables[0].Rows.Count > 0)
                         {
+                            var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdStockTransfer.Columns["Status"];
                             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-                            comboBoxColumn.ValueMember = "ID";
-                            comboBoxColumn.DisplayMember = "Status";
-                            comboBoxColumn.DataSource = objDT.Tables[0];
-                            grdStockTransfer.Columns.Add(comboBoxColumn);
-                            comboBoxColumn.V = "Status";
-                            grdStockTransfer.Columns[19].HeaderText = "Status";
-                            grdStockTransfer.Columns[19].DisplayIndex = 18;
+                            varComboBoxColoumn.ValueMember = "ID";
+                            varComboBoxColoumn.DisplayMember = "Status";
+                            varComboBoxColoumn.DataSource = objDT.Tables[0];
+                         //   comboBoxColumn.V = "Status";
+                            //grdStockTransfer.Columns[19].HeaderText = "Status";
+                            //grdStockTransfer.Columns[19].DisplayIndex = 18;
                         }
                     }
                 }
@@ -2606,38 +2607,41 @@ namespace ROMS
         {
             try
             {
-                decimal TransferQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmquantity"].Value);
-                decimal StockQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmStockQty"].Value);
+                if (grdStockTransfer.CurrentCell.OwningColumn.Name == "Transfer Qty")
+                {
+                    decimal TransferQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmquantity"].Value);
+                    decimal StockQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmStockQty"].Value);
 
-                if (Convert.ToDecimal(TransferQty) > Convert.ToDecimal(StockQty))
-                {
-                    //grdStockTransfer.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
-                    grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    varErrQty = "1";
-                }
-                else if (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == "")
-                {
-                    grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(89);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    varErrQty = "1";
-                }
-                else
-                {
-                    grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
-                    varErrQty = "0";
-                }
-                int varDecimal = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmUnitDecimal"].Value);
+                    if (Convert.ToDecimal(TransferQty) > Convert.ToDecimal(StockQty))
+                    {
+                        //grdStockTransfer.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
+                        grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        //grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        varErrQty = "1";
+                    }
+                    else if (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == "")
+                    {
+                        grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrQty = "1";
+                    }
+                    else
+                    {
+                        grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
+                        varErrQty = "0";
+                    }
+                    int varDecimal = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmUnitDecimal"].Value);
 
                     string Qty = objValidation.udfnDecimal(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), varDecimal);
                     grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Qty;
 
-                object varEditQty = grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                // Update the same column value in the DataTable
-                dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
+                    object varEditQty = grdStockTransfer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    // Update the same column value in the DataTable
+                    dtStock.Rows[e.RowIndex]["STK_QTY"] = varEditQty;
+                }
 
             }
             catch (Exception ex)
@@ -2874,7 +2878,6 @@ namespace ROMS
                         cell.Style.ForeColor = Color.Black;
                         cell.ReadOnly = false;
                     }
-                    udfnStatus();
                 }
 
             }
@@ -2885,7 +2888,6 @@ namespace ROMS
             }
             finally
             {
-
             }
         } 
         private void GrdStockTransfer_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
