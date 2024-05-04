@@ -1334,5 +1334,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void TsbEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_Purchase = new CP_Purchase();
+                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                MainForm.objCP_Purchase.pbPurchaseEntryUnapprovedFlag = 1;
+                MainForm.objCP_Purchase.pbUnapprovePURID = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                MainForm.objCP_Purchase.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

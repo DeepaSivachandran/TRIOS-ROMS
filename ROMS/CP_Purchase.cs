@@ -58,7 +58,7 @@ namespace ROMS
         private Timer timer;
         public string varProducts = "";
         List<int> varProductsIDs = new List<int>();
-        public int varAutocompleteProduct = 0;
+        public int varAutocompleteProduct = 0, pbPurchaseEntryUnapprovedFlag=0,pbUnapprovePURID=0;
         public string varEditPRID = "0";
         public CP_Purchase()
         {
@@ -936,6 +936,13 @@ namespace ROMS
                     {
                         btnSave.Enabled = true;
                     }
+                    if (pbPurchaseEntryUnapprovedFlag == 1)
+                    {
+                        //pbPurchaseno = Convert.ToString(pbUnapprovePURID);
+                       // udfnEditLoad();
+                        udfndisablevalue();
+                        btnSave.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1427,7 +1434,7 @@ namespace ROMS
                 txtBroker.Enabled = false;
                 tbDetails.TabPages[0].Enabled = true;
                 chkInvoice.Enabled = false;
-                if (PbSTS == "50" || varPurEditFlag==1)  
+                if (PbSTS == "50" || varPurEditFlag==1 || pbPurchaseEntryUnapprovedFlag==1)  
                 {
                     tbDetails.TabPages[0].Enabled = true;
                     tbDetails.TabPages[1].Enabled = true;
