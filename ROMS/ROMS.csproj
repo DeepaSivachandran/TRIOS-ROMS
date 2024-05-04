@@ -171,6 +171,7 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_Status.cs" />
     <Compile Include="PAY_Advance.cs">
       <SubType>Form</SubType>
     </Compile>

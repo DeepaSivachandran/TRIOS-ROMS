@@ -386,7 +386,7 @@ namespace ROMS
                             grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["Transfer Qty"].Visible = false;
                             grdStockTransfer.Columns["STR_TransactionType"].Visible = false;
-                            //grdStockTransfer.Columns["Product STSID"].Width = 100;
+                           //grdStockTransfer.Columns["Product STSID"].Width = 100;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["clmPrint"].Width = 50;
                             grdStockTransfer.Columns["Status"].Width = 120;
@@ -1069,6 +1069,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
                 dtStock.Columns.Add("STK_ProType", typeof(int));
+                dtStock.Columns.Add("STK_STSID", typeof(int));
                 if (grdStockTransfer.SelectedRows.Count > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
