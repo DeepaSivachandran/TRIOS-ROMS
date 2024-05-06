@@ -942,6 +942,17 @@ namespace ROMS
                        // udfnEditLoad();
                         udfndisablevalue();
                         btnSave.Visible = false;
+                        btnUnapprove.Visible = true;
+                        tbDetails.TabPages[0].Enabled = true;
+                        tbDetails.TabPages[1].Enabled = true;
+                        tbDetails.TabPages[2].Enabled = false;
+                        grdSupplierList.ReadOnly = true;
+                        grdPurchaseList.ReadOnly = true;
+                        btnClear.Enabled = false;
+                        txtInvoiceamt.ReadOnly = true; txtInvoiceamt.Enabled = false;
+                        txtInvoiceNo.ReadOnly = true; txtInvoiceNo.Enabled = false;
+                        grdSupplierList.Columns["clmRemove"].Visible = false;
+                        tspHeader.Text = "Purchase Entry Unapproved Process";
                     }
                 }
             }
@@ -7975,6 +7986,61 @@ namespace ROMS
             }
         }
 
+        private void BtnUnapprove_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnapprove.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnapprove_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnapprove.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnapprove_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    MainForm.objPUR_PurchaseEntryApprovedList.udfnUnapprove(Convert.ToInt32(pbPurchaseno));
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnapprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                 MainForm.objPUR_PurchaseEntryApprovedList.udfnUnapprove(Convert.ToInt32(pbPurchaseno));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtOtherdiscount_Leave(object sender, EventArgs e)
         {
             try
@@ -8441,7 +8507,7 @@ namespace ROMS
         {
             try
             {
-                if(PbSTS=="50")
+                if(PbSTS=="50" ||  pbPurchaseEntryUnapprovedFlag==1)
                 {
                     grdPurchaseList.Columns["clmInvQty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdPurchaseList.Columns["clmRecqty"].DefaultCellStyle.BackColor = Color.LightGray;
@@ -10492,7 +10558,7 @@ namespace ROMS
                         grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
                         grdSupplierList.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
                     }
-                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) =="220" || PbSTS=="50" )
+                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) =="220" || PbSTS=="50" || pbPurchaseEntryUnapprovedFlag==1)
                     {
                         grdSupplierList.Rows[i].ReadOnly = true;
                         grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
