@@ -2040,7 +2040,7 @@ namespace ROMS
         {
             try
             {
-                errStockTransfer.Clear(); varErrQty = "0";
+                errStockTransfer.Clear(); 
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
@@ -2664,10 +2664,10 @@ namespace ROMS
                 if ((Convert.ToDecimal(Quantity) == 0 && Convert.ToInt32(Status)==21) || (Convert.ToDecimal(Quantity) != 0 && Status==80))
                 {
                     grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(89);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //SPDataService objDServ = new SPDataService();
+                    //string varMessage = objDServ.udfnGetMessages(89);
+                    //objDServ.CloseConnection();
+                    //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     varErrQty = "1";
                 }
                 else

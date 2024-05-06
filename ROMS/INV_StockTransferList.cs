@@ -450,8 +450,10 @@ namespace ROMS
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["STRID"].Visible = false;
                 DGV_SearchGrid.Columns["Product STSID"].Visible = false;
+                DGV_SearchGrid.Columns["STR_TransactionType"].Visible = false;
                 DGV_SearchGrid.Columns["Transfer Qty"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Transaction Type"].Width = 150;
                 DGV_SearchGrid.Columns["Status"].Width = 120;
                 DGV_SearchGrid.Columns["Source"].Width = 120;
                 DGV_SearchGrid.Columns["SRQID"].Visible = false;

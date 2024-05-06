@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -426,7 +427,7 @@ namespace ROMS
                     txtAmount.BackColor = Color.White;
                 }
                 txtAmount.BackColor = Color.White;
-                txtAmount.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                //txtAmount.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
                 //udfnCheckAmt();
                 if (txtAmount.Text.Trim() != "")
                 {
@@ -516,7 +517,11 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(cmbBank.SelectedValue) == 224)
+                DateTime ChequeDateTime =DateTime.ParseExact(dpDate.Text, "dd/MM/yyyy", null);
+                string chequeDate = ChequeDateTime.ToString("ddMMyyyy");
+                int totalAmt = Convert.ToInt32(txtAmount.Text);
+                string FinalAmnt = totalAmt.ToString("#,##0");
+                if (Convert.ToInt32(cmbBank.SelectedValue) == 224)
                 {
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
@@ -524,18 +529,37 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "Reports\\RPT_TMB.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TMB.rpt");
                     objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
                     objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                    objBillreport.SetParameterValue("paraAmount", txtAmount.Text);
-                    objBillreport.SetParameterValue("paraChequeDate", dpDate.Text);
+                    objBillreport.SetParameterValue("paraAmount", FinalAmnt);
+                    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
                     MainForm.objReportLoad = new ReportLoad();
                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                     //MainForm.objReportLoad.Text = varHeader;
-                    MainForm.objReportLoad.ShowDialog();
+                    //MainForm.objReportLoad.ShowDialog();
+                }
+                else if(Convert.ToInt32(cmbBank.SelectedValue) == 225)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_HDFC.rpt");
+                    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
+                    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                    objBillreport.SetParameterValue("paraAmount", FinalAmnt);
+                    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                 }
             }
             catch (Exception ex)
