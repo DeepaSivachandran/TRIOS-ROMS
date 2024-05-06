@@ -58,7 +58,7 @@ namespace ROMS
         private Timer timer;
         public string varProducts = "";
         List<int> varProductsIDs = new List<int>();
-        public int varAutocompleteProduct = 0;
+        public int varAutocompleteProduct = 0, pbPurchaseEntryUnapprovedFlag=0,pbUnapprovePURID=0;
         public string varEditPRID = "0";
         public CP_Purchase()
         {
@@ -935,6 +935,24 @@ namespace ROMS
                     {
                         btnSave.Enabled = true;
                     }
+                    if (pbPurchaseEntryUnapprovedFlag == 1)
+                    {
+                        //pbPurchaseno = Convert.ToString(pbUnapprovePURID);
+                       // udfnEditLoad();
+                        udfndisablevalue();
+                        btnSave.Visible = false;
+                        btnUnapprove.Visible = true;
+                        tbDetails.TabPages[0].Enabled = true;
+                        tbDetails.TabPages[1].Enabled = true;
+                        tbDetails.TabPages[2].Enabled = false;
+                        grdSupplierList.ReadOnly = true;
+                        grdPurchaseList.ReadOnly = true;
+                        btnClear.Enabled = false;
+                        txtInvoiceamt.ReadOnly = true; txtInvoiceamt.Enabled = false;
+                        txtInvoiceNo.ReadOnly = true; txtInvoiceNo.Enabled = false;
+                        grdSupplierList.Columns["clmRemove"].Visible = false;
+                        tspHeader.Text = "Purchase Entry Unapproved Process";
+                    }
                 }
             }
             catch (Exception ex)
@@ -1426,7 +1444,7 @@ namespace ROMS
                 txtBroker.Enabled = false;
                 tbDetails.TabPages[0].Enabled = true;
                 chkInvoice.Enabled = false;
-                if (PbSTS == "50" || varPurEditFlag==1)  
+                if (PbSTS == "50" || varPurEditFlag==1 || pbPurchaseEntryUnapprovedFlag==1)  
                 {
                     tbDetails.TabPages[0].Enabled = true;
                     tbDetails.TabPages[1].Enabled = true;
@@ -7967,6 +7985,61 @@ namespace ROMS
             }
         }
 
+        private void BtnUnapprove_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnapprove.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnapprove_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnapprove.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnapprove_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    MainForm.objPUR_PurchaseEntryApprovedList.udfnUnapprove(Convert.ToInt32(pbPurchaseno));
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnapprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                 MainForm.objPUR_PurchaseEntryApprovedList.udfnUnapprove(Convert.ToInt32(pbPurchaseno));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtOtherdiscount_Leave(object sender, EventArgs e)
         {
             try
@@ -8433,7 +8506,7 @@ namespace ROMS
         {
             try
             {
-                if(PbSTS=="50")
+                if(PbSTS=="50" ||  pbPurchaseEntryUnapprovedFlag==1)
                 {
                     grdPurchaseList.Columns["clmInvQty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdPurchaseList.Columns["clmRecqty"].DefaultCellStyle.BackColor = Color.LightGray;
@@ -10484,7 +10557,7 @@ namespace ROMS
                         grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
                         grdSupplierList.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
                     }
-                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) =="220" || PbSTS=="50" )
+                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) =="220" || PbSTS=="50" || pbPurchaseEntryUnapprovedFlag==1)
                     {
                         grdSupplierList.Rows[i].ReadOnly = true;
                         grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;

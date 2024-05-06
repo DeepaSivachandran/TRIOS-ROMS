@@ -204,12 +204,13 @@ namespace ROMS
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
-                MainForm.objPUR_PurchaseEntryApproval = new PUR_PurchaseEntryApproval();
-                MainForm.objPUR_PurchaseEntryApproval.PbSTS = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["STSID"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryApproval.Show();
+                MainForm.objCP_Purchase = new CP_Purchase();
+                MainForm.objCP_Purchase.pbPurchaseEntryUnapprovedFlag = 1;
+                MainForm.objCP_Purchase.pbUnapprovePURID = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                //MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
+                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                MainForm.objCP_Purchase.Show();
             }
             catch (Exception ex)
             {
@@ -366,7 +367,6 @@ namespace ROMS
         {
             try
             {
-                
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
@@ -1266,7 +1266,42 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnUnapprove(int varPurchaseID)
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(121);
+                objDServ.CloseConnection();
+                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string varorginator = "Purchase Unapproved", result = "";
+                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                    objTRN_PurchaseEntry.ViewType = 5;
+                    objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                    objTRN_PurchaseEntry.paraOriginator = varorginator;
+                    //objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                    objTRN_PurchaseEntry.paraPurchaseId = varPurchaseID;
+                    SPDataService objspdservice = new SPDataService();
+                    result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                    objspdservice.CloseConnection();
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnList();
+                    }
+                    else { MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void GrdPurchaseEntryApproval_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1276,38 +1311,8 @@ namespace ROMS
                     switch (grdPurchaseEntryApproval.Columns[e.ColumnIndex].Name)
                     {
                         case "clmUnapproved":
-                            try
-                            {
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(121);
-                                objDServ.CloseConnection();
-                                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (dialogResult == DialogResult.Yes)
-                                {
-                                    string varorginator = "Purchase Unapproved",result = "";
-                                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                                    objTRN_PurchaseEntry.ViewType = 5;
-                                    objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                                    objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
-                                    objTRN_PurchaseEntry.paraOriginator = varorginator;
-                                    objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
-                                    SPDataService objspdservice = new SPDataService();
-                                    result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
-                                    objspdservice.CloseConnection();
-                                    string[] varvalue = result.Split('~');
-                                    if (varvalue[0] == "3")
-                                    {
-                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
-                                    }
-                                    else { MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                objError = new DataError();
-                                objError.WriteFile(ex);
-                            }
+                            int varPurchaseId= Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                            udfnUnapprove(varPurchaseId);
                             break;
                     }
                 }
@@ -1327,6 +1332,18 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsbEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
             }
             catch (Exception ex)
             {
