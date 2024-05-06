@@ -511,5 +511,38 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnPreview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Convert.ToInt32(cmbBank.SelectedValue) == 224)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "Reports\\RPT_TMB.rpt");
+                    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
+                    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                    objBillreport.SetParameterValue("paraAmount", txtAmount.Text);
+                    objBillreport.SetParameterValue("paraChequeDate", dpDate.Text);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    //MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

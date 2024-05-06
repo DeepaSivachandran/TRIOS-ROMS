@@ -34,6 +34,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlSupplierMapping = new System.Windows.Forms.Panel();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
+            this.lblAmount = new System.Windows.Forms.Label();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.lblReturn = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@
             this.lblsupplierGST = new System.Windows.Forms.Label();
             this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.grbgodown = new System.Windows.Forms.GroupBox();
+            this.cmbBank = new System.Windows.Forms.ComboBox();
             this.btnPreview = new System.Windows.Forms.Button();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.lblDAmount = new System.Windows.Forms.Label();
@@ -60,8 +62,7 @@
             this.lblSupplier = new System.Windows.Forms.Label();
             this.lblChequeDate = new System.Windows.Forms.Label();
             this.epCheque = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbBank = new System.Windows.Forms.ComboBox();
-            this.lblAmount = new System.Windows.Forms.Label();
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -118,19 +119,31 @@
             // grpSupplierMapping
             // 
             this.grpSupplierMapping.BackColor = System.Drawing.Color.White;
+            this.grpSupplierMapping.Controls.Add(this.LV_Supplier);
+            this.grpSupplierMapping.Controls.Add(this.RPTViewer);
             this.grpSupplierMapping.Controls.Add(this.lblAmount);
             this.grpSupplierMapping.Controls.Add(this.lblschedule);
             this.grpSupplierMapping.Controls.Add(this.lblSupplierCode);
             this.grpSupplierMapping.Controls.Add(this.lblReturn);
-            this.grpSupplierMapping.Controls.Add(this.LV_Supplier);
             this.grpSupplierMapping.Controls.Add(this.grpAmountInWords);
             this.grpSupplierMapping.Controls.Add(this.groupBox2);
             this.grpSupplierMapping.Controls.Add(this.grbgodown);
             this.grpSupplierMapping.Location = new System.Drawing.Point(7, 1);
             this.grpSupplierMapping.Name = "grpSupplierMapping";
-            this.grpSupplierMapping.Size = new System.Drawing.Size(1339, 633);
+            this.grpSupplierMapping.Size = new System.Drawing.Size(1339, 641);
             this.grpSupplierMapping.TabIndex = 958765;
             this.grpSupplierMapping.TabStop = false;
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Location = new System.Drawing.Point(741, 37);
+            this.lblAmount.MaximumSize = new System.Drawing.Size(280, 0);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(51, 20);
+            this.lblAmount.TabIndex = 1111228;
+            this.lblAmount.Text = "Amount";
+            this.lblAmount.Visible = false;
             // 
             // lblschedule
             // 
@@ -215,9 +228,9 @@
             this.groupBox2.Controls.Add(this.lblsupplierGST);
             this.groupBox2.Controls.Add(this.lblsupplierpayment);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.groupBox2.Location = new System.Drawing.Point(1037, 13);
+            this.groupBox2.Location = new System.Drawing.Point(1031, 13);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(300, 122);
+            this.groupBox2.Size = new System.Drawing.Size(306, 122);
             this.groupBox2.TabIndex = 1111223;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Details";
@@ -313,6 +326,18 @@
             this.grbgodown.TabIndex = 958806;
             this.grbgodown.TabStop = false;
             // 
+            // cmbBank
+            // 
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(268, 36);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(107, 27);
+            this.cmbBank.TabIndex = 1;
+            this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
+            this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
+            this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);
+            this.cmbBank.Leave += new System.EventHandler(this.CmbBank_Leave);
+            // 
             // btnPreview
             // 
             this.btnPreview.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -325,6 +350,7 @@
             this.btnPreview.Text = "Preview";
             this.btnPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Click += new System.EventHandler(this.BtnPreview_Click);
             // 
             // txtAmount
             // 
@@ -401,28 +427,18 @@
             // 
             this.epCheque.ContainerControl = this;
             // 
-            // cmbBank
+            // RPTViewer
             // 
-            this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(268, 36);
-            this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(107, 27);
-            this.cmbBank.TabIndex = 1;
-            this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
-            this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
-            this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);
-            this.cmbBank.Leave += new System.EventHandler(this.CmbBank_Leave);
-            // 
-            // lblAmount
-            // 
-            this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(741, 37);
-            this.lblAmount.MaximumSize = new System.Drawing.Size(280, 0);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(51, 20);
-            this.lblAmount.TabIndex = 1111228;
-            this.lblAmount.Text = "Amount";
-            this.lblAmount.Visible = false;
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(6, 144);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1331, 493);
+            this.RPTViewer.TabIndex = 1110000993;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
             // 
             // PAY_ChequePrint
             // 
@@ -491,5 +507,6 @@
         private System.Windows.Forms.Label lblschedule;
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.Label lblAmount;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
     }
 }
