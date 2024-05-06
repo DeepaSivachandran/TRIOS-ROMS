@@ -43,7 +43,7 @@ namespace ROMS
         public string varGSTIN = "1";
         decimal varExcessQuantity = 0, varPendingQty = 0;
         public int varOrderType = 0;
-        public double varDVA = 0;
+        public double varDVA = 0,varCPA=0;
         public string varProducts = "";
         public int varDateEnable = 0;
         List<int> varProductsIDs = new List<int>();
@@ -69,6 +69,7 @@ namespace ROMS
                 udfnEditLoad();
                 udfnDateSet();
                 udfnPODropdownload();
+                udfnGeneralSettingsList();
                 if (chkCompleted.Checked == true)
                 {
                     btnVerified.Enabled = false;
@@ -114,7 +115,6 @@ namespace ROMS
         {
             try
             {
-
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnGeneralSettingList(0);
                 objdserv.CloseConnection();
@@ -125,6 +125,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
                             varDVA = Convert.ToDouble(objDs.Tables[0].Rows[0]["GS_DVA"]);
+                            varCPA = Convert.ToDouble(objDs.Tables[0].Rows[0]["GS_CPA"]);
                         }
                     }
                 }
@@ -764,21 +765,21 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if (chkCompleted.Checked == true && ((Convert.ToDouble(txtInvoiceamt.Text)) < varDVA || ((Convert.ToDouble(txtInvoiceamt.Text)) > varDVA && varSupplierType != 32)))
+                    if (lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "" && Convert.ToDouble(txtInvoiceamt.Text) < varDVA)
                     {
-                        if (lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "")
-                        {
-                            string varMessage = objDServ.udfnGetMessages(119);
-                            objDServ.CloseConnection();
-                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            result1 = DialogResult.No;
-                            varErrorFormat = 1;
-                        }
+                        string varMessage = objDServ.udfnGetMessages(119);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        result1 = DialogResult.No;
+                        varErrorFormat = 1;
                     }
-                    if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text))> varDVA && varSupplierType==32)
+                    if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text))>= varDVA)
                     {
                         if (lblVerifiedBy1.Text == "" || lblVerifiedBy2.Text == "")
                         {
+                            //string varWarningMsg = objDServ.udfnGetMessages(109);
+                            //objDServ.CloseConnection();
+                            //MessageBox.Show(varWarningMsg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             string varMessage = objDServ.udfnGetMessages(120);
                             objDServ.CloseConnection();
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);

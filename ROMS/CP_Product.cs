@@ -3367,7 +3367,7 @@ namespace ROMS
                     txtItemNameEnglish.Text = varEname;
                 }
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Save as Draft")
                 {
                     this.ActiveControl = cmbConcern;
                 }
@@ -3375,7 +3375,7 @@ namespace ROMS
                 {
                     this.ActiveControl = txtPICode;
                 }
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Save as Draft")
                 {
                     udfnDropDownload();
                 }
