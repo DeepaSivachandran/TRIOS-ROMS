@@ -185,7 +185,7 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -284,7 +284,7 @@
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 111111134;
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
@@ -306,8 +306,8 @@
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdOutwardList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdOutwardList.ColumnHeadersHeight = 30;
@@ -332,7 +332,7 @@
             this.grdOutwardList.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdOutwardList.RowTemplate.Height = 25;
             this.grdOutwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdOutwardList.Size = new System.Drawing.Size(1328, 495);
+            this.grdOutwardList.Size = new System.Drawing.Size(1348, 510);
             this.grdOutwardList.TabIndex = 111111133;
             this.grdOutwardList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
             this.grdOutwardList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserList_Scroll);
@@ -358,7 +358,7 @@
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(1328, 84);
+            this.grbFilterBy.Size = new System.Drawing.Size(1348, 84);
             this.grbFilterBy.TabIndex = 958800;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";

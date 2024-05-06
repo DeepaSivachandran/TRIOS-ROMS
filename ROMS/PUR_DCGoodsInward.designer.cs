@@ -94,7 +94,6 @@
             this.lblnarration = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdProductExchage = new System.Windows.Forms.DataGridView();
-            this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,6 +115,7 @@
             this.clmShelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.grpproductname.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -482,8 +482,8 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_FilterProduct.ColumnHeadersHeight = 30;
@@ -711,8 +711,8 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdProductExchage.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdProductExchage.ColumnHeadersHeight = 30;
@@ -763,10 +763,6 @@
             this.grdProductExchage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellContentClick);
             this.grdProductExchage.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellEndEdit);
             this.grdProductExchage.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdProductExchage_EditingControlShowing);
-            // 
-            // epProductExchange
-            // 
-            this.epProductExchange.ContainerControl = this;
             // 
             // clmSno
             // 
@@ -925,6 +921,10 @@
             this.clmError.HeaderText = "Error";
             this.clmError.Name = "clmError";
             this.clmError.Visible = false;
+            // 
+            // epProductExchange
+            // 
+            this.epProductExchange.ContainerControl = this;
             // 
             // PUR_DCGoodsInward
             // 
