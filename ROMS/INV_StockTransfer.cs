@@ -473,6 +473,14 @@ namespace ROMS
                                 string varMRP = "0";
                                 if (Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]) != "") { varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))); }
                                 dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), varMRP, Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Pro Type"]),0);
+                                if(Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmStockQty"].Value)==0)
+                                {
+                                    grdStockTransfer.Rows[i].Cells["Status"].Value = 80;
+                                    grdStockTransfer.Rows[i].Cells["Status"].ReadOnly = true;
+                                    grdStockTransfer.Rows[i].Cells["clmquantity"].ReadOnly = true;
+                                    dtStock.Rows[i]["STK_Status"] = 80;
+                                    grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightGray;
+                                }
                                 //string varUTDec = Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]);
                             }      
                             //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
@@ -520,8 +528,8 @@ namespace ROMS
                     //    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                     //    GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
                     //}
-                    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
-                    GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
+                    //DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                    //GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
                     lvSLocation.Visible = false;
                     lvDLocation.Visible = false;
                     cmbConcern.Enabled = false;
@@ -2085,7 +2093,7 @@ namespace ROMS
                 }
                 for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == "" || Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == 0)
+                    if (Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmStockQty"].Value)!=0 && (Convert.ToString(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == "" || Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == 0))
                     {
                         blnErrorFlag = true; varErrQty = "1";
                         grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightPink;
@@ -2633,7 +2641,7 @@ namespace ROMS
                         //grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         varQtyError = "1";
                     }
-                    else if (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == "")
+                    else if (StockQty!=0 && (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == ""))
                     {
                         grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         SPDataService objDServ = new SPDataService();
@@ -2662,8 +2670,9 @@ namespace ROMS
                     dtStock.Rows[e.RowIndex]["STK_Status"] = varReqStatus;
                 }
                 decimal Quantity = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmquantity"].Value);
+                decimal Stock = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmStockQty"].Value);
                 int Status = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["Status"].Value);
-                if ((Convert.ToDecimal(Quantity) == 0 && Convert.ToInt32(Status)==21) || (Convert.ToDecimal(Quantity) != 0 && Status==80))
+                if (Stock != 0 && (Convert.ToDecimal(Quantity) == 0 && Convert.ToInt32(Status)==21) || (Convert.ToDecimal(Quantity) != 0 && Status==80))
                 {
                     grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //SPDataService objDServ = new SPDataService();
