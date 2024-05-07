@@ -616,7 +616,9 @@ namespace ROMS
                         txtQRCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN Code"]);
                         if (Convert.ToInt32(cmbEntryType.SelectedValue)==54)
                         {
+                          //  testdt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
                             dpInvoiceDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceDate"]);
+                           
                             varGRNDate = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
                         }
                         if (varGRNPaymentType == "199" || varGRNPaymentType == "200") //199- NONE,200-  GRN cash issued
@@ -9217,7 +9219,8 @@ namespace ROMS
                     {
                         if (varGrnId != -1 && varGrnId != 0)
                         {
-                            MainForm.objPUR_Purchase_GRNDetails.QRFlag = 1;
+                            PUR_Purchase_GRNDetails objPUR_Purchase_GRNDetails = new PUR_Purchase_GRNDetails();
+                            objPUR_Purchase_GRNDetails.QRFlag = 1;
                             pbGRNNo = Convert.ToString(varGrnId);
                             udfnGRNProload();
                         }
