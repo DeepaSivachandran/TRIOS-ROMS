@@ -42,8 +42,8 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false; errVerified.Clear();
-                string CurrentTime = DateTime.Now.ToString("h:mm");
-                string[] varCurrentTime = CurrentTime.Split(':');
+                //string CurrentTime = DateTime.Now.ToString("h:mm");
+                //string[] varCurrentTime = CurrentTime.Split(':');
                 if (Convert.ToString(txtVerified1.Text.Trim()) == "" && Convert.ToString(txtVerified2.Text.Trim())=="")
                 {
                     errVerified.SetError(txtVerified1, "Please select verified by 1");
@@ -83,12 +83,12 @@ namespace ROMS
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
-                    if (Convert.ToInt32(varTime[0])>Convert.ToInt32(varCurrentTime[0]))
-                    {
-                        errVerified.SetError(mtbTime1, "Please enter valid hour");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        blnErrorFlag = true;
-                    }
+                    //if (Convert.ToInt32(varTime[0])>Convert.ToInt32(varCurrentTime[0]))
+                    //{
+                    //    errVerified.SetError(mtbTime1, "Please enter valid hour");
+                    //    mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    blnErrorFlag = true;
+                    //}
                 }
                 if (Convert.ToString(txtVerified2.Text.Trim()) != "")
                 {
@@ -107,12 +107,12 @@ namespace ROMS
                         mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
-                    if (Convert.ToInt32(varTime[0]) > Convert.ToInt32(varCurrentTime[0]))
-                    {
-                        errVerified.SetError(mtbTime2, "Please enter valid hour");
-                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        blnErrorFlag = true;
-                    }
+                    //if (Convert.ToInt32(varTime[0]) > Convert.ToInt32(varCurrentTime[0]))
+                    //{
+                    //    errVerified.SetError(mtbTime2, "Please enter valid hour");
+                    //    mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    blnErrorFlag = true;
+                    //}
                 }
                 if (blnErrorFlag == false)
                 {

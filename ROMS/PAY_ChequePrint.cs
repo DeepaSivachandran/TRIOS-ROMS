@@ -568,5 +568,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtsuppliername.Text = "";
+                cmbBank.SelectedValue = -1;
+                txtAmount.Text = "";
+                RPTViewer.Visible = false;
+                lblAmount.Text = "";
+                lblSuppliername.Text = "";
+                lblsupplierGST.Text = "";
+                lblSupplierCity.Text = "";
+                lblsupplierScheduletype.Text = "";
+                lblsupplierpayment.Text = "";
+                lblSupplierOrderpolicy.Text = "";
+                lblReturn.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
