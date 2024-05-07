@@ -841,6 +841,7 @@ namespace ROMS
                             grdStockRequestList.Columns["Created On"].Width = 150;
                             grdStockRequestList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdStockRequestList.Columns["Request Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequestList.BringToFront();
                             DGV__SearchGrid.BringToFront();
