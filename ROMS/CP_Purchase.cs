@@ -9406,11 +9406,12 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                string mrp1 = "0", varmrp = "0";
                                 DataGridViewRow row = grdSupplierList.Rows[e.RowIndex];
                                 string varPurid = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPURPRIDDetail"].Value);
                                 string varSno = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmsno"].Value);
-                                string varmrp = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmMRP"].Value);
-                                string mrp1 = string.Format("{0:G29}", decimal.Parse(varmrp));
+                                 varmrp = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmMRP"].Value);
+                                if (varmrp!="") {  mrp1 = string.Format("{0:G29}", decimal.Parse(varmrp)); }
                                 string varExpirydate = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmexpirydate"].Value);
                                 string varRkid = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["rkid"].Value);
                                 string varSlid = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["slid"].Value);
@@ -9469,25 +9470,17 @@ namespace ROMS
                                     //select g.Key;
                                     var varRemoveProuct = from r in dtPurchaseAutoComplete.AsEnumerable()
                                                     where (r.Field<string>("PRID").Equals(varPrid) && r.Field<int>("Flag").Equals(varProductType))
-                                                    group r by r.Field<string>("Sno") into g
+                                                    group r by r.Field<int>("Sno") into g
                                                     select g.Key;
                                     if (varRemoveProuct.Count() == 1)
                                     {
                                         lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
                                         lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
-                                    }
-                                    for (int i = 0; i < varProductsIDs.Count; i++)
-                                    {
-                                        if (varProductsIDs[i].Equals(Convert.ToInt16(varPrid)))
-                                        { varProductsIDs.RemoveAt(i); goto L; }
-                                    }
-                                    L:
-                                    for (int i = 0; i < dtPurchaseAutoComplete.Rows.Count; i++)
-                                    {
-                                        if (Convert.ToString(dtPurchaseAutoComplete.Rows[i]["Sno"]) == Convert.ToString(varSno))
+
+                                        for (int i = 0; i < varProductsIDs.Count; i++)
                                         {
-                                            dtPurchaseAutoComplete.Rows[i].Delete();
-                                            dtPurchaseAutoComplete.AcceptChanges();
+                                            if (varProductsIDs[i].Equals(Convert.ToInt16(varPrid)))
+                                            { varProductsIDs.RemoveAt(i); }
                                         }
                                     }
                                 }
