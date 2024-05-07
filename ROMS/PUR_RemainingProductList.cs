@@ -76,6 +76,7 @@ namespace ROMS
                 objMR_Product.ParaPOID = pbPOid;
                 objMR_Product.ParaDCID = pbDCid;
                 objMR_Product.ParaProductsCode = varProducts;
+                objMR_Product.paraPurchaseAutoComplete = MainForm.objCP_Purchase.dtPurchaseAutoComplete;
                 objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                 objspdservice.CloseConnection();
 

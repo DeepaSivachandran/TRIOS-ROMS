@@ -13,7 +13,7 @@ namespace ROMS
     public partial class CP_Purchase : Form
     {
         DataTable dtTaxTable = new DataTable();
-        DataTable dtPurchaseAutoComplete = new DataTable();
+        public DataTable dtPurchaseAutoComplete = new DataTable();
         DataTable dtProductDetails = new DataTable();
         DateTime varmaxdate;
         DataValidation objValidation = new DataValidation();
@@ -130,7 +130,7 @@ namespace ROMS
                         grdPODetails.Visible = true;
                         udfnPODropdownload();
                         udfnPendingPOLoad();
-                       // udfnDefGrnGridLoad();
+                        //udfnDefGrnGridLoad();
                         //cmbPONo.Enabled = true;
                         txtQRCode.Text = "";
                         txtQRCode.ReadOnly = true;
@@ -3923,25 +3923,56 @@ namespace ROMS
             {
                 varPrid = "";
                 int varProductType = Convert.ToInt16(cmbPONo.SelectedValue);
-                var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
-                                where (r.Field<int>("Flag").Equals(varProductType))
-                                group r by r.Field<string>("PRID") into g
-                                select g.Key;
-                if (varPrid == "")
-                {
-                    varPrid = Convert.ToString(varProIds);
-                }
-                else
-                {
-                    for (int i = 0; i < varProIds.Count(); i++) {
-                        varPrid = varPrid + ',' + varProIds.ToList()[i];
+                //if (varProductType == 215) //po
+                //{
+                    var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
+                                    where (r.Field<int>("Flag").Equals(varProductType))
+                                    group r by r.Field<string>("PRID") into g
+                                    select g.Key;
+
+                    if (varPrid == "")
+                    {
+                        varPrid = Convert.ToString(varProIds);
                     }
-                }
-                if(Convert.ToString(cmbPONo.SelectedValue)=="215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
-                {
-                    lblAddProduct.Text = Convert.ToString(varProIds.Count());
-                    lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
-                }
+                    else
+                    {
+                        for (int i = 0; i < varProIds.Count(); i++)
+                        {
+                            varPrid = varPrid + ',' + varProIds.ToList()[i];
+                        }
+                    }
+                    if (Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
+                    {
+                        lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                    }
+                //}
+                //if (varProductType == 215) //po
+                //{
+                //    var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
+                //                    where (r.Field<int>("Flag").Equals(varProductType))
+                //                    group r by new
+                //                    { PRID = r["PRID"],  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],
+                //                        BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"]  } into g
+                //                    select g;
+
+                //    if (varPrid == "")
+                //    {
+                //        varPrid = Convert.ToString(varProIds);
+                //    }
+                //    else
+                //    {
+                //        for (int i = 0; i < varProIds.Count(); i++)
+                //        {
+                //            varPrid = varPrid + ',' + varProIds.ToList()[i];
+                //        }
+                //    }
+                //    if (Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
+                //    {
+                //        lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                //        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -4236,7 +4267,7 @@ namespace ROMS
                     if (varExpiryDate != "")
                     {
                         string vardate = "";
-                        if (Convert.ToString(cmbPONo.SelectedValue) != "218")
+                        if (Convert.ToString(cmbPONo.SelectedValue) == "218") //Product type GRN
                         {
                             vardate = varGRNDate;
                         }
@@ -4351,7 +4382,7 @@ namespace ROMS
                                     varRackCount = "0";
                                     varRackId = "0";
                                 }
-                                if (cmbEntryType.SelectedValue.ToString() == "54") // PO
+                                if (cmbEntryType.SelectedValue.ToString() == "54" && txtGRNMrp.Text.Trim()!="") // GRN
                                 {
                                     varGrnMrp = Convert.ToDecimal(txtGRNMrp.Text.Trim());
                                 }
