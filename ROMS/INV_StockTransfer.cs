@@ -62,7 +62,7 @@ namespace ROMS
         public int ComID = 0;
         public string VarSource = "0";
         public string VarDestination = "0";
-        public string varErrQty = "0";
+        public string varErrQty = "0", varQtyError="0";
         public string varStockEdit = "Stock Request", varIDCOUNT = "";
         bool varVoucherSkip = false;
         public int varCloseFlag=0, varClose = 0, varDateChange = 0;
@@ -2042,7 +2042,7 @@ namespace ROMS
             {
                 errStockTransfer.Clear(); 
                 bool blnErrorFlag = false;
-
+                varErrQty = "0";
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
                     errStockTransfer.SetError(cmbConcern, "Please select concern");
@@ -2095,14 +2095,24 @@ namespace ROMS
                         grdStockTransfer.CurrentRow.DefaultCellStyle.BackColor = Color.White;
                         grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
                     }
+                    if(Convert.ToString(grdStockTransfer.Rows[i].Cells["Status"].Value)=="")
+                    {
+                        blnErrorFlag = true; 
+                        //grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LightPink;
+                        varErrQty = "2";
+                    }
                 }
-                if (varErrQty == "1")
+                if (varErrQty == "1" || varQtyError == "1")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
+                }
+                if(varErrQty=="2")
+                {
+                    MessageBox.Show("Please select the status", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 if (blnErrorFlag == false)
                 {
@@ -2142,23 +2152,15 @@ namespace ROMS
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
                 }
-                else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == false)
-                {
-                    varStatusID = 21;
-                }
+                //else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == false)
+                //{
+                //    varStatusID = 21;
+                //}
                 else if (btnSave.Text == "Update" && varUpdateflag == 1)
                 {
                     varUpdateflag = 1;
                     varType = 0;
                     varoriginator = "Stock Transfer Queue Updation";
-                }
-                else if(btnSave.Text == "Update" && varUpdateflag == 0)
-                {
-                    varStockRequestID = 0;
-                    varUpdateflag = 0;
-                    varoriginator = "Stock Transfer Updation";
-                    varType = 0;
-                    //varStatusID = 48;
                 }
                 /* Check source stock location is valid or not*/
                 if (varUpdateflag == 0)
@@ -2629,7 +2631,7 @@ namespace ROMS
                         //grdStockTransfer.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
                         grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         //grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        varErrQty = "1";
+                        varQtyError = "1";
                     }
                     else if (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == "")
                     {
@@ -2638,12 +2640,12 @@ namespace ROMS
                         string varMessage = objDServ.udfnGetMessages(89);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        varErrQty = "1";
+                        varQtyError = "1";
                     }
                     else
                     {
                         grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
-                        varErrQty = "0";
+                        varQtyError = "0";
                     }
                     int varDecimal = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmUnitDecimal"].Value);
 
@@ -2668,12 +2670,11 @@ namespace ROMS
                     //string varMessage = objDServ.udfnGetMessages(89);
                     //objDServ.CloseConnection();
                     //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    varErrQty = "1";
+                    varQtyError = "1";
                 }
                 else
                 {
                     grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
-                    varErrQty = "0";
                 }
 
             }
