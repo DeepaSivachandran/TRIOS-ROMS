@@ -62,7 +62,7 @@ namespace ROMS
         public int ComID = 0;
         public string VarSource = "0";
         public string VarDestination = "0";
-        public string varErrQty = "0";
+        public string varErrQty = "0", varQtyError="0";
         public string varStockEdit = "Stock Request", varIDCOUNT = "";
         bool varVoucherSkip = false;
         public int varCloseFlag=0, varClose = 0, varDateChange = 0;
@@ -473,6 +473,14 @@ namespace ROMS
                                 string varMRP = "0";
                                 if (Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]) != "") { varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]))); }
                                 dtStock.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), varMRP, Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToString(objDS.Tables[0].Rows[i]["UTID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["DRKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Pro Type"]),0);
+                                if(Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmStockQty"].Value)==0)
+                                {
+                                    grdStockTransfer.Rows[i].Cells["Status"].Value = 80;
+                                    grdStockTransfer.Rows[i].Cells["Status"].ReadOnly = true;
+                                    grdStockTransfer.Rows[i].Cells["clmquantity"].ReadOnly = true;
+                                    dtStock.Rows[i]["STK_Status"] = 80;
+                                    grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightGray;
+                                }
                                 //string varUTDec = Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]);
                             }      
                             //int CurrentStockQty = Convert.ToInt32(grdStockTransfer.Rows[i].Cells["clmCurrentStockQty"].Value);
@@ -520,8 +528,8 @@ namespace ROMS
                     //    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                     //    GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
                     //}
-                    DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
-                    GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
+                    //DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                    //GrdStockTransfer_DataBindingComplete(grdStockTransfer, args);
                     lvSLocation.Visible = false;
                     lvDLocation.Visible = false;
                     cmbConcern.Enabled = false;
@@ -2042,7 +2050,7 @@ namespace ROMS
             {
                 errStockTransfer.Clear(); 
                 bool blnErrorFlag = false;
-
+                varErrQty = "0";
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
                     errStockTransfer.SetError(cmbConcern, "Please select concern");
@@ -2085,7 +2093,7 @@ namespace ROMS
                 }
                 for (int i = 0; i < grdStockTransfer.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == "" || Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == 0)
+                    if (Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmStockQty"].Value)!=0 && (Convert.ToString(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == "" || Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) == 0))
                     {
                         blnErrorFlag = true; varErrQty = "1";
                         grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightPink;
@@ -2095,14 +2103,24 @@ namespace ROMS
                         grdStockTransfer.CurrentRow.DefaultCellStyle.BackColor = Color.White;
                         grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
                     }
+                    if(Convert.ToString(grdStockTransfer.Rows[i].Cells["Status"].Value)=="")
+                    {
+                        blnErrorFlag = true; 
+                        //grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LightPink;
+                        varErrQty = "2";
+                    }
                 }
-                if (varErrQty == "1")
+                if (varErrQty == "1" || varQtyError == "1")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
+                }
+                if(varErrQty=="2")
+                {
+                    MessageBox.Show("Please select the status", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 if (blnErrorFlag == false)
                 {
@@ -2142,23 +2160,15 @@ namespace ROMS
                     varoriginator = "Stock Transfer Creation";
                     varType = 0;
                 }
-                else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == false)
-                {
-                    varStatusID = 21;
-                }
+                //else if (btnSave.Text == "Save as Draft" && chkStatus.Checked == false)
+                //{
+                //    varStatusID = 21;
+                //}
                 else if (btnSave.Text == "Update" && varUpdateflag == 1)
                 {
                     varUpdateflag = 1;
                     varType = 0;
                     varoriginator = "Stock Transfer Queue Updation";
-                }
-                else if(btnSave.Text == "Update" && varUpdateflag == 0)
-                {
-                    varStockRequestID = 0;
-                    varUpdateflag = 0;
-                    varoriginator = "Stock Transfer Updation";
-                    varType = 0;
-                    //varStatusID = 48;
                 }
                 /* Check source stock location is valid or not*/
                 if (varUpdateflag == 0)
@@ -2629,21 +2639,21 @@ namespace ROMS
                         //grdStockTransfer.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
                         grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         //grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor= System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        varErrQty = "1";
+                        varQtyError = "1";
                     }
-                    else if (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == "")
+                    else if (StockQty!=0 && (Convert.ToString(TransferQty) == "0" || Convert.ToString(TransferQty) == ""))
                     {
                         grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(89);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        varErrQty = "1";
+                        varQtyError = "1";
                     }
                     else
                     {
                         grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
-                        varErrQty = "0";
+                        varQtyError = "0";
                     }
                     int varDecimal = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmUnitDecimal"].Value);
 
@@ -2660,20 +2670,20 @@ namespace ROMS
                     dtStock.Rows[e.RowIndex]["STK_Status"] = varReqStatus;
                 }
                 decimal Quantity = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmquantity"].Value);
+                decimal Stock = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmStockQty"].Value);
                 int Status = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["Status"].Value);
-                if ((Convert.ToDecimal(Quantity) == 0 && Convert.ToInt32(Status)==21) || (Convert.ToDecimal(Quantity) != 0 && Status==80))
+                if (Stock != 0 && (Convert.ToDecimal(Quantity) == 0 && Convert.ToInt32(Status)==21) || (Convert.ToDecimal(Quantity) != 0 && Status==80))
                 {
                     grdStockTransfer.Rows[e.RowIndex].Cells["clmquantity"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     //SPDataService objDServ = new SPDataService();
                     //string varMessage = objDServ.udfnGetMessages(89);
                     //objDServ.CloseConnection();
                     //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    varErrQty = "1";
+                    varQtyError = "1";
                 }
                 else
                 {
                     grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
-                    varErrQty = "0";
                 }
 
             }

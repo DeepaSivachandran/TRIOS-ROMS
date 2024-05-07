@@ -42,6 +42,8 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false; errVerified.Clear();
+                string CurrentTime = DateTime.Now.ToString("h:mm");
+                string[] varCurrentTime = CurrentTime.Split(':');
                 if (Convert.ToString(txtVerified1.Text.Trim()) == "" && Convert.ToString(txtVerified2.Text.Trim())=="")
                 {
                     errVerified.SetError(txtVerified1, "Please select verified by 1");
@@ -67,6 +69,8 @@ namespace ROMS
                     string[] varTime = mtbTime1.Text.Split(':');
                     int Hour = varTime[0].Trim().Length;
                     int Min = varTime[1].Trim().Length;
+                    //int CurrentHour = varCurrentTime[0].Trim();
+                    //int CurrentMins = varCurrentTime[1].Trim().Length;
                     if (varTime[0].Trim()=="" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim()=="0" || varTime[0].Trim() == "00")
                     {
                         errVerified.SetError(mtbTime1, "Please enter valid hour");
@@ -76,6 +80,12 @@ namespace ROMS
                     if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
                     {
                         errVerified.SetError(mtbTime1, "Please enter valid minute");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
+                    if (Convert.ToInt32(varTime[0])>Convert.ToInt32(varCurrentTime[0]))
+                    {
+                        errVerified.SetError(mtbTime1, "Please enter valid hour");
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
@@ -94,6 +104,12 @@ namespace ROMS
                     if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
                     {
                         errVerified.SetError(mtbTime2, "Please enter valid minute");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
+                    if (Convert.ToInt32(varTime[0]) > Convert.ToInt32(varCurrentTime[0]))
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter valid hour");
                         mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
