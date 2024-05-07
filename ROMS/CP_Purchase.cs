@@ -9462,16 +9462,20 @@ namespace ROMS
                                 }
                                 if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value) == "215")
                                 {
-                                    var varRemoveProuct =
-                                    from r in dtProductDetails.AsEnumerable()  where (r.Field<string>("PRID").Equals(varPrid)  )
-                                    group r by r.Field<string>("PRID") into g
-                                    select g.Key;
-
-                                    if (varRemoveProuct.Count() != 0)
+                                    int varProductType = Convert.ToInt16(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value);
+                                    //var varRemoveProuct =
+                                    //from r in dtPurchaseAutoComplete.AsEnumerable()  where (r.Field<string>("PRID").Equals(varPrid)   )
+                                    //group r by r.Field<string>("PRID") into g
+                                    //select g.Key;
+                                    var varRemoveProuct = from r in dtPurchaseAutoComplete.AsEnumerable()
+                                                    where (r.Field<string>("PRID").Equals(varPrid) && r.Field<int>("Flag").Equals(varProductType))
+                                                    group r by r.Field<string>("Sno") into g
+                                                    select g.Key;
+                                    if (varRemoveProuct.Count() == 1)
                                     {
                                         lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
+                                        lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
                                     }
-                                    lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
                                     for (int i = 0; i < varProductsIDs.Count; i++)
                                     {
                                         if (varProductsIDs[i].Equals(Convert.ToInt16(varPrid)))
