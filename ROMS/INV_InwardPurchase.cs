@@ -1879,6 +1879,12 @@ namespace ROMS
                                         txtVerifiedby2.Font = new Font("Oswald Regular", 9.75f);
                                     }
                                     grdGrnlist.Columns["clmQty"].HeaderText = Quantity;
+                                    txtApproved1.Visible = true;
+                                    txtApprovedby1.Visible = true;
+                                    txtApproved2.Visible = true;
+                                    txtApprovedby2.Visible = true;
+                                    txtApprovedby1.Text= Convert.ToString(objDs.Tables[0].Rows[0]["Approved By1"]);
+                                    txtApprovedby2.Text= Convert.ToString(objDs.Tables[0].Rows[0]["Approved By2"]);
                                 }
                                 if (varGRNPurchaseFlag == 3 || varGRNPurchaseFlag == 187)
                                 {
