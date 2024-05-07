@@ -3923,8 +3923,8 @@ namespace ROMS
             {
                 varPrid = "";
                 int varProductType = Convert.ToInt16(cmbPONo.SelectedValue);
-                //if (varProductType == 215) //po
-                //{
+                if (varProductType == 215) //po
+                {
                     var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
                                     where (r.Field<int>("Flag").Equals(varProductType))
                                     group r by r.Field<string>("PRID") into g
@@ -3946,33 +3946,32 @@ namespace ROMS
                         lblAddProduct.Text = Convert.ToString(varProIds.Count());
                         lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
                     }
-                //}
-                //if (varProductType == 215) //po
-                //{
-                //    var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
-                //                    where (r.Field<int>("Flag").Equals(varProductType))
-                //                    group r by new
-                //                    { PRID = r["PRID"],  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],
-                //                        BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"]  } into g
-                //                    select g;
-
-                //    if (varPrid == "")
-                //    {
-                //        varPrid = Convert.ToString(varProIds);
-                //    }
-                //    else
-                //    {
-                //        for (int i = 0; i < varProIds.Count(); i++)
-                //        {
-                //            varPrid = varPrid + ',' + varProIds.ToList()[i];
-                //        }
-                //    }
-                //    if (Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
-                //    {
-                //        lblAddProduct.Text = Convert.ToString(varProIds.Count());
-                //        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
-                //    }
-                //}
+                }
+                if (varProductType == 218 || varProductType == 220) //218-GRN  , 220 - DC
+                {
+                    var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
+                                    where (r.Field<int>("Flag").Equals(varProductType))
+                                    group r by new
+                                    {  PRID = r["PRID"],  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],
+                                        BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"] } into g
+                                    select g;
+                    if (varPrid == "")
+                    {
+                        varPrid = Convert.ToString(varProIds);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < varProIds.Count(); i++)
+                        {
+                            varPrid = varPrid + ',' + varProIds.ToList()[i];
+                        }
+                    }
+                    if (Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
+                    {
+                        lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -4267,7 +4266,7 @@ namespace ROMS
                     if (varExpiryDate != "")
                     {
                         string vardate = "";
-                        if (Convert.ToString(cmbPONo.SelectedValue) == "218") //Product type GRN
+                        if (Convert.ToString(cmbPONo.SelectedValue) == "218")  //GRN
                         {
                             vardate = varGRNDate;
                         }
