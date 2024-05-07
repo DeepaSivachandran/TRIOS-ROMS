@@ -1912,7 +1912,7 @@ namespace ROMS
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i][Quantity]),"", Convert.ToString(objDs.Tables[1].Rows[i]["Shop Qty"]),
                                          Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack ID"]),
                                            Convert.ToString(objDs.Tables[1].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[1].Rows[i][OrderID]),0
-                                            ,Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["Disable"]));
+                                            ,Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[1].Rows[i]["UnReadable"]));
 
                                     decimal ReceivedQty = 0, ShopQty = 0;
                                     if(Convert.ToString(objDs.Tables[1].Rows[i]["Received Qty"])!="")
@@ -1934,6 +1934,12 @@ namespace ROMS
                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmDisable"].Value) == "1")
                                     {
                                         ((DataGridViewImageCell)grdGrnlist.Rows[i].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+                                    }
+                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmUnReadable"].Value) == "1")
+                                    {
+                                        ((DataGridViewImageCell)grdGrnlist.Rows[i].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+                                        grdGrnlist.Rows[i].ReadOnly = true;
+                                        grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                                     }
                                 }
                                 grdGrnlist.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
