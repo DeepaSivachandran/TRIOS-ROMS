@@ -792,6 +792,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["My Products"].Visible = false;
                                 grdInwardQueueList.Columns["Type ID"].Visible = false;
                                 grdInwardQueueList.Columns["Entry Date"].Visible = false;
+                                grdInwardQueueList.Columns["UnReadable"].Visible = false;
                                 grdInwardQueueList.Columns["Entry Type"].Width = 150;
                             }
 
@@ -1528,6 +1529,19 @@ namespace ROMS
                 //        grdInwardQueueList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                 //    }
                 //}
+                for (int i = 0; i < grdInwardQueueList.Rows.Count; i++)
+                {
+                    if (Convert.ToInt32(grdInwardQueueList.Rows[i].Cells["UnReadable"].Value) > 0 )
+                    {
+                        grdInwardQueueList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                        grdInwardQueueList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        grdInwardQueueList.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                        grdInwardQueueList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                }
             }
             catch (Exception ex)
             {
