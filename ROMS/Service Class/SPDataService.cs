@@ -135,7 +135,7 @@ namespace ROMS
             return result;
         }
         // Sivabharathi    Create date: 20/09/2023    Description:	Master list Sp
-        public DataSet udfnMaster(int ViewType, int paraID,int paraPOID,string paraDate,string ParaExpiryDate, int paraProductId,string paraText,int paraFlag)
+        public DataSet udfnMaster(int ViewType, int paraID, int paraPOID, string paraDate, string ParaExpiryDate, int paraProductId, string paraText, int paraFlag)
         {
             DataSet ds = new DataSet();
             try
@@ -206,7 +206,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 05/10/2023    Description: General Settings
-        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable,string paraDBPath)
+        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath)
         {
             string varResult = "";
             try
@@ -607,7 +607,7 @@ namespace ROMS
             }
             return ds;
         }
-        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode,string paraTransferDate, int paraSLocationID,int paraDLocationID,string paraRemarks, int paraStatusId,string paraOriginator,DataTable paraStockTransfer,int paraDeleteFlag,int paraTransactionType,int paraFlag,int paraSRQID)
+        public string udfnStockTransfer(int ViewType, int paraStockTransferID, int ParaCompanycode, string paraTransferDate, int paraSLocationID, int paraDLocationID, string paraRemarks, int paraStatusId, string paraOriginator, DataTable paraStockTransfer, int paraDeleteFlag, int paraTransactionType, int paraFlag, int paraSRQID)
         {
             string varResult = "";
             try
@@ -646,7 +646,7 @@ namespace ROMS
             }
             return varResult;
         }
-        public DataSet udfnStockTransferList(int paraViewType, int paraStockTransferID, int paraConcern, int paraSLID, int paraDLID, int paraPRID, int paraStatus, string ParaSTFromDate, string ParaSTToDate,int paraSRQID,int paraFlag)
+        public DataSet udfnStockTransferList(int paraViewType, int paraStockTransferID, int paraConcern, int paraSLID, int paraDLID, int paraPRID, int paraStatus, string ParaSTFromDate, string ParaSTToDate, int paraSRQID, int paraFlag)
         {
             DataSet ds = new DataSet();
             try
@@ -992,7 +992,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-24/08/2023
-        public DataSet udfnBrokerList(int paraviewType, int paraBrokerId, int paraStatusId, int paraCityId,string paraBrokerName)
+        public DataSet udfnBrokerList(int paraviewType, int paraBrokerId, int paraStatusId, int paraCityId, string paraBrokerName)
         {
             DataSet ds = new DataSet();
             try
@@ -1063,8 +1063,8 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-17/08/2023
-        public DataSet udfnStockLocationList(int paraviewType, int paraConcern,int paraStockLocation,int paraId, string paraLocationName,int paraSubgroupid,int paraLocationType,int paraStatusId,string ParaFromDate,string ParaToDate,int paraRackId)
-         {
+        public DataSet udfnStockLocationList(int paraviewType, int paraConcern, int paraStockLocation, int paraId, string paraLocationName, int paraSubgroupid, int paraLocationType, int paraStatusId, string ParaFromDate, string ParaToDate, int paraRackId)
+        {
             DataSet ds = new DataSet();
             try
             {
@@ -1517,8 +1517,8 @@ namespace ROMS
              string paraUpp, int paraPurStklocation, int paraSaleStklocation, int paraPurRack, int parasaleRack, int paraRkMOQ, int paraBatchNo,
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
-             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, 
-              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs,int paraSupplierId, int paraScheduleId,int paraGRNId,int paraNewPRID,int paraMRPFlag)
+             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator,
+              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId, int paraNewPRID, int paraMRPFlag)
         {
             string result = "";
             try
@@ -1900,7 +1900,7 @@ namespace ROMS
             , int paraDesignation, string paraDesignationName, double paraCreditLimit, int paraDayid, int paramonthid, int paraweekid, int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile, string paraSalesmanWhatsapp, int paraSaleOrderType, string ParaOrderDays,
               int ParaSupplierOrderid, int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
-              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat,int @paraFlag)
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int @paraFlag)
         {
             string result = "";
             try
@@ -2076,7 +2076,7 @@ namespace ROMS
             return varResult;
         }
         /*Added by deepa on 19-09-2023*/
-        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag,string paraModules)
+        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag, string paraModules)
         {
             string varResult = "";
             try
@@ -2428,7 +2428,7 @@ namespace ROMS
         //}
         // added by venkat on 17/10/2023 for PO list
         public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID, string ParaPOFromDate,
-            string ParaPOToDate, int paraPOID, int paraStatus, string paraPendingPOIDs, int parafilter,int paraProductCode,int paraOrdertype,int paraCityid,int paraDTAT,int paraGRNstatus)
+            string ParaPOToDate, int paraPOID, int paraStatus, string paraPendingPOIDs, int parafilter, int paraProductCode, int paraOrdertype, int paraCityid, int paraDTAT, int paraGRNstatus)
         {
             DataSet ds = new DataSet();
             try
@@ -2539,7 +2539,7 @@ namespace ROMS
 
         // added by venkat on 03/11/2023 for GRN list
         public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, string ParaGRNFromDate, string ParaGRNToDate,
-            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId,int paraLocationID,String paraGRNIds,string paraQRCode)
+            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId, int paraLocationID, String paraGRNIds, string paraQRCode)
         {
             DataSet ds = new DataSet();
             try
@@ -2561,10 +2561,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOrdertype", paraOrdertype);
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNDate", ParaGRNDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", ParaExpiryDate);
-                varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId); 
-                varSqlCommand.Parameters.AddWithValue("@paraLocationID", paraLocationID); 
-                varSqlCommand.Parameters.AddWithValue("@paraGRNIds", paraGRNIds); 
-                varSqlCommand.Parameters.AddWithValue("@paraQRCode", paraQRCode); 
+                varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationID", paraLocationID);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNIds", paraGRNIds);
+                varSqlCommand.Parameters.AddWithValue("@paraQRCode", paraQRCode);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2989,7 +2989,7 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[TRNG_BatchConversion]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_BatchConversion.ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraBTID", objTRNG_BatchConversion.paraBTID); 
+                varSqlCommand.Parameters.AddWithValue("@paraBTID", objTRNG_BatchConversion.paraBTID);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanycode", objTRNG_BatchConversion.paraCompanyCode);
                 varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_BatchConversion.paraFromDate);
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_BatchConversion.paraToDate);
@@ -3166,7 +3166,7 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[TRNS_Purchase_Entry]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_PurchaseEntry.ViewType); 
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_PurchaseEntry.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_PurchaseEntry.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
@@ -3268,7 +3268,7 @@ namespace ROMS
             return result;
         }
         //Added By Sathish ON : 01-04-2024 For Delete Transactions
-        public string udfnDBClearTransaction(int ViewType,string paraOriginator)
+        public string udfnDBClearTransaction(int ViewType, string paraOriginator)
         {
             string varResult = "";
             try
@@ -3596,8 +3596,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSTSID", objTRN_Supplier_Payment.paraSTSID);
                 varSqlCommand.Parameters.AddWithValue("@paraAdvanceID", objTRN_Supplier_Payment.paraAdvanceID);
                 varSqlCommand.Parameters.AddWithValue("@paraSubTotal", objTRN_Supplier_Payment.paraSubTotal);
-                varSqlCommand.Parameters.AddWithValue("@paraAdvanceAmnt", objTRN_Supplier_Payment.paraAdvanceAmnt);              
-                varSqlCommand.Parameters.AddWithValue("@paraBankID", objTRN_Supplier_Payment.paraBankID);              
+                varSqlCommand.Parameters.AddWithValue("@paraAdvanceAmnt", objTRN_Supplier_Payment.paraAdvanceAmnt);
+                varSqlCommand.Parameters.AddWithValue("@paraBankID", objTRN_Supplier_Payment.paraBankID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Supplier_Payment.paraOriginator);
@@ -3617,6 +3617,32 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return varResult;
+        }
+        public DataSet udfnGetStatus(MR_Status objMR_Status)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Status]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Status.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
     }
 

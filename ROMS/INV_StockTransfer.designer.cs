@@ -130,6 +130,7 @@
             this.clmQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCurrentStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
@@ -468,6 +469,7 @@
             this.clmQTY,
             this.clmCurrentStockQty,
             this.clmUnitDecimal,
+            this.Status,
             this.clmRemove});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -493,7 +495,9 @@
             this.grdStockTransfer.TabIndex = 1111224;
             this.grdStockTransfer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellContentClick);
             this.grdStockTransfer.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellEndEdit);
+            this.grdStockTransfer.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockTransfer_CellValueChanged);
             this.grdStockTransfer.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockTransfer_DataBindingComplete);
+            this.grdStockTransfer.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GrdStockTransfer_DataError);
             this.grdStockTransfer.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdStockTransfer_EditingControlShowing);
             // 
             // btnRemarks
@@ -838,6 +842,7 @@
             // 
             // textBox5
             // 
+            this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.textBox5.Location = new System.Drawing.Point(412, 40);
             this.textBox5.Name = "textBox5";
@@ -1114,6 +1119,13 @@
             this.clmUnitDecimal.Visible = false;
             this.clmUnitDecimal.Width = 10;
             // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -1251,6 +1263,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCurrentStockQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Status;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

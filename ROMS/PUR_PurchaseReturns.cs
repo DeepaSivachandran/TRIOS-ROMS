@@ -301,7 +301,7 @@ namespace ROMS
                         DataService objDservice = new DataService();
                         vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpReturnDCDate.Text + "',103)");
                         objDservice.CloseConnection();
-                        varResult = objspdservice.udfngetVoucherNo("47", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        varResult = objspdservice.udfngetVoucherNo("150", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
                         objspdservice.CloseConnection();
                         string[] parts = varResult.Split('~');
                         string pono = parts[0];
@@ -539,7 +539,7 @@ namespace ROMS
                             chkVerified.Visible = true;
                             //lblStatus.Text = "Closed";
                         }
-                        else if (varStatusId==81)
+                        else if (varStatusId==79)
                         {
                             txtAmount.Enabled = false;
                             chkVerified.Visible = true;
@@ -767,7 +767,7 @@ namespace ROMS
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
                             }
-                            if(varStatusId==81)
+                            if(varStatusId==79)
                             {
                                 chkVerified.Checked = true;
                             }
@@ -854,7 +854,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
                             {
-                                if ((varStatusId == 39 || varStatusId==81) && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReason.SelectedValue) == 203 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 204 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 205 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207))
+                                if ((varStatusId == 39 || varStatusId==79) && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReason.SelectedValue) == 203 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 204 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 205 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207))
                                 {
                                     cmbReasonForClosing.SelectedValue = objDs.Tables[2].Rows[0]["PURREDC_ClosingReasonId"].ToString();
                                     txtCrNo.Text = objDs.Tables[2].Rows[0]["PURREDC_CNNo"].ToString();
@@ -1666,7 +1666,7 @@ namespace ROMS
                                     varorginator = "Purchase Return DC updation";
                                     //varStatusId = 39;
                                 }
-                                if((varStatusId==15 && varReturnDCID!=0) || varStatusId==81)
+                                if((varStatusId==15 && varReturnDCID!=0) || varStatusId==79)
                                 {
                                     varviewtype = 1;
                                     varorginator = "Purchase Return DC updation";
@@ -1696,7 +1696,7 @@ namespace ROMS
                                 if(chkVerified.Checked==true)
                                 {
                                     varVerifiedflag = 1;
-                                    varStatusId = 81;
+                                    varStatusId = 79;
                                 }
                                 TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
                                 objTRN_PurchaseReturnDC.paraViewType = varviewtype;

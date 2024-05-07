@@ -32,6 +32,7 @@ namespace ROMS
             {
                 MainForm.objINV_StockTransfer = new INV_StockTransfer();
                 MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
+                MainForm.objINV_StockTransfer.EditFlag = 0;
                 MainForm.objINV_StockTransfer.Show();
             }
             catch (Exception ex)
@@ -384,7 +385,8 @@ namespace ROMS
                             grdStockTransfer.Columns["STRID"].Visible = false;
                             grdStockTransfer.Columns["SRQID"].Visible = false;
                             grdStockTransfer.Columns["Transfer Qty"].Visible = false;
-                            //grdStockTransfer.Columns["Product STSID"].Width = 100;
+                            grdStockTransfer.Columns["STR_TransactionType"].Visible = false;
+                           //grdStockTransfer.Columns["Product STSID"].Width = 100;
                             grdStockTransfer.Columns["S.No."].Width = 50;
                             grdStockTransfer.Columns["clmPrint"].Width = 50;
                             grdStockTransfer.Columns["Status"].Width = 120;
@@ -448,8 +450,10 @@ namespace ROMS
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["STRID"].Visible = false;
                 DGV_SearchGrid.Columns["Product STSID"].Visible = false;
+                DGV_SearchGrid.Columns["STR_TransactionType"].Visible = false;
                 DGV_SearchGrid.Columns["Transfer Qty"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Transaction Type"].Width = 150;
                 DGV_SearchGrid.Columns["Status"].Width = 120;
                 DGV_SearchGrid.Columns["Source"].Width = 120;
                 DGV_SearchGrid.Columns["SRQID"].Visible = false;
@@ -1035,6 +1039,7 @@ namespace ROMS
                         MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
                         MainForm.objINV_StockTransfer.varSTSRQID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                         MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objINV_StockTransfer.varTransactionType = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STR_TransactionType"].Value);
                         MainForm.objINV_StockTransfer.Show();
                     }
                 }
@@ -1066,6 +1071,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
                 dtStock.Columns.Add("STK_ProType", typeof(int));
+                dtStock.Columns.Add("STK_STSID", typeof(int));
                 if (grdStockTransfer.SelectedRows.Count > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

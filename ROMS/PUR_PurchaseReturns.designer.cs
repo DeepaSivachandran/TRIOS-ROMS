@@ -528,6 +528,7 @@
             // 
             // textBox5
             // 
+            this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.textBox5.Location = new System.Drawing.Point(552, 40);
             this.textBox5.Name = "textBox5";

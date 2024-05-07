@@ -128,7 +128,7 @@ namespace ROMS
                 {
                     ViewType = 0;
                     varoriginator = "Supplier payment creation";
-                    varStatusID = 78;
+                    varStatusID = 76;
                 }
                 else if (btnSave.Text == "Update")
                 {

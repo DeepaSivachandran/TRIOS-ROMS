@@ -69,7 +69,7 @@ namespace ROMS
                 }
                 if (i != 0) sb.Append(words3[i - 1]);
             }
-            return "Rupees "+ sb.ToString().TrimEnd() + " only";
+            return  sb.ToString().TrimEnd() + " only";
         }
         //public static string CurrencyToWord(string MyNumber)
         //{
