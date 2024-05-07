@@ -467,12 +467,8 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-                // Allow only one decimal point
-                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -520,7 +516,7 @@ namespace ROMS
                 DateTime ChequeDateTime =DateTime.ParseExact(dpDate.Text, "dd/MM/yyyy", null);
                 string chequeDate = ChequeDateTime.ToString("ddMMyyyy");
                 int totalAmt = Convert.ToInt32(txtAmount.Text);
-                string FinalAmnt = totalAmt.ToString("#,##0");
+                string FinalAmnt = totalAmt.ToString("#,##,##,##,##0");
                 if (Convert.ToInt32(cmbBank.SelectedValue) == 224)
                 {
                     RPTViewer.Visible = true;

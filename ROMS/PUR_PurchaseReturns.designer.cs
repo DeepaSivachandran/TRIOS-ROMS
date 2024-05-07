@@ -210,8 +210,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(82, 22);
-            this.tspHeader.Text = "Return DC";
+            this.tspHeader.Size = new System.Drawing.Size(135, 22);
+            this.tspHeader.Text = "Purchase Return DC";
             // 
             // pnldl
             // 

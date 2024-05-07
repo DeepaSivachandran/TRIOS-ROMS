@@ -425,7 +425,7 @@ namespace ROMS
                 else
                 {
                     //this.ActiveControl = txtSupplier;
-                    this.ActiveControl = txtSupplierDCNo;
+                    this.ActiveControl = txtSupplier;
                     txtSupplier.Focus();
                     if (editFlag == 0)
                     {
