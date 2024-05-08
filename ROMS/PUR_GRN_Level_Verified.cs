@@ -85,27 +85,22 @@ namespace ROMS
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
-                    //if (Convert.ToInt32(varTime[0]) > Convert.ToInt32(varCurrentTime[0]))
-                    //{
-                    //    errVerified.SetError(mtbTime1, "Please enter valid hour");
-                    //    mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    blnErrorFlag = true;
-                    //}
-                    //if (Convert.ToInt32(varTime[0]) == Convert.ToInt32(varCurrentTime[0]))
-                    //{
-                    //    if (Convert.ToInt32(varTime[1]) > Convert.ToInt32(varCurrentTime[1]))
-                    //    {
-                    //        errVerified.SetError(mtbTime1, "Please enter valid minute");
-                    //        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //        blnErrorFlag = true;
-                    //    }
-                    //}
-                    //if (Convert.ToString(cmbFormat1.Text) != Convert.ToString(CurrentTimeFormat1[1]))
-                    //{
-                    //    errVerified.SetError(cmbFormat1, "Please enter valid time format");
-                    //    mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    blnErrorFlag = true;
-                    //}
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 21;
+                    objMR_Master.paraDate = dpVerified1.Text;
+                    objMR_Master.paraTime = mtbTime1.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(objMR_Master);
+                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    {
+                        errVerified.SetError(mtbTime1, "Please enter valid Time");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(cmbFormat1, "Please enter valid Format");
+                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
                 }
                 if (Convert.ToString(txtVerified2.Text.Trim()) != "")
                 {
@@ -124,27 +119,22 @@ namespace ROMS
                         mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
-                    //if (Convert.ToInt32(varTime[0]) > Convert.ToInt32(varCurrentTime[0]))
-                    //{
-                    //    errVerified.SetError(mtbTime2, "Please enter valid hour");
-                    //    mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    blnErrorFlag = true;
-                    //}
-                    //if (Convert.ToInt32(varTime[0]) == Convert.ToInt32(varCurrentTime[0]))
-                    //{
-                    //    if (Convert.ToInt32(varTime[1]) > Convert.ToInt32(varCurrentTime[1]))
-                    //    {
-                    //        errVerified.SetError(mtbTime2, "Please enter valid minute");
-                    //        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //        blnErrorFlag = true;
-                    //    }
-                    //}
-                    //if (Convert.ToString(cmbFormat2.Text) != Convert.ToString(CurrentTimeFormat1[1]))
-                    //{
-                    //    errVerified.SetError(cmbFormat2, "Please enter valid time format");
-                    //    mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    blnErrorFlag = true;
-                    //}
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 21;
+                    objMR_Master.paraDate = dpVerified2.Text;
+                    objMR_Master.paraTime = mtbTime2.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat2.Text;
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(objMR_Master);
+                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter valid Time");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(cmbFormat2, "Please enter valid Format");
+                        cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -714,7 +704,6 @@ namespace ROMS
             try
             {
                 int error = 0;
-                string varCurrentTime = "",varCurrentTimeFormat="";
                 if (txtVerified1.Text.Trim() != "")
                 {
                     string[] varTime = mtbTime1.Text.Split(':');
@@ -740,30 +729,13 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
-                    varCurrentTime = Convert.ToString(objd.Tables[0].Rows[0]["Current Time"]);
-                    varCurrentTimeFormat = Convert.ToString(objd.Tables[0].Rows[0]["Time Format"]);
-                    string[] ValidateTime = varCurrentTime.Split(':');
-                    string[] validateFormat = varCurrentTimeFormat.Split(' ');
-                    if (Convert.ToInt32(varTime[0]) > Convert.ToInt32(ValidateTime[0]))
+                    if(Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"])==0)
                     {
-                        errVerified.SetError(mtbTime2, "Please enter valid hour");
-                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //blnErrorFlag = true;
-                    }
-                    if (Convert.ToInt32(varTime[0]) == Convert.ToInt32(ValidateTime[0]))
-                    {
-                        if (Convert.ToInt32(varTime[1]) > Convert.ToInt32(ValidateTime[1]))
-                        {
-                            errVerified.SetError(mtbTime2, "Please enter valid minute");
-                            mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            //blnErrorFlag = true;
-                        }
-                    }
-                    if (Convert.ToString(cmbFormat2.Text) != Convert.ToString(validateFormat[1]))
-                    {
-                        errVerified.SetError(cmbFormat2, "Please enter valid time format");
+                        errVerified.SetError(mtbTime1, "Please enter valid Time");
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //blnErrorFlag = true;
+                        errVerified.SetError(cmbFormat1, "Please enter valid Format");
+                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        error = 1;
                     }
                 }
                 if (error==0)
@@ -830,6 +802,22 @@ namespace ROMS
                         mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 21;
+                    objMR_Master.paraDate = dpVerified2.Text;
+                    objMR_Master.paraTime = mtbTime2.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat2.Text;
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(objMR_Master);
+                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter valid Time");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(cmbFormat2, "Please enter valid Format");
+                        cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        error = 1;
+                    }
                 }
                 if (error == 0)
                 {
@@ -862,6 +850,24 @@ namespace ROMS
             try
             {
                 cmbFormat1.BackColor = Color.White;
+                if (mtbTime1.Text!="")
+                {
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 21;
+                    objMR_Master.paraDate = dpVerified1.Text;
+                    objMR_Master.paraTime = mtbTime1.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(objMR_Master);
+                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    {
+                        errVerified.SetError(mtbTime1, "Please enter valid Time");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(cmbFormat1, "Please enter valid Format");
+                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -917,6 +923,24 @@ namespace ROMS
             try
             {
                 cmbFormat2.BackColor = Color.White;
+                if (mtbTime2.Text != "")
+                {
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 21;
+                    objMR_Master.paraDate = dpVerified1.Text;
+                    objMR_Master.paraTime = mtbTime1.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(objMR_Master);
+                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter valid Time");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(cmbFormat2, "Please enter valid Format");
+                        cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    }
+                }
             }
             catch (Exception ex)
             {

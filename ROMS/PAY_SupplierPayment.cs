@@ -98,14 +98,14 @@ namespace ROMS
                     tpSuppliername.Show("Please enter supplier name", txtsuppliername, 5000);
                     blnErrorFlag = true;
                 }
-                if(Convert.ToBoolean(grdSupplierPayment.Columns["clmcheck"])==false)
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(64);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    blnErrorFlag = true;
-                }
+                //if(!Convert.ToBoolean(grdSupplierPayment.Columns["clmcheck"]))
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(64);
+                //    objDServ.CloseConnection();
+                //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    blnErrorFlag = true;
+                //}
                 if(blnErrorFlag==false)
                 {
                     epSupplier.Clear();

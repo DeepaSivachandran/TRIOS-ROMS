@@ -177,6 +177,9 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["PUR_Created"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["PUR_LastTransNo"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["PUR_VoucherDate"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Invoice No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;

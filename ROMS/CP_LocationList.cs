@@ -576,8 +576,8 @@ namespace ROMS
         {
             try
             {
-                btnExport.Enabled = false;
                 lblStatus.Focus();
+                btnExport.Enabled = false;
                 if ((grdGodownList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
