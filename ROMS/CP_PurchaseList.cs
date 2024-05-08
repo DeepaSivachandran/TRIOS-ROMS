@@ -659,6 +659,8 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["STSID"].Visible = false;
                             grdPurchaseEntryList.Columns["PUR_INVSTSID"].Visible = false;
                             grdPurchaseEntryList.Columns["PUR_Approval_STSID"].Visible = false;
+                            grdPurchaseEntryList.Columns["PUR_Approval_STSID"].Visible = false;
+                            grdPurchaseEntryList.Columns["GRN_Payment_StsID"].Visible = false;
                             grdPurchaseEntryList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseEntryList.Columns["Grand Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             grdPurchaseEntryList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1389,6 +1391,10 @@ namespace ROMS
                     {
                         cell.Style.BackColor = Color.Pink;
                         cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                    }
+                    if(Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["Flag"].Value) == "1") //flag =1 -Purchase entry incomplete
+                    {
+                        grdPurchaseEntryList.Rows[i].Cells["Overall Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                     }
                     /*
                     if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "49")
