@@ -2043,7 +2043,8 @@ namespace ROMS
                     if (e.KeyCode == Keys.F4)
                     {
                         //if (columnName == "clmPurchaseRate" || columnName = "clmDiscPer"
-                        if ( grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate")
+                        if ( grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscPer" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmPurchaseRate"
+                            || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty" || grdPurchaseList.CurrentCell.OwningColumn.Name == "clmDiscAmt")
                         {
                             udfnCalculator();
                         }
@@ -4013,13 +4014,42 @@ namespace ROMS
                         lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
                     }
                 }
-                if (varProductType == 218 || varProductType == 220) //218-GRN  , 220 - DC
+                if (varProductType == 218 ) //218-GRN 
                 {
                     var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
                                     where (r.Field<int>("Flag").Equals(varProductType))
                                     group r by new
                                     {  PRID = r["PRID"],  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],
-                                        BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"] } into g
+                                        BatchNo = r["BatchNo"]/*, SLID = r["SLID"], RKID = r["RKID"] */} into g
+                                    select g;
+                    if (varPrid == "")
+                    {
+                        varPrid = Convert.ToString(varProIds);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < varProIds.Count(); i++)
+                        {
+                            varPrid = varPrid + ',' + varProIds.ToList()[i];
+                        }
+                    }
+                    if (Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
+                    {
+                        lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                    }
+                }
+                if ( varProductType == 220) //  220 - DC
+                {
+                    var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
+                                    where (r.Field<int>("Flag").Equals(varProductType))
+                                    group r by new
+                                    {
+                                        PRID = r["PRID"],
+                                        MRP = r["MRP"],
+                                        ExpiryDate = r["ExpiryDate"],
+                                        BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"] 
+                                    } into g
                                     select g;
                     if (varPrid == "")
                     {
@@ -4045,6 +4075,31 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnPoDropdownDisable()
+        {
+            try
+            {
+                if (Convert.ToString(cmbEntryType.SelectedValue) == "54") //Grn
+                {
+                    if (lblRemainProduct.Text == "0")
+                    { cmbPONo.SelectedValue = 217; cmbPONo.Enabled = false; }
+                    else { cmbPONo.Enabled = true; }
+                }
+                //else if (Convert.ToString(cmbEntryType.SelectedValue) == "55") //Po
+                //{ cmbPONo.SelectedValue = 215; }
+                else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
+                {
+                    if ( lblRemainProduct.Text == "0")
+                    { cmbPONo.SelectedValue = 219; cmbPONo.Enabled = false; }
+                    else { cmbPONo.Enabled = true; }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -4052,6 +4107,7 @@ namespace ROMS
                 pbDateflag = 0;
                 udfnAddProductsgrid();
                 udfnProductCount();
+                udfnPoDropdownDisable();
                 if(grdSupplierList.Rows.Count!=0)
                 {
                     if (grdReurnDC.Visible == true)
@@ -4509,12 +4565,12 @@ namespace ROMS
                                 dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text,(varRackId), expirydateFlag,Convert.ToInt16(cmbPONo.SelectedValue));
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text));
                                 udfnrowclear();
-                                if (Convert.ToString(cmbEntryType.SelectedValue) == "54") //Grn
-                                { cmbPONo.SelectedValue = 218; }
-                                else if (Convert.ToString(cmbEntryType.SelectedValue) == "55") //Po
-                                { cmbPONo.SelectedValue = 215; }
-                                else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
-                                { cmbPONo.SelectedValue = 220; }
+                                //if (Convert.ToString(cmbEntryType.SelectedValue) == "54") //Grn
+                                //{ cmbPONo.SelectedValue = 218; }
+                                //else if (Convert.ToString(cmbEntryType.SelectedValue) == "55") //Po
+                                //{ cmbPONo.SelectedValue = 215; }
+                                //else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
+                                //{ cmbPONo.SelectedValue = 220; }
                                 txtProductName.Text = "";
                                 lblProductcode.Text = "0";
                                 txtProductName.BackColor = Color.White;
@@ -5371,47 +5427,52 @@ namespace ROMS
         {
             try
             {
-                decimal lblGrandTot = 0, loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
-                                    otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0,additionalValue=0,DiscountValue=0;
+                decimal varGrandTot = 0, varloadcharge = 0, varUnloadcharge = 0, varCouriercharge = 0, varOtherexpense = 0, varDiscountper = 0, varDiscountamt = 0, varTcsamt = 0, varDamagecost = 0,
+                                    varOtherdiscount = 0, varLoadinggrn = 0, varFrightgrn = 0, varSubtotal = 0, varGstamt = 0, 
+                                    varRoundoff = 0, varTotal = 0, varAdditionalValue=0, varDiscountValue=0;
                 if (lblTotal.Text != "")
-                { lblGrandTot = Convert.ToDecimal(lblTotal.Text.Trim()); }
+                { varGrandTot = Convert.ToDecimal(lblTotal.Text.Trim()); }
                 if (txtLoadingchargeGrn.Text != "")
-                { loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text); }
+                { varLoadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text); }
                 if (txtFrightGrn.Text != "")
-                { frightgrn = Convert.ToDecimal(txtFrightGrn.Text); }
+                { varFrightgrn = Convert.ToDecimal(txtFrightGrn.Text); }
                 if (txtLoadingCharge.Text != "")
-                { loadcharge = Convert.ToDecimal(txtLoadingCharge.Text); }
+                { varloadcharge = Convert.ToDecimal(txtLoadingCharge.Text); }
                 if (txtUnLoadingCharge.Text != "")
-                { unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text); }
+                { varUnloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text); }
                 if (txtCouriercharge.Text != "")
-                { couriercharge = Convert.ToDecimal(txtCouriercharge.Text); }
+                { varCouriercharge = Convert.ToDecimal(txtCouriercharge.Text); }
                 if (txtotherexpense.Text != "")
-                { otherexpense = Convert.ToDecimal(txtotherexpense.Text); }
+                { varOtherexpense = Convert.ToDecimal(txtotherexpense.Text); }
                 if (Txtdiscount.Text != "")
-                { discountper = Convert.ToDecimal(Txtdiscount.Text); }
+                { varDiscountper = Convert.ToDecimal(Txtdiscount.Text); }
                 if (txtDiscountamt.Text != "")
-                { discountamt = Convert.ToDecimal(txtDiscountamt.Text); }
+                { varDiscountamt = Convert.ToDecimal(txtDiscountamt.Text); }
                 if (txtTcsamt.Text != "")
-                { tcsamt = Convert.ToDecimal(txtTcsamt.Text); }
+                { varTcsamt = Convert.ToDecimal(txtTcsamt.Text); }
                 if (txtDamagecost.Text != "")
-                { damagecost = Convert.ToDecimal(txtDamagecost.Text); }
+                { varDamagecost = Convert.ToDecimal(txtDamagecost.Text); }
                 if (txtOtherdiscount.Text != "")
-                { otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text); }
+                { varOtherdiscount = Convert.ToDecimal(txtOtherdiscount.Text); }
                 if (lblSubtotal.Text != "")
-                { subtotal = Convert.ToDecimal(lblSubtotal.Text); }
+                { varSubtotal = Convert.ToDecimal(lblSubtotal.Text); }
                 if (lblGstamt.Text != "")
-                { gstamt = Convert.ToDecimal(lblGstamt.Text); }
+                { varGstamt = Convert.ToDecimal(lblGstamt.Text); }
                 if (lblRoundoff.Text != "")
-                { roundoff = Convert.ToDecimal(lblRoundoff.Text); }
+                { varRoundoff = Convert.ToDecimal(lblRoundoff.Text); }
                 if (lblTotal.Text != "")
-                { grandtotal = Convert.ToDecimal(lblTotal.Text); }
-                additionalValue = loadcharge + unloadcharge + couriercharge + otherexpense + tcsamt + loadinggrn + frightgrn;
-                DiscountValue = discountamt + otherdiscount + damagecost;
+                { varTotal = Convert.ToDecimal(lblTotal.Text); }
+                varAdditionalValue = varloadcharge + varUnloadcharge + varCouriercharge + varOtherexpense + varTcsamt + varLoadinggrn + varFrightgrn;
+                varDiscountValue = varDiscountamt + varOtherdiscount + varDamagecost;
                 //lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense + tcsamt - discountamt - damagecost - otherdiscount;
-                lblGrandTot = lblGrandTot+additionalValue - DiscountValue;
-                lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
-                lblAdditionalValue.Text= additionalValue.ToString("#,##0.00");
-                lblDiscount.Text= DiscountValue.ToString("#,##0.00");
+                //lblGrandTot = lblGrandTot+additionalValue - DiscountValue;
+                varGrandTot = varTotal + varAdditionalValue - varDiscountValue;
+                //lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
+                lblAdditionalValue.Text= varAdditionalValue.ToString("#,##0.00");
+                lblDiscount.Text= varDiscountValue.ToString("#,##0.00");
+
+                lblGrandTotal.Text = Math.Round(varGrandTot).ToString("#,##0.00");
+                lblRoundoff.Text = Convert.ToString(Convert.ToDecimal(lblGrandTotal.Text) - (varTotal + varAdditionalValue - varDiscountValue));
             }
             catch (Exception ex)
             {
@@ -9253,7 +9314,7 @@ namespace ROMS
                     }
                     if (pbPurchaseno == "0")
                     {
-                        if (varGrnId != -1 && varGrnId != 0)
+                        if (varGrnId != -1 && varGrnId != 0 && varQueueFlag!=1)
                         {
                             MainForm.objPUR_Purchase_GRNDetails.QRFlag = 1;
                             pbGRNNo = Convert.ToString(varGrnId);
@@ -9430,22 +9491,23 @@ namespace ROMS
                                         }
                                     }
                                 }
-                                if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value) == "218" || Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value) == "220") //GRn,dc
+                                if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value) == "218" ) //GRN
                                 {
                                     var varRemoveProuct =
                                     from r in dtProductDetails.AsEnumerable()
                                     where (r.Field<string>("PRID").Equals(varPrid) &&
                                          r.Field<string>("ExpiryDate").Equals(varExpirydate) &&
                                          r.Field<string>("BatchNo").Equals(varBatchNo) &&
-                                         r.Field<string>("SLID").Equals(varSlid) &&
-                                         r.Field<string>("RKID").Equals(varRkid) &&
+                                       /*  r.Field<string>("SLID").Equals(varSlid) &&
+                                         r.Field<string>("RKID").Equals(varRkid) &&*/
                                          r.Field<string>("MRP").Equals(mrp1)  )
                                     group r by r.Field<string>("PRID")  into g  select g.Key;
                                     if (varRemoveProuct.Count() != 0)
                                     {
                                         lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
+                                        lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
                                     }
-                                    lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
+                                    //lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
                                     for (int i = 0; i < varProductsIDs.Count; i++)
                                     {
                                         if (varProductsIDs[i].Equals(Convert.ToInt16(varPrid)))
@@ -9461,7 +9523,40 @@ namespace ROMS
                                         }
                                     }
                                 }
-                                if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value) == "215")
+                                if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value) == "220") //DC
+                                {
+                                    var varRemoveProuct =
+                                    from r in dtProductDetails.AsEnumerable()
+                                    where (r.Field<string>("PRID").Equals(varPrid) &&
+                                         r.Field<string>("ExpiryDate").Equals(varExpirydate) &&
+                                         r.Field<string>("BatchNo").Equals(varBatchNo) &&
+                                         r.Field<string>("SLID").Equals(varSlid) &&
+                                         r.Field<string>("RKID").Equals(varRkid) &&
+                                         r.Field<string>("MRP").Equals(mrp1))
+                                    group r by r.Field<string>("PRID") into g
+                                    select g.Key;
+                                    if (varRemoveProuct.Count() != 0)
+                                    {
+                                        lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
+                                        lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
+                                    }
+                                   // lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
+                                    for (int i = 0; i < varProductsIDs.Count; i++)
+                                    {
+                                        if (varProductsIDs[i].Equals(Convert.ToInt16(varPrid)))
+                                        { varProductsIDs.RemoveAt(i); goto L; }
+                                    }
+                                L:
+                                    for (int i = 0; i < dtPurchaseAutoComplete.Rows.Count; i++)
+                                    {
+                                        if (Convert.ToString(dtPurchaseAutoComplete.Rows[i]["Sno"]) == Convert.ToString(varSno))
+                                        {
+                                            dtPurchaseAutoComplete.Rows[i].Delete();
+                                            dtPurchaseAutoComplete.AcceptChanges();
+                                        }
+                                    }
+                                }
+                                if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value) == "215") //po
                                 {
                                     int varProductType = Convert.ToInt16(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value);
                                     //var varRemoveProuct =
@@ -9475,12 +9570,20 @@ namespace ROMS
                                     if (varRemoveProuct.Count() == 1)
                                     {
                                         lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
-                                        lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
-
-                                        for (int i = 0; i < varProductsIDs.Count; i++)
+                                        //lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
+                                        lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
+                                    }
+                                    for (int i = 0; i < varProductsIDs.Count; i++)
+                                    {
+                                        if (varProductsIDs[i].Equals(Convert.ToInt16(varPrid)))
+                                        { varProductsIDs.RemoveAt(i); goto L; }
+                                    }
+                                   L: for (int i = 0; i < dtPurchaseAutoComplete.Rows.Count; i++)
+                                    {
+                                        if (Convert.ToString(dtPurchaseAutoComplete.Rows[i]["Sno"]) == Convert.ToString(varSno))
                                         {
-                                            if (varProductsIDs[i].Equals(Convert.ToInt16(varPrid)))
-                                            { varProductsIDs.RemoveAt(i); }
+                                            dtPurchaseAutoComplete.Rows[i].Delete();
+                                            dtPurchaseAutoComplete.AcceptChanges();
                                         }
                                     }
                                 }
@@ -9527,6 +9630,7 @@ namespace ROMS
                                         grdPurchaseList.Rows[e.RowIndex].Cells["clmDiscountValue"].Value = PbDicountValue.ToString("0.00");
                                     }
                                 }
+                                udfnPoDropdownDisable();
                             }
                             break;
                     }
@@ -9886,7 +9990,7 @@ namespace ROMS
         {
             try
             {
-                decimal varSubtotal = 0, varTaxTotal = 0, varInvQty = 0 ;
+                decimal varSubtotal = 0, varTaxTotal = 0, varInvQty = 0 , varAdditionalValue = 0 , varDiscount = 0;
                 //if (Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value) != 0 || Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value) != 0)
                 //{
                 for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
@@ -9938,16 +10042,20 @@ namespace ROMS
                 if (varSupplierType == 30) //GSTIN registered suppplier
                 {
                     lblGstamt.Text = varTaxTotal.ToString("0.00");
-                    lblTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+                    //lblTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+                    lblTotal.Text = (varSubtotal + varTaxTotal).ToString("0.00");
                 }
                 else
                 {
                     varTaxTotal = 0;
                     lblGstamt.Text = varTaxTotal.ToString("0.00");
-                    lblTotal.Text = Math.Round(varSubtotal).ToString("0.00");
+                  //  lblTotal.Text = Math.Round(varSubtotal).ToString("0.00");
+                    lblTotal.Text = varSubtotal.ToString("0.00");
                 }
-                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("#,##0.00");
-                lblRoundoff.Text = Convert.ToString(Convert.ToDecimal(lblTotal.Text) - (varSubtotal + varTaxTotal));
+                varAdditionalValue = Convert.ToDecimal(lblAdditionalValue.Text);
+                varDiscount = Convert.ToDecimal(lblDiscount.Text);
+                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal + varAdditionalValue - varDiscount).ToString("#,##0.00");
+                lblRoundoff.Text = Convert.ToString(Convert.ToDecimal(lblGrandTotal.Text) - (varSubtotal + varTaxTotal+ varAdditionalValue - varDiscount));
                 if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty")
                 {
                     lblTpro.Text = Convert.ToString(grdPurchaseList.RowCount) + " / " + Convert.ToString(varInvQty);
