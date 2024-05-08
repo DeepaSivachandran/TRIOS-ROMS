@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -155,12 +156,25 @@ namespace ROMS
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0,"","",0);
                 objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0,0);
 
-                objDSShelfLifeType = objDServ.udfnMaster(0, 6,0,"","",0,"",0);
-                objDSQTYUnit = objDServ.udfnMaster(2, 0,0,"","",0, "",0);
-                objDSProductCategory = objDServ.udfnMaster(0, 5,0,"","",0, "",0);
-                objDSRMPRO = objDServ.udfnMaster(1, 0,0,"","",0, "",0);
-                objDSBatchNo = objDServ.udfnMaster(0, 25,0,"","",0, "",0);
-                objDSBatchNoGeneration = objDServ.udfnMaster(0, 26,0,"","",0, "",0);
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 0;
+                objMR_Master.paraID = 6;
+                objDSShelfLifeType = objDServ.udfnMaster(objMR_Master);
+                objMR_Master.ViewType = 2;
+                objMR_Master.paraID = 0;
+                objDSQTYUnit = objDServ.udfnMaster(objMR_Master);
+                objMR_Master.ViewType = 0;
+                objMR_Master.paraID = 5;
+                objDSProductCategory = objDServ.udfnMaster(objMR_Master);
+                objMR_Master.ViewType = 1;
+                objMR_Master.paraID = 0;
+                objDSRMPRO = objDServ.udfnMaster(objMR_Master);
+                objMR_Master.ViewType = 0;
+                objMR_Master.paraID = 25;
+                objDSBatchNo = objDServ.udfnMaster(objMR_Master);
+                objMR_Master.ViewType = 0;
+                objMR_Master.paraID = 26;
+                objDSBatchNoGeneration = objDServ.udfnMaster(objMR_Master);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
                 MR_Product objMR_Product = new MR_Product();
                 objDSProduct = objDServ.udfnproductmasterlist(objMR_Product);

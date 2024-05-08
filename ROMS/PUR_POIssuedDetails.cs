@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -296,9 +298,13 @@ namespace ROMS
                                 cmbIssueMode.SelectedValue = -1;
                             }
                             txtIssuemodeValues.Text = objDs.Tables[0].Rows[0]["Issueremark"].ToString();
+                            MR_Master objMR_Master = new MR_Master();
+                            objMR_Master.ViewType = 4;
+                            objMR_Master.paraID = 6;
+                            objMR_Master.paraPOID = varPOID;
                             SPDataService objDServ = new SPDataService();
                             DataSet objd = new DataSet();
-                            objd = objDServ.udfnMaster(4, 6,varPOID,"","",0, "",0);
+                            objd = objDServ.udfnMaster(objMR_Master);
                             if (objd.Tables[0].Rows.Count != 0)
                             { 
                                 DateTime varmindate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MINDATE"].ToString(), "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);

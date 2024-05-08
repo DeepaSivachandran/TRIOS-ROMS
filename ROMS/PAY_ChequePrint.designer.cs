@@ -53,6 +53,7 @@
             this.lblsupplierGST = new System.Windows.Forms.Label();
             this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.grbgodown = new System.Windows.Forms.GroupBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.btnPreview = new System.Windows.Forms.Button();
             this.txtAmount = new System.Windows.Forms.TextBox();
@@ -216,9 +217,8 @@
             this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReturn.Location = new System.Drawing.Point(1241, 114);
             this.lblReturn.Name = "lblReturn";
-            this.lblReturn.Size = new System.Drawing.Size(37, 16);
+            this.lblReturn.Size = new System.Drawing.Size(0, 16);
             this.lblReturn.TabIndex = 1111225;
-            this.lblReturn.Text = "Retrun";
             this.lblReturn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblReturn.Visible = false;
             // 
@@ -255,9 +255,8 @@
             this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 8F);
             this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(6, 103);
             this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
-            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(62, 15);
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(0, 15);
             this.lblSupplierOrderpolicy.TabIndex = 1111206;
-            this.lblSupplierOrderpolicy.Text = "Order Policy ";
             this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblsupplierScheduletype
@@ -267,9 +266,8 @@
             this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 8F);
             this.lblsupplierScheduletype.Location = new System.Drawing.Point(6, 71);
             this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
-            this.lblsupplierScheduletype.Size = new System.Drawing.Size(66, 15);
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(0, 15);
             this.lblsupplierScheduletype.TabIndex = 1111203;
-            this.lblsupplierScheduletype.Text = "Schedule Type";
             this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblSupplierCity
@@ -279,9 +277,8 @@
             this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 8F);
             this.lblSupplierCity.Location = new System.Drawing.Point(6, 38);
             this.lblSupplierCity.Name = "lblSupplierCity";
-            this.lblSupplierCity.Size = new System.Drawing.Size(23, 15);
+            this.lblSupplierCity.Size = new System.Drawing.Size(0, 15);
             this.lblSupplierCity.TabIndex = 1111204;
-            this.lblSupplierCity.Text = "City";
             this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblSuppliername
@@ -291,9 +288,8 @@
             this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSuppliername.Location = new System.Drawing.Point(6, 20);
             this.lblSuppliername.Name = "lblSuppliername";
-            this.lblSuppliername.Size = new System.Drawing.Size(50, 19);
+            this.lblSuppliername.Size = new System.Drawing.Size(0, 19);
             this.lblSuppliername.TabIndex = 1111200;
-            this.lblSuppliername.Text = "Supplier";
             this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblsupplierGST
@@ -303,9 +299,8 @@
             this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 8F);
             this.lblsupplierGST.Location = new System.Drawing.Point(6, 55);
             this.lblsupplierGST.Name = "lblsupplierGST";
-            this.lblsupplierGST.Size = new System.Drawing.Size(19, 15);
+            this.lblsupplierGST.Size = new System.Drawing.Size(0, 15);
             this.lblsupplierGST.TabIndex = 1111201;
-            this.lblsupplierGST.Text = "gst";
             this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblsupplierpayment
@@ -315,13 +310,13 @@
             this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 8F);
             this.lblsupplierpayment.Location = new System.Drawing.Point(6, 87);
             this.lblsupplierpayment.Name = "lblsupplierpayment";
-            this.lblsupplierpayment.Size = new System.Drawing.Size(41, 15);
+            this.lblsupplierpayment.Size = new System.Drawing.Size(0, 15);
             this.lblsupplierpayment.TabIndex = 1111202;
-            this.lblsupplierpayment.Text = "Payment";
             this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // grbgodown
             // 
+            this.grbgodown.Controls.Add(this.btnClear);
             this.grbgodown.Controls.Add(this.cmbBank);
             this.grbgodown.Controls.Add(this.btnPreview);
             this.grbgodown.Controls.Add(this.txtAmount);
@@ -339,6 +334,16 @@
             this.grbgodown.TabIndex = 958806;
             this.grbgodown.TabStop = false;
             // 
+            // btnClear
+            // 
+            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
+            this.btnClear.Location = new System.Drawing.Point(671, 35);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(34, 29);
+            this.btnClear.TabIndex = 91;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
             // cmbBank
             // 
             this.cmbBank.FormattingEnabled = true;
@@ -355,12 +360,10 @@
             // 
             this.btnPreview.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnPreview.Image = global::ROMS.Properties.Resources.view;
-            this.btnPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPreview.Location = new System.Drawing.Point(631, 35);
             this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(84, 29);
+            this.btnPreview.Size = new System.Drawing.Size(34, 29);
             this.btnPreview.TabIndex = 4;
-            this.btnPreview.Text = "Preview";
             this.btnPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.BtnPreview_Click);
@@ -368,6 +371,7 @@
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(497, 36);
+            this.txtAmount.MaxLength = 10;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(128, 27);
             this.txtAmount.TabIndex = 3;
@@ -381,7 +385,7 @@
             // lblDAmount
             // 
             this.lblDAmount.AutoSize = true;
-            this.lblDAmount.Location = new System.Drawing.Point(497, 14);
+            this.lblDAmount.Location = new System.Drawing.Point(495, 14);
             this.lblDAmount.Name = "lblDAmount";
             this.lblDAmount.Size = new System.Drawing.Size(95, 20);
             this.lblDAmount.TabIndex = 90;
@@ -431,7 +435,7 @@
             // lblChequeDate
             // 
             this.lblChequeDate.AutoSize = true;
-            this.lblChequeDate.Location = new System.Drawing.Point(382, 14);
+            this.lblChequeDate.Location = new System.Drawing.Point(380, 14);
             this.lblChequeDate.Name = "lblChequeDate";
             this.lblChequeDate.Size = new System.Drawing.Size(78, 20);
             this.lblChequeDate.TabIndex = 70;
@@ -509,5 +513,6 @@
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.Label lblAmount;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
+        private System.Windows.Forms.Button btnClear;
     }
 }

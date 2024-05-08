@@ -446,6 +446,7 @@ namespace ROMS
             {
                 if (varStockRequestID != 0)
                 {
+                    //grdStockTransfer.SelectionMode = DataGridCell;
                     this.ActiveControl = txtRemarks;
                     errStockTransfer.Clear();
                     grbStockTransfer.Enabled = false;
@@ -2629,7 +2630,8 @@ namespace ROMS
         {
             try
             {
-                if (grdStockTransfer.CurrentCell.OwningColumn.Name == "Transfer Qty")
+                varQtyError = "0";
+                if (grdStockTransfer.CurrentCell.OwningColumn.Name == "clmquantity")
                 {
                     decimal TransferQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmquantity"].Value);
                     decimal StockQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmStockQty"].Value);
@@ -2680,10 +2682,6 @@ namespace ROMS
                     //objDServ.CloseConnection();
                     //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     varQtyError = "1";
-                }
-                else
-                {
-                    grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
                 }
 
             }

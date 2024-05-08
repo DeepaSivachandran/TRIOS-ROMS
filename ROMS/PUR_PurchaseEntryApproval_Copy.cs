@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1148,9 +1149,12 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 4;
+                objMR_Master.paraID = 6;
                 DataSet objd = new DataSet();
                 SPDataService objDServ = new SPDataService();
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                objd = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 if (objd.Tables[1].Rows.Count != 0)
                 {

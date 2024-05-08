@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.VariantTypes;
 using ROMS.Model;
 
 namespace ROMS
@@ -424,7 +425,7 @@ namespace ROMS
                 else
                 {
                     //this.ActiveControl = txtSupplier;
-                    this.ActiveControl = txtSupplierDCNo;
+                    this.ActiveControl = txtSupplier;
                     txtSupplier.Focus();
                     if (editFlag == 0)
                     {
@@ -1239,112 +1240,118 @@ namespace ROMS
                                         txtMrp.Enabled = false;
                                     }
 
-                                    if (Convert.ToInt32(varBatchNo) == 73)  //disabled
+                                if (Convert.ToInt32(varBatchNo) == 73)  //disabled
+                                {
+                                    txtBatchNo.Text = "";
+                                    txtBatchNo.Enabled = false;
+                                    //  txtBatchNo.ReadOnly = true;
+                                }
+                                else if (Convert.ToInt32(varBatchNo) == 72) //enabled
+                                {
+                                    if (Convert.ToInt32(varBatchNoGeneration) == 75)  //manual
                                     {
-                                        txtBatchNo.Text = "";
-                                        txtBatchNo.Enabled = false;
-                                        //  txtBatchNo.ReadOnly = true;
+                                        txtBatchNo.Enabled = true;
+                                        txtBatchNo.BackColor = Color.White;
                                     }
-                                    else if (Convert.ToInt32(varBatchNo) == 72) //enabled
+                                    else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                                     {
-                                        if (Convert.ToInt32(varBatchNoGeneration) == 75)  //manual
+                                        MR_Master objMR_Master = new MR_Master();
+                                        objMR_Master.ViewType = 4;
+                                        SPDataService objspdservice = new SPDataService();
+                                        DataSet objDs = new DataSet();
+                                        objDs = objspdservice.udfnMaster(objMR_Master);
+                                        objspdservice.CloseConnection();
+                                        if (objDs.Tables[0] != null)
                                         {
-                                            txtBatchNo.Enabled = true;
-                                            txtBatchNo.BackColor = Color.White;
-                                        }
-                                        else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
-                                        {
-                                            SPDataService objspdservice = new SPDataService();
-                                            DataSet objDs = new DataSet();
-                                            objDs = objspdservice.udfnMaster(14, 0, 0, "", "", 0, "", 0);
-                                            objspdservice.CloseConnection();
-                                            if (objDs.Tables[0] != null)
+                                            if (objDs.Tables[0].Rows.Count != 0)
                                             {
-                                                if (objDs.Tables[0].Rows.Count != 0)
-                                                {
-                                                    txtBatchNo.Text = objDs.Tables[0].Rows[0]["Date"].ToString();
-                                                    txtBatchNo.Enabled = false;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    if (Convert.ToInt32(varPrcategory) == 16)
-                                    {
-                                        if (Convert.ToInt32(varRMProduction) == 1)
-                                        {
-                                            SPDataService objspdservice = new SPDataService();
-                                            DataSet objDs = new DataSet();
-                                            objDs = objspdservice.udfnMaster(15, 0, 0, dpDCDate.Text, "", Convert.ToInt32(lblProductcode.Text), "", 0);
-                                            objspdservice.CloseConnection();
-                                            if (objDs.Tables[0] != null)
-                                            {
-                                                if (objDs.Tables[0].Rows.Count != 0)
-                                                {
-                                                    txtDay.Text = objDs.Tables[0].Rows[0][0].ToString();
-                                                    txtMonth.Text = objDs.Tables[0].Rows[1][0].ToString();
-                                                    txtYear.Text = objDs.Tables[0].Rows[2][0].ToString();
-                                                }
+                                                txtBatchNo.Text = objDs.Tables[0].Rows[0]["Date"].ToString();
+                                                txtBatchNo.Enabled = false;
                                             }
                                         }
                                     }
                                 }
-                                if (varAutocompleteProduct == 2)
+                                if (Convert.ToInt32(varPrcategory) == 16)
                                 {
-                                    DataGridView dataGridView1 = grdPurchaseDC;
-                                    DataGridViewCell cell1 = dataGridView1.CurrentRow.Cells["clmMRP"];
-                                    DataGridView dataGridView2 = grdPurchaseDC;
-                                    DataGridViewCell cell2 = dataGridView2.CurrentRow.Cells["clmExpiryDate"];
-                                    DataGridView dataGridView3 = grdPurchaseDC;
-                                    DataGridViewCell cell3 = dataGridView3.CurrentRow.Cells["clmBatchNo"];
-                                    if (varMRPFlag == 0)
+                                    if (Convert.ToInt32(varRMProduction) == 1)
                                     {
-                                        cell1.Style.BackColor = Color.LightGray;
-                                        cell1.Style.ForeColor = Color.Black;
-                                        cell1.ReadOnly = true;
-                                        cell1.Value = "0.00";
-                                    }
-                                    else
-                                    {
-                                        cell1.Style.BackColor = Color.PaleGreen;
-                                        cell1.Style.ForeColor = Color.Black;
-                                        cell1.ReadOnly = false;
-                                    }
-                                    if (varShelflife == 0)
-                                    {
-                                        cell2.Style.BackColor = Color.LightGray;
-                                        cell2.Style.ForeColor = Color.Black;
-                                        cell2.ReadOnly = true;
-                                        cell2.Value = "";
-                                    }
-                                    else
-                                    {
-                                        cell2.Style.BackColor = Color.PaleGreen;
-                                        cell2.Style.ForeColor = Color.Black;
-                                        cell2.ReadOnly = false;
-                                    }
-                                    if (varBatchNo == "72" && varBatchNoGeneration == "75")
-                                    {
-                                        cell3.Style.BackColor = Color.PaleGreen;
-                                        cell3.Style.ForeColor = Color.Black;
-                                        cell3.ReadOnly = false;
-                                    }
-                                    if (varBatchNo == "72" && varBatchNoGeneration == "74")
-                                    {
-                                        cell3.Style.BackColor = Color.LightGray;
-                                        cell3.Style.ForeColor = Color.Black;
-                                        cell3.ReadOnly = true;
-                                        cell3.Value = "";
-                                    }
-                                    else if (varBatchNo == "73")
-                                    {
-                                        cell3.Style.BackColor = Color.LightGray;
-                                        cell3.Style.ForeColor = Color.Black;
-                                        cell3.ReadOnly = true;
-                                        cell3.Value = "";
+                                        MR_Master objMR_Master = new MR_Master();
+                                        objMR_Master.ViewType = 25;
+                                        objMR_Master.paraDate = dpDCDate.Text;
+                                        objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
+                                        SPDataService objspdservice = new SPDataService();
+                                        DataSet objDs = new DataSet();
+                                        objDs = objspdservice.udfnMaster(objMR_Master);
+                                        objspdservice.CloseConnection();
+                                        if (objDs.Tables[0] != null)
+                                        {
+                                            if (objDs.Tables[0].Rows.Count != 0)
+                                            {
+                                                txtDay.Text = objDs.Tables[0].Rows[0][0].ToString();
+                                                txtMonth.Text = objDs.Tables[0].Rows[1][0].ToString();
+                                                txtYear.Text = objDs.Tables[0].Rows[2][0].ToString();
+                                            }
+                                        }
                                     }
                                 }
                             }
+                            if (varAutocompleteProduct == 2)
+                            {
+                                DataGridView dataGridView1 = grdPurchaseDC;
+                                DataGridViewCell cell1 = dataGridView1.CurrentRow.Cells["clmMRP"];
+                                DataGridView dataGridView2 = grdPurchaseDC;
+                                DataGridViewCell cell2 = dataGridView2.CurrentRow.Cells["clmExpiryDate"];
+                                DataGridView dataGridView3 = grdPurchaseDC;
+                                DataGridViewCell cell3 = dataGridView3.CurrentRow.Cells["clmBatchNo"];
+                                if (varMRPFlag == 0)
+                                {
+                                    cell1.Style.BackColor = Color.LightGray;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = true;
+                                    cell1.Value = "0.00";
+                                }
+                                else
+                                {
+                                    cell1.Style.BackColor = Color.PaleGreen;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = false;
+                                }
+                                if (varShelflife == 0)
+                                {
+                                    cell2.Style.BackColor = Color.LightGray;
+                                    cell2.Style.ForeColor = Color.Black;
+                                    cell2.ReadOnly = true;
+                                    cell2.Value = "";
+                                }
+                                else
+                                {
+                                    cell2.Style.BackColor = Color.PaleGreen;
+                                    cell2.Style.ForeColor = Color.Black;
+                                    cell2.ReadOnly = false;
+                                }
+                                if (varBatchNo == "72" && varBatchNoGeneration == "75")
+                                {
+                                    cell3.Style.BackColor = Color.PaleGreen;
+                                    cell3.Style.ForeColor = Color.Black;
+                                    cell3.ReadOnly = false;
+                                }
+                                if (varBatchNo == "72" && varBatchNoGeneration == "74")
+                                {
+                                    cell3.Style.BackColor = Color.LightGray;
+                                    cell3.Style.ForeColor = Color.Black;
+                                    cell3.ReadOnly = true;
+                                    cell3.Value = "";
+                                }
+                                else if (varBatchNo == "73")
+                                {
+                                    cell3.Style.BackColor = Color.LightGray;
+                                    cell3.Style.ForeColor = Color.Black;
+                                    cell3.ReadOnly = true;
+                                    cell3.Value = "";
+                                }
+                            }
                         }
+                    }
                 }
             }
             catch (Exception ex)
@@ -3283,9 +3290,12 @@ namespace ROMS
                     }
                     if (grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Value != null && Convert.ToString(grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Value) != "0")
                     {
+                        MR_Master objMR_Master = new MR_Master();
+                        objMR_Master.ViewType = 8;
+                        objMR_Master.paraDate = varTempExpiryDate.Trim();
                         DataSet objDSer = new DataSet();
                         SPDataService objdServ = new SPDataService();
-                        objDSer = objdServ.udfnMaster(8, 0, 0, varTempExpiryDate.Trim(), "", 0, "", 0);
+                        objDSer = objdServ.udfnMaster(objMR_Master);
                         objdServ.CloseConnection();
                         if (objDSer != null)
                         {
@@ -3601,9 +3611,12 @@ namespace ROMS
                                 {
                                     varDate = "01" + "/" + DMY[0] + "/" + "20" + DMY[1];
                                 }
+                                MR_Master objMR_Master = new MR_Master();
+                                objMR_Master.ViewType = 5;
+                                objMR_Master.paraDate = varDate;
                                 DataSet objDSer = new DataSet();
                                 SPDataService objdServ = new SPDataService();
-                                objDSer = objdServ.udfnMaster(5, 0, 0, varDate, "", 0, "", 0);
+                                objDSer = objdServ.udfnMaster(objMR_Master);
                                 objdServ.CloseConnection();
                                 if (objDSer.Tables[0].Rows.Count > 0)
                                 {
@@ -3732,9 +3745,14 @@ namespace ROMS
                     //varTempMonth = DMY[1];
                     varTempExpiryDate = cellValue.ToString();
                 }
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 10;
+                objMR_Master.paraDate = dpDCDate.Text.Trim();
+                objMR_Master.ParaExpiryDate = varTempExpiryDate;
+                objMR_Master.paraProductId = varProid;
                 int varInvFlag = 0;
                 varProid = Convert.ToInt32(grdPurchaseDC.Rows[rowIndex].Cells["ClmPRID"].Value);
-                objDS = objDServ.udfnMaster(10, 0, 0, dpDCDate.Text.Trim(), varTempExpiryDate, varProid, "", 0);
+                objDS = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 //for (int i = 0; i < grdPurchaseDC.Rows.Count; i++)
                 //{
@@ -4603,7 +4621,10 @@ namespace ROMS
                     if (txtDay.Text.Trim() == "")
                     {
                         varDate = varDay + "/" + varMonth + "/" + varYear;
-                        objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "", 0);
+                        MR_Master objMR_Master1 = new MR_Master();
+                        objMR_Master1.ViewType = 5;
+                        objMR_Master1.paraDate = varDate;
+                        objDS = objDServ.udfnMaster(objMR_Master1);
                         objDServ.CloseConnection();
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -4614,7 +4635,12 @@ namespace ROMS
                     {
                         varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
                     }
-                    objDS = objDServ.udfnMaster(10, 0, 0, dpDCDate.Text.Trim(), varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 10;
+                    objMR_Master.paraDate = dpDCDate.Text.Trim();
+                    objMR_Master.ParaExpiryDate = varExpiryDate;
+                    objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
+                    objDS = objDServ.udfnMaster(objMR_Master);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
@@ -4734,7 +4760,12 @@ namespace ROMS
                     DataSet objDS = new DataSet();
                     if (varExpiryDate != "")
                     {
-                        objDS = objDServ.udfnMaster(7, 0, 0, dpDCDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
+                        MR_Master objMR_Master = new MR_Master();
+                        objMR_Master.ViewType = 7;
+                        objMR_Master.paraDate = dpDCDate.Text;
+                        objMR_Master.ParaExpiryDate = varExpiryDate;
+                        objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
+                        objDS = objDServ.udfnMaster(objMR_Master);
                         objDServ.CloseConnection();
                         if (expirydateFlag == 1)
                         {                           

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ROMS.Model;
 using Excel = Microsoft.Office.Interop.Excel;
+using DocumentFormat.OpenXml.VariantTypes;
 
 namespace ROMS
 {
@@ -106,9 +107,13 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 9;
+                objMR_Master.paraID = 6;
+                objMR_Master.paraFlag = 8;
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 8);
+                objd = objDServ.udfnMaster(objMR_Master);
                 if (objd.Tables[0].Rows.Count != 0)
                 {
                     DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -1133,40 +1138,44 @@ namespace ROMS
                         if (col.Visible)
                         {
                             cIndex += 1;
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            if (cIndex == 1) // Skip the first column (image columns)
+                            {
+                                continue;
+                            }
+                            ExcelSheet.Cells[2, cIndex-1] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex-1].NumberFormat = "@";
 
                             if (col.Name == "S.No." || col.Name == "Total Units" || col.Name == "Reason")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 10;
                             }
                             else if(col.Name == "Supplier")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 25;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                             }
                             if (col.Name == "S.No." || col.Name == "DC Date")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
                             if (col.Name == "Total Products" || col.Name == "Total Units")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdReturnDCList.Rows)
                             {
                                 if (cIndex == 1)
                                 {
-                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = varSLno;
                                     varSLno++;
                                 }
                                 else
                                 {
-                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
                                 }
                             }
                         }

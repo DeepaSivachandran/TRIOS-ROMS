@@ -822,6 +822,10 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
+                            if (col.Name == "Conversion Date")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
 
                             foreach (DataGridViewRow rowa in grdConversionList.Rows)
                             {

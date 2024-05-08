@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -209,14 +210,21 @@ namespace ROMS
             try
             {
                 SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet(); objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 4;
+                objMR_Master.paraID = 6;
+                DataSet objd = new DataSet(); 
+                objd = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 if (objd.Tables[1].Rows.Count != 0)
                 {
                     varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 }
-                objd = null; 
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 0);
+                objd = null;
+                objMR_Master.ViewType = 9;
+                objMR_Master.paraID = 6;
+                objd = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {
@@ -2593,22 +2601,22 @@ namespace ROMS
                                 {
                                     continue;
                                 }
-                                ExcelSheet.Cells[2, cIndex - 1] = col.HeaderText;
-                                ExcelSheet.Columns[cIndex - 1].NumberFormat = "@";
+                                ExcelSheet.Cells[2, cIndex - 2] = col.HeaderText;
+                                ExcelSheet.Columns[cIndex - 2].NumberFormat = "@";
 
 
                                 if (col.Name == "S.No." || col.Name == "Total Qty")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
+                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
                                 }
                                 if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date"   || col.Name == "Created On"
                                     || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
+                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;
                                 }
                                 if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Overall Status")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].ColumnWidth = 25;
+                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 25;
                                 }
 
 
@@ -2622,29 +2630,29 @@ namespace ROMS
                                 //}
                                 if (col.Name == "S.No.")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
 
                                 if (col.Name == "Issue Date")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
 
                                 if (col.Name == "PO Date")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
                                 if (col.Name == "T.Pro")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
                                 if (col.Name == "T.Units")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
                                 if (col.Name == "TAT")
                                 {
-                                    ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
 
                                 //if (col.Name == "Total Products" || col.Name == "GST%")
@@ -2666,13 +2674,13 @@ namespace ROMS
                                             //ExcelSheet.Row(i + 2).Style.Fill.PatternType = ExcelFillStyle.Solid;
                                             //ExcelSheet.Row(i + 2).Style.Fill.BackgroundColor.SetColor(Color.Red);
                                             //rowa.Interior.Color = System.Drawing.Color.Red;
-                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
+                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 2] = rowa.Cells[col.Index].Value;
                                             if (cIndex == 3)
                                             {
                                                 //-----GET BACK COLOR OF GRID
                                                 Color cellBackColor = rowa.Cells[col.Index].Style.BackColor;
                                                 //------SET THE BACK COLOR FOR GRID TO EXCEL
-                                                ExcelSheet.Cells[rowa.Index + 3, cIndex - 1].Interior.Color = System.Drawing.ColorTranslator.ToOle(cellBackColor);
+                                                ExcelSheet.Cells[rowa.Index + 3, cIndex - 2].Interior.Color = System.Drawing.ColorTranslator.ToOle(cellBackColor);
                                             }
                                         //}
                                     }

@@ -150,7 +150,7 @@ namespace ROMS
                 else
                 {
                     objTRN_Advance.paraIssueDetails = txtIssue.Text.Trim();
-                    objTRN_Advance.paraStatusID = 80;
+                    objTRN_Advance.paraStatusID = 78;
                 }
                 objTRN_Advance.paraRemarks = txtRemark.Text.Trim();
                 objTRN_Advance.paraOriginator = varoriginator;

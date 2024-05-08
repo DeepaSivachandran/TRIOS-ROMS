@@ -8,6 +8,8 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 
 namespace ROMS
 {
@@ -60,9 +62,12 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 0;
+                objMR_Master.paraID = 13;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnMaster(0, 13,0,"","",0, "",0);
+                objDs = objdserv.udfnMaster(objMR_Master);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

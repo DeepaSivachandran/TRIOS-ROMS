@@ -135,7 +135,7 @@ namespace ROMS
             return result;
         }
         // Sivabharathi    Create date: 20/09/2023    Description:	Master list Sp
-        public DataSet udfnMaster(int ViewType, int paraID, int paraPOID, string paraDate, string ParaExpiryDate, int paraProductId, string paraText, int paraFlag)
+        public DataSet udfnMaster(MR_Master objMR_Master)
         {
             DataSet ds = new DataSet();
             try
@@ -143,16 +143,18 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[MRG_Master]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraID", paraID);
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Master.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraID", objMR_Master.paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraPOID", paraPOID);
-                varSqlCommand.Parameters.AddWithValue("@paraDate", paraDate);
-                varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", ParaExpiryDate);
-                varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
-                varSqlCommand.Parameters.AddWithValue("@paraText", paraText);
-                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraPOID", objMR_Master.paraPOID);
+                varSqlCommand.Parameters.AddWithValue("@paraDate", objMR_Master.paraDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", objMR_Master.ParaExpiryDate);
+                varSqlCommand.Parameters.AddWithValue("@paraProductId", objMR_Master.paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraText", objMR_Master.paraText);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Master.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTime", objMR_Master.paraTime);
+                varSqlCommand.Parameters.AddWithValue("@paraTimeFormat", objMR_Master.paraTimeFormat);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

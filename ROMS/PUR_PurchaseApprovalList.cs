@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,9 +54,13 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 9;
+                objMR_Master.paraID = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Master.paraFlag = 18;
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, Convert.ToInt32(cmbConcern.SelectedValue), 0, "", "", 0, "", 18);
+                objd = objDServ.udfnMaster(objMR_Master);
                 if (objd.Tables[0].Rows.Count > 0)
                 {
                     DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Transaction Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -172,6 +177,9 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["PUR_Created"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["PUR_LastTransNo"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["PUR_VoucherDate"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Invoice Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Invoice No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;

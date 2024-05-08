@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using ROMS.Model;
+using DocumentFormat.OpenXml.VariantTypes;
 
 namespace ROMS
 {
@@ -44,16 +45,22 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 4;
+                objMR_Master.paraID = 6;
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                objd = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 if (objd.Tables[1].Rows.Count != 0)
                 {
                     varmaxdate = DateTime.ParseExact(objd.Tables[1].Rows[0]["mintoday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 }
+                objMR_Master.ViewType = 9;
+                objMR_Master.paraID = 6;
+                objMR_Master.paraFlag = 6;
                 objd = null;
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "", 6);
+                objd = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 if (objd.Tables[0].Rows.Count != 0)
                 {

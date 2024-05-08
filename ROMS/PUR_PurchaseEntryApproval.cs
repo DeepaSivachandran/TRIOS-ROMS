@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1308,9 +1309,12 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 4;
+                objMR_Master.paraID = 6;
                 DataSet objd = new DataSet();
                 SPDataService objDServ = new SPDataService();
-                objd = objDServ.udfnMaster(4, 6, 0, "", "", 0, "", 0);
+                objd = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 if (objd.Tables[1].Rows.Count != 0)
                 {
@@ -2538,9 +2542,12 @@ namespace ROMS
                         varTempExpiryDate = Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Value);
                         if (grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Value != null && Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmexpirydate"].Value) != "0")
                         {
+                            MR_Master objMR_Master = new MR_Master();
+                            objMR_Master.ViewType = 8;
+                            objMR_Master.paraDate = varTempExpiryDate;
                             DataSet objDSer = new DataSet();
                             SPDataService objdServ = new SPDataService();
-                            objDSer = objdServ.udfnMaster(8, 0, 0, varTempExpiryDate, "", 0, "", 0);
+                            objDSer = objdServ.udfnMaster(objMR_Master);
                             objdServ.CloseConnection();
                             if (objDSer != null)
                             {
@@ -2610,7 +2617,12 @@ namespace ROMS
                     varTempExpiryDate = cellValue.ToString();
                 }
                 varProid = Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmProid"].Value);
-                objDS = objDServ.udfnMaster(10, 0, 0, dpVoucherDate.Text.Trim(), varTempExpiryDate, varProid, "", 0);
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 10;
+                objMR_Master.paraDate = dpVoucherDate.Text.Trim();
+                objMR_Master.ParaExpiryDate = varTempExpiryDate;
+                objMR_Master.paraProductId = varProid;
+                objDS = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
