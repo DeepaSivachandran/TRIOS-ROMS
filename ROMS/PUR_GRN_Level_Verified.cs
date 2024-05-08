@@ -733,7 +733,7 @@ namespace ROMS
 
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
-                    objd = objDServ.udfnMaster(21, 0, 0, "", "", 0, "", 0);
+                    objd = objDServ.udfnMaster(21, 0, 0, dpVerified1.Text, "", 0, "", 0, mtbTime1.Text,cmbFormat1.Text);
                     varCurrentTime = Convert.ToString(objd.Tables[0].Rows[0]["Current Time"]);
                     varCurrentTimeFormat = Convert.ToString(objd.Tables[0].Rows[0]["Time Format"]);
                     string[] ValidateTime = varCurrentTime.Split(':');
