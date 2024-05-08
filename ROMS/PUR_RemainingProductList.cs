@@ -112,6 +112,12 @@ namespace ROMS
                                 grdPODetails.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdPODetails.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             }
+                            if (varFlag == 1)
+                            {
+                                grdPODetails.Columns["Product Name"].Width = 350;
+                                grdPODetails.Columns["Location"].Visible = false;
+                                grdPODetails.Columns["Rack"].Visible = false;
+                            }
                             grdPODetails.ClearSelection();
                             grdPODetails.ReadOnly = true;
                         }

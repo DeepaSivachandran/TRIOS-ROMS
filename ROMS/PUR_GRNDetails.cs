@@ -1135,10 +1135,10 @@ namespace ROMS
                 objGRNProd.Columns.Add("GRNPR_GRNID", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_PRID", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_UTID", typeof(int));
-                objGRNProd.Columns.Add("GRNPR_QTY", typeof(float));
-                objGRNProd.Columns.Add("GRNPR_Excess_QTY", typeof(float));
-                objGRNProd.Columns.Add("GRNPR_ExcessQuantity", typeof(float));
-                objGRNProd.Columns.Add("GRNPR_MRP", typeof(float));
+                objGRNProd.Columns.Add("GRNPR_QTY", typeof(decimal));
+                objGRNProd.Columns.Add("GRNPR_Excess_QTY", typeof(decimal));
+                objGRNProd.Columns.Add("GRNPR_ExcessQuantity", typeof(decimal));
+                objGRNProd.Columns.Add("GRNPR_MRP", typeof(decimal));
                 objGRNProd.Columns.Add("GRNPR_EXP_DD", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_EXP_MM", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_EXP_YY", typeof(int));
@@ -1146,7 +1146,7 @@ namespace ROMS
                 objGRNProd.Columns.Add("GRNPR_ShelfLifeValue", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_ShelfLifeType", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_POID", typeof(int));
-                objGRNProd.Columns.Add("GRNPR_ShelfLife_Per", typeof(float));
+                objGRNProd.Columns.Add("GRNPR_ShelfLife_Per", typeof(decimal));
                 objGRNProd.Columns.Add("GRNPR_Expirydate", typeof(string));
                 objGRNProd.Columns.Add("GRNPR_PRName", typeof(string));
                 objGRNProd.Columns.Add("GRNPR_ShelfLifeStatus", typeof(int));
@@ -1154,7 +1154,7 @@ namespace ROMS
                 objGRNProd.Columns.Add("GRNPR_BatchNoGenration", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_PRFlag", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_ShelfLife_Flag", typeof(int));
-                objGRNProd.Columns.Add("GRNPR_POQty", typeof(float));
+                objGRNProd.Columns.Add("GRNPR_POQty", typeof(decimal));
                 objGRNProd.Columns.Add("GRNPR_MRPflag", typeof(int));
                 if (chkCompleted.Enabled == true)
                 {
