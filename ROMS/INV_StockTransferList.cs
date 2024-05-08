@@ -1513,6 +1513,10 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
+                            if (col.Name == "Entry Date")
+                            {
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
                             foreach (DataGridViewRow rowa in grdStockTransfer.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;

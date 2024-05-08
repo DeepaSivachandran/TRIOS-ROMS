@@ -797,6 +797,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                 dtStock.Columns.Add("STK_ProType", typeof(int));
+                dtStock.Columns.Add("STK_Status", typeof(int));
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
@@ -1306,6 +1307,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Source_RKID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
+                dtStock.Columns.Add("STK_Status", typeof(int));
                 for (int i = 0; i < grdGoodsOutward.Rows.Count; i++)
                 {
                     DataService objDser = new DataService();

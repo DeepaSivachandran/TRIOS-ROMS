@@ -2629,6 +2629,7 @@ namespace ROMS
         {
             try
             {
+                varQtyError = "0";
                 if (grdStockTransfer.CurrentCell.OwningColumn.Name == "Transfer Qty")
                 {
                     decimal TransferQty = Convert.ToDecimal(grdStockTransfer.CurrentRow.Cells["clmquantity"].Value);
@@ -2680,10 +2681,6 @@ namespace ROMS
                     //objDServ.CloseConnection();
                     //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     varQtyError = "1";
-                }
-                else
-                {
-                    grdStockTransfer.CurrentRow.Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
                 }
 
             }
