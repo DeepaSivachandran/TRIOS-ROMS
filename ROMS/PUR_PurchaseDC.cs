@@ -650,7 +650,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    txtSupplierDCNo.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -902,7 +902,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
-                txtProductName.Focus();
+                txtSupplierDCNo.Focus();
             }
             catch (Exception ex)
             {
@@ -917,7 +917,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    txtProductName.Focus();
+                    txtSupplierDCNo.Focus();
                 }
             }
             catch (Exception ex)
@@ -2946,7 +2946,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplier.Focus();
+                    txtProductName.Focus();
                 }
             }
             catch (Exception ex)
