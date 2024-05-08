@@ -649,7 +649,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    txtSupplierDCNo.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -901,7 +901,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
-                txtProductName.Focus();
+                txtSupplierDCNo.Focus();
             }
             catch (Exception ex)
             {
@@ -916,7 +916,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    txtProductName.Focus();
+                    txtSupplierDCNo.Focus();
                 }
             }
             catch (Exception ex)
@@ -2944,7 +2944,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplier.Focus();
+                    txtProductName.Focus();
                 }
             }
             catch (Exception ex)
@@ -3745,13 +3745,13 @@ namespace ROMS
                     //varTempMonth = DMY[1];
                     varTempExpiryDate = cellValue.ToString();
                 }
+                varProid = Convert.ToInt32(grdPurchaseDC.Rows[rowIndex].Cells["ClmPRID"].Value);
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 10;
                 objMR_Master.paraDate = dpDCDate.Text.Trim();
                 objMR_Master.ParaExpiryDate = varTempExpiryDate;
                 objMR_Master.paraProductId = varProid;
                 int varInvFlag = 0;
-                varProid = Convert.ToInt32(grdPurchaseDC.Rows[rowIndex].Cells["ClmPRID"].Value);
                 objDS = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 //for (int i = 0; i < grdPurchaseDC.Rows.Count; i++)
@@ -3761,7 +3761,7 @@ namespace ROMS
                     //varInvFlag = Convert.ToInt16(grdPurchaseDC.Rows[i].Cells["clmInvFlag"].Value);
                     if (pbDateflag == 0)
                     {
-                        if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmexpirydate")
+                        if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmExpiryDate")
                         {
                             if (objDS.Tables[0].Rows.Count > 0)
                             {

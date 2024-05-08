@@ -446,7 +446,7 @@ namespace ROMS
             {
                 if (varStockRequestID != 0)
                 {
-                    //grdStockTransfer.SelectionMode = DataGridCell;
+                    grdStockTransfer.SelectionMode = DataGridViewSelectionMode.CellSelect;
                     this.ActiveControl = txtRemarks;
                     errStockTransfer.Clear();
                     grbStockTransfer.Enabled = false;

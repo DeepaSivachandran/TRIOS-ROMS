@@ -1301,5 +1301,21 @@ namespace ROMS
         {
 
         }
+
+        private void TsbPurchaseApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
+                MainForm.objPUR_GRNApprovalList.ApprovalFlag = 1;
+                MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
+                MainForm.objPUR_GRNApprovalList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
