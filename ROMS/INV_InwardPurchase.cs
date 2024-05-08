@@ -610,9 +610,14 @@ namespace ROMS
                         if(dpGRNDate.Text!="")
                         {
                             string varTempExpiryDate = Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
+                            MR_Master objMR_Master = new MR_Master();
+                            objMR_Master.ViewType = 10;
+                            objMR_Master.paraDate = dpGRNDate.Text.Trim();
+                            objMR_Master.ParaExpiryDate = varTempExpiryDate;
+                            objMR_Master.paraProductId = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["clmPRID"].Value);
                             SPDataService objDServe = new SPDataService();
                             DataSet objDS = new DataSet();
-                            objDS = objDServe.udfnMaster(10, 0, 0, dpGRNDate.Text.Trim(), varTempExpiryDate, Convert.ToInt32(grdGrnlist.CurrentRow.Cells["clmPRID"].Value), "", 0);
+                            objDS = objDServe.udfnMaster(objMR_Master);
                             objDServe.CloseConnection();
                             if(objDS !=null)
                             {

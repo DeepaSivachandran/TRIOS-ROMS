@@ -5095,7 +5095,7 @@ namespace ROMS
                 else { varDate = varVoucherDate; }
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 10;
-                objMR_Master.paraDate = dpVoucherDate;
+                objMR_Master.paraDate = varDate;
                 objMR_Master.ParaExpiryDate = varTempExpiryDate;
                 objMR_Master.paraProductId = varProid;
                 objDS = objDServ.udfnMaster(objMR_Master);

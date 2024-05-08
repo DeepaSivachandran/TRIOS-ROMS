@@ -3259,9 +3259,11 @@ namespace ROMS
                                     }
                                     else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                                     {
+                                        MR_Master objMR_Master = new MR_Master();
+                                        objMR_Master.ViewType = 14;
                                         SPDataService objspdservice = new SPDataService();
                                         DataSet objDs = new DataSet();
-                                        objDs = objspdservice.udfnMaster(14, 0, 0, "", "", 0, "", 0);
+                                        objDs = objspdservice.udfnMaster(objMR_Master);
                                         objspdservice.CloseConnection();
                                         if (objDs.Tables[0] != null)
                                         {
