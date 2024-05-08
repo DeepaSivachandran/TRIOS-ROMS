@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Globalization;
+using ROMS.Model;
 
 namespace ROMS
 {
@@ -452,9 +453,11 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 4;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnMaster(4, 0, 0, "", "", 0,"",0);
+                objDs = objspservice.udfnMaster(objMR_Master);
                 DateTime varDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime varFYStartDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_StartDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime varFYEndDate = DateTime.ParseExact(objDs.Tables[2].Rows[0]["FY_EndDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);

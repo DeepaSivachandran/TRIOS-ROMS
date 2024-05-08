@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Globalization;
+using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 
 namespace ROMS
 {
@@ -279,9 +281,11 @@ namespace ROMS
                 //dpVerified1.MaxDate = MainForm.pbCurrentDate;
                 //dpVerified2.MinDate = MainForm.pbFYStartDate;
                 //dpVerified2.MaxDate = MainForm.pbCurrentDate;
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType =19;
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(19, 0, 0, "", "", 0, "", 0);
+                objd = objDServ.udfnMaster(objMR_Master);
                 if (objd.Tables[0].Rows.Count > 0)
                 {
                     DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -730,10 +734,14 @@ namespace ROMS
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
-
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 21;
+                    objMR_Master.paraDate = dpVerified1.Text;
+                    objMR_Master.paraTime = mtbTime1.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
-                    objd = objDServ.udfnMaster(21, 0, 0, dpVerified1.Text, "", 0, "", 0, mtbTime1.Text,cmbFormat1.Text);
+                    objd = objDServ.udfnMaster(objMR_Master);
                     varCurrentTime = Convert.ToString(objd.Tables[0].Rows[0]["Current Time"]);
                     varCurrentTimeFormat = Convert.ToString(objd.Tables[0].Rows[0]["Time Format"]);
                     string[] ValidateTime = varCurrentTime.Split(':');

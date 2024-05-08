@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -166,10 +167,13 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 16;
+                objMR_Master.paraID = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 BeginInvoke(new Action(() => cmbProductCategory.Select(int.MaxValue, 0)));
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnMaster(16, Convert.ToInt32(cmbProductCategory.SelectedValue), 0, "", "", 0, "", 0);
+                objDT = objdserv.udfnMaster(objMR_Master);
                 objdserv.CloseConnection();
                 if (objDT != null)
                 {

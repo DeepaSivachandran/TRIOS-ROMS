@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -290,9 +291,13 @@ namespace ROMS
                                 varOrderTypeName = grdHeaderview.Columns[5].Name;
                             }
                             if (varOrderTypeName != "") {
+                                MR_Master objMR_Master = new MR_Master();
+                                objMR_Master.ViewType = 11;
+                                objMR_Master.paraID = 13;
+                                objMR_Master.paraText = varOrderTypeName;
                                 DataSet objDs = new DataSet();
                                 SPDataService objDserv = new SPDataService();
-                                objDs = objDserv.udfnMaster(11,13,0,"","",0,varOrderTypeName,0);
+                                objDs = objDserv.udfnMaster(objMR_Master);
                                 objDserv.CloseConnection();
                                 if (objDs != null) {
                                     if (objDs.Tables.Count > 0) {
@@ -337,9 +342,13 @@ namespace ROMS
                             }
                             if (varOrderTypeName != "")
                             {
+                                MR_Master objMR_Master = new MR_Master();
+                                objMR_Master.ViewType = 11;
+                                objMR_Master.paraID = 13;
+                                objMR_Master.paraText = varOrderTypeName;
                                 DataSet objDs = new DataSet();
                                 SPDataService objDserv = new SPDataService();
-                                objDs = objDserv.udfnMaster(11, 13, 0, "", "", 0, varOrderTypeName,0);
+                                objDs = objDserv.udfnMaster(objMR_Master);
                                 objDserv.CloseConnection();
                                 if (objDs != null)
                                 {
