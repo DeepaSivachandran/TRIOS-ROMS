@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.VariantTypes;
 using ROMS.Model;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -673,9 +674,13 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 9;
+                objMR_Master.paraID = 6;
+                objMR_Master.paraFlag = 1;
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(9, 6, 0, "", "", 0, "",1);
+                objd = objDServ.udfnMaster(objMR_Master);
                 if (objd.Tables[0].Rows.Count != 0)
                 {
                     DateTime vardate = DateTime.ParseExact(Convert.ToString(objd.Tables[0].Rows[0]["DATE"]), "dd/MM/yyyy", CultureInfo.InvariantCulture);

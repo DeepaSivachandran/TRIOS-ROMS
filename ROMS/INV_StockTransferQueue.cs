@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -205,9 +206,12 @@ namespace ROMS
         {
             try
             {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 9;
+                objMR_Master.paraFlag = 14;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 14);
+                objDs = objspservice.udfnMaster(objMR_Master);
                 if (objDs.Tables[0].Rows.Count > 0)
                 {
                     DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);

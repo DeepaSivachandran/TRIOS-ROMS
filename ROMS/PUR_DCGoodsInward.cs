@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1893,7 +1894,10 @@ namespace ROMS
                     if (txtDay.Text.Trim() == "")
                     {
                         varDate = varDay + "/" + varMonth + "/" + varYear;
-                        objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "", 0);
+                        MR_Master objMR_Master1 = new MR_Master();
+                        objMR_Master1.ViewType = 5;
+                        objMR_Master1.paraDate = varDate;
+                        objDS = objDServ.udfnMaster(objMR_Master1);
                         objDServ.CloseConnection();
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -1904,7 +1908,12 @@ namespace ROMS
                     {
                         varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
                     }
-                    objDS = objDServ.udfnMaster(10, 0, 0, varTodayDate, varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 10;
+                    objMR_Master.paraDate = varTodayDate;
+                    objMR_Master.ParaExpiryDate = varExpiryDate;
+                    objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
+                    objDS = objDServ.udfnMaster(objMR_Master);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
@@ -2522,9 +2531,11 @@ namespace ROMS
                         }
                         else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                         {
+                            MR_Master objMR_Master = new MR_Master();
+                            objMR_Master.ViewType = 14;
                             SPDataService objspdservice = new SPDataService();
                             DataSet objDs = new DataSet();
-                            objDs = objspdservice.udfnMaster(14, 0, 0, "", "", 0, "", 0);
+                            objDs = objspdservice.udfnMaster(objMR_Master);
                             objspdservice.CloseConnection();
                             if (objDs.Tables[0] != null)
                             {
@@ -2540,9 +2551,13 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(varRMProduction) == 1)
                         {
+                            MR_Master objMR_Master = new MR_Master();
+                            objMR_Master.ViewType = 15;
+                            objMR_Master.paraDate = varTodayDate;
+                            objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
                             SPDataService objspdservice = new SPDataService();
                             DataSet objDs = new DataSet();
-                            objDs = objspdservice.udfnMaster(15, 0, 0, varTodayDate, "", Convert.ToInt32(lblProductcode.Text), "", 0);
+                            objDs = objspdservice.udfnMaster(objMR_Master);
                             objspdservice.CloseConnection();
                             if (objDs.Tables[0] != null)
                             {

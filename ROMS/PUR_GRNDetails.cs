@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -3378,9 +3379,12 @@ namespace ROMS
                                 {
                                     varDate = "01" + "/" + DMY[0] + "/" + "20" + DMY[1];
                                 }
-                                DataSet objDSer = new DataSet();
+                                DataSet objDSer = new DataSet(); 
+                                MR_Master objMR_Master = new MR_Master();
+                                objMR_Master.ViewType = 5;
+                                objMR_Master.paraDate = varDate;
                                 SPDataService objdServ = new SPDataService();
-                                objDSer = objdServ.udfnMaster(5, 0, 0, varDate, "", 0, "", 0);
+                                objDSer = objdServ.udfnMaster(objMR_Master);
                                 objdServ.CloseConnection();
                                 if (objDSer.Tables[0].Rows.Count > 0)
                                 {
@@ -3681,8 +3685,11 @@ namespace ROMS
                         if (grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Value != null && Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Value) != "0")
                         {
                             DataSet objDSer = new DataSet();
+                            MR_Master objMR_Master = new MR_Master();
+                            objMR_Master.ViewType = 8;
+                            objMR_Master.paraDate = varTempExpiryDate;
                             SPDataService objdServ = new SPDataService();
-                            objDSer = objdServ.udfnMaster(8, 0, 0, varTempExpiryDate, "", 0, "", 0);
+                            objDSer = objdServ.udfnMaster(objMR_Master);
                             objdServ.CloseConnection();
                             if(objDSer != null)
                             {
@@ -3790,7 +3797,12 @@ namespace ROMS
                     varTempExpiryDate = cellValue.ToString();
                 }
                 varProid = Convert.ToInt32(grdGrnlist.Rows[rowIndex].Cells["clmProid"].Value);
-                objDS = objDServ.udfnMaster(10, 0, 0, dpGrnDate.Text.Trim(), varTempExpiryDate, varProid, "", 0);
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 10;
+                objMR_Master.paraDate = dpGrnDate.Text.Trim();
+                objMR_Master.ParaExpiryDate = varTempExpiryDate;
+                objMR_Master.paraProductId = varProid;
+                objDS = objDServ.udfnMaster(objMR_Master);
                 objDServ.CloseConnection();
                 //for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                 //{
@@ -4144,7 +4156,12 @@ namespace ROMS
                     DataSet objDS = new DataSet();
                     if (varExpiryDate != "")
                     {
-                        objDS = objDServ.udfnMaster(7, 0, 0, dpGrnDate.Text, varExpiryDate, Convert.ToInt32(lblProductcode.Text), "", 0);
+                        MR_Master objMR_Master = new MR_Master();
+                        objMR_Master.ViewType = 7;
+                        objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text);
+                        objMR_Master.paraDate = dpGrnDate.Text;
+                        objMR_Master.ParaExpiryDate = varExpiryDate;
+                        objDS = objDServ.udfnMaster(objMR_Master);
                         objDServ.CloseConnection();
                         if (expirydateFlag == 1)
                         {
@@ -4261,7 +4278,9 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    objDS = objDServ.udfnMaster(17, 0, 0, "", "", 0, "", 0);
+                                    MR_Master objMR_Master = new MR_Master();
+                                    objMR_Master.ViewType = 17;
+                                    objDS = objDServ.udfnMaster(objMR_Master);
                                     objDServ.CloseConnection();
                                     if (objDS.Tables[0].Rows.Count > 0)
                                     {
@@ -4569,7 +4588,10 @@ namespace ROMS
                     if (txtDate.Text.Trim() == "")
                     {
                         varDate = varDay + "/" + varMonth + "/" + varYear;
-                        objDS = objDServ.udfnMaster(5, 0, 0, varDate, "", 0, "", 0);
+                        MR_Master objMR_Master1 = new MR_Master();
+                        objMR_Master1.ViewType = 5;
+                        objMR_Master1.paraDate = varDate;
+                        objDS = objDServ.udfnMaster(objMR_Master1);
                         objDServ.CloseConnection();
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -4593,7 +4615,12 @@ namespace ROMS
                         varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
                         varExpiryDateAdd = varDay + "/" + varMonth + "/" + txtYear.Text.Trim();
                     }
-                    objDS = objDServ.udfnMaster(10, 0, 0, dpGrnDate.Text.Trim(), varExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 10;
+                    objMR_Master.paraDate = dpGrnDate.Text.Trim();
+                    objMR_Master.ParaExpiryDate = varExpiryDate;
+                    objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
+                    objDS = objDServ.udfnMaster(objMR_Master);
                     objDServ.CloseConnection();
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
@@ -5110,9 +5137,11 @@ namespace ROMS
                                     }
                                     else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                                     {
+                                        MR_Master objMR_Master = new MR_Master();
+                                        objMR_Master.ViewType = 14;
                                         SPDataService objspdservice = new SPDataService();
                                         DataSet objDs = new DataSet();
-                                        objDs = objspdservice.udfnMaster(14, 0, 0, "", "", 0, "", 0);
+                                        objDs = objspdservice.udfnMaster(objMR_Master);
                                         objspdservice.CloseConnection();
                                         if (objDs.Tables[0] != null)
                                         {
@@ -5128,9 +5157,13 @@ namespace ROMS
                                 {
                                     if (Convert.ToInt32(varRMProduction) == 1)
                                     {
+                                        MR_Master objMR_Master = new MR_Master();
+                                        objMR_Master.ViewType = 15;
+                                        objMR_Master.paraDate = dpGrnDate.Text;
+                                        objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
                                         SPDataService objspdservice = new SPDataService();
                                         DataSet objDs = new DataSet();
-                                        objDs = objspdservice.udfnMaster(15, 0, 0, dpGrnDate.Text, "", Convert.ToInt32(lblProductcode.Text), "", 0);
+                                        objDs = objspdservice.udfnMaster(objMR_Master);
                                         objspdservice.CloseConnection();
                                         if (objDs.Tables[0] != null)
                                         {

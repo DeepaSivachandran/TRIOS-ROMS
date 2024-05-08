@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.VariantTypes;
+using ROMS.Model;
+using System;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -303,9 +305,11 @@ namespace ROMS
             //string VersionName = objDserv.displaydata("SELECT TOP(1) RLS_VersionName FROM TRN_RELEASEDETAILS ORDER BY RLSID DESC");
             //objDserv.CloseConnection();
             //string VersionName = System.Configuration.ConfigurationManager.AppSettings["versionno"];
+            MR_Master objMR_Master = new MR_Master();
+            objMR_Master.ViewType = 20;
             SPDataService objdserv = new SPDataService();
             DataSet objDT = new DataSet();
-            objDT = objdserv.udfnMaster(20,0,0,"","",0,"",0);
+            objDT = objdserv.udfnMaster(objMR_Master);
             objdserv.CloseConnection();
             if (objDT != null)
             {
