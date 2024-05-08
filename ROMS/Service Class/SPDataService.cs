@@ -135,7 +135,7 @@ namespace ROMS
             return result;
         }
         // Sivabharathi    Create date: 20/09/2023    Description:	Master list Sp
-        public DataSet udfnMaster(int ViewType, int paraID, int paraPOID, string paraDate, string ParaExpiryDate, int paraProductId, string paraText, int paraFlag)
+        public DataSet udfnMaster(int ViewType, int paraID, int paraPOID, string paraDate, string ParaExpiryDate, int paraProductId, string paraText, int paraFlag,string paraTime,string paraTimeFormat)
         {
             DataSet ds = new DataSet();
             try
@@ -153,6 +153,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
                 varSqlCommand.Parameters.AddWithValue("@paraText", paraText);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTime", paraTime);
+                varSqlCommand.Parameters.AddWithValue("@paraTimeFormat", paraTimeFormat);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

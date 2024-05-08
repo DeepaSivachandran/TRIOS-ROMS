@@ -43,9 +43,9 @@ namespace ROMS
             {
                 bool blnErrorFlag = false; errVerified.Clear();
                 string CurrentTime = DateTime.Now.ToString("h:mm");
+                string[] varCurrentTime = CurrentTime.Split(':');
                 string CurrentTimeFormat = DateTime.Now.ToString("h:mm tt");
                 string[] CurrentTimeFormat1 = CurrentTimeFormat.Split(' ');
-                string[] varCurrentTime = CurrentTime.Split(':');
                 if (Convert.ToString(txtVerified1.Text.Trim()) == "" && Convert.ToString(txtVerified2.Text.Trim())=="")
                 {
                     errVerified.SetError(txtVerified1, "Please select verified by 1");
@@ -95,7 +95,7 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(varTime[1]) > Convert.ToInt32(varCurrentTime[1]))
                         {
-                            errVerified.SetError(mtbTime1, "Please enter valid hour");
+                            errVerified.SetError(mtbTime1, "Please enter valid minute");
                             mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             blnErrorFlag = true;
                         }
@@ -134,7 +134,7 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(varTime[1]) > Convert.ToInt32(varCurrentTime[1]))
                         {
-                            errVerified.SetError(mtbTime2, "Please enter valid hour");
+                            errVerified.SetError(mtbTime2, "Please enter valid minute");
                             mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             blnErrorFlag = true;
                         }
@@ -712,25 +712,55 @@ namespace ROMS
             try
             {
                 int error = 0;
+                string varCurrentTime = "",varCurrentTimeFormat="";
                 if (txtVerified1.Text.Trim() != "")
                 {
                     string[] varTime = mtbTime1.Text.Split(':');
                     int Hour = varTime[0].Trim().Length;
                     int Min = varTime[1].Trim().Length;
-                    if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour==1 || varTime[0].Trim() == "0" || varTime[0].Trim() == "00")
+                    if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim() == "0" || varTime[0].Trim() == "00")
                     {
                         errVerified.SetError(mtbTime1, "Please enter valid hour");
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
-                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min==1 || varTime[1].Trim() == "0")
+                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
                     {
                         errVerified.SetError(mtbTime1, "Please enter valid minute");
                         mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
+
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(21, 0, 0, "", "", 0, "", 0);
+                    varCurrentTime = Convert.ToString(objd.Tables[0].Rows[0]["Current Time"]);
+                    varCurrentTimeFormat = Convert.ToString(objd.Tables[0].Rows[0]["Time Format"]);
+                    string[] ValidateTime = varCurrentTime.Split(':');
+                    string[] validateFormat = varCurrentTimeFormat.Split(' ');
+                    if (Convert.ToInt32(varTime[0]) > Convert.ToInt32(ValidateTime[0]))
+                    {
+                        errVerified.SetError(mtbTime2, "Please enter valid hour");
+                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        //blnErrorFlag = true;
+                    }
+                    if (Convert.ToInt32(varTime[0]) == Convert.ToInt32(ValidateTime[0]))
+                    {
+                        if (Convert.ToInt32(varTime[1]) > Convert.ToInt32(ValidateTime[1]))
+                        {
+                            errVerified.SetError(mtbTime2, "Please enter valid minute");
+                            mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            //blnErrorFlag = true;
+                        }
+                    }
+                    if (Convert.ToString(cmbFormat2.Text) != Convert.ToString(validateFormat[1]))
+                    {
+                        errVerified.SetError(cmbFormat2, "Please enter valid time format");
+                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        //blnErrorFlag = true;
+                    }
                 }
-                if(error==0)
+                if (error==0)
                 {
                     errVerified.Clear();
                     mtbTime1.BackColor = Color.White;
