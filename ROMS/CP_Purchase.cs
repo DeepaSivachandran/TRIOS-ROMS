@@ -931,11 +931,11 @@ namespace ROMS
                 dtTaxTable.Columns.Add("GST%", typeof(string));
                 dtTaxTable.Columns.Add("Taxable Value", typeof(decimal));
                 dtTaxTable.Columns.Add("Tax Value", typeof(decimal));
-                dtTaxTable.Columns.Add("IGST%", typeof(decimal));
+                dtTaxTable.Columns.Add("IGST%", typeof(string));
                 dtTaxTable.Columns.Add("IGST", typeof(decimal));
-                dtTaxTable.Columns.Add("SGST%", typeof(decimal)); 
+                dtTaxTable.Columns.Add("SGST%", typeof(string)); 
                 dtTaxTable.Columns.Add("SGST", typeof(decimal));
-                dtTaxTable.Columns.Add("CGST%", typeof(decimal));
+                dtTaxTable.Columns.Add("CGST%", typeof(string));
                 dtTaxTable.Columns.Add("CGST", typeof(decimal));
                 udfnDropdownLoad();
                 udfnDtProductAutocomplte();
@@ -7734,8 +7734,8 @@ namespace ROMS
                 var varCGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("CGST")).ToString();
                 var varSGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("CGST")).ToString();
 
-                dtTaxTable.Rows.Add("Total", 0,Convert.ToDecimal( varTaxValue), 0, Convert.ToDecimal(varIGST), 0, 
-                    Convert.ToDecimal(varSGST), 0, Convert.ToDecimal(varCGST));
+                dtTaxTable.Rows.Add("Total", 0,Convert.ToDecimal( varTaxValue), "", Convert.ToDecimal(varIGST), "", 
+                    Convert.ToDecimal(varSGST), "", Convert.ToDecimal(varCGST));
                 grdTaxDetails.DataSource = dtTaxTable;
                 grdTaxDetails.Columns["GST%"].Width = 60;
                 grdTaxDetails.Columns["Taxable Value"].Width = 80;
