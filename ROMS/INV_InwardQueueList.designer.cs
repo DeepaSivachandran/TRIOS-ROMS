@@ -91,6 +91,7 @@
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.DGV_ProdSearchGrid = new System.Windows.Forms.DataGridView();
             this.epQueueList = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -308,6 +309,8 @@
             this.grdInwardQueueList.ColumnHeadersHeight = 30;
             this.grdInwardQueueList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdInwardQueueList.ColumnHeadersVisible = false;
+            this.grdInwardQueueList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmPrint});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -329,6 +332,7 @@
             this.grdInwardQueueList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInwardQueueList.Size = new System.Drawing.Size(1348, 502);
             this.grdInwardQueueList.TabIndex = 958797;
+            this.grdInwardQueueList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInwardQueueList_CellContentClick);
             this.grdInwardQueueList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInwardQueueList_DataBindingComplete);
             this.grdInwardQueueList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdInwardQueueList_Scroll);
             this.grdInwardQueueList.DoubleClick += new System.EventHandler(this.GrdInwardQueueList_DoubleClick);
@@ -800,6 +804,16 @@
             // 
             this.epQueueList.ContainerControl = this;
             // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmPrint.Width = 70;
+            // 
             // INV_InwardQueueList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -884,5 +898,6 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Label lblDGodown;
         private System.Windows.Forms.TextBox txtStockLocation;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }
