@@ -906,7 +906,7 @@ namespace ROMS
                                             if (varRackID == -1)
                                             {
                                                 grdGrnlist.Columns["clmRack"].DefaultCellStyle.BackColor = Color.LightPink;
-                                                varErrorFlag = false;
+                                                //varErrorFlag = false;
                                             }
                                         }
                                         if (chkCompleted.Checked == true)
@@ -1762,7 +1762,7 @@ namespace ROMS
                         txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
-                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmShopQty" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmReceivedQty")
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmMRP" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmShopQty" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmReceivedQty")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
@@ -1778,7 +1778,7 @@ namespace ROMS
         {
             try
             {
-                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmShopQty" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmReceivedQty")
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmMRP" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmShopQty" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmReceivedQty")
                 {
                     if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {
@@ -2343,8 +2343,11 @@ namespace ROMS
                                     txtApprovedby1.Visible = true;
                                     txtApproved2.Visible = true;
                                     txtApprovedby2.Visible = true;
-                                    txtApprovedby1.Text= Convert.ToString(objDs.Tables[0].Rows[0]["Approved By1"]);
-                                    txtApprovedby2.Text= Convert.ToString(objDs.Tables[0].Rows[0]["Approved By2"]);
+                                    if (varEditFlag == 0)
+                                    {
+                                        txtApprovedby1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approved By1"]);
+                                        txtApprovedby2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approved By2"]);
+                                    }
                                 }
                                 if (varGRNPurchaseFlag == 3 || varGRNPurchaseFlag == 187)
                                 {
