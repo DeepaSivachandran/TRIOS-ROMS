@@ -75,6 +75,9 @@ namespace ROMS
             try
             {
                 errPurchaseentry.Clear();
+                DGV_FilterProduct.Visible = false;
+                txtProductName.Text = "";
+                udfnrowclear();
                 if (pbPurchaseno == "0")
                 {
                     grdSupplierList.Enabled = true;
@@ -962,6 +965,7 @@ namespace ROMS
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
+                    udfnFormDisable();
                     if (varQueueFlag == 1)
                     {
                         udfnSupplierDetails();
@@ -992,47 +996,61 @@ namespace ROMS
                     else { btnRemarks.Enabled = true; }
 
                     if (PbSTS == "50")
-                    { btnSave.Text = "Update"; } 
-                    //purchase entry approved then purchase can't be edit edit
-                    if(PbApprovalStsid==63 || varPurEditFlag==1 || PbSTS=="50") //VarPurEditFlag- if setting screen purchase entry editable days exceed purchase entry date
-                    {
-                        btnSave.Enabled = false;
-                        txtRemarks.Enabled = false;
-                        btnDC.Enabled = false;
-                    }
-                    if(PbApprovalStsid==70) // purchase entry approved incomplete
-                    {
-                        grdSupplierList.Enabled = true;
-                        btnSave.Enabled = true;
-                    }
-                    if (pbPurchaseEntryUnapprovedFlag == 1)
-                    {
-                        //pbPurchaseno = Convert.ToString(pbUnapprovePURID);
-                       // udfnEditLoad();
-                        udfndisablevalue();
-                        btnSave.Visible = false;
-                        btnUnapprove.Visible = true;
-                        tbDetails.TabPages[0].Enabled = true;
-                        tbDetails.TabPages[1].Enabled = true;
-                        tbDetails.TabPages[2].Enabled = false;
-                        grdSupplierList.ReadOnly = true;
-                        grdPurchaseList.ReadOnly = true;
-                        btnClear.Enabled = false;
-                        txtInvoiceamt.ReadOnly = true; txtInvoiceamt.Enabled = false;
-                        txtInvoiceNo.ReadOnly = true; txtInvoiceNo.Enabled = false;
-                        grdSupplierList.Columns["clmRemove"].Visible = false;
-                        tspHeader.Text = "Purchase Entry Unapproved Process";
-                    }
-                    if (PbSTS != "50")
-                    {
-                        tbDetails.TabPages[0].Enabled = true; // First tab 
-                        tbDetails.TabPages[1].Enabled = true; // Second tab  
-                    }
+                    { btnSave.Text = "Update"; }
+                    //if(varPurEditFlag==1)
+                    //{ udfnFormDisable(); }
+                    ////purchase entry approved then purchase can't be edit edit
+                    //if(PbApprovalStsid==63 || varPurEditFlag==1 || PbSTS=="50") //VarPurEditFlag- if setting screen purchase entry editable days exceed purchase entry date
+                    //{
+                    //    btnSave.Enabled = false;
+                    //    txtRemarks.Enabled = false;
+                    //    btnDC.Enabled = false;
+                    //}
+                    //if(PbApprovalStsid==70) // purchase entry approved incomplete
+                    //{
+                    //    grdSupplierList.Enabled = true;
+                    //    btnSave.Enabled = true;
+                    //}
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFormDisable()
+        {
+            try
+            {
+                //VarPurEditFlag- if setting screen purchase entry editable days exceed purchase entry date
+                if(varPurEditFlag == 1)
+                {
+                    btnSave.Enabled = false;
+                    txtRemarks.Enabled = false;
+                    btnDC.Enabled = false;
+                    chkCompleted.Enabled = false;
+                    udfndisablevalue();
+                    grdSupplierList.ReadOnly = true;
+                    grdPurchaseList.ReadOnly = true;
+                    udfnDisableDiscount();
+                    txtInvoiceamt.Enabled = false;
+                    txtInvoiceamt.ReadOnly = false;
+                    txtInvoiceNo.Enabled = false;
+                    txtInvoiceNo.ReadOnly = false;
+                    dpInvoiceDate.Enabled = false;
+                }
+                else
+                {
                     if (PbSTS == "50")
                     {
+                        udfndisablevalue();
+                        udfnDisableDiscount();
                         tbDetails.TabPages[0].Enabled = true; // First tab 
                         tbDetails.TabPages[1].Enabled = true; // Second tab
                         grdPurchaseList.ReadOnly = true;
+                        grdSupplierList.ReadOnly = true;
                         cmbPONo.Enabled = false;
                         txtProductName.Enabled = false;
                         txtMrp.Enabled = false;
@@ -1041,29 +1059,30 @@ namespace ROMS
                         txtYear.Enabled = false;
                         txtInvoiceamt.Enabled = false;
                         txtInvoiceNo.Enabled = false;
+                        chkCompleted.Enabled = false;
                         txtSourceLocation.Enabled = false;
                         cmbrack.Enabled = false;
                         btnAdd.Enabled = false;
                         btnClear.Enabled = false;
-                        grdSupplierList.ReadOnly = true;
-                        if (PbApprovalStsid == 70)
+                        if (PbApprovalStsid == 70)  // purchase entry approved incomplete
                         {
-                            grdSupplierList.Enabled = true;
+                            //udfndisablevalue();
+                            //grdSupplierList.Enabled = true;
                             grdSupplierList.ReadOnly = false;
                             grdPurchaseList.ReadOnly = false;
 
-                            //grdSupplierList.Columns["clmPicode"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmProTname"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmUnit"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmGrnMrp"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmMRP"].ReadOnly = true;
+                            grdSupplierList.Columns["clmPicode"].ReadOnly = true;
+                            grdSupplierList.Columns["clmProTname"].ReadOnly = true;
+                            grdSupplierList.Columns["clmUnit"].ReadOnly = true;
+                            grdSupplierList.Columns["clmGrnMrp"].ReadOnly = true;
+                           // grdSupplierList.Columns["clmMRP"].ReadOnly = true;
                             //grdSupplierList.Columns["clmexpirydate"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmShelflife"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmactuallife"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmshelfper"].ReadOnly = true;
+                            grdSupplierList.Columns["clmShelflife"].ReadOnly = true;
+                            grdSupplierList.Columns["clmactuallife"].ReadOnly = true;
+                            grdSupplierList.Columns["clmshelfper"].ReadOnly = true;
                             //grdSupplierList.Columns["clmBatchno"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmLocation"].ReadOnly = true;
-                            //grdSupplierList.Columns["clmrack"].ReadOnly = true;
+                            grdSupplierList.Columns["clmLocation"].ReadOnly = true;
+                            grdSupplierList.Columns["clmrack"].ReadOnly = true;
 
                             grdPurchaseList.Columns["sno"].ReadOnly = true;
                             grdPurchaseList.Columns["picode"].ReadOnly = true;
@@ -1095,6 +1114,29 @@ namespace ROMS
                             grdPurchaseList.Columns["clmnetamt"].ReadOnly = true;
                             grdPurchaseList.Columns["clmCosting"].ReadOnly = true;
                         }
+                    }
+                   
+                    if (pbPurchaseEntryUnapprovedFlag == 1) // unapprove
+                    {
+                        udfndisablevalue();
+                        btnSave.Visible = false;
+                        btnUnapprove.Visible = true;
+                        txtRemarks.Enabled = false;
+                        txtRemarks.ReadOnly = true;
+                        tbDetails.TabPages[0].Enabled = true;
+                        tbDetails.TabPages[1].Enabled = true;
+                        tbDetails.TabPages[2].Enabled = false;
+                        grdSupplierList.ReadOnly = true;
+                        grdPurchaseList.ReadOnly = true;
+                        btnClear.Enabled = false;
+                        txtInvoiceamt.ReadOnly = true; txtInvoiceamt.Enabled = false;
+                        txtInvoiceNo.ReadOnly = true; txtInvoiceNo.Enabled = false;
+                        grdSupplierList.Columns["clmRemove"].Visible = false;
+                        tspHeader.Text = "Purchase Entry Unapproved Process";
+                    }
+                    if(PbSTS=="49")
+                    {
+                        udfndisablevalue();
                     }
                 }
             }
@@ -1261,7 +1303,7 @@ namespace ROMS
                                 pbConcernTin = Convert.ToInt32(objDs.Tables[0].Rows[0]["Concern_Tin"]);
                                 pbSupplierTin = Convert.ToInt32(objDs.Tables[0].Rows[0]["SP_Tin"]);
                                 lv_Broker.Visible = false;
-                                udfndisablevalue();
+                                //udfndisablevalue();
                                 udfnLoadingGrandTotCalculation();
                                 if (Convert.ToString(cmbEntryType.SelectedValue) == "56")//Direct
                                 { cmbPONo.Enabled = false; }
@@ -1353,8 +1395,7 @@ namespace ROMS
                                     }
                                     //grdSupplierList.Columns["clmAddPro"].Visible = false;
                                     //grdSupplierList.Columns["clmPono"].Visible = true;
-                                    DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
-                                    GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
+
                                     //if (Convert.ToInt16(objDs.Tables[1].Rows[i]["InvFlag"]) == 1)
                                     //{
                                     //    grdSupplierList.Rows[i].ReadOnly = true;
@@ -1363,15 +1404,7 @@ namespace ROMS
                                     //{
                                     //    grdSupplierList.Rows[i].ReadOnly = false;
                                     //}
-                                    if (PbApprovalStsid != 70)
-                                    {
-                                        if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) == "220")
-                                        { grdSupplierList.Rows[i].ReadOnly = true; }
-                                    }
-                                    else
-                                    {
-                                        grdSupplierList.Rows[i].ReadOnly = false;
-                                    }
+                                    udfnFormDisable();
                                     if (PbApprovalStsid==70) // approval incomplete then allow to edit allow error column
                                     {
                                         if (Convert.ToInt16(objDs.Tables[1].Rows[i]["BatchNoErr"]) == 1)
@@ -1404,6 +1437,17 @@ namespace ROMS
                                             grdSupplierList.Rows[i].Cells["clmMRP"].ReadOnly = true;
                                             grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
                                         }
+                                    }
+                                    else
+                                    {
+                                        if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) == "220")
+                                        { grdSupplierList.Rows[i].ReadOnly = true; }
+                                        else
+                                        {
+                                            grdSupplierList.Rows[i].ReadOnly = false;
+                                        }
+                                        DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                                        GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                                     }
                                 }
                                 lblTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
@@ -1602,8 +1646,6 @@ namespace ROMS
                     chkCompleted.Checked = true;
                     gpdiscount.Enabled = false;
                     gpPayment.Enabled = false;
-                    //grpLoadingCharge.Enabled = false;
-                    //grpTCSamt.Enabled = false;
                     gpPurchase.Enabled = false;
                     gprate.Enabled = false;
                     btnClear.Enabled = false;
@@ -1617,21 +1659,8 @@ namespace ROMS
                     txtSourceLocation.Enabled = false;
                     cmbrack.Enabled = false;
                     btnAdd.Enabled = false;
-                    grdSupplierList.ReadOnly = true;
                 }
-                if(Convert.ToInt32(cmbEntryType.SelectedValue)==56)
-                {
-                    btnClear.Enabled = true;
-                }
-                else
-                {
-                    btnClear.Enabled = false;
-                }
-                if (PbApprovalStsid == 70)
-                {
-                    grdSupplierList.ReadOnly = false;
-                    grdPurchaseList.ReadOnly = false;
-                }
+                btnClear.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -2179,10 +2208,10 @@ namespace ROMS
         }
         private void GrdSupplierList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (this.grdSupplierList.Columns[e.ColumnIndex].Name == "clmExpDate")
-            {
-                ShortFormDateFormat(e);
-            }
+            //if (this.grdSupplierList.Columns[e.ColumnIndex].Name == "clmExpDate")
+            //{
+            //    ShortFormDateFormat(e);
+            //}
         }
         private static void ShortFormDateFormat(DataGridViewCellFormattingEventArgs formatting)
         {
@@ -6194,6 +6223,7 @@ namespace ROMS
                                                 //btnSave.Text = "Update as Draft";
                                                 //CP_Purchase_Load(sender, e);
                                                 udfnEditLoad();
+                                                udfndisablevalue();
                                                 udfnPurchaseEntryTabLoad(); //tab2 load
                                                 if (varTabFlag == 1)
                                                 {
@@ -7694,6 +7724,18 @@ namespace ROMS
                 (Convert.ToDecimal(item.GST)/2).ToString("0.0"),(item.SGSTamount).ToString("0.00"),
                 (Convert.ToDecimal(item.GST)/2).ToString("0.0"),(item.CGSTamount).ToString("0.00")
                 }, false)).CopyToDataTable();
+
+                //var varSumGST = dtTaxTable.AsEnumerable()
+                //    .Where(y => Convert.ToInt16( dtTaxTable.Rows.Count-1))
+                //    .Sum(x => x.Field<decimal>("Tax Value")).ToString();
+
+                var varTaxValue = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("Tax Value")).ToString();
+                var varIGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("IGST")).ToString();
+                var varCGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("CGST")).ToString();
+                var varSGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("CGST")).ToString();
+
+                dtTaxTable.Rows.Add("Total", 0,Convert.ToDecimal( varTaxValue), 0, Convert.ToDecimal(varIGST), 0, 
+                    Convert.ToDecimal(varSGST), 0, Convert.ToDecimal(varCGST));
                 grdTaxDetails.DataSource = dtTaxTable;
                 grdTaxDetails.Columns["GST%"].Width = 60;
                 grdTaxDetails.Columns["Taxable Value"].Width = 80;
@@ -7740,6 +7782,7 @@ namespace ROMS
                 //dtTaxTable.Columns.Add("IGST Tax Value", typeof(decimal));
                 //dtTaxTable.Columns.Add("CGST Tax Value", typeof(decimal));
                 //dtTaxTable.Columns.Add("SGST Tax Value", typeof(decimal));
+
             }
             catch (Exception ex)
             {
@@ -11369,7 +11412,7 @@ namespace ROMS
                     txtBatchno.Text = "";
                     varBatchNo = "0"; varBatchNoGeneration = "0"; varShelflife = 0; expirydateFlag = 0;
                     varPICode = ""; varEName = ""; var_Symbol = ""; var_Text = ""; var_RMinSaleQty = ""; varSTOCK = ""; varPrevious = "";
-                    varPARITAL = ""; varReOrderQty = ""; varorderSaleQty = ""; addproductid = ""; varunitid = ""; varexp = "";
+                    varPARITAL = ""; varReOrderQty = "0"; varorderSaleQty = "0"; addproductid = "0"; varunitid = "0"; varexp = "";
                     MR_Product objMR_Product = new MR_Product();
                     objMR_Product.paraViewType = 34;
                     objMR_Product.ParaProductCode = Convert.ToInt32(lblProductcode.Text);
@@ -11793,7 +11836,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0)
                     {
-                        if (Convert.ToInt32(cmbPONo.SelectedValue) == 214 || Convert.ToInt32(cmbPONo.SelectedValue) == 217 || Convert.ToInt32(cmbPONo.SelectedValue) == 219) //none
+                        if (Convert.ToInt32(cmbPONo.SelectedValue) == 214 || Convert.ToInt32(cmbPONo.SelectedValue) == 217 || Convert.ToInt32(cmbPONo.SelectedValue) == 219 || Convert.ToString(cmbEntryType.SelectedValue) == "56") //none
                         {
                             varViewType = 29;
                             varPOdropdownFlag = 1;

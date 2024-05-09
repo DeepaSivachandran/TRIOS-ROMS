@@ -3119,48 +3119,52 @@ namespace ROMS
         {
             try
             {
-                decimal lblGrandTot = 0, loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
-                                    otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0,additionalValue=0,DiscountValue=0;
+                decimal varGrandTot = 0, varloadcharge = 0, varUnloadcharge = 0, varCouriercharge = 0, varOtherexpense = 0, varDiscountper = 0, varDiscountamt = 0, varTcsamt = 0, varDamagecost = 0,
+                                    varOtherdiscount = 0, varLoadinggrn = 0, varFrightgrn = 0, varSubtotal = 0, varGstamt = 0,
+                                    varRoundoff = 0, varTotal = 0, varAdditionalValue = 0, varDiscountValue = 0;
                 if (lblTotal.Text != "")
-                { lblGrandTot = Convert.ToDecimal(lblTotal.Text.Trim()); }
+                { varGrandTot = Convert.ToDecimal(lblTotal.Text.Trim()); }
                 if (txtLoadingchargeGrn.Text != "")
-                { loadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text); }
+                { varLoadinggrn = Convert.ToDecimal(txtLoadingchargeGrn.Text); }
                 if (txtFrightGrn.Text != "")
-                { frightgrn = Convert.ToDecimal(txtFrightGrn.Text); }
+                { varFrightgrn = Convert.ToDecimal(txtFrightGrn.Text); }
                 if (txtLoadingCharge.Text != "")
-                { loadcharge = Convert.ToDecimal(txtLoadingCharge.Text); }
+                { varloadcharge = Convert.ToDecimal(txtLoadingCharge.Text); }
                 if (txtUnLoadingCharge.Text != "")
-                { unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text); }
+                { varUnloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text); }
                 if (txtCouriercharge.Text != "")
-                { couriercharge = Convert.ToDecimal(txtCouriercharge.Text); }
+                { varCouriercharge = Convert.ToDecimal(txtCouriercharge.Text); }
                 if (txtotherexpense.Text != "")
-                { otherexpense = Convert.ToDecimal(txtotherexpense.Text); }
+                { varOtherexpense = Convert.ToDecimal(txtotherexpense.Text); }
                 if (Txtdiscount.Text != "")
-                { discountper = Convert.ToDecimal(Txtdiscount.Text); }
+                { varDiscountper = Convert.ToDecimal(Txtdiscount.Text); }
                 if (txtDiscountamt.Text != "")
-                { discountamt = Convert.ToDecimal(txtDiscountamt.Text); }
+                { varDiscountamt = Convert.ToDecimal(txtDiscountamt.Text); }
                 if (txtTcsamt.Text != "")
-                { tcsamt = Convert.ToDecimal(txtTcsamt.Text); }
+                { varTcsamt = Convert.ToDecimal(txtTcsamt.Text); }
                 if (txtDamagecost.Text != "")
-                { damagecost = Convert.ToDecimal(txtDamagecost.Text); }
+                { varDamagecost = Convert.ToDecimal(txtDamagecost.Text); }
                 if (txtOtherdiscount.Text != "")
-                { otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text); }
+                { varOtherdiscount = Convert.ToDecimal(txtOtherdiscount.Text); }
                 if (lblSubtotal.Text != "")
-                { subtotal = Convert.ToDecimal(lblSubtotal.Text); }
+                { varSubtotal = Convert.ToDecimal(lblSubtotal.Text); }
                 if (lblGstamt.Text != "")
-                { gstamt = Convert.ToDecimal(lblGstamt.Text); }
+                { varGstamt = Convert.ToDecimal(lblGstamt.Text); }
                 if (lblRoundoff.Text != "")
-                { roundoff = Convert.ToDecimal(lblRoundoff.Text); }
+                { varRoundoff = Convert.ToDecimal(lblRoundoff.Text); }
                 if (lblTotal.Text != "")
-                { grandtotal = Convert.ToDecimal(lblTotal.Text); }
+                { varTotal = Convert.ToDecimal(lblTotal.Text); }
+                varAdditionalValue = varloadcharge + varUnloadcharge + varCouriercharge + varOtherexpense + varTcsamt + varLoadinggrn + varFrightgrn;
+                varDiscountValue = varDiscountamt + varOtherdiscount + varDamagecost;
+                //lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense + tcsamt - discountamt - damagecost - otherdiscount;
+                //lblGrandTot = lblGrandTot+additionalValue - DiscountValue;
+                varGrandTot = varTotal + varAdditionalValue - varDiscountValue;
+                //lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
+                lblAdditionalValue.Text = varAdditionalValue.ToString("#,##0.00");
+                lblDiscount.Text = varDiscountValue.ToString("#,##0.00");
 
-                lblGrandTot = lblGrandTot + loadcharge + unloadcharge + couriercharge + otherexpense - tcsamt - discountamt - damagecost - otherdiscount;
-                lblGrandTotal.Text = lblGrandTot.ToString("#,##0.00");
-
-                additionalValue = loadcharge + unloadcharge + couriercharge + otherexpense + tcsamt + loadinggrn + frightgrn;
-                DiscountValue = discountamt + otherdiscount + damagecost;
-                lblAdditionalValue.Text= additionalValue.ToString("#,##0.00");
-                lblDiscount.Text= DiscountValue.ToString("#,##0.00");
+                lblGrandTotal.Text = Math.Round(varGrandTot).ToString("#,##0.00");
+                lblRoundoff.Text = Convert.ToString(Convert.ToDecimal(lblGrandTotal.Text) - (varTotal + varAdditionalValue - varDiscountValue));
             }
             catch (Exception ex)
             {
@@ -3168,7 +3172,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-       
+
         public void udfnPurchaseEntryTabLoad()
         {
             try
@@ -6516,7 +6520,7 @@ namespace ROMS
         {
             try
             {
-                decimal varSubtotal = 0, varTaxTotal = 0, varInvQty = 0 ;
+                decimal varSubtotal = 0, varTaxTotal = 0, varInvQty = 0, varAdditionalValue = 0, varDiscount = 0;
                 //if (Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmTax"].Value) != 0 || Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmGstamt"].Value) != 0)
                 //{
                 for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
@@ -6537,7 +6541,7 @@ namespace ROMS
                             varTaxTotal = varTaxTotal + varGstAmt;
                         }
                     }
-                    if(rbDiscountAfter.Checked==true)
+                    if (rbDiscountAfter.Checked == true)
                     {
                         decimal varDiscountValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscountValue"].Value);
                         if (varSupplierType == 30) //GSTIN registered suppplier
@@ -6568,21 +6572,25 @@ namespace ROMS
                 if (varSupplierType == 30) //GSTIN registered suppplier
                 {
                     lblGstamt.Text = varTaxTotal.ToString("0.00");
-                    lblTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+                    //lblTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("0.00");
+                    lblTotal.Text = (varSubtotal + varTaxTotal).ToString("0.00");
                 }
                 else
                 {
                     varTaxTotal = 0;
                     lblGstamt.Text = varTaxTotal.ToString("0.00");
-                    lblTotal.Text = Math.Round(varSubtotal).ToString("0.00");
+                    //  lblTotal.Text = Math.Round(varSubtotal).ToString("0.00");
+                    lblTotal.Text = varSubtotal.ToString("0.00");
                 }
-                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal).ToString("#,##0.00");
-                lblRoundoff.Text = Convert.ToString(Convert.ToDecimal(lblTotal.Text) - (varSubtotal + varTaxTotal));
+                varAdditionalValue = Convert.ToDecimal(lblAdditionalValue.Text);
+                varDiscount = Convert.ToDecimal(lblDiscount.Text);
+                lblGrandTotal.Text = Math.Round(varSubtotal + varTaxTotal + varAdditionalValue - varDiscount).ToString("#,##0.00");
+                lblRoundoff.Text = Convert.ToString(Convert.ToDecimal(lblGrandTotal.Text) - (varSubtotal + varTaxTotal + varAdditionalValue - varDiscount));
                 if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmInvQty")
                 {
                     lblTpro.Text = Convert.ToString(grdPurchaseList.RowCount) + " / " + Convert.ToString(varInvQty);
                 }
-                if(varSubtotal==0)
+                if (varSubtotal == 0)
                 {
                     gpdiscount.Enabled = true;
                 }

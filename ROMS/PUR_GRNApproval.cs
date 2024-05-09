@@ -466,8 +466,8 @@ namespace ROMS
                 TRN_GRNApproval objTRN_GRNApproval = new TRN_GRNApproval();
                 objspdservice = new SPDataService();
                 objTRN_GRNApproval.ViewType = 1;
-                objTRN_GRNApproval.paraPURID = Convert.ToInt16( MainForm.pbUserID);
-                objTRN_GRNApproval.paraUserID = Convert.ToInt32(varUserID);
+                objTRN_GRNApproval.paraPURID = varID;
+                objTRN_GRNApproval.paraUserID = Convert.ToInt16(MainForm.pbUserID);
                 objTRN_GRNApproval.paraOriginator = "GRN Approval-Last Seen";
                 result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
                 objspdservice.CloseConnection();
