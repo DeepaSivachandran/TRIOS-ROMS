@@ -2375,7 +2375,7 @@ namespace ROMS
                                         OrderID = "ORDER ID";
                                     }
                                     grdGrnlist.Rows.Add(false, null, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product Name in Tamil"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]),
-                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i][Quantity]),"", Convert.ToString(objDs.Tables[1].Rows[i]["Shop Qty"]),
+                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i][Quantity]),Convert.ToString(objDs.Tables[1].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shop Qty"]),
                                          Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack ID"]),
                                            Convert.ToString(objDs.Tables[1].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[1].Rows[i][OrderID]),0
                                             ,Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[1].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]));
@@ -2391,7 +2391,7 @@ namespace ROMS
                                     }
 
                                     dtInwardPurchase.Rows.Add(false,Convert.ToInt32(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Convert"]), Convert.ToInt32(objDs.Tables[1].Rows[i][OrderID]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Product ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Unit ID"]), ReceivedQty,ShopQty, Convert.ToInt32(objDs.Tables[1].Rows[i]["Rack ID"]),
-                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo Generation"]));
+                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["MRP Flag"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Shelflife Status"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["BatchNo Status"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["BatchNo Generation"]));
 
                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value)== "1")
                                     {
@@ -2687,7 +2687,7 @@ namespace ROMS
             {
                 if(varEditFlag==1)
                 {
-                    grdGrnlist.Sort(grdGrnlist.Columns["clmOrder"], ListSortDirection.Ascending);
+                    //grdGrnlist.Sort(grdGrnlist.Columns["clmOrder"], ListSortDirection.Ascending);
                 }
                 grdGrnlist.ClearSelection();
                 txttotalProduct.Text = Convert.ToString(grdGrnlist.Rows.Count);
