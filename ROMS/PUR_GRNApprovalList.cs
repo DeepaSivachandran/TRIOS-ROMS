@@ -20,7 +20,7 @@ namespace ROMS
         DataError objError;
         public DataTable Deftable = new DataTable();
         public int varviewtype = 0, Varflag=0,varUpDownKey = 0;
-
+        public int ApprovalFlag = 0;
         public PUR_GRNApprovalList()
         {
             InitializeComponent();
@@ -59,6 +59,14 @@ namespace ROMS
         {
             try
             {
+                if(ApprovalFlag==1)
+                {
+                    tsbApproval.Visible = true;
+                }
+                else
+                {
+                    tsbApproval.Visible = false;
+                }
                 cmbConcern.Focus();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -1424,6 +1432,21 @@ namespace ROMS
             try
             {
                 //udfnDate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseApprovalList.Show();
             }
             catch (Exception ex)
             {

@@ -304,7 +304,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(115, 125);
+            this.LV_Supplier.Location = new System.Drawing.Point(15, 125);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
             this.LV_Supplier.TabIndex = 1111208;
@@ -1570,7 +1570,7 @@
             this.txtSupplierDCNo.MaxLength = 30;
             this.txtSupplierDCNo.Name = "txtSupplierDCNo";
             this.txtSupplierDCNo.Size = new System.Drawing.Size(98, 27);
-            this.txtSupplierDCNo.TabIndex = 2;
+            this.txtSupplierDCNo.TabIndex = 3;
             this.txtSupplierDCNo.Enter += new System.EventHandler(this.TxtSupplierDCNo_Enter);
             this.txtSupplierDCNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplierDCNo_KeyDown);
             this.txtSupplierDCNo.Leave += new System.EventHandler(this.TxtSupplierDCNo_Leave);
@@ -1660,7 +1660,7 @@
             this.txtSupplier.MaxLength = 150;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(293, 27);
-            this.txtSupplier.TabIndex = 3;
+            this.txtSupplier.TabIndex = 2;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
             this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);

@@ -333,7 +333,7 @@ namespace ROMS
             {
                 skipValidation = true;
                 udfnclose(sender,e); 
-                MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender,e);
+                //MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender,e);
             }
             catch (Exception ex)
             {
@@ -351,6 +351,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     { 
                         this.Close();
+
                     }
                     else
                     { btnSave.Focus(); }
@@ -370,7 +371,7 @@ namespace ROMS
                     {
                         this.Close();
                     }
-                    MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender,e);
+                    //MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender,e);
                 }
             }
             catch (Exception ex)
