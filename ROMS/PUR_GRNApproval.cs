@@ -421,6 +421,7 @@ namespace ROMS
         {
             try
             {
+                udfnLastSeen();
                 dtApproval.TableName = "TRN_GRNApproval_Product";
                 dtApproval.Columns.Add("GRNAPR_PRID", typeof(int));
                 dtApproval.Columns.Add("GRNAPR_MRP", typeof(decimal));
@@ -490,6 +491,27 @@ namespace ROMS
                     objError = new DataError();
                     objError.WriteFile(ex);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLastSeen()
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                DataTable objGrnPO = new DataTable();
+                TRN_GRNApproval objTRN_GRNApproval = new TRN_GRNApproval();
+                objspdservice = new SPDataService();
+                objTRN_GRNApproval.ViewType = 1;
+                objTRN_GRNApproval.paraPURID = varID;
+                objTRN_GRNApproval.paraUserID = Convert.ToInt16(MainForm.pbUserID);
+                objTRN_GRNApproval.paraOriginator = "GRN Approval-Last Seen";
+                result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
+                objspdservice.CloseConnection();
             }
             catch (Exception ex)
             {
