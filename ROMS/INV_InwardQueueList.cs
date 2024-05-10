@@ -20,6 +20,8 @@ namespace ROMS
         ToolTip tpSupplier = new ToolTip();
         public int varPRID = 0, varStockLocationId = 0, Varflag = 0, varviewtype = 0, varUpDownKey = 0;
         DataTable dtDefaultGrid = new DataTable();
+        Boolean BlnSearchImageYN = false;
+
         public INV_InwardQueueList()
         {
             InitializeComponent();
@@ -525,11 +527,24 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -588,6 +603,8 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -2221,7 +2238,10 @@ namespace ROMS
                     {
                         DGV_ProdSearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
-                    DGV_ProdSearchGrid.Columns["S.No."].ReadOnly = true;
+                    if (lblNoRecordsFound.Visible == false)
+                    {
+                        DGV_ProdSearchGrid.Columns["S.No."].ReadOnly = true;
+                    }
                     DGV_ProdSearchGrid.Columns[0].ReadOnly = true;
                     //DGV__SearchGrid.Columns[1].ReadOnly = true;
                     DGV_ProdSearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
@@ -2414,6 +2434,65 @@ namespace ROMS
                 btnPrint.Enabled = true;
                 btnPrint.Focus();
                 GC.Collect();
+            }
+        }
+
+        private void GrdInwardQueueList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdInwardQueueList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            try
+                            {
+                                string SRQID = "0", SLID = "0";
+                                SRQID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                                SLID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsInwardQueue_IndividualPrint.rpt");
+                                    varHeader = "Inward Queue";
+
+                                    objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SRQID));
+                                    objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(SLID));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
 
