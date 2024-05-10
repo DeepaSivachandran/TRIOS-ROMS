@@ -2448,9 +2448,14 @@ namespace ROMS
                         case "clmPrint":
                             try
                             {
-                                string SRQID = "0", SLID = "0";
-                                SRQID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["SRQID"].Value.ToString());
-                                SLID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value.ToString());
+                                string TransactionDate = "0", TypeID = "0", ConcerID = "0", varStockLocationId = "0", varTransactionNo = "0", ID = "0", varSupplierName = "";
+                                ID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                TypeID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Type ID"].Value);
+                                ConcerID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern ID"].Value);
+                                varStockLocationId = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location ID"].Value);
+                                varTransactionNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction No."].Value);
+                                TransactionDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction Date"].Value);
+                                varSupplierName = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Supplier"].Value);
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
@@ -2464,8 +2469,13 @@ namespace ROMS
                                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsInwardQueue_IndividualPrint.rpt");
                                     varHeader = "Inward Queue";
 
-                                    objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(SRQID));
-                                    objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(SLID));
+                                    objBillreport.SetParameterValue("paraID", Convert.ToInt32(ID));
+                                    objBillreport.SetParameterValue("paraFlag", Convert.ToInt32(TypeID));
+                                    objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(ConcerID));
+                                    objBillreport.SetParameterValue("paraSLID", Convert.ToInt32(varStockLocationId));
+                                    objBillreport.SetParameterValue("paraTransactionNo", varTransactionNo);
+                                    objBillreport.SetParameterValue("paraTransactionDate", TransactionDate);
+                                    objBillreport.SetParameterValue("paraSupplier", varSupplierName);
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
