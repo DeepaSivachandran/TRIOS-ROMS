@@ -2448,7 +2448,7 @@ namespace ROMS
                         case "clmPrint":
                             try
                             {
-                                string TransactionDate = "0", TypeID = "0", ConcerID = "0", varStockLocationId = "0", varTransactionNo = "0", ID = "0", varSupplierName = "";
+                                string TransactionDate = "0", TypeID = "0", ConcerID = "0", varStockLocationId = "0", varTransactionNo = "0", ID = "0", varSupplierName = "", varVoucherNo = "0", varVoucherDate = "0";
                                 ID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["ID"].Value.ToString());
                                 TypeID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Type ID"].Value);
                                 ConcerID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern ID"].Value);
@@ -2456,6 +2456,8 @@ namespace ROMS
                                 varTransactionNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction No."].Value);
                                 TransactionDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction Date"].Value);
                                 varSupplierName = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Supplier"].Value);
+                                varVoucherNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher No."].Value);
+                                varVoucherDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher Date"].Value);
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
@@ -2475,6 +2477,8 @@ namespace ROMS
                                     objBillreport.SetParameterValue("paraSLID", Convert.ToInt32(varStockLocationId));
                                     objBillreport.SetParameterValue("paraTransactionNo", varTransactionNo);
                                     objBillreport.SetParameterValue("paraTransactionDate", TransactionDate);
+                                    objBillreport.SetParameterValue("paraVoucherDate", varVoucherDate);
+                                    objBillreport.SetParameterValue("paraVoucherNo", varVoucherNo);
                                     objBillreport.SetParameterValue("paraSupplier", varSupplierName);
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
