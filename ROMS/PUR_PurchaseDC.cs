@@ -3411,8 +3411,22 @@ namespace ROMS
                     }
                     if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmExpiryDate")
                     {
+                        string varActuallife = Convert.ToString(grdPurchaseDC.CurrentRow.Cells["clmactuallife"].Value);
+                        string[] ActualLifeValue = varActuallife.Split(' ');
+                        int Actuallife = Convert.ToInt32(ActualLifeValue[0]);
+
+                        string varShelfLife = Convert.ToString(grdPurchaseDC.CurrentRow.Cells["clmshelfper"].Value);
+                        string[] varShelfLifeValue = varShelfLife.Split('%');
+                        decimal varShelflifePer = Convert.ToDecimal(varShelfLifeValue[0]);
+                        //Expiry Date
                         foreach (var row in varRowsToUpdate)
                         { row.SetField("DCPR_ExpiryDate", ExpiryDate); }
+                        //Actual Shelflife
+                        foreach (var row in varRowsToUpdate)
+                        { row.SetField("DCPR_ShelfLife_Flag", Actuallife); }
+                        //Shelflifeper
+                        foreach (var row in varRowsToUpdate)
+                        { row.SetField("DCPR_ShelfLife_Per", varShelflifePer); }
                     }
                     if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmBatchNo")
                     {
@@ -4819,7 +4833,7 @@ namespace ROMS
                 }
                 else
                 {
-                    int varflag = 0;  ProShelflife = 0; int Shelflifevalue = 0,ProShelfLifeType=0;
+                    int varflag = 0;  ProShelflife = 0; int Shelflifevalue = 0, ProShelfLifeType = 0, ProShelflifeValue = 0;
                     string varShelflifevalue = "", varAcutalshelflife = "";
                     SPDataService objDServ = new SPDataService();
                     DataSet objDS = new DataSet();
@@ -4908,9 +4922,14 @@ namespace ROMS
                             grdPurchaseDC.Rows.Add( maxSno + 1,grdPurchaseDC.RowCount+1, varPICode.Trim(), varTName.Trim(), lblUnit.Text, txtActualQty.Text.Trim(), Convert.ToDecimal(mrp), 
                                 varExpiryDate, (flag).Trim(),varAcutalshelflife, varShelflifevalue, expirydateFlag,txtBatchNo.Text.Trim(),  txtStockLocation.Text.Trim(),
                                 txtRack.Text.Trim(), lblProductcode.Text, lblStockLocationCode.Text, lblRackCode.Text, varunitid, Convert.ToString(varDecimal),varBatchNo,varBatchNoGeneration,0,0,varMRPFlag);
+                            if(flag != "")
+                            {
+                                string[] varProductLife = flag.Split(' ');
+                                ProShelflifeValue=Convert.ToInt32(varProductLife[0]);
+                            }
                             dtPurchaseDC.Rows.Add(Convert.ToInt16(maxSno + 1),Convert.ToInt32(lblProductcode.Text), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), 
                                 Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), 
-                                Convert.ToInt32(lblRackCode.Text),ProShelflife, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue,varMRPFlag, varBatchNo, varBatchNoGeneration);
+                                Convert.ToInt32(lblRackCode.Text), ProShelflifeValue, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue,varMRPFlag, varBatchNo, varBatchNoGeneration);
                             ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
                             //grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;

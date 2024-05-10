@@ -126,6 +126,7 @@
             this.clmDisable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnReadable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDuplicateSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -297,6 +298,7 @@
             this.clmDisable,
             this.clmUnReadable,
             this.clmDuplicateSno,
+            this.clmStatus,
             this.clmRemove});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -1185,6 +1187,13 @@
             this.clmDuplicateSno.Visible = false;
             this.clmDuplicateSno.Width = 10;
             // 
+            // clmStatus
+            // 
+            this.clmStatus.DataPropertyName = "Status";
+            this.clmStatus.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -1319,6 +1328,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDisable;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnReadable;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDuplicateSno;
+        private System.Windows.Forms.DataGridViewComboBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
