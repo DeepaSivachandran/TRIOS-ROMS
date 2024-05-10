@@ -410,6 +410,13 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.cs">
+      <DependentUpon>RPT_INV_GoodsInwardQueue_IndividualPrint.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_ItemMovementAnalysis.cs">
       <DependentUpon>RPT_ItemMovementAnalysis.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2223,6 +2230,11 @@
     <EmbeddedResource Include="Reports\RPT_CP_Product_StockLocation_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Product_StockLocation_Details.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_INV_GoodsInwardQueue_IndividualPrint.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_ItemMovementAnalysis.rpt">
