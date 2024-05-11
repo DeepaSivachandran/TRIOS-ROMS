@@ -1076,9 +1076,9 @@ namespace ROMS
 
                                         if (varQty1 != Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty))
                                         {
-                                            varQuantityErr++;
-                                            grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                            grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                            //varQuantityErr++;
+                                            //grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                            //grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
                                         }
                                     }
                                 }
@@ -1762,6 +1762,10 @@ namespace ROMS
                                     }
                                 }
                                 else if (varvalue[0] == "4")
+                                {
+                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                                else if(varvalue[0]=="5")
                                 {
                                     MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
