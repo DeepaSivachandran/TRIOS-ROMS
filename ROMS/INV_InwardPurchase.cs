@@ -767,6 +767,11 @@ namespace ROMS
                                     int varApprovedQty = 0;
                                     if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmConvertType"].Value)=="1" && Convert.ToBoolean(grdGrnlist.Rows[j].Cells["clmCheck"].Value)==true)
                                     {
+                                        if(Convert.ToString(grdGrnlist.Rows[j].Cells["clmStatus"].Value)=="81")
+                                        {
+                                            grdGrnlist.Rows[j].Cells["clmStatus"].Style.BackColor = Color.LightPink;
+                                            varErrorFlag = false;
+                                        }
                                         varInvoiceQty = Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmQty"].Value);
                                         if (Convert.ToString(dtInwardPurchase.Rows[i]["GIPPR_INVSTSID"].ToString()) == "82" && Convert.ToString(dtInwardPurchase.Rows[i]["GIPPR_SNO"].ToString()) == Convert.ToString(grdGrnlist.Rows[j].Cells["clmDuplicateSno"].Value))
                                         {
@@ -1071,9 +1076,9 @@ namespace ROMS
 
                                         if (varQty1 != Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty))
                                         {
-                                            varQuantityErr++;
-                                            grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                            grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                            //varQuantityErr++;
+                                            //grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                            //grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
                                         }
                                     }
                                 }
@@ -1757,6 +1762,10 @@ namespace ROMS
                                     }
                                 }
                                 else if (varvalue[0] == "4")
+                                {
+                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                                else if(varvalue[0]=="5")
                                 {
                                     MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
@@ -2474,15 +2483,14 @@ namespace ROMS
                                     else
                                     {
                                         grdGrnlist.Rows[i].Cells["clmStatus"].Value = Convert.ToInt32(objDs.Tables[0].Rows[i]["PR_STSID"]);
-                                        /*
+                                        
                                         if (Convert.ToInt32(objDs.Tables[0].Rows[i]["PR_STSID"])==82)
                                         {
-                                            grdGrnlist.Rows[i].Cells["clmReceivedQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightGray;
-                                            grdGrnlist.Rows[i].Cells["clmShopQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightGray;
+                                            //grdGrnlist.Rows[i].Cells["clmStatus"].ReadOnly = true;
+                                            //grdGrnlist.Rows[i].Cells["clmStatus"].Style.BackColor = Color.LightGray;
+                                            //grdGrnlist.Rows[i].Cells["clmShopQty"].ReadOnly = true;
+                                            //grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightGray;
                                         }
-                                        */
                                     }
                                     decimal ReceivedQty = 0, ShopQty = 0;
                                     if(Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"])!="")
