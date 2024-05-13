@@ -36,6 +36,7 @@ namespace ROMS
                 if (dialogResult == DialogResult.Yes)
                 {
                     this.Close();
+                    MainForm.objPUR_GRNApprovalList.udfnList();
                 }
             }
             catch (Exception ex)
