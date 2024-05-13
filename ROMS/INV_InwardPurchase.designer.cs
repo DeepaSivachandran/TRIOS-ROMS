@@ -126,6 +126,7 @@
             this.clmDisable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnReadable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDuplicateSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
@@ -298,6 +299,7 @@
             this.clmDisable,
             this.clmUnReadable,
             this.clmDuplicateSno,
+            this.clmStockQty,
             this.clmStatus,
             this.clmRemove});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1187,6 +1189,13 @@
             this.clmDuplicateSno.Visible = false;
             this.clmDuplicateSno.Width = 10;
             // 
+            // clmStockQty
+            // 
+            this.clmStockQty.HeaderText = "Stock Qty";
+            this.clmStockQty.Name = "clmStockQty";
+            this.clmStockQty.Visible = false;
+            this.clmStockQty.Width = 10;
+            // 
             // clmStatus
             // 
             this.clmStatus.DataPropertyName = "Status";
@@ -1328,6 +1337,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDisable;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnReadable;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDuplicateSno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStockQty;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
