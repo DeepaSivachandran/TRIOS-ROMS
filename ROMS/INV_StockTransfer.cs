@@ -2113,6 +2113,11 @@ namespace ROMS
                         //grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LightPink;
                         varErrQty = "2";
                     }
+                    if(Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value)!=0 && Convert.ToInt32(grdStockTransfer.Rows[i].Cells["Status"].Value)==80)
+                    {
+                        blnErrorFlag = true; varQtyError = "1";
+                        grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightPink;
+                    }
                 }
                 if (varErrQty == "1" || varQtyError == "1")
                 {
