@@ -57,7 +57,7 @@ namespace ROMS
         public int varPOdropdownFlag = 0, varPrCountFlag = 0, varPrCount = 0, varEntryTypeViewFlag=0;
         public string varGRNDate = "", varVoucherDate = "", varDCDate = "";
         private Timer timer;
-        public string varProducts = "",varEntryTypeDate="";
+        public string varProducts = "",varEntryTypeDate="" , varGSTIN="";
         List<int> varProductsIDs = new List<int>();
         public int varAutocompleteProduct = 0, pbPurchaseEntryUnapprovedFlag=0,pbUnapprovePURID=0,varGRNPRID=0;
         public string varEditPRID = "0";
@@ -77,6 +77,7 @@ namespace ROMS
                 errPurchaseentry.Clear();
                 DGV_FilterProduct.Visible = false;
                 txtProductName.Text = "";
+                txtGstin.Text = "";
                 udfnrowclear();
                 if (pbPurchaseno == "0")
                 {
@@ -118,6 +119,7 @@ namespace ROMS
                             //txtInvoiceNo.ReadOnly = true;
                             //txtInvoiceNo.Enabled = false;
                             // grdGRN.Visible = true;
+                            txtGstin.Text= varGSTIN;
                             grdReurnDC.Visible = false;
                             grdPODetails.Visible = true;
                             if (grdPODetails.Rows.Count != 0)
@@ -4142,7 +4144,7 @@ namespace ROMS
                 if (varProductType == 218 ) //218-GRN 
                 {
                     var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
-                                    where (r.Field<int>("Flag").Equals(varProductType) && r.Field<int>("ID").Equals(varId) )
+                                    where (r.Field<int>("Flag").Equals(varProductType) && r.Field<int>("ID").Equals(Convert.ToInt32(varId)) )
                                     group r by new
                                     {  PRID = r["PRID"] /*,  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],
                                         BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"] */} into g
@@ -12117,7 +12119,7 @@ namespace ROMS
                             lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
                             lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
                             lblSupplierOrderpolicy.Text = "Return Policy -" + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
-                            //txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]);
+                            varGSTIN= Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "" && pbPurchaseno == "0")
                             {
