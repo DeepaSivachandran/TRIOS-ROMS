@@ -1689,7 +1689,6 @@ namespace ROMS
                             dtChkProducts.Columns.Remove("PR_ExpiryStatus");
                             dtChkProducts.Columns.Remove("PR_BatchNoStatus");
                             dtChkProducts.Columns.Remove("PR_BatchNoGeneration");
-                            //dtChkProducts.Columns.RemoveAt(0);
                         }
                         else
                         {
