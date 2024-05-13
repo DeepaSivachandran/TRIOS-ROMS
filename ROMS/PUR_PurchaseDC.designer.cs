@@ -1550,6 +1550,7 @@
             // 
             this.clmshelflife.HeaderText = "Product Shelf Life";
             this.clmshelflife.Name = "clmshelflife";
+            this.clmshelflife.ReadOnly = true;
             this.clmshelflife.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmshelflife.Width = 130;
             // 
@@ -1557,6 +1558,7 @@
             // 
             this.clmactuallife.HeaderText = "Actual Shelf Life";
             this.clmactuallife.Name = "clmactuallife";
+            this.clmactuallife.ReadOnly = true;
             this.clmactuallife.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmactuallife.Width = 130;
             // 
@@ -1564,6 +1566,7 @@
             // 
             this.clmshelfper.HeaderText = "Shelf Life(%)";
             this.clmshelfper.Name = "clmshelfper";
+            this.clmshelfper.ReadOnly = true;
             this.clmshelfper.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmShelflifeenable
