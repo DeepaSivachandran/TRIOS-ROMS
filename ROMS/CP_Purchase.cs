@@ -913,6 +913,7 @@ namespace ROMS
                 dtPurchaseAutoComplete.Columns.Add("RKID", typeof(int));
                 dtPurchaseAutoComplete.Columns.Add("ShelfLife_Flag", typeof(int));
                 dtPurchaseAutoComplete.Columns.Add("Flag", typeof(int));
+                dtPurchaseAutoComplete.Columns.Add("ID", typeof(int));
             }
             catch (Exception ex)
             {
@@ -1391,7 +1392,7 @@ namespace ROMS
 
                                     dtPurchaseAutoComplete.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(varMRP)), varTempExpiryDate,
                                          Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]),
-                                         Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]),"0");
+                                         Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]),"0",0);
                                     
                                     grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     varProductsIDs.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]));
@@ -4141,10 +4142,10 @@ namespace ROMS
                 if (varProductType == 218 ) //218-GRN 
                 {
                     var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
-                                    where (r.Field<int>("Flag").Equals(varProductType))
+                                    where (r.Field<int>("Flag").Equals(varProductType) && r.Field<int>("ID").Equals(varId) )
                                     group r by new
-                                    {  PRID = r["PRID"],  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],
-                                        BatchNo = r["BatchNo"]/*, SLID = r["SLID"], RKID = r["RKID"] */} into g
+                                    {  PRID = r["PRID"] /*,  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],
+                                        BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"] */} into g
                                     select g;
                     if (varPrid == "")
                     {
@@ -4695,7 +4696,7 @@ namespace ROMS
                                      mrp = string.Format("{0:0.00}", varMRP);
                                      mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                                 }
-                                dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text,(varRackId), expirydateFlag,Convert.ToInt16(cmbPONo.SelectedValue));
+                                dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text,(varRackId), expirydateFlag,Convert.ToInt16(cmbPONo.SelectedValue),varId);
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text));
                                 udfnrowclear();
                                 //if (Convert.ToString(cmbEntryType.SelectedValue) == "54") //Grn
@@ -11226,7 +11227,7 @@ namespace ROMS
                 {
                     varBatchNo = "0"; varBatchNoGeneration = "0"; varShelflife = 0; expirydateFlag = 0;
                     varBatchNo = "0"; varPrDate = "0"; varPrMonth = "0"; varPrYear = "0"; varPrLocation = "0";
-                    varPrRack = "0"; varPrMRP = "0"; varPrInvFlag = "0"; varPrslid = "0"; varPrRkid = "0"; varId = "0"; varPrMRPFlag="0"; varGRNPRID = 0;
+                    varPrRack = "0"; varPrMRP = "0"; varPrInvFlag = "0"; varPrslid = "0"; varPrRkid = "0"; varId = "0"; varPrMRPFlag="0";
                     /*
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     txtProductName.Text = selectedItem.SubItems[2].Text;
