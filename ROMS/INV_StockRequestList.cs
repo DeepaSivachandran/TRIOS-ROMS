@@ -2361,10 +2361,15 @@ namespace ROMS
                         grdProDetails.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
                         grdProDetails.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    if (Convert.ToString(grdProDetails.Rows[i].Cells["STSID"].Value) == "48")
+                    else if (Convert.ToString(grdProDetails.Rows[i].Cells["STSID"].Value) == "48")
                     {
                         grdProDetails.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("108, 252, 45");
                         grdProDetails.Rows[i].Cells["Status"].Style.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        grdProDetails.Rows[i].Cells["Status"].Style.BackColor = Color.Red;
+                        grdProDetails.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                 }
             }

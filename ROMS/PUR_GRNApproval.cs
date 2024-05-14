@@ -397,17 +397,15 @@ namespace ROMS
                     //Update the same column value in the DataTable
                     dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
                 }
-                for (int i = 0; i < grdGrnApproval.Rows.Count; i++)
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 {
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value))
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmreceivedqty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Value))
                     {
-                        grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
-                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                        grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
                     }
                     else
                     {
-                        grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.White;
-                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.PaleGreen;
+                        grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Style.BackColor = Color.PaleGreen;
                     }
                 }
             }
@@ -544,14 +542,9 @@ namespace ROMS
                     if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)<Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value))
                     {
                         varQtyErr++;
-                        grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
+                        //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
                         grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
                         varErrorFlag = false;
-                    }
-                    else
-                    {
-                        grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.White;
-                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.PaleGreen;
                     }
                     if(Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value)!=0 && Convert.ToString(grdGrnApproval.Rows[i].Cells["ClmReason"].Value)=="")
                     {

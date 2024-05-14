@@ -1383,6 +1383,9 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["QTY"].HeaderText = "Quantity";
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGV_FilterProduct.Columns["STK_MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGV_FilterProduct.Columns["QTY"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGV_FilterProduct.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                                     if (VarSearchFlag == false)
                                     {
@@ -1981,12 +1984,12 @@ namespace ROMS
                         DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            varProductID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["clmPRID"].Value);
-                            varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmmrp"].Value)));
-                            varExpiryDate = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmExpirydate"].Value);
-                            varBatchNo = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmbatchno"].Value);
-                            varSRKID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmSRID"].Value);
-                            grdStockTransfer.Rows.RemoveAt(this.grdStockTransfer.SelectedRows[0].Index);
+                            varProductID = Convert.ToInt32(grdStockTransfer.Rows[e.RowIndex].Cells["clmPRID"].Value);
+                            varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells["clmmrp"].Value)));
+                            varExpiryDate = Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells["clmExpirydate"].Value);
+                            varBatchNo = Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells["clmbatchno"].Value);
+                            varSRKID = Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells["clmSRID"].Value);
+                            grdStockTransfer.Rows.RemoveAt(this.grdStockTransfer.Rows[e.RowIndex].Index);
                             for (int i = 0; i < grdStockTransfer.RowCount; i++)
                             {
                                 grdStockTransfer.Rows[i].Cells["clmdsno"].Value = i + 1;
@@ -2104,11 +2107,20 @@ namespace ROMS
                         grdStockTransfer.CurrentRow.DefaultCellStyle.BackColor = Color.White;
                         grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
                     }
-                    if(Convert.ToString(grdStockTransfer.Rows[i].Cells["Status"].Value)=="")
+                    if (EditFlag==1)
                     {
-                        blnErrorFlag = true; 
-                        //grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LightPink;
-                        varErrQty = "2";
+
+                        if (Convert.ToString(grdStockTransfer.Rows[i].Cells["Status"].Value) == "")
+                        {
+                            blnErrorFlag = true;
+                            //grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LightPink;
+                            varQtyError = "1";
+                        }
+                        if (Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) != 0 && Convert.ToInt32(grdStockTransfer.Rows[i].Cells["Status"].Value) == 80)
+                        {
+                            blnErrorFlag = true; varQtyError = "1";
+                            grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightPink;
+                        }
                     }
                 }
                 if (varErrQty == "1" || varQtyError == "1")
@@ -2118,10 +2130,6 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
-                }
-                if(varErrQty=="2")
-                {
-                    MessageBox.Show("Please select the status", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 if (blnErrorFlag == false)
                 {

@@ -2477,8 +2477,8 @@ namespace ROMS
                                 grdPurchaseDC.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
                                 //grdPurchaseDC.Rows[i].Cells["clmshelflife"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
-                                //grdPurchaseDC.Rows[i].Cells["clmStockLocation"].Style.BackColor = Color.PaleGreen;
-                                //grdPurchaseDC.Rows[i].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
+                                grdPurchaseDC.Rows[i].Cells["clmStockLocation"].Style.BackColor = Color.PaleGreen;
+                                grdPurchaseDC.Rows[i].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseDC.Rows[i].Cells["clmRemove"].Style.BackColor = Color.White;
                                 if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmBatchEnable"].Value) == "73") //Disabled
                                 {
@@ -2746,7 +2746,7 @@ namespace ROMS
                     e.Control.KeyPress -= udfnHandleKeyPress;
                     e.Control.KeyPress += udfnHandleKeyPress;
                 }
-                if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmQuantity")
+                if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmQuantity" || grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmMRP")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
@@ -3349,7 +3349,7 @@ namespace ROMS
                     {
                         varErrExpiryDate = "0";
                         grdPurchaseDC.Rows[e.RowIndex].Cells["clmExpiryErr"].Value = varErrExpiryDate;
-                        grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
+                        //grdPurchaseDC.Rows[rowIndex].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
                     }
                 }
 
