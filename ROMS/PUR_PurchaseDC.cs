@@ -884,10 +884,10 @@ namespace ROMS
                     cmbConcern.Focus();
                     cmbConcern.BackColor = Color.LemonChiffon;
                 }
-                else
-                {
-                    txtProductName.Focus();
-                }
+                //else
+                //{
+                //    txtProductName.Focus();
+                //}
                 udfnDefalutLocation();
             }
             catch (Exception ex)
