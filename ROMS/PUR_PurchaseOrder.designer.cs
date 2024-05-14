@@ -1876,7 +1876,7 @@
             this.lblDProduct.Name = "lblDProduct";
             this.lblDProduct.Size = new System.Drawing.Size(94, 17);
             this.lblDProduct.TabIndex = 2;
-            this.lblDProduct.Text = "Serach by P.I Code";
+            this.lblDProduct.Text = "Search by P.I Code";
             // 
             // grdsupplieradd
             // 
