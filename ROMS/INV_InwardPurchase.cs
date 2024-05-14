@@ -1104,7 +1104,7 @@ namespace ROMS
                                     {
                                         varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
 
-                                        if (varStockQty > varTotalQty1)
+                                        if (varStockQty >= varTotalQty1)
                                         {
                                             varQuantityErr++;
                                             grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
