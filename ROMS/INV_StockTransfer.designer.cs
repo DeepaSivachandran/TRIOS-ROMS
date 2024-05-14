@@ -489,7 +489,7 @@
             this.grdStockTransfer.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.grdStockTransfer.RowTemplate.Height = 25;
             this.grdStockTransfer.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.grdStockTransfer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdStockTransfer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdStockTransfer.ShowRowErrors = false;
             this.grdStockTransfer.Size = new System.Drawing.Size(1331, 423);
             this.grdStockTransfer.TabIndex = 1111224;

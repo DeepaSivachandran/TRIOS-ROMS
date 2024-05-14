@@ -1984,12 +1984,12 @@ namespace ROMS
                         DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            varProductID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["clmPRID"].Value);
-                            varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmmrp"].Value)));
-                            varExpiryDate = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmExpirydate"].Value);
-                            varBatchNo = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmbatchno"].Value);
-                            varSRKID = Convert.ToString(grdStockTransfer.SelectedRows[0].Cells["clmSRID"].Value);
-                            grdStockTransfer.Rows.RemoveAt(this.grdStockTransfer.SelectedRows[0].Index);
+                            varProductID = Convert.ToInt32(grdStockTransfer.Rows[e.RowIndex].Cells["clmPRID"].Value);
+                            varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells["clmmrp"].Value)));
+                            varExpiryDate = Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells["clmExpirydate"].Value);
+                            varBatchNo = Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells["clmbatchno"].Value);
+                            varSRKID = Convert.ToString(grdStockTransfer.Rows[e.RowIndex].Cells["clmSRID"].Value);
+                            grdStockTransfer.Rows.RemoveAt(this.grdStockTransfer.Rows[e.RowIndex].Index);
                             for (int i = 0; i < grdStockTransfer.RowCount; i++)
                             {
                                 grdStockTransfer.Rows[i].Cells["clmdsno"].Value = i + 1;
