@@ -1047,6 +1047,10 @@ namespace ROMS
                     txtInvoiceNo.ReadOnly = false;
                     dpInvoiceDate.Enabled = false;
                     grdSupplierList.Columns["clmRemove"].Visible = false;
+                    DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                    GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
+                    DataGridViewBindingCompleteEventArgs args3 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                    GrdPurchaseList_DataBindingComplete(grdPurchaseList, args3);
                 }
                 else
                 {
