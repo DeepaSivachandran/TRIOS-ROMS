@@ -2114,7 +2114,7 @@ namespace ROMS
                         {
                             blnErrorFlag = true;
                             //grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LightPink;
-                            varErrQty = "2";
+                            varQtyError = "1";
                         }
                         if (Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) != 0 && Convert.ToInt32(grdStockTransfer.Rows[i].Cells["Status"].Value) == 80)
                         {

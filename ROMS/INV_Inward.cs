@@ -201,6 +201,19 @@ namespace ROMS
         {
             try
             {
+                varErrQty = 0;
+                for (int i=0;i<grdInward.Rows.Count;i++)
+                {
+                    if(Convert.ToDecimal(grdInward.Rows[i].Cells["clmactualqty"].Value)==0)
+                    {
+                        grdInward.Rows[i].Cells["clmactualqty"].Style.BackColor = Color.LightPink;
+                        varErrQty = 1;
+                    }
+                    else
+                    {
+                        grdInward.Rows[i].Cells["clmactualqty"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
                 udfnSave();
             }
             catch (Exception ex)
@@ -279,6 +292,7 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
                 }
+
                 if (varErrQty == 1)
                 {
                     SPDataService objDServ = new SPDataService();
