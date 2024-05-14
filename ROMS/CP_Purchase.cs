@@ -5416,16 +5416,16 @@ namespace ROMS
                                 }
                                 //varTempDay = DMY[0];
                                 //varTempMonth = DMY[1]; 
-                                string varDate = "";
+                                string varVoucherDate = "";
                                 varTempExpiryDate = cellValue.ToString();
                                 if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == "218")
-                                { varDate = varGRNDate; }
-                                else { varDate = varVoucherDate; }
+                                { varVoucherDate = varGRNDate; }
+                                else { varVoucherDate = varVoucherDate; }
                                 if (cellValue != null && Convert.ToString(cellValue) != "")
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varDate, varCellprodid, 0, "0", "");
+                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varVoucherDate, varCellprodid, 0, "0", "");
                                     objdserv.CloseConnection();
                                     if (objDs != null)
                                     {
