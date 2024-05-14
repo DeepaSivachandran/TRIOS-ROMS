@@ -2107,16 +2107,20 @@ namespace ROMS
                         grdStockTransfer.CurrentRow.DefaultCellStyle.BackColor = Color.White;
                         grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.PaleGreen;
                     }
-                    if(Convert.ToString(grdStockTransfer.Rows[i].Cells["Status"].Value)=="")
+                    if (EditFlag==1)
                     {
-                        blnErrorFlag = true; 
-                        //grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LightPink;
-                        varErrQty = "2";
-                    }
-                    if(Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value)!=0 && Convert.ToInt32(grdStockTransfer.Rows[i].Cells["Status"].Value)==80)
-                    {
-                        blnErrorFlag = true; varQtyError = "1";
-                        grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightPink;
+
+                        if (Convert.ToString(grdStockTransfer.Rows[i].Cells["Status"].Value) == "")
+                        {
+                            blnErrorFlag = true;
+                            //grdStockTransfer.Rows[i].Cells["Status"].Style.BackColor = Color.LightPink;
+                            varErrQty = "2";
+                        }
+                        if (Convert.ToDecimal(grdStockTransfer.Rows[i].Cells["clmquantity"].Value) != 0 && Convert.ToInt32(grdStockTransfer.Rows[i].Cells["Status"].Value) == 80)
+                        {
+                            blnErrorFlag = true; varQtyError = "1";
+                            grdStockTransfer.Rows[i].Cells["clmquantity"].Style.BackColor = Color.LightPink;
+                        }
                     }
                 }
                 if (varErrQty == "1" || varQtyError == "1")
@@ -2126,10 +2130,6 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
-                }
-                if(varErrQty=="2")
-                {
-                    MessageBox.Show("Please select the status", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 if (blnErrorFlag == false)
                 {
