@@ -968,7 +968,7 @@ namespace ROMS
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
-                    if (pbPurchaseno == "0")
+                    if (pbPurchaseno == "0" || varPurEditFlag==1)
                     {
                         udfnFormDisable();
                     }
@@ -1046,6 +1046,7 @@ namespace ROMS
                     txtInvoiceNo.Enabled = false;
                     txtInvoiceNo.ReadOnly = false;
                     dpInvoiceDate.Enabled = false;
+                    grdSupplierList.Columns["clmRemove"].Visible = false;
                 }
                 else
                 {
@@ -5348,7 +5349,7 @@ namespace ROMS
         {
             try
             {
-                if (PbSTS == "49" || pbPurchaseno=="0")
+                if (PbSTS == "49" || pbPurchaseno=="0" || varPurEditFlag!=1 || PbApprovalStsid==70)
                 {
                     string varshelflife = "";
                     SPDataService objdserv = new SPDataService();
@@ -5414,13 +5415,17 @@ namespace ROMS
                                     cellValue = varTempDay + "/" + varTempMonth + "/" + varTempYear;
                                 }
                                 //varTempDay = DMY[0];
-                                //varTempMonth = DMY[1];
+                                //varTempMonth = DMY[1]; 
+                                string varDate = "";
                                 varTempExpiryDate = cellValue.ToString();
+                                if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == "218")
+                                { varDate = varGRNDate; }
+                                else { varDate = varVoucherDate; }
                                 if (cellValue != null && Convert.ToString(cellValue) != "")
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0", "");
+                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varDate, varCellprodid, 0, "0", "");
                                     objdserv.CloseConnection();
                                     if (objDs != null)
                                     {
@@ -8361,7 +8366,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnUnapprove_Leave(object sender, EventArgs e)
         {
             try
@@ -10959,6 +10963,14 @@ namespace ROMS
                             grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;
                         }
                     }
+                }
+                if (varPurEditFlag == 1)
+                {
+                    grdSupplierList.Columns["clmMRP"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdSupplierList.Columns["clmexpirydate"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdSupplierList.Columns["clmBatchno"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdSupplierList.Columns["clmLocation"].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdSupplierList.Columns["clmrack"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
             }
             catch (Exception ex)
