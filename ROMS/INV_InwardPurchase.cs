@@ -2567,6 +2567,11 @@ namespace ROMS
                                         txtApprovedby1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Approved By1"]);
                                         txtApprovedby2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Approved By2"]);
                                     }
+                                    else
+                                    {
+                                        txtApprovedby1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Approved By1"]);
+                                        txtApprovedby2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Approved By2"]);
+                                    }
                                 }
                                 if (varGRNPurchaseFlag == 3 || varGRNPurchaseFlag == 187)
                                 {
