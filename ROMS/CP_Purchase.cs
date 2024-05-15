@@ -4141,7 +4141,7 @@ namespace ROMS
                             varPrid = varPrid + ',' + varProIds.ToList()[i];
                         }
                     }
-                    if (Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
+                    if (Convert.ToString(cmbPONo.SelectedValue) == "215" )
                     {
                         lblAddProduct.Text = Convert.ToString(varProIds.Count());
                         lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
@@ -4151,10 +4151,10 @@ namespace ROMS
                 {
                     var varProIds = from r in dtPurchaseAutoComplete.AsEnumerable()
                                     where (r.Field<int>("Flag").Equals(varProductType) && r.Field<int>("ID").Equals(Convert.ToInt32(varId)) )
-                                    group r by new
-                                    {  PRID = r["PRID"] /*,  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],
-                                        BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"] */} into g
-                                    select g;
+                                    group r by r.Field<string>("PRID") into g
+                                    select g.Key;
+                                    /*group r by new {  PRID = r["PRID"] /*,  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"]  } into g
+                                    select g;*/
                     if (varPrid == "")
                     {
                         varPrid = Convert.ToString(varProIds);
@@ -4166,10 +4166,12 @@ namespace ROMS
                             varPrid = varPrid + ',' + varProIds.ToList()[i];
                         }
                     }
-                    if (Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
+                    if ( Convert.ToInt32(varProIds.Count()) != 0)
                     {
-                        lblAddProduct.Text = Convert.ToString(varProIds.Count());
-                        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                       // lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                        //lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lblRemainProduct.Text) - 1);
+                        lblAddProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblRemainProduct.Text));
                     }
                 }
                 if ( varProductType == 220) //  220 - DC
@@ -5421,16 +5423,16 @@ namespace ROMS
                                 }
                                 //varTempDay = DMY[0];
                                 //varTempMonth = DMY[1]; 
-                                string varVoucherDate = "";
+                                string varEntryTypeDate = "";
                                 varTempExpiryDate = cellValue.ToString();
                                 if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == "218")
-                                { varVoucherDate = varGRNDate; }
-                                else { varVoucherDate = varVoucherDate; }
+                                { varEntryTypeDate = varGRNDate; }
+                                else { varEntryTypeDate = varVoucherDate; }
                                 if (cellValue != null && Convert.ToString(cellValue) != "")
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varVoucherDate, varCellprodid, 0, "0", "");
+                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "");
                                     objdserv.CloseConnection();
                                     if (objDs != null)
                                     {
@@ -8454,6 +8456,8 @@ namespace ROMS
         {
             try
             {
+                txtProductName.Text = "";
+                lblProductcode.Text = "0";
                 udfnrowclear();
             }
             catch (Exception ex)
