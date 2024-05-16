@@ -4844,10 +4844,11 @@ namespace ROMS
             try
             {
                 string varDay = "", varMonth = "", varYear = "", varDate = ""; string varDcDay = "",
-                    varDcMonth = "", varDcYear = "", varExpiry = "";
+                    varDcMonth = "", varDcYear = "", varExpiry = "";string varExpiryDateGRN = "";
                 int varExpiryDays = 0; int error = 0; 
                 SPDataService objDServ = new SPDataService();
                 DataSet objDS = new DataSet();
+
                 if (txtDate.Text.Trim() == "")
                 {
                     varDay = "01";
