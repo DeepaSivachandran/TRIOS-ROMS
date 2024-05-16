@@ -768,15 +768,28 @@ namespace ROMS
                                     int varApprovedQty = 0;
                                     if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmConvertType"].Value)=="1" && Convert.ToBoolean(grdGrnlist.Rows[j].Cells["clmCheck"].Value)==true)
                                     {
-                                        if(Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value)!="" && Convert.ToInt32(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value)<=0)
+                                        if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) != "")
                                         {
-                                            grdGrnlist.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                            varErrorFlag = false;
+                                            decimal varReQty = Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value);
+                                            string varRQty = string.Format("{0:0.00}", varReQty);
+                                            string varRQty1 = string.Format("{0:G29}", decimal.Parse(varRQty));
+
+                                            if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) != "" && Convert.ToInt32(varRQty1) < 1)
+                                            {
+                                                grdGrnlist.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                                varErrorFlag = false;
+                                            }
                                         }
-                                        if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmShopQty"].Value) != "" && Convert.ToInt32(grdGrnlist.Rows[j].Cells["clmShopQty"].Value) <= 0)
+                                        if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmShopQty"].Value) != "")
                                         {
-                                            grdGrnlist.Rows[j].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
-                                            varErrorFlag = false;
+                                            decimal varShQty = Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value);
+                                            string varSQty = string.Format("{0:0.00}", varShQty);
+                                            string varSQty1 = string.Format("{0:G29}", decimal.Parse(varSQty));
+                                            if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmShopQty"].Value) != "" && Convert.ToInt32(varSQty1) < 1)
+                                            {
+                                                grdGrnlist.Rows[j].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                                varErrorFlag = false;
+                                            }
                                         }
                                         if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmStatus"].Value)=="81")
                                         {
