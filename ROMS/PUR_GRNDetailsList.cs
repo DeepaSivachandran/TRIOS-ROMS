@@ -880,9 +880,9 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    if (e.RowIndex < 0 || e.ColumnIndex < 3)        /*If a header cell*/
+                    if (e.RowIndex < 0 || e.ColumnIndex < 3 && e.ColumnIndex != 1)        /*If a header cell*/
                         return;
-                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
+                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image" && e.ColumnIndex != 1)
                         return;
                     //if ((e.ColumnIndex <2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     //    return;
@@ -898,6 +898,16 @@ namespace ROMS
                         e.Handled = true;
                     }
                     DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
+                    {
+                        if (e.ColumnIndex == 1)
+                        {
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].Value = null;
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2] = new DataGridViewTextBoxCell();
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].Value = "";
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].ReadOnly = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -958,7 +968,8 @@ namespace ROMS
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[2].ReadOnly = true;
-                    DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewTextBoxCell();
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1012,7 +1023,8 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
-                    DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewTextBoxCell();
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                     //DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     //DGV_SearchGrid.Columns[0].ReadOnly = true;
                 }

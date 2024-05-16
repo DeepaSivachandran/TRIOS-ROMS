@@ -1099,7 +1099,7 @@ namespace ROMS
                     {
                         if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                         {
-                            string gridValue1 = row.Cells[11].Value.ToString();
+                            string gridValue1 = row.Cells["ID"].Value.ToString();
 
                             if (gridValue1.ToUpper() == (lblProductcode.Text).Trim().ToUpper())
                             {

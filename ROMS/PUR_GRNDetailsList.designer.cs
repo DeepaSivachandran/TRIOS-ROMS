@@ -64,6 +64,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdGRNList = new System.Windows.Forms.DataGridView();
+            this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -74,9 +77,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -514,6 +514,29 @@
             this.grdGRNList.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             this.grdGRNList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGRNList_KeyDown);
             // 
+            // ClmEdit
+            // 
+            this.ClmEdit.HeaderText = "Edit";
+            this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.ClmEdit.Name = "ClmEdit";
+            this.ClmEdit.ReadOnly = true;
+            this.ClmEdit.Width = 50;
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Reprint";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Width = 50;
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.ReadOnly = true;
+            this.clmCheck.Width = 50;
+            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -577,29 +600,6 @@
             this.RPTViewer.TabIndex = 1110000994;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
-            // 
-            // ClmEdit
-            // 
-            this.ClmEdit.HeaderText = "Edit";
-            this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.ClmEdit.Name = "ClmEdit";
-            this.ClmEdit.ReadOnly = true;
-            this.ClmEdit.Width = 50;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Reprint";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            this.clmPrint.Width = 50;
-            // 
-            // clmCheck
-            // 
-            this.clmCheck.HeaderText = "";
-            this.clmCheck.Name = "clmCheck";
-            this.clmCheck.ReadOnly = true;
-            this.clmCheck.Width = 50;
             // 
             // PUR_GRNDetailsList
             // 
