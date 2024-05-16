@@ -4630,7 +4630,7 @@ namespace ROMS
                                     cell.Style.ForeColor = Color.Black;
                                     cell.ReadOnly = true;
                                 }
-                                if (Convert.ToInt32(cmbQtyType.SelectedValue)==202)
+                                if (Convert.ToInt32(cmbQtyType.SelectedValue)==202 || Convert.ToInt32(cmbQtyType.SelectedValue) == 226 || Convert.ToInt32(cmbQtyType.SelectedValue) == 227)
                                 {
                                     DataGridView dataGridView = grdGrnlist;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
@@ -4643,14 +4643,14 @@ namespace ROMS
                                     cell1.Style.ForeColor = Color.Black;
                                     cell1.ReadOnly = true;
                                 }
-                                else
-                                {
-                                    DataGridView dataGridView1 = grdGrnlist;
-                                    DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
-                                    cell1.Style.BackColor = Color.PaleGreen;
-                                    cell1.Style.ForeColor = Color.Black;
-                                }
-                                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 194)
+                                //else
+                                //{
+                                //    DataGridView dataGridView1 = grdGrnlist;
+                                //    DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
+                                //    cell1.Style.BackColor = Color.PaleGreen;
+                                //    cell1.Style.ForeColor = Color.Black;
+                                //}
+                                else if (Convert.ToInt32(cmbQtyType.SelectedValue) == 194)
                                 {
                                     DataGridView dataGridView = grdGrnlist;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
@@ -5731,7 +5731,7 @@ namespace ROMS
                                         grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdGrnlist.Columns["clmQtyType"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         //int varExcessQty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmQtyType"].Value);
-                                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "202")
+                                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "202"  || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "227")
                                         {
                                             grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
                                             grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
