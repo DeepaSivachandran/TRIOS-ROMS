@@ -807,7 +807,7 @@ namespace ROMS
                                             string varRQty = string.Format("{0:0.00}", varReQty);
                                             string varRQty1 = string.Format("{0:G29}", decimal.Parse(varRQty));
 
-                                            if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) != "" && Convert.ToInt32(varRQty1) < 1)
+                                            if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) != "" && Convert.ToDecimal(varRQty1) < 1)
                                             {
                                                 grdGrnlist.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
                                                 varErrorFlag = false;
@@ -1116,7 +1116,7 @@ namespace ROMS
                                     }
                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmReceivedQty"].Value) != "")
                                     {
-                                        if (Convert.ToInt32(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) == 0)
+                                        if (Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) == 0)
                                         {
                                             grdGrnlist.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
                                             varErrorFlag = false;
@@ -2617,10 +2617,7 @@ namespace ROMS
                                 if(varGRNPurchaseFlag==2 || varGRNPurchaseFlag == 175)
                                 {
                                     string PurEntryType = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_EntryType"]);  // GET Purchase Entry Type
-                                    if (Convert.ToString(objDs.Tables[3].Rows[0]["PUR_PaymentApproval_STSID"]) != "")
-                                    {
-                                        varPurApproved = Convert.ToString(objDs.Tables[3].Rows[0]["PUR_PaymentApproval_STSID"]);
-                                    }
+                                    
                                     if (PurEntryType == "54") // Against GRN
                                     {
                                         textBox4.Visible = true;
@@ -2685,7 +2682,24 @@ namespace ROMS
                                     dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_Date"]);
                                     txtGRNNo.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_No"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC User"]);
+                                    lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC STS"]);
                                     grdGrnlist.Columns["clmQty"].HeaderText = Quantity;
+                                }
+                                if(varStausId==46)
+                                {
+                                    txtApproved1.Visible = true;
+                                    txtApproved2.Visible = true;
+                                    txtApprovedby1.Visible = true;
+                                    txtApprovedby2.Visible = true;
+                                    txtApprovedby1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Approved By1"]);
+                                    txtApprovedby2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Approved By2"]);
+                                }
+                            }
+                            if (varEditFlag == 1)
+                            {
+                                if (Convert.ToString(objDs.Tables[3].Rows[0]["PUR_PaymentApproval_STSID"]) != "")
+                                {
+                                    varPurApproved = Convert.ToString(objDs.Tables[3].Rows[0]["PUR_PaymentApproval_STSID"]);
                                 }
                             }
                             if (objDs.Tables[0].Rows.Count > 0)
@@ -3009,16 +3023,9 @@ namespace ROMS
                             }
                             */
                             udfnsupplierLoad(); 
-                            if(varGRNPurchaseFlag==2 || varGRNPurchaseFlag==175)
+                            if (varPurApproved == "63")
                             {
-                                if (varPurApproved == "63")
-                                {
-                                    chkCompleted.Enabled = true;
-                                }
-                                else
-                                {
-                                    chkCompleted.Enabled = false;
-                                }
+                                chkCompleted.Enabled = true;
                             }
                             else
                             {
