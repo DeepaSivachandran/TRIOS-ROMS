@@ -1133,6 +1133,7 @@ namespace ROMS
                     }
                     if(varEditFlag==1)
                     {
+                        int varRackID = 0;
                         for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                         {
                             varProCount = 1;
@@ -1188,6 +1189,34 @@ namespace ROMS
                             if(Convert.ToString(grdGrnlist.Rows[i].Cells["clmErrorQty"].Value) == "1")
                             {
                                 grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                varErrorFlag = false;
+                            }
+                            if(Convert.ToString(grdGrnlist.Rows[i].Cells["clmStatus"].Value)=="81")
+                            {
+                                grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                grdGrnlist.Rows[i].Cells["clmRack"].Style.BackColor = Color.LightPink;
+                                grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                varErrorFlag = false;
+                            }
+                            else
+                            {
+                                grdGrnlist.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                                grdGrnlist.Rows[i].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
+                                grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.PaleGreen;
+                                grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.PaleGreen;
+                            }
+                            if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmRack"].Value) == "")
+                            {
+                                varRackID = 0;
+                            }
+                            else
+                            {
+                                varRackID = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmRKID"].Value);
+                            }
+                            if (varRackID == -1)
+                            {
+                                grdGrnlist.Rows[i].Cells["clmRack"].Style.BackColor = Color.LightPink;
                                 varErrorFlag = false;
                             }
                             if (chkCompleted.Checked == true)
