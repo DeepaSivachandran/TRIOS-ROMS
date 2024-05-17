@@ -1260,7 +1260,7 @@ namespace ROMS
                                     else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                                     {
                                         MR_Master objMR_Master = new MR_Master();
-                                        objMR_Master.ViewType = 4;
+                                        objMR_Master.ViewType = 14;
                                         SPDataService objspdservice = new SPDataService();
                                         DataSet objDs = new DataSet();
                                         objDs = objspdservice.udfnMaster(objMR_Master);
