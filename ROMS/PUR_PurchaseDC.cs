@@ -884,10 +884,10 @@ namespace ROMS
                     cmbConcern.Focus();
                     cmbConcern.BackColor = Color.LemonChiffon;
                 }
-                else
-                {
-                    txtProductName.Focus();
-                }
+                //else
+                //{
+                //    txtProductName.Focus();
+                //}
                 udfnDefalutLocation();
             }
             catch (Exception ex)
@@ -1260,11 +1260,11 @@ namespace ROMS
                                     else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
                                     {
                                         MR_Master objMR_Master = new MR_Master();
-                                        objMR_Master.ViewType = 4;
+                                        objMR_Master.ViewType = 14;
                                         SPDataService objspdservice = new SPDataService();
                                         DataSet objDs = new DataSet();
                                         objDs = objspdservice.udfnMaster(objMR_Master);
-                                        objspdservice.CloseConnection();
+                                        objspdservice.CloseConnection(); 
                                         if (objDs.Tables[0] != null)
                                         {
                                             if (objDs.Tables[0].Rows.Count != 0)

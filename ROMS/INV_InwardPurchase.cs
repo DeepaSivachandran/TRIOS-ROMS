@@ -799,7 +799,7 @@ namespace ROMS
                                 for (int j = 0; j < grdGrnlist.Rows.Count; j++)
                                 {
                                     int varApprovedQty = 0;
-                                    if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmConvertType"].Value)=="1" && Convert.ToBoolean(grdGrnlist.Rows[j].Cells["clmCheck"].Value)==true)
+                                    if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmConvertType"].Value) == "1" && Convert.ToBoolean(grdGrnlist.Rows[j].Cells["clmCheck"].Value) == true)
                                     {
                                         if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) != "")
                                         {
