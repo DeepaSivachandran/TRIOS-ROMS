@@ -158,6 +158,7 @@ namespace ROMS
                     {
                         grdPODetails.Rows.Clear();
                         grdReurnDC.Rows.Clear();
+                        udfnPODropdownload();
                         cmbPONo.Enabled = false;
                         cmbPONo.Text = "";
                         lblPOdropDown.Text = "";
@@ -1732,6 +1733,9 @@ namespace ROMS
                 else if (varEntryType == 56 || varEntryType == -1) // Direct
                 {
                     cmbPONo.Text = "";
+                    cmbPONo.DataSource = null;
+                    //if(cmbPONo.Items.Count!=0)
+                    //{ cmbPONo.Items.Clear(); }
                     tsbProducts.Visible = false;
                     tsbProducts.Enabled = false;
                     tsbAdded.Visible = false; tsbAdded.Enabled = false;
@@ -4622,8 +4626,8 @@ namespace ROMS
                                 {
                                     if (lblLocationcode.Text == varSLID && varRkId == varRKID)
                                     {
-                                        if (Convert.ToString(cmbPONo.SelectedValue) == varPoid)
-                                        {
+                                        //if (Convert.ToString(cmbPONo.SelectedValue) == varPoid)
+                                        //{
                                             //lblProductcode.Text = "0";
                                             //errPurchaseentry.SetError(txtProductName, "Product already Exist for this location");
                                             //txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -4634,7 +4638,7 @@ namespace ROMS
                                             objDServ.CloseConnection();
                                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                             varflag = 1;
-                                        }
+                                        //}
                                     }
                                 }
                             }
@@ -4844,11 +4848,10 @@ namespace ROMS
             try
             {
                 string varDay = "", varMonth = "", varYear = "", varDate = ""; string varDcDay = "",
-                    varDcMonth = "", varDcYear = "", varExpiry = "";string varExpiryDateGRN = "";
+                    varDcMonth = "", varDcYear = "", varExpiry = "";
                 int varExpiryDays = 0; int error = 0; 
                 SPDataService objDServ = new SPDataService();
                 DataSet objDS = new DataSet();
-
                 if (txtDate.Text.Trim() == "")
                 {
                     varDay = "01";
@@ -4922,7 +4925,7 @@ namespace ROMS
                         varExpiryDateAdd = varDay + "/" + varMonth + "/" + varYear;
                     }
                     MR_Master objMR_Master = new MR_Master();
-                    objMR_Master.ViewType = 5;
+                    objMR_Master.ViewType = 10;
                     objMR_Master.paraDate = varEntryTypeDate;
                     objMR_Master.ParaExpiryDate = varExpiryDate;
                     objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
@@ -5976,6 +5979,7 @@ namespace ROMS
                             objTRN_PurchaseEntry1.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                             objTRN_PurchaseEntry1.paraSupplierType = varSupplierType;
                             objTRN_PurchaseEntry1.paraTinFlag = varTinFlag;
+                            objTRN_PurchaseEntry1.paraEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
                             objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
                             objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                             result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
