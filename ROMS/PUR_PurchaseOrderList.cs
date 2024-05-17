@@ -997,7 +997,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
-                            grdPurchaseorderlist.Columns["Status"].Width = 100;
+                            grdPurchaseorderlist.Columns["Po Status"].Width = 100;
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
                             grdPurchaseorderlist.Columns["Current Status"].Width = 130;
@@ -1173,7 +1173,7 @@ namespace ROMS
                     DGV_SearchGrid.Columns["Mode of Issue"].Width = 100;
                     DGV_SearchGrid.Columns["Issue Date"].Width = 100;
                     DGV_SearchGrid.Columns["Issued By"].Width = 100;
-                    DGV_SearchGrid.Columns["Status"].Width = 100;
+                    DGV_SearchGrid.Columns["Po Status"].Width = 100;
                     //DGV_SearchGrid.Columns["clmView"].Width = 50;
                     //DGV_SearchGrid.Columns["clmPrint"].Width = 50;
                     DGV_SearchGrid.ScrollBars = ScrollBars.Both;
@@ -2409,7 +2409,7 @@ namespace ROMS
                 for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Po Status"];
                     DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmView"];
                     if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) != 12)
                     {

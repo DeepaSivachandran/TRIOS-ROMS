@@ -232,7 +232,7 @@ namespace ROMS
                             grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
                             grdGRNList.Columns["S.No."].Width = 40;
-                            grdGRNList.Columns["Company"].Visible = false;
+                            //grdGRNList.Columns["Concern"].Visible = false;
                             grdGRNList.Columns["GRN No."].Width = 60;
                             grdGRNList.Columns["GRN Date"].Width = 80;
                             grdGRNList.Columns["Supplier Name"].Width = 300;
@@ -322,7 +322,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Company"].Visible = false;
+                DGV_SearchGrid.Columns["Concern"].Visible = false;
                 DGV_SearchGrid.Columns["GRN No."].Width = 100;
                 DGV_SearchGrid.Columns["GRN Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
