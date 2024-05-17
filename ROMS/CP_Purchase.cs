@@ -158,6 +158,7 @@ namespace ROMS
                     {
                         grdPODetails.Rows.Clear();
                         grdReurnDC.Rows.Clear();
+                        udfnPODropdownload();
                         cmbPONo.Enabled = false;
                         cmbPONo.Text = "";
                         lblPOdropDown.Text = "";
@@ -1732,6 +1733,9 @@ namespace ROMS
                 else if (varEntryType == 56 || varEntryType == -1) // Direct
                 {
                     cmbPONo.Text = "";
+                    cmbPONo.DataSource = null;
+                    //if(cmbPONo.Items.Count!=0)
+                    //{ cmbPONo.Items.Clear(); }
                     tsbProducts.Visible = false;
                     tsbProducts.Enabled = false;
                     tsbAdded.Visible = false; tsbAdded.Enabled = false;
