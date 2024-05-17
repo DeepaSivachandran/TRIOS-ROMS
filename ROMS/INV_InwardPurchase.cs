@@ -3008,7 +3008,7 @@ namespace ROMS
                                 lblNoRecordsFound.BringToFront();
                             }
                             */
-                            udfnsupplierLoad();
+                            udfnsupplierLoad(); 
                             if(varGRNPurchaseFlag==2 || varGRNPurchaseFlag==175)
                             {
                                 if (varPurApproved == "63")
