@@ -1264,7 +1264,7 @@ namespace ROMS
                                         SPDataService objspdservice = new SPDataService();
                                         DataSet objDs = new DataSet();
                                         objDs = objspdservice.udfnMaster(objMR_Master);
-                                        objspdservice.CloseConnection();
+                                        objspdservice.CloseConnection(); 
                                         if (objDs.Tables[0] != null)
                                         {
                                             if (objDs.Tables[0].Rows.Count != 0)
