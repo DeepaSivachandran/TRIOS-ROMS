@@ -31,7 +31,7 @@ namespace ROMS
         ToolTip tpInvoiceNo = new ToolTip();
         ToolTip tpInvoiceAMT = new ToolTip();
         DataSet objDs = new DataSet();
-
+        public string GRNUpdateID = "";
         public bool skipValidation = false;
         public string varPICode = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = ""
             , varorderSaleQty = "", varorderqty = "", addproductid = "", varunitid = "0", varDamage = "0", varReturnDC = "0", pbGRNId = "0", pbSupplierId = "0", dcid = "0",
@@ -993,6 +993,63 @@ namespace ROMS
                                         {
                                             varModifiedFlag = 0;
                                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            try
+                                            {
+                                                if (varGrnId == 0)
+                                                {
+                                                    GRNUpdateID = varvalue[2];
+                                                    //string varQrcode = varvalue[3];
+                                                    //var varImgMemoryStream = new MemoryStream();
+                                                    //QrcodeImg.Text = varQrcode;
+                                                    //QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                                    //varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                                                    //objTRNS_GRN.ViewType = 3;
+                                                    //objTRNS_GRN.paraStockRequestID = Convert.ToInt32(SSRUpdatevalue);
+                                                    //objTRNS_StockRequest.paraQrimg = (varobjBarCodeByte);
+                                                    //varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
+                                                    //objspservice.CloseConnection();
+                                                }
+                                                string ID = "0";
+                                                if (varGrnId == 0)
+                                                {
+                                                    ID = varvalue[2];
+                                                }
+                                                else
+                                                {
+                                                    ID = Convert.ToString(varGrnId);
+                                                }
+                                                
+                                                SPDataService objDServs = new SPDataService();
+                                                string varMessage = objDServs.udfnGetMessages(87);
+                                                objDServs.CloseConnection();
+                                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                if (result1 == DialogResult.Yes)
+                                                {
+                                                    string varHeader = "";
+                                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_Shop_Stock_Request.rpt");
+                                                    varHeader = "Godown Wise GRN Transfer";
+
+                                                    objBillreport.SetParameterValue("paraStockRequestID", Convert.ToInt32(ID));
+                                                    objBillreport.SetParameterValue("paraConcern", Convert.ToInt32(cmbConcern.SelectedValue));
+                                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                                    objValidation.CrySqlConnection(objBillreport);
+
+                                                    MainForm.objReportLoad = new ReportLoad();
+                                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                                    MainForm.objReportLoad.Text = varHeader;
+                                                    MainForm.objReportLoad.ShowDialog();
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                objError = new DataError();
+                                                objError.WriteFile(ex);
+                                            }
                                             this.ActiveControl = txtSupplier;
                                             MainForm.objPUR_GRNDetailsList.udfnListLoad();
                                             varCloseflag = 1;
