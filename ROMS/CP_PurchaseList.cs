@@ -640,7 +640,7 @@ namespace ROMS
                             //grdPurchaseEntryList.Columns["clmEdit"].Width = 100; 
                             grdPurchaseEntryList.DataSource = objDs.Tables[0];
                             grdPurchaseEntryList.Columns["S.No."].Width = 50;
-                            grdPurchaseEntryList.Columns["Company"].Width = 80;
+                            grdPurchaseEntryList.Columns["Concern"].Width = 80;
                             grdPurchaseEntryList.Columns["Voucher No."].Width = 100;
                             grdPurchaseEntryList.Columns["Voucher Date"].Width = 100;
                             grdPurchaseEntryList.Columns["Supplier Name"].Width = 300;
@@ -650,10 +650,10 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Invoice No."].Width = 100; 
                             grdPurchaseEntryList.Columns["Created By"].Width = 100;
                             grdPurchaseEntryList.Columns["Created On"].Width = 150;
-                            grdPurchaseEntryList.Columns["Purchase Type"].Width = 150;
-                            grdPurchaseEntryList.Columns["Total Products"].Width = 100;
-                            grdPurchaseEntryList.Columns["Grand Total"].Width = 100;
-                            grdPurchaseEntryList.Columns["Purchase Status"].Width = 130;
+                            grdPurchaseEntryList.Columns["Pur Type"].Width = 150;
+                            grdPurchaseEntryList.Columns["Total Pro"].Width = 100;
+                            grdPurchaseEntryList.Columns["Inv Amt"].Width = 100;
+                            grdPurchaseEntryList.Columns["Pur Entry Status"].Width = 130;
                             grdPurchaseEntryList.Columns["Overall Status"].Width = 300;
                             grdPurchaseEntryList.Columns["PURID"].Visible = false;
                             grdPurchaseEntryList.Columns["SPSCID"].Visible = false;
@@ -664,8 +664,8 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryList.Columns["GRN_Payment_StsID"].Visible = false;
                             grdPurchaseEntryList.Columns["Flag"].Visible = false;
-                            grdPurchaseEntryList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseEntryList.Columns["Grand Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
+                            grdPurchaseEntryList.Columns["Total Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseEntryList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             grdPurchaseEntryList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -746,7 +746,7 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = null;
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Company"].Width = 80;
+                DGV_SearchGrid.Columns["Concern"].Width = 80;
                 DGV_SearchGrid.Columns["Voucher No."].Width = 100;
                 DGV_SearchGrid.Columns["Voucher Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
@@ -756,10 +756,10 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Invoice No."].Width = 100;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
                 DGV_SearchGrid.Columns["Created On"].Width = 150;
-                DGV_SearchGrid.Columns["Purchase Type"].Width = 100;
-                DGV_SearchGrid.Columns["Total Products"].Width = 150;
-                DGV_SearchGrid.Columns["Grand Total"].Width = 150;
-                DGV_SearchGrid.Columns["Purchase Status"].Width = 130;
+                DGV_SearchGrid.Columns["Pur Type"].Width = 100;
+                DGV_SearchGrid.Columns["Total Pro"].Width = 150;
+                DGV_SearchGrid.Columns["Inv Amt"].Width = 150;
+                DGV_SearchGrid.Columns["Pur Entry Status"].Width = 130;
                 DGV_SearchGrid.Columns["Overall Status"].Width = 130;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
@@ -1378,7 +1378,7 @@ namespace ROMS
                 for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Purchase Status"];
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Pur Entry Status"];
                     DataGridViewCell cell2 = dataGridView.Rows[i].Cells["Overall Status"];
                     if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "70")
                     {

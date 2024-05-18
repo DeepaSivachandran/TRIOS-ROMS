@@ -984,7 +984,7 @@ namespace ROMS
                             //grdPurchaseorderlist.Columns["clmView"].Width = 110;  
                             grdPurchaseorderlist.Columns["S.No."].Width = 50;
                             grdPurchaseorderlist.Columns["Concern"].Width = 50;
-                            grdPurchaseorderlist.Columns["PO.No"].Width = 100;
+                            grdPurchaseorderlist.Columns["PO.No."].Width = 100;
                             grdPurchaseorderlist.Columns["PO Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Supplier"].Width = 300;
                             grdPurchaseorderlist.Columns["City"].Width = 100; 
@@ -1160,7 +1160,7 @@ namespace ROMS
                     DGV_SearchGrid.Columns["LogoPath"].Visible = false;
                     DGV_SearchGrid.Columns["S.No."].Width = 50;
                     DGV_SearchGrid.Columns["Concern"].Width = 50;
-                    DGV_SearchGrid.Columns["PO.No"].Width = 100;
+                    DGV_SearchGrid.Columns["PO.No."].Width = 100;
                     DGV_SearchGrid.Columns["PO Date"].Width = 100;
                     DGV_SearchGrid.Columns["Supplier"].Width = 300;
                     DGV_SearchGrid.Columns["City"].Width = 100;
@@ -2609,7 +2609,7 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
                                 }
-                                if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date"   || col.Name == "Created On"
+                                if (col.Name == "Concern" || col.Name == "PO.No." || col.Name == "PO Date"   || col.Name == "Created On"
                                     || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;

@@ -238,14 +238,14 @@ namespace ROMS
                             grdGRNList.Columns["Supplier Name"].Width = 300;
                             grdGRNList.Columns["City"].Width = 100;
                             grdGRNList.Columns["GSTIN"].Visible = false;
-                            grdGRNList.Columns["Invoice Date"].Width = 85;
-                            grdGRNList.Columns["Invoice No."].Width = 100;
+                            grdGRNList.Columns["Inv Date"].Width = 85;
+                            grdGRNList.Columns["Inv No."].Width = 100;
                             grdGRNList.Columns["Invoice Amount"].Width = 120;
                             grdGRNList.Columns["Created By"].Width = 200;
                             grdGRNList.Columns["Loading Charges"].Width = 120;
                             grdGRNList.Columns["Unloading Charges"].Width = 120;
                             grdGRNList.Columns["Order Type"].Width = 100;
-                            grdGRNList.Columns["Any Purchase Returns"].Width = 150;
+                            grdGRNList.Columns["Any Pur Returns"].Width = 150;
                             grdGRNList.Columns["GRN Status"].Width = 130;
                             grdGRNList.Columns["Overall Status"].Width = 350;
                             grdGRNList.Columns["GRNID"].Visible = false;
@@ -258,7 +258,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["SP_SupplierType"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
-                            grdGRNList.Columns["Any Purchase Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNList.Columns["Any Pur Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -266,7 +266,7 @@ namespace ROMS
                             grdGRNList.Columns["Loading Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Unloading Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                            grdGRNList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGRNList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -328,12 +328,12 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
                 DGV_SearchGrid.Columns["City"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Visible = false;
-                DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
-                DGV_SearchGrid.Columns["Invoice No."].Width = 100;
+                DGV_SearchGrid.Columns["Inv Date"].Width = 100;
+                DGV_SearchGrid.Columns["Inv No."].Width = 100;
                 DGV_SearchGrid.Columns["Invoice Amount"].Width = 120;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
                 DGV_SearchGrid.Columns["Order Type"].Width = 100;
-                DGV_SearchGrid.Columns["Any Purchase Returns"].Width = 150;
+                DGV_SearchGrid.Columns["Any Pur Returns"].Width = 150;
                 DGV_SearchGrid.Columns["GRNID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_SPID"].Visible = false;
@@ -1623,12 +1623,12 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 35;
                                 }
-                                if (col.Name == "Any Purchase Returns")
+                                if (col.Name == "Any Pur Returns")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 20;
                                 }
                                 if (col.Name == "Concern" || col.Name == "GRN No." || col.Name == "GRN Date" || col.Name == "City"
-                                    || col.Name == "Payment Mode" || col.Name == "Invoice Date"|| col.Name == "Invoice No." || col.Name == "Invoice Amount" || col.Name == "Created By" || col.Name == "Order Type" || col.Name == "Loading Charges"|| col.Name == "Unloading Charges")
+                                    || col.Name == "Payment Mode" || col.Name == "Inv Date"|| col.Name == "Inv No." || col.Name == "Invoice Amount" || col.Name == "Created By" || col.Name == "Order Type" || col.Name == "Loading Charges"|| col.Name == "Unloading Charges")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;
                                 }
