@@ -1323,6 +1323,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Source_RKID", typeof(string));
                 dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
+                dtStock.Columns.Add("STK_ProType", typeof(int));
                 dtStock.Columns.Add("STK_Status", typeof(int));
                 if (grdOutwardList.SelectedRows.Count > 0)
                 {
