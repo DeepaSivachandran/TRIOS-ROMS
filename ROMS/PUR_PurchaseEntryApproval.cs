@@ -87,10 +87,10 @@ namespace ROMS
                             txtQRCode.Enabled = true;
                             grdReurnDC.Visible = false;
                             grdPODetails.Visible = true;
-                            if (grdPODetails.Rows.Count != 0)
-                            {
-                                grdSupplierList.Columns["clmPono"].Visible = true;
-                            }
+                            //if (grdPODetails.Rows.Count != 0)
+                            //{
+                            //    grdSupplierList.Columns["clmPono"].Visible = true;
+                            //}
                         }
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "55") // PO
@@ -325,7 +325,7 @@ namespace ROMS
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, 0, Convert.ToInt16(objDs.Tables[0].Rows[i]["POPRID"]), 0);
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
-                            grdSupplierList.Columns["clmPono"].Visible = true;
+                           // grdSupplierList.Columns["clmPono"].Visible = true;
                             DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                         }
@@ -3948,38 +3948,23 @@ namespace ROMS
         {
             try
             {
-                dtTaxTable.Rows.Clear();
-                // Group by "Percentage" and calculate the sum of "Value1" and "Value2"
-                var varTaxData = grdPurchaseList.Rows.Cast<DataGridViewRow>()
-                    .GroupBy(row => row.Cells["clmGstper"].Value)
-                    .Select(group =>
-                    {
-                        return new
-                        {
-                            GST = group.Key.ToString(),
-                            Tax = group.Sum(row => Convert.ToDecimal(row.Cells["clmTax"].Value)),
-                            GSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value)),
 
-                            //IGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value)),
-                            //CGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
-                            //SGSTTax = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstper"].Value) / 2),
 
-                            IGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value)),
-                            CGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2),
-                            SGSTamount = group.Sum(row => Convert.ToDecimal(row.Cells["clmGstamt"].Value) / 2)
+                //var varSumGST = dtTaxTable.AsEnumerable()
+                //    .Where(y => Convert.ToInt16( dtTaxTable.Rows.Count-1))
+                //    .Sum(x => x.Field<decimal>("Tax Value")).ToString();
 
-                        };
-                    }).ToList();
+                var varTaxValue = dtTaxTable.AsEnumerable().Sum(x => x.Field<decimal>("Tax Value")).ToString();
+                var varIGST = dtTaxTable.AsEnumerable().Sum(x => x.Field<decimal>("IGST")).ToString();
+                var varCGST = dtTaxTable.AsEnumerable().Sum(x => x.Field<decimal>("CGST")).ToString();
+                var varSGST = dtTaxTable.AsEnumerable().Sum(x => x.Field<decimal>("CGST")).ToString();
 
-                dtTaxTable = varTaxData.Select(item => dtTaxTable.LoadDataRow(new object[]
-                { item.GST, Math.Round(item.Tax).ToString("0.00"), Math.Round(item.GSTamount).ToString("0.00"),
-                 Convert.ToDecimal(item.GST),Math.Round(item.IGSTamount).ToString("0.00"),
-                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.SGSTamount).ToString("0.00"),
-                (Convert.ToDecimal(item.GST)/2).ToString("0.0"),Math.Round(item.CGSTamount).ToString("0.00")
-                }, false)).CopyToDataTable();
+                dtTaxTable.Rows.Add("Total", 0, Convert.ToDecimal(varTaxValue), "", Convert.ToDecimal(varIGST), "",
+                    Convert.ToDecimal(varSGST), "", Convert.ToDecimal(varCGST));
                 grdTaxDetails.DataSource = dtTaxTable;
                 grdTaxDetails.Columns["GST%"].Width = 60;
                 grdTaxDetails.Columns["Taxable Value"].Width = 80;
+
                 grdTaxDetails.Columns["Tax Value"].Width = 60;
                 grdTaxDetails.Columns["IGST%"].Width = 60;
                 grdTaxDetails.Columns["CGST%"].Width = 60;
@@ -3996,6 +3981,13 @@ namespace ROMS
                 grdTaxDetails.Columns["SGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
+                if (grdTaxDetails.Rows.Count != 0)
+                {
+                    //grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("192, 192, 255");
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Black;
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.Font = new Font("Oswald Regular", 11, FontStyle.Bold);
+                }
                 if (varSupplierType == 151) //IGST
                 {
                     grdPurchaseList.Columns["clmGstper"].Visible = false;
@@ -4732,6 +4724,24 @@ namespace ROMS
             try
             {
                 udfnLoadingGrandTotCalculation();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdTaxDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                if (grdTaxDetails.Rows.Count != 0)
+                { //grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("192, 192, 255"); 
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Black;
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.Font = new Font("Oswald Regular", 11, FontStyle.Bold);
+                }
             }
             catch (Exception ex)
             {

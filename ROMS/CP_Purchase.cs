@@ -284,6 +284,13 @@ namespace ROMS
                         }
                     }
                 }
+                if (Convert.ToString(cmbEntryType.SelectedValue) == "57")
+                {
+                    if (objDs.Tables[2].Rows.Count != 0)
+                    {
+                        varDCDate= Convert.ToString(objDs.Tables[1].Rows[0]["DC Date"]);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -4323,9 +4330,9 @@ namespace ROMS
             {
                 varEntryTypeDate = "";
                 if (Convert.ToString(cmbPONo.SelectedValue) == "218")  //product type GRN
-                {
-                    varEntryTypeDate = varGRNDate;
-                }
+                {    varEntryTypeDate = varGRNDate;  }
+                if (Convert.ToString(cmbPONo.SelectedValue) == "220")  //product type DC
+                {    varEntryTypeDate = varDCDate;  }
                 else { varEntryTypeDate = varVoucherDate; }
             }
             catch (Exception ex)
@@ -4564,7 +4571,7 @@ namespace ROMS
                     {
                         MR_Master objMR_Master = new MR_Master();
                         objMR_Master.ViewType = 7;
-                        objMR_Master.paraDate = dpVoucherDate.Text;
+                        objMR_Master.paraDate = varEntryTypeDate;
                         objMR_Master.ParaExpiryDate = varExpiryDate;
                         objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
                         objDS = objDServ.udfnMaster(objMR_Master);
@@ -5229,6 +5236,8 @@ namespace ROMS
                 varProid = Convert.ToInt32(grdSupplierList.Rows[rowIndex].Cells["clmProid"].Value);
                 if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == "218")
                 { varDate = varGRNDate; }
+                else if(Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == "220")
+                { varDate = varDCDate; }
                 else { varDate = varVoucherDate; }
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 10;
@@ -5431,6 +5440,8 @@ namespace ROMS
                                 varTempExpiryDate = cellValue.ToString();
                                 if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == "218")
                                 { varEntryTypeDate = varGRNDate; }
+                                else if (Convert.ToString(grdSupplierList.Rows[rowIndex].Cells["clmid"].Value) == "220")
+                                { varEntryTypeDate = varDCDate; }
                                 else { varEntryTypeDate = varVoucherDate; }
                                 if (cellValue != null && Convert.ToString(cellValue) != "")
                                 {
@@ -6446,7 +6457,7 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[0].Rows[i]["DiscountValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_NettAmnt"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]), 
-                            Convert.ToString(objDs.Tables[0].Rows[i]["DC Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Inv Flag"]),Convert.ToString(objDs.Tables[0].Rows[i]["Costing"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["DC Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Inv Flag"]),Convert.ToString(objDs.Tables[0].Rows[i]["Costing"]), Convert.ToString(objDs.Tables[0].Rows[i]["GRN ProType"]),);
                             if (Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"]) != "")
                             {
                                 if (varInvQty == 0)
@@ -7730,7 +7741,10 @@ namespace ROMS
 
                 if (grdTaxDetails.Rows.Count != 0)
                 {
-                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("192, 192, 255");
+                    //grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("192, 192, 255");
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Black;
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.Font = new Font("Oswald Regular", 11, FontStyle.Bold);
                 }
                 if (pbSupplierTin != pbConcernTin) //IGST
                 {
@@ -8333,7 +8347,11 @@ namespace ROMS
             try
             {
                 if (grdTaxDetails.Rows.Count != 0)
-                { grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("192, 192, 255"); }
+                { //grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("192, 192, 255"); 
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Black;
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.Font = new Font("Oswald Regular", 11, FontStyle.Bold);
+                }
             }
             catch (Exception ex)
             {

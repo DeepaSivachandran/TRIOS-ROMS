@@ -296,6 +296,8 @@
             this.label40 = new System.Windows.Forms.Label();
             this.lblAdditionalValue = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
+            this.lblRoundoff = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.lblGstamt = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.lblSubtotal = new System.Windows.Forms.Label();
@@ -329,8 +331,6 @@
             this.lblstatusvalue = new System.Windows.Forms.Label();
             this.errPurchaseentry = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label38 = new System.Windows.Forms.Label();
-            this.lblRoundoff = new System.Windows.Forms.Label();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -1789,7 +1789,7 @@
             this.txtFrightGrn.MaxLength = 8;
             this.txtFrightGrn.Name = "txtFrightGrn";
             this.txtFrightGrn.Size = new System.Drawing.Size(113, 25);
-            this.txtFrightGrn.TabIndex = 89;
+            this.txtFrightGrn.TabIndex = 27;
             this.txtFrightGrn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtFrightGrn.TextChanged += new System.EventHandler(this.TxtFrightGrn_TextChanged);
             this.txtFrightGrn.Enter += new System.EventHandler(this.TxtFrightGrn_Enter);
@@ -1827,7 +1827,7 @@
             this.Txtdiscount.MaxLength = 5;
             this.Txtdiscount.Name = "Txtdiscount";
             this.Txtdiscount.Size = new System.Drawing.Size(113, 25);
-            this.Txtdiscount.TabIndex = 34;
+            this.Txtdiscount.TabIndex = 28;
             this.Txtdiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Txtdiscount.TextChanged += new System.EventHandler(this.Txtdiscount_TextChanged);
             this.Txtdiscount.Enter += new System.EventHandler(this.Txtdiscount_Enter);
@@ -1841,7 +1841,7 @@
             this.txtOtherdiscount.MaxLength = 8;
             this.txtOtherdiscount.Name = "txtOtherdiscount";
             this.txtOtherdiscount.Size = new System.Drawing.Size(113, 25);
-            this.txtOtherdiscount.TabIndex = 39;
+            this.txtOtherdiscount.TabIndex = 30;
             this.txtOtherdiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtOtherdiscount.TextChanged += new System.EventHandler(this.TxtOtherdiscount_TextChanged);
             this.txtOtherdiscount.Enter += new System.EventHandler(this.TxtOtherdiscount_Enter);
@@ -1855,7 +1855,7 @@
             this.txtCouriercharge.MaxLength = 8;
             this.txtCouriercharge.Name = "txtCouriercharge";
             this.txtCouriercharge.Size = new System.Drawing.Size(113, 25);
-            this.txtCouriercharge.TabIndex = 32;
+            this.txtCouriercharge.TabIndex = 23;
             this.txtCouriercharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCouriercharge.TextChanged += new System.EventHandler(this.TxtCouriercharge_TextChanged);
             this.txtCouriercharge.Enter += new System.EventHandler(this.TxtCouriercharge_Enter);
@@ -1869,7 +1869,7 @@
             this.txtDiscountamt.MaxLength = 8;
             this.txtDiscountamt.Name = "txtDiscountamt";
             this.txtDiscountamt.Size = new System.Drawing.Size(113, 25);
-            this.txtDiscountamt.TabIndex = 35;
+            this.txtDiscountamt.TabIndex = 29;
             this.txtDiscountamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDiscountamt.TextChanged += new System.EventHandler(this.TxtDiscountamt_TextChanged);
             this.txtDiscountamt.Enter += new System.EventHandler(this.TxtDiscountamt_Enter);
@@ -1903,6 +1903,7 @@
             this.grdTaxDetails.RowHeadersVisible = false;
             this.grdTaxDetails.Size = new System.Drawing.Size(448, 372);
             this.grdTaxDetails.TabIndex = 20;
+            this.grdTaxDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdTaxDetails_DataBindingComplete);
             // 
             // txtDDamage
             // 
@@ -1946,7 +1947,7 @@
             this.txtDamagecost.MaxLength = 8;
             this.txtDamagecost.Name = "txtDamagecost";
             this.txtDamagecost.Size = new System.Drawing.Size(113, 25);
-            this.txtDamagecost.TabIndex = 38;
+            this.txtDamagecost.TabIndex = 31;
             this.txtDamagecost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDamagecost.TextChanged += new System.EventHandler(this.TxtDamagecost_TextChanged);
             this.txtDamagecost.Enter += new System.EventHandler(this.TxtDamagecost_Enter);
@@ -1997,7 +1998,7 @@
             this.grdReurnDC.RowTemplate.Height = 25;
             this.grdReurnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdReurnDC.Size = new System.Drawing.Size(384, 372);
-            this.grdReurnDC.TabIndex = 111111137;
+            this.grdReurnDC.TabIndex = 19;
             this.grdReurnDC.Visible = false;
             this.grdReurnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentClick);
             this.grdReurnDC.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentDoubleClick);
@@ -2045,7 +2046,7 @@
             this.txtLoadingchargeGrn.MaxLength = 8;
             this.txtLoadingchargeGrn.Name = "txtLoadingchargeGrn";
             this.txtLoadingchargeGrn.Size = new System.Drawing.Size(113, 25);
-            this.txtLoadingchargeGrn.TabIndex = 40;
+            this.txtLoadingchargeGrn.TabIndex = 26;
             this.txtLoadingchargeGrn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtLoadingchargeGrn.TextChanged += new System.EventHandler(this.TxtLoadingCharge_TextChanged);
             this.txtLoadingchargeGrn.Enter += new System.EventHandler(this.TxtLoadingchargeGrn_Enter);
@@ -2229,7 +2230,7 @@
             this.txtUnLoadingCharge.MaxLength = 8;
             this.txtUnLoadingCharge.Name = "txtUnLoadingCharge";
             this.txtUnLoadingCharge.Size = new System.Drawing.Size(113, 25);
-            this.txtUnLoadingCharge.TabIndex = 31;
+            this.txtUnLoadingCharge.TabIndex = 22;
             this.txtUnLoadingCharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtUnLoadingCharge.TextChanged += new System.EventHandler(this.TxtUnLoadingCharge_TextChanged);
             this.txtUnLoadingCharge.Enter += new System.EventHandler(this.TxtUnLoadingCharge_Enter);
@@ -2243,7 +2244,7 @@
             this.txtTcsamt.MaxLength = 8;
             this.txtTcsamt.Name = "txtTcsamt";
             this.txtTcsamt.Size = new System.Drawing.Size(113, 25);
-            this.txtTcsamt.TabIndex = 37;
+            this.txtTcsamt.TabIndex = 25;
             this.txtTcsamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTcsamt.TextChanged += new System.EventHandler(this.TxtTcsamt_TextChanged);
             this.txtTcsamt.Enter += new System.EventHandler(this.TxtTcsamt_Enter);
@@ -2257,7 +2258,7 @@
             this.txtLoadingCharge.MaxLength = 8;
             this.txtLoadingCharge.Name = "txtLoadingCharge";
             this.txtLoadingCharge.Size = new System.Drawing.Size(113, 25);
-            this.txtLoadingCharge.TabIndex = 30;
+            this.txtLoadingCharge.TabIndex = 21;
             this.txtLoadingCharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtLoadingCharge.TextChanged += new System.EventHandler(this.TxtLoadingCharge_TextChanged);
             this.txtLoadingCharge.Enter += new System.EventHandler(this.TxtLoadingCharge_Enter);
@@ -2295,7 +2296,7 @@
             this.txtotherexpense.MaxLength = 8;
             this.txtotherexpense.Name = "txtotherexpense";
             this.txtotherexpense.Size = new System.Drawing.Size(113, 25);
-            this.txtotherexpense.TabIndex = 33;
+            this.txtotherexpense.TabIndex = 24;
             this.txtotherexpense.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtotherexpense.TextChanged += new System.EventHandler(this.Txtotherexpense_TextChanged);
             this.txtotherexpense.Enter += new System.EventHandler(this.Txtotherexpense_Enter);
@@ -2859,6 +2860,26 @@
             this.label39.TabIndex = 1111226;
             this.label39.Text = "Additional Value  :";
             // 
+            // lblRoundoff
+            // 
+            this.lblRoundoff.AutoSize = true;
+            this.lblRoundoff.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoundoff.Location = new System.Drawing.Point(1014, 21);
+            this.lblRoundoff.Name = "lblRoundoff";
+            this.lblRoundoff.Size = new System.Drawing.Size(37, 20);
+            this.lblRoundoff.TabIndex = 1111225;
+            this.lblRoundoff.Text = "0.00";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(952, 23);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(66, 17);
+            this.label38.TabIndex = 1111224;
+            this.label38.Text = "Round Off  :";
+            // 
             // lblGstamt
             // 
             this.lblGstamt.AutoSize = true;
@@ -3229,26 +3250,6 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Visible = false;
             this.dataGridViewImageColumn1.Width = 50;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(952, 23);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(66, 17);
-            this.label38.TabIndex = 1111224;
-            this.label38.Text = "Round Off  :";
-            // 
-            // lblRoundoff
-            // 
-            this.lblRoundoff.AutoSize = true;
-            this.lblRoundoff.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoundoff.Location = new System.Drawing.Point(1014, 21);
-            this.lblRoundoff.Name = "lblRoundoff";
-            this.lblRoundoff.Size = new System.Drawing.Size(37, 20);
-            this.lblRoundoff.TabIndex = 1111225;
-            this.lblRoundoff.Text = "0.00";
             // 
             // PUR_PurchaseEntryApproval
             // 
