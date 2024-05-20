@@ -1183,7 +1183,7 @@ namespace ROMS
 
                                         varTotalQty1 = varReceivedQty + varShopQty;
 
-                                        if (varStockQty >= varTotalQty1)
+                                        if (varStockQty > varTotalQty1)
                                         {
                                             varQuantityErr++;
                                             grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
