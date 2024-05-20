@@ -886,6 +886,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_TP_PUR_PurchaseDC.cs">
+      <DependentUpon>RPT_TP_PUR_PurchaseDC.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_TP_PUR_GRNDetails.cs">
       <DependentUpon>RPT_TP_PUR_GRNDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2472,6 +2479,11 @@
     <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Issued.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Issued.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_PUR_PurchaseDC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_PUR_PurchaseDC.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_TP_PUR_GRNDetails.rpt">
