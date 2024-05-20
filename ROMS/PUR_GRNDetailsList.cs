@@ -235,12 +235,12 @@ namespace ROMS
                             //grdGRNList.Columns["Concern"].Visible = false;
                             grdGRNList.Columns["GRN No."].Width = 60;
                             grdGRNList.Columns["GRN Date"].Width = 80;
-                            grdGRNList.Columns["Supplier Name"].Width = 300;
+                            grdGRNList.Columns["Supplier"].Width = 300;
                             grdGRNList.Columns["City"].Width = 100;
                             grdGRNList.Columns["GSTIN"].Visible = false;
                             grdGRNList.Columns["Inv Date"].Width = 85;
                             grdGRNList.Columns["Inv No."].Width = 100;
-                            grdGRNList.Columns["Invoice Amount"].Width = 120;
+                            grdGRNList.Columns["Inv Amt"].Width = 120;
                             grdGRNList.Columns["Created By"].Width = 200;
                             grdGRNList.Columns["Loading Charges"].Width = 120;
                             grdGRNList.Columns["Unloading Charges"].Width = 120;
@@ -259,7 +259,7 @@ namespace ROMS
                             grdGRNList.Columns["SP_SupplierType"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
                             grdGRNList.Columns["Any Pur Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGRNList.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -325,12 +325,12 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Concern"].Visible = false;
                 DGV_SearchGrid.Columns["GRN No."].Width = 100;
                 DGV_SearchGrid.Columns["GRN Date"].Width = 100;
-                DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
+                DGV_SearchGrid.Columns["Supplier"].Width = 300;
                 DGV_SearchGrid.Columns["City"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Visible = false;
                 DGV_SearchGrid.Columns["Inv Date"].Width = 100;
                 DGV_SearchGrid.Columns["Inv No."].Width = 100;
-                DGV_SearchGrid.Columns["Invoice Amount"].Width = 120;
+                DGV_SearchGrid.Columns["Inv Amt"].Width = 120;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
                 DGV_SearchGrid.Columns["Order Type"].Width = 100;
                 DGV_SearchGrid.Columns["Any Pur Returns"].Width = 150;
@@ -1619,7 +1619,7 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
                                 }
-                                if (col.Name == "Supplier Name")
+                                if (col.Name == "Supplier")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 35;
                                 }
@@ -1628,7 +1628,7 @@ namespace ROMS
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 20;
                                 }
                                 if (col.Name == "Concern" || col.Name == "GRN No." || col.Name == "GRN Date" || col.Name == "City"
-                                    || col.Name == "Payment Mode" || col.Name == "Inv Date"|| col.Name == "Inv No." || col.Name == "Invoice Amount" || col.Name == "Created By" || col.Name == "Order Type" || col.Name == "Loading Charges"|| col.Name == "Unloading Charges")
+                                    || col.Name == "Payment Mode" || col.Name == "Inv Date"|| col.Name == "Inv No." || col.Name == "Inv Amt" || col.Name == "Created By" || col.Name == "Order Type" || col.Name == "Loading Charges"|| col.Name == "Unloading Charges")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;
                                 }

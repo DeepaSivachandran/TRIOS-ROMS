@@ -292,8 +292,8 @@ namespace ROMS
                 Application.DoEvents();
                 MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
                 MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By1"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On1"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.VarStatusId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.btnSave.Text = "Update";
                 MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
@@ -992,8 +992,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["T.Units"].Width = 140;
                             grdPurchaseorderlist.Columns["TAT"].Width = 70;
                             grdPurchaseorderlist.Columns["DTAT"].Width = 70;
-                            grdPurchaseorderlist.Columns["Created By"].Width = 100;
-                            grdPurchaseorderlist.Columns["Created On"].Width = 150;
+                            grdPurchaseorderlist.Columns["Created By"].Width = 250;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
@@ -1005,6 +1004,8 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["COMID"].Visible = false;
                             grdPurchaseorderlist.Columns["Status1"].Visible = false;
+                            grdPurchaseorderlist.Columns["Created By1"].Visible = false;
+                            grdPurchaseorderlist.Columns["Created On1"].Visible = false;
                             grdPurchaseorderlist.Columns["STS1"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_ID"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_SPSCID"].Visible = false;
@@ -1168,8 +1169,9 @@ namespace ROMS
                     DGV_SearchGrid.Columns["T.Units"].Width = 50;
                     DGV_SearchGrid.Columns["TAT"].Width = 70;
                     DGV_SearchGrid.Columns["DTAT"].Width = 70;
-                    DGV_SearchGrid.Columns["Created By"].Width = 100;
-                    DGV_SearchGrid.Columns["Created On"].Width = 150;
+                    DGV_SearchGrid.Columns["Created By"].Width = 250;
+                    DGV_SearchGrid.Columns["Created By1"].Visible = false;
+                    DGV_SearchGrid.Columns["Created On1"].Visible = false;
                     DGV_SearchGrid.Columns["Mode of Issue"].Width = 100;
                     DGV_SearchGrid.Columns["Issue Date"].Width = 100;
                     DGV_SearchGrid.Columns["Issued By"].Width = 100;
@@ -2609,7 +2611,7 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
                                 }
-                                if (col.Name == "Concern" || col.Name == "PO.No." || col.Name == "PO Date"   || col.Name == "Created On"
+                                if (col.Name == "Concern" || col.Name == "PO.No." || col.Name == "PO Date"   || col.Name == "Created By"
                                     || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;

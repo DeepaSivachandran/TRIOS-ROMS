@@ -1114,7 +1114,7 @@ namespace ROMS
                                             grdGrnlist.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
                                         }
                                     }
-                                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmReceivedQty"].Value) != "")
+                                    if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) != "")
                                     {
                                         if (Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) == 0)
                                         {
