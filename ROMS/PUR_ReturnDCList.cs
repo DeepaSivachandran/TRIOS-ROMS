@@ -1432,28 +1432,28 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "15")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = Color.Orange;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "16")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = Color.Tomato;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "39")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = Color.LimeGreen;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "68")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Red;
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = Color.Red;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "81")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#0000FF");
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#0000FF");
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                 }
             }

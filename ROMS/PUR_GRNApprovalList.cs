@@ -1509,6 +1509,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Tot Pro in Inv"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnApprovalList.Columns["Concern"].Width = 80;
                                 grdGrnApprovalList.Columns["GRN Date"].Width = 100;
+                                grdGrnApprovalList.Columns["Pur App Status"].Width = 150;
                                 grdGrnApprovalList.Columns["GRN No."].Width = 80;
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
                                 grdGrnApprovalList.Columns["Tot Pro in Inv"].Width = 150;

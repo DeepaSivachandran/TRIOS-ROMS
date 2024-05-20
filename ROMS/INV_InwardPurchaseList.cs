@@ -2008,13 +2008,13 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "46") //entry completed
                     {
-                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.BackColor = Color.LimeGreen;
+                        grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "45") //Draft
                     {
-                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.BackColor = Color.Tomato;
+                        grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.ForeColor = Color.White;
                     }
                 }
             }
