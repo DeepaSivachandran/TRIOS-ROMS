@@ -2942,7 +2942,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        
         private void CmbQtyType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -2957,6 +2957,105 @@ namespace ROMS
                     lblQty.Text = "";
                     txtInvoiceQty.Enabled = false;
                     txtInvoiceQty.Text = "";
+                }
+                if (Convert.ToString(cmbQtyType.SelectedValue) == "226")
+                {
+                    txtmrprate.Text = ""; txtmrprate.Enabled = false; txtmrprate.ReadOnly = true;
+                    txtBatchno.Text = ""; txtBatchno.Enabled = false; txtBatchno.ReadOnly = true;
+                    txtMonth.Text = ""; txtMonth.Enabled = false; txtMonth.ReadOnly = true;
+                    txtDate.Text = ""; txtDate.Enabled = false; txtDate.ReadOnly = true;
+                    txtYear.Text = ""; txtYear.Enabled = false; txtYear.ReadOnly = true;
+                }
+                else
+                {
+                    if (varShelflife == 1)
+                    {
+                        expirydateFlag = 1;
+                        txtDate.ReadOnly = false;
+                        txtMonth.ReadOnly = false;
+                        txtYear.ReadOnly = false;
+                        txtDate.Enabled = true;
+                        txtMonth.Enabled = true;
+                        txtYear.Enabled = true;
+                    }
+                    else
+                    {
+                        expirydateFlag = 0;
+                        txtDate.ReadOnly = true;
+                        txtMonth.ReadOnly = true;
+                        txtYear.ReadOnly = true;
+                        txtDate.Enabled = false;
+                        txtMonth.Enabled = false;
+                        txtYear.Enabled = false;
+                        varDateEnable = 1;
+                    }
+                    if (varMRPFlag == 1)
+                    {
+                        varMRPEditflag = 1;
+                        txtmrprate.ReadOnly = false;
+                        txtmrprate.Enabled = true;
+                    }
+                    else
+                    {
+                        varMRPEditflag = 0;
+                        txtmrprate.ReadOnly = true;
+                        txtmrprate.Enabled = false;
+                    }
+
+                    if (Convert.ToInt32(varBatchNo) == 73)  //disabled
+                    {
+                        txtBatchno.Text = "";
+                        txtBatchno.Enabled = false;
+                        //  txtBatchNo.ReadOnly = true;
+                    }
+                    else if (Convert.ToInt32(varBatchNo) == 72) //enabled
+                    {
+                        if (Convert.ToInt32(varBatchNoGeneration) == 75)  //manual
+                        {
+                            txtBatchno.Enabled = true;
+                            txtBatchno.BackColor = Color.White;
+                        }
+                        else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
+                        {
+                            MR_Master objMR_Master = new MR_Master();
+                            objMR_Master.ViewType = 14;
+                            SPDataService objspdservice = new SPDataService();
+                            DataSet objDs = new DataSet();
+                            objDs = objspdservice.udfnMaster(objMR_Master);
+                            objspdservice.CloseConnection();
+                            if (objDs.Tables[0] != null)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    txtBatchno.Text = objDs.Tables[0].Rows[0]["Date"].ToString();
+                                    txtBatchno.Enabled = false;
+                                }
+                            }
+                        }
+                    }
+                    if (Convert.ToInt32(varPrcategory) == 16)
+                    {
+                        if (Convert.ToInt32(varRMProduction) == 1)
+                        {
+                            MR_Master objMR_Master = new MR_Master();
+                            objMR_Master.ViewType = 15;
+                            objMR_Master.paraDate = dpGrnDate.Text;
+                            objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
+                            SPDataService objspdservice = new SPDataService();
+                            DataSet objDs = new DataSet();
+                            objDs = objspdservice.udfnMaster(objMR_Master);
+                            objspdservice.CloseConnection();
+                            if (objDs.Tables[0] != null)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    txtDate.Text = objDs.Tables[0].Rows[0][0].ToString();
+                                    txtMonth.Text = objDs.Tables[0].Rows[1][0].ToString();
+                                    txtYear.Text = objDs.Tables[0].Rows[2][0].ToString();
+                                }
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
