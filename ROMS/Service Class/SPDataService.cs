@@ -2249,6 +2249,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRNS_Purchase_DC.paraStatusID);
                 varSqlCommand.Parameters.AddWithValue("@paraDCID", objTRNS_Purchase_DC.paraDCID);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_Purchase_DC.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerify", objTRNS_Purchase_DC.ParaVerify);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate", objTRNS_Purchase_DC.ParaVerifyDate);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime", objTRNS_Purchase_DC.paraVerifiedTime);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat", objTRNS_Purchase_DC.paraVerifiedFormat);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_DC", objTRNS_Purchase_DC.ParaTRN_Purchase_DC);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
