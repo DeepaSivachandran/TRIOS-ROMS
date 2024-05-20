@@ -151,11 +151,10 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["DC No."].Width = 100;
                                 grdPurchaseDCList.Columns["Supplier"].Width = 300;
                                 grdPurchaseDCList.Columns["Tot Pro"].Width = 100;
-                                grdPurchaseDCList.Columns["Created By"].Width = 110;
-                                grdPurchaseDCList.Columns["Created On"].Width = 140;
+                                grdPurchaseDCList.Columns["Created By"].Width = 200;
                                 grdPurchaseDCList.Columns["GSTIN"].Width = 140;
                                 grdPurchaseDCList.Columns["Pur Dc Status"].Width = 150;
-                                grdPurchaseDCList.Columns["Overall Status"].Width = 200;
+                                grdPurchaseDCList.Columns["Overall Status"].Width = 120;
                                 grdPurchaseDCList.Columns["S.No."].Width = 50;
                                 grdPurchaseDCList.Columns["ID"].Visible = false;
                                 grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
@@ -1909,7 +1908,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Pur Dc Status" || col.Name == "GSTIN" || col.Name == "Created On")
+                            else if (col.Name == "Pur Dc Status" || col.Name == "GSTIN" )
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -1925,7 +1924,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products")
+                            if (col.Name == "Total Products" || col.Name == "Created By")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }

@@ -1114,18 +1114,24 @@ namespace ROMS
                                             grdGrnlist.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
                                         }
                                     }
-                                    if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) != "")
+                                    if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmConvertType"].Value) == "1")
                                     {
-                                        if (Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) == 0)
+                                        if (Convert.ToBoolean(grdGrnlist.Rows[j].Cells["clmCheck"].Value) == true)
                                         {
-                                            grdGrnlist.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                            varErrorFlag = false;
+                                            if (Convert.ToString(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) != "")
+                                            {
+                                                if (Convert.ToDecimal(grdGrnlist.Rows[j].Cells["clmReceivedQty"].Value) == 0)
+                                                {
+                                                    grdGrnlist.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                                    varErrorFlag = false;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                grdGrnlist.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                                varErrorFlag = false;
+                                            }
                                         }
-                                    }
-                                    else
-                                    {
-                                        grdGrnlist.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                        varErrorFlag = false;
                                     }
                                 }
                             }
