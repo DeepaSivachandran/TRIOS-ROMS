@@ -3541,8 +3541,8 @@ namespace ROMS
                         //picLoader.BringToFront();
                         //Application.DoEvents();
                         txtSupplier.Focus();
-                        cmborderday.SelectedIndex = 0;
-                        cmbOrderschedule.SelectedIndex = 0;
+                        //cmborderday.SelectedIndex = 0;
+                        //cmbOrderschedule.SelectedIndex = 0;
                         this.ActiveControl = cmbMappingorderschedule;
 
                     }
@@ -5239,19 +5239,26 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                if(cmbReturnType.SelectedValue==null)
+                if (Convert.ToInt32(cmbReturnPolicy.SelectedValue) != -1 && Convert.ToInt32(cmbReturnPolicy.SelectedValue) != 23)
                 {
-                    errCompany.SetError(cmbReturnType, "Please select return cycle");
-                    cmbReturnType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpstate.ShowAlways = true;
-                    tpstate.Show("Please select return cycle", cmbReturnType, 5000);
-                    blnErrorFlag = true;
+                    if (cmbReturnType.SelectedValue == null)
+                    {
+                        errCompany.SetError(cmbReturnType, "Please select return cycle");
+                        cmbReturnType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpstate.ShowAlways = true;
+                        tpstate.Show("Please select return cycle", cmbReturnType, 5000);
+                        blnErrorFlag = true;
+                    }
+                    else
+                    {
+                        cmbReturnType.BackColor = Color.White;
+                        errCompany.Clear();
+                    }
                 }
                 else
                 {
-                    cmbReturnType.BackColor = Color.White;
-                    errCompany.Clear();
-                }
+                    cmbReturnType.SelectedValue = -1;
+;                }
                 if (blnErrorFlag == false)
                 {
                     if (btnSaveOrderType.Text == "Update")
