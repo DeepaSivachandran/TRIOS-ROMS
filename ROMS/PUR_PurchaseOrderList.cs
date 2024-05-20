@@ -992,7 +992,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["T.Units"].Width = 140;
                             grdPurchaseorderlist.Columns["TAT"].Width = 70;
                             grdPurchaseorderlist.Columns["DTAT"].Width = 70;
-                            grdPurchaseorderlist.Columns["Created By"].Width = 250;
+                            grdPurchaseorderlist.Columns["Created By"].Width = 200;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
@@ -1169,7 +1169,7 @@ namespace ROMS
                     DGV_SearchGrid.Columns["T.Units"].Width = 50;
                     DGV_SearchGrid.Columns["TAT"].Width = 70;
                     DGV_SearchGrid.Columns["DTAT"].Width = 70;
-                    DGV_SearchGrid.Columns["Created By"].Width = 250;
+                    DGV_SearchGrid.Columns["Created By"].Width = 200;
                     DGV_SearchGrid.Columns["Created By1"].Visible = false;
                     DGV_SearchGrid.Columns["Created On1"].Visible = false;
                     DGV_SearchGrid.Columns["Mode of Issue"].Width = 100;
@@ -2611,12 +2611,12 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
                                 }
-                                if (col.Name == "Concern" || col.Name == "PO.No." || col.Name == "PO Date"   || col.Name == "Created By"
+                                if (col.Name == "Concern" || col.Name == "PO.No." || col.Name == "PO Date"   
                                     || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;
                                 }
-                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Overall Status")
+                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Overall Status" || col.Name == "Created By")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 25;
                                 }

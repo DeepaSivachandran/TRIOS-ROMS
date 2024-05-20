@@ -169,10 +169,10 @@ namespace ROMS
                             grdPurchaseEntryApproval.DataSource = objDs.Tables[0];
                             grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
                             grdPurchaseEntryApproval.Columns["Concern"].Width = 80;
-                            grdPurchaseEntryApproval.Columns["Voucher No."].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Voucher Date"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Supplier Name"].Width = 300;
-                            grdPurchaseEntryApproval.Columns["Purchase Type"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Vouc No."].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Vouc Date"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Supplier"].Width = 300;
+                            grdPurchaseEntryApproval.Columns["Pur Type"].Width = 100;
                             grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
                             grdPurchaseEntryApproval.Columns["Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
@@ -180,16 +180,16 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["PUR_Created"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PUR_LastTransNo"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PUR_VoucherDate"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["Invoice Date"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Invoice No."].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Inv Date"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Inv No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Created By"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseEntryApproval.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseEntryApproval.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryApproval.Columns["Created By"].Width = 200;
+                            grdPurchaseEntryApproval.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseEntryApproval.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryApproval.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseEntryApproval.Columns["Invoice Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseEntryApproval.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -260,15 +260,15 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Concern"].Width = 80;
-                DGV_SearchGrid.Columns["Voucher No."].Width = 100;
-                DGV_SearchGrid.Columns["Voucher Date"].Width = 100;
-                DGV_SearchGrid.Columns["Supplier Name"].Width = 300;
+                DGV_SearchGrid.Columns["Vouc No."].Width = 100;
+                DGV_SearchGrid.Columns["Vouc Date"].Width = 100;
+                DGV_SearchGrid.Columns["Supplier"].Width = 300;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;
-                DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
-                DGV_SearchGrid.Columns["Invoice No."].Width = 100;
+                DGV_SearchGrid.Columns["Inv Date"].Width = 100;
+                DGV_SearchGrid.Columns["Inv No."].Width = 100;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
-                DGV_SearchGrid.Columns["Purchase Type"].Width = 100;
-                DGV_SearchGrid.Columns["Total Products"].Width = 150;
+                DGV_SearchGrid.Columns["Pur Type"].Width = 100;
+                DGV_SearchGrid.Columns["Tot Pro"].Width = 150;
                 DGV_SearchGrid.Columns["Remarks"].Width = 100;
                 DGV_SearchGrid.Columns["Status"].Visible = false;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
@@ -1189,7 +1189,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
-                            else if (col.Name == "Supplier Name")
+                            else if (col.Name == "Supplier")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 40;
                             }
@@ -1197,11 +1197,11 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
-                            if (col.Name == "S.No." || col.Name == "Voucher Date" || col.Name == "Invoice Date")
+                            if (col.Name == "S.No." || col.Name == "Vouc Date" || col.Name == "Inv Date")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products" || col.Name=="Invoice Amt")
+                            if (col.Name == "Tot Pro" || col.Name=="Inv Amt")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
