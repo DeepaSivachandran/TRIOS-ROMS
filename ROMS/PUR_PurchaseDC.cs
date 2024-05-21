@@ -125,6 +125,7 @@ namespace ROMS
                                 txtSupplierDCNo.Text = objDs.Tables[0].Rows[0]["DC_DCNo"].ToString();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
+                                MainForm.objPUR_DC_Level_Verified.udfnDateLoad();
                             }
                             if (objDs.Tables[1].Rows.Count != 0)
                             {
@@ -2931,6 +2932,7 @@ namespace ROMS
                 //}
                 MainForm.objPUR_DC_Level_Verified = new PUR_DC_Level_Verified();
                 MainForm.objPUR_DC_Level_Verified.pbDCId = Convert.ToString(varDCID);
+                MainForm.objPUR_DC_Level_Verified.pbstsId = Convert.ToString(lblStatus.Text);
                 MainForm.objPUR_DC_Level_Verified.ShowDialog();
                 btnSave.Focus();
             }
