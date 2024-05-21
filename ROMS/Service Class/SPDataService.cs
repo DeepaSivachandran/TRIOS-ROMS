@@ -1237,7 +1237,7 @@ namespace ROMS
             return ds;
         }
         //Created By:-Sathish Created On:-21/08/2023
-        public string udfnUserCategory(int paraviewType, int paraUserCategoryId, string paraUserCategoryName, int paraStatusId, int paraSINO, string paraOriginator, string paraUserID, int paraDeleteFlag)
+        public string udfnUserCategory(int paraviewType, int paraUserCategoryId, string paraUserCategoryName, int paraStatusId, int paraSINO, string paraOriginator, string paraUserID, int paraDeleteFlag,string paraModules)
         {
             string varResult = "";
             try
@@ -1254,6 +1254,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraModules", paraModules);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -2078,7 +2079,7 @@ namespace ROMS
             return varResult;
         }
         /*Added by deepa on 19-09-2023*/
-        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag, string paraModules)
+        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag)
         {
             string varResult = "";
             try
@@ -2094,7 +2095,6 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSTSID", paraSTSID);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraModules", paraModules);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

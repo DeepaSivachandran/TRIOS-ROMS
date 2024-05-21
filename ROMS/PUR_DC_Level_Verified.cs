@@ -251,7 +251,7 @@ namespace ROMS
                                 //MainForm.objPUR_PurchaseDC.varVerifiedFormat = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString());
                                 if (Verified1 == -1)
                                 {
-                                    dpVerified.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
+                                    dpVerified.Text = Convert.ToString(varmaxdate);
                                 }
 
                             }
@@ -371,7 +371,7 @@ namespace ROMS
                     lvVerified.Items.Clear();
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnEmployeeList(12, txtVerified.Text.Trim(), 0, "", 1, 0, 0);
+                    objDs = objdserv.udfnEmployeeList(13, txtVerified.Text.Trim(), 0, "", 1, 0, 0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -576,7 +576,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //txtVerified2.Focus();
+                    btnAuthorise.Focus();
                 }
             }
             catch (Exception ex)

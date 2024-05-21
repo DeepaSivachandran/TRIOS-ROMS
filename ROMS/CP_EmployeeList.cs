@@ -129,7 +129,6 @@ namespace ROMS
                             grdEmployeeList.Columns["EMPID"].Visible = false;
                             grdEmployeeList.Columns["CategoryID"].Visible = false;
                             grdEmployeeList.Columns["StatusID"].Visible = false;
-                            grdEmployeeList.Columns["ModuleID"].Visible = false;
                             grdEmployeeList.Columns["S.No."].Width = 50;
                             grdEmployeeList.Columns["Name of the Employee"].Width = 150;
                             grdEmployeeList.Columns["Employee Category"].Width = 150;
@@ -183,7 +182,6 @@ namespace ROMS
                 DGV_SearchGrid.Columns["EMPID"].Visible = false;
                 DGV_SearchGrid.Columns["CategoryID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
-                DGV_SearchGrid.Columns["ModuleID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Name of the Employee"].Width = 150;
                 DGV_SearchGrid.Columns["Employee Category"].Width = 150;
@@ -206,7 +204,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objspservice = new SPDataService();
-                        varResult = objspservice.udfnEmployee(2, Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value.ToString()), "", "", 0, 0, "Employee Deletion", varUserID, 0,"");
+                        varResult = objspservice.udfnEmployee(2, Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value.ToString()), "", "", 0, 0, "Employee Deletion", varUserID, 0);
                         objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -218,7 +216,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objspservice = new SPDataService();
-                                    varResult = objspservice.udfnEmployee(2, Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value.ToString()), "", "", 0, 0, "Employee Deletion", varUserID, 1,"");
+                                    varResult = objspservice.udfnEmployee(2, Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value.ToString()), "", "", 0, 0, "Employee Deletion", varUserID, 1);
                                     objspservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -263,7 +261,6 @@ namespace ROMS
                     MainForm.objCP_Employee.PbEmpCode = Convert.ToString(grdEmployeeList.SelectedRows[0].Cells["Employee code"].Value);
                     MainForm.objCP_Employee.PbUserCategory = Convert.ToString(grdEmployeeList.SelectedRows[0].Cells["Employee Category"].Value);
                     MainForm.objCP_Employee.PbStatus = Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objCP_Employee.varModules = Convert.ToString(grdEmployeeList.SelectedRows[0].Cells["ModuleID"].Value);
                     MainForm.objCP_Employee.ShowDialog();
                 }
             }
