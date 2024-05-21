@@ -53,6 +53,12 @@ namespace ROMS
         public int varDateEnable = 0;
         public int varAutocompleteProduct = 0;
         public string varEditPRID = "0", VarGridError = "0", varLocationErr = "0";
+        public int varVerifiedBy = 0;
+        public int PbVerified = 0;
+        public string varVerifiedOn = "";
+        public string varVerifiedTime = "";
+        public string varVerifiedFormat = "";
+        public string varVerifiedName = "";
 
         public PUR_PurchaseDC()
         {
@@ -2371,6 +2377,14 @@ namespace ROMS
                         tpcompanyname.Show("Please select company.", cmbConcern, 5000);
                         varErrorFlag = false;
                     }
+                    if(chkCompleted.Checked==true && varVerifiedBy==0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(119);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrorFlag = false;
+                    }
                     if (Convert.ToString(txtSupplier.Text) != "")
                     {
                         string varSupplierId = "0";
@@ -2553,6 +2567,10 @@ namespace ROMS
                                 objTRNS_Purchase_DC.paraDC_DCNo = txtSupplierDCNo.Text.Trim();
                                 objTRNS_Purchase_DC.paraDC_PURID = varDC_PURID;
                                 objTRNS_Purchase_DC.paraStatusID = varStatusID;
+                                objTRNS_Purchase_DC.ParaVerify = varVerifiedBy;
+                                objTRNS_Purchase_DC.ParaVerifyDate = varVerifiedOn;
+                                objTRNS_Purchase_DC.paraVerifiedTime = varVerifiedTime;
+                                objTRNS_Purchase_DC.paraVerifiedFormat = varVerifiedFormat;
                                 objTRNS_Purchase_DC.ParaTRN_Purchase_DC = dtPurchaseDC;
                                 SPDataService objspdservice = new SPDataService();
                                 result = objspdservice.udfnPurchaseDc(objTRNS_Purchase_DC);
@@ -2894,6 +2912,41 @@ namespace ROMS
                 //{
                 //    txtActualQty.Focus();
                 //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnVerified_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (PbVerified == 1)
+                //{
+                //    udfnverifiedby();
+                //    //btnsave.focus();
+                //}
+                MainForm.objPUR_DC_Level_Verified = new PUR_DC_Level_Verified();
+                MainForm.objPUR_DC_Level_Verified.ShowDialog();
+                btnSave.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnverifiedby()
+        {
+            try
+            {
+                //MainForm.objPUR_DC_Level_Verified.txtVerified1.Text = Convert.ToString(varVerifiedName);
+                //MainForm.objPUR_DC_Level_Verified.dpVerified1.Text = Convert.ToString(varVerifiedOn);
+                //MainForm.objPUR_DC_Level_Verified.mtbTime1.Text = Convert.ToString(varVerifiedTime);
+                //MainForm.objPUR_DC_Level_Verified.cmbFormat1.Text = Convert.ToString(varVerifiedFormat);
             }
             catch (Exception ex)
             {
