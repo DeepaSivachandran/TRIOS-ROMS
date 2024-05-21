@@ -1398,9 +1398,8 @@ namespace ROMS
                                     Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"])
                                     , Convert.ToString(objDs.Tables[1].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GRNQty"])
                                     , Convert.ToDecimal(objDs.Tables[1].Rows[i]["DCQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]), 0, Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["InvFlag"]),
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_HSNID"]),Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"])
-                                    );
-
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_HSNID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["GRN ProType"]));
+                           
                                     dtPurchaseAutoComplete.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(varMRP)), varTempExpiryDate,
                                          Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]),
                                          Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]),Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]),"0",0);
@@ -7048,10 +7047,10 @@ namespace ROMS
                         {
                             decimal varMRP = 0, varGrnMRP = 0; decimal varShelfPer = 0;
                             int Shelflifevalue = 0, ProShelflife = 0, POno = 0; string[] varShelflifevaluesplit; string[] varShelflifeper ; string[] varProShelfLife ;
-                            if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value)!="226")
-                            { 
+                            if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmGRNProductType"].Value) != "226")
+                            {
                                 varTempExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value);
-                            string dateString = varTempExpiryDate;
+                                string dateString = varTempExpiryDate;
                                 if (dateString.Length > 10 && dateString != "")
                                 {
                                     grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
@@ -7289,7 +7288,7 @@ namespace ROMS
                                     //varTempMonth = DMY[1];
                                     varTempExpiryDate = cellValue.ToString();
 
-                                    
+
                                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value) != "")
                                     {
                                         varMRP = Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmMRP"].Value);
@@ -7317,16 +7316,12 @@ namespace ROMS
                                     {
                                         varGrnMRP = Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmGrnMrp"].Value);
                                     }
-                                    
+
                                     varShelflifevaluesplit = Convert.ToString(grdSupplierList.Rows[i].Cells["clmactuallife"].Value).Split(' ');
-                                     varShelflifeper = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
+                                    varShelflifeper = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                                     varProShelfLife = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelflife"].Value).Split(' ');
 
-                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) == "")
-                                    {
-                                        POno = 0;
-                                    }
-                                    else { POno = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmid"].Value); }
+                                    
 
                                     if (Convert.ToString(varProShelfLife[0]) != "")
                                     {
@@ -7346,39 +7341,44 @@ namespace ROMS
                                     }
                                     else { varShelfPer = 0; }
                                 }
-                                if(chkCompleted.Checked==true)
+                            }
+                            if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) == "")
+                            {
+                                POno = 0;
+                            }
+                            else { POno = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmid"].Value); }
+                            if (chkCompleted.Checked==true)
+                            {
+                                if(Convert.ToInt16( cmbEntryType.SelectedValue)==54 && POno == 218) //GRN product count
                                 {
-                                    if(Convert.ToInt16( cmbEntryType.SelectedValue)==54 && POno == 218) //GRN product count
-                                    {
-                                         varPrCount++;
-                                    }
-                                    if (Convert.ToInt16(cmbEntryType.SelectedValue) == 57 && POno == 220) //DC product count
-                                    {
                                         varPrCount++;
-                                    }
                                 }
-                                if (varcount == 0 && Convert.ToInt32(VarGridError) == 0)
+                                if (Convert.ToInt16(cmbEntryType.SelectedValue) == 57 && POno == 220) //DC product count
                                 {
-                                    int varPURPRID = 0;
-                                    int varProductId = 0;  // dc or grn or po- product id
-                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "0")
-                                    {
-                                        varPURPRID = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value);
-                                    }
-                                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != "" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != "0")
-                                    {
-                                        varProductId = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProductID"].Value);
-                                    }
-                                    objPurchaseentry.Rows.Add(0, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value),
-                                    Convert.ToInt32(grdSupplierList.Rows[i].Cells["UTID"].Value), varGrnMRP,
-                                    varMRP, Convert.ToString(varTempExpiryDate)
-                                    , Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchno"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["slid"].Value),
-                                    Convert.ToInt32(grdSupplierList.Rows[i].Cells["rkid"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmHSNid"].Value), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ProShelflife, varShelfPer
-                                    , 0, POno, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value)
-                                    , Shelflifevalue, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmShelflifeenable"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmTransId"].Value)
-                                    , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmTotQty"].Value), Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmGRNQty"].Value)
-                                    , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmDCQty"].Value), varPURPRID, varProductId,0,0,0,0,0,0,0, Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmMrpFlag"].Value));
+                                    varPrCount++;
                                 }
+                            }
+                            if (varcount == 0 && Convert.ToInt32(VarGridError) == 0)
+                            {
+                                int varPURPRID = 0;
+                                int varProductId = 0;  // dc or grn or po- product id
+                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "0")
+                                {
+                                    varPURPRID = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value);
+                                }
+                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != "" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != "0")
+                                {
+                                    varProductId = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProductID"].Value);
+                                }
+                                objPurchaseentry.Rows.Add(0, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value),
+                                Convert.ToInt32(grdSupplierList.Rows[i].Cells["UTID"].Value), varGrnMRP,
+                                varMRP, Convert.ToString(varTempExpiryDate)
+                                , Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchno"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["slid"].Value),
+                                Convert.ToInt32(grdSupplierList.Rows[i].Cells["rkid"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmHSNid"].Value), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ProShelflife, varShelfPer
+                                , 0, POno, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmBatchgeneration"].Value)
+                                , Shelflifevalue, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmShelflifeenable"].Value), Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmTransId"].Value)
+                                , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmTotQty"].Value), Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmGRNQty"].Value)
+                                , Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmDCQty"].Value), varPURPRID, varProductId,0,0,0,0,0,0,0, Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmMrpFlag"].Value));
                             }
                             if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                             {
