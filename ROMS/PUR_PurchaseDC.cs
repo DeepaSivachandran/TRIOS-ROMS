@@ -2930,6 +2930,7 @@ namespace ROMS
                 //    //btnsave.focus();
                 //}
                 MainForm.objPUR_DC_Level_Verified = new PUR_DC_Level_Verified();
+                MainForm.objPUR_DC_Level_Verified.pbDCId = Convert.ToString(varDCID);
                 MainForm.objPUR_DC_Level_Verified.ShowDialog();
                 btnSave.Focus();
             }

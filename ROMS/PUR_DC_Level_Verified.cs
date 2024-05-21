@@ -212,61 +212,64 @@ namespace ROMS
         {
             try
             {
-                //SPDataService objdserv = new SPDataService();
-                //DataSet objDs = new DataSet();
-                //TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
-                //objTRNG_Purchase_DC.ViewType = 5;
-                //objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                //objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                //objTRNG_Purchase_DC.paraDCID = Convert.ToInt32(pbDCId);
-                //objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
-                //objdserv.CloseConnection();
-                //if (objDs != null)
-                //{
-                //    int Verified1 = 0;
-                //    if (objDs.Tables[0].Rows.Count != 0)
-                //    {
-                //        if (objDs.Tables[0].Rows.Count > 0)
-                //        {
-                //            Verified1= Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
-                //            dpVerified1.Text = objDs.Tables[0].Rows[0]["GRN1_VerfiedOn"].ToString();
-                //            mtbTime1.Text = objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString();
-                //            cmbFormat1.Text = objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString();
-                //            DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //            dpVerified1.MaxDate = varmaxdate;
-                //            //if (Verified1 == -1)
-                //            //{
-                //            //    dpVerified1.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
-                //            //}
-                //            //if (Verified2 == -1)
-                //            //{
-                //            //    dpVerified2.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
-                //            //}
-                //        }
-                //    }
-                //    if (objDs.Tables[1].Rows.Count != 0)
-                //    {
-                //        if (objDs.Tables[1].Rows.Count > 0)
-                //        {
-                //            txtVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee"].ToString());
-                //            lblVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EMPID"].ToString());
-                //        }
-                //        lvVerified1.Visible = false;
-                //    }
-                //}
-                //if(txtVerified1.Text.Trim()=="")
-                //{
-                //    cmbFormat1.SelectedIndex = 0;
-                //}
-                lblVerified1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedBy);
-                txtVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedName);
-                dpVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedOn);
-                mtbTime.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedTime);
-                cmbFormat.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedFormat);
-                lvVerified.Visible = false;
-                if (txtVerified.Text.Trim() == "")
+                if (pbDCId!="0")
                 {
-                    cmbFormat.SelectedIndex = 0;
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
+                    objTRNG_Purchase_DC.ViewType = 5;
+                    objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                    objTRNG_Purchase_DC.paraDCID = Convert.ToInt32(pbDCId);
+                    objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        int Verified1 = 0;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                Verified1 = Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
+                                dpVerified.Text = objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString();
+                                mtbTime.Text = objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString();
+                                cmbFormat.Text = objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString();
+                                DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                dpVerified.MaxDate = varmaxdate;
+                                if (Verified1 == -1)
+                                {
+                                    dpVerified.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
+                                }
+
+                            }
+                        }
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            if (objDs.Tables[1].Rows.Count > 0)
+                            {
+                                txtVerified.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee"].ToString());
+                                lblVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EmpID"].ToString());
+                            }
+                            lvVerified.Visible = false;
+                        }
+                    }
+                    if (txtVerified.Text.Trim() == "")
+                    {
+                        cmbFormat.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    lblVerified1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedBy);
+                    txtVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedName);
+                    dpVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedOn);
+                    mtbTime.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedTime);
+                    cmbFormat.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedFormat);
+                    lvVerified.Visible = false;
+                    if (txtVerified.Text.Trim() == "")
+                    {
+                        cmbFormat.SelectedIndex = 0;
+                    }
                 }
             }
             catch (Exception ex)
