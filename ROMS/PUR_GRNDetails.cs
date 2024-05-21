@@ -1252,7 +1252,7 @@ namespace ROMS
                     {
                         decimal varMRP = 0; decimal varPendingQty = 0;int varProConditionType = 0; 
                         decimal varExcessQuantity = 0; decimal varExcessQty = 0; decimal varShelfPer = 0;
-                        int Shelflifevalue = 0, ProShelflife = 0, ProFlag=0, POno = 0; decimal PoQty = 0; varTempExpiryDate = "0"; string varExpiryDate = "";
+                        int Shelflifevalue = 0, ProShelflife = 0, ProFlag=0, POno = 0; decimal PoQty = 0; varTempExpiryDate = ""; string varExpiryDate = "";
                         string varTempYear = "0"; int varSLID = 0, varRKID = 0;
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) != "226")
                         {
