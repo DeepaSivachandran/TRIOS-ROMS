@@ -201,7 +201,7 @@ namespace ROMS
                 //    dpVerified.MinDate = varminDate;
                 //}
                 //objDServ.CloseConnection();
-                if(pbstsId!="18")
+                if(pbstsId=="2")
                 {
                     txtVerified.Enabled = false;
                     mtbTime.Enabled = false;
