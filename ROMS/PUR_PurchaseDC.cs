@@ -2377,7 +2377,7 @@ namespace ROMS
                         tpcompanyname.Show("Please select company.", cmbConcern, 5000);
                         varErrorFlag = false;
                     }
-                    if(chkCompleted.Checked==true && varVerifiedBy==0)
+                    if(chkCompleted.Checked==true && varVerifiedBy == 0)
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(119);
