@@ -2787,6 +2787,7 @@ namespace ROMS
                                     grdGrnlist.Columns["clmQty"].Visible = false;
                                     grdGrnlist.Columns["clmConvert"].Visible = false;
                                     grdGrnlist.Columns["clmRemove"].Visible = false;
+                                    grdGrnlist.Columns["clmStatus"].Visible = false;
                                     if (objDs.Tables[4].Rows.Count != 0)
                                     {
                                         txtRemark.Text = Convert.ToString(objDs.Tables[4].Rows[0]["GIP_Remarks"]);
