@@ -188,19 +188,19 @@ namespace ROMS
                 dpVerified.MaxDate = MainForm.pbCurrentDate;
                 //dpVerified2.MinDate = MainForm.pbFYStartDate;
                 //dpVerified2.MaxDate = MainForm.pbCurrentDate;
-                MR_Master objMR_Master = new MR_Master();
-                objMR_Master.ViewType =19;
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(objMR_Master);
-                if (objd.Tables[0].Rows.Count > 0)
-                {
-                    DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpVerified.MaxDate = varmaxDate;
-                    dpVerified.MinDate = varminDate;
-                }
-                objDServ.CloseConnection();
+                //MR_Master objMR_Master = new MR_Master();
+                //objMR_Master.ViewType =19;
+                //SPDataService objDServ = new SPDataService();
+                //DataSet objd = new DataSet();
+                //objd = objDServ.udfnMaster(objMR_Master);
+                //if (objd.Tables[0].Rows.Count > 0)
+                //{
+                //    DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //    dpVerified.MaxDate = varmaxDate;
+                //    dpVerified.MinDate = varminDate;
+                //}
+                //objDServ.CloseConnection();
             }
             catch (Exception ex)
             {
