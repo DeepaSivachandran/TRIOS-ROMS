@@ -271,8 +271,11 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Tot Pro"].Width = 150;
                 DGV_SearchGrid.Columns["Remarks"].Width = 100;
                 DGV_SearchGrid.Columns["Status"].Visible = false;
-                DGV_SearchGrid.Columns["PURID"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PURID"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_Created"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_LastTransNo"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_VoucherDate"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
