@@ -27,7 +27,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varUserId = "";
         public string varVerifiedName = "";
-        public string pbDCId = "";
+        public string pbDCId = "",pbstsId="";
         public string varPasskey = "";
         public int flag = 0, verified1 = 0, verified2 = 0;
         public PUR_DC_Level_Verified()
@@ -201,6 +201,15 @@ namespace ROMS
                 //    dpVerified.MinDate = varminDate;
                 //}
                 //objDServ.CloseConnection();
+                if(pbstsId=="2")
+                {
+                    txtVerified.Enabled = false;
+                    mtbTime.Enabled = false;
+                    cmbFormat.Enabled = false;
+                    dpVerified.Enabled = false;
+                    lvVerified.Visible = false;
+                    btnAuthorise.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -212,7 +221,7 @@ namespace ROMS
         {
             try
             {
-                if (pbDCId!="0")
+                if (MainForm.objPUR_PurchaseDC.varDCID != 0)
                 {
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
@@ -220,7 +229,7 @@ namespace ROMS
                     objTRNG_Purchase_DC.ViewType = 5;
                     objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                    objTRNG_Purchase_DC.paraDCID = Convert.ToInt32(pbDCId);
+                    objTRNG_Purchase_DC.paraDCID = MainForm.objPUR_PurchaseDC.varDCID;
                     objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -236,6 +245,10 @@ namespace ROMS
                                 cmbFormat.Text = objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString();
                                 DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                                 dpVerified.MaxDate = varmaxdate;
+                                MainForm.objPUR_PurchaseDC.varVerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
+                                MainForm.objPUR_PurchaseDC.varVerifiedOn = Convert.ToString(objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString());
+                                MainForm.objPUR_PurchaseDC.varVerifiedTime = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString());
+                                MainForm.objPUR_PurchaseDC.varVerifiedFormat = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString());
                                 if (Verified1 == -1)
                                 {
                                     dpVerified.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
