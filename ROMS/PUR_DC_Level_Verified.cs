@@ -49,55 +49,57 @@ namespace ROMS
                 //string[] varCurrentTime = CurrentTime.Split(':');
                 //string CurrentTimeFormat = DateTime.Now.ToString("h:mm tt");
                 //string[] CurrentTimeFormat1 = CurrentTimeFormat.Split(' ');
-                if (Convert.ToString(txtVerified1.Text.Trim()) == "")
+                if (Convert.ToString(txtVerified.Text.Trim()) == "")
                 {
-                    errVerified.SetError(txtVerified1, "Please select verified by 1");
-                    txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errVerified.SetError(txtVerified, "Please select verified by 1");
+                    txtVerified.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpVerified1.ShowAlways = true;
-                    tpVerified2.ShowAlways = true;
-                    tpVerified1.Show("Please select verified by 1", txtVerified1, 5000);
+                    tpVerified1.Show("Please select verified by", txtVerified, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtVerified1.Text.Trim()) == "")
+                if (Convert.ToString(txtVerified.Text.Trim()) == "")
                 {
-                    errVerified.SetError(txtVerified1, "Please select verified by 1");
-                    txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errVerified.SetError(txtVerified, "Please select verified by 1");
+                    txtVerified.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpVerified1.ShowAlways = true;
-                    tpVerified1.Show("Please select verified by 1", txtVerified1, 5000);
+                    tpVerified1.Show("Please select verified by", txtVerified, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtVerified1.Text.Trim()) != "")
+                if (Convert.ToString(txtVerified.Text.Trim()) != "")
                 {
-                    string[] varTime = mtbTime1.Text.Split(':');
+                    string[] varTime = mtbTime.Text.Split(':');
                     int Hour = varTime[0].Trim().Length;
                     int Min = varTime[1].Trim().Length;
                     if (varTime[0].Trim()=="" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim()=="0" || varTime[0].Trim() == "00")
                     {
-                        errVerified.SetError(mtbTime1, "Please enter valid hour");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(mtbTime, "Please enter valid hour");
+                        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
                     if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
                     {
-                        errVerified.SetError(mtbTime1, "Please enter valid minute");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(mtbTime, "Please enter valid minute");
+                        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 21;
-                    objMR_Master.paraDate = dpVerified1.Text;
-                    objMR_Master.paraTime = mtbTime1.Text;
-                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                    objMR_Master.paraDate = dpVerified.Text;
+                    objMR_Master.paraTime = mtbTime.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat.Text;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
-                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    if (objd.Tables[0].Rows.Count>0)
                     {
-                        errVerified.SetError(mtbTime1, "Please enter valid Time");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        errVerified.SetError(cmbFormat1, "Please enter valid Format");
-                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        blnErrorFlag = true;
+                        if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                        {
+                            errVerified.SetError(mtbTime, "Please enter valid Time");
+                            mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            errVerified.SetError(cmbFormat, "Please enter valid Format");
+                            cmbFormat.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            blnErrorFlag = true;
+                        }
                     }
                 }
                 
@@ -122,11 +124,11 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseDC.varVerifiedBy = Convert.ToInt32(lblVerified1.Text);
-                MainForm.objPUR_PurchaseDC.varVerifiedOn = Convert.ToString(dpVerified1.Text);
-                MainForm.objPUR_PurchaseDC.varVerifiedTime = Convert.ToString(mtbTime1.Text);
-                MainForm.objPUR_PurchaseDC.varVerifiedFormat = Convert.ToString(cmbFormat1.Text);
+                MainForm.objPUR_PurchaseDC.varVerifiedOn = Convert.ToString(dpVerified.Text);
+                MainForm.objPUR_PurchaseDC.varVerifiedTime = Convert.ToString(mtbTime.Text);
+                MainForm.objPUR_PurchaseDC.varVerifiedFormat = Convert.ToString(cmbFormat.Text);
                 MainForm.objPUR_PurchaseDC.PbVerified = 1;
-                MainForm.objPUR_PurchaseDC.varVerifiedName = Convert.ToString(txtVerified1.Text);
+                MainForm.objPUR_PurchaseDC.varVerifiedName = Convert.ToString(txtVerified.Text);
                 this.Close();
             }
             catch (Exception ex)
@@ -167,7 +169,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    mtbTime1.Focus();
+                    mtbTime.Focus();
                 }
             }
             catch (Exception ex)
@@ -182,8 +184,8 @@ namespace ROMS
             try
             {
                 udfnDateLoad();
-                //dpVerified1.MinDate = MainForm.pbFYStartDate;
-                //dpVerified1.MaxDate = MainForm.pbCurrentDate;
+                dpVerified.MinDate = MainForm.pbFYStartDate;
+                dpVerified.MaxDate = MainForm.pbCurrentDate;
                 //dpVerified2.MinDate = MainForm.pbFYStartDate;
                 //dpVerified2.MaxDate = MainForm.pbCurrentDate;
                 MR_Master objMR_Master = new MR_Master();
@@ -195,8 +197,8 @@ namespace ROMS
                 {
                     DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpVerified1.MaxDate = varmaxDate;
-                    dpVerified1.MinDate = varminDate;
+                    dpVerified.MaxDate = varmaxDate;
+                    dpVerified.MinDate = varminDate;
                 }
                 objDServ.CloseConnection();
             }
@@ -257,12 +259,15 @@ namespace ROMS
                 //    cmbFormat1.SelectedIndex = 0;
                 //}
                 lblVerified1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedBy);
-                txtVerified1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedName);
-                dpVerified1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedOn);
-                mtbTime1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedTime);
-                cmbFormat1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedFormat);
-                lvVerified1.Visible = false;
-
+                txtVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedName);
+                dpVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedOn);
+                mtbTime.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedTime);
+                cmbFormat.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedFormat);
+                lvVerified.Visible = false;
+                if (txtVerified.Text.Trim() == "")
+                {
+                    cmbFormat.SelectedIndex = 0;
+                }
             }
             catch (Exception ex)
             {
@@ -274,7 +279,7 @@ namespace ROMS
         {
             try
             {
-                DateTime varmindate = DateTime.ParseExact(dpVerified1.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime varmindate = DateTime.ParseExact(dpVerified.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
             catch (Exception ex)
             {
@@ -287,7 +292,7 @@ namespace ROMS
         {
             try
             {
-                txtVerified1.BackColor = Color.LemonChiffon;
+                txtVerified.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -302,22 +307,22 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
-                    if (lvVerified1.Items.Count == 0 || txtVerified1.Text == "")
+                    if (lvVerified.Items.Count == 0 || txtVerified.Text == "")
                     {
-                        lvVerified1.Visible = false;
+                        lvVerified.Visible = false;
                     }
                     else
                     {
-                        lvVerified1.Focus();
+                        lvVerified.Focus();
                     }
-                    if (lvVerified1.Items.Count > 0)
+                    if (lvVerified.Items.Count > 0)
                     {
-                        lvVerified1.Items[0].Selected = true;
+                        lvVerified.Items[0].Selected = true;
                     }
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpVerified1.Focus();
+                    dpVerified.Focus();
                 }
             }
             catch (Exception ex)
@@ -331,7 +336,7 @@ namespace ROMS
         {
             try
             {
-                txtVerified1.BackColor = Color.White;
+                txtVerified.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -344,13 +349,13 @@ namespace ROMS
         {
             try
             {
-                if (txtVerified1.Text.Length > 0)
+                if (txtVerified.Text.Length > 0)
                 {
                    
-                    lvVerified1.Items.Clear();
+                    lvVerified.Items.Clear();
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnEmployeeList(12, txtVerified1.Text.Trim(),0, "", 1, 0, 0);
+                    objDs = objdserv.udfnEmployeeList(12, txtVerified.Text.Trim(),0, "", 1, 0, 0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -362,31 +367,31 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
-                                    lvVerified1.Columns[1].Width = 0;
-                                    lvVerified1.Items.Add(objList);
+                                    lvVerified.Columns[1].Width = 0;
+                                    lvVerified.Items.Add(objList);
                                 }
-                                lvVerified1.BringToFront();
-                                lvVerified1.Visible = true;
+                                lvVerified.BringToFront();
+                                lvVerified.Visible = true;
                             }
                             else
                             {
-                                lvVerified1.Visible = false;
+                                lvVerified.Visible = false;
                             }
                         }
                         else
                         {
-                            lvVerified1.Visible = false;
+                            lvVerified.Visible = false;
                         }
                     }
                     else
                     {
-                        lvVerified1.Visible = false;
+                        lvVerified.Visible = false;
                     }
                 }
                 else
                 {
-                    lvVerified1.Visible = false;
-                    lvVerified1.Items.Clear();
+                    lvVerified.Visible = false;
+                    lvVerified.Items.Clear();
                 }
             }
             catch (Exception ex)
@@ -416,7 +421,7 @@ namespace ROMS
         {
             try
             {
-                mtbTime1.BackColor = Color.LemonChiffon;
+                mtbTime.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -431,7 +436,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbFormat1.Focus();
+                    cmbFormat.Focus();
                 }
             }
             catch (Exception ex)
@@ -446,44 +451,44 @@ namespace ROMS
             try
             {
                 int error = 0;
-                if (txtVerified1.Text.Trim() != "")
+                if (txtVerified.Text.Trim() != "")
                 {
-                    string[] varTime = mtbTime1.Text.Split(':');
+                    string[] varTime = mtbTime.Text.Split(':');
                     int Hour = varTime[0].Trim().Length;
                     int Min = varTime[1].Trim().Length;
                     if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim() == "0" || varTime[0].Trim() == "00")
                     {
-                        errVerified.SetError(mtbTime1, "Please enter valid hour");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(mtbTime, "Please enter valid hour");
+                        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
                     if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
                     {
-                        errVerified.SetError(mtbTime1, "Please enter valid minute");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(mtbTime, "Please enter valid minute");
+                        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 21;
-                    objMR_Master.paraDate = dpVerified1.Text;
-                    objMR_Master.paraTime = mtbTime1.Text;
-                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                    objMR_Master.paraDate = dpVerified.Text;
+                    objMR_Master.paraTime = mtbTime.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat.Text;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
                     if(Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"])==0)
                     {
-                        errVerified.SetError(mtbTime1, "Please enter valid Time");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        errVerified.SetError(cmbFormat1, "Please enter valid Format");
-                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(mtbTime, "Please enter valid Time");
+                        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(cmbFormat, "Please enter valid Format");
+                        cmbFormat.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
                 }
                 if (error==0)
                 {
                     errVerified.Clear();
-                    mtbTime1.BackColor = Color.White;
+                    mtbTime.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -496,7 +501,7 @@ namespace ROMS
         {
             try
             {
-                cmbFormat1.BackColor = Color.LemonChiffon;
+                cmbFormat.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -509,23 +514,23 @@ namespace ROMS
         {
             try
             {
-                cmbFormat1.BackColor = Color.White;
-                if (mtbTime1.Text!="")
+                cmbFormat.BackColor = Color.White;
+                if (mtbTime.Text!="")
                 {
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 21;
-                    objMR_Master.paraDate = dpVerified1.Text;
-                    objMR_Master.paraTime = mtbTime1.Text;
-                    objMR_Master.paraTimeFormat = cmbFormat1.Text;
+                    objMR_Master.paraDate = dpVerified.Text;
+                    objMR_Master.paraTime = mtbTime.Text;
+                    objMR_Master.paraTimeFormat = cmbFormat.Text;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
                     if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
                     {
-                        errVerified.SetError(mtbTime1, "Please enter valid Time");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        errVerified.SetError(cmbFormat1, "Please enter valid Format");
-                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(mtbTime, "Please enter valid Time");
+                        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errVerified.SetError(cmbFormat, "Please enter valid Format");
+                        cmbFormat.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     }
                 }
             }
@@ -605,10 +610,10 @@ namespace ROMS
         {
             try
             {
-                if (txtVerified1.Text != "")
+                if (txtVerified.Text != "")
                 {
-                    ListViewItem selectedItem = lvVerified1.SelectedItems[0];
-                    txtVerified1.Text = selectedItem.SubItems[0].Text;
+                    ListViewItem selectedItem = lvVerified.SelectedItems[0];
+                    txtVerified.Text = selectedItem.SubItems[0].Text;
                     lblVerified1.Text = selectedItem.SubItems[1].Text;
                 }
             }
@@ -619,8 +624,8 @@ namespace ROMS
             }
             finally
             {
-                lvVerified1.Visible = false;
-                dpVerified1.Focus();
+                lvVerified.Visible = false;
+                dpVerified.Focus();
             }
         }
         private void LvVerified1_DoubleClick(object sender, EventArgs e)
