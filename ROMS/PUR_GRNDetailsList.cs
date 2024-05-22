@@ -137,12 +137,15 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 txtSupplier.Text = "";
                 udfnListLoad();
+                if(grdGRNList.Rows.Count>0)
+                {
+                    lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         public void udfnListLoad()
@@ -265,6 +268,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["Loading Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Unloading Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             grdGRNList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -309,6 +313,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
             }
         }
         public void udfnDefcolumns()
