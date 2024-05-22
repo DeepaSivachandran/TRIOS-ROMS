@@ -1046,7 +1046,7 @@ namespace ROMS
             try
             {
                 //VarPurEditFlag- if setting screen purchase entry editable days exceed purchase entry date
-                if(varPurEditFlag == 1)
+                if(varPurEditFlag == 1 && pbPurchaseEntryUnapprovedFlag != 1)
                 {
                     btnSave.Enabled = false;
                     txtRemarks.Enabled = false;
@@ -1143,8 +1143,8 @@ namespace ROMS
                         udfndisablevalue();
                         btnSave.Visible = false;
                         btnUnapprove.Visible = true;
-                        //txtRemarks.Enabled = false;
-                        //txtRemarks.ReadOnly = true;
+                        txtRemarks.Enabled = true;
+                        txtRemarks.ReadOnly = false;
                         tbDetails.TabPages[0].Enabled = true;
                         tbDetails.TabPages[1].Enabled = true;
                         tbDetails.TabPages[2].Enabled = false;
@@ -8413,7 +8413,9 @@ namespace ROMS
         {
             try
             {
+                MainForm.objPUR_PurchaseEntryApprovedList.pbRemarks = txtRemarks.Text;
                  MainForm.objPUR_PurchaseEntryApprovedList.udfnUnapprove(Convert.ToInt32(pbPurchaseno));
+                this.Close();
             }
             catch (Exception ex)
             {
