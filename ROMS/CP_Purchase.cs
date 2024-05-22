@@ -109,9 +109,9 @@ namespace ROMS
                             grdReurnDC.Rows.Clear();
                             udfnPODropdownload();
                             udfnPurchaseGrnLoad();
-                            //udfnProductDetails();
                             udfnProDetailsTolProCount();
                             udfnGRNProload();
+                            grdSupplierList.Columns["clmPono"].Visible = true;
                             grdReurnDC.Rows.Clear();
                             txtQRCode.ReadOnly = false;
                             txtQRCode.Enabled = true;
@@ -145,6 +145,8 @@ namespace ROMS
                         txtInvoiceNo.ReadOnly = false;
                         grdPODetails.Visible = true;
                         grdReurnDC.Visible = false;
+                        grdSupplierList.Columns["clmGrnMrp"].Visible = false;
+                        grdSupplierList.Columns["clmPono"].Visible = true;
                         if (grdSupplierList.Rows.Count != 0)
                         {
                             btnClear.Enabled = true;
@@ -163,7 +165,7 @@ namespace ROMS
                         cmbPONo.Text = "";
                         lblPOdropDown.Text = "";
                         grdSupplierList.Columns["clmGrnMrp"].Visible = false;
-                        //grdSupplierList.Columns["clmPono"].Visible = false;
+                        grdSupplierList.Columns["clmPono"].Visible = false;
                         btnViewDataView.Visible = false;
                         txtQRCode.ReadOnly = true;
                         txtQRCode.Enabled = false;
@@ -172,13 +174,11 @@ namespace ROMS
                         txtInvoiceNo.ReadOnly = false;
                         grdPODetails.Visible = true;
                         grdReurnDC.Visible = false;
-                        tsbProducts.Visible = false;
-                        tsbProducts.Enabled = false;
+                        tsbTotal.Visible = false; tsbTotal.Enabled = false;
                         tsbAdded.Visible = false; tsbAdded.Enabled = false;
                         tsbPO.Visible = false; tsbPO.Enabled = false;
-                        lbltotProduct.Visible = false;
-                        lblRemainProduct.Visible = false;
-                        lblAddProduct.Visible = false;
+                       // lbltotProduct.Visible = false;    lblRemainProduct.Visible = false;    lblAddProduct.Visible = false;
+                        tsbTotalProducts.Visible = false;    tsbRemainingProduct.Visible = false;    tsbAddedProduct.Visible = false;
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                     {
@@ -190,7 +190,8 @@ namespace ROMS
                             udfnProDetailsTolProCount();
                             //udfnDefReturnDc();
                             grdPODetails.Visible = false;
-                            //grdSupplierList.Columns["clmPono"].Visible = false;
+                            grdSupplierList.Columns["clmGrnMrp"].Visible = false;
+                            grdSupplierList.Columns["clmPono"].Visible = true;
                             txtQRCode.Text = "";
                             txtQRCode.ReadOnly = true;
                             txtQRCode.Enabled = false;
@@ -268,8 +269,10 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            lbltotProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
-                            lblRemainProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
+                            //lbltotProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
+                            //lblRemainProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
+                            tsbTotalProducts.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
+                            tsbRemainingProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
                         }
                     }
                 }
@@ -279,8 +282,10 @@ namespace ROMS
                     {
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
-                            lbltotProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
-                            lblRemainProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
+                            //lbltotProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
+                            //lblRemainProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
+                            tsbTotalProducts.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
+                            tsbRemainingProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
                         }
                     }
                 }
@@ -950,6 +955,7 @@ namespace ROMS
                 dtTaxTable.Columns.Add("CGST", typeof(decimal));
                 udfnDropdownLoad();
                 udfnDtProductAutocomplte();
+                tsbTotalProducts.ForeColor = Color.Blue;
                 if (pbPurchaseno == "0")
                 {
                     cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -976,6 +982,7 @@ namespace ROMS
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
+                    tsbStatus.Text = lblstatusvalue.Text;
                     if (pbPurchaseno == "0" || varPurEditFlag==1)
                     {
                         udfnFormDisable();
@@ -1136,8 +1143,8 @@ namespace ROMS
                         udfndisablevalue();
                         btnSave.Visible = false;
                         btnUnapprove.Visible = true;
-                        txtRemarks.Enabled = false;
-                        txtRemarks.ReadOnly = true;
+                        //txtRemarks.Enabled = false;
+                        //txtRemarks.ReadOnly = true;
                         tbDetails.TabPages[0].Enabled = true;
                         tbDetails.TabPages[1].Enabled = true;
                         tbDetails.TabPages[2].Enabled = false;
@@ -1346,6 +1353,7 @@ namespace ROMS
                                 if (cmbEntryType.SelectedValue.ToString() == "56") // Direct
                                 {
                                     grdPODetails.Visible = true;
+                                    grdSupplierList.Columns["clmPono"].Visible = false;
                                 }
                                 if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                                 {
@@ -1548,7 +1556,7 @@ namespace ROMS
                             else
                             {
                                 grdPODetails.Rows.Clear();
-                                lblFinishedNoRecord.Visible = true;
+                                //lblFinishedNoRecord.Visible = true;
                             }
                             if (objDs.Tables[4].Rows.Count != 0) //DC DETAILS LOAD
                             {
@@ -1591,15 +1599,18 @@ namespace ROMS
                                 {
                                     if (objDs.Tables[9].Rows.Count != 0)
                                     {
-                                        lblAddProduct.Text = Convert.ToString(objDs.Tables[9].Rows[0]["AddedCount"]);
+                                        //lblAddProduct.Text = Convert.ToString(objDs.Tables[9].Rows[0]["AddedCount"]);
+                                        tsbAddedProduct.Text = Convert.ToString(objDs.Tables[9].Rows[0]["AddedCount"]);
                                     }
                                     if (objDs.Tables[10].Rows.Count != 0)
                                     {
-                                        lbltotProduct.Text = Convert.ToString(objDs.Tables[10].Rows[0]["TotalProducts"]);
+                                        //lbltotProduct.Text = Convert.ToString(objDs.Tables[10].Rows[0]["TotalProducts"]);
+                                        //tsbTotalProducts.Text = Convert.ToString(objDs.Tables[10].Rows[0]["TotalProducts"]);
+                                        tsbTotalProducts.Text = Convert.ToString(objDs.Tables[10].Rows[0]["TotalProducts"]);
                                     }
                                     int Remaining = 0;
-                                    Remaining = Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblAddProduct.Text);
-                                    lblRemainProduct.Text = Convert.ToString(Remaining);
+                                    Remaining = Convert.ToInt32(tsbTotalProducts.Text) - Convert.ToInt32(tsbAddedProduct.Text);
+                                    tsbRemainingProduct.Text = Convert.ToString(Remaining);
                                 }
                             }
                         }
@@ -1701,57 +1712,47 @@ namespace ROMS
                 int varEntryType = 0;
                 varEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
                 DataBind objDataBind = new DataBind();
-                tsbProducts.Visible = true;
-                tsbProducts.Enabled = true;
-                tsbAdded.Visible = true; tsbAdded.Enabled = true;
+                tsbTotal.Visible = true; tsbTotal.Enabled = true;
+                tsbAdded.Visible = true;    tsbAdded.Enabled = true;
                 tsbPO.Visible = true; tsbPO.Enabled = true;
-                lbltotProduct.Visible = true;
-                lblRemainProduct.Visible = true;
-                lblAddProduct.Visible = true;
-                tss1.Visible = true;
-                tss2.Visible = true;
-                tss3.Visible = true;
+                //lbltotProduct.Visible = true; lblRemainProduct.Visible = true;  lblAddProduct.Visible = true;
+                tsbTotalProducts.Visible = true; tsbRemainingProduct.Visible = true;  tsbAddedProduct.Visible = true;
+                tss1.Visible = true;      tss2.Visible = true;  tss3.Visible = true;
                 if (varQueueFlag == 0)
                 {
-                    lbltotProduct.Text = "0";
-                    lblRemainProduct.Text = "0";
-                    lblAddProduct.Text = "0";
+                    // lbltotProduct.Text = "0";  lblRemainProduct.Text = "0";   lblAddProduct.Text = "0";
+                    tsbTotalProducts.Text = "0"; tsbRemainingProduct.Text = "0"; tsbAddedProduct.Text = "0";
                 }
                 //objDT = objdserv.udfnPOEntry(5, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, 0, 0, 0, 0, "", "", 0, 0, pbPONO, 0, 0, 0, 0, 0, Convert.ToInt32(pbGRNId));
                 if (varEntryType == 54)  //GRN
                 {
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (69)  ORDER BY MSTID DESC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
                     lblPOdropDown.Text="GRN Type";
-                    tsbProducts.Text = "&GRN Products :& & & & & & & &";
+                    tsbTotal.Text = "&GRN Products : ";
                 }
                 else if(varEntryType == 55) //PO
                 {
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (68)  ORDER BY MSTID DESC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
                     lblPOdropDown.Text = "PO Type";
-                    tsbProducts.Text = "&PO Products :& & & & & & & &";
+                    tsbTotal.Text = "&PO Products : ";
                 }
                 else if(varEntryType == 57) // DC
                 {
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (70)  ORDER BY MSTID DESC", "MST_DisplayText,MSTID", cmbPONo, "", "MST_DisplayText", "MSTID");
                     lblPOdropDown.Text = "DC Type";
-                    tsbProducts.Text = "&DC Products :& & & & & & & &";
+                    tsbTotal.Text = "&DC Products : ";
                 }
                 else if (varEntryType == 56 || varEntryType == -1) // Direct
                 {
                     cmbPONo.Text = "";
                     cmbPONo.DataSource = null;
-                    //if(cmbPONo.Items.Count!=0)
-                    //{ cmbPONo.Items.Clear(); }
-                    tsbProducts.Visible = false;
-                    tsbProducts.Enabled = false;
+                    //tsbTotalProducts.Visible = false; tsbTotalProducts.Enabled = false;
+                    tsbTotal.Visible = false; tsbTotal.Enabled = false;
                     tsbAdded.Visible = false; tsbAdded.Enabled = false;
                     tsbPO.Visible = false; tsbPO.Enabled = false;
-                    lbltotProduct.Visible = false;
-                    lblRemainProduct.Visible = false;
-                    lblAddProduct.Visible = false;
-                    tss1.Visible = false;
-                    tss2.Visible = false;
-                    tss3.Visible = false;
+                    //lbltotProduct.Visible = false;  lblRemainProduct.Visible = false;  lblAddProduct.Visible = false;
+                    tsbTotalProducts.Visible = false;  tsbRemainingProduct.Visible = false;  tsbAddedProduct.Visible = false;
+                    tss1.Visible = false;    tss2.Visible = false;   tss3.Visible = false;
                 }
                 objDataBind = null;
                 cmbPONo.Enabled = true;
@@ -4153,8 +4154,10 @@ namespace ROMS
                     }
                     if (Convert.ToString(cmbPONo.SelectedValue) == "215" )
                     {
-                        lblAddProduct.Text = Convert.ToString(varProIds.Count());
-                        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                        //lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                        //lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                        tsbAddedProduct.Text = Convert.ToString(varProIds.Count());
+                        tsbRemainingProduct.Text = Convert.ToString(Convert.ToInt32(tsbAddedProduct.Text) - varProIds.Count());
                     }
                 }
                 if (varProductType == 218 ) //218-GRN 
@@ -4178,10 +4181,10 @@ namespace ROMS
                     }
                     if ( Convert.ToInt32(varProIds.Count()) != 0)
                     {
-                       // lblAddProduct.Text = Convert.ToString(varProIds.Count());
-                        //lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
-                        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lblRemainProduct.Text) - 1);
-                        lblAddProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblRemainProduct.Text));
+                        //lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lblRemainProduct.Text) - 1);
+                        //lblAddProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - Convert.ToInt32(lblRemainProduct.Text));
+                        tsbRemainingProduct.Text = Convert.ToString(Convert.ToInt32(tsbRemainingProduct.Text) - 1);
+                        tsbAddedProduct.Text = Convert.ToString(Convert.ToInt32(tsbTotalProducts.Text) - Convert.ToInt32(tsbRemainingProduct.Text));
                     }
                 }
                 if ( varProductType == 220) //  220 - DC
@@ -4209,8 +4212,10 @@ namespace ROMS
                     }
                     if (Convert.ToString(cmbPONo.SelectedValue) == "215" || Convert.ToString(cmbPONo.SelectedValue) == "218" || Convert.ToString(cmbPONo.SelectedValue) == "220")
                     {
-                        lblAddProduct.Text = Convert.ToString(varProIds.Count());
-                        lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                        //lblAddProduct.Text = Convert.ToString(varProIds.Count());
+                        //lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                        tsbAddedProduct.Text = Convert.ToString(varProIds.Count());
+                        tsbRemainingProduct.Text = Convert.ToString(Convert.ToInt32(tsbAddedProduct.Text) - varProIds.Count());
                     }
                 }
             }
@@ -9696,8 +9701,10 @@ namespace ROMS
                                     group r by r.Field<string>("PRID")  into g  select g.Key;
                                     if (varRemoveProuct.Count() != 0)
                                     {
-                                        lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
-                                        lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
+                                        //lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
+                                        //lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
+                                        tsbRemainingProduct.Text = Convert.ToString((Convert.ToInt16(tsbRemainingProduct.Text) + 1));
+                                        tsbAddedProduct.Text = Convert.ToString(Convert.ToInt16(tsbTotalProducts.Text) - Convert.ToInt16(tsbRemainingProduct.Text));
                                     }
                                     //lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
                                     for (int i = 0; i < varProductsIDs.Count; i++)
@@ -9729,8 +9736,10 @@ namespace ROMS
                                     select g.Key;
                                     if (varRemoveProuct.Count() != 0)
                                     {
-                                        lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
-                                        lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
+                                        //lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
+                                        //lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
+                                        tsbRemainingProduct.Text = Convert.ToString((Convert.ToInt16(tsbRemainingProduct.Text) + 1));
+                                        tsbAddedProduct.Text = Convert.ToString(Convert.ToInt16(tsbAddedProduct.Text) - Convert.ToInt16(tsbRemainingProduct.Text));
                                     }
                                    // lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
                                     for (int i = 0; i < varProductsIDs.Count; i++)
@@ -9761,9 +9770,10 @@ namespace ROMS
                                                     select g.Key;
                                     if (varRemoveProuct.Count() == 1)
                                     {
-                                        lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
-                                        //lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
-                                        lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
+                                        //lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
+                                        //lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
+                                        tsbRemainingProduct.Text = Convert.ToString((Convert.ToInt16(tsbRemainingProduct.Text) + 1));
+                                        tsbAddedProduct.Text = Convert.ToString(Convert.ToInt16(tsbTotalProducts.Text) - Convert.ToInt16(tsbRemainingProduct.Text));
                                     }
                                     for (int i = 0; i < varProductsIDs.Count; i++)
                                     {
