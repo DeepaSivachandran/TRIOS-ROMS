@@ -27,7 +27,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varUserId = "";
         public string varVerifiedName = "";
-        public string pbDCId = "",pbstsId="";
+        public string pbDCId = "", pbstsId = "";
         public string varPasskey = "";
         public int flag = 0, verified1 = 0, verified2 = 0;
         public PUR_DC_Level_Verified()
@@ -70,7 +70,7 @@ namespace ROMS
                     string[] varTime = mtbTime.Text.Split(':');
                     int Hour = varTime[0].Trim().Length;
                     int Min = varTime[1].Trim().Length;
-                    if (varTime[0].Trim()=="" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim()=="0" || varTime[0].Trim() == "00")
+                    if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim() == "0" || varTime[0].Trim() == "00")
                     {
                         errVerified.SetError(mtbTime, "Please enter valid hour");
                         mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -90,7 +90,7 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
-                    if (objd.Tables[0].Rows.Count>0)
+                    if (objd.Tables[0].Rows.Count > 0)
                     {
                         if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
                         {
@@ -102,7 +102,7 @@ namespace ROMS
                         }
                     }
                 }
-                
+
                 if (blnErrorFlag == false)
                 {
                     errVerified.Clear();
@@ -161,7 +161,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-       
+
 
         private void DpVerified1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -201,7 +201,7 @@ namespace ROMS
                 //    dpVerified.MinDate = varminDate;
                 //}
                 //objDServ.CloseConnection();
-                if(pbstsId=="2")
+                if (pbstsId == "2")
                 {
                     txtVerified.Enabled = false;
                     mtbTime.Enabled = false;
@@ -221,7 +221,7 @@ namespace ROMS
         {
             try
             {
-                if (MainForm.objPUR_PurchaseDC.varDCID != 0)
+                if (MainForm.objPUR_PurchaseDC.varDCID != 0 && MainForm.objPUR_PurchaseDC.PbVerified == 0)
                 {
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
@@ -245,10 +245,10 @@ namespace ROMS
                                 cmbFormat.Text = objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString();
                                 DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                                 dpVerified.MaxDate = varmaxdate;
-                                MainForm.objPUR_PurchaseDC.varVerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
-                                MainForm.objPUR_PurchaseDC.varVerifiedOn = Convert.ToString(objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString());
-                                MainForm.objPUR_PurchaseDC.varVerifiedTime = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString());
-                                MainForm.objPUR_PurchaseDC.varVerifiedFormat = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString());
+                                //MainForm.objPUR_PurchaseDC.varVerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
+                                //MainForm.objPUR_PurchaseDC.varVerifiedOn = Convert.ToString(objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString());
+                                //MainForm.objPUR_PurchaseDC.varVerifiedTime = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString());
+                                //MainForm.objPUR_PurchaseDC.varVerifiedFormat = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString());
                                 if (Verified1 == -1)
                                 {
                                     dpVerified.Text = objDs.Tables[0].Rows[0]["MAXDATE"].ToString();
@@ -367,11 +367,11 @@ namespace ROMS
             {
                 if (txtVerified.Text.Length > 0)
                 {
-                   
+
                     lvVerified.Items.Clear();
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnEmployeeList(12, txtVerified.Text.Trim(),0, "", 1, 0, 0);
+                    objDs = objdserv.udfnEmployeeList(12, txtVerified.Text.Trim(), 0, "", 1, 0, 0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -431,8 +431,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }       
-      
+        }
+
         private void MtbTime1_Enter(object sender, EventArgs e)
         {
             try
@@ -492,7 +492,7 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
-                    if(Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"])==0)
+                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
                     {
                         errVerified.SetError(mtbTime, "Please enter valid Time");
                         mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -501,7 +501,7 @@ namespace ROMS
                         error = 1;
                     }
                 }
-                if (error==0)
+                if (error == 0)
                 {
                     errVerified.Clear();
                     mtbTime.BackColor = Color.White;
@@ -512,7 +512,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }          
+        }
         private void CmbFormat1_Enter(object sender, EventArgs e)
         {
             try
@@ -531,7 +531,7 @@ namespace ROMS
             try
             {
                 cmbFormat.BackColor = Color.White;
-                if (mtbTime.Text!="")
+                if (mtbTime.Text != "")
                 {
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 21;
@@ -574,7 +574,7 @@ namespace ROMS
         {
             try
             {
-                if(e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     //txtVerified2.Focus();
                 }
@@ -590,7 +590,7 @@ namespace ROMS
         {
             try
             {
-                if(e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     btnAuthorise.Focus();
                 }
