@@ -1076,7 +1076,7 @@ namespace ROMS
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
                             if (col.Name == "S.No." || col.Name == "GRN Date" || col.Name == "Vouc Date" || col.Name == "Inv Date")
                             {
@@ -1509,7 +1509,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Tot Pro in Inv"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnApprovalList.Columns["Concern"].Width = 80;
                                 grdGrnApprovalList.Columns["GRN Date"].Width = 100;
-                                grdGrnApprovalList.Columns["Pur App Status"].Width = 150;
+                                grdGrnApprovalList.Columns["Overall Status"].Width = 150;
                                 grdGrnApprovalList.Columns["GRN No."].Width = 80;
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
                                 grdGrnApprovalList.Columns["Tot Pro in Inv"].Width = 150;

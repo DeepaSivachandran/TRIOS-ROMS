@@ -174,6 +174,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Supplier"].Width = 300;
                             grdPurchaseEntryApproval.Columns["Pur Type"].Width = 100;
                             grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
+                            grdPurchaseEntryApproval.Columns["Overall Status"].Width = 150;
                             grdPurchaseEntryApproval.Columns["Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
@@ -1198,7 +1199,7 @@ namespace ROMS
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 22;
                             }
                             if (col.Name == "S.No." || col.Name == "Vouc Date" || col.Name == "Inv Date")
                             {
