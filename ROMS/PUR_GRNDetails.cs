@@ -793,7 +793,7 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if (lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "" && Convert.ToDouble(txtInvoiceamt.Text) < varDVA)
+                    if (chkCompleted.Checked == true && lblVerifiedBy1.Text == "" && lblVerifiedBy2.Text == "" && Convert.ToDouble(txtInvoiceamt.Text) < varDVA)
                     {
                         string varMessage = objDServ.udfnGetMessages(119);
                         objDServ.CloseConnection();
@@ -5533,6 +5533,7 @@ namespace ROMS
                                     if (Convert.ToInt32(varBatchNoGeneration) == 75)  //manual
                                     {
                                         txtBatchno.Enabled = true;
+                                        txtBatchno.ReadOnly = false;
                                         txtBatchno.BackColor = Color.White;
                                     }
                                     else if (Convert.ToInt32(varBatchNoGeneration) == 74) //auto
@@ -5549,6 +5550,7 @@ namespace ROMS
                                             {
                                                 txtBatchno.Text = objDs.Tables[0].Rows[0]["Date"].ToString();
                                                 txtBatchno.Enabled = false;
+                                                txtBatchno.ReadOnly = true;
                                             }
                                         }
                                     }

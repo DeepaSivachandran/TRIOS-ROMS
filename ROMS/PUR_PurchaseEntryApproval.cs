@@ -891,6 +891,7 @@ namespace ROMS
                                 if (cmbEntryType.SelectedValue.ToString() == "56") // Direct
                                 {
                                     grdPODetails.Visible = true;
+                                    grdSupplierList.Columns["clmPono"].Visible = false;
                                 }
                                 if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                                 {

@@ -20,6 +20,7 @@ namespace ROMS
         ToolTip tpSupplier = new ToolTip();
         DataTable Deftable = new DataTable();
         Boolean BlnSearchImageYN = false;
+        public string pbRemarks = "";
         public PUR_PurchaseEntryApprovedList()
         {
             InitializeComponent();
@@ -1286,6 +1287,7 @@ namespace ROMS
                     objTRN_PurchaseEntry.ViewType = 5;
                     objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                    objTRN_PurchaseEntry.paraRemarks = pbRemarks;
                     objTRN_PurchaseEntry.paraOriginator = varorginator;
                     //objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
                     objTRN_PurchaseEntry.paraPurchaseId = varPurchaseID;
