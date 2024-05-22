@@ -7045,7 +7045,7 @@ namespace ROMS
                         //}
                         if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value) == "")
                         {
-                            decimal varMRP = 0, varGrnMRP = 0; decimal varShelfPer = 0;
+                            decimal varMRP = 0, varGrnMRP = 0; decimal varShelfPer = 0; varTempExpiryDate = "";
                             int Shelflifevalue = 0, ProShelflife = 0, POno = 0; string[] varShelflifevaluesplit; string[] varShelflifeper ; string[] varProShelfLife ;
                             if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmGRNProductType"].Value) != "226")
                             {

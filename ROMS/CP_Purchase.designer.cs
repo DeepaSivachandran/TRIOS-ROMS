@@ -3533,7 +3533,6 @@
             // 
             // crToolStripTextBox1
             // 
-            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 
@@ -3887,6 +3886,7 @@
             this.clmGRNProductType.HeaderText = "GRN Product Type";
             this.clmGRNProductType.Name = "clmGRNProductType";
             this.clmGRNProductType.ReadOnly = true;
+            this.clmGRNProductType.Visible = false;
             // 
             // clmAddPro
             // 
