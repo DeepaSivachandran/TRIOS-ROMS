@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -72,11 +69,6 @@
             this.txtDVoucherNo = new System.Windows.Forms.TextBox();
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.txtVoucherNo = new System.Windows.Forms.TextBox();
-            this.grdpurchasedetails = new System.Windows.Forms.DataGridView();
-            this.clmpodate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcreatedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmissuedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lbltwentyfiveper = new System.Windows.Forms.Label();
             this.lblFivetyPercentage = new System.Windows.Forms.Label();
@@ -84,13 +76,6 @@
             this.txtORPercentageCheck = new System.Windows.Forms.TextBox();
             this.btnRemarks = new System.Windows.Forms.Button();
             this.grdGrnApproval = new System.Windows.Forms.DataGridView();
-            this.txttotalitem = new System.Windows.Forms.TextBox();
-            this.lbltotalproducts = new System.Windows.Forms.Label();
-            this.txtRemark = new System.Windows.Forms.TextBox();
-            this.lblnarration = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblEdit = new System.Windows.Forms.Label();
             this.Sno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,14 +93,30 @@
             this.clmPOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.txttotalitem = new System.Windows.Forms.TextBox();
+            this.lbltotalproducts = new System.Windows.Forms.Label();
+            this.txtRemark = new System.Windows.Forms.TextBox();
+            this.lblnarration = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblEdit = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtVerifiedby1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.grbSalesmanDetails.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdpurchasedetails)).BeginInit();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnApproval)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsInwardList
@@ -138,12 +139,13 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(125, 22);
-            this.tspHeader.Text = "Purchase Approval";
+            this.tspHeader.Size = new System.Drawing.Size(181, 22);
+            this.tspHeader.Text = "Purchase Mismatch Approval";
             // 
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.groupBox3);
             this.pnlinward.Controls.Add(this.grbSalesmanDetails);
             this.pnlinward.Controls.Add(this.label3);
             this.pnlinward.Controls.Add(this.textBox9);
@@ -153,7 +155,6 @@
             this.pnlinward.Controls.Add(this.textBox7);
             this.pnlinward.Controls.Add(this.groupBox2);
             this.pnlinward.Controls.Add(this.groupBox1);
-            this.pnlinward.Controls.Add(this.grdpurchasedetails);
             this.pnlinward.Controls.Add(this.groupBox10);
             this.pnlinward.Controls.Add(this.btnRemarks);
             this.pnlinward.Controls.Add(this.grdGrnApproval);
@@ -583,79 +584,6 @@
             this.txtVoucherNo.Size = new System.Drawing.Size(123, 25);
             this.txtVoucherNo.TabIndex = 95;
             // 
-            // grdpurchasedetails
-            // 
-            this.grdpurchasedetails.AllowUserToAddRows = false;
-            this.grdpurchasedetails.AllowUserToDeleteRows = false;
-            this.grdpurchasedetails.AllowUserToResizeColumns = false;
-            this.grdpurchasedetails.AllowUserToResizeRows = false;
-            this.grdpurchasedetails.BackgroundColor = System.Drawing.Color.White;
-            this.grdpurchasedetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdpurchasedetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdpurchasedetails.ColumnHeadersHeight = 30;
-            this.grdpurchasedetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdpurchasedetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmpodate,
-            this.clmpono,
-            this.clmcreatedby,
-            this.clmissuedby});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdpurchasedetails.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdpurchasedetails.EnableHeadersVisualStyles = false;
-            this.grdpurchasedetails.GridColor = System.Drawing.Color.White;
-            this.grdpurchasedetails.Location = new System.Drawing.Point(428, 6);
-            this.grdpurchasedetails.Name = "grdpurchasedetails";
-            this.grdpurchasedetails.ReadOnly = true;
-            this.grdpurchasedetails.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdpurchasedetails.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdpurchasedetails.RowTemplate.Height = 25;
-            this.grdpurchasedetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdpurchasedetails.Size = new System.Drawing.Size(390, 123);
-            this.grdpurchasedetails.TabIndex = 1111213;
-            // 
-            // clmpodate
-            // 
-            this.clmpodate.HeaderText = "PO Date";
-            this.clmpodate.Name = "clmpodate";
-            this.clmpodate.ReadOnly = true;
-            this.clmpodate.Width = 80;
-            // 
-            // clmpono
-            // 
-            this.clmpono.HeaderText = "PO No.";
-            this.clmpono.Name = "clmpono";
-            this.clmpono.ReadOnly = true;
-            this.clmpono.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmpono.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmcreatedby
-            // 
-            this.clmcreatedby.HeaderText = "Created By";
-            this.clmcreatedby.Name = "clmcreatedby";
-            this.clmcreatedby.ReadOnly = true;
-            // 
-            // clmissuedby
-            // 
-            this.clmissuedby.HeaderText = "Issued By";
-            this.clmissuedby.Name = "clmissuedby";
-            this.clmissuedby.ReadOnly = true;
-            this.clmissuedby.Width = 80;
-            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.lbltwentyfiveper);
@@ -736,14 +664,14 @@
             this.grdGrnApproval.AllowUserToResizeRows = false;
             this.grdGrnApproval.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdGrnApproval.ColumnHeadersHeight = 30;
             this.grdGrnApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGrnApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -764,111 +692,28 @@
             this.clmPOID,
             this.clmUnitDecimal,
             this.clmReason});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdGrnApproval.EnableHeadersVisualStyles = false;
             this.grdGrnApproval.GridColor = System.Drawing.Color.White;
             this.grdGrnApproval.Location = new System.Drawing.Point(6, 135);
             this.grdGrnApproval.Name = "grdGrnApproval";
             this.grdGrnApproval.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdGrnApproval.RowTemplate.Height = 25;
             this.grdGrnApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnApproval.Size = new System.Drawing.Size(1335, 434);
             this.grdGrnApproval.TabIndex = 958827;
             this.grdGrnApproval.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnApproval_CellEndEdit);
             this.grdGrnApproval.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnApproval_EditingControlShowing);
-            // 
-            // txttotalitem
-            // 
-            this.txttotalitem.Enabled = false;
-            this.txttotalitem.Location = new System.Drawing.Point(1104, 580);
-            this.txttotalitem.Name = "txttotalitem";
-            this.txttotalitem.ReadOnly = true;
-            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
-            this.txttotalitem.TabIndex = 2;
-            this.txttotalitem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lbltotalproducts
-            // 
-            this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(1010, 583);
-            this.lbltotalproducts.Name = "lbltotalproducts";
-            this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
-            this.lbltotalproducts.TabIndex = 958821;
-            this.lbltotalproducts.Text = "Total Products";
-            // 
-            // txtRemark
-            // 
-            this.txtRemark.Location = new System.Drawing.Point(83, 580);
-            this.txtRemark.MaxLength = 200;
-            this.txtRemark.Multiline = true;
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(411, 56);
-            this.txtRemark.TabIndex = 0;
-            this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
-            this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
-            this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
-            // 
-            // lblnarration
-            // 
-            this.lblnarration.AutoSize = true;
-            this.lblnarration.Location = new System.Drawing.Point(18, 580);
-            this.lblnarration.Name = "lblnarration";
-            this.lblnarration.Size = new System.Drawing.Size(56, 20);
-            this.lblnarration.TabIndex = 958812;
-            this.lblnarration.Text = "Remarks";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.approve;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1172, 579);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Approve";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1266, 579);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnClose_KeyDown);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
-            // lblEdit
-            // 
-            this.lblEdit.AutoSize = true;
-            this.lblEdit.Location = new System.Drawing.Point(711, 19);
-            this.lblEdit.Name = "lblEdit";
-            this.lblEdit.Size = new System.Drawing.Size(0, 20);
-            this.lblEdit.TabIndex = 37;
-            this.lblEdit.Visible = false;
             // 
             // Sno
             // 
@@ -979,6 +824,202 @@
             this.clmReason.HeaderText = "Reason";
             this.clmReason.Name = "clmReason";
             // 
+            // txttotalitem
+            // 
+            this.txttotalitem.Enabled = false;
+            this.txttotalitem.Location = new System.Drawing.Point(1104, 580);
+            this.txttotalitem.Name = "txttotalitem";
+            this.txttotalitem.ReadOnly = true;
+            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
+            this.txttotalitem.TabIndex = 2;
+            this.txttotalitem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lbltotalproducts
+            // 
+            this.lbltotalproducts.AutoSize = true;
+            this.lbltotalproducts.Location = new System.Drawing.Point(1010, 583);
+            this.lbltotalproducts.Name = "lbltotalproducts";
+            this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
+            this.lbltotalproducts.TabIndex = 958821;
+            this.lbltotalproducts.Text = "Total Products";
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(83, 580);
+            this.txtRemark.MaxLength = 200;
+            this.txtRemark.Multiline = true;
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Size = new System.Drawing.Size(411, 56);
+            this.txtRemark.TabIndex = 0;
+            this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
+            this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
+            this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
+            // 
+            // lblnarration
+            // 
+            this.lblnarration.AutoSize = true;
+            this.lblnarration.Location = new System.Drawing.Point(18, 580);
+            this.lblnarration.Name = "lblnarration";
+            this.lblnarration.Size = new System.Drawing.Size(56, 20);
+            this.lblnarration.TabIndex = 958812;
+            this.lblnarration.Text = "Remarks";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.approve;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1172, 579);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Approve";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1266, 579);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnClose_KeyDown);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
+            // 
+            // lblEdit
+            // 
+            this.lblEdit.AutoSize = true;
+            this.lblEdit.Location = new System.Drawing.Point(711, 19);
+            this.lblEdit.Name = "lblEdit";
+            this.lblEdit.Size = new System.Drawing.Size(0, 20);
+            this.lblEdit.TabIndex = 37;
+            this.lblEdit.Visible = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox10);
+            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.txtVerifiedby1);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.groupBox3.Location = new System.Drawing.Point(430, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(389, 123);
+            this.groupBox3.TabIndex = 1111220;
+            this.groupBox3.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox1.Location = new System.Drawing.Point(7, 64);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(77, 25);
+            this.textBox1.TabIndex = 1111157;
+            this.textBox1.Text = "Completed By";
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox5.Location = new System.Drawing.Point(7, 16);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(77, 25);
+            this.textBox5.TabIndex = 1111153;
+            this.textBox5.Text = "Entered By";
+            // 
+            // txtVerifiedby1
+            // 
+            this.txtVerifiedby1.Enabled = false;
+            this.txtVerifiedby1.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVerifiedby1.Location = new System.Drawing.Point(84, 16);
+            this.txtVerifiedby1.Multiline = true;
+            this.txtVerifiedby1.Name = "txtVerifiedby1";
+            this.txtVerifiedby1.ReadOnly = true;
+            this.txtVerifiedby1.Size = new System.Drawing.Size(110, 48);
+            this.txtVerifiedby1.TabIndex = 1111230;
+            this.txtVerifiedby1.Visible = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(84, 64);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(110, 48);
+            this.textBox2.TabIndex = 1111231;
+            this.textBox2.Visible = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox3.Location = new System.Drawing.Point(194, 16);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(77, 25);
+            this.textBox3.TabIndex = 1111232;
+            this.textBox3.Text = "Verified By1";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(271, 16);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(110, 48);
+            this.textBox4.TabIndex = 1111233;
+            this.textBox4.Visible = false;
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox6.Enabled = false;
+            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox6.Location = new System.Drawing.Point(194, 64);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(77, 25);
+            this.textBox6.TabIndex = 1111234;
+            this.textBox6.Text = "Verified By2";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox10.Location = new System.Drawing.Point(271, 64);
+            this.textBox10.Multiline = true;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(110, 48);
+            this.textBox10.TabIndex = 1111235;
+            this.textBox10.Visible = false;
+            // 
             // PUR_GRNApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1007,10 +1048,11 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdpurchasedetails)).EndInit();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnApproval)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1041,7 +1083,6 @@
         private System.Windows.Forms.TextBox txtDPurchaseType;
         private System.Windows.Forms.TextBox txtDInvoiceDate;
         private System.Windows.Forms.TextBox txtDVoucherNo;
-        public System.Windows.Forms.DataGridView grdpurchasedetails;
         public System.Windows.Forms.DataGridView grdGrnApproval;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox7;
@@ -1070,10 +1111,6 @@
         private System.Windows.Forms.Label lblWhatsAppNo;
         private System.Windows.Forms.Label lblSalesmanName;
         private System.Windows.Forms.Label lblMobileNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpodate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcreatedby;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmissuedby;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproduct;
@@ -1091,5 +1128,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPOID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.TextBox txtVerifiedby1;
+        public System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox textBox10;
     }
 }
