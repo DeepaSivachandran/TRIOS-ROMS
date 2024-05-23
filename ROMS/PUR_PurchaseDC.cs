@@ -32,7 +32,7 @@ namespace ROMS
         private ToolTip tpRack = new ToolTip();
         private ToolTip tpDcNo = new ToolTip();
         private ToolTip tpSupplierDCNo = new ToolTip();
-
+        public string[] varvalue;
         DataTable dtPurchaseDC = new DataTable();
         public bool varDiscardFlag = true;
         public int pbScheduleid = 0, pbSupplierId = 0, pbDateflag = 0, varShelflife = 0, varDecimal = 0;
@@ -415,13 +415,15 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             this.Close();
+                            MainForm.objPUR_PurchaseDCList.udfnList();
                         }
                     }
                     if (varCloseFlag == 1)
                     {
                         this.Close();
+                        MainForm.objPUR_PurchaseDCList.udfnList();
                     }
-                    MainForm.objPUR_PurchaseDCList.udfnList();
+
                 }
             }
             catch (Exception ex)
@@ -2637,6 +2639,20 @@ namespace ROMS
                                     //    varCloseFlag = 1;
                                     //    udfnclose();
                                     //}
+                                    try
+                                    {
+                                        MainForm.objPUR_DC_PrintPopUp = new PUR_DC_PrintPopUp();
+                                        if (varDCID==0)
+                                        {
+                                            MainForm.objPUR_DC_PrintPopUp.varID = varvalue[2];
+                                        }
+                                        MainForm.objPUR_DC_PrintPopUp.ShowDialog();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        objError = new DataError();
+                                        objError.WriteFile(ex);
+                                    }
                                     varCloseFlag = 1;
                                     udfnclose();
                                     MainForm.objPUR_PurchaseDCList.udfnList();
