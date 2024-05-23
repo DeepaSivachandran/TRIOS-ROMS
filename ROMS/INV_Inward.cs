@@ -24,7 +24,7 @@ namespace ROMS
         string varShelflifevalue = "", varAcutalshelflife = "", result="", Shelflife="", ProductShelflifeValue="", ProductShelflifeType="";
         public bool VarSearchFlag = true;
         public bool varDiscardFlag = true;
-        public int varEditflag = 0, varMRPFlag = 0, varMRPEditFlag = 0;
+        public int varEditflag = 0, varMRPFlag = 0, varMRPEditFlag = 0 , varRMProductionFlag=0;
         public int varDecimal = 0;
         public int varSTSID = 0;
         public bool varChangeFlag = true;

@@ -216,6 +216,7 @@
             this.clmPOQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMRPflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
@@ -1632,6 +1633,7 @@
             this.clmPOQty,
             this.clmUTDecimal,
             this.clmMRPflag,
+            this.clmRMFlag,
             this.clmRemove});
             dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
@@ -1907,7 +1909,6 @@
             // 
             dataGridViewCellStyle19.BackColor = System.Drawing.Color.AliceBlue;
             this.clmProConditionType.DefaultCellStyle = dataGridViewCellStyle19;
-            this.clmProConditionType.Frozen = true;
             this.clmProConditionType.HeaderText = "Condition Type";
             this.clmProConditionType.Name = "clmProConditionType";
             this.clmProConditionType.ReadOnly = true;
@@ -2085,6 +2086,12 @@
             this.clmMRPflag.Name = "clmMRPflag";
             this.clmMRPflag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmMRPflag.Visible = false;
+            // 
+            // clmRMFlag
+            // 
+            this.clmRMFlag.HeaderText = "RM Flag";
+            this.clmRMFlag.Name = "clmRMFlag";
+            this.clmRMFlag.ReadOnly = true;
             // 
             // clmRemove
             // 
@@ -2303,6 +2310,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPOQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMRPflag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
