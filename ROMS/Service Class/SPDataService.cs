@@ -1902,7 +1902,7 @@ namespace ROMS
             , int paraDesignation, string paraDesignationName, double paraCreditLimit, int paraDayid, int paramonthid, int paraweekid, int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile, string paraSalesmanWhatsapp, int paraSaleOrderType, string ParaOrderDays,
               int ParaSupplierOrderid, int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
-              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int @paraFlag)
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int @paraFlag,int paraDiscApplicable,int paraDiscDays,int paraDiscPer)
         {
             string result = "";
             try
@@ -1950,6 +1950,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierOrderid", ParaSupplierOrderid);
                 varSqlCommand.Parameters.AddWithValue("@paraordertype", paraordertype);
                 varSqlCommand.Parameters.AddWithValue("@ParaProductId", ParaProductId);
+
+                varSqlCommand.Parameters.AddWithValue("@paraDiscApplicable", paraDiscApplicable);
+                varSqlCommand.Parameters.AddWithValue("@paraDiscDays", paraDiscDays);
+                varSqlCommand.Parameters.AddWithValue("@paraDiscPer", paraDiscPer);
 
                 varSqlCommand.Parameters.AddWithValue("@parabankname", parabankname);
                 varSqlCommand.Parameters.AddWithValue("@paraBankShortName", paraBankShortName);

@@ -28,7 +28,7 @@ namespace ROMS
         public int varSubGroupId = 0,varSLNO = 0;
         public int varModifiedFlag = 0;
         public int PoScheduleFlag = 0;
-        public int varSupplierStatusID = 0, varPurchaseSPID = 0;
+        public int varSupplierStatusID = 0, varPurchaseSPID = 0, varDiscDays=0, varDiscPer=0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -38,6 +38,9 @@ namespace ROMS
         private ToolTip tpplno = new ToolTip();
         private ToolTip tpcompanyname = new ToolTip();
         private ToolTip tpshortname = new ToolTip();
+        private ToolTip tpDays = new ToolTip();
+        private ToolTip tpDiscPer = new ToolTip();
+        private ToolTip tpPaymentStaus = new ToolTip();
         private ToolTip tppincode = new ToolTip();
         private ToolTip tpcity = new ToolTip();
         private ToolTip tparea = new ToolTip();
@@ -466,6 +469,26 @@ namespace ROMS
                     tpshortname.Show("Please enter the short name.", txtSPShortName, 5000);
                     blnErrorFlag = true;
                 }
+                if(Convert.ToInt32(cmbPaymentDisc.SelectedValue)==229)
+                {
+                    if(txtDays.Text=="")
+                    {
+                        errCompany.SetError(txtDays, "Please enter the days");
+                        txtDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpDays.ShowAlways = true;
+                        tpDays.Show("Please enter the days", txtDays, 5000);
+                        blnErrorFlag = true;
+                    }
+                    if (txtDiscountPer.Text=="")
+                    {
+                        errCompany.SetError(txtDiscountPer, "Please enter the discount percentage");
+                        txtDiscountPer.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpDiscPer.ShowAlways = true;
+                        tpDiscPer.Show("Please enter the discount percentage", txtDiscountPer, 5000);
+                        blnErrorFlag = true;
+                    }
+
+                }
                 if (txtArea.Text == "")
                 {
                     errCompany.SetError(txtArea, "Please enter Address");
@@ -476,13 +499,33 @@ namespace ROMS
                 }
                 if (txtCity.Text == "")
                 {
-
                     errCompany.SetError(txtCity, "Please enter city name");
                     txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpcity.ShowAlways = true;
                     tpcity.Show("Please enter city name.", txtCity, 5000);
                     blnErrorFlag = true;
-
+                }
+                if (txtDiscountPer.Text!="")
+                {
+                    if (Convert.ToInt32(txtDiscountPer.Text) > 100)
+                    {
+                        errCompany.SetError(txtDiscountPer, "Please enter valid discount percentage");
+                        txtDiscountPer.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpDiscPer.ShowAlways = true;
+                        tpDiscPer.Show("Please enter valid discount percentage", txtDiscountPer, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (txtDays.Text!="")
+                {
+                    if (Convert.ToInt32(txtDays.Text) > 10)
+                    {
+                        errCompany.SetError(txtDays, "Please enter valid days");
+                        txtDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpDays.ShowAlways = true;
+                        tpDays.Show("Please enter valid days", txtDays, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
                 {
@@ -747,11 +790,27 @@ namespace ROMS
 
                         }
                     } 
+                    if(txtDays.Text=="")
+                    {
+                        varDiscDays = 0;
+                    }
+                    else
+                    {
+                        varDiscDays = Convert.ToInt32(txtDays.Text);
+                    }
+                    if (txtDiscountPer.Text=="")
+                    {
+                        varDiscPer = 0;
+                    }
+                    else
+                    {
+                        varDiscPer = Convert.ToInt32(txtDiscountPer.Text);
+                    }
                     result = objspdservice.udfnSupplierMaster(varviewtype, SupplierUpdate, txtName.Text, txtArea.Text, txtaddress2.Text, Convert.ToInt32(cityid)
                    , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
                    Convert.ToInt32(cmbPaymentTerm.SelectedValue), varreturnapplicable, varretuencycle, Convert.ToInt32(cmbfinance.SelectedValue), openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, Convert.ToInt32(cmbDesignation.SelectedValue), txtcontactName.Text, creditlimit, -1, -1, -1, -1, "",
-                   "", "", "", 0, "", 0, 0, "", txtBankname.Text, txtBankShortName.Text.Trim().ToUpper(), txtbranchname.Text, txtAccno.Text, txtIFScode.Text, txtAccName.Text, "", varpaymentmethod,0,txtSPShortName.Text,0,0);
+                   "", "", "", 0, "", 0, 0, "", txtBankname.Text, txtBankShortName.Text.Trim().ToUpper(), txtbranchname.Text, txtAccno.Text, txtIFScode.Text, txtAccName.Text, "", varpaymentmethod,0,txtSPShortName.Text,0,0,Convert.ToInt32(cmbPaymentDisc.SelectedValue),Convert.ToInt32(varDiscDays),Convert.ToInt32(varDiscPer));
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -947,6 +1006,9 @@ namespace ROMS
                 txtBankname.Text = "";
                 txtBankShortName.Text = "";
                 txtIFScode.Text = "";
+                txtDays.Text = "";
+                txtDiscountPer.Text = "";
+                cmbPaymentDisc.SelectedValue = 228;
                 BindDataGrid();
                 txtName.Focus();
                 for (int i = 0; i < grdPaymentMode.Rows.Count; i++)
@@ -1068,6 +1130,7 @@ namespace ROMS
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (12,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentTerm, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbfinance, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (73,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentDisc, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbMappingordertype, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbMappingordeDay, "", "DY_Name", "DYID");
                 cmbState.SelectedValue = 27;
@@ -1231,6 +1294,9 @@ namespace ROMS
                             txtIFScode.Text = objDS.Tables[0].Rows[0]["SP_IFSC"].ToString().Replace("''", "'");
                             txtOtherBrands.Text = objDS.Tables[0].Rows[0]["SP_Brand"].ToString().Replace("''", "'");
                             varTINNo= objDS.Tables[0].Rows[0]["ST_TIN"].ToString().Replace("''", "'");
+                            cmbPaymentDisc.SelectedValue= objDS.Tables[0].Rows[0]["SP_DiscApplicable"].ToString().Replace("''", "'");
+                            txtDays.Text= objDS.Tables[0].Rows[0]["SP_DiscDays"].ToString().Replace("''", "'");
+                            txtDiscountPer.Text= objDS.Tables[0].Rows[0]["SP_DiscPer"].ToString().Replace("''", "'");
                             //cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
                             varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnTypeID = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
@@ -1256,6 +1322,14 @@ namespace ROMS
                             //    cmbPolicyContent.SelectedValue = 0;
                             //    cmbSecondLevel.SelectedValue = 0;
                             //}
+                            if(txtDays.Text=="0")
+                            {
+                                txtDays.Text = "";
+                            }
+                            if (txtDiscountPer.Text == "0")
+                            {
+                                txtDiscountPer.Text = "";
+                            }
                             if(varPurchaseSPID!=0)
                             {
                                 txtgstin.Enabled = false;
@@ -2091,7 +2165,7 @@ namespace ROMS
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtBankname.Focus();
+                        cmbPaymentDisc.Focus();
                     }
                 }
             }
@@ -2108,7 +2182,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBankname.Focus();
+                    cmbPaymentDisc.Focus();
                 }
             }
             catch (Exception ex)
@@ -5039,7 +5113,7 @@ namespace ROMS
                             {
 
                                 SPDataService objspdservice = new SPDataService();
-                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0);
+                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0);
                                 string[] varvalue = result.Split('~');
                                 if (varvalue[0] == "3")
                                 {
@@ -5076,7 +5150,7 @@ namespace ROMS
                                     //    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     //}
                                     SPDataService objspdservice1 = new SPDataService();
-                                    result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0);
+                                    result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0);
                                     objspdservice1.CloseConnection();
                                     string[] varvalue1 = result.Split('~');
                                     if (varvalue1[0] == "3")
@@ -5088,7 +5162,7 @@ namespace ROMS
                                             varUserID = MainForm.objCP_Verify.varUserId;
                                             if (MainForm.objCP_Verify.flag == 1)
                                             {
-                                                result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 1, "", 0,0);
+                                                result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 1, "", 0,0,0,0,0);
                                                 objspdservice1.CloseConnection();
                                                 if (result.Split('~')[0] == "3")
                                                 {
@@ -5256,7 +5330,7 @@ namespace ROMS
                 {
                     if (btnSaveOrderType.Text == "Update")
                     {
-                        result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0);
+                        result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0,0,0,0);
                     }
 
                     string[] varvalue = result.Split('~');
@@ -5736,7 +5810,7 @@ namespace ROMS
                                 Vartype = 8;
                             }
                             result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                                0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId, "", "", "", "", "", "", "", "", 0, "",0,0);
+                                0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId, "", "", "", "", "", "", "", "", 0, "",0,0,0,0,0);
                             string[] varvalue = result.Split('~');
                             if (varvalue[0] == "3")
                             {
@@ -6336,7 +6410,7 @@ namespace ROMS
                             result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
                                 Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, Convert.ToString(varScheduleStatusid), MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
                                 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text.Trim(), txtsalesmanmobile.Text,
-                                txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",Convert.ToInt32(cmbTat.SelectedValue),0);
+                                txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0,"",Convert.ToInt32(cmbTat.SelectedValue),0,0,0,0);
                             objspdservice.CloseConnection();
                             string[] varvalue = result.Split('~');
                             if (varvalue[0] == "3")
@@ -6724,7 +6798,7 @@ namespace ROMS
                 }
                 if (btnSaveOrderType.Text == "Update")
                 {
-                    result = objspdservice.udfnSupplierMaster(9, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier dealt brand", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", txtOtherBrands.Text, "", 0,"",0,0);
+                    result = objspdservice.udfnSupplierMaster(9, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier dealt brand", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", txtOtherBrands.Text, "", 0,"",0,0,0,0,0);
                 }
 
                 string[] varvalue = result.Split('~');
@@ -8715,6 +8789,227 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbPaymentDisc_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtDays.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtDiscountPer.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDiscountPer_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtBankname.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentDisc_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPaymentDisc.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDays_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDays.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDiscountPer_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDiscountPer.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentDisc_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPaymentDisc.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDays_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Convert.ToInt32(txtDays.Text)>10)
+                {
+                    errCompany.SetError(txtDays, "Please enter valid days");
+                    txtDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDays.ShowAlways = true;
+                    tpDays.Show("Please enter valid days", txtDays, 5000);
+                }
+                else
+                {
+                    txtDays.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDiscountPer_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(txtDiscountPer.Text) > 100)
+                {
+                    errCompany.SetError(txtDiscountPer, "Please enter valid discount percentage");
+                    txtDiscountPer.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDiscPer.ShowAlways = true;
+                    tpDiscPer.Show("Please enter valid discount percentage", txtDiscountPer, 5000);
+                }
+                else
+                {
+                    txtDiscountPer.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentDisc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {               
+                    e.Handled = true;              
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDays_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDiscountPer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) || (Convert.ToInt32(txtDiscountPer.Text)>100))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPaymentDisc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Convert.ToInt32(cmbPaymentDisc.SelectedValue)==229)
+                {
+                    txtDays.Enabled = true;
+                    txtDiscountPer.Enabled = true;
+                    txtDays.ReadOnly = false;
+                    txtDiscountPer.ReadOnly = false;
+                }
+                else if(Convert.ToInt32(cmbPaymentDisc.SelectedValue) == 228)
+                {
+                    txtDays.Enabled = false;
+                    txtDays.ReadOnly = true;
+                    txtDiscountPer.Enabled = false;
+                    txtDiscountPer.ReadOnly = true;
+                    txtDays.Text = "";
+                    txtDiscountPer.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void BtnRemove_Enter(object sender, EventArgs e)
         {
             try
