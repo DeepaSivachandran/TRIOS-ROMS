@@ -1709,6 +1709,7 @@
             this.clmRMFlag.HeaderText = "RM Flag";
             this.clmRMFlag.Name = "clmRMFlag";
             this.clmRMFlag.ReadOnly = true;
+            this.clmRMFlag.Visible = false;
             // 
             // clmRackCount
             // 

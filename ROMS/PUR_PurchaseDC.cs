@@ -179,7 +179,8 @@ namespace ROMS
                                     , objDs.Tables[1].Rows[i]["PRID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
                                     objDs.Tables[1].Rows[i]["RKID"].ToString(), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MST_DisplayText"]), Convert.ToString(objDs.Tables[1].Rows[i]["BATCHNO"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["Batchnogeneration"]), objDs.Tables[1].Rows[i]["Stock"].ToString(),
-                                    objDs.Tables[1].Rows[i]["Remove Flag"].ToString(), objDs.Tables[1].Rows[i]["PR_MRPflag"].ToString(), objDs.Tables[1].Rows[i]["RackCount"].ToString());
+                                    objDs.Tables[1].Rows[i]["Remove Flag"].ToString(), objDs.Tables[1].Rows[i]["PR_MRPflag"].ToString(), objDs.Tables[1].Rows[i]["RM Flag"].ToString(),
+                                    objDs.Tables[1].Rows[i]["RackCount"].ToString()  );
                                     if (Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"]) == "0")
                                     {
                                         grdPurchaseDC.Rows[i].Cells["clmRack"].ReadOnly = true;
@@ -199,6 +200,11 @@ namespace ROMS
                                     {
                                         grdPurchaseDC.Rows[i].Cells["clmMRP"].ReadOnly = false;
                                         grdPurchaseDC.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                                    }
+                                    if (Convert.ToString(objDs.Tables[1].Rows[i]["RM Flag"]) == "1")
+                                    {
+                                        grdPurchaseDC.Rows[i].Cells["clmExpiryDate"].ReadOnly = true;
+                                        grdPurchaseDC.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
                                     }
                                     string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
                                     if (varShelflifeper[0] != "")
@@ -252,7 +258,9 @@ namespace ROMS
                                     objDs.Tables[1].Rows[i]["Batch No."].ToString(), objDs.Tables[1].Rows[i]["Quantity"].ToString(),
                                     objDs.Tables[1].Rows[i]["UTID"].ToString(), objDs.Tables[1].Rows[i]["SLID"].ToString(),
                                     objDs.Tables[1].Rows[i]["RKID"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeValue"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeType"].ToString()
-                                    , objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Per"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeStatus"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Flag"].ToString(), objDs.Tables[1].Rows[i]["PR_MRPflag"].ToString(), objDs.Tables[1].Rows[i]["BATCHNO"].ToString(), objDs.Tables[1].Rows[i]["Batchnogeneration"].ToString());
+                                    , objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Per"].ToString(), objDs.Tables[1].Rows[i]["DCPR_ShelfLifeStatus"].ToString(), 
+                                    objDs.Tables[1].Rows[i]["DCPR_ShelfLife_Flag"].ToString(), objDs.Tables[1].Rows[i]["PR_MRPflag"].ToString(),
+                                    objDs.Tables[1].Rows[i]["BATCHNO"].ToString(), objDs.Tables[1].Rows[i]["Batchnogeneration"].ToString(), objDs.Tables[1].Rows[i]["RM Flag"].ToString());
                                 }
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
@@ -445,6 +453,7 @@ namespace ROMS
             dtPurchaseDC.Columns.Add("DCPR_MRPFlag", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_BatchNoStatus", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_BatchNoGenration", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_RMProductionFlag", typeof(int));
         }
 
         private void PUR_PurchaseDC_Load(object sender, EventArgs e)
@@ -5023,7 +5032,7 @@ namespace ROMS
                             }
                             dtPurchaseDC.Rows.Add(Convert.ToInt16(maxSno + 1), Convert.ToInt32(lblProductcode.Text), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(),
                                 Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text),
-                                Convert.ToInt32(lblRackCode.Text), ProShelflifeValue, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue, varMRPFlag, varBatchNo, varBatchNoGeneration);
+                                Convert.ToInt32(lblRackCode.Text), ProShelflifeValue, ProShelfLifeType, ProShelflife, expirydateFlag, Shelflifevalue, varMRPFlag, varBatchNo, varBatchNoGeneration, varRMProductionFlag);
                             ((DataGridViewTextBoxColumn)grdPurchaseDC.Columns["clmQuantity"]).MaxInputLength = 8;
                             //grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
@@ -5070,6 +5079,13 @@ namespace ROMS
                                 cell.Style.BackColor = Color.PaleGreen;
                                 cell.Style.ForeColor = Color.Black;
                                 cell.ReadOnly = false;
+                            }
+                            if (varRMProductionFlag==1)
+                            {
+                                DataGridView dataGridView = grdPurchaseDC;
+                                DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmExpiryDate"];
+                                cell.Style.BackColor = Color.LightGray;
+                                cell.Style.ForeColor = Color.Black;
                             }
                             DataGridView dataGridView1 = grdPurchaseDC;
                             DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmBatchNo"];

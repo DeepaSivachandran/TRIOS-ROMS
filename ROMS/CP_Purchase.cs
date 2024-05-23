@@ -4231,7 +4231,7 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbEntryType.SelectedValue) == "54") //Grn
                 {
-                    if (lblRemainProduct.Text == "0")
+                    if (tsbRemainingProduct.Text == "0")
                     { cmbPONo.SelectedValue = 217; cmbPONo.Enabled = false; }
                     else { cmbPONo.Enabled = true; }
                 }
@@ -4239,7 +4239,7 @@ namespace ROMS
                 //{ cmbPONo.SelectedValue = 215; }
                 else if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
                 {
-                    if ( lblRemainProduct.Text == "0")
+                    if (tsbRemainingProduct.Text == "0")
                     { cmbPONo.SelectedValue = 219; cmbPONo.Enabled = false; }
                     else { cmbPONo.Enabled = true; }
                 }
@@ -7407,7 +7407,7 @@ namespace ROMS
                     }
                     if (Convert.ToString(cmbEntryType.SelectedValue) == "57" || Convert.ToString(cmbEntryType.SelectedValue) == "54")
                     {
-                        if (Convert.ToInt16(lbltotProduct.Text) != varPrCount && chkCompleted.Checked == true)
+                        if (Convert.ToInt16(tsbTotalProducts.Text) != varPrCount && chkCompleted.Checked == true)
                         {
                             varPrCountFlag = 1;
                         }
@@ -8643,7 +8643,7 @@ namespace ROMS
         {
             try
             {
-                if (lblRemainProduct.Text != "0")
+                if (tsbRemainingProduct.Text != "0")
                 {
                     string PRID = "0";
                     int GRNID = 0, varPRFlag = 0; string POID = "0", DCID = "0";
@@ -11475,42 +11475,43 @@ namespace ROMS
             {
                 if (Convert.ToInt32(lblProductcode.Text) != 0)
                 {
-                    txtMrp.Text = "";
-                    txtDate.Text = "";
-                    txtMonth.Text = "";
-                    txtYear.Text = "";
-                    txtBatchno.Text = "";
-                    varBatchNo = "0"; varBatchNoGeneration = "0"; varShelflife = 0; expirydateFlag = 0;
-                    varPICode = ""; varEName = ""; var_Symbol = ""; var_Text = ""; var_RMinSaleQty = ""; varSTOCK = ""; varPrevious = "";
-                    varPARITAL = ""; varReOrderQty = "0"; varorderSaleQty = "0"; addproductid = "0"; varunitid = "0"; varexp = "";
-                    MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 34;
-                    objMR_Product.ParaProductCode = Convert.ToInt32(lblProductcode.Text);
-                    objMR_Product.ParaScheduleid = lblschedule.Text;
-                    objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-                    SPDataService objspdservice = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            varPICode = objDs.Tables[0].Rows[0]["PR_PICode"].ToString();
-                            varEName = objDs.Tables[0].Rows[0]["PR_EName"].ToString();
-                            varTName = objDs.Tables[0].Rows[0]["PR_TName"].ToString();
-                            var_Symbol = objDs.Tables[0].Rows[0]["UT_Symbol"].ToString();
-                            varunitid = objDs.Tables[0].Rows[0]["UTID"].ToString();
-                            varexp = objDs.Tables[0].Rows[0]["PRODUCTEXP"].ToString();
-                            varBatchNo = Convert.ToString(objDs.Tables[0].Rows[0]["PR_BatchNo"]);
-                            varBatchNoGeneration = Convert.ToString(objDs.Tables[0].Rows[0]["PR_BatchNoGeneration"]);
-                            varRMProduction = Convert.ToString(objDs.Tables[0].Rows[0]["PR_RMForProduction"]);
-                            varPrcategory = Convert.ToString(objDs.Tables[0].Rows[0]["PR_PRCTID"]);
-                            varShelflife = Convert.ToInt32(objDs.Tables[0].Rows[0]["PR_ShelfLife"]);
-                            if (varShelflife == 1)
-                            { expirydateFlag = 1; }
-                        }
-                    }
+                   // txtMrp.Text = "";
+                   // txtDate.Text = "";
+                   // txtMonth.Text = "";
+                   // txtYear.Text = "";
+                   // txtBatchno.Text = "";
+                   // varBatchNo = "0"; varBatchNoGeneration = "0"; varShelflife = 0; expirydateFlag = 0;
+                   //// varPICode = "";
+                   // varEName = ""; var_Symbol = ""; var_Text = ""; var_RMinSaleQty = ""; varSTOCK = ""; varPrevious = "";
+                   // varPARITAL = ""; varReOrderQty = "0"; varorderSaleQty = "0"; addproductid = "0"; varunitid = "0"; varexp = "";
+                   // MR_Product objMR_Product = new MR_Product();
+                   // objMR_Product.paraViewType = 34;
+                   // objMR_Product.ParaProductCode = Convert.ToInt32(lblProductcode.Text);
+                   // objMR_Product.ParaScheduleid = lblschedule.Text;
+                   // objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                   // SPDataService objspdservice = new SPDataService();
+                   // DataSet objDs = new DataSet();
+                   // objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                   // objspdservice.CloseConnection();
+                   // if (objDs != null)
+                   // {
+                   //     if (objDs.Tables[0].Rows.Count > 0)
+                   //     {
+                   //         varPICode = objDs.Tables[0].Rows[0]["PR_PICode"].ToString();
+                   //         varEName = objDs.Tables[0].Rows[0]["PR_EName"].ToString();
+                   //         varTName = objDs.Tables[0].Rows[0]["PR_TName"].ToString();
+                   //         var_Symbol = objDs.Tables[0].Rows[0]["UT_Symbol"].ToString();
+                   //         varunitid = objDs.Tables[0].Rows[0]["UTID"].ToString();
+                   //         varexp = objDs.Tables[0].Rows[0]["PRODUCTEXP"].ToString();
+                   //         varBatchNo = Convert.ToString(objDs.Tables[0].Rows[0]["PR_BatchNo"]);
+                   //         varBatchNoGeneration = Convert.ToString(objDs.Tables[0].Rows[0]["PR_BatchNoGeneration"]);
+                   //         varRMProduction = Convert.ToString(objDs.Tables[0].Rows[0]["PR_RMForProduction"]);
+                   //         varPrcategory = Convert.ToString(objDs.Tables[0].Rows[0]["PR_PRCTID"]);
+                   //         varShelflife = Convert.ToInt32(objDs.Tables[0].Rows[0]["PR_ShelfLife"]);
+                   //         if (varShelflife == 1)
+                   //         { expirydateFlag = 1; }
+                   //     }
+                   // }
                     if (Convert.ToInt32(varBatchNo) == 73)  //disabled
                     {
                         txtBatchno.Text = "";
@@ -11529,6 +11530,8 @@ namespace ROMS
                         {
                             if (varPOdropdownFlag == 2 && Convert.ToString(cmbPONo.SelectedValue) != "214" || Convert.ToString(cmbPONo.SelectedValue) != null)
                             {
+                                SPDataService objspdservice = new SPDataService();
+                                DataSet objDs = new DataSet();
                                 MR_Master objMR_Master = new MR_Master();
                                 objMR_Master.ViewType = 14;
                                 objDs = objspdservice.udfnMaster(objMR_Master);
@@ -11554,6 +11557,8 @@ namespace ROMS
                         else { vardate = varVoucherDate; }
                         if (Convert.ToInt32(varRMProduction) == 1)
                         {
+                            SPDataService objspdservice = new SPDataService();
+                            DataSet objDs = new DataSet();
                             MR_Master objMR_Master = new MR_Master();
                             objMR_Master.ViewType = 15;
                             objMR_Master.paraDate = dpVoucherDate.Text;
