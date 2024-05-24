@@ -976,6 +976,11 @@ namespace ROMS
                     {
                         grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdPurchaseDCList.Rows[i].Cells["clmPrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
+                        c.Value = "";
+                        grdPurchaseDCList.Rows[i].Cells["clmPrint"] = c;
+                        c.ReadOnly = true;
                     }
                     else if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "34")
                     {
