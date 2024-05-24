@@ -128,6 +128,7 @@
             this.clmDuplicateSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStockQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmErrorQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
@@ -302,6 +303,7 @@
             this.clmDuplicateSno,
             this.clmStockQty,
             this.clmErrorQty,
+            this.clmRMFlag,
             this.clmStatus,
             this.clmRemove});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1205,6 +1207,13 @@
             this.clmErrorQty.Visible = false;
             this.clmErrorQty.Width = 10;
             // 
+            // clmRMFlag
+            // 
+            this.clmRMFlag.HeaderText = "RM Flag";
+            this.clmRMFlag.Name = "clmRMFlag";
+            this.clmRMFlag.ReadOnly = true;
+            this.clmRMFlag.Visible = false;
+            // 
             // clmStatus
             // 
             this.clmStatus.DataPropertyName = "Status";
@@ -1348,6 +1357,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDuplicateSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStockQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmErrorQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
