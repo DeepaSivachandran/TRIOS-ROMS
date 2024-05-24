@@ -2639,52 +2639,12 @@ namespace ROMS
                                     //    varCloseFlag = 1;
                                     //    udfnclose();
                                     //}
-                                    try
+                                    MainForm.objPUR_DC_PrintPopUp = new PUR_DC_PrintPopUp();
+                                    if(varDCID==0)
                                     {
-                                       
-                                        string ID = "0";
-                                        if (varDCID == 0)
-                                        {
-                                            ID = varvalue[2];
-                                        }
-                                        else
-                                        {
-                                            ID = Convert.ToString(varDCID);
-                                        }
-
-                                        SPDataService objDServs = new SPDataService();
-                                        string varMessage = objDServs.udfnGetMessages(87);
-                                        objDServs.CloseConnection();
-                                        DialogResult result1 = DialogResult.Yes;
-                                        SPDataService objDServ = new SPDataService();
-                                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if (result1 == DialogResult.Yes)
-                                        {
-                                            string varHeader = "";
-                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_GRNDetails.rpt");
-                                            varHeader = "Purchase DC";
-
-                                            objBillreport.SetParameterValue("paraDCID", Convert.ToInt32(ID));
-                                            objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
-                                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                            objValidation.CrySqlConnection(objBillreport);
-
-                                            MainForm.objReportLoad = new ReportLoad();
-                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                            MainForm.objReportLoad.Text = varHeader;
-                                            MainForm.objReportLoad.ShowDialog();
-                                        }
+                                        MainForm.objPUR_DC_PrintPopUp.varID = varvalue[2];
                                     }
-                                    catch (Exception ex)
-                                    {
-                                        objError = new DataError();
-                                        objError.WriteFile(ex);
-                                    }
+                                    MainForm.objPUR_DC_PrintPopUp.ShowDialog();
                                     varCloseFlag = 1;
                                     udfnclose();
                                     MainForm.objPUR_PurchaseDCList.udfnList();

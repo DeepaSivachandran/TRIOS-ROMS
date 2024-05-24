@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_DC_PrintPopUp));
             this.errVerified = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpVerify = new System.Windows.Forms.GroupBox();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.chkA4Print = new System.Windows.Forms.CheckBox();
             this.chkThermal = new System.Windows.Forms.CheckBox();
@@ -46,36 +45,21 @@
             // 
             // grpVerify
             // 
-            this.grpVerify.Controls.Add(this.btnCancel);
             this.grpVerify.Controls.Add(this.btnOk);
             this.grpVerify.Controls.Add(this.chkA4Print);
             this.grpVerify.Controls.Add(this.chkThermal);
             this.grpVerify.Location = new System.Drawing.Point(12, 3);
             this.grpVerify.Name = "grpVerify";
-            this.grpVerify.Size = new System.Drawing.Size(311, 98);
+            this.grpVerify.Size = new System.Drawing.Size(311, 85);
             this.grpVerify.TabIndex = 0;
             this.grpVerify.TabStop = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.White;
-            this.btnCancel.Image = global::ROMS.Properties.Resources.close;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnCancel.Location = new System.Drawing.Point(230, 52);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 32);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnOk
             // 
             this.btnOk.BackColor = System.Drawing.Color.White;
             this.btnOk.Image = global::ROMS.Properties.Resources.print;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnOk.Location = new System.Drawing.Point(149, 52);
+            this.btnOk.Location = new System.Drawing.Point(226, 47);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 32);
             this.btnOk.TabIndex = 2;
@@ -109,7 +93,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(336, 111);
+            this.ClientSize = new System.Drawing.Size(336, 97);
             this.Controls.Add(this.grpVerify);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -133,7 +117,6 @@
         #endregion
         private System.Windows.Forms.ErrorProvider errVerified;
         private System.Windows.Forms.GroupBox grpVerify;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.CheckBox chkA4Print;
         private System.Windows.Forms.CheckBox chkThermal;
