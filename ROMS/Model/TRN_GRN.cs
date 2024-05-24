@@ -46,6 +46,7 @@ namespace ROMS.Model
         public string paraVerifiedFormat1 { get; set; } = "";
         public string paraVerifiedFormat2 { get; set; } = "";
         public int paraPayment { get; set; } = 0;
+        public string paraCompletedIDs { get; set; } = "";
 
     }
 }
