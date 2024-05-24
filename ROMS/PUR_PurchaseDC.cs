@@ -114,6 +114,9 @@ namespace ROMS
                                 varVerifiedOn = Convert.ToString(objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString());
                                 varVerifiedTime = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString());
                                 varVerifiedFormat = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString());
+                                lblVerifyDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["VerifyDate"].ToString());
+
+                                lblVerify.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee"].ToString());
 
                             }
                         }
@@ -2427,7 +2430,7 @@ namespace ROMS
                         tpcompanyname.Show("Please select company.", cmbConcern, 5000);
                         varErrorFlag = false;
                     }
-                    if (chkCompleted.Checked == true && varVerifiedBy == 0)
+                    if (chkCompleted.Checked == true && (varVerifiedBy == 0 || varVerifiedBy == -1))
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(119);
@@ -2639,12 +2642,21 @@ namespace ROMS
                                     //    varCloseFlag = 1;
                                     //    udfnclose();
                                     //}
-                                    MainForm.objPUR_DC_PrintPopUp = new PUR_DC_PrintPopUp();
-                                    if(varDCID==0)
+                                    DialogResult result1 = DialogResult.Yes;
+                                    SPDataService objDServs = new SPDataService();
+                                    string varMessage = objDServs.udfnGetMessages(87);
+                                    objDServs.CloseConnection();
+                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (result1 == DialogResult.Yes)
                                     {
-                                        MainForm.objPUR_DC_PrintPopUp.varID = varvalue[2];
+                                        MainForm.objPUR_DC_PrintPopUp = new PUR_DC_PrintPopUp();
+                                        if (varDCID == 0)
+                                        {
+                                            MainForm.objPUR_DC_PrintPopUp.varID = varvalue[2];
+                                        }
+
+                                        MainForm.objPUR_DC_PrintPopUp.ShowDialog();
                                     }
-                                    MainForm.objPUR_DC_PrintPopUp.ShowDialog();
                                     varCloseFlag = 1;
                                     udfnclose();
                                     MainForm.objPUR_PurchaseDCList.udfnList();
