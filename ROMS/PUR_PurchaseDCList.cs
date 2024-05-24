@@ -155,11 +155,13 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["Created On"].Width = 140;
                                 grdPurchaseDCList.Columns["GSTIN"].Width = 140;
                                 grdPurchaseDCList.Columns["Status"].Width = 140;
+                                grdPurchaseDCList.Columns["clmPrint"].Width = 50;
                                 grdPurchaseDCList.Columns["S.No."].Width = 50;
                                 grdPurchaseDCList.Columns["ID"].Visible = false;
                                 grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
                                 grdPurchaseDCList.Columns["Status ID"].Visible = false;
                                 grdPurchaseDCList.Columns["COMID"].Visible = false;
+                                grdPurchaseDCList.Columns["clmPrint"].Visible = true;
                                 grdPurchaseDCList.Columns["DC_SPSCID"].Visible = false;
                             }
                             else
@@ -293,6 +295,8 @@ namespace ROMS
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     // DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -2072,6 +2076,55 @@ namespace ROMS
             try
             {
                 btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseDCList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPurchaseDCList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            int ID = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                            SPDataService objDServs = new SPDataService();
+                            string varMessage = objDServs.udfnGetMessages(87);
+                            objDServs.CloseConnection();
+                            DialogResult result1 = DialogResult.Yes;
+                            SPDataService objDServ = new SPDataService();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_PurchaseDC.rpt");
+                                varHeader = "Purchase DC";
+
+                                objBillreport.SetParameterValue("paraDCID", Convert.ToInt32(ID));
+                                objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
+
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
+                            }
+                            break;
+                    }
+                }
+
             }
             catch (Exception ex)
             {
