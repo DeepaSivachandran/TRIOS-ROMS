@@ -202,16 +202,19 @@ namespace ROMS
             try
             {
                 varErrQty = 0;
-                for (int i=0;i<grdInward.Rows.Count;i++)
+                if (varEditflag==0)
                 {
-                    if(Convert.ToDecimal(grdInward.Rows[i].Cells["clmactualqty"].Value)==0)
+                    for (int i = 0; i < grdInward.Rows.Count; i++)
                     {
-                        grdInward.Rows[i].Cells["clmactualqty"].Style.BackColor = Color.LightPink;
-                        varErrQty = 1;
-                    }
-                    else
-                    {
-                        grdInward.Rows[i].Cells["clmactualqty"].Style.BackColor = Color.PaleGreen;
+                        if (Convert.ToDecimal(grdInward.Rows[i].Cells["clmactualqty"].Value) == 0)
+                        {
+                            grdInward.Rows[i].Cells["clmactualqty"].Style.BackColor = Color.LightPink;
+                            varErrQty = 1;
+                        }
+                        else
+                        {
+                            grdInward.Rows[i].Cells["clmactualqty"].Style.BackColor = Color.PaleGreen;
+                        }
                     }
                 }
                 udfnSave();

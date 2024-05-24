@@ -292,8 +292,8 @@ namespace ROMS
                 Application.DoEvents();
                 MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
                 MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By1"].Value.ToString());
+                MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On1"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.VarStatusId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
                 MainForm.objPUR_PurchaseOrder.btnSave.Text = "Update";
                 MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
@@ -984,7 +984,7 @@ namespace ROMS
                             //grdPurchaseorderlist.Columns["clmView"].Width = 110;  
                             grdPurchaseorderlist.Columns["S.No."].Width = 50;
                             grdPurchaseorderlist.Columns["Concern"].Width = 50;
-                            grdPurchaseorderlist.Columns["PO.No"].Width = 100;
+                            grdPurchaseorderlist.Columns["PO.No."].Width = 100;
                             grdPurchaseorderlist.Columns["PO Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Supplier"].Width = 300;
                             grdPurchaseorderlist.Columns["City"].Width = 100; 
@@ -992,12 +992,11 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["T.Units"].Width = 140;
                             grdPurchaseorderlist.Columns["TAT"].Width = 70;
                             grdPurchaseorderlist.Columns["DTAT"].Width = 70;
-                            grdPurchaseorderlist.Columns["Created By"].Width = 100;
-                            grdPurchaseorderlist.Columns["Created On"].Width = 150;
+                            grdPurchaseorderlist.Columns["Created By"].Width = 200;
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
-                            grdPurchaseorderlist.Columns["Status"].Width = 100;
+                            grdPurchaseorderlist.Columns["Po Status"].Width = 100;
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
                             grdPurchaseorderlist.Columns["Current Status"].Width = 130;
@@ -1005,6 +1004,8 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["COMID"].Visible = false;
                             grdPurchaseorderlist.Columns["Status1"].Visible = false;
+                            grdPurchaseorderlist.Columns["Created By1"].Visible = false;
+                            grdPurchaseorderlist.Columns["Created On1"].Visible = false;
                             grdPurchaseorderlist.Columns["STS1"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_ID"].Visible = false;
                             grdPurchaseorderlist.Columns["PO_SPSCID"].Visible = false;
@@ -1160,7 +1161,7 @@ namespace ROMS
                     DGV_SearchGrid.Columns["LogoPath"].Visible = false;
                     DGV_SearchGrid.Columns["S.No."].Width = 50;
                     DGV_SearchGrid.Columns["Concern"].Width = 50;
-                    DGV_SearchGrid.Columns["PO.No"].Width = 100;
+                    DGV_SearchGrid.Columns["PO.No."].Width = 100;
                     DGV_SearchGrid.Columns["PO Date"].Width = 100;
                     DGV_SearchGrid.Columns["Supplier"].Width = 300;
                     DGV_SearchGrid.Columns["City"].Width = 100;
@@ -1168,12 +1169,13 @@ namespace ROMS
                     DGV_SearchGrid.Columns["T.Units"].Width = 50;
                     DGV_SearchGrid.Columns["TAT"].Width = 70;
                     DGV_SearchGrid.Columns["DTAT"].Width = 70;
-                    DGV_SearchGrid.Columns["Created By"].Width = 100;
-                    DGV_SearchGrid.Columns["Created On"].Width = 150;
+                    DGV_SearchGrid.Columns["Created By"].Width = 200;
+                    DGV_SearchGrid.Columns["Created By1"].Visible = false;
+                    DGV_SearchGrid.Columns["Created On1"].Visible = false;
                     DGV_SearchGrid.Columns["Mode of Issue"].Width = 100;
                     DGV_SearchGrid.Columns["Issue Date"].Width = 100;
                     DGV_SearchGrid.Columns["Issued By"].Width = 100;
-                    DGV_SearchGrid.Columns["Status"].Width = 100;
+                    DGV_SearchGrid.Columns["Po Status"].Width = 100;
                     //DGV_SearchGrid.Columns["clmView"].Width = 50;
                     //DGV_SearchGrid.Columns["clmPrint"].Width = 50;
                     DGV_SearchGrid.ScrollBars = ScrollBars.Both;
@@ -2409,7 +2411,7 @@ namespace ROMS
                 for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Po Status"];
                     DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmView"];
                     if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) != 12)
                     {
@@ -2609,12 +2611,12 @@ namespace ROMS
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
                                 }
-                                if (col.Name == "Concern" || col.Name == "PO.No" || col.Name == "PO Date"   || col.Name == "Created On"
+                                if (col.Name == "Concern" || col.Name == "PO.No." || col.Name == "PO Date"   
                                     || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;
                                 }
-                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Overall Status")
+                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Overall Status" || col.Name == "Created By")
                                 {
                                     ExcelSheet.Columns[cIndex - 2].ColumnWidth = 25;
                                 }

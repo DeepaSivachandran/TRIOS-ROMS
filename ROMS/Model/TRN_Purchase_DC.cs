@@ -28,6 +28,10 @@ namespace ROMS.Model
         public int paraStatusID { get; set; } = 0;
         public int paraDCID { get; set; } = 0;
         public int paraDeleteFlag { get; set; } = 0;
+        public int ParaVerify { get; set; } = 0;
+        public string ParaVerifyDate { get; set; } = "";
+        public string paraVerifiedTime { get; set; } = "";
+        public string paraVerifiedFormat { get; set; } = "";
         public DataTable ParaTRN_Purchase_DC { get; set; } = null;
     }
     

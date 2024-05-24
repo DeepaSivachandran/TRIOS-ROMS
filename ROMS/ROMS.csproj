@@ -219,6 +219,12 @@
     <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
     <Compile Include="Model\TRN_Item_Movement_Analysis.cs" />
     <Compile Include="Model\TRN_Supplier_Payment.cs" />
+    <Compile Include="PUR_DC_Level_Verified.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_DC_Level_Verified.designer.cs">
+      <DependentUpon>PUR_DC_Level_Verified.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_RemainingProductList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,6 +403,13 @@
     <Compile Include="PUR_ReturnDCApprovedList.designer.cs">
       <DependentUpon>PUR_ReturnDCApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_DC.cs">
+      <DependentUpon>RPT_PUR_DC.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_HSN_Subgroup.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -410,12 +423,17 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.cs">
-      <DependentUpon>RPT_INV_GoodsInwardQueue_IndividualPrint.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_HDFC.cs">
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_HDFC.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_INV_GoodsInwardQueue_IndividualPrint.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_ItemMovementAnalysis.cs">
       <DependentUpon>RPT_ItemMovementAnalysis.rpt</DependentUpon>
@@ -865,19 +883,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\RPT_HDFC.cs">
-      <DependentUpon>RPT_HDFC.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Reports\RPT_TMB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_TMB.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_TP_INV_Shop_Stock_Issued.cs">
       <AutoGen>True</AutoGen>
@@ -885,6 +896,20 @@
       <DependentUpon>RPT_TP_INV_Shop_Stock_Issued.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_TP_PUR_PurchaseDC.cs">
+      <DependentUpon>RPT_TP_PUR_PurchaseDC.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_TP_PUR_GRNDetails.cs">
+      <DependentUpon>RPT_TP_PUR_GRNDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_TP_PUR_ReturnDC.cs">
       <DependentUpon>RPT_TP_PUR_ReturnDC.rpt</DependentUpon>
@@ -1707,6 +1732,9 @@
     <EmbeddedResource Include="PAY_ADV.resx">
       <DependentUpon>PAY_ADV.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_DC_Level_Verified.resx">
+      <DependentUpon>PUR_DC_Level_Verified.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_RemainingProductList.resx">
       <DependentUpon>PUR_RemainingProductList.cs</DependentUpon>
     </EmbeddedResource>
@@ -2217,6 +2245,11 @@
       <LastGenOutput>RPT_INV_Damage_SupplierWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_PUR_DC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_DC.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Product_Group_Subgroup.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Product_Group_Subgroup.cs</LastGenOutput>
@@ -2232,10 +2265,13 @@
       <LastGenOutput>RPT_CP_Product_StockLocation_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_HDFC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_HDFC.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_INV_GoodsInwardQueue_IndividualPrint.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_ItemMovementAnalysis.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2452,11 +2488,6 @@
       <LastGenOutput>RPT_Stock.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_HDFC.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_HDFC.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_TMB.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TMB.cs</LastGenOutput>
@@ -2465,6 +2496,16 @@
     <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Issued.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Issued.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_PUR_PurchaseDC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_PUR_PurchaseDC.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_PUR_GRNDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_PUR_GRNDetails.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_TP_PUR_ReturnDC.rpt">
