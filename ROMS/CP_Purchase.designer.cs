@@ -350,6 +350,7 @@
             this.lbltotProduct = new System.Windows.Forms.Label();
             this.lblRemainProduct = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConvert = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProTname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -384,6 +385,7 @@
             this.clmMrpFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGRNProductType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConvertProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAddPro = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPurchase.SuspendLayout();
@@ -1462,6 +1464,7 @@
             this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
+            this.clmConvert,
             this.clmPono,
             this.clmPicode,
             this.clmProTname,
@@ -1496,6 +1499,7 @@
             this.clmMrpFlag,
             this.clmGRNProductType,
             this.clmRMFlag,
+            this.clmConvertProduct,
             this.clmAddPro,
             this.clmRemove});
             this.grdSupplierList.EnableHeadersVisualStyles = false;
@@ -3677,6 +3681,16 @@
             this.clmsno.Visible = false;
             this.clmsno.Width = 50;
             // 
+            // clmConvert
+            // 
+            this.clmConvert.Frozen = true;
+            this.clmConvert.HeaderText = "";
+            this.clmConvert.Image = global::ROMS.Properties.Resources.Convertion;
+            this.clmConvert.Name = "clmConvert";
+            this.clmConvert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmConvert.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmConvert.Width = 50;
+            // 
             // clmPono
             // 
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.AliceBlue;
@@ -3948,6 +3962,14 @@
             this.clmRMFlag.HeaderText = "RM Flag";
             this.clmRMFlag.Name = "clmRMFlag";
             this.clmRMFlag.ReadOnly = true;
+            this.clmRMFlag.Visible = false;
+            // 
+            // clmConvertProduct
+            // 
+            this.clmConvertProduct.HeaderText = "Convert Pro";
+            this.clmConvertProduct.Name = "clmConvertProduct";
+            this.clmConvertProduct.ReadOnly = true;
+            this.clmConvertProduct.Width = 50;
             // 
             // clmAddPro
             // 
@@ -4299,6 +4321,7 @@
         private System.Windows.Forms.Label lblAddProduct;
         public System.Windows.Forms.Label lbltotProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewImageColumn clmConvert;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPono;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProTname;
@@ -4333,6 +4356,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMrpFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGRNProductType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmConvertProduct;
         private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
