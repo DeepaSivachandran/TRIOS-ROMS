@@ -422,16 +422,25 @@ namespace ROMS
                         else
                         {
                             dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                            grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
                         }
                     }
                     else
                     {
                         dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                        grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
                     }
                     //object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     //dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
+                }
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                {
+                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "231")
+                    {
+                        string varReceivedQty = "";
+                        varReceivedQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
+                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = VarReceivedQty;
+                        object Quantity = varReceivedQty;
+                        dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
+                    }
                 }
             }
             catch (Exception ex)
@@ -795,6 +804,13 @@ namespace ROMS
                             udfnQtyCheck();    
                         }
                         txttotalitem.Text = Convert.ToString(grdGrnApproval.Rows.Count);
+                    }
+                    if(objDs.Tables[2].Rows.Count>0)
+                    {
+                        txtEnteredBy.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Entered By"]);
+                        txtCompletedBy.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Completed By"]);
+                        txtVerifiedBy1.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 1"]);
+                        txtVerifiedBy2.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 2"]);
                     }
                     //if(objDs.Tables[1].Rows.Count>1)
                     //{
