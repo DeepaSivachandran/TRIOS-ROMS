@@ -422,6 +422,7 @@ namespace ROMS
                         else
                         {
                             dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                            grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
                         }
                     }
                     else
