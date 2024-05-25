@@ -3110,52 +3110,51 @@ namespace ROMS
         }
         public AutoCompleteStringCollection AutoCompleteProduct(int varCOMID)
         {
-            //AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
-            //DataSet objds;
-            ////objds = null;
-            //DataTable objDt = new DataTable();
-            //SPDataService objspdservice = new SPDataService();
-            //DataSet objDs = new DataSet();
-            //MR_Product objMR_Product = new MR_Product();
-            //objMR_Product.paraViewType = 29;
-            //objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-            //objMR_Product.ParaScheduleid = lblschedule.Text;
-            //int varsc = lblschedule.Text;
-            //objMR_Product.ParaProductCode = 0;
-            //objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-            //objMR_Product.paraPurchaseAutoComplete = dtPurchaseAutoComplete;
-            //objds = objspdservice.udfnproductmasterlist(objMR_Product);
-            //if (objds != null)
-            //{
-            //    if (objds.Tables.Count != 0)
-            //    {
-            //        if (objds.Tables[0].Rows.Count != 0)
-            //        {
-            //            //objDt = objds.Tables[0];
-            //        }
-            //    }
-            //}
-
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
-            objds = null;
-            DataService objdservice = new DataService();
+            //objds = null;
             DataTable objDt = new DataTable();
-            objds = objdservice.GetDataset("SELECT DISTINCT PR_EName,PR_TName,PR_PICode,PRID,UT_Symbol,cast (pr_retailrate as decimal(32,2))pr_retailrate,PR_BatchNo,PR_BatchNoGeneration," +
-                "PR_RMForProduction,PR_PRCTID,PR_ShelfLife ,MST_DisplayText AS UT_Decimal,PR_HSNID,CASE WHEN PR_ShelfLifeType =17 THEN CONCAT(PR_ShelfLifeValue,' ',(select MST_DisplayText from DEF_Master WHERE MSTID=17)) WHEN PR_ShelfLifeType=18 THEN CONCAT(PR_ShelfLifeValue,' ',(select MST_DisplayText from DEF_Master WHERE MSTID=18)) WHEN PR_ShelfLifeType =19 THEN CONCAT(PR_ShelfLifeValue,' ',(select MST_DisplayText from DEF_Master WHERE MSTID=19)) END AS [Product Shelf Life]," +
-                "PR_MRPflag FROM MR_Product INNER JOIN MR_Supplier_Product ON PRID=MP_PRID INNER JOIN  MR_Unit ON UTID=PR_UTID INNER JOIN DEF_Master ON UT_Decimal=MSTID " +
-                " WHERE   PR_STSID=1 AND PRID NOT IN(0,-1) AND PR_COMID = "+ Convert.ToInt32(cmbConcern.SelectedValue) + " AND MP_SPID="+Convert.ToInt16(lblSupplierCode.Text) +" AND MP_SPSCID= "+Convert.ToInt16(lblschedule.Text) +"  order by PR_PICode");
-            objdservice.CloseConnection();
+            SPDataService objspdservice = new SPDataService();
+            //DataSet objDs = new DataSet();
+            MR_Product objMR_Product = new MR_Product();
+            objMR_Product.paraViewType = 29;
+            objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+            objMR_Product.ParaScheduleid = lblschedule.Text;
+            objMR_Product.ParaProductCode = 0;
+            objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+            objMR_Product.paraPurchaseAutoComplete = dtPurchaseAutoComplete;
+            objds = objspdservice.udfnproductmasterlist(objMR_Product);
             if (objds != null)
             {
-                if (objds.Tables.Count > 0)
+                if (objds.Tables.Count != 0)
                 {
-                    if (objds.Tables[0].Rows.Count > 0)
+                    if (objds.Tables[0].Rows.Count != 0)
                     {
                         objDt = objds.Tables[0];
                     }
                 }
             }
+
+            //AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            //DataSet objds;
+            //objds = null;
+            //DataService objdservice = new DataService();
+            //DataTable objDt = new DataTable();
+            //objds = objdservice.GetDataset("SELECT DISTINCT PR_EName,PR_TName,PR_PICode,PRID,UT_Symbol,cast (pr_retailrate as decimal(32,2))pr_retailrate,PR_BatchNo,PR_BatchNoGeneration," +
+            //    "PR_RMForProduction,PR_PRCTID,PR_ShelfLife ,MST_DisplayText AS UT_Decimal,PR_HSNID,CASE WHEN PR_ShelfLifeType =17 THEN CONCAT(PR_ShelfLifeValue,' ',(select MST_DisplayText from DEF_Master WHERE MSTID=17)) WHEN PR_ShelfLifeType=18 THEN CONCAT(PR_ShelfLifeValue,' ',(select MST_DisplayText from DEF_Master WHERE MSTID=18)) WHEN PR_ShelfLifeType =19 THEN CONCAT(PR_ShelfLifeValue,' ',(select MST_DisplayText from DEF_Master WHERE MSTID=19)) END AS [Product Shelf Life]," +
+            //    "PR_MRPflag FROM MR_Product INNER JOIN MR_Supplier_Product ON PRID=MP_PRID INNER JOIN  MR_Unit ON UTID=PR_UTID INNER JOIN DEF_Master ON UT_Decimal=MSTID " +
+            //    " WHERE   PR_STSID=1 AND PRID NOT IN(0,-1) AND PR_COMID = "+ Convert.ToInt32(cmbConcern.SelectedValue) + " AND MP_SPID="+Convert.ToInt16(lblSupplierCode.Text) +" AND MP_SPSCID= "+Convert.ToInt16(lblschedule.Text) +"  order by PR_PICode");
+            //objdservice.CloseConnection();
+            //if (objds != null)
+            //{
+            //    if (objds.Tables.Count > 0)
+            //    {
+            //        if (objds.Tables[0].Rows.Count > 0)
+            //        {
+            //            objDt = objds.Tables[0];
+            //        }
+            //    }
+            //}
             var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("PR_EName") into g select g.Key;
             for (int i = 0; i < varValue.Count(); i++)
             {
@@ -3443,11 +3442,9 @@ namespace ROMS
                             { row.SetField("RKID", cellRkid); }
                         }
                     }
-                    else if(e.ColumnIndex == grdSupplierList.Columns["clmRack"].Index && e.RowIndex >= 0)
+                    else if (e.ColumnIndex == grdSupplierList.Columns["clmRack"].Index && e.RowIndex >= 0)
                     {
-
                     }
-                }
             }
             catch (Exception ex)
             {
@@ -12401,7 +12398,6 @@ namespace ROMS
                     {
                         grid_flag = 1;
                     }
-
                     if (grid_flag == 1)
                     {
                         if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
