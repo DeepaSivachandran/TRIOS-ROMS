@@ -110,14 +110,19 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count > 0)
                             {
+                                if (varVerifiedBy != -1 || varVerifiedBy != 0)
+                                {
+                                    lblVerifyDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["VerifyDate"].ToString());
+                                }
                                 varVerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
                                 varVerifiedOn = Convert.ToString(objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString());
                                 varVerifiedTime = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString());
                                 varVerifiedFormat = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString());
-                                lblVerifyDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["VerifyDate"].ToString());
-
-                                lblVerify.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee"].ToString());
-
+                                if (objDs.Tables[1].Rows.Count>0)
+                                {
+                                    lblVerify.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee"].ToString());
+                                }
+                               
                             }
                         }
                     }

@@ -97,6 +97,17 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
+            this.grpVerify = new System.Windows.Forms.GroupBox();
+            this.lblVerifyDate = new System.Windows.Forms.Label();
+            this.lblVerify = new System.Windows.Forms.Label();
+            this.lblVerify1 = new System.Windows.Forms.Label();
+            this.lblVerifiedBy2 = new System.Windows.Forms.Label();
+            this.lblVerified2 = new System.Windows.Forms.Label();
+            this.lblVerifiedDate1 = new System.Windows.Forms.Label();
+            this.lblVerified1 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime = new System.Windows.Forms.Label();
+            this.lblVerifiedBy1 = new System.Windows.Forms.Label();
             this.btnVerified = new System.Windows.Forms.Button();
             this.grpPurchase = new System.Windows.Forms.GroupBox();
             this.lblInvoiceAmount = new System.Windows.Forms.Label();
@@ -189,17 +200,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.grpVerify = new System.Windows.Forms.GroupBox();
-            this.lblVerifyDate = new System.Windows.Forms.Label();
-            this.lblVerify = new System.Windows.Forms.Label();
-            this.lblVerify1 = new System.Windows.Forms.Label();
-            this.lblVerifiedBy2 = new System.Windows.Forms.Label();
-            this.lblVerified2 = new System.Windows.Forms.Label();
-            this.lblVerifiedDate1 = new System.Windows.Forms.Label();
-            this.lblVerified1 = new System.Windows.Forms.Label();
-            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
-            this.lblVerifyDateTime = new System.Windows.Forms.Label();
-            this.lblVerifiedBy1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -209,12 +209,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRepDetails)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.grpExcessProduct.SuspendLayout();
+            this.grpVerify.SuspendLayout();
             this.grpPurchase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDC1)).BeginInit();
             this.grpDCSupplier.SuspendLayout();
-            this.grpVerify.SuspendLayout();
             this.SuspendLayout();
             // 
             // epPurchaseDC
@@ -834,6 +834,115 @@
             this.grpExcessProduct.Size = new System.Drawing.Size(1313, 450);
             this.grpExcessProduct.TabIndex = 1111204;
             this.grpExcessProduct.TabStop = false;
+            // 
+            // grpVerify
+            // 
+            this.grpVerify.Controls.Add(this.lblVerifyDate);
+            this.grpVerify.Controls.Add(this.lblVerify);
+            this.grpVerify.Controls.Add(this.lblVerify1);
+            this.grpVerify.Controls.Add(this.lblVerifiedBy2);
+            this.grpVerify.Controls.Add(this.lblVerified2);
+            this.grpVerify.Controls.Add(this.lblVerifiedDate1);
+            this.grpVerify.Controls.Add(this.lblVerified1);
+            this.grpVerify.Controls.Add(this.lblVerifyDateTime2);
+            this.grpVerify.Controls.Add(this.lblVerifyDateTime);
+            this.grpVerify.Controls.Add(this.lblVerifiedBy1);
+            this.grpVerify.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpVerify.Location = new System.Drawing.Point(345, 386);
+            this.grpVerify.Name = "grpVerify";
+            this.grpVerify.Size = new System.Drawing.Size(199, 60);
+            this.grpVerify.TabIndex = 700000004;
+            this.grpVerify.TabStop = false;
+            this.grpVerify.Text = "Verification Process";
+            // 
+            // lblVerifyDate
+            // 
+            this.lblVerifyDate.AutoSize = true;
+            this.lblVerifyDate.Location = new System.Drawing.Point(81, 40);
+            this.lblVerifyDate.Name = "lblVerifyDate";
+            this.lblVerifyDate.Size = new System.Drawing.Size(8, 17);
+            this.lblVerifyDate.TabIndex = 700000005;
+            this.lblVerifyDate.Text = "\r\n";
+            // 
+            // lblVerify
+            // 
+            this.lblVerify.AutoSize = true;
+            this.lblVerify.Location = new System.Drawing.Point(78, 18);
+            this.lblVerify.Name = "lblVerify";
+            this.lblVerify.Size = new System.Drawing.Size(0, 17);
+            this.lblVerify.TabIndex = 700000004;
+            // 
+            // lblVerify1
+            // 
+            this.lblVerify1.AutoSize = true;
+            this.lblVerify1.Location = new System.Drawing.Point(6, 19);
+            this.lblVerify1.Name = "lblVerify1";
+            this.lblVerify1.Size = new System.Drawing.Size(62, 17);
+            this.lblVerify1.TabIndex = 1111191;
+            this.lblVerify1.Text = "Verified by ";
+            // 
+            // lblVerifiedBy2
+            // 
+            this.lblVerifiedBy2.AutoSize = true;
+            this.lblVerifiedBy2.Location = new System.Drawing.Point(13, 84);
+            this.lblVerifiedBy2.Name = "lblVerifiedBy2";
+            this.lblVerifiedBy2.Size = new System.Drawing.Size(0, 17);
+            this.lblVerifiedBy2.TabIndex = 1111191;
+            this.lblVerifiedBy2.Visible = false;
+            // 
+            // lblVerified2
+            // 
+            this.lblVerified2.AutoSize = true;
+            this.lblVerified2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerified2.Location = new System.Drawing.Point(103, 62);
+            this.lblVerified2.Name = "lblVerified2";
+            this.lblVerified2.Size = new System.Drawing.Size(0, 16);
+            this.lblVerified2.TabIndex = 1111189;
+            // 
+            // lblVerifiedDate1
+            // 
+            this.lblVerifiedDate1.AutoSize = true;
+            this.lblVerifiedDate1.Location = new System.Drawing.Point(8, 40);
+            this.lblVerifiedDate1.Name = "lblVerifiedDate1";
+            this.lblVerifiedDate1.Size = new System.Drawing.Size(70, 17);
+            this.lblVerifiedDate1.TabIndex = 1111192;
+            this.lblVerifiedDate1.Text = "Verified Date";
+            // 
+            // lblVerified1
+            // 
+            this.lblVerified1.AutoSize = true;
+            this.lblVerified1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerified1.Location = new System.Drawing.Point(103, 29);
+            this.lblVerified1.Name = "lblVerified1";
+            this.lblVerified1.Size = new System.Drawing.Size(0, 16);
+            this.lblVerified1.TabIndex = 1111188;
+            // 
+            // lblVerifyDateTime2
+            // 
+            this.lblVerifyDateTime2.AutoSize = true;
+            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime2.Location = new System.Drawing.Point(103, 76);
+            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
+            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 16);
+            this.lblVerifyDateTime2.TabIndex = 1111187;
+            // 
+            // lblVerifyDateTime
+            // 
+            this.lblVerifyDateTime.AutoSize = true;
+            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime.Location = new System.Drawing.Point(103, 43);
+            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
+            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 16);
+            this.lblVerifyDateTime.TabIndex = 1111186;
+            // 
+            // lblVerifiedBy1
+            // 
+            this.lblVerifiedBy1.AutoSize = true;
+            this.lblVerifiedBy1.Location = new System.Drawing.Point(13, 41);
+            this.lblVerifiedBy1.Name = "lblVerifiedBy1";
+            this.lblVerifiedBy1.Size = new System.Drawing.Size(0, 17);
+            this.lblVerifiedBy1.TabIndex = 1111190;
+            this.lblVerifiedBy1.Visible = false;
             // 
             // btnVerified
             // 
@@ -1779,115 +1888,6 @@
             this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             // 
-            // grpVerify
-            // 
-            this.grpVerify.Controls.Add(this.lblVerifyDate);
-            this.grpVerify.Controls.Add(this.lblVerify);
-            this.grpVerify.Controls.Add(this.lblVerify1);
-            this.grpVerify.Controls.Add(this.lblVerifiedBy2);
-            this.grpVerify.Controls.Add(this.lblVerified2);
-            this.grpVerify.Controls.Add(this.lblVerifiedDate1);
-            this.grpVerify.Controls.Add(this.lblVerified1);
-            this.grpVerify.Controls.Add(this.lblVerifyDateTime2);
-            this.grpVerify.Controls.Add(this.lblVerifyDateTime);
-            this.grpVerify.Controls.Add(this.lblVerifiedBy1);
-            this.grpVerify.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpVerify.Location = new System.Drawing.Point(345, 386);
-            this.grpVerify.Name = "grpVerify";
-            this.grpVerify.Size = new System.Drawing.Size(199, 60);
-            this.grpVerify.TabIndex = 700000004;
-            this.grpVerify.TabStop = false;
-            this.grpVerify.Text = "Verification Process";
-            // 
-            // lblVerifyDate
-            // 
-            this.lblVerifyDate.AutoSize = true;
-            this.lblVerifyDate.Location = new System.Drawing.Point(87, 40);
-            this.lblVerifyDate.Name = "lblVerifyDate";
-            this.lblVerifyDate.Size = new System.Drawing.Size(8, 17);
-            this.lblVerifyDate.TabIndex = 700000005;
-            this.lblVerifyDate.Text = "\r\n";
-            // 
-            // lblVerify
-            // 
-            this.lblVerify.AutoSize = true;
-            this.lblVerify.Location = new System.Drawing.Point(78, 18);
-            this.lblVerify.Name = "lblVerify";
-            this.lblVerify.Size = new System.Drawing.Size(0, 17);
-            this.lblVerify.TabIndex = 700000004;
-            // 
-            // lblVerify1
-            // 
-            this.lblVerify1.AutoSize = true;
-            this.lblVerify1.Location = new System.Drawing.Point(6, 19);
-            this.lblVerify1.Name = "lblVerify1";
-            this.lblVerify1.Size = new System.Drawing.Size(62, 17);
-            this.lblVerify1.TabIndex = 1111191;
-            this.lblVerify1.Text = "Verified by ";
-            // 
-            // lblVerifiedBy2
-            // 
-            this.lblVerifiedBy2.AutoSize = true;
-            this.lblVerifiedBy2.Location = new System.Drawing.Point(13, 84);
-            this.lblVerifiedBy2.Name = "lblVerifiedBy2";
-            this.lblVerifiedBy2.Size = new System.Drawing.Size(0, 17);
-            this.lblVerifiedBy2.TabIndex = 1111191;
-            this.lblVerifiedBy2.Visible = false;
-            // 
-            // lblVerified2
-            // 
-            this.lblVerified2.AutoSize = true;
-            this.lblVerified2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerified2.Location = new System.Drawing.Point(103, 62);
-            this.lblVerified2.Name = "lblVerified2";
-            this.lblVerified2.Size = new System.Drawing.Size(0, 16);
-            this.lblVerified2.TabIndex = 1111189;
-            // 
-            // lblVerifiedDate1
-            // 
-            this.lblVerifiedDate1.AutoSize = true;
-            this.lblVerifiedDate1.Location = new System.Drawing.Point(8, 40);
-            this.lblVerifiedDate1.Name = "lblVerifiedDate1";
-            this.lblVerifiedDate1.Size = new System.Drawing.Size(70, 17);
-            this.lblVerifiedDate1.TabIndex = 1111192;
-            this.lblVerifiedDate1.Text = "Verified Date";
-            // 
-            // lblVerified1
-            // 
-            this.lblVerified1.AutoSize = true;
-            this.lblVerified1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerified1.Location = new System.Drawing.Point(103, 29);
-            this.lblVerified1.Name = "lblVerified1";
-            this.lblVerified1.Size = new System.Drawing.Size(0, 16);
-            this.lblVerified1.TabIndex = 1111188;
-            // 
-            // lblVerifyDateTime2
-            // 
-            this.lblVerifyDateTime2.AutoSize = true;
-            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDateTime2.Location = new System.Drawing.Point(103, 76);
-            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
-            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 16);
-            this.lblVerifyDateTime2.TabIndex = 1111187;
-            // 
-            // lblVerifyDateTime
-            // 
-            this.lblVerifyDateTime.AutoSize = true;
-            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDateTime.Location = new System.Drawing.Point(103, 43);
-            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
-            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 16);
-            this.lblVerifyDateTime.TabIndex = 1111186;
-            // 
-            // lblVerifiedBy1
-            // 
-            this.lblVerifiedBy1.AutoSize = true;
-            this.lblVerifiedBy1.Location = new System.Drawing.Point(13, 41);
-            this.lblVerifiedBy1.Name = "lblVerifiedBy1";
-            this.lblVerifiedBy1.Size = new System.Drawing.Size(0, 17);
-            this.lblVerifiedBy1.TabIndex = 1111190;
-            this.lblVerifiedBy1.Visible = false;
-            // 
             // PUR_PurchaseDC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1924,6 +1924,8 @@
             this.groupBox2.PerformLayout();
             this.grpExcessProduct.ResumeLayout(false);
             this.grpExcessProduct.PerformLayout();
+            this.grpVerify.ResumeLayout(false);
+            this.grpVerify.PerformLayout();
             this.grpPurchase.ResumeLayout(false);
             this.grpPurchase.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
@@ -1931,8 +1933,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDC1)).EndInit();
             this.grpDCSupplier.ResumeLayout(false);
             this.grpDCSupplier.PerformLayout();
-            this.grpVerify.ResumeLayout(false);
-            this.grpVerify.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
