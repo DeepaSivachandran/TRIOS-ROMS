@@ -3688,7 +3688,6 @@
             this.clmConvert.Name = "clmConvert";
             this.clmConvert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmConvert.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmConvert.Visible = false;
             this.clmConvert.Width = 50;
             // 
             // clmPono
@@ -3969,7 +3968,6 @@
             this.clmConvertProduct.HeaderText = "Convert Pro";
             this.clmConvertProduct.Name = "clmConvertProduct";
             this.clmConvertProduct.ReadOnly = true;
-            this.clmConvertProduct.Visible = false;
             this.clmConvertProduct.Width = 50;
             // 
             // clmAddPro
