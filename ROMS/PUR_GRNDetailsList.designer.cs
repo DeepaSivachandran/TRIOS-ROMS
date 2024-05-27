@@ -80,9 +80,6 @@
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblTotalGRN = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -559,7 +556,6 @@
             this.ClmEdit,
             this.clmPrint,
             this.clmCheck});
-            this.clmLocPrint});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -624,7 +620,6 @@
             this.ClmEdit.HeaderText = "Edit";
             this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.ClmEdit.Name = "ClmEdit";
-            this.ClmEdit.ReadOnly = true;
             this.ClmEdit.Width = 50;
             // 
             // clmPrint
@@ -632,17 +627,7 @@
             this.clmPrint.HeaderText = "Reprint";
             this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
             this.clmPrint.Width = 50;
-            // 
-            // clmLocPrint
-            // 
-            this.clmLocPrint.HeaderText = "Location Print";
-            this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmLocPrint.Name = "clmLocPrint";
-            this.clmLocPrint.ReadOnly = true;
-            this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // clmCheck
             // 
@@ -723,9 +708,6 @@
         public System.Windows.Forms.Button btnPrint;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
-        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
-        private System.Windows.Forms.DataGridViewImageColumn clmLocPrint;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotalGRN;
         private System.Windows.Forms.Button btnCompleted;
