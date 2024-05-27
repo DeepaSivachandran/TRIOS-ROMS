@@ -3591,7 +3591,6 @@
             // 
             // crToolStripTextBox1
             // 
-            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 
@@ -3689,6 +3688,7 @@
             this.clmConvert.Name = "clmConvert";
             this.clmConvert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmConvert.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmConvert.Visible = false;
             this.clmConvert.Width = 50;
             // 
             // clmPono
