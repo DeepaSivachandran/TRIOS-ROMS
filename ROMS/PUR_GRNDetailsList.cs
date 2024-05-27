@@ -1437,6 +1437,11 @@ namespace ROMS
                     {
                         cell.Style.BackColor = Color.Red;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                        grdGRNList.Rows[i].Cells["clmLocPrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
+                        c.Value = "";
+                        grdGRNList.Rows[i].Cells["clmLocPrint"] = c;
+                        c.ReadOnly = true;
                     }
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "24")
                     {
