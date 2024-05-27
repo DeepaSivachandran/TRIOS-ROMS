@@ -42,14 +42,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
             this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
             this.tsbPO = new System.Windows.Forms.ToolStripButton();
@@ -186,6 +192,7 @@
             this.clmeng = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProConditionType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmExcessQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmQtyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -470,9 +477,9 @@
             this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(407, 13);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(84, 20);
+            this.label12.Size = new System.Drawing.Size(67, 20);
             this.label12.TabIndex = 1111205;
-            this.label12.Text = "Quantity Type";
+            this.label12.Text = "Conditions";
             // 
             // lblUnit
             // 
@@ -1601,6 +1608,7 @@
             this.clmeng,
             this.clmtam,
             this.clmunit,
+            this.clmProConditionType,
             this.clmInvoiceQty,
             this.clmExcessQty,
             this.clmQtyType,
@@ -1625,22 +1633,22 @@
             this.clmUTDecimal,
             this.clmMRPflag,
             this.clmRemove});
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle25;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(6, 13);
             this.grdGrnlist.Name = "grdGrnlist";
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle26;
             this.grdGrnlist.RowTemplate.Height = 25;
             this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1302, 334);
@@ -1828,6 +1836,9 @@
             // 
             // clmsno
             // 
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmsno.DefaultCellStyle = dataGridViewCellStyle13;
+            this.clmsno.Frozen = true;
             this.clmsno.HeaderText = "S.No.";
             this.clmsno.Name = "clmsno";
             this.clmsno.ReadOnly = true;
@@ -1837,6 +1848,9 @@
             // 
             // clmpo
             // 
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmpo.DefaultCellStyle = dataGridViewCellStyle14;
+            this.clmpo.Frozen = true;
             this.clmpo.HeaderText = "PO No.";
             this.clmpo.Name = "clmpo";
             this.clmpo.ReadOnly = true;
@@ -1845,6 +1859,9 @@
             // 
             // clmpicode
             // 
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmpicode.DefaultCellStyle = dataGridViewCellStyle15;
+            this.clmpicode.Frozen = true;
             this.clmpicode.HeaderText = "P.I Code";
             this.clmpicode.Name = "clmpicode";
             this.clmpicode.ReadOnly = true;
@@ -1853,6 +1870,9 @@
             // 
             // clmeng
             // 
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmeng.DefaultCellStyle = dataGridViewCellStyle16;
+            this.clmeng.Frozen = true;
             this.clmeng.HeaderText = "Product Name in English";
             this.clmeng.Name = "clmeng";
             this.clmeng.ReadOnly = true;
@@ -1862,8 +1882,10 @@
             // 
             // clmtam
             // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clmtam.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clmtam.DefaultCellStyle = dataGridViewCellStyle17;
+            this.clmtam.Frozen = true;
             this.clmtam.HeaderText = "Product Name in Tamil";
             this.clmtam.Name = "clmtam";
             this.clmtam.ReadOnly = true;
@@ -1872,16 +1894,29 @@
             // 
             // clmunit
             // 
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmunit.DefaultCellStyle = dataGridViewCellStyle18;
+            this.clmunit.Frozen = true;
             this.clmunit.HeaderText = "Unit";
             this.clmunit.Name = "clmunit";
             this.clmunit.ReadOnly = true;
             this.clmunit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmunit.Width = 50;
             // 
+            // clmProConditionType
+            // 
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmProConditionType.DefaultCellStyle = dataGridViewCellStyle19;
+            this.clmProConditionType.Frozen = true;
+            this.clmProConditionType.HeaderText = "Condition Type";
+            this.clmProConditionType.Name = "clmProConditionType";
+            this.clmProConditionType.ReadOnly = true;
+            this.clmProConditionType.Width = 120;
+            // 
             // clmInvoiceQty
             // 
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmInvoiceQty.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceQty.DefaultCellStyle = dataGridViewCellStyle20;
             this.clmInvoiceQty.HeaderText = "Pending Qty";
             this.clmInvoiceQty.Name = "clmInvoiceQty";
             this.clmInvoiceQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -1896,8 +1931,8 @@
             // 
             // clmQtyType
             // 
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmQtyType.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmQtyType.DefaultCellStyle = dataGridViewCellStyle21;
             this.clmQtyType.HeaderText = "Qty type";
             this.clmQtyType.Name = "clmQtyType";
             this.clmQtyType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -1906,9 +1941,9 @@
             // 
             // clmmrp
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmmrp.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmmrp.DefaultCellStyle = dataGridViewCellStyle22;
             this.clmmrp.HeaderText = "MRP";
             this.clmmrp.Name = "clmmrp";
             this.clmmrp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -1916,8 +1951,8 @@
             // 
             // clmexpirydate
             // 
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle23;
             this.clmexpirydate.HeaderText = "Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
             this.clmexpirydate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -1947,8 +1982,8 @@
             // 
             // clmBatchno
             // 
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmBatchno.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmBatchno.DefaultCellStyle = dataGridViewCellStyle24;
             this.clmBatchno.HeaderText = "Batch No.";
             this.clmBatchno.Name = "clmBatchno";
             this.clmBatchno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -2244,6 +2279,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmeng;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtam;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProConditionType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmExcessQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQtyType;

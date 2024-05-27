@@ -859,7 +859,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Schedule ID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
                 DGV_SearchGrid.Columns["PURREDC_ReasonId"].Visible = false;
-                DGV_SearchGrid.Columns["Status"].Width = 120; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_SearchGrid.Columns["Pur Ret Dc Status"].Width = 120; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 //DGV_SearchGrid.Columns["Employees"].Width = 300;
                 //DGV_SearchGrid.Columns["Created By"].Width = 100;
             }
@@ -958,19 +958,18 @@ namespace ROMS
                                 lblNoRecordsFound.SendToBack();
                                 grdReturnDCList.DataSource = objDs.Tables[0];
                                 grdReturnDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdReturnDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdReturnDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdReturnDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdReturnDCList.Columns["Total Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdReturnDCList.Columns["Pur Ret Dc Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdReturnDCList.Columns["Dc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdReturnDCList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdReturnDCList.Columns["Tot Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Concern"].Width = 80;
                                 grdReturnDCList.Columns["Reason"].Width = 110;
-                                grdReturnDCList.Columns["DC Date"].Width = 100;
-                                grdReturnDCList.Columns["DC No."].Width = 90;
+                                grdReturnDCList.Columns["Dc Date"].Width = 100;
+                                grdReturnDCList.Columns["Dc No."].Width = 90;
                                 grdReturnDCList.Columns["Supplier"].Width = 300;
-                                grdReturnDCList.Columns["Total Products"].Width = 100;
-                                grdReturnDCList.Columns["Created On"].Width = 140;
-                                grdReturnDCList.Columns["Created By"].Width = 100;
-                                grdReturnDCList.Columns["Status"].Width = 100;
+                                grdReturnDCList.Columns["Tot Pro"].Width = 100;
+                                grdReturnDCList.Columns["Created By"].Width = 200;
+                                grdReturnDCList.Columns["Pur Ret Dc Status"].Width = 150;
                                 grdReturnDCList.Columns["Print"].Width = 50;
                                 grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
@@ -1145,7 +1144,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex-1] = col.HeaderText;
                             ExcelSheet.Columns[cIndex-1].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Total Units" || col.Name == "Reason")
+                            if (col.Name == "S.No." || col.Name == "Tot Units" || col.Name == "Reason")
                             {
                                 ExcelSheet.Columns[cIndex-1].ColumnWidth = 10;
                             }
@@ -1157,11 +1156,11 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex - 1].ColumnWidth = 15;
                             }
-                            if (col.Name == "S.No." || col.Name == "DC Date")
+                            if (col.Name == "S.No." || col.Name == "Dc Date")
                             {
                                 ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products" || col.Name == "Total Units")
+                            if (col.Name == "Tot Pro" || col.Name == "Tot Units")
                             {
                                 ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -1433,28 +1432,28 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "15")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = Color.Orange;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "16")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = Color.Tomato;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "39")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = Color.LimeGreen;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "68")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Red;
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = Color.Red;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "81")
                     {
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#0000FF");
-                        grdReturnDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#0000FF");
+                        grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.White;
                     }
                 }
             }

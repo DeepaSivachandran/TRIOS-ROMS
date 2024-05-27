@@ -800,7 +800,7 @@ namespace ROMS
                         varInactiveCount++;
                     }
 
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["SP_ReturnApplicable"].Value) == "-1") // Not Defined
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["SP_ReturnApplicable"].Value) == "-1" || Convert.ToString(grdSupplierList.Rows[i].Cells["SP_ReturnApplicable"].Value) == "0") // Not Defined
                     {
                         grdSupplierList.Rows[i].Cells["Ret. Policy"].Style.BackColor = Color.SteelBlue;
                         grdSupplierList.Rows[i].Cells["Ret. Policy"].Style.ForeColor = Color.White;

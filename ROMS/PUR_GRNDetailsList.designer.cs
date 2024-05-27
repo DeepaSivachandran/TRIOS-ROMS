@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -77,6 +78,8 @@
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblTotalGRN = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -170,10 +173,10 @@
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
+            this.pnlpurchaseapproval.Controls.Add(this.LV_Supplier);
             this.pnlpurchaseapproval.Controls.Add(this.btnExport);
             this.pnlpurchaseapproval.Controls.Add(this.btnPrint);
             this.pnlpurchaseapproval.Controls.Add(this.lblNoRecordsFound);
-            this.pnlpurchaseapproval.Controls.Add(this.label3);
             this.pnlpurchaseapproval.Controls.Add(this.grpfilter);
             this.pnlpurchaseapproval.Controls.Add(this.DGV_SearchGrid);
             this.pnlpurchaseapproval.Controls.Add(this.grdGRNList);
@@ -187,7 +190,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1272, 27);
+            this.btnExport.Location = new System.Drawing.Point(941, 45);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(32, 33);
             this.btnExport.TabIndex = 7;
@@ -200,7 +203,7 @@
             this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(1308, 27);
+            this.btnPrint.Location = new System.Drawing.Point(979, 45);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(32, 33);
             this.btnPrint.TabIndex = 8;
@@ -223,7 +226,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1249, 87);
+            this.label3.Location = new System.Drawing.Point(1261, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(16, 20);
             this.label3.TabIndex = 1111182;
@@ -232,8 +235,11 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.lblTotalGRN);
+            this.grpfilter.Controls.Add(this.label6);
             this.grpfilter.Controls.Add(this.label5);
             this.grpfilter.Controls.Add(this.lblSupplierCode);
+            this.grpfilter.Controls.Add(this.label3);
             this.grpfilter.Controls.Add(this.lblschedleCode);
             this.grpfilter.Controls.Add(this.cmbstatus);
             this.grpfilter.Controls.Add(this.cmbConcern);
@@ -248,7 +254,7 @@
             this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1348, 67);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 90);
             this.grpfilter.TabIndex = 958799;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -257,7 +263,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1056, 31);
+            this.label5.Location = new System.Drawing.Point(772, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 20);
             this.label5.TabIndex = 1111184;
@@ -288,7 +294,7 @@
             // cmbstatus
             // 
             this.cmbstatus.FormattingEnabled = true;
-            this.cmbstatus.Location = new System.Drawing.Point(1105, 28);
+            this.cmbstatus.Location = new System.Drawing.Point(772, 46);
             this.cmbstatus.Name = "cmbstatus";
             this.cmbstatus.Size = new System.Drawing.Size(122, 27);
             this.cmbstatus.TabIndex = 5;
@@ -301,7 +307,7 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(64, 28);
+            this.cmbConcern.Location = new System.Drawing.Point(9, 46);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(117, 27);
             this.cmbConcern.TabIndex = 0;
@@ -314,7 +320,7 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(573, 28);
+            this.txtSupplier.Location = new System.Drawing.Point(358, 46);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(273, 27);
@@ -329,7 +335,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1233, 25);
+            this.btnView.Location = new System.Drawing.Point(900, 43);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(32, 33);
@@ -344,7 +350,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(4, 31);
+            this.label10.Location = new System.Drawing.Point(9, 23);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 20);
             this.label10.TabIndex = 1111166;
@@ -354,7 +360,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(852, 31);
+            this.label4.Location = new System.Drawing.Point(637, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 20);
             this.label4.TabIndex = 1111148;
@@ -364,7 +370,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(480, 31);
+            this.label2.Location = new System.Drawing.Point(358, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 1111140;
@@ -373,7 +379,7 @@
             // cmbOrdertype
             // 
             this.cmbOrdertype.FormattingEnabled = true;
-            this.cmbOrdertype.Location = new System.Drawing.Point(922, 28);
+            this.cmbOrdertype.Location = new System.Drawing.Point(637, 46);
             this.cmbOrdertype.Name = "cmbOrdertype";
             this.cmbOrdertype.Size = new System.Drawing.Size(129, 27);
             this.cmbOrdertype.TabIndex = 4;
@@ -386,7 +392,7 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(367, 28);
+            this.dpToDate.Location = new System.Drawing.Point(245, 46);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(107, 27);
             this.dpToDate.TabIndex = 2;
@@ -398,7 +404,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(254, 28);
+            this.dpFromDate.Location = new System.Drawing.Point(132, 46);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 1;
@@ -411,7 +417,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(187, 31);
+            this.label1.Location = new System.Drawing.Point(132, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 1111139;
@@ -444,7 +450,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 95);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
@@ -495,7 +501,7 @@
             this.grdGRNList.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdGRNList.EnableHeadersVisualStyles = false;
             this.grdGRNList.GridColor = System.Drawing.Color.White;
-            this.grdGRNList.Location = new System.Drawing.Point(3, 130);
+            this.grdGRNList.Location = new System.Drawing.Point(3, 151);
             this.grdGRNList.Name = "grdGRNList";
             this.grdGRNList.ReadOnly = true;
             this.grdGRNList.RowHeadersVisible = false;
@@ -505,7 +511,7 @@
             this.grdGRNList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdGRNList.RowTemplate.Height = 25;
             this.grdGRNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGRNList.Size = new System.Drawing.Size(1348, 510);
+            this.grdGRNList.Size = new System.Drawing.Size(1348, 489);
             this.grdGRNList.TabIndex = 958797;
             this.grdGRNList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
             this.grdGRNList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGRNList_DataBindingComplete);
@@ -539,9 +545,9 @@
             this.columnHeader3});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(576, 88);
+            this.LV_Supplier.Location = new System.Drawing.Point(361, 75);
             this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(362, 93);
+            this.LV_Supplier.Size = new System.Drawing.Size(362, 113);
             this.LV_Supplier.TabIndex = 1111179;
             this.LV_Supplier.UseCompatibleStateImageBehavior = false;
             this.LV_Supplier.View = System.Windows.Forms.View.Details;
@@ -602,6 +608,26 @@
             this.clmLocPrint.ReadOnly = true;
             this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1014, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 20);
+            this.label6.TabIndex = 1111185;
+            this.label6.Text = "Total GRN :";
+            // 
+            // lblTotalGRN
+            // 
+            this.lblTotalGRN.AutoSize = true;
+            this.lblTotalGRN.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalGRN.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalGRN.Location = new System.Drawing.Point(1080, 49);
+            this.lblTotalGRN.Name = "lblTotalGRN";
+            this.lblTotalGRN.Size = new System.Drawing.Size(17, 20);
+            this.lblTotalGRN.TabIndex = 1111186;
+            this.lblTotalGRN.Text = "0";
             // 
             // PUR_GRNDetailsList
             // 
@@ -609,7 +635,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.LV_Supplier);
             this.Controls.Add(this.pnlpurchaseapproval);
             this.Controls.Add(this.tsBrandList);
             this.Controls.Add(this.RPTViewer);
@@ -681,5 +706,7 @@
         private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmLocPrint;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTotalGRN;
     }
 }

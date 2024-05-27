@@ -92,7 +92,7 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             SPDataService objspservice = new SPDataService();
-                            varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 0);
+                            varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 0,"");
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -104,7 +104,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objspservice = new SPDataService();
-                                        varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 1);
+                                        varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 1,"");
                                         objspservice.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
@@ -161,6 +161,7 @@ namespace ROMS
                     MainForm.objCP_UserCategory.PbUserCategoryName = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["Employee Category"].Value);
                     MainForm.objCP_UserCategory.PbStatus = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_UserCategory.PbOrderNo = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["Order No."].Value);
+                    MainForm.objCP_UserCategory.varModules = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["ModuleID"].Value);
                     MainForm.objCP_UserCategory.ShowDialog();
                 }
             }
@@ -206,6 +207,7 @@ namespace ROMS
                             grdUserCategoryList.Columns["Order No."].Width = 80;
                             grdUserCategoryList.Columns["Employee Category"].Width = 200;
                             grdUserCategoryList.Columns["Status"].Width = 80;
+                            grdUserCategoryList.Columns["ModuleID"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserCategoryList.Columns["Order No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserCategoryList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -257,6 +259,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["DefaultID"].Visible = false;
                 DGV_SearchGrid.Columns["CT_SINO"].Visible = false;
+                DGV_SearchGrid.Columns["ModuleID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Order No."].Width = 80;
                 DGV_SearchGrid.Columns["Employee Category"].Width = 200;

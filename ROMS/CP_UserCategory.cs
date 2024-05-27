@@ -15,12 +15,13 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        public DataTable dtModules = new DataTable();
         private ToolTip tpCatogaroryName = new ToolTip();
         public string oldpassword,varpassword;
         public string varusercode="";
         public int varUserCategoryCode = 0;
         public int PbUserCategorycode = 0;
-        public string PbUserCategoryName = "";
+        public string PbUserCategoryName = "", varModules = "";
         public string PbDefault;
         public int PbStatus = 0;
         public int varstatus = 0;
@@ -154,7 +155,7 @@ namespace ROMS
                     varoriginator = "UserCategory Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus,Convert.ToInt32(cmbCTSINO.SelectedValue),varoriginator,MainForm.pbUserID,0);
+                varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus,Convert.ToInt32(cmbCTSINO.SelectedValue),varoriginator,MainForm.pbUserID,0,varModules);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -208,6 +209,9 @@ namespace ROMS
             {
                 txtCategoryName.Text = "";
                 txtCategoryName.Focus();
+                grdModules.Refresh();
+                grdModules.DataSource = null;
+                udfnModuleload();
                 this.ActiveControl = txtCategoryName;
                 pnlStatus.Enabled = false;
                 udfnLoadSlNo();
@@ -218,13 +222,50 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnModuleload()
+        {
+            try
+            {
+                dtModules.Rows.Clear();
+                Application.DoEvents();
+                grdModules.DataSource = null;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnEmployeeList(11, "", 0, "", 1, 0, 0);
+                objdserv.CloseConnection();
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        dtModules.Rows.Add(false, objDs.Tables[0].Rows[i]["MID"], objDs.Tables[0].Rows[i]["M_Name"]);
+                    }
+                }
+                grdModules.DataSource = null;
+                grdModules.DataSource = dtModules;
+                grdModules.Columns[0].HeaderText = "";
+                grdModules.Columns[0].Width = 30;
+                grdModules.Columns["MID"].Visible = false;
+                grdModules.Columns["M_Name"].Width = 150;
+                grdModules.Columns["M_Name"].ReadOnly = true;
+                grdModules.Columns["M_Name"].HeaderText = "Modules";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdModules.ClearSelection();
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
 
             try
             {
                 bool blnErrorFlag = false;
-
+                varModules = "";
                 if (Convert.ToString(txtCategoryName.Text).Trim() == "")
                 {
                     epUserCategory.SetError(txtCategoryName, "Please enter catogory name");
@@ -232,6 +273,24 @@ namespace ROMS
                     tpCatogaroryName.ShowAlways = true;
                     tpCatogaroryName.Show("Please enter catogory name", txtCategoryName, 5000);
                     blnErrorFlag = true;
+                }
+                if (grdModules.Rows.Count > 0)
+                {
+                    grdModules.DataSource = dtModules;
+                    for (int i = 0; i < grdModules.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdModules.Rows[i].Cells[0].Value) == true)
+                        {
+                            if (varModules == "")
+                            {
+                                varModules = Convert.ToString(grdModules.Rows[i].Cells["MID"].Value);
+                            }
+                            else
+                            {
+                                varModules = varModules + ',' + Convert.ToString(grdModules.Rows[i].Cells["MID"].Value);
+                            }
+                        }
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -372,6 +431,12 @@ namespace ROMS
         {
             try
             {
+                dtModules = new DataTable();
+                dtModules.Columns.Add("", typeof(Boolean));
+                dtModules.Columns.Add("MID", typeof(string));
+                dtModules.Columns.Add("M_Name", typeof(string));
+
+                udfnModuleload();
                 udfnLoadSlNo();
                 if (btnSave.Text == "Save")
                 {
@@ -407,7 +472,31 @@ namespace ROMS
                 txtCategoryName.Text = PbUserCategoryName;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 cmbCTSINO.SelectedValue = PbOrderNo;
-                if(PbStatus==2)
+
+                for (int i = 0; i < grdModules.Rows.Count; i++)
+                {
+                    string[] Modules = varModules.Split(',');
+                    for (int j = 0; j < Modules.Count(); j++)
+                    {
+                        if (Convert.ToString(grdModules.Rows[i].Cells["MID"].Value) == Convert.ToString(Modules[j]))
+                        {
+                            grdModules.Rows[i].Cells[0].Value = true;
+                        }
+                    }
+                }
+                if (Convert.ToBoolean(grdModules.Rows[2].Cells[0].Value) == true)
+                {
+                    grdModules.Rows[3].ReadOnly = true;
+                    grdModules.Rows[3].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdModules.ClearSelection();
+                }
+                if (Convert.ToBoolean(grdModules.Rows[3].Cells[0].Value) == true)
+                {
+                    grdModules.Rows[2].ReadOnly = true;
+                    grdModules.Rows[2].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdModules.ClearSelection();
+                }
+                if (PbStatus==2)
                 {
                     udfnDisable();
                 }
@@ -513,6 +602,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdModules_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToBoolean(grdModules.Rows[2].Cells[0].Value) == true)
+                {
+                    grdModules.Rows[3].ReadOnly = true;
+                    grdModules.Rows[3].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdModules.ClearSelection();
+                }
+                else
+                {
+                    grdModules.Rows[3].ReadOnly = false;
+                    grdModules.Rows[3].DefaultCellStyle.BackColor = Color.White;
+                }
+                if (Convert.ToBoolean(grdModules.Rows[3].Cells[0].Value) == true)
+                {
+                    grdModules.Rows[2].ReadOnly = true;
+                    grdModules.Rows[2].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdModules.ClearSelection();
+                }
+                else
+                {
+                    grdModules.Rows[2].ReadOnly = false;
+                    grdModules.Rows[2].DefaultCellStyle.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbCTSINO_Leave(object sender, EventArgs e)
         {
             try

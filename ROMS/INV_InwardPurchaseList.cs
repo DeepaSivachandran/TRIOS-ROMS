@@ -58,17 +58,17 @@ namespace ROMS
                 MainForm.objINV_InwardPurchase.varGRNPurchaseFlag = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_TypeID"].Value);
                 MainForm.objINV_InwardPurchase.varEditFlag = 1;
                 MainForm.objINV_InwardPurchase.varRemarkFlag = 1;
-                MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Concern"].Value);
+                MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Con"].Value);
                 MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Location"].Value);
                 MainForm.objINV_InwardPurchase.dpInwardDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GIP_Date"].Value);
                 MainForm.objINV_InwardPurchase.txtInwardNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inward No."].Value);
-                MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice Date"].Value);
-                MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Invoice No."].Value);
-                MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher Date"].Value);
-                MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Voucher No."].Value);
+                MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inv Date"].Value);
+                MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inv No."].Value);
+                MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Vouc Date"].Value);
+                MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Vouc No."].Value);
                 MainForm.objINV_InwardPurchase.varPurchaseStatus= Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value);
                 MainForm.objINV_InwardPurchase.varPurchaseID= Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value);
-                MainForm.objINV_InwardPurchase.varStatus= Convert.ToString(grdInwardList.SelectedRows[0].Cells["Status"].Value);
+                MainForm.objINV_InwardPurchase.varStatus= Convert.ToString(grdInwardList.SelectedRows[0].Cells["Goods Inward Status"].Value);
                 //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN No."].Value);
                 //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN Date"].Value);
                 picLoader.Visible = false;
@@ -675,16 +675,16 @@ namespace ROMS
                                 grdInwardList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                // grdInwardList.Columns["Inward No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Inward Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdInwardList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdInwardList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdInwardList.Columns["Concern"].Width = 80;
-                                grdInwardList.Columns["Voucher Date"].Width = 100;
-                                grdInwardList.Columns["Voucher No."].Width = 100;
+                                grdInwardList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInwardList.Columns["Tot Pro in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdInwardList.Columns["Con"].Width = 80;
+                                grdInwardList.Columns["Vouc Date"].Width = 100;
+                                grdInwardList.Columns["Vouc No."].Width = 100;
                                 grdInwardList.Columns["Supplier"].Width = 250;
-                                grdInwardList.Columns["Total Products in Invoice"].Width = 160;
+                                grdInwardList.Columns["Tot Pro in Invoice"].Width = 160;
                                 grdInwardList.Columns["Location"].Width = 130;
                                 grdInwardList.Columns["Created By"].Width = 200;
-                                grdInwardList.Columns["Status"].Width = 110;
+                                grdInwardList.Columns["Goods Inward Status"].Width = 150;
                               //  grdInwardList.Columns["Created On"].Width = 140;
                                 grdInwardList.Columns["GSTIN"].Visible = false;
                                 grdInwardList.Columns["Location"].Width = 170;
@@ -1868,11 +1868,11 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Concern")
+                            if (col.Name == "S.No." || col.Name == "Con")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Location" || col.Name == "Total Products in Invoice" || col.Name == "Status" || col.Name == "Created On" || col.Name=="Entry Type")
+                            else if (col.Name == "Location" || col.Name == "Tot Pro in Invoice" || col.Name == "Goods Inward Status" || col.Name == "Created On" || col.Name=="Entry Type")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -1884,11 +1884,11 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
-                            if (col.Name == "S.No." || col.Name == "Status" || col.Name == "Inward Date" || col.Name == "Voucher Date" || col.Name == "Invoice Date")
+                            if (col.Name == "S.No." || col.Name == "Goods Inward Status" || col.Name == "Inward Date" || col.Name == "Vouc Date" || col.Name == "Inv Date")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products in Invoice")
+                            if (col.Name == "Tot Pro in Invoice")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -2008,13 +2008,13 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "46") //entry completed
                     {
-                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.BackColor = Color.LimeGreen;
+                        grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "45") //Draft
                     {
-                        grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.BackColor = Color.Tomato;
+                        grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.ForeColor = Color.White;
                     }
                 }
             }

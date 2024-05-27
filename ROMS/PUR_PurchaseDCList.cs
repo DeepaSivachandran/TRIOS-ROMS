@@ -143,19 +143,20 @@ namespace ROMS
                                 lblNoRecordsFound.SendToBack();
                                 grdPurchaseDCList.DataSource = objDs.Tables[0];
                                 grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdPurchaseDCList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdPurchaseDCList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdPurchaseDCList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdPurchaseDCList.Columns["Concern"].Width = 80;
                                 grdPurchaseDCList.Columns["DC Date"].Width = 100;
                                 grdPurchaseDCList.Columns["DC No."].Width = 100;
                                 grdPurchaseDCList.Columns["Supplier"].Width = 300;
-                                grdPurchaseDCList.Columns["Total Products"].Width = 100;
-                                grdPurchaseDCList.Columns["Created By"].Width = 110;
-                                grdPurchaseDCList.Columns["Created On"].Width = 140;
+                                grdPurchaseDCList.Columns["Tot Pro"].Width = 100;
+                                grdPurchaseDCList.Columns["Created By"].Width = 200;
                                 grdPurchaseDCList.Columns["GSTIN"].Width = 140;
                                 grdPurchaseDCList.Columns["Status"].Width = 140;
                                 grdPurchaseDCList.Columns["clmPrint"].Width = 50;
+                                grdPurchaseDCList.Columns["Pur Dc Status"].Width = 150;
+                                grdPurchaseDCList.Columns["Overall Status"].Width = 180;
                                 grdPurchaseDCList.Columns["S.No."].Width = 50;
                                 grdPurchaseDCList.Columns["ID"].Visible = false;
                                 grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
@@ -217,9 +218,9 @@ namespace ROMS
                 DGV_SearchGrid.Columns["DC Date"].Width = 100;
                 DGV_SearchGrid.Columns["DC No."].Width = 100;
                 DGV_SearchGrid.Columns["Supplier"].Width = 300;
-                DGV_SearchGrid.Columns["Total Products"].Width = 100;
+                DGV_SearchGrid.Columns["Tot Pro"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 170;
-                DGV_SearchGrid.Columns["Status"].Width = 100;
+                DGV_SearchGrid.Columns["Pur Dc Status"].Width = 100;
                 DGV_SearchGrid.Columns["S.No."].Width = 80;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["DC_SPID"].Visible = false;
@@ -247,7 +248,7 @@ namespace ROMS
                     //MainForm.objPUR_PurchaseDC.btnSave.Text = "Update";
                     MainForm.objPUR_PurchaseDC.pbScheduleid = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPSCID"].Value.ToString());
                     MainForm.objPUR_PurchaseDC.pbSupplierId = Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["DC_SPID"].Value.ToString());
-                    MainForm.objPUR_PurchaseDC.lblStatus.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["Status"].Value.ToString());
+                    MainForm.objPUR_PurchaseDC.lblStatus.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["Pur Dc Status"].Value.ToString());
                     if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value.ToString()) == 18)
                     {
                         MainForm.objPUR_PurchaseDC.editFlag = 1;
@@ -981,16 +982,18 @@ namespace ROMS
                         c.Value = "";
                         grdPurchaseDCList.Rows[i].Cells["clmPrint"] = c;
                         c.ReadOnly = true;
+                        grdPurchaseDCList.Rows[i].Cells["Pur Dc Status"].Style.BackColor = Color.Orange;
+                        grdPurchaseDCList.Rows[i].Cells["Pur Dc Status"].Style.ForeColor = Color.White;
                     }
                     else if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "34")
                     {
-                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdPurchaseDCList.Rows[i].Cells["Pur Dc Status"].Style.BackColor = Color.LimeGreen;
+                        grdPurchaseDCList.Rows[i].Cells["Pur Dc Status"].Style.ForeColor = Color.White;
                     }
                     else
                     {
-                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdPurchaseDCList.Rows[i].Cells["Pur Dc Status"].Style.BackColor = Color.Tomato;
+                        grdPurchaseDCList.Rows[i].Cells["Pur Dc Status"].Style.ForeColor = Color.White;
                     }
                 }
             }
@@ -1917,7 +1920,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Status" || col.Name == "GSTIN" || col.Name == "Created On")
+                            else if (col.Name == "Pur Dc Status" || col.Name == "GSTIN" )
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -1933,7 +1936,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products")
+                            if (col.Name == "Total Products" || col.Name == "Created By")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }

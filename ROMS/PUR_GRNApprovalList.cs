@@ -34,12 +34,12 @@ namespace ROMS
                 {
                     MainForm.objPUR_GRNApproval = new PUR_GRNApproval();
                     MainForm.objPUR_GRNApproval.txtConcern.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Concern"].Value);
-                    MainForm.objPUR_GRNApproval.txtVoucherDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Voucher Date"].Value);
-                    MainForm.objPUR_GRNApproval.txtVoucherNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Voucher No."].Value);
+                    MainForm.objPUR_GRNApproval.txtVoucherDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Vouc Date"].Value);
+                    MainForm.objPUR_GRNApproval.txtVoucherNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Vouc No."].Value);
                     MainForm.objPUR_GRNApproval.txtGrnDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["GRN Date"].Value);
                     MainForm.objPUR_GRNApproval.txtGrnNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["GRN No."].Value);
-                    MainForm.objPUR_GRNApproval.txtInvoiceNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Invoice No."].Value);
-                    MainForm.objPUR_GRNApproval.txtInvoiceDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Invoice Date"].Value);
+                    MainForm.objPUR_GRNApproval.txtInvoiceNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Inv No."].Value);
+                    MainForm.objPUR_GRNApproval.txtInvoiceDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Inv Date"].Value);
                     MainForm.objPUR_GRNApproval.varSupplierID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPID"].Value);
                     MainForm.objPUR_GRNApproval.varScheduleID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPSCID"].Value);
                     MainForm.objPUR_GRNApproval.varConcernID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Concern ID"].Value);
@@ -1076,13 +1076,13 @@ namespace ROMS
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
-                            if (col.Name == "S.No." || col.Name == "GRN Date" || col.Name == "Voucher Date" || col.Name == "Invoice Date")
+                            if (col.Name == "S.No." || col.Name == "GRN Date" || col.Name == "Vouc Date" || col.Name == "Inv Date")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products in Invoice" )
+                            if (col.Name == "Tot Pro in Inv" )
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -1504,16 +1504,16 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 // grdInwardQueueList.Columns["GRN No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdGrnApprovalList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdGrnApprovalList.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdGrnApprovalList.Columns["Total Products in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdGrnApprovalList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdGrnApprovalList.Columns["Tot Pro in Inv"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnApprovalList.Columns["Concern"].Width = 80;
                                 grdGrnApprovalList.Columns["GRN Date"].Width = 100;
+                                grdGrnApprovalList.Columns["Overall Status"].Width = 150;
                                 grdGrnApprovalList.Columns["GRN No."].Width = 80;
-                                grdGrnApprovalList.Columns["Status"].Visible = false;
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
-                                grdGrnApprovalList.Columns["Total Products in Invoice"].Width = 150;
-                                grdGrnApprovalList.Columns["Created By"].Width = 110;
+                                grdGrnApprovalList.Columns["Tot Pro in Inv"].Width = 150;
+                                grdGrnApprovalList.Columns["Created By"].Width = 200;
                                 grdGrnApprovalList.Columns["last Seen"].Width = 180;
                                 //grdGrnApprovalList.Columns["Created On"].Width = 140;
                                 grdGrnApprovalList.Columns["GSTIN"].Width = 150;
@@ -1579,13 +1579,13 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["GRN Date"].Width = 80;
-                DGV_SearchGrid.Columns["Voucher No."].Width = 100;
-                DGV_SearchGrid.Columns["Voucher Date"].Width = 100;
-                DGV_SearchGrid.Columns["Invoice No."].Width = 100;
-                DGV_SearchGrid.Columns["Invoice Date"].Width = 100;
+                DGV_SearchGrid.Columns["Vouc No."].Width = 100;
+                DGV_SearchGrid.Columns["Vouc Date"].Width = 100;
+                DGV_SearchGrid.Columns["Inv No."].Width = 100;
+                DGV_SearchGrid.Columns["Inv Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier"].Width = 300;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;
-                DGV_SearchGrid.Columns["Total Products in Invoice"].Width = 150;
+                DGV_SearchGrid.Columns["Tot Pro in Inv"].Width = 150;
                 DGV_SearchGrid.Columns["Created By"].Width = 150;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
@@ -1593,7 +1593,6 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Concern ID"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_EntryType"].Visible = false;
                 DGV_SearchGrid.Columns["Purchase Type"].Visible = false;
-                DGV_SearchGrid.Columns["Status"].Visible = false;
 
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
