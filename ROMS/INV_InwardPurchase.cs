@@ -106,6 +106,11 @@ namespace ROMS
                         grdGrnlist.Rows[row.Index].Cells["clmStatus"].Value = "";
                         grdGrnlist.Rows[row.Index].Cells["clmStatus"].ReadOnly = true;
                     }
+                    if (Convert.ToString(grdGrnlist.Rows[row.Index].Cells["clmRMFlag"].Value) == "1")
+                    {
+                        grdGrnlist.Rows[row.Index].Cells["clmExpiryDate"].ReadOnly = true;
+                        grdGrnlist.Rows[row.Index].DefaultCellStyle.BackColor = Color.LightGray;
+                    }
                 }
                 //for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                 //{
@@ -292,6 +297,7 @@ namespace ROMS
                 dtInwardPurchase.Columns.Add("PR_BatchNoStatus", typeof(int));
                 dtInwardPurchase.Columns.Add("PR_BatchNoGeneration", typeof(int));
                 dtInwardPurchase.Columns.Add("GIPPR_INVSTSID", typeof(int));
+                dtInwardPurchase.Columns.Add("GIPPR_RMProductionFlag", typeof(int));
 
                 dtChkProducts.TableName = "TRN_GoodsInward_Purchase_Products";
                 dtChkProducts.Columns.Add("GIPPR_SNO", typeof(int));
@@ -307,6 +313,7 @@ namespace ROMS
                 dtChkProducts.Columns.Add("GIPPR_MRP", typeof(decimal));
                 dtChkProducts.Columns.Add("IDS", typeof(string));
                 dtChkProducts.Columns.Add("GIPPR_INVSTSID", typeof(int));
+                dtChkProducts.Columns.Add("GIPPR_RMProductionFlag", typeof(int));
             }
             catch (Exception ex)
             {
@@ -1821,7 +1828,7 @@ namespace ROMS
                         {
                             if (varError == 0)
                             {
-                                if (Convert.ToInt32(dtInwardPurchase.Columns.Count) == 18)
+                                if (Convert.ToInt32(dtInwardPurchase.Columns.Count) == 19) //default  Data table count
                                 {
                                     dtInwardPurchase.Columns.Remove("Column1");
                                     dtInwardPurchase.Columns.Remove("PR_MRPStatus");
@@ -2731,7 +2738,8 @@ namespace ROMS
                                         Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Quantity"]),Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shop Qty"]),
                                          Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack ID"]),
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[0].Rows[i][OrderID]),0
-                                            ,Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP Flag"]), Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]));
+                                            ,Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP Flag"]), 
+                                           Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["RM Flag"]));
 
                                     
                                     udfnStatus();
@@ -2762,7 +2770,8 @@ namespace ROMS
                                     }
 
                                     dtInwardPurchase.Rows.Add(false,Convert.ToInt32(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToInt32(objDs.Tables[0].Rows[i][OrderID]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Unit ID"]), ReceivedQty,ShopQty, Convert.ToInt32(objDs.Tables[0].Rows[i]["Rack ID"]),
-                                        Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["MRP Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PR_STSID"]));
+                                        Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["MRP Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Shelflife Status"]),
+                                        Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PR_STSID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["RM Flag"]));
 
                                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value)== "1")
                                     {
