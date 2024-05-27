@@ -999,8 +999,6 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Po Status"].Width = 100;
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
-                            grdPurchaseorderlist.Columns["Current Status"].Width = 130;
-                            grdPurchaseorderlist.Columns["Current Status"].HeaderText = "Overall Status";
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["COMID"].Visible = false;
                             grdPurchaseorderlist.Columns["Status1"].Visible = false;
