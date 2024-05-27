@@ -45,6 +45,7 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varConcernID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Concern ID"].Value);
                     MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
+                    MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 }
