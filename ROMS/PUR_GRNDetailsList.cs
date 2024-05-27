@@ -140,7 +140,7 @@ namespace ROMS
                 if(grdGRNList.Rows.Count>0)
                 {
                     lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
-                }
+                }               
             }
             catch (Exception ex)
             {
@@ -230,7 +230,9 @@ namespace ROMS
                             grdGRNList.Columns["ClmEdit"].Visible = true;
                             //grdGRNList.Columns["ClmEdit"].DisplayIndex = objDs.Tables[0].Columns.Count;
                             grdGRNList.Columns["ClmEdit"].Width = 50;
+                            grdGRNList.Columns["clmCheck"].Width = 50;
                             grdGRNList.Columns["clmPrint"].Visible = true;
+                            grdGRNList.Columns["clmCheck"].Visible = true;
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
                             grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
@@ -271,6 +273,29 @@ namespace ROMS
                             grdGRNList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             grdGRNList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                            grdGRNList.Columns["S.No."].ReadOnly = true;
+                            grdGRNList.Columns["Concern"].ReadOnly = true;
+                            grdGRNList.Columns["GRN No."].ReadOnly = true;
+                            grdGRNList.Columns["GRN Date"].ReadOnly = true;
+                            grdGRNList.Columns["Supplier"].ReadOnly = true;
+                            grdGRNList.Columns["City"].ReadOnly = true;
+                            grdGRNList.Columns["GSTIN"].ReadOnly = true;
+                            grdGRNList.Columns["Inv Date"].ReadOnly = true;
+                            grdGRNList.Columns["Inv No."].ReadOnly = true;
+                            grdGRNList.Columns["Inv Amt"].ReadOnly = true;
+                            grdGRNList.Columns["Created By"].ReadOnly = true;
+                            grdGRNList.Columns["Loading Charges"].ReadOnly = true;
+                            grdGRNList.Columns["Unloading Charges"].ReadOnly = true;
+                            grdGRNList.Columns["Order Type"].ReadOnly = true;
+                            grdGRNList.Columns["Any Pur Returns"].ReadOnly = true;
+                            grdGRNList.Columns["GRN Status"].ReadOnly = true;
+                            grdGRNList.Columns["Overall Status"].ReadOnly = true;
+                            grdGRNList.Columns["ClmEdit"].ReadOnly = true;
+                            grdGRNList.Columns["clmPrint"].ReadOnly = true;
+                            grdGRNList.Columns["Tot Pro"].ReadOnly = true;
+                            grdGRNList.Columns["Payment Mode"].ReadOnly = true;
+
                         }
                         else
                         {
@@ -921,9 +946,9 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    if (e.RowIndex < 0 || e.ColumnIndex < 3)        /*If a header cell*/
+                    if (e.RowIndex < 0 || e.ColumnIndex < 3 && e.ColumnIndex != 1)        /*If a header cell*/
                         return;
-                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image")
+                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image" && e.ColumnIndex != 1)
                         return;
                     //if ((e.ColumnIndex <2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
                     //    return;
@@ -938,10 +963,17 @@ namespace ROMS
 
                         e.Handled = true;
                     }
-
-
-
                     DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
+                    {
+                        if (e.ColumnIndex == 1)
+                        {
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].Value = null;
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2] = new DataGridViewTextBoxCell();
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].Value = "";
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].ReadOnly = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -991,6 +1023,7 @@ namespace ROMS
                     DGV_SearchGrid.Rows.Add();
                     DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
+                    DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
                     for (int i = 1; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
@@ -1000,6 +1033,9 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[2].ReadOnly = false;
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewCheckBoxCell();
+                    //DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1053,6 +1089,8 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewTextBoxCell();
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                     //DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     //DGV_SearchGrid.Columns[0].ReadOnly = true;
                 }
@@ -1442,6 +1480,7 @@ namespace ROMS
                     {
                         cell.Style.BackColor = Color.Red;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                        grdGRNList.Rows[i].Cells["clmCheck"].ReadOnly = true;
                         grdGRNList.Rows[i].Cells["clmLocPrint"].ReadOnly = true;
                         DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
                         c.Value = "";
@@ -1469,7 +1508,6 @@ namespace ROMS
                         cell2.Value = new Bitmap(1, 1);
                         cell2.ReadOnly = true;
                     }
-
                     /*
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN Status"].Value) == "")
                     {
@@ -1764,6 +1802,48 @@ namespace ROMS
                     MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnCompleted_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string varGrnId = "0";
+                //int varflag = 0;
+                for (int i = 0; i < grdGRNList.Rows.Count; i++)
+                {
+                    if (varGrnId=="0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value)==true)
+                    {
+                        varGrnId = Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
+                    }
+                    else if (varGrnId!="0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == true)
+                    {
+                        varGrnId = varGrnId + ',' + Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
+                    }
+                    //if(Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == false)
+                    //{
+                    //    varflag = 0;
+                    //}
+                }
+                SPDataService objDServ = new SPDataService();
+                string result = "";
+                TRN_GRN objTRNS_GRN = new TRN_GRN();
+                objTRNS_GRN.ViewType = 6;
+                objTRNS_GRN.paraCompletedIDs = Convert.ToString(varGrnId);
+                result = objDServ.udfnGRNEntry(objTRNS_GRN);
+                objDServ.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnListLoad();
+                }
+                }
             catch (Exception ex)
             {
                 objError = new DataError();

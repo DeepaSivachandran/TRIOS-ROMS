@@ -121,6 +121,14 @@ namespace ROMS
                             {
                                 rbNo.Checked = true;
                             }
+                            if(Convert.ToString(objDs.Tables[0].Rows[0]["GS_GRNPrint"]) == "1")
+                            {
+                                chkPrint.Checked = true;
+                            }
+                            else
+                            {
+                                chkPrint.Checked = false;
+                            }
                         }
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
@@ -183,7 +191,12 @@ namespace ROMS
                 {
                     objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock,txtbackuppath.Text);
+                int varGRNCheck = 0;
+                if(chkPrint.Checked==true)
+                {
+                    varGRNCheck = 1;
+                }
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock,txtbackuppath.Text, varGRNCheck);
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
