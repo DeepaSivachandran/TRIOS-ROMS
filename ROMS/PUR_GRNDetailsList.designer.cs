@@ -79,7 +79,7 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmLocPrint = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
@@ -634,7 +634,10 @@
             // clmLocPrint
             // 
             this.clmLocPrint.HeaderText = "Location Print";
+            this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmLocPrint.Name = "clmLocPrint";
+            this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // clmCheck
             // 
@@ -720,7 +723,7 @@
         private System.Windows.Forms.Button btnCompleted;
         private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmLocPrint;
+        private System.Windows.Forms.DataGridViewImageColumn clmLocPrint;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
     }
 }
