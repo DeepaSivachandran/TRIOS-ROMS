@@ -30,6 +30,7 @@ namespace ROMS
         {
             try
             {
+                
                 if (grdGrnApprovalList.Rows.Count > 0)
                 {
                     MainForm.objPUR_GRNApproval = new PUR_GRNApproval();
@@ -48,6 +49,7 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -59,13 +61,15 @@ namespace ROMS
         {
             try
             {
-                if(ApprovalFlag==1)
+                if(ApprovalFlag == 1)
                 {
                     tsbApproval.Visible = true;
+                    tsbEdit.Visible = false;
                 }
                 else
                 {
                     tsbApproval.Visible = false;
+                    tsbEdit.Visible = true;
                 }
                 cmbConcern.Focus();
                 udfnCmbConcern();
@@ -144,10 +148,12 @@ namespace ROMS
         {
             try
             {
-                
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                if (ApprovalFlag==0)
                 {
-                    tsbEdit_Click(sender, e);
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                    {
+                        tsbEdit_Click(sender, e);
+                    }
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -981,7 +987,10 @@ namespace ROMS
         {
             try
             {
-                tsbEdit_Click(sender, e);
+                if (ApprovalFlag==0)
+                {
+                    tsbEdit_Click(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -994,9 +1003,12 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                if (ApprovalFlag==0)
                 {
-                    tsbEdit_Click(sender, e);
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        tsbEdit_Click(sender, e);
+                    }
                 }
             }
             catch (Exception ex)

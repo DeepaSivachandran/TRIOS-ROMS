@@ -4047,7 +4047,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,0, 0);
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,Convert.ToInt32(cmbState.SelectedValue), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
