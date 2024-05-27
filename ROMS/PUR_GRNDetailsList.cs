@@ -467,6 +467,42 @@ namespace ROMS
                                 }
                             }
                             break;
+                        case "clmLocPrint":
+                            SPDataService objDS = new SPDataService();
+                            string varMessage1 = objDS.udfnGetMessages(87);
+                            objDS.CloseConnection();
+                            result1 = MessageBox.Show(varMessage1, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    string varHeader = "";
+                                    string ID = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_GRNDetails.rpt");
+                                    varHeader = "Godown Wise GRN Transfer";
+
+                                    objBillreport.SetParameterValue("paraGRNID", Convert.ToInt32(ID));
+                                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                                catch (Exception ex)
+                                {
+                                    objError = new DataError();
+                                    objError.WriteFile(ex);
+                                }
+                            }
+                            break;
                     }
                 }
 
@@ -1445,6 +1481,11 @@ namespace ROMS
                         cell.Style.BackColor = Color.Red;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                         grdGRNList.Rows[i].Cells["clmCheck"].ReadOnly = true;
+                        grdGRNList.Rows[i].Cells["clmLocPrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
+                        c.Value = "";
+                        grdGRNList.Rows[i].Cells["clmLocPrint"] = c;
+                        c.ReadOnly = true;
                     }
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "24")
                     {

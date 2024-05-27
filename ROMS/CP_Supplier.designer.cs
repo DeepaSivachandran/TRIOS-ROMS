@@ -66,6 +66,13 @@
             this.tcSupplier = new System.Windows.Forms.TabControl();
             this.tbSupplier = new System.Windows.Forms.TabPage();
             this.grpSupplierDetails = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbPaymentDisc = new System.Windows.Forms.ComboBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.txtDays = new System.Windows.Forms.TextBox();
+            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.txtDiscountPer = new System.Windows.Forms.TextBox();
+            this.textBox30 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.txtAccName = new System.Windows.Forms.TextBox();
@@ -280,6 +287,7 @@
             this.tcSupplier.SuspendLayout();
             this.tbSupplier.SuspendLayout();
             this.grpSupplierDetails.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.grbEnvelopeDetails.SuspendLayout();
             this.panelStatus.SuspendLayout();
@@ -397,6 +405,7 @@
             // 
             // grpSupplierDetails
             // 
+            this.grpSupplierDetails.Controls.Add(this.groupBox2);
             this.grpSupplierDetails.Controls.Add(this.groupBox5);
             this.grpSupplierDetails.Controls.Add(this.lblcityid);
             this.grpSupplierDetails.Controls.Add(this.lblcity);
@@ -413,6 +422,100 @@
             this.grpSupplierDetails.TabIndex = 71;
             this.grpSupplierDetails.TabStop = false;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cmbPaymentDisc);
+            this.groupBox2.Controls.Add(this.textBox16);
+            this.groupBox2.Controls.Add(this.txtDays);
+            this.groupBox2.Controls.Add(this.textBox23);
+            this.groupBox2.Controls.Add(this.txtDiscountPer);
+            this.groupBox2.Controls.Add(this.textBox30);
+            this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(587, 26);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(291, 115);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Payment Details";
+            // 
+            // cmbPaymentDisc
+            // 
+            this.cmbPaymentDisc.FormattingEnabled = true;
+            this.cmbPaymentDisc.Location = new System.Drawing.Point(106, 23);
+            this.cmbPaymentDisc.Name = "cmbPaymentDisc";
+            this.cmbPaymentDisc.Size = new System.Drawing.Size(165, 28);
+            this.cmbPaymentDisc.TabIndex = 22;
+            this.cmbPaymentDisc.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentDisc_SelectedIndexChanged);
+            this.cmbPaymentDisc.Enter += new System.EventHandler(this.CmbPaymentDisc_Enter);
+            this.cmbPaymentDisc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentDisc_KeyDown);
+            this.cmbPaymentDisc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPaymentDisc_KeyPress);
+            this.cmbPaymentDisc.Leave += new System.EventHandler(this.CmbPaymentDisc_Leave);
+            // 
+            // textBox16
+            // 
+            this.textBox16.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox16.Enabled = false;
+            this.textBox16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox16.Location = new System.Drawing.Point(6, 50);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.ReadOnly = true;
+            this.textBox16.Size = new System.Drawing.Size(100, 27);
+            this.textBox16.TabIndex = 1111140;
+            this.textBox16.Text = "Days\r\n";
+            // 
+            // txtDays
+            // 
+            this.txtDays.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDays.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDays.Location = new System.Drawing.Point(106, 50);
+            this.txtDays.MaxLength = 2;
+            this.txtDays.Name = "txtDays";
+            this.txtDays.Size = new System.Drawing.Size(165, 27);
+            this.txtDays.TabIndex = 23;
+            this.txtDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDays.Enter += new System.EventHandler(this.TxtDays_Enter);
+            this.txtDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDays_KeyDown);
+            this.txtDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDays_KeyPress);
+            this.txtDays.Leave += new System.EventHandler(this.TxtDays_Leave);
+            // 
+            // textBox23
+            // 
+            this.textBox23.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox23.Enabled = false;
+            this.textBox23.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox23.Location = new System.Drawing.Point(6, 77);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.ReadOnly = true;
+            this.textBox23.Size = new System.Drawing.Size(100, 27);
+            this.textBox23.TabIndex = 1111138;
+            this.textBox23.Text = "Discount %";
+            // 
+            // txtDiscountPer
+            // 
+            this.txtDiscountPer.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDiscountPer.Location = new System.Drawing.Point(106, 77);
+            this.txtDiscountPer.MaxLength = 3;
+            this.txtDiscountPer.Name = "txtDiscountPer";
+            this.txtDiscountPer.Size = new System.Drawing.Size(165, 27);
+            this.txtDiscountPer.TabIndex = 24;
+            this.txtDiscountPer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDiscountPer.Enter += new System.EventHandler(this.TxtDiscountPer_Enter);
+            this.txtDiscountPer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDiscountPer_KeyDown);
+            this.txtDiscountPer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDiscountPer_KeyPress);
+            this.txtDiscountPer.Leave += new System.EventHandler(this.TxtDiscountPer_Leave);
+            // 
+            // textBox30
+            // 
+            this.textBox30.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox30.Enabled = false;
+            this.textBox30.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox30.Location = new System.Drawing.Point(6, 23);
+            this.textBox30.Name = "textBox30";
+            this.textBox30.ReadOnly = true;
+            this.textBox30.Size = new System.Drawing.Size(100, 27);
+            this.textBox30.TabIndex = 200000;
+            this.textBox30.Text = "Payment Discount";
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.textBox13);
@@ -428,10 +531,10 @@
             this.groupBox5.Controls.Add(this.textBox19);
             this.groupBox5.Controls.Add(this.txtBankname);
             this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(589, 58);
+            this.groupBox5.Location = new System.Drawing.Point(587, 143);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(291, 195);
-            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Bank Details";
             // 
@@ -454,7 +557,7 @@
             this.txtAccName.MaxLength = 20;
             this.txtAccName.Name = "txtAccName";
             this.txtAccName.Size = new System.Drawing.Size(165, 27);
-            this.txtAccName.TabIndex = 20;
+            this.txtAccName.TabIndex = 28;
             this.txtAccName.Enter += new System.EventHandler(this.TxtAccName_Enter);
             this.txtAccName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAccName_KeyDown);
             this.txtAccName.Leave += new System.EventHandler(this.TxtAccName_Leave);
@@ -479,7 +582,7 @@
             this.txtBankShortName.MaxLength = 20;
             this.txtBankShortName.Name = "txtBankShortName";
             this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
-            this.txtBankShortName.TabIndex = 18;
+            this.txtBankShortName.TabIndex = 26;
             this.txtBankShortName.Enter += new System.EventHandler(this.TxtBankShortName_Enter);
             this.txtBankShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankShortName_KeyDown);
             this.txtBankShortName.Leave += new System.EventHandler(this.TxtBankShortName_Leave);
@@ -503,7 +606,7 @@
             this.txtbranchname.MaxLength = 50;
             this.txtbranchname.Name = "txtbranchname";
             this.txtbranchname.Size = new System.Drawing.Size(165, 27);
-            this.txtbranchname.TabIndex = 19;
+            this.txtbranchname.TabIndex = 27;
             this.txtbranchname.Enter += new System.EventHandler(this.Txtbranchname_Enter);
             this.txtbranchname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtbranchname_KeyDown);
             this.txtbranchname.Leave += new System.EventHandler(this.Txtbranchname_Leave);
@@ -527,7 +630,7 @@
             this.txtIFScode.MaxLength = 11;
             this.txtIFScode.Name = "txtIFScode";
             this.txtIFScode.Size = new System.Drawing.Size(165, 27);
-            this.txtIFScode.TabIndex = 22;
+            this.txtIFScode.TabIndex = 30;
             this.txtIFScode.Enter += new System.EventHandler(this.TxtIFScode_Enter);
             this.txtIFScode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIFScode_KeyDown);
             this.txtIFScode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIFScode_KeyPress);
@@ -552,7 +655,7 @@
             this.txtAccno.MaxLength = 20;
             this.txtAccno.Name = "txtAccno";
             this.txtAccno.Size = new System.Drawing.Size(165, 27);
-            this.txtAccno.TabIndex = 21;
+            this.txtAccno.TabIndex = 29;
             this.txtAccno.Enter += new System.EventHandler(this.TxtAccno_Enter);
             this.txtAccno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAccno_KeyDown);
             this.txtAccno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAccno_KeyPress);
@@ -577,7 +680,7 @@
             this.txtBankname.MaxLength = 50;
             this.txtBankname.Name = "txtBankname";
             this.txtBankname.Size = new System.Drawing.Size(165, 27);
-            this.txtBankname.TabIndex = 17;
+            this.txtBankname.TabIndex = 25;
             this.txtBankname.Enter += new System.EventHandler(this.TxtBankname_Enter);
             this.txtBankname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankname_KeyDown);
             this.txtBankname.Leave += new System.EventHandler(this.TxtBankname_Leave);
@@ -585,7 +688,7 @@
             // lblcityid
             // 
             this.lblcityid.AutoSize = true;
-            this.lblcityid.Location = new System.Drawing.Point(613, 174);
+            this.lblcityid.Location = new System.Drawing.Point(613, 144);
             this.lblcityid.Name = "lblcityid";
             this.lblcityid.Size = new System.Drawing.Size(16, 20);
             this.lblcityid.TabIndex = 78;
@@ -671,10 +774,10 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(719, 265);
+            this.panelStatus.Location = new System.Drawing.Point(719, 349);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(161, 27);
-            this.panelStatus.TabIndex = 76;
+            this.panelStatus.TabIndex = 31;
             // 
             // rbInactive
             // 
@@ -958,7 +1061,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(608, 265);
+            this.textBox4.Location = new System.Drawing.Point(608, 349);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(111, 27);
@@ -1306,10 +1409,10 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(717, 304);
+            this.btnSave.Location = new System.Drawing.Point(717, 387);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 27;
+            this.btnSave.TabIndex = 32;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -1322,10 +1425,10 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(805, 305);
+            this.btnClose.Location = new System.Drawing.Point(805, 388);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 28;
+            this.btnClose.TabIndex = 33;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -3328,6 +3431,8 @@
             this.tbSupplier.ResumeLayout(false);
             this.grpSupplierDetails.ResumeLayout(false);
             this.grpSupplierDetails.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.grbEnvelopeDetails.ResumeLayout(false);
@@ -3593,5 +3698,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmScheduleStatusId;
         private System.Windows.Forms.DataGridViewImageColumn clmedit;
         private System.Windows.Forms.DataGridViewImageColumn clmDelete;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cmbPaymentDisc;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox txtDays;
+        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.TextBox txtDiscountPer;
+        private System.Windows.Forms.TextBox textBox30;
     }
 }
