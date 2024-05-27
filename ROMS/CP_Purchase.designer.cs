@@ -3969,6 +3969,7 @@
             this.clmConvertProduct.HeaderText = "Convert Pro";
             this.clmConvertProduct.Name = "clmConvertProduct";
             this.clmConvertProduct.ReadOnly = true;
+            this.clmConvertProduct.Visible = false;
             this.clmConvertProduct.Width = 50;
             // 
             // clmAddPro

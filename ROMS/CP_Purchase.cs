@@ -4901,7 +4901,7 @@ namespace ROMS
                                                   let snoValue = string.IsNullOrEmpty(Convert.ToString(row.Cells["clmsno"].Value)) ? 0 : Convert.ToInt32(row.Cells["clmsno"].Value)
                                                   select snoValue).Max();
                                 }
-                                grdSupplierList.Rows.Add(maxSno + 1, /*(varpono[0]).Trim(),*/varPurProductType,(varPICode).Trim(), (varTName).Trim(), (var_Symbol).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDateAdd).Trim()
+                                grdSupplierList.Rows.Add(maxSno + 1,null, /*(varpono[0]).Trim(),*/varPurProductType,(varPICode).Trim(), (varTName).Trim(), (var_Symbol).Trim(), varGrnMrp, (txtMrp.Text).Trim(), (varExpiryDateAdd).Trim()
                                 , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), txtSourceLocation.Text, cmbrack.Text, cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0, 0, varId, varPrInvFlag,varHSNid, varPrMRPFlag,varGRNProType,varRMProductionFlag);
                                 grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
