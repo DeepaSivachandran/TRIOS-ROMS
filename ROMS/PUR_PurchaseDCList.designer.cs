@@ -75,6 +75,7 @@
             this.DGV_ProdSearchGrid = new System.Windows.Forms.DataGridView();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.ep_PurchaseDC = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPurchaseInvoiceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -524,6 +525,8 @@
             this.grdPurchaseDCList.ColumnHeadersHeight = 30;
             this.grdPurchaseDCList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseDCList.ColumnHeadersVisible = false;
+            this.grdPurchaseDCList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmPrint});
             this.grdPurchaseDCList.EnableHeadersVisualStyles = false;
             this.grdPurchaseDCList.GridColor = System.Drawing.Color.White;
             this.grdPurchaseDCList.Location = new System.Drawing.Point(3, 130);
@@ -538,6 +541,7 @@
             this.grdPurchaseDCList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseDCList.Size = new System.Drawing.Size(1348, 510);
             this.grdPurchaseDCList.TabIndex = 1;
+            this.grdPurchaseDCList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDCList_CellContentClick);
             this.grdPurchaseDCList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDCList_DataBindingComplete);
             this.grdPurchaseDCList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseDCList_Scroll);
             this.grdPurchaseDCList.SelectionChanged += new System.EventHandler(this.GrdPurchaseDCList_SelectionChanged);
@@ -633,6 +637,15 @@
             // 
             this.ep_PurchaseDC.ContainerControl = this;
             // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // PUR_PurchaseDCList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -705,5 +718,6 @@
         public System.Windows.Forms.DataGridView grdProDetails;
         public System.Windows.Forms.DataGridView DGV_ProdSearchGrid;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }
