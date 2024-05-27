@@ -1844,6 +1844,7 @@ namespace ROMS
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
                 MainForm.objCP_ChangePasswordConfirmation.flag = 1;
+                PbDeleteFlag = 0;
                 MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
                 if (PbDeleteFlag == 1)
                 {
@@ -1921,6 +1922,7 @@ namespace ROMS
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
                 MainForm.objCP_ChangePasswordConfirmation.flag = 1;
+                PbDeleteFlag = 0;
                 MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
                 if (PbDeleteFlag == 1)
                 {
