@@ -79,6 +79,7 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmLocPrint = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
@@ -555,6 +556,7 @@
             this.grdGRNList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ClmEdit,
             this.clmPrint,
+            this.clmLocPrint,
             this.clmCheck});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -628,6 +630,11 @@
             this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmPrint.Name = "clmPrint";
             this.clmPrint.Width = 50;
+            // 
+            // clmLocPrint
+            // 
+            this.clmLocPrint.HeaderText = "Location Print";
+            this.clmLocPrint.Name = "clmLocPrint";
             // 
             // clmCheck
             // 
@@ -713,6 +720,7 @@
         private System.Windows.Forms.Button btnCompleted;
         private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmLocPrint;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
     }
 }
