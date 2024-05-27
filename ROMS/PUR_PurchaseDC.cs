@@ -2657,6 +2657,7 @@ namespace ROMS
                                         if (result1 == DialogResult.Yes)
                                         {
                                             MainForm.objPUR_DC_PrintPopUp = new PUR_DC_PrintPopUp();
+                                            MainForm.objPUR_DC_PrintPopUp.varEditFlag = 1;
                                             if (varDCID == 0)
                                             {
                                                 MainForm.objPUR_DC_PrintPopUp.varID = varvalue[2];

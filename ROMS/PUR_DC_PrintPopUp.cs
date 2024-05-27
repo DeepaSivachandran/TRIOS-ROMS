@@ -29,7 +29,8 @@ namespace ROMS
         public string varVerifiedName = "";
         public string pbDCId = "", pbstsId = "";
         public string varPasskey = "",varID="";
-        public int flag = 0, verified1 = 0, verified2 = 0;
+        public int flag = 0, verified1 = 0, verified2 = 0, varEditFlag = 0;
+        int varCompanyID = 0;
         public PUR_DC_PrintPopUp()
         {
 
@@ -45,16 +46,25 @@ namespace ROMS
         {
             try
             {
-                string ID = "0";
-                if (MainForm.objPUR_PurchaseDC.varDCID == 0)
+                string ID = "0"; varCompanyID = 0;
+                if (varEditFlag == 1)
                 {
-                    ID = varID;
+                    if (MainForm.objPUR_PurchaseDC.varDCID == 0)
+                    {
+                        ID = varID;
+                    }
+                    else
+                    {
+                        ID = Convert.ToString(MainForm.objPUR_PurchaseDC.varDCID);
+                    }
+                    varCompanyID = Convert.ToInt32(MainForm.objPUR_PurchaseDC.cmbConcern.SelectedValue);
                 }
                 else
                 {
-                    ID = Convert.ToString(MainForm.objPUR_PurchaseDC.varDCID);
+                    ID = Convert.ToString(MainForm.objPUR_PurchaseDCList.grdPurchaseDCList.SelectedRows[0].Cells["ID"].Value);
+                    varCompanyID = Convert.ToInt32(MainForm.objPUR_PurchaseDCList.grdPurchaseDCList.SelectedRows[0].Cells["COMID"].Value);
                 }
-                if (chkThermal.Checked==true)
+                if (rbThermal.Checked==true)
                 {
                     string varHeader = "";
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -63,7 +73,7 @@ namespace ROMS
                     varHeader = "Purchase DC";
 
                     objBillreport.SetParameterValue("paraDCID", Convert.ToInt32(ID));
-                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(MainForm.objPUR_PurchaseDC.cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(varCompanyID));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -76,7 +86,7 @@ namespace ROMS
                     MainForm.objReportLoad.ShowDialog();
                     MainForm.objPUR_DC_PrintPopUp.Close();
                 }
-                else if (chkA4Print.Checked==true)
+                else if (rbA4Print.Checked==true)
                 {
                     string varHeader = "";
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -85,7 +95,7 @@ namespace ROMS
                     varHeader = "Purchase DC";
 
                     objBillreport.SetParameterValue("paraDCID", Convert.ToInt32(ID));
-                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(MainForm.objPUR_PurchaseDC.cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(varCompanyID));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
