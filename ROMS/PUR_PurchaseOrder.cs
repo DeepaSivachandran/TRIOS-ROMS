@@ -3067,6 +3067,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_BatchNo"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_BatchNoGeneration"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_RMForProduction"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_MRPFlag"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PRCTID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_ShelfLife"].Visible = false;
                                     DGV_FilterProduct.Columns["Product Shelf Life"].Width = 110;

@@ -53,6 +53,7 @@ namespace ROMS
         private ToolTip tpgst = new ToolTip();
         private ToolTip tpname = new ToolTip();
         private ToolTip tpschedule = new ToolTip();
+        private ToolTip tpPayment = new ToolTip();
 
         private ToolTip tpBankName = new ToolTip();
         private ToolTip tpBankShortName = new ToolTip();
@@ -636,6 +637,14 @@ namespace ROMS
                         tpgst.Show("Please enter valid supplier GSTIN.", txtgstin, 5000);
                         blnErrorFlag = true;
                     }
+                }
+                if(cmbPaymentDisc.Text=="")
+                {
+                    errCompany.SetError(txtgstin, "Please select payment discount");
+                    cmbPaymentDisc.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPayment.ShowAlways = true;
+                    tpPayment.Show("Please select payment discount", cmbPaymentDisc, 5000);
+                    blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtCity.Text) != "")
                 {
@@ -4038,7 +4047,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,0, 0);
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,Convert.ToInt32(cmbState.SelectedValue), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

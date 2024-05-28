@@ -2647,20 +2647,24 @@ namespace ROMS
                                     //    varCloseFlag = 1;
                                     //    udfnclose();
                                     //}
-                                    DialogResult result1 = DialogResult.Yes;
-                                    SPDataService objDServs = new SPDataService();
-                                    string varMessage = objDServs.udfnGetMessages(87);
-                                    objDServs.CloseConnection();
-                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (result1 == DialogResult.Yes)
+                                    if (btnSave.Text == "Save")
                                     {
-                                        MainForm.objPUR_DC_PrintPopUp = new PUR_DC_PrintPopUp();
-                                        if (varDCID == 0)
+                                        DialogResult result1 = DialogResult.Yes;
+                                        SPDataService objDServs = new SPDataService();
+                                        string varMessage = objDServs.udfnGetMessages(87);
+                                        objDServs.CloseConnection();
+                                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if (result1 == DialogResult.Yes)
                                         {
-                                            MainForm.objPUR_DC_PrintPopUp.varID = varvalue[2];
-                                        }
+                                            MainForm.objPUR_DC_PrintPopUp = new PUR_DC_PrintPopUp();
+                                            MainForm.objPUR_DC_PrintPopUp.varEditFlag = 1;
+                                            if (varDCID == 0)
+                                            {
+                                                MainForm.objPUR_DC_PrintPopUp.varID = varvalue[2];
+                                            }
 
-                                        MainForm.objPUR_DC_PrintPopUp.ShowDialog();
+                                            MainForm.objPUR_DC_PrintPopUp.ShowDialog();
+                                        }
                                     }
                                     varCloseFlag = 1;
                                     udfnclose();

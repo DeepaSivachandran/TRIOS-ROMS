@@ -1024,54 +1024,57 @@ namespace ROMS
                                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             try
                                             {
-                                                if (varGrnId == 0)
+                                                if (btnSave.Text == "Update")
                                                 {
-                                                    GRNUpdateID = varvalue[2];
-                                                    //string varQrcode = varvalue[3];
-                                                    //var varImgMemoryStream = new MemoryStream();
-                                                    //QrcodeImg.Text = varQrcode;
-                                                    //QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
-                                                    //varobjBarCodeByte = varImgMemoryStream.GetBuffer();
-                                                    //objTRNS_GRN.ViewType = 3;
-                                                    //objTRNS_GRN.paraStockRequestID = Convert.ToInt32(SSRUpdatevalue);
-                                                    //objTRNS_StockRequest.paraQrimg = (varobjBarCodeByte);
-                                                    //varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
-                                                    //objspservice.CloseConnection();
-                                                }
-                                                string ID = "0";
-                                                if (varGrnId == 0)
-                                                {
-                                                    ID = varvalue[2];
-                                                }
-                                                else
-                                                {
-                                                    ID = Convert.ToString(varGrnId);
-                                                }
+                                                    if (varGrnId == 0)
+                                                    {
+                                                        GRNUpdateID = varvalue[2];
+                                                        //string varQrcode = varvalue[3];
+                                                        //var varImgMemoryStream = new MemoryStream();
+                                                        //QrcodeImg.Text = varQrcode;
+                                                        //QrcodeImg.Image.Save(varImgMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                                                        //varobjBarCodeByte = varImgMemoryStream.GetBuffer();
+                                                        //objTRNS_GRN.ViewType = 3;
+                                                        //objTRNS_GRN.paraStockRequestID = Convert.ToInt32(SSRUpdatevalue);
+                                                        //objTRNS_StockRequest.paraQrimg = (varobjBarCodeByte);
+                                                        //varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
+                                                        //objspservice.CloseConnection();
+                                                    }
+                                                    string ID = "0";
+                                                    if (varGrnId == 0)
+                                                    {
+                                                        ID = varvalue[2];
+                                                    }
+                                                    else
+                                                    {
+                                                        ID = Convert.ToString(varGrnId);
+                                                    }
 
-                                                SPDataService objDServs = new SPDataService();
-                                                string varMessage = objDServs.udfnGetMessages(87);
-                                                objDServs.CloseConnection();
-                                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                                if (result1 == DialogResult.Yes)
-                                                {
-                                                    string varHeader = "";
-                                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_GRNDetails.rpt");
-                                                    varHeader = "Godown Wise GRN Transfer";
+                                                    SPDataService objDServs = new SPDataService();
+                                                    string varMessage = objDServs.udfnGetMessages(87);
+                                                    objDServs.CloseConnection();
+                                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                    if (result1 == DialogResult.Yes)
+                                                    {
+                                                        string varHeader = "";
+                                                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_GRNDetails.rpt");
+                                                        varHeader = "Godown Wise GRN Transfer";
 
-                                                    objBillreport.SetParameterValue("paraGRNID", Convert.ToInt32(ID));
-                                                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
-                                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                                    objValidation.CrySqlConnection(objBillreport);
+                                                        objBillreport.SetParameterValue("paraGRNID", Convert.ToInt32(ID));
+                                                        objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                                                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                                        objValidation.CrySqlConnection(objBillreport);
 
-                                                    MainForm.objReportLoad = new ReportLoad();
-                                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                                    MainForm.objReportLoad.Text = varHeader;
-                                                    MainForm.objReportLoad.ShowDialog();
+                                                        MainForm.objReportLoad = new ReportLoad();
+                                                        MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                                        MainForm.objReportLoad.Text = varHeader;
+                                                        MainForm.objReportLoad.ShowDialog();
+                                                    }
                                                 }
                                             }
                                             catch (Exception ex)

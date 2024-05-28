@@ -153,7 +153,7 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["Tot Pro"].Width = 100;
                                 grdPurchaseDCList.Columns["Created By"].Width = 200;
                                 grdPurchaseDCList.Columns["GSTIN"].Width = 140;
-                                grdPurchaseDCList.Columns["Status"].Width = 140;
+                                //grdPurchaseDCList.Columns["Status"].Width = 140;
                                 grdPurchaseDCList.Columns["clmPrint"].Width = 50;
                                 grdPurchaseDCList.Columns["Pur Dc Status"].Width = 150;
                                 grdPurchaseDCList.Columns["Overall Status"].Width = 180;
@@ -299,8 +299,8 @@ namespace ROMS
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     // DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
-                    DGV_SearchGrid.Columns[1].ReadOnly = true;
-                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -330,6 +330,8 @@ namespace ROMS
                     {
                         dgv2.Rows[rowIndex].Cells[i].Value = "";
                     }
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -2113,24 +2115,9 @@ namespace ROMS
                             result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (result1 == DialogResult.Yes)
                             {
-                                string varHeader = "";
-                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_PurchaseDC.rpt");
-                                varHeader = "Purchase DC";
-
-                                objBillreport.SetParameterValue("paraDCID", Convert.ToInt32(ID));
-                                objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
-                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                objValidation.CrySqlConnection(objBillreport);
-
-                                MainForm.objReportLoad = new ReportLoad();
-                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                MainForm.objReportLoad.Text = varHeader;
-                                MainForm.objReportLoad.ShowDialog();
+                                MainForm.objPUR_DC_PrintPopUp = new PUR_DC_PrintPopUp();
+                                MainForm.objPUR_DC_PrintPopUp.varID = Convert.ToString(ID);
+                                MainForm.objPUR_DC_PrintPopUp.ShowDialog();
                             }
                             break;
                     }

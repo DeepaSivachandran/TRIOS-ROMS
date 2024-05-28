@@ -130,7 +130,6 @@ namespace ROMS
                 MainForm.objPUR_PurchaseDC.varVerifiedName = Convert.ToString(txtVerified.Text);
                 MainForm.objPUR_PurchaseDC.PbVerified = 1;
                 MainForm.objPUR_PurchaseDC.lblVerify.Text = Convert.ToString(txtVerified.Text);
-                MainForm.objPUR_PurchaseDC.lblVerifyDate.Text = Convert.ToString(dpVerified.Text);
                 this.Close();
             }
             catch (Exception ex)

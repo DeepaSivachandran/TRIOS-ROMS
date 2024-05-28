@@ -968,10 +968,10 @@ namespace ROMS
                     {
                         if (e.ColumnIndex == 1)
                         {
-                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].Value = null;
-                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2] = new DataGridViewTextBoxCell();
-                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].Value = "";
-                            DGV_SearchGrid.Rows[e.RowIndex].Cells[2].ReadOnly = true;
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = null;
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[3] = new DataGridViewTextBoxCell();
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = "";
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[3].ReadOnly = true;
                         }
                     }
                 }
@@ -1034,7 +1034,8 @@ namespace ROMS
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[2].ReadOnly = false;
-                    DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewCheckBoxCell();
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewCheckBoxCell();
                     //DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                 }
             }
@@ -1089,8 +1090,10 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
-                    DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewTextBoxCell();
-                    DGV_SearchGrid.Rows[0].Cells[2].Value = "";
+                    DGV_SearchGrid.Columns[2].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewTextBoxCell();
+                    //DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                     //DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     //DGV_SearchGrid.Columns[0].ReadOnly = true;
                 }
@@ -1482,10 +1485,14 @@ namespace ROMS
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                         grdGRNList.Rows[i].Cells["clmCheck"].ReadOnly = true;
                         grdGRNList.Rows[i].Cells["clmLocPrint"].ReadOnly = true;
-                        DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
-                        c.Value = "";
-                        grdGRNList.Rows[i].Cells["clmLocPrint"] = c;
-                        c.ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdGRNList.Rows[i].Cells["clmLocPrint"] = print;
+                        print.ReadOnly = true;
+                        DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
+                        Check.Value = "";
+                        grdGRNList.Rows[i].Cells["clmCheck"] = Check;
+                        Check.ReadOnly = true;
                     }
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "24")
                     {
