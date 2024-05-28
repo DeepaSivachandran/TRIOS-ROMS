@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtVerifiedBy2 = new System.Windows.Forms.TextBox();
+            this.txtVerifiedBy1 = new System.Windows.Forms.TextBox();
+            this.txtCompletedBy = new System.Windows.Forms.TextBox();
+            this.txtEnteredBy = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -106,10 +110,6 @@
             this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.txtEnteredBy = new System.Windows.Forms.TextBox();
-            this.txtCompletedBy = new System.Windows.Forms.TextBox();
-            this.txtVerifiedBy1 = new System.Windows.Forms.TextBox();
-            this.txtVerifiedBy2 = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -186,6 +186,46 @@
             this.groupBox3.Size = new System.Drawing.Size(389, 123);
             this.groupBox3.TabIndex = 1111220;
             this.groupBox3.TabStop = false;
+            // 
+            // txtVerifiedBy2
+            // 
+            this.txtVerifiedBy2.Enabled = false;
+            this.txtVerifiedBy2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtVerifiedBy2.Location = new System.Drawing.Point(84, 91);
+            this.txtVerifiedBy2.Name = "txtVerifiedBy2";
+            this.txtVerifiedBy2.ReadOnly = true;
+            this.txtVerifiedBy2.Size = new System.Drawing.Size(297, 25);
+            this.txtVerifiedBy2.TabIndex = 1111239;
+            // 
+            // txtVerifiedBy1
+            // 
+            this.txtVerifiedBy1.Enabled = false;
+            this.txtVerifiedBy1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtVerifiedBy1.Location = new System.Drawing.Point(84, 66);
+            this.txtVerifiedBy1.Name = "txtVerifiedBy1";
+            this.txtVerifiedBy1.ReadOnly = true;
+            this.txtVerifiedBy1.Size = new System.Drawing.Size(297, 25);
+            this.txtVerifiedBy1.TabIndex = 1111238;
+            // 
+            // txtCompletedBy
+            // 
+            this.txtCompletedBy.Enabled = false;
+            this.txtCompletedBy.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtCompletedBy.Location = new System.Drawing.Point(84, 41);
+            this.txtCompletedBy.Name = "txtCompletedBy";
+            this.txtCompletedBy.ReadOnly = true;
+            this.txtCompletedBy.Size = new System.Drawing.Size(297, 25);
+            this.txtCompletedBy.TabIndex = 1111237;
+            // 
+            // txtEnteredBy
+            // 
+            this.txtEnteredBy.Enabled = false;
+            this.txtEnteredBy.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtEnteredBy.Location = new System.Drawing.Point(84, 16);
+            this.txtEnteredBy.Name = "txtEnteredBy";
+            this.txtEnteredBy.ReadOnly = true;
+            this.txtEnteredBy.Size = new System.Drawing.Size(297, 25);
+            this.txtEnteredBy.TabIndex = 1111236;
             // 
             // textBox6
             // 
@@ -730,14 +770,14 @@
             this.grdGrnApproval.AllowUserToResizeRows = false;
             this.grdGrnApproval.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdGrnApproval.ColumnHeadersHeight = 30;
             this.grdGrnApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGrnApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -759,22 +799,22 @@
             this.clmUnitDecimal,
             this.clmStatus,
             this.clmReason});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdGrnApproval.EnableHeadersVisualStyles = false;
             this.grdGrnApproval.GridColor = System.Drawing.Color.White;
             this.grdGrnApproval.Location = new System.Drawing.Point(6, 135);
             this.grdGrnApproval.Name = "grdGrnApproval";
             this.grdGrnApproval.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdGrnApproval.RowTemplate.Height = 25;
             this.grdGrnApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnApproval.Size = new System.Drawing.Size(1335, 434);
@@ -867,25 +907,30 @@
             // 
             // Sno
             // 
+            this.Sno.Frozen = true;
             this.Sno.HeaderText = "S.No";
             this.Sno.Name = "Sno";
             this.Sno.Width = 50;
             // 
             // Column2
             // 
+            this.Column2.Frozen = true;
             this.Column2.HeaderText = "P.I Code";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.Width = 180;
             // 
             // clmproduct
             // 
+            this.clmproduct.Frozen = true;
             this.clmproduct.HeaderText = "Product Name";
             this.clmproduct.Name = "clmproduct";
             this.clmproduct.ReadOnly = true;
-            this.clmproduct.Width = 200;
+            this.clmproduct.Width = 350;
             // 
             // Column6
             // 
+            this.Column6.Frozen = true;
             this.Column6.HeaderText = "Unit";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
@@ -983,46 +1028,6 @@
             this.clmReason.Name = "clmReason";
             this.clmReason.Width = 150;
             // 
-            // txtEnteredBy
-            // 
-            this.txtEnteredBy.Enabled = false;
-            this.txtEnteredBy.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtEnteredBy.Location = new System.Drawing.Point(84, 16);
-            this.txtEnteredBy.Name = "txtEnteredBy";
-            this.txtEnteredBy.ReadOnly = true;
-            this.txtEnteredBy.Size = new System.Drawing.Size(297, 25);
-            this.txtEnteredBy.TabIndex = 1111236;
-            // 
-            // txtCompletedBy
-            // 
-            this.txtCompletedBy.Enabled = false;
-            this.txtCompletedBy.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtCompletedBy.Location = new System.Drawing.Point(84, 41);
-            this.txtCompletedBy.Name = "txtCompletedBy";
-            this.txtCompletedBy.ReadOnly = true;
-            this.txtCompletedBy.Size = new System.Drawing.Size(297, 25);
-            this.txtCompletedBy.TabIndex = 1111237;
-            // 
-            // txtVerifiedBy1
-            // 
-            this.txtVerifiedBy1.Enabled = false;
-            this.txtVerifiedBy1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtVerifiedBy1.Location = new System.Drawing.Point(84, 66);
-            this.txtVerifiedBy1.Name = "txtVerifiedBy1";
-            this.txtVerifiedBy1.ReadOnly = true;
-            this.txtVerifiedBy1.Size = new System.Drawing.Size(297, 25);
-            this.txtVerifiedBy1.TabIndex = 1111238;
-            // 
-            // txtVerifiedBy2
-            // 
-            this.txtVerifiedBy2.Enabled = false;
-            this.txtVerifiedBy2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtVerifiedBy2.Location = new System.Drawing.Point(84, 91);
-            this.txtVerifiedBy2.Name = "txtVerifiedBy2";
-            this.txtVerifiedBy2.ReadOnly = true;
-            this.txtVerifiedBy2.Size = new System.Drawing.Size(297, 25);
-            this.txtVerifiedBy2.TabIndex = 1111239;
-            // 
             // PUR_GRNApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1119,6 +1124,10 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox txtVerifiedBy2;
+        public System.Windows.Forms.TextBox txtVerifiedBy1;
+        public System.Windows.Forms.TextBox txtCompletedBy;
+        public System.Windows.Forms.TextBox txtEnteredBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproduct;
@@ -1137,9 +1146,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
-        public System.Windows.Forms.TextBox txtVerifiedBy2;
-        public System.Windows.Forms.TextBox txtVerifiedBy1;
-        public System.Windows.Forms.TextBox txtCompletedBy;
-        public System.Windows.Forms.TextBox txtEnteredBy;
     }
 }

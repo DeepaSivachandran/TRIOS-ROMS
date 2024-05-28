@@ -466,6 +466,7 @@ namespace ROMS
                 dtApproval.Columns.Add("GRNAPR_Reason", typeof(int));
                 dtApproval.Columns.Add("GRNAPR_ReturnedQty", typeof(decimal));
                 dtApproval.Columns.Add("GRNAPR_RiskAcceptedBy", typeof(int));
+                dtApproval.Columns.Add("GRNAPR_PURPRID", typeof(int));
 
                 dtPurchaseReturnDC.TableName = "TRN_Purchase_ReturnDC";
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_PRID", typeof(int));
@@ -761,7 +762,7 @@ namespace ROMS
                             grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]));
-                            dtApproval.Rows.Add( Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]),0);
+                            dtApproval.Rows.Add( Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]),0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
                             dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0);
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -815,7 +816,14 @@ namespace ROMS
                             {
                                 grdGrnApproval.Rows[i].Cells["clmReason"].Value = Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]);
                             }
-
+                            if(Convert.ToInt32(grdGrnApproval.Rows[i].Cells["clmReason"].Value)==230 || Convert.ToInt32(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == 234)
+                            {
+                                grdGrnApproval.Rows[i].ReadOnly = false;
+                            }
+                            else
+                            {
+                                grdGrnApproval.Rows[i].ReadOnly = true;
+                            }
                             udfnQtyCheck();    
                         }
                         txttotalitem.Text = Convert.ToString(grdGrnApproval.Rows.Count);

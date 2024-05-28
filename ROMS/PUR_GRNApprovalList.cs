@@ -1521,6 +1521,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["S.No."].Width = 60;
                                 grdGrnApprovalList.Columns["ID"].Visible = false;
                                 grdGrnApprovalList.Columns["SPID"].Visible = false;
+                                grdGrnApprovalList.Columns["GRNAID"].Visible = false;
                                 grdGrnApprovalList.Columns["SPSCID"].Visible = false;
                                 grdGrnApprovalList.Columns["Concern ID"].Visible = false;
                                 grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
@@ -1589,6 +1590,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Tot Pro in Inv"].Width = 150;
                 DGV_SearchGrid.Columns["Created By"].Width = 150;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["GRNAID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["Concern ID"].Visible = false;
