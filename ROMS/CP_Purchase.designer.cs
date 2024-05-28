@@ -386,6 +386,8 @@
             this.clmGRNProductType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmConvertProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConvertProductFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConvertParentFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAddPro = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPurchase.SuspendLayout();
@@ -1500,6 +1502,8 @@
             this.clmGRNProductType,
             this.clmRMFlag,
             this.clmConvertProduct,
+            this.clmConvertProductFlag,
+            this.clmConvertParentFlag,
             this.clmAddPro,
             this.clmRemove});
             this.grdSupplierList.EnableHeadersVisualStyles = false;
@@ -3591,6 +3595,7 @@
             // 
             // crToolStripTextBox1
             // 
+            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 
@@ -3965,10 +3970,22 @@
             // 
             // clmConvertProduct
             // 
-            this.clmConvertProduct.HeaderText = "Convert Pro";
+            this.clmConvertProduct.HeaderText = "Convert Pro ID";
             this.clmConvertProduct.Name = "clmConvertProduct";
             this.clmConvertProduct.ReadOnly = true;
             this.clmConvertProduct.Width = 50;
+            // 
+            // clmConvertProductFlag
+            // 
+            this.clmConvertProductFlag.HeaderText = "Convert Pro Flag";
+            this.clmConvertProductFlag.Name = "clmConvertProductFlag";
+            this.clmConvertProductFlag.ReadOnly = true;
+            // 
+            // clmConvertParentFlag
+            // 
+            this.clmConvertParentFlag.HeaderText = "Convert Parent Flag";
+            this.clmConvertParentFlag.Name = "clmConvertParentFlag";
+            this.clmConvertParentFlag.ReadOnly = true;
             // 
             // clmAddPro
             // 
@@ -4356,6 +4373,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGRNProductType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConvertProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmConvertProductFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmConvertParentFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }

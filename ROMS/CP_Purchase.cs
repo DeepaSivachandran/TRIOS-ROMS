@@ -1410,7 +1410,8 @@ namespace ROMS
                                     , Convert.ToString(objDs.Tables[1].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GRNQty"])
                                     , Convert.ToDecimal(objDs.Tables[1].Rows[i]["DCQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]), 0, Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["InvFlag"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_HSNID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]), 
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["GRN ProType"]), Convert.ToString(objDs.Tables[1].Rows[i]["RM Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["ConvertProduct"]));
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["GRN ProType"]), Convert.ToString(objDs.Tables[1].Rows[i]["RM Flag"]), 
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["ConvertProduct"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_Parent_PURPRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ConvertFlag"]));
                            
                                     dtPurchaseAutoComplete.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(varMRP)), varTempExpiryDate,
                                          Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]),
@@ -1422,9 +1423,14 @@ namespace ROMS
                                     {
                                         ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
                                     }
-                                    if(Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmConvertProduct"].Value) ==1)
+                                    if(Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmConvertProduct"].Value) ==0 )
                                     {
                                         varConvertFlag = 1;
+                                        ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+                                    }
+                                    if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmConvertParentFlag"].Value) == 1 )
+                                    {
+                                        ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
                                     }
                                     //grdSupplierList.Columns["clmAddPro"].Visible = false;
                                     //grdSupplierList.Columns["clmPono"].Visible = true;
@@ -1437,7 +1443,6 @@ namespace ROMS
                                     //{
                                     //    grdSupplierList.Rows[i].ReadOnly = false;
                                     //}
-                                   
                                     if (PbApprovalStsid==70) // approval incomplete then allow to edit allow error column
                                     {
                                         if (Convert.ToInt16(objDs.Tables[1].Rows[i]["BatchNoErr"]) == 1)
@@ -1625,7 +1630,7 @@ namespace ROMS
                             {
                                 if (objDs.Tables[11].Rows.Count != 0)
                                 {
-                                    varDCDate= Convert.ToString(objDs.Tables[10].Rows[0]["DC_Date"]);
+                                    varDCDate= Convert.ToString(objDs.Tables[11].Rows[0]["DC_Date"]);
                                 }
                             }
                         }
@@ -3161,7 +3166,7 @@ namespace ROMS
             //        }
             //    }
             //}
-            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("PR_EName") into g select g.Key;
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("PR_TName") into g select g.Key;
             for (int i = 0; i < varValue.Count(); i++)
             {
                 varstr.Add(varValue.ToList()[i].ToString());
@@ -3593,6 +3598,7 @@ namespace ROMS
                 DataGridViewCell cellPrid = dataGridView.Rows[e.RowIndex].Cells["clmProid"];
                 DataGridViewCell cellUnit = dataGridView.Rows[e.RowIndex].Cells["clmUnit"];
                 DataGridViewCell cellPicode = dataGridView.Rows[e.RowIndex].Cells["clmPicode"];
+                DataGridViewCell cellUTID = dataGridView.Rows[e.RowIndex].Cells["UTID"];
                 DataGridViewCell cellGRNMrp = dataGridView.Rows[e.RowIndex].Cells["clmGrnMrp"];
                 DataGridViewCell cellMrp = dataGridView.Rows[e.RowIndex].Cells["clmMRP"];
                 DataGridViewCell cellExpiryDate = dataGridView.Rows[e.RowIndex].Cells["clmexpirydate"];
@@ -3613,6 +3619,7 @@ namespace ROMS
                 DataGridViewCell cellHSNID= dataGridView.Rows[e.RowIndex].Cells["clmHSNid"];
                 DataGridViewCell cellMRPFlag= dataGridView.Rows[e.RowIndex].Cells["clmMrpFlag"];
                 DataGridViewCell cellRMFlag= dataGridView.Rows[e.RowIndex].Cells["clmRMFlag"];
+                
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 MR_Product objMR_Product = new MR_Product();
@@ -3623,23 +3630,20 @@ namespace ROMS
                 objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objMR_Product.paraProductName = SelectedProductName;
                 objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                varBatchNo = "0"; varBatchNoGeneration = "0"; varShelflife = 0; expirydateFlag = 0;
-                varBatchNo = "0"; varPrDate = "0"; varPrMonth = "0"; varPrYear = "0"; varPrLocation = "0";
-                varPrRack = "0"; varPrMRP = "0"; varPrInvFlag = "0"; varPrslid = "0"; varPrRkid = "0"; varId = "0"; varPrMRPFlag = "0";
-                varGRNProType = "0"; varRMProductionFlag = 0;
-              
+                
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     //lblProductcode.Text = objDs[0].["PRID"].Value.ToString();
                     string varPRID = "0", varBatchNoEnable = "0", varBatchNoGeneration = "0", varRMProduction = "0", varPrcategory = "0",
                      varShelflifeFlag = "0", varShelflife = "0", varDecimal = "0", varHSNid = "0", varPrMRPFlag = "0",
                      varPICode = "", varUnit = "", varGRNmrp = "0", varBatchNo = "", varExpiryDate = "", varRMProductionFlag = "0" , varLocationName="",varLocationID="0",
-                     varRackName="",varRackID="0", varRkcount="0",varRMFlag="0";
+                     varRackName="",varRackID="0", varRkcount="0",varRMFlag="0" ,varUTID="0";
 
 
                     varPRID = Convert.ToString(objDs.Tables[0].Rows[0]["PRID"]);
                     varPICode = Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]);
                     varUnit = Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]);
+                    varUTID = Convert.ToString(objDs.Tables[0].Rows[0]["UTID"]);
                     varBatchNoEnable = Convert.ToString(objDs.Tables[0].Rows[0]["PR_BatchNo"]);
                     varBatchNoGeneration = Convert.ToString(objDs.Tables[0].Rows[0]["PR_BatchNoGeneration"]);
                     varPrMRPFlag = Convert.ToString(objDs.Tables[0].Rows[0]["PR_MRPflag"]);
@@ -3661,6 +3665,7 @@ namespace ROMS
                     cellPrid.Value = varPRID;
                     cellPicode.Value = varPICode;
                     cellUnit.Value = varUnit;
+                    cellUTID.Value = varUTID;
                     cellBatchenable.Value = varBatchNoEnable;
                     cellBatchgeneration.Value = varBatchNoGeneration;
                     cellMRPFlag.Value = varPrMRPFlag;
@@ -7644,7 +7649,7 @@ namespace ROMS
                                     string varTempYear = "0";
                                     object cellValue = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value);
                                     string varExpiryDate = "";
-                                    varExpiryDate = cellValue.ToString();
+                                    varExpiryDate = cellValue.ToString(); 
                                     string[] DMY = varExpiryDate.Split('/');
                                     if (DMY.Count() == 3)
                                     {
@@ -7661,7 +7666,6 @@ namespace ROMS
                                     //varTempDay = DMY[0];
                                     //varTempMonth = DMY[1];
                                     varTempExpiryDate = cellValue.ToString();
-
 
                                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value) != "")
                                     {
@@ -7736,15 +7740,15 @@ namespace ROMS
                             {
                                 int varPURPRID = 0;
                                 int varProductId = 0;  // dc or grn or po- product id
-                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "0")
+                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value) != "0")
                                 {
                                     varPURPRID = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmPURPRIDDetail"].Value);
                                 }
-                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != "" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != "0")
+                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != "0")
                                 {
                                     varProductId = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProductID"].Value);
                                 }
-                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmConvertProduct"].Value) != "" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmConvertProduct"].Value) != "0")
+                                if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmConvertProduct"].Value) != "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmConvertProduct"].Value) != "0")
                                 {
                                     varConvertProduct = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmConvertProduct"].Value);
                                 }
@@ -10218,12 +10222,13 @@ namespace ROMS
 
                                 if (e.ColumnIndex != 0)
                                 {
-                                    grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null, 0,
+                                    grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null, grdSupplierList.Rows[e.RowIndex].Cells["clmPono"].Value,
                                     "", "", "", "", "", "", "", "", "","", "", "",
-                                    "", "", "", "", "", "","", "", "" , "", "", "" , "", "", 0, "", "",  "", "",   "", "", "");
+                                    "", "", "", "", "", "","", "", 0 , 0, 0, 0 , 0, "", 0, "", 0 , "", "",   "", "", Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPURPRIDDetail"].Value));
                                     //grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1);
-                                    grdSupplierList.ReadOnly = false;
+                                    grdSupplierList.ReadOnly = false; 
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].ReadOnly = false;
+                                    ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
                                     //if (varEditFlag == 0)
                                     //{
                                     //    DataGridView dataGridView1 = grdGrnlist;
