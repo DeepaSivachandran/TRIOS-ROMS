@@ -3079,7 +3079,7 @@ namespace ROMS
             //}
             SPDataService objspdservice = new SPDataService();
             DataSet objds = new DataSet();
-            objds = objspdservice.udfnStockLocationList(30, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, "", 0, 0, 0, "", "", 0);
+            objds = objspdservice.udfnStockLocationList(30, Convert.ToInt32(varCOMID), 0, 0, "", 0, 0, 0, "", "", 0);
             objspdservice.CloseConnection();
             if (objds != null)
             {
@@ -3107,7 +3107,7 @@ namespace ROMS
             SPDataService objdservice = new SPDataService();
             DataTable objDt = new DataTable();
             //objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0) AND  RK_STSID=1 AND RK_SLID = " + varSLID);
-            objds = objdservice.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocationcode.Text), 0, "", 0, 0);
+            objds = objdservice.udfnRackList(11, 0, 0, Convert.ToInt32(varSLID), 0, "", 0, 0);
             objdservice.CloseConnection();
             if (objds != null)
             {
