@@ -263,6 +263,8 @@ namespace ROMS
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["SP_SupplierType"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
+                            grdGRNList.Columns["GRN Full Status"].Visible = false;
+                            grdGRNList.Columns["Overall Full Status"].Visible = false;
                             grdGRNList.Columns["Any Pur Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1855,6 +1857,20 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGRNList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == grdGRNList.Columns["GRN Status"].Index)
+            {
+                var cell = grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                cell.ToolTipText = grdGRNList.Rows[e.RowIndex].Cells["GRN Full Status"].Value.ToString();
+            }
+            if (e.ColumnIndex == grdGRNList.Columns["Overall Status"].Index)
+            {
+                var cell = grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                cell.ToolTipText = grdGRNList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
             }
         }
 
