@@ -139,6 +139,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.DataSource = objDs.Tables[0];
                             grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = true;
                             grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["Overall Full Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
                             grdPurchaseEntryApproval.Columns["Concern"].Width = 80;
                             grdPurchaseEntryApproval.Columns["Vouc No."].Width = 100;
@@ -232,6 +233,7 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
                 DGV_SearchGrid.Columns["clmUnapproved"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Concern"].Width = 80;
                 DGV_SearchGrid.Columns["Vouc No."].Width = 100;
@@ -1351,6 +1353,23 @@ namespace ROMS
             try
             {
                 udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseEntryApproval_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdPurchaseEntryApproval.Columns["Overall Status"].Index)
+                {
+                    var cell = grdPurchaseEntryApproval.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseEntryApproval.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                }
             }
             catch (Exception ex)
             {

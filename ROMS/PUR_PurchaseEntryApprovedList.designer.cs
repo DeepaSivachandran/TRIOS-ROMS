@@ -38,6 +38,8 @@
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbQue = new System.Windows.Forms.ToolStripButton();
+            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -68,8 +70,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
@@ -117,6 +117,27 @@
             this.tsbQue.Size = new System.Drawing.Size(161, 24);
             this.tsbQue.Text = "Purchase Entry Approval";
             this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
+            // 
+            // tssEdit
+            // 
+            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssEdit.Name = "tssEdit";
+            this.tssEdit.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbEdit
+            // 
+            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
+            this.tsbEdit.Text = "&Edit";
+            this.tsbEdit.Click += new System.EventHandler(this.TsbEdit_Click);
             // 
             // pnlpurchaseapproval
             // 
@@ -224,6 +245,7 @@
             this.grdPurchaseEntryApproval.Size = new System.Drawing.Size(1348, 513);
             this.grdPurchaseEntryApproval.TabIndex = 111111148;
             this.grdPurchaseEntryApproval.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseEntryApproval_CellContentClick);
+            this.grdPurchaseEntryApproval.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdPurchaseEntryApproval_CellFormatting);
             this.grdPurchaseEntryApproval.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseEntryApproval_DataBindingComplete);
             this.grdPurchaseEntryApproval.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseEntryApproval_Scroll);
             this.grdPurchaseEntryApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
@@ -530,27 +552,6 @@
             // errPurchaseEntryApproval
             // 
             this.errPurchaseEntryApproval.ContainerControl = this;
-            // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
-            this.tsbEdit.Text = "&Edit";
-            this.tsbEdit.Click += new System.EventHandler(this.TsbEdit_Click);
-            // 
-            // tssEdit
-            // 
-            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.tssEdit.Name = "tssEdit";
-            this.tssEdit.Size = new System.Drawing.Size(6, 27);
             // 
             // PUR_PurchaseEntryApprovedList
             // 

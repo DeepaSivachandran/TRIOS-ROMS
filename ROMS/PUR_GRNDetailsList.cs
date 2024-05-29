@@ -373,6 +373,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRN_OrderType"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_INVSTSID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
                 if (DGV_SearchGrid.Columns.Contains("clmPrint") == true) { DGV_SearchGrid.Columns["clmPrint"].Visible = false; }
                 if (DGV_SearchGrid.Columns.Contains("ClmEdit") == true) { DGV_SearchGrid.Columns["ClmEdit"].Visible = false; }
                 if (DGV_SearchGrid.Columns.Contains("Totallbl") == true) { DGV_SearchGrid.Columns["Totallbl"].Visible = false; }

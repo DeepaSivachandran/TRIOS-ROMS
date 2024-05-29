@@ -164,6 +164,8 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["COMID"].Visible = false;
                                 grdPurchaseDCList.Columns["clmPrint"].Visible = true;
                                 grdPurchaseDCList.Columns["DC_SPSCID"].Visible = false;
+                                grdPurchaseDCList.Columns["Overall Full Status"].Visible = false;
+                                grdPurchaseDCList.Columns["Pur Dc Full Status"].Visible = false;
                             }
                             else
                             {
@@ -229,6 +231,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["DC_SPID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Pur Dc Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["DC_SPSCID"].Visible = false; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
