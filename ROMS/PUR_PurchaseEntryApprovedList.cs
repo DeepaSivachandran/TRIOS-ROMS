@@ -21,6 +21,8 @@ namespace ROMS
         DataTable Deftable = new DataTable();
         Boolean BlnSearchImageYN = false;
         public string pbRemarks = "";
+        public string varUserID = "";
+
         public PUR_PurchaseEntryApprovedList()
         {
             InitializeComponent();
@@ -1283,11 +1285,13 @@ namespace ROMS
                 if (dialogResult == DialogResult.Yes)
                 {
                     string varorginator = "Purchase Unapproved", result = "";
+                    SPDataService objspservice = new SPDataService();
                     TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                     objTRN_PurchaseEntry.ViewType = 5;
-                    objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRN_PurchaseEntry.paraUnapprovedby = Convert.ToInt32(MainForm.pbUserID);
                     objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
                     objTRN_PurchaseEntry.paraRemarks = pbRemarks;
+                    objTRN_PurchaseEntry.paraSaveFlag = 0;
                     objTRN_PurchaseEntry.paraOriginator = varorginator;
                     //objTRN_PurchaseEntry.paraPurchaseId = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
                     objTRN_PurchaseEntry.paraPurchaseId = varPurchaseID;
@@ -1295,12 +1299,39 @@ namespace ROMS
                     result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
-                    if (varvalue[0] == "3")
+                    if (result.Split('~')[0] == "3")
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnList();
+                        if (result.Split('~')[1] == "1")
+                        {
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
+                            {
+                                objspservice = new SPDataService();
+                                objTRN_PurchaseEntry.ViewType = 5;
+                                objTRN_PurchaseEntry.paraUnapprovedby = Convert.ToInt32(varUserID);
+                                objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
+                                objTRN_PurchaseEntry.paraRemarks = pbRemarks;
+                                objTRN_PurchaseEntry.paraSaveFlag = 1;
+                                objTRN_PurchaseEntry.paraOriginator = varorginator;
+                                objTRN_PurchaseEntry.paraPurchaseId = varPurchaseID;
+                                result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                                objspdservice.CloseConnection();
+                                string[] varvalue1 = result.Split('~');
+                                if (varvalue1[0] == "3")
+                                {
+                                    MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    udfnList();
+                                }
+                            }
+                        }
+                        else if (result.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-                    else { MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                    //else { MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                 }
             }
             catch (Exception ex)

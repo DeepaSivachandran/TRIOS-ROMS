@@ -980,8 +980,8 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "18")
                     {
-                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
-                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        //grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        //grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                         grdPurchaseDCList.Rows[i].Cells["clmPrint"].ReadOnly = true;
                         DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
                         c.Value = "";

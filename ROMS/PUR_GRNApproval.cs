@@ -17,7 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int varSupplierID = 0,varScheduleID=0,varConcernID=0,varID=0;
+        public int varSupplierID = 0,varScheduleID=0,varConcernID=0,varID=0, varGRNAID = 0, varGRNAPRID = 0;
         decimal varInvoiceQty=0, VarReceivedQty=0, varPOID=0;
         public string result = "", varUserID = "0",varReason="";
         DataTable dtApproval = new DataTable();
@@ -408,6 +408,41 @@ namespace ROMS
                         grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Style.BackColor = Color.PaleGreen;
                     }
                 }
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                {
+                    if(Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value)== "232")
+                    {
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
+                        {
+                            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
+                        }
+                        else
+                        {
+                            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                            grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
+                        }
+                    }
+                    else
+                    {
+                        dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                    }
+                    //object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    //dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
+                }
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                {
+                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "231")
+                    {
+                        string varReceivedQty = "";
+                        varReceivedQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
+                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = VarReceivedQty;
+                        object Quantity = varReceivedQty;
+                        dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -430,6 +465,8 @@ namespace ROMS
                 dtApproval.Columns.Add("GRNAPR_BatchNo", typeof(string));
                 dtApproval.Columns.Add("GRNAPR_Reason", typeof(int));
                 dtApproval.Columns.Add("GRNAPR_ReturnedQty", typeof(decimal));
+                dtApproval.Columns.Add("GRNAPR_RiskAcceptedBy", typeof(int));
+                dtApproval.Columns.Add("GRNAPR_PURPRID", typeof(int));
 
                 dtPurchaseReturnDC.TableName = "TRN_Purchase_ReturnDC";
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_PRID", typeof(int));
@@ -449,7 +486,7 @@ namespace ROMS
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnEdit();
-                udfnReason();
+                //udfnStatus();
             }
             catch (Exception ex)
             {
@@ -457,7 +494,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnReason()
+        public void udfnStatus()
         {
             try
             {
@@ -476,7 +513,7 @@ namespace ROMS
                         {
                             if (objDT.Tables[0].Rows.Count > 0)
                             {
-                                var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmReason"];
+                                var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmStatus"];
                                 DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
                                 varComboBoxColoumn.ValueMember = "ID";
                                 varComboBoxColoumn.DisplayMember = "Status";
@@ -489,6 +526,38 @@ namespace ROMS
                 {
                     objError = new DataError();
                     objError.WriteFile(ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnReason()
+        {
+            try
+            {
+                //**** To call the function from SP ***************
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 22;
+                DataSet objDSer = new DataSet();
+                SPDataService objdServ = new SPDataService();
+                objDSer = objdServ.udfnMaster(objMR_Master);
+                objdServ.CloseConnection();
+                if (objDSer != null)
+                {
+                    if (objDSer.Tables.Count > 0)
+                    {
+                        if (objDSer.Tables[0].Rows.Count > 0)
+                        {
+                            var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmReason"];
+                            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+                            varComboBoxColoumn.ValueMember = "ID";
+                            varComboBoxColoumn.DisplayMember = "Reason";
+                            varComboBoxColoumn.DataSource = objDSer.Tables[0];
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -546,7 +615,7 @@ namespace ROMS
                         grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
                         varErrorFlag = false;
                     }
-                    if(Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value)!=0 && Convert.ToString(grdGrnApproval.Rows[i].Cells["ClmReason"].Value)=="")
+                    if(Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value)!=0 && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value)=="")
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(131);
@@ -568,6 +637,11 @@ namespace ROMS
                 string varoriginator = "GRN Approval Creation";
                 if (varQtyErr == 0 && varErrorFlag == true)
                 {
+                    int varViewType = 0;
+                    if(varGRNAID !=0)
+                    {
+                        varViewType = 2;
+                    }
                     SPDataService objspdservice = new SPDataService();
                     DataTable objGrnPO = new DataTable();
                     TRN_GRNApproval objTRN_GRNApproval = new TRN_GRNApproval();
@@ -597,7 +671,7 @@ namespace ROMS
                     if (MainForm.objCP_Verify.flag == 1)
                     {
                         objspdservice = new SPDataService();
-                        objTRN_GRNApproval.ViewType = 0;
+                        objTRN_GRNApproval.ViewType = varViewType;
                         objTRN_GRNApproval.paraPURID = varID;
                         objTRN_GRNApproval.paraRemarks = txtRemark.Text;
                         objTRN_GRNApproval.paraFlag = 1;
@@ -609,6 +683,7 @@ namespace ROMS
                         objTRN_GRNApproval.paraReturnDC_Date = vardate;
                         objTRN_GRNApproval.paraApprovalProduct = dtApproval;
                         objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
+                        objTRN_GRNApproval.ParaGRNAID = varGRNAID;
                         result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
                         objspdservice.CloseConnection();
                         string[] varvalue1 = result.Split('~');
@@ -686,8 +761,8 @@ namespace ROMS
                             //int actualShelfLife = Convert.ToInt32(varActualShelflife);
                             grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]));
-                            dtApproval.Rows.Add( Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]));
+                            dtApproval.Rows.Add( Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]),0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
                             dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0);
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -731,17 +806,42 @@ namespace ROMS
                                     cell.Style.ForeColor = Color.Black;
                                 }
                             }
+
+                            udfnReason();
+                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]) == "")
+                            {
+                                grdGrnApproval.Rows[i].Cells["clmReason"].Value = 234;
+                            }
+                            else
+                            {
+                                grdGrnApproval.Rows[i].Cells["clmReason"].Value = Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]);
+                            }
+                            if(Convert.ToInt32(grdGrnApproval.Rows[i].Cells["clmReason"].Value)==230 || Convert.ToInt32(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == 234)
+                            {
+                                grdGrnApproval.Rows[i].ReadOnly = false;
+                            }
+                            else
+                            {
+                                grdGrnApproval.Rows[i].ReadOnly = true;
+                            }
                             udfnQtyCheck();    
                         }
                         txttotalitem.Text = Convert.ToString(grdGrnApproval.Rows.Count);
                     }
-                    if(objDs.Tables[1].Rows.Count>1)
+                    if(objDs.Tables[2].Rows.Count>0)
                     {
-                        for(int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                        {
-                            grdpurchasedetails.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Created By"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_IssuedBy"]));
-                        }
+                        txtEnteredBy.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Entered By"]);
+                        txtCompletedBy.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Completed By"]);
+                        txtVerifiedBy1.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 1"]);
+                        txtVerifiedBy2.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 2"]);
                     }
+                    //if(objDs.Tables[1].Rows.Count>1)
+                    //{
+                    //    for(int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    //    {
+                    //        grdpurchasedetails.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Created By"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_IssuedBy"]));
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
