@@ -2883,10 +2883,11 @@ namespace ROMS
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
-            objds = null;
-            DataService objdservice = new DataService();
+            //DataService objdservice = new DataService();
+            SPDataService objdservice = new SPDataService();
             DataTable objDt = new DataTable();
-            objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0) AND  RK_STSID=1 AND RK_SLID = " + varSLID);
+            //objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0) AND  RK_STSID=1 AND RK_SLID = " + varSLID);
+            objds = objdservice.udfnRackList(11, 0, 0, Convert.ToInt32(lblStockLocationCode.Text), 0, "", 0, 0);
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2908,19 +2909,22 @@ namespace ROMS
         public AutoCompleteStringCollection AutoCompleteLocationName(int varCOMID)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
-            DataSet objds;
-            objds = null;
-            DataService objdservice = new DataService();
+            //DataSet objds;
+            //objds = null;
+            //DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-            if (varCOMID == 0)
-            {
-                objds = objdservice.GetDataset("SELECT SLID,SL_EName  FROM MR_StockLocation WHERE  SLID NOT IN (-1,0) AND ISNULL(SL_Default,0) = 0 AND SL_STSID = 1 AND SL_StockApplicable=11");
-            }
-            else
-            {
-                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND ISNULL(SL_Default,0) = 0 AND SL_STSID = 1 AND SL_StockApplicable=11  AND SL_COMID=" + varCOMID);
-            }
-            objdservice.CloseConnection();
+            //if (varCOMID == 0)
+            //{
+            //    objds = objdservice.GetDataset("SELECT SLID,SL_EName  FROM MR_StockLocation WHERE  SLID NOT IN (-1,0) AND ISNULL(SL_Default,0) = 0 AND SL_STSID = 1");
+            //}
+            //else
+            //{
+            //    objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND ISNULL(SL_Default,0) = 0 AND SL_STSID = 1 AND SL_COMID=" + varCOMID);
+            //}
+            SPDataService objspdservice = new SPDataService();
+            DataSet objds = new DataSet();
+            objds = objspdservice.udfnStockLocationList(30, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, "", 0, 0, 0, "", "", 0);
+            objspdservice.CloseConnection();
             if (objds != null)
             {
                 if (objds.Tables.Count > 0)
