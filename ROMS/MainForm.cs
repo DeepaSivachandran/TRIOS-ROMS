@@ -1614,7 +1614,7 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "1.5")
                 {
-                    MainForm.objPUR_PurchaseApprovalList.udfnList();
+                    MainForm.objPUR_GRNApprovalList.udfnList();
                 }
                 if (PbCurrentForm == "2.1")
                 {
