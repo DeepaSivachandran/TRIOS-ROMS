@@ -46,6 +46,7 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varConcernID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Concern ID"].Value);
                     MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
+                    MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 }
@@ -1047,7 +1048,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "Purchase Approval";
+                    ExcelSheet.Name = "Purchase Mismatch Approval";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdGrnApprovalList.Columns)
@@ -1060,7 +1061,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "Purchase Approval";
+                    ExcelSheet.Cells[1, 1].Value = "Purchase Mismatch Approval";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -1467,6 +1468,28 @@ namespace ROMS
             }
         }
 
+        private void GrdGrnApprovalList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdGrnApprovalList.Columns["Status"].Index)
+                {
+                    var cell = grdGrnApprovalList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdGrnApprovalList.Rows[e.RowIndex].Cells["Full Status"].Value.ToString();
+                }
+                if (e.ColumnIndex == grdGrnApprovalList.Columns["Overall Status"].Index)
+                {
+                    var cell = grdGrnApprovalList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdGrnApprovalList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnList()
         {
             try
@@ -1532,10 +1555,14 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["S.No."].Width = 60;
                                 grdGrnApprovalList.Columns["ID"].Visible = false;
                                 grdGrnApprovalList.Columns["SPID"].Visible = false;
+                                grdGrnApprovalList.Columns["GRNAID"].Visible = false;
                                 grdGrnApprovalList.Columns["SPSCID"].Visible = false;
                                 grdGrnApprovalList.Columns["Concern ID"].Visible = false;
                                 grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
                                 grdGrnApprovalList.Columns["Purchase Type"].Visible = false;
+                                grdGrnApprovalList.Columns["Overall Full Status"].Visible = false;
+                                grdGrnApprovalList.Columns["Full Status"].Visible = false;
+                                grdGrnApprovalList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             else
                             {
@@ -1600,11 +1627,14 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Tot Pro in Inv"].Width = 150;
                 DGV_SearchGrid.Columns["Created By"].Width = 150;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["GRNAID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["Concern ID"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_EntryType"].Visible = false;
                 DGV_SearchGrid.Columns["Purchase Type"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Full Status"].Visible = false;
 
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
