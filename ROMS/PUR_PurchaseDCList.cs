@@ -2130,5 +2130,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPurchaseDCList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdPurchaseDCList.Columns["Pur Dc Status"].Index)
+                {
+                    var cell = grdPurchaseDCList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseDCList.Rows[e.RowIndex].Cells["Pur Dc Full Status"].Value.ToString();
+                }
+                if (e.ColumnIndex == grdPurchaseDCList.Columns["Overall Status"].Index)
+                {
+                    var cell = grdPurchaseDCList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseDCList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

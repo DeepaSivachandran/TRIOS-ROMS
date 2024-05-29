@@ -1862,15 +1862,23 @@ namespace ROMS
 
         private void GrdGRNList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == grdGRNList.Columns["GRN Status"].Index)
+            try
             {
-                var cell = grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = grdGRNList.Rows[e.RowIndex].Cells["GRN Full Status"].Value.ToString();
+                if (e.ColumnIndex == grdGRNList.Columns["GRN Status"].Index)
+                {
+                    var cell = grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdGRNList.Rows[e.RowIndex].Cells["GRN Full Status"].Value.ToString();
+                }
+                if (e.ColumnIndex == grdGRNList.Columns["Overall Status"].Index)
+                {
+                    var cell = grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdGRNList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                }
             }
-            if (e.ColumnIndex == grdGRNList.Columns["Overall Status"].Index)
+            catch (Exception ex)
             {
-                var cell = grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.ToolTipText = grdGRNList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
