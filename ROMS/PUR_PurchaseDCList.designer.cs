@@ -72,10 +72,10 @@
             this.btnView = new System.Windows.Forms.Button();
             this.cmbShow = new System.Windows.Forms.ComboBox();
             this.grdPurchaseDCList = new System.Windows.Forms.DataGridView();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.DGV_ProdSearchGrid = new System.Windows.Forms.DataGridView();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.ep_PurchaseDC = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPurchaseInvoiceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -542,11 +542,21 @@
             this.grdPurchaseDCList.Size = new System.Drawing.Size(1348, 510);
             this.grdPurchaseDCList.TabIndex = 1;
             this.grdPurchaseDCList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDCList_CellContentClick);
+            this.grdPurchaseDCList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdPurchaseDCList_CellFormatting);
             this.grdPurchaseDCList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDCList_DataBindingComplete);
             this.grdPurchaseDCList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseDCList_Scroll);
             this.grdPurchaseDCList.SelectionChanged += new System.EventHandler(this.GrdPurchaseDCList_SelectionChanged);
             this.grdPurchaseDCList.DoubleClick += new System.EventHandler(this.GrdPurchaseDCList_DoubleClick);
             this.grdPurchaseDCList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseDCList_KeyDown);
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // DGV_ProdSearchGrid
             // 
@@ -636,15 +646,6 @@
             // ep_PurchaseDC
             // 
             this.ep_PurchaseDC.ContainerControl = this;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // PUR_PurchaseDCList
             // 

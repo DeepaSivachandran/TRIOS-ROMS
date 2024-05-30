@@ -263,6 +263,8 @@ namespace ROMS
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["SP_SupplierType"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
+                            grdGRNList.Columns["GRN Full Status"].Visible = false;
+                            grdGRNList.Columns["Overall Full Status"].Visible = false;
                             grdGRNList.Columns["Any Pur Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -371,6 +373,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRN_OrderType"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_INVSTSID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
                 if (DGV_SearchGrid.Columns.Contains("clmPrint") == true) { DGV_SearchGrid.Columns["clmPrint"].Visible = false; }
                 if (DGV_SearchGrid.Columns.Contains("ClmEdit") == true) { DGV_SearchGrid.Columns["ClmEdit"].Visible = false; }
                 if (DGV_SearchGrid.Columns.Contains("Totallbl") == true) { DGV_SearchGrid.Columns["Totallbl"].Visible = false; }
@@ -1851,6 +1855,28 @@ namespace ROMS
                     udfnListLoad();
                 }
                 }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGRNList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdGRNList.Columns["GRN Status"].Index)
+                {
+                    var cell = grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdGRNList.Rows[e.RowIndex].Cells["GRN Full Status"].Value.ToString();
+                }
+                if (e.ColumnIndex == grdGRNList.Columns["Overall Status"].Index)
+                {
+                    var cell = grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdGRNList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();

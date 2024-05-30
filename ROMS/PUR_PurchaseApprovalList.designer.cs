@@ -238,6 +238,7 @@
             this.grdPurchaseEntryApproval.ShowRowErrors = false;
             this.grdPurchaseEntryApproval.Size = new System.Drawing.Size(1348, 513);
             this.grdPurchaseEntryApproval.TabIndex = 111111148;
+            this.grdPurchaseEntryApproval.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdPurchaseEntryApproval_CellFormatting);
             this.grdPurchaseEntryApproval.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseEntryApproval_DataBindingComplete);
             this.grdPurchaseEntryApproval.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseEntryApproval_Scroll);
             this.grdPurchaseEntryApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);

@@ -181,6 +181,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["PUR_Created"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PUR_LastTransNo"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PUR_VoucherDate"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["Overall Full Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Inv Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Inv No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;
@@ -277,6 +278,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PUR_Created"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_LastTransNo"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_VoucherDate"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -1314,6 +1316,23 @@ namespace ROMS
                 MainForm.objPUR_GRNApprovalList.ApprovalFlag = 1;
                 MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
                 MainForm.objPUR_GRNApprovalList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseEntryApproval_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdPurchaseEntryApproval.Columns["Overall Status"].Index)
+                {
+                    var cell = grdPurchaseEntryApproval.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseEntryApproval.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                }
             }
             catch (Exception ex)
             {
