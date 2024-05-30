@@ -571,6 +571,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GIP_TypeID"].Visible = false;
                 DGV_SearchGrid.Columns["GIP_Date"].Visible = false;
                 DGV_SearchGrid.Columns["Purchase Status"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Goods Inward Full Status"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -702,6 +704,8 @@ namespace ROMS
                                 grdInwardList.Columns["SPSCID"].Visible = false;
                                 grdInwardList.Columns["Status ID"].Visible = false;
                                 grdInwardList.Columns["Purchase Status"].Visible = false;
+                                grdInwardList.Columns["Overall Full Status"].Visible = false;
+                                grdInwardList.Columns["Goods Inward Full Status"].Visible = false;
                             }
                             else
                             {
@@ -1936,6 +1940,28 @@ namespace ROMS
             try
             {
                 btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdInwardList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdInwardList.Columns["Goods Inward Status"].Index)
+                {
+                    var cell = grdInwardList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdInwardList.Rows[e.RowIndex].Cells["Goods Inward Full Status"].Value.ToString();
+                }
+                if (e.ColumnIndex == grdInwardList.Columns["Overall Status"].Index)
+                {
+                    var cell = grdInwardList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdInwardList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                }
             }
             catch (Exception ex)
             {

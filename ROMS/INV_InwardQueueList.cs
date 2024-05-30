@@ -683,6 +683,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Entry Date"].Visible = false;
                 DGV_SearchGrid.Columns["Created On"].Width = 140;
                 DGV_SearchGrid.Columns["GSTIN"].Visible = false;
+                DGV_SearchGrid.Columns["Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 60;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -815,6 +816,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Type ID"].Visible = false;
                                 grdInwardQueueList.Columns["Entry Date"].Visible = false;
                                 grdInwardQueueList.Columns["UnReadable"].Visible = false;
+                                grdInwardQueueList.Columns["Full Status"].Visible = false;
                                 grdInwardQueueList.Columns["Entry Type"].Width = 150;
                             }
 
@@ -2507,6 +2509,23 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void GrdInwardQueueList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdInwardQueueList.Columns["Status"].Index)
+                {
+                    var cell = grdInwardQueueList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdInwardQueueList.Rows[e.RowIndex].Cells["Full Status"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
