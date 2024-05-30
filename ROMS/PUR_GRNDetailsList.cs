@@ -1702,34 +1702,34 @@ namespace ROMS
                             cIndex += 1;
                             if (cIndex != 1)
                             {
-                                if (cIndex == 1 || cIndex == 2) // Skip the first two columns (image columns)
+                                if (cIndex == 1 || cIndex == 2 || cIndex == 3) // Skip the first two columns (image columns)
                                 {
                                     continue;
                                 }
-                                ExcelSheet.Cells[2, cIndex - 2] = col.HeaderText;
-                                ExcelSheet.Columns[cIndex - 2].NumberFormat = "@";
+                                ExcelSheet.Cells[2, cIndex - 3] = col.HeaderText;
+                                ExcelSheet.Columns[cIndex - 3].NumberFormat = "@";
 
 
                                 if (col.Name == "S.No.")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
+                                    ExcelSheet.Columns[cIndex - 3].ColumnWidth = 10;
                                 }
                                 if (col.Name == "Supplier")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 35;
+                                    ExcelSheet.Columns[cIndex - 3].ColumnWidth = 35;
                                 }
                                 if (col.Name == "Any Pur Returns")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 20;
+                                    ExcelSheet.Columns[cIndex - 3].ColumnWidth = 20;
                                 }
                                 if (col.Name == "Concern" || col.Name == "GRN No." || col.Name == "GRN Date" || col.Name == "City"
                                     || col.Name == "Payment Mode" || col.Name == "Inv Date"|| col.Name == "Inv No." || col.Name == "Inv Amt" || col.Name == "Created By" || col.Name == "Order Type" || col.Name == "Loading Charges"|| col.Name == "Unloading Charges")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;
+                                    ExcelSheet.Columns[cIndex - 3].ColumnWidth = 15;
                                 }
                                 if (col.Name == "City" || col.Name == "Overall Status")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 25;
+                                    ExcelSheet.Columns[cIndex - 3].ColumnWidth = 25;
                                 }
 
 
@@ -1743,29 +1743,29 @@ namespace ROMS
                                 //}
                                 if (col.Name == "S.No.")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 3].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
 
                                 if (col.Name == "Issue Date")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 3].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
 
                                 if (col.Name == "PO Date")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    ExcelSheet.Columns[cIndex - 3].HorizontalAlignment = Excel.Constants.xlCenter;
                                 }
                                 if (col.Name == "T.Pro")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 3].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
                                 if (col.Name == "T.Units")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 3].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
                                 if (col.Name == "TAT")
                                 {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
+                                    ExcelSheet.Columns[cIndex - 3].HorizontalAlignment = Excel.Constants.xlRight;
                                 }
 
                                 //if (col.Name == "Total Products" || col.Name == "GST%")
@@ -1787,13 +1787,13 @@ namespace ROMS
                                         //ExcelSheet.Row(i + 2).Style.Fill.PatternType = ExcelFillStyle.Solid;
                                         //ExcelSheet.Row(i + 2).Style.Fill.BackgroundColor.SetColor(Color.Red);
                                         //rowa.Interior.Color = System.Drawing.Color.Red;
-                                        ExcelSheet.Cells[rowa.Index + 3, cIndex - 2] = rowa.Cells[col.Index].Value;
-                                        if (cIndex == 2)
+                                        ExcelSheet.Cells[rowa.Index + 3, cIndex - 3] = rowa.Cells[col.Index].Value;
+                                        if (cIndex == 3)
                                         {
                                             //-----GET BACK COLOR OF GRID
                                             Color cellBackColor = rowa.Cells[col.Index].Style.BackColor;
                                             //------SET THE BACK COLOR FOR GRID TO EXCEL
-                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 2].Interior.Color = System.Drawing.ColorTranslator.ToOle(cellBackColor);
+                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 3].Interior.Color = System.Drawing.ColorTranslator.ToOle(cellBackColor);
                                         }
                                         //}
                                     }
