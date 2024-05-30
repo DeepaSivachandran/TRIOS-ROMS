@@ -2533,7 +2533,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat1", objTRNS_GRN.paraVerifiedFormat1);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat2", objTRNS_GRN.paraVerifiedFormat2);
                 varSqlCommand.Parameters.AddWithValue("@paraPayment", objTRNS_GRN.paraPayment);
-                varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", objTRNS_GRN.paraCompletedIDs);
+                //varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", objTRNS_GRN.paraCompletedIDs);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

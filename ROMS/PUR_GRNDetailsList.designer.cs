@@ -54,7 +54,6 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.btnCompleted = new System.Windows.Forms.Button();
             this.lblTotalGRN = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -80,7 +79,6 @@
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -259,7 +257,6 @@
             // 
             // grpfilter
             // 
-            this.grpfilter.Controls.Add(this.btnCompleted);
             this.grpfilter.Controls.Add(this.lblTotalGRN);
             this.grpfilter.Controls.Add(this.label6);
             this.grpfilter.Controls.Add(this.label5);
@@ -284,22 +281,12 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
-            // btnCompleted
-            // 
-            this.btnCompleted.Location = new System.Drawing.Point(1014, 42);
-            this.btnCompleted.Name = "btnCompleted";
-            this.btnCompleted.Size = new System.Drawing.Size(121, 33);
-            this.btnCompleted.TabIndex = 1111187;
-            this.btnCompleted.Text = "Mark as Completed";
-            this.btnCompleted.UseVisualStyleBackColor = true;
-            this.btnCompleted.Click += new System.EventHandler(this.BtnCompleted_Click);
-            // 
             // lblTotalGRN
             // 
             this.lblTotalGRN.AutoSize = true;
             this.lblTotalGRN.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblTotalGRN.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotalGRN.Location = new System.Drawing.Point(1207, 49);
+            this.lblTotalGRN.Location = new System.Drawing.Point(1077, 49);
             this.lblTotalGRN.Name = "lblTotalGRN";
             this.lblTotalGRN.Size = new System.Drawing.Size(17, 20);
             this.lblTotalGRN.TabIndex = 1111186;
@@ -309,7 +296,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1141, 49);
+            this.label6.Location = new System.Drawing.Point(1011, 49);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 20);
             this.label6.TabIndex = 1111185;
@@ -339,7 +326,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1261, 43);
+            this.label3.Location = new System.Drawing.Point(1131, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(16, 20);
             this.label3.TabIndex = 1111182;
@@ -556,8 +543,7 @@
             this.grdGRNList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ClmEdit,
             this.clmPrint,
-            this.clmLocPrint,
-            this.clmCheck});
+            this.clmLocPrint});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -639,11 +625,6 @@
             this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // clmCheck
-            // 
-            this.clmCheck.HeaderText = "";
-            this.clmCheck.Name = "clmCheck";
-            // 
             // PUR_GRNDetailsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -720,10 +701,8 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotalGRN;
-        private System.Windows.Forms.Button btnCompleted;
         private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmLocPrint;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
     }
 }
