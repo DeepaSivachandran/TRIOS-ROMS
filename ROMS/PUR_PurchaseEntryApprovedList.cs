@@ -139,6 +139,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.DataSource = objDs.Tables[0];
                             grdPurchaseEntryApproval.Columns["clmUnapproved"].Visible = true;
                             grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["PUR_CompleteFlag"].Visible = false;
                             grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
                             grdPurchaseEntryApproval.Columns["Concern"].Width = 80;
                             grdPurchaseEntryApproval.Columns["Vouc No."].Width = 100;
@@ -210,6 +211,7 @@ namespace ROMS
                 MainForm.objCP_Purchase.pbPurchaseEntryUnapprovedFlag = 1;
                 MainForm.objCP_Purchase.pbUnapprovePURID = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
+                MainForm.objCP_Purchase.varUnApproveFlag = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PUR_CompleteFlag"].Value);
                 //MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
@@ -1010,21 +1012,28 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
-                //{
-                //    DataGridView dataGridView = (DataGridView)sender;
-                //    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
-                //    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "49")
-                //    {
-                //        cell.Style.BackColor = Color.Red;
-                //        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                //    }
-                //    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "50")
-                //    {
-                //        cell.Style.BackColor = Color.Green;
-                //        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                //    }
-                //}
+                for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
+                {
+                    //    DataGridView dataGridView = (DataGridView)sender;
+                    //    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    //    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "49")
+                    //    {
+                    //        cell.Style.BackColor = Color.Red;
+                    //        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    //    }
+                    //    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "50")
+                    //    {
+                    //        cell.Style.BackColor = Color.Green;
+                    //        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    //    }
+                    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["PUR_CompleteFlag"].Value) == "1")
+                    {
+                        DataGridViewTextBoxCell UnApprove = new DataGridViewTextBoxCell();
+                        UnApprove.Value = "";
+                        grdPurchaseEntryApproval.Rows[i].Cells["clmUnapproved"] = UnApprove;
+                        UnApprove.ReadOnly = true;
+                    }
+                }
             }
             catch (Exception ex)
             {

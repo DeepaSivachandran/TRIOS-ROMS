@@ -56,7 +56,7 @@ namespace ROMS
             varPrslid = "0", varPrRkid = "0", varGRNProCount = "0", varId = "0", varPrid = "0", varPrMRPFlag = "0" , varGRNProType="0";
         public int varPOdropdownFlag = 0, varPrCountFlag = 0, varPrCount = 0, varEntryTypeViewFlag=0 , varRMProductionFlag =0;
         public string varGRNDate = "", varVoucherDate = "", varDCDate = "";
-        public int tallyFlag = 0;
+        public int tallyFlag = 0, varUnApproveFlag = 0;
         private Timer timer;
         public string varProducts = "",varEntryTypeDate="" , varGSTIN="";
         List<int> varProductsIDs = new List<int>();
@@ -1365,6 +1365,10 @@ namespace ROMS
                                     grdReurnDC.Visible = false;
                                 }
                                 udfnFormDisable();
+                                if(varUnApproveFlag==1)
+                                {
+                                    btnUnapprove.Enabled = false;
+                                }
                                 for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                 {
                                     string varMRP = "";
