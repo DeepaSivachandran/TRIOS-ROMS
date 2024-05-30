@@ -1611,7 +1611,7 @@ namespace ROMS
                     //int varflag = 0;
                     for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
                     {
-                        if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) == "63")
+                        if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) == "63" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_CompleteFlag"].Value)=="0")
                         {
                             if (VarPurchaseID == "0" && Convert.ToBoolean(grdPurchaseEntryList.Rows[i].Cells["clmCheck"].Value) == true)
                             {
