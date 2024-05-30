@@ -157,10 +157,19 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    if (ApprovalFlag == 1)
+                    {
+                        MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                        MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                        MainForm.objPUR_PurchaseApprovalList.Show();
+                    }               
+                    else
+                    {
+                        MainForm.objStart = new DEF_Start();
+                        MainForm.objStart.MdiParent = this.ParentForm;
+                        MainForm.objStart.Show();
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
