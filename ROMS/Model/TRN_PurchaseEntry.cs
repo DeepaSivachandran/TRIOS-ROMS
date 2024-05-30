@@ -69,6 +69,7 @@ namespace ROMS.Model
         public string paraPOID { get; set; } = ""; 
         public int paraProductID { get; set; } = 0; 
         public int paraSaveFlag { get; set; } = 0; 
+        public string paraCompletedIDs { get; set; } = ""; 
 
     }
 }

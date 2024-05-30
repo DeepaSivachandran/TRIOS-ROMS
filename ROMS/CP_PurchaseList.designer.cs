@@ -47,9 +47,11 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.grdPurchaseEntryList = new System.Windows.Forms.DataGridView();
             this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlpurchase = new System.Windows.Forms.Panel();
+            this.btnExport = new System.Windows.Forms.Button();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,6 +60,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.btnTally = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbstatus = new System.Windows.Forms.ComboBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -77,7 +80,6 @@
             this.lblschedleCode = new System.Windows.Forms.Label();
             this.errPurchaseList = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblQueueCount = new System.Windows.Forms.Label();
-            this.btnExport = new System.Windows.Forms.Button();
             this.tsBrandList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -222,7 +224,8 @@
             this.grdPurchaseEntryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseEntryList.ColumnHeadersVisible = false;
             this.grdPurchaseEntryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmEdit});
+            this.clmEdit,
+            this.clmCheck});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -235,7 +238,6 @@
             this.grdPurchaseEntryList.GridColor = System.Drawing.Color.White;
             this.grdPurchaseEntryList.Location = new System.Drawing.Point(3, 130);
             this.grdPurchaseEntryList.Name = "grdPurchaseEntryList";
-            this.grdPurchaseEntryList.ReadOnly = true;
             this.grdPurchaseEntryList.RowHeadersVisible = false;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
@@ -255,10 +257,16 @@
             this.clmEdit.HeaderText = "GSTR Status";
             this.clmEdit.Image = global::ROMS.Properties.Resources.pending;
             this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
             this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmEdit.Visible = false;
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // lblNoRecordsFound
             // 
@@ -334,6 +342,18 @@
             this.pnlpurchase.Size = new System.Drawing.Size(1354, 641);
             this.pnlpurchase.TabIndex = 36;
             // 
+            // btnExport
+            // 
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(1212, 22);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(32, 33);
+            this.btnExport.TabIndex = 1111197;
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            // 
             // LV_Supplier
             // 
             this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -345,7 +365,7 @@
             this.columnHeader3});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(598, 52);
+            this.LV_Supplier.Location = new System.Drawing.Point(561, 52);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(487, 93);
             this.LV_Supplier.TabIndex = 1111195;
@@ -369,6 +389,7 @@
             // 
             // grpFilterby
             // 
+            this.grpFilterby.Controls.Add(this.btnTally);
             this.grpFilterby.Controls.Add(this.label5);
             this.grpFilterby.Controls.Add(this.cmbstatus);
             this.grpFilterby.Controls.Add(this.cmbConcern);
@@ -389,11 +410,21 @@
             this.grpFilterby.TabStop = false;
             this.grpFilterby.Text = "Filter By";
             // 
+            // btnTally
+            // 
+            this.btnTally.Location = new System.Drawing.Point(1244, 20);
+            this.btnTally.Name = "btnTally";
+            this.btnTally.Size = new System.Drawing.Size(93, 33);
+            this.btnTally.TabIndex = 1111198;
+            this.btnTally.Text = "Export to Tally";
+            this.btnTally.UseVisualStyleBackColor = true;
+            this.btnTally.Click += new System.EventHandler(this.BtnTally_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1106, 26);
+            this.label5.Location = new System.Drawing.Point(1013, 26);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 20);
             this.label5.TabIndex = 1111197;
@@ -402,7 +433,7 @@
             // cmbstatus
             // 
             this.cmbstatus.FormattingEnabled = true;
-            this.cmbstatus.Location = new System.Drawing.Point(1154, 23);
+            this.cmbstatus.Location = new System.Drawing.Point(1061, 23);
             this.cmbstatus.Name = "cmbstatus";
             this.cmbstatus.Size = new System.Drawing.Size(110, 27);
             this.cmbstatus.TabIndex = 6;
@@ -417,7 +448,7 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(67, 23);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(117, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(83, 27);
             this.cmbConcern.TabIndex = 1;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -427,10 +458,10 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(594, 23);
+            this.txtSupplier.Location = new System.Drawing.Point(557, 23);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(284, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(251, 27);
             this.txtSupplier.TabIndex = 4;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -451,7 +482,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(882, 26);
+            this.label4.Location = new System.Drawing.Point(811, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 20);
             this.label4.TabIndex = 1111193;
@@ -461,7 +492,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(504, 26);
+            this.label2.Location = new System.Drawing.Point(467, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 1111192;
@@ -470,9 +501,9 @@
             // cmbOrdertype
             // 
             this.cmbOrdertype.FormattingEnabled = true;
-            this.cmbOrdertype.Location = new System.Drawing.Point(951, 23);
+            this.cmbOrdertype.Location = new System.Drawing.Point(880, 23);
             this.cmbOrdertype.Name = "cmbOrdertype";
-            this.cmbOrdertype.Size = new System.Drawing.Size(150, 27);
+            this.cmbOrdertype.Size = new System.Drawing.Size(129, 27);
             this.cmbOrdertype.TabIndex = 5;
             this.cmbOrdertype.Enter += new System.EventHandler(this.CmbOrdertype_Enter);
             this.cmbOrdertype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrdertype_KeyDown);
@@ -482,7 +513,7 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(393, 23);
+            this.dpToDate.Location = new System.Drawing.Point(356, 23);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(107, 27);
             this.dpToDate.TabIndex = 3;
@@ -494,7 +525,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(281, 23);
+            this.dpFromDate.Location = new System.Drawing.Point(244, 23);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 2;
@@ -507,7 +538,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(190, 26);
+            this.label1.Location = new System.Drawing.Point(153, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 20);
             this.label1.TabIndex = 1111191;
@@ -527,7 +558,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1267, 22);
+            this.btnView.Location = new System.Drawing.Point(1174, 20);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(32, 33);
             this.btnView.TabIndex = 7;
@@ -596,18 +627,6 @@
             this.lblQueueCount.Size = new System.Drawing.Size(17, 20);
             this.lblQueueCount.TabIndex = 1111198;
             this.lblQueueCount.Text = "0";
-            // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1306, 24);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(32, 33);
-            this.btnExport.TabIndex = 1111197;
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
             // CP_PurchaseList
             // 
@@ -683,11 +702,13 @@
         public System.Windows.Forms.Label lblschedleCode;
         private System.Windows.Forms.ErrorProvider errPurchaseList;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         public System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Label lblQueueCount;
         public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnTally;
+        private System.Windows.Forms.DataGridViewImageColumn clmEdit;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
     }
 }
