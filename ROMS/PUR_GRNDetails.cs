@@ -4281,18 +4281,18 @@ namespace ROMS
                         {
                             if (pbDateflag == 0)
                             {
-                                grdGrnlist.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
+                                //grdGrnlist.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
                                 DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmmrp"];
                                 DataGridViewCell cell1 = dataGridView.Rows[rowIndex].Cells["clmexpirydate"];
                                 DataGridViewCell cell2 = dataGridView.Rows[rowIndex].Cells["clmBatchno"];
                                 DataGridViewCell cell3 = dataGridView.Rows[rowIndex].Cells["clmInvoiceQty"];
                                 DataGridViewCell cell4 = dataGridView.Rows[rowIndex].Cells["clmExcessQty"];
-                                cell.Style.BackColor = Color.PaleGreen;
-                                cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                //cell.Style.BackColor = Color.PaleGreen;
+                                //cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                 cell1.Style.BackColor = Color.PaleGreen;
                                 cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                cell2.Style.BackColor = Color.PaleGreen;
-                                cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                //cell2.Style.BackColor = Color.PaleGreen;
+                                //cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                 //if (Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) !=202)
                                 //{
                                 //    cell3.Style.BackColor = Color.PaleGreen;

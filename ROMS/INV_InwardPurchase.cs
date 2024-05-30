@@ -2631,7 +2631,8 @@ namespace ROMS
                                     txtVerifiedby2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Verified BY 2"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN User"]);
                                     lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN STS"]);
-                                    grdGrnlist.Columns["clmQty"].HeaderText = Quantity;
+                                    grdGrnlist.Columns["clmQty"].HeaderText = "Pending Qty";
+                                    grdGrnlist.Columns["clmQty"].Visible = true;
                                 }
                                 if(varGRNPurchaseFlag==2 || varGRNPurchaseFlag == 175)
                                 {

@@ -5636,7 +5636,7 @@ namespace ROMS
                 else { varDate = varVoucherDate; }
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 10;
-                objMR_Master.paraDate = varDate;
+                objMR_Master.paraDate = dpVoucherDate.Text;
                 objMR_Master.ParaExpiryDate = varTempExpiryDate;
                 objMR_Master.paraProductId = varProid;
                 objDS = objDServ.udfnMaster(objMR_Master);
@@ -5842,7 +5842,7 @@ namespace ROMS
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "");
+                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0", "");
                                     objdserv.CloseConnection();
                                     if (objDs != null)
                                     {
