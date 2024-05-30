@@ -134,6 +134,7 @@ namespace ROMS
 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
+        public static PUR_PurchaseEntryRejectedList objPUR_PurchaseEntryRejectedList;  
         public static PUR_PurchaseOrder objPUR_PurchaseOrder;
         public static PUR_PODamaged objPUR_PODamaged;
         public static PUR_SupplierScheduleList objPUR_SupplierScheduleList;

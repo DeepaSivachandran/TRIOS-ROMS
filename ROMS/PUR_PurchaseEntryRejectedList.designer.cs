@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PUR_PurchaseApprovalList
+    partial class PUR_PurchaseEntryRejectedList
     {
         /// <summary>
         /// Required designer variable.
@@ -37,16 +37,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPurchaseApproval = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbQue = new System.Windows.Forms.ToolStripButton();
+            this.tsbPurchaseEntryApproval = new System.Windows.Forms.ToolStripButton();
+            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new System.Windows.Forms.Button();
-            this.grdPurchaseEntryApproval = new System.Windows.Forms.DataGridView();
+            this.grdPurchaseEntryRejected = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -69,11 +69,9 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryRejected)).BeginInit();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -87,11 +85,9 @@
             this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
-            this.tsbPurchaseApproval,
-            this.toolStripSeparator1,
-            this.tsbQue,
-            this.toolStripSeparator2,
-            this.toolStripButton1});
+            this.tsbPurchaseEntryApproval,
+            this.tssEdit,
+            this.tsbEdit});
             this.tsBrandList.Location = new System.Drawing.Point(0, 0);
             this.tsBrandList.Name = "tsBrandList";
             this.tsBrandList.Size = new System.Drawing.Size(1354, 27);
@@ -106,45 +102,48 @@
             this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(157, 24);
-            this.toolStripLabel1.Text = "Purchase Entry Approval";
+            this.toolStripLabel1.Text = "Purchase Entry Rejected";
             // 
-            // tsbPurchaseApproval
+            // tsbPurchaseEntryApproval
             // 
-            this.tsbPurchaseApproval.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbPurchaseApproval.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbPurchaseApproval.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPurchaseApproval.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbPurchaseApproval.Name = "tsbPurchaseApproval";
-            this.tsbPurchaseApproval.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPurchaseApproval.Size = new System.Drawing.Size(192, 24);
-            this.tsbPurchaseApproval.Text = "Purchase Mismatch Approval List";
-            this.tsbPurchaseApproval.Click += new System.EventHandler(this.TsbPurchaseApproval_Click);
+            this.tsbPurchaseEntryApproval.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPurchaseEntryApproval.Image = global::ROMS.Properties.Resources.queue;
+            this.tsbPurchaseEntryApproval.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPurchaseEntryApproval.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPurchaseEntryApproval.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbPurchaseEntryApproval.Name = "tsbPurchaseEntryApproval";
+            this.tsbPurchaseEntryApproval.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPurchaseEntryApproval.Size = new System.Drawing.Size(161, 24);
+            this.tsbPurchaseEntryApproval.Text = "Purchase Entry Approval";
+            this.tsbPurchaseEntryApproval.Click += new System.EventHandler(this.TsbPurchaseEntryApproval_Click);
             // 
-            // toolStripSeparator1
+            // tssEdit
             // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssEdit.Name = "tssEdit";
+            this.tssEdit.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsbQue
+            // tsbEdit
             // 
-            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
-            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbQue.Name = "tsbQue";
-            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbQue.Size = new System.Drawing.Size(188, 24);
-            this.tsbQue.Text = "Purchase Entry Approved List";
-            this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
+            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
+            this.tsbEdit.Text = "&Edit";
+            this.tsbEdit.Click += new System.EventHandler(this.TsbEdit_Click);
             // 
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
             this.pnlpurchaseapproval.Controls.Add(this.lvSupplier);
             this.pnlpurchaseapproval.Controls.Add(this.btnExport);
-            this.pnlpurchaseapproval.Controls.Add(this.grdPurchaseEntryApproval);
+            this.pnlpurchaseapproval.Controls.Add(this.grdPurchaseEntryRejected);
             this.pnlpurchaseapproval.Controls.Add(this.lblNoRecordsFound);
             this.pnlpurchaseapproval.Controls.Add(this.grpfilter);
             this.pnlpurchaseapproval.Controls.Add(this.DGV_SearchGrid);
@@ -201,14 +200,14 @@
             this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
             this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
-            // grdPurchaseEntryApproval
+            // grdPurchaseEntryRejected
             // 
-            this.grdPurchaseEntryApproval.AllowUserToAddRows = false;
-            this.grdPurchaseEntryApproval.AllowUserToDeleteRows = false;
-            this.grdPurchaseEntryApproval.AllowUserToResizeColumns = false;
-            this.grdPurchaseEntryApproval.AllowUserToResizeRows = false;
-            this.grdPurchaseEntryApproval.BackgroundColor = System.Drawing.Color.White;
-            this.grdPurchaseEntryApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdPurchaseEntryRejected.AllowUserToAddRows = false;
+            this.grdPurchaseEntryRejected.AllowUserToDeleteRows = false;
+            this.grdPurchaseEntryRejected.AllowUserToResizeColumns = false;
+            this.grdPurchaseEntryRejected.AllowUserToResizeRows = false;
+            this.grdPurchaseEntryRejected.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurchaseEntryRejected.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -216,10 +215,10 @@
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseEntryApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.grdPurchaseEntryApproval.ColumnHeadersHeight = 30;
-            this.grdPurchaseEntryApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseEntryApproval.ColumnHeadersVisible = false;
+            this.grdPurchaseEntryRejected.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.grdPurchaseEntryRejected.ColumnHeadersHeight = 30;
+            this.grdPurchaseEntryRejected.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurchaseEntryRejected.ColumnHeadersVisible = false;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -227,26 +226,26 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPurchaseEntryApproval.DefaultCellStyle = dataGridViewCellStyle8;
-            this.grdPurchaseEntryApproval.EnableHeadersVisualStyles = false;
-            this.grdPurchaseEntryApproval.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseEntryApproval.Location = new System.Drawing.Point(3, 130);
-            this.grdPurchaseEntryApproval.Name = "grdPurchaseEntryApproval";
-            this.grdPurchaseEntryApproval.ReadOnly = true;
-            this.grdPurchaseEntryApproval.RowHeadersVisible = false;
+            this.grdPurchaseEntryRejected.DefaultCellStyle = dataGridViewCellStyle8;
+            this.grdPurchaseEntryRejected.EnableHeadersVisualStyles = false;
+            this.grdPurchaseEntryRejected.GridColor = System.Drawing.Color.White;
+            this.grdPurchaseEntryRejected.Location = new System.Drawing.Point(3, 130);
+            this.grdPurchaseEntryRejected.Name = "grdPurchaseEntryRejected";
+            this.grdPurchaseEntryRejected.ReadOnly = true;
+            this.grdPurchaseEntryRejected.RowHeadersVisible = false;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseEntryApproval.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.grdPurchaseEntryApproval.RowTemplate.Height = 25;
-            this.grdPurchaseEntryApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseEntryApproval.ShowRowErrors = false;
-            this.grdPurchaseEntryApproval.Size = new System.Drawing.Size(1348, 513);
-            this.grdPurchaseEntryApproval.TabIndex = 111111148;
-            this.grdPurchaseEntryApproval.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdPurchaseEntryApproval_CellFormatting);
-            this.grdPurchaseEntryApproval.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseEntryApproval_DataBindingComplete);
-            this.grdPurchaseEntryApproval.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseEntryApproval_Scroll);
-            this.grdPurchaseEntryApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
-            this.grdPurchaseEntryApproval.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseEntryApproval_KeyDown);
+            this.grdPurchaseEntryRejected.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.grdPurchaseEntryRejected.RowTemplate.Height = 25;
+            this.grdPurchaseEntryRejected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurchaseEntryRejected.ShowRowErrors = false;
+            this.grdPurchaseEntryRejected.Size = new System.Drawing.Size(1348, 513);
+            this.grdPurchaseEntryRejected.TabIndex = 111111148;
+            this.grdPurchaseEntryRejected.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdPurchaseEntryApproval_CellFormatting);
+            this.grdPurchaseEntryRejected.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseEntryApproval_DataBindingComplete);
+            this.grdPurchaseEntryRejected.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseEntryApproval_Scroll);
+            this.grdPurchaseEntryRejected.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
+            this.grdPurchaseEntryRejected.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseEntryApproval_KeyDown);
             // 
             // lblNoRecordsFound
             // 
@@ -300,7 +299,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Green;
-            this.label5.Location = new System.Drawing.Point(691, 26);
+            this.label5.Location = new System.Drawing.Point(1078, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(16, 20);
             this.label5.TabIndex = 1111199;
@@ -311,7 +310,7 @@
             // 
             this.lblschedleCode.AutoSize = true;
             this.lblschedleCode.BackColor = System.Drawing.Color.LimeGreen;
-            this.lblschedleCode.Location = new System.Drawing.Point(637, 26);
+            this.lblschedleCode.Location = new System.Drawing.Point(1024, 28);
             this.lblschedleCode.Name = "lblschedleCode";
             this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
             this.lblschedleCode.TabIndex = 1111198;
@@ -542,26 +541,7 @@
             // 
             this.errPurchaseEntryApproval.ContainerControl = this;
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.Image = global::ROMS.Properties.Resources.queue;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton1.Size = new System.Drawing.Size(184, 24);
-            this.toolStripButton1.Text = "Purchase Entry Rejected List";
-            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
-            // 
-            // PUR_PurchaseApprovalList
+            // PUR_PurchaseEntryRejectedList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -573,7 +553,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "PUR_PurchaseApprovalList";
+            this.Name = "PUR_PurchaseEntryRejectedList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Entry Approval";
             this.Load += new System.EventHandler(this.PUR_PurchaseApprovalList_Load);
@@ -583,7 +563,7 @@
             this.tsBrandList.PerformLayout();
             this.pnlpurchaseapproval.ResumeLayout(false);
             this.pnlpurchaseapproval.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryRejected)).EndInit();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
@@ -624,13 +604,11 @@
         private System.Windows.Forms.ErrorProvider errPurchaseEntryApproval;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.PictureBox picLoader;
-        public System.Windows.Forms.DataGridView grdPurchaseEntryApproval;
+        public System.Windows.Forms.DataGridView grdPurchaseEntryRejected;
         private System.Windows.Forms.Button btnExport;
-        public System.Windows.Forms.ToolStripButton tsbQue;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        public System.Windows.Forms.ToolStripButton tsbPurchaseApproval;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        public System.Windows.Forms.ToolStripButton toolStripButton1;
+        public System.Windows.Forms.ToolStripButton tsbPurchaseEntryApproval;
+        public System.Windows.Forms.ToolStripSeparator tssEdit;
+        public System.Windows.Forms.ToolStripButton tsbEdit;
     }
 }
