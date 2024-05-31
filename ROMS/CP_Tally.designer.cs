@@ -218,6 +218,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
             this.Load += new System.EventHandler(this.CP_Tally_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Tally_KeyDown);
             this.tsTally.ResumeLayout(false);
             this.tsTally.PerformLayout();
             this.pnlCompany.ResumeLayout(false);

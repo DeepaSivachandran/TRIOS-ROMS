@@ -184,7 +184,14 @@ namespace ROMS
                 {
                     if (varStatusId == 39)
                     {
-                        this.Close();
+                        //this.Close();
+                        DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objINV_SalesInvoiceList.Show();
+                            MainForm.objINV_SalesInvoiceList.udfnList();
+                        }
                     }
                     else
                     {
@@ -215,7 +222,7 @@ namespace ROMS
                             else { this.Close(); }
                         }
                     }
-                    MainForm.objINV_SalesInvoiceList.udfnList();
+                    //MainForm.objINV_SalesInvoiceList.udfnList();
                 }
             }
             catch (Exception ex)

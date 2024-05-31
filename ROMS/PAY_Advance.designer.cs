@@ -988,6 +988,7 @@
             this.Text = "Advance";
             this.Load += new System.EventHandler(this.PAY_Advance_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_Advance_KeyDown);
+            this.Leave += new System.EventHandler(this.PAY_Advance_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.grbIssuedDetails.ResumeLayout(false);

@@ -318,6 +318,7 @@ namespace ROMS
                 if (blnErrorFlag == false)
                 {
                     epAdvance.Clear();
+                    udfnTooltipHide();
                     btnSave.Enabled = false;
                     udfnSave(sender, e);
                 }
@@ -375,7 +376,13 @@ namespace ROMS
         {
             try
             {
-                this.Close();
+                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                    MainForm.objPAY_AdvanceList.Show();
+                    MainForm.objPAY_AdvanceList.udfnList();
+                }
             }
             catch (Exception ex)
             {
@@ -384,10 +391,28 @@ namespace ROMS
             }
              
         }
+        public void udfnTooltipHide()
+        {
+            try
+            {
+                tpConcern.Active = false;
+                tpSupplier.Active = false;
+                tpReceipt.Active = false;
+                tpCheque.Active = false;
+                tpIssue.Active = false;
+                tpAmount.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
             {
+                udfnTooltipHide();
                 udfnclose();
                 MainForm.objPAY_AdvanceList.udfnList();
             }
@@ -1463,6 +1488,19 @@ namespace ROMS
             try
             {
                 txtIssue.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PAY_Advance_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnTooltipHide();
             }
             catch (Exception ex)
             {
