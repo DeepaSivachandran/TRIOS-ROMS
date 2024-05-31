@@ -199,6 +199,10 @@ namespace ROMS
                             lblNoRecordsFound.BringToFront();
                             Deftable = objDs.Tables[0];
                         }
+                        if(objDs.Tables[1].Rows.Count != 0)
+                        {
+                            tsbRejectedProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["TotCount"].ToString());
+                        }
                     }
                     else
                     {

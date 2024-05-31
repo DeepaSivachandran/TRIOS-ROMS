@@ -1511,14 +1511,14 @@ namespace ROMS
                                     {
                                         grdTaxDetails.DataSource = objDs.Tables[2];
                                         grdTaxDetails.Columns["GST%"].Width = 60;
-                                        grdTaxDetails.Columns["Taxable Value"].Width = 80;
-                                        grdTaxDetails.Columns["Tax Value"].Width = 60;
-                                        grdTaxDetails.Columns["IGST%"].Width = 60;
-                                        grdTaxDetails.Columns["CGST%"].Width = 60;
-                                        grdTaxDetails.Columns["SGST%"].Width = 60;
-                                        grdTaxDetails.Columns["IGST"].Width = 80;
-                                        grdTaxDetails.Columns["CGST"].Width = 80;
-                                        grdTaxDetails.Columns["SGST"].Width = 80;
+                                        grdTaxDetails.Columns["Taxable Value"].Width = 100;
+                                        grdTaxDetails.Columns["Tax Value"].Width = 80;
+                                        grdTaxDetails.Columns["IGST%"].Width = 80;
+                                        grdTaxDetails.Columns["CGST%"].Width = 80;
+                                        grdTaxDetails.Columns["SGST%"].Width = 80;
+                                        grdTaxDetails.Columns["IGST"].Width = 100;
+                                        grdTaxDetails.Columns["CGST"].Width = 100;
+                                        grdTaxDetails.Columns["SGST"].Width = 100;
                                         grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2073,9 +2073,18 @@ namespace ROMS
                     }
                     else
                     {
-                        //tbDetails.TabPages[0].Enabled = false; // First tab 
-                        // tbDetails.TabPages[1].Enabled = true; // Second tab  
-                        //udfnPurchaseEntryTabLoad(); //tab2 load
+                        if(grdTaxDetails.Rows.Count>0)
+                        {
+                            grdTaxDetails.Columns["GST%"].Width = 60;
+                            grdTaxDetails.Columns["Taxable Value"].Width = 100;
+                            grdTaxDetails.Columns["Tax Value"].Width = 80;
+                            grdTaxDetails.Columns["IGST%"].Width = 80;
+                            grdTaxDetails.Columns["CGST%"].Width = 80;
+                            grdTaxDetails.Columns["SGST%"].Width = 80;
+                            grdTaxDetails.Columns["IGST"].Width = 100;
+                            grdTaxDetails.Columns["CGST"].Width = 100;
+                            grdTaxDetails.Columns["SGST"].Width = 100;
+                        }
                     }
                 }
                 if (pbPurchaseno != "0")
