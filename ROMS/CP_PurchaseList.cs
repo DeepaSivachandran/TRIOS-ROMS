@@ -1607,46 +1607,46 @@ namespace ROMS
         }
         private void BtnTally_Click(object sender, EventArgs e)
         {
+
             try
             {
-                try
+                string VarPurchaseID = "0";
+                //int varflag = 0;
+                for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
                 {
-                    string VarPurchaseID = "0";
-                    //int varflag = 0;
-                    for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) == "63" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_CompleteFlag"].Value) == "0")
                     {
-                        if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) == "63" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_CompleteFlag"].Value)=="0")
+                        if (VarPurchaseID == "0" && Convert.ToBoolean(grdPurchaseEntryList.Rows[i].Cells["clmCheck"].Value) == true)
                         {
-                            if (VarPurchaseID == "0" && Convert.ToBoolean(grdPurchaseEntryList.Rows[i].Cells["clmCheck"].Value) == true)
-                            {
-                                VarPurchaseID = Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PURID"].Value);
-                            }
-                            else if (VarPurchaseID != "0" && Convert.ToBoolean(grdPurchaseEntryList.Rows[i].Cells["clmCheck"].Value) == true)
-                            {
-                                VarPurchaseID = VarPurchaseID + ',' + Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PURID"].Value);
-                            }
+                            VarPurchaseID = Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PURID"].Value);
+                        }
+                        else if (VarPurchaseID != "0" && Convert.ToBoolean(grdPurchaseEntryList.Rows[i].Cells["clmCheck"].Value) == true)
+                        {
+                            VarPurchaseID = VarPurchaseID + ',' + Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PURID"].Value);
                         }
                     }
-                    SPDataService objDServ = new SPDataService();
-                    string result = "";
-                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                    objTRN_PurchaseEntry.ViewType = 6;
-                    objTRN_PurchaseEntry.paraCompletedIDs = Convert.ToString(VarPurchaseID);
-                    result = objDServ.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
-                    objDServ.CloseConnection();
-                    string[] varvalue = result.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnListLoad();
-                    }
                 }
-                catch (Exception ex)
+                SPDataService objDServ = new SPDataService();
+                string result = "";
+                TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                objTRN_PurchaseEntry.ViewType = 6;
+                objTRN_PurchaseEntry.paraCompletedIDs = Convert.ToString(VarPurchaseID);
+                result = objDServ.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                objDServ.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (varvalue[0] == "3")
                 {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                    }
-                    }
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnListLoad();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+           
         private void GrdPurchaseEntryList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             try
