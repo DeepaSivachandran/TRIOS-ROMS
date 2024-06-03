@@ -226,14 +226,14 @@
             this.grdPurchaseEntryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmEdit,
             this.clmCheck});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPurchaseEntryList.DefaultCellStyle = dataGridViewCellStyle8;
+            //dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            //dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            //dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            //dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            //dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            //dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            //dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            //this.grdPurchaseEntryList.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdPurchaseEntryList.EnableHeadersVisualStyles = false;
             this.grdPurchaseEntryList.GridColor = System.Drawing.Color.White;
             this.grdPurchaseEntryList.Location = new System.Drawing.Point(3, 130);

@@ -76,7 +76,7 @@
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+           // this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
@@ -598,8 +598,8 @@
             // 
             // clmCheck
             // 
-            this.clmCheck.HeaderText = "";
-            this.clmCheck.Name = "clmCheck";
+            //this.clmCheck.HeaderText = "";
+            //this.clmCheck.Name = "clmCheck";
             // 
             // picLoader
             // 
