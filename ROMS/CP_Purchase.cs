@@ -1515,14 +1515,14 @@ namespace ROMS
                                     {
                                         grdTaxDetails.DataSource = objDs.Tables[2];
                                         grdTaxDetails.Columns["GST%"].Width = 60;
-                                        grdTaxDetails.Columns["Taxable Value"].Width = 80;
-                                        grdTaxDetails.Columns["Tax Value"].Width = 60;
-                                        grdTaxDetails.Columns["IGST%"].Width = 60;
-                                        grdTaxDetails.Columns["CGST%"].Width = 60;
-                                        grdTaxDetails.Columns["SGST%"].Width = 60;
-                                        grdTaxDetails.Columns["IGST"].Width = 80;
-                                        grdTaxDetails.Columns["CGST"].Width = 80;
-                                        grdTaxDetails.Columns["SGST"].Width = 80;
+                                        grdTaxDetails.Columns["Taxable Value"].Width = 100;
+                                        grdTaxDetails.Columns["Tax Value"].Width = 80;
+                                        grdTaxDetails.Columns["IGST%"].Width = 80;
+                                        grdTaxDetails.Columns["CGST%"].Width = 80;
+                                        grdTaxDetails.Columns["SGST%"].Width = 80;
+                                        grdTaxDetails.Columns["IGST"].Width = 100;
+                                        grdTaxDetails.Columns["CGST"].Width = 100;
+                                        grdTaxDetails.Columns["SGST"].Width = 100;
                                         grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2077,9 +2077,18 @@ namespace ROMS
                     }
                     else
                     {
-                        //tbDetails.TabPages[0].Enabled = false; // First tab 
-                        // tbDetails.TabPages[1].Enabled = true; // Second tab  
-                        //udfnPurchaseEntryTabLoad(); //tab2 load
+                        if(grdTaxDetails.Rows.Count>0)
+                        {
+                            grdTaxDetails.Columns["GST%"].Width = 60;
+                            grdTaxDetails.Columns["Taxable Value"].Width = 100;
+                            grdTaxDetails.Columns["Tax Value"].Width = 80;
+                            grdTaxDetails.Columns["IGST%"].Width = 80;
+                            grdTaxDetails.Columns["CGST%"].Width = 80;
+                            grdTaxDetails.Columns["SGST%"].Width = 80;
+                            grdTaxDetails.Columns["IGST"].Width = 100;
+                            grdTaxDetails.Columns["CGST"].Width = 100;
+                            grdTaxDetails.Columns["SGST"].Width = 100;
+                        }
                     }
                 }
                 if (pbPurchaseno != "0")
@@ -5640,7 +5649,7 @@ namespace ROMS
                 else { varDate = varVoucherDate; }
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 10;
-                objMR_Master.paraDate = varDate;
+                objMR_Master.paraDate = dpVoucherDate.Text;
                 objMR_Master.ParaExpiryDate = varTempExpiryDate;
                 objMR_Master.paraProductId = varProid;
                 objDS = objDServ.udfnMaster(objMR_Master);
@@ -5846,7 +5855,7 @@ namespace ROMS
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "");
+                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0", "");
                                     objdserv.CloseConnection();
                                     if (objDs != null)
                                     {

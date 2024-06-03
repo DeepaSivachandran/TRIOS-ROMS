@@ -2675,7 +2675,7 @@ namespace ROMS
                                             //ExcelSheet.Row(i + 2).Style.Fill.BackgroundColor.SetColor(Color.Red);
                                             //rowa.Interior.Color = System.Drawing.Color.Red;
                                             ExcelSheet.Cells[rowa.Index + 3, cIndex - 2] = rowa.Cells[col.Index].Value;
-                                            if (cIndex == 3)
+                                            if (cIndex == 2)
                                             {
                                                 //-----GET BACK COLOR OF GRID
                                                 Color cellBackColor = rowa.Cells[col.Index].Style.BackColor;
@@ -2705,9 +2705,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
-
             finally
             {
                 btnExport.Enabled = true;

@@ -60,6 +60,7 @@
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.grdInwardQueueList = new System.Windows.Forms.DataGridView();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -91,7 +92,6 @@
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.DGV_ProdSearchGrid = new System.Windows.Forms.DataGridView();
             this.epQueueList = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -333,10 +333,21 @@
             this.grdInwardQueueList.Size = new System.Drawing.Size(1348, 502);
             this.grdInwardQueueList.TabIndex = 958797;
             this.grdInwardQueueList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInwardQueueList_CellContentClick);
+            this.grdInwardQueueList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdInwardQueueList_CellFormatting);
             this.grdInwardQueueList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInwardQueueList_DataBindingComplete);
             this.grdInwardQueueList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdInwardQueueList_Scroll);
             this.grdInwardQueueList.DoubleClick += new System.EventHandler(this.GrdInwardQueueList_DoubleClick);
             this.grdInwardQueueList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdInwardQueueList_KeyDown);
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmPrint.Width = 70;
             // 
             // btnPrint
             // 
@@ -803,16 +814,6 @@
             // epQueueList
             // 
             this.epQueueList.ContainerControl = this;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmPrint.Width = 70;
             // 
             // INV_InwardQueueList
             // 

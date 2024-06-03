@@ -14,13 +14,13 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
-    public partial class PUR_PurchaseApprovalList : Form
+    public partial class PUR_PurchaseEntryRejectedList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
         DataTable Deftable = new DataTable();
-        public PUR_PurchaseApprovalList()
+        public PUR_PurchaseEntryRejectedList()
         {
             InitializeComponent();
         }
@@ -142,15 +142,15 @@ namespace ROMS
                 Application.DoEvents();
                 this.ActiveControl = dpFromDate;
                 //********** To display a data in a grid  ****************** 
-                grdPurchaseEntryApproval.DataSource = null;
+                grdPurchaseEntryRejected.DataSource = null;
                 errPurchaseEntryApproval.Clear();
                 DGV_SearchGrid.DataSource = null;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                objTRN_PurchaseEntry.ViewType = 12;
+                objTRN_PurchaseEntry.ViewType = 1;
                 objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                //objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_PurchaseEntry.paraStatus = 70;
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblScheduleCode.Text);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
@@ -166,42 +166,44 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdPurchaseEntryApproval.DataSource = objDs.Tables[0];
-                            grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
-                            grdPurchaseEntryApproval.Columns["Concern"].Width = 80;
-                            grdPurchaseEntryApproval.Columns["Vouc No."].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Vouc Date"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Supplier"].Width = 300;
-                            grdPurchaseEntryApproval.Columns["Pur Type"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
-                            grdPurchaseEntryApproval.Columns["Overall Status"].Width = 150;
-                            grdPurchaseEntryApproval.Columns["Status"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["PUR_Created"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["PUR_LastTransNo"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["PUR_VoucherDate"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["Overall Full Status"].Visible = false;
-                            grdPurchaseEntryApproval.Columns["Inv Date"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Inv No."].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;
-                            grdPurchaseEntryApproval.Columns["Created By"].Width = 200;
-                            grdPurchaseEntryApproval.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseEntryApproval.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseEntryApproval.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseEntryApproval.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseEntryApproval.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseEntryRejected.DataSource = objDs.Tables[0];
+                            grdPurchaseEntryRejected.Columns["S.No."].Width = 50;
+                            grdPurchaseEntryRejected.Columns["Concern"].Width = 80;
+                            grdPurchaseEntryRejected.Columns["Vouc No."].Width = 100;
+                            grdPurchaseEntryRejected.Columns["Vouc Date"].Width = 100;
+                            grdPurchaseEntryRejected.Columns["Supplier"].Width = 300;
+                            // grdPurchaseEntryList.Columns["City"].Width = 100;
+                            grdPurchaseEntryRejected.Columns["GSTIN"].Width = 120;
+                            grdPurchaseEntryRejected.Columns["Inv Date"].Width = 100;
+                            grdPurchaseEntryRejected.Columns["Inv No."].Width = 100;
+                            grdPurchaseEntryRejected.Columns["Created By"].Width = 200;
+                            grdPurchaseEntryRejected.Columns["Pur Type"].Width = 150;
+                            grdPurchaseEntryRejected.Columns["Tot Pro"].Width = 100;
+                            grdPurchaseEntryRejected.Columns["Inv Amt"].Width = 100;
+                            grdPurchaseEntryRejected.Columns["Pur Entry Status"].Width = 130;
+                            grdPurchaseEntryRejected.Columns["Overall Status"].Width = 150;
+                            grdPurchaseEntryRejected.Columns["PURID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["SPSCID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["SPID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["STSID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["PUR_INVSTSID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["GRN_Payment_StsID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["Flag"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["Pur Entry Full Status"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["Overall Full Status"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseEntryRejected.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseEntryRejected.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryRejected.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdPurchaseEntryRejected.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                             Deftable = objDs.Tables[0];
-                        }
-                        if(objDs.Tables[1].Rows.Count != 0)
-                        {
-                            tsbRejectedProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["TotCount"].ToString());
                         }
                     }
                     else
@@ -241,12 +243,15 @@ namespace ROMS
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
-                MainForm.objPUR_PurchaseEntryApproval = new PUR_PurchaseEntryApproval();
-                MainForm.objPUR_PurchaseEntryApproval.PbSTS = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["STSID"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryApproval.Show();
+                MainForm.objCP_Purchase = new CP_Purchase();
+                MainForm.objCP_Purchase.btnSave.Text = "Save as Draft";
+                MainForm.objCP_Purchase.PbSTS = Convert.ToString(grdPurchaseEntryRejected.SelectedRows[0].Cells["STSID"].Value.ToString());
+                MainForm.objCP_Purchase.PbApprovalStsid = Convert.ToInt32(grdPurchaseEntryRejected.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString());
+                MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryRejected.SelectedRows[0].Cells["PURID"].Value.ToString());
+                MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryRejected.SelectedRows[0].Cells["Pur Entry Full Status"].Value.ToString());
+                MainForm.objCP_Purchase.varPurEditFlag = 1;
+                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                MainForm.objCP_Purchase.Show();
             }
             catch (Exception ex)
             {
@@ -269,19 +274,23 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Vouc No."].Width = 100;
                 DGV_SearchGrid.Columns["Vouc Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier"].Width = 300;
+                // DGV_SearchGrid.Columns["City"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;
                 DGV_SearchGrid.Columns["Inv Date"].Width = 100;
                 DGV_SearchGrid.Columns["Inv No."].Width = 100;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
                 DGV_SearchGrid.Columns["Pur Type"].Width = 100;
                 DGV_SearchGrid.Columns["Tot Pro"].Width = 150;
-                DGV_SearchGrid.Columns["Remarks"].Width = 100;
-                DGV_SearchGrid.Columns["Status"].Visible = false;
-                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["Inv Amt"].Width = 150;
+                DGV_SearchGrid.Columns["Pur Entry Status"].Width = 130;
+                DGV_SearchGrid.Columns["Overall Status"].Width = 130;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
-                DGV_SearchGrid.Columns["PUR_Created"].Visible = false;
-                DGV_SearchGrid.Columns["PUR_LastTransNo"].Visible = false;
-                DGV_SearchGrid.Columns["PUR_VoucherDate"].Visible = false;
+                DGV_SearchGrid.Columns["SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["SPID"].Visible = false;
+                DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_Approval_STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_INVSTSID"].Visible = false;
+                DGV_SearchGrid.Columns["Pur Entry Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
@@ -298,10 +307,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    udfnGridSearchHeading(grdPurchaseEntryApproval, DGV_SearchGrid);
+                    udfnGridSearchHeading(grdPurchaseEntryRejected, DGV_SearchGrid);
                     DGV_SearchGrid.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in grdPurchaseEntryApproval.Columns)
+                    foreach (DataGridViewColumn col in grdPurchaseEntryRejected.Columns)
                     {
                         DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                         visibleColumns.Add(col.Index);
@@ -390,7 +399,7 @@ namespace ROMS
         {
             try
             {
-                
+
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
@@ -859,9 +868,9 @@ namespace ROMS
                 {
                     //udfnGridSearchFilter();
                     DataService objDser = new DataService();
-                    grdPurchaseEntryApproval.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryApproval);
+                    grdPurchaseEntryRejected.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryRejected);
                     objDser.CloseConnection();
-                    grdPurchaseEntryApproval.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                    grdPurchaseEntryRejected.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                     //DGV_SearchGrid_CellPainting(sender,e);
                 }
             }
@@ -902,8 +911,8 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    DataGridViewColumn newColumn = grdPurchaseEntryApproval.Columns[e.ColumnIndex];
-                    DataGridViewColumn oldColumn = grdPurchaseEntryApproval.SortedColumn;
+                    DataGridViewColumn newColumn = grdPurchaseEntryRejected.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdPurchaseEntryRejected.SortedColumn;
                     ListSortDirection direction;
 
                     // If oldColumn is null, then the DataGridView is not sorted.
@@ -911,7 +920,7 @@ namespace ROMS
                     {
                         // Sort the same column again, reversing the SortOrder.
                         if (oldColumn == newColumn &&
-                            grdPurchaseEntryApproval.SortOrder == SortOrder.Ascending)
+                            grdPurchaseEntryRejected.SortOrder == SortOrder.Ascending)
                         {
                             direction = ListSortDirection.Descending;
                         }
@@ -926,7 +935,7 @@ namespace ROMS
                     {
                         direction = ListSortDirection.Ascending;
                     }
-                    grdPurchaseEntryApproval.Sort(newColumn, direction);
+                    grdPurchaseEntryRejected.Sort(newColumn, direction);
                     newColumn.HeaderCell.SortGlyphDirection =
                         direction == ListSortDirection.Ascending ?
                         SortOrder.Ascending : SortOrder.Descending;
@@ -934,7 +943,7 @@ namespace ROMS
                     DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                     DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryApproval.HorizontalScrollingOffset;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryRejected.HorizontalScrollingOffset;
                     DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                 }
             }
@@ -947,10 +956,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    if (grdPurchaseEntryApproval.ColumnCount > 0)
+                    if (grdPurchaseEntryRejected.ColumnCount > 0)
                     {
-                        grdPurchaseEntryApproval.Columns[e.Column.Index].Width = e.Column.Width;
-                        DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryApproval.HorizontalScrollingOffset;
+                        grdPurchaseEntryRejected.Columns[e.Column.Index].Width = e.Column.Width;
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryRejected.HorizontalScrollingOffset;
                     }
                 }
             }
@@ -975,9 +984,9 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdPurchaseEntryApproval.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryApproval);
+                grdPurchaseEntryRejected.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryRejected);
                 objDser.CloseConnection();
-                grdPurchaseEntryApproval.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdPurchaseEntryRejected.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
             }
 
@@ -992,9 +1001,9 @@ namespace ROMS
                 {
                     //udfnGridSearchFilter();
                     DataService objDser = new DataService();
-                    grdPurchaseEntryApproval.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryApproval);
+                    grdPurchaseEntryRejected.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdPurchaseEntryRejected);
                     objDser.CloseConnection();
-                    grdPurchaseEntryApproval.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                    grdPurchaseEntryRejected.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                     //DGV_SearchGrid_CellPainting(sender,e);
                 }
             }
@@ -1008,11 +1017,11 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdPurchaseEntryApproval.HorizontalScrollingOffset;
+                    int offSetValue = grdPurchaseEntryRejected.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
 
-                    if (totalWidth - grdPurchaseEntryApproval.Width > grdPurchaseEntryApproval.HorizontalScrollingOffset && grdPurchaseEntryApproval.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdPurchaseEntryRejected.Width > grdPurchaseEntryRejected.HorizontalScrollingOffset && grdPurchaseEntryRejected.HorizontalScrollingOffset > 0)
                     {
                         //offSetValue = offSetValue ;
                         offSetValue = offSetValue;
@@ -1055,7 +1064,7 @@ namespace ROMS
             }
             finally
             {
-                grdPurchaseEntryApproval.ClearSelection();
+                grdPurchaseEntryRejected.ClearSelection();
             }
         }
         public void udfnscrollVisible(DataGridView DGV, DataGridView grdGroupList)
@@ -1064,7 +1073,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    var vScrollbar = grdPurchaseEntryApproval.Controls.OfType<VScrollBar>().First();
+                    var vScrollbar = grdPurchaseEntryRejected.Controls.OfType<VScrollBar>().First();
                     if (vScrollbar.Visible == true)
                     {
                         List<int> visibleColumns = new List<int>();
@@ -1098,16 +1107,16 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdPurchaseEntryApproval.HorizontalScrollingOffset;
+                    int offSetValue = grdPurchaseEntryRejected.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdPurchaseEntryApproval.Width > grdPurchaseEntryApproval.HorizontalScrollingOffset && grdPurchaseEntryApproval.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdPurchaseEntryRejected.Width > grdPurchaseEntryRejected.HorizontalScrollingOffset && grdPurchaseEntryRejected.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_SearchGrid, grdPurchaseEntryApproval);
+                    udfnscrollVisible(DGV_SearchGrid, grdPurchaseEntryRejected);
                 }
             }
             catch (Exception ex)
@@ -1143,12 +1152,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         public void udfnExport()
+        public void udfnExport()
         {
             try
             {
                 btnExport.Enabled = false;
-                if ((grdPurchaseEntryApproval.Rows.Count > 0))
+                if ((grdPurchaseEntryRejected.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
@@ -1163,7 +1172,7 @@ namespace ROMS
                     ExcelSheet.Name = "Purchase Entry Approval";
                     int cIndex = 0;
                     int count = 0;
-                    foreach (DataGridViewColumn col in grdPurchaseEntryApproval.Columns)
+                    foreach (DataGridViewColumn col in grdPurchaseEntryRejected.Columns)
                     {
                         if (col.Visible)
                         {
@@ -1183,7 +1192,7 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
 
 
-                    foreach (DataGridViewColumn col in grdPurchaseEntryApproval.Columns)
+                    foreach (DataGridViewColumn col in grdPurchaseEntryRejected.Columns)
                     {
                         if (col.Visible)
                         {
@@ -1191,11 +1200,11 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." )
+                            if (col.Name == "S.No.")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if(col.Name=="GSTIN")
+                            else if (col.Name == "GSTIN")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -1211,12 +1220,12 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Tot Pro" || col.Name=="Inv Amt")
+                            if (col.Name == "Tot Pro" || col.Name == "Inv Amt")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             int varSLno = 1;
-                            foreach (DataGridViewRow rowa in grdPurchaseEntryApproval.Rows)
+                            foreach (DataGridViewRow rowa in grdPurchaseEntryRejected.Rows)
                             {
                                 if (cIndex == 1)
                                 {
@@ -1295,7 +1304,7 @@ namespace ROMS
         {
             try
             {
-                if(e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     udfnEdit();
                 }
@@ -1332,10 +1341,10 @@ namespace ROMS
         {
             try
             {
-                if (e.ColumnIndex == grdPurchaseEntryApproval.Columns["Overall Status"].Index)
+                if (e.ColumnIndex == grdPurchaseEntryRejected.Columns["Overall Status"].Index)
                 {
-                    var cell = grdPurchaseEntryApproval.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                    cell.ToolTipText = grdPurchaseEntryApproval.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                    var cell = grdPurchaseEntryRejected.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseEntryRejected.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -1345,13 +1354,26 @@ namespace ROMS
             }
         }
 
-        private void ToolStripButton1_Click(object sender, EventArgs e)
+        private void TsbEdit_Click(object sender, EventArgs e)
         {
             try
             {
-                MainForm.objPUR_PurchaseEntryRejectedList = new PUR_PurchaseEntryRejectedList();
-                MainForm.objPUR_PurchaseEntryRejectedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryRejectedList.Show();
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbPurchaseEntryApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseApprovalList.Show();
             }
             catch (Exception ex)
             {
