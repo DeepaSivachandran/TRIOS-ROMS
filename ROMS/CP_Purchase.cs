@@ -1167,6 +1167,55 @@ namespace ROMS
                     if(varConvertFlag==1)
                     { btnSave.Enabled = true; }
                 }
+                if(varConvertFlag==1)
+                {
+                    udfndisablevalue();
+                    grdSupplierList.ReadOnly = false;
+                    grdPurchaseList.ReadOnly = false;
+
+                    grdSupplierList.Columns["clmPicode"].ReadOnly = true;
+                    grdSupplierList.Columns["clmProTname"].ReadOnly = true;
+                    grdSupplierList.Columns["clmUnit"].ReadOnly = true;
+                    grdSupplierList.Columns["clmGrnMrp"].ReadOnly = true;
+                    // grdSupplierList.Columns["clmMRP"].ReadOnly = true;
+                    //grdSupplierList.Columns["clmexpirydate"].ReadOnly = true;
+                    grdSupplierList.Columns["clmShelflife"].ReadOnly = true;
+                    grdSupplierList.Columns["clmactuallife"].ReadOnly = true;
+                    grdSupplierList.Columns["clmshelfper"].ReadOnly = true;
+                    //grdSupplierList.Columns["clmBatchno"].ReadOnly = true;
+                    grdSupplierList.Columns["clmLocation"].ReadOnly = true;
+                    grdSupplierList.Columns["clmrack"].ReadOnly = true;
+
+                    grdPurchaseList.Columns["sno"].ReadOnly = true;
+                    grdPurchaseList.Columns["picode"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmProductName"].ReadOnly = true;
+                    grdPurchaseList.Columns["clminvMRP"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmExpdate"].ReadOnly = true;
+                    grdPurchaseList.Columns["clminvoiceBatch"].ReadOnly = true;
+                    grdPurchaseList.Columns["clminvLocation"].ReadOnly = true;
+                    grdPurchaseList.Columns["clminvRack"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmHSN"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmInvQty"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmRecqty"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmDiffqty"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmFreeqty"].ReadOnly = true;
+                    grdPurchaseList.Columns["unit"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmPurchaseRate"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmDiscAmt"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmDiscPer"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmTax"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmGstper"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmGstamt"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmCGST"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmCGSTamt"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmSGST"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmSGSTamt"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmIGST"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmIGSTamt"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmDiscountValue"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmnetamt"].ReadOnly = true;
+                    grdPurchaseList.Columns["clmCosting"].ReadOnly = true;
+                }
             }
             catch (Exception ex)
             {
@@ -6672,7 +6721,7 @@ namespace ROMS
                                             {
                                                 grdPODetails.Columns["clmRemovePO"].Visible = false;
                                             }
-                                            if (btnSave.Text == "Save as Draft" && varEditFlag==0)
+                                            if (btnSave.Text == "Save as Draft" && varEditFlag==0 )
                                             {
                                                 pbPurchaseno = varvalue[2];
                                                 grdSupplierList.Rows.Clear();
@@ -6688,7 +6737,7 @@ namespace ROMS
                                                     tbDetails.SelectedIndex = 1;
                                                 }
                                                 else
-                                                { varCloseflag = 1; }
+                                                { varCloseflag = 1; } 
                                             }
                                             else if (btnSave.Text == "Save as Draft" && varEditFlag==1)
                                             {
@@ -6703,6 +6752,10 @@ namespace ROMS
                                                 }
                                                 else
                                                 { varCloseflag = 1; udfnclose(); }
+                                            }
+                                            else if(varConvertFlag == 1)
+                                            {
+                                                tbDetails.SelectedIndex = 1;
                                             }
                                             else
                                             {
@@ -6881,6 +6934,10 @@ namespace ROMS
                                 {
                                     varInvQty = varInvQty + Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value);
                                 }
+                            }
+                            if (Convert.ToInt16(grdPurchaseList.Rows[i].Cells["ConvertFlag"].Value) == 1)
+                            {
+                                varConvertFlag = 1;
                             }
                             if (PbApprovalStsid == 70) // approval incomplete then allow to edit allow error column
                             {
@@ -7070,8 +7127,9 @@ namespace ROMS
                     objPurchaseentryDetails.Columns.Add("PURPR_SGSTAmnt", typeof(float));
                     objPurchaseentryDetails.Columns.Add("PURPR_ISGSTPer", typeof(float));
                     objPurchaseentryDetails.Columns.Add("PURPR_IGSTAmnt", typeof(float));
-                    objPurchaseentryDetails.Columns.Add("PURPR_MRPflag", typeof(int));
-                    objPurchaseentryDetails.Columns.Add("PURPR_RMProductionFlag", typeof(int));
+                   // objPurchaseentryDetails.Columns.Add("PURPR_MRPflag", typeof(int));
+                    objPurchaseentryDetails.Columns.Add("PURPR_ConvertedProductID", typeof(int));
+                    objPurchaseentryDetails.Columns.Add("PURPR_GRNProType", typeof(int));
                     objPurchaseentryDetails.Columns.Add("PURPR_ConvertProduct", typeof(int));
                     if (grdPurchaseList.Rows.Count != 0)
                     {
@@ -7368,43 +7426,60 @@ namespace ROMS
                                 Convert.ToInt32(grdPurchaseList.Rows[i].Cells["poid"].Value),Convert.ToDecimal(varCosting), varDiscountValue, 
                                 Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGST"].Value),
                                 Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmCGSTamt"].Value),Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmSGSTamt"].Value),
-                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value),0,0,
+                                Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGST"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmIGSTamt"].Value),
+                                //0,0
+                                Convert.ToInt16(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value),
+                                Convert.ToInt16(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value),
                                Convert.ToInt16(grdPurchaseList.Rows[i].Cells["ConvertFlag"].Value) );
                             }
                         }
-                        //var varProIds = from r in objPurchaseentryDetails.AsEnumerable()
-                        //                where (r.Field<int>("Flag").Equals(varProductType) && r.Field<int>("PURPR_ConvertProduct").Equals(Convert.ToInt32(varId)))
-                        //                group r by r.Field<string>("PRID") into g
-                        //                select g.Key;
-                        /*group r by new {  PRID = r["PRID"] /*,  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"]  } into g
-                        select g;*/
-                        int varConvertProduct = 1;
-                       
-                       
-                        //var varProIds = from r in objPurchaseentryDetails.AsEnumerable()
-                        //                where (r.Field<int>("Flag").Equals(varProductType) && r.Field<int>("PURPR_ConvertProduct").Equals(Convert.ToInt32(varId)))
-                        //                group r by r.Field<string>("clmConvertedProID") into g
-                        //                select g.Key;
-                        /*group r by new {  PRID = r["PRID"] /*,  MRP = r["MRP"], ExpiryDate = r["ExpiryDate"],BatchNo = r["BatchNo"], SLID = r["SLID"], RKID = r["RKID"]  } into g
-                        select g;*/
-                        var result = objPurchaseentryDetails.AsEnumerable() 
-                            .GroupBy(d => d.Field<int>("PURPRID"))  
-                        .Select(group => new
-                        {       
-                            TotalValue = group.Sum(d => d.Field<int>("PURPR_ReceivedQty") ) 
-                        });
-                        //var result = from d in data
-                        //             group d by d.Category into grouped
-                        //             select new
-                        //             {
-                        //                 Category = grouped.Key,
-                        //                 TotalValue = grouped.Sum(item => item.Value)
-                        //             };
-                        //var varSumRequestQty = objPurchaseentryDetails.AsEnumerable()
-                        //                                            .Where(y => y.Field<int>("PURPR_ConvertProduct").Equals(varConvertProduct))
-                        //                                          .Sum(x => x.Field<decimal>("PURPR_ReceivedQty")).ToString()
-                        //                                          .group r by r.Field<string>("PRID") into g;
-                        //                select g.Key;
+                        string varProductID = "",varTotalRemainingQty="";
+                        int varConvertProduct = 0; int varGRNProductType = 193; //GRN productType pending qty
+                        var result = from purchase in objPurchaseentryDetails.AsEnumerable()
+                                     where purchase.Field<int>("PURPR_ConvertProduct") == varConvertProduct && purchase.Field<int>("PURPR_ConvertedProductID")!=0 
+                                     group purchase by purchase.Field<int>("PURPR_ConvertedProductID") into grp
+                                     select new
+                                     {
+                                         TotalRemainingQuantity = grp.Sum(p => p.Field<float>("PURPR_ReceivedQty")),
+                                         PURID= grp.Key
+                                     };
+
+                        var varRemainingQty = from purchase in objPurchaseentryDetails.AsEnumerable()
+                                     where purchase.Field<int>("PURPR_ConvertProduct") == 1 && purchase.Field<int>("PURPR_ConvertedProductID") == 0 && purchase.Field<int>("PURPR_GRNProType")== varGRNProductType 
+                                     group purchase by purchase.Field<int>("PURPR_ConvertedProductID") into grp
+                                     select new
+                                     {
+                                         RemainingQty = grp.Sum(p => p.Field<float>("PURPR_ReceivedQty"))
+                                     };
+                        varProductID=string.Join(",", result.Select(r => r.PURID).ToList());
+                        varTotalRemainingQty = string.Join(",", result.Select(r => r.TotalRemainingQuantity).ToList());
+                        
+                        for(int i=0;i<grdPurchaseList.RowCount; i++)
+                        {
+                            if(Convert.ToString(varProductID) == Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPURPRID"].Value))
+                            {
+                                if(varTotalRemainingQty != Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value))
+                                {
+                                    for (int j = 0; j < grdPurchaseList.RowCount; j++)
+                                    {
+                                        if (Convert.ToString(varProductID) == Convert.ToString(grdPurchaseList.Rows[j].Cells["clmConvertedProID"].Value))
+                                        {
+                                            varQuantityErr++;
+                                            grdPurchaseList.Rows[j].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
+                                            grdPurchaseList.Rows[j].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                                            grdPurchaseList.Rows[j].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //var varProIds= from purchase in objPurchaseentryDetails.AsEnumerable()
+                        //               where purchase.Field<int>("PURPRID") == result.PURID
+                        //               select new
+                        //               {
+                        //                   TotalQuantity = grp.Sum(p => p.Field<float>("PURPR_ReceivedQty")),
+                        //                   PURID = grp.Key
+                        //               };
                     }
                 }
             }
@@ -9306,6 +9381,37 @@ namespace ROMS
                     grdPurchaseList.Columns["clmPurchaseRate"].ReadOnly = true;
                     grdPurchaseList.Columns["clmDiscAmt"].ReadOnly = true;
                     grdPurchaseList.Columns["clmDiscPer"].ReadOnly = true;
+                }
+                if (varConvertFlag == 1)
+                {
+                    for (int i = 0;i<grdPurchaseList.Rows.Count;i++)
+                    {
+                        if(Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value)!="0")
+                        {
+                            grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = false;
+                            grdPurchaseList.Rows[i].Cells["clmRecqty"].ReadOnly = false;
+                            grdPurchaseList.Rows[i].Cells["clmFreeqty"].ReadOnly = false;
+                            grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = false;
+                            grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = false;
+                            grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = false;
+
+                            //grdPurchaseList.Columns["clmInvQty"].ReadOnly = true;
+                            //grdPurchaseList.Columns["clmRecqty"].ReadOnly = true;
+                            //grdPurchaseList.Columns["clmFreeqty"].ReadOnly = true;
+                            //grdPurchaseList.Columns["clmPurchaseRate"].ReadOnly = true;
+                            //grdPurchaseList.Columns["clmDiscAmt"].ReadOnly = true;
+                            //grdPurchaseList.Columns["clmDiscPer"].ReadOnly = true;
+                        }
+                        else
+                        {
+                            grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = true;
+                            grdPurchaseList.Rows[i].Cells["clmRecqty"].ReadOnly = true;
+                            grdPurchaseList.Rows[i].Cells["clmFreeqty"].ReadOnly = true;
+                            grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = true;
+                            grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = true;
+                            grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
