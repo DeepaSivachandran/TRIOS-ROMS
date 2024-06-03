@@ -230,9 +230,7 @@ namespace ROMS
                             grdGRNList.Columns["ClmEdit"].Visible = true;
                             //grdGRNList.Columns["ClmEdit"].DisplayIndex = objDs.Tables[0].Columns.Count;
                             grdGRNList.Columns["ClmEdit"].Width = 50;
-                            grdGRNList.Columns["clmCheck"].Width = 50;
                             grdGRNList.Columns["clmPrint"].Visible = true;
-                            grdGRNList.Columns["clmCheck"].Visible = true;
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
                             grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
@@ -1487,16 +1485,16 @@ namespace ROMS
                     {
                         cell.Style.BackColor = Color.Red;
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                        grdGRNList.Rows[i].Cells["clmCheck"].ReadOnly = true;
+                        //grdGRNList.Rows[i].Cells["clmCheck"].ReadOnly = true;
                         grdGRNList.Rows[i].Cells["clmLocPrint"].ReadOnly = true;
                         DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
                         print.Value = "";
                         grdGRNList.Rows[i].Cells["clmLocPrint"] = print;
                         print.ReadOnly = true;
-                        DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
-                        Check.Value = "";
-                        grdGRNList.Rows[i].Cells["clmCheck"] = Check;
-                        Check.ReadOnly = true;
+                        //DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
+                        //Check.Value = "";
+                        //grdGRNList.Rows[i].Cells["clmCheck"] = Check;
+                        //Check.ReadOnly = true;
                     }
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "24")
                     {
@@ -1822,44 +1820,44 @@ namespace ROMS
 
         private void BtnCompleted_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string varGrnId = "0";
-                //int varflag = 0;
-                for (int i = 0; i < grdGRNList.Rows.Count; i++)
-                {
-                    if (varGrnId=="0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value)==true)
-                    {
-                        varGrnId = Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
-                    }
-                    else if (varGrnId!="0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == true)
-                    {
-                        varGrnId = varGrnId + ',' + Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
-                    }
-                    //if(Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == false)
-                    //{
-                    //    varflag = 0;
-                    //}
-                }
-                SPDataService objDServ = new SPDataService();
-                string result = "";
-                TRN_GRN objTRNS_GRN = new TRN_GRN();
-                objTRNS_GRN.ViewType = 6;
-                objTRNS_GRN.paraCompletedIDs = Convert.ToString(varGrnId);
-                result = objDServ.udfnGRNEntry(objTRNS_GRN);
-                objDServ.CloseConnection();
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnListLoad();
-                }
-                }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    string varGrnId = "0";
+            //    //int varflag = 0;
+            //    for (int i = 0; i < grdGRNList.Rows.Count; i++)
+            //    {
+            //        if (varGrnId=="0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value)==true)
+            //        {
+            //            varGrnId = Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
+            //        }
+            //        else if (varGrnId!="0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == true)
+            //        {
+            //            varGrnId = varGrnId + ',' + Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
+            //        }
+            //        //if(Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == false)
+            //        //{
+            //        //    varflag = 0;
+            //        //}
+            //    }
+            //    SPDataService objDServ = new SPDataService();
+            //    string result = "";
+            //    TRN_GRN objTRNS_GRN = new TRN_GRN();
+            //    objTRNS_GRN.ViewType = 6;
+            //    objTRNS_GRN.paraCompletedIDs = Convert.ToString(varGrnId);
+            //    result = objDServ.udfnGRNEntry(objTRNS_GRN);
+            //    objDServ.CloseConnection();
+            //    string[] varvalue = result.Split('~');
+            //    if (varvalue[0] == "3")
+            //    {
+            //        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        udfnListLoad();
+            //    }
+            //    }
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void GrdGRNList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

@@ -1035,10 +1035,14 @@ namespace ROMS
         {
             try
             {
-                if (PoScheduleFlag == 1)
+                if (PoScheduleFlag == 1 || varModifiedFlag==2)
                 {
-                    this.Close();
-                    MainForm.objPUR_SupplierScheduleList.udfnList();
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objPUR_SupplierScheduleList.udfnList();
+                    }
                     PoScheduleFlag = 0;
                     varModifiedFlag = 2;
 
@@ -1055,7 +1059,7 @@ namespace ROMS
                     else
                     { btnMappingsave.Focus(); }
                 }
-                else if(varModifiedFlag==0)
+                else if(varModifiedFlag==0 )
                 {
                     if (varupdate == "1")
                     {

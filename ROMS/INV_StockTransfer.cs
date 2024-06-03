@@ -255,7 +255,7 @@ namespace ROMS
                 {
                     if (varStockTransferID != 0)
                     {
-                      //  udfnEdit();
+                      udfnEdit();
                     }
                     else if (varStockRequestID != 0)
                     {

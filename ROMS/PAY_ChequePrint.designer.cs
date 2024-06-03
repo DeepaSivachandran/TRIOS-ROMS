@@ -462,6 +462,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Goods Receipt";
             this.Load += new System.EventHandler(this.PAY_ChequePrint_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_ChequePrint_KeyDown);
+            this.Leave += new System.EventHandler(this.PAY_ChequePrint_Leave);
             this.tsSupplierMapping.ResumeLayout(false);
             this.tsSupplierMapping.PerformLayout();
             this.pnlSupplierMapping.ResumeLayout(false);
