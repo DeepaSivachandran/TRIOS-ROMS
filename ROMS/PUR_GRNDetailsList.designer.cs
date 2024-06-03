@@ -73,12 +73,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdGRNList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
-            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -566,11 +567,39 @@
             this.grdGRNList.Size = new System.Drawing.Size(1348, 489);
             this.grdGRNList.TabIndex = 958797;
             this.grdGRNList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
+            this.grdGRNList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdGRNList_CellFormatting);
             this.grdGRNList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGRNList_DataBindingComplete);
             this.grdGRNList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdGRNList_Scroll);
             this.grdGRNList.SelectionChanged += new System.EventHandler(this.GrdGRNList_SelectionChanged);
             this.grdGRNList.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             this.grdGRNList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGRNList_KeyDown);
+            // 
+            // ClmEdit
+            // 
+            this.ClmEdit.HeaderText = "Edit";
+            this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.ClmEdit.Name = "ClmEdit";
+            this.ClmEdit.Width = 50;
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Reprint";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.Width = 50;
+            // 
+            // clmLocPrint
+            // 
+            this.clmLocPrint.HeaderText = "Location Print";
+            this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmLocPrint.Name = "clmLocPrint";
+            this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
             // 
             // picLoader
             // 

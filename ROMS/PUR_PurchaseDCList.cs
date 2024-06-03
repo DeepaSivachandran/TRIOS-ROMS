@@ -164,6 +164,8 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["COMID"].Visible = false;
                                 grdPurchaseDCList.Columns["clmPrint"].Visible = true;
                                 grdPurchaseDCList.Columns["DC_SPSCID"].Visible = false;
+                                grdPurchaseDCList.Columns["Overall Full Status"].Visible = false;
+                                grdPurchaseDCList.Columns["Pur Dc Full Status"].Visible = false;
                             }
                             else
                             {
@@ -229,6 +231,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["DC_SPID"].Visible = false;
                 DGV_SearchGrid.Columns["Status ID"].Visible = false;
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Pur Dc Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["DC_SPSCID"].Visible = false; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -980,8 +984,8 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "18")
                     {
-                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
-                        grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        //grdPurchaseDCList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        //grdPurchaseDCList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                         grdPurchaseDCList.Rows[i].Cells["clmPrint"].ReadOnly = true;
                         DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
                         c.Value = "";
@@ -2123,6 +2127,28 @@ namespace ROMS
                     }
                 }
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurchaseDCList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdPurchaseDCList.Columns["Pur Dc Status"].Index)
+                {
+                    var cell = grdPurchaseDCList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseDCList.Rows[e.RowIndex].Cells["Pur Dc Full Status"].Value.ToString();
+                }
+                if (e.ColumnIndex == grdPurchaseDCList.Columns["Overall Status"].Index)
+                {
+                    var cell = grdPurchaseDCList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseDCList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
+                }
             }
             catch (Exception ex)
             {

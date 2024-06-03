@@ -2274,6 +2274,13 @@ namespace ROMS
                                 PRID = (string.Join(",", strings1));
                             }
                         }
+                        if (txtProductName.Text != "" || txtProductName.Text == "")
+                        {
+                            udfncleardata();
+                            //txtStockLocation.Text = "";
+                            //lblStockLocationCode.Text = "0";
+                            //lvStockLocation.Visible = false;
+                        }
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = paraViewType;
                         objMR_Product.ParaProductCode = 0;
@@ -3377,7 +3384,18 @@ namespace ROMS
                     txtBatchno.BackColor = Color.White;
                 } 
                 varpono = Convert.ToInt32(cmbPONo.SelectedValue);
-
+                if(Convert.ToInt32(cmbPONo.SelectedValue)== 215)
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 AND MSTID NOT IN (227) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
             }
             catch (Exception ex)
             {
@@ -4930,6 +4948,35 @@ namespace ROMS
                 txtBatchno.Text = "";
                 txtInvoiceQty.Text = "";
                 txtProductName.BackColor = Color.White;
+                txtmrprate.BackColor = Color.White;
+                txtDate.BackColor = Color.White;
+                txtMonth.BackColor = Color.White;
+                txtYear.BackColor = Color.White;
+                txtBatchno.BackColor = Color.White;
+                txtInvoiceQty.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfncleardata()
+        {
+            try
+            {
+                errGRNDetails.Clear();
+                //cmbPONo.SelectedIndex = 0;
+                cmbQtyType.SelectedValue = 202;
+                cmbPONo.BackColor = Color.White;
+                //txtProductName.Text = "";
+                txtmrprate.Text = "";
+                txtDate.Text = "";
+                txtMonth.Text = "";
+                txtYear.Text = "";
+                txtBatchno.Text = "";
+                txtInvoiceQty.Text = "";
+                //txtProductName.BackColor = Color.White;
                 txtmrprate.BackColor = Color.White;
                 txtDate.BackColor = Color.White;
                 txtMonth.BackColor = Color.White;

@@ -670,6 +670,8 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["GRN_Payment_StsID"].Visible = false;
                             grdPurchaseEntryList.Columns["PUR_CompleteFlag"].Visible = false;
                             grdPurchaseEntryList.Columns["Flag"].Visible = false;
+                            grdPurchaseEntryList.Columns["Pur Entry Full Status"].Visible = false;
+                            grdPurchaseEntryList.Columns["Overall Full Status"].Visible = false;
                             grdPurchaseEntryList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseEntryList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             grdPurchaseEntryList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -772,6 +774,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_Approval_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_INVSTSID"].Visible = false;
+                DGV_SearchGrid.Columns["Pur Entry Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -1600,7 +1604,6 @@ namespace ROMS
                 btnExport.Focus();
             }
         }
-
         private void BtnTally_Click(object sender, EventArgs e)
         {
             try
@@ -1641,6 +1644,21 @@ namespace ROMS
                 {
                     objError = new DataError();
                     objError.WriteFile(ex);
+                    }
+                    }
+        private void GrdPurchaseEntryList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdPurchaseEntryList.Columns["Pur Entry Status"].Index)
+                {
+                    var cell = grdPurchaseEntryList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseEntryList.Rows[e.RowIndex].Cells["Pur Entry Full Status"].Value.ToString();
+                }
+                if (e.ColumnIndex == grdPurchaseEntryList.Columns["Overall Status"].Index)
+                {
+                    var cell = grdPurchaseEntryList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdPurchaseEntryList.Rows[e.RowIndex].Cells["Overall Full Status"].Value.ToString();
                 }
             }
             catch (Exception ex)
