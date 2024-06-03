@@ -581,6 +581,50 @@ namespace ROMS
                 lblsupplierpayment.Text = "";
                 lblSupplierOrderpolicy.Text = "";
                 lblReturn.Text = "";
+                udfnTooltipHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnTooltipHide()
+        {
+            try
+            {
+                tpSuppliername.Active = false;            
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void PAY_ChequePrint_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PAY_ChequePrint_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnTooltipHide();
             }
             catch (Exception ex)
             {
