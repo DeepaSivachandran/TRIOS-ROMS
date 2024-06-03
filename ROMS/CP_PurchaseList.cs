@@ -1548,40 +1548,44 @@ namespace ROMS
                         if (col.Visible)
                         {
                             cIndex += 1;
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            if (cIndex == 1) // Skip the first column (image columns)
+                            {
+                                continue;
+                            }
+                            ExcelSheet.Cells[2, cIndex-1] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex-1].NumberFormat = "@";
 
                             if (col.Name == "S.No.")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 10;
                             }
                             else if (col.Name == "Supplier" || col.Name == "Created On")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
+                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 25;
                             }
                             if(col.Name=="Purchase Type")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 15;
                             }
                             if (col.Name == "S.No." || col.Name == "Voucher Date" || col.Name == "Invoice Date" || col.Name == "Invoice No."|| col.Name == "Voucher No.")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                ExcelSheet.Columns[cIndex-1].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
                             if (col.Name == "Total Products in Invoice")
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Columns[cIndex-1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             int varSLno = 1;
                             foreach (DataGridViewRow rowa in grdPurchaseEntryList.Rows)
                             {
                                 if (cIndex == 1)
                                 {
-                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex-1] = varSLno;
                                     varSLno++;
                                 }
                                 else
                                 {
-                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                                    ExcelSheet.Cells[rowa.Index + 3, cIndex-1] = rowa.Cells[col.Index].Value;
                                 }
                             }
                         }
@@ -1626,18 +1630,21 @@ namespace ROMS
                         }
                     }
                 }
-                SPDataService objDServ = new SPDataService();
-                string result = "";
-                TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                objTRN_PurchaseEntry.ViewType = 6;
-                objTRN_PurchaseEntry.paraCompletedIDs = Convert.ToString(VarPurchaseID);
-                result = objDServ.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
-                objDServ.CloseConnection();
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
+                if (VarPurchaseID != "0")
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnListLoad();
+                    SPDataService objDServ = new SPDataService();
+                    string result = "";
+                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                    objTRN_PurchaseEntry.ViewType = 6;
+                    objTRN_PurchaseEntry.paraCompletedIDs = Convert.ToString(VarPurchaseID);
+                    result = objDServ.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
+                    objDServ.CloseConnection();
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnListLoad();
+                    }
                 }
             }
             catch (Exception ex)
