@@ -181,11 +181,12 @@ namespace ROMS
                             grdPurchaseEntryRejected.Columns["Tot Pro"].Width = 100;
                             grdPurchaseEntryRejected.Columns["Inv Amt"].Width = 100;
                             grdPurchaseEntryRejected.Columns["Pur Entry Status"].Width = 130;
-                            grdPurchaseEntryRejected.Columns["Overall Status"].Width = 150;
+                            grdPurchaseEntryRejected.Columns["Overall Status"].Width = 180;
                             grdPurchaseEntryRejected.Columns["PURID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["SPSCID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["SPID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["STSID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["Pur Entry Status"].Visible = false;
                             grdPurchaseEntryRejected.Columns["PUR_INVSTSID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
@@ -292,6 +293,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PUR_INVSTSID"].Visible = false;
                 DGV_SearchGrid.Columns["Pur Entry Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Pur Entry Status"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

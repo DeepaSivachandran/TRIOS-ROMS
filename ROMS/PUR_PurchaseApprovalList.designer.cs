@@ -41,6 +41,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbQue = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbRejectedProduct = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -70,9 +72,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsbRejectedProduct = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
@@ -147,6 +147,34 @@
             this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // tsbRejectedProduct
+            // 
+            this.tsbRejectedProduct.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbRejectedProduct.BackColor = System.Drawing.Color.White;
+            this.tsbRejectedProduct.Enabled = false;
+            this.tsbRejectedProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbRejectedProduct.ForeColor = System.Drawing.Color.Red;
+            this.tsbRejectedProduct.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbRejectedProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRejectedProduct.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbRejectedProduct.Name = "tsbRejectedProduct";
+            this.tsbRejectedProduct.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbRejectedProduct.Size = new System.Drawing.Size(33, 25);
+            this.tsbRejectedProduct.Text = "0  ";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton2.Image = global::ROMS.Properties.Resources.queue;
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton2.Size = new System.Drawing.Size(197, 25);
+            this.toolStripButton2.Text = "Purchase Entry Incomplete List";
+            this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // pnlpurchaseapproval
             // 
@@ -551,21 +579,6 @@
             // 
             this.errPurchaseEntryApproval.ContainerControl = this;
             // 
-            // tsbRejectedProduct
-            // 
-            this.tsbRejectedProduct.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbRejectedProduct.BackColor = System.Drawing.Color.White;
-            this.tsbRejectedProduct.Enabled = false;
-            this.tsbRejectedProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbRejectedProduct.ForeColor = System.Drawing.Color.Red;
-            this.tsbRejectedProduct.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbRejectedProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRejectedProduct.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbRejectedProduct.Name = "tsbRejectedProduct";
-            this.tsbRejectedProduct.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbRejectedProduct.Size = new System.Drawing.Size(33, 25);
-            this.tsbRejectedProduct.Text = "0  ";
-            // 
             // toolStripButton1
             // 
             this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -577,19 +590,6 @@
             this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStripButton1.Size = new System.Drawing.Size(184, 25);
             this.toolStripButton1.Text = "Purchase Entry Rejected List";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.Image = global::ROMS.Properties.Resources.queue;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton2.Size = new System.Drawing.Size(184, 25);
-            this.toolStripButton2.Text = "Purchase Entry Rejected List";
-            this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // PUR_PurchaseApprovalList
             // 
