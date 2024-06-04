@@ -444,7 +444,7 @@ namespace ROMS
             }
         }
 
-        private void GrdGrnApproval_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        private void GrdGrnApproval_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -458,7 +458,6 @@ namespace ROMS
                         if (MainForm.objCP_Verify.flag == 1)
                         {
                             dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
-                            grdGrnApproval.CurrentCell = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex-1];
                         }
                         else
                         {

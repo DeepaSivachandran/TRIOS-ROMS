@@ -820,7 +820,7 @@
             this.grdGrnApproval.Size = new System.Drawing.Size(1335, 434);
             this.grdGrnApproval.TabIndex = 958827;
             this.grdGrnApproval.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnApproval_CellEndEdit);
-            this.grdGrnApproval.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnApproval_CellMouseLeave);
+            this.grdGrnApproval.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnApproval_CellValueChanged);
             this.grdGrnApproval.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGrnApproval_CurrentCellDirtyStateChanged);
             this.grdGrnApproval.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnApproval_EditingControlShowing);
             // 
