@@ -658,7 +658,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Inv Amt"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["Pur Entry Status"].Width = 130;
                             grdPurchaseEntryList.Columns["Pur Entry Status"].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Overall Status"].Width = 120;
+                            grdPurchaseEntryList.Columns["Overall Status"].Width = 200;
                             grdPurchaseEntryList.Columns["Overall Status"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["City"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["PURID"].Visible = false;

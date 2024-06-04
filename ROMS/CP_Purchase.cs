@@ -1172,6 +1172,8 @@ namespace ROMS
                     udfndisablevalue();
                     grdSupplierList.ReadOnly = false;
                     grdPurchaseList.ReadOnly = false;
+                    grdPurchaseList.Enabled = true;
+                    grdPurchaseList.Enabled = true;
 
                     grdSupplierList.Columns["clmPicode"].ReadOnly = true;
                     grdSupplierList.Columns["clmProTname"].ReadOnly = true;
@@ -1684,6 +1686,7 @@ namespace ROMS
                                     int Remaining = 0;
                                     Remaining = Convert.ToInt32(tsbTotalProducts.Text) - Convert.ToInt32(tsbAddedProduct.Text);
                                     tsbRemainingProduct.Text = Convert.ToString(Remaining);
+                                    
                                 }
                             }
                             if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //dc
@@ -1692,6 +1695,21 @@ namespace ROMS
                                 {
                                     varDCDate= Convert.ToString(objDs.Tables[11].Rows[0]["DC_Date"]);
                                 }
+                            }
+                            if(Convert.ToString(cmbEntryType.SelectedValue)=="54")
+                            {
+                                if (tsbRemainingProduct.Text == "0")
+                                {   cmbPONo.SelectedValue = 217; cmbPONo.Enabled = false; }
+                            }
+                            else if (Convert.ToString(cmbEntryType.SelectedValue) == "57")
+                            {
+                                if (tsbRemainingProduct.Text == "0")
+                                { cmbPONo.SelectedValue = 219; cmbPONo.Enabled = false; }
+                            }
+                            else if (Convert.ToString(cmbEntryType.SelectedValue) == "55")
+                            {
+                                if (tsbRemainingProduct.Text == "0")
+                                { cmbPONo.SelectedValue = 214; cmbPONo.Enabled = false; }
                             }
                         }
                     }
@@ -2064,6 +2082,9 @@ namespace ROMS
                     grdPODetails.Rows.Clear();
                 }
                 txtSupplier.BackColor = Color.White;
+                udfnrowclear();
+                txtProductName.Text = "";
+                lblProductcode.Text = "0";
             }
             catch (Exception ex)
             {
@@ -5981,7 +6002,6 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -6758,6 +6778,11 @@ namespace ROMS
                                             else if(varConvertFlag == 1)
                                             {
                                                 tbDetails.SelectedIndex = 1;
+                                                if(Convert.ToInt16(grdSupplierList.RowCount)==Convert.ToInt16(grdPurchaseList.RowCount))
+                                                {
+                                                    varCloseflag = 1;
+                                                    udfnclose();
+                                                }
                                             }
                                             else
                                             {
@@ -6888,6 +6913,11 @@ namespace ROMS
                         tbDetails.TabPages[0].Enabled = true; // First tab 
                         tbDetails.TabPages[1].Enabled = true; // Second tab  
                     }
+                    if (varConvertFlag == 1)
+                    {
+                        grdPurchaseList.ReadOnly = false;
+                        grdPurchaseList.Enabled = true;
+                    }
                     cmbConcern.Enabled = false;
                     txtSupplier.Enabled = false;
                     cmbEntryType.Enabled = false;
@@ -7005,24 +7035,45 @@ namespace ROMS
                                 }
                                 
                             }
-                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Converted ProductID"]) != "0")
+                            if (varConvertFlag == 1)
                             {
-                                grdPurchaseList.Rows[i].ReadOnly = false;
-                                grdPurchaseList.ReadOnly = false;
-                                grdPurchaseList.Enabled = true;
-                                grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = false;
-                                grdPurchaseList.Rows[i].Cells["clmRecqty"].ReadOnly = false;
-                                grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = false;
-                                grdPurchaseList.Rows[i].Cells["clmFreeqty"].ReadOnly = false;
-                                grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = false;
-                                grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = false;
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Converted ProductID"]) != "0")
+                                {
+                                    //grdPurchaseList.Rows[i].ReadOnly = false;
+                                    //grdPurchaseList.ReadOnly = false;
+                                    //grdPurchaseList.Enabled = true;
+                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = false;
+                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].ReadOnly = false;
+                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = false;
+                                    grdPurchaseList.Rows[i].Cells["clmFreeqty"].ReadOnly = false;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = false;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = false;
 
-                                grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.PaleGreen;
-                                grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.PaleGreen;
+                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
+                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
+                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                    grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.PaleGreen;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.PaleGreen;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.PaleGreen;
+                                }
+                                else
+                                {
+                                    grdPurchaseList.Rows[i].ReadOnly = true;
+                                    
+                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = true;
+                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].ReadOnly = true;
+                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = true;
+                                    grdPurchaseList.Rows[i].Cells["clmFreeqty"].ReadOnly = true;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = true;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = true;
+
+                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
+                                }
                             }
                             if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value)=="226")
                             {
@@ -7408,56 +7459,60 @@ namespace ROMS
                         }
                         string varProductID = "",varTotalRemainingQty="";
                         int varConvertProduct = 0; int varGRNProductType = 193; //GRN productType pending qty
+
+                        //Sum the received qty for converted product by grouping the parent id 
                         var result = from purchase in objPurchaseentryDetails.AsEnumerable()
                                      where purchase.Field<int>("PURPR_ConvertProduct") == varConvertProduct && purchase.Field<int>("PURPR_ConvertedProductID")!=0 
                                      group purchase by purchase.Field<int>("PURPR_ConvertedProductID") into grp
                                      select new
                                      {
-                                         TotalRemainingQuantity = grp.Sum(p => p.Field<float>("PURPR_ReceivedQty")),
+                                         TotalReceivedQuantity = grp.Sum(p => p.Field<float>("PURPR_ReceivedQty")),
                                          PURID= grp.Key
                                      };
 
-                        var varRemainingQty = from purchase in objPurchaseentryDetails.AsEnumerable()
-                                     where purchase.Field<int>("PURPR_ConvertProduct") == 1 && purchase.Field<int>("PURPR_ConvertedProductID") == 0 && purchase.Field<int>("PURPR_GRNProType")== varGRNProductType 
-                                     group purchase by purchase.Field<int>("PURPR_ConvertedProductID") into grp
-                                     select new
-                                     {
-                                         RemainingQty = grp.Sum(p => p.Field<float>("PURPR_ReceivedQty"))
-                                     };
+                        //var varRemainingQty = from purchase in objPurchaseentryDetails.AsEnumerable()
+                        //             where purchase.Field<int>("PURPR_ConvertProduct") == 1 && purchase.Field<int>("PURPR_ConvertedProductID") == 0 && purchase.Field<int>("PURPR_GRNProType")== varGRNProductType 
+                        //             group purchase by purchase.Field<int>("PURPR_ConvertedProductID") into grp
+                        //             select new
+                        //             {
+                        //                 RemainingQty = grp.Sum(p => p.Field<float>("PURPR_ReceivedQty"))
+                        //             };
 
                         varProductID=string.Join(",", result.Select(r => r.PURID).ToList());
-                        varTotalRemainingQty = string.Join(",", result.Select(r => r.TotalRemainingQuantity).ToList());
+                        varTotalRemainingQty = string.Join(",", result.Select(r => r.TotalReceivedQuantity).ToList());
 
-                        int varProductCount = 0;
+                        List<int> varPURPRIDs = new List<int>();  List<float> varTotReceivedQty = new List<float>();
 
-                        varProductCount = varProductID.Count();
-
-                        for (int i=0;i<grdPurchaseList.RowCount; i++)
+                        varPURPRIDs = result.Select(r => r.PURID).ToList();
+                        varTotReceivedQty = result.Select(r => r.TotalReceivedQuantity).ToList();
+                       
+                        for(int i=0;i< varPURPRIDs.Count(); i++)
                         {
-                            if(Convert.ToString(varProductID) == Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPURPRID"].Value))
+                            for (int j = 0; j < grdPurchaseList.RowCount; j++)
                             {
-                                if(varTotalRemainingQty != Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value))
+                                if (Convert.ToString(varPURPRIDs[i]) == Convert.ToString(grdPurchaseList.Rows[j].Cells["clmPURPRID"].Value))
                                 {
-                                    for (int j = 0; j < grdPurchaseList.RowCount; j++)
+                                    if (Convert.ToString(varTotReceivedQty[i]) != Convert.ToString(grdPurchaseList.Rows[j].Cells["clmDiffqty"].Value))
                                     {
-                                        if (Convert.ToString(varProductID) == Convert.ToString(grdPurchaseList.Rows[j].Cells["clmConvertedProID"].Value))
+                                        for (int k = 0; k < grdPurchaseList.RowCount; k++)
                                         {
-                                            varQuantityErr++;
-                                            grdPurchaseList.Rows[j].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
-                                            grdPurchaseList.Rows[j].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
-                                            grdPurchaseList.Rows[j].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
+                                            if (Convert.ToString(varPURPRIDs[i]) == Convert.ToString(grdPurchaseList.Rows[k].Cells["clmConvertedProID"].Value))
+                                            {
+                                                varQuantityErr++;
+                                                //Converted product error
+                                                grdPurchaseList.Rows[k].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
+                                                grdPurchaseList.Rows[k].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                                                grdPurchaseList.Rows[k].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
+                                                //Parentproduct error
+                                                grdPurchaseList.Rows[j].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
+                                                grdPurchaseList.Rows[j].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                                                grdPurchaseList.Rows[j].Cells["clmFreeqty"].Style.BackColor = Color.LightPink;
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
-                        //var varProIds= from purchase in objPurchaseentryDetails.AsEnumerable()
-                        //               where purchase.Field<int>("PURPRID") == result.PURID
-                        //               select new
-                        //               {
-                        //                   TotalQuantity = grp.Sum(p => p.Field<float>("PURPR_ReceivedQty")),
-                        //                   PURID = grp.Key
-                        //               };
                     }
                 }
             }
