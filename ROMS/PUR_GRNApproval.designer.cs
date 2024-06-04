@@ -982,6 +982,7 @@
             this.clmpoqty.HeaderText = "PO Qty";
             this.clmpoqty.Name = "clmpoqty";
             this.clmpoqty.ReadOnly = true;
+            this.clmpoqty.Visible = false;
             this.clmpoqty.Width = 70;
             // 
             // clminvoiceqty
