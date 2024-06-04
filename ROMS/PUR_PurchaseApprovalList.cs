@@ -1032,21 +1032,26 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
-                //{
-                //    DataGridView dataGridView = (DataGridView)sender;
-                //    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
-                //    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "49")
-                //    {
-                //        cell.Style.BackColor = Color.Red;
-                //        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                //    }
-                //    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "50")
-                //    {
-                //        cell.Style.BackColor = Color.Green;
-                //        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
-                //    }
-                //}
+                for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
+                {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    //DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+                    //if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "49")
+                    //{
+                    //    cell.Style.BackColor = Color.Red;
+                    //    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    //}
+                    //if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "50")
+                    //{
+                    //    cell.Style.BackColor = Color.Green;
+                    //    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
+                    //}
+                    if(Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["ShelfLifePro"].Value) == "1" || Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["InvoicePro"].Value) == "1" || Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["POPro"].Value) == "1" || Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["NewPro"].Value) == "1")
+                    {
+                        grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                        grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                }
             }
             catch (Exception ex)
             {
