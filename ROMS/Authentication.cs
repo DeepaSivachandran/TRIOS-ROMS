@@ -21,7 +21,6 @@ namespace ROMS
         private SecurityController _security; 
 
         // ***** Object for data service classes declaration *****
-        DataValidation objValidation = new DataValidation();
         DataError objError;
 
         // ***** Declaration Part *****

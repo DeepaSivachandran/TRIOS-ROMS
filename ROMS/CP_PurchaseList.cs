@@ -517,9 +517,7 @@ namespace ROMS
         {
             try
             {
-                MR_Master objMR_Master = new MR_Master();
-                objMR_Master.ViewType = 4;
-                objMR_Master.paraID = 6;
+                MR_Master objMR_Master = new MR_Master(){ ViewType=4, paraID = 6 };
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
                 objd = objDServ.udfnMaster(objMR_Master);

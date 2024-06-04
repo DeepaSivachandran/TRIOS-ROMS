@@ -377,7 +377,7 @@ namespace ROMS
                                 string varExpiryDate = "";
                                 varExpiryDate = cellValue.ToString();
                                 string[] DMY = varExpiryDate.Split('/');
-                                if (DMY.Count() == 3)
+                                if (DMY.AsEnumerable().Count() == 3)
                                 {
                                     varTempYear = DMY[2];
                                     if (varTempYear.Length == 4)
@@ -472,7 +472,7 @@ namespace ROMS
                                 string varExpiryDate = "";
                                 varExpiryDate = cellValue.ToString();
                                 string[] DMY = varExpiryDate.Split('/');
-                                if (DMY.Count() == 3)
+                                if (DMY.AsEnumerable().Count() == 3)
                                 {
                                     varTempYear = DMY[2];
                                     if (varTempYear.Length == 4)
@@ -9100,8 +9100,7 @@ namespace ROMS
                     {
                         PRID = "0";
                     }
-                    MainForm.objPUR_RemainingProductList = new PUR_RemainingProductList();
-                    MainForm.objPUR_RemainingProductList.PbvarGRNID = pbGRNNo;
+                    MainForm.objPUR_RemainingProductList = new PUR_RemainingProductList() { PbvarGRNID = pbGRNNo};
                     if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55)  //Against Po
                     {
                         varPRFlag = 0;
@@ -9523,10 +9522,12 @@ namespace ROMS
                     {
                         case "InvoiceNo":
                             string cellDCValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["ID"].Value);
-                            MainForm.objPUR_DCProducts = new PUR_DCProducts();
-                            MainForm.objPUR_DCProducts.pbDCid = cellDCValue;
-                            MainForm.objPUR_DCProducts.pbSupplierCode = lblSupplierCode.Text;
-                            MainForm.objPUR_DCProducts.pbScheduleCode = lblschedule.Text;
+                            MainForm.objPUR_DCProducts = new PUR_DCProducts()
+                            {
+                                pbDCid = cellDCValue,
+                                pbSupplierCode = lblSupplierCode.Text,
+                                pbScheduleCode = lblschedule.Text
+                            };
                             MainForm.objPUR_DCProducts.ShowDialog();
                             break;
                     }
@@ -12209,9 +12210,11 @@ namespace ROMS
 
                 if (varEditPRID != "0")
                 {
-                    MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 1;
-                    objMR_Product.ParaProductCode = Convert.ToInt32(varEditPRID);
+                    MR_Product objMR_Product = new MR_Product()
+                    { 
+                        paraViewType = 1,
+                        ParaProductCode = Convert.ToInt32(varEditPRID)
+                    };
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     objDS = objspservice.udfnproductmasterlist(objMR_Product);
@@ -12483,19 +12486,21 @@ namespace ROMS
                         {
                             varViewType = 29; DGV_FilterProduct.Width = 660;
                         }
-                        MR_Product objMR_Product = new MR_Product();
-                        objMR_Product.paraViewType = varViewType;
-                        objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                        objMR_Product.ParaScheduleid = lblschedule.Text;
-                        objMR_Product.ParaProductCode = 0;
-                        objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-                        objMR_Product.ParaProductsCode = varProductsCodes;
-                        objMR_Product.ParaGRNID = GRNID;
-                        objMR_Product.ParaPOID = POID;
-                        objMR_Product.ParaDCID = DCID;
-                        objMR_Product.ParaProductsCode = PRID;
-                        objMR_Product.paraFlag = varflag;
-                        objMR_Product.paraPurchaseAutoComplete = dtPurchaseAutoComplete;
+                        MR_Product objMR_Product = new MR_Product()
+                        { 
+                            paraViewType = varViewType,
+                            ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue),
+                            ParaScheduleid = lblschedule.Text,
+                            ParaProductCode = 0,
+                            ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text),
+                           // ParaProductsCode = varProductsCodes,
+                            ParaGRNID = GRNID,
+                            ParaPOID = POID,
+                            ParaDCID = DCID,
+                            ParaProductsCode = PRID,
+                            paraFlag = varflag,
+                            paraPurchaseAutoComplete = dtPurchaseAutoComplete
+                    };
                         if (VarSearchFlag == true)
                         {
                             objMR_Product.paraPicode = txtProductName.Text;
