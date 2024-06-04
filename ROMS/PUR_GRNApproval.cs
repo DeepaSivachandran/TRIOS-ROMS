@@ -410,7 +410,47 @@ namespace ROMS
                 }
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
                 {
-                    if(Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value)== "232")
+                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "231")
+                    {
+                        string varReceivedQty = "";
+                        varReceivedQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
+                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = VarReceivedQty;
+                        object Quantity = varReceivedQty;
+                        dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
+                        dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGrnApproval_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdGrnApproval.IsCurrentCellDirty)
+                {
+                    grdGrnApproval.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGrnApproval_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                {
+                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
                     {
                         MainForm.objCP_Verify = new CP_Verify();
                         MainForm.objCP_Verify.ShowDialog();
@@ -418,6 +458,7 @@ namespace ROMS
                         if (MainForm.objCP_Verify.flag == 1)
                         {
                             dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
+                            grdGrnApproval.CurrentCell = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex-1];
                         }
                         else
                         {
@@ -431,18 +472,6 @@ namespace ROMS
                     }
                     //object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     //dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
-                }
-                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
-                {
-                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "231")
-                    {
-                        string varReceivedQty = "";
-                        varReceivedQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
-                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = VarReceivedQty;
-                        object Quantity = varReceivedQty;
-                        dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
-                        dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
-                    }
                 }
             }
             catch (Exception ex)
