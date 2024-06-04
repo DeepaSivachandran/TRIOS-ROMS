@@ -376,13 +376,13 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     this.Close();
-                    MainForm.objPAY_AdvanceList.Show();
-                    MainForm.objPAY_AdvanceList.udfnList();
-                }
+                //    MainForm.objPAY_AdvanceList.Show();
+                //    MainForm.objPAY_AdvanceList.udfnList();
+                //}
             }
             catch (Exception ex)
             {

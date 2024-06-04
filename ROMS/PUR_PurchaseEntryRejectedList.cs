@@ -190,6 +190,7 @@ namespace ROMS
                             grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["GRN_Payment_StsID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["PUR_CompleteFlag"].Visible = false;
                             grdPurchaseEntryRejected.Columns["Flag"].Visible = false;
                             grdPurchaseEntryRejected.Columns["Pur Entry Full Status"].Visible = false;
                             grdPurchaseEntryRejected.Columns["Overall Full Status"].Visible = false;
@@ -402,10 +403,9 @@ namespace ROMS
 
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                    MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseApprovalList.Show();
                 }
             }
             catch (Exception ex)

@@ -2256,6 +2256,13 @@ namespace ROMS
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     int GRNID = 0;
+                    if (txtProductName.Text != "" || txtProductName.Text == "")
+                    {
+                        udfncleardata();
+                        //txtStockLocation.Text = "";
+                        //lblStockLocationCode.Text = "0";
+                        //lvStockLocation.Visible = false;
+                    }
                     if (txtProductName.Text.Length > 0)
                     {
                         if (Convert.ToInt32(cmbPONo.SelectedValue) == 214)
@@ -2274,13 +2281,7 @@ namespace ROMS
                                 PRID = (string.Join(",", strings1));
                             }
                         }
-                        if (txtProductName.Text != "" || txtProductName.Text == "")
-                        {
-                            udfncleardata();
-                            //txtStockLocation.Text = "";
-                            //lblStockLocationCode.Text = "0";
-                            //lvStockLocation.Visible = false;
-                        }
+                       
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = paraViewType;
                         objMR_Product.ParaProductCode = 0;
