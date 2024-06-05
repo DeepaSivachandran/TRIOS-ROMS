@@ -331,10 +331,9 @@
             this.clmProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmHSNid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmShelfPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoicePro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNewPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPOPro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmApprovalSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReaon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAddPro = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsPurchase.SuspendLayout();
@@ -843,10 +842,9 @@
             this.clmProductID,
             this.clmInvFlag,
             this.clmHSNid,
-            this.clmShelfPro,
-            this.clmInvoicePro,
-            this.clmNewPro,
-            this.clmPOPro,
+            this.clmError,
+            this.clmApprovalSts,
+            this.clmReaon,
             this.clmAddPro,
             this.clmRemove});
             this.grdSupplierList.EnableHeadersVisualStyles = false;
@@ -3291,33 +3289,26 @@
             this.clmHSNid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmHSNid.Visible = false;
             // 
-            // clmShelfPro
+            // clmError
             // 
-            this.clmShelfPro.Frozen = true;
-            this.clmShelfPro.HeaderText = "Shelflife Pro";
-            this.clmShelfPro.Name = "clmShelfPro";
-            this.clmShelfPro.Visible = false;
+            this.clmError.Frozen = true;
+            this.clmError.HeaderText = "Error";
+            this.clmError.Name = "clmError";
+            this.clmError.Visible = false;
             // 
-            // clmInvoicePro
+            // clmApprovalSts
             // 
-            this.clmInvoicePro.Frozen = true;
-            this.clmInvoicePro.HeaderText = "Invoice Pro";
-            this.clmInvoicePro.Name = "clmInvoicePro";
-            this.clmInvoicePro.Visible = false;
+            this.clmApprovalSts.Frozen = true;
+            this.clmApprovalSts.HeaderText = "Approval Status";
+            this.clmApprovalSts.Name = "clmApprovalSts";
+            this.clmApprovalSts.Visible = false;
             // 
-            // clmNewPro
+            // clmReaon
             // 
-            this.clmNewPro.Frozen = true;
-            this.clmNewPro.HeaderText = "New Pro";
-            this.clmNewPro.Name = "clmNewPro";
-            this.clmNewPro.Visible = false;
-            // 
-            // clmPOPro
-            // 
-            this.clmPOPro.Frozen = true;
-            this.clmPOPro.HeaderText = "PO Pro";
-            this.clmPOPro.Name = "clmPOPro";
-            this.clmPOPro.Visible = false;
+            this.clmReaon.Frozen = true;
+            this.clmReaon.HeaderText = "Reason";
+            this.clmReaon.Name = "clmReaon";
+            this.clmReaon.Visible = false;
             // 
             // clmAddPro
             // 
@@ -3647,10 +3638,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmHSNid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelfPro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoicePro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNewPro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPOPro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmApprovalSts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmReaon;
         private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
