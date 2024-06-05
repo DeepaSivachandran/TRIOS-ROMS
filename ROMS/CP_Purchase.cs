@@ -1296,6 +1296,7 @@ namespace ROMS
                                 grdGRN.Visible = true;
                                 varTypeErrId = Convert.ToString(objDs.Tables[5].Rows[0]["GRNID"]);
                                 pbGRNNo= Convert.ToString(objDs.Tables[5].Rows[0]["GRNID"]);
+                                varGRNDate = Convert.ToString(objDs.Tables[5].Rows[0]["GRN_Date"]);
                             }
                             else
                             {
@@ -4787,7 +4788,7 @@ namespace ROMS
                 varEntryTypeDate = "";
                 if (Convert.ToString(cmbPONo.SelectedValue) == "218")  //product type GRN
                 {    varEntryTypeDate = varGRNDate;  }
-                if (Convert.ToString(cmbPONo.SelectedValue) == "220")  //product type DC
+                else if (Convert.ToString(cmbPONo.SelectedValue) == "220")  //product type DC
                 {    varEntryTypeDate = varDCDate;  }
                 else { varEntryTypeDate = varVoucherDate; }
             }
@@ -5079,46 +5080,47 @@ namespace ROMS
                             }
                         }
                     }
-                    if (varflag == 0 && Convert.ToString(cmbEntryType.SelectedValue)=="56")
-                    {
-                        string varRkId = "0";
-                        if (cmbrack.Enabled == true)
-                        {
-                            varRkId = Convert.ToString(cmbrack.SelectedValue);
-                        }
-                        else { varRkId = "0"; }
-                        for (int i = 0; i < grdSupplierList.Rows.Count; i++)
-                        {
-                            if (Convert.ToInt32(lblProductcode.Text) == Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value))
-                            {
-                                string varMRP = Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value).Trim();
-                                string varNewExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value).Trim();
-                                string varBatch = Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchno"].Value).Trim();
-                                string varPoid = Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value).Trim();
-                                string varSLID = Convert.ToString(grdSupplierList.Rows[i].Cells["slid"].Value).Trim();
-                                string varRKID = Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value).Trim();
-                                if (txtMrp.Text.Trim() == varMRP && varExpiryDate == varNewExpiryDate && txtBatchno.Text.Trim() == varBatch)
-                                {
-                                    if (lblLocationcode.Text == varSLID && varRkId == varRKID)
-                                    {
-                                        //if (Convert.ToString(cmbPONo.SelectedValue) == varPoid)
-                                        //{
-                                            //lblProductcode.Text = "0";
-                                            //errPurchaseentry.SetError(txtProductName, "Product already Exist for this location");
-                                            //txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                                            //tpdate.ShowAlways = true;
-                                            //tpdate.Show("Product already Exist for this location", txtProductName, 5000);
-                                            txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                                            string varMessage = objDServ.udfnGetMessages(93);
-                                            objDServ.CloseConnection();
-                                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                            varflag = 1;
-                                        //}
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    //duplicate product checking
+                    //if (varflag == 0 && Convert.ToString(cmbEntryType.SelectedValue)=="56")
+                    //{
+                    //    string varRkId = "0";
+                    //    if (cmbrack.Enabled == true)
+                    //    {
+                    //        varRkId = Convert.ToString(cmbrack.SelectedValue);
+                    //    }
+                    //    else { varRkId = "0"; }
+                    //    for (int i = 0; i < grdSupplierList.Rows.Count; i++)
+                    //    {
+                    //        if (Convert.ToInt32(lblProductcode.Text) == Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value))
+                    //        {
+                    //            string varMRP = Convert.ToString(grdSupplierList.Rows[i].Cells["clmMRP"].Value).Trim();
+                    //            string varNewExpiryDate = Convert.ToString(grdSupplierList.Rows[i].Cells["clmexpirydate"].Value).Trim();
+                    //            string varBatch = Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchno"].Value).Trim();
+                    //            string varPoid = Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value).Trim();
+                    //            string varSLID = Convert.ToString(grdSupplierList.Rows[i].Cells["slid"].Value).Trim();
+                    //            string varRKID = Convert.ToString(grdSupplierList.Rows[i].Cells["rkid"].Value).Trim();
+                    //            if (txtMrp.Text.Trim() == varMRP && varExpiryDate == varNewExpiryDate && txtBatchno.Text.Trim() == varBatch)
+                    //            {
+                    //                if (lblLocationcode.Text == varSLID && varRkId == varRKID)
+                    //                {
+                    //                    //if (Convert.ToString(cmbPONo.SelectedValue) == varPoid)
+                    //                    //{
+                    //                        //lblProductcode.Text = "0";
+                    //                        //errPurchaseentry.SetError(txtProductName, "Product already Exist for this location");
+                    //                        //txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //                        //tpdate.ShowAlways = true;
+                    //                        //tpdate.Show("Product already Exist for this location", txtProductName, 5000);
+                    //                        txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //                        string varMessage = objDServ.udfnGetMessages(93);
+                    //                        objDServ.CloseConnection();
+                    //                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //                        varflag = 1;
+                    //                    //}
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
 
                     if (Convert.ToInt32(lblSupplierCode.Text) != 0)
                     {
@@ -5721,7 +5723,7 @@ namespace ROMS
                 else { varDate = varVoucherDate; }
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 10;
-                objMR_Master.paraDate = dpVoucherDate.Text;
+                objMR_Master.paraDate = varDate;
                 objMR_Master.ParaExpiryDate = varTempExpiryDate;
                 objMR_Master.paraProductId = varProid;
                 objDS = objDServ.udfnMaster(objMR_Master);
@@ -5927,7 +5929,7 @@ namespace ROMS
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpVoucherDate.Text, varCellprodid, 0, "0", "");
+                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "");
                                     objdserv.CloseConnection();
                                     if (objDs != null)
                                     {
@@ -7890,7 +7892,6 @@ namespace ROMS
                                     varProShelfLife = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelflife"].Value).Split(' ');
 
                                     
-
                                     if (Convert.ToString(varProShelfLife[0]) != "")
                                     {
                                         ProShelflife = Convert.ToInt32(varProShelfLife[0]);
