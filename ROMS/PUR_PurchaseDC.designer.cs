@@ -98,6 +98,7 @@
             this.lblProductName = new System.Windows.Forms.Label();
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
             this.grpVerify = new System.Windows.Forms.GroupBox();
+            this.lblVerifyDate = new System.Windows.Forms.Label();
             this.lblVerify = new System.Windows.Forms.Label();
             this.lblVerify1 = new System.Windows.Forms.Label();
             this.lblVerifiedBy2 = new System.Windows.Forms.Label();
@@ -199,7 +200,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lblVerifyDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epPurchaseDC)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -848,12 +848,20 @@
             this.grpVerify.Controls.Add(this.lblVerifyDateTime);
             this.grpVerify.Controls.Add(this.lblVerifiedBy1);
             this.grpVerify.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpVerify.Location = new System.Drawing.Point(345, 386);
+            this.grpVerify.Location = new System.Drawing.Point(263, 386);
             this.grpVerify.Name = "grpVerify";
             this.grpVerify.Size = new System.Drawing.Size(199, 60);
             this.grpVerify.TabIndex = 700000004;
             this.grpVerify.TabStop = false;
             this.grpVerify.Text = "Verification Process";
+            // 
+            // lblVerifyDate
+            // 
+            this.lblVerifyDate.AutoSize = true;
+            this.lblVerifyDate.Location = new System.Drawing.Point(84, 40);
+            this.lblVerifyDate.Name = "lblVerifyDate";
+            this.lblVerifyDate.Size = new System.Drawing.Size(0, 17);
+            this.lblVerifyDate.TabIndex = 700000005;
             // 
             // lblVerify
             // 
@@ -940,11 +948,11 @@
             this.btnVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnVerified.Image = ((System.Drawing.Image)(resources.GetObject("btnVerified.Image")));
             this.btnVerified.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerified.Location = new System.Drawing.Point(971, 418);
+            this.btnVerified.Location = new System.Drawing.Point(1039, 418);
             this.btnVerified.Name = "btnVerified";
-            this.btnVerified.Size = new System.Drawing.Size(142, 29);
+            this.btnVerified.Size = new System.Drawing.Size(74, 29);
             this.btnVerified.TabIndex = 700000002;
-            this.btnVerified.Text = "Verification Details";
+            this.btnVerified.Text = "Verify";
             this.btnVerified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVerified.UseVisualStyleBackColor = true;
             this.btnVerified.Click += new System.EventHandler(this.BtnVerified_Click);
@@ -962,9 +970,9 @@
             this.grpPurchase.Controls.Add(this.VoucherDate);
             this.grpPurchase.Controls.Add(this.InvoiceDate);
             this.grpPurchase.Controls.Add(this.InvoiceAmount);
-            this.grpPurchase.Location = new System.Drawing.Point(548, 387);
+            this.grpPurchase.Location = new System.Drawing.Point(468, 387);
             this.grpPurchase.Name = "grpPurchase";
-            this.grpPurchase.Size = new System.Drawing.Size(419, 60);
+            this.grpPurchase.Size = new System.Drawing.Size(570, 60);
             this.grpPurchase.TabIndex = 111111144;
             this.grpPurchase.TabStop = false;
             this.grpPurchase.Visible = false;
@@ -973,7 +981,7 @@
             // 
             this.lblInvoiceAmount.AutoSize = true;
             this.lblInvoiceAmount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceAmount.Location = new System.Drawing.Point(375, 14);
+            this.lblInvoiceAmount.Location = new System.Drawing.Point(454, 14);
             this.lblInvoiceAmount.Name = "lblInvoiceAmount";
             this.lblInvoiceAmount.Size = new System.Drawing.Size(17, 20);
             this.lblInvoiceAmount.TabIndex = 111111156;
@@ -983,7 +991,7 @@
             // 
             this.lblVoucherDate.AutoSize = true;
             this.lblVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVoucherDate.Location = new System.Drawing.Point(217, 37);
+            this.lblVoucherDate.Location = new System.Drawing.Point(281, 37);
             this.lblVoucherDate.Name = "lblVoucherDate";
             this.lblVoucherDate.Size = new System.Drawing.Size(15, 17);
             this.lblVoucherDate.TabIndex = 111111155;
@@ -993,7 +1001,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(362, 14);
+            this.label7.Location = new System.Drawing.Point(441, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(16, 17);
             this.label7.TabIndex = 111111154;
@@ -1013,7 +1021,7 @@
             // 
             this.lblInvoiceDate.AutoSize = true;
             this.lblInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceDate.Location = new System.Drawing.Point(217, 14);
+            this.lblInvoiceDate.Location = new System.Drawing.Point(281, 14);
             this.lblInvoiceDate.Name = "lblInvoiceDate";
             this.lblInvoiceDate.Size = new System.Drawing.Size(15, 17);
             this.lblInvoiceDate.TabIndex = 111111151;
@@ -1053,7 +1061,7 @@
             // 
             this.VoucherDate.AutoSize = true;
             this.VoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VoucherDate.Location = new System.Drawing.Point(141, 37);
+            this.VoucherDate.Location = new System.Drawing.Point(210, 37);
             this.VoucherDate.Name = "VoucherDate";
             this.VoucherDate.Size = new System.Drawing.Size(72, 17);
             this.VoucherDate.TabIndex = 111111147;
@@ -1063,7 +1071,7 @@
             // 
             this.InvoiceDate.AutoSize = true;
             this.InvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InvoiceDate.Location = new System.Drawing.Point(141, 14);
+            this.InvoiceDate.Location = new System.Drawing.Point(210, 14);
             this.InvoiceDate.Name = "InvoiceDate";
             this.InvoiceDate.Size = new System.Drawing.Size(66, 17);
             this.InvoiceDate.TabIndex = 111111146;
@@ -1073,7 +1081,7 @@
             // 
             this.InvoiceAmount.AutoSize = true;
             this.InvoiceAmount.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InvoiceAmount.Location = new System.Drawing.Point(274, 14);
+            this.InvoiceAmount.Location = new System.Drawing.Point(353, 14);
             this.InvoiceAmount.Name = "InvoiceAmount";
             this.InvoiceAmount.Size = new System.Drawing.Size(81, 17);
             this.InvoiceAmount.TabIndex = 111111145;
@@ -1667,7 +1675,7 @@
             this.txtRemark.MaxLength = 200;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(278, 50);
+            this.txtRemark.Size = new System.Drawing.Size(194, 50);
             this.txtRemark.TabIndex = 14;
             this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
             this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
@@ -1878,14 +1886,6 @@
             this.dataGridViewImageColumn1.HeaderText = "Remove";
             this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            // 
-            // lblVerifyDate
-            // 
-            this.lblVerifyDate.AutoSize = true;
-            this.lblVerifyDate.Location = new System.Drawing.Point(84, 40);
-            this.lblVerifyDate.Name = "lblVerifyDate";
-            this.lblVerifyDate.Size = new System.Drawing.Size(0, 17);
-            this.lblVerifyDate.TabIndex = 700000005;
             // 
             // PUR_PurchaseDC
             // 
