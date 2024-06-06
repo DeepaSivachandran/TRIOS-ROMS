@@ -182,6 +182,9 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["PUR_LastTransNo"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PUR_VoucherDate"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Overall Full Status"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["PUR_Approval_STSID"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["Error"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["Reason"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Inv Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Inv No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;
@@ -277,6 +280,9 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Tot Pro"].Width = 150;
                 DGV_SearchGrid.Columns["Remarks"].Width = 100;
                 DGV_SearchGrid.Columns["Status"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_Approval_STSID"].Visible = false;
+                DGV_SearchGrid.Columns["Error"].Visible = false;
+                DGV_SearchGrid.Columns["Reason"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_Created"].Visible = false;
@@ -1035,6 +1041,10 @@ namespace ROMS
                 for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
+                    int varError = Convert.ToInt32(grdPurchaseEntryApproval.Rows[i].Cells["Error"].Value);
+                    int varReason = Convert.ToInt32(grdPurchaseEntryApproval.Rows[i].Cells["Reason"].Value);
+                    int varStatus = Convert.ToInt32(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value);
+                    int varApprovalStatus = Convert.ToInt32(grdPurchaseEntryApproval.Rows[i].Cells["PUR_Approval_STSID"].Value);
                     //DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
                     //if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "49")
                     //{
@@ -1046,9 +1056,21 @@ namespace ROMS
                     //    cell.Style.BackColor = Color.Green;
                     //    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     //}
-                    if(Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["ShelfLifePro"].Value) == "1" || Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["InvoicePro"].Value) == "1" || Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["POPro"].Value) == "1" || Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["NewPro"].Value) == "1")
+                    //When purchase entry completed
+                    if (varError > 0 && (varReason == 0 || varReason > 0) && varStatus == 50 && varApprovalStatus == 50)
                     {
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                        grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                    //When Purchase mismatch approval pending/Purchase mismatch approval completed
+                    else if (varError > 0 && varReason > 0 && varStatus == 50 && varApprovalStatus != 50)
+                    {
+                        grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                        grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.White;
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                     }
                 }

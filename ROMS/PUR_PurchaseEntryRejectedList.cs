@@ -186,6 +186,9 @@ namespace ROMS
                             grdPurchaseEntryRejected.Columns["SPSCID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["SPID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["STSID"].Visible = false;
+                            //grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
+                            //grdPurchaseEntryRejected.Columns["Error"].Visible = false;
+                            //grdPurchaseEntryRejected.Columns["Reason"].Visible = false;
                             grdPurchaseEntryRejected.Columns["PUR_INVSTSID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
@@ -287,6 +290,9 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Overall Status"].Width = 130;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
+                //DGV_SearchGrid.Columns["PUR_Approval_STSID"].Visible = false;
+                //DGV_SearchGrid.Columns["Error"].Visible = false;
+                //DGV_SearchGrid.Columns["Reason"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_Approval_STSID"].Visible = false;

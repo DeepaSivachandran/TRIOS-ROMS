@@ -3286,7 +3286,7 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]), 
                             Convert.ToString(objDs.Tables[0].Rows[i]["DC Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Inv Flag"]),Convert.ToString(objDs.Tables[0].Rows[i]["Costing"]),
-                            0,0,0,0,0,0, Convert.ToString(objDs.Tables[0].Rows[i]["GRN ProType"]));
+                            0,0,0,0,0,0, Convert.ToString(objDs.Tables[0].Rows[i]["GRN ProType"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Error"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_EntryApprovalSTSID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_Reason"]));
                             if (Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"]) != "")
                             {
                                 if (varInvQty == 0)
@@ -3730,6 +3730,10 @@ namespace ROMS
                             if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmcheck"].Value) == "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmApprovalSts"].Value)=="0")
                             {
                                 varcheck = 0;
+                            }
+                            else if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmcheck"].Value) == "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmApprovalSts"].Value) == "63")
+                            {
+                                varcheck = 63;
                             }
                             else if(Convert.ToBoolean(grdSupplierList.Rows[i].Cells["clmCheck"].Value)==true)
                             {
@@ -4563,151 +4567,156 @@ namespace ROMS
                 {
                     if (e.RowIndex != -1)
                     {
-                        switch (grdPurchaseList.Columns[e.ColumnIndex].Name)
+                        //if(Convert.ToString(grdSupplierList.CurrentRow.Cells["clmCheck"].Value)!="")
+                        //{ 
+                        if ((Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["clmErrorPro"].Value) == 0 && Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["clmApprovalStatus"].Value) != 63) || Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["clmErrorPro"].Value) > 0 && (Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["clmReason"].Value) != 230 && Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["clmReason"].Value) != 234 && Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["clmReason"].Value) != 0 && Convert.ToInt32(grdPurchaseList.CurrentRow.Cells["clmApprovalStatus"].Value) != 63))
                         {
-                            case "clmInvQty":
-                                if (e.Button == MouseButtons.Right)
-                                {
-                                    ContextMenuStrip menustrip = new ContextMenuStrip();
-                                    if (grdPurchaseList.CurrentRow.Cells["clmInvoiceError"].Value.ToString() == "0")
+                            switch (grdPurchaseList.Columns[e.ColumnIndex].Name)
+                            {
+                                case "clmInvQty":
+                                    if (e.Button == MouseButtons.Right)
                                     {
-                                        //cm.MenuItems.Add(new MenuItem("Error"));
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                        cm.Name = "Error";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(error_Click);
+                                        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                        if (grdPurchaseList.CurrentRow.Cells["clmInvoiceError"].Value.ToString() == "0")
+                                        {
+                                            //cm.MenuItems.Add(new MenuItem("Error"));
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                            cm.Name = "Error";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(error_Click);
+                                        }
+                                        else
+                                        {
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                            cm.Name = "Clear";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(clear_Click);
+                                        }
                                     }
-                                    else
-                                    {
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                        cm.Name = "Clear";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(clear_Click);
-                                    }
-                                }
-                                break;
+                                    break;
 
-                            case "clmRecqty":
-                                if (e.Button == MouseButtons.Right)
-                                {
-                                    ContextMenuStrip menustrip = new ContextMenuStrip();
-                                    if (grdPurchaseList.CurrentRow.Cells["clmReceivedErr"].Value.ToString() == "0")
+                                case "clmRecqty":
+                                    if (e.Button == MouseButtons.Right)
                                     {
-                                        //cm.MenuItems.Add(new MenuItem("Error"));
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                        cm.Name = "Error";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(error_Click);
+                                        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                        if (grdPurchaseList.CurrentRow.Cells["clmReceivedErr"].Value.ToString() == "0")
+                                        {
+                                            //cm.MenuItems.Add(new MenuItem("Error"));
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                            cm.Name = "Error";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(error_Click);
+                                        }
+                                        else
+                                        {
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                            cm.Name = "Clear";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(clear_Click);
+                                        }
                                     }
-                                    else
-                                    {
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                        cm.Name = "Clear";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(clear_Click);
-                                    }
-                                }
-                                break;
+                                    break;
 
-                            case "clmFreeqty":
-                                if (e.Button == MouseButtons.Right)
-                                {
-                                    ContextMenuStrip menustrip = new ContextMenuStrip();
-                                    if (grdPurchaseList.CurrentRow.Cells["clmFreeQtyErr"].Value.ToString() == "0")
+                                case "clmFreeqty":
+                                    if (e.Button == MouseButtons.Right)
                                     {
-                                        //cm.MenuItems.Add(new MenuItem("Error"));
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                        cm.Name = "Error";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(error_Click);
+                                        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                        if (grdPurchaseList.CurrentRow.Cells["clmFreeQtyErr"].Value.ToString() == "0")
+                                        {
+                                            //cm.MenuItems.Add(new MenuItem("Error"));
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                            cm.Name = "Error";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(error_Click);
+                                        }
+                                        else
+                                        {
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                            cm.Name = "Clear";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(clear_Click);
+                                        }
                                     }
-                                    else
-                                    {
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                        cm.Name = "Clear";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(clear_Click);
-                                    }
-                                }
-                                break;
+                                    break;
 
-                            case "clmPurchaseRate":
-                                if (e.Button == MouseButtons.Right)
-                                {
-                                    ContextMenuStrip menustrip = new ContextMenuStrip();
-                                    if (grdPurchaseList.CurrentRow.Cells["clmPurchaseRateErr"].Value.ToString() == "0")
+                                case "clmPurchaseRate":
+                                    if (e.Button == MouseButtons.Right)
                                     {
-                                        //cm.MenuItems.Add(new MenuItem("Error"));
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                        cm.Name = "Error";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(error_Click);
+                                        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                        if (grdPurchaseList.CurrentRow.Cells["clmPurchaseRateErr"].Value.ToString() == "0")
+                                        {
+                                            //cm.MenuItems.Add(new MenuItem("Error"));
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                            cm.Name = "Error";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(error_Click);
+                                        }
+                                        else
+                                        {
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                            cm.Name = "Clear";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(clear_Click);
+                                        }
                                     }
-                                    else
-                                    {
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                        cm.Name = "Clear";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(clear_Click);
-                                    }
-                                }
-                                break;
+                                    break;
 
-                            case "clmDiscAmt":
-                                if (e.Button == MouseButtons.Right)
-                                {
-                                    ContextMenuStrip menustrip = new ContextMenuStrip();
-                                    if (grdPurchaseList.CurrentRow.Cells["clmDiscountErr"].Value.ToString() == "0")
+                                case "clmDiscAmt":
+                                    if (e.Button == MouseButtons.Right)
                                     {
-                                        //cm.MenuItems.Add(new MenuItem("Error"));
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                        cm.Name = "Error";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(error_Click);
+                                        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                        if (grdPurchaseList.CurrentRow.Cells["clmDiscountErr"].Value.ToString() == "0")
+                                        {
+                                            //cm.MenuItems.Add(new MenuItem("Error"));
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                            cm.Name = "Error";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(error_Click);
+                                        }
+                                        else
+                                        {
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                            cm.Name = "Clear";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(clear_Click);
+                                        }
                                     }
-                                    else
-                                    {
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                        cm.Name = "Clear";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(clear_Click);
-                                    }
-                                }
-                                break;
+                                    break;
 
-                            case "clmDiscPer":
-                                if (e.Button == MouseButtons.Right)
-                                {
-                                    ContextMenuStrip menustrip = new ContextMenuStrip();
-                                    if (grdPurchaseList.CurrentRow.Cells["clmDisPerErr"].Value.ToString() == "0")
+                                case "clmDiscPer":
+                                    if (e.Button == MouseButtons.Right)
                                     {
-                                        //cm.MenuItems.Add(new MenuItem("Error"));
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                        cm.Name = "Error";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(error_Click);
+                                        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                        if (grdPurchaseList.CurrentRow.Cells["clmDisPerErr"].Value.ToString() == "0")
+                                        {
+                                            //cm.MenuItems.Add(new MenuItem("Error"));
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                            cm.Name = "Error";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(error_Click);
+                                        }
+                                        else
+                                        {
+                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                            cm.Name = "Clear";
+                                            menustrip.Items.Add(cm);
+                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                            cm.Click += new EventHandler(clear_Click);
+                                        }
                                     }
-                                    else
-                                    {
-                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                        cm.Name = "Clear";
-                                        menustrip.Items.Add(cm);
-                                        menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                        cm.Click += new EventHandler(clear_Click);
-                                    }
-                                }
-                                break;
+                                    break;
+                            }
                         }
                     }
                 }
@@ -4915,79 +4924,83 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-                    switch (grdSupplierList.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmMRP":
-                            if (e.Button == MouseButtons.Right)
-                            {
-                                ContextMenuStrip menustrip = new ContextMenuStrip();
-                                if (grdSupplierList.CurrentRow.Cells["clmMRPError"].Value.ToString() == "0")
+                    if(Convert.ToString(grdSupplierList.CurrentRow.Cells["clmCheck"].Value)!="")
+                    { 
+                    
+                        switch (grdSupplierList.Columns[e.ColumnIndex].Name)
+                        {
+                            case "clmMRP":
+                                if (e.Button == MouseButtons.Right)
                                 {
-                                    //cm.MenuItems.Add(new MenuItem("Error"));
-                                    ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                    cm.Name = "Error";
-                                    menustrip.Items.Add(cm);
-                                    menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
-                                    cm.Click += new EventHandler(error_Click);
+                                    ContextMenuStrip menustrip = new ContextMenuStrip();
+                                    if (grdSupplierList.CurrentRow.Cells["clmMRPError"].Value.ToString() == "0")
+                                    {
+                                        //cm.MenuItems.Add(new MenuItem("Error"));
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                        cm.Name = "Error";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(error_Click);
+                                    }
+                                    else
+                                    {
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                        cm.Name = "Clear";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(clear_Click);
+                                    }
                                 }
-                                else
-                                {
-                                    ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                    cm.Name = "Clear";
-                                    menustrip.Items.Add(cm);
-                                    menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
-                                    cm.Click += new EventHandler(clear_Click);
-                                }
-                            }
-                            break;
+                                break;
 
-                        case "clmexpirydate":
-                            if (e.Button == MouseButtons.Right)
-                            {
-                                ContextMenuStrip menustrip = new ContextMenuStrip();
-                                if (grdSupplierList.CurrentRow.Cells["clmExpiryDateError"].Value.ToString() == "0")
+                            case "clmexpirydate":
+                                if (e.Button == MouseButtons.Right)
                                 {
-                                    //cm.MenuItems.Add(new MenuItem("Error"));
-                                    ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                    cm.Name = "Error";
-                                    menustrip.Items.Add(cm);
-                                    menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
-                                    cm.Click += new EventHandler(error_Click);
+                                    ContextMenuStrip menustrip = new ContextMenuStrip();
+                                    if (grdSupplierList.CurrentRow.Cells["clmExpiryDateError"].Value.ToString() == "0")
+                                    {
+                                        //cm.MenuItems.Add(new MenuItem("Error"));
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                        cm.Name = "Error";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(error_Click);
+                                    }
+                                    else
+                                    {
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                        cm.Name = "Clear";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(clear_Click);
+                                    }
                                 }
-                                else
-                                {
-                                    ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                    cm.Name = "Clear";
-                                    menustrip.Items.Add(cm);
-                                    menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
-                                    cm.Click += new EventHandler(clear_Click);
-                                }
-                            }
-                            break;
+                                break;
 
-                        case "clmBatchno":
-                            if (e.Button == MouseButtons.Right)
-                            {
-                                ContextMenuStrip menustrip = new ContextMenuStrip();
-                                if (grdSupplierList.CurrentRow.Cells["clmBatchError"].Value.ToString() == "0")
+                            case "clmBatchno":
+                                if (e.Button == MouseButtons.Right)
                                 {
-                                    //cm.MenuItems.Add(new MenuItem("Error"));
-                                    ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                    cm.Name = "Error";
-                                    menustrip.Items.Add(cm);
-                                    menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
-                                    cm.Click += new EventHandler(error_Click);
+                                    ContextMenuStrip menustrip = new ContextMenuStrip();
+                                    if (grdSupplierList.CurrentRow.Cells["clmBatchError"].Value.ToString() == "0")
+                                    {
+                                        //cm.MenuItems.Add(new MenuItem("Error"));
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                        cm.Name = "Error";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(error_Click);
+                                    }
+                                    else
+                                    {
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                        cm.Name = "Clear";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(clear_Click);
+                                    }
                                 }
-                                else
-                                {
-                                    ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                    cm.Name = "Clear";
-                                    menustrip.Items.Add(cm);
-                                    menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
-                                    cm.Click += new EventHandler(clear_Click);
-                                }
-                            }
-                            break;
+                                break;
+                        }
                     }
                 }
             }
@@ -5666,6 +5679,23 @@ namespace ROMS
                     grdPurchaseList.Columns["clmPurchaseRate"].DefaultCellStyle.BackColor = Color.PaleGreen;
                     grdPurchaseList.Columns["clmDiscAmt"].DefaultCellStyle.BackColor = Color.PaleGreen;
                     grdPurchaseList.Columns["clmDiscPer"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                }
+                DataGridView dataGridView = (DataGridView)sender;
+                for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
+                {
+                    int varReason = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmReason"].Value);
+                    int varApprovedStatus = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmApprovalStatus"].Value);
+
+                    if ((Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmErrorPro"].Value) == 1 && (varReason == 0)) || (Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmErrorPro"].Value) == 1 && (varReason == 230 || varReason == 234)))
+                    {
+                        grdPurchaseList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                        grdPurchaseList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        grdPurchaseList.Rows[i].ReadOnly = true;
+                    }
+                    if(Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmApprovalStatus"].Value) == 63)
+                    {
+                        grdPurchaseList.Rows[i].ReadOnly = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -7214,6 +7244,7 @@ namespace ROMS
                     {
                         grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                         grdSupplierList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        grdSupplierList.Rows[i].ReadOnly=true;
                         DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
                         Check.Value = "";
                         grdSupplierList.Rows[i].Cells["clmCheck"] = Check;
