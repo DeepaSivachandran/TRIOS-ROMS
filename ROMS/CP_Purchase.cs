@@ -5539,8 +5539,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void GrdSupplierList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -6745,7 +6743,7 @@ namespace ROMS
                                             {
                                                 grdPODetails.Columns["clmRemovePO"].Visible = false;
                                             }
-                                            if (btnSave.Text == "Save as Draft" && varEditFlag==0 )
+                                            if (btnSave.Text == "Save as Draft" && varEditFlag==0 && varConvertFlag == 0)
                                             {
                                                 pbPurchaseno = varvalue[2];
                                                 grdSupplierList.Rows.Clear();
@@ -6763,7 +6761,7 @@ namespace ROMS
                                                 else
                                                 { varCloseflag = 1; } 
                                             }
-                                            else if (btnSave.Text == "Save as Draft" && varEditFlag==1)
+                                            else if (btnSave.Text == "Save as Draft" && varEditFlag==1 && varConvertFlag==0)
                                             {
                                                 grdSupplierList.Rows.Clear();
                                                 grdPODetails.Rows.Clear();
@@ -6784,6 +6782,10 @@ namespace ROMS
                                                 {
                                                     varCloseflag = 1;
                                                     udfnclose();
+                                                }
+                                                else
+                                                {
+                                                    udfnEditLoad();
                                                 }
                                             }
                                             else
