@@ -1057,22 +1057,22 @@ namespace ROMS
                     //    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     //}
                     //When purchase entry completed
-                    if (varError > 0 && (varReason == 0 || varReason > 0) && varStatus == 50 && varApprovalStatus == 50)
+                    if (varError > 0 && (varReason > 0 || varReason==0) && varStatus == 50 && varApprovalStatus == 50)
                     {
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                     }
                     //When Purchase mismatch approval pending/Purchase mismatch approval completed
-                    else if (varError > 0 && varReason > 0 && varStatus == 50 && varApprovalStatus != 50)
+                    if (varError > 0 && varReason > 0 && varStatus == 50 && varApprovalStatus != 50)
                     {
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                     }
-                    else
-                    {
-                        grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                        grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
-                    }
+                    //else
+                    //{
+                    //    grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    //    grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    //}
                 }
             }
             catch (Exception ex)

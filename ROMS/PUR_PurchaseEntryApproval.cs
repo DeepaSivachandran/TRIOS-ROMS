@@ -3721,11 +3721,16 @@ namespace ROMS
                             //Error product status
                             if (varMRPerr==0 && varPurchaseRateErr==0 &&  varExpiryErr ==0 &&  varBatchErr==0 && varInvoiceQtyErr==0 && varReceivedQtyErr==0 && varFreeQtyErr==0 && varDisAmtErr==0 && varDisPerErr==0)
                             {
-                                varError = 73; // Status no error 
+                                varError = 73; // Status no error                               
                             }
                             else
                             {
                                 varError = 72; //status error
+                                grdSupplierList.Columns["clmCheck"].DefaultCellStyle.NullValue = 0;
+                                DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
+                                Check.Value = "";
+                                grdSupplierList.Rows[i].Cells["clmCheck"] = Check;
+                                Check.ReadOnly = true;
                             }
                             if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmcheck"].Value) == "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmApprovalSts"].Value)=="0")
                             {
@@ -4742,6 +4747,7 @@ namespace ROMS
                         grdPurchaseList.CurrentRow.Cells["clmInvQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                         grdPurchaseList.CurrentRow.Cells["clmInvoiceError"].Value = 1;
                         varButtonFlag++;
+                      
                     }
                     if (grdPurchaseList.CurrentCell.OwningColumn.Name == "clmRecqty")
                     {
@@ -4781,12 +4787,22 @@ namespace ROMS
                         grdSupplierList.CurrentRow.Cells["clmMRP"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                         grdSupplierList.CurrentRow.Cells["clmMRPError"].Value = 1;
                         varButtonFlag++;
+                        //grdSupplierList.CurrentRow.Cells["clmCheck"].Value = false;
+                        //DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
+                        //Check.Value = "";
+                        //grdSupplierList.CurrentRow.Cells["clmCheck"] = Check;
+                        //Check.ReadOnly = true;
                     }
                     if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
                     {
                         grdSupplierList.CurrentRow.Cells["clmexpirydate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                         grdSupplierList.CurrentRow.Cells["clmExpiryDateError"].Value = 1;
                         varButtonFlag++;
+                        //grdSupplierList.CurrentRow.Cells["clmCheck"].Value = false;
+                        //DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
+                        //Check.Value = "";
+                        //grdSupplierList.CurrentRow.Cells["clmCheck"] = Check;
+                        //Check.ReadOnly = true;
                     }
                     if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno")
                     {
@@ -7252,6 +7268,8 @@ namespace ROMS
                     }
                     if(varApprovedStatus==63)
                     {
+                        grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                        grdSupplierList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                         DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
                         Check.Value = "";
                         grdSupplierList.Rows[i].Cells["clmCheck"] = Check;
