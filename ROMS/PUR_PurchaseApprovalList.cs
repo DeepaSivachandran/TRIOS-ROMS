@@ -185,6 +185,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Error"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Reason"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["Crt Reason"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Inv Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Inv No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Remarks"].Width = 100;
@@ -1045,19 +1046,20 @@ namespace ROMS
                     int varReason = Convert.ToInt32(grdPurchaseEntryApproval.Rows[i].Cells["Reason"].Value);
                     int varStatus = Convert.ToInt32(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value);
                     int varApprovalStatus = Convert.ToInt32(grdPurchaseEntryApproval.Rows[i].Cells["PUR_Approval_STSID"].Value);
+                    int varCorrectReason = Convert.ToInt32(grdPurchaseEntryApproval.Rows[i].Cells["Crt Reason"].Value);
                     //DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
                     //if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "49")
                     //{
                     //    cell.Style.BackColor = Color.Red;
                     //    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     //}
-                    //if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STSID"].Value) == "50")
+                    //if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["STsID"].Value) == "50")
                     //{
                     //    cell.Style.BackColor = Color.Green;
                     //    cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                     //}
                     //When purchase entry completed
-                    if (varError > 0 && (varReason > 0 || varReason==0) && varStatus == 50 && varApprovalStatus == 50)
+                    if (varError > 0  && varStatus == 50 && varApprovalStatus == 50 && (varCorrectReason==0 || varReason > 0))
                     {
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
