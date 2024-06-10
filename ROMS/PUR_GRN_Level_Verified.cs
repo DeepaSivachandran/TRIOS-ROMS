@@ -93,13 +93,16 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
-                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    if (objd.Tables[0].Rows.Count>0)
                     {
-                        errVerified.SetError(mtbTime1, "Please enter valid Time");
-                        mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        errVerified.SetError(cmbFormat1, "Please enter valid Format");
-                        cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        blnErrorFlag = true;
+                        if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                        {
+                            errVerified.SetError(mtbTime1, "Please enter valid Time");
+                            mtbTime1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            errVerified.SetError(cmbFormat1, "Please enter valid Format");
+                            cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            blnErrorFlag = true;
+                        }
                     }
                 }
                 if (Convert.ToString(txtVerified2.Text.Trim()) != "")
@@ -127,13 +130,16 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
-                    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    if (objd.Tables[0].Rows.Count > 0)
                     {
-                        errVerified.SetError(mtbTime2, "Please enter valid Time");
-                        mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        errVerified.SetError(cmbFormat2, "Please enter valid Format");
-                        cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        blnErrorFlag = true;
+                        if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                        {
+                            errVerified.SetError(mtbTime2, "Please enter valid Time");
+                            mtbTime2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            errVerified.SetError(cmbFormat2, "Please enter valid Format");
+                            cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            blnErrorFlag = true;
+                        }
                     }
                 }
                 if (blnErrorFlag == false)

@@ -31,35 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_DC_PrintPopUp));
             this.errVerified = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grpVerify = new System.Windows.Forms.GroupBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.rbThermal = new System.Windows.Forms.RadioButton();
             this.rbA4Print = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.errVerified)).BeginInit();
-            this.grpVerify.SuspendLayout();
             this.SuspendLayout();
             // 
             // errVerified
             // 
             this.errVerified.ContainerControl = this;
             // 
-            // grpVerify
-            // 
-            this.grpVerify.Controls.Add(this.rbA4Print);
-            this.grpVerify.Controls.Add(this.rbThermal);
-            this.grpVerify.Controls.Add(this.btnOk);
-            this.grpVerify.Location = new System.Drawing.Point(12, 3);
-            this.grpVerify.Name = "grpVerify";
-            this.grpVerify.Size = new System.Drawing.Size(311, 85);
-            this.grpVerify.TabIndex = 0;
-            this.grpVerify.TabStop = false;
-            // 
             // btnOk
             // 
             this.btnOk.BackColor = System.Drawing.Color.White;
             this.btnOk.Image = global::ROMS.Properties.Resources.print;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnOk.Location = new System.Drawing.Point(226, 47);
+            this.btnOk.Location = new System.Drawing.Point(85, 71);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 32);
             this.btnOk.TabIndex = 2;
@@ -71,7 +58,7 @@
             // rbThermal
             // 
             this.rbThermal.AutoSize = true;
-            this.rbThermal.Location = new System.Drawing.Point(21, 25);
+            this.rbThermal.Location = new System.Drawing.Point(14, 15);
             this.rbThermal.Name = "rbThermal";
             this.rbThermal.Size = new System.Drawing.Size(100, 24);
             this.rbThermal.TabIndex = 3;
@@ -82,7 +69,7 @@
             // rbA4Print
             // 
             this.rbA4Print.AutoSize = true;
-            this.rbA4Print.Location = new System.Drawing.Point(149, 25);
+            this.rbA4Print.Location = new System.Drawing.Point(14, 45);
             this.rbA4Print.Name = "rbA4Print";
             this.rbA4Print.Size = new System.Drawing.Size(71, 24);
             this.rbA4Print.TabIndex = 4;
@@ -94,9 +81,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(336, 97);
-            this.Controls.Add(this.grpVerify);
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(168, 110);
+            this.Controls.Add(this.rbA4Print);
+            this.Controls.Add(this.rbThermal);
+            this.Controls.Add(this.btnOk);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -110,17 +99,15 @@
             this.Load += new System.EventHandler(this.PUR_GRN_Level_Verified_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRN_Level_Verified_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errVerified)).EndInit();
-            this.grpVerify.ResumeLayout(false);
-            this.grpVerify.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.ErrorProvider errVerified;
-        private System.Windows.Forms.GroupBox grpVerify;
-        private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.RadioButton rbA4Print;
         private System.Windows.Forms.RadioButton rbThermal;
+        private System.Windows.Forms.Button btnOk;
     }
 }

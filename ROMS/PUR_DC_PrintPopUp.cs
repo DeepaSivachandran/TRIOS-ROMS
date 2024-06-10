@@ -84,7 +84,7 @@ namespace ROMS
                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                     MainForm.objReportLoad.Text = varHeader;
                     MainForm.objReportLoad.ShowDialog();
-                    MainForm.objPUR_DC_PrintPopUp.Close();
+                    //MainForm.objPUR_DC_PrintPopUp.Close();
                 }
                 else if (rbA4Print.Checked==true)
                 {
@@ -106,7 +106,7 @@ namespace ROMS
                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                     MainForm.objReportLoad.Text = varHeader;
                     MainForm.objReportLoad.ShowDialog();
-                    MainForm.objPUR_DC_PrintPopUp.Close();
+                    //MainForm.objPUR_DC_PrintPopUp.Close();
                 }
 
             }
