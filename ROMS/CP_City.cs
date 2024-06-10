@@ -364,11 +364,12 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
-                    {
-                        rbActive.Focus();
-                    }
-                    else { btnSave.Focus(); }
+                    //if (pnlStatus.Enabled)
+                    //{
+                    //    rbActive.Focus();
+                    //}
+                    //else { btnSave.Focus(); }
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)

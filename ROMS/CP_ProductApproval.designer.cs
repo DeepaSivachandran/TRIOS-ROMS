@@ -460,8 +460,8 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdCategory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdCategory.ColumnHeadersHeight = 30;
@@ -513,8 +513,8 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdSubgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdSubgroup.ColumnHeadersHeight = 30;
@@ -1114,10 +1114,10 @@
             // txtProductTname
             // 
             this.txtProductTname.BackColor = System.Drawing.SystemColors.Window;
-            this.txtProductTname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.75F);
+            this.txtProductTname.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductTname.Location = new System.Drawing.Point(135, 75);
             this.txtProductTname.Name = "txtProductTname";
-            this.txtProductTname.Size = new System.Drawing.Size(307, 25);
+            this.txtProductTname.Size = new System.Drawing.Size(307, 27);
             this.txtProductTname.TabIndex = 2;
             this.txtProductTname.Enter += new System.EventHandler(this.TxtProductTname_Enter);
             this.txtProductTname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductTname_KeyDown);
@@ -1210,8 +1210,8 @@
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdBrand.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdBrand.ColumnHeadersHeight = 30;

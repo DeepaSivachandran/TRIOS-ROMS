@@ -2671,7 +2671,7 @@ namespace ROMS
                     string VarCity = "0";
                     DataSet objDsCity = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,0);
+                    objDsCity = objDserv.udfnCitylist(1, txtCity.Text.Trim(), Convert.ToInt32(cmbState.SelectedValue),0);
                     objDserv.CloseConnection();
                     if (objDsCity != null) {
                         if (objDsCity.Tables.Count > 0) {
