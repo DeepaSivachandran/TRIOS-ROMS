@@ -137,6 +137,7 @@ namespace ROMS
                         grdPODetails.Visible = true;
                         udfnPODropdownload();
                         udfnPendingPOLoad();
+                        udfnProDetailsTolProCount();
                         //udfnDefGrnGridLoad();
                         //cmbPONo.Enabled = true;
                         txtQRCode.Text = "";
@@ -4609,7 +4610,7 @@ namespace ROMS
                         //lblAddProduct.Text = Convert.ToString(varProIds.Count());
                         //lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
                         tsbAddedProduct.Text = Convert.ToString(varProIds.Count());
-                        tsbRemainingProduct.Text = Convert.ToString(Convert.ToInt32(tsbAddedProduct.Text) - varProIds.Count());
+                        tsbRemainingProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
                     }
                 }
                 if (varProductType == 218 ) //218-GRN 

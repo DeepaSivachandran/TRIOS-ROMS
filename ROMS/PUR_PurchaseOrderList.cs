@@ -999,6 +999,8 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Po Status"].Width = 100;
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
+                            grdPurchaseorderlist.Columns["Overall Status"].Width = 150;
+
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["COMID"].Visible = false;
                             grdPurchaseorderlist.Columns["Status1"].Visible = false;
@@ -2896,163 +2898,178 @@ namespace ROMS
                 {
                     lblSupplierCode.Text = "0";
                     lblschedleCode.Text = "0";
-                } 
-                int varsupplier = 0, varpono = 0, varFilter=0;
-                if (Convert.ToInt32(cmbGroup.SelectedValue) == 160)
-                {
-                    varpono = 1;
                 }
-                if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
-                {
-                    varsupplier = 1;
-                }
-                if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
-                {
-                    varsupplier = 1;
-                    varpono = 1;
-                }
-                if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
-                {
-                    varsupplier = 1;
-                    varpono = 1;
-                    varFilter = 1;
-                }
-                int varprint = 0;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                int varstatus = 0;
-               
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", varFilter,0, 0, 0, 0, 0);
-                objdserv.CloseConnection();
-               
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count > 0)
+                int varsupplier = 0, varpono = 0, varFilter = 0;
+                    if (Convert.ToInt32(cmbGroup.SelectedValue) == 160)
                     {
-                        if (objDs.Tables[0].Rows.Count > 0)
+                        varpono = 1;
+                    }
+                    if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
+                    {
+                        varsupplier = 1;
+                    }
+                    if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
+                    {
+                        varsupplier = 1;
+                        varpono = 1;
+                    }
+                    if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
+                    {
+                        varsupplier = 1;
+                        varpono = 1;
+                        varFilter = 1;
+                    }
+                    int varprint = 0;
+                    DataSet objDs = new DataSet();
+                    //**** To call the function from SP ***************
+                    int varstatus = 0;
+
+                    SPDataService objdserv = new SPDataService();
+                    objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", varFilter, 0, 0, 0, 0, 0);
+                    objdserv.CloseConnection();
+
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count > 0)
                         {
-                            varprint = 1;
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                varprint = 1;
+                            }
                         }
                     }
-                }
-                if (varprint == 1)
-                {
-                    grpProFilter.BringToFront();
-                    grpProFilter.Visible=true;
-                    btnPrint.Enabled = false;
-                    lblStatus.Focus();
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
+                    if (varprint == 1)
                     {
-                        if (rbComplete.Checked == true)
+                        if (Convert.ToInt32(cmbShow.SelectedValue) == 135 && Convert.ToInt16(grdPurchaseorderlist.RowCount)!=0)
                         {
-                            varstatus = 14;
+                            grpProFilter.BringToFront();
+                            grpProFilter.Visible = true;
+                            btnPrint.Enabled = false;
+                            lblStatus.Focus();
+                            RPTViewer.Visible = true;
+                            RPTViewer.BringToFront();
+                            RPTViewer.ReuseParameterValuesOnRefresh = true;
+                            RPTViewer.RefreshReport();
+                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        if (rbComplete.Checked == true)
+                            {
+                                varstatus = 14;
+                            }
+                            else
+                            {
+                                varstatus = Convert.ToInt32(cmbstatus.SelectedValue);
+                            }
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Order_List.rpt");
+                            objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
+                            objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedleCode.Text));
+                            objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                            objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                            objBillreport.SetParameterValue("paraStatusId", Convert.ToString(varstatus));
+                            objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
+                            objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpPlanDate.Text));
+                            objBillreport.SetParameterValue("paraToDate", Convert.ToString(dptoPlanDate.Text));
+                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objValidation.CrySqlConnection(objBillreport);
+                            RPTViewer.ReportSource = objBillreport;
+                            RPTViewer.Refresh();
+                        }
+                        else if (Convert.ToInt32(cmbShow.SelectedValue) == 136 && Convert.ToInt16(grdProDetails.RowCount) != 0)
+                        {
+                            grpProFilter.BringToFront();
+                            grpProFilter.Visible = true;
+                            btnPrint.Enabled = false;
+                            lblStatus.Focus();
+                            RPTViewer.Visible = true;
+                            RPTViewer.BringToFront();
+                            RPTViewer.ReuseParameterValuesOnRefresh = true;
+                            RPTViewer.RefreshReport();
+                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
+                            {
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
+                                objBillreport.SetParameterValue("ParaPO", 0);
+                                objBillreport.SetParameterValue("ParaSupplier", 0);
+                                objBillreport.SetParameterValue("parafilter", 0);
+                                objBillreport.SetParameterValue("varHeader", "PO Product List");
+                            }
+                            if (Convert.ToInt32(cmbGroup.SelectedValue) == 160)
+                            {
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
+                                objBillreport.SetParameterValue("ParaPO", 1);
+                                objBillreport.SetParameterValue("ParaSupplier", 0);
+                                objBillreport.SetParameterValue("parafilter", 0);
+                                objBillreport.SetParameterValue("varHeader", "PO Product List - PO Wise");
+                            }
+                            if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
+                            {
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
+                                objBillreport.SetParameterValue("ParaPO", 0);
+                                objBillreport.SetParameterValue("ParaSupplier", 0);
+                                objBillreport.SetParameterValue("parafilter", 1);
+                                objBillreport.SetParameterValue("varHeader", "PO Product List - Status Wise");
+                            }
+                            if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
+                            {
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Supplier_wise.rpt");
+                                objBillreport.SetParameterValue("ParaPO", 0);
+                                objBillreport.SetParameterValue("ParaSupplier", 1);
+                                objBillreport.SetParameterValue("varHeader", "PO Product List - Supplier Wise");
+                            }
+                            //else
+                            //{
+                            //    if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
+                            //    {
+                            //        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_PO_wise.rpt");
+                            //    }
+                            //    if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
+                            //    {
+                            //        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Supplierwise.rpt");
+                            //    }
+                            //    //if (cbPoNo.Checked == false && cbSupplier.Checked == false)
+                            //    //{
+                            //    //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Product_wise.rpt");
+                            //    //}
+                            //}
+                            objBillreport.SetParameterValue("ParaGroupID", Convert.ToInt32(lblGroupId.Text));
+                            objBillreport.SetParameterValue("ParaSubGroupID", Convert.ToString(lblSubGroupId.Text));
+                            objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
+                            objBillreport.SetParameterValue("ParaScheduleId ", Convert.ToInt32(lblschedleCode.Text));
+                            objBillreport.SetParameterValue("paraCompanyID ", Convert.ToInt32(cmbConcern.SelectedValue));
+                            objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbProductStatus.SelectedValue));
+                            objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbProductStatus.Text));
+                            objBillreport.SetParameterValue("ParaPOFromDate", Convert.ToString(dpPlanDate.Text));
+                            objBillreport.SetParameterValue("ParaPOToDate", Convert.ToString(dptoPlanDate.Text));
+                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objValidation.CrySqlConnection(objBillreport);
+                            RPTViewer.ReportSource = objBillreport;
+                            RPTViewer.Refresh();
                         }
                         else
                         {
-                            varstatus = Convert.ToInt32(cmbstatus.SelectedValue);
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
                         }
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Order_List.rpt");
-                        objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
-                        objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedleCode.Text));
-                        objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
-                        objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
-                        objBillreport.SetParameterValue("paraStatusId", Convert.ToString(varstatus));
-                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
-                        objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpPlanDate.Text));
-                        objBillreport.SetParameterValue("paraToDate", Convert.ToString(dptoPlanDate.Text));
-                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                        objValidation.CrySqlConnection(objBillreport);
-                        RPTViewer.ReportSource = objBillreport;
-                        RPTViewer.Refresh();
                     }
                     else
-                    {  
-                        if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
-                        {
-                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
-                            objBillreport.SetParameterValue("ParaPO", 0);
-                            objBillreport.SetParameterValue("ParaSupplier", 0);
-                            objBillreport.SetParameterValue("parafilter", 0);
-                            objBillreport.SetParameterValue("varHeader", "PO Product List");
-                        }
-                        if (Convert.ToInt32(cmbGroup.SelectedValue) == 160)
-                        {
-                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
-                            objBillreport.SetParameterValue("ParaPO", 1);
-                            objBillreport.SetParameterValue("ParaSupplier",0);
-                            objBillreport.SetParameterValue("parafilter", 0);
-                            objBillreport.SetParameterValue("varHeader", "PO Product List - PO Wise");
-                        }
-                        if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
-                        {
-                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList.rpt");
-                            objBillreport.SetParameterValue("ParaPO", 0);
-                            objBillreport.SetParameterValue("ParaSupplier", 0);
-                            objBillreport.SetParameterValue("parafilter", 1);
-                            objBillreport.SetParameterValue("varHeader", "PO Product List - Status Wise");
-                        }
-                        if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
-                        {
-                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Supplier_wise.rpt"); 
-                            objBillreport.SetParameterValue("ParaPO", 0);
-                            objBillreport.SetParameterValue("ParaSupplier", 1); 
-                            objBillreport.SetParameterValue("varHeader", "PO Product List - Supplier Wise");
-                        }
-                        //else
-                        //{
-                        //    if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
-                        //    {
-                        //        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_PO_wise.rpt");
-                        //    }
-                        //    if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
-                        //    {
-                        //        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Supplierwise.rpt");
-                        //    }
-                        //    //if (cbPoNo.Checked == false && cbSupplier.Checked == false)
-                        //    //{
-                        //    //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_PO_ProductList_Product_wise.rpt");
-                        //    //}
-                        //}
-                        objBillreport.SetParameterValue("ParaGroupID", Convert.ToInt32(lblGroupId.Text));
-                        objBillreport.SetParameterValue("ParaSubGroupID", Convert.ToString(lblSubGroupId.Text));
-                        objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
-                        objBillreport.SetParameterValue("ParaScheduleId ", Convert.ToInt32(lblschedleCode.Text));
-                        objBillreport.SetParameterValue("paraCompanyID ", Convert.ToInt32(cmbConcern.SelectedValue));
-                        objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbProductStatus.SelectedValue));
-                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbProductStatus.Text));
-                        objBillreport.SetParameterValue("ParaPOFromDate", Convert.ToString(dpPlanDate.Text));
-                        objBillreport.SetParameterValue("ParaPOToDate", Convert.ToString(dptoPlanDate.Text));
-                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                        objValidation.CrySqlConnection(objBillreport);
-                        RPTViewer.ReportSource = objBillreport;
-                        RPTViewer.Refresh();
+                    {
+                        DGV_SearchGridPro.Columns.Clear();
+                        grdProDetails.DataSource = null;
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
                     }
-                }
-                else
-                {
-                    DGV_SearchGridPro.Columns.Clear();
-                    grdProDetails.DataSource = null;
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-
+                
             }
             catch (Exception ex)
             {
@@ -3062,6 +3079,8 @@ namespace ROMS
             finally
             {
                 btnPrint.Enabled = true;
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
 
