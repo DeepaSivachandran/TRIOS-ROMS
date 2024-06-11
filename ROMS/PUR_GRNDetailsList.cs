@@ -162,7 +162,7 @@ namespace ROMS
             float varIncreWidth = 0, varIncreHeight = 0,
                 varPercentageWidth = 0, varPercentageHeight = 0,
                 varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
-
+            /*
             if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
             {
                 targetWidth = (int)(screen.Bounds.Width - 7);
@@ -184,8 +184,8 @@ namespace ROMS
                 TextboxSize = 15;
                 FontSize = 20;
             }
-
-            /*
+            */
+            
             if (Convert.ToInt32(screen.WorkingArea.Width)==1366)
             {
                 targetWidth = (int)(screen.Bounds.Width - 7);
@@ -235,7 +235,7 @@ namespace ROMS
                 TextboxSize = 10;
                 FontSize = 10;
             }
-            */
+            
 
             varIncreWidth = targetWidth - this.pnlpurchaseapproval.Width;
             varPercentageWidth = (varIncreWidth / this.pnlpurchaseapproval.Width) * 100;
@@ -326,7 +326,7 @@ namespace ROMS
             grdGRNList.Location = new Point(grdGRNList.Location.X, (grpfilter.Height + DGV_SearchGrid.Height+5));
             //lblNoRecordsFound.Location = new Point((int)((this.grdGRNList.Width - lblNoRecordsFound.Width) / 2), lblNoRecordsFound.Location.Y);
             //lblTotalGRN.Location = new Point(label6.Location.X + 100, label6.Location.Y);
-            /*
+            
             cmbConcern.Location = new Point(9, lblConcern.Height+30);
             dpFromDate.Location = new Point(cmbConcern.Width + 10, lblGRNDate.Height+ 30);
             dpToDate.Location = new Point((cmbConcern.Width + dpFromDate.Width) + 20, lblGRNDate.Height + 30);
@@ -344,8 +344,8 @@ namespace ROMS
             lblSupplierName.Location = new Point(txtSupplier.Location.X, lblSupplierName.Location.Y);
             lblOrderType.Location = new Point(cmbOrdertype.Location.X, lblOrderType.Location.Y);
             lblStatus.Location = new Point(cmbstatus.Location.X, lblStatus.Location.Y);
-            */
             
+            /*
             int offsetX = lblConcern.Location.X - grpfilter.Location.X;
             int offsetY = lblConcern.Location.Y - grpfilter.Location.Y;
             foreach (Control control in grpfilter.Controls)
@@ -355,7 +355,7 @@ namespace ROMS
                     control.Location = new Point(control.Location.X + offsetX, control.Location.Y + offsetY);
                 }
             }
-            
+            */
             lblNoRecordsFound.Location = new Point((this.grdGRNList.Width - lblNoRecordsFound.Size.Width) / 2, (this.grdGRNList.Height / 2) - (lblNoRecordsFound.Height / 2));
             //lblNoRecordsFound.Left = (this.grdGRNList.Width - lblNoRecordsFound.Size.Width) / 2;
             //lblNoRecordsFound.Top = (this.grdGRNList.Height - lblNoRecordsFound.Size.Height) / 2;
