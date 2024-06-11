@@ -965,5 +965,125 @@ namespace ROMS
                 return false;
             }
         }
+        public string udfhScreenResolution(Panel ParaPanel, Form ParaForm)
+        {
+            string PbPercentage = "0";
+            try
+            {
+                Screen screen = Screen.PrimaryScreen;
+                int vartargetWidth = 0, vartargetHeight = 0;
+                float varIncreWidth = 0, varIncreHeight = 0,
+                varPercentageWidth = 0, varPercentageHeight = 0,
+                varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
+
+                if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
+                {
+                    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                    vartargetHeight = (int)(screen.Bounds.Height - 280);
+                }
+                else
+                {
+                    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                    vartargetHeight = (int)(screen.Bounds.Height - 125);
+                }
+
+                varIncreWidth = vartargetWidth - ParaPanel.Width;
+                varPercentageWidth = (varIncreWidth / ParaPanel.Width) * 100;
+
+                varIncreHeight = vartargetHeight - ParaPanel.Height;
+                varPercentageHeight = (varIncreHeight / ParaPanel.Height) * 100;
+
+                PbPercentage = (varPercentageWidth + "," + varPercentageHeight);
+
+                varIncreaseWidthSize = ParaPanel.Width + (ParaPanel.Width * varPercentageWidth / 100);
+                varIncreaseHeightSize = ParaPanel.Height + (ParaPanel.Height * varPercentageHeight / 100);
+                ParaForm.Location = new Point(0, 0);
+                ParaPanel.Location = new Point(0, 30);
+                ParaForm.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                ParaPanel.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                //foreach (Control controls in ParaPanel.Controls)
+                //{
+                //    if(controls is GroupBox)
+                //    {
+                //        foreach(Control control1 in controls.Controls)
+                //        {
+                //            if (control1 is TextBox)
+                //            {
+                //                Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
+                //                float scaleFactor = 15 / (float)control1.Font.Size;
+                //                control1.Font = new Font(control1.Font.FontFamily, control1.Font.Size * scaleFactor);
+                //                control1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                //                control1.Refresh();
+
+
+                //                varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
+                //                varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
+                //                control1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                //            }
+                //            if (control1 is ComboBox)
+                //            {
+                //                Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
+                //                float scaleFactor = 15 / (float)control1.Font.Size;
+                //                control1.Font = new Font(control1.Font.FontFamily, control1.Font.Size * scaleFactor);
+                //                control1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                //                control1.Refresh();
+
+                //                varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
+                //                varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
+                //                control1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                //            }
+                //            if (control1 is DateTimePicker)
+                //            {
+                //                Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
+                //                float scaleFactor = 15 / (float)control1.Font.Size;
+                //                control1.Font = new Font(control1.Font.FontFamily, control1.Font.Size * scaleFactor);
+                //                control1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                //                control1.Refresh();
+
+                //                varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
+                //                varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
+                //                control1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                //            }
+                //            if (control1 is Label)
+                //            {
+                //                Font newFont = new Font(control1.Font.FontFamily, 15, control1.Font.Style);
+                //                control1.Font = newFont;
+                //                int newHeight = TextRenderer.MeasureText(control1.Text, newFont).Height;
+                //                control1.Height = newHeight;
+
+                //                //varIncreaseWidthSize = control.Width + (control.Width * varPercentageWidth / 100);
+                //                //varIncreaseHeightSize = control.Height + (control.Height * varPercentageHeight / 100);
+                //                //control.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                //            }
+                //        }
+                //        varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                //        varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                //        controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                //    }
+                //    if(controls is DataGridView)
+                //    {
+                //        if (controls.Name == "DGV_SearchGrid")
+                //        {
+                //            varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                //            varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                //            controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), controls.Height);
+                //        }
+                //        else
+                //        {
+                //            varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                //            varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                //            controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize + 20));
+                //        }
+                //    }
+                //} 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            return PbPercentage;
+        }
     }
 }
