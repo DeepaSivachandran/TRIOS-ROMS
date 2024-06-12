@@ -78,7 +78,7 @@ namespace ROMS
                 errPurchaseentry.Clear();
                 DGV_FilterProduct.Visible = false;
                 txtProductName.Text = "";
-                txtGstin.Text = "";
+               // txtGstin.Text = "";
                 udfnrowclear();
                 if (pbPurchaseno == "0")
                 {
@@ -215,10 +215,10 @@ namespace ROMS
                     //udfnToalProCount();
                     udfnProDetailsTolProCount();
                 }
-                if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0" && varQueueFlag == 0 && varSupplierType!=32)
-                {
-                    udfnGSTINPopup();
-                }
+                //if (txtGstin.Text.Trim()=="" &&Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno=="0" && varQueueFlag == 0 && varSupplierType!=32 && varEntryTypeRefresh==0)
+                //{
+                //    udfnGSTINPopup();
+                //}
             }
             catch (Exception ex)
             {
@@ -2757,7 +2757,11 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(cmbEntryType.SelectedValue)==-1)
+                if (txtGstin.Text.Trim() == "" && Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno == "0" && varQueueFlag == 0 && varSupplierType != 32 && varEntryTypeRefresh == 0)
+                {
+                    udfnGSTINPopup();
+                }
+                if (Convert.ToInt32(cmbEntryType.SelectedValue)==-1)
                 {
                     errPurchaseentry.SetError(cmbEntryType, "Please select entry type");
                     cmbEntryType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -2855,6 +2859,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
+                    if (txtGstin.Text.Trim() == "" && Convert.ToInt32(lblSupplierCode.Text.Trim()) != 0 && Convert.ToInt32(lblschedule.Text.Trim()) != 0 && (Convert.ToInt32(cmbEntryType.SelectedValue) != 54) && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && pbPurchaseno == "0" && varQueueFlag == 0 && varSupplierType != 32 && varEntryTypeRefresh == 0)
+                    {
+                        udfnGSTINPopup();
+                    }
                     if (dpInvoiceDate.Enabled == true)
                     {
                         dpInvoiceDate.Focus();
