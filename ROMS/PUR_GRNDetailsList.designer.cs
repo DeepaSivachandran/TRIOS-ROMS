@@ -50,8 +50,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -64,6 +62,8 @@
             this.cmbstatus = new System.Windows.Forms.ComboBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.lblConcern = new System.Windows.Forms.Label();
             this.lblOrderType = new System.Windows.Forms.Label();
             this.lblSupplierName = new System.Windows.Forms.Label();
@@ -174,8 +174,6 @@
             this.pnlpurchaseapproval.AutoSize = true;
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
             this.pnlpurchaseapproval.Controls.Add(this.LV_Supplier);
-            this.pnlpurchaseapproval.Controls.Add(this.btnExport);
-            this.pnlpurchaseapproval.Controls.Add(this.btnPrint);
             this.pnlpurchaseapproval.Controls.Add(this.lblNoRecordsFound);
             this.pnlpurchaseapproval.Controls.Add(this.grpfilter);
             this.pnlpurchaseapproval.Controls.Add(this.DGV_SearchGrid);
@@ -219,31 +217,6 @@
             // 
             this.columnHeader9.Width = 0;
             // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(941, 45);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(32, 33);
-            this.btnExport.TabIndex = 7;
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(979, 45);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(32, 33);
-            this.btnPrint.TabIndex = 8;
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
-            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -271,6 +244,8 @@
             this.grpfilter.Controls.Add(this.cmbstatus);
             this.grpfilter.Controls.Add(this.txtSupplier);
             this.grpfilter.Controls.Add(this.btnView);
+            this.grpfilter.Controls.Add(this.btnExport);
+            this.grpfilter.Controls.Add(this.btnPrint);
             this.grpfilter.Controls.Add(this.lblConcern);
             this.grpfilter.Controls.Add(this.lblOrderType);
             this.grpfilter.Controls.Add(this.lblSupplierName);
@@ -284,6 +259,7 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            this.grpfilter.Layout += new System.Windows.Forms.LayoutEventHandler(this.Grpfilter_Layout);
             // 
             // cmbConcern
             // 
@@ -306,7 +282,7 @@
             this.lblTotalGRN.Location = new System.Drawing.Point(1077, 49);
             this.lblTotalGRN.Name = "lblTotalGRN";
             this.lblTotalGRN.Size = new System.Drawing.Size(17, 20);
-            this.lblTotalGRN.TabIndex = 1111186;
+            this.lblTotalGRN.TabIndex = 10;
             this.lblTotalGRN.Text = "0";
             // 
             // label6
@@ -316,7 +292,7 @@
             this.label6.Location = new System.Drawing.Point(1011, 49);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 20);
-            this.label6.TabIndex = 1111185;
+            this.label6.TabIndex = 9;
             this.label6.Text = "Total GRN :";
             // 
             // lblStatus
@@ -401,6 +377,31 @@
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(941, 45);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(32, 33);
+            this.btnExport.TabIndex = 7;
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(979, 45);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(32, 33);
+            this.btnPrint.TabIndex = 8;
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
             // 
             // lblConcern
             // 

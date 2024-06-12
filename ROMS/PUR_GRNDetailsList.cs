@@ -187,8 +187,9 @@ namespace ROMS
                 // Get the primary screen
                 Screen screen = Screen.PrimaryScreen;
                 int TextboxSize = 0, FontSize = 0;
+                int targetWidth = 0, targetHeight = 0;
                 decimal varPercentageWidth = 0, varPercentageHeight = 0,
-                    varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
+                    varIncreaseWidthSize = 0, varIncreaseHeightSize = 0, varIncreWidth = 0, varIncreHeight = 0;
 
                 varPercentage = objValidation.udfhScreenResolution(this.pnlpurchaseapproval, this);
                 string[] value = varPercentage.Split(',');
@@ -204,13 +205,6 @@ namespace ROMS
                     targetHeight = (int)(screen.Bounds.Height - 280);
                     TextboxSize = 11;
                     FontSize = 11;
-                }
-                else if (Convert.ToInt32(screen.WorkingArea.Width) < 1366)
-                {
-                    targetWidth = (int)(screen.Bounds.Width - 7);
-                    targetHeight = (int)(screen.Bounds.Height - 125);
-                    TextboxSize = 10;
-                    FontSize = 10;
                 }
                 else
                 {
@@ -272,22 +266,25 @@ namespace ROMS
                 }
                 */
 
-
-                this.Location = new Point(0, 0);
-                pnlpurchaseapproval.Location = new Point(0, 30);
-
-                // Set MDIParent form size
-
-                varIncreaseWidthSize = this.Width + (this.Width * varPercentageWidth / 100);
-                varIncreaseHeightSize = this.Height + (this.Height * varPercentageHeight / 100);
-                this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                 //varIncreWidth = targetWidth - this.pnlpurchaseapproval.Width;
                 //varPercentageWidth = (varIncreWidth / this.pnlpurchaseapproval.Width) * 100;
-                varIncreaseWidthSize = this.pnlpurchaseapproval.Width + (this.pnlpurchaseapproval.Width * varPercentageWidth / 100);
+                //varIncreaseWidthSize = this.pnlpurchaseapproval.Width + (this.pnlpurchaseapproval.Width * varPercentageWidth / 100);
 
                 //varIncreHeight = targetHeight - this.pnlpurchaseapproval.Height;
                 //varPercentageHeight = (varIncreHeight / this.pnlpurchaseapproval.Height) * 100;
+                //varIncreaseHeightSize = this.pnlpurchaseapproval.Height + (this.pnlpurchaseapproval.Height * varPercentageHeight / 100);
+
+
+                varIncreaseWidthSize = this.pnlpurchaseapproval.Width + (this.pnlpurchaseapproval.Width * varPercentageWidth / 100);
                 varIncreaseHeightSize = this.pnlpurchaseapproval.Height + (this.pnlpurchaseapproval.Height * varPercentageHeight / 100);
+
+
+
+                // Set MDIParent form size
+                this.Location = new Point(0, 0);
+                this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                pnlpurchaseapproval.Location = new Point(0, 30);
                 pnlpurchaseapproval.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
 
                 if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
@@ -297,17 +294,163 @@ namespace ROMS
                 }
                 else
                 {
-                    varIncreaseWidthSize = this.DGV_SearchGrid.Width + (this.DGV_SearchGrid.Width * varPercentageWidth / 100);
-                    varIncreaseHeightSize = this.DGV_SearchGrid.Height + (this.DGV_SearchGrid.Height * varPercentageHeight / 100);
-                    DGV_SearchGrid.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), DGV_SearchGrid.Height);
-                    varIncreaseWidthSize = this.grpfilter.Width + (this.grpfilter.Width * varPercentageWidth / 100);
-                    varIncreaseHeightSize = this.grpfilter.Height + (this.grpfilter.Height * varPercentageHeight / 100);
-                    grpfilter.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
-                    varIncreaseWidthSize = this.grdGRNList.Width + (this.grdGRNList.Width * varPercentageWidth / 100);
-                    varIncreaseHeightSize = this.grdGRNList.Height + (this.grdGRNList.Height * varPercentageHeight / 100);
-                    grdGRNList.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize+20));
-                }
+                    //varIncreaseWidthSize = this.DGV_SearchGrid.Width + (this.DGV_SearchGrid.Width * varPercentageWidth / 100);
+                    //varIncreaseHeightSize = this.DGV_SearchGrid.Height + (this.DGV_SearchGrid.Height * varPercentageHeight / 100);
+                    //DGV_SearchGrid.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), DGV_SearchGrid.Height);
+                    //varIncreaseWidthSize = this.grpfilter.Width + (this.grpfilter.Width * varPercentageWidth / 100);
+                    //varIncreaseHeightSize = this.grpfilter.Height + (this.grpfilter.Height * varPercentageHeight / 100);
+                    //grpfilter.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                    //varIncreaseWidthSize = this.grdGRNList.Width + (this.grdGRNList.Width * varPercentageWidth / 100);
+                    //varIncreaseHeightSize = this.grdGRNList.Height + (this.grdGRNList.Height * varPercentageHeight / 100);
+                    //grdGRNList.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize + 12));
 
+                    foreach (Control controls in pnlpurchaseapproval.Controls)
+                    {
+                        if (controls is GroupBox)
+                        {
+                            foreach (Control control1 in controls.Controls)
+                            {
+                                if (control1 is Button == false)
+                                {
+                                    varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
+                                    varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
+                                    control1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                }
+                                if (control1 is TextBox)
+                                {
+                                    Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
+                                    float scaleFactor = 15 / (float)control1.Font.Size;
+                                    control1.Font = new Font(control1.Font.FontFamily, control1.Font.Size * scaleFactor);
+                                    control1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                    control1.Refresh();
+                                }
+                                if (control1 is ComboBox)
+                                {
+                                    Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
+                                    float scaleFactor = 15 / (float)control1.Font.Size;
+                                    control1.Font = new Font(control1.Font.FontFamily, control1.Font.Size * scaleFactor);
+                                    control1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                    control1.Refresh();
+                                }
+                                if (control1 is DateTimePicker)
+                                {
+                                    Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
+                                    float scaleFactor = 15 / (float)control1.Font.Size;
+                                    control1.Font = new Font(control1.Font.FontFamily, control1.Font.Size * scaleFactor);
+                                    control1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                    control1.Refresh();
+                                }
+                                if (control1 is Label)
+                                {
+                                    Font newFont = new Font(control1.Font.FontFamily, 15, control1.Font.Style);
+                                    control1.Font = newFont;
+                                    int newHeight = TextRenderer.MeasureText(control1.Text, newFont).Height;
+                                    control1.Height = newHeight;
+                                }
+                            }
+                            varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                            varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                            controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        }
+                        if (controls is DataGridView)
+                        {
+                            if (controls.Name == "DGV_SearchGrid")
+                            {
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), controls.Height);
+                            }
+                            else
+                            {
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize + 12));
+                            }
+                        }
+                    }
+                    //foreach (Control Form in this.Controls)
+                    //{
+                    //    if (Form is ToolStrip)
+                    //    {
+                    //        Font newFont = new Font(Form.Font.FontFamily, 12, Form.Font.Style);
+                    //        Form.Font = newFont;
+                    //        int newHeight = TextRenderer.MeasureText(Form.Text, newFont).Height;
+                    //        Form.Height = newHeight;
+                    //    }
+                    //}
+
+                    int varIniLoct = 0;
+                    //foreach (Control control in grpfilter.Controls)
+                    //{
+                    //    if(control is ComboBox || control is DateTimePicker || control is TextBox || control is Button)
+                    //    {
+                    //        control.Location = new Point(control.Width + varIniLoc, control.Location.Y);
+                    //        varIniLoc = varIniLoc + control.Width;
+                    //    }
+                    //}
+                    var usedControls = grpfilter.Controls.Cast<Control>().ToList();
+                    // Order controls by TabIndex
+                    usedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+
+                    foreach (Control controlsss in usedControls)
+                    {
+                        if (controlsss is ComboBox || controlsss is TextBox || controlsss is DateTimePicker || controlsss is Button || controlsss is Label)
+                        {
+                            if (controlsss.Name != "cmbConcern")
+                            {
+                                controlsss.Location = new Point(varIniLoct, controlsss.Location.Y);
+                            }
+                            varIniLoct = controlsss.Location.X + 6 + controlsss.Width;
+                        }
+                    }
+
+                    lblConcern.Location = new Point(cmbConcern.Location.X, lblConcern.Location.Y);
+                    lblGRNDate.Location = new Point(dpFromDate.Location.X, lblGRNDate.Location.Y);
+                    lblSupplierName.Location = new Point(txtSupplier.Location.X, lblSupplierName.Location.Y);
+                    lblOrderType.Location = new Point(cmbOrdertype.Location.X, lblOrderType.Location.Y);
+                    lblStatus.Location = new Point(cmbstatus.Location.X, lblStatus.Location.Y);
+
+                    foreach (Control controlsss in usedControls)
+                    {
+                        if (controlsss is ComboBox || controlsss is TextBox || controlsss is DateTimePicker || controlsss is Button)
+                        {
+                            controlsss.Location = new Point(controlsss.Location.X, lblConcern.Location.Y+30);
+                        }
+                    }
+                    grdGRNList.DefaultCellStyle.Font = new Font("Oswald Regular", 15);
+                    DGV_SearchGrid.DefaultCellStyle.Font = new Font("Oswald Regular", 20);
+                    DGV_SearchGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", 15);
+
+                    //DGV_SearchGrid.RowTemplate.Height = 150;
+                    grdGRNList.RowTemplate.Height = 30;
+                    //foreach (DataGridViewColumn column in grdGRNList.Columns)
+                    //{
+                    //    column.Width = 300; // Adjust the column width according to your preference
+                    //}
+                    //grdGRNList.RowTemplate.DefaultCellStyle.Padding = new Padding(0, 10, 0, 10); 
+
+                }
+                ////----This Is model for set original screen----////
+                /*
+                int varIniLoc = 0;
+                var controlss = grpfilter.Controls.Cast<Control>().ToList();
+                controlss.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+
+                foreach (Control controlsss in controlss)
+                {
+                    if (controlsss is ComboBox || controlsss is TextBox || controlsss is DateTimePicker || controlsss is Button)
+                    {
+                        if (controlsss.Name != "cmbConcern")
+                        {
+                            controlsss.Location = new Point(varIniLoc, controlsss.Location.Y);
+                        }
+                        varIniLoc = controlsss.Location.X+6 + controlsss.Width;
+                    }
+                }
+                */
+
+
+                /*
                 foreach (Control control in grpfilter.Controls)
                 {
                     
@@ -361,11 +504,13 @@ namespace ROMS
                     }
                     
                 }
+                */
                 DGV_SearchGrid.Location = new Point(DGV_SearchGrid.Location.X, (grpfilter.Height + 5));
                 grdGRNList.Location = new Point(grdGRNList.Location.X, (grpfilter.Height + DGV_SearchGrid.Height + 5));
                 //lblNoRecordsFound.Location = new Point((int)((this.grdGRNList.Width - lblNoRecordsFound.Width) / 2), lblNoRecordsFound.Location.Y);
                 //lblTotalGRN.Location = new Point(label6.Location.X + 100, label6.Location.Y);
 
+                /*
                 cmbConcern.Location = new Point(9, lblConcern.Height + 30);
                 dpFromDate.Location = new Point(cmbConcern.Width + 10, lblGRNDate.Height + 30);
                 dpToDate.Location = new Point((cmbConcern.Width + dpFromDate.Width) + 20, lblGRNDate.Height + 30);
@@ -383,6 +528,7 @@ namespace ROMS
                 lblSupplierName.Location = new Point(txtSupplier.Location.X, lblSupplierName.Location.Y);
                 lblOrderType.Location = new Point(cmbOrdertype.Location.X, lblOrderType.Location.Y);
                 lblStatus.Location = new Point(cmbstatus.Location.X, lblStatus.Location.Y);
+                */
 
                 /*
                 int offsetX = lblConcern.Location.X - grpfilter.Location.X;
@@ -414,6 +560,27 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        private void ArrangeControlsInGroupBox(GroupBox groupBox)
+        {
+            // Get all controls in the group box
+            var controls = groupBox.Controls.Cast<Control>().ToList();
+            // Order controls by TabIndex
+            controls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+
+            int x = 10;
+            int y = 20;
+            int maxY = 0;
+
+            foreach (Control control in controls)
+            {
+                // Set location of each control based on TabIndex
+                control.Location = new System.Drawing.Point(x, y);
+                // Update maxY to keep track of the maximum Y position
+                maxY = Math.Max(maxY, y + control.Height);
+                // Increment Y position for next control
+                y = maxY + 5; // Add spacing between controls, adjust as needed
             }
         }
         private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
@@ -2175,6 +2342,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void Grpfilter_Layout(object sender, LayoutEventArgs e)
+        {
+            //ArrangeControlsInGroupBox(grpfilter);
         }
 
         public void udfnDeleteHide()
