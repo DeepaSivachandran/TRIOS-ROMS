@@ -982,38 +982,50 @@ namespace ROMS
                 varPercentageWidth = 0, varPercentageHeight = 0,
                 varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
 
+                //if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
+                //{
+                //    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                //    vartargetHeight = (int)(screen.Bounds.Height - 280);
+                //}
+                //else
+                //{
+                //    //vartargetWidth = (int)(screen.Bounds.Width - 7);
+                //    //vartargetHeight = (int)(screen.Bounds.Height - 125);
+                //}
                 if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
                 {
                     vartargetWidth = (int)(screen.Bounds.Width - 7);
                     vartargetHeight = (int)(screen.Bounds.Height - 122);
-                }
-                else
-                {
-                    vartargetWidth = (int)(screen.Bounds.Width - 7);
-                    vartargetHeight = (int)(screen.Bounds.Height - 144);
-                }
-                if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
-                {
                     FontSize = Convert.ToDecimal(9.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1400)
                 {
+                    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                    vartargetHeight = (int)(screen.Bounds.Height - 128);
                     FontSize = Convert.ToDecimal(10.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1440)
                 {
+                    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                    vartargetHeight = (int)(screen.Bounds.Height - 130);
                     FontSize = Convert.ToDecimal(11.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1600)
                 {
+                    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                    vartargetHeight = (int)(screen.Bounds.Height - 135);
                     FontSize = Convert.ToDecimal(12.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1680)
                 {
+                    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                    vartargetHeight = (int)(screen.Bounds.Height - 140);
                     FontSize = Convert.ToDecimal(13.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1920)
                 {
+                    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                    vartargetHeight = (int)(screen.Bounds.Height - 144);
                     FontSize = Convert.ToDecimal(14.75);
                 }
                 varIncreWidth = vartargetWidth - ParaPanel.Width;

@@ -22,14 +22,13 @@ namespace ROMS
         {
             InitializeComponent();
             objValidation.resolutionsettingsForm(this);
-            //Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
         //Added By Sathish For Screen Resolution Changed Time Font Size InCrease
         private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
         {
             try
             {
-                /*
                 string varPercentage = ""; decimal varPercentageWidth = 0, varPercentageHeight = 0, varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
                 Panel myPanel = new Panel();
                 myPanel.Size = new Size(this.Width, this.Height);
@@ -41,7 +40,7 @@ namespace ROMS
                 varIncreaseWidthSize = this.Width + (this.Width * varPercentageWidth / 100);
                 varIncreaseHeightSize = this.Height + (this.Height * varPercentageHeight / 100);
                 this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
-                */
+                
             }
             catch (Exception ex)
             {

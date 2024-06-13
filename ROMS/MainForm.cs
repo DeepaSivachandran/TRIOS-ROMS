@@ -354,6 +354,11 @@ namespace ROMS
             try
             {
                 udfnAdjustFontSize();
+                if(PbCurrentForm =="1.3")
+                {
+                    //MainForm.objPUR_GRNDetailsList.Close();
+                    //MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender, e);
+                }
             }
             catch (Exception ex)
             {

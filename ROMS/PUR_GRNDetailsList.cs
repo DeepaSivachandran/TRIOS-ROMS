@@ -24,11 +24,13 @@ namespace ROMS
         public DataTable Deftable = new DataTable();
         Boolean BlnSearchImageYN = false;
         public string varUserID = "0", varsuppliername = "";
+        public int varWeight = 1354, varHeight = 643;
+
         public ToolTip tpSupplier = new ToolTip();
         public PUR_GRNDetailsList()
         {
             InitializeComponent();
-            //Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
 
         private void TsbNew_Click(object sender, EventArgs e)
@@ -190,7 +192,8 @@ namespace ROMS
                 int targetWidth = 0, targetHeight = 0;
                 decimal varPercentageWidth = 0, varPercentageHeight = 0,
                     varIncreaseWidthSize = 0, varIncreaseHeightSize = 0, varIncreWidth = 0, varIncreHeight = 0;
-
+                //this.pnlpurchaseapproval.AutoSize = false;
+                //this.pnlpurchaseapproval.Size = new Size(varWeight, varHeight);
                 varPercentage = objValidation.udfhScreenResolution(this.pnlpurchaseapproval, this);
                 string[] value = varPercentage.Split(',');
                 varPercentageWidth = Convert.ToDecimal(value[0]);
@@ -285,7 +288,7 @@ namespace ROMS
                         //Form.Height = newHeight;
                     }
                 }
-
+                tsBrandList.Height = Convert.ToInt32(FontSize*2);
                 varIncreaseWidthSize = this.pnlpurchaseapproval.Width + (this.pnlpurchaseapproval.Width * varPercentageWidth / 100);
                 varIncreaseHeightSize = this.pnlpurchaseapproval.Height + (this.pnlpurchaseapproval.Height * varPercentageHeight / 100);
 
@@ -296,7 +299,8 @@ namespace ROMS
                 this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                 //this.Size = new Size(Convert.ToInt32(this.pnlpurchaseapproval.Width - 7), Convert.ToInt32(this.pnlpurchaseapproval.Height-125));
 
-                pnlpurchaseapproval.Location = new Point(0, ( this.tsBrandList.Height+Convert.ToInt32 ((this.tsBrandList.Height * varPercentageHeight / 100))));
+                pnlpurchaseapproval.Location = new Point(0, tsBrandList.Height+7);// ( this.tsBrandList.Height+Convert.ToInt32 ((this.tsBrandList.Height * varPercentageHeight / 100))));
+                //pnlpurchaseapproval.Location = new Point(0, ( this.tsBrandList.Height+Convert.ToInt32 ((this.tsBrandList.Height * varPercentageHeight / 100))));///////
                 pnlpurchaseapproval.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                 //pnlpurchaseapproval.Size = new Size(Convert.ToInt32(this.pnlpurchaseapproval.Width - 7), Convert.ToInt32(this.pnlpurchaseapproval.Height - 125));
 
@@ -411,9 +415,9 @@ namespace ROMS
                             controlsss.Location = new Point(controlsss.Location.X, lblConcern.Location.Y+30);
                         }
                     }
-                    grdGRNList.DefaultCellStyle.Font = new Font("Oswald Regular", 15);
-                    DGV_SearchGrid.DefaultCellStyle.Font = new Font("Oswald Regular", 20);
-                    DGV_SearchGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", 15);
+                    grdGRNList.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                    DGV_SearchGrid.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                    DGV_SearchGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
 
                     //DGV_SearchGrid.RowTemplate.Height = 150;
                     grdGRNList.RowTemplate.Height = 30;
@@ -579,7 +583,12 @@ namespace ROMS
         }
         private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
         {
-            AdjustFormSize();
+            //MainForm.objStart = new DEF_Start();
+            //MainForm.objStart.MdiParent = this.ParentForm;
+            //MainForm.objStart.Show();
+            //this.Close();
+            //MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender, e);
+            //AdjustFormSize();
         }
         private void AdjustControlPositions()
         {
