@@ -451,6 +451,12 @@ namespace ROMS
             }
             return list;
         }
+
+        internal string udfhScreenResolution(string v, MainForm mainForm)
+        {
+            throw new NotImplementedException();
+        }
+
         public void setFontSize_TotalLabel(Label lblTotal)
         {
             try
@@ -971,7 +977,7 @@ namespace ROMS
             try
             {
                 Screen screen = Screen.PrimaryScreen;
-                int vartargetWidth = 0, vartargetHeight = 0,FontSize = 0;
+                int vartargetWidth = 0, vartargetHeight = 0; decimal FontSize = 0;
                 float varIncreWidth = 0, varIncreHeight = 0,
                 varPercentageWidth = 0, varPercentageHeight = 0,
                 varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
@@ -979,36 +985,36 @@ namespace ROMS
                 if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
                 {
                     vartargetWidth = (int)(screen.Bounds.Width - 7);
-                    vartargetHeight = (int)(screen.Bounds.Height - 280);
+                    vartargetHeight = (int)(screen.Bounds.Height - 122);
                 }
                 else
                 {
                     vartargetWidth = (int)(screen.Bounds.Width - 7);
-                    vartargetHeight = (int)(screen.Bounds.Height - 125);
+                    vartargetHeight = (int)(screen.Bounds.Height - 144);
                 }
                 if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
                 {
-                    FontSize = 10;
+                    FontSize = Convert.ToDecimal(9.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1400)
                 {
-                    FontSize = 11;
+                    FontSize = Convert.ToDecimal(10.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1440)
                 {
-                    FontSize = 12;
+                    FontSize = Convert.ToDecimal(11.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1600)
                 {
-                    FontSize = 13;
+                    FontSize = Convert.ToDecimal(12.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1680)
                 {
-                    FontSize = 14;
+                    FontSize = Convert.ToDecimal(13.75);
                 }
                 else if (Convert.ToInt32(screen.WorkingArea.Width) == 1920)
                 {
-                    FontSize = 15;
+                    FontSize = Convert.ToDecimal(14.75);
                 }
                 varIncreWidth = vartargetWidth - ParaPanel.Width;
                 varPercentageWidth = (varIncreWidth / ParaPanel.Width) * 100;
@@ -1016,7 +1022,7 @@ namespace ROMS
                 varIncreHeight = vartargetHeight - ParaPanel.Height;
                 varPercentageHeight = (varIncreHeight / ParaPanel.Height) * 100;
 
-                PbPercentage = (varPercentageWidth + "," + varPercentageHeight);
+                PbPercentage = (varPercentageWidth + "," + varPercentageHeight + "," + FontSize);
 
                 //varIncreaseWidthSize = ParaPanel.Width + (ParaPanel.Width * varPercentageWidth / 100);
                 //varIncreaseHeightSize = ParaPanel.Height + (ParaPanel.Height * varPercentageHeight / 100);

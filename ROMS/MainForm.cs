@@ -220,6 +220,7 @@ namespace ROMS
                 objValidation.setFontAndFontSize(this);
                 timer1.Start();
                 //ms.Renderer = new CustomMenuStripRenderer();
+                Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
             }
             catch (Exception ex)
             {
@@ -303,7 +304,6 @@ namespace ROMS
         {
             try
             {
-
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
                 GetDate();
@@ -314,11 +314,8 @@ namespace ROMS
                 objStart = new DEF_Start();
                 objStart.MdiParent = this;
                 objStart.Show();
-
-                foreach (ToolStripMenuItem item in ms.Items)
-                {
-                    item.Font = new Font(item.Font.FontFamily, 15, FontStyle.Regular);
-                }
+                
+                udfnAdjustFontSize();
 
                 //ms.AutoSize = false;
                 //ms.Size = new Size(50, 90);
@@ -350,6 +347,39 @@ namespace ROMS
             }
             catch (Exception ex)
             { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        //Added By Sathish For Screen Resolution Changed Time Font Size InCrease
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAdjustFontSize();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnAdjustFontSize()
+        {
+            try
+            {
+                string varFontSize = ""; decimal FontSize = 0;
+                Panel myPanel = new Panel();
+                varFontSize = objValidation.udfhScreenResolution(myPanel, this);
+                string[] value = varFontSize.Split(',');
+                FontSize = Convert.ToDecimal(value[2]);
+                foreach (ToolStripMenuItem item in ms.Items)
+                {
+                    item.Font = new Font(item.Font.FontFamily, (float)FontSize, FontStyle.Regular);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         //Close Application when click logout
         private void tsbLogout_Click(object sender, EventArgs e)

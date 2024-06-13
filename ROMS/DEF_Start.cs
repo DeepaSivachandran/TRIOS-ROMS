@@ -22,12 +22,26 @@ namespace ROMS
         {
             InitializeComponent();
             objValidation.resolutionsettingsForm(this);
+            //Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
-        private void tsbEdit_Click(object sender, EventArgs e)
+        //Added By Sathish For Screen Resolution Changed Time Font Size InCrease
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
         {
             try
             {
-              
+                /*
+                string varPercentage = ""; decimal varPercentageWidth = 0, varPercentageHeight = 0, varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
+                Panel myPanel = new Panel();
+                myPanel.Size = new Size(this.Width, this.Height);
+                varPercentage = objValidation.udfhScreenResolution(myPanel, this);
+                string[] value = varPercentage.Split(',');
+                varPercentageWidth = Convert.ToDecimal(value[0]);
+                varPercentageHeight = Convert.ToDecimal(value[1]);
+
+                varIncreaseWidthSize = this.Width + (this.Width * varPercentageWidth / 100);
+                varIncreaseHeightSize = this.Height + (this.Height * varPercentageHeight / 100);
+                this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                */
             }
             catch (Exception ex)
             {
@@ -35,17 +49,5 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-               
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }       
     }
 }
