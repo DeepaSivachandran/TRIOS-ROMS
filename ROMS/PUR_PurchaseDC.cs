@@ -751,6 +751,42 @@ namespace ROMS
                     txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSuppliername.ShowAlways = true;
                     tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
+                    if (Convert.ToInt32(grdPurchaseDC.Rows.Count) != 0)
+                    {
+                        //if (Convert.ToString(lblSupplierCode.Text.Trim()) != Convert.ToString(varSupplierID))
+                        //{
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(78);
+                            objDServ.CloseConnection();
+
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                dtPurchaseDC.Rows.Clear();
+                                grdPurchaseDC.Rows.Clear();
+                                grdPurchaseDC.DataSource = null;
+                                grdRepDetails.DataSource = null;
+                                txtProductName.Text = "";
+                                txtSupplierDCNo.Text = "";
+                                //txtMrp.Text = "";
+                                //txtDay.Text = "";
+                                //txtMonth.Text = "";
+                                //txtYear.Text = "";
+                                //txtStockLocation.Text = "";
+                                //txtRack.Text = "";
+                                //txtBatchNo.Text = "";
+                                //txtActualQty.Text = "";
+                                //txtSupplierDCNo.Text = "";
+                            }
+                            else
+                            {
+                                grdPurchaseDC.Refresh();
+                                txtSupplier.Text = varSupplierName;
+                                lblSupplierCode.Text = varSupplierID;
+                                lblschedule.Text = varSupplierScheduleID;
+                            }
+                        //}
+                    }
                 }
                 else
                 {
@@ -930,6 +966,16 @@ namespace ROMS
                                 grdPurchaseDC.Rows.Clear();
                                 grdPurchaseDC.DataSource = null;
                                 grdRepDetails.DataSource = null;
+                                txtProductName.Text = "";
+                                //txtMrp.Text = "";
+                                //txtDay.Text = "";
+                                //txtMonth.Text = "";
+                                //txtYear.Text = "";
+                                //txtStockLocation.Text = "";
+                                //txtRack.Text = "";
+                                //txtBatchNo.Text = "";
+                                //txtActualQty.Text = "";
+                                //txtSupplierDCNo.Text = "";
                             }
                             else
                             {

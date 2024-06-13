@@ -185,6 +185,7 @@ namespace ROMS
         public static PAY_ChequePrint objPAY_ChequePrint;
         public static PAY_DebitNoteList objPAY_DebitNoteList;
         public static PAY_AdvanceList objPAY_AdvanceList;
+        public static PAY_GSTRDetails objPAY_GSTRDetails;
         public static PAY_Advance objPAY_Advance;
         public static PAY_ADV objPAY_Advance_Popup;
 
@@ -2020,6 +2021,23 @@ namespace ROMS
                 MainForm.objPAY_AdvanceList = new PAY_AdvanceList();
                 MainForm.objPAY_AdvanceList.MdiParent = this;
                 MainForm.objPAY_AdvanceList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GSTRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_GSTRDetails = new PAY_GSTRDetails();
+                MainForm.objPAY_GSTRDetails.MdiParent = this;
+                MainForm.objPAY_GSTRDetails.Show();
             }
             catch (Exception ex)
             {

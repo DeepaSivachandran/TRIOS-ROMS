@@ -122,6 +122,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gSTRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -359,10 +360,12 @@ namespace ROMS
             this.advanceToolStripMenuItem,
             this.supplierPaymentToolStripMenuItem,
             this.tsbDirectCheque,
-            this.tsbDebitNote});
+            this.tsbDebitNote,
+            this.gSTRToolStripMenuItem});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
             this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
+            this.paymentToolStripMenuItem.ShowShortcutKeys = false;
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
             this.paymentToolStripMenuItem.Text = "&Finance";
             // 
@@ -905,6 +908,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // gSTRToolStripMenuItem
+            // 
+            this.gSTRToolStripMenuItem.Name = "gSTRToolStripMenuItem";
+            this.gSTRToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.gSTRToolStripMenuItem.Text = "GSTR Details";
+            this.gSTRToolStripMenuItem.Click += new System.EventHandler(this.GSTRToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1026,5 +1036,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tspClearMasters;
         private System.Windows.Forms.ToolStripMenuItem financialYearProcessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gSTRToolStripMenuItem;
     }
 }
