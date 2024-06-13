@@ -60,7 +60,7 @@ namespace ROMS
         private Timer timer;
         public string varProducts = "",varEntryTypeDate="" , varGSTIN="";
         List<int> varProductsIDs = new List<int>();
-        public int varAutocompleteProduct = 0, pbPurchaseEntryUnapprovedFlag=0,pbUnapprovePURID=0,varGRNPRID=0 , varConvertFlag=0;
+        public int varAutocompleteProduct = 0, pbPurchaseEntryUnapprovedFlag=0,pbUnapprovePURID=0,varGRNPRID=0 , varConvertFlag=0 , varPaymentStatus=0;
         public string varEditPRID = "0";
         public CP_Purchase()
         {
@@ -1038,7 +1038,13 @@ namespace ROMS
                     //    grdSupplierList.Enabled = true;
                     //    btnSave.Enabled = true;
                     //}
-                    
+                }
+                if (varPaymentStatus == 65) // Payment approved
+                {
+                    txtInvoiceNo.Enabled = true;
+                    txtInvoiceNo.ReadOnly = false;
+                    dpInvoiceDate.Enabled = true;
+                    btnSave.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -1321,6 +1327,7 @@ namespace ROMS
                                 txtBroker.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Broker"]);
                                 lblBrokerId.Text = Convert.ToString(objDs.Tables[0].Rows[0]["BRID"]);
                                 txtGstin.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GSTIN"]);
+                                varPaymentStatus = Convert.ToInt16(objDs.Tables[0].Rows[0]["Payment Status"]);
                                 
                                 if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Einvoice"]) == "0")
                                 {
@@ -6470,6 +6477,8 @@ namespace ROMS
                             //}
                             if (pbPurchaseno != "0")
                             { varViewType = 1; }
+                            if(varPaymentStatus==65)
+                            { varViewType = 8; }
                             TRN_PurchaseEntry objTRN_PurchaseEntry1 = new TRN_PurchaseEntry();
                             objTRN_PurchaseEntry1.ViewType = varViewType;
                             objTRN_PurchaseEntry1.ParaEditFlag = 0;
