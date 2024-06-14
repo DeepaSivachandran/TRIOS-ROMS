@@ -72,5 +72,6 @@ namespace ROMS.Model
         public int paraSaveFlag { get; set; } = 0; 
         public string paraCompletedIDs { get; set; } = ""; 
         public int paraUnapprovedby { get; set; } = 0;
+        public int paraPUR_GSTREnteredBy { get; set; } = 0;
     }
 }

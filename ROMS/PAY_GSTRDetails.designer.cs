@@ -68,10 +68,11 @@
             this.btnMoveSave = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdMoveProduct = new System.Windows.Forms.DataGridView();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.epRackSettings = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblNoRecordsFound1 = new System.Windows.Forms.Label();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsRackSettings.SuspendLayout();
             this.pnlRackSettings.SuspendLayout();
             this.grbMove.SuspendLayout();
@@ -110,7 +111,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(627, 327);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(277, 352);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958763;
@@ -183,7 +184,7 @@
             this.columnHeader12});
             this.lvSupplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(21, 66);
+            this.lvSupplier.Location = new System.Drawing.Point(22, 66);
             this.lvSupplier.Name = "lvSupplier";
             this.lvSupplier.Size = new System.Drawing.Size(366, 93);
             this.lvSupplier.TabIndex = 111111119;
@@ -525,27 +526,22 @@
             this.grdMoveProduct.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdMoveProduct.EnableHeadersVisualStyles = false;
             this.grdMoveProduct.GridColor = System.Drawing.Color.White;
-            this.grdMoveProduct.Location = new System.Drawing.Point(673, 131);
+            this.grdMoveProduct.Location = new System.Drawing.Point(673, 130);
             this.grdMoveProduct.Name = "grdMoveProduct";
             this.grdMoveProduct.RowHeadersVisible = false;
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
             this.grdMoveProduct.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdMoveProduct.RowTemplate.Height = 25;
-            this.grdMoveProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdMoveProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdMoveProduct.ShowRowErrors = false;
             this.grdMoveProduct.Size = new System.Drawing.Size(619, 462);
             this.grdMoveProduct.TabIndex = 111111111;
             this.grdMoveProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdMoveProduct_CellContentClick);
+            this.grdMoveProduct.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdMoveProduct_CellEndEdit);
+            this.grdMoveProduct.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdMoveProduct_CellLeave);
+            this.grdMoveProduct.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdMoveProduct_DataBindingComplete);
             this.grdMoveProduct.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdMoveProduct_Scroll);
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.Width = 70;
             // 
             // epRackSettings
             // 
@@ -567,14 +563,36 @@
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn2.Width = 70;
             // 
+            // lblNoRecordsFound1
+            // 
+            this.lblNoRecordsFound1.AutoSize = true;
+            this.lblNoRecordsFound1.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound1.Location = new System.Drawing.Point(932, 352);
+            this.lblNoRecordsFound1.Name = "lblNoRecordsFound1";
+            this.lblNoRecordsFound1.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound1.TabIndex = 958765;
+            this.lblNoRecordsFound1.Text = "No Records Found";
+            this.lblNoRecordsFound1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblNoRecordsFound1.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.Width = 70;
+            // 
             // PAY_GSTRDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.pnlRackSettings);
+            this.Controls.Add(this.lblNoRecordsFound1);
             this.Controls.Add(this.lblNoRecordsFound);
+            this.Controls.Add(this.pnlRackSettings);
             this.Controls.Add(this.tsRackSettings);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -583,9 +601,9 @@
             this.Name = "PAY_GSTRDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rack Settings";
-            this.Load += new System.EventHandler(this.CP_RackSettings_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_RackSettings_Leave);
+            this.Load += new System.EventHandler(this.PAY_GSTRDetails_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_GSTRDetails_KeyDown);
+            this.Leave += new System.EventHandler(this.PAY_GSTRDetails_Leave);
             this.tsRackSettings.ResumeLayout(false);
             this.tsRackSettings.PerformLayout();
             this.pnlRackSettings.ResumeLayout(false);
@@ -633,6 +651,7 @@
         public System.Windows.Forms.DataGridView DGV_SearchGridMove;
         private System.Windows.Forms.Label lblSuppliercode;
         private System.Windows.Forms.Label lblschedule;
+        private System.Windows.Forms.Label lblNoRecordsFound1;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
