@@ -383,8 +383,8 @@ namespace ROMS
                 {
                     item.Font = new Font(item.Font.FontFamily, (float)FontSize, FontStyle.Regular);
                 }
-                Font varNewFont = new Font(this.Font.FontFamily, (float)FontSize, this.Font.Style);
-                this.Font = varNewFont;
+                //Font varNewFont = new Font(this.Font.FontFamily, (float)FontSize, this.Font.Style);
+                //this.Font = varNewFont;
             }
             catch (Exception ex)
             {

@@ -280,12 +280,10 @@ namespace ROMS
 
                 foreach (Control varTSM in this.Controls)
                 {
-                    if (varTSM is ToolStripButton || varTSM is ToolStripLabel || varTSM is ToolStrip)
+                    if (varTSM is ToolStrip)
                     {
                         Font newFont = new Font(varTSM.Font.FontFamily, (float)FontSize, varTSM.Font.Style);
                         varTSM.Font = newFont;
-                        //int newHeight = TextRenderer.MeasureText(Form.Text, newFont).Height;
-                        //Form.Height = newHeight;
                     }
                 }
                 tsBrandList.Height = Convert.ToInt32(FontSize*2);
@@ -420,13 +418,15 @@ namespace ROMS
                     DGV_SearchGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
 
                     //DGV_SearchGrid.RowTemplate.Height = 150;
+
                     grdGRNList.RowTemplate.Height = 30;
+
                     //foreach (DataGridViewColumn column in grdGRNList.Columns)
                     //{
                     //    column.Width = 300; // Adjust the column width according to your preference
                     //}
                     //grdGRNList.RowTemplate.DefaultCellStyle.Padding = new Padding(0, 10, 0, 10); 
-                    
+
                 }
                 ////----This Is model for set original screen----////
                 /*
