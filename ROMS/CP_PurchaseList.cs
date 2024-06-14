@@ -1557,21 +1557,23 @@ namespace ROMS
 
                             if (col.Name == "S.No.")
                             {
+                                ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                                 ExcelSheet.Columns[cIndex-1].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Supplier" || col.Name == "Created On")
+                            else if (col.Name == "Supplier" || col.Name == "Created On" || col.Name == "Overall Status" || col.Name == "City")
                             {
-                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 25;
+                                ExcelSheet.Columns[cIndex-1].ColumnWidth = 30;
                             }
-                            if(col.Name=="Purchase Type")
+                            if(col.Name=="Pur Type")
                             {
                                 ExcelSheet.Columns[cIndex-1].ColumnWidth = 15;
                             }
-                            if (col.Name == "S.No." || col.Name == "Voucher Date" || col.Name == "Invoice Date" || col.Name == "Invoice No."|| col.Name == "Voucher No.")
+                            if (col.Name == "Vouc Date" || col.Name == "Inv Date" || col.Name == "Inv No."|| col.Name == "Vouc No.")
                             {
                                 ExcelSheet.Columns[cIndex-1].HorizontalAlignment = Excel.Constants.xlCenter;
+                                ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                             }
-                            if (col.Name == "Total Products in Invoice")
+                            if (col.Name == "Tot Pro")
                             {
                                 ExcelSheet.Columns[cIndex-1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
