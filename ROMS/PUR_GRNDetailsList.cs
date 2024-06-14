@@ -407,7 +407,7 @@ namespace ROMS
                     lblSupplierName.Location = new Point(txtSupplier.Location.X, lblSupplierName.Location.Y);
                     lblOrderType.Location = new Point(cmbOrdertype.Location.X, lblOrderType.Location.Y);
                     lblStatus.Location = new Point(cmbstatus.Location.X, lblStatus.Location.Y);
-
+                    //lblNoRecordsFound.Location = new Point(screen.WorkingArea.Width + lblNoRecordsFound.Width / 2, screen.WorkingArea.Height + lblNoRecordsFound.Height / 2);
                     foreach (Control controlsss in usedControls)
                     {
                         if (controlsss is ComboBox || controlsss is TextBox || controlsss is DateTimePicker || controlsss is Button)
@@ -539,8 +539,12 @@ namespace ROMS
                     }
                 }
                 */
-                lblNoRecordsFound.Location = new Point((this.grdGRNList.Width - lblNoRecordsFound.Size.Width) / 2, (this.grdGRNList.Height / 2) - (lblNoRecordsFound.Height / 2));
-
+                lblNoRecordsFound.Location = new Point((screen.WorkingArea.Width - lblNoRecordsFound.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblNoRecordsFound.Height / 2));
+                
+                Font varNewFont = new Font(lblNoRecordsFound.Font.FontFamily, (float)FontSize, lblNoRecordsFound.Font.Style);
+                lblNoRecordsFound.Font = varNewFont;
+                grpfilter.Font = varNewFont;
+                tspHeader.Font = varNewFont;
                 //foreach (Control control in grpfilter.Controls)
                 //{
                 //    if (control is ComboBox)
@@ -586,8 +590,10 @@ namespace ROMS
             //MainForm.objStart = new DEF_Start();
             //MainForm.objStart.MdiParent = this.ParentForm;
             //MainForm.objStart.Show();
-            //this.Close();
-            //MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender, e);
+            this.Close();
+            //MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
+            //MainForm.objPUR_GRNDetailsList.MdiParent = MainForm.ActiveForm;
+            //MainForm.objPUR_GRNDetailsList.Show();
             //AdjustFormSize();
         }
         private void AdjustControlPositions()

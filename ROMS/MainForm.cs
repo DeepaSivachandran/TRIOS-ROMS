@@ -356,8 +356,12 @@ namespace ROMS
                 udfnAdjustFontSize();
                 if(PbCurrentForm =="1.3")
                 {
-                    //MainForm.objPUR_GRNDetailsList.Close();
-                    //MainForm.objPUR_GRNDetailsList.PUR_GRNDetailsList_Load(sender, e);
+                    udfnCloseChildForms();
+                    udfnGetDefaultCompany();
+                    if (isClose == false) { return; }
+                    MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
+                    MainForm.objPUR_GRNDetailsList.MdiParent = this;
+                    MainForm.objPUR_GRNDetailsList.Show();
                 }
             }
             catch (Exception ex)
@@ -379,6 +383,8 @@ namespace ROMS
                 {
                     item.Font = new Font(item.Font.FontFamily, (float)FontSize, FontStyle.Regular);
                 }
+                Font varNewFont = new Font(this.Font.FontFamily, (float)FontSize, this.Font.Style);
+                this.Font = varNewFont;
             }
             catch (Exception ex)
             {
