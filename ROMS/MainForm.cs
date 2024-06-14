@@ -385,6 +385,7 @@ namespace ROMS
                 }
                 //Font varNewFont = new Font(this.Font.FontFamily, (float)FontSize, this.Font.Style);
                 //this.Font = varNewFont;
+
             }
             catch (Exception ex)
             {
