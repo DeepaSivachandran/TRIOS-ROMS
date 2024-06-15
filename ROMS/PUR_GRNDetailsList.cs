@@ -30,6 +30,9 @@ namespace ROMS
         public PUR_GRNDetailsList()
         {
             InitializeComponent();
+            //This Method was used to Avoid blicking and flickering
+            this.DoubleBuffered = true;
+            typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, grdGRNList, new object[] { true });
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
 
@@ -40,7 +43,10 @@ namespace ROMS
                 MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
                 //MainForm.objPUR_GRNEntry.MdiParent = this.ParentForm;
                 MainForm.objPUR_GRNEntry.ShowDialog();
-                PUR_GRNDetailsList_Load(sender, e);
+                this.DoubleBuffered = true;
+                this.pnlpurchaseapproval.Location = new Point(0, tsBrandList.Height + 1);
+                this.Dock = DockStyle.Fill;
+                //grdGRNList.DoubleBuffered(true);
             }
             catch (Exception ex)
             {
@@ -624,6 +630,7 @@ namespace ROMS
         {
             try
             {
+                typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, grdGRNList, new object[] { true });
                 int Varflag = 0;
                 string varSupplierId = "0";
                 if (txtSupplier.Text == "")
@@ -2354,6 +2361,11 @@ namespace ROMS
             }
         }
 
+        private void GrdGRNList_Paint(object sender, PaintEventArgs e)
+        {
+            base.OnPaint(e);
+        }
+
         private void Grpfilter_Layout(object sender, LayoutEventArgs e)
         {
             //ArrangeControlsInGroupBox(grpfilter);
@@ -2372,7 +2384,6 @@ namespace ROMS
                 {
                     tsbDelete.Visible = false;
                     tssEdit.Visible = false;
-
                 }
             }
             catch (Exception ex)

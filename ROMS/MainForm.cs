@@ -491,7 +491,10 @@ namespace ROMS
         {
             try
             {
-
+                if(PbCurrentForm=="1.3")
+                {
+                    MainForm.objPUR_GRNDetailsList.Dock = DockStyle.Fill;
+                }
             }
             catch (Exception ex)
             {
