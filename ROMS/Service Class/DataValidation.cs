@@ -971,6 +971,7 @@ namespace ROMS
                 return false;
             }
         }
+        //Added By Sathish For changing Screen Resolution Changed
         public string udfhScreenResolution(Panel ParaPanel, Form ParaForm)
         {
             string PbPercentage = "0";
@@ -1027,6 +1028,12 @@ namespace ROMS
                     vartargetWidth = (int)(screen.Bounds.Width - 7);
                     vartargetHeight = (int)(screen.Bounds.Height - 144);
                     FontSize = Convert.ToDecimal(14.75);
+                }
+                else
+                {
+                    vartargetWidth = (int)(screen.Bounds.Width - 7);
+                    vartargetHeight = (int)(screen.Bounds.Height - 150);
+                    FontSize = Convert.ToDecimal(15.75);
                 }
                 varIncreWidth = vartargetWidth - ParaPanel.Width;
                 varPercentageWidth = (varIncreWidth / ParaPanel.Width) * 100;
