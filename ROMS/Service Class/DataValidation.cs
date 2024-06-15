@@ -982,7 +982,6 @@ namespace ROMS
                 float varIncreWidth = 0, varIncreHeight = 0,
                 varPercentageWidth = 0, varPercentageHeight = 0,
                 varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
-
                 //if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
                 //{
                 //    vartargetWidth = (int)(screen.Bounds.Width - 7);
