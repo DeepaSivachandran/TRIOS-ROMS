@@ -240,7 +240,7 @@ namespace ROMS
             // 
             // tsmPurchaseEntry1
             // 
-            this.tsmPurchaseEntry1.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmPurchaseEntry1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmPurchaseEntry1.Name = "tsmPurchaseEntry1";
             this.tsmPurchaseEntry1.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseEntry1.Text = "Purchase Entry";
@@ -248,7 +248,7 @@ namespace ROMS
             // 
             // tsmpurchaseReturn
             // 
-            this.tsmpurchaseReturn.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmpurchaseReturn.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmpurchaseReturn.Name = "tsmpurchaseReturn";
             this.tsmpurchaseReturn.Size = new System.Drawing.Size(191, 22);
             this.tsmpurchaseReturn.Text = "Purchase Return DC";
@@ -256,7 +256,7 @@ namespace ROMS
             // 
             // tsmpurchaseApprove
             // 
-            this.tsmpurchaseApprove.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmpurchaseApprove.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmpurchaseApprove.Name = "tsmpurchaseApprove";
             this.tsmpurchaseApprove.Size = new System.Drawing.Size(191, 22);
             this.tsmpurchaseApprove.Text = "Purchase Entry Approval";
@@ -661,7 +661,7 @@ namespace ROMS
             // exportTallyToolStripMenuItem
             // 
             this.exportTallyToolStripMenuItem.Name = "exportTallyToolStripMenuItem";
-            this.exportTallyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportTallyToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.exportTallyToolStripMenuItem.Text = "Export Tally";
             this.exportTallyToolStripMenuItem.Click += new System.EventHandler(this.ExportTallyToolStripMenuItem_Click);
             // 
@@ -851,14 +851,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 

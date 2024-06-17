@@ -30,7 +30,7 @@ namespace ROMS
         public PUR_GRNDetailsList()
         {
             InitializeComponent();
-            //This Method was used to Avoid blicking and flickering
+            //This Method was used to Avoid blincking and flickering
             this.DoubleBuffered = true;
             typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, grdGRNList, new object[] { true });
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
@@ -426,7 +426,7 @@ namespace ROMS
 
                     //DGV_SearchGrid.RowTemplate.Height = 150;
 
-                    grdGRNList.RowTemplate.Height = 30;
+                    grdGRNList.RowTemplate.Height = Convert.ToInt32(FontSize+2)*2;
 
                     //foreach (DataGridViewColumn column in grdGRNList.Columns)
                     //{
