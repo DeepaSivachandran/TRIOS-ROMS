@@ -344,6 +344,7 @@ namespace ROMS
                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value) == "1")
                     {
                         grdGrnlist.Rows[i].Cells["clmCheck"].Value = true;
+                        dtInwardPurchase.Rows[i]["Column1"] = true;
                     }
                 }
             }
@@ -363,6 +364,7 @@ namespace ROMS
                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmConvertType"].Value) == "1")
                     {
                         grdGrnlist.Rows[i].Cells["clmCheck"].Value = false;
+                        dtInwardPurchase.Rows[i]["Column1"] = false;
                     }
                 }
             }
@@ -2717,9 +2719,12 @@ namespace ROMS
                             }
                             if (varEditFlag == 1)
                             {
-                                if (Convert.ToString(objDs.Tables[3].Rows[0]["PUR_PaymentApproval_STSID"]) != "")
+                                if (objDs.Tables[3].Rows.Count>0)
                                 {
-                                    varPurApproved = Convert.ToString(objDs.Tables[3].Rows[0]["PUR_PaymentApproval_STSID"]);
+                                    if (Convert.ToString(objDs.Tables[3].Rows[0]["ApprovalStatus"]) != "")
+                                    {
+                                        varPurApproved = Convert.ToString(objDs.Tables[3].Rows[0]["ApprovalStatus"]);
+                                    }
                                 }
                             }
                             if (objDs.Tables[0].Rows.Count > 0)
@@ -3046,7 +3051,7 @@ namespace ROMS
                             }
                             */
                             udfnsupplierLoad(); 
-                            if (varPurApproved == "63")
+                            if (varPurApproved == "1")
                             {
                                 chkCompleted.Enabled = true;
                             }

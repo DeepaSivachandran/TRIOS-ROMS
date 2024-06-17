@@ -63,6 +63,7 @@ namespace ROMS.Model
         public byte[] paraQrimg { get; set; } = null;
         public DataTable ParaPurchase_Products { get; set; } = null;
         public DataTable Purchase_Products_Details { get; set; } = null;
+        public DataTable ParaTRN_GSTR { get; set; } = null;
         public string paraEinvoice { get; set; } = "";
         public string ParaPEToDate { get; set; } = "";
         public string ParaPEFromDate { get; set; } = ""; 
@@ -71,5 +72,6 @@ namespace ROMS.Model
         public int paraSaveFlag { get; set; } = 0; 
         public string paraCompletedIDs { get; set; } = ""; 
         public int paraUnapprovedby { get; set; } = 0;
+        public int paraPUR_GSTREnteredBy { get; set; } = 0;
     }
 }

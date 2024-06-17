@@ -238,8 +238,8 @@ namespace ROMS
                             grdSupplierList.Enabled = true;
                             if (Convert.ToInt16(objDs.Tables[0].Rows[i]["InvFlag"]) == 1)
                             {
-                                grdSupplierList.Rows[i].ReadOnly = true;
-                                grdSupplierList.Rows[i].Cells["clmCheck"].ReadOnly = false;
+                                //grdSupplierList.Rows[i].ReadOnly = true;
+                                //grdSupplierList.Rows[i].Cells["clmCheck"].ReadOnly = false;
                                 //grdSupplierList.Rows[i].Cells["clmsno"].ReadOnly = true;
                                 //grdSupplierList.Rows[i].Cells["clmPono"].ReadOnly = true;
                                 //grdSupplierList.Rows[i].Cells["clmPicode"].ReadOnly = true;
@@ -260,8 +260,8 @@ namespace ROMS
                             }
                             else
                             {
-                                grdSupplierList.Rows[i].ReadOnly = false;
-                                grdSupplierList.Rows[i].Cells["clmCheck"].ReadOnly = false;
+                                //grdSupplierList.Rows[i].ReadOnly = false;
+                                //grdSupplierList.Rows[i].Cells["clmCheck"].ReadOnly = false;
                             }
                         }
                     }
@@ -969,16 +969,15 @@ namespace ROMS
                                     grdSupplierList.Columns["clmRemove"].Visible = false;
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
-                                    if (Convert.ToInt16(objDs.Tables[1].Rows[i]["InvFlag"]) == 1)
-                                    {
-                                        grdSupplierList.Rows[i].ReadOnly = true;
-                                        grdSupplierList.Rows[i].Cells["clmCheck"].ReadOnly = false;
-                                    }
-                                    else
-                                    {
-                                        grdSupplierList.Rows[i].ReadOnly = false;
-                                        grdSupplierList.Rows[i].Cells["clmCheck"].ReadOnly = false;
-                                    }
+                                    //if (Convert.ToInt16(objDs.Tables[1].Rows[i]["InvFlag"]) == 1)
+                                    //{
+                                    //    grdSupplierList.Rows[i].ReadOnly = true;
+                                    //}
+                                    //else
+                                    //{
+                                    //    grdSupplierList.Rows[i].ReadOnly = false;
+                                    //}
+                                    
                                 }
                                 lblTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
                             }
@@ -1171,7 +1170,7 @@ namespace ROMS
                     grdSupplierList.Columns["clmBatchError"].ReadOnly = true;
                     grdSupplierList.Columns["clmLocation"].ReadOnly = true;
                     grdSupplierList.Columns["clmrack"].ReadOnly = true;
-                    grdSupplierList.Columns["clmCheck"].ReadOnly = false;
+                    //grdSupplierList.Columns["clmCheck"].ReadOnly = false;
                 }
             }
             catch (Exception ex)
@@ -3248,7 +3247,7 @@ namespace ROMS
                         grdSupplierList.Columns["clmBatchError"].ReadOnly = true;
                         grdSupplierList.Columns["clmLocation"].ReadOnly = true;
                         grdSupplierList.Columns["clmrack"].ReadOnly = true;
-                        grdSupplierList.Columns["clmCheck"].ReadOnly = false;
+                        //grdSupplierList.Columns["clmCheck"].ReadOnly = false;
                     }
 
                     cmbConcern.Enabled = false;
@@ -7268,8 +7267,7 @@ namespace ROMS
                     }
                     if(varApprovedStatus==63)
                     {
-                        grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                        grdSupplierList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        
                         DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
                         Check.Value = "";
                         grdSupplierList.Rows[i].Cells["clmCheck"] = Check;

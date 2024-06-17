@@ -649,7 +649,7 @@ namespace ROMS
                 DGV_ProdSearchGrid.Columns["Invoice Date"].Width = 80;
                 DGV_ProdSearchGrid.Columns["SLID"].Visible = false;
                 DGV_ProdSearchGrid.Columns["Transaction Date"].Width = 80;
-                DGV_ProdSearchGrid.Columns["Transaction No."].Width = 80;
+                DGV_ProdSearchGrid.Columns["Trans No."].Width = 80;
                 DGV_ProdSearchGrid.Columns["Supplier"].Width = 200;
                 DGV_ProdSearchGrid.Columns["Product Name"].Width = 300;           
                 DGV_ProdSearchGrid.Columns["Order By"].Visible = false;           
@@ -2455,11 +2455,11 @@ namespace ROMS
                                 TypeID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Type ID"].Value);
                                 ConcerID = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Concern ID"].Value);
                                 varStockLocationId = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location ID"].Value);
-                                varTransactionNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction No."].Value);
-                                TransactionDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Transaction Date"].Value);
+                                varTransactionNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans No."].Value);
+                                TransactionDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
                                 varSupplierName = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Supplier"].Value);
-                                varVoucherNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher No."].Value);
-                                varVoucherDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Voucher Date"].Value);
+                                varVoucherNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Vouc No."].Value);
+                                varVoucherDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Vouc Date"].Value);
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);

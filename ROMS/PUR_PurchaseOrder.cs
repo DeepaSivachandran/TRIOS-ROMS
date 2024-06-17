@@ -1919,10 +1919,35 @@ namespace ROMS
                     tpSuppliername.Show("Please enter supplier.", txtSupplier, 5000);
                     lblSupplierCode.Text = "0";
                     lblschedule.Text = "0";
-                    grdsupplieradd.Rows.Clear();
+                    //grdsupplieradd.Rows.Clear();
                     ClearSupplier();
                     lblPC.Text = "0";
-                    lblNoRecordsFound.Visible = true;
+                    if (Convert.ToInt32(grdsupplieradd.Rows.Count) != 0)
+                    {
+                        if (Convert.ToString(lblSupplierCode.Text.Trim()) != Convert.ToString(varSupplierID))
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(78);
+                            objDServ.CloseConnection();
+
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdsupplieradd.Rows.Clear();
+                                grdsupplieradd.DataSource = null;
+                                grdRepDetails.DataSource = null;
+                                lblNoRecordsFound.Visible = true;
+                            }
+                            else
+                            {
+                                grdsupplieradd.Refresh();
+                                txtSupplier.Text = varSupplierName;
+                                lblSupplierCode.Text = varSupplierID;
+                                lblschedule.Text = varSupplierScheduleID;
+                            }
+                        }
+                    }
+
                 }
                 else
                 {
@@ -3220,13 +3245,13 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(cmbIssueMode.SelectedValue)==139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
-                {
-                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                    {
-                        e.Handled = true;
-                    }
-                }
+                //if(Convert.ToInt32(cmbIssueMode.SelectedValue)==139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                //{
+                //    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                //    {
+                //        e.Handled = true;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -3680,14 +3705,14 @@ namespace ROMS
                     txtDmode.Text = "";
                 }
                 string selectedValue = cmbIssueMode.SelectedItem.ToString();
-                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
-                {
-                    this.txtissuemodevalue.MaxLength = 10;
-                }
-                else
-                {
-                    this.txtissuemodevalue.MaxLength = 50;
-                }
+                //if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 139 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 140)
+                //{
+                //    this.txtissuemodevalue.MaxLength = 10;
+                //}
+                //else
+                //{
+                //    this.txtissuemodevalue.MaxLength = 50;
+                //}
             }
             catch (Exception ex)
             {
