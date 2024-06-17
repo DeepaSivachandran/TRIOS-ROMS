@@ -385,7 +385,6 @@ namespace ROMS
                 }
                 //Font varNewFont = new Font(this.Font.FontFamily, (float)FontSize, this.Font.Style);
                 //this.Font = varNewFont;
-
             }
             catch (Exception ex)
             {
@@ -2099,6 +2098,101 @@ namespace ROMS
                 MainForm.objPAY_AdvanceList = new PAY_AdvanceList();
                 MainForm.objPAY_AdvanceList.MdiParent = this;
                 MainForm.objPAY_AdvanceList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmFromPurchaseGRNDC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
+                MainForm.objINV_InwardPurchaseList.MdiParent = this;
+                MainForm.objINV_InwardPurchaseList.Show();
+                PbCurrentForm = "3.2.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmfromOthers_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                MainForm.objINV_Inwardlist.MdiParent = this;
+                MainForm.objINV_Inwardlist.Show();
+                PbCurrentForm = "3.2.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PurEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                MainForm.objCP_PurchaseList.MdiParent = this;
+                MainForm.objCP_PurchaseList.Show();
+                PbCurrentForm = "2.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PurchaseReturnDCsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
+                MainForm.objINV_SalesInvoiceList.MdiParent = this;
+                MainForm.objINV_SalesInvoiceList.Show();
+                PbCurrentForm = "2.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PurchaseEntryApprovalsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
+                MainForm.objPUR_PurchaseApprovalList.Show();
+                PbCurrentForm = "2.3";
             }
             catch (Exception ex)
             {
