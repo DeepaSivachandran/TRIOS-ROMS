@@ -316,34 +316,6 @@ namespace ROMS
                 objStart.Show();
                 
                 udfnAdjustFontSize();
-
-                //ms.AutoSize = false;
-                //ms.Size = new Size(50, 90);
-                //foreach (Control Form in this.Controls)
-                //{
-                //    if (Form is ToolStrip)
-                //    {
-                //        Font newFont = new Font(Form.Font.FontFamily, 15, Form.Font.Style);
-                //        Form.Font = newFont;
-                //        int newHeight = TextRenderer.MeasureText(Form.Text, newFont).Height;
-                //        Form.Height = newHeight;
-                //    }
-                //    if (Form is ToolStripButton)
-                //    {
-                //        Font newFont = new Font(Form.Font.FontFamily, 15, Form.Font.Style);
-                //        Form.Font = newFont;
-                //        int newHeight = TextRenderer.MeasureText(Form.Text, newFont).Height;
-                //        Form.Height = newHeight;
-                //    }
-                //    if (Form is ToolStripMenuItem)
-                //    {
-                //        Font newFont = new Font(Form.Font.FontFamily, 15, Form.Font.Style);
-                //        Form.Font = newFont;
-                //        int newHeight = TextRenderer.MeasureText(Form.Text, newFont).Height;
-                //        Form.Height = newHeight;
-                //    }
-                //}
-
             }
             catch (Exception ex)
             { objError = new DataError(); objError.WriteFile(ex); }

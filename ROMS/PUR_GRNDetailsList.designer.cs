@@ -259,7 +259,6 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
-            this.grpfilter.Layout += new System.Windows.Forms.LayoutEventHandler(this.Grpfilter_Layout);
             // 
             // cmbConcern
             // 
