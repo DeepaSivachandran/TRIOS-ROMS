@@ -335,6 +335,26 @@ namespace ROMS
                     MainForm.objPUR_GRNDetailsList.MdiParent = this;
                     MainForm.objPUR_GRNDetailsList.Show();
                 }
+                if (PbCurrentForm == "2.1")
+                {
+                    udfnCloseChildForms();
+                    udfnGetDefaultCompany();
+                    if (isClose == false) { return; }
+                    MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                    MainForm.objCP_PurchaseList.MdiParent = this;
+                    MainForm.objCP_PurchaseList.Show();
+                    PbCurrentForm = "2.1";
+                }
+                if (PbCurrentForm == "2.3")
+                {
+                    udfnCloseChildForms();
+                    udfnGetDefaultCompany();
+                    if (isClose == false) { return; }
+                    MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                    MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
+                    MainForm.objPUR_PurchaseApprovalList.Show();
+                    PbCurrentForm = "2.3";
+                }
             }
             catch (Exception ex)
             {
@@ -465,6 +485,10 @@ namespace ROMS
                 if(PbCurrentForm=="1.3")
                 {
                     MainForm.objPUR_GRNDetailsList.Dock = DockStyle.Fill;
+                }
+                if (PbCurrentForm == "2.1")
+                {
+                    MainForm.objCP_PurchaseList.Dock = DockStyle.Fill;
                 }
             }
             catch (Exception ex)

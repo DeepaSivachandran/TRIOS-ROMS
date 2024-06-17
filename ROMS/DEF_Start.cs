@@ -43,19 +43,23 @@ namespace ROMS
         {
             try
             {
-                string varPercentage = ""; decimal varPercentageWidth = 0, varPercentageHeight = 0, varIncreaseWidthSize = 0, varIncreaseHeightSize = 0, FontSize = 0;
-                Panel myPanel = new Panel();
-                myPanel.Size = new Size(this.Width, this.Height);
-                varPercentage = objValidation.udfhScreenResolution(myPanel, this);
-                string[] value = varPercentage.Split(',');
-                varPercentageWidth = Convert.ToDecimal(value[0]);
-                varPercentageHeight = Convert.ToDecimal(value[1]);
-                FontSize = Convert.ToDecimal(value[2]);
+                Screen screen = Screen.PrimaryScreen;
+                if (Convert.ToInt32(screen.WorkingArea.Width) >= 1366)
+                {
+                    string varPercentage = ""; decimal varPercentageWidth = 0, varPercentageHeight = 0, varIncreaseWidthSize = 0, varIncreaseHeightSize = 0, FontSize = 0;
+                    Panel myPanel = new Panel();
+                    myPanel.Size = new Size(this.Width, this.Height);
+                    varPercentage = objValidation.udfhScreenResolution(myPanel, this);
+                    string[] value = varPercentage.Split(',');
+                    varPercentageWidth = Convert.ToDecimal(value[0]);
+                    varPercentageHeight = Convert.ToDecimal(value[1]);
+                    FontSize = Convert.ToDecimal(value[2]);
 
-                varIncreaseWidthSize = this.Width + (this.Width * varPercentageWidth / 100);
-                varIncreaseHeightSize = this.Height + (this.Height * varPercentageHeight / 100);
-                this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize + FontSize + FontSize));
-                this.Location = new Point(0, 0);
+                    varIncreaseWidthSize = this.Width + (this.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.Height + (this.Height * varPercentageHeight / 100);
+                    this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize + FontSize + FontSize));
+                    this.Location = new Point(0, 0);
+                }
             }
             catch (Exception ex)
             {

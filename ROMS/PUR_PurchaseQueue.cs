@@ -21,8 +21,23 @@ namespace ROMS
         public PUR_PurchaseQueue()
         {
             InitializeComponent();
+            //This Method was used to Avoid blincking and flickering
+            this.DoubleBuffered = true;
+            typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, grdPurchaseEntryQueueList, new object[] { true });
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
-
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_PurchaseQueue_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -69,6 +84,7 @@ namespace ROMS
         {
             try
             {
+                AdjustFormSize();
                 //cmbEntryType.Items.Add("From GRN");
                 //cmbEntryType.Items.Add("From DC");
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
@@ -82,6 +98,145 @@ namespace ROMS
                 //txtSupplier.Focus();
                 // cmbStatus.SelectedValue = 18; //pending
                 udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void AdjustFormSize()
+        {
+            try
+            {
+                string varPercentage = "";
+                // Get the primary screen
+                Screen screen = Screen.PrimaryScreen;
+                if (Convert.ToInt32(screen.WorkingArea.Width) >= 1366)
+                {
+                    decimal FontSize = 0;
+                    decimal varPercentageWidth = 0, varPercentageHeight = 0,
+                        varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
+                    varPercentage = objValidation.udfhScreenResolution(this.pnlpurchase, this);
+                    string[] value = varPercentage.Split(',');
+                    varPercentageWidth = Convert.ToDecimal(value[0]);
+                    varPercentageHeight = Convert.ToDecimal(value[1]);
+                    FontSize = Convert.ToDecimal(value[2]);
+                    foreach (Control varTSM in this.Controls)
+                    {
+                        if (varTSM is ToolStrip)
+                        {
+                            Font newFont = new Font(varTSM.Font.FontFamily, (float)FontSize, varTSM.Font.Style);
+                            varTSM.Font = newFont;
+                        }
+                    }
+                    tsBrandList.Height = Convert.ToInt32(FontSize * 2);
+                    varIncreaseWidthSize = this.pnlpurchase.Width + (this.pnlpurchase.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.pnlpurchase.Height + (this.pnlpurchase.Height * varPercentageHeight / 100);
+
+                    // Set MDIParent form size
+                    this.Location = new Point(0, 0);
+                    this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                    pnlpurchase.Location = new Point(0, tsBrandList.Height + 7);
+                    pnlpurchase.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+
+                    if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
+                    {
+                        grdPurchaseEntryQueueList.Size = new Size(this.grdPurchaseEntryQueueList.Width, this.grdPurchaseEntryQueueList.Height);
+                        DGV_SearchGrid.Size = new Size(this.DGV_SearchGrid.Width, this.DGV_SearchGrid.Height);
+                    }
+                    else
+                    {
+                        foreach (Control controls in pnlpurchase.Controls)
+                        {
+                            if (controls is GroupBox)
+                            {
+                                foreach (Control control1 in controls.Controls)
+                                {
+                                    if (control1 is Button == false)
+                                    {
+                                        varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
+                                        varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
+                                        control1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                    }
+                                    if (control1 is TextBox || control1 is ComboBox || control1 is DateTimePicker)
+                                    {
+                                        Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
+                                        float scaleFactor = (float)FontSize / (float)control1.Font.Size;
+                                        control1.Font = new Font(control1.Font.FontFamily, control1.Font.Size * scaleFactor);
+                                        control1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                        control1.Refresh();
+                                    }
+                                    if (control1 is Label)
+                                    {
+                                        Font newFont = new Font(control1.Font.FontFamily, (float)FontSize, control1.Font.Style);
+                                        control1.Font = newFont;
+                                        int newHeight = TextRenderer.MeasureText(control1.Text, newFont).Height;
+                                        control1.Height = newHeight;
+                                    }
+                                }
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if (controls is DataGridView)
+                            {
+                                if (controls.Name == "DGV_SearchGrid")
+                                {
+                                    varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                    varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                    controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), controls.Height);
+                                }
+                                else
+                                {
+                                    varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                    varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                    controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize + 12));
+                                }
+                            }
+                        }
+
+                        int varIniLoct = 0;
+                        var usedControls = grpFilterby.Controls.Cast<Control>().ToList();
+                        // Order controls by TabIndex
+                        usedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+
+                        foreach (Control grpControls in usedControls)
+                        {
+                            if (grpControls is ComboBox || grpControls is TextBox || grpControls is DateTimePicker || grpControls is Button || grpControls is Label)
+                            {
+                                grpControls.Location = new Point(varIniLoct, (grpFilterby.Height / 2) - (grpControls.Height / 2));
+                                varIniLoct = grpControls.Location.X + 6 + grpControls.Width;
+                            }
+                        }
+                        grdPurchaseEntryQueueList.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        DGV_SearchGrid.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        DGV_SearchGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+
+                        DGV_SearchGrid.RowTemplate.Height = Convert.ToInt32(FontSize * 2);
+
+                        grdPurchaseEntryQueueList.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                        //Set Location and Size For Listview
+                        varIncreaseWidthSize = this.LV_Supplier.Width + (this.LV_Supplier.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.LV_Supplier.Height + (this.LV_Supplier.Height * varPercentageHeight / 100);
+                        LV_Supplier.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        Font LvFont = new Font(LV_Supplier.Font.FontFamily, (float)FontSize, LV_Supplier.Font.Style);
+                        LV_Supplier.Font = LvFont;
+                        LV_Supplier.Location = new Point(txtSupplier.Location.X + 3, txtSupplier.Location.Y + txtSupplier.Height + 2);
+                    }
+                    DGV_SearchGrid.Location = new Point(DGV_SearchGrid.Location.X, (grpFilterby.Height + 5));
+                    grdPurchaseEntryQueueList.Location = new Point(grdPurchaseEntryQueueList.Location.X, (grpFilterby.Height + DGV_SearchGrid.Height + 5));
+                    lblNoRecordsFound.Location = new Point((screen.WorkingArea.Width - lblNoRecordsFound.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblNoRecordsFound.Height / 2));
+
+                    Font varNewFont = new Font(lblNoRecordsFound.Font.FontFamily, (float)FontSize, lblNoRecordsFound.Font.Style);
+                    lblNoRecordsFound.Font = varNewFont;
+                    grpFilterby.Font = varNewFont;
+                    tspHeader.Font = varNewFont;
+                }
             }
             catch (Exception ex)
             {
@@ -149,6 +304,7 @@ namespace ROMS
         {
             try
             {
+                typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, grdPurchaseEntryQueueList, new object[] { true });
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 if (txtSupplier.Text == "")

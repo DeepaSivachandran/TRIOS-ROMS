@@ -1028,11 +1028,15 @@ namespace ROMS
                     vartargetHeight = (int)(screen.Bounds.Height - 144);
                     FontSize = Convert.ToDecimal(14.75);
                 }
-                else
+                else if (Convert.ToInt32(screen.WorkingArea.Width) > 1920)
                 {
                     vartargetWidth = (int)(screen.Bounds.Width - 7);
                     vartargetHeight = (int)(screen.Bounds.Height - 150);
                     FontSize = Convert.ToDecimal(15.75);
+                }
+                else
+                {
+                    FontSize = Convert.ToDecimal(8.75);
                 }
                 varIncreWidth = vartargetWidth - ParaPanel.Width;
                 varPercentageWidth = (varIncreWidth / ParaPanel.Width) * 100;
