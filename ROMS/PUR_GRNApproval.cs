@@ -448,29 +448,32 @@ namespace ROMS
         {
             try
             {
-                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                if (grdGrnApproval.Rows.Count > 0)
                 {
-                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
+                    if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
                     {
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
+                        if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
                         {
-                            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
+                            {
+                                dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
+                            }
+                            else
+                            {
+                                dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                                grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
+                            }
                         }
                         else
                         {
                             dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                            grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
                         }
+                        //object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                        //dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
                     }
-                    else
-                    {
-                        dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                    }
-                    //object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                    //dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
                 }
             }
             catch (Exception ex)
