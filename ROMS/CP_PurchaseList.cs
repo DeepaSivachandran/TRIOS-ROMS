@@ -1564,7 +1564,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex-1].ColumnWidth = 30;
                             }
-                            if(col.Name=="Pur Type")
+                            if(col.Name=="Pur Type" || col.Name == "GSTIN")
                             {
                                 ExcelSheet.Columns[cIndex-1].ColumnWidth = 15;
                             }

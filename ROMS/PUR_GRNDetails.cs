@@ -108,6 +108,8 @@ namespace ROMS
                     tss1.Visible = true;
                     tss2.Visible = true;
                 }
+                //grdGrnlist.Enabled = true;
+                //grdGrnlist.ReadOnly = false;
             }
             catch (Exception ex)
             {
@@ -5895,9 +5897,10 @@ namespace ROMS
                                     btnDC.Enabled = false;
                                     gpAddrow.Enabled = false;
                                     grpGrnDetails.Enabled = false;
-                                    grdGrnlist.ReadOnly = true;
+                                    grdGrnlist.Enabled = true;
+                                    grdGrnlist.ReadOnly = false;
                                     grdGrnlist.Columns["clmRemove"].Visible = false;
-                                    //grdGrnlist.Enabled = false;
+                                   
                                 }
                                 else
                                 {
@@ -6061,7 +6064,7 @@ namespace ROMS
                                     gpAddrow.Enabled = false;
                                     grpGrnDetails.Enabled = false;
                                     grdGrnlist.Columns["clmRemove"].Visible = false;
-                                    grdGrnlist.Enabled = false;
+                                   // grdGrnlist.Enabled = false;
                                     grdGrnlist.ClearSelection();
                                 }
                                 else

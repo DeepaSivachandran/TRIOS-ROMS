@@ -273,8 +273,8 @@ namespace ROMS
                         {
                             //lbltotProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
                             //lblRemainProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
-                            tsbTotalProducts.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
-                            tsbRemainingProduct.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ProductCount"]);
+                            tsbTotalProducts.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
+                            tsbRemainingProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["ProductCount"]);
                         }
                     }
                 }
@@ -1045,6 +1045,8 @@ namespace ROMS
                     txtInvoiceNo.ReadOnly = false;
                     dpInvoiceDate.Enabled = true;
                     btnSave.Enabled = true;
+                    txtRemarks.Enabled = false;
+                    txtRemarks.ReadOnly = true;
                 }
             }
             catch (Exception ex)
@@ -3806,33 +3808,36 @@ namespace ROMS
                         cellMrp.Style.BackColor = Color.PaleGreen;
                         cellMrp.Style.ForeColor = Color.Black;   cellMrp.ReadOnly = false;
                     }
-                    if (varShelflife == "0")
+                    if (varShelflifeFlag == "0")
                     {
-                        cellShelfLife.Style.BackColor = Color.LightGray;  cellShelfLife.Style.ForeColor = Color.Black;
-                        cellShelfLife.ReadOnly = true;  cellShelfLife.Value = "";
+                        //cellShelfLife.Style.BackColor = Color.LightGray;  cellShelfLife.Style.ForeColor = Color.Black;
+                        //cellShelfLife.ReadOnly = true;
+                        cellShelfLife.Value = "";
+                        cellExpiryDate.Style.BackColor = Color.LightGray;
+                        cellExpiryDate.ReadOnly = true;
                     }
                     else
                     {
                         cellShelfLife.Style.BackColor = Color.PaleGreen; cellShelfLife.Style.ForeColor = Color.Black;
                     }
-                    if (varBatchNo == "73")
+                    if (varBatchNoEnable == "73")
                     {
                         cellBatchNo.Style.BackColor = Color.LightGray;
                         cellBatchNo.Style.ForeColor = Color.Black;
                         cellBatchNo.ReadOnly = true;
                         cellBatchNo.Value = "";
                     }
-                    else if(varBatchNo == "72")
+                    else if(varBatchNoEnable == "72")
                     {
-                        if(varBatchNoGeneration == "75")
+                        if(varBatchNoGeneration == "75") //manul
                         {
                             cellBatchNo.Style.BackColor = Color.PaleGreen; cellBatchNo.Style.ForeColor = Color.Black;
-                            cellBatchNo.ReadOnly = false;
+                            cellBatchNo.ReadOnly = false; cellBatchNo.Value = "";
                         }
-                        else if(varBatchNoGeneration == "74")
+                        else if(varBatchNoGeneration == "74")//Auto
                         {
                             cellBatchNo.Style.BackColor = Color.LightGray; cellBatchNo.Style.ForeColor = Color.Black;
-                            cellBatchNo.ReadOnly = true; cellBatchNo.Value = "";
+                            cellBatchNo.ReadOnly = true; 
                         }
                     }
                     if (varRMProductionFlag == "1")
@@ -7097,7 +7102,7 @@ namespace ROMS
                             {
                                 if (Convert.ToString(objDs.Tables[0].Rows[i]["Converted ProductID"]) != "0")
                                 {
-                                    //grdPurchaseList.Rows[i].ReadOnly = false;
+                                    grdPurchaseList.Rows[i].ReadOnly = true;
                                     //grdPurchaseList.ReadOnly = false;
                                     //grdPurchaseList.Enabled = true;
                                     grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = true;
@@ -7117,13 +7122,6 @@ namespace ROMS
                                 else
                                 {
                                     grdPurchaseList.Rows[i].ReadOnly = true;
-                                    
-                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = true;
-                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].ReadOnly = true;
-                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = true;
-                                    grdPurchaseList.Rows[i].Cells["clmFreeqty"].ReadOnly = true;
-                                    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = true;
-                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = true;
 
                                     grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightGray;
                                     grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightGray;
@@ -7543,14 +7541,14 @@ namespace ROMS
 
                         varPURPRIDs = result.Select(r => r.PURID).ToList();
                         varTotReceivedQty = result.Select(r => r.TotalReceivedQuantity).ToList();
-                       
+                       //Parent Difference quantity should not be greater than Converted product
                         for(int i=0;i< varPURPRIDs.Count(); i++)
                         {
                             for (int j = 0; j < grdPurchaseList.RowCount; j++)
                             {
                                 if (Convert.ToString(varPURPRIDs[i]) == Convert.ToString(grdPurchaseList.Rows[j].Cells["clmPURPRID"].Value))
                                 {
-                                    if (Convert.ToString(varTotReceivedQty[i]) != Convert.ToString(grdPurchaseList.Rows[j].Cells["clmDiffqty"].Value))
+                                    if (Convert.ToDecimal(varTotReceivedQty[i]) >= Convert.ToDecimal(grdPurchaseList.Rows[j].Cells["clmDiffqty"].Value) || Convert.ToDecimal(varTotReceivedQty[i])==0)
                                     {
                                         for (int k = 0; k < grdPurchaseList.RowCount; k++)
                                         {
