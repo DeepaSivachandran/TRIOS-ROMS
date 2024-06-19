@@ -2822,7 +2822,7 @@ namespace ROMS
                     }
                 }
 
-                if (blnErrorFlag == false && pbDateflag == 0)
+                if (blnErrorFlag == false && pbDateflag == 0 && varflag==0)
                 {
                     udfnAdd();
                 }

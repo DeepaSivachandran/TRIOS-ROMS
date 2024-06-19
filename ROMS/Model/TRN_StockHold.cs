@@ -23,6 +23,7 @@ namespace ROMS.Model
         public int paraUTID { get; set; } = 0;
         public decimal paraQty { get; set; } = 0;
         public int paraFlag { get; set; } = 0;
+        public int paraReason { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
 
     }

@@ -42,6 +42,9 @@ namespace ROMS
             try
             {
                 udfnCmbConcern();
+                DataBind objDBind = new DataBind();
+                objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,75) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
+                objDBind = null;
                 this.ActiveControl = txtProductNamePICode;
                 VarSearchFlag = true;
                 lblProductName.Text = "Search by P.I Code";
@@ -360,7 +363,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRemark.Focus();
+                    cmbReason.Focus();
                 }
             }
             catch (Exception ex)
@@ -508,7 +511,7 @@ namespace ROMS
                     objTRNS_StockHold.paraMrp = Convert.ToDecimal(string.Format("{0:G29}", decimal.Parse(txtMrp.Text.Trim())));
                     objTRNS_StockHold.paraExpiryDate = Convert.ToString(txtExpiryDate.Text);
                     objTRNS_StockHold.paraBatchNo = Convert.ToString(txtBatchNo.Text);
-                    //objTRNS_StockHold.paraUTID = varUTID;
+                    objTRNS_StockHold.paraReason = Convert.ToInt32(cmbReason.SelectedValue);
                     objTRNS_StockHold.paraQty = Convert.ToDecimal(txtQty.Text);
                     objTRNS_StockHold.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
                     objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);                   
@@ -628,6 +631,7 @@ namespace ROMS
                             grdStockHold.Columns["Rack"].Width = 60;
                             grdStockHold.Columns["MRP"].Width = 60;
                             grdStockHold.Columns["Expiry Date"].Width = 90;
+                            grdStockHold.Columns["Reason"].Width = 90;
                             grdStockHold.Columns["Batch No."].Width = 70;
                             grdStockHold.Columns["Hold Qty"].Width = 70;
                             grdStockHold.Columns["Created By"].Width = 80;
@@ -700,8 +704,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Batch No."].Width = 70;
                 DGV_SearchGrid.Columns["Hold Qty"].Width = 70;
                 DGV_SearchGrid.Columns["Created By"].Width = 80;
-                DGV_SearchGrid.Columns["clmDelete"].Width = 40;
-                DGV_SearchGrid.Columns["clmEdit"].Width = 30;
+                //DGV_SearchGrid.Columns["Delete"].Width = 40;
+                //DGV_SearchGrid.Columns["Edit"].Width = 30;
                 DGV_SearchGrid.Columns["PRID"].Visible = false;
                 DGV_SearchGrid.Columns["SLID"].Visible = false;
                 DGV_SearchGrid.Columns["UTID"].Visible = false;
@@ -731,6 +735,7 @@ namespace ROMS
                 lblUnit.Text = "";
                 txtRemark.Text = "";
                 txtProductNamePICode.Focus();
+                cmbReason.SelectedValue = -1;
                 SHID = 0;
             }
             catch (Exception ex)
@@ -1024,6 +1029,7 @@ namespace ROMS
                             txtBatchNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Batch No"]);
                             txtStockQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Stock Qty"]);
                             txtQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Hold Qty"]);
+                            cmbReason.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);
                             varPRID = Convert.ToInt32(objDs.Tables[0].Rows[0]["PRID"]);
                             varRKID = Convert.ToInt32(objDs.Tables[0].Rows[0]["RKID"]);
                             varUTID = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
@@ -1636,6 +1642,74 @@ namespace ROMS
                             break;
                         }
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReason_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReason.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReason_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReason.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReason_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReason_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {                   
+                    txtRemark.Focus();                
                 }
             }
             catch (Exception ex)
