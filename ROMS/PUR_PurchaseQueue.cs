@@ -199,6 +199,10 @@ namespace ROMS
                             }
                         }
 
+                        varIncreaseWidthSize = picLoader.Width + (picLoader.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = picLoader.Height + (picLoader.Height * varPercentageHeight / 100);
+                        picLoader.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
                         int varIniLoct = 0;
                         var usedControls = grpFilterby.Controls.Cast<Control>().ToList();
                         // Order controls by TabIndex

@@ -255,6 +255,9 @@ namespace ROMS
                                 }
                             }
                         }
+                        varIncreaseWidthSize = picLoader.Width + (picLoader.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = picLoader.Height + (picLoader.Height * varPercentageHeight / 100);
+                        picLoader.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
 
                         int varIniLoct = 0;
                         var usedControls = grpfilter.Controls.Cast<Control>().ToList();
@@ -303,6 +306,7 @@ namespace ROMS
                     }
                     DGV_SearchGrid.Location = new Point(DGV_SearchGrid.Location.X, (grpfilter.Height + 5));
                     grdGRNList.Location = new Point(grdGRNList.Location.X, (grpfilter.Height + DGV_SearchGrid.Height + 5));
+                    picLoader.Location = new Point(picLoader.Location.X, (grpfilter.Height + 5));
                     lblNoRecordsFound.Location = new Point((screen.WorkingArea.Width - lblNoRecordsFound.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblNoRecordsFound.Height / 2));
 
                     Font varNewFont = new Font(lblNoRecordsFound.Font.FontFamily, (float)FontSize, lblNoRecordsFound.Font.Style);
