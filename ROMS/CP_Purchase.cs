@@ -1435,6 +1435,7 @@ namespace ROMS
 
                             }
                         }
+
                         //int varIniLoct = 0;
                         //var usedControls = grpForm.Controls.Cast<Control>().ToList();
                         //// Order controls by TabIndex
@@ -1586,6 +1587,7 @@ namespace ROMS
                     varIncreaseWidthSize = pnlGRNDetails.Width + (pnlGRNDetails.Width * varPercentageWidth / 100);
                     pnlGRNDetails.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), cmbPONo.Location.Y+ cmbPONo.Height);
 
+                    grdSupplierList.Size = new Size(grdSupplierList.Width, (tbDetails.Height - pnlGRNDetails.Height) - (50+Convert.ToInt32(FontSize)));
                     grdSupplierList.Location = new Point(pnlGRNDetails.Location.X,pnlGRNDetails.Location.Y+pnlGRNDetails.Height+Convert.ToInt32(FontSize));
                     //Set Location For Label
                     label1.Location = new Point(dpVoucherDate.Location.X, lblGodown.Location.Y);

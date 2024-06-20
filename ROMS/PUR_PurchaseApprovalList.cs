@@ -565,13 +565,13 @@ namespace ROMS
         {
             try
             {
-                
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                    MainForm.PbCurrentForm = "0";
                 }
             }
             catch (Exception ex)
