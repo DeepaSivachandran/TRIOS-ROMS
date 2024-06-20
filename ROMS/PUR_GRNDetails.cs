@@ -55,11 +55,26 @@ namespace ROMS
         public PUR_GRNDetails()
         {
             InitializeComponent();
+            //Screen Resolution Change Added By Sathish
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
+        }
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void PUR_GRNEntry_Load(object sender, EventArgs e)
         {
             try
             {
+                AdjustFormSize();
                 DataBind objDBind = new DataBind();
                 objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (64) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
                 objDBind = null;
@@ -107,6 +122,201 @@ namespace ROMS
                     lblRemainProduct.Visible = true;
                     tss1.Visible = true;
                     tss2.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void AdjustFormSize()
+        {
+            try
+            {
+                string varPercentage = "";
+                // Get the primary screen
+                Screen screen = Screen.PrimaryScreen;
+                if (Convert.ToInt32(screen.WorkingArea.Width) >= 1366)
+                {
+                    decimal FontSize = 0;
+                    decimal varPercentageWidth = 0, varPercentageHeight = 0,
+                        varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
+                    varPercentage = objValidation.udfhScreenResolution(this.pnlSupplierMapping, this);
+                    string[] value = varPercentage.Split(',');
+                    varPercentageWidth = Convert.ToDecimal(value[0]);
+                    varPercentageHeight = Convert.ToDecimal(value[1]);
+                    FontSize = Convert.ToDecimal(value[2]);
+                    foreach (Control varTSM in this.Controls)
+                    {
+                        if (varTSM is ToolStrip)
+                        {
+                            Font newFont = new Font(varTSM.Font.FontFamily, (float)FontSize, varTSM.Font.Style);
+                            varTSM.Font = newFont;
+                        }
+                    }
+                    tsSupplierMapping.Height = Convert.ToInt32(FontSize * 2);
+                    varIncreaseWidthSize = this.pnlSupplierMapping.Width + (this.pnlSupplierMapping.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.pnlSupplierMapping.Height + (this.pnlSupplierMapping.Height * varPercentageHeight / 100);
+
+
+
+                    // Set MDIParent form size
+                    this.Location = new Point(0, 0);
+                    this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                    pnlSupplierMapping.Location = new Point(0, tsSupplierMapping.Height);
+                    pnlSupplierMapping.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize+7));
+
+
+                    varIncreaseWidthSize = this.grpSupplierMapping.Width + (this.grpSupplierMapping.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.grpSupplierMapping.Height + (this.grpSupplierMapping.Height * varPercentageHeight / 100);
+                    grpSupplierMapping.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+
+                    if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
+                    {
+                    //    grdGRNList.Size = new Size(this.grdGRNList.Width, this.grdGRNList.Height);
+                    //    DGV_SearchGrid.Size = new Size(this.DGV_SearchGrid.Width, this.DGV_SearchGrid.Height);
+                    }
+                    else
+                    {
+                        foreach (Control controls in grpSupplierMapping.Controls)
+                        {
+                            if (controls is GroupBox)
+                            {
+                                if (controls.Name == "grpGrnDetails")
+                                {
+                                    foreach (Control vargrpGrnDetails in controls.Controls)
+                                    {
+                                        if (vargrpGrnDetails is Label == false)
+                                        {
+                                            varIncreaseWidthSize = vargrpGrnDetails.Width + (vargrpGrnDetails.Width * varPercentageWidth / 100);
+                                            varIncreaseHeightSize = vargrpGrnDetails.Height + (vargrpGrnDetails.Height * varPercentageHeight / 100);
+                                            vargrpGrnDetails.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                        }
+                                        Font newFont = new Font(vargrpGrnDetails.Font.FontFamily, (float)FontSize, vargrpGrnDetails.Font.Style);
+                                        vargrpGrnDetails.Font = newFont;
+                                    }
+                                    int varIniLoct = 0, varIniLoc = 0;
+                                    var usedControls = grpGrnDetails.Controls.Cast<Control>().ToList();
+                                    // Order controls by TabIndex
+                                    usedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+                                    foreach (Control vargrpGrnDetails in usedControls)
+                                    {
+                                        int tabIndex = vargrpGrnDetails.TabIndex;
+                                        if (tabIndex < 8)
+                                        {
+                                            if (vargrpGrnDetails.Name != "label10")
+                                            {
+                                                vargrpGrnDetails.Location = new Point(varIniLoct, vargrpGrnDetails.Location.Y);
+                                            }
+                                            varIniLoct = vargrpGrnDetails.Location.X + 6 + vargrpGrnDetails.Width;
+                                        }
+                                        else
+                                        {
+                                            if (vargrpGrnDetails.Name != "label6")
+                                            {
+                                                vargrpGrnDetails.Location = new Point(varIniLoc, vargrpGrnDetails.Location.Y);
+                                            }
+                                            varIniLoc = vargrpGrnDetails.Location.X + 6 + vargrpGrnDetails.Width;
+                                        }
+                                    }
+                                }
+                                if (controls.Name == "gpAddrow")
+                                {
+                                    foreach (Control vargpAddrow in controls.Controls)
+                                    {
+                                        if (vargpAddrow is Label == false)
+                                        {
+                                            varIncreaseWidthSize = vargpAddrow.Width + (vargpAddrow.Width * varPercentageWidth / 100);
+                                            varIncreaseHeightSize = vargpAddrow.Height + (vargpAddrow.Height * varPercentageHeight / 100);
+                                            vargpAddrow.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                        }
+                                        Font newFont = new Font(vargpAddrow.Font.FontFamily, (float)FontSize, vargpAddrow.Font.Style);
+                                        vargpAddrow.Font = newFont;
+                                    }
+                                }
+                                if (controls.Name == "groupBox5")
+                                {
+                                    foreach (Control vargroupBox5 in controls.Controls)
+                                    {
+                                        Font newFont = new Font(vargroupBox5.Font.FontFamily, (float)FontSize-2, vargroupBox5.Font.Style);
+                                        vargroupBox5.Font = newFont;
+                                    }
+                                }
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if(controls is DataGridView)
+                            {
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if(controls is TextBox)
+                            {
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if (controls is Button)
+                            {
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if (controls is Label || controls is Button || controls is CheckBox)
+                            {
+                                Font newFont = new Font(controls.Font.FontFamily, (float)FontSize, controls.Font.Style);
+                                controls.Font = newFont;
+                            }
+                        }
+                        varIncreaseWidthSize = grdGrnlist.Width + (grdGrnlist.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = grdGrnlist.Height + (grdGrnlist.Height * varPercentageHeight / 100);
+                        grdGrnlist.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                        grdGrnlist.Location = new Point(grdGrnlist.Location.X, 18);
+                        grpGrnDetails.Location = new Point(grpGrnDetails.Location.X, 15);
+                        groupBox5.Location = new Point(grpGrnDetails.Location.X + grpGrnDetails.Width + 4, grpGrnDetails.Location.Y + 2);
+                        gpAddrow.Location = new Point(grpGrnDetails.Location.X, grpGrnDetails.Location.Y + grpGrnDetails.Height);
+                        groupBox1.Location = new Point(grpGrnDetails.Location.X, gpAddrow.Location.Y + gpAddrow.Height - 10);
+                        grdPODetails.Location = new Point(grpGrnDetails.Location.X, groupBox1.Location.Y + groupBox1.Height + 5);
+
+                        txtTotalProducts.Location = new Point(groupBox5.Location.X, groupBox5.Location.Y + groupBox5.Height + 5);
+                        txtTotalpro.Location = new Point(txtTotalProducts.Location.X + txtTotalProducts.Width+5, txtTotalProducts.Location.Y-3);
+
+                        btnDC.Location = new Point(grdPODetails.Location.X + grdPODetails.Width + 12, groupBox1.Location.Y + groupBox1.Height);
+                        btnVerified.Location = new Point(btnDC.Location.X + btnDC.Width + 6, btnDC.Location.Y);
+
+                        grdReurnDC.Location = new Point(btnDC.Location.X, btnDC.Location.Y + btnDC.Height + 1);
+
+                        txtRemark.Location = new Point(grdReurnDC.Location.X + grdReurnDC.Width + 8, grdReurnDC.Location.Y - 8);
+                        lblRemark.Location = new Point(txtRemark.Location.X , btnDC.Location.Y);
+
+                        grpVerify.Location = new Point(txtRemark.Location.X + txtRemark.Width + 8, grdPODetails.Location.Y);
+                        groupBox3.Location = new Point(grpVerify.Location.X + grpVerify.Width + 8, grdPODetails.Location.Y);
+
+                        chkCompleted.Location = new Point(groupBox3.Location.X, groupBox3.Location.Y + groupBox3.Height + 5);
+
+                        btnSave.Location = new Point(groupBox3.Location.X, chkCompleted.Location.Y + chkCompleted.Height + 5);
+                        btnClose.Location = new Point(btnSave.Location.X + btnSave.Width + 3, btnSave.Location.Y);
+
+                        grdGrnlist.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdGrnlist.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        grdPODetails.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdPODetails.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        grdReurnDC.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdReurnDC.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                    }
+                    lblNoRecordsFound.Location = new Point((groupBox1.Width - lblNoRecordsFound.Size.Width) / 2, (groupBox1.Height / 2) - (lblNoRecordsFound.Height / 2));
+
+                    Font varNewFont = new Font(lblNoRecordsFound.Font.FontFamily, (float)FontSize, lblNoRecordsFound.Font.Style);
+                    lblNoRecordsFound.Font = varNewFont;
+                    groupBox3.Font = varNewFont;
+                    grpVerify.Font = varNewFont;
                 }
             }
             catch (Exception ex)
