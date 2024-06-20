@@ -1475,7 +1475,13 @@ namespace ROMS
                         LV_Supplier.Font = LvFont;
                         LV_Supplier.Location = new Point(txtSupplier.Location.X + 3, txtSupplier.Location.Y + txtSupplier.Height + 2);
 
-                        
+                        varIncreaseWidthSize = this.lv_Broker.Width + (this.lv_Broker.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.lv_Broker.Height + (this.lv_Broker.Height * varPercentageHeight / 100);
+                        lv_Broker.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        Font LvFonts = new Font(lv_Broker.Font.FontFamily, (float)FontSize, lv_Broker.Font.Style);
+                        lv_Broker.Font = LvFonts;
+                        lv_Broker.Location = new Point(txtBroker.Location.X + 3, txtBroker.Location.Y + txtBroker.Height + 2);
+
                         //gpPurchase
                         //varIncreaseWidthSize = gpPurchase.Width + (gpPurchase.Width * varPercentageWidth / 100);
                         //varIncreaseHeightSize = gpPurchase.Height + (gpPurchase.Height * varPercentageHeight / 100);
