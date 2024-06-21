@@ -70,6 +70,22 @@ namespace ROMS
             timer.Interval = 2; // 2 seconds
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
+            //This Method was used to Avoid blincking and flickering
+            this.DoubleBuffered = true;
+            //typeof(DataGridView).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, grdPurchaseEntryList, new object[] { true });
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
+        }
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -943,6 +959,7 @@ namespace ROMS
         {
             try
             {
+                AdjustFormSize();
                 MainForm objMainForm = new MainForm();
                 dtTaxTable = new DataTable();
                 objMainForm.udfnGetDefaultCompany();
@@ -1047,6 +1064,536 @@ namespace ROMS
                     btnSave.Enabled = true;
                     txtRemarks.Enabled = false;
                     txtRemarks.ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void AdjustFormSize()
+        {
+            try
+            {
+                string varPercentage = "";
+                // Get the primary screen
+                Screen screen = Screen.PrimaryScreen;
+                if (Convert.ToInt32(screen.WorkingArea.Width) >= 1366)
+                {
+                    decimal FontSize = 0;
+                    decimal varPercentageWidth = 0, varPercentageHeight = 0,
+                        varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
+                    varPercentage = objValidation.udfhScreenResolution(this.panel1, this);
+                    string[] value = varPercentage.Split(',');
+                    varPercentageWidth = Convert.ToDecimal(value[0]);
+                    varPercentageHeight = Convert.ToDecimal(value[1]);
+                    FontSize = Convert.ToDecimal(value[2])-1;
+                    foreach (Control varTSM in this.Controls)
+                    {
+                        if (varTSM is ToolStrip)
+                        {
+                            Font newFont = new Font(varTSM.Font.FontFamily, (float)FontSize, varTSM.Font.Style);
+                            varTSM.Font = newFont;
+                        }
+                    }
+                    tsPurchase.Height = Convert.ToInt32(FontSize * 2);
+                    varIncreaseWidthSize = this.panel1.Width + (this.panel1.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.panel1.Height + (this.panel1.Height * varPercentageHeight / 100);
+
+                    // Set MDIParent form size
+                    this.Location = new Point(0, 0);
+                    this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                    panel1.Location = new Point(0, tsPurchase.Height + 7);
+                    panel1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                    lblstatusvalue.Location = new Point(this.Width - 50, tsPurchase.Height - lblstatusvalue.Height);
+                    //Set Size For tab Control
+                    varIncreaseWidthSize = this.tbDetails.Width + (this.tbDetails.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.tbDetails.Height + (this.tbDetails.Height * varPercentageHeight / 100);
+                    tbDetails.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize-Convert.ToInt32(FontSize)));
+
+                    //Set Size For GroupBox
+                    //grpForm
+                    varIncreaseWidthSize = grpForm.Width + (grpForm.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = grpForm.Height + (grpForm.Height * varPercentageHeight / 100);
+                    grpForm.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                    //pnlResult
+                    varIncreaseWidthSize = pnlResult.Width + (pnlResult.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = pnlResult.Height + (pnlResult.Height * varPercentageHeight / 100);
+                    pnlResult.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                    if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
+                    {
+                        //grdPurchaseEntryList.Size = new Size(this.grdPurchaseEntryList.Width, this.grdPurchaseEntryList.Height);
+                        //DGV_SearchGrid.Size = new Size(this.DGV_SearchGrid.Width, this.DGV_SearchGrid.Height);
+                    }
+                    else
+                    {
+                        Font varNewFonts = new Font(tbDetails.Font.FontFamily, (float)FontSize, tbDetails.Font.Style);
+                        tbDetails.Font = varNewFonts;
+                        lblGodown.Location = new Point(3, 13);
+
+
+                        foreach (Control vartabControls in tbDetails.Controls)
+                        {
+                            if(vartabControls.Name== "tabPage1")
+                            {
+                                foreach (Control vartabPage1 in vartabControls.Controls)
+                                {
+                                    if (vartabPage1 is Panel)
+                                    {
+                                        foreach (Control pnlGRNDetails in vartabPage1.Controls)
+                                        {
+                                            if (pnlGRNDetails is TextBox || pnlGRNDetails is ComboBox)
+                                            {
+                                                Size textSize = TextRenderer.MeasureText(pnlGRNDetails.Text, pnlGRNDetails.Font);
+                                                float scaleFactor = (float)FontSize / (float)pnlGRNDetails.Font.Size;
+                                                pnlGRNDetails.Font = new Font(pnlGRNDetails.Font.FontFamily, pnlGRNDetails.Font.Size * scaleFactor);
+                                                pnlGRNDetails.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                                pnlGRNDetails.Refresh();
+
+                                                varIncreaseWidthSize = pnlGRNDetails.Width + (pnlGRNDetails.Width * varPercentageWidth / 100);
+                                                varIncreaseHeightSize = pnlGRNDetails.Height + (pnlGRNDetails.Height * varPercentageHeight / 100);
+                                                pnlGRNDetails.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                            }
+                                            if (pnlGRNDetails is Label)
+                                            {
+                                                Font newFont = new Font(pnlGRNDetails.Font.FontFamily, (float)FontSize, pnlGRNDetails.Font.Style);
+                                                pnlGRNDetails.Font = newFont;
+                                                int newHeight = TextRenderer.MeasureText(pnlGRNDetails.Text, newFont).Height;
+                                                pnlGRNDetails.Height = newHeight;
+                                            }
+                                            if(pnlGRNDetails is GroupBox)
+                                            {
+                                                foreach(Control grnLevel in pnlGRNDetails.Controls)
+                                                {
+                                                    Font newFont = new Font(grnLevel.Font.FontFamily, (float)FontSize-2, grnLevel.Font.Style);
+                                                    grnLevel.Font = newFont;
+                                                }
+                                                label30.Location = new Point(label30.Location.X, label30.Height - 4);
+                                                lblVerifyDateTime.Location = new Point(label30.Width+5, label30.Location.Y);
+                                                label31.Location = new Point(label30.Location.X, label30.Height + label30.Location.Y);
+                                                lblVerifyDateTime2.Location = new Point(label31.Width + 5, label31.Location.Y);
+
+                                            }
+                                        }
+
+                                        int varIniLoction = 0;
+                                        var pnlusedControls = pnlGRNDetails.Controls.Cast<Control>().ToList();
+                                        // Order controls by TabIndex
+                                        pnlusedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+
+                                        foreach (Control pnlControls in pnlusedControls)
+                                        {
+                                            if (pnlControls is ComboBox || pnlControls is TextBox || pnlControls is DateTimePicker || pnlControls is Button || pnlControls is GroupBox)
+                                            {
+                                                if (pnlControls.Name != "cmbPONo")
+                                                {
+                                                    pnlControls.Location = new Point(varIniLoction, lblDProduct.Height+2);
+                                                }
+                                                else
+                                                {
+                                                    pnlControls.Location = new Point(pnlControls.Location.X, lblDProduct.Height + 2);
+                                                }
+                                                varIniLoction = pnlControls.Location.X + 6 + pnlControls.Width;
+                                            }
+                                        }
+                                        lblDProduct.Location = new Point(txtProductName.Location.X,0);
+                                        label29.Location = new Point(txtGRNMrp.Location.X,0);
+                                        label14.Location = new Point(txtMrp.Location.X,0);
+                                        label21.Location = new Point(txtDate.Location.X+10,0);
+                                        label20.Location = new Point(txtBatchno.Location.X,0);
+                                        label16.Location = new Point(txtSourceLocation.Location.X,0);
+                                        label17.Location = new Point(cmbrack.Location.X,0);
+                                    }
+                                    if(vartabPage1 is Button==false && vartabPage1 is Panel==false && vartabPage1 is GroupBox == false)
+                                    {
+                                        varIncreaseWidthSize = vartabPage1.Width + (vartabPage1.Width * varPercentageWidth / 100);
+                                        varIncreaseHeightSize = vartabPage1.Height + (vartabPage1.Height * varPercentageHeight / 100);
+                                        vartabPage1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                    }
+                                }
+                            }
+
+                            varIncreaseWidthSize = groupBox11.Width + (groupBox11.Width * varPercentageWidth / 100);
+                            groupBox11.Size = new Size(groupBox11.Width + Convert.ToInt32(FontSize*2), label30.Location.Y + label31.Location.Y + 9);
+                            groupBox11.Location = new Point(groupBox11.Location.X, label17.Location.Y - 2);
+                            groupBox11.BringToFront();
+
+                            if (vartabControls.Name == "tabPage2")
+                            {
+                                foreach (Control vartabPage2 in vartabControls.Controls)
+                                {
+                                    varIncreaseWidthSize = vartabPage2.Width + (vartabPage2.Width * varPercentageWidth / 100);
+                                    varIncreaseHeightSize = vartabPage2.Height + (vartabPage2.Height * varPercentageHeight / 100);
+                                    vartabPage2.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                }
+                            }
+                            if (vartabControls.Name == "tabPage3")
+                            {
+                                foreach (Control vartabPage3 in vartabControls.Controls)
+                                {
+                                    if(vartabPage3 is GroupBox)
+                                    {
+                                        foreach (Control vartabPage3grp in vartabPage3.Controls)
+                                        {
+                                            if (vartabPage3grp is DataGridView)
+                                            {
+                                                varIncreaseWidthSize = vartabPage3grp.Width + (vartabPage3grp.Width * varPercentageWidth / 100);
+                                                varIncreaseHeightSize = vartabPage3grp.Height + (vartabPage3grp.Height * varPercentageHeight / 100);
+                                                vartabPage3grp.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                            }
+                                            if (vartabPage3grp is TextBox)
+                                            {
+                                                Size textSize = TextRenderer.MeasureText(vartabPage3grp.Text, vartabPage3grp.Font);
+                                                float scaleFactor = (float)FontSize / (float)vartabPage3grp.Font.Size;
+                                                vartabPage3grp.Font = new Font(vartabPage3grp.Font.FontFamily, vartabPage3grp.Font.Size * scaleFactor);
+                                                vartabPage3grp.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                                vartabPage3grp.Refresh();
+
+                                                varIncreaseWidthSize = vartabPage3grp.Width + (vartabPage3grp.Width * varPercentageWidth / 100);
+                                                varIncreaseHeightSize = vartabPage3grp.Height + (vartabPage3grp.Height * varPercentageHeight / 100);
+                                                vartabPage3grp.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                            }
+                                            if (vartabPage3grp is Label)
+                                            {
+                                                Font newFont = new Font(vartabPage3grp.Font.FontFamily, (float)FontSize, vartabPage3grp.Font.Style);
+                                                vartabPage3grp.Font = newFont;
+                                                int newHeight = TextRenderer.MeasureText(vartabPage3grp.Text, newFont).Height;
+                                                vartabPage3grp.Height = newHeight;
+                                            }
+                                        }
+                                        varIncreaseWidthSize = vartabPage3.Width + (vartabPage3.Width * varPercentageWidth / 100);
+                                        varIncreaseHeightSize = vartabPage3.Height + (vartabPage3.Height * varPercentageHeight / 100);
+                                        vartabPage3.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                    }
+                                }
+                            }
+                        }
+
+
+                        foreach (Control varusedControls in panel1.Controls)
+                        {
+                            if(varusedControls is GroupBox)
+                            {
+                                if (varusedControls.Name == "grpForm")
+                                {
+                                    foreach (Control grpControls1 in varusedControls.Controls)
+                                    {
+                                        if (grpControls1 is TextBox || grpControls1 is ComboBox || grpControls1 is DateTimePicker || grpControls1 is CheckBox)
+                                        {
+                                            Size textSize = TextRenderer.MeasureText(grpControls1.Text, grpControls1.Font);
+                                            float scaleFactor = (float)FontSize / (float)grpControls1.Font.Size;
+                                            grpControls1.Font = new Font(grpControls1.Font.FontFamily, grpControls1.Font.Size * scaleFactor);
+                                            grpControls1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                            grpControls1.Refresh();
+
+                                        }
+                                        if (grpControls1 is Label)
+                                        {
+                                            Font newFont = new Font(grpControls1.Font.FontFamily, (float)FontSize, grpControls1.Font.Style);
+                                            grpControls1.Font = newFont;
+                                            int newHeight = TextRenderer.MeasureText(grpControls1.Text, newFont).Height;
+                                            grpControls1.Height = newHeight;
+                                        }
+                                        if(grpControls1 is GroupBox)
+                                        {
+                                            Font newFont = new Font(grpControls1.Font.FontFamily, (float)FontSize, grpControls1.Font.Style);
+                                            grpControls1.Font = newFont;
+                                            varIncreaseWidthSize = grpControls1.Width + (grpControls1.Width * varPercentageWidth / 100);
+                                            varIncreaseHeightSize = grpControls1.Height + (grpControls1.Height * varPercentageHeight / 100);
+                                            grpControls1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), grpControls1.Height+Convert.ToInt32(FontSize));
+                                        }
+
+                                    }
+                                    foreach (Control grpControls in varusedControls.Controls)
+                                    {
+                                        if (grpControls.Name == "grbAmount")
+                                        {
+                                            foreach (Control grpProperties in grpControls.Controls)
+                                            {
+                                                if (grpProperties is Label)
+                                                {
+                                                    Font newFont = new Font(grpProperties.Font.FontFamily, (float)FontSize, grpProperties.Font.Style);
+                                                    grpProperties.Font = newFont;
+                                                    int newHeight = TextRenderer.MeasureText(grpProperties.Text, newFont).Height;
+                                                    grpProperties.Height = newHeight;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (varusedControls is Panel)
+                            {
+                                if (varusedControls.Name == "pnlResult")
+                                {
+                                    foreach (Control pnlResult in varusedControls.Controls)
+                                    {
+                                        if (pnlResult is Button == false)
+                                        {
+                                            Font newFont = new Font(pnlResult.Font.FontFamily, (float)FontSize, pnlResult.Font.Style);
+                                            pnlResult.Font = newFont;
+                                        }
+                                        else
+                                        {
+                                            Font newFont = new Font(pnlResult.Font.FontFamily, (float)FontSize-2, pnlResult.Font.Style);
+                                            pnlResult.Font = newFont;
+                                        }
+                                        if (pnlResult is Button == false)
+                                        {
+                                            varIncreaseWidthSize = pnlResult.Width + (pnlResult.Width * varPercentageWidth / 100);
+                                            varIncreaseHeightSize = pnlResult.Height + (pnlResult.Height * varPercentageHeight / 100);
+                                            pnlResult.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                        }
+                                        else
+                                        {
+                                            varIncreaseWidthSize = pnlResult.Width + (pnlResult.Width * varPercentageWidth / 100);
+                                            varIncreaseHeightSize = pnlResult.Height + (pnlResult.Height * varPercentageHeight / 100);
+                                            pnlResult.Size = new Size(Convert.ToInt32(varIncreaseWidthSize-FontSize), Convert.ToInt32(varIncreaseHeightSize));
+                                        }
+                                    }
+                                    int varIniLocation = 0;
+                                    var pnlusedControls = pnlResult.Controls.Cast<Control>().ToList();
+                                    // Order controls by TabIndex
+                                    pnlusedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+                                    foreach (Control pnlControls in pnlusedControls)
+                                    {
+                                        if (pnlControls is TextBox || pnlControls is Button || pnlControls is Label || pnlControls is GroupBox || pnlControls is CheckBox)
+                                        {
+                                            if (pnlControls.Name != "label7" )
+                                            {
+                                                pnlControls.Location = new Point(varIniLocation, pnlControls.Location.Y);
+                                            }
+                                            if (pnlControls.Name != "btnSave" && pnlControls.Name != "btnUnapprove" && pnlControls.Name != "btnClose")
+                                            {
+                                                varIniLocation = pnlControls.Location.X + 6 + pnlControls.Width;
+                                            }
+                                            else
+                                            {
+                                                varIniLocation = pnlControls.Location.X + pnlControls.Width;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        int varIniLoct = 0, varIniLoc = 0;
+                        var usedControls = grpForm.Controls.Cast<Control>().ToList();
+                        // Order controls by TabIndex
+                        usedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+
+                        foreach (Control grpControls in usedControls)
+                        {
+                            if (grpControls is ComboBox || grpControls is TextBox || grpControls is DateTimePicker || grpControls is Button || grpControls is CheckBox)
+                            {
+                                int tabIndex = grpControls.TabIndex;
+                                if (tabIndex<7)
+                                {
+                                    if (grpControls.Name != "cmbConcern")
+                                    {
+                                        grpControls.Location = new Point(varIniLoct, lblGodown.Height+lblGodown.Location.Y);// grpControls.Location.Y
+                                    }
+                                    if(grpControls.Name=="cmbConcern")
+                                    {
+                                        grpControls.Location = new Point(grpControls.Location.X, lblGodown.Height + lblGodown.Location.Y);
+                                    }
+                                    varIniLoct = grpControls.Location.X + 6 + grpControls.Width;
+                                }
+                                else
+                                {
+                                    label4.Location = new Point(3,lblGodown.Height+cmbConcern.Height+20);
+                                    if (grpControls.Name != "dpInvoiceDate")
+                                    {
+                                        grpControls.Location = new Point(varIniLoc, label4.Height + label4.Location.Y);
+                                    }
+                                    if (grpControls.Name == "dpInvoiceDate")
+                                    {
+                                        grpControls.Location = new Point(grpControls.Location.X, label4.Height + label4.Location.Y);
+                                    }
+                                    varIniLoc = grpControls.Location.X + 6 + grpControls.Width;
+                                }
+
+                            }
+                        }
+
+                        //for (int i = 0; i < grdPurchaseList.Columns.Count; i++)
+                        //{
+                        //    int currentWidth = grdPurchaseList.Columns[i].Width;
+                        //    int newWidth = currentWidth + Convert.ToInt32(FontSize) * 4;
+                        //    grdPurchaseList.Columns[i].Width = newWidth;
+                        //}
+
+
+                        grdSupplierList.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdSupplierList.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                        grdPurchaseList.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdPurchaseList.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                        grdPODetails.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdPODetails.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                        grdReurnDC.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdReurnDC.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                        grdGRN.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdGRN.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                        grdTaxDetails.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdTaxDetails.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                        //Set Location and Size For Listview
+                        varIncreaseWidthSize = this.LV_Supplier.Width + (this.LV_Supplier.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.LV_Supplier.Height + (this.LV_Supplier.Height * varPercentageHeight / 100);
+                        LV_Supplier.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        Font LvFont = new Font(LV_Supplier.Font.FontFamily, (float)FontSize, LV_Supplier.Font.Style);
+                        LV_Supplier.Font = LvFont;
+                        LV_Supplier.Location = new Point(txtSupplier.Location.X + 2, txtSupplier.Location.Y + txtSupplier.Height + 2);
+
+                        varIncreaseWidthSize = this.lv_Broker.Width + (this.lv_Broker.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.lv_Broker.Height + (this.lv_Broker.Height * varPercentageHeight / 100);
+                        lv_Broker.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        Font LvFonts = new Font(lv_Broker.Font.FontFamily, (float)FontSize, lv_Broker.Font.Style);
+                        lv_Broker.Font = LvFonts;
+                        lv_Broker.Location = new Point(txtBroker.Location.X + 2, txtBroker.Location.Y + txtBroker.Height + 2);
+
+                        varIncreaseWidthSize = this.lvSourceLocation.Width + (this.lvSourceLocation.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.lvSourceLocation.Height + (this.lvSourceLocation.Height * varPercentageHeight / 100);
+                        lvSourceLocation.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        Font ListFonts = new Font(lvSourceLocation.Font.FontFamily, (float)FontSize, lvSourceLocation.Font.Style);
+                        lvSourceLocation.Font = ListFonts;
+                        lvSourceLocation.Location = new Point(txtSourceLocation.Location.X + 2, txtSourceLocation.Location.Y + txtSourceLocation.Height + 2);
+                        
+                        //Set Location and Size For Listview
+                        varIncreaseWidthSize = this.DGV_FilterProduct.Width + (this.DGV_FilterProduct.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.DGV_FilterProduct.Height + (this.DGV_FilterProduct.Height * varPercentageHeight / 100);
+                        DGV_FilterProduct.Size = new Size(Convert.ToInt32(varIncreaseWidthSize - (FontSize * 5)), Convert.ToInt32(varIncreaseHeightSize / 2));
+                        DGV_FilterProduct.Location = new Point(txtProductName.Location.X + 8, pnlGRNDetails.Location.Y + pnlGRNDetails.Height + Convert.ToInt32(FontSize));
+
+                        //gpPurchase
+                        gpPurchase.Location = new Point(txtQRCode.Location.X+ label8.Width+5, lblGodown.Location.Y);
+
+                        rbPurchaseCash.Location = new Point(8, (gpPurchase.Height / 2) - (rbPurchaseCash.Height / 2) + 5);
+                        rbPurchaseCredit.Location = new Point(rbPurchaseCash.Width+ rbPurchaseCash.Location.X+30, rbPurchaseCash.Location.Y);
+
+                        //gpPayment
+                        gpPayment.Location = new Point(gpPurchase.Location.X, gpPurchase.Location.Y+ gpPurchase.Height);
+
+                        rbPaymentCash.Location = new Point(8, (gpPayment.Height / 2) - (rbPaymentCash.Height / 2) + 5);
+                        rbPaymentCheque.Location = new Point(rbPaymentCash.Width + rbPaymentCash.Location.X + 30, rbPaymentCash.Location.Y);
+
+                        //gpdiscount
+                        gpdiscount.Location = new Point(gpPurchase.Location.X+gpPurchase.Width+5, gpPurchase.Location.Y);
+
+                        rbDiscountBefore.Location = new Point(8, (gpPurchase.Height / 2) - (rbDiscountBefore.Height / 2) + 5);
+                        rbDiscountAfter.Location = new Point(rbDiscountBefore.Width + rbDiscountBefore.Location.X + 5, rbDiscountBefore.Location.Y);
+
+                        //gprate
+                        gprate.Location = new Point(gpdiscount.Location.X, gpPayment.Location.Y);
+
+                        rbRateBefore.Location = new Point(8, (gprate.Height / 2) - (rbRateBefore.Height / 2) + 5);
+                        rbAfterBefore.Location = new Point(rbRateBefore.Width + rbRateBefore.Location.X + 5, rbRateBefore.Location.Y);
+
+
+                        //groupBox10
+                        txtDGPercentageCheck.Location = new Point(8, (groupBox10.Height / 2) - (txtDGPercentageCheck.Height / 2)+5);
+                        lblPercentage.Location = new Point(txtDGPercentageCheck.Location.X+ txtDGPercentageCheck.Width, txtDGPercentageCheck.Location.Y-2);
+                        txtRDPercentageCheck.Location = new Point(lblPercentage.Location.X+ lblPercentage.Width+10, txtDGPercentageCheck.Location.Y);
+                        lblDPercentage.Location = new Point(txtRDPercentageCheck.Location.X+ txtRDPercentageCheck.Width, txtDGPercentageCheck.Location.Y-2);
+
+
+                        //groupBox2
+                        groupBox2.Location = new Point(gpdiscount.Location.X+ gpdiscount.Width+5, gpPurchase.Location.Y);
+                        
+                        tbDetails.Location = new Point(3, gpPayment.Location.Y + gpPayment.Height + 10);
+
+                        btnClear.Location = new Point(gprate.Location.X+gprate.Width-100, gprate.Location.Y+ gprate.Height);
+
+
+                        //3rd Tab
+                        grdTaxDetails.Location = new Point(grdPODetails.Width+10, grdTaxDetails.Location.Y);
+
+                        txtDloading.Location = new Point(grdTaxDetails.Location.X + grdTaxDetails.Width + 10, txtDloading.Location.Y);
+                        txtLoadingCharge.Location = new Point(txtDloading.Location.X + txtDloading.Width, txtLoadingCharge.Location.Y);
+
+                        textBox37.Location = new Point(txtLoadingCharge.Location.X + txtLoadingCharge.Width + 10, textBox37.Location.Y);
+                        Txtdiscount.Location = new Point(textBox37.Location.X + textBox37.Width, Txtdiscount.Location.Y);
+
+                        txtDUnloading.Location = new Point(txtDloading.Location.X, txtDloading.Height + txtDloading.Location.Y);
+                        txtDCourier.Location = new Point(txtDloading.Location.X, txtDUnloading.Height + txtDUnloading.Location.Y);
+                        textBox35.Location = new Point(txtDloading.Location.X, txtDCourier.Height + txtDCourier.Location.Y);
+                        textBox14.Location = new Point(txtDloading.Location.X, textBox35.Height + textBox35.Location.Y);
+                        textBox25.Location = new Point(txtDloading.Location.X, textBox14.Height + textBox14.Location.Y);
+                        textBox29.Location = new Point(txtDloading.Location.X, textBox25.Height + textBox25.Location.Y);
+
+                        txtUnLoadingCharge.Location = new Point(txtLoadingCharge.Location.X, txtDUnloading.Location.Y);
+                        txtCouriercharge.Location = new Point(txtLoadingCharge.Location.X, txtDCourier.Location.Y);
+                        txtotherexpense.Location = new Point(txtLoadingCharge.Location.X, textBox35.Location.Y);
+                        txtTcsamt.Location = new Point(txtLoadingCharge.Location.X, textBox14.Location.Y);
+                        txtLoadingchargeGrn.Location = new Point(txtLoadingCharge.Location.X, textBox25.Location.Y);
+                        txtFrightGrn.Location = new Point(txtLoadingCharge.Location.X, textBox29.Location.Y);
+
+                        textBox36.Location = new Point(textBox37.Location.X, textBox37.Height+ textBox37.Location.Y);
+                        textBox20.Location = new Point(textBox37.Location.X, textBox36.Height+ textBox36.Location.Y);
+                        txtDDamage.Location = new Point(textBox37.Location.X, textBox20.Height + textBox20.Location.Y);
+                        txtDiscountamt.Location = new Point(Txtdiscount.Location.X, textBox36.Location.Y);
+                        txtOtherdiscount.Location = new Point(Txtdiscount.Location.X, textBox20.Location.Y);
+                        txtDamagecost.Location = new Point(Txtdiscount.Location.X, txtDDamage.Location.Y);
+
+
+                        int varLoc = 0;
+                        var grbAmountUsed = grbAmount.Controls.Cast<Control>().ToList();
+                        // Order controls by TabIndex
+                        grbAmountUsed.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
+
+                        foreach (Control varAmount in grbAmountUsed)
+                        {
+                            if (varAmount is Label)
+                            {
+                                if (varAmount.Name != "label18")
+                                {
+                                    varAmount.Location = new Point(varIniLoct, label18.Location.Y);
+                                }
+                                varIniLoct = varAmount.Location.X + 6 + varAmount.Width;
+                            }
+                        }
+                    }
+
+                    //grbAmount
+                    grbAmount.Size = new Size(tabPage1.Width, label18.Location.Y + label18.Height+Convert.ToInt32(FontSize));
+                    grbAmount.Location = new Point(6, tbDetails.Location.Y+ tbDetails.Height);
+
+                    varIncreaseWidthSize = pnlGRNDetails.Width + (pnlGRNDetails.Width * varPercentageWidth / 100);
+                    pnlGRNDetails.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), cmbPONo.Location.Y+ cmbPONo.Height);
+
+                    grdSupplierList.Size = new Size(grdSupplierList.Width, (tbDetails.Height - pnlGRNDetails.Height) - (50+Convert.ToInt32(FontSize)));
+                    grdSupplierList.Location = new Point(pnlGRNDetails.Location.X,pnlGRNDetails.Location.Y+pnlGRNDetails.Height+Convert.ToInt32(FontSize));
+                    //Set Location For Label
+                    label1.Location = new Point(dpVoucherDate.Location.X, lblGodown.Location.Y);
+                    label2.Location = new Point(txtPENO.Location.X, lblGodown.Location.Y);
+                    label6.Location = new Point(txtSupplier.Location.X, lblGodown.Location.Y);
+                    label5.Location = new Point(cmbEntryType.Location.X, lblGodown.Location.Y);
+                    label8.Location = new Point(txtQRCode.Location.X, lblGodown.Location.Y);
+
+                    label3.Location = new Point(txtInvoiceNo.Location.X, label4.Location.Y);
+                    label35.Location = new Point(txtInvoiceamt.Location.X, label4.Location.Y);
+                    label9.Location = new Point(cmbTransactionType.Location.X, label4.Location.Y);
+                    label13.Location = new Point(txtBroker.Location.X, label4.Location.Y);
+                    label28.Location = new Point(txtGstin.Location.X, label4.Location.Y);
+
+
+                    pnlResult.Location = new Point(13, grpForm.Height+2);
+
+                    lblNoRecordsFound.Location = new Point((screen.WorkingArea.Width - lblNoRecordsFound.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblNoRecordsFound.Height / 2));
+
+                    Font varNewFont = new Font(lblNoRecordsFound.Font.FontFamily, (float)FontSize, lblNoRecordsFound.Font.Style);
+                    lblNoRecordsFound.Font = varNewFont;
+                    grpForm.Font = varNewFont;
+                    tspHeader.Font = varNewFont;
                 }
             }
             catch (Exception ex)

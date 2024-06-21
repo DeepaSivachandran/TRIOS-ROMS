@@ -48,7 +48,6 @@
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnExport = new System.Windows.Forms.Button();
             this.grdPurchaseEntryApproval = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
@@ -66,6 +65,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
@@ -172,15 +172,15 @@
             this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton2.Size = new System.Drawing.Size(197, 25);
-            this.toolStripButton2.Text = "Purchase Entry Incomplete List";
+            this.toolStripButton2.Size = new System.Drawing.Size(184, 25);
+            this.toolStripButton2.Text = "Purchase Entry Rejected List";
             this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // pnlpurchaseapproval
             // 
+            this.pnlpurchaseapproval.AutoSize = true;
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
             this.pnlpurchaseapproval.Controls.Add(this.lvSupplier);
-            this.pnlpurchaseapproval.Controls.Add(this.btnExport);
             this.pnlpurchaseapproval.Controls.Add(this.grdPurchaseEntryApproval);
             this.pnlpurchaseapproval.Controls.Add(this.lblNoRecordsFound);
             this.pnlpurchaseapproval.Controls.Add(this.grpfilter);
@@ -188,7 +188,7 @@
             this.pnlpurchaseapproval.Controls.Add(this.picLoader);
             this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 29);
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
-            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
+            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 646);
             this.pnlpurchaseapproval.TabIndex = 958789;
             // 
             // lvSupplier
@@ -222,21 +222,6 @@
             // columnHeader23
             // 
             this.columnHeader23.Width = 0;
-            // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(930, 25);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(74, 29);
-            this.btnExport.TabIndex = 5;
-            this.btnExport.Text = "Export";
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
-            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
-            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
             // grdPurchaseEntryApproval
             // 
@@ -313,6 +298,7 @@
             this.grpfilter.Controls.Add(this.label4);
             this.grpfilter.Controls.Add(this.label12);
             this.grpfilter.Controls.Add(this.btnView);
+            this.grpfilter.Controls.Add(this.btnExport);
             this.grpfilter.Controls.Add(this.label2);
             this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
@@ -405,7 +391,7 @@
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(273, 27);
-            this.txtSupplier.TabIndex = 3;
+            this.txtSupplier.TabIndex = 6;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplierName_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplierName_Enter);
             this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplierName_KeyDown);
@@ -418,7 +404,7 @@
             this.dpToDate.Location = new System.Drawing.Point(364, 24);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(107, 27);
-            this.dpToDate.TabIndex = 2;
+            this.dpToDate.TabIndex = 4;
             this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
             this.dpToDate.Leave += new System.EventHandler(this.DpToDate_Leave);
@@ -430,7 +416,7 @@
             this.dpFromDate.Location = new System.Drawing.Point(251, 24);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
-            this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.TabIndex = 3;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
@@ -443,7 +429,7 @@
             this.cmbConcern.Location = new System.Drawing.Point(66, 24);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(91, 27);
-            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.TabIndex = 1;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
@@ -467,7 +453,7 @@
             this.label12.Location = new System.Drawing.Point(6, 27);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 20);
-            this.label12.TabIndex = 1111173;
+            this.label12.TabIndex = 0;
             this.label12.Text = "Concern";
             // 
             // btnView
@@ -479,13 +465,29 @@
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(74, 29);
-            this.btnView.TabIndex = 4;
+            this.btnView.TabIndex = 7;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(930, 25);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(74, 29);
+            this.btnExport.TabIndex = 8;
+            this.btnExport.Text = "Export";
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
+            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
             // label2
             // 
@@ -494,7 +496,7 @@
             this.label2.Location = new System.Drawing.Point(475, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 20);
-            this.label2.TabIndex = 1111140;
+            this.label2.TabIndex = 5;
             this.label2.Text = "Supplier Name";
             // 
             // label1
@@ -504,7 +506,7 @@
             this.label1.Location = new System.Drawing.Point(163, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 20);
-            this.label1.TabIndex = 1111139;
+            this.label1.TabIndex = 2;
             this.label1.Text = "Voucher Date";
             // 
             // DGV_SearchGrid
@@ -561,9 +563,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(4, 132);
+            this.picLoader.Location = new System.Drawing.Point(4, 75);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1347, 510);
+            this.picLoader.Size = new System.Drawing.Size(1347, 567);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 111111147;
             this.picLoader.TabStop = false;
@@ -595,6 +597,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlpurchaseapproval);

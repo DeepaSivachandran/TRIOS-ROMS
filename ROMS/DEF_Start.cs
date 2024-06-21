@@ -21,13 +21,17 @@ namespace ROMS
         public DEF_Start()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             objValidation.resolutionsettingsForm(this);
+            udfnAdujustSize();
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
-        private void tsbEdit_Click(object sender, EventArgs e)
+        //Added By Sathish For Screen Resolution Changed Time Font Size InCrease  -- 13-06-2024
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
         {
             try
             {
-              
+                udfnAdujustSize();
             }
             catch (Exception ex)
             {
@@ -35,17 +39,33 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void tsbDelete_Click(object sender, EventArgs e)
+        public void udfnAdujustSize()
         {
             try
             {
-               
+                Screen screen = Screen.PrimaryScreen;
+                if (Convert.ToInt32(screen.WorkingArea.Width) >= 1366)
+                {
+                    string varPercentage = ""; decimal varPercentageWidth = 0, varPercentageHeight = 0, varIncreaseWidthSize = 0, varIncreaseHeightSize = 0, FontSize = 0;
+                    Panel myPanel = new Panel();
+                    myPanel.Size = new Size(this.Width, this.Height);
+                    varPercentage = objValidation.udfhScreenResolution(myPanel, this);
+                    string[] value = varPercentage.Split(',');
+                    varPercentageWidth = Convert.ToDecimal(value[0]);
+                    varPercentageHeight = Convert.ToDecimal(value[1]);
+                    FontSize = Convert.ToDecimal(value[2]);
+
+                    varIncreaseWidthSize = this.Width + (this.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.Height + (this.Height * varPercentageHeight / 100);
+                    this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize + FontSize + FontSize));
+                    this.Location = new Point(0, 0);
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }       
+        }
     }
 }
