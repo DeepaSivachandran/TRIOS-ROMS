@@ -7100,7 +7100,7 @@ namespace ROMS
                             }
                             if (varConvertFlag == 1)
                             {
-                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Converted ProductID"]) != "0")
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Converted ProductID"]) != "0" && Convert.ToString(objDs.Tables[0].Rows[i]["Inv Flag"]) == "0")
                                 {
                                     grdPurchaseList.Rows[i].ReadOnly = true;
                                     //grdPurchaseList.ReadOnly = false;
