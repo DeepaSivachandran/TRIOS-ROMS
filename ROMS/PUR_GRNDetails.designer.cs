@@ -218,6 +218,9 @@
             this.lbltotProduct = new System.Windows.Forms.Label();
             this.lblAddProduct = new System.Windows.Forms.Label();
             this.lblRemainProduct = new System.Windows.Forms.Label();
+            this.tsbRemainingProduct = new System.Windows.Forms.ToolStripButton();
+            this.tsbAddedProduct = new System.Windows.Forms.ToolStripButton();
+            this.tsbTotalProducts = new System.Windows.Forms.ToolStripButton();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -241,14 +244,17 @@
             this.tsSupplierMapping.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsSupplierMapping.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspSupplierMapping,
+            this.tsbRemainingProduct,
             this.tsbPO,
             this.tss2,
+            this.tsbAddedProduct,
             this.tsbAdded,
             this.tss1,
+            this.tsbTotalProducts,
             this.tsbProducts});
             this.tsSupplierMapping.Location = new System.Drawing.Point(0, 0);
             this.tsSupplierMapping.Name = "tsSupplierMapping";
-            this.tsSupplierMapping.Size = new System.Drawing.Size(1354, 27);
+            this.tsSupplierMapping.Size = new System.Drawing.Size(1354, 28);
             this.tsSupplierMapping.TabIndex = 35;
             this.tsSupplierMapping.Text = "Goods Receipt";
             // 
@@ -271,8 +277,8 @@
             this.tsbPO.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.tsbPO.Name = "tsbPO";
             this.tsbPO.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPO.Size = new System.Drawing.Size(136, 24);
-            this.tsbPO.Text = "Remaing Products :& &  & & & &";
+            this.tsbPO.Size = new System.Drawing.Size(118, 25);
+            this.tsbPO.Text = "Remaing Products :";
             this.tsbPO.ToolTipText = "Remaing Products :";
             this.tsbPO.Click += new System.EventHandler(this.TsbPO_Click);
             // 
@@ -292,8 +298,8 @@
             this.tsbAdded.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.tsbAdded.Name = "tsbAdded";
             this.tsbAdded.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbAdded.Size = new System.Drawing.Size(120, 24);
-            this.tsbAdded.Text = "&Added Products :& & & & & &";
+            this.tsbAdded.Size = new System.Drawing.Size(105, 25);
+            this.tsbAdded.Text = "&Added Products :";
             this.tsbAdded.ToolTipText = "&Added Products :";
             // 
             // tss1
@@ -312,8 +318,8 @@
             this.tsbProducts.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.tsbProducts.Name = "tsbProducts";
             this.tsbProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbProducts.Size = new System.Drawing.Size(107, 24);
-            this.tsbProducts.Text = "&PO Products :& & & & & & & &";
+            this.tsbProducts.Size = new System.Drawing.Size(86, 25);
+            this.tsbProducts.Text = "&PO Products :";
             this.tsbProducts.ToolTipText = "PO Products :      ";
             // 
             // lblNoRecordsFound
@@ -539,7 +545,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 22);
-            this.btnAdd.TabIndex = 29;
+            this.btnAdd.TabIndex = 30;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -564,7 +570,7 @@
             this.txtBatchno.MaxLength = 10;
             this.txtBatchno.Name = "txtBatchno";
             this.txtBatchno.Size = new System.Drawing.Size(91, 27);
-            this.txtBatchno.TabIndex = 28;
+            this.txtBatchno.TabIndex = 29;
             this.txtBatchno.Enter += new System.EventHandler(this.TxtBatchno_Enter);
             this.txtBatchno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchno_KeyDown);
             this.txtBatchno.Leave += new System.EventHandler(this.TxtBatchno_Leave);
@@ -576,7 +582,7 @@
             this.label8.Location = new System.Drawing.Point(729, 38);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
-            this.label8.TabIndex = 1111156;
+            this.label8.TabIndex = 25;
             this.label8.Text = "Expiry Date";
             // 
             // txtMonth
@@ -586,7 +592,7 @@
             this.txtMonth.MaxLength = 2;
             this.txtMonth.Name = "txtMonth";
             this.txtMonth.Size = new System.Drawing.Size(32, 27);
-            this.txtMonth.TabIndex = 26;
+            this.txtMonth.TabIndex = 27;
             this.txtMonth.TextChanged += new System.EventHandler(this.TxtMonth_TextChanged);
             this.txtMonth.Enter += new System.EventHandler(this.Month_Enter);
             this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Month_KeyDown);
@@ -631,7 +637,7 @@
             this.txtDate.MaxLength = 2;
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(32, 27);
-            this.txtDate.TabIndex = 25;
+            this.txtDate.TabIndex = 26;
             this.txtDate.TextChanged += new System.EventHandler(this.TxtDate_TextChanged);
             this.txtDate.Enter += new System.EventHandler(this.TxtDate_Enter);
             this.txtDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDate_KeyDown);
@@ -680,7 +686,7 @@
             this.txtYear.MaxLength = 4;
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(32, 27);
-            this.txtYear.TabIndex = 27;
+            this.txtYear.TabIndex = 28;
             this.txtYear.TextChanged += new System.EventHandler(this.TxtYear_TextChanged);
             this.txtYear.Enter += new System.EventHandler(this.Year_Enter);
             this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Year_KeyDown);
@@ -923,7 +929,7 @@
             this.chkCompleted.Location = new System.Drawing.Point(1130, 570);
             this.chkCompleted.Name = "chkCompleted";
             this.chkCompleted.Size = new System.Drawing.Size(78, 21);
-            this.chkCompleted.TabIndex = 31;
+            this.chkCompleted.TabIndex = 32;
             this.chkCompleted.Text = "Completed";
             this.chkCompleted.UseVisualStyleBackColor = true;
             this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
@@ -1187,7 +1193,7 @@
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(201, 88);
-            this.txtRemark.TabIndex = 30;
+            this.txtRemark.TabIndex = 31;
             // 
             // btnClose
             // 
@@ -1197,7 +1203,7 @@
             this.btnClose.Location = new System.Drawing.Point(1255, 596);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 33;
+            this.btnClose.TabIndex = 34;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1213,7 +1219,7 @@
             this.btnSave.Location = new System.Drawing.Point(1130, 596);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(123, 29);
-            this.btnSave.TabIndex = 32;
+            this.btnSave.TabIndex = 33;
             this.btnSave.Text = "Update as Draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -2072,11 +2078,12 @@
             this.lbltotProduct.BackColor = System.Drawing.Color.White;
             this.lbltotProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbltotProduct.ForeColor = System.Drawing.Color.Blue;
-            this.lbltotProduct.Location = new System.Drawing.Point(1002, 3);
+            this.lbltotProduct.Location = new System.Drawing.Point(753, 3);
             this.lbltotProduct.Name = "lbltotProduct";
             this.lbltotProduct.Size = new System.Drawing.Size(18, 21);
             this.lbltotProduct.TabIndex = 958765;
             this.lbltotProduct.Text = "0";
+            this.lbltotProduct.Visible = false;
             // 
             // lblAddProduct
             // 
@@ -2084,11 +2091,12 @@
             this.lblAddProduct.BackColor = System.Drawing.Color.White;
             this.lblAddProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddProduct.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblAddProduct.Location = new System.Drawing.Point(1155, 3);
+            this.lblAddProduct.Location = new System.Drawing.Point(791, 3);
             this.lblAddProduct.Name = "lblAddProduct";
             this.lblAddProduct.Size = new System.Drawing.Size(18, 21);
             this.lblAddProduct.TabIndex = 958766;
             this.lblAddProduct.Text = "0";
+            this.lblAddProduct.Visible = false;
             // 
             // lblRemainProduct
             // 
@@ -2096,11 +2104,57 @@
             this.lblRemainProduct.BackColor = System.Drawing.Color.White;
             this.lblRemainProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRemainProduct.ForeColor = System.Drawing.Color.Red;
-            this.lblRemainProduct.Location = new System.Drawing.Point(1322, 3);
+            this.lblRemainProduct.Location = new System.Drawing.Point(822, 3);
             this.lblRemainProduct.Name = "lblRemainProduct";
             this.lblRemainProduct.Size = new System.Drawing.Size(18, 21);
             this.lblRemainProduct.TabIndex = 958767;
             this.lblRemainProduct.Text = "0";
+            this.lblRemainProduct.Visible = false;
+            // 
+            // tsbRemainingProduct
+            // 
+            this.tsbRemainingProduct.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbRemainingProduct.BackColor = System.Drawing.Color.White;
+            this.tsbRemainingProduct.Enabled = false;
+            this.tsbRemainingProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbRemainingProduct.ForeColor = System.Drawing.Color.Red;
+            this.tsbRemainingProduct.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbRemainingProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRemainingProduct.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbRemainingProduct.Name = "tsbRemainingProduct";
+            this.tsbRemainingProduct.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbRemainingProduct.Size = new System.Drawing.Size(33, 25);
+            this.tsbRemainingProduct.Text = "0  ";
+            // 
+            // tsbAddedProduct
+            // 
+            this.tsbAddedProduct.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbAddedProduct.BackColor = System.Drawing.Color.White;
+            this.tsbAddedProduct.Enabled = false;
+            this.tsbAddedProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbAddedProduct.ForeColor = System.Drawing.Color.DarkGreen;
+            this.tsbAddedProduct.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbAddedProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAddedProduct.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbAddedProduct.Name = "tsbAddedProduct";
+            this.tsbAddedProduct.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbAddedProduct.Size = new System.Drawing.Size(23, 25);
+            this.tsbAddedProduct.Text = "0";
+            // 
+            // tsbTotalProducts
+            // 
+            this.tsbTotalProducts.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbTotalProducts.BackColor = System.Drawing.Color.White;
+            this.tsbTotalProducts.Enabled = false;
+            this.tsbTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbTotalProducts.ForeColor = System.Drawing.Color.Blue;
+            this.tsbTotalProducts.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbTotalProducts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTotalProducts.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbTotalProducts.Name = "tsbTotalProducts";
+            this.tsbTotalProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbTotalProducts.Size = new System.Drawing.Size(23, 25);
+            this.tsbTotalProducts.Text = "0";
             // 
             // PUR_GRNDetails
             // 
@@ -2314,5 +2368,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMRPflag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        public System.Windows.Forms.ToolStripButton tsbRemainingProduct;
+        public System.Windows.Forms.ToolStripButton tsbAddedProduct;
+        public System.Windows.Forms.ToolStripButton tsbTotalProducts;
     }
 }

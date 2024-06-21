@@ -103,8 +103,6 @@ namespace ROMS
                     pnlpurchaseapproval.Location = new Point(0, tsBrandList.Height + 7);
                     pnlpurchaseapproval.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
 
-                    //lblQueueCount.Location = new Point(this.Width - 50, tsBrandList.Height - lblQueueCount.Height);
-
                     if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
                     {
                         grdPurchaseEntryApproval.Size = new Size(this.grdPurchaseEntryApproval.Width, this.grdPurchaseEntryApproval.Height);

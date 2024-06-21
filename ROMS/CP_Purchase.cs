@@ -1303,9 +1303,6 @@ namespace ROMS
                                     {
                                         if (grpControls.Name == "grbAmount")
                                         {
-                                            //varIncreaseWidthSize = grpControls.Width + (grpControls.Width * varPercentageWidth / 100);
-                                            //varIncreaseHeightSize = grpControls.Height + (grpControls.Height * varPercentageHeight / 100);
-                                            //grpControls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                                             foreach (Control grpProperties in grpControls.Controls)
                                             {
                                                 if (grpProperties is Label)
@@ -1319,22 +1316,6 @@ namespace ROMS
                                         }
                                     }
                                 }
-                                //if (varusedControls.Name == "grbAmount")
-                                //{
-                                //    //varIncreaseWidthSize = grpControls.Width + (grpControls.Width * varPercentageWidth / 100);
-                                //    //varIncreaseHeightSize = grpControls.Height + (grpControls.Height * varPercentageHeight / 100);
-                                //    //grpControls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
-                                //    foreach (Control grpProperties in varusedControls.Controls)
-                                //    {
-                                //        if (grpProperties is Label)
-                                //        {
-                                //            Font newFont = new Font(grpProperties.Font.FontFamily, (float)FontSize, grpProperties.Font.Style);
-                                //            grpProperties.Font = newFont;
-                                //            int newHeight = TextRenderer.MeasureText(grpProperties.Text, newFont).Height;
-                                //            grpProperties.Height = newHeight;
-                                //        }
-                                //    }
-                                //}
                             }
 
                             if (varusedControls is Panel)
@@ -1389,12 +1370,6 @@ namespace ROMS
                                         }
                                     }
                                 }
-
-                                //label32.Location = new Point(textBox22.Location.X+ textBox22.Width+10, label32.Location.Y);
-                                //chkCompleted.Location = new Point(label32.Location.X+50, chkCompleted.Location.Y);
-                                //btnSave.Location = new Point(chkCompleted.Location.X+ chkCompleted.Width+10,btnSave.Location.Y);
-                                //btnUnapprove.Location = new Point(chkCompleted.Location.X+ chkCompleted.Width+30, btnUnapprove.Location.Y);
-                                //btnClose.Location = new Point(btnSave.Location.X+ btnSave.Width+10, btnClose.Location.Y);
                             }
                         }
                         int varIniLoct = 0, varIniLoc = 0;
@@ -1436,19 +1411,14 @@ namespace ROMS
                             }
                         }
 
-                        //int varIniLoct = 0;
-                        //var usedControls = grpForm.Controls.Cast<Control>().ToList();
-                        //// Order controls by TabIndex
-                        //usedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
-
-                        //foreach (Control grpControls in usedControls)
+                        //for (int i = 0; i < grdPurchaseList.Columns.Count; i++)
                         //{
-                        //    if (grpControls is ComboBox || grpControls is TextBox || grpControls is DateTimePicker || grpControls is Button || grpControls is Label)
-                        //    {
-                        //        grpControls.Location = new Point(varIniLoct, (grpForm.Height / 2) - (grpControls.Height / 2));
-                        //        varIniLoct = grpControls.Location.X + 6 + grpControls.Width;
-                        //    }
+                        //    int currentWidth = grdPurchaseList.Columns[i].Width;
+                        //    int newWidth = currentWidth + Convert.ToInt32(FontSize) * 4;
+                        //    grdPurchaseList.Columns[i].Width = newWidth;
                         //}
+
+
                         grdSupplierList.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         grdSupplierList.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
 
@@ -1473,46 +1443,47 @@ namespace ROMS
                         LV_Supplier.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                         Font LvFont = new Font(LV_Supplier.Font.FontFamily, (float)FontSize, LV_Supplier.Font.Style);
                         LV_Supplier.Font = LvFont;
-                        LV_Supplier.Location = new Point(txtSupplier.Location.X + 3, txtSupplier.Location.Y + txtSupplier.Height + 2);
+                        LV_Supplier.Location = new Point(txtSupplier.Location.X + 2, txtSupplier.Location.Y + txtSupplier.Height + 2);
 
                         varIncreaseWidthSize = this.lv_Broker.Width + (this.lv_Broker.Width * varPercentageWidth / 100);
                         varIncreaseHeightSize = this.lv_Broker.Height + (this.lv_Broker.Height * varPercentageHeight / 100);
                         lv_Broker.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                         Font LvFonts = new Font(lv_Broker.Font.FontFamily, (float)FontSize, lv_Broker.Font.Style);
                         lv_Broker.Font = LvFonts;
-                        lv_Broker.Location = new Point(txtBroker.Location.X + 3, txtBroker.Location.Y + txtBroker.Height + 2);
+                        lv_Broker.Location = new Point(txtBroker.Location.X + 2, txtBroker.Location.Y + txtBroker.Height + 2);
+
+                        varIncreaseWidthSize = this.lvSourceLocation.Width + (this.lvSourceLocation.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.lvSourceLocation.Height + (this.lvSourceLocation.Height * varPercentageHeight / 100);
+                        lvSourceLocation.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        Font ListFonts = new Font(lvSourceLocation.Font.FontFamily, (float)FontSize, lvSourceLocation.Font.Style);
+                        lvSourceLocation.Font = ListFonts;
+                        lvSourceLocation.Location = new Point(txtSourceLocation.Location.X + 2, txtSourceLocation.Location.Y + txtSourceLocation.Height + 2);
+                        
+                        //Set Location and Size For Listview
+                        varIncreaseWidthSize = this.DGV_FilterProduct.Width + (this.DGV_FilterProduct.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.DGV_FilterProduct.Height + (this.DGV_FilterProduct.Height * varPercentageHeight / 100);
+                        DGV_FilterProduct.Size = new Size(Convert.ToInt32(varIncreaseWidthSize - (FontSize * 5)), Convert.ToInt32(varIncreaseHeightSize / 2));
+                        DGV_FilterProduct.Location = new Point(txtProductName.Location.X + 8, pnlGRNDetails.Location.Y + pnlGRNDetails.Height + Convert.ToInt32(FontSize));
 
                         //gpPurchase
-                        //varIncreaseWidthSize = gpPurchase.Width + (gpPurchase.Width * varPercentageWidth / 100);
-                        //varIncreaseHeightSize = gpPurchase.Height + (gpPurchase.Height * varPercentageHeight / 100);
-                        //gpPurchase.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                         gpPurchase.Location = new Point(txtQRCode.Location.X+ label8.Width+5, lblGodown.Location.Y);
 
                         rbPurchaseCash.Location = new Point(8, (gpPurchase.Height / 2) - (rbPurchaseCash.Height / 2) + 5);
                         rbPurchaseCredit.Location = new Point(rbPurchaseCash.Width+ rbPurchaseCash.Location.X+30, rbPurchaseCash.Location.Y);
 
                         //gpPayment
-                        //varIncreaseWidthSize = gpPayment.Width + (gpPayment.Width * varPercentageWidth / 100);
-                        //varIncreaseHeightSize = gpPayment.Height + (gpPayment.Height * varPercentageHeight / 100);
-                        //gpPayment.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                         gpPayment.Location = new Point(gpPurchase.Location.X, gpPurchase.Location.Y+ gpPurchase.Height);
 
                         rbPaymentCash.Location = new Point(8, (gpPayment.Height / 2) - (rbPaymentCash.Height / 2) + 5);
                         rbPaymentCheque.Location = new Point(rbPaymentCash.Width + rbPaymentCash.Location.X + 30, rbPaymentCash.Location.Y);
 
                         //gpdiscount
-                        //varIncreaseWidthSize = gpdiscount.Width + (gpdiscount.Width * varPercentageWidth / 100);
-                        //varIncreaseHeightSize = gpdiscount.Height + (gpdiscount.Height * varPercentageHeight / 100);
-                        //gpdiscount.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                         gpdiscount.Location = new Point(gpPurchase.Location.X+gpPurchase.Width+5, gpPurchase.Location.Y);
 
                         rbDiscountBefore.Location = new Point(8, (gpPurchase.Height / 2) - (rbDiscountBefore.Height / 2) + 5);
                         rbDiscountAfter.Location = new Point(rbDiscountBefore.Width + rbDiscountBefore.Location.X + 5, rbDiscountBefore.Location.Y);
 
                         //gprate
-                        //varIncreaseWidthSize = gprate.Width + (gprate.Width * varPercentageWidth / 100);
-                        //varIncreaseHeightSize = gprate.Height + (gprate.Height * varPercentageHeight / 100);
-                        //gprate.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                         gprate.Location = new Point(gpdiscount.Location.X, gpPayment.Location.Y);
 
                         rbRateBefore.Location = new Point(8, (gprate.Height / 2) - (rbRateBefore.Height / 2) + 5);
@@ -1527,9 +1498,6 @@ namespace ROMS
 
 
                         //groupBox2
-                        //varIncreaseWidthSize = groupBox2.Width + (groupBox2.Width * varPercentageWidth / 100);
-                        //varIncreaseHeightSize = groupBox2.Height + (groupBox2.Height * varPercentageHeight / 100);
-                        //groupBox2.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize-30));
                         groupBox2.Location = new Point(gpdiscount.Location.X+ gpdiscount.Width+5, gpPurchase.Location.Y);
                         
                         tbDetails.Location = new Point(3, gpPayment.Location.Y + gpPayment.Height + 10);
