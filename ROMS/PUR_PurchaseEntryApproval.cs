@@ -2393,10 +2393,16 @@ namespace ROMS
                 //        }
                 //    }
                 //}
-
-                if (Convert.ToBoolean(grdSupplierList.Rows[e.RowIndex].Cells["clmcheck"].Value) == true)
+                if (grdSupplierList.Rows.Count > 0) 
                 {
-                    varCheckCount++;
+                    if (Convert.ToBoolean(grdSupplierList.Rows[e.RowIndex].Cells["clmcheck"].Value) == true)
+                    {
+                        varCheckCount++;
+                    }
+                    else if (Convert.ToBoolean(grdSupplierList.Rows[e.RowIndex].Cells["clmcheck"].Value) == false)
+                    {
+                        varCheckCount--;
+                    }
                 }
             }
             catch (Exception ex)
