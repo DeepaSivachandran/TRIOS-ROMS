@@ -575,7 +575,7 @@
             this.tsbTotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbTotal.Size = new System.Drawing.Size(86, 25);
             this.tsbTotal.Text = "&PO Products :";
-            this.tsbTotal.ToolTipText = "PO Products      ";
+            this.tsbTotal.ToolTipText = "  ";
             // 
             // panel1
             // 
@@ -3625,7 +3625,6 @@
             // 
             // crToolStripTextBox1
             // 
-            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 
@@ -4004,6 +4003,7 @@
             this.clmGRNType.HeaderText = "GRN Type";
             this.clmGRNType.Name = "clmGRNType";
             this.clmGRNType.ReadOnly = true;
+            this.clmGRNType.Visible = false;
             // 
             // clmConvertProduct
             // 

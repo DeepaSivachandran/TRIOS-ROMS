@@ -1786,21 +1786,24 @@ namespace ROMS
                         }
                     }
                 }
-                if (varTeller == "0")
+                if (chkStatus.Checked == true)
                 {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(101);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    blnErrorFlag = true;
-                }
-                if (varChecker == "0")
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(103);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    blnErrorFlag = true;
+                    if (varTeller == "0")
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(101);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrorFlag = true;
+                    }
+                    if (varChecker == "0")
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(103);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrorFlag = true;
+                    }
                 }
                 //if (varEmployeeId=="")
                 //{

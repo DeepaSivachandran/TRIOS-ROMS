@@ -7248,7 +7248,7 @@ namespace ROMS
                             int varDecimal = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["UT_Decimal"].Value);
                             varZero = 0 + objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
                            
-                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "0" )  //Product not received
+                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "0") )  //Product not received
                             {
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == 0)
                                 {

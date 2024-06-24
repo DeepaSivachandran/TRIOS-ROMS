@@ -672,6 +672,15 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
                     }
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != 0 && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "233") //Reason should be amount credit accepted if return quantity entered
+                    {
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(131);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrorFlag = false;
+                    }
                 }
                 if (varQtyErr != 0)
                 {

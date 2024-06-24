@@ -45,8 +45,6 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.grdPurchaseEntryList = new System.Windows.Forms.DataGridView();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlpurchase = new System.Windows.Forms.Panel();
@@ -79,6 +77,8 @@
             this.lblschedleCode = new System.Windows.Forms.Label();
             this.errPurchaseList = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblQueueCount = new System.Windows.Forms.Label();
+            this.clmCheck = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -223,8 +223,8 @@
             this.grdPurchaseEntryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseEntryList.ColumnHeadersVisible = false;
             this.grdPurchaseEntryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmEdit,
-            this.clmCheck});
+            this.clmCheck,
+            this.clmEdit});
             this.grdPurchaseEntryList.EnableHeadersVisualStyles = false;
             this.grdPurchaseEntryList.GridColor = System.Drawing.Color.White;
             this.grdPurchaseEntryList.Location = new System.Drawing.Point(3, 130);
@@ -243,22 +243,6 @@
             this.grdPurchaseEntryList.SelectionChanged += new System.EventHandler(this.GrdPurchaseEntryList_SelectionChanged);
             this.grdPurchaseEntryList.DoubleClick += new System.EventHandler(this.GrdPurchaseEntryList_DoubleClick);
             this.grdPurchaseEntryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseEntryList_KeyDown);
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "GSTR Status";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.pending;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmEdit.Visible = false;
-            // 
-            // clmCheck
-            // 
-            this.clmCheck.HeaderText = "";
-            this.clmCheck.Name = "clmCheck";
-            this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // lblNoRecordsFound
             // 
@@ -312,6 +296,7 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_SearchGrid_CellFormatting);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
@@ -624,6 +609,21 @@
             this.lblQueueCount.TabIndex = 1111198;
             this.lblQueueCount.Text = "0";
             // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.ReadOnly = true;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "GSTR Status";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.pending;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmEdit.Visible = false;
+            // 
             // CP_PurchaseList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -704,7 +704,7 @@
         public System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnTally;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCheck;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
     }
 }
