@@ -190,8 +190,6 @@ namespace ROMS
                     varIncreaseWidthSize = this.pnlpurchaseapproval.Width + (this.pnlpurchaseapproval.Width * varPercentageWidth / 100);
                     varIncreaseHeightSize = this.pnlpurchaseapproval.Height + (this.pnlpurchaseapproval.Height * varPercentageHeight / 100);
 
-
-
                     // Set MDIParent form size
                     this.Location = new Point(0, 0);
                     this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
@@ -199,6 +197,9 @@ namespace ROMS
                     pnlpurchaseapproval.Location = new Point(0, tsBrandList.Height + 7);
                     pnlpurchaseapproval.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
 
+                    varIncreaseWidthSize = this.RPTViewer.Width + (this.RPTViewer.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.RPTViewer.Height + (this.RPTViewer.Height * varPercentageHeight / 100);
+                    RPTViewer.Size = new Size(Convert.ToInt32(varIncreaseWidthSize+5), Convert.ToInt32(varIncreaseHeightSize + FontSize * 2));
 
                     if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
                     {
@@ -309,6 +310,7 @@ namespace ROMS
                     picLoader.Location = new Point(picLoader.Location.X, (grpfilter.Height + 5));
                     lblNoRecordsFound.Location = new Point((screen.WorkingArea.Width - lblNoRecordsFound.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblNoRecordsFound.Height / 2));
 
+                    RPTViewer.Location = new Point(0,DGV_SearchGrid.Location.Y);
                     Font varNewFont = new Font(lblNoRecordsFound.Font.FontFamily, (float)FontSize, lblNoRecordsFound.Font.Style);
                     lblNoRecordsFound.Font = varNewFont;
                     grpfilter.Font = varNewFont;

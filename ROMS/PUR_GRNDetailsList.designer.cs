@@ -77,8 +77,8 @@
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -179,9 +179,10 @@
             this.pnlpurchaseapproval.Controls.Add(this.DGV_SearchGrid);
             this.pnlpurchaseapproval.Controls.Add(this.grdGRNList);
             this.pnlpurchaseapproval.Controls.Add(this.picLoader);
+            this.pnlpurchaseapproval.Controls.Add(this.RPTViewer);
             this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 31);
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
-            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
+            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1363, 673);
             this.pnlpurchaseapproval.TabIndex = 958789;
             // 
             // LV_Supplier
@@ -613,22 +614,22 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // errGRNList
-            // 
-            this.errGRNList.ContainerControl = this;
-            // 
             // RPTViewer
             // 
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(0, 106);
+            this.RPTViewer.Location = new System.Drawing.Point(0, 95);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1354, 564);
+            this.RPTViewer.Size = new System.Drawing.Size(1354, 545);
             this.RPTViewer.TabIndex = 1110000994;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
+            // 
+            // errGRNList
+            // 
+            this.errGRNList.ContainerControl = this;
             // 
             // PUR_GRNDetailsList
             // 
@@ -639,7 +640,6 @@
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlpurchaseapproval);
             this.Controls.Add(this.tsBrandList);
-            this.Controls.Add(this.RPTViewer);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
