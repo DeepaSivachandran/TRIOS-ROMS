@@ -335,6 +335,16 @@ namespace ROMS
                     MainForm.objPUR_GRNDetailsList.MdiParent = this;
                     MainForm.objPUR_GRNDetailsList.Show();
                 }
+                if (PbCurrentForm == "1.5")
+                {
+                    udfnCloseChildForms();
+                    udfnGetDefaultCompany();
+                    if (isClose == false) { return; }
+                    MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
+                    MainForm.objPUR_GRNApprovalList.MdiParent = this;
+                    MainForm.objPUR_GRNApprovalList.Show();
+                    PbCurrentForm = "1.5";
+                }
                 if (PbCurrentForm == "2.1")
                 {
                     udfnCloseChildForms();

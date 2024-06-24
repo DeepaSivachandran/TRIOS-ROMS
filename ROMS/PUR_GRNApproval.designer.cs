@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -145,6 +145,7 @@
             // 
             // pnlinward
             // 
+            this.pnlinward.AutoSize = true;
             this.pnlinward.BackColor = System.Drawing.Color.White;
             this.pnlinward.Controls.Add(this.groupBox3);
             this.pnlinward.Controls.Add(this.grbSalesmanDetails);
@@ -167,7 +168,7 @@
             this.pnlinward.Controls.Add(this.btnClose);
             this.pnlinward.Location = new System.Drawing.Point(0, 29);
             this.pnlinward.Name = "pnlinward";
-            this.pnlinward.Size = new System.Drawing.Size(1354, 645);
+            this.pnlinward.Size = new System.Drawing.Size(1354, 643);
             this.pnlinward.TabIndex = 36;
             // 
             // groupBox3
@@ -328,7 +329,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(921, 614);
+            this.label3.Location = new System.Drawing.Point(896, 614);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 1111219;
@@ -338,7 +339,7 @@
             // 
             this.textBox9.BackColor = System.Drawing.Color.LightCoral;
             this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(894, 616);
+            this.textBox9.Location = new System.Drawing.Point(863, 616);
             this.textBox9.MaxLength = 50;
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
@@ -349,7 +350,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(799, 614);
+            this.label2.Location = new System.Drawing.Point(777, 614);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 1111217;
@@ -359,7 +360,7 @@
             // 
             this.textBox8.BackColor = System.Drawing.Color.MediumAquamarine;
             this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(772, 616);
+            this.textBox8.Location = new System.Drawing.Point(744, 616);
             this.textBox8.MaxLength = 50;
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
@@ -370,7 +371,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(671, 614);
+            this.label1.Location = new System.Drawing.Point(668, 614);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 20);
             this.label1.TabIndex = 1111215;
@@ -380,7 +381,7 @@
             // 
             this.textBox7.BackColor = System.Drawing.Color.Moccasin;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(644, 616);
+            this.textBox7.Location = new System.Drawing.Point(635, 616);
             this.textBox7.MaxLength = 50;
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
@@ -696,9 +697,9 @@
             this.groupBox10.Controls.Add(this.lblFivetyPercentage);
             this.groupBox10.Controls.Add(this.txtRDPercentageCheck);
             this.groupBox10.Controls.Add(this.txtORPercentageCheck);
-            this.groupBox10.Location = new System.Drawing.Point(628, 571);
+            this.groupBox10.Location = new System.Drawing.Point(619, 571);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(252, 42);
+            this.groupBox10.Size = new System.Drawing.Size(211, 42);
             this.groupBox10.TabIndex = 1111210;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Shelf Life";
@@ -707,7 +708,7 @@
             // 
             this.lbltwentyfiveper.AutoSize = true;
             this.lbltwentyfiveper.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltwentyfiveper.Location = new System.Drawing.Point(170, 18);
+            this.lbltwentyfiveper.Location = new System.Drawing.Point(158, 18);
             this.lbltwentyfiveper.Name = "lbltwentyfiveper";
             this.lbltwentyfiveper.Size = new System.Drawing.Size(45, 20);
             this.lbltwentyfiveper.TabIndex = 1111159;
@@ -717,7 +718,7 @@
             // 
             this.lblFivetyPercentage.AutoSize = true;
             this.lblFivetyPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFivetyPercentage.Location = new System.Drawing.Point(43, 18);
+            this.lblFivetyPercentage.Location = new System.Drawing.Point(49, 18);
             this.lblFivetyPercentage.Name = "lblFivetyPercentage";
             this.lblFivetyPercentage.Size = new System.Drawing.Size(45, 20);
             this.lblFivetyPercentage.TabIndex = 1111158;
@@ -727,7 +728,7 @@
             // 
             this.txtRDPercentageCheck.BackColor = System.Drawing.Color.Red;
             this.txtRDPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRDPercentageCheck.Location = new System.Drawing.Point(143, 20);
+            this.txtRDPercentageCheck.Location = new System.Drawing.Point(125, 20);
             this.txtRDPercentageCheck.MaxLength = 50;
             this.txtRDPercentageCheck.Multiline = true;
             this.txtRDPercentageCheck.Name = "txtRDPercentageCheck";
@@ -770,14 +771,14 @@
             this.grdGrnApproval.AllowUserToResizeRows = false;
             this.grdGrnApproval.BackgroundColor = System.Drawing.Color.White;
             this.grdGrnApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGrnApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle52.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle52.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle52.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle52.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle52.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle52.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGrnApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle52;
             this.grdGrnApproval.ColumnHeadersHeight = 30;
             this.grdGrnApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGrnApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -799,22 +800,22 @@
             this.clmUnitDecimal,
             this.clmStatus,
             this.clmReason});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle53.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle53;
             this.grdGrnApproval.EnableHeadersVisualStyles = false;
             this.grdGrnApproval.GridColor = System.Drawing.Color.White;
-            this.grdGrnApproval.Location = new System.Drawing.Point(6, 135);
+            this.grdGrnApproval.Location = new System.Drawing.Point(9, 135);
             this.grdGrnApproval.Name = "grdGrnApproval";
             this.grdGrnApproval.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle54;
             this.grdGrnApproval.RowTemplate.Height = 25;
             this.grdGrnApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnApproval.Size = new System.Drawing.Size(1335, 434);
@@ -951,7 +952,7 @@
             // txttotalitem
             // 
             this.txttotalitem.Enabled = false;
-            this.txttotalitem.Location = new System.Drawing.Point(1104, 580);
+            this.txttotalitem.Location = new System.Drawing.Point(1111, 580);
             this.txttotalitem.Name = "txttotalitem";
             this.txttotalitem.ReadOnly = true;
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
@@ -961,7 +962,7 @@
             // lbltotalproducts
             // 
             this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(1010, 583);
+            this.lbltotalproducts.Location = new System.Drawing.Point(1018, 580);
             this.lbltotalproducts.Name = "lbltotalproducts";
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 958821;
@@ -969,11 +970,11 @@
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(83, 580);
+            this.txtRemark.Location = new System.Drawing.Point(71, 580);
             this.txtRemark.MaxLength = 200;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(411, 56);
+            this.txtRemark.Size = new System.Drawing.Size(425, 56);
             this.txtRemark.TabIndex = 0;
             this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
             this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
@@ -982,7 +983,7 @@
             // lblnarration
             // 
             this.lblnarration.AutoSize = true;
-            this.lblnarration.Location = new System.Drawing.Point(18, 580);
+            this.lblnarration.Location = new System.Drawing.Point(9, 580);
             this.lblnarration.Name = "lblnarration";
             this.lblnarration.Size = new System.Drawing.Size(56, 20);
             this.lblnarration.TabIndex = 958812;
@@ -993,7 +994,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.approve;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1172, 579);
+            this.btnSave.Location = new System.Drawing.Point(1179, 580);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 3;
@@ -1010,7 +1011,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1266, 579);
+            this.btnClose.Location = new System.Drawing.Point(1269, 580);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 4;
@@ -1035,6 +1036,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.lblEdit);

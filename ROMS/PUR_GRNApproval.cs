@@ -25,9 +25,21 @@ namespace ROMS
         public PUR_GRNApproval()
         {
             InitializeComponent();
+            //Screen Resolution Change Added By Sathish
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
-
-        
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnclose()
         {
             try
@@ -484,6 +496,7 @@ namespace ROMS
         {
             try
             {
+                AdjustFormSize();
                 udfnLastSeen();
                 dtApproval.TableName = "TRN_GRNApproval_Product";
                 dtApproval.Columns.Add("GRNAPR_PRID", typeof(int));
@@ -516,6 +529,226 @@ namespace ROMS
                 udfnsupplierLoad();
                 udfnEdit();
                 //udfnStatus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void AdjustFormSize()
+        {
+            try
+            {
+                string varPercentage = ""; int GridLocation = 0;
+                // Get the primary screen
+                Screen screen = Screen.PrimaryScreen;
+                if (Convert.ToInt32(screen.WorkingArea.Width) == 1920 || Convert.ToInt32(screen.WorkingArea.Width) == 1680)
+                {
+                    GridLocation = 17;
+                }
+                else if (Convert.ToInt32(screen.WorkingArea.Width) == 1600)
+                {
+                    GridLocation = 2;
+                }
+                else if (Convert.ToInt32(screen.WorkingArea.Width) == 1440)
+                {
+                    GridLocation = 7;
+                }
+                else if (Convert.ToInt32(screen.WorkingArea.Width) == 1400)
+                {
+                    GridLocation = 25;
+                }
+                if (Convert.ToInt32(screen.WorkingArea.Width) >= 1366)
+                {
+                    decimal FontSize = 0;
+                    decimal varPercentageWidth = 0, varPercentageHeight = 0,
+                        varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
+                    varPercentage = objValidation.udfhScreenResolution(this.pnlinward, this);
+                    string[] value = varPercentage.Split(',');
+                    varPercentageWidth = Convert.ToDecimal(value[0]);
+                    varPercentageHeight = Convert.ToDecimal(value[1]);
+                    FontSize = Convert.ToDecimal(value[2]);
+                    foreach (Control varTSM in this.Controls)
+                    {
+                        if (varTSM is ToolStrip)
+                        {
+                            Font newFont = new Font(varTSM.Font.FontFamily, (float)FontSize, varTSM.Font.Style);
+                            varTSM.Font = newFont;
+                        }
+                    }
+                    tsInwardList.Height = Convert.ToInt32(FontSize * 2);
+                    varIncreaseWidthSize = this.pnlinward.Width + (this.pnlinward.Width * varPercentageWidth / 100);
+                    varIncreaseHeightSize = this.pnlinward.Height + (this.pnlinward.Height * varPercentageHeight / 100);
+
+                    // Set MDIParent form size
+                    this.Location = new Point(0, 0);
+                    this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                    pnlinward.Location = new Point(0, tsInwardList.Height);
+                    pnlinward.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize + 7));
+
+
+                    if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
+                    {
+                        //    grdGRNList.Size = new Size(this.grdGRNList.Width, this.grdGRNList.Height);
+                        //    DGV_SearchGrid.Size = new Size(this.DGV_SearchGrid.Width, this.DGV_SearchGrid.Height);
+                    }
+                    else
+                    {
+                        foreach (Control controls in pnlinward.Controls)
+                        {
+                            if (controls is GroupBox)
+                            {
+                                foreach (Control varGroupBox in controls.Controls)
+                                {
+                                    if (varGroupBox is TextBox)
+                                    {
+                                        Size textSize = TextRenderer.MeasureText(varGroupBox.Text, varGroupBox.Font);
+                                        float scaleFactor = (float)FontSize / (float)varGroupBox.Font.Size;
+                                        varGroupBox.Font = new Font(varGroupBox.Font.FontFamily, varGroupBox.Font.Size * scaleFactor);
+                                        if (controls.Name != "groupBox10")
+                                        {
+                                            varGroupBox.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                        }
+                                        varGroupBox.Refresh();
+                                    }
+                                    if (varGroupBox is Label)
+                                    {
+                                        Font newFont = new Font(varGroupBox.Font.FontFamily, (float)FontSize-2, varGroupBox.Font.Style);
+                                        varGroupBox.Font = newFont;
+                                        int newHeight = TextRenderer.MeasureText(varGroupBox.Text, newFont).Height;
+                                        varGroupBox.Height = newHeight;
+                                    }
+                                    varIncreaseWidthSize = varGroupBox.Width + (varGroupBox.Width * varPercentageWidth / 100);
+                                    varIncreaseHeightSize = varGroupBox.Height + (varGroupBox.Height * varPercentageHeight / 100);
+                                    varGroupBox.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                }
+                                /*
+                                if (controls.Name == "groupBox1")
+                                {
+                                    
+                                }
+                                if (controls.Name == "groupBox3")
+                                {
+
+                                }
+                                if (controls.Name == "groupBox2")
+                                {
+
+                                }
+                                if (controls.Name == "grbSalesmanDetails")
+                                {
+
+                                }
+                                if (controls.Name == "groupBox10")
+                                {
+
+                                }
+                                */
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if (controls is DataGridView)
+                            {
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if (controls is TextBox)
+                            {
+                                Size textSize = TextRenderer.MeasureText(controls.Text, controls.Font);
+                                float scaleFactor = (float)FontSize / (float)controls.Font.Size;
+                                controls.Font = new Font(controls.Font.FontFamily, controls.Font.Size * scaleFactor);
+                                if (controls.Name == "txttotalitem")
+                                {
+                                    controls.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                }
+                                controls.Refresh();
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if (controls is Button)
+                            {
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                            }
+                            if (controls is Label || controls is Button || controls is CheckBox)
+                            {
+                                Font newFont = new Font(controls.Font.FontFamily, (float)FontSize, controls.Font.Style);
+                                controls.Font = newFont;
+                            }
+                        }
+                        groupBox3.Location = new Point(groupBox1.Location.X + groupBox1.Width + 8, groupBox1.Location.Y);
+                        groupBox2.Location = new Point(groupBox3.Location.X + groupBox3.Width + 8, groupBox1.Location.Y);
+                        grbSalesmanDetails.Location = new Point(groupBox2.Location.X + groupBox2.Width + 8, groupBox1.Location.Y);
+                        grdGrnApproval.Location = new Point(groupBox1.Location.X, groupBox1.Location.Y + groupBox1.Height + 7);
+                        lblnarration.Location = new Point(groupBox1.Location.X, grdGrnApproval.Location.Y + grdGrnApproval.Height + 12);
+                        txtRemark.Location = new Point(lblnarration.Location.X + lblnarration.Width + 6, lblnarration.Location.Y);
+                        btnRemarks.Location = new Point(txtRemark.Location.X + txtRemark.Width + 6, lblnarration.Location.Y);
+                        groupBox10.Location = new Point(btnRemarks.Location.X + btnRemarks.Width + 6, lblnarration.Location.Y - 9);
+
+                        textBox7.Location = new Point(groupBox10.Location.X + 16, groupBox10.Location.Y + groupBox10.Height + 3);
+                        label1.Location = new Point(textBox7.Location.X + textBox7.Width + 6, textBox7.Location.Y - 2);
+                        textBox8.Location = new Point(label1.Location.X + label1.Width + 9, textBox7.Location.Y);
+                        label2.Location = new Point(textBox8.Location.X + textBox8.Width + 6, label1.Location.Y);
+                        textBox9.Location = new Point(label2.Location.X + label2.Width + 6, textBox7.Location.Y);
+                        label3.Location = new Point(textBox9.Location.X + textBox9.Width + 6, label1.Location.Y);
+
+                        lbltotalproducts.Location = new Point(btnRemarks.Location.X + txtRemark.Width + 90, lblnarration.Location.Y);
+                        txttotalitem.Location = new Point(lbltotalproducts.Location.X + lbltotalproducts.Width + 6, lblnarration.Location.Y);
+                        btnSave.Location = new Point(txttotalitem.Location.X + txttotalitem.Width + 6, lblnarration.Location.Y);
+                        btnClose.Location = new Point(btnSave.Location.X + btnSave.Width + 6, lblnarration.Location.Y);
+
+                        lblFivetyPercentage.Location = new Point(txtORPercentageCheck.Location.X + txtORPercentageCheck.Width + 3, txtORPercentageCheck.Location.Y - 2);
+                        lbltwentyfiveper.Location = new Point(txtRDPercentageCheck.Location.X + txtRDPercentageCheck.Width + 6, lblFivetyPercentage.Location.Y);
+
+                        txtDConcern.Location = new Point(txtDConcern.Location.X, txtDConcern.Location.Y + 2);
+                        txtDPurchaseType.Location = new Point(txtDConcern.Location.X, txtDConcern.Location.Y + txtDConcern.Height);
+                        txtDGrnDate.Location = new Point(txtDConcern.Location.X, txtDPurchaseType.Location.Y + txtDPurchaseType.Height);
+                        txtDGrnNo.Location = new Point(txtDConcern.Location.X, txtDGrnDate.Location.Y + txtDGrnDate.Height);
+                        txtConcern.Location = new Point(txtDConcern.Location.X + txtDConcern.Width, txtDConcern.Location.Y);
+                        txtPurchaseType.Location = new Point(txtConcern.Location.X, txtDPurchaseType.Location.Y);
+                        txtGrnDate.Location = new Point(txtConcern.Location.X, txtDGrnDate.Location.Y);
+                        txtGrnNo.Location = new Point(txtConcern.Location.X, txtDGrnNo.Location.Y);
+                        txtDVoucherDate.Location = new Point(txtConcern.Location.X + txtConcern.Width, txtDConcern.Location.Y);
+                        txtDVoucherNo.Location = new Point(txtDVoucherDate.Location.X, txtDPurchaseType.Location.Y);
+                        txtDInvoiceDate.Location = new Point(txtDVoucherDate.Location.X, txtDGrnDate.Location.Y);
+                        txtDInvoiceNo.Location = new Point(txtDVoucherDate.Location.X, txtDGrnNo.Location.Y);
+                        txtVoucherDate.Location = new Point(txtDVoucherDate.Location.X + txtDVoucherDate.Width, txtDConcern.Location.Y);
+                        txtVoucherNo.Location = new Point(txtVoucherDate.Location.X, txtDPurchaseType.Location.Y);
+                        txtInvoiceDate.Location = new Point(txtVoucherDate.Location.X, txtDGrnDate.Location.Y);
+                        txtInvoiceNo.Location = new Point(txtVoucherDate.Location.X, txtDInvoiceNo.Location.Y);
+
+                        textBox5.Location = new Point(textBox5.Location.X, textBox5.Location.Y + 2);
+                        textBox1.Location = new Point(textBox5.Location.X, textBox5.Location.Y + textBox5.Height);
+                        textBox3.Location = new Point(textBox5.Location.X, textBox1.Location.Y + textBox1.Height);
+                        textBox6.Location = new Point(textBox5.Location.X, textBox3.Location.Y + textBox3.Height);
+                        txtEnteredBy.Location = new Point(textBox5.Location.X + textBox5.Width, textBox5.Location.Y);
+                        txtCompletedBy.Location = new Point(txtEnteredBy.Location.X, textBox1.Location.Y);
+                        txtVerifiedBy1.Location = new Point(txtEnteredBy.Location.X, textBox3.Location.Y);
+                        txtVerifiedBy2.Location = new Point(txtEnteredBy.Location.X, textBox6.Location.Y);
+
+                        grdGrnApproval.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdGrnApproval.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        grdGrnApproval.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                    }
+
+                    lblSuppliername.Location = new Point(lblSuppliername.Location.X, lblSuppliername.Location.Y + 2);
+                    lblSupplierCity.Location = new Point(lblSuppliername.Location.X, lblSuppliername.Location.Y + lblSuppliername.Height + 2);
+                    lblsupplierGST.Location = new Point(lblSuppliername.Location.X, lblSupplierCity.Location.Y + lblSupplierCity.Height + 2);
+                    lblsupplierpayment.Location = new Point(lblSuppliername.Location.X, lblsupplierGST.Location.Y + lblsupplierGST.Height + 2);
+                    lblsupplierScheduletype.Location = new Point(lblSuppliername.Location.X, lblsupplierpayment.Location.Y + lblsupplierpayment.Height + 2);
+                    lblSupplierOrderpolicy.Location = new Point(lblSuppliername.Location.X, lblsupplierScheduletype.Location.Y + lblsupplierScheduletype.Height + 2);
+                    lblReturn.Location = new Point(lblsupplierpayment.Location.X + lblsupplierpayment.Width + 110, lblsupplierpayment.Location.Y);
+
+                    lblSalesmanName.Location = new Point(lblSalesmanName.Location.X, lblSalesmanName.Location.Y + 2);
+                    lblMobileNo.Location = new Point(lblSalesmanName.Location.X, lblSalesmanName.Location.Y + lblSalesmanName.Height + 2);
+                    lblWhatsAppNo.Location = new Point(lblSalesmanName.Location.X, lblMobileNo.Location.Y + lblMobileNo.Height + 2);
+                }
             }
             catch (Exception ex)
             {

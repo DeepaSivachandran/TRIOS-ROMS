@@ -82,6 +82,7 @@ namespace ROMS
         {
             try
             {
+                //AdjustFormSize();
                 MainForm objMainForm = new MainForm();
                 objMainForm.udfnGetDefaultCompany();
                 btnDC.Enabled = false;
@@ -111,6 +112,201 @@ namespace ROMS
             finally
             {
               
+            }
+        }
+        private void AdjustFormSize()
+        {
+            try
+            {
+                string varPercentage = "";
+                // Get the primary screen
+                Screen screen = Screen.PrimaryScreen;
+                if (Convert.ToInt32(screen.WorkingArea.Width) >= 1366)
+                {
+                    decimal FontSize = 0;
+                    decimal varPercentageWidth = 0, varPercentageHeight = 0,
+                    varIncreaseWidthSize = 0, varIncreaseHeightSize = 0;
+                    Panel varPanel = new Panel();
+                    varPanel.Size = new Size(this.Width, this.Height);
+                    varPercentage = objValidation.udfhScreenResolution(varPanel, this);
+                    string[] value = varPercentage.Split(',');
+                    varPercentageWidth = Convert.ToDecimal(value[0]);
+                    varPercentageHeight = Convert.ToDecimal(value[1]);
+                    FontSize = Convert.ToDecimal(value[2]);
+
+                    varIncreaseWidthSize = varPanel.Width + (varPanel.Width / 2 * varPercentageWidth / 100);
+                    varIncreaseHeightSize = varPanel.Height + (varPanel.Height / 2 * varPercentageHeight / 100);
+                    // Set MDIParent form size
+                    //this.Location = new Point(0, 0);
+                    this.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+
+                    if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
+                    {
+                        //grdGRNList.Size = new Size(this.grdGRNList.Width, this.grdGRNList.Height);
+                        //DGV_SearchGrid.Size = new Size(this.DGV_SearchGrid.Width, this.DGV_SearchGrid.Height);
+                    }
+                    else
+                    {
+                        varIncreaseWidthSize = gpGRNEntry.Width + (gpGRNEntry.Width / 2 * varPercentageWidth / 100);
+                        varIncreaseHeightSize = gpGRNEntry.Height + (gpGRNEntry.Height / 2 * varPercentageHeight / 100);
+                        gpGRNEntry.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        
+                        foreach (Control controls in gpGRNEntry.Controls)
+                        {
+                            if (controls is TextBox || controls is ComboBox || controls is DateTimePicker)
+                            {
+                                Size textSize = TextRenderer.MeasureText(controls.Text, controls.Font);
+                                float scaleFactor = (float)FontSize / (float)controls.Font.Size;
+                                controls.Font = new Font(controls.Font.FontFamily, controls.Font.Size * scaleFactor);
+                                controls.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                controls.Refresh();
+
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(controls.Width + Convert.ToInt32(FontSize*3), controls.Height);
+                            }
+                            if (controls is Label)
+                            {
+                                Font newFont = new Font(controls.Font.FontFamily, (float)FontSize, controls.Font.Style);
+                                controls.Font = newFont;
+                                int newHeight = TextRenderer.MeasureText(controls.Text, newFont).Height;
+                                controls.Height = newHeight;
+                            }
+                            if (controls is GroupBox)
+                            {
+                                foreach (Control control1 in controls.Controls)
+                                {
+                                    if (control1 is DataGridView)
+                                    {
+                                        varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
+                                        varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
+                                        control1.Size = new Size(control1.Width + Convert.ToInt32(FontSize * 6), control1.Height + Convert.ToInt32(FontSize * 5));
+                                    }
+                                    if (control1 is TextBox || control1 is ComboBox || control1 is DateTimePicker)
+                                    {
+                                        Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
+                                        float scaleFactor = (float)FontSize / (float)control1.Font.Size;
+                                        control1.Font = new Font(controls.Font.FontFamily, control1.Font.Size * scaleFactor-2);
+                                        control1.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                        control1.Refresh();
+
+                                        varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
+                                        varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
+                                        control1.Size = new Size(control1.Width + Convert.ToInt32(FontSize*2), control1.Height);
+                                    }
+                                }
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(controls.Width + Convert.ToInt32(FontSize*5), controls.Height + Convert.ToInt32(FontSize*5));
+                            }
+                            if (controls is DataGridView)
+                            {
+                                if (controls.Name == "grdPODetails" || controls.Name == "grdReurnDC")
+                                {
+                                    varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                    varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                    controls.Size = new Size(controls.Width + Convert.ToInt32(FontSize*2), Convert.ToInt32(varIncreaseHeightSize - FontSize));
+                                }
+                                else if(controls.Name == "grdUnitList")
+                                {
+                                    varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                    varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                    controls.Size = new Size(controls.Width, Convert.ToInt32(varIncreaseWidthSize) + Convert.ToInt32(FontSize));
+                                }
+                            }
+                        }
+                        //varIncreaseWidthSize = grdRepDetails.Width + (grdRepDetails.Width * varPercentageWidth / 100);
+                        //varIncreaseHeightSize = grdRepDetails.Height + (grdRepDetails.Height * varPercentageHeight / 100);
+                        //grdRepDetails.Size = new Size(Convert.ToInt32(varIncreaseWidthSize - FontSize*2), Convert.ToInt32(varIncreaseHeightSize - FontSize*2));
+                        
+                        foreach (Control controls in this.Controls)
+                        {
+                            if(controls is Button)
+                            {
+                                Font newFont = new Font(controls.Font.FontFamily, (float)FontSize, controls.Font.Style);
+                                controls.Font = newFont;
+                                varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
+                                varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
+                                controls.Size = new Size(controls.Width + Convert.ToInt32(FontSize), controls.Height+Convert.ToInt32(FontSize));
+                            }
+                        }
+                        //Set Location
+                        label10.Location = new Point(label10.Location.X, label10.Location.Y + 5);
+                        lblDEVisitDay.Location = new Point(label10.Location.X, label10.Location.Y + label10.Height + 15);
+                        label1.Location = new Point(label10.Location.X, lblDEVisitDay.Location.Y + lblDEVisitDay.Height + 15);
+                        label6.Location = new Point(label10.Location.X, label1.Location.Y + label1.Height + 15);
+
+                        cmbConcern.Location = new Point(label10.Location.X + label10.Width + 15, label10.Location.Y - 3);
+                        dpGRNDate.Location = new Point(cmbConcern.Location.X, lblDEVisitDay.Location.Y - 3);
+                        txtgrnno.Location = new Point(cmbConcern.Location.X, label1.Location.Y - 3);
+                        cmbOrderType.Location = new Point(cmbConcern.Location.X, label6.Location.Y - 3);
+                        btnViewPO.Location = new Point(cmbOrderType.Location.X + cmbOrderType.Width + 1, txtgrnno.Location.Y + txtgrnno.Height + 3);
+
+                        lblDESupplier.Location = new Point(cmbConcern.Location.X + cmbConcern.Width + 5, label10.Location.Y);
+                        label4.Location = new Point(lblDESupplier.Location.X, lblDEVisitDay.Location.Y);
+                        label3.Location = new Point(lblDESupplier.Location.X, label1.Location.Y);
+                        label5.Location = new Point(lblDESupplier.Location.X, label6.Location.Y);
+
+                        txtSupplier.Location = new Point(lblDESupplier.Location.X + lblDESupplier.Width + 30, cmbConcern.Location.Y);
+                        dpinvoicedate.Location = new Point(txtSupplier.Location.X, dpGRNDate.Location.Y);
+                        txtInvoiceno.Location = new Point(txtSupplier.Location.X, txtgrnno.Location.Y);
+                        txtInvoiceamt.Location = new Point(txtSupplier.Location.X, cmbOrderType.Location.Y);
+
+                        grdUnitList.Location = new Point(txtInvoiceamt.Location.X + txtInvoiceamt.Width + 6, cmbOrderType.Location.Y);
+                        grdPODetails.Location = new Point(cmbConcern.Location.X, cmbOrderType.Location.Y + cmbOrderType.Height + 10);
+                        grdReurnDC.Location = new Point(label10.Location.X, grdPODetails.Location.Y + grdPODetails.Height + 7);
+
+                        groupBox2.Location = new Point(txtSupplier.Location.X + txtSupplier.Width + 8, cmbConcern.Location.Y);
+                        grpSalesmanDetails.Location = new Point(groupBox2.Location.X + groupBox2.Width + 8, cmbConcern.Location.Y);
+                        grpRepresentativeDetails.Location = new Point(groupBox2.Location.X, groupBox2.Location.Y + groupBox2.Height + 5);
+
+                        label8.Location = new Point(grpSalesmanDetails.Location.X + grpSalesmanDetails.Width + 5, label10.Location.Y + 10);
+                        label9.Location = new Point(label8.Location.X, label8.Location.Y + label8.Height + 10);
+                        label2.Location = new Point(label8.Location.X, label9.Location.Y + label9.Height + 10);
+
+                        txtLoadingCharge.Location = new Point(label8.Location.X + label8.Width + 3, label8.Location.Y - 3);
+                        txtFrieghtamount.Location = new Point(txtLoadingCharge.Location.X, label9.Location.Y- 3);
+                        cmbPayment.Location = new Point(txtLoadingCharge.Location.X, label2.Location.Y - 3);
+
+                        btnSave.Location = new Point(label2.Location.X, gpGRNEntry.Height + 3);
+                        btnClose.Location = new Point(btnSave.Location.X + btnSave.Width + 6, btnSave.Location.Y);
+                        btnDC.Location = new Point(gpGRNEntry.Location.X , gpGRNEntry.Height + 3); ;
+                        btnDamage.Location = new Point(btnDC.Location.X + btnDC.Width + 6, btnDC.Location.Y);
+
+                        textBox18.Location = new Point(3,22);
+                        textBox16.Location = new Point(textBox18.Location.X, textBox18.Location.Y+ textBox18.Height+1);
+                        textBox14.Location = new Point(textBox18.Location.X, textBox16.Location.Y + textBox16.Height + 1);
+                        txtSalesManName.Location = new Point(textBox18.Location.X+textBox18.Width+1, textBox18.Location.Y);
+                        txtSalesManMobile.Location = new Point(txtSalesManName.Location.X, textBox16.Location.Y);
+                        txtSalesManwhatsapp.Location = new Point(txtSalesManName.Location.X, textBox14.Location.Y);
+
+                        grdPODetails.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdRepDetails.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdUnitList.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdReurnDC.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+
+                        grdPODetails.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        grdRepDetails.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        grdUnitList.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        grdReurnDC.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+
+                        lblFinishedNoRecord.Location = new Point((screen.WorkingArea.Width - lblFinishedNoRecord.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblFinishedNoRecord.Height / 2));
+                        lblDCFinishedNoRecord.Location = new Point((screen.WorkingArea.Width - lblDCFinishedNoRecord.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblDCFinishedNoRecord.Height / 2));
+
+                        //Set Location and Size For Listview
+                        varIncreaseWidthSize = this.LV_Supplier.Width + (this.LV_Supplier.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.LV_Supplier.Height + (this.LV_Supplier.Height * varPercentageHeight / 100);
+                        LV_Supplier.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        Font LvFont = new Font(LV_Supplier.Font.FontFamily, (float)FontSize, LV_Supplier.Font.Style);
+                        LV_Supplier.Font = LvFont;
+                        LV_Supplier.Location = new Point(txtSupplier.Location.X + 3, txtSupplier.Location.Y + txtSupplier.Height + 2);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnDateSet()
