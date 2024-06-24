@@ -273,7 +273,7 @@ namespace ROMS
                             grdGRNList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             grdGRNList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+                            /*
                             grdGRNList.Columns["S.No."].ReadOnly = true;
                             grdGRNList.Columns["Concern"].ReadOnly = true;
                             grdGRNList.Columns["GRN No."].ReadOnly = true;
@@ -295,7 +295,7 @@ namespace ROMS
                             grdGRNList.Columns["clmPrint"].ReadOnly = true;
                             grdGRNList.Columns["Tot Pro"].ReadOnly = true;
                             grdGRNList.Columns["Payment Mode"].ReadOnly = true;
-
+                            */
                         }
                         else
                         {
