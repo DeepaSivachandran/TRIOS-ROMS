@@ -6780,6 +6780,7 @@ namespace ROMS
                                         objTRN_PurchaseEntry.paraGRNID = Convert.ToInt32(pbGRNNo);
                                         objTRN_PurchaseEntry.paraPOID = Convert.ToString(pbPONO);
                                         objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
+                                        objTRN_PurchaseEntry.paraCompletedBy = Convert.ToInt32(varUserID);
                                         objTRN_PurchaseEntry.Purchase_Products_Details = objPurchaseentryDetails;
                                         result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                                         objspdservice.CloseConnection();

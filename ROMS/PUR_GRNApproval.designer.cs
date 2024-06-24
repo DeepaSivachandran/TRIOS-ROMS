@@ -915,6 +915,7 @@
             this.Sno.Frozen = true;
             this.Sno.HeaderText = "S.No";
             this.Sno.Name = "Sno";
+            this.Sno.ReadOnly = true;
             this.Sno.Width = 50;
             // 
             // Column2

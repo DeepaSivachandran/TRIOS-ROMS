@@ -25,6 +25,7 @@ namespace ROMS.Model
         public string paraToDate { get; set; } = "";
         public string paraSkipped { get; set; } = "";
         public int paraCompanyId { get; set; } = 0;
+        public int paraCompletedBy { get; set; } = 0;
         public int paraSupplierID { get; set; } = 0;
         public int paraScheduleID { get; set; } = 0;
         public int paraBrokerID { get; set; } = 0;
