@@ -443,7 +443,6 @@
             this.grdBatchConversion.GridColor = System.Drawing.Color.White;
             this.grdBatchConversion.Location = new System.Drawing.Point(9, 77);
             this.grdBatchConversion.Name = "grdBatchConversion";
-            this.grdBatchConversion.ReadOnly = true;
             this.grdBatchConversion.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
@@ -462,7 +461,6 @@
             this.clmSno.Frozen = true;
             this.clmSno.HeaderText = "S.No.";
             this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
             this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmSno.Width = 50;
@@ -472,14 +470,12 @@
             this.clmPicode.Frozen = true;
             this.clmPicode.HeaderText = "P.I Code";
             this.clmPicode.Name = "clmPicode";
-            this.clmPicode.ReadOnly = true;
             // 
             // clmProduct
             // 
             this.clmProduct.Frozen = true;
             this.clmProduct.HeaderText = "Product Name";
             this.clmProduct.Name = "clmProduct";
-            this.clmProduct.ReadOnly = true;
             this.clmProduct.Width = 300;
             // 
             // clmMrp
@@ -487,14 +483,12 @@
             this.clmMrp.Frozen = true;
             this.clmMrp.HeaderText = "MRP";
             this.clmMrp.Name = "clmMrp";
-            this.clmMrp.ReadOnly = true;
             // 
             // clmExpiryDate
             // 
             this.clmExpiryDate.Frozen = true;
             this.clmExpiryDate.HeaderText = "Expiry Date";
             this.clmExpiryDate.Name = "clmExpiryDate";
-            this.clmExpiryDate.ReadOnly = true;
             this.clmExpiryDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // clmBatchNo
@@ -502,14 +496,12 @@
             this.clmBatchNo.Frozen = true;
             this.clmBatchNo.HeaderText = "Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
-            this.clmBatchNo.ReadOnly = true;
             // 
             // clmQty
             // 
             this.clmQty.Frozen = true;
             this.clmQty.HeaderText = "Qty";
             this.clmQty.Name = "clmQty";
-            this.clmQty.ReadOnly = true;
             this.clmQty.Width = 75;
             // 
             // clmPRID
@@ -517,7 +509,6 @@
             this.clmPRID.Frozen = true;
             this.clmPRID.HeaderText = "PRID";
             this.clmPRID.Name = "clmPRID";
-            this.clmPRID.ReadOnly = true;
             this.clmPRID.Visible = false;
             // 
             // clmRKID
@@ -525,7 +516,6 @@
             this.clmRKID.Frozen = true;
             this.clmRKID.HeaderText = "RKID";
             this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
             this.clmRKID.Visible = false;
             // 
             // clmSLID
@@ -533,7 +523,6 @@
             this.clmSLID.Frozen = true;
             this.clmSLID.HeaderText = "SLID";
             this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
             this.clmSLID.Visible = false;
             // 
             // shelflife
@@ -541,7 +530,6 @@
             this.shelflife.Frozen = true;
             this.shelflife.HeaderText = "shelflife";
             this.shelflife.Name = "shelflife";
-            this.shelflife.ReadOnly = true;
             this.shelflife.Visible = false;
             // 
             // clmDecimal
@@ -549,7 +537,6 @@
             this.clmDecimal.Frozen = true;
             this.clmDecimal.HeaderText = "Decimal";
             this.clmDecimal.Name = "clmDecimal";
-            this.clmDecimal.ReadOnly = true;
             this.clmDecimal.Visible = false;
             // 
             // clmRemove
@@ -558,7 +545,6 @@
             this.clmRemove.HeaderText = "Remove";
             this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
             // 
             // btnClose
             // 

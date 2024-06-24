@@ -23,6 +23,8 @@ namespace ROMS.Model
         public int paraPRID { get; set; } = 0;
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
+        public int ParaFlag { get; set; } = 0;
+        public int paraCompletedby { get; set; } = 0;
         public DataTable paraStockTransfer { get; set; } = null;
     }
 }

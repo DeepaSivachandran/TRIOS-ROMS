@@ -712,6 +712,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["RKID"].Visible = false;
                 DGV_SearchGrid.Columns["SHID"].Visible = false;
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -1092,22 +1093,25 @@ namespace ROMS
         {
             try
             {
-                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
-                if (vScrollbar.Visible == true)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in DGV.Columns)
+                    var vScrollbar = grdStockHold.Controls.OfType<VScrollBar>().First();
+                    if (vScrollbar.Visible == true)
                     {
-                        visibleColumns.Add(col.Index);
-                    }
-                    int I = DGV_SearchGrid.Rows.Count - 1;
-                    if (I == 0)
-                    {
-                        int rowIndex = 1;
-                        DGV_SearchGrid.Rows.Add();
-                        for (int i = 0; i < visibleColumns.Count; i++)
+                        List<int> visibleColumns = new List<int>();
+                        foreach (DataGridViewColumn col in DGV.Columns)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            visibleColumns.Add(col.Index);
+                        }
+                        int I = DGV_SearchGrid.Rows.Count - 1;
+                        if (I == 0)
+                        {
+                            int rowIndex = 1;
+                            DGV_SearchGrid.Rows.Add();
+                            for (int i = 0; i < visibleColumns.Count; i++)
+                            {
+                                DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            }
                         }
                     }
                 }
@@ -1337,16 +1341,21 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdStockHold.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdStockHold.Width > grdStockHold.HorizontalScrollingOffset && grdStockHold.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdStockHold.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+
+                    if (totalWidth - grdStockHold.Width > grdStockHold.HorizontalScrollingOffset && grdStockHold.HorizontalScrollingOffset > 0)
+                    {
+                        //offSetValue = offSetValue ;
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
             }
             catch (Exception ex)
             {
