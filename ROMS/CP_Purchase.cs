@@ -1411,12 +1411,18 @@ namespace ROMS
                             }
                         }
 
-                        //for (int i = 0; i < grdPurchaseList.Columns.Count; i++)
-                        //{
-                        //    int currentWidth = grdPurchaseList.Columns[i].Width;
-                        //    int newWidth = currentWidth + Convert.ToInt32(FontSize) * 4;
-                        //    grdPurchaseList.Columns[i].Width = newWidth;
-                        //}
+                        for (int i = 0; i < grdPurchaseList.Columns.Count; i++)
+                        {
+                            int currentWidth = grdPurchaseList.Columns[i].Width;
+                            int newWidth = currentWidth + Convert.ToInt32(FontSize) * 4;
+                            grdPurchaseList.Columns[i].Width = newWidth;
+                        }
+                        for (int i = 0; i < grdSupplierList.Columns.Count; i++)
+                        {
+                            int currentWidth = grdSupplierList.Columns[i].Width;
+                            int newWidth = currentWidth + Convert.ToInt32(FontSize) * 4;
+                            grdSupplierList.Columns[i].Width = newWidth;
+                        }
 
 
                         grdSupplierList.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
@@ -1424,6 +1430,8 @@ namespace ROMS
 
                         grdPurchaseList.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         grdPurchaseList.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        grdPurchaseList.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize-2));
+                        grdPurchaseList.ColumnHeadersHeight= Convert.ToInt32(FontSize + 2) * 2;
 
                         grdPODetails.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         grdPODetails.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
