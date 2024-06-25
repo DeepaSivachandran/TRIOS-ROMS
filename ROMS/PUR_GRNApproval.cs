@@ -624,28 +624,6 @@ namespace ROMS
                                     varIncreaseHeightSize = varGroupBox.Height + (varGroupBox.Height * varPercentageHeight / 100);
                                     varGroupBox.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                                 }
-                                /*
-                                if (controls.Name == "groupBox1")
-                                {
-                                    
-                                }
-                                if (controls.Name == "groupBox3")
-                                {
-
-                                }
-                                if (controls.Name == "groupBox2")
-                                {
-
-                                }
-                                if (controls.Name == "grbSalesmanDetails")
-                                {
-
-                                }
-                                if (controls.Name == "groupBox10")
-                                {
-
-                                }
-                                */
                                 varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
                                 varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
                                 controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
