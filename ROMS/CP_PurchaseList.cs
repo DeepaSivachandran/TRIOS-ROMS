@@ -513,7 +513,7 @@ namespace ROMS
                  udfnDate();
                 udfnDropDownLoad();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                cmbstatus.SelectedValue = 49; //Draft
+                cmbstatus.SelectedValue = 94; //Draft & Incomplete
                 udfnListLoad();
             }
             catch (Exception ex)
@@ -567,6 +567,7 @@ namespace ROMS
         {
             try
             {
+                udfnDate();
                 int Varflag = 0;
                 string varSupplierId = "0";
                 if (txtSupplier.Text == "")
@@ -817,7 +818,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (17 ) OR MSTID  IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID=14 OR STSID=0 ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (0,49,50,70,93) ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (0,49,50,70,93,94) ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();

@@ -10287,6 +10287,7 @@ namespace ROMS
             try
             {
                 varDateChange = 1;
+                varVoucherDate = Convert.ToString(dpVoucherDate.Text);
                 udfnVocherno();
             }
             catch (Exception ex)
