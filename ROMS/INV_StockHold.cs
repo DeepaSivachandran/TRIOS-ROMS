@@ -19,6 +19,7 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         private ToolTip tpProductNamePICode = new ToolTip();
         private ToolTip tpQty = new ToolTip();
+        private ToolTip tpReason = new ToolTip();
         private ToolTip tpProductName = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpStock = new ToolTip();
@@ -493,6 +494,14 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
                     txtQty.Focus();
+                }
+                if(Convert.ToInt32(cmbReason.SelectedValue)==-1)
+                {
+                    epStockHold.SetError(cmbReason, "Please enter the reason");
+                    cmbReason.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReason.ShowAlways = true;
+                    tpReason.Show("Please enter the reason", txtQty, 5000);
+                    blnErrorFlag = false;
                 }
                 if (blnErrorFlag == true)
                 {

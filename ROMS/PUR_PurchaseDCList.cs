@@ -17,7 +17,7 @@ namespace ROMS
     public partial class PUR_PurchaseDCList : Form
     {
         public int varviewtype = 0;
-        public int Varflag = 0; 
+        public int Varflag = 0, varDCPrintFlag = 0; 
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -162,7 +162,6 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
                                 grdPurchaseDCList.Columns["Status ID"].Visible = false;
                                 grdPurchaseDCList.Columns["COMID"].Visible = false;
-                                grdPurchaseDCList.Columns["clmPrint"].Visible = true;
                                 grdPurchaseDCList.Columns["DC_SPSCID"].Visible = false;
                                 grdPurchaseDCList.Columns["Overall Full Status"].Visible = false;
                                 grdPurchaseDCList.Columns["Pur Dc Full Status"].Visible = false;
@@ -677,6 +676,7 @@ namespace ROMS
                 {
                     udfnProductList();
                 }
+                udfnGeneralSettingsList();
             }
             catch (Exception ex)
             {
@@ -701,6 +701,40 @@ namespace ROMS
                   //  dpDcFromDate.MaxDate = varmaxdate;
                     dpDcFromDate.Text = Convert.ToString(vardate);
                     dpdctodate.MinDate= vardate;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGeneralSettingsList()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGeneralSettingList(0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            varDCPrintFlag = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_DCPrint"]);
+                        }
+                    }
+                }
+                if(varDCPrintFlag == 0)
+                {
+                    grdPurchaseDCList.Columns["clmPrint"].Visible = false;
+                    DGV_SearchGrid.Columns["clmPrint"].Visible = false;
+                }
+                else
+                {
+                    grdPurchaseDCList.Columns["clmPrint"].Visible = true;
                 }
             }
             catch (Exception ex)

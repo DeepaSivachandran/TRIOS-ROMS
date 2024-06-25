@@ -826,6 +826,7 @@
             this.grdGrnApproval.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnApproval_CellValueChanged);
             this.grdGrnApproval.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGrnApproval_CurrentCellDirtyStateChanged);
             this.grdGrnApproval.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnApproval_EditingControlShowing);
+            this.grdGrnApproval.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGrnApproval_KeyDown);
             // 
             // txttotalitem
             // 

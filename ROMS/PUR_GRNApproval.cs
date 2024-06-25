@@ -18,8 +18,9 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varSupplierID = 0,varScheduleID=0,varConcernID=0,varID=0, varGRNAID = 0, varGRNAPRID = 0;
-        decimal varInvoiceQty=0, VarReceivedQty=0, varPOID=0;
+        decimal varInvoiceQty=0, VarReceivedQty=0, varPOID=0, grid_flag = 0;
         public string result = "", varUserID = "0",varReason="";
+        public int varWrongReason = 0, varCrtReason = 0;
         DataTable dtApproval = new DataTable();
         DataTable dtPurchaseReturnDC = new DataTable();
         public PUR_GRNApproval()
@@ -327,25 +328,24 @@ namespace ROMS
         {
             try
             {
-                try
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 {
-                    if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
-                    {
-                        e.Control.KeyPress -= udfnHandleKeyPress;
-                        e.Control.KeyPress += udfnHandleKeyPress;
-                    }
-                    if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
-                    {
-                        e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
-                        return;
-                    }
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
                 }
-                catch (Exception ex)
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
                 }
+                DataGridViewCell Cell = grdGrnApproval.CurrentCell;
+                Type CellType = Cell.GetType();
+                if (CellType == typeof(DataGridViewComboBoxCell))
+                {
+                    //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
+                    //comboBoxCell.SelectedIndex = newIndex;
 
+                }
             }
             catch (Exception ex)
             {
@@ -387,7 +387,7 @@ namespace ROMS
                     //Update the same column value in the DataTable
                     dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
                 }
-                if(grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 {
                     int varDecimal = Convert.ToInt32(grdGrnApproval.CurrentRow.Cells["clmUnitDecimal"].Value);
 
@@ -419,7 +419,19 @@ namespace ROMS
                         dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
                         dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
                     }
+                    udfnReasonChange(sender, e);
+                    if (varWrongReason == 0)
+                    {
+                        btnSave.Text = "Approve";
+                        btnSave.Image = ROMS.Properties.Resources.approve;
+                    }
+                    else
+                    {
+                        btnSave.Text = "Update";
+                        btnSave.Image = ROMS.Properties.Resources.save;
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -436,6 +448,7 @@ namespace ROMS
                 {
                     grdGrnApproval.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
+
             }
             catch (Exception ex)
             {
@@ -471,9 +484,30 @@ namespace ROMS
                         {
                             dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
                         }
-                        //object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                        //dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnReasonChange(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(grdGrnApproval.Rows[e.RowIndex].Cells["clmReason"].Value) == 230)
+                {
+                    varWrongReason++;
+                }
+                else if (Convert.ToInt32(grdGrnApproval.Rows[e.RowIndex].Cells["clmReason"].Value) == 234)
+                {
+                    varWrongReason++;
+                }
+                else if (varWrongReason > 0)
+                {
+                    varWrongReason--;
                 }
             }
             catch (Exception ex)
@@ -491,6 +525,32 @@ namespace ROMS
                 {
                     var cell = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex];
                     cell.ToolTipText = grdGrnApproval.Rows[e.RowIndex].Cells["clmFullStatus"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGrnApproval_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                DataGridViewCell Cell = grdGrnApproval.CurrentCell;
+                Type CellType = Cell.GetType();
+                DataGridViewComboBoxCell comboBoxCell = grdGrnApproval.CurrentCell as DataGridViewComboBoxCell;
+                switch (e.KeyCode)
+                {
+                    case Keys.Down:
+                        if (CellType == typeof(DataGridViewComboBoxCell))
+                        {
+                            //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
+                            //comboBoxCell.SelectedIndex = newIndex;
+
+                        }
+                        break;
                 }
             }
             catch (Exception ex)
@@ -536,6 +596,7 @@ namespace ROMS
                 udfnsupplierLoad();
                 udfnEdit();
                 //udfnStatus();
+
             }
             catch (Exception ex)
             {
@@ -875,7 +936,19 @@ namespace ROMS
                             {
                                 grdGrnApproval.Rows[i].ReadOnly = true;
                             }
-                            udfnQtyCheck();    
+                            udfnQtyCheck();
+                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]) == 230)
+                            {
+                                btnSave.Text = "Update";
+                                btnSave.Image = ROMS.Properties.Resources.save;
+                                varWrongReason++;
+                            }
+                            else if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]) == 234)
+                            {
+                                btnSave.Text = "Update";
+                                btnSave.Image = ROMS.Properties.Resources.save;
+                                varWrongReason++;
+                            }
                         }
                         txttotalitem.Text = Convert.ToString(grdGrnApproval.Rows.Count);
                     }
@@ -893,6 +966,8 @@ namespace ROMS
                     //        grdpurchasedetails.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Created By"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_IssuedBy"]));
                     //    }
                     //}
+                   
+
                 }
             }
             catch (Exception ex)
@@ -984,5 +1059,131 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
+        {
+            try
+            {
+                if (grdGrnApproval.Visible == true)
+                {
+                    if (grdGrnApproval.Focused)
+                    {
+                        grid_flag = 1;
+                    }
+                    if (grdGrnApproval.Rows.Count > 0)
+                    {
+                        if (grdGrnApproval.CurrentCell.Selected == true && grdGrnApproval.IsCurrentCellInEditMode == true)
+                        {
+                            grid_flag = 1;
+                        }
+                    }
+                    if (grid_flag == 1)
+                    {
+                        if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
+                        {
+                            int icolumn = grdGrnApproval.CurrentCell.ColumnIndex;
+                            int irow = grdGrnApproval.CurrentCell.RowIndex;
+                            int i = irow;
+                            int intsection = 0, intlvariant = 0;
+                            intsection = grdGrnApproval.Columns.Count - 1;
+                            intlvariant = grdGrnApproval.Columns.Count - 6;
+                            if (intsection == icolumn)
+                            {
+                                grdGrnApproval.CurrentCell = grdGrnApproval[intlvariant, irow + 1];
+                                icolumn = grdGrnApproval.Columns.Count - 1;//grdProDetails.CurrentCell.ColumnIndex;
+                                irow = grdGrnApproval.CurrentCell.RowIndex;
+                            }
+                            else if (intlvariant == icolumn)
+                            {
+                            A: if (icolumn == grdGrnApproval.Columns.Count - 1)
+                                {
+                                    //grdProDetails.Rows.Add();
+                                    if (irow < grdGrnApproval.Rows.Count - 1)
+                                    {
+                                        grdGrnApproval.CurrentCell = grdGrnApproval[intlvariant, irow + 1];
+                                        icolumn = grdGrnApproval.CurrentCell.ColumnIndex;
+                                        irow = grdGrnApproval.CurrentCell.RowIndex;
+                                        //goto A;
+                                    }
+                                    else
+                                    {
+                                        grdGrnApproval.CurrentCell = grdGrnApproval[icolumn + 1, irow];
+                                        if (grdGrnApproval.CurrentCell.ReadOnly == true)
+                                        {
+                                            icolumn++; goto A;
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    if (grdGrnApproval[icolumn + 1, irow].Visible == false || grdGrnApproval[icolumn + 1, irow].ReadOnly == true)
+                                    {
+                                        { icolumn++; goto A; }
+                                    }
+                                    else
+                                    {
+                                        grdGrnApproval.CurrentCell = grdGrnApproval[icolumn + 1, irow];
+                                        if (grdGrnApproval.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                            A: if (icolumn == grdGrnApproval.Columns.Count - 1)
+                                {
+                                    //grdProDetails.Rows.Add();
+                                    if (irow < grdGrnApproval.Rows.Count - 1)
+                                    {
+                                        grdGrnApproval.CurrentCell = grdGrnApproval[8, irow + 1];
+                                        icolumn = grdGrnApproval.CurrentCell.ColumnIndex;
+                                        irow = grdGrnApproval.CurrentCell.RowIndex;
+                                        //goto A;
+                                    }
+                                    else
+                                    {
+                                        grdGrnApproval.CurrentCell = grdGrnApproval[icolumn + 1, irow];
+                                        if (grdGrnApproval.CurrentCell.ReadOnly == true)
+                                        {
+                                            icolumn++; goto A;
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    if (grdGrnApproval[icolumn + 1, irow].Visible == false)
+                                    {
+                                        { icolumn++; goto A; }
+                                    }
+                                    else
+                                    {
+                                        grdGrnApproval.CurrentCell = grdGrnApproval[icolumn + 1, irow];
+                                        if (grdGrnApproval.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                    }
+                                }
+                            }                           
+                            grid_flag = 0;
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            //// below is for escape key return
+            //return base.ProcessCmdKey(ref msg, keyData);
+            // below is for enter key return
+            return base.ProcessCmdKey(ref msg, keyData);
+
+        }
+        
     }
 }
