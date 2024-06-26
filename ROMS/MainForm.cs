@@ -345,6 +345,16 @@ namespace ROMS
                     MainForm.objPUR_GRNDetailsList.MdiParent = this;
                     MainForm.objPUR_GRNDetailsList.Show();
                 }
+                if (PbCurrentForm == "1.4")
+                {
+                    udfnCloseChildForms();
+                    udfnGetDefaultCompany();
+                    if (isClose == false) { return; }
+                    MainForm.objPUR_PurchaseDCList = new PUR_PurchaseDCList();
+                    MainForm.objPUR_PurchaseDCList.MdiParent = this;
+                    MainForm.objPUR_PurchaseDCList.Show();
+                    PbCurrentForm = "1.4";
+                }
                 if (PbCurrentForm == "1.5")
                 {
                     udfnCloseChildForms();
