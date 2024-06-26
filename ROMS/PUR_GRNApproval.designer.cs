@@ -110,6 +110,8 @@
             this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFullStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPURPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmErrorCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -800,6 +802,8 @@
             this.clmUnitDecimal,
             this.clmStatus,
             this.clmFullStatus,
+            this.clmPURPRID,
+            this.clmErrorCount,
             this.clmReason});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -916,6 +920,7 @@
             this.Sno.Frozen = true;
             this.Sno.HeaderText = "S.No";
             this.Sno.Name = "Sno";
+            this.Sno.ReadOnly = true;
             this.Sno.Width = 50;
             // 
             // Column2
@@ -1034,6 +1039,18 @@
             this.clmFullStatus.Name = "clmFullStatus";
             this.clmFullStatus.ReadOnly = true;
             this.clmFullStatus.Visible = false;
+            // 
+            // clmPURPRID
+            // 
+            this.clmPURPRID.HeaderText = "PURPRID";
+            this.clmPURPRID.Name = "clmPURPRID";
+            this.clmPURPRID.Visible = false;
+            // 
+            // clmErrorCount
+            // 
+            this.clmErrorCount.HeaderText = "ErrorCount";
+            this.clmErrorCount.Name = "clmErrorCount";
+            this.clmErrorCount.Visible = false;
             // 
             // clmReason
             // 
@@ -1160,6 +1177,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFullStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPURPRID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmErrorCount;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
     }
 }
