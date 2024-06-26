@@ -375,6 +375,16 @@ namespace ROMS
                     MainForm.objCP_PurchaseList.Show();
                     PbCurrentForm = "2.1";
                 }
+                if (PbCurrentForm == "2.2")
+                {
+                    udfnCloseChildForms();
+                    udfnGetDefaultCompany();
+                    if (isClose == false) { return; }
+                    MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
+                    MainForm.objINV_SalesInvoiceList.MdiParent = this;
+                    MainForm.objINV_SalesInvoiceList.Show();
+                    PbCurrentForm = "2.2";
+                }
                 if (PbCurrentForm == "2.3")
                 {
                     udfnCloseChildForms();
