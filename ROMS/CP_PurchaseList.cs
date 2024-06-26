@@ -71,7 +71,7 @@ namespace ROMS
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString()); 
                 MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Pur Entry Full Status"].Value.ToString()); 
                 MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Pur Entry Status"].Value.ToString()); 
-                MainForm.objCP_Purchase.tallyFlag = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PUR_CompleteFlag"].Value); 
+               // MainForm.objCP_Purchase.tallyFlag = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["TallyExportFlag"].Value); 
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
             }
@@ -655,6 +655,7 @@ namespace ROMS
                             //grdPurchaseEntryList.Columns["clmEdit"].Width = 100; 
                             grdPurchaseEntryList.DataSource = objDs.Tables[0];
                             grdPurchaseEntryList.Columns[0].HeaderText = "";
+                            grdPurchaseEntryList.Columns[0].Visible = false;
                             grdPurchaseEntryList.Columns["S.No."].Width = 50;
                             grdPurchaseEntryList.Columns["S.No."].ReadOnly = true;
                             grdPurchaseEntryList.Columns["Concern"].Width = 80;
@@ -694,7 +695,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryList.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryList.Columns["GRN_Payment_StsID"].Visible = false;
-                            grdPurchaseEntryList.Columns["PUR_CompleteFlag"].Visible = false;
+                            grdPurchaseEntryList.Columns["TallyExportFlag"].Visible = false;
                             grdPurchaseEntryList.Columns["Flag"].Visible = false;
                             grdPurchaseEntryList.Columns["Pur Entry Full Status"].Visible = false;
                             grdPurchaseEntryList.Columns["Overall Full Status"].Visible = false;
@@ -865,6 +866,7 @@ namespace ROMS
                     objDser.CloseConnection();
                     grdPurchaseEntryList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                     //grdCompanyList(sender,e); 
+
                 }
             }
 
@@ -1435,13 +1437,13 @@ namespace ROMS
                     {
                         grdPurchaseEntryList.Rows[i].Cells["Overall Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                     }
-                    if(Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) != "63" || Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_CompleteFlag"].Value)=="1")
-                    {
-                        DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
-                        Check.Value = "";
-                        grdPurchaseEntryList.Rows[i].Cells["clmCheck"] = Check;
-                        Check.ReadOnly = true;
-                    }
+                    //if(Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) != "63" || Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["TallyExportFlag"].Value)=="1")
+                    //{
+                    //    DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
+                    //    Check.Value = "";
+                    //    grdPurchaseEntryList.Rows[i].Cells["clmCheck"] = Check;
+                    //    Check.ReadOnly = true;
+                    //}
                     /*
                     if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "49")
                     {
@@ -1646,7 +1648,7 @@ namespace ROMS
                 //int varflag = 0;
                 for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) == "63" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_CompleteFlag"].Value) == "0")
+                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) == "63" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["TallyExportFlag"].Value) == "0")
                     {
                         if (VarPurchaseID == "0" && Convert.ToBoolean(grdPurchaseEntryList.Rows[i].Cells["clmCheck"].Value) == true)
                         {

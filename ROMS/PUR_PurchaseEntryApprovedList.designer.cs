@@ -47,7 +47,6 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new System.Windows.Forms.Button();
             this.grdPurchaseEntryApproval = new System.Windows.Forms.DataGridView();
-            this.clmUnapproved = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -70,6 +69,9 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnTally = new System.Windows.Forms.Button();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmUnapproved = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
@@ -221,6 +223,7 @@
             this.grdPurchaseEntryApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseEntryApproval.ColumnHeadersVisible = false;
             this.grdPurchaseEntryApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCheck,
             this.clmUnapproved});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -234,7 +237,6 @@
             this.grdPurchaseEntryApproval.GridColor = System.Drawing.Color.White;
             this.grdPurchaseEntryApproval.Location = new System.Drawing.Point(3, 130);
             this.grdPurchaseEntryApproval.Name = "grdPurchaseEntryApproval";
-            this.grdPurchaseEntryApproval.ReadOnly = true;
             this.grdPurchaseEntryApproval.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
@@ -251,14 +253,6 @@
             this.grdPurchaseEntryApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             this.grdPurchaseEntryApproval.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseEntryApproval_KeyDown);
             // 
-            // clmUnapproved
-            // 
-            this.clmUnapproved.HeaderText = "Unapprove";
-            this.clmUnapproved.Image = global::ROMS.Properties.Resources.Unapprove;
-            this.clmUnapproved.Name = "clmUnapproved";
-            this.clmUnapproved.ReadOnly = true;
-            this.clmUnapproved.Width = 90;
-            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -273,6 +267,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTally);
             this.grpfilter.Controls.Add(this.label3);
             this.grpfilter.Controls.Add(this.label5);
             this.grpfilter.Controls.Add(this.lblschedleCode);
@@ -522,6 +517,7 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_SearchGrid_CellFormatting);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
@@ -552,6 +548,31 @@
             // errPurchaseEntryApproval
             // 
             this.errPurchaseEntryApproval.ContainerControl = this;
+            // 
+            // btnTally
+            // 
+            this.btnTally.Location = new System.Drawing.Point(1007, 23);
+            this.btnTally.Name = "btnTally";
+            this.btnTally.Size = new System.Drawing.Size(93, 29);
+            this.btnTally.TabIndex = 6;
+            this.btnTally.Text = "Export to Tally";
+            this.btnTally.UseVisualStyleBackColor = true;
+            this.btnTally.Click += new System.EventHandler(this.BtnTally_Click);
+            this.btnTally.Enter += new System.EventHandler(this.BtnTally_Enter);
+            this.btnTally.Leave += new System.EventHandler(this.BtnTally_Leave);
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.Width = 50;
+            // 
+            // clmUnapproved
+            // 
+            this.clmUnapproved.HeaderText = "Unapprove";
+            this.clmUnapproved.Image = global::ROMS.Properties.Resources.Unapprove;
+            this.clmUnapproved.Name = "clmUnapproved";
+            this.clmUnapproved.Width = 90;
             // 
             // PUR_PurchaseEntryApprovedList
             // 
@@ -620,8 +641,10 @@
         public System.Windows.Forms.DataGridView grdPurchaseEntryApproval;
         private System.Windows.Forms.Button btnExport;
         public System.Windows.Forms.ToolStripButton tsbQue;
-        private System.Windows.Forms.DataGridViewImageColumn clmUnapproved;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbEdit;
+        private System.Windows.Forms.Button btnTally;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
+        private System.Windows.Forms.DataGridViewImageColumn clmUnapproved;
     }
 }
