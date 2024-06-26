@@ -483,6 +483,7 @@ namespace ROMS
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                    MainForm.PbCurrentForm = "0";
                 }
             }
             catch (Exception ex)
