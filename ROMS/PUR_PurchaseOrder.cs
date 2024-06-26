@@ -302,22 +302,37 @@ namespace ROMS
                                     {
                                         varIncreaseWidthSize = grdRepDetails.Width + (grdRepDetails.Width * varPercentageWidth / 100);
                                         varIncreaseHeightSize = grdRepDetails.Height + (grdRepDetails.Height * varPercentageHeight / 100);
-                                        grdRepDetails.Size = new Size(Convert.ToInt32(varIncreaseWidthSize + 5), Convert.ToInt32(varIncreaseHeightSize));
+                                        grdRepDetails.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                                     }
                                     if (vartabControls.Name == "tp3")
                                     {
                                         foreach (Control vartp3 in vartabControls.Controls)
                                         {
-                                            if (vartp3 is TextBox)
+                                            //if (vartp3 is TextBox)
+                                            //{
+                                            //    Size textSize = TextRenderer.MeasureText(vartp3.Text, vartp3.Font);
+                                            //    float scaleFactor = (float)FontSize / (float)vartp3.Font.Size;
+                                            //    vartp3.Font = new Font(vartp3.Font.FontFamily, vartp3.Font.Size * scaleFactor);
+                                            //    vartp3.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                            //    vartp3.Refresh();
+                                            //}
+                                            //if (vartp3 is TextBox || vartp3 is Button || vartp3 is ComboBox)
+                                            //{
+                                            //    varIncreaseWidthSize = vartp3.Width + (vartp3.Width * varPercentageWidth / 100);
+                                            //    varIncreaseHeightSize = vartp3.Height + (vartp3.Height * varPercentageHeight / 100);
+                                            //    vartp3.Size = new Size(Convert.ToInt32(varIncreaseWidthSize + 5), Convert.ToInt32(varIncreaseHeightSize));
+                                            //}
+                                            if (vartp3 is TextBox || vartp3 is ComboBox)
                                             {
                                                 Size textSize = TextRenderer.MeasureText(vartp3.Text, vartp3.Font);
                                                 float scaleFactor = (float)FontSize / (float)vartp3.Font.Size;
                                                 vartp3.Font = new Font(vartp3.Font.FontFamily, vartp3.Font.Size * scaleFactor);
-                                                vartp3.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                                if (vartp3.Name != "txtRemark")
+                                                {
+                                                    vartp3.Height = (int)(textSize.Height * scaleFactor) + 6;
+                                                }
                                                 vartp3.Refresh();
-                                            }
-                                            if (vartp3 is TextBox || vartp3 is Button || vartp3 is ComboBox)
-                                            {
+
                                                 varIncreaseWidthSize = vartp3.Width + (vartp3.Width * varPercentageWidth / 100);
                                                 varIncreaseHeightSize = vartp3.Height + (vartp3.Height * varPercentageHeight / 100);
                                                 vartp3.Size = new Size(Convert.ToInt32(varIncreaseWidthSize + 5), Convert.ToInt32(varIncreaseHeightSize));
@@ -331,8 +346,8 @@ namespace ROMS
                                         cmbPolicyContent.Location = new Point(txtReturnText.Location.X+ txtReturnText.Width, textBox20.Location.Y);
                                         cmbSecondLevel.Location = new Point(cmbPolicyContent.Location.X, txtDReturnCycle.Location.Y);
 
-                                        btnReturnSave.Location = new Point(cmbReturnType.Location.X, cmbReturnType.Location.Y + cmbReturnType.Width);
-                                        btnReturnUndo.Location = new Point(btnReturnSave.Location.X + btnReturnSave.Width + 3, cmbReturnType.Location.Y + cmbReturnType.Width);
+                                        btnReturnUndo.Location = new Point(txtNextLevel.Location.X - btnReturnUndo.Width, txtNextLevel.Location.Y + txtNextLevel.Height + 5);
+                                        btnReturnSave.Location = new Point(btnReturnUndo.Location.X - (btnReturnSave.Width + 3), btnReturnUndo.Location.Y);
                                     }
                                 }
                                 varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
@@ -407,7 +422,9 @@ namespace ROMS
                         btnNewUnit.Location = new Point(cmbUnit.Location.X + cmbUnit.Width + 5, label5.Location.Y);
                         btnAdd.Location = new Point(btnNewUnit.Location.X + btnNewUnit.Width + 8, label5.Location.Y);
                         label13.Location = new Point(btnAdd.Location.X + btnAdd.Width + 6, label5.Location.Y);
+                        lblWeightvalue.Location = new Point(label13.Location.X + (label13.Width - 5), label13.Location.Y);
                         label15.Location = new Point(label13.Location.X + label13.Width + 95, label5.Location.Y);
+                        lblMxsq.Location = new Point(label15.Location.X + (label15.Width - 5), label15.Location.Y);
                         btnViewedProduct.Location = new Point(label15.Location.X + label15.Width + 58, txtProductName.Location.Y);
                         btnClear.Location = new Point(btnViewedProduct.Location.X + btnViewedProduct.Width + 5, txtProductName.Location.Y);
 
@@ -454,11 +471,26 @@ namespace ROMS
                         grdsupplieradd.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         grdpossiblesupplier.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         grdPendingorder.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
-                        grdsupplieradd.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        DGV_FilterProduct.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdsupplieradd.RowTemplate.Height = Convert.ToInt32(FontSize + 1) * 2;
                         grdpossiblesupplier.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
                         grdPendingorder.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        DGV_FilterProduct.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
                         grdsupplieradd.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize - 2));
                         grdsupplieradd.ColumnHeadersHeight = Convert.ToInt32(FontSize + 12) * 2;
+
+                        //Set Location and Size For Listview
+                        varIncreaseWidthSize = this.LV_Supplier.Width + (this.LV_Supplier.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = this.LV_Supplier.Height + (this.LV_Supplier.Height * varPercentageHeight / 100);
+                        LV_Supplier.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                        Font LvFont = new Font(LV_Supplier.Font.FontFamily, (float)FontSize, LV_Supplier.Font.Style);
+                        LV_Supplier.Font = LvFont;
+                        LV_Supplier.Location = new Point(txtSupplier.Location.X, txtSupplier.Location.Y + txtSupplier.Height);
+
+                        varIncreaseWidthSize = DGV_FilterProduct.Width + (DGV_FilterProduct.Width * varPercentageWidth / 100);
+                        varIncreaseHeightSize = DGV_FilterProduct.Height + (DGV_FilterProduct.Height * varPercentageHeight / 100);
+                        DGV_FilterProduct.Size = new Size(Convert.ToInt32(varIncreaseWidthSize - (FontSize * 8)), Convert.ToInt32(varIncreaseHeightSize / 2));
+                        DGV_FilterProduct.Location = new Point(txtProductName.Location.X, txtProductName.Location.Y + txtProductName.Height);
                     }
 
                     lblSuppliername.Location = new Point(lblSuppliername.Location.X, lblSuppliername.Location.Y + 2);
