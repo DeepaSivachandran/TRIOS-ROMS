@@ -713,6 +713,9 @@ namespace ROMS
                         grdGrnApproval.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         grdGrnApproval.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
                         grdGrnApproval.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdGrnApproval.Columns[2].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", Convert.ToInt32(FontSize));
+                        Font varNewFont = new Font(tspHeader.Font.FontFamily, (float)FontSize, tspHeader.Font.Style);
+                        tspHeader.Font = varNewFont;
                     }
 
                     lblSuppliername.Location = new Point(lblSuppliername.Location.X, lblSuppliername.Location.Y + 2);
@@ -999,7 +1002,7 @@ namespace ROMS
                             }
                             //string[] varActualShelflife = Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]).Split(' ');
                             //int actualShelfLife = Convert.ToInt32(varActualShelflife);
-                            grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                            //grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]));
                             dtApproval.Rows.Add( Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]), 0/*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/,0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));

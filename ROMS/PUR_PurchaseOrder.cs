@@ -472,6 +472,7 @@ namespace ROMS
                         grdpossiblesupplier.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         grdPendingorder.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         DGV_FilterProduct.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
+                        grdsupplieradd.Columns[2].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", Convert.ToInt32(FontSize));
                         grdsupplieradd.RowTemplate.Height = Convert.ToInt32(FontSize + 1) * 2;
                         grdpossiblesupplier.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
                         grdPendingorder.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
@@ -491,6 +492,11 @@ namespace ROMS
                         varIncreaseHeightSize = DGV_FilterProduct.Height + (DGV_FilterProduct.Height * varPercentageHeight / 100);
                         DGV_FilterProduct.Size = new Size(Convert.ToInt32(varIncreaseWidthSize - (FontSize * 8)), Convert.ToInt32(varIncreaseHeightSize / 2));
                         DGV_FilterProduct.Location = new Point(txtProductName.Location.X, txtProductName.Location.Y + txtProductName.Height);
+                        lblNoRecordsFound.Location = new Point((screen.WorkingArea.Width - lblNoRecordsFound.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblNoRecordsFound.Height / 2));
+
+                        Font varNewFont = new Font(tspHeader.Font.FontFamily, (float)FontSize, tspHeader.Font.Style);
+                        tspHeader.Font = varNewFont;
+                        tsbEdit.Font = varNewFont;
                     }
 
                     lblSuppliername.Location = new Point(lblSuppliername.Location.X, lblSuppliername.Location.Y + 2);

@@ -267,7 +267,7 @@ namespace ROMS
                                     usedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
                                     foreach (Control vargpAddrow in usedControls)
                                     {
-                                        if (vargpAddrow is TextBox || vargpAddrow is ComboBox || vargpAddrow is Button || (vargpAddrow is Label == true && vargpAddrow.Name =="label8"))
+                                        if (vargpAddrow is TextBox || vargpAddrow is ComboBox || vargpAddrow is Button || (vargpAddrow is Label == true && vargpAddrow.Name =="label8") || (vargpAddrow is Label == true && vargpAddrow.Name == "lblUnit"))
                                         {
                                             if (vargpAddrow.Name != "cmbPONo")
                                             {
@@ -365,6 +365,7 @@ namespace ROMS
                         grdReurnDC.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
                         DGV_FilterProduct.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         DGV_FilterProduct.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
+                        grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", Convert.ToInt32(FontSize));
 
 
                         //Set Location and Size For Listview
@@ -373,6 +374,7 @@ namespace ROMS
                         DGV_FilterProduct.Size = new Size(Convert.ToInt32(varIncreaseWidthSize - (FontSize * 5)), Convert.ToInt32(varIncreaseHeightSize / 2));
 
                         DGV_FilterProduct.Location = new Point(cmbPONo.Location.X + cmbPONo.Width + 20, gpAddrow.Location.Y + gpAddrow.Height - GridLocation);
+                        lblUnit.Text = "";
                     }
                     lblNoRecordsFound.Location = new Point((groupBox1.Width - lblNoRecordsFound.Size.Width) / 2, (groupBox1.Height / 2) - (lblNoRecordsFound.Height / 2));
 
@@ -388,6 +390,7 @@ namespace ROMS
                     lblNoRecordsFound.Font = varNewFont;
                     groupBox3.Font = varNewFont;
                     grpVerify.Font = varNewFont;
+                    tspSupplierMapping.Font = varNewFont;
                 }
             }
             catch (Exception ex)
@@ -5027,7 +5030,7 @@ namespace ROMS
                                     mrp = "0"; mrp1 = "0"; varExpiryDate = ""; txtBatchno.Text = ""; varLocationID = "0"; varRackID = "0"; varRack = ""; varLocationName = "";
                                 } 
                                 //string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
-                                grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                //grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(),Convert.ToString(cmbQtyType.Text), varPendingQty,varExcessQuantity,Convert.ToInt32(cmbQtyType.SelectedValue) ,Convert.ToDecimal(mrp), (varExpiryDate).Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), varLocationName, varLocationID, varRack, varRackID,  (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo,varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal,varMRPFlag, varRMProductionFlag);
                                 dtPurchaseAutoComplete.Rows.Add(grdGrnlist.Rows.Count + 1, productCode, mrp1, varExpiryDate, (txtBatchno.Text).Trim(), varunitid, varLocationID ,
@@ -6266,7 +6269,7 @@ namespace ROMS
                                         dtPurchaseAutoComplete.Rows.Add(grdGrnlist.Rows.Count + 1, Convert.ToString(objDs.Tables[3].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(varMRP)), varTempExpiryDate,
                                          Convert.ToString(objDs.Tables[3].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[3].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["Location ID"]),
                                          Convert.ToString(objDs.Tables[3].Rows[i]["Rack ID"]), Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[3].Rows[i]["POID"]), 0);
-                                        grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                                        //grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                         if (Convert.ToString(objDs.Tables[3].Rows[i]["PR_ShelfLife"]) == "0")
                                         {
                                             grdGrnlist.Rows[i].Cells["clmexpirydate"].ReadOnly = true;

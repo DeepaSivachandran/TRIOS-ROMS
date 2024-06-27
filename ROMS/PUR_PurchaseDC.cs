@@ -298,7 +298,7 @@ namespace ROMS
                             grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            //grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                     }
                     udfnProductCount();
@@ -554,7 +554,7 @@ namespace ROMS
                     grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdPurchaseDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                    //grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 }
             }
             catch (Exception ex)
@@ -727,6 +727,7 @@ namespace ROMS
                         lblVerifiedDate1.Font = newFonts;
                         lblVerify.Font = newFonts;
                         lblVerifyDate.Font = newFonts;
+                        tspHeader.Font = newFonts;
 
                         lblVerify.Location = new Point(lblVerify1.Location.X + lblVerify1.Width, lblVerify1.Location.Y);
                         lblVerifyDate.Location = new Point(lblVerifiedDate1.Location.X + lblVerify1.Width, lblVerifiedDate1.Location.Y);
@@ -813,7 +814,7 @@ namespace ROMS
                         grdPurchaseDC.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
                         grdPurchaseDC.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
                         DGV_FilterProduct.DefaultCellStyle.Font = new Font("Oswald Regular", Convert.ToInt32(FontSize));
-
+                        grdPurchaseDC.Columns[3].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", Convert.ToInt32(FontSize));
                         chkCompleted.Location = new Point(btnVerified.Location.X + 110, label5.Location.Y);
                         lblTotalProducts.Location = new Point(chkCompleted.Location.X + chkCompleted.Width + 5, label5.Location.Y);
                         txtTotalProducts.Location = new Point(lblTotalProducts.Location.X + lblTotalProducts.Width + 1, label5.Location.Y);
@@ -5362,7 +5363,7 @@ namespace ROMS
                             grdPurchaseDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDC.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            //grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             if (VarRackCount == 0)
                             {
                                 DataGridView dataGridView = grdPurchaseDC;
