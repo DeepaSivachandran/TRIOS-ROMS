@@ -237,6 +237,7 @@ namespace ROMS
                             grdSubGroupList.Columns["Rack ID"].Visible = false;
                             grdSubGroupList.Columns["Batch No."].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
+                            grdSubGroupList.Columns["SL_RKCreation"].Visible = false;
                         }
                         else
                         {
@@ -438,6 +439,7 @@ namespace ROMS
                     MainForm.objCP_SubGroup.varRackName = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Rack"].Value);
                     MainForm.objCP_SubGroup.varRackCodes = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
                     MainForm.objCP_SubGroup.varStatus = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Status ID"].Value);
+                    MainForm.objCP_SubGroup.VarRackCreation = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["SL_RKCreation"].Value);
                     picLoader.Visible = false;
                     picLoader.SendToBack();
                     MainForm.objCP_SubGroup.ShowDialog();

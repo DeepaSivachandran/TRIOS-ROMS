@@ -44,6 +44,7 @@ namespace ROMS
         public int varLocationCode = 0, varRackCode = 0;
         public string varRackCodes = "";
         public int varSortFlag = 0;
+        public string VarRackCreation = "0";
         public CP_SubGroup()
         {
             InitializeComponent();
@@ -112,6 +113,14 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     varSortFlag = 1;
                     udfnEdit();
+                }
+                if (VarRackCreation == "0")
+                {
+                    btnNewRack.Enabled = false;
+                }
+                else
+                {
+                    btnNewRack.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -1217,8 +1226,8 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
+                                    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_RKCreation"].ToString() }; 
+                                     ListViewItem objList = new ListViewItem(row);
                                     lvLocation.Columns[1].Width = 0;
                                     lvLocation.Items.Add(objList);
                                 }
@@ -1341,9 +1350,18 @@ namespace ROMS
                     ListViewItem selectedItem = lvLocation.SelectedItems[0];
                     txtLocation.Text = selectedItem.SubItems[0].Text;
                     lblLocation.Text = selectedItem.SubItems[1].Text;
+                    VarRackCreation = selectedItem.SubItems[2].Text;
                     grdRackList.DataSource = null;
                     dtRackList.Rows.Clear();
                     udfnLoadRackList();
+                    if(VarRackCreation == "0")
+                    {
+                        btnNewRack.Enabled = false;
+                    }
+                    else
+                    {
+                        btnNewRack.Enabled = true;
+                    }
                 }
             }
             catch (Exception ex)
