@@ -116,12 +116,9 @@ namespace ROMS
                             {
                                 foreach (Control control1 in controls.Controls)
                                 {
-                                    if (control1 is Button == false)
-                                    {
-                                        varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
-                                        varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
-                                        control1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
-                                    }
+                                    varIncreaseWidthSize = control1.Width + (control1.Width * varPercentageWidth / 100);
+                                    varIncreaseHeightSize = control1.Height + (control1.Height * varPercentageHeight / 100);
+                                    control1.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
                                     if (control1 is TextBox || control1 is ComboBox || control1 is DateTimePicker)
                                     {
                                         Size textSize = TextRenderer.MeasureText(control1.Text, control1.Font);
@@ -215,6 +212,8 @@ namespace ROMS
                     lblNoRecordsFound.Font = varNewFont;
                     grpfilter.Font = varNewFont;
                     toolStripLabel1.Font = varNewFont;
+                    btnView.Font = varNewFont;
+                    btnExport.Font = varNewFont;
                 }
             }
             catch (Exception ex)
