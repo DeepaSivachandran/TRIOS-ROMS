@@ -4630,7 +4630,7 @@ namespace ROMS
                         //lblAddProduct.Text = Convert.ToString(varProIds.Count());
                         //lblRemainProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
                         tsbAddedProduct.Text = Convert.ToString(varProIds.Count());
-                        tsbRemainingProduct.Text = Convert.ToString(Convert.ToInt32(lbltotProduct.Text) - varProIds.Count());
+                        tsbRemainingProduct.Text = Convert.ToString(Convert.ToInt32(tsbTotalProducts.Text) - varProIds.Count());
                     }
                 }
                 if (varProductType == 218 ) //218-GRN 
@@ -4725,6 +4725,7 @@ namespace ROMS
             }
         }
         private void BtnAdd_Click(object sender, EventArgs e)
+
         {
             try
             {
@@ -4734,16 +4735,16 @@ namespace ROMS
                 udfnPoDropdownDisable();
                 if(grdSupplierList.Rows.Count!=0)
                 {
-                    if (grdReurnDC.Visible == true)
+                    if (grdReurnDC.Rows.Count!=0)
                     {  grdReurnDC.Columns["clmRemoveDC"].Visible = false; }
-                    if (grdPODetails.Visible == true)
+                    if (grdPODetails.Rows.Count != 0)
                     {  grdPODetails.Columns["clmRemovePO"].Visible = false; }
                 }
                 else
                 {
-                    if (grdReurnDC.Visible == true)
+                    if (grdReurnDC.Rows.Count != 0)
                     { grdReurnDC.Columns["clmRemoveDC"].Visible = true; }
-                    if (grdPODetails.Visible == true)
+                    if (grdReurnDC.Rows.Count != 0)
                     { grdPODetails.Columns["clmRemovePO"].Visible = true; }
                 }
             }
@@ -10361,7 +10362,7 @@ namespace ROMS
                                         //lblRemainProduct.Text = Convert.ToString((Convert.ToInt16(lblRemainProduct.Text) + 1));
                                         //lblAddProduct.Text = Convert.ToString(Convert.ToInt16(lbltotProduct.Text) - Convert.ToInt16(lblRemainProduct.Text));
                                         tsbRemainingProduct.Text = Convert.ToString((Convert.ToInt16(tsbRemainingProduct.Text) + 1));
-                                        tsbAddedProduct.Text = Convert.ToString(Convert.ToInt16(tsbTotalProducts.Text) - Convert.ToInt16(tsbRemainingProduct.Text));
+                                        tsbAddedProduct.Text = Convert.ToString(Convert.ToInt16(tsbTotalProducts.Text) - 1);
                                     }
                                     //lblAddProduct.Text = Convert.ToString((Convert.ToInt16(lblAddProduct.Text) - 1));
                                     for (int i = 0; i < varProductsIDs.Count; i++)

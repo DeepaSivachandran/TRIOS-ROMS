@@ -3232,7 +3232,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", objTRN_PurchaseEntry.paraCompletedIDs);
                 varSqlCommand.Parameters.AddWithValue("@paraUnapprovedby", objTRN_PurchaseEntry.paraUnapprovedby);
                 varSqlCommand.Parameters.AddWithValue("@paraPUR_GSTREnteredBy", objTRN_PurchaseEntry.paraPUR_GSTREnteredBy);
-                varSqlCommand.Parameters.AddWithValue("@paraCompletedBy", objTRN_PurchaseEntry.paraCompletedBy);
+               // varSqlCommand.Parameters.AddWithValue("@paraCompletedBy", objTRN_PurchaseEntry.paraCompletedBy);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_GSTR", objTRN_PurchaseEntry.ParaTRN_GSTR);
                 varSqlCommand.CommandTimeout = 0;
