@@ -23,8 +23,22 @@ namespace ROMS
         public PUR_PurchaseEntryRejectedList()
         {
             InitializeComponent();
+            //This Method was used to Avoid blincking and flickering
+            this.DoubleBuffered = true;
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
-
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_PurchaseApprovalList_Load(object sender, EventArgs e)
         {
             try
