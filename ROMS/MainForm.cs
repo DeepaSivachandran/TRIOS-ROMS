@@ -326,6 +326,17 @@ namespace ROMS
             try
             {
                 udfnAdjustFontSize();
+
+                if (PbCurrentForm == "1.1")
+                {
+                    udfnCloseChildForms();
+                    udfnGetDefaultCompany();
+                    if (isClose == false) { return; }
+                    MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
+                    MainForm.objPUR_SupplierScheduleList.MdiParent = this;
+                    MainForm.objPUR_SupplierScheduleList.Show();
+                    PbCurrentForm = "1.1";
+                }
                 if (PbCurrentForm == "1.2")
                 {
                     udfnCloseChildForms();
