@@ -908,6 +908,7 @@
             this.clmRowNum.Frozen = true;
             this.clmRowNum.HeaderText = "RowNum";
             this.clmRowNum.Name = "clmRowNum";
+            this.clmRowNum.Visible = false;
             // 
             // clmRemove
             // 

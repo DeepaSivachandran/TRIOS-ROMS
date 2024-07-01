@@ -1095,7 +1095,7 @@ namespace ROMS
                 {
                     udfnError();
                 }
-               udfnValidation();
+                udfnValidation();
                 if (expirydateFlag == 1 || txtDay.Text != "" || txtMonth.Text != "" || txtYear.Text != "")
                 {
                     udfnExpiryDateCheck();
@@ -1257,11 +1257,11 @@ namespace ROMS
             try
             {
                 txtConvertBatch.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpBatchNo2.Show("Please enter valid batch number", txtBatchNo, 5000);
+                tpBatchNo2.Show("Please enter valid batch number", txtConvertBatch, 5000);
                 tpBatchNo2.ShowAlways = true;
                 epBatchConversion.SetError(txtConvertBatch, "Please enter a valid batch number");
                 txtConvertMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpMrp2.Show("Please enter valid MRP", txtBatchNo, 5000);
+                tpMrp2.Show("Please enter valid MRP", txtConvertMrp, 5000);
                 tpMrp2.ShowAlways = true;
                 epBatchConversion.SetError(txtConvertMrp, "Please enter a valid MRP");
                 txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1535,8 +1535,7 @@ namespace ROMS
                                          group r by new { SNo = r["STK_SNo"] /*ExpiryDate = r["STK_ExpiryDate"], BatchNo = r["STK_BatchNo"]*/ }
                                           into g
                                          select g.Key).ToList();
-
-
+                
 
                 var varDuplicateGrid = dtStock.AsEnumerable()
                  .GroupBy(r => new { expirydate = r["STK_ExpiryDate"], MRP = r["STK_MRP"], BatchNo = r["STK_BatchNo"] })
@@ -1551,7 +1550,9 @@ namespace ROMS
                     {
                         for (int i = 0; i < grdBatchConversion.Rows.Count; i++)
                         {
-                            if (varDuplicateData[j] == grdBatchConversion.Rows[i].Cells["clmRowNum"].Value)
+                            var key = varDuplicateData[j];
+                            var SNoValue = key.SNo; // Access SNo value
+                            if (Convert.ToString(SNoValue) == Convert.ToString(grdBatchConversion.Rows[i].Cells["clmRowNum"].Value))
                             {
                                 grdBatchConversion.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                                 blnErrorFlag = false;
