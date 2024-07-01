@@ -112,7 +112,7 @@ namespace ROMS
         {
             try
             {
-                //AdjustFormSize();
+                AdjustFormSize();
                 this.ActiveControl = txtSupplier;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
@@ -272,17 +272,18 @@ namespace ROMS
                         // Order controls by TabIndex
                         usedControls.Sort((c1, c2) => c1.TabIndex.CompareTo(c2.TabIndex));
 
+                        label2.Location = new Point(label2.Location.X, label2.Location.Y + 2);
                         foreach (Control controlsss in usedControls)
                         {
                             if (controlsss is ComboBox || controlsss is TextBox || controlsss is Button)
                             {
                                 if (controlsss.Name != "txtSupplier")
                                 {
-                                    controlsss.Location = new Point(varIniLoct, controlsss.Location.Y + 2);
+                                    controlsss.Location = new Point(varIniLoct, label2.Location.Y + label2.Height + 5);
                                 }
                                 else
                                 {
-                                    controlsss.Location = new Point(controlsss.Location.X, controlsss.Location.Y + 2);
+                                    controlsss.Location = new Point(controlsss.Location.X, label2.Location.Y + label2.Height + 5);
                                 }
                                 varIniLoct = controlsss.Location.X + 6 + controlsss.Width;
                             }
@@ -295,8 +296,12 @@ namespace ROMS
 
                         dgvSupplierScheduleList.RowTemplate.Height = Convert.ToInt32(FontSize + 2) * 2;
 
-                        label2.Location = new Point(label2.Location.X, label2.Location.Y + 5);
-                        groupBox1.Location = new Point(grpfilter.Location.X+ grpfilter.Width, label2.Location.Y + 5);
+                        label10.Location = new Point(label2.Location.X, label2.Location.Y);
+                        cmbConcern.Location = new Point(txtSupplier.Location.X, txtSupplier.Location.Y);
+                        btnSchedulePopup.Location = new Point(cmbConcern.Location.X + cmbConcern.Width + 6, cmbConcern.Location.Y - 3);
+                        groupBox1.Location = new Point(grpfilter.Location.X + grpfilter.Width + 6, grpfilter.Location.Y);
+                        lblStatus.Location = new Point(cmbStatus.Location.X, label2.Location.Y);
+                        label4.Location = new Point(cmbOrder.Location.X, label2.Location.Y);
 
                         //Set Location and Size For Listview
                         varIncreaseWidthSize = this.LV_Supplier.Width + (this.LV_Supplier.Width * varPercentageWidth / 100);
@@ -315,6 +320,7 @@ namespace ROMS
                     Font varNewFont = new Font(lblNoRecordsFound.Font.FontFamily, (float)FontSize, lblNoRecordsFound.Font.Style);
                     lblNoRecordsFound.Font = varNewFont;
                     grpfilter.Font = varNewFont;
+                    groupBox1.Font = varNewFont;
                     tspHeader.Font = varNewFont;
                 }
             }
