@@ -73,6 +73,7 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbMismatchCount = new System.Windows.Forms.ToolStripButton();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
@@ -89,6 +90,7 @@
             this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
+            this.tsbMismatchCount,
             this.tsbPurchaseApproval,
             this.toolStripSeparator1,
             this.tsbQue,
@@ -591,6 +593,19 @@
             this.toolStripButton1.Size = new System.Drawing.Size(184, 25);
             this.toolStripButton1.Text = "Purchase Entry Rejected List";
             // 
+            // tsbMismatchCount
+            // 
+            this.tsbMismatchCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbMismatchCount.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbMismatchCount.ForeColor = System.Drawing.Color.Tomato;
+            this.tsbMismatchCount.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbMismatchCount.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMismatchCount.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbMismatchCount.Name = "tsbMismatchCount";
+            this.tsbMismatchCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbMismatchCount.Size = new System.Drawing.Size(23, 25);
+            this.tsbMismatchCount.Text = "0";
+            // 
             // PUR_PurchaseApprovalList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -664,5 +679,6 @@
         public System.Windows.Forms.ToolStripButton tsbRejectedProduct;
         public System.Windows.Forms.ToolStripButton toolStripButton1;
         public System.Windows.Forms.ToolStripButton toolStripButton2;
+        public System.Windows.Forms.ToolStripButton tsbMismatchCount;
     }
 }

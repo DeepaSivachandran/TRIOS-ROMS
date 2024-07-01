@@ -45,8 +45,8 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.grdPurchaseEntryList = new System.Windows.Forms.DataGridView();
+            this.clmCheck = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlpurchase = new System.Windows.Forms.Panel();
@@ -223,8 +223,8 @@
             this.grdPurchaseEntryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseEntryList.ColumnHeadersVisible = false;
             this.grdPurchaseEntryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmEdit,
-            this.clmCheck});
+            this.clmCheck,
+            this.clmEdit});
             this.grdPurchaseEntryList.EnableHeadersVisualStyles = false;
             this.grdPurchaseEntryList.GridColor = System.Drawing.Color.White;
             this.grdPurchaseEntryList.Location = new System.Drawing.Point(3, 130);
@@ -244,6 +244,12 @@
             this.grdPurchaseEntryList.DoubleClick += new System.EventHandler(this.GrdPurchaseEntryList_DoubleClick);
             this.grdPurchaseEntryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseEntryList_KeyDown);
             // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.ReadOnly = true;
+            // 
             // clmEdit
             // 
             this.clmEdit.HeaderText = "GSTR Status";
@@ -252,13 +258,6 @@
             this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmEdit.Visible = false;
-            // 
-            // clmCheck
-            // 
-            this.clmCheck.HeaderText = "";
-            this.clmCheck.Name = "clmCheck";
-            this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // lblNoRecordsFound
             // 
@@ -312,6 +311,7 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_SearchGrid_CellFormatting);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
@@ -392,12 +392,13 @@
             // 
             // btnTally
             // 
-            this.btnTally.Location = new System.Drawing.Point(1244, 20);
+            this.btnTally.Location = new System.Drawing.Point(1245, 20);
             this.btnTally.Name = "btnTally";
             this.btnTally.Size = new System.Drawing.Size(93, 33);
             this.btnTally.TabIndex = 50;
             this.btnTally.Text = "Export to Tally";
             this.btnTally.UseVisualStyleBackColor = true;
+            this.btnTally.Visible = false;
             this.btnTally.Click += new System.EventHandler(this.BtnTally_Click);
             this.btnTally.Enter += new System.EventHandler(this.BtnTally_Enter);
             this.btnTally.Leave += new System.EventHandler(this.BtnTally_Leave);
@@ -406,7 +407,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1209, 20);
+            this.btnExport.Location = new System.Drawing.Point(1210, 20);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(32, 33);
             this.btnExport.TabIndex = 44;
@@ -420,7 +421,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1013, 26);
+            this.label5.Location = new System.Drawing.Point(1006, 26);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 20);
             this.label5.TabIndex = 1111197;
@@ -429,9 +430,9 @@
             // cmbstatus
             // 
             this.cmbstatus.FormattingEnabled = true;
-            this.cmbstatus.Location = new System.Drawing.Point(1061, 23);
+            this.cmbstatus.Location = new System.Drawing.Point(1052, 23);
             this.cmbstatus.Name = "cmbstatus";
-            this.cmbstatus.Size = new System.Drawing.Size(110, 27);
+            this.cmbstatus.Size = new System.Drawing.Size(120, 27);
             this.cmbstatus.TabIndex = 6;
             this.cmbstatus.Enter += new System.EventHandler(this.Cmbstatus_Enter);
             this.cmbstatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbstatus_KeyDown);
@@ -457,7 +458,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(557, 23);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(251, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(246, 27);
             this.txtSupplier.TabIndex = 4;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -478,7 +479,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(811, 26);
+            this.label4.Location = new System.Drawing.Point(806, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 20);
             this.label4.TabIndex = 1111193;
@@ -497,7 +498,7 @@
             // cmbOrdertype
             // 
             this.cmbOrdertype.FormattingEnabled = true;
-            this.cmbOrdertype.Location = new System.Drawing.Point(880, 23);
+            this.cmbOrdertype.Location = new System.Drawing.Point(874, 23);
             this.cmbOrdertype.Name = "cmbOrdertype";
             this.cmbOrdertype.Size = new System.Drawing.Size(129, 27);
             this.cmbOrdertype.TabIndex = 5;
@@ -554,7 +555,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1174, 20);
+            this.btnView.Location = new System.Drawing.Point(1175, 20);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(32, 33);
             this.btnView.TabIndex = 7;
@@ -704,7 +705,7 @@
         public System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnTally;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCheck;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
     }
 }

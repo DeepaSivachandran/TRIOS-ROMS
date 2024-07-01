@@ -207,6 +207,10 @@ namespace ROMS
                         {
                             tsbRejectedProduct.Text = Convert.ToString(objDs.Tables[1].Rows[0]["TotCount"].ToString());
                         }
+                        if (objDs.Tables[2].Rows.Count != 0)
+                        {
+                            tsbMismatchCount.Text = Convert.ToString(objDs.Tables[2].Rows[0]["MismatchCount"].ToString());
+                        }
                     }
                     else
                     {

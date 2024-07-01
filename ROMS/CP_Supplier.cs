@@ -1284,7 +1284,6 @@ namespace ROMS
                             txtMappedSupplierName.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
                             txtArea.Text = objDS.Tables[0].Rows[0]["ADDRESS1"].ToString().Replace("''", "'");
                             txtaddress2.Text = objDS.Tables[0].Rows[0]["ADDRESS2"].ToString().Replace("''", "'");
-                            txtgstin.Text = objDS.Tables[0].Rows[0]["GSTIN"].ToString().Replace("''", "'");
                             cmbState.SelectedValue = objDS.Tables[0].Rows[0]["STATEID"].ToString();
                             txtCity.Text = objDS.Tables[0].Rows[0]["CTYID"].ToString().Replace("''", "'");
                             txtwhatsapp.Text = objDS.Tables[0].Rows[0]["Whatsapp"].ToString().Replace("''", "'");
@@ -1296,9 +1295,9 @@ namespace ROMS
                             cmbDesignation.SelectedValue = objDS.Tables[0].Rows[0]["DESIGNATION"].ToString();
                             txtcontactName.Text = objDS.Tables[0].Rows[0]["DESIGNATIONNAME"].ToString().Replace("''", "'");
                             lblcity.Text = objDS.Tables[0].Rows[0]["CTY"].ToString().Replace("''", "'");
+                            txtgstin.Text = objDS.Tables[0].Rows[0]["GSTIN"].ToString();
                             txtcreditlimit.Text = objDS.Tables[0].Rows[0]["CREDIT"].ToString().Replace("''", "'");
                             txtopening.Text = objDS.Tables[0].Rows[0]["OPBALANCE"].ToString().Replace("''", "'");
-
                             txtBankname.Text = objDS.Tables[0].Rows[0]["SP_BankName"].ToString().Replace("''", "'");
                             txtbranchname.Text = objDS.Tables[0].Rows[0]["SP_BranchName"].ToString().Replace("''", "'");
                             txtAccName.Text = objDS.Tables[0].Rows[0]["SP_AccountName"].ToString().Replace("''", "'");
