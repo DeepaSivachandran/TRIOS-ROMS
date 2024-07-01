@@ -1065,7 +1065,7 @@ namespace ROMS
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                     }
                     //When Purchase mismatch approval pending/Purchase mismatch approval completed
-                    if (varError > 0 && varReason > 0 && varStatus == 50 && varApprovalStatus != 50)
+                    if (varError > 0 && varReason == 0 && varStatus == 50 && varApprovalStatus != 50)
                     {
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                         grdPurchaseEntryApproval.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
