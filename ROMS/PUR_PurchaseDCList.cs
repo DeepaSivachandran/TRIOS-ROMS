@@ -2172,6 +2172,96 @@ namespace ROMS
             }
         }
 
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                LV_Supplier.BringToFront();
+                picLoader.BringToFront();
+                Application.DoEvents();
+                string varSupplier = txtSupplier.Text;
+                int varstsid = 0, varOrdertType = 0;
+                if (varSupplier == "")
+                {
+                    varSupplier = "-All-";
+                    lblSupplierCode.Text = "0";
+                }
+                int varPrint = 0;
+                varstsid = Convert.ToInt32(cmbStatus.SelectedValue);
+                if (Convert.ToInt32(cmbStatus.SelectedValue) == 0)
+                {
+                    varstsid = 0;
+                }
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
+                objTRNG_Purchase_DC.ViewType = varviewtype;
+                objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
+                objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
+                objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
+                objdserv.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    string Type = Convert.ToString(objDs.Tables[0].Rows[0]["Type"].ToString());
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_GRNDetailsList.rpt");
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("ParaGRNFromDate", Convert.ToString(dpDcFromDate.Text));
+                    objBillreport.SetParameterValue("ParaGRNToDate", Convert.ToString(dpdctodate.Text));
+                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
+                    objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedule.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(varSupplier));
+                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraOrdertype", varOrdertType);
+                    objBillreport.SetParameterValue("paraStatus", varstsid);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("varHeader", Type);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                LV_Supplier.BringToFront();
+                picLoader.SendToBack();
+                btnPrint.Enabled = true;
+                btnPrint.Focus();
+                GC.Collect();
+            }
+        }
+
         private void GrdPurchaseDCList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             try
