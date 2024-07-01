@@ -2740,6 +2740,7 @@ namespace ROMS
                                     }
                                     varCloseFlag = 1;
                                     udfnclose();
+                                    MainForm.objPUR_PurchaseDCList.udfnDate();
                                     MainForm.objPUR_PurchaseDCList.udfnList();
                                 }
                                 else if (varvalue[0] == "4")

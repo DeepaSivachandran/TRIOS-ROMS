@@ -659,7 +659,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpDcFromDate.MinDate = MainForm.pbFYStartDate;
                 dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
-                //udfnDate();
+                udfnDate();
                 dpdctodate.MaxDate = MainForm.pbCurrentDate;
                  this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();
@@ -690,7 +690,7 @@ namespace ROMS
             {
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 9;
-                objMR_Master.paraID = 6;
+                objMR_Master.paraID = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Master.paraFlag = 1;
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
