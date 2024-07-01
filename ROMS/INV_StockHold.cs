@@ -19,6 +19,7 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         private ToolTip tpProductNamePICode = new ToolTip();
         private ToolTip tpQty = new ToolTip();
+        private ToolTip tpReason = new ToolTip();
         private ToolTip tpProductName = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpStock = new ToolTip();
@@ -494,6 +495,14 @@ namespace ROMS
                     blnErrorFlag = false;
                     txtQty.Focus();
                 }
+                if(Convert.ToInt32(cmbReason.SelectedValue)==-1)
+                {
+                    epStockHold.SetError(cmbReason, "Please enter the reason");
+                    cmbReason.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReason.ShowAlways = true;
+                    tpReason.Show("Please enter the reason", txtQty, 5000);
+                    blnErrorFlag = false;
+                }
                 if (blnErrorFlag == true)
                 {
                     //string varMrp = string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim())));
@@ -712,6 +721,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["RKID"].Visible = false;
                 DGV_SearchGrid.Columns["SHID"].Visible = false;
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -1092,22 +1102,25 @@ namespace ROMS
         {
             try
             {
-                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
-                if (vScrollbar.Visible == true)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in DGV.Columns)
+                    var vScrollbar = grdStockHold.Controls.OfType<VScrollBar>().First();
+                    if (vScrollbar.Visible == true)
                     {
-                        visibleColumns.Add(col.Index);
-                    }
-                    int I = DGV_SearchGrid.Rows.Count - 1;
-                    if (I == 0)
-                    {
-                        int rowIndex = 1;
-                        DGV_SearchGrid.Rows.Add();
-                        for (int i = 0; i < visibleColumns.Count; i++)
+                        List<int> visibleColumns = new List<int>();
+                        foreach (DataGridViewColumn col in DGV.Columns)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            visibleColumns.Add(col.Index);
+                        }
+                        int I = DGV_SearchGrid.Rows.Count - 1;
+                        if (I == 0)
+                        {
+                            int rowIndex = 1;
+                            DGV_SearchGrid.Rows.Add();
+                            for (int i = 0; i < visibleColumns.Count; i++)
+                            {
+                                DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            }
                         }
                     }
                 }
@@ -1337,16 +1350,21 @@ namespace ROMS
         {
             try
             {
-                int totalWidth = 0;
-                int offSetValue = grdStockHold.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-                if (totalWidth - grdStockHold.Width > grdStockHold.HorizontalScrollingOffset && grdStockHold.HorizontalScrollingOffset > 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    offSetValue = offSetValue;
+                    int totalWidth = 0;
+                    int offSetValue = grdStockHold.HorizontalScrollingOffset;
+                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                        totalWidth += col.Width;
+
+                    if (totalWidth - grdStockHold.Width > grdStockHold.HorizontalScrollingOffset && grdStockHold.HorizontalScrollingOffset > 0)
+                    {
+                        //offSetValue = offSetValue ;
+                        offSetValue = offSetValue;
+                    }
+                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_SearchGrid.Invalidate();
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
             }
             catch (Exception ex)
             {

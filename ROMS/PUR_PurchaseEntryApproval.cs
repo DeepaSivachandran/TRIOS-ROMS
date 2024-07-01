@@ -2393,10 +2393,16 @@ namespace ROMS
                 //        }
                 //    }
                 //}
-
-                if (Convert.ToBoolean(grdSupplierList.Rows[e.RowIndex].Cells["clmcheck"].Value) == true)
+                if (grdSupplierList.Rows.Count > 0) 
                 {
-                    varCheckCount++;
+                    if (Convert.ToBoolean(grdSupplierList.Rows[e.RowIndex].Cells["clmcheck"].Value) == true)
+                    {
+                        varCheckCount++;
+                    }
+                    else if (Convert.ToBoolean(grdSupplierList.Rows[e.RowIndex].Cells["clmcheck"].Value) == false)
+                    {
+                        varCheckCount--;
+                    }
                 }
             }
             catch (Exception ex)
@@ -3290,7 +3296,7 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gst value"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_SLID"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_RKID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["MST_DisplayText"]), 
                             Convert.ToString(objDs.Tables[0].Rows[i]["DC Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Inv Flag"]),Convert.ToString(objDs.Tables[0].Rows[i]["Costing"]),
-                            0,0,0,0,0,0, Convert.ToString(objDs.Tables[0].Rows[i]["GRN ProType"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Error"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_EntryApprovalSTSID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_Reason"]));
+                            0,0,0,0,0,0, Convert.ToString(objDs.Tables[0].Rows[i]["GRN ProType"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Error"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_EntryApprovalSTSID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_Reason"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_Parent_PURPRID"]));
                             if (Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"]) != "")
                             {
                                 if (varInvQty == 0)
@@ -3447,16 +3453,19 @@ namespace ROMS
                             varZero = 0 + objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
                             if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226")  //Product not received
                             {
-                                if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == 0)
+                                if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmParentFlag"].Value) == "0")
                                 {
-                                    varcount++;
-                                    varcount1++;
-                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightPink;
-                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.ForeColor = Color.Black;
-                                }
-                                else
-                                {
-                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
+                                    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == 0)
+                                    {
+                                        varcount++;
+                                        varcount1++;
+                                        grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightPink;
+                                        grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.ForeColor = Color.Black;
+                                    }
+                                    else
+                                    {
+                                        grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
+                                    }
                                 }
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == 0 || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == varZero)
                                 {
@@ -5716,7 +5725,7 @@ namespace ROMS
                     int varReason = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmReason"].Value);
                     int varApprovedStatus = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmApprovalStatus"].Value);
 
-                    if ((Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmErrorPro"].Value) == 1 && (varReason == 0)) || (Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmErrorPro"].Value) == 1 && (varReason == 230 || varReason == 234)))
+                    if ((Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmErrorPro"].Value) == 1 && (varReason == 0)) || (Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmErrorPro"].Value) == 1 && (varReason == 230 || varReason == 234)) /*&& Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmApprovalStatus"].Value) != 0*/)
                     {
                         grdPurchaseList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                         grdPurchaseList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
@@ -7270,7 +7279,7 @@ namespace ROMS
                             cell.Style.ForeColor = Color.Black;
                         }
                     }
-                    if((Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value)==1 && (varReason==0)) || (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value) == 1 && (varReason ==230 || varReason==234)))  
+                    if((Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value)==1 && (varReason==0)) || (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value) == 1 && (varReason ==230 || varReason==234)) /*&& varApprovedStatus!=0*/)  
                     {
                         grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                         grdSupplierList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;

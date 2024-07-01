@@ -101,6 +101,8 @@
             this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFullStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPURPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmErrorCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
@@ -775,6 +777,8 @@
             this.clmUnitDecimal,
             this.clmStatus,
             this.clmFullStatus,
+            this.clmPURPRID,
+            this.clmErrorCount,
             this.clmReason});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -801,6 +805,7 @@
             this.grdGrnApproval.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGrnApproval_CellValueChanged);
             this.grdGrnApproval.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGrnApproval_CurrentCellDirtyStateChanged);
             this.grdGrnApproval.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnApproval_EditingControlShowing);
+            this.grdGrnApproval.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGrnApproval_KeyDown);
             // 
             // Sno
             // 
@@ -926,6 +931,18 @@
             this.clmFullStatus.Name = "clmFullStatus";
             this.clmFullStatus.ReadOnly = true;
             this.clmFullStatus.Visible = false;
+            // 
+            // clmPURPRID
+            // 
+            this.clmPURPRID.HeaderText = "PURPRID";
+            this.clmPURPRID.Name = "clmPURPRID";
+            this.clmPURPRID.Visible = false;
+            // 
+            // clmErrorCount
+            // 
+            this.clmErrorCount.HeaderText = "ErrorCount";
+            this.clmErrorCount.Name = "clmErrorCount";
+            this.clmErrorCount.Visible = false;
             // 
             // clmReason
             // 
@@ -1133,6 +1150,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFullStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPURPRID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmErrorCount;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
     }
 }

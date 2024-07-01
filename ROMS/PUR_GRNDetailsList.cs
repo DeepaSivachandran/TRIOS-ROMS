@@ -22,6 +22,7 @@ namespace ROMS
         public DataTable Deftable = new DataTable();
         Boolean BlnSearchImageYN = false;
         public string varUserID = "0", varsuppliername = "";
+        public int varGRNPrintFlag = 0;
         public ToolTip tpSupplier = new ToolTip();
         public PUR_GRNDetailsList()
         {
@@ -137,10 +138,45 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 txtSupplier.Text = "";
                 udfnListLoad();
-                if(grdGRNList.Rows.Count>0)
+                udfnGeneralSettingsList();
+                if (grdGRNList.Rows.Count>0)
                 {
                     lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
                 }               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGeneralSettingsList()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnGeneralSettingList(0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            varGRNPrintFlag = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_GRNPrint"]);
+                        }
+                    }
+                }
+                if(varGRNPrintFlag == 1)
+                {
+                    grdGRNList.Columns["clmLocPrint"].Visible = true;
+                }
+                else
+                {
+                    grdGRNList.Columns["clmLocPrint"].Visible = false;
+                    DGV_SearchGrid.Columns["clmLocPrint"].Visible = false;
+                }
             }
             catch (Exception ex)
             {

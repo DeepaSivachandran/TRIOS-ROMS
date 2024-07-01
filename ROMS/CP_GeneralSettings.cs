@@ -123,11 +123,19 @@ namespace ROMS
                             }
                             if(Convert.ToString(objDs.Tables[0].Rows[0]["GS_GRNPrint"]) == "1")
                             {
-                                chkPrint.Checked = true;
+                                chkGRNPrint.Checked = true;
                             }
                             else
                             {
-                                chkPrint.Checked = false;
+                                chkGRNPrint.Checked = false;
+                            }
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_DCPrint"]) == "1")
+                            {
+                                chkDCPrint.Checked = true;
+                            }
+                            else
+                            {
+                                chkDCPrint.Checked = false;
                             }
                         }
                         if (objDs.Tables[1].Rows.Count != 0)
@@ -191,12 +199,16 @@ namespace ROMS
                 {
                     objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
                 }
-                int varGRNCheck = 0;
-                if(chkPrint.Checked==true)
+                int varGRNCheck = 0, varDCCheck = 0;
+                if(chkGRNPrint.Checked==true)
                 {
                     varGRNCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock,txtbackuppath.Text, varGRNCheck);
+                if(chkDCPrint.Checked==true)
+                {
+                    varDCCheck = 1;
+                }
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock,txtbackuppath.Text, varGRNCheck, varDCCheck);
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")

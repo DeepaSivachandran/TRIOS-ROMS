@@ -41,7 +41,7 @@ namespace ROMS
         int grid_flag = 0;
         public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0,varMRPFlag=0,varMRPEditflag=0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0,varpono=0, varModifiedFlag = 0, varUpDownKey=0, varDecimal=0;
         public bool VarSearchFlag = true;
-        public int PbVerified = 0,ParaSupplierAMT = 0, varSupplierType = 0;
+        public int PbVerified = 0, ParaSupplierAMT = 0, varSupplierType = 0, varGRNPrintFlag = 0;
         public string varGSTIN = "1";
         decimal varExcessQuantity = 0, varPendingQty = 0, varRMProductionFlag=0;
         public int varOrderType = 0;
@@ -155,6 +155,7 @@ namespace ROMS
                         {
                             varDVA = Convert.ToDouble(objDs.Tables[0].Rows[0]["GS_DVA"]);
                             varCPA = Convert.ToDouble(objDs.Tables[0].Rows[0]["GS_CPA"]);
+                            varGRNPrintFlag = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_GRNPrint"]);
                         }
                     }
                 }
@@ -1026,7 +1027,7 @@ namespace ROMS
                                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             try
                                             {
-                                                if (btnSave.Text == "Update")
+                                                if (btnSave.Text == "Update" && varGRNPrintFlag==1)
                                                 {
                                                     if (varGrnId == 0)
                                                     {

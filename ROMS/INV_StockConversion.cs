@@ -31,13 +31,14 @@ namespace ROMS
         private ToolTip tpQty = new ToolTip();
         private ToolTip tpQty2 = new ToolTip();
         private ToolTip tpMrp2 = new ToolTip();
+        private ToolTip tpMrp = new ToolTip();
         private ToolTip tpBatchNo = new ToolTip();
         private ToolTip tpBatchNo2 = new ToolTip();
         private ToolTip tpMonth = new ToolTip();
         private ToolTip tpYear = new ToolTip();
         public string varExpiryDate = "";
         public int varErroronGrid = 0, varErrorFormat = 0, varUpDownKey = 0;
-        public int varPRID = 0,varUTID=0,varRKID=0,varStockLocationId=0, varDecimal=0, pbDateflag = 0, varShelflife = 0, varUpdateFlag=0;
+        public int varPRID = 0, varUTID = 0, varRKID = 0, varStockLocationId = 0, varDecimal = 0, pbDateflag = 0, varShelflife = 0, varUpdateFlag = 0, varEditFlag = 0;
         DataTable dtStock = new DataTable();
         private bool varErrorFlag;
         int expirydateFlag = 0, error=0;
@@ -53,6 +54,7 @@ namespace ROMS
         public bool VarSearchFlag = true;
         bool varVoucherSkip = false;
         public int varClose = 0, varDateChange = 0;
+        
         public INV_StockConversion()
         {
             InitializeComponent();
@@ -121,9 +123,10 @@ namespace ROMS
             {
                 dtStock.TableName = "TRN_BatchConversion_Product";
                 dtStock.Columns.Add("STK_QTY", typeof(decimal));
-                dtStock.Columns.Add("STK_MRP", typeof(decimal));
+                dtStock.Columns.Add("STK_MRP", typeof(string));
                 dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
                 dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                dtStock.Columns.Add("STK_SNo", typeof(int));
                 udfnCmbConcern();
                 dpConversionDate.MinDate = MainForm.pbFYStartDate;
                 dpConversionDate.MaxDate = MainForm.pbCurrentDate;
@@ -962,12 +965,15 @@ namespace ROMS
             }
         }
         private void BtnAdd_Click(object sender, EventArgs e)
-            {
+        {
             try
             {
                 pbDateflag = 0;
+                varEditFlag = 1;
+                int varSNo = 0;
                 DGV_FilterProduct.Visible = false;
                 varErrorFlag = true;
+                //decimal varConvertMRP = 0;
                 if (txtProductName.Text == "")
                 {
                     epBatchConversion.SetError(txtProductName, "Please enter product");
@@ -1080,22 +1086,16 @@ namespace ROMS
                         varErrorFlag = false;
                     }
                 }
-                
-                for (int i = 0; i < dtStock.Rows.Count; i++)
+                string MRP = "";
+                //varConvertMRP = Convert.ToDecimal(txtConvertMrp.Text);
+                decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                string varConvertMRP = string.Format("{0:0.00}", varMRP);
+                MRP = varConvertMRP;
+                if (MRP == txtMrp.Text && txtExpiryDate.Text == varExpiryDate && txtBatchNo.Text == txtConvertBatch.Text)
                 {
-                    if (Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == txtConvertMrp.Text && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == txtExpiryDate.Text && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == txtConvertBatch.Text)
-                    {
-                        epBatchConversion.SetError(txtConvertQty, "Please enter valid quantity");
-                        txtConvertQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpQty2.ShowAlways = true;
-                        tpQty2.Show("Please enter valid quantity", txtConvertQty, 5000);
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(97);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        varErrorFlag = false;
-                    }
+                    udfnError();
                 }
+                udfnValidation();
                 if (expirydateFlag == 1 || txtDay.Text != "" || txtMonth.Text != "" || txtYear.Text != "")
                 {
                     udfnExpiryDateCheck();
@@ -1154,8 +1154,14 @@ namespace ROMS
                             string Qty = objValidation.udfnDecimal((txtConvertQty.Text), varDecimal);
                             txtConvertQty.Text = Qty;
                         }
-                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtConvertMrp.Text), (varExpiryDate).Trim(), (txtConvertBatch.Text).Trim(), (txtConvertQty.Text),varPRID,varRKID,varStockLocationId,varShelflife,varDecimal);
-                        dtStock.Rows.Add(Convert.ToDecimal((txtConvertQty.Text).Trim()),Convert.ToDecimal (txtConvertMrp.Text), (varExpiryDate).Trim(),Convert.ToInt32 ((txtConvertBatch.Text).Trim()));
+                        if (grdBatchConversion.Rows.Count > 0)
+                        {
+                            varSNo = (from row in grdBatchConversion.Rows.Cast<DataGridViewRow>()
+                                      let snoValue = string.IsNullOrEmpty(Convert.ToString(row.Cells["clmRowNum"].Value)) ? 0 : Convert.ToInt32(row.Cells["clmRowNum"].Value)
+                                      select snoValue).Max();
+                        }
+                        grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtConvertMrp.Text), (varExpiryDate).Trim(), (txtConvertBatch.Text).Trim(), (txtConvertQty.Text),varPRID,varRKID,varStockLocationId,varShelflife,varDecimal, varSNo+1);
+                        dtStock.Rows.Add(Convert.ToDecimal((txtConvertQty.Text).Trim()),Convert.ToDecimal (txtConvertMrp.Text), (varExpiryDate).Trim(),Convert.ToInt32 ((txtConvertBatch.Text).Trim()), Convert.ToInt32(varSNo+1));
                         grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1208,7 +1214,7 @@ namespace ROMS
                     txtProductName.BackColor=Color.White;
                     txtQty.BackColor = Color.White;
                 }
-                if(Convert.ToDecimal(txtQty.Text)==Convert.ToDecimal(changedQuantity))
+                if(Convert.ToDecimal(txtQty.Text) == Convert.ToDecimal(changedQuantity))
                 {
                     txtConvertMrp.Enabled = false;
                     txtConvertBatch.Enabled = false;
@@ -1237,7 +1243,66 @@ namespace ROMS
                 txtConvertQty.Text = "";
                 txtDay.Text = "";
                 txtMonth.Text = "";
-                txtYear.Text = "";            
+                txtYear.Text = "";
+                epBatchConversion.Clear();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnError()
+        {
+            try
+            {
+                txtConvertBatch.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpBatchNo2.Show("Please enter valid batch number", txtConvertBatch, 5000);
+                tpBatchNo2.ShowAlways = true;
+                epBatchConversion.SetError(txtConvertBatch, "Please enter a valid batch number");
+                txtConvertMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpMrp2.Show("Please enter valid MRP", txtConvertMrp, 5000);
+                tpMrp2.ShowAlways = true;
+                epBatchConversion.SetError(txtConvertMrp, "Please enter a valid MRP");
+                txtDay.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                epBatchConversion.SetError(txtMonth, "Please enter a valid month");
+                txtMonth.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpMonth.ShowAlways = true;
+                epBatchConversion.SetError(txtYear, "Please enter a valid year");
+                txtYear.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpYear.ShowAlways = true;
+                tpMonth.Show("Please enter valid month", txtMonth, 5000);
+                tpYear.Show("Please enter valid year", txtYear, 5000);
+                varErrorFlag = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnValidation()
+        {
+            try
+            {
+                string mrp = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtConvertMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                string varExpiryDate1 = txtDay.Text + '/' + txtMonth.Text + '/' + "20" + txtYear.Text;
+                string varExpiryDate = Convert.ToString(varExpiryDate1);
+                string varBatchNo = Convert.ToString(txtConvertBatch.Text);
+                var varDuplicateProuct = from r in dtStock.AsEnumerable()
+                                         where (r.Field<string>("STK_MRP").Equals(mrp1) &&
+                                                  r.Field<string>("STK_ExpiryDate").Equals(varExpiryDate) &&
+                                                  r.Field<string>("STK_BatchNo").Equals(varBatchNo)
+                                                  )
+                                         group r by new { MRP = r["STK_MRP"], ExpiryDate = r["STK_ExpiryDate"], BatchNo = r["STK_BatchNo"] }
+                                          into g
+                                         select g.Key;
+
+                if(varDuplicateProuct.Count()!=0)
+                {
+                    udfnError();
+                }
             }
             catch (Exception ex)
             {
@@ -1366,6 +1431,7 @@ namespace ROMS
         {
             try
             {
+                varEditFlag = 2;
                 SPDataService objspservice = new SPDataService();
                 string varoriginator = ""; int ViewType = 0;
                 if (btnSave.Text == "Save")
@@ -1413,7 +1479,7 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
                 }
-                if (error==1)
+                if (error == 1)
                 {
                     blnErrorFlag = false;
                     SPDataService objDServ = new SPDataService();
@@ -1422,38 +1488,103 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                //if (Convert.ToString(txtMrp2.Text).Trim() == "")
-                //{
-                //    epBatchConversion.SetError(txtMrp2, "Please enter MRP");
-                //    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpStockLocation.ShowAlways = true;
-                //    tpStockLocation.Show("Please enter MRP", txtMrp2, 5000);
-                //    blnErrorFlag = false;
-                //}
-                //if (Convert.ToString(txtMonth.Text).Trim() == "")
-                //{
-                //    epBatchConversion.SetError(txtMonth, "Please enter Month");
-                //    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpStockLocation.ShowAlways = true;
-                //    tpStockLocation.Show("Please enter Month", txtMonth, 5000);
-                //    blnErrorFlag = false;
-                //}
-                //if (Convert.ToString(txtYear.Text).Trim() == "")
-                //{
-                //    epBatchConversion.SetError(txtYear, "Please enter Year");
-                //    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpStockLocation.ShowAlways = true;
-                //    tpStockLocation.Show("Please enter Year", txtYear, 5000);
-                //    blnErrorFlag = false;
-                //}
-                //if (Convert.ToString(txtQty2.Text).Trim() == "")
-                //{
-                //    epBatchConversion.SetError(txtQty2, "Please enter Quantity");
-                //    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpStockLocation.ShowAlways = true;
-                //    tpStockLocation.Show("Please enter Quantity", txtQty2, 5000);
-                //    blnErrorFlag = false;
-                //}
+                //var varRowsToUpdate = dtStock.AsEnumerable().Where(r => r.Field<int>("SNo") == Convert.ToInt16(varsno));
+                //if (varDuplicateProuct.Count() == 0)
+                    //if (Convert.ToString(txtMrp2.Text).Trim() == "")
+                    //{
+                    //    epBatchConversion.SetError(txtMrp2, "Please enter MRP");
+                    //    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpStockLocation.ShowAlways = true;
+                    //    tpStockLocation.Show("Please enter MRP", txtMrp2, 5000);
+                    //    blnErrorFlag = false;
+                    //}
+                    //if (Convert.ToString(txtMonth.Text).Trim() == "")
+                    //{
+                    //    epBatchConversion.SetError(txtMonth, "Please enter Month");
+                    //    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpStockLocation.ShowAlways = true;
+                    //    tpStockLocation.Show("Please enter Month", txtMonth, 5000);
+                    //    blnErrorFlag = false;
+                    //}
+                    //if (Convert.ToString(txtYear.Text).Trim() == "")
+                    //{
+                    //    epBatchConversion.SetError(txtYear, "Please enter Year");
+                    //    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpStockLocation.ShowAlways = true;
+                    //    tpStockLocation.Show("Please enter Year", txtYear, 5000);
+                    //    blnErrorFlag = false;
+                    //}
+                    //if (Convert.ToString(txtQty2.Text).Trim() == "")
+                    //{
+                    //    epBatchConversion.SetError(txtQty2, "Please enter Quantity");
+                    //    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpStockLocation.ShowAlways = true;
+                    //    tpStockLocation.Show("Please enter Quantity", txtQty2, 5000);
+                    //    blnErrorFlag = false;
+                    //}
+                udfnValidation();
+                string mrp = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                string varExpiryDate = Convert.ToString(txtExpiryDate.Text);
+                string varBatchNo = Convert.ToString(txtBatchNo.Text);
+                var varDuplicateData = (from r in dtStock.AsEnumerable()
+                                         where (r.Field<string>("STK_MRP").Equals(mrp1) &&
+                                                  r.Field<string>("STK_ExpiryDate").Equals(varExpiryDate) &&
+                                                  r.Field<string>("STK_BatchNo").Equals(varBatchNo)
+                                                  )
+                                         group r by new { SNo = r["STK_SNo"] /*ExpiryDate = r["STK_ExpiryDate"], BatchNo = r["STK_BatchNo"]*/ }
+                                          into g
+                                         select g.Key).ToList();
+                
+
+                var varDuplicateGrid = dtStock.AsEnumerable()
+                 .GroupBy(r => new { expirydate = r["STK_ExpiryDate"], MRP = r["STK_MRP"], BatchNo = r["STK_BatchNo"] })
+                 .Where(g => g.Count() > 1)
+                 .Select(g => g.Select(r => r["STK_SNo"]))
+                 .ToList();
+
+                //For text box
+                if (varDuplicateData.Count() != 0)
+                {
+                    for (int j = 0; j < varDuplicateData.Count(); j++)
+                    {
+                        for (int i = 0; i < grdBatchConversion.Rows.Count; i++)
+                        {
+                            var key = varDuplicateData[j];
+                            var SNoValue = key.SNo; // Access SNo value
+                            if (Convert.ToString(SNoValue) == Convert.ToString(grdBatchConversion.Rows[i].Cells["clmRowNum"].Value))
+                            {
+                                grdBatchConversion.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                blnErrorFlag = false;
+                            }
+                        }
+                    }
+                }
+                //For grid
+                if (varDuplicateGrid.Count()!=0)
+                {
+                    for (int j = 0; j < varDuplicateGrid.Count(); j++)
+                    {
+                        //for (int k = 0; k < varDuplicateGrid[j].Count(); k++)
+                        //{
+                            for (int i = 0; i < grdBatchConversion.Rows.Count; i++)
+                            {
+                                var varSno = varDuplicateGrid[j].First();
+                                if (Convert.ToString(varSno) == Convert.ToString( grdBatchConversion.Rows[i].Cells["clmRowNum"].Value))
+                                {
+                                    grdBatchConversion.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                    blnErrorFlag = false;
+                                }
+                            }
+                       // }                            
+                    }
+                }
+                
+                //blnErrorFlag = false;
+                if (varErrorFlag == false)
+                {
+                    blnErrorFlag = false;
+                }
                 if (blnErrorFlag == true)
                 {
                     //udfntooltiphide();
@@ -1548,13 +1679,14 @@ namespace ROMS
         {
             try
             {
-                string expiryDate = txtExpiryDate.Text;
-                string[] split = expiryDate.Split('/');
-                string varExpiry = Convert.ToString(split[2]);
-                int NewExpiry= Convert.ToInt32(varExpiry) % 100;
-                txtYear.Text = Convert.ToString(NewExpiry);
-                txtMonth.Text = Convert.ToString(split[1]);
-                txtDay.Text = Convert.ToString(split[0]);
+                //string expiryDate = txtExpiryDate.Text;
+                //string[] split = expiryDate.Split('/');
+                //string varExpiry = Convert.ToString(split[2]);
+                //int NewExpiry= Convert.ToInt32(varExpiry) % 100;
+                //txtYear.Text = Convert.ToString(NewExpiry);
+
+                //txtMonth.Text = Convert.ToString(split[1]);
+                //txtDay.Text = Convert.ToString(split[0]);
             }
             catch (Exception ex)
             {
@@ -2364,8 +2496,8 @@ namespace ROMS
                             {
                                 grdBatchConversion.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdBatchConversion.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]),
-                                Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]));
-                                dtStock.Rows.Add(Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]));
+                                Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflife"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]),0);
+                                dtStock.Rows.Add(Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["BatchNo"]),0);
                                 sum += Convert.ToDecimal(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
                                 grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

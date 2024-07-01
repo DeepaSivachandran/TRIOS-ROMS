@@ -27,7 +27,7 @@ namespace ROMS
         private ToolTip tpStockLocation = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
-
+        public int varCompleteFlag = 0;
         public string varStockLocationId = "", varTamilname="";
         public string varStockApplicable = "";
         public int varErrQty = 0;
@@ -52,6 +52,7 @@ namespace ROMS
         private int varviewtype = 0;
         bool varVoucherSkip = false;
         public int varClose = 0, varDateChange = 0;
+        public string varUserID = "";
 
         public INV_GodownOutward()
         {
@@ -1946,22 +1947,18 @@ namespace ROMS
                 bool GOID = Convert.ToBoolean(varGOId);
                 if (btnSave.Text == "Save as Draft" && cbCompleted.Checked == false && !GOID)
                 {
-                    ViewType = 0;
                     varStatusId = 35;
                 }
                 else if (btnSave.Text == "Save" && cbCompleted.Checked == true && GOID)
                 {
-                    ViewType = 0;
                     varStatusId = 26;
                 }
                 else if (btnSave.Text == "Save" && cbCompleted.Checked == true && !GOID)
                 {
-                    ViewType = 0;
                     varStatusId = 26;
                 }
                 else if (btnSave.Text == "Save as Draft" && cbCompleted.Checked == false && GOID)
                 {
-                    ViewType = 0;
                     varStatusId = 35;
                 }
                 //if(btnSave.Text=="Save as Draft")
@@ -2059,6 +2056,10 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = false;
                 }
+                if(cbCompleted.Checked == false)
+                {
+                    varCompleteFlag = 1;
+                }
                 if (blnErrorFlag == true)
                 {
                     udfntooltiphide();
@@ -2075,59 +2076,146 @@ namespace ROMS
                     objTRNS_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
                     objTRNS_GoodsOutward.paraStockTransfer = dtStock;
                     objTRNS_GoodsOutward.paraOriginator = varoriginator;
+                    objTRNS_GoodsOutward.ParaFlag = varCompleteFlag;
                     objTRNS_GoodsOutward.paraStatusId = varStatusId;
                     result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
                     objspdservice.CloseConnection();
-
                     string[] varvalue = result.Split('~');
-                    if (varvalue[0] == "3")
+                    if (result.Split('~')[0] == "3")
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.ActiveControl = txtProductName;
-                        MainForm.objINV_GodownOutwardList.udfnList();
-                        udfnClear();
-                        this.Close();
-                    }
-                    else
-                    {
-                        epGoodsOutward.Clear();
-                        txtProductName.BackColor = Color.White;
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        btnSave.Enabled = true;
-                        btnSave.Focus();
-                        if (varvalue[0] == "5")
+                        if (result.Split('~')[1] == "1")
                         {
-                            //for (int i = 0; i < varFirstList.Length; i++)
-                            //{
-                            //    string[] varSecondList = varFirstList[i].Split(',');
-                            //    string varPRID = varSecondList[0];
-                            //    string varMRP = varSecondList[1];
-                            //    string varExpiryDate = varSecondList[2];
-                            //    string varBatchNo = varSecondList[3];
-                            for (int j = 0; j < grdGoodsOutward.RowCount; j++)
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
                             {
-                                grdGoodsOutward.Rows[j].DefaultCellStyle.BackColor = Color.White;
-
-                                string[] varFirstList = varvalue[2].Split('|');
-                                for (int i = 0; i < varFirstList.Length; i++)
+                                objTRNS_GoodsOutward.ViewType = ViewType;
+                                objTRNS_GoodsOutward.ParaGOId = varGOId;
+                                objTRNS_GoodsOutward.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
+                                objTRNS_GoodsOutward.paraOutwardDate = dtpOutwardDate.Text;
+                                objTRNS_GoodsOutward.paraTransferType = Convert.ToInt32(cmbTransactionType.SelectedValue);
+                                objTRNS_GoodsOutward.paraRemarks = txtRemark.Text.Trim();
+                                objTRNS_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
+                                objTRNS_GoodsOutward.paraStockTransfer = dtStock;
+                                objTRNS_GoodsOutward.paraOriginator = varoriginator;
+                                objTRNS_GoodsOutward.paraCompletedby = Convert.ToInt32(varUserID);
+                                objTRNS_GoodsOutward.ParaFlag = 1;
+                                objTRNS_GoodsOutward.paraStatusId = varStatusId;
+                                result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
+                                objspdservice.CloseConnection();
+                                string[] varvalue1 = result.Split('~');
+                                if (varvalue1[0] == "3")
                                 {
-                                    string[] varSecondList = varFirstList[i].Split(',');
-                                    varProductID = varSecondList[0];
-                                    varMRP = varSecondList[1];
-                                    varExpiryDate = varSecondList[2];
-                                    varBatchNo = varSecondList[3];
-                                    varRKID = varSecondList[4];
-                                    if (Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmBatchNo"].Value) == varBatchNo && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmRKID"].Value) == varRKID)
-                                    {
-
-                                        grdGoodsOutward.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
-                                    }
-
+                                    MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    this.ActiveControl = txtProductName;
+                                    MainForm.objINV_GodownOutwardList.udfnList();
+                                    udfnClear();
+                                    this.Close();
                                 }
+                                else
+                                {
+                                    epGoodsOutward.Clear();
+                                    txtProductName.BackColor = Color.White;
+                                    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    btnSave.Enabled = true;
+                                    btnSave.Focus();
+                                    if (varvalue[0] == "5")
+                                    {
+                                        //for (int i = 0; i < varFirstList.Length; i++)
+                                        //{
+                                        //    string[] varSecondList = varFirstList[i].Split(',');
+                                        //    string varPRID = varSecondList[0];
+                                        //    string varMRP = varSecondList[1];
+                                        //    string varExpiryDate = varSecondList[2];
+                                        //    string varBatchNo = varSecondList[3];
+                                        for (int j = 0; j < grdGoodsOutward.RowCount; j++)
+                                        {
+                                            grdGoodsOutward.Rows[j].DefaultCellStyle.BackColor = Color.White;
 
+                                            string[] varFirstList = varvalue[2].Split('|');
+                                            for (int i = 0; i < varFirstList.Length; i++)
+                                            {
+                                                string[] varSecondList = varFirstList[i].Split(',');
+                                                varProductID = varSecondList[0];
+                                                varMRP = varSecondList[1];
+                                                varExpiryDate = varSecondList[2];
+                                                varBatchNo = varSecondList[3];
+                                                varRKID = varSecondList[4];
+                                                if (Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmBatchNo"].Value) == varBatchNo && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmRKID"].Value) == varRKID)
+                                                {
+
+                                                    grdGoodsOutward.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                                                }
+
+                                            }
+
+                                        }
+                                    }
+                                }
                             }
                         }
+                        else if (result.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (result.Split('~')[0] != "1")
+                        {
+                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.ActiveControl = txtProductName;
+                            MainForm.objINV_GodownOutwardList.udfnList();
+                            udfnClear();
+                            this.Close();
+                        }
                     }
+                    //if (varvalue[0] == "3")
+                    //{
+                    //    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //    this.ActiveControl = txtProductName;
+                    //    MainForm.objINV_GodownOutwardList.udfnList();
+                    //    udfnClear();
+                    //    this.Close();
+                    //}
+                    //else
+                    //{
+                    //    epGoodsOutward.Clear();
+                    //    txtProductName.BackColor = Color.White;
+                    //    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    btnSave.Enabled = true;
+                    //    btnSave.Focus();
+                    //    if (varvalue[0] == "5")
+                    //    {
+                    //        //for (int i = 0; i < varFirstList.Length; i++)
+                    //        //{
+                    //        //    string[] varSecondList = varFirstList[i].Split(',');
+                    //        //    string varPRID = varSecondList[0];
+                    //        //    string varMRP = varSecondList[1];
+                    //        //    string varExpiryDate = varSecondList[2];
+                    //        //    string varBatchNo = varSecondList[3];
+                    //        for (int j = 0; j < grdGoodsOutward.RowCount; j++)
+                    //        {
+                    //            grdGoodsOutward.Rows[j].DefaultCellStyle.BackColor = Color.White;
+
+                    //            string[] varFirstList = varvalue[2].Split('|');
+                    //            for (int i = 0; i < varFirstList.Length; i++)
+                    //            {
+                    //                string[] varSecondList = varFirstList[i].Split(',');
+                    //                varProductID = varSecondList[0];
+                    //                varMRP = varSecondList[1];
+                    //                varExpiryDate = varSecondList[2];
+                    //                varBatchNo = varSecondList[3];
+                    //                varRKID = varSecondList[4];
+                    //                if (Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmmrp"].Value) == varMRP && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmExpirydate"].Value) == varExpiryDate && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmBatchNo"].Value) == varBatchNo && Convert.ToString(grdGoodsOutward.Rows[j].Cells["clmRKID"].Value) == varRKID)
+                    //                {
+
+                    //                    grdGoodsOutward.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
+                    //                }
+
+                    //            }
+
+                    //        }
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)

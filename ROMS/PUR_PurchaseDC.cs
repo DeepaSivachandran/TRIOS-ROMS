@@ -44,7 +44,7 @@ namespace ROMS
         public string varBatchNo = "0";
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varTempExpiryDate = "0";
         public string varErrQty = "0", varErrBatchNo = "0", varErrExpiryDate = "0"; int expirydateFlag = 0, varMRPEditflag = 0;
-        public int editFlag = 0, varMRPFlag = 0, VarRackCount = 0, varRMProductionFlag=0;
+        public int editFlag = 0, varMRPFlag = 0, VarRackCount = 0, varRMProductionFlag = 0, varDCPrintFlag = 0;
         public string varSupplierID = "";
         decimal ProShelflife = 0;
         public string varSupplierScheduleID = "";
@@ -478,6 +478,7 @@ namespace ROMS
                 ClearSupplier();
                 udfnUddtTable();
                 udfnCmbConcern();
+                udfnGeneralSettingsList();
                 //DataService objDservice = new DataService();
                 //string vardate = objDservice.displaydata("SELECT CONVERT(datetime,GETDATE(),103)");
                 //objDservice.CloseConnection();
@@ -543,6 +544,31 @@ namespace ROMS
                     if (chkCompleted.Checked == true)
                     {
                         btnVerified.Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGeneralSettingsList()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGeneralSettingList(0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            varDCPrintFlag = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_DCPrint"]);
+                        }
                     }
                 }
             }
@@ -2697,7 +2723,7 @@ namespace ROMS
                                     //    varCloseFlag = 1;
                                     //    udfnclose();
                                     //}
-                                    if (btnSave.Text == "Save")
+                                    if (btnSave.Text == "Save" && varDCPrintFlag == 1)
                                     {
                                         DialogResult result1 = DialogResult.Yes;
                                         SPDataService objDServs = new SPDataService();
