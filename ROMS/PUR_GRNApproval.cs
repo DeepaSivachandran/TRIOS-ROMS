@@ -553,19 +553,37 @@ namespace ROMS
             {
                 DataGridViewCell Cell = grdGrnApproval.CurrentCell;
                 Type CellType = Cell.GetType();
-                DataGridViewComboBoxCell comboBoxCell = grdGrnApproval.CurrentCell as DataGridViewComboBoxCell;
-                switch (e.KeyCode)
-                {
-                    case Keys.Down:
-                        if (CellType == typeof(DataGridViewComboBoxCell))
-                        {
-                            //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
-                            //comboBoxCell.SelectedIndex = newIndex;
+                //DataGridViewComboBoxCell comboBoxCell = grdGrnApproval.CurrentCell as DataGridViewComboBoxCell;
+                //switch (e.KeyCode)
+                //{
+                //    case Keys.Down:
+                //        //if (CellType == typeof(DataGridViewComboBoxCell))
+                //        //{
+                //        //    //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
+                //        //    //comboBoxCell.SelectedIndex = newIndex;
 
+                //        //}
+                //        break;
+                //}
+                if (e.KeyCode == Keys.Down)
+                {
+                    DataGridView dgv = (DataGridView)sender;
+                    ComboBox comboBox1 = sender as ComboBox;
+                    DataGridViewComboBoxCell comboBoxCell = grdGrnApproval.CurrentCell as DataGridViewComboBoxCell;
+                    DataGridViewCell currentCell = dgv.CurrentCell;
+                    if (CellType == typeof(DataGridViewComboBoxCell))
+                    {
+                        if (currentCell is DataGridViewComboBoxCell comboBoxCell1)
+                        {
+                            //grdGrnApproval.BeginEdit(true);
+                            dgv.BeginEdit(true);
+                            //comboBoxCell1.FlatStyle = FlatStyle.Popup; // Optional: Set the dropdown style
+                            comboBox1.DroppedDown = true;
                         }
-                        break;
+                    }
                 }
             }
+
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -608,7 +626,7 @@ namespace ROMS
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnEdit();
-                //udfnStatus();
+                udfnStatus();
 
             }
             catch (Exception ex)
@@ -640,7 +658,7 @@ namespace ROMS
                                 DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
                                 varComboBoxColoumn.ValueMember = "ID";
                                 varComboBoxColoumn.DisplayMember = "Status";
-                               varComboBoxColoumn.DataSource = objDT.Tables[0];
+                                varComboBoxColoumn.DataSource = objDT.Tables[0];
                             }
                         }
                     }
