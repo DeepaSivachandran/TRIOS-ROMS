@@ -206,7 +206,7 @@ namespace ROMS
 
                     varIncreaseWidthSize = this.RPTViewer.Width + (this.RPTViewer.Width * varPercentageWidth / 100);
                     varIncreaseHeightSize = this.RPTViewer.Height + (this.RPTViewer.Height * varPercentageHeight / 100);
-                    RPTViewer.Size = new Size(Convert.ToInt32(varIncreaseWidthSize + 5), Convert.ToInt32(varIncreaseHeightSize + FontSize * 2));
+                    RPTViewer.Size = new Size(Convert.ToInt32(varIncreaseWidthSize + 2), Convert.ToInt32(varIncreaseHeightSize + FontSize));
 
                     if (Convert.ToInt32(screen.WorkingArea.Width) == 1366)
                     {
@@ -245,7 +245,7 @@ namespace ROMS
                                 }
                                 varIncreaseWidthSize = controls.Width + (controls.Width * varPercentageWidth / 100);
                                 varIncreaseHeightSize = controls.Height + (controls.Height * varPercentageHeight / 100);
-                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize), Convert.ToInt32(varIncreaseHeightSize));
+                                controls.Size = new Size(Convert.ToInt32(varIncreaseWidthSize + 5), Convert.ToInt32(varIncreaseHeightSize));
                             }
                             if (controls is DataGridView)
                             {
@@ -312,11 +312,11 @@ namespace ROMS
                         LV_Supplier.Location = new Point(txtSupplier.Location.X + 3, txtSupplier.Location.Y + txtSupplier.Height + 2);
                     }
                     DGV_SearchGrid.Location = new Point(DGV_SearchGrid.Location.X, (grpfilter.Height + 5));
+                    RPTViewer.Location = new Point(0, grpfilter.Location.Y + grpfilter.Height);
                     dgvSupplierScheduleList.Location = new Point(dgvSupplierScheduleList.Location.X, (grpfilter.Height + DGV_SearchGrid.Height + 5));
                     picLoader.Location = new Point(picLoader.Location.X, (grpfilter.Height + 5));
                     lblNoRecordsFound.Location = new Point((screen.WorkingArea.Width - lblNoRecordsFound.Size.Width) / 2, (screen.WorkingArea.Height / 2) - (lblNoRecordsFound.Height / 2));
 
-                    RPTViewer.Location = new Point(0, DGV_SearchGrid.Location.Y);
                     Font varNewFont = new Font(lblNoRecordsFound.Font.FontFamily, (float)FontSize, lblNoRecordsFound.Font.Style);
                     lblNoRecordsFound.Font = varNewFont;
                     grpfilter.Font = varNewFont;
