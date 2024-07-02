@@ -1096,7 +1096,6 @@ namespace ROMS
                 {
                     udfnExpiryDateCheck();
                 }
-                string varExpiryDate1 = txtDay.Text + '/' + txtMonth.Text + '/' + "20" + txtYear.Text;
                 decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                 string varConvertMRP = string.Format("{0:0.00}", varMRP);
                 MRP = varConvertMRP;
