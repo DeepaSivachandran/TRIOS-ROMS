@@ -55,6 +55,7 @@ namespace ROMS
         public static CP_Companylist objCP_Companylist;
         public static CP_ProductHSN objCP_ProductHSN;
         public static CP_ProductHSNList objCP_ProductHSNlist;
+        public static CP_ProductHSN_Verify objCP_ProductHSN_Verify;
         public static CP_Unitlist objCP_Unitlist;
         public static CP_Unit objCP_Unit;
         public static CP_City objCP_City;
