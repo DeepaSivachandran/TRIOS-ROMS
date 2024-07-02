@@ -640,7 +640,13 @@ namespace ROMS
                 udfnsupplierLoad();
                 udfnEdit();
                 udfnStatus();
-
+                if(MainForm.objPUR_GRNApprovalList.ApprovalFlag==1)
+                {
+                    btnSave.Enabled = false;
+                    btnRemarks.Enabled = false;
+                    txtRemark.Enabled = false;
+                    grdGrnApproval.ReadOnly = true;
+                }
             }
             catch (Exception ex)
             {

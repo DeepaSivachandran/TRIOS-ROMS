@@ -73,7 +73,6 @@ namespace ROMS
                 if(ApprovalFlag == 1)
                 {
                     tsbApproval.Visible = true;
-                    tsbEdit.Visible = false;
                 }
                 else
                 {
