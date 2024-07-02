@@ -1650,8 +1650,8 @@ namespace ROMS
                                 if (varReturnDCID == 0)
                                 {
                                     varviewtype = 0;
-                                    if (Convert.ToInt32(cmbReason.SelectedValue) == 203)
-                                    {
+                                    //if (Convert.ToInt32(cmbReason.SelectedValue) == 203)
+                                    //{
                                         if (chkCompleted.Checked == true)
                                         {
                                             varStatusId = 15;
@@ -1660,11 +1660,11 @@ namespace ROMS
                                         {
                                             varStatusId = 68;
                                         }
-                                    }
-                                    else
-                                    {
-                                        varStatusId = 68;
-                                    }
+                                    //}
+                                    //else
+                                    //{
+                                        //varStatusId = 68;
+                                    //}
                                     varorginator = "Purchase Return DC insertion";
                                 }
                                 if (varStatusId == 16 || varStatusId==39)

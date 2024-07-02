@@ -419,10 +419,10 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "231")
                     {
-                        string varReceivedQty = "";
-                        varReceivedQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
-                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = VarReceivedQty;
-                        object Quantity = varReceivedQty;
+                        string varRecQty = "";
+                        varRecQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
+                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = varRecQty;
+                        object Quantity = varRecQty;
                         dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
                         dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
                     }
