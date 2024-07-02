@@ -961,6 +961,11 @@ namespace ROMS
                 if (pbPurchaseno == "0")
                 {
                     cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                    DateTime varmindate = MainForm.pbCurrentDate;
+                    dpVoucherDate.MinDate = varmindate;
+                    //dpVoucherDate.MinDate = varmindate;
+                    dpVoucherDate.MaxDate = varmindate;
+                    dpVoucherDate.Text =Convert.ToString(MainForm.pbCurrentDate);
                 }
                 if (varClose == 1)
                 {
@@ -994,7 +999,7 @@ namespace ROMS
                         udfnSupplierDetails();
                         cmbConcern.Enabled = false;
                         btnClear.Enabled = false;
-                        dpVoucherDate.Enabled = false;
+                        //dpVoucherDate.Enabled = false;
                         txtSupplier.Enabled = false;
                         cmbEntryType.Enabled = false;
                         btnViewDataView.Enabled = false;
@@ -1771,7 +1776,7 @@ namespace ROMS
             try
             {
                 cmbConcern.Enabled = false;
-                dpVoucherDate.Enabled = false;
+                //dpVoucherDate.Enabled = false;
                 txtPENO.Enabled = false;
                 txtSupplier.Enabled = false;
                 cmbEntryType.Enabled = false;
@@ -2057,9 +2062,9 @@ namespace ROMS
                 }
                 DateTime varmindate = MainForm.pbFYStartDate;
                 dpInvoiceDate.MinDate = varmindate;
-                dpVoucherDate.MinDate = varmindate;
+                //dpVoucherDate.MinDate = varmindate;
                 dpInvoiceDate.MaxDate = varmaxdate;
-                dpVoucherDate.MaxDate = varmaxdate;
+               // dpVoucherDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
             {
