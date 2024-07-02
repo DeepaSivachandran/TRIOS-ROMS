@@ -804,6 +804,10 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PUR_INVSTSID"].Visible = false;
                 DGV_SearchGrid.Columns["Pur Entry Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Pur_LastTransNo"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_Payment_StsID"].Visible = false;
+                DGV_SearchGrid.Columns["Flag"].Visible = false;
+                DGV_SearchGrid.Columns["TallyExportFlag"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
