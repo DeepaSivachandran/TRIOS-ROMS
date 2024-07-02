@@ -3306,7 +3306,7 @@ namespace ROMS
                                 //grdProDetails.Rows.Add();
                                 if (irow < grdInward.Rows.Count - 1)
                                 {
-                                    grdInward.CurrentCell = grdInward["Received Qty", irow + 1];
+                                    grdInward.CurrentCell = grdInward["clmReceivedQty", irow + 1];
                                     icolumn = grdInward.CurrentCell.ColumnIndex;
                                     irow = grdInward.CurrentCell.RowIndex;
                                     //goto A;
@@ -3318,7 +3318,13 @@ namespace ROMS
                                     {
                                         icolumn++; goto A;
                                     }
-
+                                    if (irow < grdInward.Rows.Count - 1)
+                                    {
+                                        if (grdInward.CurrentCell.OwningColumn.Name == "clmRemove")
+                                        {
+                                            grdInward.CurrentCell = grdInward["clmReceivedQty", irow + 1];
+                                        }
+                                    }
                                 }
                             }
                             else
@@ -3331,6 +3337,13 @@ namespace ROMS
                                 {
                                     grdInward.CurrentCell = grdInward[icolumn + 1, irow];
                                     if (grdInward.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                }
+                                if (irow < grdInward.Rows.Count - 1)
+                                {
+                                    if (grdInward.CurrentCell.OwningColumn.Name == "clmRemove")
+                                    {
+                                        grdInward.CurrentCell = grdInward["clmReceivedQty", irow + 1];
+                                    }
                                 }
                             }
                         }

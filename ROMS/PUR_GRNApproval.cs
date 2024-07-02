@@ -338,14 +338,21 @@ namespace ROMS
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
                 }
-                DataGridViewCell Cell = grdGrnApproval.CurrentCell;
-                Type CellType = Cell.GetType();
-                if (CellType == typeof(DataGridViewComboBoxCell))
-                {
-                    //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
-                    //comboBoxCell.SelectedIndex = newIndex;
+                //DataGridViewCell Cell = grdGrnApproval.CurrentCell;
+                //Type CellType = Cell.GetType();
+                //if (CellType == typeof(DataGridViewComboBoxCell))
+                //{
+                //    //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
+                //    //comboBoxCell.SelectedIndex = newIndex;
 
-                }
+                //}
+                //if (e.Control is ComboBox comboBox)
+                //{
+                //    // Subscribe to the KeyDown event of the ComboBox
+                //    grdGrnApproval.KeyDown -= GrdGrnApproval_KeyDown; // Ensure to unsubscribe to avoid multiple subscriptions
+                //    grdGrnApproval.KeyDown += GrdGrnApproval_KeyDown;
+                    
+                //}
             }
             catch (Exception ex)
             {
@@ -412,10 +419,10 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "231")
                     {
-                        string varReceivedQty = "";
-                        varReceivedQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
-                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = VarReceivedQty;
-                        object Quantity = varReceivedQty;
+                        string varRecQty = "";
+                        varRecQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
+                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = varRecQty;
+                        object Quantity = varRecQty;
                         dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
                         dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
                     }
@@ -443,6 +450,28 @@ namespace ROMS
                             //Update the same column value in the DataTable
                             dtApproval.Rows[i]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
                         }
+                    }
+                }
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                {
+                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
+                    {
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
+                        {
+                            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
+                        }
+                        else
+                        {
+                            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                            grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
+                        }
+                    }
+                    else
+                    {
+                        dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
                     }
                 }
             }
@@ -476,28 +505,28 @@ namespace ROMS
             {
                 if (grdGrnApproval.Rows.Count > 0)
                 {
-                    if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
-                    {
-                        if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
-                        {
-                            MainForm.objCP_Verify = new CP_Verify();
-                            MainForm.objCP_Verify.ShowDialog();
-                            varUserID = MainForm.objCP_Verify.varUserId;
-                            if (MainForm.objCP_Verify.flag == 1)
-                            {
-                                dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
-                            }
-                            else
-                            {
-                                dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                                grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
-                            }
-                        }
-                        else
-                        {
-                            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                        }
-                    }
+                    //if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                    //{
+                    //    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
+                    //    {
+                    //        MainForm.objCP_Verify = new CP_Verify();
+                    //        MainForm.objCP_Verify.ShowDialog();
+                    //        varUserID = MainForm.objCP_Verify.varUserId;
+                    //        if (MainForm.objCP_Verify.flag == 1)
+                    //        {
+                    //            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
+                    //        }
+                    //        else
+                    //        {
+                    //            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                    //            grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -551,37 +580,21 @@ namespace ROMS
         {
             try
             {
-                DataGridViewCell Cell = grdGrnApproval.CurrentCell;
-                Type CellType = Cell.GetType();
-                //DataGridViewComboBoxCell comboBoxCell = grdGrnApproval.CurrentCell as DataGridViewComboBoxCell;
-                //switch (e.KeyCode)
+                //DataGridViewCell Cell = grdGrnApproval.CurrentCell;
+                //Type CellType = Cell.GetType();
+                //if (e.KeyCode == Keys.Down)
                 //{
-                //    case Keys.Down:
-                //        //if (CellType == typeof(DataGridViewComboBoxCell))
-                //        //{
-                //        //    //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
-                //        //    //comboBoxCell.SelectedIndex = newIndex;
-
-                //        //}
-                //        break;
+                //    DataGridView dgv = (DataGridView)sender;
+                //    DataGridViewCell currentCell = dgv.CurrentCell;
+                //    if (CellType == typeof(DataGridViewComboBoxCell))
+                //    {
+                //        if (currentCell is DataGridViewComboBoxCell comboBoxCell1)
+                //        {
+                //            //dgv.BeginEdit(true);                     
+                //            //SendKeys.Send("{F4}");
+                //        }
+                //    }
                 //}
-                if (e.KeyCode == Keys.Down)
-                {
-                    DataGridView dgv = (DataGridView)sender;
-                    ComboBox comboBox1 = sender as ComboBox;
-                    DataGridViewComboBoxCell comboBoxCell = grdGrnApproval.CurrentCell as DataGridViewComboBoxCell;
-                    DataGridViewCell currentCell = dgv.CurrentCell;
-                    if (CellType == typeof(DataGridViewComboBoxCell))
-                    {
-                        if (currentCell is DataGridViewComboBoxCell comboBoxCell1)
-                        {
-                            //grdGrnApproval.BeginEdit(true);
-                            dgv.BeginEdit(true);
-                            //comboBoxCell1.FlatStyle = FlatStyle.Popup; // Optional: Set the dropdown style
-                            comboBox1.DroppedDown = true;
-                        }
-                    }
-                }
             }
 
             catch (Exception ex)
