@@ -57,6 +57,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -75,9 +76,8 @@
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.DGV_ProdSearchGrid = new System.Windows.Forms.DataGridView();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
-            this.ep_PurchaseDC = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnPrint = new System.Windows.Forms.Button();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.ep_PurchaseDC = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -270,11 +270,10 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1234, 25);
+            this.btnExport.Location = new System.Drawing.Point(1176, 23);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(79, 29);
+            this.btnExport.Size = new System.Drawing.Size(32, 33);
             this.btnExport.TabIndex = 7;
-            this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
@@ -290,7 +289,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(530, 52);
+            this.LV_Supplier.Location = new System.Drawing.Point(515, 52);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 93);
             this.LV_Supplier.TabIndex = 1111209;
@@ -338,11 +337,24 @@
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(1211, 20);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(32, 33);
+            this.btnPrint.TabIndex = 111111143;
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(991, 26);
+            this.label7.Location = new System.Drawing.Point(976, 26);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(38, 20);
             this.label7.TabIndex = 111111142;
@@ -376,7 +388,7 @@
             "--Select--",
             "Damage",
             "Excess"});
-            this.cmbStatus.Location = new System.Drawing.Point(848, 23);
+            this.cmbStatus.Location = new System.Drawing.Point(833, 23);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(137, 27);
             this.cmbStatus.TabIndex = 4;
@@ -391,7 +403,7 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(86, 23);
+            this.cmbConcern.Location = new System.Drawing.Point(69, 23);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(98, 27);
             this.cmbConcern.TabIndex = 0;
@@ -405,7 +417,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(26, 26);
+            this.label12.Location = new System.Drawing.Point(9, 26);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 1111173;
@@ -414,7 +426,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(797, 26);
+            this.lblStatus.Location = new System.Drawing.Point(782, 26);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 958816;
@@ -424,7 +436,7 @@
             // 
             this.dpdctodate.CustomFormat = "dd/MM/yyyy";
             this.dpdctodate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpdctodate.Location = new System.Drawing.Point(357, 23);
+            this.dpdctodate.Location = new System.Drawing.Point(342, 23);
             this.dpdctodate.Name = "dpdctodate";
             this.dpdctodate.Size = new System.Drawing.Size(104, 27);
             this.dpdctodate.TabIndex = 2;
@@ -434,7 +446,7 @@
             // 
             // txtSupplier
             // 
-            this.txtSupplier.Location = new System.Drawing.Point(527, 23);
+            this.txtSupplier.Location = new System.Drawing.Point(512, 23);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(264, 27);
@@ -447,7 +459,7 @@
             // lblDSupplier
             // 
             this.lblDSupplier.AutoSize = true;
-            this.lblDSupplier.Location = new System.Drawing.Point(467, 26);
+            this.lblDSupplier.Location = new System.Drawing.Point(452, 26);
             this.lblDSupplier.Name = "lblDSupplier";
             this.lblDSupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDSupplier.TabIndex = 958811;
@@ -457,7 +469,7 @@
             // 
             this.dpDcFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpDcFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpDcFromDate.Location = new System.Drawing.Point(247, 23);
+            this.dpDcFromDate.Location = new System.Drawing.Point(232, 23);
             this.dpDcFromDate.Name = "dpDcFromDate";
             this.dpDcFromDate.Size = new System.Drawing.Size(104, 27);
             this.dpDcFromDate.TabIndex = 1;
@@ -469,7 +481,7 @@
             // lblInvoicedate
             // 
             this.lblInvoicedate.AutoSize = true;
-            this.lblInvoicedate.Location = new System.Drawing.Point(190, 26);
+            this.lblInvoicedate.Location = new System.Drawing.Point(173, 26);
             this.lblInvoicedate.Name = "lblInvoicedate";
             this.lblInvoicedate.Size = new System.Drawing.Size(53, 20);
             this.lblInvoicedate.TabIndex = 92;
@@ -479,11 +491,10 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1150, 22);
+            this.btnView.Location = new System.Drawing.Point(1135, 20);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.Size = new System.Drawing.Size(32, 33);
             this.btnView.TabIndex = 6;
-            this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
@@ -499,7 +510,7 @@
             "--Select--",
             "Damage",
             "Excess"});
-            this.cmbShow.Location = new System.Drawing.Point(1033, 23);
+            this.cmbShow.Location = new System.Drawing.Point(1020, 23);
             this.cmbShow.Name = "cmbShow";
             this.cmbShow.Size = new System.Drawing.Size(109, 27);
             this.cmbShow.TabIndex = 5;
@@ -647,23 +658,6 @@
             this.grdProDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdProDetails_DataBindingComplete);
             this.grdProDetails.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdProDetails_Scroll);
             // 
-            // ep_PurchaseDC
-            // 
-            this.ep_PurchaseDC.ContainerControl = this;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnPrint.Image = global::ROMS.Properties.Resources.print;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(1314, 23);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(32, 33);
-            this.btnPrint.TabIndex = 111111143;
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
-            // 
             // RPTViewer
             // 
             this.RPTViewer.ActiveViewIndex = -1;
@@ -676,6 +670,10 @@
             this.RPTViewer.TabIndex = 1110000995;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
+            // 
+            // ep_PurchaseDC
+            // 
+            this.ep_PurchaseDC.ContainerControl = this;
             // 
             // PUR_PurchaseDCList
             // 

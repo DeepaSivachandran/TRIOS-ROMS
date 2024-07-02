@@ -1281,8 +1281,8 @@ namespace ROMS
                     grdProDetails.Visible = true;
                     DGV_ProdSearchGrid.Visible = true;
                     //btnPrint.Visible = true;
-                    //RPTViewer.Visible = false;
-                    //RPTViewer.SendToBack();
+                    RPTViewer.Visible = false;
+                    RPTViewer.SendToBack();
                     udfnProductList();
                 }
                 else
@@ -1292,8 +1292,8 @@ namespace ROMS
                     grdProDetails.Visible = false;
                     DGV_ProdSearchGrid.Visible = false;
                     //btnPrint.Visible = false;
-                    //RPTViewer.Visible = false;
-                    //RPTViewer.SendToBack();
+                    RPTViewer.Visible = false;
+                    RPTViewer.SendToBack();
                     udfnList();
                 }
             }
@@ -2184,7 +2184,7 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 string varSupplier = txtSupplier.Text;
-                int varstsid = 0, varOrdertType = 0;
+                int varstsid = 0;
                 if (varSupplier == "")
                 {
                     varSupplier = "-All-";
@@ -2213,29 +2213,26 @@ namespace ROMS
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
-                    string Type = Convert.ToString(objDs.Tables[0].Rows[0]["Type"].ToString());
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_GRNDetailsList.rpt");
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("ParaGRNFromDate", Convert.ToString(dpDcFromDate.Text));
-                    objBillreport.SetParameterValue("ParaGRNToDate", Convert.ToString(dpdctodate.Text));
-                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
-                    objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedule.Text));
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DCList.rpt");
+                    objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpDcFromDate.Text));
+                    objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpdctodate.Text));
+                    objBillreport.SetParameterValue("paraSupplierID", Convert.ToInt32(lblSupplierCode.Text));
+                    objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedule.Text));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(varSupplier));
                     objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
-                    objBillreport.SetParameterValue("paraOrdertype", varOrdertType);
-                    objBillreport.SetParameterValue("paraStatus", varstsid);
+                    objBillreport.SetParameterValue("paraStatusID", varstsid);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objBillreport.SetParameterValue("varHeader", Type);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
