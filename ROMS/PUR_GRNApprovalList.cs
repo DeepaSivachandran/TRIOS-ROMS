@@ -1578,6 +1578,10 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
                                 grdGrnApprovalList.Columns["Purchase Type"].Visible = false;
                                 grdGrnApprovalList.Columns["Overall Full Status"].Visible = false;
+                                grdGrnApprovalList.Columns["MRP"].Visible = false;
+                                grdGrnApprovalList.Columns["Exp"].Visible = false;
+                                grdGrnApprovalList.Columns["Pur_LastTransNo"].Visible = false;
+                                grdGrnApprovalList.Columns["Transaction Date"].Visible = false;
                                 grdGrnApprovalList.Columns["Full Status"].Visible = false;
                                 grdGrnApprovalList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
