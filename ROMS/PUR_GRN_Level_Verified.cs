@@ -354,6 +354,13 @@ namespace ROMS
                 {
                     cmbFormat2.SelectedIndex = 0;
                 }
+                if(txtVerified2.Text!="")
+                {
+                    dpVerified2.Enabled = false;
+                    mtbTime2.Enabled = false;
+                    mtbTime2.ReadOnly = true;
+                    cmbFormat2.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -367,6 +374,11 @@ namespace ROMS
             {
                 DateTime varmindate = DateTime.ParseExact(dpVerified1.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpVerified2.MinDate = varmindate;
+                if(txtVerified2.Text!="")
+                {
+                    dpVerified2.Text = dpVerified1.Text;
+                    dpVerified2.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -585,6 +597,26 @@ namespace ROMS
             try
             {
                 txtVerified2.BackColor = Color.White;
+                if(txtVerified2.Text!="")
+                {
+                    dpVerified2.Text = dpVerified1.Text;
+                    dpVerified2.Enabled=false;
+                    mtbTime2.Text = mtbTime1.Text;
+                    mtbTime2.Enabled = false;
+                    mtbTime2.ReadOnly = true;
+                    cmbFormat2.SelectedValue = cmbFormat1.SelectedValue;
+                    cmbFormat2.Enabled = false;
+                }
+                else
+                {
+                    dpVerified2.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    dpVerified2.Enabled = true;
+                    mtbTime2.Text = "";
+                    mtbTime2.Enabled = true;
+                    mtbTime2.ReadOnly = false;
+                    cmbFormat2.SelectedValue = "AM";
+                    cmbFormat2.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -743,6 +775,12 @@ namespace ROMS
                         cmbFormat1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         error = 1;
                     }
+                }
+                if(txtVerified2.Text!="")
+                {
+                    mtbTime2.Text = mtbTime1.Text;
+                    mtbTime2.Enabled = false;
+                    mtbTime2.ReadOnly = true;
                 }
                 if (error==0)
                 {
@@ -995,6 +1033,23 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(txtVerified2.Text!="")
+                {
+                    cmbFormat2.Text = cmbFormat1.Text;
+                    cmbFormat2.Enabled = false;
                 }
             }
             catch (Exception ex)

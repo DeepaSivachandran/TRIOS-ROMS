@@ -76,10 +76,11 @@
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
-           // this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -87,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errGRNList)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -173,6 +175,7 @@
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
+            this.pnlpurchaseapproval.Controls.Add(this.groupBox1);
             this.pnlpurchaseapproval.Controls.Add(this.LV_Supplier);
             this.pnlpurchaseapproval.Controls.Add(this.btnExport);
             this.pnlpurchaseapproval.Controls.Add(this.btnPrint);
@@ -287,7 +290,7 @@
             this.lblTotalGRN.AutoSize = true;
             this.lblTotalGRN.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblTotalGRN.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotalGRN.Location = new System.Drawing.Point(1077, 49);
+            this.lblTotalGRN.Location = new System.Drawing.Point(1175, 51);
             this.lblTotalGRN.Name = "lblTotalGRN";
             this.lblTotalGRN.Size = new System.Drawing.Size(17, 20);
             this.lblTotalGRN.TabIndex = 1111186;
@@ -297,7 +300,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1011, 49);
+            this.label6.Location = new System.Drawing.Point(1109, 51);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 20);
             this.label6.TabIndex = 1111185;
@@ -327,7 +330,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1131, 43);
+            this.label3.Location = new System.Drawing.Point(1058, -1);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(16, 20);
             this.label3.TabIndex = 1111182;
@@ -596,11 +599,6 @@
             this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // clmCheck
-            // 
-            //this.clmCheck.HeaderText = "";
-            //this.clmCheck.Name = "clmCheck";
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -632,27 +630,28 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // ClmEdit
+            // groupBox1
             // 
-            this.ClmEdit.HeaderText = "Edit";
-            this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.ClmEdit.Name = "ClmEdit";
-            this.ClmEdit.Width = 50;
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(1017, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(89, 60);
+            this.groupBox1.TabIndex = 1111185;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "DC Print";
             // 
-            // clmPrint
+            // button1
             // 
-            this.clmPrint.HeaderText = "Reprint";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.Width = 50;
-            // 
-            // clmLocPrint
-            // 
-            this.clmLocPrint.HeaderText = "Location Print";
-            this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmLocPrint.Name = "clmLocPrint";
-            this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.button1.Image = global::ROMS.Properties.Resources.print;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(6, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(69, 33);
+            this.button1.TabIndex = 1111186;
+            this.button1.Text = "Print";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // PUR_GRNDetailsList
             // 
@@ -682,6 +681,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errGRNList)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -733,5 +733,7 @@
         private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmLocPrint;
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Button button1;
     }
 }

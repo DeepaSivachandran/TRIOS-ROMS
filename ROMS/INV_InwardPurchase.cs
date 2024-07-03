@@ -1146,6 +1146,13 @@ namespace ROMS
                                         }
                                     }
                                 }
+                                int varStatus = 0;
+                                if (Convert.ToString(grdInward.Rows[i].Cells["clmStatus"].Value) != "")
+                                {
+                                    varStatus = Convert.ToInt32(grdInward.Rows[i].Cells["clmStatus"].Value);
+                                }
+                                //{ row.SetField("GIPPR_INVSTSID", varStatus); }
+                                dtInwardPurchase.Rows[i]["GIPPR_INVSTSID"] = varStatus;
                             }
                         }
                     }
@@ -2796,6 +2803,7 @@ namespace ROMS
                                             grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                                         }
                                     }
+                                    grdInward.Rows[i].Cells["clmStatus"].Value = 82;
                                 }
                                 grdInward.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

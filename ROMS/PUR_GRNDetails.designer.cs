@@ -42,8 +42,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -56,6 +56,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
             this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
             this.tsbPO = new System.Windows.Forms.ToolStripButton();
@@ -217,6 +220,9 @@
             this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMRPflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceExpiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceBatch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
@@ -570,13 +576,12 @@
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(729, 38);
+            this.label8.Location = new System.Drawing.Point(726, 23);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 20);
+            this.label8.Size = new System.Drawing.Size(73, 42);
             this.label8.TabIndex = 1111156;
-            this.label8.Text = "Expiry Date";
+            this.label8.Text = "Product Expiry Date";
             // 
             // txtMonth
             // 
@@ -643,9 +648,9 @@
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(651, 13);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 20);
+            this.label7.Size = new System.Drawing.Size(80, 20);
             this.label7.TabIndex = 1111154;
-            this.label7.Text = "MRP";
+            this.label7.Text = "Product MRP";
             // 
             // BtnNew
             // 
@@ -726,9 +731,9 @@
             this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(904, 13);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 20);
+            this.label9.Size = new System.Drawing.Size(107, 20);
             this.label9.TabIndex = 1111160;
-            this.label9.Text = "Batch No.";
+            this.label9.Text = "Product Batch No.";
             // 
             // groupBox5
             // 
@@ -1634,23 +1639,26 @@
             this.clmUTDecimal,
             this.clmMRPflag,
             this.clmRMFlag,
+            this.clmInvoiceMRP,
+            this.clmInvoiceExpiry,
+            this.clmInvoiceBatch,
             this.clmRemove});
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnlist.DefaultCellStyle = dataGridViewCellStyle28;
             this.grdGrnlist.EnableHeadersVisualStyles = false;
             this.grdGrnlist.GridColor = System.Drawing.Color.White;
             this.grdGrnlist.Location = new System.Drawing.Point(6, 13);
             this.grdGrnlist.Name = "grdGrnlist";
             this.grdGrnlist.RowHeadersVisible = false;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnlist.RowsDefaultCellStyle = dataGridViewCellStyle29;
             this.grdGrnlist.RowTemplate.Height = 25;
             this.grdGrnlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnlist.Size = new System.Drawing.Size(1302, 334);
@@ -1945,18 +1953,18 @@
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle22.BackColor = System.Drawing.Color.PaleGreen;
             this.clmmrp.DefaultCellStyle = dataGridViewCellStyle22;
-            this.clmmrp.HeaderText = "MRP";
+            this.clmmrp.HeaderText = "Product MRP";
             this.clmmrp.Name = "clmmrp";
             this.clmmrp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmmrp.Width = 75;
             // 
             // clmexpirydate
             // 
             dataGridViewCellStyle23.BackColor = System.Drawing.Color.PaleGreen;
             this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle23;
-            this.clmexpirydate.HeaderText = "Expiry Date";
+            this.clmexpirydate.HeaderText = "Product Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
             this.clmexpirydate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmexpirydate.Width = 125;
             // 
             // clmshelflife
             // 
@@ -1985,10 +1993,10 @@
             // 
             dataGridViewCellStyle24.BackColor = System.Drawing.Color.PaleGreen;
             this.clmBatchno.DefaultCellStyle = dataGridViewCellStyle24;
-            this.clmBatchno.HeaderText = "Batch No.";
+            this.clmBatchno.HeaderText = "Product Batch No.";
             this.clmBatchno.Name = "clmBatchno";
             this.clmBatchno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmBatchno.Width = 80;
+            this.clmBatchno.Width = 120;
             // 
             // clmLocation
             // 
@@ -2093,6 +2101,30 @@
             this.clmRMFlag.Name = "clmRMFlag";
             this.clmRMFlag.ReadOnly = true;
             this.clmRMFlag.Visible = false;
+            // 
+            // clmInvoiceMRP
+            // 
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceMRP.DefaultCellStyle = dataGridViewCellStyle25;
+            this.clmInvoiceMRP.HeaderText = "Invoice MRP";
+            this.clmInvoiceMRP.Name = "clmInvoiceMRP";
+            // 
+            // clmInvoiceExpiry
+            // 
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceExpiry.DefaultCellStyle = dataGridViewCellStyle26;
+            this.clmInvoiceExpiry.HeaderText = "Invoice Expiry Date";
+            this.clmInvoiceExpiry.Name = "clmInvoiceExpiry";
+            this.clmInvoiceExpiry.Width = 125;
+            // 
+            // clmInvoiceBatch
+            // 
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceBatch.DefaultCellStyle = dataGridViewCellStyle27;
+            this.clmInvoiceBatch.HeaderText = "Invoice Batch No.";
+            this.clmInvoiceBatch.Name = "clmInvoiceBatch";
+            this.clmInvoiceBatch.Width = 120;
             // 
             // clmRemove
             // 
@@ -2312,6 +2344,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMRPflag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceMRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceExpiry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceBatch;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
