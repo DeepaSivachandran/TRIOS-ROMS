@@ -172,6 +172,18 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_StockHold_Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold_Supplier.designer.cs">
+      <DependentUpon>INV_StockHold_Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold_Location.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold_Location.designer.cs">
+      <DependentUpon>INV_StockHold_Location.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_GSTRDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1742,6 +1754,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold_Supplier.resx">
+      <DependentUpon>INV_StockHold_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold_Location.resx">
+      <DependentUpon>INV_StockHold_Location.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_GSTRDetails.resx">
       <DependentUpon>PAY_GSTRDetails.cs</DependentUpon>

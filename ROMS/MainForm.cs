@@ -126,6 +126,8 @@ namespace ROMS
         public static INV_InwardPurchaseList objINV_InwardPurchaseList;
         public static INV_InwardPurchase objINV_InwardPurchase;
         public static INV_StockHold objINV_StockHold;
+        public static INV_StockHold_Location objINV_StockHold_Location;
+        public static INV_StockHold_Supplier objINV_StockHold_Supplier;
         public static INV_StockConversionList objINV_StockConversionList;
         public static INV_StockConversion objINV_StockConversion;
         public static INV_InwardQueueList objINV_InwardQueueList;
