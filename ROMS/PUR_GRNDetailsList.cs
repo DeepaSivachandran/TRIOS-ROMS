@@ -579,6 +579,7 @@ namespace ROMS
                 MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.varSupplierType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["SP_SupplierType"].Value);
                 MainForm.objPUR_GRNDetails.varOrderType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_OrderType"].Value);
+                MainForm.objPUR_GRNDetails.pbStsID = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value);
                 MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)

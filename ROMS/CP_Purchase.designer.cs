@@ -82,8 +82,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Purchase));
             this.tsPurchase = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbStatus = new System.Windows.Forms.ToolStripButton();
             this.tss3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRemainingProduct = new System.Windows.Forms.ToolStripButton();
@@ -95,7 +95,6 @@
             this.tsbTotalProducts = new System.Windows.Forms.ToolStripButton();
             this.tsbTotal = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnUnapprove = new System.Windows.Forms.Button();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
             this.textBox22 = new System.Windows.Forms.TextBox();
@@ -105,18 +104,11 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lv_Broker = new System.Windows.Forms.ListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnClear = new System.Windows.Forms.Button();
             this.txtInvoiceamt = new System.Windows.Forms.TextBox();
             this.gprate = new System.Windows.Forms.GroupBox();
             this.rbAfterBefore = new System.Windows.Forms.RadioButton();
             this.rbRateBefore = new System.Windows.Forms.RadioButton();
             this.label35 = new System.Windows.Forms.Label();
-            this.btnViewDataView = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.lblSupplierOrderpolicy = new System.Windows.Forms.Label();
@@ -135,7 +127,6 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label21 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.cmbPONo = new System.Windows.Forms.ComboBox();
             this.lblPOdropDown = new System.Windows.Forms.Label();
             this.lblLocationcode = new System.Windows.Forms.Label();
@@ -144,15 +135,9 @@
             this.lblBrokerId = new System.Windows.Forms.Label();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
-            this.lblVerifyDateTime = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.txtGRNMrp = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.btnNew = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.txtBatchno = new System.Windows.Forms.TextBox();
             this.txtYear = new System.Windows.Forms.TextBox();
@@ -164,7 +149,6 @@
             this.lblDProduct = new System.Windows.Forms.Label();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConvert = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProTname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -203,8 +187,6 @@
             this.clmConvertProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmConvertProductFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmConvertParentFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAddPro = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -258,10 +240,13 @@
             this.clmConvertedProID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.grpDetails = new System.Windows.Forms.GroupBox();
+            this.grpGRNloadingUnloading = new System.Windows.Forms.GroupBox();
             this.textBox29 = new System.Windows.Forms.TextBox();
+            this.txtFrightGrn = new System.Windows.Forms.TextBox();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.txtLoadingchargeGrn = new System.Windows.Forms.TextBox();
             this.lblFinishedNoRecord = new System.Windows.Forms.Label();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.txtFrightGrn = new System.Windows.Forms.TextBox();
             this.textBox37 = new System.Windows.Forms.TextBox();
             this.txtDCourier = new System.Windows.Forms.TextBox();
             this.Txtdiscount = new System.Windows.Forms.TextBox();
@@ -271,9 +256,7 @@
             this.grdTaxDetails = new System.Windows.Forms.DataGridView();
             this.txtDDamage = new System.Windows.Forms.TextBox();
             this.textBox36 = new System.Windows.Forms.TextBox();
-            this.textBox25 = new System.Windows.Forms.TextBox();
             this.txtDamagecost = new System.Windows.Forms.TextBox();
-            this.txtLoadingchargeGrn = new System.Windows.Forms.TextBox();
             this.txtDUnloading = new System.Windows.Forms.TextBox();
             this.txtDloading = new System.Windows.Forms.TextBox();
             this.txtUnLoadingCharge = new System.Windows.Forms.TextBox();
@@ -287,7 +270,6 @@
             this.clmPODate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtpro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSelectedpoid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemovePO = new System.Windows.Forms.DataGridViewImageColumn();
             this.grdGRN = new System.Windows.Forms.DataGridView();
             this.clmGRNDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGRNNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -298,7 +280,6 @@
             this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemoveDC = new System.Windows.Forms.DataGridViewImageColumn();
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -371,29 +352,60 @@
             this.label25 = new System.Windows.Forms.Label();
             this.chkInvoice = new System.Windows.Forms.CheckBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
+            this.lv_Broker = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lblDPercentage = new System.Windows.Forms.Label();
             this.lblPercentage = new System.Windows.Forms.Label();
             this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
             this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
-            this.btnRemarks = new System.Windows.Forms.Button();
-            this.btnDC = new System.Windows.Forms.Button();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblstatusvalue = new System.Windows.Forms.Label();
             this.errPurchaseentry = new System.Windows.Forms.ErrorProvider(this.components);
             this.crToolStripTextBox1 = new CrystalDecisions.Windows.Forms.CRToolStripTextBox();
+            this.lblAddProduct = new System.Windows.Forms.Label();
+            this.lbltotProduct = new System.Windows.Forms.Label();
+            this.lblRemainProduct = new System.Windows.Forms.Label();
+            this.grpGRNVerifyDetails = new System.Windows.Forms.GroupBox();
+            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.grpDCVerifyDetails = new System.Windows.Forms.GroupBox();
+            this.lblDCVerification = new System.Windows.Forms.Label();
+            this.lb = new System.Windows.Forms.Label();
+            this.grpPurchaseVerifyDetails = new System.Windows.Forms.GroupBox();
+            this.lblPurchaseVerification = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.lblGRNNoRecord = new System.Windows.Forms.Label();
+            this.lblDCNoRecord = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lblAddProduct = new System.Windows.Forms.Label();
-            this.lbltotProduct = new System.Windows.Forms.Label();
-            this.lblRemainProduct = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn5 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnUnapprove = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnViewDataView = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Label();
+            this.clmConvert = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmAddPro = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmRemovePO = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmRemoveDC = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnRemarks = new System.Windows.Forms.Button();
+            this.btnDC = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.btnVerified = new System.Windows.Forms.Button();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grpForm.SuspendLayout();
@@ -402,12 +414,12 @@
             this.tbDetails.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
-            this.groupBox11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseList)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.grpDetails.SuspendLayout();
+            this.grpGRNloadingUnloading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdTaxDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRN)).BeginInit();
@@ -418,6 +430,9 @@
             this.gpdiscount.SuspendLayout();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errPurchaseentry)).BeginInit();
+            this.grpGRNVerifyDetails.SuspendLayout();
+            this.grpDCVerifyDetails.SuspendLayout();
+            this.grpPurchaseVerifyDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsPurchase
@@ -442,16 +457,6 @@
             this.tsPurchase.Size = new System.Drawing.Size(1354, 28);
             this.tsPurchase.TabIndex = 35;
             this.tsPurchase.Text = "Purchase";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.add;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(102, 25);
-            this.tspHeader.Text = "Purchase Entry";
             // 
             // tsbStatus
             // 
@@ -580,6 +585,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnVerified);
             this.panel1.Controls.Add(this.btnUnapprove);
             this.panel1.Controls.Add(this.chkCompleted);
             this.panel1.Controls.Add(this.label32);
@@ -597,29 +603,11 @@
             this.panel1.Size = new System.Drawing.Size(1354, 644);
             this.panel1.TabIndex = 36;
             // 
-            // btnUnapprove
-            // 
-            this.btnUnapprove.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.btnUnapprove.Image = global::ROMS.Properties.Resources.Unapprove;
-            this.btnUnapprove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUnapprove.Location = new System.Drawing.Point(1170, 609);
-            this.btnUnapprove.Name = "btnUnapprove";
-            this.btnUnapprove.Size = new System.Drawing.Size(93, 29);
-            this.btnUnapprove.TabIndex = 1111218;
-            this.btnUnapprove.Text = "Unapprove";
-            this.btnUnapprove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUnapprove.UseVisualStyleBackColor = true;
-            this.btnUnapprove.Visible = false;
-            this.btnUnapprove.Click += new System.EventHandler(this.BtnUnapprove_Click);
-            this.btnUnapprove.Enter += new System.EventHandler(this.BtnUnapprove_Enter);
-            this.btnUnapprove.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnUnapprove_KeyDown);
-            this.btnUnapprove.Leave += new System.EventHandler(this.BtnUnapprove_Leave);
-            // 
             // chkCompleted
             // 
             this.chkCompleted.AutoSize = true;
             this.chkCompleted.Enabled = false;
-            this.chkCompleted.Location = new System.Drawing.Point(1054, 614);
+            this.chkCompleted.Location = new System.Drawing.Point(998, 613);
             this.chkCompleted.Name = "chkCompleted";
             this.chkCompleted.Size = new System.Drawing.Size(78, 21);
             this.chkCompleted.TabIndex = 45;
@@ -653,7 +641,6 @@
             // grpForm
             // 
             this.grpForm.Controls.Add(this.LV_Supplier);
-            this.grpForm.Controls.Add(this.lv_Broker);
             this.grpForm.Controls.Add(this.btnClear);
             this.grpForm.Controls.Add(this.txtInvoiceamt);
             this.grpForm.Controls.Add(this.gprate);
@@ -712,6 +699,7 @@
             this.grpForm.Controls.Add(this.label25);
             this.grpForm.Controls.Add(this.chkInvoice);
             this.grpForm.Controls.Add(this.cmbTransactionType);
+            this.grpForm.Controls.Add(this.lv_Broker);
             this.grpForm.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.grpForm.Location = new System.Drawing.Point(9, 0);
             this.grpForm.Name = "grpForm";
@@ -749,51 +737,6 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
-            // 
-            // lv_Broker
-            // 
-            this.lv_Broker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader6});
-            this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lv_Broker.HideSelection = false;
-            this.lv_Broker.Location = new System.Drawing.Point(381, 104);
-            this.lv_Broker.Name = "lv_Broker";
-            this.lv_Broker.Size = new System.Drawing.Size(478, 88);
-            this.lv_Broker.TabIndex = 1111223;
-            this.lv_Broker.UseCompatibleStateImageBehavior = false;
-            this.lv_Broker.View = System.Windows.Forms.View.Details;
-            this.lv_Broker.Visible = false;
-            this.lv_Broker.DoubleClick += new System.EventHandler(this.Lv_Broker_DoubleClick);
-            this.lv_Broker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lv_Broker_KeyDown);
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 180;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 120;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 0;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1021, 102);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(80, 28);
-            this.btnClear.TabIndex = 200000;
-            this.btnClear.Text = "Refresh";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // txtInvoiceamt
             // 
@@ -859,22 +802,6 @@
             this.label35.Size = new System.Drawing.Size(63, 17);
             this.label35.TabIndex = 1111226;
             this.label35.Text = "Invoice Amt";
-            // 
-            // btnViewDataView
-            // 
-            this.btnViewDataView.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnViewDataView.Image = global::ROMS.Properties.Resources.view;
-            this.btnViewDataView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewDataView.Location = new System.Drawing.Point(643, 25);
-            this.btnViewDataView.Name = "btnViewDataView";
-            this.btnViewDataView.Size = new System.Drawing.Size(32, 32);
-            this.btnViewDataView.TabIndex = 5;
-            this.btnViewDataView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewDataView.UseVisualStyleBackColor = true;
-            this.btnViewDataView.Visible = false;
-            this.btnViewDataView.Click += new System.EventHandler(this.BtnViewDataView_Click);
-            this.btnViewDataView.Enter += new System.EventHandler(this.BtnViewDataView_Enter);
-            this.btnViewDataView.Leave += new System.EventHandler(this.BtnViewDataView_Leave);
             // 
             // groupBox2
             // 
@@ -1020,7 +947,6 @@
             this.tabPage1.Controls.Add(this.lblBrokerId);
             this.tabPage1.Controls.Add(this.lblschedule);
             this.tabPage1.Controls.Add(this.lblSupplierCode);
-            this.tabPage1.Controls.Add(this.groupBox11);
             this.tabPage1.Controls.Add(this.label29);
             this.tabPage1.Controls.Add(this.txtGRNMrp);
             this.tabPage1.Controls.Add(this.label14);
@@ -1131,21 +1057,6 @@
             this.label21.TabIndex = 1111210;
             this.label21.Text = "Expiry Date";
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(995, 22);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 22);
-            this.btnAdd.TabIndex = 29;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
             // cmbPONo
             // 
             this.cmbPONo.Enabled = false;
@@ -1237,59 +1148,6 @@
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.lblVerifyDateTime2);
-            this.groupBox11.Controls.Add(this.lblVerifyDateTime);
-            this.groupBox11.Controls.Add(this.label31);
-            this.groupBox11.Controls.Add(this.label30);
-            this.groupBox11.Location = new System.Drawing.Point(1024, -3);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(292, 46);
-            this.groupBox11.TabIndex = 1111220;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "GRN";
-            // 
-            // lblVerifyDateTime2
-            // 
-            this.lblVerifyDateTime2.AutoSize = true;
-            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDateTime2.Location = new System.Drawing.Point(51, 28);
-            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
-            this.lblVerifyDateTime2.Size = new System.Drawing.Size(12, 16);
-            this.lblVerifyDateTime2.TabIndex = 1111223;
-            this.lblVerifyDateTime2.Text = "-";
-            // 
-            // lblVerifyDateTime
-            // 
-            this.lblVerifyDateTime.AutoSize = true;
-            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDateTime.Location = new System.Drawing.Point(51, 12);
-            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
-            this.lblVerifyDateTime.Size = new System.Drawing.Size(12, 16);
-            this.lblVerifyDateTime.TabIndex = 1111222;
-            this.lblVerifyDateTime.Text = "-";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(6, 28);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(45, 16);
-            this.label31.TabIndex = 1111219;
-            this.label31.Text = "Level 2 :";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(6, 12);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 16);
-            this.label30.TabIndex = 1111218;
-            this.label30.Text = "Level 1 :";
-            // 
             // label29
             // 
             this.label29.AutoSize = true;
@@ -1320,19 +1178,6 @@
             this.label14.Size = new System.Drawing.Size(66, 17);
             this.label14.TabIndex = 1111204;
             this.label14.Text = "Invoice MRP";
-            // 
-            // btnNew
-            // 
-            this.btnNew.Image = global::ROMS.Properties.Resources.New;
-            this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNew.Location = new System.Drawing.Point(440, 22);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(21, 22);
-            this.btnNew.TabIndex = 1111217;
-            this.btnNew.Text = "        ";
-            this.btnNew.Visible = false;
-            this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // label20
             // 
@@ -1542,17 +1387,6 @@
             this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmsno.Visible = false;
             this.clmsno.Width = 50;
-            // 
-            // clmConvert
-            // 
-            this.clmConvert.Frozen = true;
-            this.clmConvert.HeaderText = "";
-            this.clmConvert.Image = global::ROMS.Properties.Resources.Convertion;
-            this.clmConvert.Name = "clmConvert";
-            this.clmConvert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmConvert.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmConvert.Visible = false;
-            this.clmConvert.Width = 50;
             // 
             // clmPono
             // 
@@ -1855,23 +1689,6 @@
             this.clmConvertParentFlag.Name = "clmConvertParentFlag";
             this.clmConvertParentFlag.ReadOnly = true;
             this.clmConvertParentFlag.Visible = false;
-            // 
-            // clmAddPro
-            // 
-            this.clmAddPro.HeaderText = "";
-            this.clmAddPro.Image = global::ROMS.Properties.Resources.New;
-            this.clmAddPro.Name = "clmAddPro";
-            this.clmAddPro.Visible = false;
-            this.clmAddPro.Width = 50;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemove.Width = 50;
             // 
             // label16
             // 
@@ -2434,10 +2251,12 @@
             // 
             // grpDetails
             // 
-            this.grpDetails.Controls.Add(this.textBox29);
+            this.grpDetails.Controls.Add(this.grpPurchaseVerifyDetails);
+            this.grpDetails.Controls.Add(this.grpDCVerifyDetails);
+            this.grpDetails.Controls.Add(this.grpGRNVerifyDetails);
+            this.grpDetails.Controls.Add(this.grpGRNloadingUnloading);
             this.grpDetails.Controls.Add(this.lblFinishedNoRecord);
             this.grpDetails.Controls.Add(this.textBox20);
-            this.grpDetails.Controls.Add(this.txtFrightGrn);
             this.grpDetails.Controls.Add(this.textBox37);
             this.grpDetails.Controls.Add(this.txtDCourier);
             this.grpDetails.Controls.Add(this.Txtdiscount);
@@ -2447,9 +2266,7 @@
             this.grpDetails.Controls.Add(this.grdTaxDetails);
             this.grpDetails.Controls.Add(this.txtDDamage);
             this.grpDetails.Controls.Add(this.textBox36);
-            this.grpDetails.Controls.Add(this.textBox25);
             this.grpDetails.Controls.Add(this.txtDamagecost);
-            this.grpDetails.Controls.Add(this.txtLoadingchargeGrn);
             this.grpDetails.Controls.Add(this.txtDUnloading);
             this.grpDetails.Controls.Add(this.txtDloading);
             this.grpDetails.Controls.Add(this.txtUnLoadingCharge);
@@ -2467,24 +2284,67 @@
             this.grpDetails.TabIndex = 1111203;
             this.grpDetails.TabStop = false;
             // 
+            // grpGRNloadingUnloading
+            // 
+            this.grpGRNloadingUnloading.Controls.Add(this.textBox29);
+            this.grpGRNloadingUnloading.Controls.Add(this.txtFrightGrn);
+            this.grpGRNloadingUnloading.Controls.Add(this.textBox25);
+            this.grpGRNloadingUnloading.Controls.Add(this.txtLoadingchargeGrn);
+            this.grpGRNloadingUnloading.Location = new System.Drawing.Point(849, 143);
+            this.grpGRNloadingUnloading.Name = "grpGRNloadingUnloading";
+            this.grpGRNloadingUnloading.Size = new System.Drawing.Size(459, 58);
+            this.grpGRNloadingUnloading.TabIndex = 111111140;
+            this.grpGRNloadingUnloading.TabStop = false;
+            this.grpGRNloadingUnloading.Text = "GRN";
+            // 
             // textBox29
             // 
             this.textBox29.BackColor = System.Drawing.SystemColors.Control;
             this.textBox29.Enabled = false;
             this.textBox29.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox29.Location = new System.Drawing.Point(849, 166);
+            this.textBox29.Location = new System.Drawing.Point(233, 20);
             this.textBox29.Name = "textBox29";
             this.textBox29.ReadOnly = true;
-            this.textBox29.Size = new System.Drawing.Size(113, 25);
-            this.textBox29.TabIndex = 90;
-            this.textBox29.Text = "Frieght Charges(GRN)";
+            this.textBox29.Size = new System.Drawing.Size(109, 25);
+            this.textBox29.TabIndex = 94;
+            this.textBox29.Text = "Frieght Charges";
+            // 
+            // txtFrightGrn
+            // 
+            this.txtFrightGrn.Location = new System.Drawing.Point(342, 20);
+            this.txtFrightGrn.MaxLength = 8;
+            this.txtFrightGrn.Name = "txtFrightGrn";
+            this.txtFrightGrn.Size = new System.Drawing.Size(110, 25);
+            this.txtFrightGrn.TabIndex = 92;
+            this.txtFrightGrn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox25
+            // 
+            this.textBox25.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox25.Enabled = false;
+            this.textBox25.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox25.Location = new System.Drawing.Point(7, 20);
+            this.textBox25.Name = "textBox25";
+            this.textBox25.ReadOnly = true;
+            this.textBox25.Size = new System.Drawing.Size(107, 25);
+            this.textBox25.TabIndex = 93;
+            this.textBox25.Text = "Loading Charges";
+            // 
+            // txtLoadingchargeGrn
+            // 
+            this.txtLoadingchargeGrn.Location = new System.Drawing.Point(114, 20);
+            this.txtLoadingchargeGrn.MaxLength = 8;
+            this.txtLoadingchargeGrn.Name = "txtLoadingchargeGrn";
+            this.txtLoadingchargeGrn.Size = new System.Drawing.Size(110, 25);
+            this.txtLoadingchargeGrn.TabIndex = 91;
+            this.txtLoadingchargeGrn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblFinishedNoRecord
             // 
             this.lblFinishedNoRecord.AutoSize = true;
             this.lblFinishedNoRecord.BackColor = System.Drawing.Color.White;
             this.lblFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinishedNoRecord.Location = new System.Drawing.Point(156, 194);
+            this.lblFinishedNoRecord.Location = new System.Drawing.Point(630, 110);
             this.lblFinishedNoRecord.Name = "lblFinishedNoRecord";
             this.lblFinishedNoRecord.Size = new System.Drawing.Size(84, 16);
             this.lblFinishedNoRecord.TabIndex = 111111138;
@@ -2502,20 +2362,6 @@
             this.textBox20.Size = new System.Drawing.Size(113, 25);
             this.textBox20.TabIndex = 84;
             this.textBox20.Text = "Other Discount";
-            // 
-            // txtFrightGrn
-            // 
-            this.txtFrightGrn.Location = new System.Drawing.Point(962, 166);
-            this.txtFrightGrn.MaxLength = 8;
-            this.txtFrightGrn.Name = "txtFrightGrn";
-            this.txtFrightGrn.Size = new System.Drawing.Size(113, 25);
-            this.txtFrightGrn.TabIndex = 27;
-            this.txtFrightGrn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtFrightGrn.TextChanged += new System.EventHandler(this.TxtFrightGrn_TextChanged);
-            this.txtFrightGrn.Enter += new System.EventHandler(this.TxtFrightGrn_Enter);
-            this.txtFrightGrn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFrightGrn_KeyDown);
-            this.txtFrightGrn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtFrightGrn_KeyPress);
-            this.txtFrightGrn.Leave += new System.EventHandler(this.TxtFrightGrn_Leave);
             // 
             // textBox37
             // 
@@ -2617,7 +2463,7 @@
             this.grdTaxDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdTaxDetails.EnableHeadersVisualStyles = false;
             this.grdTaxDetails.GridColor = System.Drawing.Color.White;
-            this.grdTaxDetails.Location = new System.Drawing.Point(364, 16);
+            this.grdTaxDetails.Location = new System.Drawing.Point(5, 16);
             this.grdTaxDetails.Name = "grdTaxDetails";
             this.grdTaxDetails.ReadOnly = true;
             this.grdTaxDetails.RowHeadersVisible = false;
@@ -2649,18 +2495,6 @@
             this.textBox36.TabIndex = 66;
             this.textBox36.Text = "Discount Amount";
             // 
-            // textBox25
-            // 
-            this.textBox25.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox25.Enabled = false;
-            this.textBox25.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox25.Location = new System.Drawing.Point(849, 141);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.ReadOnly = true;
-            this.textBox25.Size = new System.Drawing.Size(113, 25);
-            this.textBox25.TabIndex = 86;
-            this.textBox25.Text = "Loading Charges(GRN)";
-            // 
             // txtDamagecost
             // 
             this.txtDamagecost.Location = new System.Drawing.Point(1195, 91);
@@ -2674,20 +2508,6 @@
             this.txtDamagecost.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDamagecost_KeyDown);
             this.txtDamagecost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDamagecost_KeyPress);
             this.txtDamagecost.Leave += new System.EventHandler(this.TxtDamagecost_Leave);
-            // 
-            // txtLoadingchargeGrn
-            // 
-            this.txtLoadingchargeGrn.Location = new System.Drawing.Point(962, 141);
-            this.txtLoadingchargeGrn.MaxLength = 8;
-            this.txtLoadingchargeGrn.Name = "txtLoadingchargeGrn";
-            this.txtLoadingchargeGrn.Size = new System.Drawing.Size(113, 25);
-            this.txtLoadingchargeGrn.TabIndex = 26;
-            this.txtLoadingchargeGrn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtLoadingchargeGrn.TextChanged += new System.EventHandler(this.TxtLoadingCharge_TextChanged);
-            this.txtLoadingchargeGrn.Enter += new System.EventHandler(this.TxtLoadingchargeGrn_Enter);
-            this.txtLoadingchargeGrn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLoadingchargeGrn_KeyDown);
-            this.txtLoadingchargeGrn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtLoadingchargeGrn_KeyPress);
-            this.txtLoadingchargeGrn.Leave += new System.EventHandler(this.TxtLoadingchargeGrn_Leave);
             // 
             // txtDUnloading
             // 
@@ -2819,11 +2639,11 @@
             this.clmRemovePO});
             this.grdPODetails.EnableHeadersVisualStyles = false;
             this.grdPODetails.GridColor = System.Drawing.Color.White;
-            this.grdPODetails.Location = new System.Drawing.Point(6, 16);
+            this.grdPODetails.Location = new System.Drawing.Point(490, 16);
             this.grdPODetails.Name = "grdPODetails";
             this.grdPODetails.ReadOnly = true;
             this.grdPODetails.RowHeadersVisible = false;
-            this.grdPODetails.Size = new System.Drawing.Size(352, 372);
+            this.grdPODetails.Size = new System.Drawing.Size(352, 185);
             this.grdPODetails.TabIndex = 19;
             this.grdPODetails.Visible = false;
             this.grdPODetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPODetails_CellContentClick);
@@ -2856,16 +2676,6 @@
             this.clmSelectedpoid.Name = "clmSelectedpoid";
             this.clmSelectedpoid.ReadOnly = true;
             this.clmSelectedpoid.Visible = false;
-            // 
-            // clmRemovePO
-            // 
-            this.clmRemovePO.HeaderText = "Remove";
-            this.clmRemovePO.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemovePO.Name = "clmRemovePO";
-            this.clmRemovePO.ReadOnly = true;
-            this.clmRemovePO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemovePO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemovePO.Width = 50;
             // 
             // grdGRN
             // 
@@ -2900,7 +2710,7 @@
             this.grdGRN.DefaultCellStyle = dataGridViewCellStyle48;
             this.grdGRN.EnableHeadersVisualStyles = false;
             this.grdGRN.GridColor = System.Drawing.Color.White;
-            this.grdGRN.Location = new System.Drawing.Point(6, 16);
+            this.grdGRN.Location = new System.Drawing.Point(490, 16);
             this.grdGRN.Name = "grdGRN";
             this.grdGRN.ReadOnly = true;
             this.grdGRN.RowHeadersVisible = false;
@@ -2909,7 +2719,7 @@
             this.grdGRN.RowsDefaultCellStyle = dataGridViewCellStyle49;
             this.grdGRN.RowTemplate.Height = 25;
             this.grdGRN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdGRN.Size = new System.Drawing.Size(352, 372);
+            this.grdGRN.Size = new System.Drawing.Size(352, 185);
             this.grdGRN.TabIndex = 111111139;
             this.grdGRN.Visible = false;
             // 
@@ -2974,7 +2784,7 @@
             this.grdReurnDC.DefaultCellStyle = dataGridViewCellStyle52;
             this.grdReurnDC.EnableHeadersVisualStyles = false;
             this.grdReurnDC.GridColor = System.Drawing.Color.White;
-            this.grdReurnDC.Location = new System.Drawing.Point(6, 16);
+            this.grdReurnDC.Location = new System.Drawing.Point(490, 16);
             this.grdReurnDC.Name = "grdReurnDC";
             this.grdReurnDC.ReadOnly = true;
             this.grdReurnDC.RowHeadersVisible = false;
@@ -2982,7 +2792,7 @@
             this.grdReurnDC.RowsDefaultCellStyle = dataGridViewCellStyle53;
             this.grdReurnDC.RowTemplate.Height = 25;
             this.grdReurnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdReurnDC.Size = new System.Drawing.Size(352, 372);
+            this.grdReurnDC.Size = new System.Drawing.Size(352, 185);
             this.grdReurnDC.TabIndex = 111111137;
             this.grdReurnDC.Visible = false;
             this.grdReurnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentClick);
@@ -2993,6 +2803,7 @@
             this.InvoiceNo.HeaderText = "DC No.";
             this.InvoiceNo.Name = "InvoiceNo";
             this.InvoiceNo.ReadOnly = true;
+            this.InvoiceNo.Width = 80;
             // 
             // DCDate
             // 
@@ -3014,16 +2825,6 @@
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
-            // 
-            // clmRemoveDC
-            // 
-            this.clmRemoveDC.HeaderText = "Remove";
-            this.clmRemoveDC.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemoveDC.Name = "clmRemoveDC";
-            this.clmRemoveDC.ReadOnly = true;
-            this.clmRemoveDC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemoveDC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemoveDC.Width = 70;
             // 
             // label12
             // 
@@ -3794,6 +3595,37 @@
             this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
             this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
             // 
+            // lv_Broker
+            // 
+            this.lv_Broker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader6});
+            this.lv_Broker.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lv_Broker.HideSelection = false;
+            this.lv_Broker.Location = new System.Drawing.Point(381, 104);
+            this.lv_Broker.Name = "lv_Broker";
+            this.lv_Broker.Size = new System.Drawing.Size(478, 88);
+            this.lv_Broker.TabIndex = 1111223;
+            this.lv_Broker.UseCompatibleStateImageBehavior = false;
+            this.lv_Broker.View = System.Windows.Forms.View.Details;
+            this.lv_Broker.Visible = false;
+            this.lv_Broker.DoubleClick += new System.EventHandler(this.Lv_Broker_DoubleClick);
+            this.lv_Broker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Lv_Broker_KeyDown);
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 180;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 120;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 0;
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.lblDPercentage);
@@ -3849,39 +3681,6 @@
             this.txtDGPercentageCheck.Size = new System.Drawing.Size(27, 16);
             this.txtDGPercentageCheck.TabIndex = 1111156;
             // 
-            // btnRemarks
-            // 
-            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
-            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemarks.Location = new System.Drawing.Point(463, 609);
-            this.btnRemarks.Name = "btnRemarks";
-            this.btnRemarks.Size = new System.Drawing.Size(106, 29);
-            this.btnRemarks.TabIndex = 43;
-            this.btnRemarks.Text = "See Remarks";
-            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemarks.UseVisualStyleBackColor = true;
-            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
-            this.btnRemarks.Enter += new System.EventHandler(this.BtnRemarks_Enter);
-            this.btnRemarks.Leave += new System.EventHandler(this.BtnRemarks_Leave);
-            // 
-            // btnDC
-            // 
-            this.btnDC.Enabled = false;
-            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
-            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDC.Location = new System.Drawing.Point(571, 609);
-            this.btnDC.Name = "btnDC";
-            this.btnDC.Size = new System.Drawing.Size(98, 29);
-            this.btnDC.TabIndex = 44;
-            this.btnDC.Text = "Return DC";
-            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDC.UseVisualStyleBackColor = true;
-            this.btnDC.Click += new System.EventHandler(this.BtnDamage_Click);
-            this.btnDC.Enter += new System.EventHandler(this.BtnDC_Enter);
-            this.btnDC.Leave += new System.EventHandler(this.BtnDC_Leave);
-            // 
             // txtRemarks
             // 
             this.txtRemarks.Location = new System.Drawing.Point(61, 600);
@@ -3902,40 +3701,6 @@
             this.label7.Size = new System.Drawing.Size(50, 17);
             this.label7.TabIndex = 8;
             this.label7.Text = "Remarks";
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1267, 609);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 47;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnClose_KeyDown);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1149, 609);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(114, 29);
-            this.btnSave.TabIndex = 46;
-            this.btnSave.Text = "Save as Draft";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -3968,43 +3733,9 @@
             // 
             // crToolStripTextBox1
             // 
+            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.New;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Visible = false;
-            this.dataGridViewImageColumn1.Width = 50;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Remove";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn2.Width = 50;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "Remove";
-            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn3.Width = 70;
-            // 
-            // dataGridViewImageColumn4
-            // 
-            this.dataGridViewImageColumn4.HeaderText = "Remove";
-            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn4.Width = 70;
             // 
             // lblAddProduct
             // 
@@ -4045,6 +3776,408 @@
             this.lblRemainProduct.Text = "0";
             this.lblRemainProduct.Visible = false;
             // 
+            // grpGRNVerifyDetails
+            // 
+            this.grpGRNVerifyDetails.Controls.Add(this.lblGRNNoRecord);
+            this.grpGRNVerifyDetails.Controls.Add(this.lblVerifyDateTime2);
+            this.grpGRNVerifyDetails.Controls.Add(this.lblVerifyDateTime);
+            this.grpGRNVerifyDetails.Controls.Add(this.label31);
+            this.grpGRNVerifyDetails.Controls.Add(this.label30);
+            this.grpGRNVerifyDetails.Location = new System.Drawing.Point(495, 207);
+            this.grpGRNVerifyDetails.Name = "grpGRNVerifyDetails";
+            this.grpGRNVerifyDetails.Size = new System.Drawing.Size(347, 72);
+            this.grpGRNVerifyDetails.TabIndex = 111111141;
+            this.grpGRNVerifyDetails.TabStop = false;
+            this.grpGRNVerifyDetails.Text = "GRN Verification Details";
+            // 
+            // lblVerifyDateTime2
+            // 
+            this.lblVerifyDateTime2.AutoSize = true;
+            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime2.Location = new System.Drawing.Point(60, 45);
+            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
+            this.lblVerifyDateTime2.Size = new System.Drawing.Size(12, 17);
+            this.lblVerifyDateTime2.TabIndex = 1111223;
+            this.lblVerifyDateTime2.Text = "-";
+            // 
+            // lblVerifyDateTime
+            // 
+            this.lblVerifyDateTime.AutoSize = true;
+            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime.Location = new System.Drawing.Point(60, 21);
+            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
+            this.lblVerifyDateTime.Size = new System.Drawing.Size(12, 17);
+            this.lblVerifyDateTime.TabIndex = 1111222;
+            this.lblVerifyDateTime.Text = "-";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(13, 45);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(46, 17);
+            this.label31.TabIndex = 1111219;
+            this.label31.Text = "Level 2 :";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(13, 21);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(46, 17);
+            this.label30.TabIndex = 1111218;
+            this.label30.Text = "Level 1 :";
+            // 
+            // grpDCVerifyDetails
+            // 
+            this.grpDCVerifyDetails.Controls.Add(this.lblDCNoRecord);
+            this.grpDCVerifyDetails.Controls.Add(this.lblDCVerification);
+            this.grpDCVerifyDetails.Controls.Add(this.lb);
+            this.grpDCVerifyDetails.Location = new System.Drawing.Point(495, 281);
+            this.grpDCVerifyDetails.Name = "grpDCVerifyDetails";
+            this.grpDCVerifyDetails.Size = new System.Drawing.Size(347, 51);
+            this.grpDCVerifyDetails.TabIndex = 111111142;
+            this.grpDCVerifyDetails.TabStop = false;
+            this.grpDCVerifyDetails.Text = "DC Verification Details";
+            // 
+            // lblDCVerification
+            // 
+            this.lblDCVerification.AutoSize = true;
+            this.lblDCVerification.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDCVerification.Location = new System.Drawing.Point(60, 21);
+            this.lblDCVerification.Name = "lblDCVerification";
+            this.lblDCVerification.Size = new System.Drawing.Size(12, 17);
+            this.lblDCVerification.TabIndex = 1111222;
+            this.lblDCVerification.Text = "-";
+            // 
+            // lb
+            // 
+            this.lb.AutoSize = true;
+            this.lb.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb.Location = new System.Drawing.Point(13, 21);
+            this.lb.Name = "lb";
+            this.lb.Size = new System.Drawing.Size(46, 17);
+            this.lb.TabIndex = 1111218;
+            this.lb.Text = "Level 1 :";
+            // 
+            // grpPurchaseVerifyDetails
+            // 
+            this.grpPurchaseVerifyDetails.Controls.Add(this.lblPurchaseVerification);
+            this.grpPurchaseVerifyDetails.Controls.Add(this.label42);
+            this.grpPurchaseVerifyDetails.Location = new System.Drawing.Point(495, 337);
+            this.grpPurchaseVerifyDetails.Name = "grpPurchaseVerifyDetails";
+            this.grpPurchaseVerifyDetails.Size = new System.Drawing.Size(347, 51);
+            this.grpPurchaseVerifyDetails.TabIndex = 111111143;
+            this.grpPurchaseVerifyDetails.TabStop = false;
+            this.grpPurchaseVerifyDetails.Text = "Purchase Verification Details";
+            // 
+            // lblPurchaseVerification
+            // 
+            this.lblPurchaseVerification.AutoSize = true;
+            this.lblPurchaseVerification.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPurchaseVerification.Location = new System.Drawing.Point(60, 21);
+            this.lblPurchaseVerification.Name = "lblPurchaseVerification";
+            this.lblPurchaseVerification.Size = new System.Drawing.Size(12, 17);
+            this.lblPurchaseVerification.TabIndex = 1111222;
+            this.lblPurchaseVerification.Text = "-";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(13, 21);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(46, 17);
+            this.label42.TabIndex = 1111218;
+            this.label42.Text = "Level 1 :";
+            // 
+            // lblGRNNoRecord
+            // 
+            this.lblGRNNoRecord.AutoSize = true;
+            this.lblGRNNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGRNNoRecord.Location = new System.Drawing.Point(135, 30);
+            this.lblGRNNoRecord.Name = "lblGRNNoRecord";
+            this.lblGRNNoRecord.Size = new System.Drawing.Size(77, 17);
+            this.lblGRNNoRecord.TabIndex = 1111224;
+            this.lblGRNNoRecord.Text = "Not Applicable";
+            // 
+            // lblDCNoRecord
+            // 
+            this.lblDCNoRecord.AutoSize = true;
+            this.lblDCNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDCNoRecord.Location = new System.Drawing.Point(135, 21);
+            this.lblDCNoRecord.Name = "lblDCNoRecord";
+            this.lblDCNoRecord.Size = new System.Drawing.Size(77, 17);
+            this.lblDCNoRecord.TabIndex = 1111225;
+            this.lblDCNoRecord.Text = "Not Applicable";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.Frozen = true;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.New;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Visible = false;
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Remove";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn2.Visible = false;
+            this.dataGridViewImageColumn2.Width = 50;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Remove";
+            this.dataGridViewImageColumn3.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn3.Width = 70;
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Remove";
+            this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn4.Width = 70;
+            // 
+            // dataGridViewImageColumn5
+            // 
+            this.dataGridViewImageColumn5.HeaderText = "Remove";
+            this.dataGridViewImageColumn5.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn5.Name = "dataGridViewImageColumn5";
+            this.dataGridViewImageColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn5.Width = 70;
+            // 
+            // btnUnapprove
+            // 
+            this.btnUnapprove.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.btnUnapprove.Image = global::ROMS.Properties.Resources.Unapprove;
+            this.btnUnapprove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUnapprove.Location = new System.Drawing.Point(1170, 609);
+            this.btnUnapprove.Name = "btnUnapprove";
+            this.btnUnapprove.Size = new System.Drawing.Size(93, 29);
+            this.btnUnapprove.TabIndex = 1111218;
+            this.btnUnapprove.Text = "Unapprove";
+            this.btnUnapprove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUnapprove.UseVisualStyleBackColor = true;
+            this.btnUnapprove.Visible = false;
+            this.btnUnapprove.Click += new System.EventHandler(this.BtnUnapprove_Click);
+            this.btnUnapprove.Enter += new System.EventHandler(this.BtnUnapprove_Enter);
+            this.btnUnapprove.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnUnapprove_KeyDown);
+            this.btnUnapprove.Leave += new System.EventHandler(this.BtnUnapprove_Leave);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(1021, 102);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(80, 28);
+            this.btnClear.TabIndex = 200000;
+            this.btnClear.Text = "Refresh";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // btnViewDataView
+            // 
+            this.btnViewDataView.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnViewDataView.Image = global::ROMS.Properties.Resources.view;
+            this.btnViewDataView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewDataView.Location = new System.Drawing.Point(643, 25);
+            this.btnViewDataView.Name = "btnViewDataView";
+            this.btnViewDataView.Size = new System.Drawing.Size(32, 32);
+            this.btnViewDataView.TabIndex = 5;
+            this.btnViewDataView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewDataView.UseVisualStyleBackColor = true;
+            this.btnViewDataView.Visible = false;
+            this.btnViewDataView.Click += new System.EventHandler(this.BtnViewDataView_Click);
+            this.btnViewDataView.Enter += new System.EventHandler(this.BtnViewDataView_Enter);
+            this.btnViewDataView.Leave += new System.EventHandler(this.BtnViewDataView_Leave);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(995, 22);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 22);
+            this.btnAdd.TabIndex = 29;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Image = global::ROMS.Properties.Resources.New;
+            this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNew.Location = new System.Drawing.Point(440, 22);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(21, 22);
+            this.btnNew.TabIndex = 1111217;
+            this.btnNew.Text = "        ";
+            this.btnNew.Visible = false;
+            this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // clmConvert
+            // 
+            this.clmConvert.Frozen = true;
+            this.clmConvert.HeaderText = "";
+            this.clmConvert.Image = global::ROMS.Properties.Resources.Convertion;
+            this.clmConvert.Name = "clmConvert";
+            this.clmConvert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmConvert.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmConvert.Visible = false;
+            this.clmConvert.Width = 50;
+            // 
+            // clmAddPro
+            // 
+            this.clmAddPro.HeaderText = "";
+            this.clmAddPro.Image = global::ROMS.Properties.Resources.New;
+            this.clmAddPro.Name = "clmAddPro";
+            this.clmAddPro.Visible = false;
+            this.clmAddPro.Width = 50;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemove.Width = 50;
+            // 
+            // clmRemovePO
+            // 
+            this.clmRemovePO.HeaderText = "Remove";
+            this.clmRemovePO.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemovePO.Name = "clmRemovePO";
+            this.clmRemovePO.ReadOnly = true;
+            this.clmRemovePO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemovePO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemovePO.Width = 50;
+            // 
+            // clmRemoveDC
+            // 
+            this.clmRemoveDC.HeaderText = "Remove";
+            this.clmRemoveDC.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveDC.Name = "clmRemoveDC";
+            this.clmRemoveDC.ReadOnly = true;
+            this.clmRemoveDC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemoveDC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemoveDC.Width = 70;
+            // 
+            // btnRemarks
+            // 
+            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
+            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemarks.Location = new System.Drawing.Point(463, 609);
+            this.btnRemarks.Name = "btnRemarks";
+            this.btnRemarks.Size = new System.Drawing.Size(106, 29);
+            this.btnRemarks.TabIndex = 43;
+            this.btnRemarks.Text = "See Remarks";
+            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemarks.UseVisualStyleBackColor = true;
+            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
+            this.btnRemarks.Enter += new System.EventHandler(this.BtnRemarks_Enter);
+            this.btnRemarks.Leave += new System.EventHandler(this.BtnRemarks_Leave);
+            // 
+            // btnDC
+            // 
+            this.btnDC.Enabled = false;
+            this.btnDC.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDC.Image = global::ROMS.Properties.Resources.deliverychallan24;
+            this.btnDC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDC.Location = new System.Drawing.Point(571, 609);
+            this.btnDC.Name = "btnDC";
+            this.btnDC.Size = new System.Drawing.Size(98, 29);
+            this.btnDC.TabIndex = 44;
+            this.btnDC.Text = "Return DC";
+            this.btnDC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDC.UseVisualStyleBackColor = true;
+            this.btnDC.Click += new System.EventHandler(this.BtnDamage_Click);
+            this.btnDC.Enter += new System.EventHandler(this.BtnDC_Enter);
+            this.btnDC.Leave += new System.EventHandler(this.BtnDC_Leave);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1267, 609);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 47;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnClose_KeyDown);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1149, 609);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(114, 29);
+            this.btnSave.TabIndex = 46;
+            this.btnSave.Text = "Save as Draft";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.add;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(102, 25);
+            this.tspHeader.Text = "Purchase Entry";
+            // 
+            // btnVerified
+            // 
+            this.btnVerified.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnVerified.Image = ((System.Drawing.Image)(resources.GetObject("btnVerified.Image")));
+            this.btnVerified.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerified.Location = new System.Drawing.Point(1073, 609);
+            this.btnVerified.Name = "btnVerified";
+            this.btnVerified.Size = new System.Drawing.Size(73, 29);
+            this.btnVerified.TabIndex = 700000003;
+            this.btnVerified.Text = "Verify";
+            this.btnVerified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerified.UseVisualStyleBackColor = true;
+            this.btnVerified.Click += new System.EventHandler(this.BtnVerified_Click);
+            this.btnVerified.Enter += new System.EventHandler(this.BtnVerified_Enter);
+            this.btnVerified.Leave += new System.EventHandler(this.BtnVerified_Leave);
+            // 
             // CP_Purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -4080,14 +4213,14 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseList)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.grpDetails.ResumeLayout(false);
             this.grpDetails.PerformLayout();
+            this.grpGRNloadingUnloading.ResumeLayout(false);
+            this.grpGRNloadingUnloading.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdTaxDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRN)).EndInit();
@@ -4103,6 +4236,12 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errPurchaseentry)).EndInit();
+            this.grpGRNVerifyDetails.ResumeLayout(false);
+            this.grpGRNVerifyDetails.PerformLayout();
+            this.grpDCVerifyDetails.ResumeLayout(false);
+            this.grpDCVerifyDetails.PerformLayout();
+            this.grpPurchaseVerifyDetails.ResumeLayout(false);
+            this.grpPurchaseVerifyDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4217,11 +4356,6 @@
         private System.Windows.Forms.TextBox txtGRNMrp;
         private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.TextBox txtOtherdiscount;
-        private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label lblVerifyDateTime2;
-        private System.Windows.Forms.Label lblVerifyDateTime;
         public System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label lblGodown;
         public System.Windows.Forms.TextBox txtGstin;
@@ -4275,12 +4409,8 @@
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox grpDetails;
-        private System.Windows.Forms.TextBox textBox29;
-        private System.Windows.Forms.TextBox txtFrightGrn;
         private System.Windows.Forms.TextBox txtDCourier;
         private System.Windows.Forms.TextBox txtCouriercharge;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.TextBox txtLoadingchargeGrn;
         private System.Windows.Forms.TextBox txtDUnloading;
         private System.Windows.Forms.TextBox txtDloading;
         private System.Windows.Forms.TextBox txtUnLoadingCharge;
@@ -4318,11 +4448,6 @@
         public System.Windows.Forms.TextBox txtQRCode;
         public System.Windows.Forms.ToolStripButton tsbStatus;
         public System.Windows.Forms.ToolStripSeparator tss3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewImageColumn clmRemoveDC;
         public System.Windows.Forms.Button btnUnapprove;
         public System.Windows.Forms.ToolStripButton tsbTotal;
         public System.Windows.Forms.ToolStripButton tsbRemainingProduct;
@@ -4422,5 +4547,30 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConvertParentFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmAddPro;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.GroupBox grpGRNloadingUnloading;
+        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.TextBox txtFrightGrn;
+        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.TextBox txtLoadingchargeGrn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemoveDC;
+        private System.Windows.Forms.GroupBox grpPurchaseVerifyDetails;
+        private System.Windows.Forms.Label lblPurchaseVerification;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.GroupBox grpDCVerifyDetails;
+        private System.Windows.Forms.Label lblDCVerification;
+        private System.Windows.Forms.Label lb;
+        private System.Windows.Forms.GroupBox grpGRNVerifyDetails;
+        private System.Windows.Forms.Label lblVerifyDateTime2;
+        private System.Windows.Forms.Label lblVerifyDateTime;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label lblDCNoRecord;
+        private System.Windows.Forms.Label lblGRNNoRecord;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn5;
+        private System.Windows.Forms.Button btnVerified;
     }
 }

@@ -59,6 +59,7 @@ namespace ROMS.Model
         public decimal paraGSTAmnt { get; set; } = 0;
         public decimal paraRoundOff { get; set; } = 0;
         public decimal paraGrandTotal { get; set; } = 0;
+        public decimal paraTotal { get; set; } = 0;
         public decimal paraFrightGRN { get; set; } = 0;
         public decimal paraLoadingChargesGRN { get; set; } = 0;
         public byte[] paraQrimg { get; set; } = null;
@@ -74,5 +75,12 @@ namespace ROMS.Model
         public string paraCompletedIDs { get; set; } = ""; 
         public int paraUnapprovedby { get; set; } = 0;
         public int paraPUR_GSTREnteredBy { get; set; } = 0;
+        public int ParaVerify { get; set; } = 0;
+        public string ParaVerifyDate { get; set; } = "";
+        public string paraVerifiedTime { get; set; } = "";
+        public string paraVerifiedFormat { get; set; } = "";
+
+
+
     }
 }

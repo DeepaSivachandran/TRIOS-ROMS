@@ -554,7 +554,6 @@ namespace ROMS
                     dpFromDate.MinDate = varmindate;
                     dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
-
                 dpFromDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
@@ -567,7 +566,7 @@ namespace ROMS
         {
             try
             {
-                udfnDate();
+                //udfnDate();
                 int Varflag = 0;
                 string varSupplierId = "0";
                 if (txtSupplier.Text == "")

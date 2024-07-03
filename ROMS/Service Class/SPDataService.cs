@@ -3235,9 +3235,14 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", objTRN_PurchaseEntry.paraCompletedIDs);
                 varSqlCommand.Parameters.AddWithValue("@paraUnapprovedby", objTRN_PurchaseEntry.paraUnapprovedby);
                 varSqlCommand.Parameters.AddWithValue("@paraPUR_GSTREnteredBy", objTRN_PurchaseEntry.paraPUR_GSTREnteredBy);
+                varSqlCommand.Parameters.AddWithValue("@paraTotal", objTRN_PurchaseEntry.paraTotal);
                // varSqlCommand.Parameters.AddWithValue("@paraCompletedBy", objTRN_PurchaseEntry.paraCompletedBy);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_GSTR", objTRN_PurchaseEntry.ParaTRN_GSTR);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerify", objTRN_PurchaseEntry.ParaVerify);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate", objTRN_PurchaseEntry.ParaVerifyDate);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime", objTRN_PurchaseEntry.paraVerifiedTime);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat", objTRN_PurchaseEntry.paraVerifiedFormat);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

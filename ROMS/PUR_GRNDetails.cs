@@ -51,6 +51,7 @@ namespace ROMS
         List<int> varProductsIDs = new List<int>();
         public int varAutocompleteProduct = 0;
         public string varEditPRID = "0";
+        public string pbStsID = "0";
         string varLocationID = "0", varRackID = "0" , varLocationName="" , varRack="", varPrid="" , varPoIDs="";
         public PUR_GRNDetails()
         {
@@ -74,7 +75,7 @@ namespace ROMS
                 udfnDateSet();
                 udfnPODropdownload();
                 udfnGeneralSettingsList();
-                if (chkCompleted.Checked == true)
+                if (chkCompleted.Checked == true && pbStsID!="17") //status not pending
                 {
                     btnVerified.Enabled = false;
                 }
@@ -3603,7 +3604,7 @@ namespace ROMS
         {
             try
             {
-                if (chkCompleted.Checked == true)
+                if (chkCompleted.Checked == true && pbStsID != "17") //Status not pending
                 {
                     btnVerified.Enabled = false;
                     btnSave.Enabled = false;
@@ -6140,7 +6141,7 @@ namespace ROMS
                             }
                         }
                     }
-                    if(chkCompleted.Checked == true)
+                    if(chkCompleted.Checked == true && pbStsID!="17")
                     {
                         btnVerified.Enabled = false;
                         btnSave.Enabled = false;
