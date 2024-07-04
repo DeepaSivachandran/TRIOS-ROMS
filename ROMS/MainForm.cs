@@ -2046,7 +2046,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
