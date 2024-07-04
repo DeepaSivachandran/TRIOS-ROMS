@@ -3239,7 +3239,7 @@ namespace ROMS
                // varSqlCommand.Parameters.AddWithValue("@paraCompletedBy", objTRN_PurchaseEntry.paraCompletedBy);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_GSTR", objTRN_PurchaseEntry.ParaTRN_GSTR);
-                varSqlCommand.Parameters.AddWithValue("@ParaVerify", objTRN_PurchaseEntry.ParaVerify);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyBy", objTRN_PurchaseEntry.ParaVerifyBy);
                 varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate", objTRN_PurchaseEntry.ParaVerifyDate);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime", objTRN_PurchaseEntry.paraVerifiedTime);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat", objTRN_PurchaseEntry.paraVerifiedFormat);

@@ -28,7 +28,7 @@ namespace ROMS
         public string varUserId = "";
         public string varVerifiedName = "";
         public string pbPurID = "", pbstsId = "";
-        public string varPasskey = "";
+        public string varPasskey = "",varEditFlag="0";
         public int flag = 0, verified1 = 0, verified2 = 0;
         public PUR_Purchase_Level_Verified()
         {
@@ -129,11 +129,25 @@ namespace ROMS
                 MainForm.objCP_Purchase.pbVerifiedFormat = Convert.ToString(cmbFormat.Text);
                 MainForm.objCP_Purchase.pbVerifiedName = Convert.ToString(txtVerified.Text);
                 MainForm.objCP_Purchase.PbVerified = 1;
-                //MainForm.objCP_Purchase.lblVerify.Text = Convert.ToString(txtVerified.Text);
-                //MainForm.objCP_Purchase.lblVerifyDate.Text = Convert.ToString(dpVerified.Text);
                 this.Close();
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLoadDetails()
+        {
+            try
+            {
+                lblVerified1.Text =Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy);
+                dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
+                mtbTime.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime);
+                cmbFormat.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat);
+                txtVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName);
+            }
+            catch(Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -185,33 +199,11 @@ namespace ROMS
         {
             try
             {
-                udfnDateLoad();
+                if (txtVerified.Text.Trim() == "")
+                { cmbFormat.SelectedIndex = 0; }
                 dpVerified.MinDate = MainForm.pbFYStartDate;
                 dpVerified.MaxDate = MainForm.pbCurrentDate;
-                //dpVerified2.MinDate = MainForm.pbFYStartDate;
-                //dpVerified2.MaxDate = MainForm.pbCurrentDate;
-                //MR_Master objMR_Master = new MR_Master();
-                //objMR_Master.ViewType =19;
-                //SPDataService objDServ = new SPDataService();
-                //DataSet objd = new DataSet();
-                //objd = objDServ.udfnMaster(objMR_Master);
-                //if (objd.Tables[0].Rows.Count > 0)
-                //{
-                //    DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //    DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //    dpVerified.MaxDate = varmaxDate;
-                //    dpVerified.MinDate = varminDate;
-                //}
-                //objDServ.CloseConnection();
-                if (pbstsId == "2")
-                {
-                    txtVerified.Enabled = false;
-                    mtbTime.Enabled = false;
-                    cmbFormat.Enabled = false;
-                    dpVerified.Enabled = false;
-                    lvVerified.Visible = false;
-                    btnAuthorise.Enabled = false;
-                }
+                udfnEditload();
             }
             catch (Exception ex)
             {
@@ -219,72 +211,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnDateLoad()
+        public void udfnEditload()
         {
             try
             {
-                if (MainForm.objPUR_PurchaseDC.varDCID != 0 && MainForm.objPUR_PurchaseDC.PbVerified == 0)
+                lblVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy);
+                txtVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName);
+                dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
+                mtbTime.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime);
+                cmbFormat.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat);
+                varEditFlag = Convert.ToString(MainForm.objCP_Purchase.varPurVerifyFlag);
+                lvVerified.Visible = false;
+                if(varEditFlag=="1")
                 {
-                    SPDataService objdserv = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
-                    objTRNG_Purchase_DC.ViewType = 5;
-                    objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                    objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
-                    objTRNG_Purchase_DC.paraDCID = MainForm.objPUR_PurchaseDC.varDCID;
-                    objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
-                    objdserv.CloseConnection();
-                    if (objDs != null)
-                    {
-                        int Verified1 = 0;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            if (objDs.Tables[0].Rows.Count > 0)
-                            {
-                                Verified1 = Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
-                                dpVerified.Text = objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString();
-                                mtbTime.Text = objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString();
-                                cmbFormat.Text = objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString();
-                                DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                                dpVerified.MaxDate = varmaxdate;
-                                //MainForm.objPUR_PurchaseDC.varVerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
-                                //MainForm.objPUR_PurchaseDC.varVerifiedOn = Convert.ToString(objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString());
-                                //MainForm.objPUR_PurchaseDC.varVerifiedTime = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString());
-                                //MainForm.objPUR_PurchaseDC.varVerifiedFormat = Convert.ToString(objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString());
-                                if (Verified1 == -1)
-                                {
-                                    dpVerified.Text = Convert.ToString(varmaxdate);
-                                }
-
-                            }
-                        }
-                        if (objDs.Tables[1].Rows.Count != 0)
-                        {
-                            if (objDs.Tables[1].Rows.Count > 0)
-                            {
-                                txtVerified.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee"].ToString());
-                                lblVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EmpID"].ToString());
-                            }
-                            lvVerified.Visible = false;
-                        }
-                    }
-                    if (txtVerified.Text.Trim() == "")
-                    {
-                        cmbFormat.SelectedIndex = 0;
-                    }
-                }
-                else
-                {
-                    lblVerified1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedBy);
-                    txtVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedName);
-                    dpVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedOn);
-                    mtbTime.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedTime);
-                    cmbFormat.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedFormat);
+                    txtVerified.Enabled = false;
+                    mtbTime.Enabled = false;
+                    cmbFormat.Enabled = false;
+                    dpVerified.Enabled = false;
                     lvVerified.Visible = false;
-                    if (txtVerified.Text.Trim() == "")
-                    {
-                        cmbFormat.SelectedIndex = 0;
-                    }
+                    btnAuthorise.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -305,7 +250,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtVerified1_Enter(object sender, EventArgs e)
         {
             try
@@ -318,7 +262,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtVerified1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -349,7 +292,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtVerified1_Leave(object sender, EventArgs e)
         {
             try
@@ -362,7 +304,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtVerified1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -417,7 +358,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvVerified1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -433,7 +373,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void MtbTime1_Enter(object sender, EventArgs e)
         {
             try
@@ -446,7 +385,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void MtbTime1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -462,7 +400,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void MtbTime1_Leave(object sender, EventArgs e)
         {
             try
@@ -526,7 +463,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbFormat1_Leave(object sender, EventArgs e)
         {
             try
@@ -557,7 +493,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbFormat1_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -570,7 +505,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbFormat1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -586,7 +520,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbFormat2_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -602,7 +535,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void PUR_GRN_Level_Verified_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -622,7 +554,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnVerified1()
         {
             try

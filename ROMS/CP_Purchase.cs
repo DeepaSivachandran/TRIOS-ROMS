@@ -63,7 +63,7 @@ namespace ROMS
         public int varAutocompleteProduct = 0, pbPurchaseEntryUnapprovedFlag=0,pbUnapprovePURID=0,varGRNPRID=0 , varConvertFlag=0 , varPaymentStatus=0;
         public string varEditPRID = "0";
         public int pbVerifiedBy = 0 , PbVerified = 0;
-        public string pbVerifiedOn = "" , pbVerifiedTime = "" , pbVerifiedFormat = "", pbVerifiedName = "";
+        public string pbVerifiedOn = "" , pbVerifiedTime = "" , pbVerifiedFormat = "", pbVerifiedName = "" , varPurVerifyFlag="0";
         
         public CP_Purchase()
         {
@@ -210,6 +210,22 @@ namespace ROMS
             finally
             {
                 lblTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
+                udfnVerifyEnable();
+            }
+        }
+        public void udfnVerifyEnable()
+        {
+            try
+            {
+                if (Convert.ToString(cmbEntryType.SelectedValue) == "55" ||Convert.ToString(cmbEntryType.SelectedValue) == "56") //Direct and against PO
+                { btnVerified.Enabled = true; }
+                else
+                { btnVerified.Enabled = false; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnProDetailsTolProCount()
@@ -661,10 +677,12 @@ namespace ROMS
                     if (objDs.Tables[2].Rows.Count != 0)
                     {
                         lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[2].Rows[0]["VERIFIED1"]);
+                        lblGRNNoRecord.Visible = false;
                     }
                     if (objDs.Tables[3].Rows.Count != 0)
                     {
                         lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[3].Rows[0]["VERIFIED2"]);
+                        lblGRNNoRecord.Visible = false;
                     }
                 }
             }
@@ -1498,6 +1516,8 @@ namespace ROMS
                                     grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["DC_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["DC_DATE"]),
                                         Convert.ToString(objDs.Tables[4].Rows[i]["DCPR_PRID"]), Convert.ToString(objDs.Tables[4].Rows[i]["DCID"]));
                                     pbDCNo = pbDCNo + ',' + Convert.ToString(objDs.Tables[4].Rows[i]["DCID"]);
+                                    grdDCVerificationDetails.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["DC_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["DC Verification Details"]));
+                                    lblVerifyNorecord.Visible = false;
                                 }
                                 grdReurnDC.Visible = true;
                                 varTypeErrId = Convert.ToString(objDs.Tables[4].Rows[0]["DCID"]);
@@ -1507,34 +1527,34 @@ namespace ROMS
                                 grdReurnDC.Rows.Clear();
                                 grdReurnDC.Visible = false;
                             }
-                            
-                           
                             grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                             grdPODetails.Columns["clmRemovePO"].Visible = false;
                             
                             if (objDs.Tables[6].Rows.Count != 0)
                             {
                                 lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED1"]);
+                                lblGRNNoRecord.Visible = false;
                             }
                             if (objDs.Tables[7].Rows.Count != 0)
                             {
                                 lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[7].Rows[0]["VERIFIED2"]);
+                                lblGRNNoRecord.Visible = false;
                             }
                             if (objDs.Tables[8].Rows.Count != 0)
                             {
                                 varPurEditFlag = Convert.ToInt32(objDs.Tables[8].Rows[0]["Flag"]);
                             }
-                            if (objDs.Tables.Count > 8)
+                            if (objDs.Tables.Count > 9)
                             {
                                 if (Convert.ToString(cmbEntryType.SelectedValue) != "56")
                                 {
-                                    if (objDs.Tables[9].Rows.Count != 0)
-                                    {
-                                        tsbAddedProduct.Text = Convert.ToString(objDs.Tables[9].Rows[0]["AddedCount"]);
-                                    }
                                     if (objDs.Tables[10].Rows.Count != 0)
                                     {
-                                        tsbTotalProducts.Text = Convert.ToString(objDs.Tables[10].Rows[0]["TotalProducts"]);
+                                        tsbAddedProduct.Text = Convert.ToString(objDs.Tables[10].Rows[0]["AddedCount"]);
+                                    }
+                                    if (objDs.Tables[11].Rows.Count != 0)
+                                    {
+                                        tsbTotalProducts.Text = Convert.ToString(objDs.Tables[11].Rows[0]["TotalProducts"]);
                                     }
                                     int Remaining = 0;
                                     Remaining = Convert.ToInt32(tsbTotalProducts.Text) - Convert.ToInt32(tsbAddedProduct.Text);
@@ -1544,12 +1564,12 @@ namespace ROMS
                             }
                             if (Convert.ToString(cmbEntryType.SelectedValue) == "57") //dc
                             {
-                                if (objDs.Tables[11].Rows.Count != 0)
+                                if (objDs.Tables[12].Rows.Count != 0)
                                 {
-                                    varDCDate= Convert.ToString(objDs.Tables[11].Rows[0]["DC_Date"]);
+                                    varDCDate= Convert.ToString(objDs.Tables[12].Rows[0]["DC_Date"]);
                                 }
                             }
-                            if(Convert.ToString(cmbEntryType.SelectedValue)=="54")
+                            if(Convert.ToString(cmbEntryType.SelectedValue)=="54") //GRN
                             {
                                 if (tsbRemainingProduct.Text == "0")
                                 {   cmbPONo.SelectedValue = 217; cmbPONo.Enabled = false; }
@@ -1559,17 +1579,24 @@ namespace ROMS
                                 if (tsbRemainingProduct.Text == "0")
                                 { cmbPONo.SelectedValue = 219; cmbPONo.Enabled = false; }
                             }
-                            else if (Convert.ToString(cmbEntryType.SelectedValue) == "55")
+                            else if (Convert.ToString(cmbEntryType.SelectedValue) == "55") //po
                             {
                                 if (tsbRemainingProduct.Text == "0")
                                 { cmbPONo.SelectedValue = 214; cmbPONo.Enabled = false; }
                             }
-                            if (objDs.Tables[12].Rows.Count != 0)
+                            if (objDs.Tables.Count > 8)
                             {
-                                pbVerifiedBy = Convert.ToInt16(objDs.Tables[12].Rows[0]["Verifiedby"]);
-                                pbVerifiedOn = Convert.ToString(objDs.Tables[12].Rows[0]["PUR_VerfiedOn"]);
-                                pbVerifiedTime = Convert.ToString(objDs.Tables[12].Rows[0]["PUR_Verified_Time"]);
-                                pbVerifiedFormat = Convert.ToString(objDs.Tables[12].Rows[0]["PUR_Verified_format"]);
+                                if (objDs.Tables[9].Rows.Count != 0)
+                                {
+                                    PbVerified = 1;
+                                    varPurVerifyFlag = Convert.ToString(objDs.Tables[9].Rows[0]["EditFlag"]);
+                                    pbVerifiedBy = Convert.ToInt16(objDs.Tables[9].Rows[0]["Verifiedby"]);
+                                    pbVerifiedName = Convert.ToString(objDs.Tables[9].Rows[0]["Verified Name"]);
+                                    pbVerifiedOn = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_VerfiedOn"]);
+                                    pbVerifiedTime = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_Verified_Time"]);
+                                    pbVerifiedFormat = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_Verified_format"]);
+                                    lblPurchaseVerification.Text=Convert.ToString(objDs.Tables[9].Rows[0]["Purchase Verification Details"]);
+                                }
                             }
                         }
                     }
@@ -1793,10 +1820,10 @@ namespace ROMS
                         grdReurnDC.Rows.Clear();
                         for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                         {
-                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.Visible = false; lblVerifyNorecord.Visible = false;
                             grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["DCNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["DCDate"]),
-                                Convert.ToString(objDs.Tables[1].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"])
-                            );
+                                Convert.ToString(objDs.Tables[1].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]) );
+                            grdDCVerificationDetails.Rows.Add(objDs.Tables[1].Rows[i]["DCNo"], objDs.Tables[1].Rows[i]["DC Verification Details"]);
                         }
                     }
                 }
@@ -5669,7 +5696,15 @@ namespace ROMS
                         tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                         varErrorFlag = true;
                     }
-                    
+                    if (chkCompleted.Checked == true && (pbVerifiedBy == 0 || PbVerified ==0) && (Convert.ToString(cmbEntryType.SelectedValue) == "55" || Convert.ToString(cmbEntryType.SelectedValue) == "56"))
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(119);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrorFlag = true;
+                        BtnVerified_Click(sender, e);
+                    }
                     if (varErrorFlag == false && varerrFlag == 0)
                     {
                         string result = "", varorginator = "Purchase entry save"; int varSaveFlag = 0;
@@ -6178,7 +6213,7 @@ namespace ROMS
                                         objTRN_PurchaseEntry.paraPOID = Convert.ToString(pbPONO);
                                         objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
                                         objTRN_PurchaseEntry.paraCompletedBy = Convert.ToInt32(varUserID);
-                                        objTRN_PurchaseEntry.ParaVerify = PbVerified;
+                                        objTRN_PurchaseEntry.ParaVerifyBy = pbVerifiedBy;
                                         objTRN_PurchaseEntry.ParaVerifyDate = pbVerifiedOn;
                                         objTRN_PurchaseEntry.paraVerifiedTime = pbVerifiedTime;
                                         objTRN_PurchaseEntry.paraVerifiedFormat = pbVerifiedFormat;
