@@ -200,11 +200,14 @@
             this.clmExcessQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmQtyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceExpiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmactuallife = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmshelfper = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceBatch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -220,9 +223,6 @@
             this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMRPflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceExpiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceBatch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
@@ -1619,11 +1619,14 @@
             this.clmExcessQty,
             this.clmQtyType,
             this.clmmrp,
+            this.clmInvoiceMRP,
             this.clmexpirydate,
+            this.clmInvoiceExpiry,
             this.clmshelflife,
             this.clmactuallife,
             this.clmshelfper,
             this.clmBatchno,
+            this.clmInvoiceBatch,
             this.clmLocation,
             this.clmSLID,
             this.clmRack,
@@ -1639,9 +1642,6 @@
             this.clmUTDecimal,
             this.clmMRPflag,
             this.clmRMFlag,
-            this.clmInvoiceMRP,
-            this.clmInvoiceExpiry,
-            this.clmInvoiceBatch,
             this.clmRemove});
             dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
@@ -1957,14 +1957,30 @@
             this.clmmrp.Name = "clmmrp";
             this.clmmrp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // clmInvoiceMRP
+            // 
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceMRP.DefaultCellStyle = dataGridViewCellStyle23;
+            this.clmInvoiceMRP.HeaderText = "Invoice MRP";
+            this.clmInvoiceMRP.Name = "clmInvoiceMRP";
+            // 
             // clmexpirydate
             // 
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle24;
             this.clmexpirydate.HeaderText = "Product Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
             this.clmexpirydate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmexpirydate.Width = 125;
+            // 
+            // clmInvoiceExpiry
+            // 
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceExpiry.DefaultCellStyle = dataGridViewCellStyle25;
+            this.clmInvoiceExpiry.HeaderText = "Invoice Expiry Date";
+            this.clmInvoiceExpiry.Name = "clmInvoiceExpiry";
+            this.clmInvoiceExpiry.Width = 125;
             // 
             // clmshelflife
             // 
@@ -1991,12 +2007,20 @@
             // 
             // clmBatchno
             // 
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmBatchno.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmBatchno.DefaultCellStyle = dataGridViewCellStyle26;
             this.clmBatchno.HeaderText = "Product Batch No.";
             this.clmBatchno.Name = "clmBatchno";
             this.clmBatchno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmBatchno.Width = 120;
+            // 
+            // clmInvoiceBatch
+            // 
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceBatch.DefaultCellStyle = dataGridViewCellStyle27;
+            this.clmInvoiceBatch.HeaderText = "Invoice Batch No.";
+            this.clmInvoiceBatch.Name = "clmInvoiceBatch";
+            this.clmInvoiceBatch.Width = 120;
             // 
             // clmLocation
             // 
@@ -2101,30 +2125,6 @@
             this.clmRMFlag.Name = "clmRMFlag";
             this.clmRMFlag.ReadOnly = true;
             this.clmRMFlag.Visible = false;
-            // 
-            // clmInvoiceMRP
-            // 
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmInvoiceMRP.DefaultCellStyle = dataGridViewCellStyle25;
-            this.clmInvoiceMRP.HeaderText = "Invoice MRP";
-            this.clmInvoiceMRP.Name = "clmInvoiceMRP";
-            // 
-            // clmInvoiceExpiry
-            // 
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmInvoiceExpiry.DefaultCellStyle = dataGridViewCellStyle26;
-            this.clmInvoiceExpiry.HeaderText = "Invoice Expiry Date";
-            this.clmInvoiceExpiry.Name = "clmInvoiceExpiry";
-            this.clmInvoiceExpiry.Width = 125;
-            // 
-            // clmInvoiceBatch
-            // 
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmInvoiceBatch.DefaultCellStyle = dataGridViewCellStyle27;
-            this.clmInvoiceBatch.HeaderText = "Invoice Batch No.";
-            this.clmInvoiceBatch.Name = "clmInvoiceBatch";
-            this.clmInvoiceBatch.Width = 120;
             // 
             // clmRemove
             // 
@@ -2324,11 +2324,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmExcessQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQtyType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmmrp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceMRP;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceExpiry;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmshelflife;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmactuallife;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmshelfper;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceBatch;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmLocation;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
@@ -2344,9 +2347,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMRPflag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceMRP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceExpiry;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceBatch;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
