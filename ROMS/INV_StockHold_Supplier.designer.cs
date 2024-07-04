@@ -171,7 +171,6 @@
         #endregion
         private System.Windows.Forms.ErrorProvider errSupplier;
         private System.Windows.Forms.TextBox txtDPasskey;
-        private System.Windows.Forms.TextBox txtSupplier;
         public System.Windows.Forms.ListView LV_Supplier;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader8;
@@ -179,5 +178,6 @@
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.Label lblSupplierCode;
         public System.Windows.Forms.Label lblschedule;
+        public System.Windows.Forms.TextBox txtSupplier;
     }
 }

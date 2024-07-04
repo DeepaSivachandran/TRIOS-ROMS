@@ -128,6 +128,8 @@ namespace ROMS
         public static INV_StockHold objINV_StockHold;
         public static INV_StockHold_Location objINV_StockHold_Location;
         public static INV_StockHold_Supplier objINV_StockHold_Supplier;
+        public static INV_StockHold_Damages objINV_StockHold_Damages;
+        public static INV_StockHold_Verify objINV_StockHold_Verify;
         public static INV_StockConversionList objINV_StockConversionList;
         public static INV_StockConversion objINV_StockConversion;
         public static INV_InwardQueueList objINV_InwardQueueList;

@@ -47,7 +47,7 @@ namespace ROMS
                 if (txtSupplier.Text.Length > 0)
                 {
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 32;
+                    objMR_Supplier.ViewType =37;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     objMR_Supplier.paraProducts = Convert.ToString(varProductCode);
                     DataSet objDs = new DataSet();
@@ -289,6 +289,7 @@ namespace ROMS
                 MainForm.objINV_StockHold.lblSupplierCode.Text = lblSupplierCode.Text;
                 MainForm.objINV_StockHold.lblschedule.Text = lblschedule.Text;
                 MainForm.objINV_StockHold.varFlag = 1;
+                this.Close();
             }
             catch (Exception ex)
             {

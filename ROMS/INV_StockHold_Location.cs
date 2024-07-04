@@ -330,6 +330,7 @@ namespace ROMS
                 objTRNS_StockHold.paraQty = Convert.ToDecimal(txtQty.Text);
                 objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNS_StockHold.paraFlag = 1;
+                objTRNS_StockHold.paraStatus = 96;
                 objTRNS_StockHold.paraOriginator = "Stock Hold Move Location";
                 varResult = objspservice.udfnStockHold(objTRNS_StockHold);
                 objspservice.CloseConnection();
