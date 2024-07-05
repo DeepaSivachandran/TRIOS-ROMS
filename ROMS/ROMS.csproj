@@ -172,6 +172,12 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAY_BlockedSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_BlockedSupplier.designer.cs">
+      <DependentUpon>PAY_BlockedSupplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_StockHold_Verify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1766,6 +1772,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_BlockedSupplier.resx">
+      <DependentUpon>PAY_BlockedSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockHold_Verify.resx">
       <DependentUpon>INV_StockHold_Verify.cs</DependentUpon>

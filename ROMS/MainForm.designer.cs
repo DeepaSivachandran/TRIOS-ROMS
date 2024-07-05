@@ -62,6 +62,7 @@ namespace ROMS
             this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbDirectCheque = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbDebitNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.gSTRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTimeValue = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +123,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gSTRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBlockedSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -283,7 +284,7 @@ namespace ROMS
             // tsmrackSettings
             // 
             this.tsmrackSettings.Name = "tsmrackSettings";
-            this.tsmrackSettings.Size = new System.Drawing.Size(171, 22);
+            this.tsmrackSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmrackSettings.Text = "Rack Transfer";
             this.tsmrackSettings.Click += new System.EventHandler(this.TsmrackSettings_Click);
             // 
@@ -294,7 +295,7 @@ namespace ROMS
             this.tsmfromOtherStockLocation});
             this.tsminward.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsminward.Name = "tsminward";
-            this.tsminward.Size = new System.Drawing.Size(171, 22);
+            this.tsminward.Size = new System.Drawing.Size(180, 22);
             this.tsminward.Text = "Goods Inward";
             this.tsminward.Click += new System.EventHandler(this.Tsminward_Click);
             // 
@@ -315,42 +316,42 @@ namespace ROMS
             // tsmStockHold
             // 
             this.tsmStockHold.Name = "tsmStockHold";
-            this.tsmStockHold.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockHold.Size = new System.Drawing.Size(180, 22);
             this.tsmStockHold.Text = "Stock Hold";
             this.tsmStockHold.Click += new System.EventHandler(this.TsmStockHold_Click);
             // 
             // tsmStockReq
             // 
             this.tsmStockReq.Name = "tsmStockReq";
-            this.tsmStockReq.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockReq.Size = new System.Drawing.Size(180, 22);
             this.tsmStockReq.Text = "Shop Stock Request";
             this.tsmStockReq.Click += new System.EventHandler(this.TsmStockRequest_Click);
             // 
             // tsmOutward
             // 
             this.tsmOutward.Name = "tsmOutward";
-            this.tsmOutward.Size = new System.Drawing.Size(171, 22);
+            this.tsmOutward.Size = new System.Drawing.Size(180, 22);
             this.tsmOutward.Text = "Goods Outward";
             this.tsmOutward.Click += new System.EventHandler(this.TsmOutward_Click);
             // 
             // tsmStockTransfer
             // 
             this.tsmStockTransfer.Name = "tsmStockTransfer";
-            this.tsmStockTransfer.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockTransfer.Size = new System.Drawing.Size(180, 22);
             this.tsmStockTransfer.Text = "Stock Transfer";
             this.tsmStockTransfer.Click += new System.EventHandler(this.TsmStockTransfer_Click);
             // 
             // damageEntryToolStripMenuItem
             // 
             this.damageEntryToolStripMenuItem.Name = "damageEntryToolStripMenuItem";
-            this.damageEntryToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.damageEntryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.damageEntryToolStripMenuItem.Text = "Damage Entry";
             this.damageEntryToolStripMenuItem.Click += new System.EventHandler(this.DamageEntryToolStripMenuItem_Click);
             // 
             // tsbStockConversion
             // 
             this.tsbStockConversion.Name = "tsbStockConversion";
-            this.tsbStockConversion.Size = new System.Drawing.Size(171, 22);
+            this.tsbStockConversion.Size = new System.Drawing.Size(180, 22);
             this.tsbStockConversion.Text = "Batch Conversion";
             this.tsbStockConversion.Click += new System.EventHandler(this.TsbStockConversion_Click);
             // 
@@ -361,7 +362,8 @@ namespace ROMS
             this.supplierPaymentToolStripMenuItem,
             this.tsbDirectCheque,
             this.tsbDebitNote,
-            this.gSTRToolStripMenuItem});
+            this.gSTRToolStripMenuItem,
+            this.tsmBlockedSupplier});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
             this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
@@ -396,6 +398,13 @@ namespace ROMS
             this.tsbDebitNote.Size = new System.Drawing.Size(183, 22);
             this.tsbDebitNote.Text = "Debit Note";
             this.tsbDebitNote.Click += new System.EventHandler(this.TsbDebitNote_Click);
+            // 
+            // gSTRToolStripMenuItem
+            // 
+            this.gSTRToolStripMenuItem.Name = "gSTRToolStripMenuItem";
+            this.gSTRToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.gSTRToolStripMenuItem.Text = "GSTR Details";
+            this.gSTRToolStripMenuItem.Click += new System.EventHandler(this.GSTRToolStripMenuItem_Click);
             // 
             // lblDb
             // 
@@ -908,12 +917,12 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // gSTRToolStripMenuItem
+            // tsmBlockedSupplier
             // 
-            this.gSTRToolStripMenuItem.Name = "gSTRToolStripMenuItem";
-            this.gSTRToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.gSTRToolStripMenuItem.Text = "GSTR Details";
-            this.gSTRToolStripMenuItem.Click += new System.EventHandler(this.GSTRToolStripMenuItem_Click);
+            this.tsmBlockedSupplier.Name = "tsmBlockedSupplier";
+            this.tsmBlockedSupplier.Size = new System.Drawing.Size(183, 22);
+            this.tsmBlockedSupplier.Text = "Blocked Supplier";
+            this.tsmBlockedSupplier.Click += new System.EventHandler(this.TsmBlockedSupplier_Click);
             // 
             // MainForm
             // 
@@ -1037,5 +1046,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem financialYearProcessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gSTRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmBlockedSupplier;
     }
 }
