@@ -43,6 +43,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDCPrint = new System.Windows.Forms.Button();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -79,16 +81,14 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errGRNList)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -188,6 +188,30 @@
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
             this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
             this.pnlpurchaseapproval.TabIndex = 958789;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnDCPrint);
+            this.groupBox1.Location = new System.Drawing.Point(1017, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(89, 60);
+            this.groupBox1.TabIndex = 1111185;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "DC Print";
+            // 
+            // btnDCPrint
+            // 
+            this.btnDCPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDCPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnDCPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDCPrint.Location = new System.Drawing.Point(6, 20);
+            this.btnDCPrint.Name = "btnDCPrint";
+            this.btnDCPrint.Size = new System.Drawing.Size(69, 33);
+            this.btnDCPrint.TabIndex = 1111186;
+            this.btnDCPrint.Text = "Print";
+            this.btnDCPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDCPrint.UseVisualStyleBackColor = true;
+            this.btnDCPrint.Click += new System.EventHandler(this.BtnDCPrint_Click);
             // 
             // LV_Supplier
             // 
@@ -630,29 +654,6 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(1017, 24);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(89, 60);
-            this.groupBox1.TabIndex = 1111185;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DC Print";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.print;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(6, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(69, 33);
-            this.button1.TabIndex = 1111186;
-            this.button1.Text = "Print";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // PUR_GRNDetailsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -675,13 +676,13 @@
             this.tsBrandList.PerformLayout();
             this.pnlpurchaseapproval.ResumeLayout(false);
             this.pnlpurchaseapproval.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errGRNList)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -734,6 +735,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmLocPrint;
         private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button btnDCPrint;
     }
 }

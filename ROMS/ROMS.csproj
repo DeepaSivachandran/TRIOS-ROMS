@@ -558,6 +558,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_GRNDetailsListPrint.cs">
+      <DependentUpon>RPT_PUR_GRNDetailsListPrint.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_GRNDetailsList.cs">
       <DependentUpon>RPT_PUR_GRNDetailsList.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2319,6 +2326,11 @@
     <EmbeddedResource Include="Reports\RPT_INV_Damage_Supplier_DamageEntry_Wise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_INV_Damage_Supplier_DamageEntry_Wise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_GRNDetailsListPrint.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_GRNDetailsListPrint.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_GRNDetailsList.rpt">

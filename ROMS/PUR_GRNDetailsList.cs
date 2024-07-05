@@ -1918,6 +1918,19 @@ namespace ROMS
             }
         }
 
+        private void BtnDCPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnDeleteHide()
         {
             try

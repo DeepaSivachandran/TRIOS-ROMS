@@ -5735,6 +5735,7 @@ namespace ROMS
                     {
                         grdPurchaseList.Rows[i].ReadOnly = true;
                     }
+                    //(varError > 0 && varReason > 0) || (varError > 0 && varReason == 0 && varApprovalStatus != 61)
                 }
             }
             catch (Exception ex)
