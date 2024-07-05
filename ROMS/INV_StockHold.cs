@@ -678,8 +678,8 @@ namespace ROMS
                             grdStockHold.Columns["Created On"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockHold.Columns["Product Name"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
 
-                            DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
-                            GrdStockHold_DataBindingComplete(grdStockHold, args2);
+                            //DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                            //GrdStockHold_DataBindingComplete(grdStockHold, args2);
                         }
                         else
                         {
@@ -1036,6 +1036,7 @@ namespace ROMS
                 MainForm.objINV_StockHold_Damages = new INV_StockHold_Damages();
                 MainForm.objINV_StockHold_Damages.varSHID = Convert.ToInt32(grdStockHold.SelectedRows[0].Cells["SHID"].Value);
                 MainForm.objINV_StockHold_Damages.ShowDialog();
+                udfnList();
             }
             catch (Exception ex)
             {

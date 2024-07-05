@@ -66,7 +66,6 @@ namespace ROMS
                         lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SH_SPID"]);
                         lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SH_SPSCID"]);
                         lblCompanyCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["COMID"]);
-                        lblTransactionDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SH_TransactionDateTime"]);
                         lblHoldQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Hold Qty"]);
                         varProductCode = Convert.ToInt32(objDs.Tables[0].Rows[0]["PRID"]);
                         lblTeller.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SH_Maker"]);
@@ -75,6 +74,7 @@ namespace ROMS
                     {
                         lblLocationCode.Text = Convert.ToString(objDs.Tables[1].Rows[0]["SLID"]);
                         lblDestination.Text = Convert.ToString(objDs.Tables[1].Rows[0]["SL_EName"]);
+                        lblTransactionDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["CurrentDate"]);
                     }
 
                     lblSource.Visible = true;
@@ -85,6 +85,7 @@ namespace ROMS
                     lblExpiryDate.Visible = true;
                     lblBatchNo.Visible = true;
                     lblSupplierName.Visible = true;
+                    lblHoldQty.Visible = true;
                 }
             }
             catch (Exception ex)
