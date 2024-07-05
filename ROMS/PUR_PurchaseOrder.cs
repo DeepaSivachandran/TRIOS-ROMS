@@ -288,7 +288,7 @@ namespace ROMS
             try
             {
 
-                dpissuedateandtime.Enabled = true;
+                //dpissuedateandtime.Enabled = true;
                 txtIssuedBy.Enabled = true;
                 txtissuemodevalue.Enabled = true;
                 txtTurnAroundTime.Enabled = true;
