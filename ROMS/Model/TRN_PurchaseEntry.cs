@@ -36,6 +36,7 @@ namespace ROMS.Model
         public string paraRemarks { get; set; } = "";
         public string ParaPurchaseDC { get; set; } = "";
         public string paraHostName { get; set; } = "";
+       
         public string paraGSTIN { get; set; } = "";
         public int paraStatus { get; set; } = 0;
         public int paraDeleteFlag { get; set; } = 0;
@@ -66,6 +67,7 @@ namespace ROMS.Model
         public DataTable ParaPurchase_Products { get; set; } = null;
         public DataTable Purchase_Products_Details { get; set; } = null;
         public DataTable ParaTRN_GSTR { get; set; } = null;
+        public DataTable ParaPurchaseRefresh { get; set; } = null;
         public string paraEinvoice { get; set; } = "";
         public string ParaPEToDate { get; set; } = "";
         public string ParaPEFromDate { get; set; } = ""; 
@@ -79,7 +81,7 @@ namespace ROMS.Model
         public string ParaVerifyDate { get; set; } = "";
         public string paraVerifiedTime { get; set; } = "";
         public string paraVerifiedFormat { get; set; } = "";
-
+        public string paraDate { get; set; } = "";
 
 
     }
