@@ -1066,6 +1066,20 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
+                    if (DGV_SearchGrid.ColumnCount > 1)
+                    {
+                        int rowIndex1 = 0;
+                        DGV_SearchGrid.Rows.Clear();
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            if (i == 0)
+                            { DGV_SearchGrid.Rows[0].Cells[i].ReadOnly = true; }
+                            else
+                            { DGV_SearchGrid.Rows[0].Cells[i].ReadOnly = false; }
+                        }
+                        DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
@@ -1552,6 +1566,13 @@ namespace ROMS
                         DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"];
                         cell2.Value = new Bitmap(1, 1);
                         cell2.ReadOnly = true;
+                    }
+                    if(Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) != "23")
+                    {
+                        DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
+                        Check.Value = "";
+                        grdGRNList.Rows[i].Cells["clmCheck"] = Check;
+                        Check.ReadOnly = true;
                     }
                     /*
                     if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN Status"].Value) == "")

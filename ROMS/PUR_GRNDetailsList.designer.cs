@@ -75,12 +75,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdGRNList = new System.Windows.Forms.DataGridView();
-            this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -569,6 +570,7 @@
             this.grdGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGRNList.ColumnHeadersVisible = false;
             this.grdGRNList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCheck,
             this.ClmEdit,
             this.clmPrint,
             this.clmLocPrint});
@@ -601,28 +603,6 @@
             this.grdGRNList.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             this.grdGRNList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGRNList_KeyDown);
             // 
-            // ClmEdit
-            // 
-            this.ClmEdit.HeaderText = "Edit";
-            this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.ClmEdit.Name = "ClmEdit";
-            this.ClmEdit.Width = 50;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Reprint";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.Width = 50;
-            // 
-            // clmLocPrint
-            // 
-            this.clmLocPrint.HeaderText = "Location Print";
-            this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmLocPrint.Name = "clmLocPrint";
-            this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -653,6 +633,35 @@
             this.RPTViewer.TabIndex = 1110000994;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ClmEdit
+            // 
+            this.ClmEdit.HeaderText = "Edit";
+            this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.ClmEdit.Name = "ClmEdit";
+            this.ClmEdit.Width = 50;
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Reprint";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.Width = 50;
+            // 
+            // clmLocPrint
+            // 
+            this.clmLocPrint.HeaderText = "Location Print";
+            this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmLocPrint.Name = "clmLocPrint";
+            this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // PUR_GRNDetailsList
             // 
@@ -731,10 +740,11 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotalGRN;
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Button btnDCPrint;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
         private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmLocPrint;
-        private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.Button btnDCPrint;
     }
 }
