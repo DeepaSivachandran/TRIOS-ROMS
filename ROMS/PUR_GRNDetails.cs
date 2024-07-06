@@ -6080,9 +6080,12 @@ namespace ROMS
                                     btnVerify1.Enabled = false;
                                     btnVerify2.Enabled = false;
                                     btnDC.Enabled = false;
-                                    gpAddrow.Enabled = false;
-                                    grpGrnDetails.Enabled = false;
-                                    grdGrnlist.Columns["clmRemove"].Visible = false;
+                                    if (pbStsID != "17")
+                                    {
+                                        gpAddrow.Enabled = false;
+                                        grpGrnDetails.Enabled = false;
+                                        grdGrnlist.Columns["clmRemove"].Visible = false;
+                                    }
                                    // grdGrnlist.Enabled = false;
                                     grdGrnlist.ClearSelection();
                                 }

@@ -1821,7 +1821,7 @@ namespace ROMS
                     cmbrack.Enabled = false;
                     btnAdd.Enabled = false;
                 }
-                btnClear.Enabled = false;
+               // btnClear.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -10170,7 +10170,7 @@ namespace ROMS
                 if (grdSupplierList.Rows.Count > 0)
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(113);
+                    string varMessage = objDServ.udfnGetMessages(133);
                     objDServ.CloseConnection();
                     DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
