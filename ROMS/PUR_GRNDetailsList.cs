@@ -270,6 +270,7 @@ namespace ROMS
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
                             grdGRNList.Columns["clmPrint"].Width = 50;
                             grdGRNList.DataSource = objDs.Tables[0];
+                            grdGRNList.Columns[0].HeaderText = "";
                             grdGRNList.Columns["S.No."].Width = 40;
                             //grdGRNList.Columns["Concern"].Visible = false;
                             grdGRNList.Columns["GRN No."].Width = 60;
@@ -1059,7 +1060,7 @@ namespace ROMS
                     int rowIndex = 0;
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
-                    DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                    //DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
                     for (int i = 1; i < visibleColumns.Count; i++)
@@ -1068,7 +1069,6 @@ namespace ROMS
                     }
                     if (DGV_SearchGrid.ColumnCount > 1)
                     {
-                        int rowIndex1 = 0;
                         DGV_SearchGrid.Rows.Clear();
                         DGV_SearchGrid.Rows.Add();
                         for (int i = 0; i < visibleColumns.Count; i++)
@@ -1080,15 +1080,15 @@ namespace ROMS
                         }
                         DGV_SearchGrid.Columns[0].ReadOnly = true;
                     }
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                    DGV_SearchGrid.Columns[0].ReadOnly = true;
-                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
-                    DGV_SearchGrid.Columns[1].ReadOnly = true;
-                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
-                    DGV_SearchGrid.Columns[2].ReadOnly = false;
-                    DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
-                    //DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewCheckBoxCell();
-                    //DGV_SearchGrid.Rows[0].Cells[2].Value = "";
+                    //DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    //DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    ////DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    //DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Columns[2].ReadOnly = false;
+                    //DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    ////DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewCheckBoxCell();
+                    ////DGV_SearchGrid.Rows[0].Cells[0].Value = "";
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1130,7 +1130,7 @@ namespace ROMS
                         }
                         else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
                         {
-                            BlnSearchImageYN = true;
+                            BlnSearchImageYN = false;
                             dgv2.Rows[rowIndex].Cells[i].Value = false;
                         }
                         else
@@ -1139,11 +1139,19 @@ namespace ROMS
                         }
                     }
 
-                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
-                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    //DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    //DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Columns[2].ReadOnly = true;
+                    //DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+
+                    //DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[2].ReadOnly = true;
+                    DGV_SearchGrid.Columns[3].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+
                     //DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewTextBoxCell();
                     //DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                     //DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
