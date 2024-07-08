@@ -868,7 +868,7 @@ namespace ROMS
                                     rbDiscountAfter.Checked = true;
                                 }
                                 udfnDiscountColumnHide();
-                                txtLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_LoadingCharges"]);
+                                txtLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_FrieghtCharges"]);
                                 txtUnLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_UnloadingCharges"]);
                                 txtCouriercharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_CourierCharges"]);
                                 txtotherexpense.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_OtherExpenses"]);
@@ -882,7 +882,7 @@ namespace ROMS
                                 lblRoundoff.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_RoundOff"]);
                                 lblTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GrandTotal"]);
                                 lblGrandTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GrandTotal"]);
-                                txtLoadingchargeGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_LoadingChargesGRN"]);
+                                txtLoadingchargeGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_FrieghtChargesGRN"]);
                                 txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_UnloadingChargesGRN"]);
                                 txtRemarks.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Remarks"]);
                                 udfnSupplierDetails();

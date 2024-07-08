@@ -2943,7 +2943,6 @@
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle18.BackColor = System.Drawing.Color.Snow;
             this.clminvMRP.DefaultCellStyle = dataGridViewCellStyle18;
-            this.clminvMRP.Frozen = true;
             this.clminvMRP.HeaderText = "Invoice MRP";
             this.clminvMRP.Name = "clminvMRP";
             this.clminvMRP.ReadOnly = true;
@@ -2954,7 +2953,6 @@
             // 
             dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.clmExpdate.DefaultCellStyle = dataGridViewCellStyle19;
-            this.clmExpdate.Frozen = true;
             this.clmExpdate.HeaderText = "Expiry Date";
             this.clmExpdate.Name = "clmExpdate";
             this.clmExpdate.ReadOnly = true;
@@ -2963,7 +2961,6 @@
             // 
             // clminvoiceBatch
             // 
-            this.clminvoiceBatch.Frozen = true;
             this.clminvoiceBatch.HeaderText = "BatchNo.";
             this.clminvoiceBatch.Name = "clminvoiceBatch";
             this.clminvoiceBatch.ReadOnly = true;
@@ -2972,7 +2969,6 @@
             // 
             // clminvLocation
             // 
-            this.clminvLocation.Frozen = true;
             this.clminvLocation.HeaderText = "Stock Location";
             this.clminvLocation.Name = "clminvLocation";
             this.clminvLocation.ReadOnly = true;
@@ -2980,7 +2976,6 @@
             // 
             // clminvRack
             // 
-            this.clminvRack.Frozen = true;
             this.clminvRack.HeaderText = "Rack";
             this.clminvRack.Name = "clminvRack";
             this.clminvRack.ReadOnly = true;
@@ -2989,7 +2984,6 @@
             // 
             // clmHSN
             // 
-            this.clmHSN.Frozen = true;
             this.clmHSN.HeaderText = "HSN Name";
             this.clmHSN.Name = "clmHSN";
             this.clmHSN.ReadOnly = true;
@@ -3000,7 +2994,6 @@
             // 
             dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmPOqty.DefaultCellStyle = dataGridViewCellStyle20;
-            this.clmPOqty.Frozen = true;
             this.clmPOqty.HeaderText = "PO. Qty";
             this.clmPOqty.MaxInputLength = 8;
             this.clmPOqty.Name = "clmPOqty";
@@ -3014,7 +3007,6 @@
             dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle21.BackColor = System.Drawing.Color.LightGray;
             this.clmInvQty.DefaultCellStyle = dataGridViewCellStyle21;
-            this.clmInvQty.Frozen = true;
             this.clmInvQty.HeaderText = "Billed Qty";
             this.clmInvQty.MaxInputLength = 8;
             this.clmInvQty.Name = "clmInvQty";
@@ -3027,7 +3019,6 @@
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle22.BackColor = System.Drawing.Color.LightGray;
             this.clmRecqty.DefaultCellStyle = dataGridViewCellStyle22;
-            this.clmRecqty.Frozen = true;
             this.clmRecqty.HeaderText = "Received Qty";
             this.clmRecqty.MaxInputLength = 8;
             this.clmRecqty.Name = "clmRecqty";
@@ -3040,7 +3031,6 @@
             dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
             this.clmDiffqty.DefaultCellStyle = dataGridViewCellStyle23;
-            this.clmDiffqty.Frozen = true;
             this.clmDiffqty.HeaderText = "Diff Qty";
             this.clmDiffqty.Name = "clmDiffqty";
             this.clmDiffqty.ReadOnly = true;
@@ -3052,7 +3042,6 @@
             dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle24.BackColor = System.Drawing.Color.LightGray;
             this.clmFreeqty.DefaultCellStyle = dataGridViewCellStyle24;
-            this.clmFreeqty.Frozen = true;
             this.clmFreeqty.HeaderText = "Free Qty";
             this.clmFreeqty.Name = "clmFreeqty";
             this.clmFreeqty.ReadOnly = true;
@@ -3061,7 +3050,6 @@
             // 
             // dataGridViewTextBoxColumn20
             // 
-            this.dataGridViewTextBoxColumn20.Frozen = true;
             this.dataGridViewTextBoxColumn20.HeaderText = "Unit";
             this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
             this.dataGridViewTextBoxColumn20.ReadOnly = true;
@@ -3073,7 +3061,6 @@
             dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle25.BackColor = System.Drawing.Color.LightGray;
             this.clmPurchaseRate.DefaultCellStyle = dataGridViewCellStyle25;
-            this.clmPurchaseRate.Frozen = true;
             this.clmPurchaseRate.HeaderText = "Bill Rate";
             this.clmPurchaseRate.Name = "clmPurchaseRate";
             this.clmPurchaseRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3084,7 +3071,6 @@
             dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle26.BackColor = System.Drawing.Color.LightGray;
             this.clmDiscAmt.DefaultCellStyle = dataGridViewCellStyle26;
-            this.clmDiscAmt.Frozen = true;
             this.clmDiscAmt.HeaderText = "Discount Amnt";
             this.clmDiscAmt.MaxInputLength = 8;
             this.clmDiscAmt.Name = "clmDiscAmt";
@@ -3097,7 +3083,6 @@
             dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle27.BackColor = System.Drawing.Color.LightGray;
             this.clmDiscPer.DefaultCellStyle = dataGridViewCellStyle27;
-            this.clmDiscPer.Frozen = true;
             this.clmDiscPer.HeaderText = "Discount %";
             this.clmDiscPer.MaxInputLength = 8;
             this.clmDiscPer.Name = "clmDiscPer";
@@ -3109,7 +3094,6 @@
             // 
             dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmTax.DefaultCellStyle = dataGridViewCellStyle28;
-            this.clmTax.Frozen = true;
             this.clmTax.HeaderText = "Taxable Value";
             this.clmTax.Name = "clmTax";
             this.clmTax.ReadOnly = true;
@@ -3120,7 +3104,6 @@
             // 
             dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmGstper.DefaultCellStyle = dataGridViewCellStyle29;
-            this.clmGstper.Frozen = true;
             this.clmGstper.HeaderText = "GST %";
             this.clmGstper.Name = "clmGstper";
             this.clmGstper.ReadOnly = true;
@@ -3131,7 +3114,6 @@
             // 
             dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmGstamt.DefaultCellStyle = dataGridViewCellStyle30;
-            this.clmGstamt.Frozen = true;
             this.clmGstamt.HeaderText = "GST Amnt";
             this.clmGstamt.Name = "clmGstamt";
             this.clmGstamt.ReadOnly = true;
@@ -3142,7 +3124,6 @@
             // 
             dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmCGST.DefaultCellStyle = dataGridViewCellStyle31;
-            this.clmCGST.Frozen = true;
             this.clmCGST.HeaderText = "CGST%";
             this.clmCGST.Name = "clmCGST";
             this.clmCGST.ReadOnly = true;
@@ -3153,7 +3134,6 @@
             // 
             dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmCGSTamt.DefaultCellStyle = dataGridViewCellStyle32;
-            this.clmCGSTamt.Frozen = true;
             this.clmCGSTamt.HeaderText = "CGST Amnt";
             this.clmCGSTamt.Name = "clmCGSTamt";
             this.clmCGSTamt.ReadOnly = true;
@@ -3164,7 +3144,6 @@
             // 
             dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmSGST.DefaultCellStyle = dataGridViewCellStyle33;
-            this.clmSGST.Frozen = true;
             this.clmSGST.HeaderText = "SGST%";
             this.clmSGST.Name = "clmSGST";
             this.clmSGST.ReadOnly = true;
@@ -3175,7 +3154,6 @@
             // 
             dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmSGSTamt.DefaultCellStyle = dataGridViewCellStyle34;
-            this.clmSGSTamt.Frozen = true;
             this.clmSGSTamt.HeaderText = "SGST Amnt";
             this.clmSGSTamt.Name = "clmSGSTamt";
             this.clmSGSTamt.ReadOnly = true;
@@ -3186,7 +3164,6 @@
             // 
             dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmIGST.DefaultCellStyle = dataGridViewCellStyle35;
-            this.clmIGST.Frozen = true;
             this.clmIGST.HeaderText = "IGST%";
             this.clmIGST.Name = "clmIGST";
             this.clmIGST.ReadOnly = true;
@@ -3197,7 +3174,6 @@
             // 
             dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmIGSTamt.DefaultCellStyle = dataGridViewCellStyle36;
-            this.clmIGSTamt.Frozen = true;
             this.clmIGSTamt.HeaderText = "IGST Amnt";
             this.clmIGSTamt.Name = "clmIGSTamt";
             this.clmIGSTamt.ReadOnly = true;
@@ -3208,7 +3184,6 @@
             // 
             dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmDiscountValue.DefaultCellStyle = dataGridViewCellStyle37;
-            this.clmDiscountValue.Frozen = true;
             this.clmDiscountValue.HeaderText = "Discount Value";
             this.clmDiscountValue.Name = "clmDiscountValue";
             this.clmDiscountValue.ReadOnly = true;
@@ -3219,7 +3194,6 @@
             // 
             dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmnetamt.DefaultCellStyle = dataGridViewCellStyle38;
-            this.clmnetamt.Frozen = true;
             this.clmnetamt.HeaderText = "Nett Amount";
             this.clmnetamt.Name = "clmnetamt";
             this.clmnetamt.ReadOnly = true;
@@ -3228,7 +3202,6 @@
             // 
             // poid
             // 
-            this.poid.Frozen = true;
             this.poid.HeaderText = "poid";
             this.poid.Name = "poid";
             this.poid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3236,7 +3209,6 @@
             // 
             // proid
             // 
-            this.proid.Frozen = true;
             this.proid.HeaderText = "proid";
             this.proid.Name = "proid";
             this.proid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3244,7 +3216,6 @@
             // 
             // hsnid
             // 
-            this.hsnid.Frozen = true;
             this.hsnid.HeaderText = "hsnid";
             this.hsnid.Name = "hsnid";
             this.hsnid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3252,7 +3223,6 @@
             // 
             // GstValue
             // 
-            this.GstValue.Frozen = true;
             this.GstValue.HeaderText = "GstValue";
             this.GstValue.Name = "GstValue";
             this.GstValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3260,7 +3230,6 @@
             // 
             // clmInvslid
             // 
-            this.clmInvslid.Frozen = true;
             this.clmInvslid.HeaderText = "Invslid";
             this.clmInvslid.Name = "clmInvslid";
             this.clmInvslid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3268,7 +3237,6 @@
             // 
             // clmRkid
             // 
-            this.clmRkid.Frozen = true;
             this.clmRkid.HeaderText = "Rkid";
             this.clmRkid.Name = "clmRkid";
             this.clmRkid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3276,7 +3244,6 @@
             // 
             // clmPURPRID
             // 
-            this.clmPURPRID.Frozen = true;
             this.clmPURPRID.HeaderText = "PURPRID";
             this.clmPURPRID.Name = "clmPURPRID";
             this.clmPURPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3284,7 +3251,6 @@
             // 
             // UT_DECIMAL
             // 
-            this.UT_DECIMAL.Frozen = true;
             this.UT_DECIMAL.HeaderText = "UT_DECIMAL";
             this.UT_DECIMAL.Name = "UT_DECIMAL";
             this.UT_DECIMAL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -3292,7 +3258,6 @@
             // 
             // clmDCQuantity
             // 
-            this.clmDCQuantity.Frozen = true;
             this.clmDCQuantity.HeaderText = "DC Qty";
             this.clmDCQuantity.Name = "clmDCQuantity";
             this.clmDCQuantity.ReadOnly = true;
@@ -3301,7 +3266,6 @@
             // 
             // clmInwardFlag
             // 
-            this.clmInwardFlag.Frozen = true;
             this.clmInwardFlag.HeaderText = "Inv Flag";
             this.clmInwardFlag.Name = "clmInwardFlag";
             this.clmInwardFlag.ReadOnly = true;
@@ -3312,7 +3276,6 @@
             // 
             dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmCosting.DefaultCellStyle = dataGridViewCellStyle39;
-            this.clmCosting.Frozen = true;
             this.clmCosting.HeaderText = "Costing";
             this.clmCosting.Name = "clmCosting";
             this.clmCosting.ReadOnly = true;
@@ -3321,7 +3284,6 @@
             // 
             // clmInvoiceError
             // 
-            this.clmInvoiceError.Frozen = true;
             this.clmInvoiceError.HeaderText = "Invoice qty Err";
             this.clmInvoiceError.Name = "clmInvoiceError";
             this.clmInvoiceError.ReadOnly = true;
@@ -3330,7 +3292,6 @@
             // 
             // clmReceivedErr
             // 
-            this.clmReceivedErr.Frozen = true;
             this.clmReceivedErr.HeaderText = "Received qty Err";
             this.clmReceivedErr.Name = "clmReceivedErr";
             this.clmReceivedErr.ReadOnly = true;
@@ -3339,7 +3300,6 @@
             // 
             // clmPurchaseRateErr
             // 
-            this.clmPurchaseRateErr.Frozen = true;
             this.clmPurchaseRateErr.HeaderText = "Bill Rate Err";
             this.clmPurchaseRateErr.Name = "clmPurchaseRateErr";
             this.clmPurchaseRateErr.ReadOnly = true;
@@ -3348,7 +3308,6 @@
             // 
             // clmDiscountErr
             // 
-            this.clmDiscountErr.Frozen = true;
             this.clmDiscountErr.HeaderText = "Discount Err";
             this.clmDiscountErr.Name = "clmDiscountErr";
             this.clmDiscountErr.ReadOnly = true;
@@ -3357,7 +3316,6 @@
             // 
             // clmDisPerErr
             // 
-            this.clmDisPerErr.Frozen = true;
             this.clmDisPerErr.HeaderText = "Discount Per Err";
             this.clmDisPerErr.Name = "clmDisPerErr";
             this.clmDisPerErr.ReadOnly = true;
@@ -3366,7 +3324,6 @@
             // 
             // clmFreeQtyErr
             // 
-            this.clmFreeQtyErr.Frozen = true;
             this.clmFreeQtyErr.HeaderText = "Free Err";
             this.clmFreeQtyErr.Name = "clmFreeQtyErr";
             this.clmFreeQtyErr.ReadOnly = true;
@@ -3375,7 +3332,6 @@
             // 
             // clmGRNProType
             // 
-            this.clmGRNProType.Frozen = true;
             this.clmGRNProType.HeaderText = "GRN ProType";
             this.clmGRNProType.Name = "clmGRNProType";
             this.clmGRNProType.ReadOnly = true;
@@ -3383,28 +3339,24 @@
             // 
             // clmErrorPro
             // 
-            this.clmErrorPro.Frozen = true;
             this.clmErrorPro.HeaderText = "ErrorPro";
             this.clmErrorPro.Name = "clmErrorPro";
             this.clmErrorPro.Visible = false;
             // 
             // clmApprovalStatus
             // 
-            this.clmApprovalStatus.Frozen = true;
             this.clmApprovalStatus.HeaderText = "Approval Status";
             this.clmApprovalStatus.Name = "clmApprovalStatus";
             this.clmApprovalStatus.Visible = false;
             // 
             // clmReason
             // 
-            this.clmReason.Frozen = true;
             this.clmReason.HeaderText = "Reason";
             this.clmReason.Name = "clmReason";
             this.clmReason.Visible = false;
             // 
             // clmParentFlag
             // 
-            this.clmParentFlag.Frozen = true;
             this.clmParentFlag.HeaderText = "Parent Flag";
             this.clmParentFlag.Name = "clmParentFlag";
             this.clmParentFlag.Visible = false;

@@ -728,7 +728,6 @@ namespace ROMS
                     grdPurchaseEntryList.Columns["clmEdit"].Visible = false;
                     Deftable = objDs.Tables[0];
                 }
-
                 udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {
