@@ -777,6 +777,17 @@ namespace ROMS
         {
             try
             {
+                grdSupplierList.Columns["S.No."].Frozen = true;
+                grdSupplierList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["Supplier"].Frozen = true;
+                grdSupplierList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["City"].Frozen = true;
+                grdSupplierList.Columns["City"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["Supplier Type"].Frozen = true;
+                grdSupplierList.Columns["Supplier Type"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["GSTIN"].Frozen = true;
+                grdSupplierList.Columns["GSTIN"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 varActiveCount = 0; varInactiveCount = 0; varTotalCount = 0; varNotDefinedCount = 0;
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {

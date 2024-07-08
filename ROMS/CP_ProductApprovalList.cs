@@ -1509,6 +1509,14 @@ namespace ROMS
         {
             try
             {
+                grdItemList.Columns["S.No."].Frozen = true;
+                grdItemList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdItemList.Columns["Concern"].Frozen = true;
+                grdItemList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdItemList.Columns["P.I Code"].Frozen = true;
+                grdItemList.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdItemList.Columns["Product Name in Tamil"].Frozen = true;
+                grdItemList.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
                 for (int i = 0; i < grdItemList.Rows.Count; i++)
                 {

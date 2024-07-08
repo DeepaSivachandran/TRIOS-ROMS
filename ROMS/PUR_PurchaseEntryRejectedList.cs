@@ -1052,6 +1052,19 @@ namespace ROMS
         {
             try
             {
+                grdPurchaseEntryRejected.Columns["S.No."].Frozen = true;
+                grdPurchaseEntryRejected.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Concern"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Pur Entry Status"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Pur Entry Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Vouc No."].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Vouc Date"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Supplier"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 //for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
                 //{
                 //    DataGridView dataGridView = (DataGridView)sender;

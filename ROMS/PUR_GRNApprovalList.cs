@@ -1447,6 +1447,24 @@ namespace ROMS
         {
             try
             {
+                grdGrnApprovalList.Columns["S.No."].Frozen = true;
+                grdGrnApprovalList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Concern"].Frozen = true;
+                grdGrnApprovalList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Overall Status"].Frozen = true;
+                grdGrnApprovalList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Status"].Frozen = true;
+                grdGrnApprovalList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["GRN No."].Frozen = true;
+                grdGrnApprovalList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Vouc No."].Frozen = true;
+                grdGrnApprovalList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["GRN Date"].Frozen = true;
+                grdGrnApprovalList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Vouc Date"].Frozen = true;
+                grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Supplier"].Frozen = true;
+                grdGrnApprovalList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdGrnApprovalList.ClearSelection();
             }
             catch (Exception ex)
@@ -1558,10 +1576,13 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["Tot Pro in Inv"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdGrnApprovalList.Columns["Concern"].Width = 80;
-                                grdGrnApprovalList.Columns["GRN Date"].Width = 100;
+                                grdGrnApprovalList.Columns["Concern"].Width = 70;
+                                grdGrnApprovalList.Columns["Vouc No."].Width = 70;
+                                grdGrnApprovalList.Columns["GRN Date"].Width = 80;
+                                grdGrnApprovalList.Columns["Vouc Date"].Width = 80;
+                                grdGrnApprovalList.Columns["Status"].Width = 70;
                                 grdGrnApprovalList.Columns["Overall Status"].Width = 150;
-                                grdGrnApprovalList.Columns["GRN No."].Width = 80;
+                                grdGrnApprovalList.Columns["GRN No."].Width = 70;
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
                                 grdGrnApprovalList.Columns["Tot Pro in Inv"].Width = 150;
                                 grdGrnApprovalList.Columns["Created By"].Width = 200;
