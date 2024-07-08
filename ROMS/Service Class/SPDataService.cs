@@ -2510,7 +2510,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraINVDate", objTRNS_GRN.paraINVDate);
                 varSqlCommand.Parameters.AddWithValue("@paraINVNo", objTRNS_GRN.paraINVNo);
                 varSqlCommand.Parameters.AddWithValue("@ParaInvAmt", objTRNS_GRN.ParaInvAmt);
-                varSqlCommand.Parameters.AddWithValue("@ParaLoadingCharge", objTRNS_GRN.ParaLoadingCharge);
+                varSqlCommand.Parameters.AddWithValue("@ParaUnLoadingCharge", objTRNS_GRN.ParaUnLoadingCharge);
                 varSqlCommand.Parameters.AddWithValue("@ParaFrightCharge", objTRNS_GRN.ParaFrightCharge);
                 varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRNS_GRN.paraOrderType);
                 varSqlCommand.Parameters.AddWithValue("@paraPAckage", objTRNS_GRN.paraPAckage);
@@ -3142,8 +3142,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRateCalculation", objTRN_PurchaseEntryApproval.paraRateCalculation);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscCalculation", objTRN_PurchaseEntryApproval.paraDiscCalculation);
                 varSqlCommand.Parameters.AddWithValue("@paraEinvoice", objTRN_PurchaseEntryApproval.paraEinvoice);
-                varSqlCommand.Parameters.AddWithValue("@paraLoadingCharges", objTRN_PurchaseEntryApproval.paraLoadingCharges);
-                varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                varSqlCommand.Parameters.AddWithValue("@ParaUnLoadingCharge", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                //varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraCourierCharges", objTRN_PurchaseEntryApproval.paraCourierCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraOtherExpenses", objTRN_PurchaseEntryApproval.paraOtherExpenses);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscPer", objTRN_PurchaseEntryApproval.paraDiscPer);

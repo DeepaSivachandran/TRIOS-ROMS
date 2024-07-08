@@ -68,7 +68,7 @@
             this.txtFrieghtamount = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtLoadingCharge = new System.Windows.Forms.TextBox();
+            this.txtUnLoadingCharge = new System.Windows.Forms.TextBox();
             this.grpSalesmanDetails = new System.Windows.Forms.GroupBox();
             this.txtSalesManMobile = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
@@ -147,7 +147,7 @@
             this.gpGRNEntry.Controls.Add(this.txtFrieghtamount);
             this.gpGRNEntry.Controls.Add(this.label9);
             this.gpGRNEntry.Controls.Add(this.label8);
-            this.gpGRNEntry.Controls.Add(this.txtLoadingCharge);
+            this.gpGRNEntry.Controls.Add(this.txtUnLoadingCharge);
             this.gpGRNEntry.Controls.Add(this.grpSalesmanDetails);
             this.gpGRNEntry.Controls.Add(this.grpRepresentativeDetails);
             this.gpGRNEntry.Controls.Add(this.grdPODetails);
@@ -199,7 +199,7 @@
             // 
             this.cmbPayment.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPayment.FormattingEnabled = true;
-            this.cmbPayment.Location = new System.Drawing.Point(1052, 88);
+            this.cmbPayment.Location = new System.Drawing.Point(1062, 88);
             this.cmbPayment.Name = "cmbPayment";
             this.cmbPayment.Size = new System.Drawing.Size(94, 27);
             this.cmbPayment.TabIndex = 11;
@@ -409,7 +409,7 @@
             // txtFrieghtamount
             // 
             this.txtFrieghtamount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFrieghtamount.Location = new System.Drawing.Point(1052, 57);
+            this.txtFrieghtamount.Location = new System.Drawing.Point(1061, 57);
             this.txtFrieghtamount.MaxLength = 7;
             this.txtFrieghtamount.Name = "txtFrieghtamount";
             this.txtFrieghtamount.Size = new System.Drawing.Size(94, 27);
@@ -436,23 +436,23 @@
             this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(950, 30);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 20);
+            this.label8.Size = new System.Drawing.Size(111, 20);
             this.label8.TabIndex = 1111203;
-            this.label8.Text = "Loading Charges";
+            this.label8.Text = "Unloading Charges";
             // 
-            // txtLoadingCharge
+            // txtUnLoadingCharge
             // 
-            this.txtLoadingCharge.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoadingCharge.Location = new System.Drawing.Point(1052, 27);
-            this.txtLoadingCharge.MaxLength = 7;
-            this.txtLoadingCharge.Name = "txtLoadingCharge";
-            this.txtLoadingCharge.Size = new System.Drawing.Size(94, 27);
-            this.txtLoadingCharge.TabIndex = 9;
-            this.txtLoadingCharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtLoadingCharge.Enter += new System.EventHandler(this.TxtLoadingCharge_Enter);
-            this.txtLoadingCharge.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLoadingCharge_KeyDown);
-            this.txtLoadingCharge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtLoadingCharge_KeyPress);
-            this.txtLoadingCharge.Leave += new System.EventHandler(this.TxtLoadingCharge_Leave);
+            this.txtUnLoadingCharge.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUnLoadingCharge.Location = new System.Drawing.Point(1061, 27);
+            this.txtUnLoadingCharge.MaxLength = 7;
+            this.txtUnLoadingCharge.Name = "txtUnLoadingCharge";
+            this.txtUnLoadingCharge.Size = new System.Drawing.Size(94, 27);
+            this.txtUnLoadingCharge.TabIndex = 9;
+            this.txtUnLoadingCharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtUnLoadingCharge.Enter += new System.EventHandler(this.TxtLoadingCharge_Enter);
+            this.txtUnLoadingCharge.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLoadingCharge_KeyDown);
+            this.txtUnLoadingCharge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtLoadingCharge_KeyPress);
+            this.txtUnLoadingCharge.Leave += new System.EventHandler(this.TxtLoadingCharge_Leave);
             // 
             // grpSalesmanDetails
             // 
@@ -1127,7 +1127,7 @@
         private System.Windows.Forms.TextBox txtFrieghtamount;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtLoadingCharge;
+        private System.Windows.Forms.TextBox txtUnLoadingCharge;
         public System.Windows.Forms.ListView LV_Supplier;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader8;

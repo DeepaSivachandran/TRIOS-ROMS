@@ -693,7 +693,7 @@ namespace ROMS
                 txtSalesManMobile.Text = "";
                 txtSalesManName.Text = "";
                 txtSalesManwhatsapp.Text = "";
-                txtLoadingCharge.Text = "";
+                txtUnLoadingCharge.Text = "";
                 txtFrieghtamount.Text = "";
                 varDamage = "0";
                 varReturnDC = "0";
@@ -1326,7 +1326,7 @@ namespace ROMS
                                     objTRNS_GRN.paraINVDate = dpinvoicedate.Text;
                                     objTRNS_GRN.paraINVNo = txtInvoiceno.Text;
                                     objTRNS_GRN.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
-                                    objTRNS_GRN.ParaLoadingCharge = txtLoadingCharge.Text;
+                                    objTRNS_GRN.ParaUnLoadingCharge = txtUnLoadingCharge.Text;
                                     objTRNS_GRN.ParaFrightCharge = txtFrieghtamount.Text;
                                     objTRNS_GRN.paraOrderType = Convert.ToInt32(cmbOrderType.SelectedValue);
                                     objTRNS_GRN.ParaTRN_GRN_PO = objGrnPO;
@@ -1728,7 +1728,7 @@ namespace ROMS
 
         private void TxtLoadingCharge_Enter(object sender, EventArgs e)
         {
-            try { txtLoadingCharge.BackColor = Color.LemonChiffon; }
+            try { txtUnLoadingCharge.BackColor = Color.LemonChiffon; }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1738,7 +1738,7 @@ namespace ROMS
 
         private void TxtLoadingCharge_Leave(object sender, EventArgs e)
         {
-            try { txtLoadingCharge.BackColor = Color.White; }
+            try { txtUnLoadingCharge.BackColor = Color.White; }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1861,7 +1861,7 @@ namespace ROMS
                 {
                     if (grdUnitList.CurrentRow.Index==3)
                     {
-                        txtLoadingCharge.Focus();
+                        txtUnLoadingCharge.Focus();
                     }
                 }
             }
@@ -2232,8 +2232,8 @@ namespace ROMS
                                 dpinvoicedate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceDate"]);
                                 txtInvoiceno.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceNo"]);
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceAmnt"]);
-                                txtLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_LoadingCharges"]);
-                                txtFrieghtamount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
+                                txtUnLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
+                                txtFrieghtamount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_FrieghtCharges"]);
                                 cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;

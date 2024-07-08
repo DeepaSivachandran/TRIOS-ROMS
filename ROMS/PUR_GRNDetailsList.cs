@@ -24,6 +24,7 @@ namespace ROMS
         public string varUserID = "0", varsuppliername = "";
         public int varGRNPrintFlag = 0;
         public ToolTip tpSupplier = new ToolTip();
+        public int varCheckChange = 0;
         public PUR_GRNDetailsList()
         {
             InitializeComponent();
@@ -142,7 +143,8 @@ namespace ROMS
                 if (grdGRNList.Rows.Count>0)
                 {
                     lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
-                }               
+                }
+                btnComplete.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -300,6 +302,7 @@ namespace ROMS
                             grdGRNList.Columns["Totallbl"].Visible = false;
                             grdGRNList.Columns["GRN Full Status"].Visible = false;
                             grdGRNList.Columns["Overall Full Status"].Visible = false;
+                            grdGRNList.Columns["Completed"].Visible = false;
                             grdGRNList.Columns["Any Pur Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -376,6 +379,10 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
+                if(varCheckChange==0)
+                {
+                    btnComplete.Enabled = false;
+                }
             }
         }
         public void udfnDefcolumns()
@@ -550,8 +557,40 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
+            finally
+            {
+                udfnCheckChange(sender,e);
+            }
+
+        }
+        public void udfnCheckChange(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex].OwningColumn.Name == "clmCheck")
+                {
+                    if (Convert.ToBoolean(grdGRNList.Rows[e.RowIndex].Cells["clmCheck"].Value) == true)
+                    {
+                        btnComplete.Enabled = true;
+                        varCheckChange++;
+                    }
+                    else if (varCheckChange != 0 && Convert.ToBoolean(grdGRNList.Rows[e.RowIndex].Cells["clmCheck"].Value) == false)
+                    {
+                        varCheckChange--;
+                    }
+                    if (varCheckChange == 0)
+                    {
+                        btnComplete.Enabled = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        
         }
 
         private void GrdPurchaseApproval_DoubleClick(object sender, EventArgs e)
@@ -1575,7 +1614,7 @@ namespace ROMS
                         cell2.Value = new Bitmap(1, 1);
                         cell2.ReadOnly = true;
                     }
-                    if(Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "17" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "44")
+                    if(Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "17" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "44" || Convert.ToString(grdGRNList.Rows[i].Cells["Completed"].Value)=="1")
                     {
                         DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
                         Check.Value = "";
@@ -1624,6 +1663,18 @@ namespace ROMS
             try
             {
                 udfnDeleteHide();
+                //if(grdGRNList.CurrentCell.OwningColumn.Name == "clmCheck")
+                //{
+                //    if(Convert.ToBoolean(grdGRNList.CurrentRow.Cells["clmCheck"].Value)==true)
+                //    {
+                //        btnComplete.Enabled = true;
+                //        varCheckChange++;
+                //    }
+                //    else if (varCheckChange!=0 && Convert.ToBoolean(grdGRNList.CurrentRow.Cells["clmCheck"].Value) == false)
+                //    {
+                //        varCheckChange--;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -2038,12 +2089,12 @@ namespace ROMS
             try
             {
                 string varGrnId = "0";
-                //int varflag = 0;
+                //string IDs = "0";
                 for (int i = 0; i < grdGRNList.Rows.Count; i++)
                 {
-                    if(Convert.ToString(grdGRNList.Rows[i].Cells["clmCheck"].Value) == "")
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["clmCheck"].Value) == "")
                     {
-                        varGrnId = "0";
+                        grdGRNList.Rows[i].Cells["clmCheck"].Value = false;
                     }
                     else if (varGrnId == "0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == true)
                     {
@@ -2053,11 +2104,12 @@ namespace ROMS
                     {
                         varGrnId = varGrnId + ',' + Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
                     }
+                }
                     //if(Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == false)
                     //{
                     //    varflag = 0;
                     //}
-                }
+                
                 SPDataService objDServ = new SPDataService();
                 string result = "";
                 TRN_GRN objTRNS_GRN = new TRN_GRN();
@@ -2092,6 +2144,7 @@ namespace ROMS
                         objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_GRNDetailsBillPrint.rpt");
                         objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);                      
+                        objBillreport.SetParameterValue("paraCompletedIDs", varGrnId);                      
                         objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                         objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                         objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -2099,6 +2152,11 @@ namespace ROMS
                         objValidation.CrySqlConnection(objBillreport);
                         RPTViewer.ReportSource = objBillreport;
                         RPTViewer.Refresh();
+                        varCheckChange = 0;
+                        if (varCheckChange == 0)
+                        {
+                            btnComplete.Enabled = false;
+                        }
                     }
                     else
                     {
@@ -2122,6 +2180,71 @@ namespace ROMS
             }
         }
 
+        private void GrdGRNList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //if(grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex].OwningColumn.Name == "clmCheck")
+                //{
+                //    if(Convert.ToBoolean(grdGRNList.Rows[e.RowIndex].Cells["clmCheck"].Value)==true)
+                //    {
+                //        btnComplete.Enabled = true;
+                //        varCheckChange++;
+                //    }
+                //    else if (varCheckChange!=0 && Convert.ToBoolean(grdGRNList.Rows[e.RowIndex].Cells["clmCheck"].Value) == false)
+                //    {
+                //        varCheckChange--;
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGRNList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //if (grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex].OwningColumn.Name == "clmCheck")
+                //{
+                //    if (Convert.ToBoolean(grdGRNList.Rows[e.RowIndex].Cells["clmCheck"].Value) == true)
+                //    {
+                //        btnComplete.Enabled = true;
+                //        varCheckChange++;
+                //    }
+                //    else if (varCheckChange != 0 && Convert.ToBoolean(grdGRNList.Rows[e.RowIndex].Cells["clmCheck"].Value) == false)
+                //    {
+                //        varCheckChange--;
+                //    }
+                //    if(varCheckChange==0)
+                //    {
+                //        btnComplete.Enabled = false;
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGRNList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                grdGRNList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnDeleteHide()
         {
             try
@@ -2137,6 +2260,7 @@ namespace ROMS
                     tssEdit.Visible = false;
 
                 }
+
             }
             catch (Exception ex)
             {
