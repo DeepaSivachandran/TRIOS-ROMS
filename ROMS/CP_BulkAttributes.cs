@@ -41,6 +41,7 @@ namespace ROMS
         DataSet objDSBatchNo = new DataSet();
         DataSet objDSBatchNoGeneration = new DataSet();
         DataSet objDSProduct = new DataSet();
+        public int pbMenuFlag = 0;
 
         public CP_BulkAttributes()
         {
@@ -69,6 +70,53 @@ namespace ROMS
                 tsbName.BackColor = SystemColors.MenuBar;
             }
             catch (Exception ex) {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnMenuClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if(pbMenuFlag==1)
+                {
+                    TsbLocation_Click(sender, e);
+                }
+                if (pbMenuFlag == 2)
+                {
+                    TsbMSQ_Click(sender, e);
+                }
+                if (pbMenuFlag == 3)
+                {
+                    TsbStock_Click(sender, e);
+                }
+                if (pbMenuFlag == 4)
+                {
+                    TsbShelflife_Click(sender, e);
+                }
+                if (pbMenuFlag == 5)
+                {
+                    TsbBatch_Click(sender, e);
+                }
+                if (pbMenuFlag == 6)
+                {
+                    TsbWeight_Click(sender, e);
+                }
+                if (pbMenuFlag == 7)
+                {
+                    TsbBrand_Click(sender, e);
+                }
+                if (pbMenuFlag == 8)
+                {
+                    TsbHsn_Click(sender, e);
+                }
+                if (pbMenuFlag == 9)
+                {
+                    TsbName_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
@@ -1552,21 +1600,28 @@ namespace ROMS
         {
             try
             {
+                udfnFilterLoad();
+                udfnHideGrids();
+                grdLoction.Visible = true;
                 varViewType = 4;
-                if (varFormFlag == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        udfnFilterLoad();
-                        udfnLoadLocation();
-                        udfnList();
-                    }
-                }
-                else
-                {
-                    udfnLoadLocation();
-                }
+                udfnList();
+                tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
+                tsbMSQ.BackColor = Color.SkyBlue;
+                //varViewType = 4;
+                //if (varFormFlag == 0)
+                //{
+                //    //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    //if (dialogResult == DialogResult.Yes)
+                //    //{
+                //    //    udfnFilterLoad();
+                //    //    udfnLoadLocation();
+                //    //    udfnList();
+                //    //}
+                //}
+                //else
+                //{
+                //    udfnLoadLocation();
+               // }
             }
             catch (Exception ex)
             {
@@ -1582,9 +1637,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnFilterLoad();
                     udfnHideGrids();
                     grdMSQ.Visible = true;
@@ -1592,7 +1647,7 @@ namespace ROMS
                     udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
                     tsbMSQ.BackColor = Color.SkyBlue;
-                }
+               // }
             }
             catch (Exception ex)
             {
@@ -1604,9 +1659,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnFilterLoad();
                     udfnHideGrids();
                     grdStock.Visible = true;
@@ -1614,7 +1669,7 @@ namespace ROMS
                     udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
                     tsbStock.BackColor = Color.SkyBlue;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1626,9 +1681,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnFilterLoad();
                     udfnHideGrids();
                     grdShelfLife.Visible = true;
@@ -1636,7 +1691,7 @@ namespace ROMS
                     udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
                     tsbShelflife.BackColor = Color.SkyBlue;
-                }
+               // }
             }
             catch (Exception ex)
             {
@@ -1648,9 +1703,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnFilterLoad();
                     udfnHideGrids();
                     grdBatch.Visible = true;
@@ -1658,7 +1713,7 @@ namespace ROMS
                     udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                     tsbBatch.BackColor = Color.SkyBlue;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1671,9 +1726,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnFilterLoad();
                     udfnHideGrids();
                     grdWeight.Visible = true;
@@ -1681,7 +1736,7 @@ namespace ROMS
                     udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
                     tsbWeight.BackColor = Color.SkyBlue;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1693,9 +1748,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnFilterLoad();
                     udfnHideGrids();
                     grdBrand.Visible = true;
@@ -1703,7 +1758,7 @@ namespace ROMS
                     udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
                     tsbBrand.BackColor = Color.SkyBlue;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1715,9 +1770,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnFilterLoad();
                     udfnHideGrids();
                     grdHSN.Visible = true;
@@ -1725,7 +1780,7 @@ namespace ROMS
                     udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                     tsbHsn.BackColor = Color.SkyBlue;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1737,9 +1792,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnFilterLoad();
                     udfnHideGrids();
                     grdBulkAttributes.Visible = true;
@@ -1747,7 +1802,7 @@ namespace ROMS
                     udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
                     tsbName.BackColor = Color.SkyBlue;
-                }
+              //  }
             }
             catch (Exception ex)
             {
@@ -1760,11 +1815,13 @@ namespace ROMS
             try
             {
                 varFormFlag = 1;
-                TsbLocation_Click(sender,e);
+                //TsbLocation_Click(sender,e);
+                udfnMenuClick(sender,e);
                 udfnFilterLoad();
-                varViewType = 4;
-                udfnList();
+                //varViewType = 4;
+               // udfnList();
                 udfnDefalutDSLoad();
+                
             }
             catch (Exception ex)
             {

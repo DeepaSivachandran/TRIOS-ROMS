@@ -123,6 +123,15 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockLocationRackMSQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minsalesQtyBarcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minMaxStockReorderQtyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bulkUnitUPPShelfLifeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productCategoryRMFlagBatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.netGrossWeightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupSubgroupBrandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSNNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proCodeNameUnitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -283,7 +292,7 @@ namespace ROMS
             // tsmrackSettings
             // 
             this.tsmrackSettings.Name = "tsmrackSettings";
-            this.tsmrackSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmrackSettings.Size = new System.Drawing.Size(171, 22);
             this.tsmrackSettings.Text = "Rack Transfer";
             this.tsmrackSettings.Click += new System.EventHandler(this.TsmrackSettings_Click);
             // 
@@ -294,7 +303,7 @@ namespace ROMS
             this.tsmfromOtherStockLocation});
             this.tsminward.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsminward.Name = "tsminward";
-            this.tsminward.Size = new System.Drawing.Size(180, 22);
+            this.tsminward.Size = new System.Drawing.Size(171, 22);
             this.tsminward.Text = "Goods Inward";
             this.tsminward.Click += new System.EventHandler(this.Tsminward_Click);
             // 
@@ -315,42 +324,42 @@ namespace ROMS
             // tsmStockHold
             // 
             this.tsmStockHold.Name = "tsmStockHold";
-            this.tsmStockHold.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockHold.Size = new System.Drawing.Size(171, 22);
             this.tsmStockHold.Text = "Stock Hold";
             this.tsmStockHold.Click += new System.EventHandler(this.TsmStockHold_Click);
             // 
             // tsmStockReq
             // 
             this.tsmStockReq.Name = "tsmStockReq";
-            this.tsmStockReq.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockReq.Size = new System.Drawing.Size(171, 22);
             this.tsmStockReq.Text = "Shop Stock Request";
             this.tsmStockReq.Click += new System.EventHandler(this.TsmStockRequest_Click);
             // 
             // tsmOutward
             // 
             this.tsmOutward.Name = "tsmOutward";
-            this.tsmOutward.Size = new System.Drawing.Size(180, 22);
+            this.tsmOutward.Size = new System.Drawing.Size(171, 22);
             this.tsmOutward.Text = "Goods Outward";
             this.tsmOutward.Click += new System.EventHandler(this.TsmOutward_Click);
             // 
             // tsmStockTransfer
             // 
             this.tsmStockTransfer.Name = "tsmStockTransfer";
-            this.tsmStockTransfer.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockTransfer.Size = new System.Drawing.Size(171, 22);
             this.tsmStockTransfer.Text = "Stock Transfer";
             this.tsmStockTransfer.Click += new System.EventHandler(this.TsmStockTransfer_Click);
             // 
             // damageEntryToolStripMenuItem
             // 
             this.damageEntryToolStripMenuItem.Name = "damageEntryToolStripMenuItem";
-            this.damageEntryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.damageEntryToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.damageEntryToolStripMenuItem.Text = "Damage Entry";
             this.damageEntryToolStripMenuItem.Click += new System.EventHandler(this.DamageEntryToolStripMenuItem_Click);
             // 
             // tsbStockConversion
             // 
             this.tsbStockConversion.Name = "tsbStockConversion";
-            this.tsbStockConversion.Size = new System.Drawing.Size(180, 22);
+            this.tsbStockConversion.Size = new System.Drawing.Size(171, 22);
             this.tsbStockConversion.Text = "Batch Conversion";
             this.tsbStockConversion.Click += new System.EventHandler(this.TsbStockConversion_Click);
             // 
@@ -602,6 +611,16 @@ namespace ROMS
             // 
             // tsmBulkUpdate
             // 
+            this.tsmBulkUpdate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stockLocationRackMSQToolStripMenuItem,
+            this.minsalesQtyBarcodeToolStripMenuItem,
+            this.minMaxStockReorderQtyToolStripMenuItem,
+            this.bulkUnitUPPShelfLifeToolStripMenuItem,
+            this.productCategoryRMFlagBatchToolStripMenuItem,
+            this.netGrossWeightToolStripMenuItem,
+            this.groupSubgroupBrandToolStripMenuItem,
+            this.hSNNameToolStripMenuItem,
+            this.proCodeNameUnitToolStripMenuItem});
             this.tsmBulkUpdate.Name = "tsmBulkUpdate";
             this.tsmBulkUpdate.Size = new System.Drawing.Size(225, 22);
             this.tsmBulkUpdate.Text = "Product Attributes Bulk Update";
@@ -915,6 +934,69 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // stockLocationRackMSQToolStripMenuItem
+            // 
+            this.stockLocationRackMSQToolStripMenuItem.Name = "stockLocationRackMSQToolStripMenuItem";
+            this.stockLocationRackMSQToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.stockLocationRackMSQToolStripMenuItem.Text = "Stock location, Rack && MSQ";
+            this.stockLocationRackMSQToolStripMenuItem.Click += new System.EventHandler(this.StockLocationRackMSQToolStripMenuItem_Click);
+            // 
+            // minsalesQtyBarcodeToolStripMenuItem
+            // 
+            this.minsalesQtyBarcodeToolStripMenuItem.Name = "minsalesQtyBarcodeToolStripMenuItem";
+            this.minsalesQtyBarcodeToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.minsalesQtyBarcodeToolStripMenuItem.Text = "Minsales Qty && Barcode";
+            this.minsalesQtyBarcodeToolStripMenuItem.Click += new System.EventHandler(this.MinsalesQtyBarcodeToolStripMenuItem_Click);
+            // 
+            // minMaxStockReorderQtyToolStripMenuItem
+            // 
+            this.minMaxStockReorderQtyToolStripMenuItem.Name = "minMaxStockReorderQtyToolStripMenuItem";
+            this.minMaxStockReorderQtyToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.minMaxStockReorderQtyToolStripMenuItem.Text = "Min, Max stock && Reorder Qty";
+            this.minMaxStockReorderQtyToolStripMenuItem.Click += new System.EventHandler(this.MinMaxStockReorderQtyToolStripMenuItem_Click);
+            // 
+            // bulkUnitUPPShelfLifeToolStripMenuItem
+            // 
+            this.bulkUnitUPPShelfLifeToolStripMenuItem.Name = "bulkUnitUPPShelfLifeToolStripMenuItem";
+            this.bulkUnitUPPShelfLifeToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.bulkUnitUPPShelfLifeToolStripMenuItem.Text = "Bulk Unit, UPP && Shelf Life";
+            this.bulkUnitUPPShelfLifeToolStripMenuItem.Click += new System.EventHandler(this.BulkUnitUPPShelfLifeToolStripMenuItem_Click);
+            // 
+            // productCategoryRMFlagBatchToolStripMenuItem
+            // 
+            this.productCategoryRMFlagBatchToolStripMenuItem.Name = "productCategoryRMFlagBatchToolStripMenuItem";
+            this.productCategoryRMFlagBatchToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.productCategoryRMFlagBatchToolStripMenuItem.Text = "Product Category, RM Flag && Batch";
+            this.productCategoryRMFlagBatchToolStripMenuItem.Click += new System.EventHandler(this.ProductCategoryRMFlagBatchToolStripMenuItem_Click);
+            // 
+            // netGrossWeightToolStripMenuItem
+            // 
+            this.netGrossWeightToolStripMenuItem.Name = "netGrossWeightToolStripMenuItem";
+            this.netGrossWeightToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.netGrossWeightToolStripMenuItem.Text = "Net && Gross Weight";
+            this.netGrossWeightToolStripMenuItem.Click += new System.EventHandler(this.NetGrossWeightToolStripMenuItem_Click);
+            // 
+            // groupSubgroupBrandToolStripMenuItem
+            // 
+            this.groupSubgroupBrandToolStripMenuItem.Name = "groupSubgroupBrandToolStripMenuItem";
+            this.groupSubgroupBrandToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.groupSubgroupBrandToolStripMenuItem.Text = "Group, Subgroup && Brand";
+            this.groupSubgroupBrandToolStripMenuItem.Click += new System.EventHandler(this.GroupSubgroupBrandToolStripMenuItem_Click);
+            // 
+            // hSNNameToolStripMenuItem
+            // 
+            this.hSNNameToolStripMenuItem.Name = "hSNNameToolStripMenuItem";
+            this.hSNNameToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.hSNNameToolStripMenuItem.Text = "HSN Name";
+            this.hSNNameToolStripMenuItem.Click += new System.EventHandler(this.HSNNameToolStripMenuItem_Click);
+            // 
+            // proCodeNameUnitToolStripMenuItem
+            // 
+            this.proCodeNameUnitToolStripMenuItem.Name = "proCodeNameUnitToolStripMenuItem";
+            this.proCodeNameUnitToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.proCodeNameUnitToolStripMenuItem.Text = "Pro. Code, Name && Unit";
+            this.proCodeNameUnitToolStripMenuItem.Click += new System.EventHandler(this.ProCodeNameUnitToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1037,5 +1119,14 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem financialYearProcessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gSTRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stockLocationRackMSQToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minsalesQtyBarcodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minMaxStockReorderQtyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bulkUnitUPPShelfLifeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productCategoryRMFlagBatchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem netGrossWeightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem groupSubgroupBrandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hSNNameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem proCodeNameUnitToolStripMenuItem;
     }
 }

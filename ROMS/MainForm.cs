@@ -1220,7 +1220,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TsmBulkAttr_Click(object sender, EventArgs e)
+        public void udfnBulkAttribute()
         {
             try
             {
@@ -1230,6 +1230,23 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.Show();
                 PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmBulkAttr_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.Show();
+                //PbCurrentForm = "5.18";
             }
             catch (Exception ex)
             {
@@ -2046,6 +2063,186 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void StockLocationRackMSQToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    udfnCloseChildForms();
+                    if (isClose == false) { return; }
+                    MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                    MainForm.objCP_BulkAttributes.MdiParent = this;
+                    MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
+                    MainForm.objCP_BulkAttributes.Show();
+                    PbCurrentForm = "5.18";
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void MinsalesQtyBarcodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 2;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void MinMaxStockReorderQtyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 3;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BulkUnitUPPShelfLifeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 4;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductCategoryRMFlagBatchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void NetGrossWeightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 6;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GroupSubgroupBrandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 7;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void HSNNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProCodeNameUnitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
