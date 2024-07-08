@@ -1575,7 +1575,7 @@ namespace ROMS
                         cell2.Value = new Bitmap(1, 1);
                         cell2.ReadOnly = true;
                     }
-                    if(Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) != "23")
+                    if(Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "17" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "44")
                     {
                         DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
                         Check.Value = "";
@@ -1952,6 +1952,22 @@ namespace ROMS
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnComplete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                TRN_GRN objTRNS_GRN = new TRN_GRN();
+                objTRNS_GRN.ViewType = 6;
+                objTRNS_GRN.paraCompletedIDs = Convert.ToInt32();
             }
             catch (Exception ex)
             {
