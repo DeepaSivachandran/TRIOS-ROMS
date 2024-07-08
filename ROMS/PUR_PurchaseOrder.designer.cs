@@ -73,6 +73,7 @@
             this.tsPOList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
+            this.tsbSupplier = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
             this.LV_Supplier = new System.Windows.Forms.ListView();
@@ -80,6 +81,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.lblUnitDecimal = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -240,6 +242,7 @@
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.errPO = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
@@ -266,7 +269,8 @@
             this.tsPOList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsPOList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
-            this.tsbEdit});
+            this.tsbEdit,
+            this.tsbSupplier});
             this.tsPOList.Location = new System.Drawing.Point(0, 0);
             this.tsPOList.Name = "tsPOList";
             this.tsPOList.Size = new System.Drawing.Size(1354, 25);
@@ -294,6 +298,17 @@
             this.tsbEdit.Size = new System.Drawing.Size(133, 24);
             this.tsbEdit.Text = "&Return DC Pending";
             this.tsbEdit.Visible = false;
+            // 
+            // tsbSupplier
+            // 
+            this.tsbSupplier.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbSupplier.Image = global::ROMS.Properties.Resources.right_arrow;
+            this.tsbSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbSupplier.Name = "tsbSupplier";
+            this.tsbSupplier.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbSupplier.Size = new System.Drawing.Size(23, 22);
+            this.tsbSupplier.Visible = false;
             // 
             // pnlpurchaseorder
             // 
@@ -372,7 +387,9 @@
             this.columnHeader5,
             this.columnHeader8,
             this.columnHeader9,
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader6,
+            this.columnHeader7});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
             this.LV_Supplier.Location = new System.Drawing.Point(148, 95);
@@ -396,6 +413,10 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 10;
             // 
             // DGV_FilterProduct
             // 
@@ -2566,5 +2587,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmremarks;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUT_Decimal;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        public System.Windows.Forms.ToolStripButton tsbSupplier;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }
