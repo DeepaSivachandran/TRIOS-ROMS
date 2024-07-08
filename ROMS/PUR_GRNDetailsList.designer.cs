@@ -37,12 +37,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
+            this.btnComplete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDCPrint = new System.Windows.Forms.Button();
             this.LV_Supplier = new System.Windows.Forms.ListView();
@@ -56,7 +59,6 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.lblTotalGRN = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -79,11 +81,9 @@
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.lblTotalGRN = new System.Windows.Forms.Label();
             this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnComplete = new System.Windows.Forms.Button();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -123,6 +123,25 @@
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(81, 24);
             this.tspHeader.Text = "GRN Entry";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton1.Size = new System.Drawing.Size(72, 24);
+            this.toolStripButton1.Text = "Total GRN :";
+            this.toolStripButton1.ToolTipText = "Total GRN ";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbDelete
             // 
@@ -195,15 +214,28 @@
             this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
             this.pnlpurchaseapproval.TabIndex = 958789;
             // 
+            // btnComplete
+            // 
+            this.btnComplete.Image = global::ROMS.Properties.Resources.print;
+            this.btnComplete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnComplete.Location = new System.Drawing.Point(1057, 45);
+            this.btnComplete.Name = "btnComplete";
+            this.btnComplete.Size = new System.Drawing.Size(145, 33);
+            this.btnComplete.TabIndex = 1111186;
+            this.btnComplete.Text = "Mark as Completed";
+            this.btnComplete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnComplete.UseVisualStyleBackColor = true;
+            this.btnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnDCPrint);
-            this.groupBox1.Location = new System.Drawing.Point(1248, 24);
+            this.groupBox1.Location = new System.Drawing.Point(1207, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(89, 60);
+            this.groupBox1.Size = new System.Drawing.Size(135, 60);
             this.groupBox1.TabIndex = 1111185;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DC Print";
+            this.groupBox1.Text = "Invoice Pending DC";
             // 
             // btnDCPrint
             // 
@@ -212,7 +244,7 @@
             this.btnDCPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDCPrint.Location = new System.Drawing.Point(6, 20);
             this.btnDCPrint.Name = "btnDCPrint";
-            this.btnDCPrint.Size = new System.Drawing.Size(69, 33);
+            this.btnDCPrint.Size = new System.Drawing.Size(72, 33);
             this.btnDCPrint.TabIndex = 1111186;
             this.btnDCPrint.Text = "Print";
             this.btnDCPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -312,19 +344,6 @@
             this.grpfilter.TabIndex = 958799;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
-            // 
-            // lblTotalGRN
-            // 
-            this.lblTotalGRN.AutoSize = true;
-            this.lblTotalGRN.BackColor = System.Drawing.Color.White;
-            this.lblTotalGRN.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblTotalGRN.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotalGRN.Location = new System.Drawing.Point(1318, 3);
-            this.lblTotalGRN.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.lblTotalGRN.Name = "lblTotalGRN";
-            this.lblTotalGRN.Size = new System.Drawing.Size(17, 20);
-            this.lblTotalGRN.TabIndex = 1111186;
-            this.lblTotalGRN.Text = "0";
             // 
             // label5
             // 
@@ -641,6 +660,19 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // lblTotalGRN
+            // 
+            this.lblTotalGRN.AutoSize = true;
+            this.lblTotalGRN.BackColor = System.Drawing.Color.White;
+            this.lblTotalGRN.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalGRN.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalGRN.Location = new System.Drawing.Point(1318, 3);
+            this.lblTotalGRN.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.lblTotalGRN.Name = "lblTotalGRN";
+            this.lblTotalGRN.Size = new System.Drawing.Size(17, 20);
+            this.lblTotalGRN.TabIndex = 1111186;
+            this.lblTotalGRN.Text = "0";
+            // 
             // errGRNList
             // 
             this.errGRNList.ContainerControl = this;
@@ -657,35 +689,6 @@
             this.RPTViewer.TabIndex = 1110000994;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton1.Size = new System.Drawing.Size(72, 24);
-            this.toolStripButton1.Text = "Total GRN :";
-            this.toolStripButton1.ToolTipText = "Total GRN ";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // btnComplete
-            // 
-            this.btnComplete.Location = new System.Drawing.Point(1114, 45);
-            this.btnComplete.Name = "btnComplete";
-            this.btnComplete.Size = new System.Drawing.Size(127, 33);
-            this.btnComplete.TabIndex = 1111186;
-            this.btnComplete.Text = "Mark as Completed";
-            this.btnComplete.UseVisualStyleBackColor = true;
-            this.btnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
             // 
             // PUR_GRNDetailsList
             // 

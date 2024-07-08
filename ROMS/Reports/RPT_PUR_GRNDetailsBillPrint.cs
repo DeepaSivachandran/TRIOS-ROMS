@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_GRNDetailsListPrint : ReportClass {
+    public class RPT_PUR_GRNDetailsBillPrint : ReportClass {
         
-        public RPT_PUR_GRNDetailsListPrint() {
+        public RPT_PUR_GRNDetailsBillPrint() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_GRNDetailsListPrint.rpt";
+                return "RPT_PUR_GRNDetailsBillPrint.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_GRNDetailsListPrint.rpt";
+                return "ROMS.Reports.RPT_PUR_GRNDetailsBillPrint.rpt";
             }
             set {
                 // Do nothing
@@ -234,65 +234,17 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraCompanyID {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraCompletedIDs {
             get {
                 return this.DataDefinition.ParameterFields[11];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaGRNFromDate {
-            get {
-                return this.DataDefinition.ParameterFields[12];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaGRNToDate {
-            get {
-                return this.DataDefinition.ParameterFields[13];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraOrdertype {
-            get {
-                return this.DataDefinition.ParameterFields[14];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaScheduleId {
-            get {
-                return this.DataDefinition.ParameterFields[15];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraStatus {
-            get {
-                return this.DataDefinition.ParameterFields[16];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaSupplierId {
-            get {
-                return this.DataDefinition.ParameterFields[17];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_GRNDetailsListPrint : Component, ICachedReport {
+    public class CachedRPT_PUR_GRNDetailsBillPrint : Component, ICachedReport {
         
-        public CachedRPT_PUR_GRNDetailsListPrint() {
+        public CachedRPT_PUR_GRNDetailsBillPrint() {
         }
         
         [Browsable(false)]
@@ -329,7 +281,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_GRNDetailsListPrint rpt = new RPT_PUR_GRNDetailsListPrint();
+            RPT_PUR_GRNDetailsBillPrint rpt = new RPT_PUR_GRNDetailsBillPrint();
             rpt.Site = this.Site;
             return rpt;
         }
