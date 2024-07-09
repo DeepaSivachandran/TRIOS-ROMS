@@ -168,9 +168,9 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseEntryRejected.DataSource = objDs.Tables[0];
                             grdPurchaseEntryRejected.Columns["S.No."].Width = 50;
-                            grdPurchaseEntryRejected.Columns["Concern"].Width = 80;
-                            grdPurchaseEntryRejected.Columns["Vouc No."].Width = 100;
-                            grdPurchaseEntryRejected.Columns["Vouc Date"].Width = 100;
+                            grdPurchaseEntryRejected.Columns["Concern"].Width = 70;
+                            grdPurchaseEntryRejected.Columns["Vouc No."].Width = 70;
+                            grdPurchaseEntryRejected.Columns["Vouc Date"].Width = 80;
                             grdPurchaseEntryRejected.Columns["Supplier"].Width = 300;
                             // grdPurchaseEntryList.Columns["City"].Width = 100;
                             grdPurchaseEntryRejected.Columns["GSTIN"].Width = 120;
@@ -197,7 +197,8 @@ namespace ROMS
                             grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["GRN_Payment_StsID"].Visible = false;
-                            grdPurchaseEntryRejected.Columns["PUR_CompleteFlag"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["TallyExportFlag"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["PUR_LastTransNo"].Visible = false;
                             grdPurchaseEntryRejected.Columns["Flag"].Visible = false;
                             grdPurchaseEntryRejected.Columns["Pur Entry Full Status"].Visible = false;
                             grdPurchaseEntryRejected.Columns["Overall Full Status"].Visible = false;
@@ -1052,19 +1053,6 @@ namespace ROMS
         {
             try
             {
-                grdPurchaseEntryRejected.Columns["S.No."].Frozen = true;
-                grdPurchaseEntryRejected.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryRejected.Columns["Concern"].Frozen = true;
-                grdPurchaseEntryRejected.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryRejected.Columns["Pur Entry Status"].Frozen = true;
-                grdPurchaseEntryRejected.Columns["Pur Entry Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryRejected.Columns["Vouc No."].Frozen = true;
-                grdPurchaseEntryRejected.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryRejected.Columns["Vouc Date"].Frozen = true;
-                grdPurchaseEntryRejected.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryRejected.Columns["Supplier"].Frozen = true;
-                grdPurchaseEntryRejected.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
-
                 //for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
                 //{
                 //    DataGridView dataGridView = (DataGridView)sender;
@@ -1080,6 +1068,19 @@ namespace ROMS
                 //        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                 //    }
                 //}
+                grdPurchaseEntryRejected.Columns["S.No."].Frozen = true;
+                grdPurchaseEntryRejected.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Concern"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Overall Status"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Vouc No."].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Vouc Date"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Supplier"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
             }
             catch (Exception ex)
             {
