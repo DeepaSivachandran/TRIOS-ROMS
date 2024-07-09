@@ -819,6 +819,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["Entry Date"].Visible = false;
                                 grdInwardQueueList.Columns["UnReadable"].Visible = false;
                                 grdInwardQueueList.Columns["Full Status"].Visible = false;
+                                grdInwardQueueList.Columns["Full Reason"].Visible = false;
                                 grdInwardQueueList.Columns["Entry Type"].Width = 150;
                             }
 
