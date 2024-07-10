@@ -217,8 +217,8 @@ namespace ROMS
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
                             & ~(DataGridViewPaintParts.ContentForeground));
 
-                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                        //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                        //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
                         e.Handled = true;
                     }
@@ -554,7 +554,6 @@ namespace ROMS
                     dpFromDate.MinDate = varmindate;
                     dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
                 }
-
                 dpFromDate.MaxDate = varmaxdate;
             }
             catch (Exception ex)
@@ -567,7 +566,7 @@ namespace ROMS
         {
             try
             {
-                udfnDate();
+                //udfnDate();
                 int Varflag = 0;
                 string varSupplierId = "0";
                 if (txtSupplier.Text == "")
@@ -729,7 +728,6 @@ namespace ROMS
                     grdPurchaseEntryList.Columns["clmEdit"].Visible = false;
                     Deftable = objDs.Tables[0];
                 }
-
                 udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {

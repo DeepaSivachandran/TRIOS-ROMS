@@ -225,7 +225,7 @@
             this.btnComplete.Text = "Mark as Completed";
             this.btnComplete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnComplete.UseVisualStyleBackColor = true;
-           // this.btnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
+            this.btnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
             // 
             // groupBox1
             // 
@@ -249,7 +249,7 @@
             this.btnDCPrint.Text = "Print";
             this.btnDCPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDCPrint.UseVisualStyleBackColor = true;
-          //  this.btnDCPrint.Click += new System.EventHandler(this.BtnDCPrint_Click);
+            this.btnDCPrint.Click += new System.EventHandler(this.BtnDCPrint_Click);
             // 
             // LV_Supplier
             // 
@@ -600,7 +600,6 @@
             this.grdGRNList.GridColor = System.Drawing.Color.White;
             this.grdGRNList.Location = new System.Drawing.Point(3, 151);
             this.grdGRNList.Name = "grdGRNList";
-            this.grdGRNList.ReadOnly = true;
             this.grdGRNList.RowHeadersVisible = false;
             this.grdGRNList.RowHeadersWidth = 100;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -611,10 +610,8 @@
             this.grdGRNList.Size = new System.Drawing.Size(1348, 489);
             this.grdGRNList.TabIndex = 958797;
             this.grdGRNList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
-            //this.grdGRNList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNList_CellEndEdit);
             this.grdGRNList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdGRNList_CellFormatting);
-           // this.grdGRNList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNList_CellValueChanged);
-            //this.grdGRNList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGRNList_CurrentCellDirtyStateChanged);
+            this.grdGRNList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGRNList_CurrentCellDirtyStateChanged);
             this.grdGRNList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGRNList_DataBindingComplete);
             this.grdGRNList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdGRNList_Scroll);
             this.grdGRNList.SelectionChanged += new System.EventHandler(this.GrdGRNList_SelectionChanged);
@@ -633,7 +630,6 @@
             this.ClmEdit.HeaderText = "Edit";
             this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.ClmEdit.Name = "ClmEdit";
-            this.ClmEdit.ReadOnly = true;
             this.ClmEdit.Width = 50;
             // 
             // clmPrint
@@ -641,7 +637,6 @@
             this.clmPrint.HeaderText = "Reprint";
             this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
             this.clmPrint.Width = 50;
             // 
             // clmLocPrint
@@ -649,7 +644,6 @@
             this.clmLocPrint.HeaderText = "Location Print";
             this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmLocPrint.Name = "clmLocPrint";
-            this.clmLocPrint.ReadOnly = true;
             this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 

@@ -3095,6 +3095,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDateFilter", objTRN_PurchaseEntry.paraDateFilter);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseEntry.paraSupplierID);
                 varSqlCommand.Parameters.AddWithValue("@paraProductID ", objTRN_PurchaseEntry.paraProductID);
+                varSqlCommand.Parameters.AddWithValue("@ParaPurchaseRefresh", objTRN_PurchaseEntry.ParaPurchaseRefresh);
+                varSqlCommand.Parameters.AddWithValue("@paraDate", objTRN_PurchaseEntry.paraDate);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag ", objTRN_PurchaseEntry.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID ", objTRN_PurchaseEntry.paraGRNID);
                 varSqlCommand.CommandTimeout = 0;
@@ -3245,9 +3247,14 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", objTRN_PurchaseEntry.paraCompletedIDs);
                 varSqlCommand.Parameters.AddWithValue("@paraUnapprovedby", objTRN_PurchaseEntry.paraUnapprovedby);
                 varSqlCommand.Parameters.AddWithValue("@paraPUR_GSTREnteredBy", objTRN_PurchaseEntry.paraPUR_GSTREnteredBy);
+                varSqlCommand.Parameters.AddWithValue("@paraTotal", objTRN_PurchaseEntry.paraTotal);
                // varSqlCommand.Parameters.AddWithValue("@paraCompletedBy", objTRN_PurchaseEntry.paraCompletedBy);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_GSTR", objTRN_PurchaseEntry.ParaTRN_GSTR);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyBy", objTRN_PurchaseEntry.ParaVerifyBy);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate", objTRN_PurchaseEntry.ParaVerifyDate);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime", objTRN_PurchaseEntry.paraVerifiedTime);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat", objTRN_PurchaseEntry.paraVerifiedFormat);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

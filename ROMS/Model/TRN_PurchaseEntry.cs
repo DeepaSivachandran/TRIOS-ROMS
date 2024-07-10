@@ -36,6 +36,7 @@ namespace ROMS.Model
         public string paraRemarks { get; set; } = "";
         public string ParaPurchaseDC { get; set; } = "";
         public string paraHostName { get; set; } = "";
+       
         public string paraGSTIN { get; set; } = "";
         public int paraStatus { get; set; } = 0;
         public int paraDeleteFlag { get; set; } = 0;
@@ -59,12 +60,14 @@ namespace ROMS.Model
         public decimal paraGSTAmnt { get; set; } = 0;
         public decimal paraRoundOff { get; set; } = 0;
         public decimal paraGrandTotal { get; set; } = 0;
+        public decimal paraTotal { get; set; } = 0;
         public decimal paraFrightGRN { get; set; } = 0;
         public decimal paraLoadingChargesGRN { get; set; } = 0;
         public byte[] paraQrimg { get; set; } = null;
         public DataTable ParaPurchase_Products { get; set; } = null;
         public DataTable Purchase_Products_Details { get; set; } = null;
         public DataTable ParaTRN_GSTR { get; set; } = null;
+        public DataTable ParaPurchaseRefresh { get; set; } = null;
         public string paraEinvoice { get; set; } = "";
         public string ParaPEToDate { get; set; } = "";
         public string ParaPEFromDate { get; set; } = ""; 
@@ -74,6 +77,11 @@ namespace ROMS.Model
         public string paraCompletedIDs { get; set; } = ""; 
         public int paraUnapprovedby { get; set; } = 0;
         public int paraPUR_GSTREnteredBy { get; set; } = 0;
+        public int ParaVerifyBy { get; set; } = 0;
+        public string ParaVerifyDate { get; set; } = "";
+        public string paraVerifiedTime { get; set; } = "";
+        public string paraVerifiedFormat { get; set; } = "";
+        public string paraDate { get; set; } = "";
         public int paraFlag { get; set; } = 0;
     }
 }
