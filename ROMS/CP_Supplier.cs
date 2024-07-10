@@ -758,6 +758,10 @@ namespace ROMS
                     {
                         varStatus = "2";
                     }
+                    if (varSupplierStatusID == 98)
+                    {
+                        varStatus = "98";
+                    }
                     SupplierUpdate = 0;
                     if (Convert.ToInt32(varsupplierID) != 0)
                     {
@@ -1373,10 +1377,15 @@ namespace ROMS
                                 rbActive.Checked = true;
                                 varSupplierStatusID = 1;
                             }
-                            else
+                            else if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "2")
                             {
                                 rbInactive.Checked = true;
                                 varSupplierStatusID = 2;
+                            }
+                            else
+                            {
+                                rbInactive.Checked = true;
+                                varSupplierStatusID = 98;
                             }
 
                             btnSave.Text = "Update";
@@ -1427,6 +1436,11 @@ namespace ROMS
                 if(pbFormStatus==2 || varSupplierStatusID==2)
                 {
                     udfnDisable();
+                }
+                if(varSupplierStatusID == 98)
+                {
+                    panelStatus.Enabled = false;
+                    btnSave.Enabled = true;
                 }
                 if(varSupplierStatusID == 1)
                 {
