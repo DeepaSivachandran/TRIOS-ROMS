@@ -55,6 +55,7 @@ namespace ROMS
         public int varModifiedFlag = 0;
         public int varDecimal = 0;
         public int varCloseFlag = 0, varClose = 0, varDateChange = 0, varUpDownKey=0;
+        public string varBlockedSupplier = "0", varBlockedReason = "";
         Boolean BlnSearchImageYN = false;
         bool varVoucherSkip = false;
         byte[] varobjBarCodeByte;
@@ -85,7 +86,7 @@ namespace ROMS
                     varTempMonth = "0";
                     varTempYear = "0";
                 }
-                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1,varPICode, varProductName, txtLocation.Text.Trim(), txtRack.Text.Trim(), Convert.ToString(txtMrp.Text.Trim()),txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(), (txtStockQty.Text).Trim(), txtQuantity.Text.Trim(), varUnitSymbol, cmbReason.Text.Trim(), cmbSupplier.Text.Trim(),varTempDay,varTempMonth,varTempYear,(lblProduct.Text).Trim(),varSLID,varRKID,varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim(),varDecimal);
+                grdDamageEntry.Rows.Add(grdDamageEntry.Rows.Count + 1, varPICode, varProductName, txtLocation.Text.Trim(), txtRack.Text.Trim(), Convert.ToString(txtMrp.Text.Trim()), txtExpiryDate.Text.Trim(), txtBatchNo.Text.Trim(), (txtStockQty.Text).Trim(), txtQuantity.Text.Trim(), varUnitSymbol, cmbReason.Text.Trim(), cmbSupplier.Text.Trim(), varTempDay, varTempMonth, varTempYear, (lblProduct.Text).Trim(), varSLID, varRKID, varUTID, (lblSupplierCode.Text).Trim(), (lblScheduleCode.Text).Trim(), varDecimal, varBlockedReason, varBlockedSupplier);
                 ((DataGridViewTextBoxColumn)grdDamageEntry.Columns["clmQuantity"]).MaxInputLength = 8;
                 grdDamageEntry.Columns["clmDay"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDamageEntry.Columns["clmMonth"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -103,6 +104,11 @@ namespace ROMS
                 grdDamageEntry.ClearSelection();
                 udfnProductClear();
                 lblUnit.Text = "";
+                int Rowcount = grdDamageEntry.Rows.Count - 1;
+                if(varBlockedSupplier=="98")
+                {
+                    grdDamageEntry.Rows[Rowcount].Cells["clmSupplier"].Style.BackColor = Color.LightPink;
+                }
             }
             catch(Exception ex)
             {
@@ -1247,7 +1253,7 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                int varflag = 0;
+                int varflag = 0;string varBlockedSTS = "0";
                 if (txtProductName.Text == "")
                 {
                     epDamageEntry.SetError(txtProductName, "Please enter product name or P.I Code.");
@@ -1351,13 +1357,12 @@ namespace ROMS
                     lblSupplierCode.Text = Result[0];
                     lblScheduleCode.Text = Result[1];
                 }
-                /*if (Convert.ToString(txtsuppliername.Text) != "")
+                if (cmbSupplier.Text != "")
                 {
-                    string[] values = new string[0];
-                    string varSupplierId = "0";
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 23;
-                    objMR_Supplier.paraSupplierName = txtsuppliername.Text.Trim();
+                    objMR_Supplier.ViewType = 40;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblScheduleCode.Text);
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
                     objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
@@ -1368,29 +1373,12 @@ namespace ROMS
                         {
                             if (objDsSupplierId.Tables[0].Rows.Count > 0)
                             {
-                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
-                                values = Convert.ToString(varSupplierId).Split(',');
+                                varBlockedReason = Convert.ToString(objDsSupplierId.Tables[0].Rows[0]["Reason"].ToString());
+                                varBlockedSupplier = Convert.ToString(objDsSupplierId.Tables[0].Rows[0]["STSID"].ToString());
                             }
                         }
                     }
-                    if (values[0] == "-1")
-                    {
-                        epDamageEntry.SetError(txtsuppliername, "Invalid supplier");
-                        txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpSupplierName.ShowAlways = true;
-                        tpSupplierName.Show("Invalid supplier.", txtsuppliername, 5000);
-                        lblSupplierCode.Text = "0";
-                        lblScheduleCode.Text = "0";
-                        blnErrorFlag = true;
-                    }
-                    else
-                    {
-                        epDamageEntry.Clear();
-                        lblSupplierCode.Text = values[0];
-                        lblScheduleCode.Text = values[1];
-                        txtsuppliername.BackColor = Color.White;
-                    }
-                }*/
+                }
                 if (blnErrorFlag == false)
                 {
                     lvProduct.Visible = false;
@@ -1500,13 +1488,18 @@ namespace ROMS
                                 grdDamageEntry.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["Product"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["Rack"]),
                                  Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["Stock Qty"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDS.Tables[0].Rows[i]["REASON"]),
                                  Convert.ToString(objDS.Tables[0].Rows[i]["Supplier"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]),Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]),
-                                 Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]));
+                                 Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["BlockedReason"]), Convert.ToString(objDS.Tables[0].Rows[i]["STSID"]));
 
                                 dtDamage.Rows.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["SLID"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKID"]), Convert.ToString(objDS.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDS.Tables[0].Rows[i]["Day"]), Convert.ToString(objDS.Tables[0].Rows[i]["Month"]), Convert.ToString(objDS.Tables[0].Rows[i]["Year"]), Convert.ToString(objDS.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDS.Tables[0].Rows[i]["Batch No"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["QTY"]), Convert.ToString(objDS.Tables[0].Rows[i]["UnitID"]), 20,Convert.ToString(objDS.Tables[0].Rows[i]["Supplier ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Schedule ID"]), Convert.ToString(objDS.Tables[0].Rows[i]["ReasonID"]));
 
                                 //dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()), Convert.ToInt32(varSLID), Convert.ToInt32(varRKID), Convert.ToDouble(txtMrp.Text.Trim()), Convert.ToInt32(Day), Convert.ToInt32(Month), Convert.ToInt32(Year), txtExpiryDate.Text.Trim(), txtBatchNo.Text.Trim(), txtQuantity.Text.Trim(), varUTID, 20, lblSupplierCode.Text.Trim(), lblScheduleCode.Text.Trim());
 
                                 grdDamageEntry.Columns["clmdsno"].Width = 50;
+
+                                if (Convert.ToString(objDS.Tables[0].Rows[i]["STSID"]) == "98")
+                                {
+                                    grdDamageEntry.Rows[i].Cells["clmSupplier"].Style.BackColor = Color.LightPink;
+                                }
                             }
                             for (int i = 0; i < grdEmployee.Rows.Count; i++)
                             {
@@ -1737,6 +1730,10 @@ namespace ROMS
                         grdDamageEntry.CurrentRow.DefaultCellStyle.BackColor = Color.White;
                         grdDamageEntry.Rows[i].Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
                     }
+                    if(Convert.ToString(grdDamageEntry.Rows[i].Cells["clmBlockedSupplier"].Value)=="98")
+                    {
+                        varBlockedSupplier = "98";
+                    }
                 }
                 if (grdDamageEntry.Rows.Count < 1)
                 {
@@ -1813,6 +1810,17 @@ namespace ROMS
                 //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //    blnErrorFlag = true;
                 //}
+                if (varBlockedSupplier == "98")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(134);
+                    objDServ.CloseConnection();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.No)
+                    {
+                        blnErrorFlag = true;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     epDamageEntry.Clear();
@@ -3379,6 +3387,23 @@ namespace ROMS
                 DGV_SearchGridRight.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGridRight.Invalidate();
                 udfnscrollvisible(DGV_SearchGridRight, grdChecker);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntry_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdDamageEntry.Columns["clmSupplier"].Index)
+                {
+                    var cell = grdDamageEntry.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdDamageEntry.Rows[e.RowIndex].Cells["clmBlockedReason"].Value.ToString();
+                }
             }
             catch (Exception ex)
             {

@@ -27,6 +27,7 @@ namespace ROMS
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
         public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
         public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0,varClose=0,varDateChange=0,ParaSupplierAMT = 0;
+        public string varBlockedSupplier = "0", varBlockedReason = "";
         public PUR_GRNEntry()
         {
             InitializeComponent();
@@ -460,6 +461,10 @@ namespace ROMS
                     errGRN.Clear();
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
+                    if (varBlockedSupplier == "98")
+                    {
+                        txtSupplier.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (Exception ex)
@@ -504,7 +509,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() ,objDs.Tables[0].Rows[i]["STSID"].ToString(), objDs.Tables[0].Rows[i]["Reason"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -512,6 +517,9 @@ namespace ROMS
                                 LV_Supplier.Columns[1].Width = 0;
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
+                                LV_Supplier.Columns[3].Width = 0;
+                                LV_Supplier.Columns[4].Width = 0;
+                                LV_Supplier.Columns[5].Width = 0;
                             }
                         }
                     }
@@ -662,6 +670,10 @@ namespace ROMS
                         {
                             udfnsupplierLoad();
                         }
+                        if (varBlockedSupplier == "98")
+                        {
+                            txtSupplier.BackColor = Color.LightPink;
+                        }
                     }
                     VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 }
@@ -781,6 +793,8 @@ namespace ROMS
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
                     varSupplierName = selectedItem.SubItems[3].Text;
+                    varBlockedSupplier = selectedItem.SubItems[4].Text;
+                    varBlockedReason = selectedItem.SubItems[5].Text;
                     udfnsupplierLoad();
                 }
                 if (Convert.ToInt32(cmbConcern.SelectedValue) == -1)
@@ -790,6 +804,14 @@ namespace ROMS
                 else
                 {
                     cmbOrderType.Focus();
+                }
+
+                if (varBlockedSupplier == "98")
+                {
+                    lblReason.Visible = true;
+                    lblBlockedReason.Visible = true;
+                    txtSupplier.BackColor = Color.LightPink;
+                    lblBlockedReason.Text = varBlockedReason;
                 }
             }
             catch (Exception ex)
@@ -1191,6 +1213,10 @@ namespace ROMS
                                 lblSupplierCode.Text = values[0];
                                 lblschedule.Text = values[1];
                                 txtSupplier.BackColor = Color.White;
+                                if (varBlockedSupplier == "98")
+                                {
+                                    txtSupplier.BackColor = Color.LightPink;
+                                }
                             }
                         }
                     }
@@ -1209,6 +1235,17 @@ namespace ROMS
                     {
                         udfnvoucheradd(sender, e);
                         VarErrorFlag = true;
+                    }
+                    if(varBlockedSupplier=="98")
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(134);
+                        objDServ.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            VarErrorFlag = true;
+                        }
                     }
                     if (VarErrorFlag == false)
                     {

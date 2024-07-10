@@ -172,6 +172,36 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAY_BlockedSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_BlockedSupplier.designer.cs">
+      <DependentUpon>PAY_BlockedSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold_Verify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold_Verify.designer.cs">
+      <DependentUpon>INV_StockHold_Verify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold_Damages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold_Damages.designer.cs">
+      <DependentUpon>INV_StockHold_Damages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold_Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold_Supplier.designer.cs">
+      <DependentUpon>INV_StockHold_Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold_Location.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold_Location.designer.cs">
+      <DependentUpon>INV_StockHold_Location.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_GSTRDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +267,12 @@
     </Compile>
     <Compile Include="PUR_DC_Level_Verified.designer.cs">
       <DependentUpon>PUR_DC_Level_Verified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ProductHSN_Verify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductHSN_Verify.designer.cs">
+      <DependentUpon>CP_ProductHSN_Verify.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_PurchaseEntryRejectedList.cs">
       <SubType>Form</SubType>
@@ -1737,6 +1773,21 @@
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PAY_BlockedSupplier.resx">
+      <DependentUpon>PAY_BlockedSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold_Verify.resx">
+      <DependentUpon>INV_StockHold_Verify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold_Damages.resx">
+      <DependentUpon>INV_StockHold_Damages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold_Supplier.resx">
+      <DependentUpon>INV_StockHold_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold_Location.resx">
+      <DependentUpon>INV_StockHold_Location.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAY_GSTRDetails.resx">
       <DependentUpon>PAY_GSTRDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -1766,6 +1817,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_DC_Level_Verified.resx">
       <DependentUpon>PUR_DC_Level_Verified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductHSN_Verify.resx">
+      <DependentUpon>CP_ProductHSN_Verify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseEntryRejectedList.resx">
       <DependentUpon>PUR_PurchaseEntryRejectedList.cs</DependentUpon>

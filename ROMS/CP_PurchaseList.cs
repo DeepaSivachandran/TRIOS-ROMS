@@ -658,20 +658,20 @@ namespace ROMS
                             grdPurchaseEntryList.Columns[0].Visible = false;
                             grdPurchaseEntryList.Columns["S.No."].Width = 50;
                             grdPurchaseEntryList.Columns["S.No."].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Concern"].Width = 80;
+                            grdPurchaseEntryList.Columns["Concern"].Width = 70;
                             grdPurchaseEntryList.Columns["Concern"].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Vouc No."].Width = 100;
+                            grdPurchaseEntryList.Columns["Vouc No."].Width = 70;
                             grdPurchaseEntryList.Columns["Vouc No."].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Vouc Date"].Width = 100;
+                            grdPurchaseEntryList.Columns["Vouc Date"].Width = 80;
                             grdPurchaseEntryList.Columns["Vouc Date"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["Supplier"].Width = 300;
                             grdPurchaseEntryList.Columns["Supplier"].ReadOnly = true;
                            // grdPurchaseEntryList.Columns["City"].Width = 100;
                             grdPurchaseEntryList.Columns["GSTIN"].Width = 120;
                             grdPurchaseEntryList.Columns["GSTIN"].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Inv Date"].Width = 100;
+                            grdPurchaseEntryList.Columns["Inv Date"].Width = 80;
                             grdPurchaseEntryList.Columns["Inv Date"].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Inv No."].Width = 100; 
+                            grdPurchaseEntryList.Columns["Inv No."].Width = 70; 
                             grdPurchaseEntryList.Columns["Inv No."].ReadOnly = true; 
                             grdPurchaseEntryList.Columns["Created By"].Width = 200;
                             grdPurchaseEntryList.Columns["Created By"].ReadOnly = true;
@@ -682,9 +682,9 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["clmCheck"].Width = 50;
                             grdPurchaseEntryList.Columns["Inv Amt"].Width = 100;
                             grdPurchaseEntryList.Columns["Inv Amt"].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Pur Entry Status"].Width = 130;
+                            grdPurchaseEntryList.Columns["Pur Entry Status"].Width = 110;
                             grdPurchaseEntryList.Columns["Pur Entry Status"].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Overall Status"].Width = 200;
+                            grdPurchaseEntryList.Columns["Overall Status"].Width = 100;
                             grdPurchaseEntryList.Columns["Overall Status"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["City"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["PURID"].Visible = false;
@@ -1418,6 +1418,25 @@ namespace ROMS
         {
             try
             {
+                grdPurchaseEntryList.Columns["clmCheck"].Frozen = true;
+                grdPurchaseEntryList.Columns["clmCheck"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["clmEdit"].Frozen = true;
+                grdPurchaseEntryList.Columns["clmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["S.No."].Frozen = true;
+                grdPurchaseEntryList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["Concern"].Frozen = true;
+                grdPurchaseEntryList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["Pur Entry Status"].Frozen = true;
+                grdPurchaseEntryList.Columns["Pur Entry Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["Overall Status"].Frozen = true;
+                grdPurchaseEntryList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["Vouc No."].Frozen = true;
+                grdPurchaseEntryList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["Vouc Date"].Frozen = true;
+                grdPurchaseEntryList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["Supplier"].Frozen = true;
+                grdPurchaseEntryList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;

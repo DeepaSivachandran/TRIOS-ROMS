@@ -52,6 +52,7 @@ namespace ROMS
         public int varAutocompleteProduct = 0;
         public string varEditPRID = "0";
         string varLocationID = "0", varRackID = "0" , varLocationName="" , varRack="", varPrid="" , varPoIDs="";
+        public string varBlockedSupplier = "0", varBlockedReason = "0";
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -826,6 +827,17 @@ namespace ROMS
                         tpInvoiceAMT.Show("Please enter invoice amount.", txtInvoiceamt, 5000);
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
+                    }
+                    if (varBlockedSupplier == "98")
+                    {
+                        SPDataService objDS = new SPDataService();
+                        string varMessage = objDS.udfnGetMessages(134);
+                        objDS.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            result1 = DialogResult.No;
+                        }
                     }
                     if (result1 == DialogResult.Yes)
                     {
@@ -5902,6 +5914,8 @@ namespace ROMS
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceAmnt"]);
                                 txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Remarks"]);
                                 cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
+                                varBlockedSupplier = Convert.ToString(objDs.Tables[0].Rows[0]["SP_STSId"]);
+                                varBlockedReason = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;
                                 cmbConcern.Enabled = false;
@@ -6169,6 +6183,12 @@ namespace ROMS
                     //    cell.Style.ForeColor = Color.White;
                     //    cell.ReadOnly = true;
                     //}
+                    if (varBlockedSupplier == "98")
+                    {
+                        tsbSupplier.Visible = true;
+                        txtSupplier.BackColor = Color.LightPink;
+                        tsbSupplier.Text = varBlockedReason;
+                    }
                 }
             }
             catch (Exception ex)
