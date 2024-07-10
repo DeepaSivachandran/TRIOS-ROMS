@@ -228,6 +228,10 @@ namespace ROMS
                     grpGRNloadingUnloading.Enabled = true;
                 }
                 else { grpGRNloadingUnloading.Enabled = false; }
+                if(Convert.ToString(cmbEntryType.SelectedValue) == "57")
+                {
+                    
+                }
             }
             catch (Exception ex)
             {
@@ -8410,7 +8414,7 @@ namespace ROMS
         {
             try
             {
-                txtProductName.BackColor = Color.White;
+                cmbQtyType.BackColor = Color.White;
             }
             catch (Exception ex)
             {
