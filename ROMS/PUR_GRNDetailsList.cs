@@ -23,6 +23,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public string varUserID = "0", varsuppliername = "";
         public int varGRNPrintFlag = 0;
+        public int varCheckChange = 0;
         public ToolTip tpSupplier = new ToolTip();
         public PUR_GRNDetailsList()
         {
@@ -142,7 +143,8 @@ namespace ROMS
                 if (grdGRNList.Rows.Count>0)
                 {
                     lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
-                }               
+                }
+                grdGRNList.Columns["clmCheck"].ReadOnly = false;
             }
             catch (Exception ex)
             {
@@ -294,6 +296,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN_SPID"].Visible = false;
                             grdGRNList.Columns["GRN_STSID"].Visible = false;
                             grdGRNList.Columns["GRN_OrderType"].Visible = false;
+                            grdGRNList.Columns["Completed"].Visible = false;
                             grdGRNList.Columns["STSID"].Visible = false;
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["SP_SupplierType"].Visible = false;
@@ -310,29 +313,30 @@ namespace ROMS
                             grdGRNList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             grdGRNList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            /*
-                            grdGRNList.Columns["S.No."].ReadOnly = true;
-                            grdGRNList.Columns["Concern"].ReadOnly = true;
-                            grdGRNList.Columns["GRN No."].ReadOnly = true;
-                            grdGRNList.Columns["GRN Date"].ReadOnly = true;
-                            grdGRNList.Columns["Supplier"].ReadOnly = true;
-                            grdGRNList.Columns["City"].ReadOnly = true;
-                            grdGRNList.Columns["GSTIN"].ReadOnly = true;
-                            grdGRNList.Columns["Inv Date"].ReadOnly = true;
-                            grdGRNList.Columns["Inv No."].ReadOnly = true;
-                            grdGRNList.Columns["Inv Amt"].ReadOnly = true;
-                            grdGRNList.Columns["Created By"].ReadOnly = true;
-                            grdGRNList.Columns["Loading Charges"].ReadOnly = true;
-                            grdGRNList.Columns["Unloading Charges"].ReadOnly = true;
-                            grdGRNList.Columns["Order Type"].ReadOnly = true;
-                            grdGRNList.Columns["Any Pur Returns"].ReadOnly = true;
-                            grdGRNList.Columns["GRN Status"].ReadOnly = true;
-                            grdGRNList.Columns["Overall Status"].ReadOnly = true;
-                            grdGRNList.Columns["ClmEdit"].ReadOnly = true;
-                            grdGRNList.Columns["clmPrint"].ReadOnly = true;
-                            grdGRNList.Columns["Tot Pro"].ReadOnly = true;
-                            grdGRNList.Columns["Payment Mode"].ReadOnly = true;
-                            */
+                            
+                            //grdGRNList.Columns["S.No."].ReadOnly = true;
+                            //grdGRNList.Columns["Concern"].ReadOnly = true;
+                            //grdGRNList.Columns["GRN No."].ReadOnly = true;
+                            //grdGRNList.Columns["GRN Date"].ReadOnly = true;
+                            //grdGRNList.Columns["Supplier"].ReadOnly = true;
+                            //grdGRNList.Columns["City"].ReadOnly = true;
+                            //grdGRNList.Columns["GSTIN"].ReadOnly = true;
+                            //grdGRNList.Columns["Inv Date"].ReadOnly = true;
+                            //grdGRNList.Columns["Inv No."].ReadOnly = true;
+                            //grdGRNList.Columns["Inv Amt"].ReadOnly = true;
+                            //grdGRNList.Columns["Created By"].ReadOnly = true;
+                            //grdGRNList.Columns["Loading Charges"].ReadOnly = true;
+                            //grdGRNList.Columns["Unloading Charges"].ReadOnly = true;
+                            //grdGRNList.Columns["Order Type"].ReadOnly = true;
+                            //grdGRNList.Columns["Any Pur Returns"].ReadOnly = true;
+                            //grdGRNList.Columns["GRN Status"].ReadOnly = true;
+                            //grdGRNList.Columns["Overall Status"].ReadOnly = true;
+                            //grdGRNList.Columns["ClmEdit"].ReadOnly = true;
+                            //grdGRNList.Columns["clmPrint"].ReadOnly = true;
+                            //grdGRNList.Columns["Tot Pro"].ReadOnly = true;
+                            //grdGRNList.Columns["Payment Mode"].ReadOnly = true;
+                            //grdGRNList.Columns["clmCheck"].ReadOnly = false;
+                            
                         }
                         else
                         {
@@ -376,7 +380,12 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
+                if (varCheckChange == 0)
+                {
+                    btnComplete.Enabled = false;
+                }
             }
+            
         }
         public void udfnDefcolumns()
         {
@@ -552,8 +561,39 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
+            finally
+            {
+                udfnCheckChange(sender,e);
+            }
         }
+        public void udfnCheckChange(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdGRNList.Rows[e.RowIndex].Cells[e.ColumnIndex].OwningColumn.Name == "clmCheck")
+                {
+                    if (Convert.ToBoolean(grdGRNList.Rows[e.RowIndex].Cells["clmCheck"].Value) == true)
+                    {
+                        btnComplete.Enabled = true;
+                        varCheckChange++;
+                    }
+                    else if (varCheckChange != 0 && Convert.ToBoolean(grdGRNList.Rows[e.RowIndex].Cells["clmCheck"].Value) == false)
+                    {
+                        varCheckChange--;
+                    }
+                    if (varCheckChange == 0)
+                    {
+                        btnComplete.Enabled = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
 
+        }
         private void GrdPurchaseApproval_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -1108,7 +1148,7 @@ namespace ROMS
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    //DGV_SearchGrid.Columns[0].ReadOnly = true;
                     //DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
@@ -1309,6 +1349,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
 
         private void BtnView_Click(object sender, EventArgs e)
         {
@@ -1552,27 +1593,28 @@ namespace ROMS
         {
             try
             {
-                grdGRNList.Columns["ClmEdit"].Frozen = true;
-                grdGRNList.Columns["ClmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["clmPrint"].Frozen = true;
-                grdGRNList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["clmLocPrint"].Frozen = true;
-                grdGRNList.Columns["clmLocPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["S.No."].Frozen = true;
-                grdGRNList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["Concern"].Frozen = true;
-                grdGRNList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["GRN Status"].Frozen = true;
-                grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["Overall Status"].Frozen = true;
-                grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["GRN No."].Frozen = true;
-                grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["GRN Date"].Frozen = true;
-                grdGRNList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["Supplier"].Frozen = true;
-                grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.ClearSelection();
+                //grdGRNList.Columns["ClmEdit"].Frozen = true;
+                //grdGRNList.Columns["ClmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["clmPrint"].Frozen = true;
+                //grdGRNList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["clmLocPrint"].Frozen = true;
+                //grdGRNList.Columns["clmLocPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["S.No."].Frozen = true;
+                //grdGRNList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["Concern"].Frozen = true;
+                //grdGRNList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["GRN Status"].Frozen = true;
+                //grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["Overall Status"].Frozen = true;
+                //grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["GRN No."].Frozen = true;
+                //grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["GRN Date"].Frozen = true;
+                //grdGRNList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["Supplier"].Frozen = true;
+                //grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["clmCheck"].ReadOnly = false;
+                //grdGRNList.ClearSelection();
                 for (int i = 0; i < grdGRNList.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
@@ -1641,11 +1683,12 @@ namespace ROMS
                         cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     */
-                    if (Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value) == "17" || Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value) == "44" || Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value) == "17")
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "17" || Convert.ToString(grdGRNList.Rows[i].Cells["GRN_STSID"].Value) == "44" || Convert.ToString(grdGRNList.Rows[i].Cells["Completed"].Value) == "1")
                     {
-                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"];
-                        cell2.Value = new Bitmap(1, 1);
-                        cell2.ReadOnly = true;
+                        DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
+                        Check.Value = "";
+                        grdGRNList.Rows[i].Cells["clmCheck"] = Check;
+                        Check.ReadOnly = true;
                     }
                 } 
             }
@@ -1983,6 +2026,212 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GrdGRNList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Commit the changes immediately
+                grdGRNList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
+                //udfnGridSearchFilter();
+                //DataService objDser = new DataService();
+                //grdGRNList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGRNList);
+                //objDser.CloseConnection();
+                //grdGRNList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                ////grdCompanyList(sender,e); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void BtnComplete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string varGrnId = "0";
+                //string IDs = "0";
+                for (int i = 0; i < grdGRNList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["clmCheck"].Value) == "")
+                    {
+                        grdGRNList.Rows[i].Cells["clmCheck"].Value = false;
+                    }
+                    else if (varGrnId == "0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == true)
+                    {
+                        varGrnId = Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
+                    }
+                    else if (varGrnId != "0" && Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == true)
+                    {
+                        varGrnId = varGrnId + ',' + Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value);
+                    }
+                }
+                //if(Convert.ToBoolean(grdGRNList.Rows[i].Cells["clmCheck"].Value) == false)
+                //{
+                //    varflag = 0;
+                //}
+
+                SPDataService objDServ = new SPDataService();
+                string result = "";
+                TRN_GRN objTRNS_GRN = new TRN_GRN();
+                objTRNS_GRN.ViewType = 6;
+                objTRNS_GRN.paraCompletedIDs = Convert.ToString(varGrnId);
+                result = objDServ.udfnGRNEntry(objTRNS_GRN);
+                objDServ.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (varvalue[1] == "1")
+                {
+                    btnPrint.Enabled = false;
+                    lblNoRecordsFound.Visible = false;
+                    picLoader.Visible = true;
+                    RPTViewer.Visible = false;
+                    LV_Supplier.BringToFront();
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    int varPrint = 0;
+                    DataSet objDs = new DataSet();
+                    SPDataService objdserv = new SPDataService();
+                    objDs = objdserv.udfnGrnListLoad(13, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "0", "", varGrnId);
+                    objdserv.CloseConnection();
+                    if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                    if (varPrint == 1)
+                    {
+                        //string Type = Convert.ToString(objDs.Tables[0].Rows[0]["Type"].ToString());
+                        RPTViewer.Visible = true;
+                        RPTViewer.BringToFront();
+                        RPTViewer.ReuseParameterValuesOnRefresh = true;
+                        RPTViewer.RefreshReport();
+                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_GRNDetailsBillPrint.rpt");
+                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                        objBillreport.SetParameterValue("paraCompletedIDs", varGrnId);
+                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        //objBillreport.SetParameterValue("varHeader", Type);
+                        objValidation.CrySqlConnection(objBillreport);
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        varCheckChange = 0;
+                        if (varCheckChange == 0)
+                        {
+                            btnComplete.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                LV_Supplier.BringToFront();
+                picLoader.SendToBack();
+                btnPrint.Enabled = true;
+                btnPrint.Focus();
+                GC.Collect();
+            }
+
+        }
+
+        private void BtnDCPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                LV_Supplier.BringToFront();
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //string varSupplier = txtSupplier.Text;
+                //int varstsid = 0, varOrdertType = 0;
+                //if (varSupplier == "")
+                //{
+                //    varSupplier = "-All-";
+                //    lblSupplierCode.Text = "0";
+                //}
+                //varstsid = Convert.ToInt32(cmbstatus.SelectedValue);
+                //varOrdertType = Convert.ToInt32(cmbOrdertype.SelectedValue);
+                //if (Convert.ToInt32(cmbOrdertype.SelectedValue) == 0)
+                //{
+                //    varOrdertType = 0;
+                //}
+                //if (Convert.ToInt32(cmbstatus.SelectedValue) == 0)
+                //{
+                //    varstsid = 0;
+                //}
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnGrnListLoad(12, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "0", "", "");
+                objdserv.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    //string Type = Convert.ToString(objDs.Tables[0].Rows[0]["Type"].ToString());
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_GRNDetailsDC.rpt");
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    //objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    //objBillreport.SetParameterValue("ParaGRNFromDate", Convert.ToString(dpFromDate.Text));
+                    //objBillreport.SetParameterValue("ParaGRNToDate", Convert.ToString(dpToDate.Text));
+                    //objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
+                    //objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedleCode.Text));
+                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
+                    //objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(varSupplier));
+                    //objBillreport.SetParameterValue("paraOrderTypeName", Convert.ToString(cmbOrdertype.Text));
+                    //objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    //objBillreport.SetParameterValue("paraOrdertype", varOrdertType);
+                    //objBillreport.SetParameterValue("paraStatus", varstsid);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    //objBillreport.SetParameterValue("varHeader", Type);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                LV_Supplier.BringToFront();
+                picLoader.SendToBack();
+                btnPrint.Enabled = true;
+                btnPrint.Focus();
+                GC.Collect();
+            }
+
         }
 
         public void udfnDeleteHide()
