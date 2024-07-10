@@ -81,59 +81,45 @@ namespace ROMS
                 scheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
                 GRNNo = MainForm.objCP_Purchase.pbGRNNo;
                 varGRNID = MainForm.objCP_Purchase.pbGRNNo;
-                if (supplierid != 0 && scheduleid != 0)
-                {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDs = new DataSet();
-                objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, GRNNo, "","");
-                objdserv.CloseConnection();
-                if (objDs.Tables[0].Rows.Count > 0)
-                {
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, GRNNo, "");
+                    objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, GRNNo, "", "");
                     objdserv.CloseConnection();
                     if (objDs.Tables[0].Rows.Count > 0)
                     {
-                        grdGRNDetails.Rows.Clear();
-                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            dtPurchaseGRN.Rows.Add(false, dtPurchaseGRN.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["GRNNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["GRNDate"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["QRCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["CompleteFlag"]));
+                            grdGRNDetails.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            {
+                                lblNoRecordsFound.Visible = false;
+                                dtPurchaseGRN.Rows.Add(false, dtPurchaseGRN.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["GRNNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["GRNDate"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["QRCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["CompleteFlag"]));
+                            }
+                            grdGRNDetails.DataSource = dtPurchaseGRN;
+                            grdGRNDetails.Columns[0].HeaderText = "";
+                            grdGRNDetails.Columns[0].Width = 30;
+                            grdGRNDetails.Columns[0].ReadOnly = false;
+                            grdGRNDetails.Columns["S.No."].ReadOnly = true;
+                            grdGRNDetails.Columns["GRN No."].ReadOnly = true;
+                            grdGRNDetails.Columns["GRN Date"].ReadOnly = true;
+                            grdGRNDetails.Columns["Total Products"].ReadOnly = true;
+                            grdGRNDetails.Columns["S.No."].Width = 50;
+                            grdGRNDetails.Columns["GRN No."].Width = 100;
+                            grdGRNDetails.Columns["GRN Date"].Width = 100;
+                            grdGRNDetails.Columns["Total Products"].Width = 100;
+                            grdGRNDetails.Columns["GRNID"].Visible = false;
+                            grdGRNDetails.Columns["QRCode"].Visible = false;
+                            grdGRNDetails.Columns["CompleteFlag"].Visible = false;
+                            grdGRNDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNDetails.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            // udfnGRNCheckTrue();
+                            udfnCheckEnable();
                         }
-                        grdGRNDetails.DataSource = dtPurchaseGRN;
-                        grdGRNDetails.Columns[0].HeaderText = "";
-                        grdGRNDetails.Columns[0].Width = 30;
-                        grdGRNDetails.Columns[0].ReadOnly = false;
-                        grdGRNDetails.Columns["S.No."].ReadOnly = true;
-                        grdGRNDetails.Columns["GRN No."].ReadOnly = true;
-                        grdGRNDetails.Columns["GRN Date"].ReadOnly = true;
-                        grdGRNDetails.Columns["Total Products"].ReadOnly = true;
-                        grdGRNDetails.Columns["S.No."].Width = 50;
-                        grdGRNDetails.Columns["GRN No."].Width = 100;
-                        grdGRNDetails.Columns["GRN Date"].Width = 100;
-                        grdGRNDetails.Columns["Total Products"].Width = 100;
-                        grdGRNDetails.Columns["GRNID"].Visible = false;
-                        grdGRNDetails.Columns["QRCode"].Visible = false;
-                        grdGRNDetails.Columns["CompleteFlag"].Visible = false;
-                        grdGRNDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdGRNDetails.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        // udfnGRNCheckTrue();
-                        udfnCheckEnable();
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        grdGRNDetails.DataSource = null;
-                    }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            grdGRNDetails.DataSource = null;
+                        }
                 }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    grdGRNDetails.DataSource = null;
-                }
-            }
             catch (Exception ex)
             {
                 objError = new DataError();

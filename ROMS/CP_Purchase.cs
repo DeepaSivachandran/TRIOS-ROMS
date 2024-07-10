@@ -2742,9 +2742,9 @@ namespace ROMS
                 }
                 if (varBlockedSupplier == "98")
                 {
-                    tsbSupplier.Visible = true;
+                    //tsbSupplier.Visible = true;
                     txtSupplier.BackColor = Color.LightPink;
-                    tsbSupplier.Text = varBlockedReason;
+                 //   tsbSupplier.Text = varBlockedReason;
                 }
             }
             catch (Exception ex)
@@ -5866,7 +5866,7 @@ namespace ROMS
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "");
+                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "","");
                                     objdserv.CloseConnection();
                                 }
                             }
@@ -8795,10 +8795,10 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_Purchase_Level_Verified = new PUR_Purchase_Level_Verified();
-                MainForm.objPUR_Purchase_Level_Verified.pbPurID = Convert.ToString(pbPurchaseno);
-                //MainForm.objPUR_Purchase_Level_Verified.pbstsId = Convert.ToString(editFlag);
-                MainForm.objPUR_Purchase_Level_Verified.ShowDialog();
+                //MainForm.objPUR_Purchase_Level_Verified = new PUR_Purchase_Level_Verified();
+                //MainForm.objPUR_Purchase_Level_Verified.pbPurID = Convert.ToString(pbPurchaseno);
+                ////MainForm.objPUR_Purchase_Level_Verified.pbstsId = Convert.ToString(editFlag);
+                //MainForm.objPUR_Purchase_Level_Verified.ShowDialog();
                 btnSave.Focus();
             }
             catch (Exception ex)
