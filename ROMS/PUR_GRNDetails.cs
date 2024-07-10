@@ -3645,48 +3645,48 @@ namespace ROMS
             {
                 if (chkCompleted.Checked == true)
                 {
-                    if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
-                    {
-                        DataGridView dataGridView = (DataGridView)sender;
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
-                        cell.Style.BackColor = Color.LightGray;
-                        cell.Style.ForeColor = Color.Black;
-                        cell.ReadOnly = true;
-                        DataGridView dataGridView1 = (DataGridView)sender;
-                        DataGridViewCell cell1 = dataGridView1.Rows[i].Cells["clmInvoiceBatch"];
-                        cell1.Style.BackColor = Color.LightGray;
-                        cell1.Style.ForeColor = Color.Black;
-                        cell1.ReadOnly = true;
-                    }
-                    else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "73")
-                    {
-                        DataGridView dataGridView = (DataGridView)sender;
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
-                        cell.Style.BackColor = Color.LightGray;
-                        cell.Style.ForeColor = Color.Black;
-                        cell.ReadOnly = true;
-                        DataGridView dataGridView1 = (DataGridView)sender;
-                        DataGridViewCell cell1 = dataGridView1.Rows[i].Cells["clmInvoiceBatch"];
-                        cell1.Style.BackColor = Color.LightGray;
-                        cell1.Style.ForeColor = Color.Black;
-                        cell1.ReadOnly = true;
-                    }
-                    else
-                    {
-                        DataGridView dataGridView = (DataGridView)sender;
-                        DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
-                        cell.Style.BackColor = Color.PaleGreen;
-                        cell.Style.ForeColor = Color.Black;
-                        DataGridView dataGridView1 = (DataGridView)sender;
-                        DataGridViewCell cell1 = dataGridView1.Rows[i].Cells["clmInvoiceBatch"];
-                        cell1.Style.BackColor = Color.PaleGreen;
-                        cell1.Style.ForeColor = Color.Black;
-                        cell1.ReadOnly = true;
-                    }
-                    btnVerified.Enabled = false;
-                    btnSave.Enabled = false;
-                    txtRemark.Enabled = false;
-                    udfnDisable();
+                    //if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
+                    //{
+                    //    DataGridView dataGridView = (DataGridView)sender;
+                    //    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
+                    //    cell.Style.BackColor = Color.LightGray;
+                    //    cell.Style.ForeColor = Color.Black;
+                    //    cell.ReadOnly = true;
+                    //    DataGridView dataGridView1 = (DataGridView)sender;
+                    //    DataGridViewCell cell1 = dataGridView1.Rows[i].Cells["clmInvoiceBatch"];
+                    //    cell1.Style.BackColor = Color.LightGray;
+                    //    cell1.Style.ForeColor = Color.Black;
+                    //    cell1.ReadOnly = true;
+                    //}
+                    //else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "73")
+                    //{
+                    //    DataGridView dataGridView = (DataGridView)sender;
+                    //    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
+                    //    cell.Style.BackColor = Color.LightGray;
+                    //    cell.Style.ForeColor = Color.Black;
+                    //    cell.ReadOnly = true;
+                    //    DataGridView dataGridView1 = (DataGridView)sender;
+                    //    DataGridViewCell cell1 = dataGridView1.Rows[i].Cells["clmInvoiceBatch"];
+                    //    cell1.Style.BackColor = Color.LightGray;
+                    //    cell1.Style.ForeColor = Color.Black;
+                    //    cell1.ReadOnly = true;
+                    //}
+                    //else
+                    //{
+                    //    DataGridView dataGridView = (DataGridView)sender;
+                    //    DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
+                    //    cell.Style.BackColor = Color.PaleGreen;
+                    //    cell.Style.ForeColor = Color.Black;
+                    //    DataGridView dataGridView1 = (DataGridView)sender;
+                    //    DataGridViewCell cell1 = dataGridView1.Rows[i].Cells["clmInvoiceBatch"];
+                    //    cell1.Style.BackColor = Color.PaleGreen;
+                    //    cell1.Style.ForeColor = Color.Black;
+                    //    cell1.ReadOnly = true;
+                    //}
+                    //btnVerified.Enabled = false;
+                    //btnSave.Enabled = false;
+                    //txtRemark.Enabled = false;
+                    //udfnDisable();
                 }
                 else
                 {

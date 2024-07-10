@@ -225,7 +225,7 @@
             this.btnComplete.Text = "Mark as Completed";
             this.btnComplete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnComplete.UseVisualStyleBackColor = true;
-            this.btnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
+           // this.btnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
             // 
             // groupBox1
             // 
@@ -249,7 +249,7 @@
             this.btnDCPrint.Text = "Print";
             this.btnDCPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDCPrint.UseVisualStyleBackColor = true;
-            this.btnDCPrint.Click += new System.EventHandler(this.BtnDCPrint_Click);
+          //  this.btnDCPrint.Click += new System.EventHandler(this.BtnDCPrint_Click);
             // 
             // LV_Supplier
             // 
@@ -611,10 +611,10 @@
             this.grdGRNList.Size = new System.Drawing.Size(1348, 489);
             this.grdGRNList.TabIndex = 958797;
             this.grdGRNList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
-            this.grdGRNList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNList_CellEndEdit);
+            //this.grdGRNList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNList_CellEndEdit);
             this.grdGRNList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdGRNList_CellFormatting);
-            this.grdGRNList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNList_CellValueChanged);
-            this.grdGRNList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGRNList_CurrentCellDirtyStateChanged);
+           // this.grdGRNList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNList_CellValueChanged);
+            //this.grdGRNList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGRNList_CurrentCellDirtyStateChanged);
             this.grdGRNList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGRNList_DataBindingComplete);
             this.grdGRNList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdGRNList_Scroll);
             this.grdGRNList.SelectionChanged += new System.EventHandler(this.GrdGRNList_SelectionChanged);
