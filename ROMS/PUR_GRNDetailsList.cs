@@ -580,6 +580,7 @@ namespace ROMS
                 MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                 MainForm.objPUR_GRNDetails.varSupplierType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["SP_SupplierType"].Value);
                 MainForm.objPUR_GRNDetails.varOrderType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_OrderType"].Value);
+                MainForm.objPUR_GRNDetails.pbStsID = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value);
                 MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)
@@ -997,11 +998,13 @@ namespace ROMS
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
                             & ~(DataGridViewPaintParts.ContentForeground));
 
-                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                            TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                                e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                        //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                        //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                            e.Handled = true;
+                        }
 
-                        e.Handled = true;
-                    }
                     DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                     if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
                     {

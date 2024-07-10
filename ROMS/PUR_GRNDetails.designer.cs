@@ -949,6 +949,8 @@
             // chkCompleted
             // 
             this.chkCompleted.AutoSize = true;
+            this.chkCompleted.Checked = true;
+            this.chkCompleted.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCompleted.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkCompleted.Location = new System.Drawing.Point(1136, 570);
             this.chkCompleted.Name = "chkCompleted";
@@ -1244,7 +1246,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(123, 29);
             this.btnSave.TabIndex = 19;
-            this.btnSave.Text = "Update as Draft";
+            this.btnSave.Text = "Update";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);

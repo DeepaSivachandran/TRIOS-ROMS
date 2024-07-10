@@ -96,6 +96,7 @@ namespace ROMS
                 dtReturnDC.Columns.Add("DC Date", typeof(string));
                 dtReturnDC.Columns.Add("Total Products", typeof(string));
                 dtReturnDC.Columns.Add("DCID", typeof(string));
+                dtReturnDC.Columns.Add("DC Verification Details", typeof(string));
                 int supplierid = 0, scheduleid = 0;
                 string DCNo= "0"; 
                 supplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
@@ -120,8 +121,8 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             dtReturnDC.Rows.Add(false, dtReturnDC.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[i]["DCNo"]),
-                                Convert.ToString(objDs.Tables[0].Rows[i]["DCDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"])
-                            );
+                                Convert.ToString(objDs.Tables[0].Rows[i]["DCDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["DC Verification Details"]));
                         }
                         grdDCDetails.DataSource = dtReturnDC;
                         grdDCDetails.Columns[0].HeaderText = "";
@@ -171,6 +172,7 @@ namespace ROMS
                     if (Convert.ToBoolean(grdDCDetails.Rows[i].Cells[0].Value) == true)
                     {
                         MainForm.objCP_Purchase.grdReurnDC.Rows.Add(grdDCDetails.Rows[i].Cells["DC No."].Value, grdDCDetails.Rows[i].Cells["DC Date"].Value, grdDCDetails.Rows[i].Cells["Total Products"].Value, grdDCDetails.Rows[i].Cells["DCID"].Value);
+                        MainForm.objCP_Purchase.grdDCVerificationDetails.Rows.Add(grdDCDetails.Rows[i].Cells["DC No."].Value, grdDCDetails.Rows[i].Cells["DC Verification Details"].Value);
                         VARFLAG = 1;
                         if (dcno == "0")
                         {
@@ -181,6 +183,10 @@ namespace ROMS
                             dcno = dcno + ',' + Convert.ToString(grdDCDetails.Rows[i].Cells["DCID"].Value);
                         }
                         varTotProCount = varTotProCount + Convert.ToInt16(grdDCDetails.Rows[i].Cells["Total Products"].Value);
+                        if (Convert.ToInt16(MainForm.objCP_Purchase.grdDCVerificationDetails.RowCount) != 0)
+                        { MainForm.objCP_Purchase.lblVerifyNorecord.Visible = false; }
+                        else
+                        { MainForm.objCP_Purchase.lblVerifyNorecord.Visible = true; }
                     }
                 }
                 MainForm.objCP_Purchase.lbltotProduct.Text = Convert.ToString(varTotProCount);

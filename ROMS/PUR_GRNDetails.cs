@@ -51,6 +51,7 @@ namespace ROMS
         List<int> varProductsIDs = new List<int>();
         public int varAutocompleteProduct = 0;
         public string varEditPRID = "0";
+        public string pbStsID = "0";
         string varLocationID = "0", varRackID = "0" , varLocationName="" , varRack="", varPrid="" , varPoIDs="";
         public string varBlockedSupplier = "0", varBlockedReason = "0";
         public PUR_GRNDetails()
@@ -75,7 +76,7 @@ namespace ROMS
                 udfnDateSet();
                 udfnPODropdownload();
                 udfnGeneralSettingsList();
-                if (chkCompleted.Checked == true)
+                if (chkCompleted.Checked == true && pbStsID!="17") //status not pending
                 {
                     btnVerified.Enabled = false;
                 }
@@ -3643,7 +3644,7 @@ namespace ROMS
         {
             try
             {
-                if (chkCompleted.Checked == true)
+                if (chkCompleted.Checked == true && pbStsID != "17") //Status not pending
                 {
                     //if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
                     //{
@@ -6428,9 +6429,12 @@ namespace ROMS
                                     btnVerify1.Enabled = false;
                                     btnVerify2.Enabled = false;
                                     btnDC.Enabled = false;
-                                    gpAddrow.Enabled = false;
-                                    grpGrnDetails.Enabled = false;
-                                    grdGrnlist.Columns["clmRemove"].Visible = false;
+                                    if (pbStsID != "17")
+                                    {
+                                        gpAddrow.Enabled = false;
+                                        grpGrnDetails.Enabled = false;
+                                        grdGrnlist.Columns["clmRemove"].Visible = false;
+                                    }
                                    // grdGrnlist.Enabled = false;
                                     grdGrnlist.ClearSelection();
                                 }
@@ -6489,7 +6493,7 @@ namespace ROMS
                             }
                         }
                     }
-                    if(chkCompleted.Checked == true)
+                    if(chkCompleted.Checked == true && pbStsID!="17")
                     {
                         btnVerified.Enabled = false;
                         btnSave.Enabled = false;
