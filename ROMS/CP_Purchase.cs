@@ -228,9 +228,9 @@ namespace ROMS
                     grpGRNloadingUnloading.Enabled = true;
                 }
                 else { grpGRNloadingUnloading.Enabled = false; }
-                if(Convert.ToString(cmbEntryType.SelectedValue) == "57")
+                if(Convert.ToString(cmbEntryType.SelectedValue) == "57") //DC
                 {
-                    
+                    cmbQtyType.Enabled = false; txtInvoiceQty.Enabled = false;
                 }
             }
             catch (Exception ex)
