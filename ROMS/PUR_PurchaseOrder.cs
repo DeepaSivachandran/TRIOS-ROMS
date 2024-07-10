@@ -752,6 +752,7 @@ namespace ROMS
                     }
                     if (varBlockedSupplier == "98")
                     {
+                        txtSupplier.BackColor = Color.LightPink;
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(134);
                         objDServ.CloseConnection();

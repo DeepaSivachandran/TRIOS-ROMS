@@ -461,6 +461,10 @@ namespace ROMS
                     errGRN.Clear();
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
+                    if (varBlockedSupplier == "98")
+                    {
+                        txtSupplier.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (Exception ex)
@@ -665,6 +669,10 @@ namespace ROMS
                         if (VarPrevSupplierid != Convert.ToInt32(lblSupplierCode.Text))
                         {
                             udfnsupplierLoad();
+                        }
+                        if (varBlockedSupplier == "98")
+                        {
+                            txtSupplier.BackColor = Color.LightPink;
                         }
                     }
                     VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
@@ -1205,6 +1213,10 @@ namespace ROMS
                                 lblSupplierCode.Text = values[0];
                                 lblschedule.Text = values[1];
                                 txtSupplier.BackColor = Color.White;
+                                if (varBlockedSupplier == "98")
+                                {
+                                    txtSupplier.BackColor = Color.LightPink;
+                                }
                             }
                         }
                     }

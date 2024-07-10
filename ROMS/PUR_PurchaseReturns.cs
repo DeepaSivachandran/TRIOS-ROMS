@@ -1355,6 +1355,10 @@ namespace ROMS
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
                 }
+                if(varBlockedSupplier=="98")
+                {
+                    txtSupplier.BackColor = Color.LightPink;
+                }
             }
             catch (Exception ex)
             {
@@ -1581,6 +1585,10 @@ namespace ROMS
                             lblschedule.Text = values[1];
                             txtSupplier.BackColor = Color.White;
                         }
+                        if(varBlockedSupplier=="98")
+                        {
+                            txtSupplier.BackColor = Color.LightPink;
+                        }
                     }
                     if (txtReturnDcNo.Text == "")
                     {
@@ -1629,6 +1637,7 @@ namespace ROMS
                     }
                     if (varBlockedSupplier == "98")
                     {
+                        txtSupplier.BackColor = Color.LightPink;
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(134);
                         objDServ.CloseConnection();

@@ -2808,6 +2808,7 @@ namespace ROMS
                                             grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                                         }
                                     }
+                                    
                                 }
                                 grdInward.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInward.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
