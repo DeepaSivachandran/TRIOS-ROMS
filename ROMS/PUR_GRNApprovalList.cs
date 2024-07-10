@@ -50,6 +50,8 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
                     MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
+                    MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Flag"].Value);
+                    MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNID"].Value);
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 }
@@ -1598,7 +1600,13 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
                                 grdGrnApprovalList.Columns["Purchase Type"].Visible = false;
                                 grdGrnApprovalList.Columns["Overall Full Status"].Visible = false;
+                                grdGrnApprovalList.Columns["MRP"].Visible = false;
+                                grdGrnApprovalList.Columns["Exp"].Visible = false;
+                                grdGrnApprovalList.Columns["Pur_LastTransNo"].Visible = false;
+                                grdGrnApprovalList.Columns["Transaction Date"].Visible = false;
                                 grdGrnApprovalList.Columns["Full Status"].Visible = false;
+                                grdGrnApprovalList.Columns["Flag"].Visible = false;
+                                grdGrnApprovalList.Columns["GRN_STSID"].Visible = false;
                                 grdGrnApprovalList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             else
