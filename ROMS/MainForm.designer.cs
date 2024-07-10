@@ -232,8 +232,8 @@ namespace ROMS
             // 
             this.tsmAccounts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmPurchaseEntry1,
-            this.tsmpurchaseReturn,
-            this.tsmpurchaseApprove});
+            this.tsmpurchaseApprove,
+            this.tsmpurchaseReturn});
             this.tsmAccounts.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmAccounts.Name = "tsmAccounts";
             this.tsmAccounts.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
@@ -267,14 +267,14 @@ namespace ROMS
             // inventoryToolStripMenuItem
             // 
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmrackSettings,
             this.tsminward,
-            this.tsmStockHold,
-            this.tsmStockReq,
             this.tsmOutward,
             this.tsmStockTransfer,
+            this.tsbStockConversion,
+            this.tsmStockHold,
             this.damageEntryToolStripMenuItem,
-            this.tsbStockConversion});
+            this.tsmStockReq,
+            this.tsmrackSettings});
             this.inventoryToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.I)));

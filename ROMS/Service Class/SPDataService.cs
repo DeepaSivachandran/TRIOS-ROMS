@@ -2514,7 +2514,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraINVDate", objTRNS_GRN.paraINVDate);
                 varSqlCommand.Parameters.AddWithValue("@paraINVNo", objTRNS_GRN.paraINVNo);
                 varSqlCommand.Parameters.AddWithValue("@ParaInvAmt", objTRNS_GRN.ParaInvAmt);
-                varSqlCommand.Parameters.AddWithValue("@ParaLoadingCharge", objTRNS_GRN.ParaLoadingCharge);
+                varSqlCommand.Parameters.AddWithValue("@ParaUnLoadingCharge", objTRNS_GRN.ParaUnLoadingCharge);
                 varSqlCommand.Parameters.AddWithValue("@ParaFrightCharge", objTRNS_GRN.ParaFrightCharge);
                 varSqlCommand.Parameters.AddWithValue("@paraOrderType", objTRNS_GRN.paraOrderType);
                 varSqlCommand.Parameters.AddWithValue("@paraPAckage", objTRNS_GRN.paraPAckage);
@@ -2538,7 +2538,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat1", objTRNS_GRN.paraVerifiedFormat1);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat2", objTRNS_GRN.paraVerifiedFormat2);
                 varSqlCommand.Parameters.AddWithValue("@paraPayment", objTRNS_GRN.paraPayment);
-                //varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", objTRNS_GRN.paraCompletedIDs);
+                varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", objTRNS_GRN.paraCompletedIDs);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2556,7 +2556,7 @@ namespace ROMS
 
         // added by venkat on 03/11/2023 for GRN list
         public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, string ParaGRNFromDate, string ParaGRNToDate,
-            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId, int paraLocationID, String paraGRNIds, string paraQRCode)
+            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId, int paraLocationID, String paraGRNIds, string paraQRCode,string paraCompletedIDs)
         {
             DataSet ds = new DataSet();
             try
@@ -2582,6 +2582,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraLocationID", paraLocationID);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNIds", paraGRNIds);
                 varSqlCommand.Parameters.AddWithValue("@paraQRCode", paraQRCode);
+                varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", paraCompletedIDs);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -3094,6 +3095,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDateFilter", objTRN_PurchaseEntry.paraDateFilter);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_PurchaseEntry.paraSupplierID);
                 varSqlCommand.Parameters.AddWithValue("@paraProductID ", objTRN_PurchaseEntry.paraProductID);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag ", objTRN_PurchaseEntry.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNID ", objTRN_PurchaseEntry.paraGRNID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -3146,8 +3149,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRateCalculation", objTRN_PurchaseEntryApproval.paraRateCalculation);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscCalculation", objTRN_PurchaseEntryApproval.paraDiscCalculation);
                 varSqlCommand.Parameters.AddWithValue("@paraEinvoice", objTRN_PurchaseEntryApproval.paraEinvoice);
-                varSqlCommand.Parameters.AddWithValue("@paraLoadingCharges", objTRN_PurchaseEntryApproval.paraLoadingCharges);
-                varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                varSqlCommand.Parameters.AddWithValue("@ParaUnLoadingCharge", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                //varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraCourierCharges", objTRN_PurchaseEntryApproval.paraCourierCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraOtherExpenses", objTRN_PurchaseEntryApproval.paraOtherExpenses);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscPer", objTRN_PurchaseEntryApproval.paraDiscPer);
@@ -3283,6 +3286,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraTRN_Purchase_ReturnDC", objTRN_GRNApproval.paraTRN_Purchase_ReturnDC);
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNAID", objTRN_GRNApproval.ParaGRNAID);
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNAPRID", objTRN_GRNApproval.ParaGRNAPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GRNApproval.paraGRNID);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

@@ -24,5 +24,6 @@ namespace ROMS.Model
         public DataTable paraTRN_Purchase_ReturnDC { get; set; } = null;
         public int ParaGRNAID { get; set; } = 0;
         public int ParaGRNAPRID { get; set; } = 0;
+        public int paraGRNID { get; set; } = 0;
     }
 }

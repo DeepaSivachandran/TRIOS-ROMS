@@ -17,7 +17,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int varSupplierID = 0,varScheduleID=0,varConcernID=0,varID=0, varGRNAID = 0, varGRNAPRID = 0;
+        public int varSupplierID = 0, varScheduleID = 0, varConcernID = 0, varID = 0, varGRNAID = 0, varGRNAPRID = 0, varFlag = 0, varGRNID = 0;
         decimal varInvoiceQty=0, VarReceivedQty=0, varPOID=0, grid_flag = 0;
         public string result = "", varUserID = "0",varReason="";
         public int varWrongReason = 0, varCrtReason = 0;
@@ -620,6 +620,7 @@ namespace ROMS
                 dtApproval.Columns.Add("GRNAPR_ReturnedQty", typeof(decimal));
                 dtApproval.Columns.Add("GRNAPR_RiskAcceptedBy", typeof(int));
                 dtApproval.Columns.Add("GRNAPR_PURPRID", typeof(int));
+                dtApproval.Columns.Add("GRNAPR_GRNPRID", typeof(int));
 
                 dtPurchaseReturnDC.TableName = "TRN_Purchase_ReturnDC";
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_PRID", typeof(int));
@@ -842,6 +843,7 @@ namespace ROMS
                         objspdservice = new SPDataService();
                         objTRN_GRNApproval.ViewType = varViewType;
                         objTRN_GRNApproval.paraPURID = varID;
+                        objTRN_GRNApproval.paraGRNID = varGRNID;
                         objTRN_GRNApproval.paraRemarks = txtRemark.Text;
                         objTRN_GRNApproval.paraFlag = 1;
                         objTRN_GRNApproval.paraCompanyId = varConcernID;
@@ -902,7 +904,7 @@ namespace ROMS
             try
             {
                 string varShelflifePer = "";
-                if (varID!= 0)
+                if (varID!= 0 || varGRNID!=0)
                 {
                     Application.DoEvents();
                     //********** To display a data in a grid  ******************  
@@ -912,6 +914,8 @@ namespace ROMS
                     TRN_PurchaseEntry objTRNG_PurchaseEntry = new TRN_PurchaseEntry();
                     objTRNG_PurchaseEntry.ViewType = 8;
                     objTRNG_PurchaseEntry.paraPurchaseId = varID;
+                    objTRNG_PurchaseEntry.paraFlag = varFlag;
+                    objTRNG_PurchaseEntry.paraGRNID = varGRNID;
                     objDs = objdserv.udfnGetPurchaseEntry(objTRNG_PurchaseEntry);
                     objdserv.CloseConnection();
                     if (objDs.Tables[0].Rows.Count > 0)
@@ -931,11 +935,11 @@ namespace ROMS
                             grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), 
                                 Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]));
                             if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Pro"]) == 1)
                             {
                                 dtApproval.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]),
-                                0/*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
+                                0/*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]));
                             }
                             dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0,0 /*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0);
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

@@ -2330,6 +2330,10 @@ namespace ROMS
                         udfnClear();
                         this.Close();
                     }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
@@ -2377,13 +2381,16 @@ namespace ROMS
             }
             catch (Exception ex)
             {
+                //objError = new DataError();
+                //objError.WriteFile(ex);
+                //SPDataService objDServ = new SPDataService();
+                //string varMessage = objDServ.udfnGetMessages(48);
+                //objDServ.CloseConnection();
+                //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);              
                 objError = new DataError();
                 objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            
+        }
             finally
             {
                 btnSave.Enabled = true;
