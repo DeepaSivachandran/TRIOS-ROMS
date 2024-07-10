@@ -986,26 +986,61 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    if (e.RowIndex < 0 || e.ColumnIndex < 3 && e.ColumnIndex != 1)        /*If a header cell*/
-                        return;
-                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image" && e.ColumnIndex != 1)
-                        return;
-                    //if ((e.ColumnIndex <2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                    //if (e.RowIndex < 0 || e.ColumnIndex < 0/*e.ColumnIndex < 3 && e.ColumnIndex != 1*/)        /*If a header cell*/
                     //    return;
+                    //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image" && e.ColumnIndex != 1)
+                    //    return;
+                    ////if ((e.ColumnIndex <2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
+                    ////    return;
+                    //if (!(e.ColumnIndex == 0))
+                    //    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    //    {
+                    //        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                    //            & ~(DataGridViewPaintParts.ContentForeground));
 
-                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                    {
-                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                            & ~(DataGridViewPaintParts.ContentForeground));
+                    //        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                    //            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                    //        e.Handled = true;
+                    //    }
+                    //DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
+                    //{
+                    //    if (e.ColumnIndex == 1)
+                    //    {
+                    //        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = null;
+                    //        DGV_SearchGrid.Rows[e.RowIndex].Cells[3] = new DataGridViewTextBoxCell();
+                    //        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = "";
+                    //        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].ReadOnly = true;
+                    //        //DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    //        //DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    //        //DGV_SearchGrid.Columns[2].ReadOnly = false;
+                    //        //DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    //    }
+                    //}
+                    if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                        return;
+                    if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                        if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                        {
+                            e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                                & ~(DataGridViewPaintParts.ContentForeground));
 
                             TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
                                 e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-                        //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                        //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
                             e.Handled = true;
                         }
 
                     DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                    {
+                        if (e.Value == null || !(bool)e.Value)
+                        {
+                            e.PaintBackground(e.CellBounds, false);
+                            e.Handled = true;
+                        }
+                    }
                     if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
                     {
                         if (e.ColumnIndex == 1)
@@ -1014,8 +1049,10 @@ namespace ROMS
                             DGV_SearchGrid.Rows[e.RowIndex].Cells[3] = new DataGridViewTextBoxCell();
                             DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = "";
                             DGV_SearchGrid.Rows[e.RowIndex].Cells[3].ReadOnly = true;
+
                         }
                     }
+
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1063,7 +1100,7 @@ namespace ROMS
                     int rowIndex = 0;
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
-                    DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                    //DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
                     for (int i = 1; i < visibleColumns.Count; i++)
@@ -1072,7 +1109,7 @@ namespace ROMS
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
-                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[2].ReadOnly = false;
@@ -1129,7 +1166,7 @@ namespace ROMS
                         }
                     }
 
-                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    //DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[2].ReadOnly = true;
@@ -1604,6 +1641,12 @@ namespace ROMS
                         cell3.Style.ForeColor = Color.White;// Set the background color to the default background color
                     }
                     */
+                    if (Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value) == "17" || Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value) == "44" || Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value) == "17")
+                    {
+                        DataGridViewCell cell2 = dataGridView.Rows[i].Cells["clmPrint"];
+                        cell2.Value = new Bitmap(1, 1);
+                        cell2.ReadOnly = true;
+                    }
                 } 
             }
             catch (Exception ex)
