@@ -3505,10 +3505,12 @@ namespace ROMS
                 DataGridViewCell cellGRNMrp = dataGridView.Rows[e.RowIndex].Cells["clmGrnMrp"];
                 DataGridViewCell cellMrp = dataGridView.Rows[e.RowIndex].Cells["clmMRP"];
                 DataGridViewCell cellExpiryDate = dataGridView.Rows[e.RowIndex].Cells["clmexpirydate"];
+                DataGridViewCell cellProExpiryDate = dataGridView.Rows[e.RowIndex].Cells["clmProductExpiryDate"];
                 DataGridViewCell cellShelfLife = dataGridView.Rows[e.RowIndex].Cells["clmShelflife"];
                 DataGridViewCell cellActualShelfLife = dataGridView.Rows[e.RowIndex].Cells["clmactuallife"];
                 DataGridViewCell cellShelfLifePer = dataGridView.Rows[e.RowIndex].Cells["clmshelfper"];
                 DataGridViewCell cellBatchNo = dataGridView.Rows[e.RowIndex].Cells["clmBatchno"];
+                DataGridViewCell cellProBatchNo = dataGridView.Rows[e.RowIndex].Cells["clmProductBatchNo"];
                 DataGridViewCell cellBatchenable = dataGridView.Rows[e.RowIndex].Cells["clmBatchenable"];
                 DataGridViewCell cellBatchgeneration = dataGridView.Rows[e.RowIndex].Cells["clmBatchgeneration"];
                 DataGridViewCell cellLocation = dataGridView.Rows[e.RowIndex].Cells["clmLocation"];
@@ -3538,7 +3540,7 @@ namespace ROMS
                 {
                     string varPRID = "0", varBatchNoEnable = "0", varBatchNoGeneration = "0", varRMProduction = "0", varPrcategory = "0",
                      varShelflifeFlag = "0", varShelflife = "0", varDecimal = "0", varHSNid = "0", varPrMRPFlag = "0",
-                     varproTname = "", varUnit = "", varGRNmrp = "0", varBatchNo = "", varExpiryDate = "", varRMProductionFlag = "0", varLocationName = "", varLocationID = "0",
+                     varproTname = "", varUnit = "", varGRNmrp = "0", varBatchNo = "", varProBatchNo = "", varExpiryDate = "", varProExpiryDate="" ,varRMProductionFlag = "0", varLocationName = "", varLocationID = "0",
                      varRackName = "", varRackID = "0", varRkcount = "0", varRMFlag = "0", varUTID = "0";
                     string varProductType = "217"; //Product type againt grn -none
 
@@ -3559,7 +3561,9 @@ namespace ROMS
                     varRackName = Convert.ToString(objDs.Tables[0].Rows[0]["Rack"]);
                     varRkcount = Convert.ToString(objDs.Tables[0].Rows[0]["RackCount"]);
                     varBatchNo = Convert.ToString(objDs.Tables[0].Rows[0]["BatchNo"]);
+                    varProBatchNo = Convert.ToString(objDs.Tables[0].Rows[0]["BatchNo"]);
                     varExpiryDate = Convert.ToString(objDs.Tables[1].Rows[0]["Expiry Date"]);
+                    varProExpiryDate = Convert.ToString(objDs.Tables[1].Rows[0]["Expiry Date"]);
                     
                     cellPrid.Value = varPRID;
                     cellProductName.Value = varproTname;
@@ -3577,7 +3581,9 @@ namespace ROMS
                     cellRKID.Value = varRackID;
                     cellRack.Value = varRackName;
                     cellBatchNo.Value = varBatchNo;
+                    cellProBatchNo.Value = varBatchNo;
                     cellExpiryDate.Value = varExpiryDate;
+                    cellProExpiryDate.Value = varExpiryDate;
                     cellProductType.Value = varProductType;
 
                     cellShelfLife.ReadOnly = true;
@@ -10318,11 +10324,15 @@ namespace ROMS
                                 if (e.ColumnIndex != 0)
                                 {
                                     grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null,"None",
-                                    "", "", "", "", "", "", "", "", "","", "", "",
-                                    "", "", "", "", "", "","", "", 0 , 0, 0, 0 , 0, "", 0, "", 0 , "", "",   "", "", Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPURPRIDDetail"].Value));
+                                    "", "", "", "","","","", "", "", "", "", "","", "", "",
+                                    "", "", "", "", "", "","", "", 0 , 0, 0, 0 , 0, "0", 0, "0", 0 , 0, 0,   0, 0, Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPURPRIDDetail"].Value));
                                  
                                     grdSupplierList.ReadOnly = false; 
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].ReadOnly = false;
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConditionID"].Value = "202"; // nodifference
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPendingQty"].Value = "0"; 
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmExcessQty"].Value = "0"; 
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmCondition"].Value = "No Difference"; 
                                     for(int i=0;i<grdSupplierList.ColumnCount-1;i++)
                                     {
                                         if(grdSupplierList.Columns[i].Name == "clmPicode" || grdSupplierList.Columns[i].Name == "clmexpirydate" || grdSupplierList.Columns[i].Name == "clmBatchno"
