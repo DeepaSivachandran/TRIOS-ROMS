@@ -1502,9 +1502,11 @@ namespace ROMS
                                     {
                                         varTempExpiryDate = "";
                                     }
-                                    grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1,null, Convert.ToString(objDs.Tables[1].Rows[i]["ProductEntryType"]),
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[1].Rows[i]["PTNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]), varMRP, varMRP,
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["Product MRP"]),  Convert.ToString(varTempExpiryDate), Convert.ToString(objDs.Tables[1].Rows[i]["Product Expiry"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
+                                    grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null, Convert.ToString(objDs.Tables[1].Rows[i]["ProductEntryType"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[1].Rows[i]["PTNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["Condition"]), Convert.ToString(objDs.Tables[1].Rows[i]["Excess Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Pending Qty"]),
+                                    varMRP, varMRP,
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["Product MRP"]), Convert.ToString(varTempExpiryDate), Convert.ToString(objDs.Tables[1].Rows[i]["Product Expiry"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["Location"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["RKNAME"]),
@@ -1514,9 +1516,10 @@ namespace ROMS
                                     Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RackCount"])
                                     , Convert.ToString(objDs.Tables[1].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GRNQty"])
                                     , Convert.ToDecimal(objDs.Tables[1].Rows[i]["DCQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]), 0, Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["InvFlag"]),
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_HSNID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]), 
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["GRN ProType"]), Convert.ToString(objDs.Tables[1].Rows[i]["RM Flag"]),  Convert.ToString(objDs.Tables[1].Rows[i]["GRN Type"]), 
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["ConvertProduct"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_Parent_PURPRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ConvertFlag"]));
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_HSNID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP Flag"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["GRN ProType"]), Convert.ToString(objDs.Tables[1].Rows[i]["RM Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["GRN Type"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["Condition ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ConvertProduct"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_Parent_PURPRID"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["ConvertFlag"]));
                            
                                     dtPurchaseAutoComplete.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(varMRP)), varTempExpiryDate,
                                          Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]),
@@ -6176,6 +6179,9 @@ namespace ROMS
                         objPurchaseentry.Columns.Add("PURPR_ProMRP", typeof(decimal));
                         objPurchaseentry.Columns.Add("PURPR_ProExpiryDate", typeof(string));
                         objPurchaseentry.Columns.Add("PURPR_ProBatch", typeof(string));
+                        objPurchaseentry.Columns.Add("PURPR_Condition", typeof(int));
+                        objPurchaseentry.Columns.Add("PURPR_ExcessQty", typeof(decimal));
+                        objPurchaseentry.Columns.Add("PURPR_RemainingQty", typeof(decimal));
                         objPurchaseentry = udfnobjPurchaseprod();
 
                         objPurchaseentryDetails.TableName = "TRN_Purchase_Products_Details";
@@ -7460,6 +7466,7 @@ namespace ROMS
                 objPurchaseentry.Columns.Add("PURPR_ConvertProduct", typeof(int));
                 objPurchaseentry.Columns.Add("PURPR_ProMRP", typeof(decimal));
                 objPurchaseentry.Columns.Add("PURPR_ProExpiryDate", typeof(string));
+                objPurchaseentry.Columns.Add("PURPR_ProBatch", typeof(string));
                 objPurchaseentry.Columns.Add("PURPR_Condition", typeof(int));
                 objPurchaseentry.Columns.Add("PURPR_ExcessQty", typeof(decimal));
                 objPurchaseentry.Columns.Add("PURPR_RemainingQty", typeof(decimal));
@@ -7704,8 +7711,8 @@ namespace ROMS
                             if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmExcessQty"].Value) != "" || Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmExcessQty"].Value) != 0)
                             { varExcessQty = Convert.ToDecimal(grdSupplierList.Rows[i].Cells["clmExcessQty"].Value); }
 
-                            if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmCondition"].Value) != "")
-                            { varCondition = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmCondition"].Value); }
+                            if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmConditionID"].Value) != "")
+                            { varCondition = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmConditionID"].Value); }
 
                             if (varcount == 0 && Convert.ToInt32(VarGridError) == 0)
                             {
