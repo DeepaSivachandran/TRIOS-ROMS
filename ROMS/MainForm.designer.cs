@@ -123,6 +123,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBlockedSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -361,7 +362,8 @@ namespace ROMS
             this.supplierPaymentToolStripMenuItem,
             this.tsbDirectCheque,
             this.tsbDebitNote,
-            this.gSTRToolStripMenuItem});
+            this.gSTRToolStripMenuItem,
+            this.tsmBlockedSupplier});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
             this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
@@ -915,6 +917,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // tsmBlockedSupplier
+            // 
+            this.tsmBlockedSupplier.Name = "tsmBlockedSupplier";
+            this.tsmBlockedSupplier.Size = new System.Drawing.Size(183, 22);
+            this.tsmBlockedSupplier.Text = "Blocked Supplier";
+            this.tsmBlockedSupplier.Click += new System.EventHandler(this.TsmBlockedSupplier_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1037,5 +1046,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem financialYearProcessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gSTRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmBlockedSupplier;
     }
 }

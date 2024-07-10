@@ -376,13 +376,20 @@ namespace ROMS
         {
             try
             {
-                //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //if (dialogResult == DialogResult.Yes)
-                //{
+                if (varUpdate==0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objPAY_AdvanceList.Show();
+                        MainForm.objPAY_AdvanceList.udfnList();
+                    }
+                }
+                else
+                {
                     this.Close();
-                //    MainForm.objPAY_AdvanceList.Show();
-                //    MainForm.objPAY_AdvanceList.udfnList();
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -1646,7 +1653,7 @@ namespace ROMS
                 if (txtSupplier.Text.Length > 0)
                 {
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 30;
+                    objMR_Supplier.ViewType = 39;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();

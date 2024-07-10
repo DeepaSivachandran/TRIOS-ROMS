@@ -40,6 +40,7 @@
             this.txtDSubGroup = new System.Windows.Forms.TextBox();
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.cmbRM = new System.Windows.Forms.ComboBox();
             this.lvSubGroup = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -181,7 +182,6 @@
             this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbCompleted = new System.Windows.Forms.CheckBox();
-            this.cmbRM = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -357,6 +357,16 @@
             this.grbform.Size = new System.Drawing.Size(550, 278);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // cmbRM
+            // 
+            this.cmbRM.Enabled = false;
+            this.cmbRM.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRM.FormattingEnabled = true;
+            this.cmbRM.Location = new System.Drawing.Point(359, 131);
+            this.cmbRM.Name = "cmbRM";
+            this.cmbRM.Size = new System.Drawing.Size(164, 27);
+            this.cmbRM.TabIndex = 127;
             // 
             // lvSubGroup
             // 
@@ -809,7 +819,7 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox5.Location = new System.Drawing.Point(11, 76);
+            this.textBox5.Location = new System.Drawing.Point(11, 22);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(111, 27);
@@ -1570,12 +1580,10 @@
             // 
             // txtHsnName
             // 
-            this.txtHsnName.Enabled = false;
             this.txtHsnName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsnName.Location = new System.Drawing.Point(122, 76);
+            this.txtHsnName.Location = new System.Drawing.Point(122, 22);
             this.txtHsnName.MaxLength = 50;
             this.txtHsnName.Name = "txtHsnName";
-            this.txtHsnName.ReadOnly = true;
             this.txtHsnName.Size = new System.Drawing.Size(145, 27);
             this.txtHsnName.TabIndex = 34;
             this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
@@ -1585,9 +1593,10 @@
             // 
             // cmbGst
             // 
+            this.cmbGst.Enabled = false;
             this.cmbGst.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGst.FormattingEnabled = true;
-            this.cmbGst.Location = new System.Drawing.Point(122, 22);
+            this.cmbGst.Location = new System.Drawing.Point(122, 76);
             this.cmbGst.Name = "cmbGst";
             this.cmbGst.Size = new System.Drawing.Size(145, 27);
             this.cmbGst.TabIndex = 34;
@@ -1603,6 +1612,7 @@
             this.txtHSNCode.Location = new System.Drawing.Point(122, 49);
             this.txtHSNCode.MaxLength = 8;
             this.txtHSNCode.Name = "txtHSNCode";
+            this.txtHSNCode.ReadOnly = true;
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
             this.txtHSNCode.TabIndex = 35;
             this.txtHSNCode.TextChanged += new System.EventHandler(this.TxtHSNCode_TextChanged);
@@ -1615,7 +1625,7 @@
             this.textBox8.BackColor = System.Drawing.SystemColors.Control;
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(11, 22);
+            this.textBox8.Location = new System.Drawing.Point(11, 76);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(111, 27);
@@ -1927,7 +1937,7 @@
             this.columnHeader31});
             this.lvHsnCode.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvHsnCode.HideSelection = false;
-            this.lvHsnCode.Location = new System.Drawing.Point(578, 526);
+            this.lvHsnCode.Location = new System.Drawing.Point(579, 499);
             this.lvHsnCode.Name = "lvHsnCode";
             this.lvHsnCode.Size = new System.Drawing.Size(257, 78);
             this.lvHsnCode.TabIndex = 128;
@@ -1961,16 +1971,6 @@
             this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
             this.cbCompleted.Enter += new System.EventHandler(this.CbCompleted_Enter);
             this.cbCompleted.Leave += new System.EventHandler(this.CbCompleted_Leave);
-            // 
-            // cmbRM
-            // 
-            this.cmbRM.Enabled = false;
-            this.cmbRM.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRM.FormattingEnabled = true;
-            this.cmbRM.Location = new System.Drawing.Point(359, 131);
-            this.cmbRM.Name = "cmbRM";
-            this.cmbRM.Size = new System.Drawing.Size(164, 27);
-            this.cmbRM.TabIndex = 127;
             // 
             // CP_Product
             // 

@@ -600,6 +600,7 @@
             this.grdGRNList.GridColor = System.Drawing.Color.White;
             this.grdGRNList.Location = new System.Drawing.Point(3, 151);
             this.grdGRNList.Name = "grdGRNList";
+            this.grdGRNList.ReadOnly = true;
             this.grdGRNList.RowHeadersVisible = false;
             this.grdGRNList.RowHeadersWidth = 100;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -632,6 +633,7 @@
             this.ClmEdit.HeaderText = "Edit";
             this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.ClmEdit.Name = "ClmEdit";
+            this.ClmEdit.ReadOnly = true;
             this.ClmEdit.Width = 50;
             // 
             // clmPrint
@@ -639,6 +641,7 @@
             this.clmPrint.HeaderText = "Reprint";
             this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
             this.clmPrint.Width = 50;
             // 
             // clmLocPrint
@@ -646,6 +649,7 @@
             this.clmLocPrint.HeaderText = "Location Print";
             this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmLocPrint.Name = "clmLocPrint";
+            this.clmLocPrint.ReadOnly = true;
             this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 

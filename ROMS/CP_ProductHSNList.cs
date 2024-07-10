@@ -86,7 +86,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion", varUserID,0);
+                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion", varUserID, 0, 0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -98,7 +98,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objDser = new SPDataService();
-                                    varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion", varUserID, 1);
+                                    varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion", varUserID, 1, 0);
                                     objDser.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {

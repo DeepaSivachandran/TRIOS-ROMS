@@ -51,7 +51,8 @@ namespace ROMS
         List<int> varProductsIDs = new List<int>();
         public int varAutocompleteProduct = 0;
         public string varEditPRID = "0";
-        string varLocationID = "0", varRackID = "0", varLocationName = "", varRack = "", varPrid = "", varPoIDs = "";
+        string varLocationID = "0", varRackID = "0" , varLocationName="" , varRack="", varPrid="" , varPoIDs="";
+        public string varBlockedSupplier = "0", varBlockedReason = "0";
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -826,6 +827,17 @@ namespace ROMS
                         tpInvoiceAMT.Show("Please enter invoice amount.", txtInvoiceamt, 5000);
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
+                    }
+                    if (varBlockedSupplier == "98")
+                    {
+                        SPDataService objDS = new SPDataService();
+                        string varMessage = objDS.udfnGetMessages(134);
+                        objDS.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            result1 = DialogResult.No;
+                        }
                     }
                     if (result1 == DialogResult.Yes)
                     {
@@ -3631,7 +3643,7 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdGrnlist.Rows.Count; i++)
+                if (chkCompleted.Checked == true)
                 {
                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
                     {
@@ -3671,6 +3683,38 @@ namespace ROMS
                         cell1.Style.ForeColor = Color.Black;
                         cell1.ReadOnly = true;
                     }
+                    btnVerified.Enabled = false;
+                    btnSave.Enabled = false;
+                    txtRemark.Enabled = false;
+                    udfnDisable();
+                }
+                else
+                {
+                    for (int i = 0; i < grdGrnlist.Rows.Count; i++)
+                    {
+                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
+                        {
+                            DataGridView dataGridView = (DataGridView)sender;
+                            DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
+                            cell.Style.BackColor = Color.LightGray;
+                            cell.Style.ForeColor = Color.Black;
+                            cell.ReadOnly = true;
+                        }
+                        else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "73")
+                        {
+                            DataGridView dataGridView = (DataGridView)sender;
+                            DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
+                            cell.Style.BackColor = Color.LightGray;
+                            cell.Style.ForeColor = Color.Black;
+                            cell.ReadOnly = true;
+                        }
+                        else
+                        {
+                            DataGridView dataGridView = (DataGridView)sender;
+                            DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
+                            cell.Style.BackColor = Color.PaleGreen;
+                            cell.Style.ForeColor = Color.Black;
+                        }
 
                     string[] varShelflifevalue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                     if (varShelflifevalue[0] != "")
@@ -3698,7 +3742,7 @@ namespace ROMS
                         }
                     }
                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmPOid"].Value) == "215")
-                    {
+{
                         grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmBatchno"].ReadOnly = true;
@@ -3706,11 +3750,13 @@ namespace ROMS
                         grdGrnlist.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmexpirydate"].Value = "";
 
-                        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
-                        grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                        grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
-                        grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.LightGray;
-                        grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                            grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                            grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.LightGray;
+                            grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                        }
+
                     }
                 }
             }
@@ -5098,7 +5144,6 @@ namespace ROMS
                                 //        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
                                 //    }
                                 //}
-                                udfnrowclear();
                                 varModifiedFlag = 1;
                                 //grdsupplieradd.Sort(grdsupplieradd.Columns[1], ListSortDirection.Ascending);
                                 //for (int i = 0; i < grdsupplieradd.RowCount; i++)
@@ -5215,6 +5260,7 @@ namespace ROMS
                                 //objDServ1.CloseConnection();
                                 //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
+                            udfnrowclear();
                         }
                     }
                 }
@@ -6183,6 +6229,8 @@ namespace ROMS
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceAmnt"]);
                                 txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Remarks"]);
                                 cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
+                                varBlockedSupplier = Convert.ToString(objDs.Tables[0].Rows[0]["SP_STSId"]);
+                                varBlockedReason = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;
                                 cmbConcern.Enabled = false;
@@ -6342,19 +6390,19 @@ namespace ROMS
                                             grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
                                             grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
                                             grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = false;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
+                                            //grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
                                         }
                                         else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "193" || (varOrderType == 53 && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value) == 0) && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value) != 0)
                                         {
                                             grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = false;
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                                            //grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
                                             grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
                                             grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
                                         }
                                         else
                                         {
                                             grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = false;
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                                            //grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
                                             grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = false;
                                             grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
                                         }
@@ -6441,11 +6489,12 @@ namespace ROMS
                             }
                         }
                     }
-                    if(chkCompleted.Checked==true)
+                    if(chkCompleted.Checked == true)
                     {
                         btnVerified.Enabled = false;
                         btnSave.Enabled = false;
                         txtRemark.Enabled = false;
+                        udfnDisable();
                         udfnVerifiedBy();
                     }
                     else
@@ -6469,6 +6518,12 @@ namespace ROMS
                     //    cell.Style.ForeColor = Color.White;
                     //    cell.ReadOnly = true;
                     //}
+                    if (varBlockedSupplier == "98")
+                    {
+                        tsbSupplier.Visible = true;
+                        txtSupplier.BackColor = Color.LightPink;
+                        tsbSupplier.Text = varBlockedReason;
+                    }
                 }
             }
             catch (Exception ex)
@@ -6481,8 +6536,28 @@ namespace ROMS
                 if(grdGrnlist.Rows.Count>0)
                 {
                     grdGrnlist.CurrentCell = grdGrnlist[6, 0];
-
                 }
+            }
+        }
+        public void udfnDisable()
+        {
+            try
+            {
+                grdGrnlist.Columns["clmInvoiceQty"].ReadOnly = true;
+                grdGrnlist.Columns["clmExcessQty"].ReadOnly = true;
+                grdGrnlist.Columns["clmInvoiceQty"].DefaultCellStyle.BackColor = Color.LightGray;
+                grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.BackColor = Color.LightGray;
+                grdGrnlist.Columns["clmmrp"].ReadOnly = true;
+                grdGrnlist.Columns["clmmrp"].DefaultCellStyle.BackColor = Color.LightGray;
+                grdGrnlist.Columns["clmexpirydate"].ReadOnly = true;
+                grdGrnlist.Columns["clmBatchno"].ReadOnly = true;
+                grdGrnlist.Columns["clmexpirydate"].DefaultCellStyle.BackColor = Color.LightGray;
+                grdGrnlist.Columns["clmBatchno"].DefaultCellStyle.BackColor = Color.LightGray;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)

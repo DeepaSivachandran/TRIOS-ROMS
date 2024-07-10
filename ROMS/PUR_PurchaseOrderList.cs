@@ -973,7 +973,7 @@ namespace ROMS
                     {
                         lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count > 0)
-                        { 
+                        {
                             grdPurchaseorderlist.Columns["clmPrint"].Visible = true;
                             grdPurchaseorderlist.Columns["clmView"].Visible = true; 
                             lblNoRecordsFound.Visible = false;
@@ -996,10 +996,10 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
-                            grdPurchaseorderlist.Columns["Po Status"].Width = 100;
+                            grdPurchaseorderlist.Columns["Po Status"].Width = 90;
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
-                            grdPurchaseorderlist.Columns["Overall Status"].Width = 150;
+                            grdPurchaseorderlist.Columns["Overall Status"].Width = 130;
 
                             grdPurchaseorderlist.Columns["STS"].Visible = false;
                             grdPurchaseorderlist.Columns["COMID"].Visible = false;
@@ -2408,6 +2408,25 @@ namespace ROMS
         {
             try
             {
+                grdPurchaseorderlist.Columns["clmView"].Frozen = true;
+                grdPurchaseorderlist.Columns["clmPrint"].Frozen = true;
+                grdPurchaseorderlist.Columns["S.No."].Frozen = true;
+                grdPurchaseorderlist.Columns["Concern"].Frozen = true;
+                grdPurchaseorderlist.Columns["Po Status"].Frozen = true;
+                grdPurchaseorderlist.Columns["Overall Status"].Frozen = true;
+                grdPurchaseorderlist.Columns["PO.No."].Frozen = true;
+                grdPurchaseorderlist.Columns["PO Date"].Frozen = true;
+                grdPurchaseorderlist.Columns["Supplier"].Frozen = true;
+                grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["clmView"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["Po Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["PO.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;

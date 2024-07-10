@@ -42,6 +42,7 @@ namespace ROMS
         public decimal varNetweight = 0;
         public double totalBulkqty = 0, varFinalBulkUnit = 0;
         public decimal totalOrderQty = 0, totalUnitqty = 0, varFinalUnit = 0, varFinalTotalQty = 0, varFinalTotalKg = 0, varBulkunitqty = 0, varUnitqty = 0, varTotalunitqty = 0;
+        public string varBlockedSupplier = "0", varBlockedReason = "";
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
@@ -288,7 +289,7 @@ namespace ROMS
             try
             {
 
-                dpissuedateandtime.Enabled = true;
+                //dpissuedateandtime.Enabled = true;
                 txtIssuedBy.Enabled = true;
                 txtissuemodevalue.Enabled = true;
                 txtTurnAroundTime.Enabled = true;
@@ -749,7 +750,18 @@ namespace ROMS
                             varErrorFlag = false;
                         }
                     }
-
+                    if (varBlockedSupplier == "98")
+                    {
+                        txtSupplier.BackColor = Color.LightPink;
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(134);
+                        objDServ.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            varErrorFlag = false;
+                        }
+                    }
                     if (varErrorFlag == true)
                     {
                         udfntooltiphide();
@@ -1552,7 +1564,7 @@ namespace ROMS
                     udfnSchedulecolorchange();
                     result = objspdservice.udfnSupplierMaster(11, Convert.ToInt32(lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", "", 0,
                     0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, txtSalesManName.Text,
-                    "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0);
+                    "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0,0,0);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -2001,7 +2013,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["STSID"].ToString(), objDs.Tables[0].Rows[i]["Reason"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -2010,6 +2022,8 @@ namespace ROMS
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
                                 LV_Supplier.Columns[3].Width = 0;
+                                LV_Supplier.Columns[4].Width = 0;
+                                LV_Supplier.Columns[5].Width = 0;
                             }
                         }
                     }
@@ -2094,6 +2108,13 @@ namespace ROMS
                 txtProductName.BackColor = Color.LemonChiffon;
                 DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                 GrdPendingorder_DataBindingComplete(grdPendingorder, args);
+
+                if (varBlockedSupplier == "98")
+                {
+                    tsbSupplier.Visible = true;
+                    txtSupplier.BackColor = Color.LightPink;
+                    tsbSupplier.Text = varBlockedReason;
+                }
             }
             catch (Exception ex)
             {
@@ -2941,7 +2962,7 @@ namespace ROMS
                     //{
                     //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     //} 
-                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0);
+                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0,0,0);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -4904,6 +4925,8 @@ namespace ROMS
                         lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                         lblschedule.Text = selectedItem.SubItems[2].Text;
                         varSuppliervalue = selectedItem.SubItems[3].Text;
+                        varBlockedSupplier =selectedItem.SubItems[4].Text;
+                        varBlockedReason = selectedItem.SubItems[5].Text;
                     }
                     if (Convert.ToInt32(grdsupplieradd.Rows.Count) != 0)
                     {
@@ -4941,6 +4964,12 @@ namespace ROMS
                 else
                 {
                     txtProductName.Focus();
+                }
+                if (varBlockedSupplier == "98")
+                {
+                    tsbSupplier.Visible = true;
+                    txtSupplier.BackColor = Color.LightPink;
+                    tsbSupplier.Text = varBlockedReason;
                 }
             }
             catch (Exception ex)

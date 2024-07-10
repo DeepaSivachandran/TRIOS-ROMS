@@ -2650,15 +2650,20 @@ namespace ROMS
                                     txtVerifiedby2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Verified BY 2"]);
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN User"]);
                                     lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["GRN STS"]);
-                                    grdInward.Columns["clmQty"].HeaderText = "Pending Qty";
-                                    grdInward.Columns["clmQty"].Visible = true;
+                                    grdInward.Columns["clmPendingQty"].Visible = true;
+                                    Quantity = "Pending Qty";
                                 }
                                 if(varGRNPurchaseFlag==2 || varGRNPurchaseFlag == 175)
                                 {
                                     string PurEntryType = Convert.ToString(objDs.Tables[2].Rows[0]["PUR_EntryType"]);  // GET Purchase Entry Type
-                                    
+
+                                    grdInward.Columns["clmQty"].HeaderText = "Invoice Qty";
+                                    grdInward.Columns["clmQty"].Visible = true;
+                                    Quantity = "Invoice Qty";
+
                                     if (PurEntryType == "54") // Against GRN
                                     {
+                                        grdInward.Columns["clmPendingQty"].Visible = true;
                                         textBox4.Visible = true;
                                         txtVerifiedby1.Visible = true;
                                         textBox5.Visible = true;
@@ -2673,6 +2678,7 @@ namespace ROMS
                                     }
                                     if (PurEntryType == "55") // Against PO
                                     {
+                                        grdInward.Columns["clmPendingQty"].Visible = false;
                                         txtDGRNDate.Text = "PO Date";
                                         txtDGRNNo.Text = "PO No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PO_Date"]);
@@ -2681,12 +2687,14 @@ namespace ROMS
                                     }
                                     if(PurEntryType=="56") // Direct Purchase
                                     {
+                                        grdInward.Columns["clmPendingQty"].Visible = false;
                                         lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PUR STS"]);
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PUR Date"]);
                                         txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["PUR User"]);
                                     }
                                     if (PurEntryType == "57") // Against DC
                                     {
+                                        grdInward.Columns["clmPendingQty"].Visible = false;
                                         txtDGRNDate.Text = "DC Date";
                                         txtDGRNNo.Text = "DC No.";
                                         dpGRNDate.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC_Date"]);
@@ -2723,6 +2731,10 @@ namespace ROMS
                                     txtCompletedby.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC User"]);
                                     lblStatusValue.Text = Convert.ToString(objDs.Tables[1].Rows[0]["DC STS"]);
                                     grdInward.Columns["clmQty"].HeaderText = Quantity;
+                                    textBox4.Visible = true;
+                                    txtVerifiedby1.Visible = true;
+                                    txtVerifiedby1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Verified BY 1"]);
+                                    Quantity = "Quantity";
                                 }
                                 if(varStausId==46)
                                 {
@@ -2758,13 +2770,11 @@ namespace ROMS
                                         OrderID = "ORDER ID";
                                     }
                                     grdInward.Rows.Add(false, null, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Name in Tamil"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]),
-                                        Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Quantity"]),Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shop Qty"]),
+                                        Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Pending Qty"]), Convert.ToString(objDs.Tables[0].Rows[i][Quantity]),Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shop Qty"]),
                                          Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack ID"]),
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[0].Rows[i][OrderID]),0
                                             ,Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP Flag"]), 
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeType"]));
-
-                                    
                                     udfnStatus();
                                     if(varEditFlag==0)
                                     {
@@ -2823,6 +2833,8 @@ namespace ROMS
                                 grdInward.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 if (varEditFlag == 1)
                                 {
+                                    grdInward.Columns["clmReason"].Visible = false;
+                                    grdInward.Columns["clmPendingQty"].Visible = false;
                                     grdInward.Columns["clmQty"].Visible = false;
                                     grdInward.Columns["clmConvert"].Visible = false;
                                     grdInward.Columns["clmRemove"].Visible = false;
@@ -3324,7 +3336,7 @@ namespace ROMS
                                 //grdProDetails.Rows.Add();
                                 if (irow < grdInward.Rows.Count - 1)
                                 {
-                                    grdInward.CurrentCell = grdInward["Received Qty", irow + 1];
+                                    grdInward.CurrentCell = grdInward["clmReceivedQty", irow + 1];
                                     icolumn = grdInward.CurrentCell.ColumnIndex;
                                     irow = grdInward.CurrentCell.RowIndex;
                                     //goto A;
@@ -3336,7 +3348,13 @@ namespace ROMS
                                     {
                                         icolumn++; goto A;
                                     }
-
+                                    if (irow < grdInward.Rows.Count - 1)
+                                    {
+                                        if (grdInward.CurrentCell.OwningColumn.Name == "clmRemove")
+                                        {
+                                            grdInward.CurrentCell = grdInward["clmReceivedQty", irow + 1];
+                                        }
+                                    }
                                 }
                             }
                             else
@@ -3349,6 +3367,13 @@ namespace ROMS
                                 {
                                     grdInward.CurrentCell = grdInward[icolumn + 1, irow];
                                     if (grdInward.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
+                                }
+                                if (irow < grdInward.Rows.Count - 1)
+                                {
+                                    if (grdInward.CurrentCell.OwningColumn.Name == "clmRemove")
+                                    {
+                                        grdInward.CurrentCell = grdInward["clmReceivedQty", irow + 1];
+                                    }
                                 }
                             }
                         }

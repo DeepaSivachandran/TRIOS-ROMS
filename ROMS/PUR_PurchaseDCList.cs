@@ -146,9 +146,9 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdPurchaseDCList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPurchaseDCList.Columns["Concern"].Width = 80;
-                                grdPurchaseDCList.Columns["DC Date"].Width = 100;
-                                grdPurchaseDCList.Columns["DC No."].Width = 100;
+                                grdPurchaseDCList.Columns["Concern"].Width = 70;
+                                grdPurchaseDCList.Columns["DC Date"].Width = 90;
+                                grdPurchaseDCList.Columns["DC No."].Width = 75;
                                 grdPurchaseDCList.Columns["Supplier"].Width = 300;
                                 grdPurchaseDCList.Columns["Tot Pro"].Width = 100;
                                 grdPurchaseDCList.Columns["Created By"].Width = 200;
@@ -156,7 +156,7 @@ namespace ROMS
                                 //grdPurchaseDCList.Columns["Status"].Width = 140;
                                 grdPurchaseDCList.Columns["clmPrint"].Width = 50;
                                 grdPurchaseDCList.Columns["Pur Dc Status"].Width = 150;
-                                grdPurchaseDCList.Columns["Overall Status"].Width = 180;
+                                grdPurchaseDCList.Columns["Overall Status"].Width = 150;
                                 grdPurchaseDCList.Columns["S.No."].Width = 50;
                                 grdPurchaseDCList.Columns["ID"].Visible = false;
                                 grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
@@ -659,7 +659,7 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dpDcFromDate.MinDate = MainForm.pbFYStartDate;
                 dpDcFromDate.MaxDate = MainForm.pbCurrentDate;
-                //udfnDate();
+                udfnDate();
                 dpdctodate.MaxDate = MainForm.pbCurrentDate;
                  this.ActiveControl = cmbConcern;
                 //txtSupplier.Focus();
@@ -690,7 +690,7 @@ namespace ROMS
             {
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 9;
-                objMR_Master.paraID = 6;
+                objMR_Master.paraID = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Master.paraFlag = 1;
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
@@ -1014,6 +1014,23 @@ namespace ROMS
         {
             try
             {
+                grdPurchaseDCList.Columns["clmPrint"].Frozen = true;
+                grdPurchaseDCList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["S.No."].Frozen = true;
+                grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Pur Dc Status"].Frozen = true;
+                grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Overall Status"].Frozen = true;
+                grdPurchaseDCList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["DC Date"].Frozen = true;
+                grdPurchaseDCList.Columns["Concern"].Frozen = true;
+                grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["DC No."].Frozen = true;
+                grdPurchaseDCList.Columns["DC No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Supplier"].Frozen = true;
+                grdPurchaseDCList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 for (int i = 0; i < grdPurchaseDCList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "18")
@@ -1281,8 +1298,8 @@ namespace ROMS
                     grdProDetails.Visible = true;
                     DGV_ProdSearchGrid.Visible = true;
                     //btnPrint.Visible = true;
-                    //RPTViewer.Visible = false;
-                    //RPTViewer.SendToBack();
+                    RPTViewer.Visible = false;
+                    RPTViewer.SendToBack();
                     udfnProductList();
                 }
                 else
@@ -1292,8 +1309,8 @@ namespace ROMS
                     grdProDetails.Visible = false;
                     DGV_ProdSearchGrid.Visible = false;
                     //btnPrint.Visible = false;
-                    //RPTViewer.Visible = false;
-                    //RPTViewer.SendToBack();
+                    RPTViewer.Visible = false;
+                    RPTViewer.SendToBack();
                     udfnList();
                 }
             }
@@ -2169,6 +2186,93 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                LV_Supplier.BringToFront();
+                picLoader.BringToFront();
+                Application.DoEvents();
+                string varSupplier = txtSupplier.Text;
+                int varstsid = 0;
+                if (varSupplier == "")
+                {
+                    varSupplier = "-All-";
+                    lblSupplierCode.Text = "0";
+                }
+                int varPrint = 0;
+                varstsid = Convert.ToInt32(cmbStatus.SelectedValue);
+                if (Convert.ToInt32(cmbStatus.SelectedValue) == 0)
+                {
+                    varstsid = 0;
+                }
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                TRN_Purchase_DC objTRNG_Purchase_DC = new TRN_Purchase_DC();
+                objTRNG_Purchase_DC.ViewType = varviewtype;
+                objTRNG_Purchase_DC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_Purchase_DC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_Purchase_DC.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                objTRNG_Purchase_DC.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                objTRNG_Purchase_DC.paraFromDate = dpDcFromDate.Text;
+                objTRNG_Purchase_DC.paraToDate = dpdctodate.Text;
+                objTRNG_Purchase_DC.@paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRNG_Purchase_DC.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnPurchaseDCList(objTRNG_Purchase_DC);
+                objdserv.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DCList.rpt");
+                    objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpDcFromDate.Text));
+                    objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpdctodate.Text));
+                    objBillreport.SetParameterValue("paraSupplierID", Convert.ToInt32(lblSupplierCode.Text));
+                    objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedule.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraSupplierName", Convert.ToString(varSupplier));
+                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraStatusID", varstsid);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                LV_Supplier.BringToFront();
+                picLoader.SendToBack();
+                btnPrint.Enabled = true;
+                btnPrint.Focus();
+                GC.Collect();
             }
         }
 

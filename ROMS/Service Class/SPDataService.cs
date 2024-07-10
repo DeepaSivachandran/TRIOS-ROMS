@@ -417,7 +417,7 @@ namespace ROMS
             return ds;
         }
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN Sp
-        public string udfnHsn(int ViewType, int paraHsnId, int paraGstId, string paraHsnName, string paraHsnCode, int paraStatusId, string paraOriginator, string pbUserID, int paraDeleteFlag)
+        public string udfnHsn(int ViewType, int paraHsnId, int paraGstId, string paraHsnName, string paraHsnCode, int paraStatusId, string paraOriginator, string pbUserID, int paraDeleteFlag,int paraVerify)
         {
             string varResult = "";
             try
@@ -436,6 +436,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraVerify", paraVerify);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -708,6 +709,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDamageEntry", objTRN_Damage.paraDamageEntry);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Damage.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraEmployeeId", objTRN_Damage.paraEmployeeId);
+                varSqlCommand.Parameters.AddWithValue("@paraSHID", objTRN_Damage.paraSHID);
                 varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRN_Damage.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
@@ -1905,7 +1907,7 @@ namespace ROMS
             , int paraDesignation, string paraDesignationName, double paraCreditLimit, int paraDayid, int paramonthid, int paraweekid, int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile, string paraSalesmanWhatsapp, int paraSaleOrderType, string ParaOrderDays,
               int ParaSupplierOrderid, int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
-              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int @paraFlag,int paraDiscApplicable,int paraDiscDays,int paraDiscPer)
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag,int paraDiscApplicable,int paraDiscDays,int paraDiscPer,int paraScheduleId,int paraReason)
         {
             string result = "";
             try
@@ -1971,6 +1973,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraTat", paraTat);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraReason", paraReason);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2883,6 +2887,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_StockHold.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNS_StockHold.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNS_StockHold.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNS_StockHold.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRNS_StockHold.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRNS_StockHold.paraStatus);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraReason", objTRNS_StockHold.paraReason);

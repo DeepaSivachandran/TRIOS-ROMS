@@ -650,6 +650,10 @@ namespace ROMS
                     udfnExpiryDate();
                     if (varShelflife == 1)
                     { expirydateFlag = 1; }
+                    else
+                    {
+                        expirydateFlag = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1088,6 +1092,10 @@ namespace ROMS
                 }
                 string MRP = "";
                 //varConvertMRP = Convert.ToDecimal(txtConvertMrp.Text);
+                if (expirydateFlag == 1 || txtDay.Text != "" || txtMonth.Text != "" || txtYear.Text != "")
+                {
+                    udfnExpiryDateCheck();
+                }
                 decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                 string varConvertMRP = string.Format("{0:0.00}", varMRP);
                 MRP = varConvertMRP;
@@ -1096,10 +1104,6 @@ namespace ROMS
                     udfnError();
                 }
                 udfnValidation();
-                if (expirydateFlag == 1 || txtDay.Text != "" || txtMonth.Text != "" || txtYear.Text != "")
-                {
-                    udfnExpiryDateCheck();
-                }
                 SPDataService objServ = new SPDataService();
                 DataSet objDS = new DataSet();
                 if (varExpiryDate != "")
@@ -1287,12 +1291,12 @@ namespace ROMS
             {
                 string mrp = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtConvertMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero));
                 string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
-                string varExpiryDate1 = txtDay.Text + '/' + txtMonth.Text + '/' + "20" + txtYear.Text;
-                string varExpiryDate = Convert.ToString(varExpiryDate1);
+                //string varExpiryDate1 = txtDay.Text + '/' + txtMonth.Text + '/' + "20" + txtYear.Text;
+                string varExpiryDate1 = Convert.ToString(varExpiryDate);
                 string varBatchNo = Convert.ToString(txtConvertBatch.Text);
                 var varDuplicateProuct = from r in dtStock.AsEnumerable()
                                          where (r.Field<string>("STK_MRP").Equals(mrp1) &&
-                                                  r.Field<string>("STK_ExpiryDate").Equals(varExpiryDate) &&
+                                                  r.Field<string>("STK_ExpiryDate").Equals(varExpiryDate1) &&
                                                   r.Field<string>("STK_BatchNo").Equals(varBatchNo)
                                                   )
                                          group r by new { MRP = r["STK_MRP"], ExpiryDate = r["STK_ExpiryDate"], BatchNo = r["STK_BatchNo"] }

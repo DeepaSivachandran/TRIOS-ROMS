@@ -680,8 +680,8 @@ namespace ROMS
                                 grdInwardList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Tot Pro in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInwardList.Columns["Con"].Width = 80;
-                                grdInwardList.Columns["Vouc Date"].Width = 100;
-                                grdInwardList.Columns["Vouc No."].Width = 100;
+                                grdInwardList.Columns["Vouc Date"].Width = 80;
+                                grdInwardList.Columns["Vouc No."].Width = 70;
                                 grdInwardList.Columns["Supplier"].Width = 250;
                                 grdInwardList.Columns["Tot Pro in Invoice"].Width = 160;
                                 grdInwardList.Columns["Location"].Width = 130;
@@ -2030,6 +2030,25 @@ namespace ROMS
         {
             try
             {
+                grdInwardList.Columns["S.No."].Frozen = true;
+                grdInwardList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardList.Columns["Con"].Frozen = true;
+                grdInwardList.Columns["Con"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardList.Columns["Goods Inward Status"].Frozen = true;
+                grdInwardList.Columns["Goods Inward Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardList.Columns["Overall Status"].Frozen = true;
+                grdInwardList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardList.Columns["Inward No."].Frozen = true;
+                grdInwardList.Columns["Inward No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardList.Columns["Inward Date"].Frozen = true;
+                grdInwardList.Columns["Inward Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardList.Columns["Vouc No."].Frozen = true;
+                grdInwardList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardList.Columns["Vouc Date"].Frozen = true;
+                grdInwardList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardList.Columns["Supplier"].Frozen = true;
+                grdInwardList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 for (int i = 0; i < grdInwardList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "46") //entry completed

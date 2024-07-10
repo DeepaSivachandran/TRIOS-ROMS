@@ -55,6 +55,7 @@ namespace ROMS
         public static CP_Companylist objCP_Companylist;
         public static CP_ProductHSN objCP_ProductHSN;
         public static CP_ProductHSNList objCP_ProductHSNlist;
+        public static CP_ProductHSN_Verify objCP_ProductHSN_Verify;
         public static CP_Unitlist objCP_Unitlist;
         public static CP_Unit objCP_Unit;
         public static CP_City objCP_City;
@@ -125,6 +126,10 @@ namespace ROMS
         public static INV_InwardPurchaseList objINV_InwardPurchaseList;
         public static INV_InwardPurchase objINV_InwardPurchase;
         public static INV_StockHold objINV_StockHold;
+        public static INV_StockHold_Location objINV_StockHold_Location;
+        public static INV_StockHold_Supplier objINV_StockHold_Supplier;
+        public static INV_StockHold_Damages objINV_StockHold_Damages;
+        public static INV_StockHold_Verify objINV_StockHold_Verify;
         public static INV_StockConversionList objINV_StockConversionList;
         public static INV_StockConversion objINV_StockConversion;
         public static INV_InwardQueueList objINV_InwardQueueList;
@@ -188,6 +193,7 @@ namespace ROMS
         public static PAY_GSTRDetails objPAY_GSTRDetails;
         public static PAY_Advance objPAY_Advance;
         public static PAY_ADV objPAY_Advance_Popup;
+        public static PAY_BlockedSupplier objPAY_BlockedSupplier;
 
         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;
@@ -2038,6 +2044,25 @@ namespace ROMS
                 MainForm.objPAY_GSTRDetails = new PAY_GSTRDetails();
                 MainForm.objPAY_GSTRDetails.MdiParent = this;
                 MainForm.objPAY_GSTRDetails.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmBlockedSupplier_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objPAY_BlockedSupplier = new PAY_BlockedSupplier();
+                MainForm.objPAY_BlockedSupplier.MdiParent = this;
+                MainForm.objPAY_BlockedSupplier.Show();
+                PbCurrentForm = "4.5";
             }
             catch (Exception ex)
             {

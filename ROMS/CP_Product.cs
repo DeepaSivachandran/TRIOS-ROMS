@@ -3426,6 +3426,8 @@ namespace ROMS
                     txtPurRack.Enabled = false;
                 }
                 udfnEdit();
+                txtHSNCode.Enabled = false;
+                txtHSNCode.ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -5092,7 +5094,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue),0,txtHsnName.Text.Trim(),"");
+                    objDs = objspdservice.udfnHsnList(6, 0, 0,0,txtHsnName.Text.Trim(),"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -5102,7 +5104,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString()};
+                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString(),objDs.Tables[0].Rows[i]["HSN_GSTID"].ToString()};
                                     ListViewItem objList = new ListViewItem(row);
                                     lvHsnCode.Items.Add(objList);
                                 }
@@ -5152,12 +5154,13 @@ namespace ROMS
         {
             try
             {
-                if (txtHSNCode.Text != "")
+                if (txtHsnName.Text != "")
                 {
                     ListViewItem selectedItem = lvHsnCode.SelectedItems[0];
-                    txtHSNCode.Text = selectedItem.SubItems[0].Text;
+                    cmbGst.SelectedValue = Convert.ToInt32(selectedItem.SubItems[3].Text);
+                    txtHSNCode.Text = selectedItem.SubItems[1].Text;
                     lblHsnName.Text = selectedItem.SubItems[2].Text;
-                    txtHsnName.Text= selectedItem.SubItems[1].Text;
+                    txtHsnName.Text= selectedItem.SubItems[0].Text;
                     btnSave.Focus();
                 }
             }

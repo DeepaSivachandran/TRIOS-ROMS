@@ -274,10 +274,10 @@ namespace ROMS
                             {
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
+
                                 dgvSupplierScheduleList.DataSource = objDs.Tables[0];
                                 //grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 //grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
                                 dgvSupplierScheduleList.Columns["S.No."].Width = 40;
                                 dgvSupplierScheduleList.Columns["Supplier"].Width = 300;
                                 dgvSupplierScheduleList.Columns["GSTIN"].Width = 120;
@@ -298,6 +298,7 @@ namespace ROMS
                                 dgvSupplierScheduleList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 dgvSupplierScheduleList.Columns["Ret. Policy"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 dgvSupplierScheduleList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
                             }
                             else
                             {
@@ -1363,7 +1364,14 @@ namespace ROMS
         {
             try
             {
-
+                dgvSupplierScheduleList.Columns["S.No."].Frozen = true;
+                dgvSupplierScheduleList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                dgvSupplierScheduleList.Columns["City"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                dgvSupplierScheduleList.Columns["Supplier Type"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                dgvSupplierScheduleList.Columns["Supplier"].Frozen = true;
+                dgvSupplierScheduleList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                dgvSupplierScheduleList.Columns["GSTIN"].Frozen = true;
+                dgvSupplierScheduleList.Columns["GSTIN"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 for (int i = 0; i < dgvSupplierScheduleList.Rows.Count; i++)
                 {
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "4" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Value) != "")

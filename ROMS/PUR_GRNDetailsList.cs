@@ -281,6 +281,7 @@ namespace ROMS
                             grdGRNList.Columns["City"].Width = 100;
                             grdGRNList.Columns["GSTIN"].Visible = false;
                             grdGRNList.Columns["Inv Date"].Width = 85;
+                            grdGRNList.Columns["Concern"].Width = 70;
                             grdGRNList.Columns["Inv No."].Width = 100;
                             grdGRNList.Columns["Inv Amt"].Width = 120;
                             grdGRNList.Columns["Created By"].Width = 200;
@@ -313,7 +314,7 @@ namespace ROMS
                             grdGRNList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             grdGRNList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+                            /*
                             grdGRNList.Columns["S.No."].ReadOnly = true;
                             grdGRNList.Columns["Concern"].ReadOnly = true;
                             grdGRNList.Columns["GRN No."].ReadOnly = true;
@@ -335,7 +336,7 @@ namespace ROMS
                             grdGRNList.Columns["clmPrint"].ReadOnly = true;
                             grdGRNList.Columns["Tot Pro"].ReadOnly = true;
                             grdGRNList.Columns["Payment Mode"].ReadOnly = true;
-
+                            */
                         }
                         else
                         {
@@ -1611,6 +1612,26 @@ namespace ROMS
         {
             try
             {
+                grdGRNList.Columns["ClmEdit"].Frozen = true;
+                grdGRNList.Columns["ClmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["clmPrint"].Frozen = true;
+                grdGRNList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["clmLocPrint"].Frozen = true;
+                grdGRNList.Columns["clmLocPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["S.No."].Frozen = true;
+                grdGRNList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["Concern"].Frozen = true;
+                grdGRNList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["GRN Status"].Frozen = true;
+                grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["Overall Status"].Frozen = true;
+                grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["GRN No."].Frozen = true;
+                grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["GRN Date"].Frozen = true;
+                grdGRNList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["Supplier"].Frozen = true;
+                grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdGRNList.ClearSelection();
                 for (int i = 0; i < grdGRNList.Rows.Count; i++)
                 {

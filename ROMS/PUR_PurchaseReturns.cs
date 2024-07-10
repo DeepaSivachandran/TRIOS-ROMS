@@ -47,6 +47,7 @@ namespace ROMS
         public int varDecimal = 0;
         public decimal varApprox = 0;
         public int varGST = 0, VerifiedBy=0;
+        public string varBlockedSupplier = "0", varBlockedReason = "";
 
 
         public PUR_PurchaseReturns()
@@ -1091,7 +1092,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["STSID"].ToString(), objDs.Tables[0].Rows[i]["Reason"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -1100,6 +1101,8 @@ namespace ROMS
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
                                 LV_Supplier.Columns[3].Width = 0;
+                                LV_Supplier.Columns[4].Width = 0;
+                                LV_Supplier.Columns[5].Width = 0;
                             }
                         }
                     }
@@ -1221,6 +1224,8 @@ namespace ROMS
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
                     varSuppliervalue = selectedItem.SubItems[3].Text;
+                    varBlockedSupplier = selectedItem.SubItems[4].Text;
+                    varBlockedReason = selectedItem.SubItems[5].Text;
 
                     if (Convert.ToInt32(grdReturnDC.Rows.Count) != 0)
                     {
@@ -1259,6 +1264,12 @@ namespace ROMS
                 {
                     cmbReason.Enabled = true;
                     cmbReason.Focus();
+                }
+                if (varBlockedSupplier == "98")
+                {
+                    tsbSupplier.Visible = true;
+                    txtSupplier.BackColor = Color.LightPink;
+                    tsbSupplier.Text = varBlockedReason;
                 }
             }
             catch (Exception ex)
@@ -1343,6 +1354,10 @@ namespace ROMS
                     epReturnDc.Clear();
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
+                }
+                if(varBlockedSupplier=="98")
+                {
+                    txtSupplier.BackColor = Color.LightPink;
                 }
             }
             catch (Exception ex)
@@ -1570,6 +1585,10 @@ namespace ROMS
                             lblschedule.Text = values[1];
                             txtSupplier.BackColor = Color.White;
                         }
+                        if(varBlockedSupplier=="98")
+                        {
+                            txtSupplier.BackColor = Color.LightPink;
+                        }
                     }
                     if (txtReturnDcNo.Text == "")
                     {
@@ -1616,7 +1635,18 @@ namespace ROMS
                             }
                         }
                     }
-
+                    if (varBlockedSupplier == "98")
+                    {
+                        txtSupplier.BackColor = Color.LightPink;
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(134);
+                        objDServ.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            varErrorFlag = false;
+                        }
+                    }
                     if (varErrorFlag == true)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0; int varReasonforClosingId = 0;
@@ -1650,8 +1680,8 @@ namespace ROMS
                                 if (varReturnDCID == 0)
                                 {
                                     varviewtype = 0;
-                                    if (Convert.ToInt32(cmbReason.SelectedValue) == 203)
-                                    {
+                                    //if (Convert.ToInt32(cmbReason.SelectedValue) == 203)
+                                    //{
                                         if (chkCompleted.Checked == true)
                                         {
                                             varStatusId = 15;
@@ -1660,11 +1690,11 @@ namespace ROMS
                                         {
                                             varStatusId = 68;
                                         }
-                                    }
-                                    else
-                                    {
-                                        varStatusId = 68;
-                                    }
+                                    //}
+                                    //else
+                                    //{
+                                        //varStatusId = 68;
+                                    //}
                                     varorginator = "Purchase Return DC insertion";
                                 }
                                 if (varStatusId == 16 || varStatusId==39)
