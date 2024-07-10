@@ -42,6 +42,7 @@
             this.epReturnDc = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbSupplier = new System.Windows.Forms.ToolStripButton();
             this.pnldl = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grpInvoiceDetails = new System.Windows.Forms.GroupBox();
@@ -52,6 +53,8 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
             this.chkVerified = new System.Windows.Forms.CheckBox();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
@@ -196,7 +199,8 @@
             this.tsPurchaseInvoiceList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsPurchaseInvoiceList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsPurchaseInvoiceList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbSupplier});
             this.tsPurchaseInvoiceList.Location = new System.Drawing.Point(0, 0);
             this.tsPurchaseInvoiceList.Name = "tsPurchaseInvoiceList";
             this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 25);
@@ -212,6 +216,18 @@
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(135, 22);
             this.tspHeader.Text = "Purchase Return DC";
+            // 
+            // tsbSupplier
+            // 
+            this.tsbSupplier.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbSupplier.ForeColor = System.Drawing.Color.Red;
+            this.tsbSupplier.Image = global::ROMS.Properties.Resources.right_arrow;
+            this.tsbSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbSupplier.Name = "tsbSupplier";
+            this.tsbSupplier.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbSupplier.Size = new System.Drawing.Size(24, 24);
+            this.tsbSupplier.Visible = false;
             // 
             // pnldl
             // 
@@ -297,7 +313,9 @@
             this.columnHeader5,
             this.columnHeader8,
             this.columnHeader9,
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
             this.LV_Supplier.Location = new System.Drawing.Point(121, 77);
@@ -321,6 +339,14 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 0;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
             // 
             // grpExcessProduct
             // 
@@ -1892,5 +1918,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        public System.Windows.Forms.ToolStripButton tsbSupplier;
     }
 }

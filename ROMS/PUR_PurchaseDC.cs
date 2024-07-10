@@ -59,6 +59,7 @@ namespace ROMS
         public string varVerifiedTime = "";
         public string varVerifiedFormat = "";
         public string varVerifiedName = "";
+        public string varBlockedSupplier = "0", varBlockedReason = "";
 
         public PUR_PurchaseDC()
         {
@@ -854,7 +855,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["STSID"].ToString(), objDs.Tables[0].Rows[i]["Reason"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -863,6 +864,8 @@ namespace ROMS
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
                                 LV_Supplier.Columns[3].Width = 0;
+                                LV_Supplier.Columns[4].Width = 0;
+                                LV_Supplier.Columns[5].Width = 0;
                             }
                         }
                     }
@@ -981,6 +984,8 @@ namespace ROMS
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
                     varSuppliervalue = selectedItem.SubItems[3].Text;
+                    varBlockedSupplier = selectedItem.SubItems[4].Text;
+                    varBlockedReason = selectedItem.SubItems[5].Text;
                     if (Convert.ToInt32(grdPurchaseDC.Rows.Count) != 0)
                     {
                         if (Convert.ToString(lblSupplierCode.Text.Trim()) != Convert.ToString(varSupplierID))
@@ -1028,6 +1033,12 @@ namespace ROMS
                 //    txtProductName.Focus();
                 //}
                 udfnDefalutLocation();
+                if (varBlockedSupplier == "98")
+                {
+                    tsbSupplier.Visible = true;
+                    txtSupplier.BackColor = Color.LightPink;
+                    tsbSupplier.Text = varBlockedReason;
+                }
             }
             catch (Exception ex)
             {
@@ -1124,6 +1135,12 @@ namespace ROMS
                     ClearSupplier();
                 }
                 txtProductName.BackColor = Color.LemonChiffon;
+                if (varBlockedSupplier == "98")
+                {
+                    tsbSupplier.Visible = true;
+                    txtSupplier.BackColor = Color.LightPink;
+                    tsbSupplier.Text = varBlockedReason;
+                }
             }
             catch (Exception ex)
             {
@@ -2658,6 +2675,18 @@ namespace ROMS
                             grdPurchaseDC.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
                         }
                     }
+                    if (varBlockedSupplier == "98")
+                    {
+                        txtSupplier.BackColor = Color.LightPink;
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(134);
+                        objDServ.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            varErrorFlag = false;
+                        }
+                    }
                     if (varErrorFlag == true && varErrQty == "0")
                     {
                         udfnTooltipHide(); int varDC_PURID = 0;
@@ -3898,7 +3927,7 @@ namespace ROMS
                             {
                                 varExpiryDate = cellValue.ToString();
                                 if (varExpiryDate != "" || varExpiryDate != null)
-                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", 0, 0, 0, varExpiryDate, dpDCDate.Text, varCellprodid, 0, "0", "");
+                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", 0, 0, 0, varExpiryDate, dpDCDate.Text, varCellprodid, 0, "0","", "");
                                 objdserv.CloseConnection();
                                 if (objDs != null)
                                 {

@@ -27,6 +27,7 @@ namespace ROMS
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
         public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
         public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0,varClose=0,varDateChange=0,ParaSupplierAMT = 0;
+        public string varBlockedSupplier = "0", varBlockedReason = "";
         public PUR_GRNEntry()
         {
             InitializeComponent();
@@ -143,7 +144,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnGrnListLoad(0, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0,0, "0","");
+                objDs = objspdservice.udfnGrnListLoad(0, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0,0, "0","","");
                 objspdservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -460,6 +461,10 @@ namespace ROMS
                     errGRN.Clear();
                     txtSupplier.BackColor = Color.White;
                     tpSuppliername.Active = false;
+                    if (varBlockedSupplier == "98")
+                    {
+                        txtSupplier.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (Exception ex)
@@ -504,7 +509,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() ,objDs.Tables[0].Rows[i]["STSID"].ToString(), objDs.Tables[0].Rows[i]["Reason"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -512,6 +517,9 @@ namespace ROMS
                                 LV_Supplier.Columns[1].Width = 0;
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
+                                LV_Supplier.Columns[3].Width = 0;
+                                LV_Supplier.Columns[4].Width = 0;
+                                LV_Supplier.Columns[5].Width = 0;
                             }
                         }
                     }
@@ -662,6 +670,10 @@ namespace ROMS
                         {
                             udfnsupplierLoad();
                         }
+                        if (varBlockedSupplier == "98")
+                        {
+                            txtSupplier.BackColor = Color.LightPink;
+                        }
                     }
                     VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 }
@@ -693,7 +705,7 @@ namespace ROMS
                 txtSalesManMobile.Text = "";
                 txtSalesManName.Text = "";
                 txtSalesManwhatsapp.Text = "";
-                txtLoadingCharge.Text = "";
+                txtUnLoadingCharge.Text = "";
                 txtFrieghtamount.Text = "";
                 varDamage = "0";
                 varReturnDC = "0";
@@ -781,6 +793,8 @@ namespace ROMS
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
                     varSupplierName = selectedItem.SubItems[3].Text;
+                    varBlockedSupplier = selectedItem.SubItems[4].Text;
+                    varBlockedReason = selectedItem.SubItems[5].Text;
                     udfnsupplierLoad();
                 }
                 if (Convert.ToInt32(cmbConcern.SelectedValue) == -1)
@@ -790,6 +804,14 @@ namespace ROMS
                 else
                 {
                     cmbOrderType.Focus();
+                }
+
+                if (varBlockedSupplier == "98")
+                {
+                    lblReason.Visible = true;
+                    lblBlockedReason.Visible = true;
+                    txtSupplier.BackColor = Color.LightPink;
+                    lblBlockedReason.Text = varBlockedReason;
                 }
             }
             catch (Exception ex)
@@ -1191,6 +1213,10 @@ namespace ROMS
                                 lblSupplierCode.Text = values[0];
                                 lblschedule.Text = values[1];
                                 txtSupplier.BackColor = Color.White;
+                                if (varBlockedSupplier == "98")
+                                {
+                                    txtSupplier.BackColor = Color.LightPink;
+                                }
                             }
                         }
                     }
@@ -1209,6 +1235,17 @@ namespace ROMS
                     {
                         udfnvoucheradd(sender, e);
                         VarErrorFlag = true;
+                    }
+                    if(varBlockedSupplier=="98")
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(134);
+                        objDServ.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            VarErrorFlag = true;
+                        }
                     }
                     if (VarErrorFlag == false)
                     {
@@ -1326,7 +1363,7 @@ namespace ROMS
                                     objTRNS_GRN.paraINVDate = dpinvoicedate.Text;
                                     objTRNS_GRN.paraINVNo = txtInvoiceno.Text;
                                     objTRNS_GRN.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
-                                    objTRNS_GRN.ParaLoadingCharge = txtLoadingCharge.Text;
+                                    objTRNS_GRN.ParaUnLoadingCharge = txtUnLoadingCharge.Text;
                                     objTRNS_GRN.ParaFrightCharge = txtFrieghtamount.Text;
                                     objTRNS_GRN.paraOrderType = Convert.ToInt32(cmbOrderType.SelectedValue);
                                     objTRNS_GRN.ParaTRN_GRN_PO = objGrnPO;
@@ -1378,7 +1415,7 @@ namespace ROMS
                                                 MainForm.objPUR_GRNDetailsList.udfnListLoad();
                                                 varCloseFlag = 1;
                                                 SPDataService objdserv = new SPDataService();
-                                                objDs = objdserv.udfnGrnListLoad(5, 0, 0, 0, 0, "", "", Convert.ToInt32(GrnUpdatevalue), 0, 0, "", "", 0, 0, "0", "");
+                                                objDs = objdserv.udfnGrnListLoad(5, 0, 0, 0, 0, "", "", Convert.ToInt32(GrnUpdatevalue), 0, 0, "", "", 0, 0, "0", "","");
                                                 objdserv.CloseConnection();
                                                 if (objDs.Tables.Count != 0)
                                                 {
@@ -1728,7 +1765,7 @@ namespace ROMS
 
         private void TxtLoadingCharge_Enter(object sender, EventArgs e)
         {
-            try { txtLoadingCharge.BackColor = Color.LemonChiffon; }
+            try { txtUnLoadingCharge.BackColor = Color.LemonChiffon; }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1738,7 +1775,7 @@ namespace ROMS
 
         private void TxtLoadingCharge_Leave(object sender, EventArgs e)
         {
-            try { txtLoadingCharge.BackColor = Color.White; }
+            try { txtUnLoadingCharge.BackColor = Color.White; }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1861,7 +1898,7 @@ namespace ROMS
                 {
                     if (grdUnitList.CurrentRow.Index==3)
                     {
-                        txtLoadingCharge.Focus();
+                        txtUnLoadingCharge.Focus();
                     }
                 }
             }
@@ -2213,7 +2250,7 @@ namespace ROMS
                 {
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(2, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0,"","",0,0, "0","");
+                    objDs = objdserv.udfnGrnListLoad(2, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0,"","",0,0, "0","","");
                     objdserv.CloseConnection();
                     btnSave.Text = "Update && Print"; 
                     if (objDs != null)
@@ -2232,8 +2269,8 @@ namespace ROMS
                                 dpinvoicedate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceDate"]);
                                 txtInvoiceno.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceNo"]);
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_InvoiceAmnt"]);
-                                txtLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_LoadingCharges"]);
-                                txtFrieghtamount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
+                                txtUnLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
+                                txtFrieghtamount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_FrieghtCharges"]);
                                 cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;

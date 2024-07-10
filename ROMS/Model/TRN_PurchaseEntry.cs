@@ -82,7 +82,6 @@ namespace ROMS.Model
         public string paraVerifiedTime { get; set; } = "";
         public string paraVerifiedFormat { get; set; } = "";
         public string paraDate { get; set; } = "";
-
-
+        public int paraFlag { get; set; } = 0;
     }
 }

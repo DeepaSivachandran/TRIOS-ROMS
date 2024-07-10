@@ -146,9 +146,9 @@ namespace ROMS
                                 grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdPurchaseDCList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPurchaseDCList.Columns["Concern"].Width = 80;
-                                grdPurchaseDCList.Columns["DC Date"].Width = 100;
-                                grdPurchaseDCList.Columns["DC No."].Width = 100;
+                                grdPurchaseDCList.Columns["Concern"].Width = 70;
+                                grdPurchaseDCList.Columns["DC Date"].Width = 90;
+                                grdPurchaseDCList.Columns["DC No."].Width = 75;
                                 grdPurchaseDCList.Columns["Supplier"].Width = 300;
                                 grdPurchaseDCList.Columns["Tot Pro"].Width = 100;
                                 grdPurchaseDCList.Columns["Created By"].Width = 200;
@@ -156,7 +156,7 @@ namespace ROMS
                                 //grdPurchaseDCList.Columns["Status"].Width = 140;
                                 grdPurchaseDCList.Columns["clmPrint"].Width = 50;
                                 grdPurchaseDCList.Columns["Pur Dc Status"].Width = 150;
-                                grdPurchaseDCList.Columns["Overall Status"].Width = 180;
+                                grdPurchaseDCList.Columns["Overall Status"].Width = 150;
                                 grdPurchaseDCList.Columns["S.No."].Width = 50;
                                 grdPurchaseDCList.Columns["ID"].Visible = false;
                                 grdPurchaseDCList.Columns["DC_SPID"].Visible = false;
@@ -1014,6 +1014,23 @@ namespace ROMS
         {
             try
             {
+                grdPurchaseDCList.Columns["clmPrint"].Frozen = true;
+                grdPurchaseDCList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["S.No."].Frozen = true;
+                grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Pur Dc Status"].Frozen = true;
+                grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Overall Status"].Frozen = true;
+                grdPurchaseDCList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["DC Date"].Frozen = true;
+                grdPurchaseDCList.Columns["Concern"].Frozen = true;
+                grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["DC No."].Frozen = true;
+                grdPurchaseDCList.Columns["DC No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Supplier"].Frozen = true;
+                grdPurchaseDCList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 for (int i = 0; i < grdPurchaseDCList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdPurchaseDCList.Rows[i].Cells["Status ID"].Value) == "18")

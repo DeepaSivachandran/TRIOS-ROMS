@@ -49,6 +49,7 @@
             this.epPurchaseDC = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbSupplier = new System.Windows.Forms.ToolStripButton();
             this.pnldl = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.grpDC = new System.Windows.Forms.GroupBox();
@@ -57,6 +58,8 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblRackCode = new System.Windows.Forms.Label();
             this.lblStockLocationCode = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
@@ -228,10 +231,11 @@
             this.tsPurchaseInvoiceList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsPurchaseInvoiceList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsPurchaseInvoiceList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbSupplier});
             this.tsPurchaseInvoiceList.Location = new System.Drawing.Point(0, 0);
             this.tsPurchaseInvoiceList.Name = "tsPurchaseInvoiceList";
-            this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 25);
+            this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 27);
             this.tsPurchaseInvoiceList.TabIndex = 36;
             this.tsPurchaseInvoiceList.Text = "Purchase Invoice";
             // 
@@ -242,8 +246,20 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(94, 22);
+            this.tspHeader.Size = new System.Drawing.Size(94, 24);
             this.tspHeader.Text = "Purchase DC";
+            // 
+            // tsbSupplier
+            // 
+            this.tsbSupplier.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbSupplier.ForeColor = System.Drawing.Color.Red;
+            this.tsbSupplier.Image = global::ROMS.Properties.Resources.right_arrow;
+            this.tsbSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbSupplier.Name = "tsbSupplier";
+            this.tsbSupplier.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbSupplier.Size = new System.Drawing.Size(24, 24);
+            this.tsbSupplier.Visible = false;
             // 
             // pnldl
             // 
@@ -319,7 +335,9 @@
             this.columnHeader5,
             this.columnHeader8,
             this.columnHeader9,
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader13,
+            this.columnHeader14});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
             this.LV_Supplier.Location = new System.Drawing.Point(15, 125);
@@ -343,6 +361,14 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Width = 10;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Width = 10;
             // 
             // lblRackCode
             // 
@@ -1875,7 +1901,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(194)))), ((int)(((byte)(116)))));
             this.lblStatus.ForeColor = System.Drawing.Color.Black;
-            this.lblStatus.Location = new System.Drawing.Point(1208, 2);
+            this.lblStatus.Location = new System.Drawing.Point(1056, 2);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(37, 20);
             this.lblStatus.TabIndex = 111111145;
@@ -2092,5 +2118,8 @@
         private System.Windows.Forms.Label lblVerifyDateTime;
         private System.Windows.Forms.Label lblVerifiedBy1;
         public System.Windows.Forms.Label lblVerifyDate;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        public System.Windows.Forms.ToolStripButton tsbSupplier;
     }
 }

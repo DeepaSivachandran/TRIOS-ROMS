@@ -22,7 +22,7 @@ namespace ROMS.Model
         public string paraINVDate { get; set; } = "";
         public string paraINVNo { get; set; } = "";
         public decimal ParaInvAmt { get; set; } = 0;
-        public string ParaLoadingCharge { get; set; } = "";
+        public string ParaUnLoadingCharge { get; set; } = "";
         public string ParaFrightCharge { get; set; } = "";
         public int paraOrderType { get; set; } = 0;
         public string paraPAckage { get; set; } = "";
@@ -46,6 +46,7 @@ namespace ROMS.Model
         public string paraVerifiedFormat1 { get; set; } = "";
         public string paraVerifiedFormat2 { get; set; } = "";
         public int paraPayment { get; set; } = 0;
+        public string paraCompletedIDs { get; set; } = "";
 
     }
 }

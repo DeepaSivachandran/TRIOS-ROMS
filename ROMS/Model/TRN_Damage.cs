@@ -19,6 +19,7 @@ namespace ROMS.Model
         public int paraStatusId { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
         public string paraEmployeeId { get; set; } = "";
+        public int paraSHID { get; set; } = 0;
         public DataTable paraDamageEntry { get; set; } = null;
         public byte[] paraQrimg { get; set; } = null;
     }

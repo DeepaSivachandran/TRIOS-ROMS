@@ -130,7 +130,7 @@ namespace ROMS
                             varscheduleid = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString());
                         }
                         SPDataService objspdservice = new SPDataService();
-                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0);
+                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0,0,0);
                         string[] varvalue = varResult.Split('~');
                         objspdservice.CloseConnection();
                         if (varvalue[0] == "3")
@@ -167,7 +167,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objspdservice = new SPDataService();
-                                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 1, "", 0,1,0,0,0);
+                                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 1, "", 0,1,0,0,0,0,0);
                                         objspdservice.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
@@ -777,6 +777,17 @@ namespace ROMS
         {
             try
             {
+                grdSupplierList.Columns["S.No."].Frozen = true;
+                grdSupplierList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["Supplier"].Frozen = true;
+                grdSupplierList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["City"].Frozen = true;
+                grdSupplierList.Columns["City"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["Supplier Type"].Frozen = true;
+                grdSupplierList.Columns["Supplier Type"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["GSTIN"].Frozen = true;
+                grdSupplierList.Columns["GSTIN"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 varActiveCount = 0; varInactiveCount = 0; varTotalCount = 0; varNotDefinedCount = 0;
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
