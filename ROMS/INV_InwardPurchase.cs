@@ -2633,7 +2633,7 @@ namespace ROMS
                     {
                         if (objDs.Tables.Count != 0)
                         {
-                            string Quantity = "";
+                            string Quantity = "Quantity";
                             if (objDs.Tables[1].Rows.Count > 0)
                             {
                                 if (varGRNPurchaseFlag == 1 || varGRNPurchaseFlag == 174)
