@@ -1228,26 +1228,31 @@
             // 
             this.clmActuallife.HeaderText = "Actual Life";
             this.clmActuallife.Name = "clmActuallife";
+            this.clmActuallife.Visible = false;
             // 
             // clmShelflifePer
             // 
             this.clmShelflifePer.HeaderText = "Shelflife Per";
             this.clmShelflifePer.Name = "clmShelflifePer";
+            this.clmShelflifePer.Visible = false;
             // 
             // clmShelfValue
             // 
             this.clmShelfValue.HeaderText = "Shelf Value";
             this.clmShelfValue.Name = "clmShelfValue";
+            this.clmShelfValue.Visible = false;
             // 
             // clmShelfStatus
             // 
             this.clmShelfStatus.HeaderText = "Shelf Status";
             this.clmShelfStatus.Name = "clmShelfStatus";
+            this.clmShelfStatus.Visible = false;
             // 
             // clmShelfType
             // 
             this.clmShelfType.HeaderText = "Shelf Type";
             this.clmShelfType.Name = "clmShelfType";
+            this.clmShelfType.Visible = false;
             // 
             // clmStatus
             // 
