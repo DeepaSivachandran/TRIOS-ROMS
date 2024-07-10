@@ -280,7 +280,7 @@
             this.columnHeader31});
             this.lvHsnCode.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvHsnCode.HideSelection = false;
-            this.lvHsnCode.Location = new System.Drawing.Point(996, 89);
+            this.lvHsnCode.Location = new System.Drawing.Point(999, 89);
             this.lvHsnCode.Name = "lvHsnCode";
             this.lvHsnCode.Size = new System.Drawing.Size(320, 104);
             this.lvHsnCode.TabIndex = 167;
@@ -879,6 +879,7 @@
             // 
             // cmbGst
             // 
+            this.cmbGst.Enabled = false;
             this.cmbGst.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGst.FormattingEnabled = true;
             this.cmbGst.Location = new System.Drawing.Point(1231, 20);
@@ -893,22 +894,23 @@
             // 
             // txtHsnname
             // 
-            this.txtHsnname.Enabled = false;
             this.txtHsnname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsnname.Location = new System.Drawing.Point(988, 74);
+            this.txtHsnname.Location = new System.Drawing.Point(988, 47);
             this.txtHsnname.MaxLength = 100;
             this.txtHsnname.Name = "txtHsnname";
-            this.txtHsnname.ReadOnly = true;
-            this.txtHsnname.Size = new System.Drawing.Size(243, 27);
+            this.txtHsnname.Size = new System.Drawing.Size(317, 27);
             this.txtHsnname.TabIndex = 17;
             this.txtHsnname.TextChanged += new System.EventHandler(this.TxtHsnname_TextChanged);
+            this.txtHsnname.Enter += new System.EventHandler(this.TxtHsnname_Enter);
+            this.txtHsnname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHsnname_KeyDown);
+            this.txtHsnname.Leave += new System.EventHandler(this.TxtHsnname_Leave);
             // 
             // textBox12
             // 
             this.textBox12.BackColor = System.Drawing.SystemColors.Control;
             this.textBox12.Enabled = false;
             this.textBox12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox12.Location = new System.Drawing.Point(923, 47);
+            this.textBox12.Location = new System.Drawing.Point(923, 74);
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(64, 27);
@@ -970,11 +972,13 @@
             // 
             // txtHsncode
             // 
+            this.txtHsncode.Enabled = false;
             this.txtHsncode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsncode.Location = new System.Drawing.Point(985, 47);
+            this.txtHsncode.Location = new System.Drawing.Point(987, 74);
             this.txtHsncode.MaxLength = 100;
             this.txtHsncode.Name = "txtHsncode";
-            this.txtHsncode.Size = new System.Drawing.Size(320, 27);
+            this.txtHsncode.ReadOnly = true;
+            this.txtHsncode.Size = new System.Drawing.Size(244, 27);
             this.txtHsncode.TabIndex = 17;
             this.txtHsncode.TextChanged += new System.EventHandler(this.TxtHsncode_TextChanged);
             this.txtHsncode.Enter += new System.EventHandler(this.TxtHsncode_Enter);
@@ -1167,7 +1171,7 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox3.Location = new System.Drawing.Point(923, 74);
+            this.textBox3.Location = new System.Drawing.Point(923, 47);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(65, 27);

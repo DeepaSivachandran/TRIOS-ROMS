@@ -962,10 +962,10 @@ namespace ROMS
                                 grdReturnDCList.Columns["Dc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Tot Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdReturnDCList.Columns["Concern"].Width = 80;
+                                grdReturnDCList.Columns["Concern"].Width = 70;
                                 grdReturnDCList.Columns["Reason"].Width = 110;
-                                grdReturnDCList.Columns["Dc Date"].Width = 100;
-                                grdReturnDCList.Columns["Dc No."].Width = 90;
+                                grdReturnDCList.Columns["Dc Date"].Width = 80;
+                                grdReturnDCList.Columns["Dc No."].Width = 100;
                                 grdReturnDCList.Columns["Supplier"].Width = 300;
                                 grdReturnDCList.Columns["Tot Pro"].Width = 100;
                                 grdReturnDCList.Columns["Created By"].Width = 200;
@@ -1428,6 +1428,21 @@ namespace ROMS
         {
             try
             {
+                grdReturnDCList.Columns["Print"].Frozen = true;
+                grdReturnDCList.Columns["Print"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["S.No."].Frozen = true;
+                grdReturnDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["Pur Ret Dc Status"].Frozen = true;
+                grdReturnDCList.Columns["Pur Ret Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["Concern"].Frozen = true;
+                grdReturnDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["Dc No."].Frozen = true;
+                grdReturnDCList.Columns["Dc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["Dc Date"].Frozen = true;
+                grdReturnDCList.Columns["Dc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["Supplier"].Frozen = true;
+                grdReturnDCList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+
                 for (int i = 0; i < grdReturnDCList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdReturnDCList.Rows[i].Cells["Status ID"].Value) == "15")

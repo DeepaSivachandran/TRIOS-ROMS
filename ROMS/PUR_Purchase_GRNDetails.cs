@@ -83,6 +83,12 @@ namespace ROMS
                 varGRNID = MainForm.objCP_Purchase.pbGRNNo;
                 if (supplierid != 0 && scheduleid != 0)
                 {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, GRNNo, "","");
+                objdserv.CloseConnection();
+                if (objDs.Tables[0].Rows.Count > 0)
+                {
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
                     objDs = objdserv.udfnGrnListLoad(6, supplierid, scheduleid, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, GRNNo, "");

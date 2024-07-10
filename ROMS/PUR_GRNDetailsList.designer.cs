@@ -37,12 +37,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
+            this.btnComplete = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDCPrint = new System.Windows.Forms.Button();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,8 +59,6 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.lblTotalGRN = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -73,15 +76,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdGRNList = new System.Windows.Forms.DataGridView();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmLocPrint = new System.Windows.Forms.DataGridViewImageColumn();
-           // this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.lblTotalGRN = new System.Windows.Forms.Label();
             this.errGRNList = new System.Windows.Forms.ErrorProvider(this.components);
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNList)).BeginInit();
@@ -96,6 +101,8 @@
             this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
+            this.toolStripButton1,
+            this.toolStripSeparator2,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
@@ -117,13 +124,32 @@
             this.tspHeader.Size = new System.Drawing.Size(81, 24);
             this.tspHeader.Text = "GRN Entry";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton1.Size = new System.Drawing.Size(72, 24);
+            this.toolStripButton1.Text = "Total GRN :";
+            this.toolStripButton1.ToolTipText = "Total GRN ";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
             // tsbDelete
             // 
             this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
             this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(-5, 1, 10, 2);
             this.tsbDelete.Name = "tsbDelete";
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
@@ -173,6 +199,8 @@
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
+            this.pnlpurchaseapproval.Controls.Add(this.btnComplete);
+            this.pnlpurchaseapproval.Controls.Add(this.groupBox1);
             this.pnlpurchaseapproval.Controls.Add(this.LV_Supplier);
             this.pnlpurchaseapproval.Controls.Add(this.btnExport);
             this.pnlpurchaseapproval.Controls.Add(this.btnPrint);
@@ -185,6 +213,43 @@
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
             this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
             this.pnlpurchaseapproval.TabIndex = 958789;
+            // 
+            // btnComplete
+            // 
+            this.btnComplete.Image = global::ROMS.Properties.Resources.print;
+            this.btnComplete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnComplete.Location = new System.Drawing.Point(1057, 45);
+            this.btnComplete.Name = "btnComplete";
+            this.btnComplete.Size = new System.Drawing.Size(145, 33);
+            this.btnComplete.TabIndex = 1111186;
+            this.btnComplete.Text = "Mark as Completed";
+            this.btnComplete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnComplete.UseVisualStyleBackColor = true;
+            this.btnComplete.Click += new System.EventHandler(this.BtnComplete_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnDCPrint);
+            this.groupBox1.Location = new System.Drawing.Point(1207, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(135, 60);
+            this.groupBox1.TabIndex = 1111185;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Invoice Pending DC";
+            // 
+            // btnDCPrint
+            // 
+            this.btnDCPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDCPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnDCPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDCPrint.Location = new System.Drawing.Point(6, 20);
+            this.btnDCPrint.Name = "btnDCPrint";
+            this.btnDCPrint.Size = new System.Drawing.Size(72, 33);
+            this.btnDCPrint.TabIndex = 1111186;
+            this.btnDCPrint.Text = "Print";
+            this.btnDCPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDCPrint.UseVisualStyleBackColor = true;
+            this.btnDCPrint.Click += new System.EventHandler(this.BtnDCPrint_Click);
             // 
             // LV_Supplier
             // 
@@ -258,8 +323,6 @@
             // 
             // grpfilter
             // 
-            this.grpfilter.Controls.Add(this.lblTotalGRN);
-            this.grpfilter.Controls.Add(this.label6);
             this.grpfilter.Controls.Add(this.label5);
             this.grpfilter.Controls.Add(this.lblSupplierCode);
             this.grpfilter.Controls.Add(this.label3);
@@ -281,27 +344,6 @@
             this.grpfilter.TabIndex = 958799;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
-            // 
-            // lblTotalGRN
-            // 
-            this.lblTotalGRN.AutoSize = true;
-            this.lblTotalGRN.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblTotalGRN.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotalGRN.Location = new System.Drawing.Point(1077, 49);
-            this.lblTotalGRN.Name = "lblTotalGRN";
-            this.lblTotalGRN.Size = new System.Drawing.Size(17, 20);
-            this.lblTotalGRN.TabIndex = 1111186;
-            this.lblTotalGRN.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1011, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 20);
-            this.label6.TabIndex = 1111185;
-            this.label6.Text = "Total GRN :";
             // 
             // label5
             // 
@@ -327,7 +369,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1131, 43);
+            this.label3.Location = new System.Drawing.Point(1058, -1);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(16, 20);
             this.label3.TabIndex = 1111182;
@@ -542,6 +584,7 @@
             this.grdGRNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGRNList.ColumnHeadersVisible = false;
             this.grdGRNList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCheck,
             this.ClmEdit,
             this.clmPrint,
             this.clmLocPrint});
@@ -557,6 +600,7 @@
             this.grdGRNList.GridColor = System.Drawing.Color.White;
             this.grdGRNList.Location = new System.Drawing.Point(3, 151);
             this.grdGRNList.Name = "grdGRNList";
+            this.grdGRNList.ReadOnly = true;
             this.grdGRNList.RowHeadersVisible = false;
             this.grdGRNList.RowHeadersWidth = 100;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -567,18 +611,29 @@
             this.grdGRNList.Size = new System.Drawing.Size(1348, 489);
             this.grdGRNList.TabIndex = 958797;
             this.grdGRNList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
+            this.grdGRNList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNList_CellEndEdit);
             this.grdGRNList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdGRNList_CellFormatting);
+            this.grdGRNList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNList_CellValueChanged);
+            this.grdGRNList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGRNList_CurrentCellDirtyStateChanged);
             this.grdGRNList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGRNList_DataBindingComplete);
             this.grdGRNList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdGRNList_Scroll);
             this.grdGRNList.SelectionChanged += new System.EventHandler(this.GrdGRNList_SelectionChanged);
             this.grdGRNList.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             this.grdGRNList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGRNList_KeyDown);
             // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // ClmEdit
             // 
             this.ClmEdit.HeaderText = "Edit";
             this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.ClmEdit.Name = "ClmEdit";
+            this.ClmEdit.ReadOnly = true;
             this.ClmEdit.Width = 50;
             // 
             // clmPrint
@@ -586,6 +641,7 @@
             this.clmPrint.HeaderText = "Reprint";
             this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
             this.clmPrint.Width = 50;
             // 
             // clmLocPrint
@@ -593,13 +649,9 @@
             this.clmLocPrint.HeaderText = "Location Print";
             this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmLocPrint.Name = "clmLocPrint";
+            this.clmLocPrint.ReadOnly = true;
             this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // clmCheck
-            // 
-            //this.clmCheck.HeaderText = "";
-            //this.clmCheck.Name = "clmCheck";
             // 
             // picLoader
             // 
@@ -615,6 +667,19 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // lblTotalGRN
+            // 
+            this.lblTotalGRN.AutoSize = true;
+            this.lblTotalGRN.BackColor = System.Drawing.Color.White;
+            this.lblTotalGRN.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalGRN.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalGRN.Location = new System.Drawing.Point(1318, 3);
+            this.lblTotalGRN.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.lblTotalGRN.Name = "lblTotalGRN";
+            this.lblTotalGRN.Size = new System.Drawing.Size(17, 20);
+            this.lblTotalGRN.TabIndex = 1111186;
+            this.lblTotalGRN.Text = "0";
+            // 
             // errGRNList
             // 
             this.errGRNList.ContainerControl = this;
@@ -624,35 +689,13 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(0, 106);
+            this.RPTViewer.Location = new System.Drawing.Point(0, 121);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1354, 564);
+            this.RPTViewer.Size = new System.Drawing.Size(1354, 549);
             this.RPTViewer.TabIndex = 1110000994;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
-            // 
-            // ClmEdit
-            // 
-            this.ClmEdit.HeaderText = "Edit";
-            this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.ClmEdit.Name = "ClmEdit";
-            this.ClmEdit.Width = 50;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Reprint";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.Width = 50;
-            // 
-            // clmLocPrint
-            // 
-            this.clmLocPrint.HeaderText = "Location Print";
-            this.clmLocPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmLocPrint.Name = "clmLocPrint";
-            this.clmLocPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmLocPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // PUR_GRNDetailsList
             // 
@@ -660,6 +703,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.Controls.Add(this.lblTotalGRN);
             this.Controls.Add(this.pnlpurchaseapproval);
             this.Controls.Add(this.tsBrandList);
             this.Controls.Add(this.RPTViewer);
@@ -676,6 +720,7 @@
             this.tsBrandList.PerformLayout();
             this.pnlpurchaseapproval.ResumeLayout(false);
             this.pnlpurchaseapproval.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
@@ -728,10 +773,15 @@
         public System.Windows.Forms.Button btnPrint;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotalGRN;
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Button btnDCPrint;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
         private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmLocPrint;
+        public System.Windows.Forms.ToolStripButton toolStripButton1;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Button btnComplete;
     }
 }

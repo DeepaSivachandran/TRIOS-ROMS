@@ -843,7 +843,15 @@ namespace ROMS
                     {
                         varshelflife = 0;
                     }
-                    if (cbRMFromProduction.Checked == true)
+                    //if (cbRMFromProduction.Checked == true)
+                    //{
+                    //    varrmproduction = 1;
+                    //}
+                    //else
+                    //{
+                    //    varrmproduction = 0;
+                    //}
+                    if (Convert.ToInt32(cmbRM.SelectedValue) == 241)
                     {
                         varrmproduction = 1;
                     }
@@ -851,7 +859,6 @@ namespace ROMS
                     {
                         varrmproduction = 0;
                     }
-
                     if (txtWeight.Text == "")
                     {
                         netweight = 0;
@@ -1518,9 +1525,9 @@ namespace ROMS
                     {
                         txtSelfLife.Focus();
                     }
-                    else{
-
-                        cbRMFromProduction.Focus();
+                    else
+                    {
+                        chkMRP.Focus();
                     }
                 }
             }
@@ -2635,6 +2642,14 @@ namespace ROMS
                         }
                     }
                 }
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue)==16)
+                {
+                    cmbRM.SelectedValue = 241;
+                }
+                else
+                {
+                    cmbRM.SelectedValue = 240;
+                }
             }
             catch (Exception ex)
             {
@@ -3004,7 +3019,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cbRMFromProduction.Focus();
+                    chkMRP.Focus();
                 }
             }
             catch (Exception ex)
@@ -3385,6 +3400,7 @@ namespace ROMS
                 }
                 DataBind objDataBind = new DataBind(); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (76,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbRM, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
@@ -3410,6 +3426,8 @@ namespace ROMS
                     txtPurRack.Enabled = false;
                 }
                 udfnEdit();
+                txtHSNCode.Enabled = false;
+                txtHSNCode.ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -5076,7 +5094,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue),0,txtHsnName.Text.Trim(),"");
+                    objDs = objspdservice.udfnHsnList(6, 0, 0,0,txtHsnName.Text.Trim(),"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -5086,7 +5104,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString()};
+                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString(),objDs.Tables[0].Rows[i]["HSN_GSTID"].ToString()};
                                     ListViewItem objList = new ListViewItem(row);
                                     lvHsnCode.Items.Add(objList);
                                 }
@@ -5136,12 +5154,13 @@ namespace ROMS
         {
             try
             {
-                if (txtHSNCode.Text != "")
+                if (txtHsnName.Text != "")
                 {
                     ListViewItem selectedItem = lvHsnCode.SelectedItems[0];
-                    txtHSNCode.Text = selectedItem.SubItems[0].Text;
+                    cmbGst.SelectedValue = Convert.ToInt32(selectedItem.SubItems[3].Text);
+                    txtHSNCode.Text = selectedItem.SubItems[1].Text;
                     lblHsnName.Text = selectedItem.SubItems[2].Text;
-                    txtHsnName.Text= selectedItem.SubItems[1].Text;
+                    txtHsnName.Text= selectedItem.SubItems[0].Text;
                     btnSave.Focus();
                 }
             }
@@ -5735,7 +5754,7 @@ namespace ROMS
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["PR_MRPflag"]) == "1") { chkMRP.Checked = true; } else { chkMRP.Checked = false; }
-                            if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cmbRM.SelectedValue=241; } else { cmbRM.SelectedValue = 240; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1")
                             {
                                 rbActive.Checked = true;

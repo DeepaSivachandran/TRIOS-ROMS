@@ -139,6 +139,8 @@ namespace ROMS
                         lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                        //    grdGodownList.Columns["S.No."].Frozen = true;
+                        //    grdGodownList.Columns["GSTIN"].DefaultCellStyle.BackColor = Color.AliceBlue;
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdGodownList.DataSource = objDs.Tables[0];
@@ -152,13 +154,15 @@ namespace ROMS
                             grdGodownList.Columns["RKCreationID"].Visible = false;
                             grdGodownList.Columns["RKGCreationID"].Visible = false;
                             grdGodownList.Columns["S.No."].Width = 50;
+                            grdGodownList.Columns["Concern"].Width = 70;
+                            grdGodownList.Columns["Location Type"].Width = 90;
                             grdGodownList.Columns["Location Name in English"].Width = 200;
                             grdGodownList.Columns["Location Name in Tamil"].Width = 200;
                             grdGodownList.Columns["Rack Group Creation"].Width = 130;
-                            grdGodownList.Columns["Short Name"].Width = 100;
-                            grdGodownList.Columns["Stock Applicable"].Width = 110;
+                            grdGodownList.Columns["Short Name"].Width = 85;
+                            grdGodownList.Columns["Stock Applicable"].Width = 105;
                             grdGodownList.Columns["Status"].Width = 80;
-                            grdGodownList.Columns["Godown Type"].Width = 150;
+                            grdGodownList.Columns["Godown Type"].Width = 90;
                             grdGodownList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGodownList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGodownList.Columns["Godown Type"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

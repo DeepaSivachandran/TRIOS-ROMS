@@ -2686,6 +2686,63 @@ namespace ROMS
             }
         }
 
+        private void TxtHsnname_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvHsnCode.Items.Count == 0 || txtHsnname.Text == "")
+                    {
+                        txtHsnname.Focus();
+                        lvHsnCode.Visible = false;
+                    }
+                    else
+                    {
+                        lvHsnCode.Focus();
+                    }
+                    if (lvHsnCode.Items.Count > 0)
+                    {
+                        lvHsnCode.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtHsnname_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtHsnname.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtHsnname_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtHsnname.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void Button2_Click(object sender, EventArgs e)
         {
             try
@@ -2808,7 +2865,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnname.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, txtHsnname.Text.Trim(), "");
+                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnname.Text.Trim(), "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2818,7 +2875,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString(), objDs.Tables[0].Rows[i]["HSN_GSTID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvHsnCode.Items.Add(objList);
                                 }
@@ -2844,14 +2901,15 @@ namespace ROMS
         {
             try
             {
-                if (txtHsncode.Text != "")
+                if (txtHsnname.Text != "")
                 {
                     ListViewItem selectedItem = lvHsnCode.SelectedItems[0];
-                    txtHsncode.Text = selectedItem.SubItems[0].Text;
+                    cmbGst.SelectedValue = Convert.ToInt32(selectedItem.SubItems[3].Text);
+                    txtHsncode.Text = selectedItem.SubItems[1].Text;
                     varHsnCode = selectedItem.SubItems[2].Text;
-                    txtHsnname.Text = selectedItem.SubItems[1].Text;
+                    txtHsnname.Text = selectedItem.SubItems[0].Text;
                     btnUpdate.Focus();
-                    txtHsncode.BackColor = Color.White;
+                    //txtHsncode.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
