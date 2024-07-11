@@ -8795,10 +8795,9 @@ namespace ROMS
         {
             try
             {
-                //MainForm.objPUR_Purchase_Level_Verified = new PUR_Purchase_Level_Verified();
-                //MainForm.objPUR_Purchase_Level_Verified.pbPurID = Convert.ToString(pbPurchaseno);
-                ////MainForm.objPUR_Purchase_Level_Verified.pbstsId = Convert.ToString(editFlag);
-                //MainForm.objPUR_Purchase_Level_Verified.ShowDialog();
+                MainForm.objPUR_Purchase_Level_Verified = new PUR_Purchase_Level_Verified();
+                MainForm.objPUR_Purchase_Level_Verified.pbPurID = Convert.ToString(pbPurchaseno);
+                MainForm.objPUR_Purchase_Level_Verified.ShowDialog();
                 btnSave.Focus();
             }
             catch (Exception ex)
