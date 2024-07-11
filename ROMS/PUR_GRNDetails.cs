@@ -3887,6 +3887,7 @@ namespace ROMS
                             {
                                 varshelflife = cellValue.ToString();
                                 if (varshelflife != "" || varshelflife != null)
+                                   
                                     objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, dpGrnDate.Text, varCellprodid, 0, "0", "","");
                                 objdserv.CloseConnection();
                                 if (objDs != null)

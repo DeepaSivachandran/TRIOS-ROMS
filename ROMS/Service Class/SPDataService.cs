@@ -2769,6 +2769,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOrderBy", objTRN_GoodsInward_Purchase.paraOrderBy);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_GoodsInward_Purchase.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_GoodsInward_Purchase.paraID);
+                varSqlCommand.Parameters.AddWithValue("@ParaInwardDate", objTRN_GoodsInward_Purchase.ParaInwardDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", objTRN_GoodsInward_Purchase.ParaExpiryDate);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -3152,8 +3154,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRateCalculation", objTRN_PurchaseEntryApproval.paraRateCalculation);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscCalculation", objTRN_PurchaseEntryApproval.paraDiscCalculation);
                 varSqlCommand.Parameters.AddWithValue("@paraEinvoice", objTRN_PurchaseEntryApproval.paraEinvoice);
-                varSqlCommand.Parameters.AddWithValue("@ParaUnLoadingCharge", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
-                //varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                //varSqlCommand.Parameters.AddWithValue("@ParaUnLoadingCharge", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraCourierCharges", objTRN_PurchaseEntryApproval.paraCourierCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraOtherExpenses", objTRN_PurchaseEntryApproval.paraOtherExpenses);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscPer", objTRN_PurchaseEntryApproval.paraDiscPer);
