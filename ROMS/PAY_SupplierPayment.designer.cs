@@ -983,6 +983,7 @@
             // 
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
             this.clmStatus.Width = 150;
             // 
             // PAY_SupplierPayment
