@@ -2287,10 +2287,12 @@ namespace ROMS
                     int varRackID = Convert.ToInt32(grdInward.CurrentRow.Cells["clmRKID"].Value);
                     int varOrderID = Convert.ToInt32(grdInward.Rows[e.RowIndex].Cells["clmOrder"].Value);
                     int varPRID = Convert.ToInt32(grdInward.Rows[e.RowIndex].Cells["clmPRID"].Value);
-                    decimal varShelflifePer = Convert.ToInt32(grdInward.Rows[e.RowIndex].Cells["clmShelflifePer"].Value);
+                    decimal varShelflifePer = Convert.ToDecimal(grdInward.Rows[e.RowIndex].Cells["clmShelflifePer"].Value);
                     decimal ReceivedQty = 0, ShopQty = 0;
+                    //decimal actual = Convert.ToInt32(grdInward.Rows[e.RowIndex].Cells["clmActuallife"].Value);
 
-                    if(Convert.ToString(grdInward.CurrentRow.Cells["clmReceivedQty"].Value)!="")
+
+                    if (Convert.ToString(grdInward.CurrentRow.Cells["clmReceivedQty"].Value)!="")
                     {
                         ReceivedQty = Convert.ToDecimal(grdInward.CurrentRow.Cells["clmReceivedQty"].Value);
                     }
