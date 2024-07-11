@@ -440,15 +440,40 @@ namespace ROMS
                 }
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
                 {
-                    string varID = "0"; 
+                    string varID = "0";
+                    string varGRNPRID = "0";
+                    string varGIPPRID = "0";
                     for (int i = 0; i < dtApproval.Rows.Count; i++)
                     {
                         varID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_PURPRID"]);
-                        if (varID == Convert.ToString(grdGrnApproval.Rows[e.RowIndex].Cells["clmPURPRID"].Value))
+                        varGRNPRID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_GRNPRID"]);
+                        varGIPPRID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_GIPPRID"]);
+                        if (varID!="0")
                         {
-                            object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                            //Update the same column value in the DataTable
-                            dtApproval.Rows[i]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
+                            if (varID == Convert.ToString(grdGrnApproval.Rows[e.RowIndex].Cells["clmPURPRID"].Value))
+                            {
+                                object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                                //Update the same column value in the DataTable
+                                dtApproval.Rows[i]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
+                            }
+                        }
+                        else if(varGRNPRID!="0")
+                        {
+                            if (varGRNPRID == Convert.ToString(grdGrnApproval.Rows[e.RowIndex].Cells["clmGRNPRID"].Value))
+                            {
+                                object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                                //Update the same column value in the DataTable
+                                dtApproval.Rows[i]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
+                            }
+                        }
+                        else if (varGIPPRID != "0")
+                        {
+                            if (varGIPPRID == Convert.ToString(grdGrnApproval.Rows[e.RowIndex].Cells["clmGIPPRID"].Value))
+                            {
+                                object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                                //Update the same column value in the DataTable
+                                dtApproval.Rows[i]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
+                            }
                         }
                     }
                 }
@@ -938,11 +963,11 @@ namespace ROMS
                             grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]), 
                                 Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
+                            Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]));
                             if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Pro"]) == 1)
                             {
                                 dtApproval.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]),
-                                0/*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
+                                0/*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]));
                             }
                             dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0,0 /*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0);
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
