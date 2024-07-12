@@ -5082,6 +5082,16 @@ namespace ROMS
                                     varPendingQty = 0;
                                     varExcessQuantity = 0;
                                 }
+                                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 226)
+                                {
+                                    varPendingQty = 0;
+                                    varExcessQuantity = 0;
+                                }
+                                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 227)
+                                {
+                                    varPendingQty = 0;
+                                    varExcessQuantity = 0;
+                                }
                                 decimal varMRP = 0;string mrp = "", mrp1 = "";
                                 if (txtmrprate.Text.Trim() != "")
                                 {
@@ -6527,6 +6537,10 @@ namespace ROMS
                         tsbSupplier.Visible = true;
                         txtSupplier.BackColor = Color.LightPink;
                         tsbSupplier.Text = varBlockedReason;
+                    }
+                    else
+                    {
+                        tsbSupplier.Visible = false;
                     }
                 }
             }

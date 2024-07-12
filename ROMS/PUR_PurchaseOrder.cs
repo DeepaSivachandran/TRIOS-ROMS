@@ -2115,6 +2115,11 @@ namespace ROMS
                     txtSupplier.BackColor = Color.LightPink;
                     tsbSupplier.Text = varBlockedReason;
                 }
+                else
+                {
+                    tsbSupplier.Visible = false;
+                    txtSupplier.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -4970,6 +4975,11 @@ namespace ROMS
                     tsbSupplier.Visible = true;
                     txtSupplier.BackColor = Color.LightPink;
                     tsbSupplier.Text = varBlockedReason;
+                }
+                else
+                {
+                    tsbSupplier.Visible = false;
+                    txtSupplier.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
