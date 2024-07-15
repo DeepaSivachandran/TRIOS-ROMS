@@ -208,7 +208,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 05/10/2023    Description: General Settings
-        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath,int paraGRNPrint,int paraDCPrint)
+        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath,int paraGRNPrint,int paraDCPrint,int paraLevel1,int paraLevel2)
         {
             string varResult = "";
             try
@@ -233,6 +233,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNPrint", paraGRNPrint);
                 varSqlCommand.Parameters.AddWithValue("@paraDCPrint", paraDCPrint);
+                varSqlCommand.Parameters.AddWithValue("@paraLevel1", paraLevel1);
+                varSqlCommand.Parameters.AddWithValue("@paraLevel2", paraLevel2);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

@@ -38,6 +38,8 @@ namespace ROMS
         public static string pbSSSSoftwareName = "";
         public static string pbRomsSoftwareName = "";
         public static int pbDefaultComId = 0;
+        public static int pbShelflifeLevel1 = 0;
+        public static int pbShelflifeLevel2 = 0;
         public static bool isFormClosed = false;
         public static bool isClose = false;
         public static bool isFormClosedMenu = false;
@@ -307,12 +309,38 @@ namespace ROMS
             catch (Exception ex)
             { objError = new DataError(); objError.WriteFile(ex); }
         }
+        public void udfnShelflifeLevel()
+        {
+            try
+            {
+                SPDataService objSPDataService = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objSPDataService.udfnGeneralSettingList(0);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            pbShelflifeLevel1 = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_Level1"]);
+                            pbShelflifeLevel2 = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_Level2"]);
+                        }
+                    }
+                }
+                objSPDataService.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError(); objError.WriteFile(ex);
+            }
+        }
         private void MainForm_Load(object sender, EventArgs e)
         {
             try
             {
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
+                udfnShelflifeLevel();
                 GetDate();
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();

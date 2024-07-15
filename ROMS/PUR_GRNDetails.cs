@@ -62,6 +62,9 @@ namespace ROMS
         {
             try
             {
+                lblDPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel1) + "%";
+                lblPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel2) + "%";
+
                 DataBind objDBind = new DataBind();
                 objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (64) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
                 objDBind = null;
@@ -3720,14 +3723,14 @@ namespace ROMS
                     string[] varShelflifevalue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                     if (varShelflifevalue[0] != "")
                     {
-                        if (Convert.ToDecimal(varShelflifevalue[0]) < 25)
+                        if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel1))
                         {
                             DataGridView dataGridView = grdGrnlist;
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmactuallife"];
                             cell.Style.BackColor = Color.Red;
                             cell.Style.ForeColor = Color.White;
                         }
-                        else if (Convert.ToDecimal(varShelflifevalue[0]) < 50)
+                        else if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
                         {
                             DataGridView dataGridView = grdGrnlist;
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmactuallife"];
@@ -3908,7 +3911,7 @@ namespace ROMS
                                     string[] varShelflifevalue = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]).Split(' ');
                                     if (varShelflifevalue[0] != "")
                                     {
-                                        if (Convert.ToDecimal(varShelflifevalue[0]) < 25)
+                                        if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel1))
                                         {
                                             DataGridView dataGridView = grdGrnlist;
                                             DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
@@ -3916,7 +3919,7 @@ namespace ROMS
                                             cell.Style.ForeColor = Color.White;
 
                                         }
-                                        else if (Convert.ToDecimal(varShelflifevalue[0]) < 50)
+                                        else if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
                                         {
                                             DataGridView dataGridView = grdGrnlist;
                                             DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
@@ -5170,14 +5173,14 @@ namespace ROMS
                                 {
                                     if (varShelflifeper[0] != "")
                                     {
-                                        if (Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                        if (Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1))
                                         {
                                             DataGridView dataGridView = grdGrnlist;
                                             DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.Red;
                                             cell.Style.ForeColor = Color.White;
                                         }
-                                        else if (Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                        else if (Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
                                         {
                                             DataGridView dataGridView = grdGrnlist;
                                             DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];

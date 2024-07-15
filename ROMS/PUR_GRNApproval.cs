@@ -608,6 +608,8 @@ namespace ROMS
         {
             try
             {
+                lbltwentyfiveper.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel1) + "%";
+                lblFivetyPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel2) + "%";
                 udfnLastSeen();
                 dtApproval.TableName = "TRN_GRNApproval_Product";
                 dtApproval.Columns.Add("GRNAPR_PRID", typeof(int));
@@ -958,7 +960,7 @@ namespace ROMS
                             //varPOID = Convert.ToInt32(objDs.Tables[0].Rows[i]["POID"]);
                             if (varShelflifeper[0] != "")
                             {
-                                if (Convert.ToDecimal(varShelflifeper[0]) > 24 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1)-1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -967,7 +969,7 @@ namespace ROMS
                                     txtORPercentageCheck.Enabled = true;
                                     lblFivetyPercentage.Enabled = true;
                                 }
-                                else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1) )
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
