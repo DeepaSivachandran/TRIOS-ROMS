@@ -1041,7 +1041,6 @@
             // 
             this.clmGIPPRID.HeaderText = "GIPPRID";
             this.clmGIPPRID.Name = "clmGIPPRID";
-            this.clmGIPPRID.Visible = false;
             // 
             // clmReason
             // 

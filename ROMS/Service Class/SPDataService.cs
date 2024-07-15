@@ -3298,6 +3298,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNAPRID", objTRN_GRNApproval.ParaGRNAPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GRNApproval.paraGRNID);
                 varSqlCommand.Parameters.AddWithValue("@paraInwardId", objTRN_GRNApproval.paraInwardId);
+                varSqlCommand.Parameters.AddWithValue("@paraEditFlag", objTRN_GRNApproval.paraEditFlag);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

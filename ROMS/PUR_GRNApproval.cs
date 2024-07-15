@@ -882,6 +882,7 @@ namespace ROMS
                         objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
                         objTRN_GRNApproval.ParaGRNAID = varGRNAID;
                         objTRN_GRNApproval.paraInwardId = varInwardID;
+                        objTRN_GRNApproval.paraEditFlag = varFlag;
                         result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
                         objspdservice.CloseConnection();
                         string[] varvalue1 = result.Split('~');
