@@ -4851,6 +4851,90 @@ namespace ROMS
             }
         }
 
+        private void Btnselectall_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnselectall.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnselectall_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnselectall.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnselectall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in grdGRN.Rows)
+                {
+                    row.Cells[0].Value = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnunselectall_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnunselectall.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnunselectall_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnunselectall.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Btnunselectall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in grdAdvance.Rows)
+                {
+                    row.Cells[0].Value = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdTaxDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
