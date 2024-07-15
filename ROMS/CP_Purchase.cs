@@ -7106,7 +7106,6 @@ namespace ROMS
                         grdPurchaseList.Columns["clmIGSTamt"].Visible = false;
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -7327,6 +7326,8 @@ namespace ROMS
                                     //        varcount++; varQuantityErr++; varerrFlag = 1;
                                     //    }
                                     //}
+                                    if(varRecqty==0)
+                                    { varerrFlag = 1; }
                                     if (varDiffQty != varQty || varInvqty != (varRecqty + varFreeQuantity + varDiffQty))
                                     {
                                         varcount++; varQuantityErr++; varerrFlag = 1;
@@ -8552,7 +8553,26 @@ namespace ROMS
                     if (txtInvoiceQty.Enabled == true)
                     {   txtInvoiceQty.Focus(); }
                     else
-                    { txtMrp.Focus(); }
+                    {
+                        if(txtMrp.Enabled==true)
+                        { txtMrp.Focus(); }
+                        else if(txtInvoiceQty.Enabled==true)
+                        { txtInvoiceQty.Focus(); }
+                        else if(txtMrp.Enabled==true)
+                        { txtMrp.Focus(); }
+                        else if(txtDate.Enabled==true)
+                        { txtDate.Focus(); }
+                        else if(txtMonth.Enabled==true)
+                        { txtMonth.Focus(); }
+                        else if(txtYear.Enabled==true)
+                        { txtYear.Focus(); }
+                        else if(txtBatchno.Enabled==true)
+                        { txtBatchno.Focus(); }
+                        else if(txtSourceLocation.Enabled==true)
+                        { txtSourceLocation.Focus(); }
+                        else if(cmbrack.Enabled==true)
+                        { cmbrack.Focus(); }
+                    }
                 }
             }
             catch (Exception ex)

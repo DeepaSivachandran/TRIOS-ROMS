@@ -45,10 +45,6 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false; errVerified.Clear();
-                //string CurrentTime = DateTime.Now.ToString("h:mm");
-                //string[] varCurrentTime = CurrentTime.Split(':');
-                //string CurrentTimeFormat = DateTime.Now.ToString("h:mm tt");
-                //string[] CurrentTimeFormat1 = CurrentTimeFormat.Split(' ');
                 if (Convert.ToString(txtVerified.Text.Trim()) == "")
                 {
                     errVerified.SetError(txtVerified, "Please select verified by 1");
@@ -199,11 +195,24 @@ namespace ROMS
         {
             try
             {
-                if (txtVerified.Text.Trim() == "")
-                { cmbFormat.SelectedIndex = 0; }
                 dpVerified.MinDate = MainForm.pbFYStartDate;
                 dpVerified.MaxDate = MainForm.pbCurrentDate;
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 19;
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();
+                objd = objDServ.udfnMaster(objMR_Master);
+                if (objd.Tables[0].Rows.Count > 0)
+                {
+                    DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpVerified.MaxDate = varmaxDate;
+                    dpVerified.MinDate = varminDate;
+                }
+                objDServ.CloseConnection();
                 udfnEditload();
+                if (txtVerified.Text.Trim() == "")
+                { cmbFormat.SelectedIndex = 0; }
             }
             catch (Exception ex)
             {
