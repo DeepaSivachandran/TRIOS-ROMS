@@ -38,8 +38,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.btnunselectall = new System.Windows.Forms.Button();
             this.btnselectall = new System.Windows.Forms.Button();
+            this.btnunselectall = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAdvance)).BeginInit();
             this.SuspendLayout();
@@ -129,20 +129,6 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnunselectall
-            // 
-            this.btnunselectall.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnunselectall.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnunselectall.Location = new System.Drawing.Point(93, 290);
-            this.btnunselectall.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnunselectall.Name = "btnunselectall";
-            this.btnunselectall.Size = new System.Drawing.Size(83, 33);
-            this.btnunselectall.TabIndex = 1111212;
-            this.btnunselectall.Text = "Unselect All";
-            this.btnunselectall.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnunselectall.UseVisualStyleBackColor = true;
-            this.btnunselectall.Click += new System.EventHandler(this.Btnunselectall_Click);
-            // 
             // btnselectall
             // 
             this.btnselectall.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -156,6 +142,20 @@
             this.btnselectall.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnselectall.UseVisualStyleBackColor = true;
             this.btnselectall.Click += new System.EventHandler(this.Btnselectall_Click);
+            // 
+            // btnunselectall
+            // 
+            this.btnunselectall.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnunselectall.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnunselectall.Location = new System.Drawing.Point(93, 290);
+            this.btnunselectall.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnunselectall.Name = "btnunselectall";
+            this.btnunselectall.Size = new System.Drawing.Size(83, 33);
+            this.btnunselectall.TabIndex = 1111212;
+            this.btnunselectall.Text = "Unselect All";
+            this.btnunselectall.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnunselectall.UseVisualStyleBackColor = true;
+            this.btnunselectall.Click += new System.EventHandler(this.Btnunselectall_Click);
             // 
             // PAY_ADV
             // 

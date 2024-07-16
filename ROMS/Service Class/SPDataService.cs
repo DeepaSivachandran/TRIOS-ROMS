@@ -3151,8 +3151,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRateCalculation", objTRN_PurchaseEntryApproval.paraRateCalculation);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscCalculation", objTRN_PurchaseEntryApproval.paraDiscCalculation);
                 varSqlCommand.Parameters.AddWithValue("@paraEinvoice", objTRN_PurchaseEntryApproval.paraEinvoice);
-                varSqlCommand.Parameters.AddWithValue("@ParaUnLoadingCharge", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
-                //varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                //varSqlCommand.Parameters.AddWithValue("@ParaUnLoadingCharge", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
+                varSqlCommand.Parameters.AddWithValue("@paraUnloadingCharges", objTRN_PurchaseEntryApproval.paraUnloadingCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraCourierCharges", objTRN_PurchaseEntryApproval.paraCourierCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraOtherExpenses", objTRN_PurchaseEntryApproval.paraOtherExpenses);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscPer", objTRN_PurchaseEntryApproval.paraDiscPer);
@@ -3170,6 +3170,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSaveFlag", objTRN_PurchaseEntryApproval.paraSaveFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierType", objTRN_PurchaseEntryApproval.paraSupplierType);
                 varSqlCommand.Parameters.AddWithValue("@paraRefreshFlag", objTRN_PurchaseEntryApproval.paraRefreshFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseEntryApprovalDate", objTRN_PurchaseEntryApproval.paraPurchaseEntryApprovalDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Error", objTRN_PurchaseEntryApproval.ParaTRN_Purchase_Products_Error);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();

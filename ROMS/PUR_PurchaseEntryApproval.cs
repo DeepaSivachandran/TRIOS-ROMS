@@ -42,7 +42,7 @@ namespace ROMS
             varSupplierType=0, pbRefreshFlag=0, varButtonFlag = 0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0", varGRNPaymentType="0";
-        public int varGridErr = 0, varCheckCount = 0;
+        public int varGridErr = 0, varCheckCount = 0 , varCheckFlag=-1;
         public PUR_PurchaseEntryApproval()
         {
             InitializeComponent();
@@ -4881,9 +4881,35 @@ namespace ROMS
         {
             try
             {
-                foreach (DataGridViewRow row in grdGRN.Rows)
+                if(varCheckFlag==-1)
+                { varCheckFlag = 1;    btnselectall.Text = "Select";  }
+                else if(varCheckFlag==1)
+                { varCheckFlag = 2; btnselectall.Text = "UnSelect"; }
+                else if(varCheckFlag==2)
+                { varCheckFlag = 1; btnselectall.Text = "Select"; }
+                if (varCheckFlag == 1)
                 {
-                    row.Cells[0].Value = true;
+                    for (int i = 0; i < grdSupplierList.Rows.Count; i++)
+                    {
+                        if (grdSupplierList.Rows[i].ReadOnly == false)
+                        {
+                            grdSupplierList.Rows[i].Cells[0].Value = true;
+                        }
+                    }
+                }
+                else if(varCheckFlag==2)
+                {
+                    //foreach (DataGridViewRow row in grdSupplierList.Rows)
+                    //{
+                    //    row.Cells[0].Value = false;
+                    //}
+                    for (int i = 0; i < grdSupplierList.Rows.Count; i++)
+                    {
+                        if (grdSupplierList.Rows[i].ReadOnly == false)
+                        {
+                            grdSupplierList.Rows[i].Cells[0].Value = false;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -4893,11 +4919,80 @@ namespace ROMS
             }
         }
 
-        private void Btnunselectall_Enter(object sender, EventArgs e)
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                btnunselectall.BackColor = Color.LemonChiffon;
+                udfnVocherno();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVocherno()
+        {
+            try
+            {
+                    if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
+                    {
+                        string vardate = "", varResult = "";
+                        SPDataService objspdservice = new SPDataService();
+                        DataSet objDs = new DataSet();
+                        DataService objDservice = new DataService();
+                        vardate = objDservice.displaydata("SELECT CONVERT(NVARCHAR,'" + dpPurchaseApprovalVocDate.Text + "',103)");
+                        objDservice.CloseConnection();
+                        varResult = objspdservice.udfngetVoucherNo("254", vardate, Convert.ToInt32(cmbConcern.SelectedValue));
+                        objspdservice.CloseConnection();
+                        string[] parts = varResult.Split('~');
+                        string peno = parts[0];
+                        if (peno != "")
+                        {
+                            txtPurApprovalVocNo.Text = peno;
+                        }
+                        else
+                        {
+                            varVoucherSkip = false;
+                            if (varDateChange == 0)
+                            {
+                                udfnvoucheradd();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        txtPurApprovalVocNo.Text = "";
+                    }
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnvoucheradd()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(75);
+                objDServ.CloseConnection();
+                txtPENO.Text = "";
+                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    varVoucherSkip = true;
+                    varClose = 1;
+                    udfnclose();
+                    MainForm.objCP_Settings = new CP_Settings();
+                    MainForm.objCP_Settings.varconcernvalue = Convert.ToString(cmbConcern.SelectedValue);
+                    MainForm.objCP_Settings.varValues = Convert.ToString(38);
+                    MainForm.objCP_Settings.MdiParent = this.ParentForm;
+                    MainForm.objCP_Settings.Show();
+                }
+                else { varVoucherSkip = true; }
             }
             catch (Exception ex)
             {
@@ -4906,24 +5001,21 @@ namespace ROMS
             }
         }
 
-        private void Btnunselectall_Leave(object sender, EventArgs e)
+        private void DpPurchaseApprovalVocDate_ValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                btnunselectall.BackColor = Color.Transparent;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
+        }
+
+        private void Label16_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void Btnunselectall_Click(object sender, EventArgs e)
         {
             try
             {
-                foreach (DataGridViewRow row in grdAdvance.Rows)
+                foreach (DataGridViewRow row in grdGRN.Rows)
                 {
                     row.Cells[0].Value = false;
                 }
@@ -5662,6 +5754,7 @@ namespace ROMS
                             objTRN_PurchaseEntryApproval.paraGSTAmnt = gstamt;
                             objTRN_PurchaseEntryApproval.paraRoundOff = roundoff;
                             objTRN_PurchaseEntryApproval.paraGrandTotal = grandtotal;
+                            objTRN_PurchaseEntryApproval.paraPurchaseEntryApprovalDate = dpPurchaseApprovalVocDate.Text;
                             objTRN_PurchaseEntryApproval.paraUserID = Convert.ToInt32(varUserID);
                             objTRN_PurchaseEntryApproval.ParaTRN_Purchase_Products_Error = objPurchaseentryApprovalError;
                             SPDataService objspdservice = new SPDataService();
@@ -7376,7 +7469,6 @@ namespace ROMS
                     }
                     if(varApprovedStatus==63)
                     {
-                        
                         DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
                         Check.Value = "";
                         grdSupplierList.Rows[i].Cells["clmCheck"] = Check;
