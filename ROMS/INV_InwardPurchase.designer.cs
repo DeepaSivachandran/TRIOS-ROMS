@@ -1238,11 +1238,13 @@
             // 
             this.clmActuallife.HeaderText = "Actual Life";
             this.clmActuallife.Name = "clmActuallife";
+            this.clmActuallife.Visible = false;
             // 
             // clmShelflifePer
             // 
             this.clmShelflifePer.HeaderText = "Shelflife Per";
             this.clmShelflifePer.Name = "clmShelflifePer";
+            this.clmShelflifePer.Visible = false;
             // 
             // clmShelfValue
             // 

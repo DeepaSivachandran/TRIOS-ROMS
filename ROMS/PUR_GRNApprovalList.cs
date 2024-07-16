@@ -1603,6 +1603,11 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Overall Full Status"].Visible = false;
                                 grdGrnApprovalList.Columns["MRP"].Visible = false;
                                 grdGrnApprovalList.Columns["Exp"].Visible = false;
+                                grdGrnApprovalList.Columns["GRNFilterDate"].Visible = false;
+                                grdGrnApprovalList.Columns["InvFilterDate"].Visible = false;
+                                grdGrnApprovalList.Columns["GRNID"].Visible = false;
+                                grdGrnApprovalList.Columns["PURID"].Visible = false;
+                                grdGrnApprovalList.Columns["Trans ID"].Visible = false;
                                 grdGrnApprovalList.Columns["Pur_LastTransNo"].Visible = false;
                                 grdGrnApprovalList.Columns["Transaction Date"].Visible = false;
                                 grdGrnApprovalList.Columns["Full Status"].Visible = false;
