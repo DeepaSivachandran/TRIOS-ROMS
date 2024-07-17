@@ -42,7 +42,7 @@ namespace ROMS
             varSupplierType=0, pbRefreshFlag=0, varButtonFlag = 0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0", varGRNPaymentType="0",varEntryApprovalNo="0";
-        public int varGridErr = 0, varCheckCount = 0 , varCheckFlag=-1;
+        public int varGridErr = 0, varCheckCount = 0 , varCheckFlag=-1,varCheckButtonFlag=0;
         public PUR_PurchaseEntryApproval()
         {
             InitializeComponent();
@@ -762,6 +762,9 @@ namespace ROMS
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
+                    if(varCheckButtonFlag==Convert.ToInt16(grdSupplierList.RowCount))
+                    { btnselectall.Visible = false; }
+                    else { btnselectall.Visible = true; }
                     if (varQueueFlag == 1)
                     {
                         udfnSupplierDetails();
@@ -826,6 +829,13 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0) //DETAILS LOAD
                             {
+                                varEntryApprovalNo = Convert.ToString(objDs.Tables[0].Rows[0]["PurEntryAppNoFlag"]);
+                                if (varEntryApprovalNo == "1")
+                                {
+                                    txtPurApprovalVocNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ApprovalNo"]);
+                                    dpPurchaseApprovalVocDate.Enabled = false;
+                                }
+                                dpPurchaseApprovalVocDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ApprovalDate"]);
                                 cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_COMID"]);
                                 dpVoucherDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_VoucherDate"]);
                                 txtPENO.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_VoucherNo"]);
@@ -890,7 +900,7 @@ namespace ROMS
                                 txtLoadingchargeGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_FrieghtChargesGRN"]);
                                 txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_UnloadingChargesGRN"]);
                                 txtRemarks.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Remarks"]);
-                                varEntryApprovalNo= Convert.ToString(objDs.Tables[0].Rows[0]["PurEntryAppNoFlag"]);
+                                
                                 udfnSupplierDetails();
                                 varSupplierType = Convert.ToInt32(objDs.Tables[0].Rows[0]["PUR_SupplierType"]);
                                 lv_Broker.Visible = false;
@@ -4889,15 +4899,18 @@ namespace ROMS
             {
                 if(varCheckFlag==-1)
                 { varCheckFlag = 1;
-                   // btnselectall.Text = "Select";
+                    // btnselectall.Text = "Select";
+                    btnselectall.Image = global::ROMS.Properties.Resources.checked1;
                 }
                 else if(varCheckFlag==1)
                 { varCheckFlag = 2;
                     //btnselectall.Text = "UnSelect";
+                    btnselectall.Image = global::ROMS.Properties.Resources.Unchecked;
                 }
                 else if(varCheckFlag==2)
                 { varCheckFlag = 1;
-                   // btnselectall.Text = "Select";
+                    btnselectall.Image = global::ROMS.Properties.Resources.checked1;
+                    // btnselectall.Text = "Select";
                 }
                 if (varCheckFlag == 1)
                 {
@@ -5011,33 +5024,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DpPurchaseApprovalVocDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Btnunselectall_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow row in grdGRN.Rows)
-                {
-                    row.Cells[0].Value = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void GrdTaxDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -5055,7 +5041,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void clear_Click(object sender, EventArgs e)
         {
             try
@@ -5644,9 +5629,9 @@ namespace ROMS
                 {
                     flagSave = 1;
                 }
-                if (flagSave == 0)
+                if (flagSave == 0 && (varCheckCount > 0 || varButtonFlag > 0))
                 {
-                    if (varCheckCount > 0)
+                    if (varCheckCount > 0 || varButtonFlag>0)
                     {
                         int varStatus = 0; string result = "";
                     l: MainForm.objCP_Verify = new CP_Verify();
@@ -7441,7 +7426,7 @@ namespace ROMS
         {
             try
             {
-                DataGridView dataGridView = (DataGridView)sender;
+                DataGridView dataGridView = (DataGridView)sender; varCheckButtonFlag = 0;
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
                     string[] varShelflifevalue = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
@@ -7477,6 +7462,7 @@ namespace ROMS
                         Check.Value = "";
                         grdSupplierList.Rows[i].Cells["clmCheck"] = Check;
                         Check.ReadOnly = true;
+                        varCheckButtonFlag++;
                     }
                     if(varApprovedStatus==63)
                     {

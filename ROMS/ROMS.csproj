@@ -616,7 +616,7 @@
     </Compile>
     <Compile Include="Reports\RPT_PUR_GRNDetailsListPrint.cs">
       <DependentUpon>RPT_PUR_GRNDetailsListPrint.rpt</DependentUpon>
-<AutoGen>True</AutoGen>
+      <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
@@ -1785,6 +1785,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\Unchecked.jpg" />
     <None Include="Resources\Unapprove.jpg" />
     <None Include="Resources\Move Color.png" />
     <None Include="Resources\Settings Color.png" />
@@ -2425,7 +2426,7 @@
     <EmbeddedResource Include="Reports\RPT_PUR_GRNDetailsListPrint.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_GRNDetailsListPrint.cs</LastGenOutput>
- <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_DCList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2724,6 +2725,8 @@
     <None Include="Resources\Advance.jpg" />
     <None Include="Resources\Convert.jpg" />
     <None Include="Resources\Convertion.jpg" />
+    <None Include="Resources\Checked.jpg" />
+    <None Include="Resources\checked1.jpg" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">
