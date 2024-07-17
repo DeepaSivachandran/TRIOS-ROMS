@@ -41,7 +41,7 @@ namespace ROMS
         public int grid_flag = 0, varEditProAdd = 0, varEditFlag = 0, varQuantityErr = 0, varDiscountErr = 0,PbApprovalStsid=0,varPurEditFlag=0,varDiscountFlag=0,
             varSupplierType=0, pbRefreshFlag=0, varButtonFlag = 0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
-        public string varCalculator = "0", varGRNPaymentType="0";
+        public string varCalculator = "0", varGRNPaymentType="0",varEntryApprovalNo="0";
         public int varGridErr = 0, varCheckCount = 0 , varCheckFlag=-1;
         public PUR_PurchaseEntryApproval()
         {
@@ -786,6 +786,11 @@ namespace ROMS
                     }
                     else { btnRemarks.Enabled = true; }
                 }
+                if (varEntryApprovalNo == "0")
+                {
+                    dpPurchaseApprovalVocDate.MinDate = MainForm.pbFYStartDate;
+                    dpPurchaseApprovalVocDate.MaxDate = MainForm.pbCurrentDate;
+                }
             }
             catch (Exception ex)
             {
@@ -885,6 +890,7 @@ namespace ROMS
                                 txtLoadingchargeGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_FrieghtChargesGRN"]);
                                 txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_UnloadingChargesGRN"]);
                                 txtRemarks.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Remarks"]);
+                                varEntryApprovalNo= Convert.ToString(objDs.Tables[0].Rows[0]["PurEntryAppNoFlag"]);
                                 udfnSupplierDetails();
                                 varSupplierType = Convert.ToInt32(objDs.Tables[0].Rows[0]["PUR_SupplierType"]);
                                 lv_Broker.Visible = false;
@@ -4882,11 +4888,17 @@ namespace ROMS
             try
             {
                 if(varCheckFlag==-1)
-                { varCheckFlag = 1;    btnselectall.Text = "Select";  }
+                { varCheckFlag = 1;
+                   // btnselectall.Text = "Select";
+                }
                 else if(varCheckFlag==1)
-                { varCheckFlag = 2; btnselectall.Text = "UnSelect"; }
+                { varCheckFlag = 2;
+                    //btnselectall.Text = "UnSelect";
+                }
                 else if(varCheckFlag==2)
-                { varCheckFlag = 1; btnselectall.Text = "Select"; }
+                { varCheckFlag = 1;
+                   // btnselectall.Text = "Select";
+                }
                 if (varCheckFlag == 1)
                 {
                     for (int i = 0; i < grdSupplierList.Rows.Count; i++)
@@ -4899,10 +4911,6 @@ namespace ROMS
                 }
                 else if(varCheckFlag==2)
                 {
-                    //foreach (DataGridViewRow row in grdSupplierList.Rows)
-                    //{
-                    //    row.Cells[0].Value = false;
-                    //}
                     for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                     {
                         if (grdSupplierList.Rows[i].ReadOnly == false)
@@ -4923,7 +4931,10 @@ namespace ROMS
         {
             try
             {
-                udfnVocherno();
+                if (varEntryApprovalNo == "0")
+                {
+                    udfnVocherno();
+                }
             }
             catch (Exception ex)
             {
