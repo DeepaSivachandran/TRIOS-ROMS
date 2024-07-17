@@ -144,6 +144,14 @@ namespace ROMS
                         }
                     }
                 }
+                if(Currentsts == 51)
+                {
+                    btnSave.Enabled = false;
+                }
+                else
+                {
+                    btnSave.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -3238,6 +3246,26 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtIssuedBy.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(chkStatus.Checked == true)
+                {
+                    btnSave.Enabled = true;
+                }
+                else
+                {
+                    btnSave.Enabled = false;
                 }
             }
             catch (Exception ex)

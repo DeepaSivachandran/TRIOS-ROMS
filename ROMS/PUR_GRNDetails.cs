@@ -3700,6 +3700,11 @@ namespace ROMS
                             cell.Style.BackColor = Color.LightGray;
                             cell.Style.ForeColor = Color.Black;
                             cell.ReadOnly = true;
+                            DataGridView dataGridView1 = (DataGridView)sender;
+                            DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmInvoiceBatch"];
+                            cell1.Style.BackColor = Color.LightGray;
+                            cell1.Style.ForeColor = Color.Black;
+                            cell1.ReadOnly = true;
                         }
                         else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "73")
                         {
@@ -3708,6 +3713,11 @@ namespace ROMS
                             cell.Style.BackColor = Color.LightGray;
                             cell.Style.ForeColor = Color.Black;
                             cell.ReadOnly = true;
+                            DataGridView dataGridView1 = (DataGridView)sender;
+                            DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmInvoiceBatch"];
+                            cell1.Style.BackColor = Color.LightGray;
+                            cell1.Style.ForeColor = Color.Black;
+                            cell1.ReadOnly = true;
                         }
                         else
                         {
@@ -3715,6 +3725,11 @@ namespace ROMS
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmBatchno"];
                             cell.Style.BackColor = Color.PaleGreen;
                             cell.Style.ForeColor = Color.Black;
+                            DataGridView dataGridView1 = (DataGridView)sender;
+                            DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmInvoiceBatch"];
+                            cell1.Style.BackColor = Color.PaleGreen;
+                            cell1.Style.ForeColor = Color.Black;
+                            cell1.ReadOnly = true;
                         }
 
                     string[] varShelflifevalue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelfper"].Value).Split(' ');
@@ -3747,15 +3762,22 @@ namespace ROMS
                         grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmBatchno"].ReadOnly = true;
+                        grdGrnlist.Rows[i].Cells["clmInvoiceBatch"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmmrp"].ReadOnly = true;
+                        grdGrnlist.Rows[i].Cells["clmInvoiceMRP"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
+                        grdGrnlist.Rows[i].Cells["clmInvoiceExpiry"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmexpirydate"].Value = "";
+                        grdGrnlist.Rows[i].Cells["clmInvoiceExpiry"].Value = "";
 
                             grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
                             grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
                             grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                            grdGrnlist.Rows[i].Cells["clmInvoiceBatch"].Style.BackColor = Color.LightGray;
                             grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.LightGray;
+                            grdGrnlist.Rows[i].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
                             grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                            grdGrnlist.Rows[i].Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightGray;
                         }
 
                     }
@@ -5205,6 +5227,11 @@ namespace ROMS
                                         cell.Style.BackColor = Color.PaleGreen;
                                         cell.Style.ForeColor = Color.Black;
                                         cell.ReadOnly = false;
+                                        DataGridView dataGridView1 = grdGrnlist;
+                                        DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
+                                        cell1.Style.BackColor = Color.PaleGreen;
+                                        cell1.Style.ForeColor = Color.Black;
+                                        cell1.ReadOnly = false;
                                     }
                                     if (varBatchNo == "72" && varBatchNoGeneration == "74")
                                     {
@@ -5213,6 +5240,11 @@ namespace ROMS
                                         cell.Style.BackColor = Color.LightGray;
                                         cell.Style.ForeColor = Color.Black;
                                         cell.ReadOnly = true;
+                                        DataGridView dataGridView1 = grdGrnlist;
+                                        DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
+                                        cell1.Style.BackColor = Color.LightGray;
+                                        cell1.Style.ForeColor = Color.Black;
+                                        cell1.ReadOnly = false;
                                     }
                                     else if (varBatchNo == "73")
                                     {
@@ -5221,6 +5253,11 @@ namespace ROMS
                                         cell.Style.BackColor = Color.LightGray;
                                         cell.Style.ForeColor = Color.Black;
                                         cell.ReadOnly = true;
+                                        DataGridView dataGridView1 = grdGrnlist;
+                                        DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
+                                        cell1.Style.BackColor = Color.LightGray;
+                                        cell1.Style.ForeColor = Color.Black;
+                                        cell1.ReadOnly = false;
                                     }
                                     if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202 || Convert.ToInt32(cmbQtyType.SelectedValue) == 226 || Convert.ToInt32(cmbQtyType.SelectedValue) == 227)
                                     {
@@ -5267,7 +5304,9 @@ namespace ROMS
                                     grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
                                     grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmmrp"].Style.BackColor = Color.LightGray;
                                     grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
-                                    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                                    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceBatch"].Style.BackColor = Color.LightGray;
+                                    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
+                                    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightGray;
                                 }
                             }
                             else
@@ -6571,10 +6610,16 @@ namespace ROMS
                 grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmmrp"].ReadOnly = true;
                 grdGrnlist.Columns["clmmrp"].DefaultCellStyle.BackColor = Color.LightGray;
+                grdGrnlist.Columns["clmInvoiceMRP"].ReadOnly = true;
+                grdGrnlist.Columns["clmInvoiceMRP"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmexpirydate"].ReadOnly = true;
+                grdGrnlist.Columns["clmInvoiceExpiry"].ReadOnly = true;
                 grdGrnlist.Columns["clmBatchno"].ReadOnly = true;
+                grdGrnlist.Columns["clmInvoiceBatch"].ReadOnly = true;
                 grdGrnlist.Columns["clmexpirydate"].DefaultCellStyle.BackColor = Color.LightGray;
+                grdGrnlist.Columns["clmInvoiceExpiry"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmBatchno"].DefaultCellStyle.BackColor = Color.LightGray;
+                grdGrnlist.Columns["clmInvoiceBatch"].DefaultCellStyle.BackColor = Color.LightGray;
             }
             catch (Exception ex)
             {

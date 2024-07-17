@@ -417,7 +417,7 @@ namespace ROMS
                 }
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
                 {
-                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "231")
+                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "233")
                     {
                         string varRecQty = "";
                         varRecQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
@@ -426,7 +426,10 @@ namespace ROMS
                         dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
                         dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
                     }
-                    udfnReasonChange(sender, e);
+                    if (varFlag == 1)
+                    {
+                        udfnReasonChange(sender, e);
+                    }
                     if (varWrongReason == 0)
                     {
                         btnSave.Text = "Approve";

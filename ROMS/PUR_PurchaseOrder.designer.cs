@@ -273,7 +273,7 @@
             this.tsbSupplier});
             this.tsPOList.Location = new System.Drawing.Point(0, 0);
             this.tsPOList.Name = "tsPOList";
-            this.tsPOList.Size = new System.Drawing.Size(1354, 27);
+            this.tsPOList.Size = new System.Drawing.Size(1354, 25);
             this.tsPOList.TabIndex = 35;
             this.tsPOList.Text = "Purchase Order";
             // 
@@ -284,7 +284,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(109, 24);
+            this.tspHeader.Size = new System.Drawing.Size(109, 22);
             this.tspHeader.Text = "Purchase Order";
             // 
             // tsbEdit
@@ -308,7 +308,7 @@
             this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbSupplier.Name = "tsbSupplier";
             this.tsbSupplier.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbSupplier.Size = new System.Drawing.Size(23, 24);
+            this.tsbSupplier.Size = new System.Drawing.Size(23, 22);
             this.tsbSupplier.Visible = false;
             // 
             // pnlpurchaseorder
@@ -501,6 +501,7 @@
             this.chkStatus.TabIndex = 1111218;
             this.chkStatus.Text = "Pre-Close";
             this.chkStatus.UseVisualStyleBackColor = true;
+            this.chkStatus.CheckedChanged += new System.EventHandler(this.ChkStatus_CheckedChanged);
             // 
             // lblMxsq
             // 
