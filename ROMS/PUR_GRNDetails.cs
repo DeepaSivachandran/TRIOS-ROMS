@@ -5107,6 +5107,11 @@ namespace ROMS
                                     cell.Style.BackColor = Color.LightGray;
                                     cell.Style.ForeColor = Color.Black;
                                     cell.ReadOnly = true;
+                                    DataGridView dataGridView1 = grdGrnlist;
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[""];
+                                    cell1.Style.BackColor = Color.LightGray;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = true;
                                 }
                                 if (varMRPEditflag == 0)
                                 {
@@ -5115,6 +5120,11 @@ namespace ROMS
                                     cell.Style.BackColor = Color.LightGray;
                                     cell.Style.ForeColor = Color.Black;
                                     cell.ReadOnly = true;
+                                    DataGridView dataGridView1 = grdGrnlist;
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceMRP"];
+                                    cell1.Style.BackColor = Color.LightGray;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = true;
                                 }
                                 if (varRMProductionFlag == 1)
                                 {
@@ -5123,6 +5133,11 @@ namespace ROMS
                                     cell.Style.BackColor = Color.LightGray;
                                     cell.Style.ForeColor = Color.Black;
                                     cell.ReadOnly = true;
+                                    DataGridView dataGridView1 = grdGrnlist;
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceExpiry"];
+                                    cell1.Style.BackColor = Color.LightGray;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = true;
                                 }
                                 if (varProducts == "")
                                 {
@@ -6365,6 +6380,8 @@ namespace ROMS
                                         {
                                             grdGrnlist.Rows[i].Cells["clmmrp"].ReadOnly = true;
                                             grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.LightGray;
+                                            grdGrnlist.Rows[i].Cells["clmInvoiceMRP"].ReadOnly = true;
+                                            grdGrnlist.Rows[i].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
                                         }
                                         if (varProducts == "")
                                         {
