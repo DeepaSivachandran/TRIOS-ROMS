@@ -42,7 +42,7 @@ namespace ROMS
             varSupplierType=0, pbRefreshFlag=0, varButtonFlag = 0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0", varGRNPaymentType="0",varEntryApprovalNo="0";
-        public int varGridErr = 0, varCheckCount = 0 , varCheckFlag=-1,varCheckButtonFlag=0;
+        public int varGridErr = 0, varCheckCount = 0, varCheckFlag = -1, varCheckButtonFlag = 0, varApprovalStatus = 0;
         public PUR_PurchaseEntryApproval()
         {
             InitializeComponent();
@@ -5631,9 +5631,9 @@ namespace ROMS
                 {
                     flagSave = 1;
                 }
-                if (flagSave == 0 && (varCheckCount > 0 || varButtonFlag > 0))
+                if (flagSave == 0 && (varCheckCount > 0 || varButtonFlag > 0) || varApprovalStatus == 62)
                 {
-                    if (varCheckCount > 0 || varButtonFlag>0)
+                    if (varCheckCount > 0 || varButtonFlag>0 || varApprovalStatus == 62)
                     {
                         int varStatus = 0; string result = "";
                     l: MainForm.objCP_Verify = new CP_Verify();

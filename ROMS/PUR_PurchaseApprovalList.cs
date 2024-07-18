@@ -253,6 +253,7 @@ namespace ROMS
                 MainForm.objPUR_PurchaseEntryApproval.PbSTS = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["STSID"].Value.ToString());
                 MainForm.objPUR_PurchaseEntryApproval.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value.ToString());
                 MainForm.objPUR_PurchaseEntryApproval.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
+                MainForm.objPUR_PurchaseEntryApproval.varApprovalStatus = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString());
                 MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
                 MainForm.objPUR_PurchaseEntryApproval.Show();
             }
