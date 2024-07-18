@@ -1591,9 +1591,9 @@ namespace ROMS
                                         GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
                                     }
                                 }
-                                if(varConvertFlag==1)
-                                { grdSupplierList.Columns["clmConvert"].Visible = true; }
-                                else { grdSupplierList.Columns["clmConvert"].Visible = false; }
+                                //if(varConvertFlag==1)
+                                //{ grdSupplierList.Columns["clmConvert"].Visible = true; }
+                                //else { grdSupplierList.Columns["clmConvert"].Visible = false; }
                                 lblTpro.Text = Convert.ToString(grdSupplierList.Rows.Count);
                                 if(varPurEditFlag==1)
                                 {
@@ -10458,7 +10458,7 @@ namespace ROMS
                                 if (e.ColumnIndex != 0)
                                 {
                                     grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null,"None",
-                                    "", "", "", "","","","", "", "", "", "", "","", "", "",
+                                    "", "", "", "","","","", "", "","", "", "", "","", "", "",
                                     "", "", "", "", "", "","", "", 0 , 0, 0, 0 , 0, "0", 0, "0", 0 , 0, 0,   0, 0,0, "");
                                     string varProductType = "0";
                                     if(Convert.ToString(cmbEntryType.SelectedValue)=="56")

@@ -3463,7 +3463,6 @@ namespace ROMS
                     
                     if (grdPurchaseList.Rows.Count != 0)
                     {
-                 
                         for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
                         {
                             string varZero = "0";

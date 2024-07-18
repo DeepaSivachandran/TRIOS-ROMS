@@ -3860,7 +3860,6 @@
             // 
             // crToolStripTextBox1
             // 
-            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 
@@ -4042,6 +4041,7 @@
             // 
             // clmDamageQty
             // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle12.BackColor = System.Drawing.Color.PaleGreen;
             this.clmDamageQty.DefaultCellStyle = dataGridViewCellStyle12;
             this.clmDamageQty.HeaderText = "Damage Qty";
