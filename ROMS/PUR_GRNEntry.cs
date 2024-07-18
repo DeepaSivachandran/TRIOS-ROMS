@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
         public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
-        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0,varClose=0,varDateChange=0,ParaSupplierAMT = 0;
+        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0, varClose = 0, varDateChange = 0, ParaSupplierAMT = 0, varReturnDcPending = 0;
         public string varBlockedSupplier = "0", varBlockedReason = "";
         public PUR_GRNEntry()
         {
@@ -465,6 +465,12 @@ namespace ROMS
                     {
                         txtSupplier.BackColor = Color.LightPink;
                     }
+                    else
+                    {
+                        lblReason.Visible = false;
+                        lblBlockedReason.Visible = false;
+                        txtSupplier.BackColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
@@ -674,6 +680,12 @@ namespace ROMS
                         {
                             txtSupplier.BackColor = Color.LightPink;
                         }
+                        else
+                        {
+                            lblReason.Visible = false;
+                            lblBlockedReason.Visible = false;
+                            txtSupplier.BackColor = Color.White;
+                        }
                     }
                     VarPrevSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                 }
@@ -812,6 +824,12 @@ namespace ROMS
                     lblBlockedReason.Visible = true;
                     txtSupplier.BackColor = Color.LightPink;
                     lblBlockedReason.Text = varBlockedReason;
+                }
+                else
+                {
+                    lblReason.Visible = false;
+                    lblBlockedReason.Visible = false;
+                    txtSupplier.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -976,6 +994,18 @@ namespace ROMS
                             else
                             {
                                 btnDC.Enabled = false;
+                            }
+                        }
+                        if (objDs.Tables[12].Rows.Count > 0)
+                        {
+                            string ReturnDcPending = Convert.ToString(objDs.Tables[12].Rows[0]["ReturnDcPending"].ToString());
+                            if (ReturnDcPending == "1")
+                            {
+                                varReturnDcPending = 1;
+                            }
+                            else
+                            {
+                                varReturnDcPending = 0;
                             }
                         }
                     }
@@ -1217,6 +1247,12 @@ namespace ROMS
                                 {
                                     txtSupplier.BackColor = Color.LightPink;
                                 }
+                                else
+                                {
+                                    lblReason.Visible = false;
+                                    lblBlockedReason.Visible = false;
+                                    txtSupplier.BackColor = Color.White;
+                                }
                             }
                         }
                     }
@@ -1246,6 +1282,15 @@ namespace ROMS
                         {
                             VarErrorFlag = true;
                         }
+                    }
+                    if(varReturnDcPending==1 && grdReurnDC.Rows.Count<1)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(135);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        VarErrorFlag = true;
+                        btnDC.Focus();
                     }
                     if (VarErrorFlag == false)
                     {

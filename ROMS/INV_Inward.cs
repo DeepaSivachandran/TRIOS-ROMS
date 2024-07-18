@@ -112,7 +112,9 @@ namespace ROMS
         private void INV_Inward_Load(object sender, EventArgs e)
         {
             try
-            {
+            { 
+                lbltwentyfiveper.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel1) + "%";
+                lblFivetyPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel2) + "%";
                 dtInward.TableName = "TRN_GoodsInward_Product";
                 dtInward.Columns.Add("GIPR_PRID", typeof(int));
                 dtInward.Columns.Add("GIPR_MRP", typeof(decimal));
@@ -1485,7 +1487,7 @@ namespace ROMS
                 string[] varShelflifeper = Convert.ToString(varShelflifevalue).Split(' ');
                 if (varShelflifeper[0] != "")
                 {
-                    if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                    if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1)+1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
                     {
                         DataGridView dataGridView = grdInward;
                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -1496,7 +1498,7 @@ namespace ROMS
                         txtRDPercentageCheck.Enabled = false;
                         lbltwentyfiveper.Enabled = false;
                     }
-                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1))
                     {
                         DataGridView dataGridView = grdInward;
                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -2452,7 +2454,7 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(varShelflifevalue)<25)
+                if(Convert.ToInt32(varShelflifevalue)< (MainForm.pbShelflifeLevel1))
                 {
                     txtRDPercentageCheck.Enabled = true;
                     lbltwentyfiveper.Enabled = true;
@@ -3717,7 +3719,7 @@ namespace ROMS
                                     string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
                                     if (varShelflifeper[0] != "")
                                     {
-                                        if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                        if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1)+1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
                                         {
                                             DataGridView dataGridView = grdInward;
                                             DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -3726,7 +3728,7 @@ namespace ROMS
                                             txtORPercentageCheck.Enabled = true;
                                             lblFivetyPercentage.Enabled = true;
                                         }
-                                        else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                        else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1))
                                         {
                                             DataGridView dataGridView = grdInward;
                                             DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -3846,7 +3848,7 @@ namespace ROMS
                                 string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["shelflifeper"]).Split(' ');
                                 if (varShelflifeper[0] != "")
                                 {
-                                    if (Convert.ToDecimal(varShelflifeper[0]) > 26 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                    if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1)+1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
                                     {
                                         DataGridView dataGridView = grdInward;
                                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -3855,7 +3857,7 @@ namespace ROMS
                                         txtORPercentageCheck.Enabled = true;
                                         lblFivetyPercentage.Enabled = true;
                                     }
-                                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                    else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1))
                                     {
                                         DataGridView dataGridView = grdInward;
                                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];

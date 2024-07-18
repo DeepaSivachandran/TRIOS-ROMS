@@ -24,6 +24,8 @@ namespace ROMS
         private ToolTip tpReturnAlertDays = new ToolTip();
         private ToolTip tpInvoiceEditDays = new ToolTip();
         private ToolTip tpbackuppath = new ToolTip();
+        private ToolTip tpPerLevel1 = new ToolTip();
+        private ToolTip tpPerLevel2 = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
         private ToolTip tpReportText = new ToolTip();
         DataSet objDs = new DataSet();
@@ -94,7 +96,6 @@ namespace ROMS
         {
             try
             {
-                
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnGeneralSettingList(0);
                 objdserv.CloseConnection();
@@ -112,6 +113,8 @@ namespace ROMS
                             txtReturnAlertDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_RAD"]);
                             txtInvoiceEditDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_IED"]);
                             txtbackuppath.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_DBPath"]);
+                            txtPerLevel1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Level1"]);
+                            txtPerLevel2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Level2"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -208,7 +211,7 @@ namespace ROMS
                 {
                     varDCCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock,txtbackuppath.Text, varGRNCheck, varDCCheck);
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock,txtbackuppath.Text, varGRNCheck, varDCCheck,Convert.ToInt32(txtPerLevel1.Text),Convert.ToInt32(txtPerLevel2.Text));
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -222,6 +225,8 @@ namespace ROMS
                 }
                 grdReport.Rows.Clear();
                 udfnList();
+                MainForm objMainForm = new MainForm();
+                objMainForm.udfnShelflifeLevel();
             }
             catch (Exception ex)
             {
@@ -612,9 +617,45 @@ namespace ROMS
                     tpbackuppath.Show("Please enter a path", txtbackuppath, 5000);
                     blnErrorFlag = true;
                 }
-
+                if (Convert.ToString(txtPerLevel1.Text.Trim()) == "")
+                {
+                    epGeneralSettings.SetError(txtPerLevel1, "Please enter level1 value.");
+                    txtPerLevel1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPerLevel1.ShowAlways = true;
+                    tpPerLevel1.Show("Please enter level1 value.", txtPerLevel1, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtPerLevel2.Text.Trim()) == "")
+                {
+                    epGeneralSettings.SetError(txtPerLevel2, "Please enter level2 value.");
+                    txtPerLevel2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPerLevel2.ShowAlways = true;
+                    tpPerLevel2.Show("Please enter level2 value.", txtPerLevel2, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtPerLevel1.Text.Trim()) != "" && Convert.ToString(txtPerLevel2.Text.Trim()) != "")
+                {
+                    if(Convert.ToInt32(txtPerLevel1.Text)>Convert.ToInt32(txtPerLevel2.Text))
+                    {
+                        epGeneralSettings.SetError(txtPerLevel1, "Please enter valid level1 value.");
+                        txtPerLevel1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpPerLevel1.ShowAlways = true;
+                        tpPerLevel1.Show("Please enter valid level1 value.", txtPerLevel1, 5000);
+                        blnErrorFlag = true;
+                    }
+                    if(Convert.ToInt32(txtPerLevel2.Text)>99)
+                    {
+                        epGeneralSettings.SetError(txtPerLevel2, "Please enter valid level2 value.");
+                        txtPerLevel2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpPerLevel2.ShowAlways = true;
+                        tpPerLevel2.Show("Please enter valid level2 value.", txtPerLevel2, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
+                    epGeneralSettings.Clear();
+                    udfnClear();
                     udfnUpdate();
                 }
             }
@@ -629,6 +670,25 @@ namespace ROMS
                 btnUpdate.Focus();
             }
             finally { btnUpdate.Enabled = true; btnUpdate.Focus(); }
+        }
+        public void udfnClear()
+        {
+            try
+            {
+                txtcashpurchase.BackColor = Color.White;
+                txtBillAmount.BackColor = Color.White;
+                txtGRNQty.BackColor = Color.White;
+                txtReturnAlertDays.BackColor = Color.White;
+                txtInvoiceEditDays.BackColor = Color.White;
+                txtbackuppath.BackColor = Color.White;
+                txtPerLevel1.BackColor = Color.White;
+                txtPerLevel2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void BtnClose_Enter(object sender, EventArgs e)
         {
@@ -1208,6 +1268,115 @@ namespace ROMS
                     epGeneralSettings.Clear();
                     txtbackuppath.BackColor = Color.White;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtPerLevel1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerLevel1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPerLevel1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPerLevel2.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPerLevel1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPerLevel1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerLevel1.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPerLevel2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerLevel2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPerLevel2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPerLevel2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPerLevel2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPerLevel2.BackColor = Color.White;
             }
             catch (Exception ex)
             {

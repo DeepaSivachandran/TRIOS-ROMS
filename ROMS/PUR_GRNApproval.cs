@@ -20,7 +20,7 @@ namespace ROMS
         public int varSupplierID = 0, varScheduleID = 0, varConcernID = 0, varID = 0, varGRNAID = 0, varGRNAPRID = 0, varFlag = 0, varGRNID = 0;
         decimal varInvoiceQty=0, VarReceivedQty=0, varPOID=0, grid_flag = 0;
         public string result = "", varUserID = "0",varReason="";
-        public int varWrongReason = 0, varCrtReason = 0;
+        public int varWrongReason = 0, varCrtReason = 0, varShelflifeLevel1 = 0, varShelflifeLevel2 = 0;
         DataTable dtApproval = new DataTable();
         DataTable dtPurchaseReturnDC = new DataTable();
         public PUR_GRNApproval()
@@ -956,9 +956,18 @@ namespace ROMS
                             varInvoiceQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Qty"]);
                             VarReceivedQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Received Qty"]);
                             //varPOID = Convert.ToInt32(objDs.Tables[0].Rows[i]["POID"]);
+
+                            if (objDs.Tables[3].Rows.Count > 0)
+                            {
+                                lbltwentyfiveper.Text = "< " + Convert.ToString(objDs.Tables[3].Rows[0]["Level1"]) + "%";
+                                varShelflifeLevel1 = Convert.ToInt32(objDs.Tables[3].Rows[0]["Level1"]);
+                                lblFivetyPercentage.Text = "< " + Convert.ToString(objDs.Tables[3].Rows[0]["Level2"]) + "%";
+                                varShelflifeLevel2 = Convert.ToInt32(objDs.Tables[3].Rows[0]["Level2"]);
+                            }
+
                             if (varShelflifeper[0] != "")
                             {
-                                if (Convert.ToDecimal(varShelflifeper[0]) > 24 && Convert.ToDecimal(varShelflifeper[0]) < 50)
+                                if (Convert.ToDecimal(varShelflifeper[0]) > varShelflifeLevel1 - 1 && Convert.ToDecimal(varShelflifeper[0]) < varShelflifeLevel2)
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -967,7 +976,7 @@ namespace ROMS
                                     txtORPercentageCheck.Enabled = true;
                                     lblFivetyPercentage.Enabled = true;
                                 }
-                                else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < 25)
+                                else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < varShelflifeLevel1)
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -1043,7 +1052,7 @@ namespace ROMS
                     //        grdpurchasedetails.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Created By"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_IssuedBy"]));
                     //    }
                     //}
-                   
+
 
                 }
             }
