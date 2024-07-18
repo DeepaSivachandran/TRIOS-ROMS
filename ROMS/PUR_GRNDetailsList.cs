@@ -93,7 +93,7 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D) || (e.KeyCode == Keys.Delete))
                 {
-                    if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value) == 17)
+                    if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value) == 17 && Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["PURREDCID"].Value) == 0)
                     {
                         TsbDelete_Click(sender, e);
                     }
@@ -302,6 +302,7 @@ namespace ROMS
                             grdGRNList.Columns["GRN_INVSTSID"].Visible = false;
                             grdGRNList.Columns["SP_SupplierType"].Visible = false;
                             grdGRNList.Columns["Totallbl"].Visible = false;
+                            grdGRNList.Columns["PURREDCID"].Visible = false;
                             grdGRNList.Columns["GRN Full Status"].Visible = false;
                             grdGRNList.Columns["Overall Full Status"].Visible = false;
                             grdGRNList.Columns["Any Pur Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2264,11 +2265,16 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value) == 17)
+                if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value) == 17 && Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["PURREDCID"].Value) == 0)
                 {
                     tsbDelete.Visible = true;
                     tssEdit.Visible = true;
                 }
+                //else if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["PURREDCID"].Value)!=0)
+                //{
+                //    tsbDelete.Visible = true;
+                //    tssEdit.Visible = true;
+                //}
                 else
                 {
                     tsbDelete.Visible = false;

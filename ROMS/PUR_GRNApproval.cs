@@ -479,49 +479,49 @@ namespace ROMS
                             }
                         }
 
-                        if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
+                        //if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
+                        //{
+                        //    MainForm.objCP_Verify = new CP_Verify();
+                        //    MainForm.objCP_Verify.ShowDialog();
+                        //    varUserID = MainForm.objCP_Verify.varUserId;
+                        //    if (MainForm.objCP_Verify.flag == 1)
+                        //    {
+                        //        dtApproval.Rows[i]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
+                        //    }
+                        //    else
+                        //    {
+                        //        dtApproval.Rows[i]["GRNAPR_RiskAcceptedby"] = 0;
+                        //        grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    dtApproval.Rows[i]["GRNAPR_RiskAcceptedby"] = 0;
+                        //}
+                    }
+                }
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
+                {
+                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
+                    {
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MainForm.objCP_Verify = new CP_Verify();
-                            MainForm.objCP_Verify.ShowDialog();
-                            varUserID = MainForm.objCP_Verify.varUserId;
-                            if (MainForm.objCP_Verify.flag == 1)
-                            {
-                                dtApproval.Rows[i]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
-                            }
-                            else
-                            {
-                                dtApproval.Rows[i]["GRNAPR_RiskAcceptedby"] = 0;
-                                grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
-                            }
+                            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
                         }
                         else
                         {
-                            dtApproval.Rows[i]["GRNAPR_RiskAcceptedby"] = 0;
+                            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                            grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
                         }
                     }
+                    //else
+                    //{
+                    //    dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
+                    //}
                 }
-                //if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
-                //{
-                //    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "232")
-                //    {
-                //        MainForm.objCP_Verify = new CP_Verify();
-                //        MainForm.objCP_Verify.ShowDialog();
-                //        varUserID = MainForm.objCP_Verify.varUserId;
-                //        if (MainForm.objCP_Verify.flag == 1)
-                //        {
-                //            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = Convert.ToInt32(varUserID);
-                //        }
-                //        else
-                //        {
-                //            dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                //            grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -697,6 +697,7 @@ namespace ROMS
                     btnRemarks.Enabled = false;
                     txtRemark.Enabled = false;
                     grdGrnApproval.ReadOnly = true;
+                    grdGrnApproval.Columns["clmreturnqty"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
             }
             catch (Exception ex)
