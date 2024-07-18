@@ -52,6 +52,7 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
                     MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Flag"].Value);
                     MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNID"].Value);
+                   //nForm.objPUR_GRNApproval.varInwardID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GIPPRID"].Value);
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 }
@@ -1602,6 +1603,11 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Overall Full Status"].Visible = false;
                                 grdGrnApprovalList.Columns["MRP"].Visible = false;
                                 grdGrnApprovalList.Columns["Exp"].Visible = false;
+                                grdGrnApprovalList.Columns["GRNFilterDate"].Visible = false;
+                                grdGrnApprovalList.Columns["InvFilterDate"].Visible = false;
+                                grdGrnApprovalList.Columns["GRNID"].Visible = false;
+                                grdGrnApprovalList.Columns["PURID"].Visible = false;
+                                grdGrnApprovalList.Columns["Trans ID"].Visible = false;
                                 grdGrnApprovalList.Columns["Pur_LastTransNo"].Visible = false;
                                 grdGrnApprovalList.Columns["Transaction Date"].Visible = false;
                                 grdGrnApprovalList.Columns["Full Status"].Visible = false;

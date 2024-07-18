@@ -104,6 +104,7 @@
             this.clmPURPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmErrorCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGRNPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGIPPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
@@ -779,6 +780,7 @@
             this.clmPURPRID,
             this.clmErrorCount,
             this.clmGRNPRID,
+            this.clmGIPPRID,
             this.clmReason});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -949,6 +951,12 @@
             this.clmGRNPRID.HeaderText = "GRNPRID";
             this.clmGRNPRID.Name = "clmGRNPRID";
             this.clmGRNPRID.Visible = false;
+            // 
+            // clmGIPPRID
+            // 
+            this.clmGIPPRID.HeaderText = "GIPPRID";
+            this.clmGIPPRID.Name = "clmGIPPRID";
+            this.clmGIPPRID.Visible = false;
             // 
             // clmReason
             // 
@@ -1159,6 +1167,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPURPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmErrorCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGRNPRID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmGIPPRID;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
     }
 }

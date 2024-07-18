@@ -2771,6 +2771,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOrderBy", objTRN_GoodsInward_Purchase.paraOrderBy);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRN_GoodsInward_Purchase.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_GoodsInward_Purchase.paraID);
+                varSqlCommand.Parameters.AddWithValue("@ParaInwardDate", objTRN_GoodsInward_Purchase.ParaInwardDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaExpiryDate", objTRN_GoodsInward_Purchase.ParaExpiryDate);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -3101,6 +3103,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDate", objTRN_PurchaseEntry.paraDate);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag ", objTRN_PurchaseEntry.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID ", objTRN_PurchaseEntry.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraInwardId ", objTRN_PurchaseEntry.paraInwardId);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -3297,6 +3300,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNAID", objTRN_GRNApproval.ParaGRNAID);
                 varSqlCommand.Parameters.AddWithValue("@ParaGRNAPRID", objTRN_GRNApproval.ParaGRNAPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GRNApproval.paraGRNID);
+                varSqlCommand.Parameters.AddWithValue("@paraInwardId", objTRN_GRNApproval.paraInwardId);
+                varSqlCommand.Parameters.AddWithValue("@paraEditFlag", objTRN_GRNApproval.paraEditFlag);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

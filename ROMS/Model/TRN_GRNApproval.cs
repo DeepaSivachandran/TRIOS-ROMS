@@ -25,5 +25,7 @@ namespace ROMS.Model
         public int ParaGRNAID { get; set; } = 0;
         public int ParaGRNAPRID { get; set; } = 0;
         public int paraGRNID { get; set; } = 0;
+        public int paraInwardId { get; set; } = 0;
+        public int paraEditFlag { get; set; } = 0;
     }
 }

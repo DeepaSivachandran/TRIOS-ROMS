@@ -43,6 +43,7 @@ namespace ROMS
         public string varProductName = "";
         public string varPICode = "";
         public int varSLID = 0;
+        public int varGRNStatus = 0;
         public int varRKID = 0;
         public int varDecimal = 0;
         public decimal varApprox = 0;
@@ -577,6 +578,20 @@ namespace ROMS
                             grbProDetails.Enabled = false;
                             chkCompleted.Checked = true;
                             chkCompleted.Enabled = false;
+                        }
+                        if(varGRNStatus==23)
+                        {
+                            cmbReasonForClosing.Enabled = true;
+                            txtAmount.Enabled = true;
+                            txtCrNo.Enabled = true;
+                            dpCreditNoteDate.Enabled = true;
+                        }
+                        else
+                        {
+                            cmbReasonForClosing.Enabled = false;
+                            txtAmount.Enabled = false;
+                            txtCrNo.Enabled = false;
+                            dpCreditNoteDate.Enabled = false;
                         }
                     }
                 }

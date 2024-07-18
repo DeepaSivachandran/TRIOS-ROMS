@@ -83,5 +83,6 @@ namespace ROMS.Model
         public string paraVerifiedFormat { get; set; } = "";
         public string paraDate { get; set; } = "";
         public int paraFlag { get; set; } = 0;
+        public int paraInwardId { get; set; } = 0;
     }
 }

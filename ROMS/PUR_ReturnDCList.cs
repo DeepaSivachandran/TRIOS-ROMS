@@ -188,6 +188,7 @@ namespace ROMS
                     MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
                     MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Schedule ID"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.varGRNStatus = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["GRN Status"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.vareditflag = 0;
                     MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
                     MainForm.objPUR_PurchaseReturns.Show();
@@ -973,6 +974,7 @@ namespace ROMS
                                 grdReturnDCList.Columns["Print"].Width = 50;
                                 grdReturnDCList.Columns["S.No."].Width = 60;
                                 grdReturnDCList.Columns["ID"].Visible = false;
+                                grdReturnDCList.Columns["GRN Status"].Visible = false;
                                 grdReturnDCList.Columns["Concern ID"].Visible = false;
                                 grdReturnDCList.Columns["Supplier ID"].Visible = false;
                                 grdReturnDCList.Columns["Schedule ID"].Visible = false;

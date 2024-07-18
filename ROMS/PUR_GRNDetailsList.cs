@@ -268,6 +268,7 @@ namespace ROMS
                             grdGRNList.Columns["ClmEdit"].Visible = true;
                             //grdGRNList.Columns["ClmEdit"].DisplayIndex = objDs.Tables[0].Columns.Count;
                             grdGRNList.Columns["ClmEdit"].Width = 50;
+                            grdGRNList.Columns["clmCheck"].Width = 50;
                             grdGRNList.Columns["clmPrint"].Visible = true;
                             //grdGRNList.Columns["clmPrint"].DisplayIndex = objDs.Tables[0].Columns.Count+1;
                             grdGRNList.Columns["clmPrint"].Width = 50;
@@ -313,7 +314,7 @@ namespace ROMS
                             grdGRNList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             grdGRNList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            
+
                             //grdGRNList.Columns["S.No."].ReadOnly = true;
                             //grdGRNList.Columns["Concern"].ReadOnly = true;
                             //grdGRNList.Columns["GRN No."].ReadOnly = true;
@@ -336,7 +337,7 @@ namespace ROMS
                             //grdGRNList.Columns["Tot Pro"].ReadOnly = true;
                             //grdGRNList.Columns["Payment Mode"].ReadOnly = true;
                             //grdGRNList.Columns["clmCheck"].ReadOnly = false;
-                            
+
                         }
                         else
                         {
@@ -383,6 +384,31 @@ namespace ROMS
                 if (varCheckChange == 0)
                 {
                     btnComplete.Enabled = false;
+                }
+                if (grdGRNList.Rows.Count > 0)
+                {
+                    grdGRNList.Columns["S.No."].ReadOnly = true;
+                    grdGRNList.Columns["Concern"].ReadOnly = true;
+                    grdGRNList.Columns["GRN No."].ReadOnly = true;
+                    grdGRNList.Columns["GRN Date"].ReadOnly = true;
+                    grdGRNList.Columns["Supplier"].ReadOnly = true;
+                    grdGRNList.Columns["City"].ReadOnly = true;
+                    grdGRNList.Columns["GSTIN"].ReadOnly = true;
+                    grdGRNList.Columns["Inv Date"].ReadOnly = true;
+                    grdGRNList.Columns["Inv No."].ReadOnly = true;
+                    grdGRNList.Columns["Inv Amt"].ReadOnly = true;
+                    grdGRNList.Columns["Created By"].ReadOnly = true;
+                    grdGRNList.Columns["Loading Charges"].ReadOnly = true;
+                    grdGRNList.Columns["Unloading Charges"].ReadOnly = true;
+                    grdGRNList.Columns["Order Type"].ReadOnly = true;
+                    grdGRNList.Columns["Any Pur Returns"].ReadOnly = true;
+                    grdGRNList.Columns["GRN Status"].ReadOnly = true;
+                    grdGRNList.Columns["Overall Status"].ReadOnly = true;
+                    grdGRNList.Columns["ClmEdit"].ReadOnly = true;
+                    grdGRNList.Columns["clmPrint"].ReadOnly = true;
+                    grdGRNList.Columns["Tot Pro"].ReadOnly = true;
+                    grdGRNList.Columns["Payment Mode"].ReadOnly = true;
+                    grdGRNList.Columns["clmCheck"].ReadOnly = false;
                 }
             }
             
@@ -1593,28 +1619,7 @@ namespace ROMS
         {
             try
             {
-                //grdGRNList.Columns["ClmEdit"].Frozen = true;
-                //grdGRNList.Columns["ClmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["clmPrint"].Frozen = true;
-                //grdGRNList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["clmLocPrint"].Frozen = true;
-                //grdGRNList.Columns["clmLocPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["S.No."].Frozen = true;
-                //grdGRNList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["Concern"].Frozen = true;
-                //grdGRNList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["GRN Status"].Frozen = true;
-                //grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["Overall Status"].Frozen = true;
-                //grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["GRN No."].Frozen = true;
-                //grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["GRN Date"].Frozen = true;
-                //grdGRNList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["Supplier"].Frozen = true;
-                //grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGRNList.Columns["clmCheck"].ReadOnly = false;
-                //grdGRNList.ClearSelection();
+                grdGRNList.ClearSelection();
                 for (int i = 0; i < grdGRNList.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
@@ -1691,6 +1696,27 @@ namespace ROMS
                         Check.ReadOnly = true;
                     }
                 } 
+                
+                grdGRNList.Columns["ClmEdit"].Frozen = true;
+                grdGRNList.Columns["ClmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["clmPrint"].Frozen = true;
+                grdGRNList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["clmLocPrint"].Frozen = true;
+                grdGRNList.Columns["clmLocPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["S.No."].Frozen = true;
+                grdGRNList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["Concern"].Frozen = true;
+                grdGRNList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["GRN Status"].Frozen = true;
+                grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["Overall Status"].Frozen = true;
+                grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["GRN No."].Frozen = true;
+                grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["GRN Date"].Frozen = true;
+                grdGRNList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["Supplier"].Frozen = true;
+                grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;               
             }
             catch (Exception ex)
             {

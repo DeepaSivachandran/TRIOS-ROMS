@@ -41,6 +41,8 @@ namespace ROMS.Model
         public int ParaScheduleId { get; set; } = 0;
         public int paraOrderBy { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
+        public string ParaInwardDate { get; set; } = "";
+        public string ParaExpiryDate { get; set; } = "";
         public DataTable paraTRN_GoodsInward_Purchase_Products { get; set; } = null;
     }
 }
