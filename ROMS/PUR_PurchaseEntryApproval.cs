@@ -42,7 +42,7 @@ namespace ROMS
             varSupplierType=0, pbRefreshFlag=0, varButtonFlag = 0;
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0", varGRNPaymentType="0";
-        public int varGridErr = 0, varCheckCount = 0, varShelflifeLevel1 = 0, varShelflifeLevel2 = 0;
+        public int varGridErr = 0, varCheckCount = 0;
         public PUR_PurchaseEntryApproval()
         {
             InitializeComponent();
@@ -724,8 +724,8 @@ namespace ROMS
         {
             try
             {
-                //lblDPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel1) + "%";
-                //lblPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel2) + "%";
+                lblDPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel1) + "%";
+                lblPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel2) + "%";
                 MainForm objMainForm = new MainForm();
                 dtTaxTable = new DataTable();
                 objMainForm.udfnGetDefaultCompany();
@@ -892,13 +892,6 @@ namespace ROMS
                                 lv_Broker.Visible = false;
                                 //udfndisablevalue();
                                 udfnLoadingGrandTotCalculation();
-                            }
-                            if (objDs.Tables[12].Rows.Count != 0)
-                            {
-                                lblDPercentage.Text = "< " + Convert.ToString(objDs.Tables[12].Rows[0]["Level1"]) + "%";
-                                varShelflifeLevel1 = Convert.ToInt32(objDs.Tables[12].Rows[0]["Level1"]);
-                                lblPercentage.Text = "< " + Convert.ToString(objDs.Tables[12].Rows[0]["Level2"]) + "%";
-                                varShelflifeLevel2 = Convert.ToInt32(objDs.Tables[12].Rows[0]["Level2"]);
                             }
                             ////// tab1 load
                             if (objDs.Tables[1].Rows.Count != 0)
@@ -3069,14 +3062,14 @@ namespace ROMS
                                         string[] varShelflifevalue = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]).Split(' ');
                                         if (varShelflifevalue[0] != "")
                                         {
-                                            if (Convert.ToDecimal(varShelflifevalue[0]) < varShelflifeLevel1)
+                                            if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel1))
                                             {
                                                 DataGridView dataGridView = grdSupplierList;
                                                 DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
                                                 cell.Style.BackColor = Color.Red;
                                                 cell.Style.ForeColor = Color.White;
                                             }
-                                            else if (Convert.ToDecimal(varShelflifevalue[0]) < varShelflifeLevel2)
+                                            else if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
                                             {
                                                 DataGridView dataGridView = grdSupplierList;
                                                 DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
@@ -7270,13 +7263,13 @@ namespace ROMS
                     int varApprovedStatus = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmApprovalSts"].Value);
                     if (varShelflifevalue[0] != "")
                     {
-                        if (Convert.ToDecimal(varShelflifevalue[0]) < varShelflifeLevel1)
+                        if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel1))
                         {
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmactuallife"];
                             cell.Style.BackColor = Color.Red;
                             cell.Style.ForeColor = Color.White;
                         }
-                        else if (Convert.ToDecimal(varShelflifevalue[0]) < varShelflifeLevel2)
+                        else if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
                         {
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmactuallife"];
                             cell.Style.BackColor = Color.Orange;
