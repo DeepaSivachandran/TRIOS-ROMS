@@ -417,15 +417,15 @@ namespace ROMS
                 }
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
                 {
-                    if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "233" && varFlag==1)
-                    {
-                        string varRecQty = "";
-                        varRecQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
-                        grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = varRecQty;
-                        object Quantity = varRecQty;
-                        dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = Quantity;
-                        dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
-                    }
+                    //if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "233" && varFlag==1)
+                    //{
+                    //    string varRecQty = "";
+                    //    varRecQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
+                    //    grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = varRecQty;
+                    //    object Quantity = varRecQty;
+                    //    dtApproval.Rows[i]["GRNAPR_ReturnedQty"] = Quantity;
+                    //    dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
+                    //}
                     if (varFlag == 1)
                     {
                         udfnReasonChange(sender, e);
@@ -448,6 +448,15 @@ namespace ROMS
                     string varGIPPRID = "0";
                     for (int i = 0; i < dtApproval.Rows.Count; i++)
                     {
+                        if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "233" && varFlag == 1)
+                        {
+                            string varRecQty = "";
+                            varRecQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
+                            grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = varRecQty;
+                            object Quantity = varRecQty;
+                            dtApproval.Rows[i]["GRNAPR_ReturnedQty"] = Quantity;
+                            dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
+                        }
                         varID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_PURPRID"]);
                         varGRNPRID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_GRNPRID"]);
                         varGIPPRID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_GIPPRID"]);

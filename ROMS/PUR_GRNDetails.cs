@@ -886,7 +886,7 @@ namespace ROMS
                         objGRNProd.Columns.Add("GRNPR_SLID", typeof(int));
                         objGRNProd.Columns.Add("GRNPR_RKID", typeof(int));
                         objGRNProd.Columns.Add("GRNPR_RMProductionFlag", typeof(int));
-                        objGRNProd.Columns.Add("GRNPR_InvoiceMRP", typeof(float));
+                        objGRNProd.Columns.Add("GRNPR_InvoiceMRP", typeof(decimal));
                         objGRNProd.Columns.Add("GRNPR_InvoiceExpirydate", typeof(string));
                         objGRNProd.Columns.Add("GRNPR_InvoiceBatchNo", typeof(string));
                         objGRNProd.Columns.Add("GRNPR_DamageQty", typeof(float));
@@ -1273,7 +1273,7 @@ namespace ROMS
                 objGRNProd.Columns.Add("GRNPR_SLID", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_RKID", typeof(int));
                 objGRNProd.Columns.Add("GRNPR_RMProductionFlag", typeof(int));
-                objGRNProd.Columns.Add("GRNPR_InvoiceMRP", typeof(float));
+                objGRNProd.Columns.Add("GRNPR_InvoiceMRP", typeof(decimal));
                 objGRNProd.Columns.Add("GRNPR_InvoiceExpirydate", typeof(string));
                 objGRNProd.Columns.Add("GRNPR_InvoiceBatchNo", typeof(string));
                 objGRNProd.Columns.Add("GRNPR_DamageQty", typeof(decimal));
@@ -4197,6 +4197,13 @@ namespace ROMS
                     string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                     grdGrnlist.Rows[e.RowIndex].Cells["clmmrp"].Value = mrp;
                 }
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmInvoiceMRP")
+                {
+                    decimal varInvoiceMRP = Convert.ToDecimal(grdGrnlist.CurrentRow.Cells["clmInvoiceMRP"].Value);
+                    string mrp = string.Format("{0:0.00}", varInvoiceMRP);
+                    string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                    grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceMRP"].Value = mrp;
+                }
                 if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmInvoiceQty")
                 {
                     /*
@@ -6351,6 +6358,8 @@ namespace ROMS
                                 cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
                                 varBlockedSupplier = Convert.ToString(objDs.Tables[0].Rows[0]["SP_STSId"]);
                                 varBlockedReason = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);
+                                lblDPercentage.Text = "< " + Convert.ToString(objDs.Tables[0].Rows[0]["Level1"]) + "%";
+                                lblPercentage.Text = "< " + Convert.ToString(objDs.Tables[0].Rows[0]["Level2"]) + "%";
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;
                                 cmbConcern.Enabled = false;

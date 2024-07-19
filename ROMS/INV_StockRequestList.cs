@@ -1192,6 +1192,7 @@ namespace ROMS
                                     lvProduct.Items.Add(objList);
                                     }
                                     */
+                                    DGV_FilterProduct.BringToFront();
                                     DGV_FilterProduct.Visible = true;
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
