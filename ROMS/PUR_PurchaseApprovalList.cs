@@ -172,7 +172,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Vouc No."].Width = 70;
                             grdPurchaseEntryApproval.Columns["Vouc Date"].Width = 80;
                             grdPurchaseEntryApproval.Columns["Supplier"].Width = 300;
-                            grdPurchaseEntryApproval.Columns["Pur Type"].Width = 100;
+                            grdPurchaseEntryApproval.Columns["Entry Type"].Width = 100;
                             grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
                             grdPurchaseEntryApproval.Columns["Overall Status"].Width = 150;
                             grdPurchaseEntryApproval.Columns["Status"].Visible = false;
@@ -281,7 +281,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Inv Date"].Width = 100;
                 DGV_SearchGrid.Columns["Inv No."].Width = 100;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
-                DGV_SearchGrid.Columns["Pur Type"].Width = 100;
+                DGV_SearchGrid.Columns["Entry Type"].Width = 100;
                 DGV_SearchGrid.Columns["Tot Pro"].Width = 150;
                 DGV_SearchGrid.Columns["Remarks"].Width = 100;
                 DGV_SearchGrid.Columns["Status"].Visible = false;

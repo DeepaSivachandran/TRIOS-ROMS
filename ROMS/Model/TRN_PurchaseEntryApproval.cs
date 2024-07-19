@@ -57,8 +57,9 @@ namespace ROMS.Model
         public decimal paraGSTAmnt { get; set; } = 0;
         public decimal paraRoundOff { get; set; } = 0;
         public decimal paraGrandTotal { get; set; } = 0;
+        public decimal paraTotal { get; set; } = 0;
         public decimal paraFrightGRN { get; set; } = 0;
-        public decimal paraLoadingChargesGRN { get; set; } = 0;
+        public decimal paraUnLoadingChargesGRN { get; set; } = 0;
         public byte[] paraQrimg { get; set; } = null;
         public DataTable ParaTRN_Purchase_Products_Error { get; set; } = null;
         public string paraEinvoice { get; set; } = "";

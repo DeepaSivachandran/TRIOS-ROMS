@@ -3166,10 +3166,11 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDamageCost", objTRN_PurchaseEntryApproval.paraDamageCost);
                 varSqlCommand.Parameters.AddWithValue("@paraOtherDisc", objTRN_PurchaseEntryApproval.paraOtherDisc);
                 varSqlCommand.Parameters.AddWithValue("@paraSubTotal", objTRN_PurchaseEntryApproval.paraSubTotal);
+                varSqlCommand.Parameters.AddWithValue("@paraTotal", objTRN_PurchaseEntryApproval.paraTotal);
                 varSqlCommand.Parameters.AddWithValue("@paraGSTAmnt", objTRN_PurchaseEntryApproval.paraGSTAmnt);
                 varSqlCommand.Parameters.AddWithValue("@paraRoundOff", objTRN_PurchaseEntryApproval.paraRoundOff);
                 varSqlCommand.Parameters.AddWithValue("@paraGrandTotal", objTRN_PurchaseEntryApproval.paraGrandTotal);
-                varSqlCommand.Parameters.AddWithValue("@paraLoadingChargesGRN", objTRN_PurchaseEntryApproval.paraLoadingChargesGRN);
+                varSqlCommand.Parameters.AddWithValue("@paraUnLoadingChargesGRN", objTRN_PurchaseEntryApproval.paraUnLoadingChargesGRN);
                 varSqlCommand.Parameters.AddWithValue("@paraFrightGRN", objTRN_PurchaseEntryApproval.paraFrightGRN);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_PurchaseEntryApproval.paraGRNID);
                 varSqlCommand.Parameters.AddWithValue("@paraSaveFlag", objTRN_PurchaseEntryApproval.paraSaveFlag);

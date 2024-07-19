@@ -674,8 +674,8 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Inv No."].ReadOnly = true; 
                             grdPurchaseEntryList.Columns["Created By"].Width = 200;
                             grdPurchaseEntryList.Columns["Created By"].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Pur Type"].Width = 150;
-                            grdPurchaseEntryList.Columns["Pur Type"].ReadOnly = true;
+                            grdPurchaseEntryList.Columns["Entry Type"].Width = 150;
+                            grdPurchaseEntryList.Columns["Entry Type"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["Tot Pro"].Width = 100;
                             grdPurchaseEntryList.Columns["Tot Pro"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["clmCheck"].Width = 50;
@@ -789,7 +789,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Inv Date"].Width = 100;
                 DGV_SearchGrid.Columns["Inv No."].Width = 100;
                 DGV_SearchGrid.Columns["Created By"].Width = 100;
-                DGV_SearchGrid.Columns["Pur Type"].Width = 100;
+                DGV_SearchGrid.Columns["Entry Type"].Width = 100;
                 DGV_SearchGrid.Columns["Tot Pro"].Width = 150;
                 DGV_SearchGrid.Columns["Inv Amt"].Width = 150;
                 DGV_SearchGrid.Columns["Pur Entry Status"].Width = 130;
@@ -1614,7 +1614,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex-1].ColumnWidth = 30;
                             }
-                            if(col.Name=="Pur Type" || col.Name == "GSTIN")
+                            if(col.Name=="Entry Type" || col.Name == "GSTIN")
                             {
                                 ExcelSheet.Columns[cIndex-1].ColumnWidth = 15;
                             }
