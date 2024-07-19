@@ -12619,12 +12619,12 @@ namespace ROMS
                                         DGV_FilterProduct.Columns["GRN MRP"].Visible = false;
                                         DGV_FilterProduct.Columns["GRN ProType"].Visible = false;
                                         DGV_FilterProduct.Columns["GRN Type"].Visible = false;
-                                        //DGV_FilterProduct.Columns["ProductMRP"].Visible = false;
-                                        //DGV_FilterProduct.Columns["ProductExpiryDate"].Visible = false;
-                                        //DGV_FilterProduct.Columns["ProductBatchNo"].Visible = false;
-                                        //DGV_FilterProduct.Columns["Condition"].Visible = false;
-                                        //DGV_FilterProduct.Columns["Pending Qty"].Visible = false;
-                                        //DGV_FilterProduct.Columns["Excess Qty"].Visible = false;
+                                        DGV_FilterProduct.Columns["ProductMRP"].Visible = false;
+                                        DGV_FilterProduct.Columns["ProductExpiryDate"].Visible = false;
+                                        DGV_FilterProduct.Columns["ProductBatchNo"].Visible = false;
+                                        DGV_FilterProduct.Columns["Condition"].Visible = false;
+                                        DGV_FilterProduct.Columns["Pending Qty"].Visible = false;
+                                        DGV_FilterProduct.Columns["Excess Qty"].Visible = false;
                                     }
 
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 340;

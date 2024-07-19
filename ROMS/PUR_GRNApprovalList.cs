@@ -1596,6 +1596,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["ID"].Visible = false;
                                 grdGrnApprovalList.Columns["SPID"].Visible = false;
                                 grdGrnApprovalList.Columns["GRNAID"].Visible = false;
+                                grdGrnApprovalList.Columns["Condition"].Visible = false;
                                 grdGrnApprovalList.Columns["SPSCID"].Visible = false;
                                 grdGrnApprovalList.Columns["Concern ID"].Visible = false;
                                 grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
