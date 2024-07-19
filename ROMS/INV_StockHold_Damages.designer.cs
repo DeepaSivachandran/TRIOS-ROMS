@@ -66,8 +66,17 @@
             this.lblTransactionDate = new System.Windows.Forms.Label();
             this.lblCompanyCode = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
+            this.lblReturn = new System.Windows.Forms.Label();
+            this.lblSupplierOrderpolicy = new System.Windows.Forms.Label();
+            this.lblsupplierpayment = new System.Windows.Forms.Label();
+            this.lblsupplierScheduletype = new System.Windows.Forms.Label();
+            this.lblsupplierGST = new System.Windows.Forms.Label();
+            this.lblSupplierCity = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errSupplier)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.grbSupplierDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // errSupplier
@@ -77,9 +86,9 @@
             // lblSupplierCode
             // 
             this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(6, 243);
+            this.lblSupplierCode.Location = new System.Drawing.Point(112, 209);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.Size = new System.Drawing.Size(12, 15);
             this.lblSupplierCode.TabIndex = 1111252;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
@@ -87,9 +96,9 @@
             // lblschedule
             // 
             this.lblschedule.AutoSize = true;
-            this.lblschedule.Location = new System.Drawing.Point(28, 243);
+            this.lblschedule.Location = new System.Drawing.Point(134, 209);
             this.lblschedule.Name = "lblschedule";
-            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.Size = new System.Drawing.Size(12, 15);
             this.lblschedule.TabIndex = 1111253;
             this.lblschedule.Text = "0";
             this.lblschedule.Visible = false;
@@ -97,7 +106,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 66);
+            this.label1.Location = new System.Drawing.Point(6, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 20);
             this.label1.TabIndex = 1111254;
@@ -106,7 +115,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 91);
+            this.label2.Location = new System.Drawing.Point(6, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 20);
             this.label2.TabIndex = 1111255;
@@ -124,7 +133,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 116);
+            this.label4.Location = new System.Drawing.Point(6, 97);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 20);
             this.label4.TabIndex = 1111257;
@@ -133,7 +142,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 141);
+            this.label5.Location = new System.Drawing.Point(6, 139);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 20);
             this.label5.TabIndex = 1111258;
@@ -142,7 +151,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 166);
+            this.label6.Location = new System.Drawing.Point(6, 164);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(70, 20);
             this.label6.TabIndex = 1111259;
@@ -151,7 +160,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 191);
+            this.label7.Location = new System.Drawing.Point(6, 189);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 20);
             this.label7.TabIndex = 1111260;
@@ -160,16 +169,17 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 41);
+            this.label8.Location = new System.Drawing.Point(399, 259);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 20);
             this.label8.TabIndex = 1111261;
             this.label8.Text = "Supplier";
+            this.label8.Visible = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(114, 66);
+            this.label9.Location = new System.Drawing.Point(114, 41);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(12, 20);
             this.label9.TabIndex = 1111262;
@@ -178,7 +188,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(114, 91);
+            this.label10.Location = new System.Drawing.Point(114, 69);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(12, 20);
             this.label10.TabIndex = 1111263;
@@ -196,7 +206,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(114, 116);
+            this.label12.Location = new System.Drawing.Point(114, 97);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(12, 20);
             this.label12.TabIndex = 1111265;
@@ -205,7 +215,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(114, 141);
+            this.label13.Location = new System.Drawing.Point(114, 139);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(12, 20);
             this.label13.TabIndex = 1111266;
@@ -214,7 +224,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(114, 166);
+            this.label14.Location = new System.Drawing.Point(114, 164);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(12, 20);
             this.label14.TabIndex = 1111267;
@@ -223,7 +233,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(114, 191);
+            this.label15.Location = new System.Drawing.Point(114, 189);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(12, 20);
             this.label15.TabIndex = 1111268;
@@ -232,16 +242,17 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(114, 41);
+            this.label16.Location = new System.Drawing.Point(507, 259);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(12, 20);
             this.label16.TabIndex = 1111269;
             this.label16.Text = ":";
+            this.label16.Visible = false;
             // 
             // lblSource
             // 
             this.lblSource.AutoSize = true;
-            this.lblSource.Location = new System.Drawing.Point(133, 66);
+            this.lblSource.Location = new System.Drawing.Point(133, 41);
             this.lblSource.Name = "lblSource";
             this.lblSource.Size = new System.Drawing.Size(47, 20);
             this.lblSource.TabIndex = 1111270;
@@ -251,9 +262,11 @@
             // lblDestination
             // 
             this.lblDestination.AutoSize = true;
-            this.lblDestination.Location = new System.Drawing.Point(133, 91);
+            this.lblDestination.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDestination.ForeColor = System.Drawing.Color.Green;
+            this.lblDestination.Location = new System.Drawing.Point(133, 66);
             this.lblDestination.Name = "lblDestination";
-            this.lblDestination.Size = new System.Drawing.Size(47, 20);
+            this.lblDestination.Size = new System.Drawing.Size(60, 26);
             this.lblDestination.TabIndex = 1111271;
             this.lblDestination.Text = "label17";
             this.lblDestination.Visible = false;
@@ -270,10 +283,9 @@
             // 
             // lblProductName
             // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(133, 116);
+            this.lblProductName.Location = new System.Drawing.Point(133, 97);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(48, 20);
+            this.lblProductName.Size = new System.Drawing.Size(255, 20);
             this.lblProductName.TabIndex = 1111273;
             this.lblProductName.Text = "label19";
             this.lblProductName.Visible = false;
@@ -281,7 +293,7 @@
             // lblMRP
             // 
             this.lblMRP.AutoSize = true;
-            this.lblMRP.Location = new System.Drawing.Point(133, 141);
+            this.lblMRP.Location = new System.Drawing.Point(132, 139);
             this.lblMRP.Name = "lblMRP";
             this.lblMRP.Size = new System.Drawing.Size(48, 20);
             this.lblMRP.TabIndex = 1111274;
@@ -291,7 +303,7 @@
             // lblExpiryDate
             // 
             this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(133, 166);
+            this.lblExpiryDate.Location = new System.Drawing.Point(133, 164);
             this.lblExpiryDate.Name = "lblExpiryDate";
             this.lblExpiryDate.Size = new System.Drawing.Size(48, 20);
             this.lblExpiryDate.TabIndex = 1111275;
@@ -301,7 +313,7 @@
             // lblBatchNo
             // 
             this.lblBatchNo.AutoSize = true;
-            this.lblBatchNo.Location = new System.Drawing.Point(133, 191);
+            this.lblBatchNo.Location = new System.Drawing.Point(133, 189);
             this.lblBatchNo.Name = "lblBatchNo";
             this.lblBatchNo.Size = new System.Drawing.Size(48, 20);
             this.lblBatchNo.TabIndex = 1111276;
@@ -311,7 +323,7 @@
             // lblSupplierName
             // 
             this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(133, 41);
+            this.lblSupplierName.Location = new System.Drawing.Point(526, 259);
             this.lblSupplierName.Name = "lblSupplierName";
             this.lblSupplierName.Size = new System.Drawing.Size(48, 20);
             this.lblSupplierName.TabIndex = 1111277;
@@ -322,17 +334,9 @@
             // 
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.lblTeller);
             this.groupBox1.Controls.Add(this.lblHoldQty);
-            this.groupBox1.Controls.Add(this.lblLocationCode);
-            this.groupBox1.Controls.Add(this.lblTransactionDate);
-            this.groupBox1.Controls.Add(this.lblCompanyCode);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnSave);
-            this.groupBox1.Controls.Add(this.lblSupplierName);
-            this.groupBox1.Controls.Add(this.lblSupplierCode);
             this.groupBox1.Controls.Add(this.lblBatchNo);
-            this.groupBox1.Controls.Add(this.lblschedule);
             this.groupBox1.Controls.Add(this.lblExpiryDate);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lblMRP);
@@ -345,8 +349,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.lblSource);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label14);
@@ -354,16 +356,16 @@
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Location = new System.Drawing.Point(12, 2);
+            this.groupBox1.Location = new System.Drawing.Point(260, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(458, 270);
+            this.groupBox1.Size = new System.Drawing.Size(395, 240);
             this.groupBox1.TabIndex = 1111278;
             this.groupBox1.TabStop = false;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(114, 216);
+            this.label18.Location = new System.Drawing.Point(114, 214);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(12, 20);
             this.label18.TabIndex = 1111284;
@@ -372,7 +374,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 216);
+            this.label17.Location = new System.Drawing.Point(6, 214);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(56, 20);
             this.label17.TabIndex = 1111283;
@@ -381,9 +383,9 @@
             // lblTeller
             // 
             this.lblTeller.AutoSize = true;
-            this.lblTeller.Location = new System.Drawing.Point(116, 243);
+            this.lblTeller.Location = new System.Drawing.Point(222, 209);
             this.lblTeller.Name = "lblTeller";
-            this.lblTeller.Size = new System.Drawing.Size(16, 20);
+            this.lblTeller.Size = new System.Drawing.Size(12, 15);
             this.lblTeller.TabIndex = 1111282;
             this.lblTeller.Text = "0";
             this.lblTeller.Visible = false;
@@ -391,7 +393,7 @@
             // lblHoldQty
             // 
             this.lblHoldQty.AutoSize = true;
-            this.lblHoldQty.Location = new System.Drawing.Point(133, 216);
+            this.lblHoldQty.Location = new System.Drawing.Point(133, 214);
             this.lblHoldQty.Name = "lblHoldQty";
             this.lblHoldQty.Size = new System.Drawing.Size(16, 20);
             this.lblHoldQty.TabIndex = 1111281;
@@ -401,9 +403,9 @@
             // lblLocationCode
             // 
             this.lblLocationCode.AutoSize = true;
-            this.lblLocationCode.Location = new System.Drawing.Point(94, 243);
+            this.lblLocationCode.Location = new System.Drawing.Point(200, 209);
             this.lblLocationCode.Name = "lblLocationCode";
-            this.lblLocationCode.Size = new System.Drawing.Size(16, 20);
+            this.lblLocationCode.Size = new System.Drawing.Size(12, 15);
             this.lblLocationCode.TabIndex = 1111280;
             this.lblLocationCode.Text = "0";
             this.lblLocationCode.Visible = false;
@@ -411,9 +413,9 @@
             // lblTransactionDate
             // 
             this.lblTransactionDate.AutoSize = true;
-            this.lblTransactionDate.Location = new System.Drawing.Point(72, 243);
+            this.lblTransactionDate.Location = new System.Drawing.Point(178, 209);
             this.lblTransactionDate.Name = "lblTransactionDate";
-            this.lblTransactionDate.Size = new System.Drawing.Size(16, 20);
+            this.lblTransactionDate.Size = new System.Drawing.Size(12, 15);
             this.lblTransactionDate.TabIndex = 1111279;
             this.lblTransactionDate.Text = "0";
             this.lblTransactionDate.Visible = false;
@@ -421,9 +423,9 @@
             // lblCompanyCode
             // 
             this.lblCompanyCode.AutoSize = true;
-            this.lblCompanyCode.Location = new System.Drawing.Point(50, 243);
+            this.lblCompanyCode.Location = new System.Drawing.Point(156, 209);
             this.lblCompanyCode.Name = "lblCompanyCode";
-            this.lblCompanyCode.Size = new System.Drawing.Size(16, 20);
+            this.lblCompanyCode.Size = new System.Drawing.Size(12, 15);
             this.lblCompanyCode.TabIndex = 1111278;
             this.lblCompanyCode.Text = "0";
             this.lblCompanyCode.Visible = false;
@@ -433,7 +435,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.add;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(386, 234);
+            this.btnSave.Location = new System.Drawing.Point(589, 255);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(66, 29);
             this.btnSave.TabIndex = 1;
@@ -444,13 +446,126 @@
             this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
+            // grbSupplierDetails
+            // 
+            this.grbSupplierDetails.Controls.Add(this.lblReturn);
+            this.grbSupplierDetails.Controls.Add(this.lblSupplierOrderpolicy);
+            this.grbSupplierDetails.Controls.Add(this.lblTeller);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierpayment);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierScheduletype);
+            this.grbSupplierDetails.Controls.Add(this.lblLocationCode);
+            this.grbSupplierDetails.Controls.Add(this.lblsupplierGST);
+            this.grbSupplierDetails.Controls.Add(this.lblTransactionDate);
+            this.grbSupplierDetails.Controls.Add(this.lblSupplierCity);
+            this.grbSupplierDetails.Controls.Add(this.lblCompanyCode);
+            this.grbSupplierDetails.Controls.Add(this.label19);
+            this.grbSupplierDetails.Controls.Add(this.lblSupplierCode);
+            this.grbSupplierDetails.Controls.Add(this.lblschedule);
+            this.grbSupplierDetails.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbSupplierDetails.Location = new System.Drawing.Point(12, 12);
+            this.grbSupplierDetails.Name = "grbSupplierDetails";
+            this.grbSupplierDetails.Size = new System.Drawing.Size(242, 237);
+            this.grbSupplierDetails.TabIndex = 1111279;
+            this.grbSupplierDetails.TabStop = false;
+            this.grbSupplierDetails.Text = "Supplier Details";
+            // 
+            // lblReturn
+            // 
+            this.lblReturn.AutoSize = true;
+            this.lblReturn.BackColor = System.Drawing.Color.White;
+            this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.lblReturn.Location = new System.Drawing.Point(156, 162);
+            this.lblReturn.Name = "lblReturn";
+            this.lblReturn.Size = new System.Drawing.Size(47, 20);
+            this.lblReturn.TabIndex = 1111207;
+            this.lblReturn.Text = "Retrun";
+            this.lblReturn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblReturn.Visible = false;
+            // 
+            // lblSupplierOrderpolicy
+            // 
+            this.lblSupplierOrderpolicy.AutoSize = true;
+            this.lblSupplierOrderpolicy.BackColor = System.Drawing.Color.White;
+            this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(6, 162);
+            this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(74, 20);
+            this.lblSupplierOrderpolicy.TabIndex = 1111206;
+            this.lblSupplierOrderpolicy.Text = "Order policy";
+            this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierpayment
+            // 
+            this.lblsupplierpayment.AutoSize = true;
+            this.lblsupplierpayment.BackColor = System.Drawing.Color.White;
+            this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.lblsupplierpayment.Location = new System.Drawing.Point(6, 137);
+            this.lblsupplierpayment.Name = "lblsupplierpayment";
+            this.lblsupplierpayment.Size = new System.Drawing.Size(56, 20);
+            this.lblsupplierpayment.TabIndex = 1111205;
+            this.lblsupplierpayment.Text = "Payment";
+            this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierScheduletype
+            // 
+            this.lblsupplierScheduletype.AutoSize = true;
+            this.lblsupplierScheduletype.BackColor = System.Drawing.Color.White;
+            this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.lblsupplierScheduletype.Location = new System.Drawing.Point(6, 97);
+            this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(86, 20);
+            this.lblsupplierScheduletype.TabIndex = 1111204;
+            this.lblsupplierScheduletype.Text = "Schedule Type";
+            this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblsupplierGST
+            // 
+            this.lblsupplierGST.AutoSize = true;
+            this.lblsupplierGST.BackColor = System.Drawing.Color.White;
+            this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.lblsupplierGST.Location = new System.Drawing.Point(6, 69);
+            this.lblsupplierGST.Name = "lblsupplierGST";
+            this.lblsupplierGST.Size = new System.Drawing.Size(27, 20);
+            this.lblsupplierGST.TabIndex = 1111203;
+            this.lblsupplierGST.Text = "gst";
+            this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblSupplierCity
+            // 
+            this.lblSupplierCity.AutoSize = true;
+            this.lblSupplierCity.BackColor = System.Drawing.Color.White;
+            this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.lblSupplierCity.Location = new System.Drawing.Point(6, 41);
+            this.lblSupplierCity.Name = "lblSupplierCity";
+            this.lblSupplierCity.Size = new System.Drawing.Size(29, 20);
+            this.lblSupplierCity.TabIndex = 1111202;
+            this.lblSupplierCity.Text = "city";
+            this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.White;
+            this.label19.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.label19.Location = new System.Drawing.Point(6, 16);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 20);
+            this.label19.TabIndex = 1111201;
+            this.label19.Text = "supplier";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // INV_StockHold_Damages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(482, 281);
+            this.ClientSize = new System.Drawing.Size(666, 293);
+            this.Controls.Add(this.grbSupplierDetails);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.lblSupplierName);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label16);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -465,7 +580,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.errSupplier)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.grbSupplierDetails.ResumeLayout(false);
+            this.grbSupplierDetails.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -506,5 +624,13 @@
         public System.Windows.Forms.Label lblTeller;
         private System.Windows.Forms.Label label18;
         public System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox grbSupplierDetails;
+        private System.Windows.Forms.Label lblReturn;
+        private System.Windows.Forms.Label lblSupplierOrderpolicy;
+        private System.Windows.Forms.Label lblsupplierpayment;
+        private System.Windows.Forms.Label lblsupplierScheduletype;
+        private System.Windows.Forms.Label lblsupplierGST;
+        private System.Windows.Forms.Label lblSupplierCity;
+        private System.Windows.Forms.Label label19;
     }
 }

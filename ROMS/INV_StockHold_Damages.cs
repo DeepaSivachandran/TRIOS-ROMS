@@ -31,7 +31,10 @@ namespace ROMS
         {
             try
             {
+                lblProductName.MaximumSize = new Size(280, 0);
+                lblProductName.AutoSize = true;
                 udfnDataLoad();
+                udfnsupplierLoad();
             }
             catch (Exception ex)
             {
@@ -84,8 +87,44 @@ namespace ROMS
                     lblMRP.Visible = true;
                     lblExpiryDate.Visible = true;
                     lblBatchNo.Visible = true;
-                    lblSupplierName.Visible = true;
+                   // lblSupplierName.Visible = true;
                     lblHoldQty.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnsupplierLoad()
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (lblSupplierCode.Text.Length > 0)
+                {
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 16;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            grbSupplierDetails.Visible = true;
+                            label19.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
+                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
+                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
+                            lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
+                            lblSupplierOrderpolicy.Text = "Return Policy - " + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
+                            lblReturn.Text = objDs.Tables[0].Rows[0]["RETURNAPPLICABLE"].ToString();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
