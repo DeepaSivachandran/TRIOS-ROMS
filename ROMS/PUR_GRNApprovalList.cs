@@ -73,15 +73,15 @@ namespace ROMS
         {
             try
             {
-                if(ApprovalFlag == 1)
-                {
-                    tsbApproval.Visible = true;
-                }
-                else
-                {
-                    tsbApproval.Visible = false;
-                    tsbEdit.Visible = true;
-                }
+                //if(ApprovalFlag == 1)
+                //{
+                //    tsbApproval.Visible = true;
+                //}
+                //else
+                //{
+                //    tsbApproval.Visible = false;
+                //    tsbEdit.Visible = true;
+                //}
                 cmbConcern.Focus();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -159,13 +159,13 @@ namespace ROMS
         {
             try
             {
-                if (ApprovalFlag==0)
-                {
+                //if (ApprovalFlag==0)
+               // {
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                     {
                         tsbEdit_Click(sender, e);
                     }
-                }
+                //}
                 if (e.KeyCode == Keys.Escape)
                 {
                     if (ApprovalFlag == 1)
@@ -1007,10 +1007,10 @@ namespace ROMS
         {
             try
             {
-                if (ApprovalFlag==0)
-                {
+                //if (ApprovalFlag==0)
+                //{
                     tsbEdit_Click(sender, e);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1023,13 +1023,13 @@ namespace ROMS
         {
             try
             {
-                if (ApprovalFlag==0)
-                {
+                //if (ApprovalFlag==0)
+                //{
                     if (e.KeyCode == Keys.Enter)
                     {
                         tsbEdit_Click(sender, e);
                     }
-                }
+                //}
             }
             catch (Exception ex)
             {
