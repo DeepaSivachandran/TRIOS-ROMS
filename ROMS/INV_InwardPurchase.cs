@@ -2029,7 +2029,7 @@ namespace ROMS
                         {
                             if (varError == 0)
                             {
-                                if (Convert.ToInt32(dtInwardPurchase.Columns.Count) == 19) //default  Data table count
+                                if (Convert.ToInt32(dtInwardPurchase.Columns.Count) == 24) //default  Data table count
                                 {
                                     dtInwardPurchase.Columns.Remove("Column1");
                                     dtInwardPurchase.Columns.Remove("PR_MRPStatus");

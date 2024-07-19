@@ -27,18 +27,6 @@ namespace ROMS
             InitializeComponent();
             _security = new SecurityController();
         }
-        private void INV_StockHold_Location_Load(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
         {
             try
@@ -46,6 +34,7 @@ namespace ROMS
                 LV_Supplier.Items.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
+                    grbSupplierDetails.Visible = false;
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType =37;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
@@ -257,6 +246,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void INV_StockHold_Supplier_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                grbSupplierDetails.Visible = false;
+                //lblSuppliername.Visible = false;
+                //lblSupplierCity.Visible = false;
+                //lblsupplierGST.Visible = false;
+                //lblsupplierScheduletype.Visible = false;
+                //lblsupplierpayment.Visible = false;
+                //lblSupplierOrderpolicy.Visible = false;
+                //lblReturn.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnListViewData()
         {
             try
@@ -268,6 +277,7 @@ namespace ROMS
                     lblSupplierCode.Text = varvalue[0];
                     lblschedule.Text = varvalue[1];
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
+                    udfnsupplierLoad();
                 }
             }
             catch (Exception ex)
@@ -278,6 +288,42 @@ namespace ROMS
             finally
             {
                 LV_Supplier.Visible = false;
+            }
+        }
+        public void udfnsupplierLoad()
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtSupplier.Text.Length > 0)
+                {
+                    MR_Supplier objMR_Supplier = new MR_Supplier();
+                    objMR_Supplier.ViewType = 16;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            grbSupplierDetails.Visible = true;
+                            lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
+                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
+                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
+                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["SCHEDULE"].ToString();
+                            lblsupplierpayment.Text = objDs.Tables[0].Rows[0]["payment"].ToString();
+                            lblSupplierOrderpolicy.Text = "Return Policy - " + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
+                            lblReturn.Text = objDs.Tables[0].Rows[0]["RETURNAPPLICABLE"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnSave()
