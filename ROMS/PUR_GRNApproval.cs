@@ -690,7 +690,7 @@ namespace ROMS
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnEdit();
-                udfnStatus();
+                //udfnStatus();
                 if(MainForm.objPUR_GRNApprovalList.ApprovalFlag==1)
                 {
                     btnSave.Enabled = false;

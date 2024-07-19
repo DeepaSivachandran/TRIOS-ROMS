@@ -6338,10 +6338,15 @@ namespace ROMS
                         {
                             if (shelfLifeError != 0)
                             {
+                                string varShelflifeMessage = "", varShelflifeLevel = "";
+                                varShelflifeLevel = Convert.ToString(varShelflifeLevel2)+'%';
                                 SPDataService objDServe1 = new SPDataService();
                                 string varMessage = objDServe1.udfnGetMessages(110);
                                 objDServe1.CloseConnection();
-                                DialogResult dialogResult1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                string[] Message = varMessage.Split(' ');
+                                varShelflifeMessage = Message[0]+' '+ Message[1] + ' ' + Message[2] + ' ' + Message[3] + ' ' + Message[4] + ' ' + varShelflifeLevel + ' ' + Message[6] + ' ' + Message[7] + ' ' + Message[8] + ' ' + Message[9] + ' ' + Message[10] + ' ' + Message[11] + ' ' + Message[12] + ' ' + Message[13];
+
+                                DialogResult dialogResult1 = MessageBox.Show(varShelflifeMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (dialogResult1 == DialogResult.Yes)
                                 {
                                     shelfLifeError = 0;
@@ -7656,7 +7661,7 @@ namespace ROMS
                                         shelfper = cellValue1.ToString();
                                         string[] shelfvalue = shelfper.Split('%');
                                         shelflifeper = Convert.ToDecimal(shelfvalue[0]);
-                                        if (shelflifeper < 50)
+                                        if (shelflifeper < varShelflifeLevel2)
                                         {
                                             shelfLifeError++;
                                         }
