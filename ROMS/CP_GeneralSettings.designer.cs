@@ -29,16 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tshSettings = new System.Windows.Forms.ToolStrip();
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpGeneralsettings = new System.Windows.Forms.GroupBox();
+            this.grbShelflife = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtPerLevel2 = new System.Windows.Forms.TextBox();
+            this.txtPerLevel1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.chkDCPrint = new System.Windows.Forms.CheckBox();
             this.chkGRNPrint = new System.Windows.Forms.CheckBox();
             this.txtbackuppath = new System.Windows.Forms.TextBox();
@@ -75,23 +82,16 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epGeneralSettings = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grbShelflife = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtPerLevel1 = new System.Windows.Forms.TextBox();
-            this.txtPerLevel2 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.tshSettings.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.grpGeneralsettings.SuspendLayout();
+            this.grbShelflife.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReport)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdOrderType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epGeneralSettings)).BeginInit();
-            this.grbShelflife.SuspendLayout();
             this.SuspendLayout();
             // 
             // tshSettings
@@ -163,6 +163,83 @@
             this.grpGeneralsettings.Size = new System.Drawing.Size(1339, 633);
             this.grpGeneralsettings.TabIndex = 958794;
             this.grpGeneralsettings.TabStop = false;
+            // 
+            // grbShelflife
+            // 
+            this.grbShelflife.Controls.Add(this.label12);
+            this.grbShelflife.Controls.Add(this.label11);
+            this.grbShelflife.Controls.Add(this.txtPerLevel2);
+            this.grbShelflife.Controls.Add(this.txtPerLevel1);
+            this.grbShelflife.Controls.Add(this.label10);
+            this.grbShelflife.Controls.Add(this.label9);
+            this.grbShelflife.Location = new System.Drawing.Point(15, 381);
+            this.grbShelflife.Name = "grbShelflife";
+            this.grbShelflife.Size = new System.Drawing.Size(139, 100);
+            this.grbShelflife.TabIndex = 13;
+            this.grbShelflife.TabStop = false;
+            this.grbShelflife.Text = "Shelflife Alert";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(106, 60);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(22, 20);
+            this.label12.TabIndex = 5;
+            this.label12.Text = "%";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(106, 27);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(22, 20);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "%";
+            // 
+            // txtPerLevel2
+            // 
+            this.txtPerLevel2.Location = new System.Drawing.Point(74, 57);
+            this.txtPerLevel2.MaxLength = 3;
+            this.txtPerLevel2.Name = "txtPerLevel2";
+            this.txtPerLevel2.Size = new System.Drawing.Size(29, 27);
+            this.txtPerLevel2.TabIndex = 14;
+            this.txtPerLevel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPerLevel2.Enter += new System.EventHandler(this.TxtPerLevel2_Enter);
+            this.txtPerLevel2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPerLevel2_KeyDown);
+            this.txtPerLevel2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPerLevel2_KeyPress);
+            this.txtPerLevel2.Leave += new System.EventHandler(this.TxtPerLevel2_Leave);
+            // 
+            // txtPerLevel1
+            // 
+            this.txtPerLevel1.Location = new System.Drawing.Point(74, 24);
+            this.txtPerLevel1.MaxLength = 3;
+            this.txtPerLevel1.Name = "txtPerLevel1";
+            this.txtPerLevel1.Size = new System.Drawing.Size(29, 27);
+            this.txtPerLevel1.TabIndex = 13;
+            this.txtPerLevel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPerLevel1.Enter += new System.EventHandler(this.TxtPerLevel1_Enter);
+            this.txtPerLevel1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPerLevel1_KeyDown);
+            this.txtPerLevel1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPerLevel1_KeyPress);
+            this.txtPerLevel1.Leave += new System.EventHandler(this.TxtPerLevel1_Leave);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 60);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 20);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Level2     :";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 20);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Level1     :";
             // 
             // chkDCPrint
             // 
@@ -275,14 +352,14 @@
             this.grdReport.AllowUserToResizeRows = false;
             this.grdReport.BackgroundColor = System.Drawing.Color.White;
             this.grdReport.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle91.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle91.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle91.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdReport.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle91;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdReport.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdReport.ColumnHeadersHeight = 30;
             this.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -290,23 +367,23 @@
             this.clmReportText,
             this.clmTransactionID,
             this.clmRemove});
-            dataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle92.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle92.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle92.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle92.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle92.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle92.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdReport.DefaultCellStyle = dataGridViewCellStyle92;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReport.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdReport.EnableHeadersVisualStyles = false;
             this.grdReport.GridColor = System.Drawing.Color.White;
             this.grdReport.Location = new System.Drawing.Point(11, 26);
             this.grdReport.Name = "grdReport";
             this.grdReport.ReadOnly = true;
             this.grdReport.RowHeadersVisible = false;
-            dataGridViewCellStyle93.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle93.SelectionForeColor = System.Drawing.Color.White;
-            this.grdReport.RowsDefaultCellStyle = dataGridViewCellStyle93;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdReport.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdReport.RowTemplate.Height = 25;
             this.grdReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdReport.Size = new System.Drawing.Size(689, 188);
@@ -550,32 +627,32 @@
             this.grdOrderType.AllowUserToResizeRows = false;
             this.grdOrderType.BackgroundColor = System.Drawing.Color.White;
             this.grdOrderType.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle94.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle94.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle94.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle94.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle94.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle94.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOrderType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle94;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOrderType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdOrderType.ColumnHeadersHeight = 30;
             this.grdOrderType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle95.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle95.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle95.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle95.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle95.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle95.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOrderType.DefaultCellStyle = dataGridViewCellStyle95;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOrderType.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdOrderType.EnableHeadersVisualStyles = false;
             this.grdOrderType.GridColor = System.Drawing.Color.White;
             this.grdOrderType.Location = new System.Drawing.Point(6, 26);
             this.grdOrderType.Name = "grdOrderType";
             this.grdOrderType.RowHeadersVisible = false;
-            dataGridViewCellStyle96.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle96.SelectionForeColor = System.Drawing.Color.White;
-            this.grdOrderType.RowsDefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdOrderType.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdOrderType.RowTemplate.Height = 25;
             this.grdOrderType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdOrderType.Size = new System.Drawing.Size(157, 188);
@@ -635,83 +712,6 @@
             // 
             this.epGeneralSettings.ContainerControl = this;
             // 
-            // grbShelflife
-            // 
-            this.grbShelflife.Controls.Add(this.label12);
-            this.grbShelflife.Controls.Add(this.label11);
-            this.grbShelflife.Controls.Add(this.txtPerLevel2);
-            this.grbShelflife.Controls.Add(this.txtPerLevel1);
-            this.grbShelflife.Controls.Add(this.label10);
-            this.grbShelflife.Controls.Add(this.label9);
-            this.grbShelflife.Location = new System.Drawing.Point(15, 381);
-            this.grbShelflife.Name = "grbShelflife";
-            this.grbShelflife.Size = new System.Drawing.Size(139, 100);
-            this.grbShelflife.TabIndex = 13;
-            this.grbShelflife.TabStop = false;
-            this.grbShelflife.Text = "Shelflife Alert";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 27);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 20);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Level1     :";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(61, 20);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Level2     :";
-            // 
-            // txtPerLevel1
-            // 
-            this.txtPerLevel1.Location = new System.Drawing.Point(74, 24);
-            this.txtPerLevel1.MaxLength = 3;
-            this.txtPerLevel1.Name = "txtPerLevel1";
-            this.txtPerLevel1.Size = new System.Drawing.Size(29, 27);
-            this.txtPerLevel1.TabIndex = 13;
-            this.txtPerLevel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPerLevel1.Enter += new System.EventHandler(this.TxtPerLevel1_Enter);
-            this.txtPerLevel1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPerLevel1_KeyDown);
-            this.txtPerLevel1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPerLevel1_KeyPress);
-            this.txtPerLevel1.Leave += new System.EventHandler(this.TxtPerLevel1_Leave);
-            // 
-            // txtPerLevel2
-            // 
-            this.txtPerLevel2.Location = new System.Drawing.Point(74, 57);
-            this.txtPerLevel2.MaxLength = 3;
-            this.txtPerLevel2.Name = "txtPerLevel2";
-            this.txtPerLevel2.Size = new System.Drawing.Size(29, 27);
-            this.txtPerLevel2.TabIndex = 14;
-            this.txtPerLevel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPerLevel2.Enter += new System.EventHandler(this.TxtPerLevel2_Enter);
-            this.txtPerLevel2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPerLevel2_KeyDown);
-            this.txtPerLevel2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPerLevel2_KeyPress);
-            this.txtPerLevel2.Leave += new System.EventHandler(this.TxtPerLevel2_Leave);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(106, 27);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(22, 20);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "%";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(106, 60);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(22, 20);
-            this.label12.TabIndex = 5;
-            this.label12.Text = "%";
-            // 
             // CP_GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -736,14 +736,14 @@
             this.pnlSettings.ResumeLayout(false);
             this.grpGeneralsettings.ResumeLayout(false);
             this.grpGeneralsettings.PerformLayout();
+            this.grbShelflife.ResumeLayout(false);
+            this.grbShelflife.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdReport)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdOrderType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epGeneralSettings)).EndInit();
-            this.grbShelflife.ResumeLayout(false);
-            this.grbShelflife.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
