@@ -665,6 +665,7 @@ namespace ROMS
         {
             try
             {
+
                 udfnLastSeen();
                 udfnGRNLastSeen();
                 dtApproval.TableName = "TRN_GRNApproval_Product";
