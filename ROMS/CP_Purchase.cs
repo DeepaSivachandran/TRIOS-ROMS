@@ -12525,6 +12525,17 @@ namespace ROMS
                         udfnrowclear();
                         udfntooltiphide();
                     }
+                    if (varBlockedSupplier == "98")
+                    {
+                        tsbSupplier.Visible = true;
+                        txtSupplier.BackColor = Color.LightPink;
+                        tsbSupplier.Text = varBlockedReason;
+                    }
+                    else
+                    {
+                        tsbSupplier.Visible = false;
+                        txtSupplier.BackColor = Color.White;
+                    }
                     varNewFlag = "0";
                     
                     if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 59)
