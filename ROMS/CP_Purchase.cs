@@ -11834,7 +11834,7 @@ namespace ROMS
                                 }
                             }
                         }
-                        else { cmbQtyType.Focus(); }
+                        else {  cmbQtyType.Focus(); }
                     }
                 }
                 if (e.KeyCode == Keys.F10)
