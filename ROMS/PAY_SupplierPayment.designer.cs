@@ -112,6 +112,7 @@
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPAYIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReturnSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -562,7 +563,8 @@
             this.clmPayAmount,
             this.clmID,
             this.clmPAYIID,
-            this.clmStatus});
+            this.clmStatus,
+            this.clmReturnSts});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -589,6 +591,7 @@
             this.grdSupplierPayment.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellEndEdit);
             this.grdSupplierPayment.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellLeave);
             this.grdSupplierPayment.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellValueChanged);
+            this.grdSupplierPayment.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdSupplierPayment_CurrentCellDirtyStateChanged);
             this.grdSupplierPayment.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdSupplierPayment_EditingControlShowing);
             this.grdSupplierPayment.SelectionChanged += new System.EventHandler(this.GrdSupplierPayment_SelectionChanged);
             // 
@@ -986,6 +989,12 @@
             this.clmStatus.ReadOnly = true;
             this.clmStatus.Width = 150;
             // 
+            // clmReturnSts
+            // 
+            this.clmReturnSts.HeaderText = "Return Status";
+            this.clmReturnSts.Name = "clmReturnSts";
+            this.clmReturnSts.Visible = false;
+            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1099,5 +1108,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPAYIID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnSts;
     }
 }

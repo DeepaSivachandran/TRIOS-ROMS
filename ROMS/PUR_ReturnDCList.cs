@@ -189,6 +189,7 @@ namespace ROMS
                     MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Schedule ID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.varGRNStatus = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["GRN Status"].Value.ToString());
+                    MainForm.objPUR_PurchaseReturns.vaReturnDCSts = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.vareditflag = 0;
                     MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
                     MainForm.objPUR_PurchaseReturns.Show();
