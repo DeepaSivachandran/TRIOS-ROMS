@@ -9964,7 +9964,6 @@ namespace ROMS
                         {
                             if (varPrMRPFlag == "1")
                             {
-
                                 txtMrp.ReadOnly = true;
                                 txtMrp.Enabled = false;
                                 txtMrp.Focus();
@@ -10463,7 +10462,7 @@ namespace ROMS
                             try
                             {
                                 DataGridView dgv = sender as DataGridView;
-
+                                string varPICode = "";
                                 if (e.ColumnIndex != 0)
                                 {
                                     grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null,"None",
@@ -10478,6 +10477,7 @@ namespace ROMS
                                     { varProductType = "219";  }
                                     else if (Convert.ToString(cmbEntryType.SelectedValue) == "54")
                                     { varProductType = "217"; }
+                                    varPICode =Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPicode"].Value);
 
                                     grdSupplierList.ReadOnly = false; 
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].ReadOnly = false;
@@ -10486,6 +10486,7 @@ namespace ROMS
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmExcessQty"].Value = "0"; 
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmCondition"].Value = "No Difference";
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmid"].Value = varProductType;
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Value = varProductType;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvertProduct"].Value = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPURPRIDDetail"].Value);
 
                                     for (int i=0;i<grdSupplierList.ColumnCount-1;i++)
@@ -10501,6 +10502,9 @@ namespace ROMS
                                         }
                                     }
                                     ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+                                    //e.RowIndex =Convert.ToInt16( grdSupplierList.Rows[grdSupplierList.Rows.Count - 1]);
+                                    //udfnConvertProductDetails(sender,e);
+
                                 }
                             }
                             catch (Exception ex)

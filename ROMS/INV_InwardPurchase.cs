@@ -304,6 +304,9 @@ namespace ROMS
                 dtInwardPurchase.Columns.Add("GIPPR_ShelfLife_Flag", typeof(int));
                 dtInwardPurchase.Columns.Add("GIPPR_ShelfLifeStatus", typeof(int));
                 dtInwardPurchase.Columns.Add("GIPPR_ShelfLife_Per", typeof(decimal));
+                dtInwardPurchase.Columns.Add("GIPPR_InvoiceExpiryDate", typeof(string));
+                dtInwardPurchase.Columns.Add("GIPPR_InvoiceBatchNo", typeof(string));
+                dtInwardPurchase.Columns.Add("GIPPR_InvoiceMRP", typeof(decimal));
 
                 dtChkProducts.TableName = "TRN_GoodsInward_Purchase_Products";
                 dtChkProducts.Columns.Add("GIPPR_SNO", typeof(int));
@@ -320,6 +323,9 @@ namespace ROMS
                 dtChkProducts.Columns.Add("IDS", typeof(string));
                 dtChkProducts.Columns.Add("GIPPR_INVSTSID", typeof(int));
                 dtChkProducts.Columns.Add("GIPPR_RMProductionFlag", typeof(int));
+                dtChkProducts.Columns.Add("GIPPR_InvoiceExpiryDate", typeof(string));
+                dtChkProducts.Columns.Add("GIPPR_InvoiceBatchNo", typeof(string));
+                dtChkProducts.Columns.Add("GIPPR_InvoiceMRP", typeof(decimal));
             }
             catch (Exception ex)
             {
@@ -2272,7 +2278,7 @@ namespace ROMS
                     DataGridViewCell cellRack = dataGridView6.Rows[e.RowIndex].Cells["clmRack"];
 
 
-                    decimal varMRP = 0;
+                    decimal varMRP = 0,varInvoiceMrp=0; 
                     if (Convert.ToString(grdInward.CurrentRow.Cells["clmMRP"].Value) != "")
                     {
                         decimal varMRP1 = Math.Round(Convert.ToDecimal(grdInward.CurrentRow.Cells["clmMRP"].Value), 2, MidpointRounding.AwayFromZero);
@@ -2281,9 +2287,17 @@ namespace ROMS
                         varMRP = Convert.ToDecimal(mrp);
                         grdInward.Rows[e.RowIndex].Cells["clmMRP"].Value = mrp;
                     }
-
+                    if (Convert.ToString(grdInward.CurrentRow.Cells["clmInvoiceMRP"].Value) != "")
+                    {
+                        decimal varMRP1 = Math.Round(Convert.ToDecimal(grdInward.CurrentRow.Cells["clmInvoiceMRP"].Value), 2, MidpointRounding.AwayFromZero);
+                        string mrp = string.Format("{0:0.00}", varMRP1);
+                        string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                        varInvoiceMrp = Convert.ToDecimal(mrp);
+                        grdInward.Rows[e.RowIndex].Cells["clmInvoiceMRP"].Value = mrp;
+                    }
                     string varExpiryDate = Convert.ToString(grdInward.CurrentRow.Cells["clmExpiryDate"].Value);
                     string varBatchNo = Convert.ToString(grdInward.CurrentRow.Cells["clmBatchNo"].Value);
+                    string varInvoiceBatchNo = Convert.ToString(grdInward.CurrentRow.Cells["clmInvoiceBatchNo"].Value);
                     int varRackID = Convert.ToInt32(grdInward.CurrentRow.Cells["clmRKID"].Value);
                     int varOrderID = Convert.ToInt32(grdInward.Rows[e.RowIndex].Cells["clmOrder"].Value);
                     int varPRID = Convert.ToInt32(grdInward.Rows[e.RowIndex].Cells["clmPRID"].Value);
@@ -2365,7 +2379,56 @@ namespace ROMS
                             }
                         }
                     }
+                    if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate")
+                    {
+                        int rowIndex = e.RowIndex, columnIndex = e.ColumnIndex, PR_Shelflife = 0, Date = 0;
 
+                        if (grdInward.Rows.Count > 0)
+                        {
+                            PR_Shelflife = Convert.ToInt32(grdInward.Rows[rowIndex].Cells["clmShelflifeStatus"].Value);
+                        }
+                        if (PR_Shelflife == 1)
+                        {
+                            varTempExpiryDate = Convert.ToString(grdInward.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Value);
+                            if (grdInward.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Value != null && Convert.ToString(grdInward.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Value) != "0")
+                            {
+                                MR_Master objMR_Master = new MR_Master();
+                                objMR_Master.ViewType = 8;
+                                objMR_Master.paraDate = varTempExpiryDate;
+                                DataSet objDSer = new DataSet();
+                                SPDataService objdServ = new SPDataService();
+                                objDSer = objdServ.udfnMaster(objMR_Master);
+                                objdServ.CloseConnection();
+                                if (objDSer != null)
+                                {
+                                    if (objDSer.Tables[0].Rows.Count > 0)
+                                    {
+                                        Date = Convert.ToInt32(objDSer.Tables[0].Rows[0]["Date"].ToString());
+                                        if (Date == 0)
+                                        {
+                                            MessageBox.Show("Invalid date!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            grdInward.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.LightPink;
+                                            varError = 1;
+                                        }
+                                        else
+                                        {
+                                            if (pbDateflag == 0)
+                                            {
+                                                grdInward.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.PaleGreen;
+                                                varError = 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please enter expirydate.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                grdInward.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.LightPink;
+                                varError = 1;
+                            }
+                        }
+                    }
 
 
                     /*
@@ -2428,6 +2491,13 @@ namespace ROMS
                                 cellMRP.Style.BackColor = Color.PaleGreen;
                                 cellMRP.Style.ForeColor = Color.Black;
                             }
+                            if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceMRP")
+                            {
+                                foreach (var row in varRowsToUpdate)
+                                { row.SetField("GIPPR_InvoiceMRP", varMRP); }
+                                cellMRP.Style.BackColor = Color.PaleGreen;
+                                cellMRP.Style.ForeColor = Color.Black;
+                            }
                             if (varError == 0)
                             {
                                 if (grdInward.CurrentCell.OwningColumn.Name == "clmExpiryDate")
@@ -2452,10 +2522,38 @@ namespace ROMS
                                     { row.SetField("GIPPR_ExpiryDate", ""); }
                                 }
                             }
+                            if (varError == 0)
+                            {
+                                if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate")
+                                {
+                                    foreach (var row in varRowsToUpdate)
+                                    { row.SetField("GIPPR_INvoiceExpiryDate", varExpiryDate); }
+                                    if (pbDateflag == 0)
+                                    {
+                                        cellExpiryDate.Style.BackColor = Color.PaleGreen;
+                                        cellExpiryDate.Style.ForeColor = Color.Black;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate")
+                                {
+                                    foreach (var row in varRowsToUpdate)
+                                    { row.SetField("GIPPR_INvoiceExpiryDate", ""); }
+                                }
+                            }
                             if (grdInward.CurrentCell.OwningColumn.Name == "clmBatchNo")
                             {
                                 foreach (var row in varRowsToUpdate)
                                 { row.SetField("GIPPR_BatchNo", varBatchNo); }
+                                cellBatchNo.Style.BackColor = Color.PaleGreen;
+                                cellBatchNo.Style.ForeColor = Color.Black;
+                            }
+                            if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceBatchNo")
+                            {
+                                foreach (var row in varRowsToUpdate)
+                                { row.SetField("GIPPR_InvoiceBatchNo", varInvoiceBatchNo); }
                                 cellBatchNo.Style.BackColor = Color.PaleGreen;
                                 cellBatchNo.Style.ForeColor = Color.Black;
                             }
@@ -2957,12 +3055,13 @@ namespace ROMS
                                     {
                                         OrderID = "ORDER ID";
                                     }
-                                    grdInward.Rows.Add(false, null, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Name in Tamil"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]),
-                                        Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Pending Qty"]), Convert.ToString(objDs.Tables[0].Rows[i][Quantity]),Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shop Qty"]),
+                                    grdInward.Rows.Add(false, null, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Name in Tamil"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice MRP"]),
+                                        Convert.ToString(objDs.Tables[0].Rows[i]["Pro Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Expiry Date"]),Convert.ToString(objDs.Tables[0].Rows[i]["Pro Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Pending Qty"]), Convert.ToString(objDs.Tables[0].Rows[i][Quantity]),Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shop Qty"]),
                                          Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack ID"]),
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[0].Rows[i][OrderID]),0
                                             ,Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP Flag"]), 
-                                           Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeType"]), Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]));
+                                           Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), 
+                                           Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeType"]), Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]));
                                     udfnStatus();
                                     if(varEditFlag==0)
                                     {
@@ -2991,8 +3090,10 @@ namespace ROMS
                                     }
 
                                     dtInwardPurchase.Rows.Add(false,Convert.ToInt32(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToInt32(objDs.Tables[0].Rows[i][OrderID]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Unit ID"]), ReceivedQty,ShopQty, Convert.ToInt32(objDs.Tables[0].Rows[i]["Rack ID"]),
-                                        Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["MRP Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Shelflife Status"]),
-                                        Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PR_STSID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ShelflifeType"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]));
+                                        Convert.ToString(objDs.Tables[0].Rows[i]["Pro Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro Batch No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Pro MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["MRP Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Shelflife Status"]),
+                                        Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PR_STSID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ShelflifeType"]),
+                                        Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]),
+                                        Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Batch No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice MRP"]));
 
                                     if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value)== "1")
                                     {

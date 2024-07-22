@@ -102,8 +102,11 @@
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPendingQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReceivedQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -284,8 +287,11 @@
             this.clmPICode,
             this.clmProductName,
             this.clmMRP,
+            this.clmInvoiceMRP,
             this.clmExpiryDate,
+            this.clmInvoiceExpiryDate,
             this.clmBatchNo,
+            this.clmInvoiceBatchNo,
             this.clmPendingQty,
             this.clmQty,
             this.clmReceivedQty,
@@ -1007,27 +1013,40 @@
             // 
             // clmMRP
             // 
-            this.clmMRP.HeaderText = "MRP";
+            this.clmMRP.HeaderText = "Pro MRP";
             this.clmMRP.Name = "clmMRP";
             this.clmMRP.ReadOnly = true;
             this.clmMRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmMRP.Width = 80;
             // 
+            // clmInvoiceMRP
+            // 
+            this.clmInvoiceMRP.HeaderText = "Inv MRP";
+            this.clmInvoiceMRP.Name = "clmInvoiceMRP";
+            // 
             // clmExpiryDate
             // 
-            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.HeaderText = "Pro Expiry Date";
             this.clmExpiryDate.Name = "clmExpiryDate";
             this.clmExpiryDate.ReadOnly = true;
             this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmExpiryDate.Width = 80;
+            // 
+            // clmInvoiceExpiryDate
+            // 
+            this.clmInvoiceExpiryDate.HeaderText = "Inv Expiry Date";
+            this.clmInvoiceExpiryDate.Name = "clmInvoiceExpiryDate";
             // 
             // clmBatchNo
             // 
-            this.clmBatchNo.HeaderText = "Batch No.";
+            this.clmBatchNo.HeaderText = "Pro Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
             this.clmBatchNo.ReadOnly = true;
             this.clmBatchNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmBatchNo.Width = 80;
+            // 
+            // clmInvoiceBatchNo
+            // 
+            this.clmInvoiceBatchNo.HeaderText = "Inv Batch No.";
+            this.clmInvoiceBatchNo.Name = "clmInvoiceBatchNo";
             // 
             // clmPendingQty
             // 
@@ -1386,8 +1405,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceMRP;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceExpiryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceBatchNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPendingQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReceivedQty;
