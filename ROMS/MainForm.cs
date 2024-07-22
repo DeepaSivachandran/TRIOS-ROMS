@@ -197,6 +197,8 @@ namespace ROMS
         public static PAY_Advance objPAY_Advance;
         public static PAY_ADV objPAY_Advance_Popup;
         public static PAY_BlockedSupplier objPAY_BlockedSupplier;
+        public static PAY_DiscountVoucherList objPAY_DiscountVoucherList;
+        public static PAY_DiscountVoucher objPAY_DiscountVoucher;
 
         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;
@@ -2293,6 +2295,22 @@ namespace ROMS
             }
         }
 
+        private void DiscountVoucherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_DiscountVoucherList = new PAY_DiscountVoucherList();
+                MainForm.objPAY_DiscountVoucherList.MdiParent = this;
+                MainForm.objPAY_DiscountVoucherList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
