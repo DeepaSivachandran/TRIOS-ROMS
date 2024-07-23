@@ -1013,7 +1013,7 @@ namespace ROMS
                             }
                             else
                             {
-                                varShelflifePer=Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]);
+                                varShelflifePer = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]) + ' ' + '%';
                             }
                             //string[] varActualShelflife = Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]).Split(' ');
                             //int actualShelfLife = Convert.ToInt32(varActualShelflife);
