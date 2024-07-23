@@ -2266,10 +2266,16 @@ namespace ROMS
                 {
                     DataGridView dataGridView1 = grdInward;
                     DataGridViewCell cellMRP = dataGridView1.Rows[e.RowIndex].Cells["clmMRP"];
+                    DataGridView dataGridView7 = grdInward;
+                    DataGridViewCell cellInvoiceMRP = dataGridView1.Rows[e.RowIndex].Cells["clmInvoiceMRP"];
                     DataGridView dataGridView2 = grdInward;
                     DataGridViewCell cellExpiryDate = dataGridView2.Rows[e.RowIndex].Cells["clmExpiryDate"];
+                    DataGridView dataGridView8 = grdInward;
+                    DataGridViewCell cellInvoiceExpiryDate = dataGridView2.Rows[e.RowIndex].Cells["clmInvoiceExpiryDate"];
                     DataGridView dataGridView3 = grdInward;
                     DataGridViewCell cellBatchNo = dataGridView3.Rows[e.RowIndex].Cells["clmBatchNo"];
+                    DataGridView dataGridView9 = grdInward;
+                    DataGridViewCell cellInvoiceBatchNo = dataGridView3.Rows[e.RowIndex].Cells["clmInvoiceBatchNo"];
                     DataGridView dataGridView4 = grdInward;
                     DataGridViewCell cellReceivedQty = dataGridView4.Rows[e.RowIndex].Cells["clmReceivedQty"];
                     DataGridView dataGridView5 = grdInward;
@@ -2296,6 +2302,7 @@ namespace ROMS
                         grdInward.Rows[e.RowIndex].Cells["clmInvoiceMRP"].Value = mrp;
                     }
                     string varExpiryDate = Convert.ToString(grdInward.CurrentRow.Cells["clmExpiryDate"].Value);
+                    string varInvoiceExpiryDate = Convert.ToString(grdInward.CurrentRow.Cells["clmInvoiceExpiryDate"].Value);
                     string varBatchNo = Convert.ToString(grdInward.CurrentRow.Cells["clmBatchNo"].Value);
                     string varInvoiceBatchNo = Convert.ToString(grdInward.CurrentRow.Cells["clmInvoiceBatchNo"].Value);
                     int varRackID = Convert.ToInt32(grdInward.CurrentRow.Cells["clmRKID"].Value);
@@ -2452,7 +2459,8 @@ namespace ROMS
                         object varRKID = Convert.ToInt32(grdGrnlist.CurrentRow.Cells["clmRKID"].Value);
                         dtInwardPurchase.Rows[e.RowIndex]["GIPPR_BatchNo"] = varRKID;
                     } */
-                    if (grdInward.CurrentCell.OwningColumn.Name == "clmMRP" || grdInward.CurrentCell.OwningColumn.Name == "clmExpiryDate" || grdInward.CurrentCell.OwningColumn.Name == "clmBatchNo" || grdInward.CurrentCell.OwningColumn.Name == "clmRack" || grdInward.CurrentCell.OwningColumn.Name == "clmReceivedQty" || grdInward.CurrentCell.OwningColumn.Name == "clmShopQty")
+                    if (grdInward.CurrentCell.OwningColumn.Name == "clmMRP" ||grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceMRP" || grdInward.CurrentCell.OwningColumn.Name == "clmExpiryDate" || grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate" || 
+                        grdInward.CurrentCell.OwningColumn.Name == "clmBatchNo" || grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceBatchNo" || grdInward.CurrentCell.OwningColumn.Name == "clmRack" || grdInward.CurrentCell.OwningColumn.Name == "clmReceivedQty" || grdInward.CurrentCell.OwningColumn.Name == "clmShopQty")
                     {
                         grdInward.Rows[e.RowIndex].Cells["clmError"].Value = 1;
                         var varDuplicateProduct = from r in dtInwardPurchase.AsEnumerable()
@@ -2494,9 +2502,9 @@ namespace ROMS
                             if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceMRP")
                             {
                                 foreach (var row in varRowsToUpdate)
-                                { row.SetField("GIPPR_InvoiceMRP", varMRP); }
-                                cellMRP.Style.BackColor = Color.PaleGreen;
-                                cellMRP.Style.ForeColor = Color.Black;
+                                { row.SetField("GIPPR_InvoiceMRP", varInvoiceMrp); }
+                                cellInvoiceMRP.Style.BackColor = Color.PaleGreen;
+                                cellInvoiceMRP.Style.ForeColor = Color.Black;
                             }
                             if (varError == 0)
                             {
@@ -2527,11 +2535,11 @@ namespace ROMS
                                 if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate")
                                 {
                                     foreach (var row in varRowsToUpdate)
-                                    { row.SetField("GIPPR_INvoiceExpiryDate", varExpiryDate); }
+                                    { row.SetField("GIPPR_InvoiceExpiryDate", varInvoiceExpiryDate); }
                                     if (pbDateflag == 0)
                                     {
-                                        cellExpiryDate.Style.BackColor = Color.PaleGreen;
-                                        cellExpiryDate.Style.ForeColor = Color.Black;
+                                        cellInvoiceExpiryDate.Style.BackColor = Color.PaleGreen;
+                                        cellInvoiceExpiryDate.Style.ForeColor = Color.Black;
                                     }
                                 }
                             }
@@ -2540,7 +2548,7 @@ namespace ROMS
                                 if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate")
                                 {
                                     foreach (var row in varRowsToUpdate)
-                                    { row.SetField("GIPPR_INvoiceExpiryDate", ""); }
+                                    { row.SetField("GIPPR_InvoiceExpiryDate", ""); }
                                 }
                             }
                             if (grdInward.CurrentCell.OwningColumn.Name == "clmBatchNo")
@@ -2554,8 +2562,8 @@ namespace ROMS
                             {
                                 foreach (var row in varRowsToUpdate)
                                 { row.SetField("GIPPR_InvoiceBatchNo", varInvoiceBatchNo); }
-                                cellBatchNo.Style.BackColor = Color.PaleGreen;
-                                cellBatchNo.Style.ForeColor = Color.Black;
+                                cellInvoiceBatchNo.Style.BackColor = Color.PaleGreen;
+                                cellInvoiceBatchNo.Style.ForeColor = Color.Black;
                             }
                             if (grdInward.CurrentCell.OwningColumn.Name == "clmRack")
                             {
@@ -2597,6 +2605,14 @@ namespace ROMS
                                 cellMRP.Style.BackColor = Color.LightPink;
                                 cellMRP.Style.ForeColor = Color.Black;
                             }
+                            if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceMRP")
+                            {
+                                grdInward.CurrentCell.Value = "0";
+                                foreach (var row in varRowsToUpdate)
+                                { row.SetField("GIPPR_InvoiceMRP", "0"); }
+                                cellInvoiceMRP.Style.BackColor = Color.LightPink;
+                                cellInvoiceMRP.Style.ForeColor = Color.Black;
+                            }
                             if (grdInward.CurrentCell.OwningColumn.Name == "clmExpiryDate")
                             {
                                 grdInward.CurrentCell.Value = "";
@@ -2622,20 +2638,32 @@ namespace ROMS
                                 cellRack.Style.BackColor = Color.LightPink;
                                 cellRack.Style.ForeColor = Color.Black;
                             }
-                            string varMRPErr = "0", varExpiryDateErr = "0", varBatchNoErr = "0";
-                            if(grdInward.CurrentCell.OwningColumn.Name == "clmMRP" && Convert.ToString(grdInward.CurrentRow.Cells["clmMRP"].Value)!="" && Convert.ToString(grdInward.CurrentRow.Cells["clmMRP"].Value) != "0")
+                            string varMRPErr = "0", varExpiryDateErr = "0", varBatchNoErr = "0", varInvoiceMRPErr = "0", varInvoiceExpiryDateErr = "0", varInvoiceBatchNoErr = "0";
+                            if (grdInward.CurrentCell.OwningColumn.Name == "clmMRP" && Convert.ToString(grdInward.CurrentRow.Cells["clmMRP"].Value)!="" && Convert.ToString(grdInward.CurrentRow.Cells["clmMRP"].Value) != "0")
                             {
                                 varMRPErr = "1";
+                            }
+                            if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceMRP" && Convert.ToString(grdInward.CurrentRow.Cells["clmInvoiceMRP"].Value)!="" && Convert.ToString(grdInward.CurrentRow.Cells["clmInvoiceMRP"].Value) != "0")
+                            {
+                                varInvoiceMRPErr = "1";
                             }
                             if (grdInward.CurrentCell.OwningColumn.Name == "clmExpiryDate" && Convert.ToString(grdInward.CurrentRow.Cells["clmExpiryDate"].Value) != "")
                             {
                                 varExpiryDateErr = "1";
                             }
+                            if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate" && Convert.ToString(grdInward.CurrentRow.Cells["clmInvoiceExpiryDate"].Value) != "")
+                            {
+                                varInvoiceExpiryDateErr = "1";
+                            }
                             if (grdInward.CurrentCell.OwningColumn.Name == "clmBatchNo" && Convert.ToString(grdInward.CurrentRow.Cells["clmBatchNo"].Value) != "")
                             {
                                 varBatchNoErr = "1";
                             }
-                            if (varMRPErr == "1" || varExpiryDateErr == "1" || varBatchNoErr == "1")
+                            if (grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceBatchNo" && Convert.ToString(grdInward.CurrentRow.Cells["clmInvoiceBatchNo"].Value) != "")
+                            {
+                                varInvoiceBatchNoErr = "1";
+                            }
+                            if (varMRPErr == "1" || varExpiryDateErr == "1" || varBatchNoErr == "1" || varInvoiceMRPErr == "1" || varInvoiceExpiryDateErr == "1" || varInvoiceBatchNoErr == "1")
                             {
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(127);

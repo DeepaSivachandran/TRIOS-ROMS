@@ -30,11 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -326,22 +330,22 @@
             this.clmReason,
             this.clmStatus,
             this.clmRemove});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdInward.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdInward.DefaultCellStyle = dataGridViewCellStyle9;
             this.grdInward.EnableHeadersVisualStyles = false;
             this.grdInward.GridColor = System.Drawing.Color.White;
             this.grdInward.Location = new System.Drawing.Point(3, 122);
             this.grdInward.Name = "grdInward";
             this.grdInward.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.grdInward.RowTemplate.Height = 25;
             this.grdInward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdInward.Size = new System.Drawing.Size(1338, 449);
@@ -1015,7 +1019,6 @@
             // 
             this.clmMRP.HeaderText = "Pro MRP";
             this.clmMRP.Name = "clmMRP";
-            this.clmMRP.ReadOnly = true;
             this.clmMRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmMRP.Width = 80;
             // 
@@ -1026,25 +1029,31 @@
             // 
             // clmExpiryDate
             // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmExpiryDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.clmExpiryDate.HeaderText = "Pro Expiry Date";
             this.clmExpiryDate.Name = "clmExpiryDate";
-            this.clmExpiryDate.ReadOnly = true;
             this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmInvoiceExpiryDate
             // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceExpiryDate.DefaultCellStyle = dataGridViewCellStyle3;
             this.clmInvoiceExpiryDate.HeaderText = "Inv Expiry Date";
             this.clmInvoiceExpiryDate.Name = "clmInvoiceExpiryDate";
             // 
             // clmBatchNo
             // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmBatchNo.DefaultCellStyle = dataGridViewCellStyle4;
             this.clmBatchNo.HeaderText = "Pro Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
-            this.clmBatchNo.ReadOnly = true;
             this.clmBatchNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmInvoiceBatchNo
             // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmInvoiceBatchNo.DefaultCellStyle = dataGridViewCellStyle5;
             this.clmInvoiceBatchNo.HeaderText = "Inv Batch No.";
             this.clmInvoiceBatchNo.Name = "clmInvoiceBatchNo";
             // 
@@ -1064,9 +1073,9 @@
             // 
             // clmReceivedQty
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.clmReceivedQty.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            this.clmReceivedQty.DefaultCellStyle = dataGridViewCellStyle6;
             this.clmReceivedQty.HeaderText = "Received Qty";
             this.clmReceivedQty.Name = "clmReceivedQty";
             this.clmReceivedQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -1074,9 +1083,9 @@
             // 
             // clmShopQty
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.clmShopQty.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            this.clmShopQty.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmShopQty.HeaderText = "Shop Qty";
             this.clmShopQty.Name = "clmShopQty";
             this.clmShopQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -1092,9 +1101,9 @@
             // 
             // clmRack
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.clmRack.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            this.clmRack.DefaultCellStyle = dataGridViewCellStyle8;
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
             this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;

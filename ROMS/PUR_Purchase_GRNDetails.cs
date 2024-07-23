@@ -296,12 +296,12 @@ namespace ROMS
             {   //for check box as radio button function
                 if (grdGRNDetails.CurrentCell.ColumnIndex == 0)
                 {
-                    //for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
-                    //{
-                    //    //if (i != dataGridView1.CurrentCell.RowIndex)
-                    //    grdGRNDetails.Rows[i].Cells[0].Value = false;
-                        
-                    //}
+                    for (int i = 0; i < grdGRNDetails.Rows.Count; i++)
+                    {
+                        //if (i != dataGridView1.CurrentCell.RowIndex)
+                        grdGRNDetails.Rows[i].Cells[0].Value = false;
+
+                    }
                     grdGRNDetails.Rows[grdGRNDetails.CurrentCell.RowIndex].Cells[0].Value = true;
                 }
             }
