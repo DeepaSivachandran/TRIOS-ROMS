@@ -495,7 +495,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -623,10 +623,9 @@ namespace ROMS
                 objTRN_DiscountVoucher.paraToDate = dpTodate.Text;
                 objTRN_DiscountVoucher.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_DiscountVoucher.paraScheduleId = Convert.ToInt32(lblSchedule.Text);
-                //objTRN_Advance.paraStatusID = Convert.ToInt32(cmbstatus.SelectedValue);
+                objTRN_DiscountVoucher.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 objDs = objspservice.udfnDiscountVoucherList(objTRN_DiscountVoucher);
                 objspservice.CloseConnection();
-
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -639,13 +638,16 @@ namespace ROMS
                             grdDiscountList.DataSource = objDs.Tables[0];
 
                             grdDiscountList.Columns["DISCID"].Visible = false;
+                            grdDiscountList.Columns["DISC_STSID"].Visible = false;
                             grdDiscountList.Columns["S.No."].Width = 50;
                             grdDiscountList.Columns["Status"].Width = 80;
+                            grdDiscountList.Columns["Discount Date"].Width = 100;
                             grdDiscountList.Columns["Voucher Date"].Width = 100;
                             grdDiscountList.Columns["Supplier Name"].Width = 350;
-                            //grdDiscountList.Columns["GSTIN"].Width = 150;
+                            grdDiscountList.Columns["GSTIN"].Width = 150;
                             grdDiscountList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDiscountList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdDiscountList.Columns["Discount Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDiscountList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDiscountList.Columns["Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
@@ -689,7 +691,8 @@ namespace ROMS
             try
             {
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
-                grdDiscountList.Columns["DISCID"].Visible = false;
+                DGV_SearchGrid.Columns["DISCID"].Visible = false;
+                DGV_SearchGrid.Columns["DISC_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.Columns["Voucher Date"].Width = 120;
@@ -717,7 +720,88 @@ namespace ROMS
         {
             try
             {
+                btnExport.Enabled = false;
+                lblSupplierCode.Focus();
+                if ((grdDiscountList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Discount Voucher";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdDiscountList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
 
+                    ExcelSheet.Cells[1, 1].Value = "Discount Voucher";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+
+                    foreach (DataGridViewColumn col in grdDiscountList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+
+                            if (col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            else if (col.Name == "Voucher Date")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else if (col.Name == "Supplier Name")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            if (col.Name == "S.No." || col.Name == "Voucher Date")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            if (col.Name == "Amount")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+                            foreach (DataGridViewRow rowa in grdDiscountList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -943,6 +1027,11 @@ namespace ROMS
             try
             {
                 udfnConcernLoad();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,23) AND STSID <>-1", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
+                cmbStatus.SelectedValue = 0;
+
                 udfnList();
             }
             catch (Exception ex)
@@ -1036,6 +1125,83 @@ namespace ROMS
             if (e.KeyCode == Keys.Enter)
             {
                 udfnEditLoad();
+            }
+        }
+
+        private void GrdDiscountList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdDiscountList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdDiscountList.Rows[i].Cells["DISC_STSID"].Value) == "103")
+                    {
+                        grdDiscountList.Rows[i].Cells["Status"].Style.BackColor = Color.Green;
+                        grdDiscountList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdDiscountList.Rows[i].Cells["DISC_STSID"].Value) == "102")
+                    {
+                        grdDiscountList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdDiscountList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    grdDiscountList.ClearSelection();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

@@ -21,7 +21,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpDiscamt = new ToolTip();
         bool varVoucherSkip = false;
-        public int varClose = 0, varDateChange = 0, varCloseFlag = 0, varPURID = 0, varUpdate = 0, PbDiscID = 0;
+        public int varClose = 0, varDateChange = 0, varCloseFlag = 0, varPURID = 0, varUpdate = 0, PbDiscID = 0, varSTSID = 0;
         public string varcomid = "";
         public PAY_DiscountVoucher()
         {
@@ -45,10 +45,7 @@ namespace ROMS
 
             try
             {
-                if (varClose == 0)
-                {
-                    this.Close();
-                }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -280,10 +277,6 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-
-                }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     if (LV_Supplier.Items.Count == 0 || txtSupplier.Text == "")
@@ -299,6 +292,10 @@ namespace ROMS
                     {
                         LV_Supplier.Items[0].Selected = true;
                     }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtInvoiceamt.Focus();
                 }
             }
             catch (Exception ex)
@@ -349,6 +346,7 @@ namespace ROMS
             try
             {
                 LV_Supplier.Items.Clear();
+                grdInvoice.Rows.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
                     MR_Supplier objMR_Supplier = new Model.MR_Supplier();
@@ -431,6 +429,7 @@ namespace ROMS
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                     udfnsupplierLoad();
                     udfnGridLoad();
+                    txtInvoiceamt.Focus();
                 }
             }
             catch (Exception ex)
@@ -504,15 +503,22 @@ namespace ROMS
                             grdInvoice.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdInvoice.Rows.Add("", Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]));
+                                grdInvoice.Rows.Add(false, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["STSID"]));
                                 grdInvoice.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInvoice.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                                if(Convert.ToString(objDs.Tables[0].Rows[i]["STSID"])=="63")
+                                if(Convert.ToString(objDs.Tables[0].Rows[i]["STSID"])!="63")
                                 {
-
+                                    grdInvoice.Rows[i].Cells["clmCheck"].ReadOnly = true;
+                                }
+                                else
+                                {
+                                    if (PbDiscID != 0)
+                                    {
+                                        grdInvoice.Rows[i].Cells["clmCheck"].Value = true;
+                                    }
                                 }
                             }
                         }
@@ -677,6 +683,7 @@ namespace ROMS
                 objTRN_DiscountVoucher.ParaDiscountAmt = Convert.ToDecimal(txtInvoiceamt.Text.Trim());
                 objTRN_DiscountVoucher.paraRemarks = txtRemark.Text.Trim();
                 objTRN_DiscountVoucher.paraPURID = varPURID;
+                objTRN_DiscountVoucher.paraStatusID = 102;
                 objTRN_DiscountVoucher.paraOriginator = varoriginator;
                 varResult = objspservice.udfnDiscountVoucher(objTRN_DiscountVoucher);
                 objspservice.CloseConnection();
@@ -686,7 +693,7 @@ namespace ROMS
                     string varAmountInWords = "";
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objPAY_DiscountVoucherList.udfnList();
-                    varUpdate = 1;
+                    varCloseFlag = 1;
                     udfnclose(sender, e);
                 }
                 else
@@ -799,6 +806,33 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdInvoice_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {   //for check box as radio button function
+                if (grdInvoice.CurrentCell.ColumnIndex == 0)
+                {
+                    for (int i = 0; i < grdInvoice.Rows.Count; i++)
+                    {
+                        if(Convert.ToString(grdInvoice.Rows[i].Cells["clmSTSID"].Value)=="63")
+                        {
+                            grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value = true;
+                        }
+                        else
+                        {
+                            grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value = false;
+                        }
+                        //grdInvoice.Rows[i].Cells[0].Value = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DpVoucDate_Leave(object sender, EventArgs e)
         {
             try
@@ -811,6 +845,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void PAY_DiscountVoucher_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -901,6 +936,7 @@ namespace ROMS
                                 varPURID = Convert.ToInt32(objDs.Tables[0].Rows[0]["DISC_PURID"]);
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_Amount"]);
                                 txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_Remarks"]);
+                                varSTSID = Convert.ToInt32(objDs.Tables[0].Rows[0]["DISC_STSID"]);
 
                                 LV_Supplier.Visible = false;
                                 udfnsupplierLoad();
@@ -909,6 +945,12 @@ namespace ROMS
                                 cmbConcern.Enabled = false;
                                 txtSupplier.Enabled = false;
                                 txtInvoiceamt.Focus();
+                                this.ActiveControl = txtInvoiceamt;
+                                if (varSTSID == 103)
+                                {
+                                    grbDiscount.Enabled = false;
+                                    this.ActiveControl = btnClose;
+                                }
                             }
                         }
                     }
