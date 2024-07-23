@@ -21,8 +21,8 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpDiscamt = new ToolTip();
         bool varVoucherSkip = false;
-        public int varClose = 0, varDateChange = 0, varCloseFlag = 0, varPURID = 0, varUpdate = 0;
-        public string varcomid = "", PbDiscID = "0";
+        public int varClose = 0, varDateChange = 0, varCloseFlag = 0, varPURID = 0, varUpdate = 0, PbDiscID = 0;
+        public string varcomid = "";
         public PAY_DiscountVoucher()
         {
             InitializeComponent();
@@ -159,7 +159,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                if (PbDiscID == "0")
+                if (PbDiscID == 0)
                 {
                     if (grdInvoice.Rows.Count != 0)
                     {
@@ -199,7 +199,7 @@ namespace ROMS
         {
             try
             {
-                if (PbDiscID == "0")
+                if (PbDiscID == 0)
                 {
                     if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
                     {
@@ -504,13 +504,13 @@ namespace ROMS
                             grdInvoice.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdInvoice.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]));
+                                grdInvoice.Rows.Add("", Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]));
                                 grdInvoice.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInvoice.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                                if(Convert.ToString(objDs.Tables[0].Rows[i]["STSID"])=="1")
+                                if(Convert.ToString(objDs.Tables[0].Rows[i]["STSID"])=="63")
                                 {
 
                                 }
@@ -685,7 +685,7 @@ namespace ROMS
                 {
                     string varAmountInWords = "";
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objPAY_AdvanceList.udfnList();
+                    MainForm.objPAY_DiscountVoucherList.udfnList();
                     varUpdate = 1;
                     udfnclose(sender, e);
                 }
@@ -811,7 +811,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void PAY_DiscountVoucher_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -876,7 +875,44 @@ namespace ROMS
         {
             try
             {
+                if (PbDiscID != 0)
+                {
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    Model.TRN_DiscountVoucher objTRN_DiscountVoucher = new Model.TRN_DiscountVoucher();
+                    objTRN_DiscountVoucher.ViewType = 2;
+                    objTRN_DiscountVoucher.paraDiscountId = PbDiscID;
+                    objDs = objdserv.udfnDiscountVoucherList(objTRN_DiscountVoucher);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            MainForm.objPAY_DiscountVoucherList.picLoader.Visible = false;
+                            MainForm.objPAY_DiscountVoucherList.picLoader.SendToBack();
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_COMID"]);
+                                txtDiscNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_No"]);
+                                dpVoucDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_Date"]);
+                                txtSupplier.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
+                                lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPID"]);
+                                lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPSCID"]);
+                                varPURID = Convert.ToInt32(objDs.Tables[0].Rows[0]["DISC_PURID"]);
+                                txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_Amount"]);
+                                txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_Remarks"]);
 
+                                LV_Supplier.Visible = false;
+                                udfnsupplierLoad();
+                                udfnGridLoad();
+
+                                cmbConcern.Enabled = false;
+                                txtSupplier.Enabled = false;
+                                txtInvoiceamt.Focus();
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

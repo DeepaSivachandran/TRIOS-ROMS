@@ -45,14 +45,14 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlDiscount = new System.Windows.Forms.Panel();
-            this.lblSchedule = new System.Windows.Forms.Label();
-            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.lblSchedule = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.dpTodate = new System.Windows.Forms.DateTimePicker();
             this.txtSupplier = new System.Windows.Forms.TextBox();
@@ -191,6 +191,8 @@
             this.grdDiscountList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDiscountList.Size = new System.Drawing.Size(1348, 515);
             this.grdDiscountList.TabIndex = 1;
+            this.grdDiscountList.DoubleClick += new System.EventHandler(this.GrdDiscountList_DoubleClick);
+            this.grdDiscountList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdDiscountList_KeyDown);
             // 
             // lblNoRecordsFound
             // 
@@ -265,26 +267,6 @@
             this.pnlDiscount.Size = new System.Drawing.Size(1354, 641);
             this.pnlDiscount.TabIndex = 958797;
             // 
-            // lblSchedule
-            // 
-            this.lblSchedule.AutoSize = true;
-            this.lblSchedule.Location = new System.Drawing.Point(1037, 26);
-            this.lblSchedule.Name = "lblSchedule";
-            this.lblSchedule.Size = new System.Drawing.Size(16, 20);
-            this.lblSchedule.TabIndex = 111111147;
-            this.lblSchedule.Text = "0";
-            this.lblSchedule.Visible = false;
-            // 
-            // lblSupplierCode
-            // 
-            this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(1015, 26);
-            this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
-            this.lblSupplierCode.TabIndex = 111111146;
-            this.lblSupplierCode.Text = "0";
-            this.lblSupplierCode.Visible = false;
-            // 
             // lvSupplier
             // 
             this.lvSupplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -339,6 +321,16 @@
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
             // 
+            // lblSchedule
+            // 
+            this.lblSchedule.AutoSize = true;
+            this.lblSchedule.Location = new System.Drawing.Point(1037, 26);
+            this.lblSchedule.Name = "lblSchedule";
+            this.lblSchedule.Size = new System.Drawing.Size(16, 20);
+            this.lblSchedule.TabIndex = 111111147;
+            this.lblSchedule.Text = "0";
+            this.lblSchedule.Visible = false;
+            // 
             // btnExport
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
@@ -353,6 +345,16 @@
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
             this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Location = new System.Drawing.Point(1015, 26);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 111111146;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
             // 
             // cmbConcern
             // 
@@ -521,6 +523,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader23;
         private System.Windows.Forms.Label lblSchedule;
         private System.Windows.Forms.Label lblSupplierCode;
-        private System.Windows.Forms.PictureBox picLoader;
+        public System.Windows.Forms.PictureBox picLoader;
     }
 }

@@ -18,6 +18,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable Deftable = new DataTable();
+        DataTable dtDefaultGrid = new DataTable();
         public Boolean BlnSearchImageYN = false;
         public int varUserID = 0;
 
@@ -61,10 +62,9 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objPAY_DiscountVoucher = new PAY_DiscountVoucher();
-                    MainForm.objPAY_DiscountVoucher.MdiParent = ParentForm;
                     MainForm.objPAY_DiscountVoucher.btnSave.Text = "Update";
-                    MainForm.objPAY_DiscountVoucher.PbDiscID = Convert.ToString(grdDiscountList.SelectedRows[0].Cells["ADID"].Value);
-                    MainForm.objPAY_DiscountVoucher.Show();
+                    MainForm.objPAY_DiscountVoucher.PbDiscID = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
+                    MainForm.objPAY_DiscountVoucher.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -560,6 +560,40 @@ namespace ROMS
         {
             try
             {
+                lvSupplier.Visible = false;
+                lblSchedule.Focus();
+                if (Convert.ToString(txtSupplier.Text).Trim() != "")
+                {
+                    //txtSupplier.BackColor = Color.White;
+                    string[] values = new string[0];
+                    string varSupplierId = "0";
+                    Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                    objMR_Supplier.ViewType = 23;
+                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
+                    {
+                        if (objDsSupplierId.Tables.Count > 0)
+                        {
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                            {
+                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                values = Convert.ToString(varSupplierId).Split(',');
+                            }
+                        }
+                    }
+                    lblSupplierCode.Text = values[0];
+                    lblSchedule.Text = values[1];
+                    txtSupplier.BackColor = Color.White;
+                }
+                else
+                {
+                    lblSupplierCode.Text = "0";
+                    lblSchedule.Text = "0";
+                }
                 udfnList();
             }
             catch (Exception ex)
@@ -572,7 +606,69 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
+                DGV_SearchGrid.DataSource = null;
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdDiscountList.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************    
+                SPDataService objspservice = new SPDataService();
+                Model.TRN_DiscountVoucher objTRN_DiscountVoucher = new Model.TRN_DiscountVoucher();
+                objTRN_DiscountVoucher.ViewType = 1;
+                objTRN_DiscountVoucher.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_DiscountVoucher.paraFromDate = dpFromdate.Text;
+                objTRN_DiscountVoucher.paraToDate = dpTodate.Text;
+                objTRN_DiscountVoucher.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                objTRN_DiscountVoucher.paraScheduleId = Convert.ToInt32(lblSchedule.Text);
+                //objTRN_Advance.paraStatusID = Convert.ToInt32(cmbstatus.SelectedValue);
+                objDs = objspservice.udfnDiscountVoucherList(objTRN_DiscountVoucher);
+                objspservice.CloseConnection();
 
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdDiscountList.DataSource = objDs.Tables[0];
+
+                            grdDiscountList.Columns["DISCID"].Visible = false;
+                            grdDiscountList.Columns["S.No."].Width = 50;
+                            grdDiscountList.Columns["Status"].Width = 80;
+                            grdDiscountList.Columns["Voucher Date"].Width = 100;
+                            grdDiscountList.Columns["Supplier Name"].Width = 350;
+                            //grdDiscountList.Columns["GSTIN"].Width = 150;
+                            grdDiscountList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdDiscountList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdDiscountList.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdDiscountList.Columns["Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                    objspservice.CloseConnection();
+                }
+                udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
             }
             catch (Exception ex)
             {
@@ -592,7 +688,12 @@ namespace ROMS
         {
             try
             {
-
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                grdDiscountList.Columns["DISCID"].Visible = false;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Status"].Width = 80;
+                DGV_SearchGrid.Columns["Voucher Date"].Width = 120;
+                DGV_SearchGrid.Columns["Supplier Name"].Width = 350; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -842,6 +943,7 @@ namespace ROMS
             try
             {
                 udfnConcernLoad();
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -913,6 +1015,27 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDiscountList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEditLoad();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDiscountList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                udfnEditLoad();
             }
         }
     }
