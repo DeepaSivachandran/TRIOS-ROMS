@@ -28,6 +28,8 @@ namespace ROMS
         decimal varGrandTot = 0, varTotal = 0, varamt = 0;
         public int varCloseFlag = 0, varClose = 0;
         public string advanceid = "";
+        public string PurchaseID = "0";
+        public string varAdvance = "", varPayAmnt="";
         public PAY_SupplierPayment()
         {
             InitializeComponent();
@@ -96,6 +98,11 @@ namespace ROMS
                     txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSuppliername.ShowAlways = true;
                     tpSuppliername.Show("Please enter supplier name", txtsuppliername, 5000);
+                    blnErrorFlag = true;
+                }
+                if(grdSupplierPayment.Rows.Count == 0)
+                {
+                    MessageBox.Show("Please add atleast one bill", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
                 //if(!Convert.ToBoolean(grdSupplierPayment.Columns["clmcheck"]))
@@ -1633,6 +1640,7 @@ namespace ROMS
             try
             {
                 int varpurchaseId = 0, payid = 0;
+                int VARFLAG = 0;
                 if (e.RowIndex != -1)
                 {
                     if (grdSupplierPayment.Columns[e.ColumnIndex].Name == "clmcheck")
@@ -1653,6 +1661,21 @@ namespace ROMS
                                     dtPayment.Rows[i].Delete();
                                     dtPayment.AcceptChanges();
                                 }
+                                
+                            }
+                        }
+                        if (Convert.ToBoolean(grdSupplierPayment.Rows[e.RowIndex].Cells[0].Value) == true)
+                        {
+                            VARFLAG = 1;
+                            if (PurchaseID == "0")
+                            {
+                                PurchaseID = Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
+                                varPayAmnt = Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value);
+                            }
+                            else
+                            {
+                                PurchaseID = PurchaseID + ',' + Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
+                                varPayAmnt = varPayAmnt + ',' + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value);
                             }
                         }
                     }
@@ -1713,6 +1736,49 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void BtnApply_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal CurrentAdvace = 0;
+                decimal varTotalAmnt = 0;
+                if (varAdvanceID!="0")
+                {
+                    for(int i = 0;i < varAdvanceID.Length;i++)
+                    {
+                        if (PurchaseID!="0")
+                        {
+                            A: for (int j = 0; j < PurchaseID.Length;j++)
+                            {
+                                if(varAdvance!="0")
+                                {
+                                    string[] varAdvanceAmnt = varAdvance.Split(',');
+                                    string adValue = varAdvanceAmnt[i].Trim();
+                                    string[] varPayment = varPayAmnt.Split(',');
+                                    string varValue = varPayment[j].Trim();
+                                    if(CurrentAdvace == 0)
+                                    {
+                                        CurrentAdvace = Convert.ToDecimal(varValue) - Convert.ToDecimal(adValue);
+                                    }
+                                    else
+                                    {
+
+                                        CurrentAdvace = Convert.ToDecimal(CurrentAdvace) - Convert.ToDecimal(adValue);
+                                    }
+                                }
+                                varTotalAmnt = varTotalAmnt + CurrentAdvace;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfntooltiphide()

@@ -16,7 +16,9 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtAdvance = new DataTable();
+        DataTable dtCheckAdv = new DataTable();
         public string AdvID = ""; public string varEditAdv = "";
+        public string varAdvancePayAmnt = "";
         public PAY_ADV()
         {
             InitializeComponent();
@@ -76,6 +78,11 @@ namespace ROMS
                 dtAdvance.Columns.Add("Advance Amount", typeof(decimal));
                 dtAdvance.Columns.Add("ADID", typeof(string));
                 dtAdvance.Columns.Add("PAYID", typeof(int));
+
+                dtCheckAdv = new DataTable();
+                dtCheckAdv.Columns.Add("Advance Amount", typeof(decimal));
+                dtCheckAdv.Columns.Add("ADID", typeof(string));
+                dtCheckAdv.Columns.Add("PURID", typeof(int));
                 TRN_Advance objTRN_Advance = new TRN_Advance();
                 objTRN_Advance.ViewType = 2;
                 objTRN_Advance.paraPAYID = MainForm.objPAY_SupplierPayment.varSupplierPaymentID;
@@ -199,11 +206,14 @@ namespace ROMS
                         {
                             AdvID = Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
                             varAdvanceAmnt = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
+                            varAdvancePayAmnt = Convert.ToString(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
+                            dtCheckAdv.Rows.Add(Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value));
                         }
                         else
                         {
                             AdvID = AdvID + ',' + Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
                             varAdvanceAmnt = varAdvanceAmnt + Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
+                            varAdvancePayAmnt = varAdvancePayAmnt + ',' + Convert.ToString(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
                         }
                     }
 
@@ -214,6 +224,7 @@ namespace ROMS
                     MainForm.objPAY_SupplierPayment.lblAdvance.Text = Convert.ToString(varAdvanceAmnt);
                     varGrandTotal = Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblSubtotal.Text) - Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblAdvance.Text);
                     MainForm.objPAY_SupplierPayment.lblGrandTotal.Text = Convert.ToString(varGrandTotal);
+                    MainForm.objPAY_SupplierPayment.varAdvance = varAdvancePayAmnt;
                     this.Close();
                 }
                 else
