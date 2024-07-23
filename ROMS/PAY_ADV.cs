@@ -79,10 +79,10 @@ namespace ROMS
                 dtAdvance.Columns.Add("ADID", typeof(string));
                 dtAdvance.Columns.Add("PAYID", typeof(int));
 
-                dtCheckAdv = new DataTable();
-                dtCheckAdv.Columns.Add("Advance Amount", typeof(decimal));
-                dtCheckAdv.Columns.Add("ADID", typeof(string));
-                dtCheckAdv.Columns.Add("PURID", typeof(int));
+                //dtCheckAdv = new DataTable();
+                //dtCheckAdv.Columns.Add("Advance Amount", typeof(decimal));
+                //dtCheckAdv.Columns.Add("ADID", typeof(string));
+                //dtCheckAdv.Columns.Add("PURID", typeof(int));
                 TRN_Advance objTRN_Advance = new TRN_Advance();
                 objTRN_Advance.ViewType = 2;
                 objTRN_Advance.paraPAYID = MainForm.objPAY_SupplierPayment.varSupplierPaymentID;
@@ -207,7 +207,7 @@ namespace ROMS
                             AdvID = Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
                             varAdvanceAmnt = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
                             varAdvancePayAmnt = Convert.ToString(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
-                            dtCheckAdv.Rows.Add(Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value));
+                            //dtCheckAdv.Rows.Add(Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value), Convert.ToInt32(grdAdvance.Rows[i].Cells["ADID"].Value),0);
                         }
                         else
                         {
@@ -215,6 +215,7 @@ namespace ROMS
                             varAdvanceAmnt = varAdvanceAmnt + Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
                             varAdvancePayAmnt = varAdvancePayAmnt + ',' + Convert.ToString(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
                         }
+                        MainForm.objPAY_SupplierPayment.dtCheckAdv.Rows.Add(Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value), Convert.ToInt32(grdAdvance.Rows[i].Cells["ADID"].Value), 0, grdAdvance.Rows[i].Cells["Advance Amount"].Value);
                     }
 
                 }
