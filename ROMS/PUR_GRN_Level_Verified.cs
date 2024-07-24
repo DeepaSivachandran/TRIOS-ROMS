@@ -240,7 +240,12 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    mtbTime2.Focus();
+                    if (mtbTime2.Enabled == true)
+                    { mtbTime2.Focus(); }
+                    else if (cmbFormat2.Enabled == true)
+                    { cmbFormat2.Focus(); }
+                    else
+                    { btnAuthorise.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -647,7 +652,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpVerified2.Focus();
+                    if (dpVerified2.Enabled == true)
+                    { dpVerified2.Focus(); }
+                    else if(mtbTime2.Enabled==true)
+                    { mtbTime2.Focus(); }
+                    else if(cmbFormat2.Enabled==true)
+                    { cmbFormat2.Focus(); }
+                    else
+                    { btnAuthorise.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -704,7 +716,14 @@ namespace ROMS
             finally
             {
                 lvVerified2.Visible = false;
-                dpVerified2.Focus();
+                if (dpVerified2.Enabled == true)
+                { dpVerified2.Focus(); }
+                else if (mtbTime2.Enabled == true)
+                { mtbTime2.Focus(); }
+                else if (cmbFormat2.Enabled == true)
+                { cmbFormat2.Focus(); }
+                else
+                { btnAuthorise.Focus(); }
             }
         }
 
@@ -814,7 +833,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbFormat2.Focus();
+                    if (cmbFormat2.Enabled == true)
+                    { cmbFormat2.Focus(); }
+                    else
+                    { btnAuthorise.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -1058,7 +1080,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnVerified1()
         {
             try

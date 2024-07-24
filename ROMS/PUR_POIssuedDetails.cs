@@ -24,7 +24,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
-        public int varupdate = 0, varPOID = 0,varsts=0, Varordertype = 0;
+        public int varupdate = 0, varPOID = 0,varsts=0, Varordertype = 0,pbDelayedStatus=0;
         public PUR_POIssuedDetails()
         {
             InitializeComponent();
@@ -225,7 +225,7 @@ namespace ROMS
                 this.ActiveControl = dpissuedateandtime;
                 if (varsts != 12) //pending po
                 {
-                    if (varsts == 11) //issued po
+                    if (varsts == 11 && pbDelayedStatus!=1) //issued po
                     {
                         dpissuedateandtime.Enabled = false;
                         //dpissuedateandtime.Readonly = true;

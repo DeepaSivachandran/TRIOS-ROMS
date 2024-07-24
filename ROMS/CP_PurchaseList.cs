@@ -1416,24 +1416,24 @@ namespace ROMS
         {
             try
             {
-                grdPurchaseEntryList.Columns["clmCheck"].Frozen = true;
-                grdPurchaseEntryList.Columns["clmCheck"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryList.Columns["clmEdit"].Frozen = true;
-                grdPurchaseEntryList.Columns["clmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryList.Columns["S.No."].Frozen = true;
-                grdPurchaseEntryList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryList.Columns["Concern"].Frozen = true;
-                grdPurchaseEntryList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryList.Columns["Pur Entry Status"].Frozen = true;
-                grdPurchaseEntryList.Columns["Pur Entry Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryList.Columns["Overall Status"].Frozen = true;
-                grdPurchaseEntryList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryList.Columns["Vouc No."].Frozen = true;
-                grdPurchaseEntryList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryList.Columns["Vouc Date"].Frozen = true;
-                grdPurchaseEntryList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryList.Columns["Supplier"].Frozen = true;
-                grdPurchaseEntryList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["clmCheck"].Frozen = true;
+                //grdPurchaseEntryList.Columns["clmCheck"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["clmEdit"].Frozen = true;
+                //grdPurchaseEntryList.Columns["clmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["S.No."].Frozen = true;
+                //grdPurchaseEntryList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["Concern"].Frozen = true;
+                //grdPurchaseEntryList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["Pur Entry Status"].Frozen = true;
+                //grdPurchaseEntryList.Columns["Pur Entry Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["Overall Status"].Frozen = true;
+                //grdPurchaseEntryList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["Vouc No."].Frozen = true;
+                //grdPurchaseEntryList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["Vouc Date"].Frozen = true;
+                //grdPurchaseEntryList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryList.Columns["Supplier"].Frozen = true;
+                //grdPurchaseEntryList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
                 for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
                 {

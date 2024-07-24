@@ -123,6 +123,7 @@ namespace ROMS
                             MainForm.objPUR_POIssuedDetails.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.Varordertype = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["SPSC_TAT"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.varsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_CurrentSTSID"].Value.ToString());
+                            MainForm.objPUR_POIssuedDetails.pbDelayedStatus = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS1"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.ShowDialog();
                             break;
                         case "clmPrint":
@@ -2413,19 +2414,19 @@ namespace ROMS
                 grdPurchaseorderlist.Columns["S.No."].Frozen = true;
                 grdPurchaseorderlist.Columns["Concern"].Frozen = true;
                 grdPurchaseorderlist.Columns["Po Status"].Frozen = true;
-                grdPurchaseorderlist.Columns["Overall Status"].Frozen = true;
-                grdPurchaseorderlist.Columns["PO.No."].Frozen = true;
-                grdPurchaseorderlist.Columns["PO Date"].Frozen = true;
-                grdPurchaseorderlist.Columns["Supplier"].Frozen = true;
-                grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseorderlist.Columns["Overall Status"].Frozen = true;
+                //grdPurchaseorderlist.Columns["PO.No."].Frozen = true;
+                //grdPurchaseorderlist.Columns["PO Date"].Frozen = true;
+                //grdPurchaseorderlist.Columns["Supplier"].Frozen = true;
+                //grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["clmView"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["Po Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseorderlist.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseorderlist.Columns["PO.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseorderlist.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseorderlist.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseorderlist.Columns["PO.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseorderlist.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
                 for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
                 {

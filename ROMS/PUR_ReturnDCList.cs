@@ -1432,18 +1432,18 @@ namespace ROMS
             {
                 grdReturnDCList.Columns["Print"].Frozen = true;
                 grdReturnDCList.Columns["Print"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdReturnDCList.Columns["S.No."].Frozen = true;
-                grdReturnDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdReturnDCList.Columns["Pur Ret Dc Status"].Frozen = true;
-                grdReturnDCList.Columns["Pur Ret Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdReturnDCList.Columns["Concern"].Frozen = true;
-                grdReturnDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdReturnDCList.Columns["Dc No."].Frozen = true;
-                grdReturnDCList.Columns["Dc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdReturnDCList.Columns["Dc Date"].Frozen = true;
-                grdReturnDCList.Columns["Dc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdReturnDCList.Columns["Supplier"].Frozen = true;
-                grdReturnDCList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdReturnDCList.Columns["S.No."].Frozen = true;
+                //grdReturnDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdReturnDCList.Columns["Pur Ret Dc Status"].Frozen = true;
+                //grdReturnDCList.Columns["Pur Ret Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdReturnDCList.Columns["Concern"].Frozen = true;
+                //grdReturnDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdReturnDCList.Columns["Dc No."].Frozen = true;
+                //grdReturnDCList.Columns["Dc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdReturnDCList.Columns["Dc Date"].Frozen = true;
+                //grdReturnDCList.Columns["Dc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdReturnDCList.Columns["Supplier"].Frozen = true;
+                //grdReturnDCList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
                 for (int i = 0; i < grdReturnDCList.Rows.Count; i++)
                 {

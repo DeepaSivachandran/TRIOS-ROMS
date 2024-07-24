@@ -1640,20 +1640,20 @@ namespace ROMS
                 grdStockHold.Columns["clmMove"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdStockHold.Columns["clmConvert"].Frozen = true;
                 grdStockHold.Columns["clmConvert"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdStockHold.Columns["S.No."].Frozen = true;
-                grdStockHold.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdStockHold.Columns["P.I Code"].Frozen = true;
-                grdStockHold.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdStockHold.Columns["Product Name"].Frozen = true;
-                grdStockHold.Columns["Product Name"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdStockHold.Columns["Unit"].Frozen = true;
-                grdStockHold.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdStockHold.Columns["Stock Location"].Frozen = true;
-                grdStockHold.Columns["Stock Location"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdStockHold.Columns["Rack"].Frozen = true;
-                grdStockHold.Columns["Rack"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdStockHold.Columns["Concern"].Frozen = true;
-                grdStockHold.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdStockHold.Columns["S.No."].Frozen = true;
+                //grdStockHold.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdStockHold.Columns["P.I Code"].Frozen = true;
+                //grdStockHold.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdStockHold.Columns["Product Name"].Frozen = true;
+                //grdStockHold.Columns["Product Name"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdStockHold.Columns["Unit"].Frozen = true;
+                //grdStockHold.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdStockHold.Columns["Stock Location"].Frozen = true;
+                //grdStockHold.Columns["Stock Location"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdStockHold.Columns["Rack"].Frozen = true;
+                //grdStockHold.Columns["Rack"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdStockHold.Columns["Concern"].Frozen = true;
+                //grdStockHold.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
                 grdStockHold.ClearSelection();
                 for (int i = 0; i < grdStockHold.Rows.Count; i++)

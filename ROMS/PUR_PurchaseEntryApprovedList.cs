@@ -1055,20 +1055,20 @@ namespace ROMS
                 grdPurchaseEntryApproval.Columns["clmCheck"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseEntryApproval.Columns["clmUnapproved"].Frozen = true;
                 grdPurchaseEntryApproval.Columns["clmUnapproved"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryApproval.Columns["S.No."].Frozen = true;
-                grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryApproval.Columns["Concern"].Frozen = true;
-                grdPurchaseEntryApproval.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryApproval.Columns["Overall Status"].Frozen = true;
-                grdPurchaseEntryApproval.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryApproval.Columns["Approval No."].Frozen = true;
-                grdPurchaseEntryApproval.Columns["Approval No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryApproval.Columns["Vouc No."].Frozen = true;
-                grdPurchaseEntryApproval.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryApproval.Columns["Vouc Date"].Frozen = true;
-                grdPurchaseEntryApproval.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseEntryApproval.Columns["Supplier"].Frozen = true;
-                grdPurchaseEntryApproval.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryApproval.Columns["S.No."].Frozen = true;
+                //grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryApproval.Columns["Concern"].Frozen = true;
+                //grdPurchaseEntryApproval.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryApproval.Columns["Overall Status"].Frozen = true;
+                //grdPurchaseEntryApproval.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryApproval.Columns["Approval No."].Frozen = true;
+                //grdPurchaseEntryApproval.Columns["Approval No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryApproval.Columns["Vouc No."].Frozen = true;
+                //grdPurchaseEntryApproval.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryApproval.Columns["Vouc Date"].Frozen = true;
+                //grdPurchaseEntryApproval.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseEntryApproval.Columns["Supplier"].Frozen = true;
+                //grdPurchaseEntryApproval.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
                 for (int i = 0; i < grdPurchaseEntryApproval.Rows.Count; i++)
                 {
