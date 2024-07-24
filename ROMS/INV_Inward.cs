@@ -3685,7 +3685,7 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        varshelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]) + ' ' + '%';
+                                        varshelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]) + '%';
                                     }
                                 }
                                 grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
