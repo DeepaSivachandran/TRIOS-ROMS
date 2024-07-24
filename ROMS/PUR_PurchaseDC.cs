@@ -458,7 +458,7 @@ namespace ROMS
             dtPurchaseDC.Columns.Add("DCPR_RKID", typeof(string));
             dtPurchaseDC.Columns.Add("DCPR_ShelfLifeValue", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_ShelfLifeType", typeof(int));
-            dtPurchaseDC.Columns.Add("DCPR_ShelfLife_Per", typeof(float));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLife_Per", typeof(decimal));
             dtPurchaseDC.Columns.Add("DCPR_ShelfLifeStatus", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_ShelfLife_Flag", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_MRPFlag", typeof(int));

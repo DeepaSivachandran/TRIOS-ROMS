@@ -874,7 +874,7 @@ namespace ROMS
                 dtRefresh.Columns.Add("PURPR_BatchNoGenration", typeof(int));
                 dtRefresh.Columns.Add("PURPR_ShelfLife_Flag", typeof(int));
                 dtRefresh.Columns.Add("PURPR_ShelfLifevalue", typeof(float));
-                dtRefresh.Columns.Add("PURPR_ShelfLifePer", typeof(float));
+                dtRefresh.Columns.Add("PURPR_ShelfLifePer", typeof(decimal));
                 dtRefresh.Columns.Add("ProShelfLife", typeof(float));
                 dtRefresh.Columns.Add("PURPR_HSNID", typeof(int));
                 dtRefresh.Columns.Add("PURPRID", typeof(int));
@@ -6259,7 +6259,7 @@ namespace ROMS
                         objPurchaseentry.Columns.Add("PURPR_Costing", typeof(decimal));
                         objPurchaseentry.Columns.Add("PURPR_ShelfLife", typeof(int));
                         objPurchaseentry.Columns.Add("PURPR_ShelfLifeValue", typeof(int));
-                        objPurchaseentry.Columns.Add("PURPR_ShelfLifePer", typeof(float));
+                        objPurchaseentry.Columns.Add("PURPR_ShelfLifePer", typeof(decimal));
                         objPurchaseentry.Columns.Add("PURPR_Error", typeof(int));
                         objPurchaseentry.Columns.Add("PURPR_POID", typeof(int));
                         objPurchaseentry.Columns.Add("PURPR_BatchNoStatus", typeof(int));
@@ -7595,7 +7595,7 @@ namespace ROMS
                 objPurchaseentry.Columns.Add("PURPR_Costing", typeof(decimal));
                 objPurchaseentry.Columns.Add("PURPR_ShelfLife", typeof(int));
                 objPurchaseentry.Columns.Add("PURPR_ShelfLifeValue", typeof(int));
-                objPurchaseentry.Columns.Add("PURPR_ShelfLifePer", typeof(float));
+                objPurchaseentry.Columns.Add("PURPR_ShelfLifePer", typeof(decimal));
                 objPurchaseentry.Columns.Add("PURPR_Error", typeof(int));
                 objPurchaseentry.Columns.Add("PURPR_POID", typeof(int));
                 objPurchaseentry.Columns.Add("PURPR_BatchNoStatus", typeof(int));
