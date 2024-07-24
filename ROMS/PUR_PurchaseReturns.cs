@@ -587,13 +587,13 @@ namespace ROMS
                             dpCreditNoteDate.Enabled = true;
                             grpReason.Enabled = true;
                         }
-                        else
-                        {
-                            cmbReasonForClosing.Enabled = false;
-                            txtAmount.Enabled = false;
-                            txtCrNo.Enabled = false;
-                            dpCreditNoteDate.Enabled = false;
-                        }
+                        //else
+                        //{
+                        //    cmbReasonForClosing.Enabled = false;
+                        //    txtAmount.Enabled = false;
+                        //    txtCrNo.Enabled = false;
+                        //    dpCreditNoteDate.Enabled = false;
+                        //}
                     }
                 }
                 ChkCompleted_CheckedChanged(sender, e);

@@ -35,5 +35,6 @@ namespace ROMS.Model
         public int paraDeleteFlag { get; set; } = 0;
         public string paraHostName { get; set; } = "";
         public DataTable paraPayment { get; set; } = null;
+        public DataTable paradtparaAdvance { get; set; } = null;
     }
 }
