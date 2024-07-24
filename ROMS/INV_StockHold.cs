@@ -89,7 +89,6 @@ namespace ROMS
                     udfntooltiphide();
                     this.Close();
                 }
-
                 //if (e.KeyCode == Keys.F11)
                 //{
                 //    if (VarSearchFlag == false)
@@ -112,7 +111,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
         public void udfnclose()
         {
             try
@@ -146,7 +144,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductNamePICode_Leave(object sender, EventArgs e)
         {
             try
@@ -171,7 +168,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductNamePICode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -331,7 +327,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_Leave(object sender, EventArgs e)
         {
             try
@@ -373,7 +368,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Lvproduct_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -387,7 +381,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Lvproduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -404,7 +397,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
@@ -671,6 +663,9 @@ namespace ROMS
                             grdStockHold.Columns["RKID"].Visible = false;
                             grdStockHold.Columns["SHID"].Visible = false;
                             grdStockHold.Columns["COMID"].Visible = false;
+                            grdStockHold.Columns["SH_SPID"].Visible = false;
+                            grdStockHold.Columns["SH_SPSCID"].Visible = false;
+                            grdStockHold.Columns["SH_STSID"].Visible = false;
                             grdStockHold.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockHold.Columns["Hold Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockHold.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -742,6 +737,9 @@ namespace ROMS
                 DGV_SearchGrid.Columns["RKID"].Visible = false;
                 DGV_SearchGrid.Columns["SHID"].Visible = false;
                 DGV_SearchGrid.Columns["COMID"].Visible = false;
+                DGV_SearchGrid.Columns["SH_SPID"].Visible = false;
+                DGV_SearchGrid.Columns["SH_SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["SH_STSID"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -779,7 +777,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductName_TextChanged(object sender, EventArgs e)
         {
             try
@@ -854,7 +851,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvproductPICode_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -868,7 +864,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvproductPICode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -885,7 +880,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -917,7 +911,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductName_Enter(object sender, EventArgs e)
         {
             try
@@ -930,7 +923,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductName_Leave(object sender, EventArgs e)
         {
             try
@@ -957,7 +949,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1289,7 +1280,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1303,7 +1293,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -1328,7 +1317,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -1370,7 +1358,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void GrdStockHold_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
 
@@ -1389,7 +1376,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -1412,7 +1398,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -1426,7 +1411,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -1465,7 +1449,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtMrp_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1477,9 +1460,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void TxtExpiryDate_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1492,7 +1473,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1556,9 +1536,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void GrdStockHold_Enter(object sender, EventArgs e)
         {
             try
@@ -1572,7 +1550,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_Enter(object sender, EventArgs e)
         {
             try
@@ -1585,7 +1562,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtRemark_Enter(object sender, EventArgs e)
         {
             try
@@ -1598,7 +1574,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtRemark_Leave(object sender, EventArgs e)
         {
             try
@@ -1626,8 +1601,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void GrdStockHold_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -1665,6 +1638,7 @@ namespace ROMS
                     if (Convert.ToString(grdStockHold.Rows[i].Cells["SH_STSID"].Value) == "97")
                     {
                         grdStockHold.Rows[i].Cells["clmDelete"].Value = new Bitmap(1, 1);
+                        grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
                     }
                     if (Convert.ToString(grdStockHold.Rows[i].Cells["SH_STSID"].Value) == "95")
                     {
@@ -1678,7 +1652,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1697,7 +1670,6 @@ namespace ROMS
                 DGV_FilterProduct.Visible = false;
             }
         }
-
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1720,7 +1692,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1787,7 +1758,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbReason_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1816,7 +1786,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbReason_Enter(object sender, EventArgs e)
         {
             try
@@ -1829,7 +1798,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbReason_Leave(object sender, EventArgs e)
         {
             try
@@ -1842,7 +1810,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbReason_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1855,7 +1822,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbReason_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1871,7 +1837,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             try
@@ -1900,7 +1865,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1913,7 +1877,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void INV_StockHold_KeyDown_1(object sender, KeyEventArgs e)
         {
             
@@ -1931,7 +1894,6 @@ namespace ROMS
         //        objError.WriteFile(ex);
         //    }
         //}
-
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             try
@@ -1949,7 +1911,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnDelete()
         {
             try
@@ -2002,7 +1963,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
@@ -2056,7 +2016,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnListviewProduct()
         {
             try
@@ -2162,7 +2121,6 @@ namespace ROMS
                 GC.Collect();
             }
         }
-
         private void BtnPrint_Click(object sender, EventArgs e)
         {
             try
@@ -2175,7 +2133,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtProductNamePICode_TextChanged(object sender, EventArgs e)
         {
             try

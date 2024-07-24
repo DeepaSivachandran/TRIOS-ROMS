@@ -810,6 +810,7 @@
             this.grdDamageEntryList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDamageEntryList_CellDoubleClick);
             this.grdDamageEntryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDamageEntryList_DataBindingComplete);
             this.grdDamageEntryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdDamageEntryList_Scroll);
+            this.grdDamageEntryList.SelectionChanged += new System.EventHandler(this.GrdDamageEntryList_SelectionChanged);
             this.grdDamageEntryList.DoubleClick += new System.EventHandler(this.GrdDamageEntryList_DoubleClick);
             this.grdDamageEntryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdDamageEntryList_KeyDown);
             // 
