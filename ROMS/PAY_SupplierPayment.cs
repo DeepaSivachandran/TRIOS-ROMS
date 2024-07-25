@@ -1821,6 +1821,7 @@ namespace ROMS
                 //    }
                 //}
                 udfnCheckEvent();
+                udfnSubtotalCalc();
 
             }
             catch (Exception ex)
