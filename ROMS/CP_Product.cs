@@ -5109,6 +5109,11 @@ namespace ROMS
                                     lvHsnCode.Items.Add(objList);
                                 }
                                 lvHsnCode.Visible = true;
+                                lvHsnCode.BringToFront();
+                                lvHsnCode.Columns[0].Width = 200;
+                                lvHsnCode.Columns[1].Width = 0;
+                                lvHsnCode.Columns[2].Width = 0;
+                                lvHsnCode.Columns[3].Width = 0;
                             }
                         }
                     }
