@@ -499,7 +499,6 @@ namespace ROMS
         {
             try
             {
-
                 if (e.RowIndex != -1)
                 {
                     switch (grdGRNList.Columns[e.ColumnIndex].Name)
