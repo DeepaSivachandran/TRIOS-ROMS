@@ -640,7 +640,7 @@ namespace ROMS
                             grdDiscountList.Columns["DISCID"].Visible = false;
                             grdDiscountList.Columns["DISC_STSID"].Visible = false;
                             grdDiscountList.Columns["S.No."].Width = 50;
-                            grdDiscountList.Columns["Status"].Width = 80;
+                            grdDiscountList.Columns["Status"].Width = 150;
                             grdDiscountList.Columns["Discount Date"].Width = 100;
                             grdDiscountList.Columns["Voucher Date"].Width = 100;
                             grdDiscountList.Columns["Supplier Name"].Width = 350;
