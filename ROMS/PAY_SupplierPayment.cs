@@ -167,16 +167,16 @@ namespace ROMS
                     {
                         varCheck = false;
                     }
-                    if(varUpdateFlag==1)
-                    {
+                    //if(varUpdateFlag==1)
+                    //{
 
-                    }
+                    //}
                     if (Convert.ToBoolean(varCheck) ==true && varSupplierPaymentID==0)
                     {
                         dtPayment.Rows.Add(Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value), Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value), varStatusID,0, Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmAdvanceAmnt"].Value),0, Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDiscAmount"].Value), Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDISCID"].Value));
                     }
                 }
-                dtAdvance.DefaultView.Sort = "[Current balance] ASC";
+                dtAdvance.DefaultView.Sort = "ADID AND [Current balance] ASC";
                 dtAdvance = dtAdvance.DefaultView.ToTable();
                 Model.TRN_Supplier_Payment objTRN_Supplier_Payment = new Model.TRN_Supplier_Payment();
                 objTRN_Supplier_Payment.ViewType = ViewType;
