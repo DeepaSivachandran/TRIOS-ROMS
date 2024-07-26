@@ -638,7 +638,7 @@ namespace ROMS
                 if (varCheck == "0")
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(64);
+                    string varMessage = objDServ.udfnGetMessages(136);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     VarErrorFlag = true;
