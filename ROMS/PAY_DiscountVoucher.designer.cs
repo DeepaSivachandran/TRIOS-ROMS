@@ -51,16 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.grbInvoiceDetails = new System.Windows.Forms.GroupBox();
             this.grdInvoice = new System.Windows.Forms.DataGridView();
-            this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmvoucherno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPURID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSTSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -76,6 +66,16 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmvoucherno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPURID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSTSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epDiscount)).BeginInit();
             this.grbDiscount.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -254,7 +254,7 @@
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(427, 58);
-            this.txtRemark.TabIndex = 1111217;
+            this.txtRemark.TabIndex = 5;
             // 
             // label2
             // 
@@ -327,77 +327,6 @@
             this.grdInvoice.TabIndex = 1111214;
             this.grdInvoice.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdInvoice_CurrentCellDirtyStateChanged);
             // 
-            // clmcheck
-            // 
-            this.clmcheck.HeaderText = "";
-            this.clmcheck.Name = "clmcheck";
-            this.clmcheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmcheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmcheck.Width = 50;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.ReadOnly = true;
-            this.clmdsno.Width = 50;
-            // 
-            // clmvoucherno
-            // 
-            this.clmvoucherno.HeaderText = "Voucher No.";
-            this.clmvoucherno.Name = "clmvoucherno";
-            this.clmvoucherno.ReadOnly = true;
-            this.clmvoucherno.Width = 80;
-            // 
-            // clmVoucherDate
-            // 
-            this.clmVoucherDate.HeaderText = "Voucher Date";
-            this.clmVoucherDate.Name = "clmVoucherDate";
-            this.clmVoucherDate.ReadOnly = true;
-            this.clmVoucherDate.Width = 90;
-            // 
-            // clmInvoiceNo
-            // 
-            this.clmInvoiceNo.HeaderText = "Invoice No.";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
-            this.clmInvoiceNo.Width = 80;
-            // 
-            // clmInvoiceDate
-            // 
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
-            this.clmInvoiceDate.Width = 85;
-            // 
-            // clmAmount
-            // 
-            this.clmAmount.HeaderText = "Invoice Amount";
-            this.clmAmount.Name = "clmAmount";
-            this.clmAmount.ReadOnly = true;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            this.clmStatus.Width = 140;
-            // 
-            // clmPURID
-            // 
-            this.clmPURID.HeaderText = "ID";
-            this.clmPURID.Name = "clmPURID";
-            this.clmPURID.ReadOnly = true;
-            this.clmPURID.Visible = false;
-            this.clmPURID.Width = 10;
-            // 
-            // clmSTSID
-            // 
-            this.clmSTSID.HeaderText = "STSID";
-            this.clmSTSID.Name = "clmSTSID";
-            this.clmSTSID.ReadOnly = true;
-            this.clmSTSID.Visible = false;
-            // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -406,7 +335,7 @@
             this.btnSave.Location = new System.Drawing.Point(617, 412);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(79, 29);
-            this.btnSave.TabIndex = 5;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -569,11 +498,82 @@
             this.btnClose.Location = new System.Drawing.Point(712, 411);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 6;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
+            // clmcheck
+            // 
+            this.clmcheck.HeaderText = "";
+            this.clmcheck.Name = "clmcheck";
+            this.clmcheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmcheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmcheck.Width = 50;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            this.clmdsno.ReadOnly = true;
+            this.clmdsno.Width = 50;
+            // 
+            // clmvoucherno
+            // 
+            this.clmvoucherno.HeaderText = "Voucher No.";
+            this.clmvoucherno.Name = "clmvoucherno";
+            this.clmvoucherno.ReadOnly = true;
+            this.clmvoucherno.Width = 80;
+            // 
+            // clmVoucherDate
+            // 
+            this.clmVoucherDate.HeaderText = "Voucher Date";
+            this.clmVoucherDate.Name = "clmVoucherDate";
+            this.clmVoucherDate.ReadOnly = true;
+            this.clmVoucherDate.Width = 90;
+            // 
+            // clmInvoiceNo
+            // 
+            this.clmInvoiceNo.HeaderText = "Invoice No.";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
+            this.clmInvoiceNo.Width = 80;
+            // 
+            // clmInvoiceDate
+            // 
+            this.clmInvoiceDate.HeaderText = "Invoice Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
+            this.clmInvoiceDate.Width = 85;
+            // 
+            // clmAmount
+            // 
+            this.clmAmount.HeaderText = "Invoice Amount";
+            this.clmAmount.Name = "clmAmount";
+            this.clmAmount.ReadOnly = true;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 180;
+            // 
+            // clmPURID
+            // 
+            this.clmPURID.HeaderText = "ID";
+            this.clmPURID.Name = "clmPURID";
+            this.clmPURID.ReadOnly = true;
+            this.clmPURID.Visible = false;
+            this.clmPURID.Width = 10;
+            // 
+            // clmSTSID
+            // 
+            this.clmSTSID.HeaderText = "STSID";
+            this.clmSTSID.Name = "clmSTSID";
+            this.clmSTSID.ReadOnly = true;
+            this.clmSTSID.Visible = false;
             // 
             // PAY_DiscountVoucher
             // 

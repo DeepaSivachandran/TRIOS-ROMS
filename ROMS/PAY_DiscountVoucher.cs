@@ -512,6 +512,7 @@ namespace ROMS
                                 if(Convert.ToString(objDs.Tables[0].Rows[i]["STSID"])!="63")
                                 {
                                     grdInvoice.Rows[i].Cells["clmCheck"].ReadOnly = true;
+                                    grdInvoice.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
                                 }
                                 else
                                 {
@@ -612,7 +613,7 @@ namespace ROMS
                 {
                     VarErrorFlag = true;
                 }
-                if (Convert.ToString(txtInvoiceamt.Text) == "")
+                if (Convert.ToString(txtInvoiceamt.Text.Trim()) == "")
                 {
                     epDiscount.SetError(txtInvoiceamt, "Please enter discount amount");
                     txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -815,16 +816,9 @@ namespace ROMS
                 {
                     for (int i = 0; i < grdInvoice.Rows.Count; i++)
                     {
-                        if(Convert.ToString(grdInvoice.Rows[i].Cells["clmSTSID"].Value)=="63")
-                        {
-                            grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value = true;
-                        }
-                        else
-                        {
-                            grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value = false;
-                        }
-                        //grdInvoice.Rows[i].Cells[0].Value = false;
+                        grdInvoice.Rows[i].Cells[0].Value = false;
                     }
+                    grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value = true;
                 }
             }
             catch (Exception ex)
@@ -940,7 +934,13 @@ namespace ROMS
 
                                 LV_Supplier.Visible = false;
                                 udfnsupplierLoad();
-                                udfnGridLoad();
+
+                                grdInvoice.Rows.Add(true, Convert.ToString(objDs.Tables[1].Rows[0]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[0]["Voucher No"]), Convert.ToString(objDs.Tables[1].Rows[0]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[0]["Invoice No"]), Convert.ToString(objDs.Tables[1].Rows[0]["Invoice Date"]), Convert.ToString(objDs.Tables[1].Rows[0]["Invoice Amount"]), Convert.ToString(objDs.Tables[1].Rows[0]["Status"]), Convert.ToString(objDs.Tables[1].Rows[0]["ID"]), Convert.ToString(objDs.Tables[1].Rows[0]["STSID"]));
+                                grdInvoice.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdInvoice.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInvoice.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdInvoice.Columns["clmAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
 
                                 cmbConcern.Enabled = false;
                                 txtSupplier.Enabled = false;
