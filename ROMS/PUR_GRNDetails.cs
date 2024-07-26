@@ -3236,15 +3236,15 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.F10)
-                {
-                    if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmpicode" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmtam")
-                    {
-                        varEditPRID = Convert.ToString(grdGrnlist.CurrentRow.Cells["clmProid"].Value);
-                        varAutocompleteProduct = 2;
-                        udfnProDataChange();
-                    }
-                }
+                //if (e.KeyCode == Keys.F10)
+                //{
+                //    if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmpicode" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmtam")
+                //    {
+                //        varEditPRID = Convert.ToString(grdGrnlist.CurrentRow.Cells["clmProid"].Value);
+                //        varAutocompleteProduct = 2;
+                //        udfnProDataChange();
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -5878,12 +5878,12 @@ namespace ROMS
                         cmbQtyType.Focus();
                     }
                 }
-                if (e.KeyCode == Keys.F10)
-                {
-                    varEditPRID = lblProductcode.Text;
-                    varAutocompleteProduct = 1;
-                    udfnProDataChange();
-                }
+                //if (e.KeyCode == Keys.F10)
+                //{
+                //    varEditPRID = lblProductcode.Text;
+                //    varAutocompleteProduct = 1;
+                //    udfnProDataChange();
+                //}
             }
             catch (Exception ex)
             {

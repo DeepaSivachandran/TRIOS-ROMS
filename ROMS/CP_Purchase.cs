@@ -1588,6 +1588,12 @@ namespace ROMS
                                             grdSupplierList.Rows[i].Cells["clmMRP"].ReadOnly = true;
                                             grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
                                         }
+                                        grdSupplierList.Rows[i].Cells["clmPendingQty"].ReadOnly = true;
+                                        grdSupplierList.Rows[i].Cells["clmPendingQty"].Style.BackColor = Color.LightGray;
+                                        grdSupplierList.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
+                                        grdSupplierList.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                                        grdSupplierList.Rows[i].Cells["clmDamageQty"].ReadOnly = true;
+                                        grdSupplierList.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
                                     }
                                     else
                                     {
@@ -1688,6 +1694,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[4].Rows.Count != 0) //DC DETAILS LOAD
                             {
+                                grdDCVerificationDetails.Rows.Clear();
                                 lblFinishedNoRecord.Visible = false;
                                 for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
                                 {
@@ -1806,6 +1813,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (grdSupplierList.RowCount != 0)
+                { btnClear.Enabled = false; }
             }
         }
         public void udfndisablevalue()
@@ -9213,18 +9225,18 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.F10)
-                {
-                    if (Convert.ToString(grdSupplierList.CurrentRow.Cells["clmid"].Value) != "220" && Convert.ToString(grdSupplierList.CurrentRow.Cells["clmInvFlag"].Value) != "1")
-                    {
-                        if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProTname" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmPicode")
-                        {
-                            varEditPRID = Convert.ToString(grdSupplierList.CurrentRow.Cells["clmProid"].Value);
-                            varAutocompleteProduct = 2;
-                            udfnProDataChange();
-                        }
-                    }
-                }
+                //if (e.KeyCode == Keys.F10)
+                //{
+                //    if (Convert.ToString(grdSupplierList.CurrentRow.Cells["clmid"].Value) != "220" && Convert.ToString(grdSupplierList.CurrentRow.Cells["clmInvFlag"].Value) != "1")
+                //    {
+                //        if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProTname" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmPicode")
+                //        {
+                //            varEditPRID = Convert.ToString(grdSupplierList.CurrentRow.Cells["clmProid"].Value);
+                //            varAutocompleteProduct = 2;
+                //            udfnProDataChange();
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -11860,15 +11872,16 @@ namespace ROMS
                         //else {  cmbQtyType.Focus(); }
                     }
                 }
-                if (e.KeyCode == Keys.F10)
-                {
-                    varEditPRID = lblProductcode.Text;
-                    varAutocompleteProduct = 1;
-                    if (varPrInvFlag != "1" && Convert.ToString(cmbPONo.SelectedValue) != "220")
-                    {
-                        udfnProDataChange();
-                    }
-                }
+                //to open product master
+                //if (e.KeyCode == Keys.F10)
+                //{
+                //    varEditPRID = lblProductcode.Text;
+                //    varAutocompleteProduct = 1;
+                //    if (varPrInvFlag != "1" && Convert.ToString(cmbPONo.SelectedValue) != "220")
+                //    {
+                //        udfnProDataChange();
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -11877,8 +11890,10 @@ namespace ROMS
             }
             finally
             {
-                if (Convert.ToString(cmbEntryType.SelectedValue) == "57")
+                if (Convert.ToString(cmbPONo.SelectedValue) == "220")
                 { cmbQtyType.SelectedValue = 202; cmbQtyType.Enabled = false; }
+                else if (Convert.ToString(cmbPONo.SelectedValue) == "219")
+                { cmbQtyType.Enabled = true; }
             }
         }
         public void udfnListviewProduct()
@@ -12051,8 +12066,10 @@ namespace ROMS
             finally
             {
                 DGV_FilterProduct.Visible = false;
-                if (Convert.ToString(cmbEntryType.SelectedValue) == "57")
+                if (Convert.ToString(cmbPONo.SelectedValue) == "220")
                 { cmbQtyType.SelectedValue = 202; cmbQtyType.Enabled = false; }
+                else if (Convert.ToString(cmbPONo.SelectedValue) == "219")
+                { cmbQtyType.Enabled = true; }
             }
         }
 

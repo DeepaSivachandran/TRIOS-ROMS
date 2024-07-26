@@ -305,6 +305,12 @@ namespace ROMS
                             grdGRNList.Columns["PURREDCID"].Visible = false;
                             grdGRNList.Columns["GRN Full Status"].Visible = false;
                             grdGRNList.Columns["Overall Full Status"].Visible = false;
+
+                            grdGRNList.Columns["PendingFlag"].Visible = false;
+                            grdGRNList.Columns["DraftFlag"].Visible = false;
+                            grdGRNList.Columns["GRN_Payment_StsID"].Visible = false;
+                            grdGRNList.Columns["GRN_LastTransNo"].Visible = false;
+                            grdGRNList.Columns["GRN_Created"].Visible = false;
                             grdGRNList.Columns["Any Pur Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
