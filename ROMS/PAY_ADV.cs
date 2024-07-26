@@ -197,6 +197,7 @@ namespace ROMS
                 decimal varAdvanceAmnt = 0;
                 MainForm.objPAY_SupplierPayment.varAdvanceID = "0";
                 MainForm.objPAY_SupplierPayment.lblAdvance.Text = "0";
+                MainForm.objPAY_SupplierPayment.dtCheckAdv.Clear();
                 for (int i = 0; i < grdAdvance.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdAdvance.Rows[i].Cells[0].Value) == true)
