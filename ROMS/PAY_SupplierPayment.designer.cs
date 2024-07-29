@@ -99,6 +99,7 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epSupplier = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnClear = new System.Windows.Forms.Button();
             this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -155,6 +156,7 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.btnClear);
             this.pnlinward.Controls.Add(this.btnApply);
             this.pnlinward.Controls.Add(this.lblAdvance);
             this.pnlinward.Controls.Add(this.label2);
@@ -190,7 +192,7 @@
             // btnApply
             // 
             this.btnApply.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnApply.Location = new System.Drawing.Point(105, 99);
+            this.btnApply.Location = new System.Drawing.Point(103, 99);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(48, 29);
             this.btnApply.TabIndex = 111111144;
@@ -908,10 +910,24 @@
             // 
             this.epSupplier.ContainerControl = this;
             // 
+            // btnClear
+            // 
+            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(155, 99);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(118, 29);
+            this.btnClear.TabIndex = 111111145;
+            this.btnClear.Text = "Clear Advance";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
             // clmcheck
             // 
             this.clmcheck.HeaderText = "";
             this.clmcheck.Name = "clmcheck";
+            this.clmcheck.ReadOnly = true;
             this.clmcheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmcheck.Width = 50;
             // 
@@ -1003,7 +1019,7 @@
             // 
             // clmPayAmount
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightGray;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
             this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle7;
@@ -1142,7 +1158,8 @@
         public System.Windows.Forms.Label lblGrandTotal;
         public System.Windows.Forms.Label lblAdvance;
         public System.Windows.Forms.Label lblSubtotal;
-        private System.Windows.Forms.Button btnApply;
+        public System.Windows.Forms.Button btnClear;
+        public System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmVoucherDate;
