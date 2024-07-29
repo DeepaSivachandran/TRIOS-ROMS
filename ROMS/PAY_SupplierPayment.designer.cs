@@ -110,14 +110,14 @@
             this.clmTaxableAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAdvanceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDiscAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReturnAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAdvanceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPayAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPAYIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReturnSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDiscAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDISCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPaymentAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
@@ -579,14 +579,14 @@
             this.clmTaxableAmnt,
             this.clmTaxAmount,
             this.clmInvoiceAmnt,
-            this.clmAdvanceAmnt,
+            this.clmDiscAmount,
             this.clmReturnAmt,
+            this.clmAdvanceAmnt,
             this.clmPayAmount,
             this.clmID,
             this.clmPAYIID,
             this.clmStatus,
             this.clmReturnSts,
-            this.clmDiscAmount,
             this.clmDISCID,
             this.clmPaymentAmount});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -978,13 +978,13 @@
             this.clmInvoiceAmnt.Name = "clmInvoiceAmnt";
             this.clmInvoiceAmnt.ReadOnly = true;
             // 
-            // clmAdvanceAmnt
+            // clmDiscAmount
             // 
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmAdvanceAmnt.DefaultCellStyle = dataGridViewCellStyle5;
-            this.clmAdvanceAmnt.HeaderText = "Advance Amount";
-            this.clmAdvanceAmnt.Name = "clmAdvanceAmnt";
-            this.clmAdvanceAmnt.Width = 120;
+            this.clmDiscAmount.DefaultCellStyle = dataGridViewCellStyle5;
+            this.clmDiscAmount.HeaderText = "Discount Amount";
+            this.clmDiscAmount.Name = "clmDiscAmount";
+            this.clmDiscAmount.Width = 120;
             // 
             // clmReturnAmt
             // 
@@ -993,12 +993,20 @@
             this.clmReturnAmt.ReadOnly = true;
             this.clmReturnAmt.Width = 180;
             // 
+            // clmAdvanceAmnt
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmAdvanceAmnt.DefaultCellStyle = dataGridViewCellStyle6;
+            this.clmAdvanceAmnt.HeaderText = "Advance Amount";
+            this.clmAdvanceAmnt.Name = "clmAdvanceAmnt";
+            this.clmAdvanceAmnt.Width = 120;
+            // 
             // clmPayAmount
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmPayAmount.HeaderText = "Pay Amount";
             this.clmPayAmount.Name = "clmPayAmount";
             // 
@@ -1025,14 +1033,6 @@
             // 
             this.clmReturnSts.HeaderText = "Return Status";
             this.clmReturnSts.Name = "clmReturnSts";
-            // 
-            // clmDiscAmount
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmDiscAmount.DefaultCellStyle = dataGridViewCellStyle7;
-            this.clmDiscAmount.HeaderText = "Discount Amount";
-            this.clmDiscAmount.Name = "clmDiscAmount";
-            this.clmDiscAmount.Width = 120;
             // 
             // clmDISCID
             // 
@@ -1154,14 +1154,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTaxableAmnt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTaxAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceAmnt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmAdvanceAmnt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDiscAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnAmt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmAdvanceAmnt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPayAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPAYIID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnSts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDiscAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDISCID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPaymentAmount;
     }
