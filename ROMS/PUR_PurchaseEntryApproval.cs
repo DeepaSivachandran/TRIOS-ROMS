@@ -774,7 +774,8 @@ namespace ROMS
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
-                    if(varCheckButtonFlag==Convert.ToInt16(grdSupplierList.RowCount))
+                   
+                    if (varCheckButtonFlag==Convert.ToInt16(grdSupplierList.RowCount))
                     { btnselectall.Visible = false; }
                     else { btnselectall.Visible = true; }
                     if (varQueueFlag == 1)
@@ -803,7 +804,8 @@ namespace ROMS
                 }
                 if (varEntryApprovalNo == "0")
                 {
-                    dpPurchaseApprovalVocDate.MinDate = MainForm.pbFYStartDate;
+                    //dpPurchaseApprovalVocDate.MinDate = MainForm.pbFYStartDate;
+                    dpPurchaseApprovalVocDate.MinDate = DateTime.ParseExact(Convert.ToString(dpVoucherDate.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpPurchaseApprovalVocDate.MaxDate = MainForm.pbCurrentDate;
                 }
             }
