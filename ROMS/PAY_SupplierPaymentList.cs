@@ -67,6 +67,7 @@ namespace ROMS
                     MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
                     MainForm.objPAY_SupplierPayment.btnSave.Text = "Update";
                     MainForm.objPAY_SupplierPayment.varSupplierPaymentID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
+                    MainForm.objPAY_SupplierPayment.varPaymentStatus = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
                     MainForm.objPAY_SupplierPayment.Show();
                 }
                 
@@ -827,7 +828,7 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = null;
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Transaction Date"].Width = 80;
+                DGV_SearchGrid.Columns["Transaction Date"].Width = 120;
                 DGV_SearchGrid.Columns["Transaction No."].Width = 100;
                 DGV_SearchGrid.Columns["Supplier"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;

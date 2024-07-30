@@ -42,7 +42,7 @@ namespace ROMS
         public bool VarSearchFlag = true;
         public string varProductName = "";
         public string varPICode = "";
-        public int varSLID = 0;
+        public int varSLID = 0, vaReturnDCSts = 0;
         public int varGRNStatus = 0;
         public int varRKID = 0;
         public int varDecimal = 0;
@@ -579,20 +579,21 @@ namespace ROMS
                             chkCompleted.Checked = true;
                             chkCompleted.Enabled = false;
                         }
-                        if(varGRNStatus==23)
+                        if(varGRNStatus==23 || vaReturnDCSts == 101)
                         {
                             cmbReasonForClosing.Enabled = true;
                             txtAmount.Enabled = true;
                             txtCrNo.Enabled = true;
                             dpCreditNoteDate.Enabled = true;
+                            grpReason.Enabled = true;
                         }
-                        else
-                        {
-                            cmbReasonForClosing.Enabled = false;
-                            txtAmount.Enabled = false;
-                            txtCrNo.Enabled = false;
-                            dpCreditNoteDate.Enabled = false;
-                        }
+                        //else
+                        //{
+                        //    cmbReasonForClosing.Enabled = false;
+                        //    txtAmount.Enabled = false;
+                        //    txtCrNo.Enabled = false;
+                        //    dpCreditNoteDate.Enabled = false;
+                        //}
                     }
                 }
                 ChkCompleted_CheckedChanged(sender, e);
@@ -1723,7 +1724,7 @@ namespace ROMS
                                     //}
                                     varorginator = "Purchase Return DC insertion";
                                 }
-                                if (varStatusId == 16 || varStatusId==39)
+                                if (varStatusId == 16 || varStatusId==39 || varStatusId==101)
                                 {
                                     varviewtype = 1;
                                     varorginator = "Purchase Return DC updation";

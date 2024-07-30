@@ -33,12 +33,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsSupplierPayment = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
             this.lblAdvance = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSubtotal = new System.Windows.Forms.Label();
@@ -107,11 +111,16 @@
             this.clmTaxableAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDiscAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReturnAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAdvanceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPayAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPAYIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReturnSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDISCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPaymentAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -147,6 +156,8 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.btnClear);
+            this.pnlinward.Controls.Add(this.btnApply);
             this.pnlinward.Controls.Add(this.lblAdvance);
             this.pnlinward.Controls.Add(this.label2);
             this.pnlinward.Controls.Add(this.lblSubtotal);
@@ -177,6 +188,31 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 643);
             this.pnlinward.TabIndex = 36;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(155, 99);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(118, 29);
+            this.btnClear.TabIndex = 111111145;
+            this.btnClear.Text = "Clear Advance";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // btnApply
+            // 
+            this.btnApply.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnApply.Location = new System.Drawing.Point(103, 99);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(48, 29);
+            this.btnApply.TabIndex = 111111144;
+            this.btnApply.Text = "Apply";
+            this.btnApply.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
             // lblAdvance
             // 
@@ -558,27 +594,32 @@
             this.clmTaxableAmnt,
             this.clmTaxAmount,
             this.clmInvoiceAmnt,
+            this.clmDiscAmount,
             this.clmReturnAmt,
+            this.clmAdvanceAmnt,
             this.clmPayAmount,
             this.clmID,
             this.clmPAYIID,
-            this.clmStatus});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSupplierPayment.DefaultCellStyle = dataGridViewCellStyle6;
+            this.clmStatus,
+            this.clmReturnSts,
+            this.clmDISCID,
+            this.clmPaymentAmount});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSupplierPayment.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdSupplierPayment.EnableHeadersVisualStyles = false;
             this.grdSupplierPayment.GridColor = System.Drawing.Color.White;
             this.grdSupplierPayment.Location = new System.Drawing.Point(10, 134);
             this.grdSupplierPayment.Name = "grdSupplierPayment";
             this.grdSupplierPayment.RowHeadersVisible = false;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSupplierPayment.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSupplierPayment.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdSupplierPayment.RowTemplate.Height = 25;
             this.grdSupplierPayment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSupplierPayment.ShowRowErrors = false;
@@ -589,6 +630,7 @@
             this.grdSupplierPayment.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellEndEdit);
             this.grdSupplierPayment.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellLeave);
             this.grdSupplierPayment.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellValueChanged);
+            this.grdSupplierPayment.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdSupplierPayment_CurrentCellDirtyStateChanged);
             this.grdSupplierPayment.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdSupplierPayment_EditingControlShowing);
             this.grdSupplierPayment.SelectionChanged += new System.EventHandler(this.GrdSupplierPayment_SelectionChanged);
             // 
@@ -951,6 +993,15 @@
             this.clmInvoiceAmnt.Name = "clmInvoiceAmnt";
             this.clmInvoiceAmnt.ReadOnly = true;
             // 
+            // clmDiscAmount
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmDiscAmount.DefaultCellStyle = dataGridViewCellStyle5;
+            this.clmDiscAmount.HeaderText = "Discount Amount";
+            this.clmDiscAmount.Name = "clmDiscAmount";
+            this.clmDiscAmount.ReadOnly = true;
+            this.clmDiscAmount.Width = 120;
+            // 
             // clmReturnAmt
             // 
             this.clmReturnAmt.HeaderText = "Purchase Return Adjustment";
@@ -958,25 +1009,37 @@
             this.clmReturnAmt.ReadOnly = true;
             this.clmReturnAmt.Width = 180;
             // 
+            // clmAdvanceAmnt
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmAdvanceAmnt.DefaultCellStyle = dataGridViewCellStyle6;
+            this.clmAdvanceAmnt.HeaderText = "Advance Amount";
+            this.clmAdvanceAmnt.Name = "clmAdvanceAmnt";
+            this.clmAdvanceAmnt.ReadOnly = true;
+            this.clmAdvanceAmnt.Width = 120;
+            // 
             // clmPayAmount
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmPayAmount.HeaderText = "Pay Amount";
             this.clmPayAmount.Name = "clmPayAmount";
+            this.clmPayAmount.ReadOnly = true;
             // 
             // clmID
             // 
             this.clmID.HeaderText = "ID";
             this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
             this.clmID.Visible = false;
             // 
             // clmPAYIID
             // 
             this.clmPAYIID.HeaderText = "PAYIID";
             this.clmPAYIID.Name = "clmPAYIID";
+            this.clmPAYIID.ReadOnly = true;
             this.clmPAYIID.Visible = false;
             // 
             // clmStatus
@@ -985,6 +1048,27 @@
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
             this.clmStatus.Width = 150;
+            // 
+            // clmReturnSts
+            // 
+            this.clmReturnSts.HeaderText = "Return Status";
+            this.clmReturnSts.Name = "clmReturnSts";
+            this.clmReturnSts.ReadOnly = true;
+            this.clmReturnSts.Visible = false;
+            // 
+            // clmDISCID
+            // 
+            this.clmDISCID.HeaderText = "DISCID";
+            this.clmDISCID.Name = "clmDISCID";
+            this.clmDISCID.ReadOnly = true;
+            this.clmDISCID.Visible = false;
+            // 
+            // clmPaymentAmount
+            // 
+            this.clmPaymentAmount.HeaderText = "PaymentAmount";
+            this.clmPaymentAmount.Name = "clmPaymentAmount";
+            this.clmPaymentAmount.ReadOnly = true;
+            this.clmPaymentAmount.Visible = false;
             // 
             // PAY_SupplierPayment
             // 
@@ -1083,6 +1167,8 @@
         public System.Windows.Forms.Label lblGrandTotal;
         public System.Windows.Forms.Label lblAdvance;
         public System.Windows.Forms.Label lblSubtotal;
+        public System.Windows.Forms.Button btnClear;
+        public System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmVoucherDate;
@@ -1094,10 +1180,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTaxableAmnt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTaxAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceAmnt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDiscAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnAmt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmAdvanceAmnt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPayAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPAYIID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnSts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDISCID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPaymentAmount;
     }
 }

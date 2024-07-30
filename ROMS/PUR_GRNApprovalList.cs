@@ -1679,15 +1679,26 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Tot Pro in Inv"].Width = 150;
                 DGV_SearchGrid.Columns["Created By"].Width = 150;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
-                DGV_SearchGrid.Columns["GRNAID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
+                DGV_SearchGrid.Columns["GRNAID"].Visible = false;
+                DGV_SearchGrid.Columns["Condition"].Visible = false;
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
                 DGV_SearchGrid.Columns["Concern ID"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_EntryType"].Visible = false;
                 DGV_SearchGrid.Columns["Purchase Type"].Visible = false;
                 DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["MRP"].Visible = false;
+                DGV_SearchGrid.Columns["Exp"].Visible = false;
+                DGV_SearchGrid.Columns["GRNFilterDate"].Visible = false;
+                DGV_SearchGrid.Columns["InvFilterDate"].Visible = false;
+                DGV_SearchGrid.Columns["GRNID"].Visible = false;
+                DGV_SearchGrid.Columns["PURID"].Visible = false;
+                DGV_SearchGrid.Columns["Trans ID"].Visible = false;
+                DGV_SearchGrid.Columns["Pur_LastTransNo"].Visible = false;
+                DGV_SearchGrid.Columns["Transaction Date"].Visible = false;
                 DGV_SearchGrid.Columns["Full Status"].Visible = false;
-
+                DGV_SearchGrid.Columns["Flag"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
