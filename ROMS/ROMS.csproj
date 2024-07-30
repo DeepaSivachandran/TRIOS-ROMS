@@ -1056,6 +1056,12 @@
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="REPORT_GRNSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_GRNSummary.designer.cs">
+      <DependentUpon>REPORT_GRNSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_PUR_Purchaseorder_Summary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2722,6 +2728,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_GRNSummary.resx">
+      <DependentUpon>REPORT_GRNSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_Purchaseorder_Summary.resx">
       <DependentUpon>REPORT_PUR_Purchaseorder_Summary.cs</DependentUpon>

@@ -215,6 +215,7 @@ namespace ROMS
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
         public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
+        public static REPORT_GRNSummary objREPORT_GRNSummary;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2293,6 +2294,23 @@ namespace ROMS
             }
         }
 
+        private void GRNSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRNSummary = new REPORT_GRNSummary();
+                MainForm.objREPORT_GRNSummary.MdiParent = this;
+                MainForm.objREPORT_GRNSummary.Show();
+                PbCurrentForm = "7.4.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
