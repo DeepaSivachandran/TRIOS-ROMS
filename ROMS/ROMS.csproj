@@ -172,6 +172,7 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_DiscountVoucher.cs" />
     <Compile Include="PAY_BlockedSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +257,18 @@
     <Compile Include="Model\TRN_PurchaseEntryApproval.cs" />
     <Compile Include="Model\TRN_Item_Movement_Analysis.cs" />
     <Compile Include="Model\TRN_Supplier_Payment.cs" />
+    <Compile Include="PAY_DiscountVoucherList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_DiscountVoucherList.designer.cs">
+      <DependentUpon>PAY_DiscountVoucherList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_DiscountVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_DiscountVoucher.designer.cs">
+      <DependentUpon>PAY_DiscountVoucher.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_Purchase_Level_Verified.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1839,6 +1852,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ADV.resx">
       <DependentUpon>PAY_ADV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_DiscountVoucherList.resx">
+      <DependentUpon>PAY_DiscountVoucherList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_DiscountVoucher.resx">
+      <DependentUpon>PAY_DiscountVoucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_Purchase_Level_Verified.resx">
       <DependentUpon>PUR_Purchase_Level_Verified.cs</DependentUpon>

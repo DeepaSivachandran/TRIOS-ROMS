@@ -3696,6 +3696,78 @@ namespace ROMS
             }
             return ds;
         }
+        //Added By Sathish on: 22-07-2024
+        public string udfnDiscountVoucher(TRN_DiscountVoucher objTRN_DiscountVoucher)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_DiscountVoucher]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_DiscountVoucher.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDiscountId", objTRN_DiscountVoucher.paraDiscountId);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objTRN_DiscountVoucher.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraDiscountDate", objTRN_DiscountVoucher.paraDiscountDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierId", objTRN_DiscountVoucher.paraSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_DiscountVoucher.paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@ParaDiscountAmt", objTRN_DiscountVoucher.ParaDiscountAmt);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_DiscountVoucher.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_DiscountVoucher.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_DiscountVoucher.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraPURID", objTRN_DiscountVoucher.paraPURID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_DiscountVoucher.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        //Added By Sathish On: 22-07-2024
+        public DataSet udfnDiscountVoucherList(TRN_DiscountVoucher objTRN_DiscountVoucher)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_DiscountVoucher]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_DiscountVoucher.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDiscountId", objTRN_DiscountVoucher.paraDiscountId);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objTRN_DiscountVoucher.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_DiscountVoucher.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_DiscountVoucher.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierId", objTRN_DiscountVoucher.paraSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_DiscountVoucher.paraScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_DiscountVoucher.paraStatusID);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }
