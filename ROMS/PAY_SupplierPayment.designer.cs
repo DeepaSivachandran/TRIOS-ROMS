@@ -41,6 +41,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsSupplierPayment = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.btnClear = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.lblAdvance = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -99,7 +100,6 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epSupplier = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnClear = new System.Windows.Forms.Button();
             this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -188,6 +188,19 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 643);
             this.pnlinward.TabIndex = 36;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(155, 99);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(118, 29);
+            this.btnClear.TabIndex = 111111145;
+            this.btnClear.Text = "Clear Advance";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // btnApply
             // 
@@ -910,24 +923,10 @@
             // 
             this.epSupplier.ContainerControl = this;
             // 
-            // btnClear
-            // 
-            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(155, 99);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(118, 29);
-            this.btnClear.TabIndex = 111111145;
-            this.btnClear.Text = "Clear Advance";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
             // clmcheck
             // 
             this.clmcheck.HeaderText = "";
             this.clmcheck.Name = "clmcheck";
-            this.clmcheck.ReadOnly = true;
             this.clmcheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmcheck.Width = 50;
             // 
@@ -1000,6 +999,7 @@
             this.clmDiscAmount.DefaultCellStyle = dataGridViewCellStyle5;
             this.clmDiscAmount.HeaderText = "Discount Amount";
             this.clmDiscAmount.Name = "clmDiscAmount";
+            this.clmDiscAmount.ReadOnly = true;
             this.clmDiscAmount.Width = 120;
             // 
             // clmReturnAmt
@@ -1015,6 +1015,7 @@
             this.clmAdvanceAmnt.DefaultCellStyle = dataGridViewCellStyle6;
             this.clmAdvanceAmnt.HeaderText = "Advance Amount";
             this.clmAdvanceAmnt.Name = "clmAdvanceAmnt";
+            this.clmAdvanceAmnt.ReadOnly = true;
             this.clmAdvanceAmnt.Width = 120;
             // 
             // clmPayAmount
@@ -1025,17 +1026,20 @@
             this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmPayAmount.HeaderText = "Pay Amount";
             this.clmPayAmount.Name = "clmPayAmount";
+            this.clmPayAmount.ReadOnly = true;
             // 
             // clmID
             // 
             this.clmID.HeaderText = "ID";
             this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
             this.clmID.Visible = false;
             // 
             // clmPAYIID
             // 
             this.clmPAYIID.HeaderText = "PAYIID";
             this.clmPAYIID.Name = "clmPAYIID";
+            this.clmPAYIID.ReadOnly = true;
             this.clmPAYIID.Visible = false;
             // 
             // clmStatus
@@ -1049,17 +1053,22 @@
             // 
             this.clmReturnSts.HeaderText = "Return Status";
             this.clmReturnSts.Name = "clmReturnSts";
+            this.clmReturnSts.ReadOnly = true;
+            this.clmReturnSts.Visible = false;
             // 
             // clmDISCID
             // 
             this.clmDISCID.HeaderText = "DISCID";
             this.clmDISCID.Name = "clmDISCID";
+            this.clmDISCID.ReadOnly = true;
             this.clmDISCID.Visible = false;
             // 
             // clmPaymentAmount
             // 
             this.clmPaymentAmount.HeaderText = "PaymentAmount";
             this.clmPaymentAmount.Name = "clmPaymentAmount";
+            this.clmPaymentAmount.ReadOnly = true;
+            this.clmPaymentAmount.Visible = false;
             // 
             // PAY_SupplierPayment
             // 

@@ -828,7 +828,7 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = null;
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Transaction Date"].Width = 80;
+                DGV_SearchGrid.Columns["Transaction Date"].Width = 120;
                 DGV_SearchGrid.Columns["Transaction No."].Width = 100;
                 DGV_SearchGrid.Columns["Supplier"].Width = 100;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;
