@@ -3674,16 +3674,22 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
+                                string varshelflifeper = "";
                                 if (Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]) != "")
                                 {
                                     object shelflife = objDs.Tables[1].Rows[i]["Shelflifeper"];
                                     if (Convert.ToDouble(shelflife) < 0)
                                     {
                                         objDs.Tables[1].Rows[i]["Shelflifeper"] = "0";
+                                        varshelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]);
+                                    }
+                                    else
+                                    {
+                                        varshelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]) + '%';
                                     }
                                 }
                                 grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLifeFlag"]), Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]),
+                                grdInward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_ShelfLifeFlag"]), Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), varshelflifeper, Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_BatchNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_Qty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_TransferQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GIPR_ReceivedQty"]),
                                 Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GI_SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_UTID"]), 
                                 Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[1].Rows[i]["GIPR_MRPflag"]), Convert.ToString(objDs.Tables[1].Rows[i]["RM Flag"])); 
                                 if (Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]) == "")

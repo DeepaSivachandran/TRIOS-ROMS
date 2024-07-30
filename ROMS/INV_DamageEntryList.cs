@@ -1014,6 +1014,7 @@ namespace ROMS
                             grdDamageEntryList.Columns["ConcernID"].Visible = false;
                             grdDamageEntryList.Columns["StatusID"].Visible = false;
                             grdDamageEntryList.Columns["DMID"].Visible = false;
+                            grdDamageEntryList.Columns["DM_SHID"].Visible = false;
                             //grdDamageEntryList.Columns["EMPID"].Visible = false;
                             grdDamageEntryList.Columns["S.No."].Width = 50;
                             grdDamageEntryList.Columns["Status"].Width = 120;
@@ -1084,6 +1085,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ConcernID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["DMID"].Visible = false;
+                DGV_SearchGrid.Columns["DM_SHID"].Visible = false;
                 //DGV_SearchGrid.Columns["clmPrint"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 120;
@@ -3015,6 +3017,29 @@ namespace ROMS
                 else
                 {
                     btnPrint.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDamageEntryList_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdDamageEntryList.Rows.Count > 0)
+                {
+                    if (Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["DM_SHID"].Value) != "0")
+                    {
+                        tsbDelete.Visible = false;
+                    }
+                    else
+                    {
+                        tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true;
+                    }
                 }
             }
             catch (Exception ex)

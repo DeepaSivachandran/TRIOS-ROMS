@@ -1815,7 +1815,7 @@ namespace ROMS
             {
                 txtSalesLocation.BackColor = Color.LemonChiffon;
                 lvPurLocation.Visible = false;
-                lvSaleLocation.Visible = false;
+                //lvSaleLocation.Visible = false;
                 lvPurRack.Visible = false;
                 lvSalesRack.Visible = false;
                 lvBrand.Visible = false;
@@ -2951,6 +2951,7 @@ namespace ROMS
                     varPurRackCode = "0";
                     //txtRackDescription.Text = "";
                     txtPurLocation.BackColor = Color.White;
+                    udfnPLocationWiseRack();
                 }
             }
             catch (Exception ex)
@@ -2961,6 +2962,78 @@ namespace ROMS
             finally
             {
                 lvPurLocation.Visible = false;
+            }
+        }
+        public void udfnPLocationWiseRack()
+        {
+            try
+            {
+                /*check location have a rack or not*/
+                string varId_PurchaseRack = "0";
+                DataSet objDsPurchaseRack = new DataSet();
+                SPDataService objDServ6 = new SPDataService();
+                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(varPurLocationCode), 0, txtPurRack.Text.Trim(), 0, 0);
+                objDServ6.CloseConnection();
+                if (txtPurRack.Text.Trim() != "")
+                {
+                    if (varPurLocationCode != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                        varPurRackCode = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack == "0" || varId_PurchaseRack == "-1")
+                        {
+                            epProductApproval.SetError(txtPurRack, "Please select valid purchase rack");
+                            txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tppurchaserack.ShowAlways = true;
+                            tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
+                        }
+                    }
+                }
+                else
+                {
+                    if (varPurLocationCode != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                }
+                            }
+                        }
+                        //lblPurRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack == "0")
+                        {
+                            txtPurRack.Text = "None";
+                            txtPurRack.BackColor = Color.White;
+                            txtPurRack.Enabled = false;
+                            txtSalesLocation.Focus();
+                        }
+                        else
+                        {
+                            txtPurRack.Text = "";
+                            txtPurRack.BackColor = Color.LemonChiffon;
+                            txtPurRack.Enabled = true;
+                            txtPurRack.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnPurRackAutocomplete()
@@ -3002,6 +3075,7 @@ namespace ROMS
                     //txtRackDescriptionSales.Text = "";
                     varSalesRackCode = "0";
                     txtSalesLocation.BackColor = Color.White;
+                    udfnSLocationWiseRack();
                 }
             }
             catch (Exception ex)
@@ -3012,6 +3086,78 @@ namespace ROMS
             finally
             {
                 lvSaleLocation.Visible = false;
+            }
+        }
+        public void udfnSLocationWiseRack()
+        {
+            try
+            {
+                /*check location have a rack or not*/
+                string varId_PurchaseRack = "0";
+                DataSet objDsPurchaseRack = new DataSet();
+                SPDataService objDServ6 = new SPDataService();
+                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(varSalesLocationCode), 0, txtSalesRack.Text.Trim(), 0, 0);
+                objDServ6.CloseConnection();
+                if (txtSalesRack.Text.Trim() != "")
+                {
+                    if (varSalesLocationCode != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                        varSalesLocationCode = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack == "0" || varId_PurchaseRack == "-1")
+                        {
+                            epProductApproval.SetError(txtSalesRack, "Please select valid sales rack");
+                            txtSalesRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpsalesrack.ShowAlways = true;
+                            tpsalesrack.Show("Please select valid sales rack", txtSalesRack, 5000);
+                        }
+                    }
+                }
+                else
+                {
+                    if (varSalesLocationCode != "0")
+                    {
+                        if (objDsPurchaseRack != null)
+                        {
+                            if (objDsPurchaseRack.Tables.Count > 0)
+                            {
+                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                {
+                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                }
+                            }
+                        }
+                        //lblPurRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                        if (varId_PurchaseRack == "0")
+                        {
+                            txtSalesRack.Text = "None";
+                            txtSalesRack.BackColor = Color.White;
+                            txtSalesRack.Enabled = false;
+                            cmbBatchno.Focus();
+                        }
+                        else
+                        {
+                            txtSalesRack.Text = "";
+                            txtSalesRack.BackColor = Color.LemonChiffon;
+                            txtSalesRack.Enabled = true;
+                            txtSalesRack.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnSaleRackAutocomplete()
