@@ -1016,20 +1016,20 @@ namespace ROMS
             {
                 grdPurchaseDCList.Columns["clmPrint"].Frozen = true;
                 grdPurchaseDCList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseDCList.Columns["S.No."].Frozen = true;
-                grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseDCList.Columns["Pur Dc Status"].Frozen = true;
-                grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseDCList.Columns["Overall Status"].Frozen = true;
-                grdPurchaseDCList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseDCList.Columns["DC Date"].Frozen = true;
-                grdPurchaseDCList.Columns["Concern"].Frozen = true;
-                grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseDCList.Columns["DC No."].Frozen = true;
-                grdPurchaseDCList.Columns["DC No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseDCList.Columns["Supplier"].Frozen = true;
-                grdPurchaseDCList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseDCList.Columns["S.No."].Frozen = true;
+                //grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseDCList.Columns["Pur Dc Status"].Frozen = true;
+                //grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseDCList.Columns["Overall Status"].Frozen = true;
+                //grdPurchaseDCList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseDCList.Columns["DC Date"].Frozen = true;
+                //grdPurchaseDCList.Columns["Concern"].Frozen = true;
+                //grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseDCList.Columns["DC No."].Frozen = true;
+                //grdPurchaseDCList.Columns["DC No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdPurchaseDCList.Columns["Supplier"].Frozen = true;
+                //grdPurchaseDCList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
                 for (int i = 0; i < grdPurchaseDCList.Rows.Count; i++)
                 {

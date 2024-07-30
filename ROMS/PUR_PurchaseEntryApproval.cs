@@ -582,6 +582,16 @@ namespace ROMS
                         lblFinishedNoRecord.Visible = true;
                         lblFinishedNoRecord.BringToFront();
                     }
+                    if (objDs.Tables[2].Rows.Count != 0)
+                    {
+                        lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[2].Rows[0]["VERIFIED1"]);
+                        lblGRNNoRecord.Visible = false;
+                    }
+                    if (objDs.Tables[3].Rows.Count != 0)
+                    {
+                        lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[3].Rows[0]["VERIFIED2"]);
+                        lblGRNNoRecord.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -764,7 +774,8 @@ namespace ROMS
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
-                    if(varCheckButtonFlag==Convert.ToInt16(grdSupplierList.RowCount))
+                   
+                    if (varCheckButtonFlag==Convert.ToInt16(grdSupplierList.RowCount))
                     { btnselectall.Visible = false; }
                     else { btnselectall.Visible = true; }
                     if (varQueueFlag == 1)
@@ -793,7 +804,8 @@ namespace ROMS
                 }
                 if (varEntryApprovalNo == "0")
                 {
-                    dpPurchaseApprovalVocDate.MinDate = MainForm.pbFYStartDate;
+                    //dpPurchaseApprovalVocDate.MinDate = MainForm.pbFYStartDate;
+                    dpPurchaseApprovalVocDate.MinDate = DateTime.ParseExact(Convert.ToString(dpVoucherDate.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpPurchaseApprovalVocDate.MaxDate = MainForm.pbCurrentDate;
                 }
             }
@@ -905,7 +917,7 @@ namespace ROMS
                                 lblSubtotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_SubTotal"]);
                                 lblGstamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GSTAmnt"]);
                                 lblRoundoff.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_RoundOff"]);
-                                lblTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GrandTotal"]);
+                                lblTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Total"]);
                                 lblGrandTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_GrandTotal"]);
                                 txtFrightGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_FrieghtChargesGRN"]);
                                 txtUnLoadingchargeGrn.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_UnloadingChargesGRN"]);
@@ -1086,8 +1098,12 @@ namespace ROMS
                                 lblFinishedNoRecord.Visible = false;
                                 for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
                                 {
+                                    grdDCVerificationDetails.Rows.Clear();
                                     grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["DC_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["DC_DATE"]),
                                         Convert.ToString(objDs.Tables[4].Rows[i]["DCPR_PRID"]), Convert.ToString(objDs.Tables[4].Rows[i]["DCID"]));
+                                    pbDCNo = pbDCNo + ',' + Convert.ToString(objDs.Tables[4].Rows[i]["DCID"]);
+                                    grdDCVerificationDetails.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["DC_No"]), Convert.ToString(objDs.Tables[4].Rows[i]["DC Verification Details"]));
+                                    lblVerifyNorecord.Visible = false;
                                 }
                                 grdReurnDC.Visible = true;
                                 varTypeErrId = Convert.ToString(objDs.Tables[4].Rows[0]["DCID"]);
@@ -1118,6 +1134,16 @@ namespace ROMS
                             }
                             grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                             grdPODetails.Columns["clmRemovePO"].Visible = false;
+                            if (objDs.Tables[6].Rows.Count != 0)
+                            {
+                                lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[6].Rows[0]["VERIFIED1"]);
+                                lblGRNNoRecord.Visible = false;
+                            }
+                            if (objDs.Tables[7].Rows.Count != 0)
+                            {
+                                lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[7].Rows[0]["VERIFIED2"]);
+                                lblGRNNoRecord.Visible = false;
+                            }
                             //if (grdReurnDC.Visible == true)
                             //{
                             //    grdReurnDC.Columns["clmRemoveDC"].Visible = false;
@@ -1129,6 +1155,13 @@ namespace ROMS
                             if (objDs.Tables[8].Rows.Count != 0)
                             {
                                 varPurEditFlag = Convert.ToInt32(objDs.Tables[8].Rows[0]["Flag"]);
+                            }
+                            if (objDs.Tables.Count > 8)
+                            {
+                                if (objDs.Tables[9].Rows.Count != 0)
+                                {
+                                    lblPurchaseVerification.Text = Convert.ToString(objDs.Tables[9].Rows[0]["Purchase Verification Details"]);
+                                }
                             }
                         }
                     }
@@ -6331,9 +6364,9 @@ namespace ROMS
                 decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
                 if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
                 if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
-                if (lblTotal.Text.Trim() != "")
+                if (lblGrandTotal.Text.Trim() != "")
                 {
-                    GrandTot = Convert.ToDecimal(lblTotal.Text.Trim());
+                    GrandTot = Convert.ToDecimal(lblGrandTotal.Text.Trim());
                 }
                 if (vardisamt != 0)
                 {

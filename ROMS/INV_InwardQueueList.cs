@@ -1566,22 +1566,22 @@ namespace ROMS
                 }
                 grdInwardQueueList.Columns["clmPrint"].Frozen = true;
                 grdInwardQueueList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardQueueList.Columns["S.No."].Frozen = true;
-                grdInwardQueueList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardQueueList.Columns["Con"].Frozen = true;
-                grdInwardQueueList.Columns["Con"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardQueueList.Columns["Trans No."].Frozen = true;
-                grdInwardQueueList.Columns["Trans No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardQueueList.Columns["Trans Date"].Frozen = true;
-                grdInwardQueueList.Columns["Trans Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardQueueList.Columns["Vouc No."].Frozen = true;
-                grdInwardQueueList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardQueueList.Columns["Vouc Date"].Frozen = true;
-                grdInwardQueueList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardQueueList.Columns["Supplier"].Frozen = true;
-                grdInwardQueueList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardQueueList.Columns["Status"].Frozen = true;
-                grdInwardQueueList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardQueueList.Columns["S.No."].Frozen = true;
+                //grdInwardQueueList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardQueueList.Columns["Con"].Frozen = true;
+                //grdInwardQueueList.Columns["Con"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardQueueList.Columns["Trans No."].Frozen = true;
+                //grdInwardQueueList.Columns["Trans No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardQueueList.Columns["Trans Date"].Frozen = true;
+                //grdInwardQueueList.Columns["Trans Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardQueueList.Columns["Vouc No."].Frozen = true;
+                //grdInwardQueueList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardQueueList.Columns["Vouc Date"].Frozen = true;
+                //grdInwardQueueList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardQueueList.Columns["Supplier"].Frozen = true;
+                //grdInwardQueueList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardQueueList.Columns["Status"].Frozen = true;
+                //grdInwardQueueList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
             }
             catch (Exception ex)

@@ -229,6 +229,7 @@
             this.grdPurchaseEntryList.GridColor = System.Drawing.Color.White;
             this.grdPurchaseEntryList.Location = new System.Drawing.Point(3, 130);
             this.grdPurchaseEntryList.Name = "grdPurchaseEntryList";
+            this.grdPurchaseEntryList.ReadOnly = true;
             this.grdPurchaseEntryList.RowHeadersVisible = false;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
@@ -255,6 +256,7 @@
             this.clmEdit.HeaderText = "GSTR Status";
             this.clmEdit.Image = global::ROMS.Properties.Resources.pending;
             this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
             this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmEdit.Visible = false;

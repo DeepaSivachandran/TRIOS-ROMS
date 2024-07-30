@@ -1450,24 +1450,24 @@ namespace ROMS
         {
             try
             {
-                grdGrnApprovalList.Columns["S.No."].Frozen = true;
-                grdGrnApprovalList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGrnApprovalList.Columns["Concern"].Frozen = true;
-                grdGrnApprovalList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGrnApprovalList.Columns["Overall Status"].Frozen = true;
-                grdGrnApprovalList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGrnApprovalList.Columns["Status"].Frozen = true;
-                grdGrnApprovalList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGrnApprovalList.Columns["GRN No."].Frozen = true;
-                grdGrnApprovalList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGrnApprovalList.Columns["Vouc No."].Frozen = true;
-                grdGrnApprovalList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGrnApprovalList.Columns["GRN Date"].Frozen = true;
-                grdGrnApprovalList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGrnApprovalList.Columns["Vouc Date"].Frozen = true;
-                grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGrnApprovalList.Columns["Supplier"].Frozen = true;
-                grdGrnApprovalList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["S.No."].Frozen = true;
+                //grdGrnApprovalList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["Concern"].Frozen = true;
+                //grdGrnApprovalList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["Overall Status"].Frozen = true;
+                //grdGrnApprovalList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["Status"].Frozen = true;
+                //grdGrnApprovalList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["GRN No."].Frozen = true;
+                //grdGrnApprovalList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["Vouc No."].Frozen = true;
+                //grdGrnApprovalList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["GRN Date"].Frozen = true;
+                //grdGrnApprovalList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["Vouc Date"].Frozen = true;
+                //grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGrnApprovalList.Columns["Supplier"].Frozen = true;
+                //grdGrnApprovalList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdGrnApprovalList.ClearSelection();
             }
             catch (Exception ex)

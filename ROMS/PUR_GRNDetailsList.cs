@@ -285,7 +285,7 @@ namespace ROMS
                             grdGRNList.Columns["Inv No."].Width = 100;
                             grdGRNList.Columns["Inv Amt"].Width = 120;
                             grdGRNList.Columns["Created By"].Width = 200;
-                            grdGRNList.Columns["Loading Charges"].Width = 120;
+                            grdGRNList.Columns["Frieght Charges"].Width = 120;
                             grdGRNList.Columns["Unloading Charges"].Width = 120;
                             grdGRNList.Columns["Order Type"].Width = 100;
                             grdGRNList.Columns["Any Pur Returns"].Width = 150;
@@ -305,12 +305,18 @@ namespace ROMS
                             grdGRNList.Columns["PURREDCID"].Visible = false;
                             grdGRNList.Columns["GRN Full Status"].Visible = false;
                             grdGRNList.Columns["Overall Full Status"].Visible = false;
+
+                            grdGRNList.Columns["PendingFlag"].Visible = false;
+                            grdGRNList.Columns["DraftFlag"].Visible = false;
+                            grdGRNList.Columns["GRN_Payment_StsID"].Visible = false;
+                            grdGRNList.Columns["GRN_LastTransNo"].Visible = false;
+                            grdGRNList.Columns["GRN_Created"].Visible = false;
                             grdGRNList.Columns["Any Pur Returns"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGRNList.Columns["GRN Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGRNList.Columns["Loading Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGRNList.Columns["Frieght Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Unloading Charges"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGRNList.Columns["Overall Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -399,7 +405,7 @@ namespace ROMS
                     grdGRNList.Columns["Inv No."].ReadOnly = true;
                     grdGRNList.Columns["Inv Amt"].ReadOnly = true;
                     grdGRNList.Columns["Created By"].ReadOnly = true;
-                    grdGRNList.Columns["Loading Charges"].ReadOnly = true;
+                    grdGRNList.Columns["Frieght Charges"].ReadOnly = true;
                     grdGRNList.Columns["Unloading Charges"].ReadOnly = true;
                     grdGRNList.Columns["Order Type"].ReadOnly = true;
                     grdGRNList.Columns["Any Pur Returns"].ReadOnly = true;
@@ -499,7 +505,6 @@ namespace ROMS
         {
             try
             {
-
                 if (e.RowIndex != -1)
                 {
                     switch (grdGRNList.Columns[e.ColumnIndex].Name)
@@ -1704,20 +1709,20 @@ namespace ROMS
                 grdGRNList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdGRNList.Columns["clmLocPrint"].Frozen = true;
                 grdGRNList.Columns["clmLocPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["S.No."].Frozen = true;
-                grdGRNList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["Concern"].Frozen = true;
-                grdGRNList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["GRN Status"].Frozen = true;
-                grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["Overall Status"].Frozen = true;
-                grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["GRN No."].Frozen = true;
-                grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["GRN Date"].Frozen = true;
-                grdGRNList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["Supplier"].Frozen = true;
-                grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;               
+                //grdGRNList.Columns["S.No."].Frozen = true;
+                //grdGRNList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["Concern"].Frozen = true;
+                //grdGRNList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["GRN Status"].Frozen = true;
+                //grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["Overall Status"].Frozen = true;
+                //grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["GRN No."].Frozen = true;
+                //grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["GRN Date"].Frozen = true;
+                //grdGRNList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdGRNList.Columns["Supplier"].Frozen = true;
+                //grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;               
             }
             catch (Exception ex)
             {
@@ -1894,7 +1899,7 @@ namespace ROMS
                                     ExcelSheet.Columns[cIndex - 3].ColumnWidth = 20;
                                 }
                                 if (col.Name == "Concern" || col.Name == "GRN No." || col.Name == "GRN Date" || col.Name == "City"
-                                    || col.Name == "Payment Mode" || col.Name == "Inv Date"|| col.Name == "Inv No." || col.Name == "Inv Amt" || col.Name == "Created By" || col.Name == "Order Type" || col.Name == "Loading Charges"|| col.Name == "Unloading Charges")
+                                    || col.Name == "Payment Mode" || col.Name == "Inv Date"|| col.Name == "Inv No." || col.Name == "Inv Amt" || col.Name == "Created By" || col.Name == "Order Type" || col.Name == "Frieght Charges" || col.Name == "Unloading Charges")
                                 {
                                     ExcelSheet.Columns[cIndex - 3].ColumnWidth = 15;
                                 }

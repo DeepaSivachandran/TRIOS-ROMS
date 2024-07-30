@@ -665,9 +665,11 @@ namespace ROMS
         {
             try
             {
-
-                udfnLastSeen();
-                udfnGRNLastSeen();
+                if (varFlag == 1)
+                {   udfnLastSeen();   }
+                if (varFlag == 2)
+                { udfnGRNLastSeen(); }
+               
                 dtApproval.TableName = "TRN_GRNApproval_Product";
                 dtApproval.Columns.Add("GRNAPR_PRID", typeof(int));
                 dtApproval.Columns.Add("GRNAPR_MRP", typeof(decimal));

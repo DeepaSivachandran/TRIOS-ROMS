@@ -870,10 +870,10 @@ namespace ROMS
                                                 {
                                                     POUpdatevalue = Convert.ToString(POUpdate);
                                                 }
-                                                if (dpissuedateandtime.Enabled == true)
-                                                {
+                                                //if (dpissuedateandtime.Enabled == true)
+                                                //{
                                                     issuedon();
-                                                }
+                                                //}
                                                 if (chkStatus.Checked==false)
                                                 {
                                                     SPDataService objDServ = new SPDataService();
