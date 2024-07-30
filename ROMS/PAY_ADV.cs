@@ -379,7 +379,7 @@ namespace ROMS
         {
             try
             {
-                if(MainForm.objPAY_SupplierPayment.varPaymentStatus==76 && MainForm.objPAY_SupplierPayment.clearClick==0)
+                if(MainForm.objPAY_SupplierPayment.varPaymentStatus==76 && MainForm.objPAY_SupplierPayment.clearClick==0 && AdvID!="")
                 {
                     grdAdvance.ReadOnly = true;
                 }
