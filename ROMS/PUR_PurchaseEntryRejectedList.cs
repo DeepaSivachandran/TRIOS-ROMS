@@ -177,7 +177,7 @@ namespace ROMS
                             grdPurchaseEntryRejected.Columns["Inv Date"].Width = 100;
                             grdPurchaseEntryRejected.Columns["Inv No."].Width = 100;
                             grdPurchaseEntryRejected.Columns["Created By"].Width = 200;
-                            grdPurchaseEntryRejected.Columns["Pur Type"].Width = 150;
+                            grdPurchaseEntryRejected.Columns["Entry Type"].Width = 150;
                             grdPurchaseEntryRejected.Columns["Tot Pro"].Width = 100;
                             grdPurchaseEntryRejected.Columns["Inv Amt"].Width = 100;
                             grdPurchaseEntryRejected.Columns["Pur Entry Status"].Width = 130;
