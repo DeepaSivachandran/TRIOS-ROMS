@@ -202,6 +202,7 @@ namespace ROMS
                             grdAdvanceList.Columns["S.No."].Width = 50;
                             grdAdvanceList.Columns["Status"].Width = 80;
                             grdAdvanceList.Columns["Transaction Date"].Width = 120;
+                            grdAdvanceList.Columns["Current Balance"].Width = 120;
                             grdAdvanceList.Columns["Supplier Name"].Width = 350;
                             grdAdvanceList.Columns["GSTIN"].Width = 150;
                             grdAdvanceList.Columns["clmPrint"].Width = 50;
@@ -209,6 +210,7 @@ namespace ROMS
                             grdAdvanceList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAdvanceList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAdvanceList.Columns["Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdAdvanceList.Columns["Current Balance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
