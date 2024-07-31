@@ -40,7 +40,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnclose(object sender,EventArgs e)
+        public void udfnclose(object sender, EventArgs e)
         {
 
             try
@@ -134,9 +134,25 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
+        public void udfnClear()
+        {
+            try
+            {
+                lblSuppliername.Visible = false;
+                lblSupplierCity.Visible = false;
+                lblsupplierGST.Visible = false;
+                lblsupplierScheduletype.Visible = false;
+                lblsupplierpayment.Visible = false;
+                lblSupplierOrderpolicy.Visible = false;
+                lblReturn.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -192,7 +208,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnvoucherload(object sender,EventArgs e)
+        public void udfnvoucherload(object sender, EventArgs e)
         {
             try
             {
@@ -225,7 +241,7 @@ namespace ROMS
                     else
                     {
                         txtDiscNo.Text = "";
-                    } 
+                    }
                 }
             }
             catch (Exception ex)
@@ -234,7 +250,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnvoucheradd(object sender,EventArgs e)
+        public void udfnvoucheradd(object sender, EventArgs e)
         {
             try
             {
@@ -264,7 +280,7 @@ namespace ROMS
                         //udfnclose();
                     }
                     else { varVoucherSkip = true; }
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -349,6 +365,7 @@ namespace ROMS
                 grdInvoice.Rows.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
+                    udfnClear();
                     MR_Supplier objMR_Supplier = new Model.MR_Supplier();
                     objMR_Supplier.ViewType = 39;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
@@ -462,6 +479,15 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
+
+                            lblSuppliername.Visible = true;
+                            lblSupplierCity.Visible = true;
+                            lblsupplierGST.Visible = true;
+                            lblsupplierScheduletype.Visible = true;
+                            lblsupplierpayment.Visible = true;
+                            lblSupplierOrderpolicy.Visible = true;
+                            lblReturn.Visible = true;
+
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
                             lblsupplierGST.Text = objDs.Tables[0].Rows[0]["GSTIN"].ToString();
@@ -509,7 +535,7 @@ namespace ROMS
                                 grdInvoice.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                                if(Convert.ToString(objDs.Tables[0].Rows[i]["STSID"])!="63")
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["STSID"]) != "63")
                                 {
                                     grdInvoice.Rows[i].Cells["clmCheck"].ReadOnly = true;
                                     grdInvoice.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
@@ -658,7 +684,7 @@ namespace ROMS
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void udfnSave(object sender,EventArgs e)
+        public void udfnSave(object sender, EventArgs e)
         {
             try
             {
@@ -867,6 +893,7 @@ namespace ROMS
                 MainForm objMainForm = new MainForm();
                 objMainForm.udfnGetDefaultCompany();
                 udfnDropdownLoad();
+                udfnClear();
                 if (varClose == 1)
                 {
                     this.BeginInvoke(new MethodInvoker(Close));

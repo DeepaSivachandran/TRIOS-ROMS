@@ -20,7 +20,7 @@ namespace ROMS
         DataTable Deftable = new DataTable();
         DataTable dtDefaultGrid = new DataTable();
         public Boolean BlnSearchImageYN = false;
-        public int varUserID = 0;
+        public string varUserID = "";
 
         public PAY_DiscountVoucherList()
         {
@@ -94,7 +94,54 @@ namespace ROMS
         {
             try
             {
+                if (grdDiscountList.SelectedRows.Count > 0)
+                {
+                    if (Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["DISC_STSID"].Value) == "102")
+                    {
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            SPDataService objspservice = new SPDataService();
+                            Model.TRN_DiscountVoucher objTRN_DiscountVoucher = new Model.TRN_DiscountVoucher();
+                            objTRN_DiscountVoucher.ViewType = 2;
+                            objTRN_DiscountVoucher.paraDiscountId = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
+                            objTRN_DiscountVoucher.paraOriginator = "Discount Voucher Delete";
+                            varResult = objspservice.udfnDiscountVoucher(objTRN_DiscountVoucher);
+                            objspservice.CloseConnection();
 
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                if (varResult.Split('~')[1] == "1")
+                                {
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
+                                    {
+                                        objTRN_DiscountVoucher.ViewType = 2;
+                                        objTRN_DiscountVoucher.paraDiscountId = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
+                                        objTRN_DiscountVoucher.paraDeleteFlag = 1;
+                                        objTRN_DiscountVoucher.paraOriginator = "Discount Voucher Delete";
+                                        varResult = objspservice.udfnDiscountVoucher(objTRN_DiscountVoucher);
+                                        objspservice.CloseConnection();
+
+                                        if (varResult.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1031,7 +1078,9 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,23) AND STSID <>-1", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
-
+                dpFromdate.MinDate = MainForm.pbFYStartDate;
+                dpFromdate.MaxDate = MainForm.pbCurrentDate;
+                dpTodate.MaxDate = MainForm.pbCurrentDate;
                 udfnList();
             }
             catch (Exception ex)
@@ -1197,6 +1246,21 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdDiscountList_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["DISC_STSID"].Value) == "103" )
+                { tsbDelete.Visible = false; }
+                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
             }
             catch (Exception ex)
             {
