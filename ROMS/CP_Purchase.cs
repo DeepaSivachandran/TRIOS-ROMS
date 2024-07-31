@@ -607,6 +607,40 @@ namespace ROMS
                 MainForm.objPUR_Purchase_GRNDetails.ShowDialog();
                 txtQRCode.Text = pbQRCode;
                 varTypeErrId = pbGRNNo;
+                if (pbGRNNo != "0")
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                    objTRN_PurchaseEntry.ViewType = 11;
+                    objTRN_PurchaseEntry.ParaIds = pbGRNNo;
+                    objTRN_PurchaseEntry.paraType = Convert.ToInt32(PbFlag);
+                    objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
+                    objspdservice.CloseConnection();
+
+                    if (objDs.Tables[0].Rows.Count != 0) //  PO DETAILS LOAD
+                    {
+                        grdPODetails.Rows.Clear();
+                        lblPOnorecord.Visible = false;
+                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                        {
+                            grdPODetails.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_Date"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["POPR_PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["POID"]));
+                        }
+                        grdPODetails.Columns["clmRemovePO"].Visible = false;
+                    }
+                    if (objDs.Tables[2].Rows.Count != 0) //  GRN DETAILS LOAD
+                    {
+                        grdGRN.Rows.Clear();
+                        grdGRN.Visible = true;
+                        lblFinishedNoRecord.Visible = false;
+                        for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
+                        {
+                            grdGRN.Rows.Add(Convert.ToString(objDs.Tables[2].Rows[i]["GRN_No"]), Convert.ToString(objDs.Tables[2].Rows[i]["GRN_Date"]),
+                                Convert.ToString(objDs.Tables[2].Rows[i]["GRNPRID"]), Convert.ToString(objDs.Tables[2].Rows[i]["GRNID"]));
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1679,10 +1713,9 @@ namespace ROMS
                                 grdTaxDetails.Columns["Tax Value"].Width = 60;
                                 grdTaxDetails.Columns["Taxable Value"].Visible = false;
                             }
-                            
                             if (objDs.Tables[3].Rows.Count != 0) //PO DETAILS LOAD
                             {
-                                lblFinishedNoRecord.Visible = false;
+                                lblPOnorecord.Visible = false;
                                 for (int i = 0; i < objDs.Tables[3].Rows.Count; i++)
                                 {
                                     grdPODetails.Rows.Add(Convert.ToString(objDs.Tables[3].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[3].Rows[i]["PO_Date"]),
@@ -1961,11 +1994,11 @@ namespace ROMS
             }
             else if (PbFlag == "2")
             {
-                cmbEntryType.SelectedValue = "57"; //return dc
+                cmbEntryType.SelectedValue = "57"; // dc
                 pbDCNo = PbID;
                 varTypeErrId = PbID;
                 udfnGRNDCDetailsLoadQueue();
-                grdPODetails.Visible = false;
+               // grdPODetails.Visible = false;
                 grdReurnDC.Visible = true;
                 if (grdSupplierList.Rows.Count != 0)
                 {
@@ -1996,14 +2029,25 @@ namespace ROMS
                 objspdservice.CloseConnection();
                 if (Convert.ToInt32(PbFlag) == 1)
                 {
-                    if (objDs.Tables[0].Rows.Count != 0) // GRN PO DETAILS LOAD
+                    if (objDs.Tables[0].Rows.Count != 0) //  PO DETAILS LOAD
                     {
                         grdPODetails.Rows.Clear();
-                        lblFinishedNoRecord.Visible = false;
+                        lblPOnorecord.Visible = false;
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
                             grdPODetails.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_Date"]),
                                 Convert.ToString(objDs.Tables[0].Rows[i]["POPR_PRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["POID"]));
+                        }
+                    }
+                    if (objDs.Tables[2].Rows.Count != 0) //  GRN DETAILS LOAD
+                    {
+                        grdGRN.Rows.Clear();
+                        grdGRN.Visible = true;
+                        lblFinishedNoRecord.Visible = false;
+                        for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
+                        {
+                            grdGRN.Rows.Add(Convert.ToString(objDs.Tables[2].Rows[i]["GRN_No"]), Convert.ToString(objDs.Tables[2].Rows[i]["GRN_Date"]),
+                                Convert.ToString(objDs.Tables[2].Rows[i]["GRNPRID"]), Convert.ToString(objDs.Tables[2].Rows[i]["GRNID"]));
                         }
                     }
                 }
@@ -3442,7 +3486,7 @@ namespace ROMS
                             string varId_PurLocation = "0", varRkCount = "0";
                             DataSet objDsPurLoc = new DataSet();
                             SPDataService objDServ3 = new SPDataService();
-                            objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, SelectedLocationName, 0, 0, 0, "", "", 0);
+                            objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, SelectedLocationName, 0, 0, 0, "", "", 0);
                             objDServ3.CloseConnection();
                             if (objDsPurLoc != null)
                             {
@@ -4643,7 +4687,7 @@ namespace ROMS
                         string varId_SourceLocation = "0";
                         DataSet objDsSourceLoc = new DataSet();
                         SPDataService objDServ3 = new SPDataService();
-                        objDsSourceLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSourceLocation.Text.Trim(), 0, 0, 0, "", "", 0);
+                        objDsSourceLoc = objDServ3.udfnStockLocationList(14,Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSourceLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                         objDServ3.CloseConnection();
                         if (objDsSourceLoc != null)
                         {
@@ -8692,9 +8736,30 @@ namespace ROMS
             }
         }
 
-        private void GrdGRN_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GrdGRN_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPODetails.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmpo":
+                            string cellGRNValue = Convert.ToString(grdGRN.Rows[e.RowIndex].Cells["clmGRNID"].Value);
+                            MainForm.objPUR_GRNProducts = new PUR_GRNProducts();
+                            MainForm.objPUR_GRNProducts.pbGRNid = cellGRNValue;
+                            MainForm.objPUR_GRNProducts.pbSupplierCode = lblSupplierCode.Text;
+                            MainForm.objPUR_GRNProducts.pbScheduleCode = lblschedule.Text;
+                            MainForm.objPUR_GRNProducts.ShowDialog();
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtInvoiceQty_Leave(object sender, EventArgs e)

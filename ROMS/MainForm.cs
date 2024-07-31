@@ -167,6 +167,7 @@ namespace ROMS
         public static PUR_GRNEntry objPUR_GRNEntry;
         public static PUR_POProducts objPUR_POProducts;
         public static PUR_DCProducts objPUR_DCProducts;
+        public static PUR_GRNProducts objPUR_GRNProducts;
         public static PUR_POMappedProducts objPUR_POMappedProducts;
         public static PUR_POIssuedDetails objPUR_POIssuedDetails;
         public static PUR_POScheduledaywise objPUR_POScheduledaywise;
