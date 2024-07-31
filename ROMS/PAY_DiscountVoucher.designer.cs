@@ -110,7 +110,7 @@
             this.grbDiscount.Controls.Add(this.textBox1);
             this.grbDiscount.Location = new System.Drawing.Point(10, -1);
             this.grbDiscount.Name = "grbDiscount";
-            this.grbDiscount.Size = new System.Drawing.Size(785, 447);
+            this.grbDiscount.Size = new System.Drawing.Size(899, 447);
             this.grbDiscount.TabIndex = 0;
             this.grbDiscount.TabStop = false;
             // 
@@ -154,7 +154,7 @@
             this.groupBox2.Controls.Add(this.lblSupplierCity);
             this.groupBox2.Controls.Add(this.lblSuppliername);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(568, 13);
+            this.groupBox2.Location = new System.Drawing.Point(678, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(209, 123);
             this.groupBox2.TabIndex = 1111241;
@@ -253,7 +253,7 @@
             this.txtRemark.MaxLength = 100;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(427, 58);
+            this.txtRemark.Size = new System.Drawing.Size(449, 58);
             this.txtRemark.TabIndex = 5;
             // 
             // label2
@@ -271,7 +271,7 @@
             this.grbInvoiceDetails.Controls.Add(this.grdInvoice);
             this.grbInvoiceDetails.Location = new System.Drawing.Point(10, 133);
             this.grbInvoiceDetails.Name = "grbInvoiceDetails";
-            this.grbInvoiceDetails.Size = new System.Drawing.Size(767, 231);
+            this.grbInvoiceDetails.Size = new System.Drawing.Size(883, 231);
             this.grbInvoiceDetails.TabIndex = 1111215;
             this.grbInvoiceDetails.TabStop = false;
             this.grbInvoiceDetails.Text = "Outstanding Invoices";
@@ -323,7 +323,7 @@
             this.grdInvoice.RowTemplate.Height = 25;
             this.grdInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdInvoice.ShowRowErrors = false;
-            this.grdInvoice.Size = new System.Drawing.Size(755, 198);
+            this.grdInvoice.Size = new System.Drawing.Size(871, 198);
             this.grdInvoice.TabIndex = 1111214;
             this.grdInvoice.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdInvoice_CurrentCellDirtyStateChanged);
             // 
@@ -332,7 +332,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(617, 412);
+            this.btnSave.Location = new System.Drawing.Point(733, 412);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(79, 29);
             this.btnSave.TabIndex = 6;
@@ -377,7 +377,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(319, 21);
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(243, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(344, 27);
             this.txtSupplier.TabIndex = 3;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -495,7 +495,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(712, 411);
+            this.btnClose.Location = new System.Drawing.Point(828, 411);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 7;
@@ -538,7 +538,7 @@
             this.clmInvoiceNo.HeaderText = "Invoice No.";
             this.clmInvoiceNo.Name = "clmInvoiceNo";
             this.clmInvoiceNo.ReadOnly = true;
-            this.clmInvoiceNo.Width = 80;
+            this.clmInvoiceNo.Width = 200;
             // 
             // clmInvoiceDate
             // 
@@ -580,7 +580,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(807, 456);
+            this.ClientSize = new System.Drawing.Size(921, 456);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.grbDiscount);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
