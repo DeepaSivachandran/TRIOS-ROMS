@@ -218,6 +218,7 @@ namespace ROMS
         public static REPORT_GRNSummary objREPORT_GRNSummary;
         public static REPORT_GRN_Details objREPORT_GRN_Details;
         public static REPORT_GRN_Batch_Detail objREPORT_GRN_Batch_Detail;
+        public static REPORT_GRN_Supplier_Detail objREPORT_GRN_Supplier_Detail;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2340,6 +2341,23 @@ namespace ROMS
                 MainForm.objREPORT_GRN_Batch_Detail.MdiParent = this;
                 MainForm.objREPORT_GRN_Batch_Detail.Show();
                 PbCurrentForm = "7.4.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GRNSupplierDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRN_Supplier_Detail = new REPORT_GRN_Supplier_Detail();
+                MainForm.objREPORT_GRN_Supplier_Detail.MdiParent = this;
+                MainForm.objREPORT_GRN_Supplier_Detail.Show();
+                PbCurrentForm = "7.4.4";
             }
             catch (Exception ex)
             {

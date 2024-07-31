@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class REPORT_GRN_Batch_Detail
+    partial class REPORT_GRN_Supplier_Detail
     {
         /// <summary>
         /// Required designer variable.
@@ -66,12 +66,20 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.txtGRNNo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lvGRNNo = new System.Windows.Forms.ListView();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.lblschedleCode = new System.Windows.Forms.Label();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtGRNNo = new System.Windows.Forms.TextBox();
+            this.lvGRNNo = new System.Windows.Forms.ListView();
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblGRNID = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -99,16 +107,22 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(118, 22);
-            this.tspHeader.Text = "GRN Batch Detail";
+            this.tspHeader.Size = new System.Drawing.Size(131, 22);
+            this.tspHeader.Text = "GRN Supplier Detail";
             // 
             // pnlReportStockLocation
             // 
             this.pnlReportStockLocation.BackColor = System.Drawing.Color.White;
             this.pnlReportStockLocation.Controls.Add(this.lvGRNNo);
+            this.pnlReportStockLocation.Controls.Add(this.LV_Supplier);
+            this.pnlReportStockLocation.Controls.Add(this.lblGRNID);
+            this.pnlReportStockLocation.Controls.Add(this.label6);
+            this.pnlReportStockLocation.Controls.Add(this.label7);
             this.pnlReportStockLocation.Controls.Add(this.lvproduct);
+            this.pnlReportStockLocation.Controls.Add(this.lblSupplierCode);
             this.pnlReportStockLocation.Controls.Add(this.lvSubGroup);
             this.pnlReportStockLocation.Controls.Add(this.label5);
+            this.pnlReportStockLocation.Controls.Add(this.lblschedleCode);
             this.pnlReportStockLocation.Controls.Add(this.lvGroup);
             this.pnlReportStockLocation.Controls.Add(this.grpfilter);
             this.pnlReportStockLocation.Controls.Add(this.lblNoRecordsFound);
@@ -201,7 +215,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(581, 22);
+            this.label5.Location = new System.Drawing.Point(581, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(132, 20);
             this.label5.TabIndex = 111111146;
@@ -239,13 +253,12 @@
             // 
             // grpfilter
             // 
-            this.grpfilter.Controls.Add(this.lblGRNID);
-            this.grpfilter.Controls.Add(this.label6);
             this.grpfilter.Controls.Add(this.txtGRNNo);
             this.grpfilter.Controls.Add(this.lblProductcode);
             this.grpfilter.Controls.Add(this.lblGroupCode);
             this.grpfilter.Controls.Add(this.lblSubGroupCode);
             this.grpfilter.Controls.Add(this.label4);
+            this.grpfilter.Controls.Add(this.txtSupplier);
             this.grpfilter.Controls.Add(this.txtProductName);
             this.grpfilter.Controls.Add(this.label2);
             this.grpfilter.Controls.Add(this.dpToDate);
@@ -309,7 +322,7 @@
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(264, 27);
-            this.txtProductName.TabIndex = 5;
+            this.txtProductName.TabIndex = 111111145;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
             this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
@@ -344,7 +357,7 @@
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
             this.txtSubGroup.Size = new System.Drawing.Size(167, 27);
-            this.txtSubGroup.TabIndex = 4;
+            this.txtSubGroup.TabIndex = 1111232;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
             this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
             this.txtSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSubGroup_KeyDown);
@@ -357,7 +370,7 @@
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(167, 27);
-            this.txtGroup.TabIndex = 3;
+            this.txtGroup.TabIndex = 1111231;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
             this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGroup_KeyDown);
@@ -401,7 +414,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1024, 42);
+            this.btnView.Location = new System.Drawing.Point(1264, 40);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
@@ -453,65 +466,140 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // txtGRNNo
-            // 
-            this.txtGRNNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGRNNo.Location = new System.Drawing.Point(851, 43);
-            this.txtGRNNo.MaxLength = 100;
-            this.txtGRNNo.Name = "txtGRNNo";
-            this.txtGRNNo.Size = new System.Drawing.Size(167, 27);
-            this.txtGRNNo.TabIndex = 111111149;
-            this.txtGRNNo.TextChanged += new System.EventHandler(this.TxtGRNNo_TextChanged);
-            this.txtGRNNo.Enter += new System.EventHandler(this.TxtGRNNo_Enter);
-            this.txtGRNNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGRNNo_KeyDown);
-            this.txtGRNNo.Leave += new System.EventHandler(this.TxtGRNNo_Leave);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(851, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 20);
+            this.label6.Size = new System.Drawing.Size(87, 20);
             this.label6.TabIndex = 111111150;
-            this.label6.Text = "GRN No.";
+            this.label6.Text = "Supplier Name";
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.BackColor = System.Drawing.Color.Green;
+            this.lblSupplierCode.Location = new System.Drawing.Point(1086, 22);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 111111153;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
+            // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSupplier.Location = new System.Drawing.Point(851, 43);
+            this.txtSupplier.MaxLength = 100;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(273, 27);
+            this.txtSupplier.TabIndex = 111111149;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
+            this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
+            this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
+            this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
+            // 
+            // lblschedleCode
+            // 
+            this.lblschedleCode.AutoSize = true;
+            this.lblschedleCode.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblschedleCode.Location = new System.Drawing.Point(1032, 22);
+            this.lblschedleCode.Name = "lblschedleCode";
+            this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
+            this.lblschedleCode.TabIndex = 111111152;
+            this.lblschedleCode.Text = "0";
+            this.lblschedleCode.Visible = false;
+            // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader14,
+            this.columnHeader15});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(854, 72);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(382, 113);
+            this.LV_Supplier.TabIndex = 111111151;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 180;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Width = 120;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Width = 0;
+            // 
+            // txtGRNNo
+            // 
+            this.txtGRNNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtGRNNo.Location = new System.Drawing.Point(1130, 42);
+            this.txtGRNNo.MaxLength = 100;
+            this.txtGRNNo.Name = "txtGRNNo";
+            this.txtGRNNo.Size = new System.Drawing.Size(128, 27);
+            this.txtGRNNo.TabIndex = 111111153;
+            this.txtGRNNo.TextChanged += new System.EventHandler(this.TxtGRNNo_TextChanged);
+            this.txtGRNNo.Enter += new System.EventHandler(this.TxtGRNNo_Enter);
+            this.txtGRNNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGRNNo_KeyDown);
+            this.txtGRNNo.Leave += new System.EventHandler(this.TxtGRNNo_Leave);
             // 
             // lvGRNNo
             // 
             this.lvGRNNo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10,
-            this.columnHeader14});
+            this.columnHeader16,
+            this.columnHeader17});
             this.lvGRNNo.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGRNNo.HideSelection = false;
-            this.lvGRNNo.Location = new System.Drawing.Point(854, 72);
+            this.lvGRNNo.Location = new System.Drawing.Point(1134, 71);
             this.lvGRNNo.Name = "lvGRNNo";
-            this.lvGRNNo.Size = new System.Drawing.Size(167, 171);
-            this.lvGRNNo.TabIndex = 111111148;
+            this.lvGRNNo.Size = new System.Drawing.Size(127, 171);
+            this.lvGRNNo.TabIndex = 111111152;
             this.lvGRNNo.UseCompatibleStateImageBehavior = false;
             this.lvGRNNo.View = System.Windows.Forms.View.Details;
             this.lvGRNNo.Visible = false;
             this.lvGRNNo.DoubleClick += new System.EventHandler(this.LvGRNNo_DoubleClick);
             this.lvGRNNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGRNNo_KeyDown);
             // 
-            // columnHeader10
+            // columnHeader16
             // 
-            this.columnHeader10.Width = 100;
+            this.columnHeader16.Width = 100;
             // 
-            // columnHeader14
+            // columnHeader17
             // 
-            this.columnHeader14.Width = 10;
+            this.columnHeader17.Width = 10;
             // 
             // lblGRNID
             // 
             this.lblGRNID.AutoSize = true;
-            this.lblGRNID.Location = new System.Drawing.Point(910, 23);
+            this.lblGRNID.Location = new System.Drawing.Point(1189, 23);
             this.lblGRNID.Name = "lblGRNID";
             this.lblGRNID.Size = new System.Drawing.Size(16, 20);
-            this.lblGRNID.TabIndex = 111111151;
+            this.lblGRNID.TabIndex = 111111155;
             this.lblGRNID.Text = "0";
             this.lblGRNID.Visible = false;
             // 
-            // REPORT_GRN_Batch_Detail
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1130, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 20);
+            this.label7.TabIndex = 111111154;
+            this.label7.Text = "GRN No.";
+            // 
+            // REPORT_GRN_Supplier_Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -523,7 +611,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_GRN_Batch_Detail";
+            this.Name = "REPORT_GRN_Supplier_Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_GRNSummary_Load);
@@ -581,10 +669,18 @@
         private System.Windows.Forms.Label lblSubGroupCode;
         private System.Windows.Forms.Label lblProductcode;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtGRNNo;
-        public System.Windows.Forms.ListView lvGRNNo;
+        public System.Windows.Forms.Label lblSupplierCode;
+        public System.Windows.Forms.Label lblschedleCode;
+        public System.Windows.Forms.ListView LV_Supplier;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.TextBox txtSupplier;
+        public System.Windows.Forms.ListView lvGRNNo;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
         private System.Windows.Forms.Label lblGRNID;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtGRNNo;
     }
 }

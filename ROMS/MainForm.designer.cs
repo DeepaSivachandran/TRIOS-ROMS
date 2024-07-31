@@ -128,6 +128,7 @@ namespace ROMS
             this.TSMGRNReport = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMGRNSummary = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMGRNDetails = new System.Windows.Forms.ToolStripMenuItem();
+            this.gRNBatchDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,7 +137,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gRNBatchDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gRNSupplierDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -945,7 +946,8 @@ namespace ROMS
             this.TSMGRNReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TSMGRNSummary,
             this.TSMGRNDetails,
-            this.gRNBatchDetailToolStripMenuItem});
+            this.gRNBatchDetailToolStripMenuItem,
+            this.gRNSupplierDetailToolStripMenuItem});
             this.TSMGRNReport.Name = "TSMGRNReport";
             this.TSMGRNReport.Size = new System.Drawing.Size(191, 22);
             this.TSMGRNReport.Text = "GRN Report";
@@ -963,6 +965,13 @@ namespace ROMS
             this.TSMGRNDetails.Size = new System.Drawing.Size(180, 22);
             this.TSMGRNDetails.Text = "GRN Detail";
             this.TSMGRNDetails.Click += new System.EventHandler(this.TSMGRNDetails_Click);
+            // 
+            // gRNBatchDetailToolStripMenuItem
+            // 
+            this.gRNBatchDetailToolStripMenuItem.Name = "gRNBatchDetailToolStripMenuItem";
+            this.gRNBatchDetailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gRNBatchDetailToolStripMenuItem.Text = "GRN Batch Detail";
+            this.gRNBatchDetailToolStripMenuItem.Click += new System.EventHandler(this.GRNBatchDetailToolStripMenuItem_Click);
             // 
             // tsmMyProfile
             // 
@@ -1035,12 +1044,12 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // gRNBatchDetailToolStripMenuItem
+            // gRNSupplierDetailToolStripMenuItem
             // 
-            this.gRNBatchDetailToolStripMenuItem.Name = "gRNBatchDetailToolStripMenuItem";
-            this.gRNBatchDetailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gRNBatchDetailToolStripMenuItem.Text = "GRN Batch Detail";
-            this.gRNBatchDetailToolStripMenuItem.Click += new System.EventHandler(this.GRNBatchDetailToolStripMenuItem_Click);
+            this.gRNSupplierDetailToolStripMenuItem.Name = "gRNSupplierDetailToolStripMenuItem";
+            this.gRNSupplierDetailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gRNSupplierDetailToolStripMenuItem.Text = "GRN Supplier Detail";
+            this.gRNSupplierDetailToolStripMenuItem.Click += new System.EventHandler(this.GRNSupplierDetailToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1178,5 +1187,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem TSMGRNSummary;
         private System.Windows.Forms.ToolStripMenuItem TSMGRNDetails;
         private System.Windows.Forms.ToolStripMenuItem gRNBatchDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gRNSupplierDetailToolStripMenuItem;
     }
 }

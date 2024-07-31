@@ -1056,6 +1056,12 @@
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="REPORT_GRN_Supplier_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_GRN_Supplier_Detail.designer.cs">
+      <DependentUpon>REPORT_GRN_Supplier_Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_GRN_Batch_Detail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2740,6 +2746,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_GRN_Supplier_Detail.resx">
+      <DependentUpon>REPORT_GRN_Supplier_Detail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_GRN_Batch_Detail.resx">
       <DependentUpon>REPORT_GRN_Batch_Detail.cs</DependentUpon>
