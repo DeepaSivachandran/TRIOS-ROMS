@@ -13,13 +13,13 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_GRNSummary : Form
+    public partial class REPORT_GRN_Batch_Detail : Form
     {
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public REPORT_GRNSummary()
+        public REPORT_GRN_Batch_Detail()
         {
             InitializeComponent();
         }

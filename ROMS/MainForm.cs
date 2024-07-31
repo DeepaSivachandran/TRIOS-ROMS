@@ -216,6 +216,8 @@ namespace ROMS
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
         public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
         public static REPORT_GRNSummary objREPORT_GRNSummary;
+        public static REPORT_GRN_Details objREPORT_GRN_Details;
+        public static REPORT_GRN_Batch_Detail objREPORT_GRN_Batch_Detail;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2304,6 +2306,40 @@ namespace ROMS
                 MainForm.objREPORT_GRNSummary.MdiParent = this;
                 MainForm.objREPORT_GRNSummary.Show();
                 PbCurrentForm = "7.4.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TSMGRNDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRN_Details = new REPORT_GRN_Details();
+                MainForm.objREPORT_GRN_Details.MdiParent = this;
+                MainForm.objREPORT_GRN_Details.Show();
+                PbCurrentForm = "7.4.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GRNBatchDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRN_Batch_Detail = new REPORT_GRN_Batch_Detail();
+                MainForm.objREPORT_GRN_Batch_Detail.MdiParent = this;
+                MainForm.objREPORT_GRN_Batch_Detail.Show();
+                PbCurrentForm = "7.4.3";
             }
             catch (Exception ex)
             {

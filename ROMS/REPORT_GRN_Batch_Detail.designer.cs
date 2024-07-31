@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class REPORT_GRNSummary
+    partial class REPORT_GRN_Batch_Detail
     {
         /// <summary>
         /// Required designer variable.
@@ -31,19 +31,19 @@
             this.ReportSupplier = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
-            this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dpToDate = new System.Windows.Forms.DateTimePicker();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.dpToDate = new System.Windows.Forms.DateTimePicker();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblschedleCode = new System.Windows.Forms.Label();
+            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -79,8 +79,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(143, 22);
-            this.tspHeader.Text = "GRN Summary Report";
+            this.tspHeader.Size = new System.Drawing.Size(124, 22);
+            this.tspHeader.Text = "GRN Batch Details";
             // 
             // pnlReportStockLocation
             // 
@@ -96,32 +96,6 @@
             this.pnlReportStockLocation.Name = "pnlReportStockLocation";
             this.pnlReportStockLocation.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportStockLocation.TabIndex = 0;
-            // 
-            // cmbConcern
-            // 
-            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(9, 43);
-            this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(122, 27);
-            this.cmbConcern.TabIndex = 0;
-            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
-            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
-            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
-            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
-            // 
-            // txtSupplier
-            // 
-            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(363, 43);
-            this.txtSupplier.MaxLength = 100;
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(273, 27);
-            this.txtSupplier.TabIndex = 3;
-            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
-            this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
-            this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
-            this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
             // 
             // label10
             // 
@@ -142,18 +116,6 @@
             this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 1111187;
             this.label2.Text = "Supplier Name";
-            // 
-            // dpToDate
-            // 
-            this.dpToDate.CustomFormat = "dd/MM/yyyy";
-            this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(250, 43);
-            this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(107, 27);
-            this.dpToDate.TabIndex = 2;
-            this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
-            this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
-            this.dpToDate.Leave += new System.EventHandler(this.DpToDate_Leave);
             // 
             // LV_Supplier
             // 
@@ -185,19 +147,6 @@
             // 
             this.columnHeader9.Width = 0;
             // 
-            // dpFromDate
-            // 
-            this.dpFromDate.CustomFormat = "dd/MM/yyyy";
-            this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(137, 43);
-            this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
-            this.dpFromDate.TabIndex = 1;
-            this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
-            this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
-            this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
-            this.dpFromDate.Leave += new System.EventHandler(this.DpFromDate_Leave);
-            // 
             // grpfilter
             // 
             this.grpfilter.Controls.Add(this.cmbConcern);
@@ -218,6 +167,19 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // cmbConcern
+            // 
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(9, 43);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(122, 27);
+            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
+            // 
             // lblSupplierCode
             // 
             this.lblSupplierCode.AutoSize = true;
@@ -229,6 +191,31 @@
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
+            // dpToDate
+            // 
+            this.dpToDate.CustomFormat = "dd/MM/yyyy";
+            this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpToDate.Location = new System.Drawing.Point(250, 43);
+            this.dpToDate.Name = "dpToDate";
+            this.dpToDate.Size = new System.Drawing.Size(107, 27);
+            this.dpToDate.TabIndex = 2;
+            this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
+            this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
+            this.dpToDate.Leave += new System.EventHandler(this.DpToDate_Leave);
+            // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSupplier.Location = new System.Drawing.Point(363, 43);
+            this.txtSupplier.MaxLength = 100;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(273, 27);
+            this.txtSupplier.TabIndex = 3;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
+            this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
+            this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
+            this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
+            // 
             // lblschedleCode
             // 
             this.lblschedleCode.AutoSize = true;
@@ -239,6 +226,19 @@
             this.lblschedleCode.TabIndex = 1111191;
             this.lblschedleCode.Text = "0";
             this.lblschedleCode.Visible = false;
+            // 
+            // dpFromDate
+            // 
+            this.dpFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpFromDate.Location = new System.Drawing.Point(137, 43);
+            this.dpFromDate.Name = "dpFromDate";
+            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
+            this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
+            this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
+            this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
+            this.dpFromDate.Leave += new System.EventHandler(this.DpFromDate_Leave);
             // 
             // label3
             // 
@@ -339,7 +339,7 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // REPORT_GRNSummary
+            // REPORT_GRN_Batch_Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -351,7 +351,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_GRNSummary";
+            this.Name = "REPORT_GRN_Batch_Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_GRNSummary_Load);
