@@ -1772,7 +1772,12 @@ namespace ROMS
                             else
                             {
                                 PurchaseID = PurchaseID + ',' + Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
-                                //varPayAmnt = varPayAmnt + ',' + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmountLoad"].Value);
+                                //decimal varAdvance = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value);
+                                //decimal varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value);
+                                //decimal varReturnAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmnt"].Value);
+                                //decimal varInvoiceAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value);
+                                //grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = varInvoiceAmnt;
+                                //grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value = 0;
                             }
                             varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value);
                             varGrandTotal = varGrandTotal + varTotal;
@@ -1784,10 +1789,20 @@ namespace ROMS
                         else
                         {
                             VARFLAG--;
+                            //decimal varAdvance = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value);
+                            //decimal varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value);
+                            //decimal varReturnAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value);
+                            //decimal varInvoiceAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value);
+                            //grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = varInvoiceAmnt;
+                            varGrandTotal = Convert.ToDecimal(lblGrandTotal.Text);
                             varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value);
                             varGrandTotal = varGrandTotal - varTotal;
                             lblSubtotal.Text = varGrandTotal.ToString("#,##0.00");
-                            lblGrandTotal.Text = lblSubtotal.Text;
+                            decimal varAdvance = Convert.ToDecimal(lblAdvance.Text) - Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value);
+                            lblAdvance.Text = Convert.ToString(varAdvance);
+                            grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value = 0.00;
+                            decimal varOverallGrand = Convert.ToDecimal(lblSubtotal.Text) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value);
+                            lblGrandTotal.Text = Convert.ToString(varOverallGrand);
                         }
                     }
                     //if (grdSupplierPayment.Rows.Count > 0)
@@ -2130,7 +2145,7 @@ namespace ROMS
                     txtTransactionNo.ReadOnly = true;
                     txtsuppliername.ReadOnly = true;
                     txtsuppliername.Enabled = false;
-                    grdSupplierPayment.ReadOnly = true;
+                    //grdSupplierPayment.ReadOnly = true;
                 }
                 LV_Supplier.Visible = false;
                 udfnsupplierLoad();
