@@ -6581,8 +6581,8 @@ namespace ROMS
                                         //    grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = false;
                                         //    grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
                                         //}
-                                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "193" ||
-                                            Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "194" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "255" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226")
+                                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "193" ||  Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "194" || 
+                                            Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "255" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226")
                                         {
                                             grdGrnlist.Rows[i].Cells["clmMismatchQty"].ReadOnly = false;
                                             grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;

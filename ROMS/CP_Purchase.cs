@@ -5203,6 +5203,7 @@ namespace ROMS
                                     chkCompleted.Checked = false;
                                     chkCompleted.Enabled = false;
                                 }
+                                
                             }
                             else
                             {
