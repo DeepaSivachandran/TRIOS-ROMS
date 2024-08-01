@@ -193,15 +193,56 @@ namespace ROMS
         {
             try
             {
-                if (MainForm.objPAY_SupplierPayment.clearClick == 1)
+                decimal CurrentBalance = 0, AdvanceAmount = 0;
+                for (int i = 0; i < grdAdvance.Rows.Count; i++)
                 {
-                    for (int i = 0; i < grdAdvance.Rows.Count; i++)
+                   
+                    if (MainForm.objPAY_SupplierPayment.clearClick == 1)
                     {
                         //grdAdvance.Rows[i].Cells["Current Balance"].Value = grdAdvance.Rows[i].Cells["Advance Amount"].Value;
                         dtAdvance.Rows[i]["Current Balance"] = dtAdvance.Rows[i]["Advance Amount"];
                         grdAdvance.Rows[i].Cells[0].Value = false;
                     }
-                    //Btnunselectall_Click(sender, e);
+                    if (MainForm.objPAY_SupplierPayment.clearClick == 2)
+                    {
+                        dtAdvance.Rows[i]["Current Balance"] = MainForm.objPAY_SupplierPayment.dtAdvance.Rows[i]["Current Balance"];
+                        decimal varCurrentBalance = Convert.ToDecimal(dtAdvance.Rows[i]["Current Balance"]);
+                        decimal varAdvance = Convert.ToDecimal(dtAdvance.Rows[i]["Advance Amount"]);
+                        if (varCurrentBalance == varAdvance)
+                        {
+                            dtAdvance.Rows[i][0] = false;
+                        }
+                    }
+                }
+                var sumOfAdvance = (from r in MainForm.objPAY_SupplierPayment.dtAdvance.AsEnumerable()
+                                    group r by r["ADID"] into g
+                                    select new
+                                    {
+                                        ADID = g.Key,
+                                        TotalAdvanceAmnt = g.Sum(x => x.Field<decimal>("Current Balance"))
+                                    }).ToList();
+                for (int j = 0; j < sumOfAdvance.Count(); j++)
+                {
+                    for (int i = 0; i < grdAdvance.Rows.Count; i++)
+                    {
+                        CurrentBalance = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value);
+                        AdvanceAmount = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
+                        var key = sumOfAdvance[j];
+                        var ID = key.ADID;
+                        if (Convert.ToString(ID) == Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value))
+                        {
+                            dtAdvance.Rows[i]["Current Balance"] = key.TotalAdvanceAmnt;
+                            if (CurrentBalance == AdvanceAmount)
+                            {
+                                dtAdvance.Rows[i][0] = false;
+                                grdAdvance.ReadOnly = false;
+                            }
+                            else
+                            {
+                                grdAdvance.ReadOnly = true;
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -379,7 +420,15 @@ namespace ROMS
         {
             try
             {
-                if(MainForm.objPAY_SupplierPayment.varPaymentStatus==76 && MainForm.objPAY_SupplierPayment.clearClick==0 && AdvID!="")
+                int varCount = 0;
+                for(int i=0;i<grdAdvance.Rows.Count;i++)
+                {
+                    if(Convert.ToBoolean(grdAdvance.Rows[i].Cells[0].Value)==true)
+                    {
+                        varCount++;
+                    }
+                }
+                if(MainForm.objPAY_SupplierPayment.varPaymentStatus==76 && MainForm.objPAY_SupplierPayment.clearClick!=1 && varCount != 0)
                 {
                     grdAdvance.ReadOnly = true;
                 }

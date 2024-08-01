@@ -963,6 +963,8 @@ namespace ROMS
                             lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPID"]);
                             lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPSCID"]);
                             txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
+                            txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
+                            txtCurrentBalance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Current Balance"]);
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]) == "88")
                             {
                                 cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);
