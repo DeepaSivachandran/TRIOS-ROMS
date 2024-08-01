@@ -5203,7 +5203,11 @@ namespace ROMS
                                     chkCompleted.Checked = false;
                                     chkCompleted.Enabled = false;
                                 }
-                                
+                                if (Convert.ToString(grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmid"].Value) == "220")
+                                {
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("128,255,255");
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmProTname"].Style.BackColor = ColorTranslator.FromHtml("128,255,255");
+                                }
                             }
                             else
                             {
