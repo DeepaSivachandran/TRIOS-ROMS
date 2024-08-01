@@ -590,7 +590,7 @@ namespace ROMS
                 {
                     if (lvproduct.Items.Count == 0 || txtProductName.Text == "")
                     {
-                        btnView.Focus();
+                        txtProductName.Focus();
                         lvproduct.Visible = false;
                     }
                     else
@@ -604,7 +604,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    txtSupplier.Focus();
                 }
             }
             catch (Exception ex)
@@ -825,7 +825,7 @@ namespace ROMS
                     txtProductName.Text = selectedItem.SubItems[1].Text;
                     lblProductcode.Text = selectedItem.SubItems[3].Text;
                 }
-                btnView.Focus();
+                txtSupplier.Focus();
             }
             catch (Exception ex)
             {
