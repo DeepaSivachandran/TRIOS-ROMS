@@ -3774,7 +3774,7 @@ namespace ROMS
                         }
                     }
                     if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmPOid"].Value) == "215")
-{
+                    {
                         grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
                         grdGrnlist.Rows[i].Cells["clmBatchno"].ReadOnly = true;
@@ -3786,15 +3786,15 @@ namespace ROMS
                         grdGrnlist.Rows[i].Cells["clmexpirydate"].Value = "";
                         grdGrnlist.Rows[i].Cells["clmInvoiceExpiry"].Value = "";
 
-                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
-                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                            grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
-                            grdGrnlist.Rows[i].Cells["clmInvoiceBatch"].Style.BackColor = Color.LightGray;
-                            grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.LightGray;
-                            grdGrnlist.Rows[i].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
-                            grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
-                            grdGrnlist.Rows[i].Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightGray;
-                        }
+                        grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                        grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                        grdGrnlist.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                        grdGrnlist.Rows[i].Cells["clmInvoiceBatch"].Style.BackColor = Color.LightGray;
+                        grdGrnlist.Rows[i].Cells["clmmrp"].Style.BackColor = Color.LightGray;
+                        grdGrnlist.Rows[i].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
+                        grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                        grdGrnlist.Rows[i].Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightGray;
+                    }
 
                     }
                 }
@@ -6547,50 +6547,52 @@ namespace ROMS
                                         grdGrnlist.Columns["clmDamageQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdGrnlist.Columns["clmQtyType"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         //int varExcessQty = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmQtyType"].Value);
-                                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "202"  || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "227")
+                                        //if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "202"  || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "227")
+                                        //{
+                                        //    grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
+                                        //    grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                                        //    grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
+                                        //    grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                                        //    grdGrnlist.Rows[i].Cells["clmDamageQty"].ReadOnly = true;
+                                        //    grdGrnlist.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
+                                        //}
+                                        //else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "194" || (varOrderType == 53 && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value) == 0) && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value) != 0)
+                                        //{
+                                        //    grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
+                                        //    grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                                        //    grdGrnlist.Rows[i].Cells["clmDamageQty"].ReadOnly = true;
+                                        //    grdGrnlist.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
+                                        //    grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = false;
+                                        //    //grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
+                                        //} 
+                                        //else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "255" /*|| (varOrderType == 53 && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmDamageQty"].Value) == 0)*/ && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmDamageQty"].Value) != 0)
+                                        //{
+                                        //    grdGrnlist.Rows[i].Cells["clmDamageQty"].ReadOnly = false;
+                                        //    //grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                                        //    grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
+                                        //    grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                                        //    grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
+                                        //    grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                                        //}
+                                        //else
+                                        //{
+                                        //    grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = false;
+                                        //    //grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
+                                        //    grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = false;
+                                        //    grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
+                                        //}
+                                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "193" ||
+                                            Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "194" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "255" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226")
                                         {
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                                            grdGrnlist.Rows[i].Cells["clmDamageQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
-                                        }
-                                        else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "194" || (varOrderType == 53 && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value) == 0) && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value) != 0)
-                                        {
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
-                                            grdGrnlist.Rows[i].Cells["clmDamageQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = false;
-                                            //grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
-                                        }
-                                        else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "193" || (varOrderType == 53 && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmExcessQty"].Value) == 0) && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Value) != 0)
-                                        {
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = false;
-                                            //grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                                            grdGrnlist.Rows[i].Cells["clmDamageQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
-                                        }
-                                        else if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "255" /*|| (varOrderType == 53 && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmDamageQty"].Value) == 0)*/ && Convert.ToDecimal(grdGrnlist.Rows[i].Cells["clmDamageQty"].Value) != 0)
-                                        {
-                                            grdGrnlist.Rows[i].Cells["clmDamageQty"].ReadOnly = false;
-                                            //grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                                            grdGrnlist.Rows[i].Cells["clmMismatchQty"].ReadOnly = false;
+                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
                                         }
                                         else
                                         {
-                                            grdGrnlist.Rows[i].Cells["clmInvoiceQty"].ReadOnly = false;
-                                            //grdGrnlist.Rows[i].Cells["clmInvoiceQty"].Style.BackColor = Color.PaleGreen;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].ReadOnly = false;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
+                                            grdGrnlist.Rows[i].Cells["clmMismatchQty"].ReadOnly = true;
+                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
                                         }
-                                        if(Convert.ToString(grdGrnlist.Rows[i].Cells["clmRMFlag"].Value)=="1")
+                                        if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmRMFlag"].Value)=="1")
                                         {
                                             grdGrnlist.Rows[i].Cells["clmexpirydate"].ReadOnly = true;
                                             grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
