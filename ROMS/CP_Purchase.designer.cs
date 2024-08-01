@@ -1470,6 +1470,7 @@
             // 
             // cmbrack
             // 
+            this.cmbrack.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cmbrack.FormattingEnabled = true;
             this.cmbrack.Location = new System.Drawing.Point(1117, 21);
             this.cmbrack.Name = "cmbrack";

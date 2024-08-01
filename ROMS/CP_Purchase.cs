@@ -3587,10 +3587,12 @@ namespace ROMS
                 int row =Convert.ToInt16( grdSupplierList.Rows.Count-1);
                 string SelectedPICode = grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Value?.ToString();
                 DataGridView dataGridView = (DataGridView)sender;
+                DataGridViewCell cellPICode = dataGridView.Rows[row].Cells["clmPicode"];
                 DataGridViewCell cellPrid = dataGridView.Rows[row].Cells["clmProid"];
                 DataGridViewCell cellUnit = dataGridView.Rows[row].Cells["clmUnit"];
                 DataGridViewCell cellProductName = dataGridView.Rows[row].Cells["clmProTname"];
                 DataGridViewCell cellUTID = dataGridView.Rows[row].Cells["UTID"];
+                DataGridViewCell cellMismatchqty = dataGridView.Rows[row].Cells["clmMismatchQty"];
                 DataGridViewCell cellGRNMrp = dataGridView.Rows[row].Cells["clmGrnMrp"];
                 DataGridViewCell cellMrp = dataGridView.Rows[row].Cells["clmMRP"];
                 DataGridViewCell cellProMrp = dataGridView.Rows[row].Cells["clmProductMrp"];
@@ -3743,6 +3745,13 @@ namespace ROMS
                         cellProExpiryDate.Style.ForeColor = Color.Black;
                         cellProExpiryDate.ReadOnly = true;
                     }
+                    cellProductName.ReadOnly = true;
+                    cellProMrp.ReadOnly = true;
+                    cellMrp.ReadOnly = true;
+                    cellPICode.ReadOnly = true;
+                    cellMrp.Style.BackColor = Color.LightGray;
+                    cellProMrp.Style.BackColor = Color.LightGray;
+                    cellMismatchqty.Style.BackColor = Color.LightGray;
                 }
             }
             catch (Exception ex)
@@ -5205,8 +5214,9 @@ namespace ROMS
                                 }
                                 if (Convert.ToString(grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmid"].Value) == "220")
                                 {
-                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("128,255,255");
-                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmProTname"].Style.BackColor = ColorTranslator.FromHtml("128,255,255");
+                                   // grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("#DEF9C4");
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmProTname"].Style.BackColor = ColorTranslator.FromHtml("#FFD3B6");
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("#FFD3B6");
                                 }
                             }
                             else
@@ -10623,7 +10633,7 @@ namespace ROMS
                             try
                             {
                                 DataGridView dgv = sender as DataGridView;
-                                string varPICode = "";
+                                string varPICode = "", varProMRP = "", varInvoiceMRP = "";
                                 if (e.ColumnIndex != 0)
                                 {
                                     grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null,"None",
@@ -10639,6 +10649,8 @@ namespace ROMS
                                     else if (Convert.ToString(cmbEntryType.SelectedValue) == "54")
                                     { varProductType = "217"; }
                                     varPICode =Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPicode"].Value);
+                                    varProMRP = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmProductMrp"].Value);
+                                    varInvoiceMRP = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmMRP"].Value);
 
                                     grdSupplierList.ReadOnly = false; 
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].ReadOnly = false;
@@ -10651,7 +10663,8 @@ namespace ROMS
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmid"].Value = varProductType;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Value = varPICode;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvertProduct"].Value = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPURPRIDDetail"].Value);
-
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmProductMrp"].Value = varProMRP;
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmMRP"].Value = varInvoiceMRP;
                                     for (int i=0;i<grdSupplierList.ColumnCount-1;i++)
                                     {
                                         if(grdSupplierList.Columns[i].Name == "clmPicode" || grdSupplierList.Columns[i].Name == "clmexpirydate" || grdSupplierList.Columns[i].Name == "clmBatchno"
@@ -11817,6 +11830,12 @@ namespace ROMS
                         cellExpiry.Style.BackColor = Color.LightGray;
                         cellExpiry.Style.ForeColor = Color.Black;
                         cellExpiry.ReadOnly = true;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) == "220")
+                    {
+                        // grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("#DEF9C4");
+                        grdSupplierList.Rows[i].Cells["clmProTname"].Style.BackColor = ColorTranslator.FromHtml("#FFD3B6");
+                        grdSupplierList.Rows[i].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("#FFD3B6");
                     }
                 }
                 if (varPurEditFlag == 1)
