@@ -29,7 +29,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    txtDelayMin.Focus();
                 }
             }
             catch (Exception ex)
@@ -156,7 +156,7 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "";
+                string varSupplierName = "", varDelay = ""; int varDelayMin = 0;
                 if(txtSupplier.Text.Trim()=="")
                 {
                     varSupplierName = "-All-";
@@ -164,6 +164,16 @@ namespace ROMS
                 else
                 {
                     varSupplierName = txtSupplier.Text;
+                }
+                if (txtDelayMin.Text.Trim() == "")
+                {
+                    varDelayMin = 0;
+                    varDelay = "-All-";
+                }
+                else
+                {
+                    varDelayMin = Convert.ToInt32(txtDelayMin.Text);
+                    varDelay = txtDelayMin.Text + ' ' + "Min";
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -176,7 +186,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(14, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", "", 0, 0, "0", "", "", 0, 0, 0);
+                objDs = objdserv.udfnGrnListLoad(14, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, "", "", 0, 0, "0", "", "", 0, 0, 0, varDelayMin);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -198,6 +208,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("ParaGRNFromDate", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("ParaGRNToDate", Convert.ToString(dpToDate.Text));
+                    objBillreport.SetParameterValue("paraDelayMin", varDelay);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -595,6 +606,61 @@ namespace ROMS
             {
                 DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtDelayMin_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDelayMin.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtDelayMin_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDelayMin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar) || e.KeyChar == 46)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtDelayMin_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDelayMin.BackColor = Color.White;
             }
             catch (Exception ex)
             {

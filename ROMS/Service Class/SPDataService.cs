@@ -2558,7 +2558,7 @@ namespace ROMS
 
         // added by venkat on 03/11/2023 for GRN list
         public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, string ParaGRNFromDate, string ParaGRNToDate,
-            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId, int paraLocationID, String paraGRNIds, string paraQRCode,string paraCompletedIDs,int paraQtyType,int paraGroupId,int paraSubgroupId)
+            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId, int paraLocationID, String paraGRNIds, string paraQRCode,string paraCompletedIDs,int paraQtyType,int paraGroupId,int paraSubgroupId,int paraDelayMin)
         {
             DataSet ds = new DataSet();
             try
@@ -2588,6 +2588,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraQtyType", paraQtyType);
                 varSqlCommand.Parameters.AddWithValue("@paraGroupId", paraGroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupId", paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraDelayMin", paraDelayMin);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

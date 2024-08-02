@@ -303,7 +303,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objdserv.udfnGrnListLoad(9, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0, 0, "0", "","", 0, 0, 0);
+                objDs = objdserv.udfnGrnListLoad(9, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0, 0, "0", "","", 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

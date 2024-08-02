@@ -112,7 +112,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(16, 0, 0, 0, 0, dpFromDate.Text, dpToDate.Text,Convert.ToInt32(lblGRNID.Text), 0, 0, "", "",varProductId, 0, "0", "", "", 0,varGroupId,varSubgroupId);
+                objDs = objdserv.udfnGrnListLoad(16, 0, 0, 0, 0, dpFromDate.Text, dpToDate.Text,Convert.ToInt32(lblGRNID.Text), 0, 0, "", "",varProductId, 0, "0", "", "", 0,varGroupId,varSubgroupId, 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -858,7 +858,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtGRNNo.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGrnListLoad(18, 0, 0, 0, 0,dpFromDate.Text, dpToDate.Text, 0, 0, 0, "", "", 0, 0, txtGRNNo.Text.Trim(), "", "", 0, 0, 0);
+                    objDs = objspdservice.udfnGrnListLoad(18, 0, 0, 0, 0,dpFromDate.Text, dpToDate.Text, 0, 0, 0, "", "", 0, 0, txtGRNNo.Text.Trim(), "", "", 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
