@@ -5089,7 +5089,7 @@ namespace ROMS
                                 if (Convert.ToString(txtInvoiceQty.Text.Trim()) != "")
                                 { varMismatchQty = Convert.ToString(txtInvoiceQty.Text); }
                                 
-                                grdSupplierList.Rows.Add(maxSno + 1,null, /*(varpono[0]).Trim(),*/varPurProductType,(varPICode).Trim(), (varTName).Trim(), (var_Symbol).Trim(), Convert.ToString(cmbQtyType.Text) ,varPendingQty,varExcessQty, varDamageQty,varMismatchQty, varGrnMrp, (txtMrp.Text).Trim(), varProMrp,(varExpiryDateAdd).Trim()
+                                grdSupplierList.Rows.Add(maxSno + 1,null, /*(varpono[0]).Trim(),*/varPurProductType,"",(varPICode).Trim(), (varTName).Trim(), (var_Symbol).Trim(), Convert.ToString(cmbQtyType.Text) ,varPendingQty,varExcessQty, varDamageQty,varMismatchQty, varGrnMrp, (txtMrp.Text).Trim(), varProMrp,(varExpiryDateAdd).Trim()
                                 , varProExpiry, (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), varProBatchNo, txtSourceLocation.Text, cmbrack.Text, cmbPONo.SelectedValue,
                                 (productCode).Trim(), (varunitid).Trim(), varBatchNo, varBatchNoGeneration, expirydateFlag, lblLocationcode.Text, varRackId, varRackCount, 0, 0, 0, 0, 0, 0, varId, varPrInvFlag,varHSNid, 
                                 varPrMRPFlag,varGRNProType,varRMProductionFlag, varGrnType,Convert.ToString(cmbQtyType.SelectedValue));
@@ -6393,9 +6393,10 @@ namespace ROMS
                         objPurchaseentry.Columns.Add("PURPR_ProExpiryDate", typeof(string));
                         objPurchaseentry.Columns.Add("PURPR_ProBatch", typeof(string));
                         objPurchaseentry.Columns.Add("PURPR_Condition", typeof(int));
-                        objPurchaseentry.Columns.Add("PURPR_ExcessQty", typeof(decimal));
+                        objPurchaseentry.Columns.Add("PURPR_MismatchQty", typeof(decimal));
                         objPurchaseentry.Columns.Add("PURPR_RemainingQty", typeof(decimal));
                         objPurchaseentry.Columns.Add("PURPR_DamageQty", typeof(decimal));
+                        objPurchaseentry.Columns.Add("PURPR_InwardDate", typeof(string));
                         objPurchaseentry = udfnobjPurchaseprod();
 
                         objPurchaseentryDetails.TableName = "TRN_Purchase_Products_Details";
@@ -7752,9 +7753,10 @@ namespace ROMS
                 objPurchaseentry.Columns.Add("PURPR_ProExpiryDate", typeof(string));
                 objPurchaseentry.Columns.Add("PURPR_ProBatch", typeof(string));
                 objPurchaseentry.Columns.Add("PURPR_Condition", typeof(int));
-                objPurchaseentry.Columns.Add("PURPR_ExcessQty", typeof(decimal));
+                objPurchaseentry.Columns.Add("PURPR_MismatchQty", typeof(decimal));
                 objPurchaseentry.Columns.Add("PURPR_RemainingQty", typeof(decimal));
                 objPurchaseentry.Columns.Add("PURPR_DamageQty", typeof(decimal));
+                objPurchaseentry.Columns.Add("PURPR_InwardDate", typeof(string));
                 if (tbDetails.TabPages[0].Enabled == true)
                 {
                     grdSupplierList.Sort(grdSupplierList.Columns[0], ListSortDirection.Ascending);
@@ -8802,7 +8804,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtInvoiceQty_Leave(object sender, EventArgs e)
         {
             try
