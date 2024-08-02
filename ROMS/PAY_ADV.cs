@@ -197,7 +197,7 @@ namespace ROMS
                 for (int i = 0; i < grdAdvance.Rows.Count; i++)
                 {
                    
-                    if (MainForm.objPAY_SupplierPayment.clearClick == 1)
+                    if (MainForm.objPAY_SupplierPayment.clearClick == 1 && MainForm.objPAY_SupplierPayment.varCreatemodeFlag == 1)
                     {
                         //grdAdvance.Rows[i].Cells["Current Balance"].Value = grdAdvance.Rows[i].Cells["Advance Amount"].Value;
                         dtAdvance.Rows[i]["Current Balance"] = dtAdvance.Rows[i]["Advance Amount"];
@@ -205,41 +205,44 @@ namespace ROMS
                     }
                     if (MainForm.objPAY_SupplierPayment.clearClick == 2)
                     {
-                        dtAdvance.Rows[i]["Current Balance"] = MainForm.objPAY_SupplierPayment.dtAdvance.Rows[i]["Current Balance"];
-                        decimal varCurrentBalance = Convert.ToDecimal(dtAdvance.Rows[i]["Current Balance"]);
-                        decimal varAdvance = Convert.ToDecimal(dtAdvance.Rows[i]["Advance Amount"]);
-                        if (varCurrentBalance == varAdvance)
-                        {
-                            dtAdvance.Rows[i][0] = false;
-                        }
+                        //dtAdvance.Rows[i]["Current Balance"] = MainForm.objPAY_SupplierPayment.dtAdvance.Rows[i]["Current Balance"];
+                        //decimal varCurrentBalance = Convert.ToDecimal(dtAdvance.Rows[i]["Current Balance"]);
+                        //decimal varAdvance = Convert.ToDecimal(dtAdvance.Rows[i]["Advance Amount"]);
+                        //if (varCurrentBalance == varAdvance)
+                        //{
+                        //    dtAdvance.Rows[i][0] = false;
+                        //}
                     }
                 }
-                var sumOfAdvance = (from r in MainForm.objPAY_SupplierPayment.dtAdvance.AsEnumerable()
-                                    group r by r["ADID"] into g
-                                    select new
-                                    {
-                                        ADID = g.Key,
-                                        TotalAdvanceAmnt = g.Sum(x => x.Field<decimal>("Current Balance"))
-                                    }).ToList();
-                for (int j = 0; j < sumOfAdvance.Count(); j++)
+                if (MainForm.objPAY_SupplierPayment.clearClick == 2 && MainForm.objPAY_SupplierPayment.varCreatemodeFlag == 1)
                 {
-                    for (int i = 0; i < grdAdvance.Rows.Count; i++)
+                    var sumOfAdvance = (from r in MainForm.objPAY_SupplierPayment.dtAdvance.AsEnumerable()
+                                        group r by r["ADID"] into g
+                                        select new
+                                        {
+                                            ADID = g.Key,
+                                            TotalAdvanceAmnt = g.Sum(x => x.Field<decimal>("Current Balance"))
+                                        }).ToList();
+                    for (int j = 0; j < sumOfAdvance.Count(); j++)
                     {
-                        CurrentBalance = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value);
-                        AdvanceAmount = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
-                        var key = sumOfAdvance[j];
-                        var ID = key.ADID;
-                        if (Convert.ToString(ID) == Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value))
+                        for (int i = 0; i < grdAdvance.Rows.Count; i++)
                         {
-                            dtAdvance.Rows[i]["Current Balance"] = key.TotalAdvanceAmnt;
-                            if (CurrentBalance == AdvanceAmount)
+                            CurrentBalance = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value);
+                            AdvanceAmount = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
+                            var key = sumOfAdvance[j];
+                            var ID = key.ADID;
+                            if (Convert.ToString(ID) == Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value))
                             {
-                                dtAdvance.Rows[i][0] = false;
-                                grdAdvance.ReadOnly = false;
-                            }
-                            else
-                            {
-                                grdAdvance.ReadOnly = true;
+                                dtAdvance.Rows[i]["Current Balance"] = key.TotalAdvanceAmnt;
+                                if (CurrentBalance == AdvanceAmount)
+                                {
+                                    dtAdvance.Rows[i][0] = false;
+                                    grdAdvance.ReadOnly = false;
+                                }
+                                else
+                                {
+                                    grdAdvance.ReadOnly = true;
+                                }
                             }
                         }
                     }
