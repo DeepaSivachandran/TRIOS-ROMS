@@ -189,6 +189,7 @@
             this.txtDelayMin.Name = "txtDelayMin";
             this.txtDelayMin.Size = new System.Drawing.Size(61, 27);
             this.txtDelayMin.TabIndex = 5;
+            this.txtDelayMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDelayMin.Enter += new System.EventHandler(this.TxtDelayMin_Enter);
             this.txtDelayMin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDelayMin_KeyDown);
             this.txtDelayMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDelayMin_KeyPress);

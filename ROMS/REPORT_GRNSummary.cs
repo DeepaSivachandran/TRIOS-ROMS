@@ -208,7 +208,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("ParaGRNFromDate", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("ParaGRNToDate", Convert.ToString(dpToDate.Text));
-                    objBillreport.SetParameterValue("paraDelayMin", varDelay);
+                    objBillreport.SetParameterValue("paraMinutes", varDelay);
+                    objBillreport.SetParameterValue("paraDelayMin", varDelayMin);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);

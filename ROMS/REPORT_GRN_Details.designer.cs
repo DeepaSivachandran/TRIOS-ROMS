@@ -38,6 +38,10 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbConditionType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbOrderType = new System.Windows.Forms.ComboBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.dpToDate = new System.Windows.Forms.DateTimePicker();
@@ -52,10 +56,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.cmbOrderType = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbConditionType = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDelayMin = new System.Windows.Forms.TextBox();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -153,6 +155,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label6);
+            this.grpfilter.Controls.Add(this.txtDelayMin);
             this.grpfilter.Controls.Add(this.label5);
             this.grpfilter.Controls.Add(this.cmbConditionType);
             this.grpfilter.Controls.Add(this.label4);
@@ -174,6 +178,50 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(805, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 20);
+            this.label5.TabIndex = 1111196;
+            this.label5.Text = "Condition Type";
+            // 
+            // cmbConditionType
+            // 
+            this.cmbConditionType.FormattingEnabled = true;
+            this.cmbConditionType.Location = new System.Drawing.Point(805, 43);
+            this.cmbConditionType.Name = "cmbConditionType";
+            this.cmbConditionType.Size = new System.Drawing.Size(157, 27);
+            this.cmbConditionType.TabIndex = 5;
+            this.cmbConditionType.Enter += new System.EventHandler(this.CmbConditionType_Enter);
+            this.cmbConditionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConditionType_KeyDown);
+            this.cmbConditionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConditionType_KeyPress);
+            this.cmbConditionType.Leave += new System.EventHandler(this.CmbConditionType_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(642, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 20);
+            this.label4.TabIndex = 1111194;
+            this.label4.Text = "Order Type";
+            // 
+            // cmbOrderType
+            // 
+            this.cmbOrderType.FormattingEnabled = true;
+            this.cmbOrderType.Location = new System.Drawing.Point(642, 43);
+            this.cmbOrderType.Name = "cmbOrderType";
+            this.cmbOrderType.Size = new System.Drawing.Size(157, 27);
+            this.cmbOrderType.TabIndex = 4;
+            this.cmbOrderType.Enter += new System.EventHandler(this.CmbOrderType_Enter);
+            this.cmbOrderType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderType_KeyDown);
+            this.cmbOrderType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderType_KeyPress);
+            this.cmbOrderType.Leave += new System.EventHandler(this.CmbOrderType_Leave);
             // 
             // cmbConcern
             // 
@@ -295,11 +343,11 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1094, 42);
+            this.btnView.Location = new System.Drawing.Point(1161, 41);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 7;
+            this.btnView.TabIndex = 8;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -347,49 +395,29 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // cmbOrderType
+            // label6
             // 
-            this.cmbOrderType.FormattingEnabled = true;
-            this.cmbOrderType.Location = new System.Drawing.Point(642, 43);
-            this.cmbOrderType.Name = "cmbOrderType";
-            this.cmbOrderType.Size = new System.Drawing.Size(157, 27);
-            this.cmbOrderType.TabIndex = 4;
-            this.cmbOrderType.Enter += new System.EventHandler(this.CmbOrderType_Enter);
-            this.cmbOrderType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderType_KeyDown);
-            this.cmbOrderType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderType_KeyPress);
-            this.cmbOrderType.Leave += new System.EventHandler(this.CmbOrderType_Leave);
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1094, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 20);
+            this.label6.TabIndex = 1111198;
+            this.label6.Text = "Delay Min";
             // 
-            // label4
+            // txtDelayMin
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(642, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 20);
-            this.label4.TabIndex = 1111194;
-            this.label4.Text = "Order Type";
-            // 
-            // cmbConditionType
-            // 
-            this.cmbConditionType.FormattingEnabled = true;
-            this.cmbConditionType.Location = new System.Drawing.Point(805, 43);
-            this.cmbConditionType.Name = "cmbConditionType";
-            this.cmbConditionType.Size = new System.Drawing.Size(157, 27);
-            this.cmbConditionType.TabIndex = 5;
-            this.cmbConditionType.Enter += new System.EventHandler(this.CmbConditionType_Enter);
-            this.cmbConditionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConditionType_KeyDown);
-            this.cmbConditionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConditionType_KeyPress);
-            this.cmbConditionType.Leave += new System.EventHandler(this.CmbConditionType_Leave);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(805, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 20);
-            this.label5.TabIndex = 1111196;
-            this.label5.Text = "Condition Type";
+            this.txtDelayMin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDelayMin.Location = new System.Drawing.Point(1094, 43);
+            this.txtDelayMin.MaxLength = 5;
+            this.txtDelayMin.Name = "txtDelayMin";
+            this.txtDelayMin.Size = new System.Drawing.Size(61, 27);
+            this.txtDelayMin.TabIndex = 7;
+            this.txtDelayMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDelayMin.Enter += new System.EventHandler(this.TxtDelayMin_Enter);
+            this.txtDelayMin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDelayMin_KeyDown);
+            this.txtDelayMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDelayMin_KeyPress);
+            this.txtDelayMin.Leave += new System.EventHandler(this.TxtDelayMin_Leave);
             // 
             // REPORT_GRN_Details
             // 
@@ -450,5 +478,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbOrderType;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtDelayMin;
     }
 }
