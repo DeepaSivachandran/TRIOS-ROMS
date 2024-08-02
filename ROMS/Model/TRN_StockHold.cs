@@ -27,6 +27,7 @@ namespace ROMS.Model
         public int paraSupplierID { get; set; } = 0;
         public int paraScheduleID { get; set; } = 0;
         public int paraStatus { get; set; } = 0;
+        public int paraStockQty { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
 
     }

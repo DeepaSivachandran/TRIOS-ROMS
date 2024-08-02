@@ -204,7 +204,7 @@ namespace ROMS
                     MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                     MainForm.objCP_Supplier.btnSave.Text = "Update";
                     MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
-                    MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["STS"].Value.ToString());
+                    MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SP_STSId"].Value.ToString());
                     MainForm.objCP_Supplier.Show();
                 }
             }
@@ -324,6 +324,7 @@ namespace ROMS
                                 grdSupplierList.Columns["Scheduleid"].Visible = false;
                                 grdSupplierList.Columns["SupplierID"].Visible = false;
                                 grdSupplierList.Columns["STS"].Visible = false;
+                                grdSupplierList.Columns["SP_STSId"].Visible = false;
                                 grdSupplierList.Columns["DYID"].Visible = false;
                                 grdSupplierList.Columns["ORDERTYPE"].Visible = false;
                                 grdSupplierList.Columns["rownum"].Visible = false;
