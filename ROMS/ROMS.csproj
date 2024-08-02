@@ -1804,6 +1804,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\Unapproved.jpg" />
+    <None Include="Resources\Pur_Unapproved.jpg" />
     <None Include="Resources\Unchecked.jpg" />
     <None Include="Resources\Unapprove.jpg" />
     <None Include="Resources\Move Color.png" />

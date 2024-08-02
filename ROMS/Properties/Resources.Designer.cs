@@ -673,6 +673,16 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Pur_Unapproved {
+            get {
+                object obj = ResourceManager.GetObject("Pur_Unapproved", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap purchase_return {
             get {
                 object obj = ResourceManager.GetObject("purchase_return", resourceCulture);
@@ -856,6 +866,16 @@ namespace ROMS.Properties {
         internal static System.Drawing.Bitmap Unapprove {
             get {
                 object obj = ResourceManager.GetObject("Unapprove", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Unapproved {
+            get {
+                object obj = ResourceManager.GetObject("Unapproved", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
