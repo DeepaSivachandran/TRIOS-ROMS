@@ -904,6 +904,7 @@ namespace ROMS
                             objTRNS_GRN1.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                             objTRNS_GRN1.paraID = ParaSupplierAMT;
                             objTRNS_GRN1.paraPayment = Convert.ToInt32(cmbPayment.SelectedValue);
+                            objTRNS_GRN1.paraINVNo = txtInvoiceno.Text;
                             objTRNS_GRN1.paraSaveFlag = 1;
                             objTRNS_GRN1.paraGRNProd = objGRNProd;
                             result2 = objspdservice.udfnGRNEntry(objTRNS_GRN1);
@@ -1209,6 +1210,10 @@ namespace ROMS
                                             }
                                         }
                                     }
+                                }
+                                else
+                                {
+                                    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
                             }
                         }

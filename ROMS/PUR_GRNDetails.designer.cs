@@ -176,23 +176,6 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
-            this.grpVerify = new System.Windows.Forms.GroupBox();
-            this.lblVerifiedDate2 = new System.Windows.Forms.Label();
-            this.lblVerify2 = new System.Windows.Forms.Label();
-            this.lblVerify1 = new System.Windows.Forms.Label();
-            this.lblVerifiedBy2 = new System.Windows.Forms.Label();
-            this.lblVerified2 = new System.Windows.Forms.Label();
-            this.lblVerifiedDate1 = new System.Windows.Forms.Label();
-            this.lblVerified1 = new System.Windows.Forms.Label();
-            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
-            this.lblVerifyDateTime = new System.Windows.Forms.Label();
-            this.lblVerifiedBy1 = new System.Windows.Forms.Label();
-            this.lblRemark = new System.Windows.Forms.Label();
-            this.errGRNDetails = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lbltotProduct = new System.Windows.Forms.Label();
-            this.lblAddProduct = new System.Windows.Forms.Label();
-            this.lblRemainProduct = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -230,6 +213,23 @@
             this.clmMRPflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.grpVerify = new System.Windows.Forms.GroupBox();
+            this.lblVerifiedDate2 = new System.Windows.Forms.Label();
+            this.lblVerify2 = new System.Windows.Forms.Label();
+            this.lblVerify1 = new System.Windows.Forms.Label();
+            this.lblVerifiedBy2 = new System.Windows.Forms.Label();
+            this.lblVerified2 = new System.Windows.Forms.Label();
+            this.lblVerifiedDate1 = new System.Windows.Forms.Label();
+            this.lblVerified1 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime2 = new System.Windows.Forms.Label();
+            this.lblVerifyDateTime = new System.Windows.Forms.Label();
+            this.lblVerifiedBy1 = new System.Windows.Forms.Label();
+            this.lblRemark = new System.Windows.Forms.Label();
+            this.errGRNDetails = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lbltotProduct = new System.Windows.Forms.Label();
+            this.lblAddProduct = new System.Windows.Forms.Label();
+            this.lblRemainProduct = new System.Windows.Forms.Label();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -333,7 +333,7 @@
             // 
             this.tsbSupplier.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbSupplier.ForeColor = System.Drawing.Color.Red;
-            this.tsbSupplier.Image = global::ROMS.Properties.Resources.right_arrow;
+            this.tsbSupplier.Image = global::ROMS.Properties.Resources.Blocked_Supplier;
             this.tsbSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbSupplier.Name = "tsbSupplier";
@@ -1696,177 +1696,6 @@
             this.grdGrnlist.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdGrnlist_EditingControlShowing);
             this.grdGrnlist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGrnlist_KeyDown);
             // 
-            // grpVerify
-            // 
-            this.grpVerify.Controls.Add(this.lblVerifiedDate2);
-            this.grpVerify.Controls.Add(this.lblVerify2);
-            this.grpVerify.Controls.Add(this.lblVerify1);
-            this.grpVerify.Controls.Add(this.lblVerifiedBy2);
-            this.grpVerify.Controls.Add(this.lblVerified2);
-            this.grpVerify.Controls.Add(this.lblVerifiedDate1);
-            this.grpVerify.Controls.Add(this.lblVerified1);
-            this.grpVerify.Controls.Add(this.lblVerifyDateTime2);
-            this.grpVerify.Controls.Add(this.lblVerifyDateTime);
-            this.grpVerify.Controls.Add(this.lblVerifiedBy1);
-            this.grpVerify.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpVerify.Location = new System.Drawing.Point(897, 517);
-            this.grpVerify.Name = "grpVerify";
-            this.grpVerify.Size = new System.Drawing.Size(228, 108);
-            this.grpVerify.TabIndex = 1111164;
-            this.grpVerify.TabStop = false;
-            this.grpVerify.Text = "Verification Process";
-            // 
-            // lblVerifiedDate2
-            // 
-            this.lblVerifiedDate2.AutoSize = true;
-            this.lblVerifiedDate2.Location = new System.Drawing.Point(98, 84);
-            this.lblVerifiedDate2.Name = "lblVerifiedDate2";
-            this.lblVerifiedDate2.Size = new System.Drawing.Size(70, 17);
-            this.lblVerifiedDate2.TabIndex = 1111193;
-            this.lblVerifiedDate2.Text = "Verified Date";
-            this.lblVerifiedDate2.Visible = false;
-            // 
-            // lblVerify2
-            // 
-            this.lblVerify2.AutoSize = true;
-            this.lblVerify2.Location = new System.Drawing.Point(6, 62);
-            this.lblVerify2.Name = "lblVerify2";
-            this.lblVerify2.Size = new System.Drawing.Size(68, 17);
-            this.lblVerify2.TabIndex = 1111193;
-            this.lblVerify2.Text = "Verified by 2";
-            // 
-            // lblVerify1
-            // 
-            this.lblVerify1.AutoSize = true;
-            this.lblVerify1.Location = new System.Drawing.Point(6, 21);
-            this.lblVerify1.Name = "lblVerify1";
-            this.lblVerify1.Size = new System.Drawing.Size(68, 17);
-            this.lblVerify1.TabIndex = 1111191;
-            this.lblVerify1.Text = "Verified by 1";
-            // 
-            // lblVerifiedBy2
-            // 
-            this.lblVerifiedBy2.AutoSize = true;
-            this.lblVerifiedBy2.Location = new System.Drawing.Point(13, 84);
-            this.lblVerifiedBy2.Name = "lblVerifiedBy2";
-            this.lblVerifiedBy2.Size = new System.Drawing.Size(0, 17);
-            this.lblVerifiedBy2.TabIndex = 1111191;
-            this.lblVerifiedBy2.Visible = false;
-            // 
-            // lblVerified2
-            // 
-            this.lblVerified2.AutoSize = true;
-            this.lblVerified2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerified2.Location = new System.Drawing.Point(103, 62);
-            this.lblVerified2.Name = "lblVerified2";
-            this.lblVerified2.Size = new System.Drawing.Size(0, 16);
-            this.lblVerified2.TabIndex = 1111189;
-            // 
-            // lblVerifiedDate1
-            // 
-            this.lblVerifiedDate1.AutoSize = true;
-            this.lblVerifiedDate1.Location = new System.Drawing.Point(98, 41);
-            this.lblVerifiedDate1.Name = "lblVerifiedDate1";
-            this.lblVerifiedDate1.Size = new System.Drawing.Size(70, 17);
-            this.lblVerifiedDate1.TabIndex = 1111192;
-            this.lblVerifiedDate1.Text = "Verified Date";
-            this.lblVerifiedDate1.Visible = false;
-            // 
-            // lblVerified1
-            // 
-            this.lblVerified1.AutoSize = true;
-            this.lblVerified1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerified1.Location = new System.Drawing.Point(103, 29);
-            this.lblVerified1.Name = "lblVerified1";
-            this.lblVerified1.Size = new System.Drawing.Size(0, 16);
-            this.lblVerified1.TabIndex = 1111188;
-            // 
-            // lblVerifyDateTime2
-            // 
-            this.lblVerifyDateTime2.AutoSize = true;
-            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDateTime2.Location = new System.Drawing.Point(103, 76);
-            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
-            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 16);
-            this.lblVerifyDateTime2.TabIndex = 1111187;
-            // 
-            // lblVerifyDateTime
-            // 
-            this.lblVerifyDateTime.AutoSize = true;
-            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyDateTime.Location = new System.Drawing.Point(103, 43);
-            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
-            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 16);
-            this.lblVerifyDateTime.TabIndex = 1111186;
-            // 
-            // lblVerifiedBy1
-            // 
-            this.lblVerifiedBy1.AutoSize = true;
-            this.lblVerifiedBy1.Location = new System.Drawing.Point(13, 41);
-            this.lblVerifiedBy1.Name = "lblVerifiedBy1";
-            this.lblVerifiedBy1.Size = new System.Drawing.Size(0, 17);
-            this.lblVerifiedBy1.TabIndex = 1111190;
-            this.lblVerifiedBy1.Visible = false;
-            // 
-            // lblRemark
-            // 
-            this.lblRemark.AutoSize = true;
-            this.lblRemark.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRemark.Location = new System.Drawing.Point(689, 515);
-            this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(50, 17);
-            this.lblRemark.TabIndex = 1111168;
-            this.lblRemark.Text = "Remarks";
-            // 
-            // errGRNDetails
-            // 
-            this.errGRNDetails.ContainerControl = this;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 50;
-            // 
-            // lbltotProduct
-            // 
-            this.lbltotProduct.AutoSize = true;
-            this.lbltotProduct.BackColor = System.Drawing.Color.White;
-            this.lbltotProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotProduct.ForeColor = System.Drawing.Color.Blue;
-            this.lbltotProduct.Location = new System.Drawing.Point(1002, 3);
-            this.lbltotProduct.Name = "lbltotProduct";
-            this.lbltotProduct.Size = new System.Drawing.Size(18, 21);
-            this.lbltotProduct.TabIndex = 958765;
-            this.lbltotProduct.Text = "0";
-            // 
-            // lblAddProduct
-            // 
-            this.lblAddProduct.AutoSize = true;
-            this.lblAddProduct.BackColor = System.Drawing.Color.White;
-            this.lblAddProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddProduct.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblAddProduct.Location = new System.Drawing.Point(1155, 3);
-            this.lblAddProduct.Name = "lblAddProduct";
-            this.lblAddProduct.Size = new System.Drawing.Size(18, 21);
-            this.lblAddProduct.TabIndex = 958766;
-            this.lblAddProduct.Text = "0";
-            // 
-            // lblRemainProduct
-            // 
-            this.lblRemainProduct.AutoSize = true;
-            this.lblRemainProduct.BackColor = System.Drawing.Color.White;
-            this.lblRemainProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRemainProduct.ForeColor = System.Drawing.Color.Red;
-            this.lblRemainProduct.Location = new System.Drawing.Point(1322, 3);
-            this.lblRemainProduct.Name = "lblRemainProduct";
-            this.lblRemainProduct.Size = new System.Drawing.Size(18, 21);
-            this.lblRemainProduct.TabIndex = 958767;
-            this.lblRemainProduct.Text = "0";
-            // 
             // clmsno
             // 
             dataGridViewCellStyle13.BackColor = System.Drawing.Color.AliceBlue;
@@ -2176,6 +2005,177 @@
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.Width = 50;
+            // 
+            // grpVerify
+            // 
+            this.grpVerify.Controls.Add(this.lblVerifiedDate2);
+            this.grpVerify.Controls.Add(this.lblVerify2);
+            this.grpVerify.Controls.Add(this.lblVerify1);
+            this.grpVerify.Controls.Add(this.lblVerifiedBy2);
+            this.grpVerify.Controls.Add(this.lblVerified2);
+            this.grpVerify.Controls.Add(this.lblVerifiedDate1);
+            this.grpVerify.Controls.Add(this.lblVerified1);
+            this.grpVerify.Controls.Add(this.lblVerifyDateTime2);
+            this.grpVerify.Controls.Add(this.lblVerifyDateTime);
+            this.grpVerify.Controls.Add(this.lblVerifiedBy1);
+            this.grpVerify.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpVerify.Location = new System.Drawing.Point(897, 517);
+            this.grpVerify.Name = "grpVerify";
+            this.grpVerify.Size = new System.Drawing.Size(228, 108);
+            this.grpVerify.TabIndex = 1111164;
+            this.grpVerify.TabStop = false;
+            this.grpVerify.Text = "Verification Process";
+            // 
+            // lblVerifiedDate2
+            // 
+            this.lblVerifiedDate2.AutoSize = true;
+            this.lblVerifiedDate2.Location = new System.Drawing.Point(98, 84);
+            this.lblVerifiedDate2.Name = "lblVerifiedDate2";
+            this.lblVerifiedDate2.Size = new System.Drawing.Size(70, 17);
+            this.lblVerifiedDate2.TabIndex = 1111193;
+            this.lblVerifiedDate2.Text = "Verified Date";
+            this.lblVerifiedDate2.Visible = false;
+            // 
+            // lblVerify2
+            // 
+            this.lblVerify2.AutoSize = true;
+            this.lblVerify2.Location = new System.Drawing.Point(6, 62);
+            this.lblVerify2.Name = "lblVerify2";
+            this.lblVerify2.Size = new System.Drawing.Size(68, 17);
+            this.lblVerify2.TabIndex = 1111193;
+            this.lblVerify2.Text = "Verified by 2";
+            // 
+            // lblVerify1
+            // 
+            this.lblVerify1.AutoSize = true;
+            this.lblVerify1.Location = new System.Drawing.Point(6, 21);
+            this.lblVerify1.Name = "lblVerify1";
+            this.lblVerify1.Size = new System.Drawing.Size(68, 17);
+            this.lblVerify1.TabIndex = 1111191;
+            this.lblVerify1.Text = "Verified by 1";
+            // 
+            // lblVerifiedBy2
+            // 
+            this.lblVerifiedBy2.AutoSize = true;
+            this.lblVerifiedBy2.Location = new System.Drawing.Point(13, 84);
+            this.lblVerifiedBy2.Name = "lblVerifiedBy2";
+            this.lblVerifiedBy2.Size = new System.Drawing.Size(0, 17);
+            this.lblVerifiedBy2.TabIndex = 1111191;
+            this.lblVerifiedBy2.Visible = false;
+            // 
+            // lblVerified2
+            // 
+            this.lblVerified2.AutoSize = true;
+            this.lblVerified2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerified2.Location = new System.Drawing.Point(103, 62);
+            this.lblVerified2.Name = "lblVerified2";
+            this.lblVerified2.Size = new System.Drawing.Size(0, 16);
+            this.lblVerified2.TabIndex = 1111189;
+            // 
+            // lblVerifiedDate1
+            // 
+            this.lblVerifiedDate1.AutoSize = true;
+            this.lblVerifiedDate1.Location = new System.Drawing.Point(98, 41);
+            this.lblVerifiedDate1.Name = "lblVerifiedDate1";
+            this.lblVerifiedDate1.Size = new System.Drawing.Size(70, 17);
+            this.lblVerifiedDate1.TabIndex = 1111192;
+            this.lblVerifiedDate1.Text = "Verified Date";
+            this.lblVerifiedDate1.Visible = false;
+            // 
+            // lblVerified1
+            // 
+            this.lblVerified1.AutoSize = true;
+            this.lblVerified1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerified1.Location = new System.Drawing.Point(103, 29);
+            this.lblVerified1.Name = "lblVerified1";
+            this.lblVerified1.Size = new System.Drawing.Size(0, 16);
+            this.lblVerified1.TabIndex = 1111188;
+            // 
+            // lblVerifyDateTime2
+            // 
+            this.lblVerifyDateTime2.AutoSize = true;
+            this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime2.Location = new System.Drawing.Point(103, 76);
+            this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
+            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 16);
+            this.lblVerifyDateTime2.TabIndex = 1111187;
+            // 
+            // lblVerifyDateTime
+            // 
+            this.lblVerifyDateTime.AutoSize = true;
+            this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerifyDateTime.Location = new System.Drawing.Point(103, 43);
+            this.lblVerifyDateTime.Name = "lblVerifyDateTime";
+            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 16);
+            this.lblVerifyDateTime.TabIndex = 1111186;
+            // 
+            // lblVerifiedBy1
+            // 
+            this.lblVerifiedBy1.AutoSize = true;
+            this.lblVerifiedBy1.Location = new System.Drawing.Point(13, 41);
+            this.lblVerifiedBy1.Name = "lblVerifiedBy1";
+            this.lblVerifiedBy1.Size = new System.Drawing.Size(0, 17);
+            this.lblVerifiedBy1.TabIndex = 1111190;
+            this.lblVerifiedBy1.Visible = false;
+            // 
+            // lblRemark
+            // 
+            this.lblRemark.AutoSize = true;
+            this.lblRemark.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemark.Location = new System.Drawing.Point(689, 515);
+            this.lblRemark.Name = "lblRemark";
+            this.lblRemark.Size = new System.Drawing.Size(50, 17);
+            this.lblRemark.TabIndex = 1111168;
+            this.lblRemark.Text = "Remarks";
+            // 
+            // errGRNDetails
+            // 
+            this.errGRNDetails.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
+            // lbltotProduct
+            // 
+            this.lbltotProduct.AutoSize = true;
+            this.lbltotProduct.BackColor = System.Drawing.Color.White;
+            this.lbltotProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltotProduct.ForeColor = System.Drawing.Color.Blue;
+            this.lbltotProduct.Location = new System.Drawing.Point(1002, 3);
+            this.lbltotProduct.Name = "lbltotProduct";
+            this.lbltotProduct.Size = new System.Drawing.Size(18, 21);
+            this.lbltotProduct.TabIndex = 958765;
+            this.lbltotProduct.Text = "0";
+            // 
+            // lblAddProduct
+            // 
+            this.lblAddProduct.AutoSize = true;
+            this.lblAddProduct.BackColor = System.Drawing.Color.White;
+            this.lblAddProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddProduct.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblAddProduct.Location = new System.Drawing.Point(1155, 3);
+            this.lblAddProduct.Name = "lblAddProduct";
+            this.lblAddProduct.Size = new System.Drawing.Size(18, 21);
+            this.lblAddProduct.TabIndex = 958766;
+            this.lblAddProduct.Text = "0";
+            // 
+            // lblRemainProduct
+            // 
+            this.lblRemainProduct.AutoSize = true;
+            this.lblRemainProduct.BackColor = System.Drawing.Color.White;
+            this.lblRemainProduct.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemainProduct.ForeColor = System.Drawing.Color.Red;
+            this.lblRemainProduct.Location = new System.Drawing.Point(1322, 3);
+            this.lblRemainProduct.Name = "lblRemainProduct";
+            this.lblRemainProduct.Size = new System.Drawing.Size(18, 21);
+            this.lblRemainProduct.TabIndex = 958767;
+            this.lblRemainProduct.Text = "0";
             // 
             // PUR_GRNDetails
             // 
