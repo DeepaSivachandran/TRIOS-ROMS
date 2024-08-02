@@ -83,6 +83,7 @@ namespace ROMS
                     objMR_Master.paraDate = dpVerified.Text;
                     objMR_Master.paraTime = mtbTime.Text;
                     objMR_Master.paraTimeFormat = cmbFormat.Text;
+                    objMR_Master.paraDate = dpVerified.Text;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
