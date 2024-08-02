@@ -19,7 +19,7 @@ namespace ROMS
         DataError objError;
         private ToolTip tpQty = new ToolTip();
         private ToolTip tpLocation = new ToolTip();
-        public int varCompanyCode = 0, varQty = 0, varSLID = 0, varSHID = 0;
+        public int varCompanyCode = 0, varQty = 0, varSLID = 0, varSHID = 0, varStockQty = 0;
         private SecurityController _security;
         public string pbFormStatus;
         public INV_StockHold_Location()
@@ -188,6 +188,19 @@ namespace ROMS
         {
             try
             {
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                int ViewType = 1;
+                //objDs = objdserv.udfnStockHoldList(ViewType, SHID);
+                TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
+                objTRNG_StockHold.ViewType = ViewType;
+                objTRNG_StockHold.paraSHID = Convert.ToInt32(varSHID);
+                objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
+                objdserv.CloseConnection();
+                varStockQty = Convert.ToInt32(objDs.Tables[0].Rows[0]["Stock Qty"]);
                 txtStockLocation.Focus();
                 txtQty.Text = Convert.ToString(varQty);
             }
@@ -328,6 +341,7 @@ namespace ROMS
                 objTRNS_StockHold.paraSHID = varSHID;
                 objTRNS_StockHold.paraSLID = Convert.ToInt32(lblStockLocationCode.Text);
                 objTRNS_StockHold.paraQty = Convert.ToDecimal(txtQty.Text);
+                objTRNS_StockHold.paraStockQty = varStockQty;
                 objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNS_StockHold.paraFlag = 1;
                 objTRNS_StockHold.paraStatus = 96;

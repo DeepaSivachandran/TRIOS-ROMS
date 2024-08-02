@@ -214,7 +214,7 @@ namespace ROMS
                         objTRN_Damage.paraStatusId = 20;
                         objTRN_Damage.paraOriginator = "Stock Hold Damage";
                         objTRN_Damage.paraDamageEntry = dtDamage;
-                        objTRN_Damage.paraEmployeeId = "3~1,4~2";
+                        objTRN_Damage.paraEmployeeId = "0~1,0~2";
                         objTRN_Damage.paraSHID = varSHID;
                         varResult = objspservice.udfnDamageEntry(objTRN_Damage);
                         objspservice.CloseConnection();
