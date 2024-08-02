@@ -768,7 +768,7 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["Sub Total"].Width = 100;
                             grdSupllierPaymentList.Columns["Grand Total"].Width = 100;
                             grdSupllierPaymentList.Columns["Payment Mode"].Width = 100;
-                            grdSupllierPaymentList.Columns["Status"].Width = 120;
+                            grdSupllierPaymentList.Columns["Status"].Width = 150;
                             grdSupllierPaymentList.Columns["PAY_PaymentMode"].Visible = false;
                             grdSupllierPaymentList.Columns["PAYID"].Visible = false;
                             grdSupllierPaymentList.Columns["PAY_STSID"].Visible = false;
@@ -1183,6 +1183,15 @@ namespace ROMS
             try
             {
                 grdSupllierPaymentList.ClearSelection();
+                for (int i = 0; i < grdSupllierPaymentList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PAY_STSID"].Value) == "76")
+                    {
+
+                        grdSupllierPaymentList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdSupllierPaymentList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
             }
             catch (Exception ex)
             {

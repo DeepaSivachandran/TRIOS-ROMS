@@ -3649,7 +3649,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSubTotal", objTRN_Supplier_Payment.paraSubTotal);
                 varSqlCommand.Parameters.AddWithValue("@paraAdvanceAmnt", objTRN_Supplier_Payment.paraAdvanceAmnt);
                 varSqlCommand.Parameters.AddWithValue("@paraBankID", objTRN_Supplier_Payment.paraBankID);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Supplier_Payment.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Supplier_Payment.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

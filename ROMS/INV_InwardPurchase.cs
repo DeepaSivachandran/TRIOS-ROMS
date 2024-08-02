@@ -279,6 +279,7 @@ namespace ROMS
         {
             try
             {
+                //Add the count of default  Data table count when save
                 dtInwardPurchase.TableName = "TRN_GoodsInward_Purchase_Products";
                 dtInwardPurchase.Columns.Add("", typeof(Boolean));
                 dtInwardPurchase.Columns.Add("GIPPR_SNO", typeof(int));
@@ -2035,7 +2036,7 @@ namespace ROMS
                         {
                             if (varError == 0)
                             {
-                                if (Convert.ToInt32(dtInwardPurchase.Columns.Count) == 24) //default  Data table count
+                                if (Convert.ToInt32(dtInwardPurchase.Columns.Count) == 27) //default  Data table count
                                 {
                                     dtInwardPurchase.Columns.Remove("Column1");
                                     dtInwardPurchase.Columns.Remove("PR_MRPStatus");
