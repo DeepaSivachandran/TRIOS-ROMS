@@ -276,7 +276,7 @@ namespace ROMS
                 decimal varGrandTotal = 0;
                 decimal varAdvanceAmnt = 0;
                 MainForm.objPAY_SupplierPayment.varAdvanceID = "0";
-                MainForm.objPAY_SupplierPayment.lblAdvance.Text = "0";
+                MainForm.objPAY_SupplierPayment.lblAdvance.Text = "0.00";
                 MainForm.objPAY_SupplierPayment.dtCheckAdv.Clear();
                 for (int i = 0; i < grdAdvance.Rows.Count; i++)
                 {
@@ -305,7 +305,7 @@ namespace ROMS
                     MainForm.objPAY_SupplierPayment.varAdvanceID = AdvID;
                     //MainForm.objPAY_SupplierPayment.lblAdvance.Text = Convert.ToString(varAdvanceAmnt);
                     varGrandTotal = Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblSubtotal.Text) - Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblAdvance.Text);
-                    MainForm.objPAY_SupplierPayment.lblGrandTotal.Text = Convert.ToString(varGrandTotal);
+                    MainForm.objPAY_SupplierPayment.lblGrandTotal.Text =varGrandTotal.ToString("#,##0.00");
                     MainForm.objPAY_SupplierPayment.varAdvance = varAdvancePayAmnt;
                     MainForm.objPAY_SupplierPayment.btnApply.Enabled = true;
                     MainForm.objPAY_SupplierPayment.btnClear.Enabled = true;
