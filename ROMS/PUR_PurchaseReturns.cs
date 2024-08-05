@@ -2784,19 +2784,19 @@ namespace ROMS
                     }
                     else
                     {
-                        epReturnDc.SetError(txtQuantity, "Please enter valid quentity");
+                        epReturnDc.SetError(txtQuantity, "Please enter valid quantity");
                         txtQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpQTY.ShowAlways = true;
-                        tpQTY.Show("Please enter valid quentity", txtQuantity, 5000);
+                        tpQTY.Show("Please enter valid quantity", txtQuantity, 5000);
                         blnErrorFlag = true;
                     }
                 }
                 else
                 {
-                    epReturnDc.SetError(txtQuantity, "Please enter quentity");
+                    epReturnDc.SetError(txtQuantity, "Please enter quantity");
                     txtQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQTY.ShowAlways = true;
-                    tpQTY.Show("Please enter quentity", txtQuantity, 5000);
+                    tpQTY.Show("Please enter quantity", txtQuantity, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)

@@ -1117,10 +1117,10 @@ namespace ROMS
             {
                 if (txtRequiredQty.Text.Trim() == "")
                 {
-                    errStockRequest.SetError(txtRequiredQty, "Please enter quentity");
+                    errStockRequest.SetError(txtRequiredQty, "Please enter quantity");
                     txtRequiredQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRequiredQty.ShowAlways = true;
-                    tpRequiredQty.Show("Please enter quentity", txtRequiredQty, 5000);
+                    tpRequiredQty.Show("Please enter quantity", txtRequiredQty, 5000);
                 }
                 else
                 {
@@ -1289,10 +1289,10 @@ namespace ROMS
                 }
                 else
                 {
-                    errStockRequest.SetError(txtRequiredQty, "Please enter quentity");
+                    errStockRequest.SetError(txtRequiredQty, "Please enter quantity");
                     txtRequiredQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRequiredQty.ShowAlways = true;
-                    tpRequiredQty.Show("Please enter quentity", txtRequiredQty, 5000);
+                    tpRequiredQty.Show("Please enter quantity", txtRequiredQty, 5000);
                     blnErrorFlag = true;
                 }
                 if(Convert.ToDecimal(txtRequiredQty.Text.Trim())==0)
