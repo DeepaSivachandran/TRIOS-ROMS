@@ -1335,29 +1335,29 @@ namespace ROMS
                     }
                     else
                     {
-                        epDamageEntry.SetError(txtQuantity, "Please enter valid quentity");
+                        epDamageEntry.SetError(txtQuantity, "Please enter valid quantity");
                         txtQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpQuantity.ShowAlways = true;
-                        tpQuantity.Show("Please enter valid quentity", txtQuantity, 5000);
+                        tpQuantity.Show("Please enter valid quantity", txtQuantity, 5000);
                         blnErrorFlag = true;
                     }
                 }
                 else
                 {
-                    epDamageEntry.SetError(txtQuantity, "Please enter quentity");
+                    epDamageEntry.SetError(txtQuantity, "Please enter quantity");
                     txtQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQuantity.ShowAlways = true;
-                    tpQuantity.Show("Please enter quentity", txtQuantity, 5000);
+                    tpQuantity.Show("Please enter quantity", txtQuantity, 5000);
                     blnErrorFlag = true;
                 }
-                if(cmbSupplier.Text!="")
+                if(cmbSupplier.Text != "-Select-")
                 {
                     string varSupplier = Convert.ToString(cmbSupplier.SelectedValue);
                     string[] Result = varSupplier.Split('-');
                     lblSupplierCode.Text = Result[0];
                     lblScheduleCode.Text = Result[1];
                 }
-                if (cmbSupplier.Text != "")
+                if (cmbSupplier.Text != "-Select-")
                 {
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 40;
