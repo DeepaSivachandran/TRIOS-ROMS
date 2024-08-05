@@ -2282,9 +2282,9 @@ namespace ROMS
                     TRN_Supplier_Payment objTRN_Supplier_Payment = new TRN_Supplier_Payment();
                     objTRN_Supplier_Payment.ViewType = 2;
                     objTRN_Supplier_Payment.paraPYID = varSupplierPaymentID;
-                    objTRN_Supplier_Payment.paraSupplierid = Convert.ToInt32(varSupplierID);
-                    objTRN_Supplier_Payment.paraScheduleId = Convert.ToInt32(varSupplierScheduleID);
-                    objTRN_Supplier_Payment.paraCompanyId = Convert.ToInt32(varCompanyID);
+                    //objTRN_Supplier_Payment.paraSupplierid = Convert.ToInt32(varSupplierID);
+                    //objTRN_Supplier_Payment.paraScheduleId = Convert.ToInt32(varSupplierScheduleID);
+                    //objTRN_Supplier_Payment.paraCompanyId = Convert.ToInt32(varCompanyID);
                     objDs = objdserv.udfnGetSupplierPayment(objTRN_Supplier_Payment);
                     objdserv.CloseConnection();
                     if (objDs != null)
