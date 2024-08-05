@@ -975,7 +975,7 @@ namespace ROMS
                 //udfnSLocationValid();
                 lvDLocation.Items.Clear();
                 int varSLID = 0;
-                if(varLocation == "0")
+                if(txtSLocation.Text.Trim() != "")
                 {
                     varSLID = Convert.ToInt32(lblSLocation.Text);
                 }
