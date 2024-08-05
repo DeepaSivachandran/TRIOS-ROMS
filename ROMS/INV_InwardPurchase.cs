@@ -1382,9 +1382,9 @@ namespace ROMS
 
                                         if (varQty1 != Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty))
                                         {
-                                            //varQuantityErr++;
-                                            //grdGrnlist.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                            //grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                            varQuantityErr++;
+                                            grdInward.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                            grdInward.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
                                         }
                                     }
                                     if (varStockQty != 0)
