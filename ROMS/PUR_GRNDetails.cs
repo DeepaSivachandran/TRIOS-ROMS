@@ -69,7 +69,7 @@ namespace ROMS
                 objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (64) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
                 objDBind = null;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID =61 ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID =61 AND MSTID NOT IN (194) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbQtyType.SelectedValue = 202;
                 this.ActiveControl = txtProductName;
@@ -3029,10 +3029,12 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 193 || Convert.ToInt32(cmbQtyType.SelectedValue) == 194 || Convert.ToInt32(cmbQtyType.SelectedValue)==255 || Convert.ToInt32(cmbQtyType.SelectedValue) == 226)
+                //if (Convert.ToInt32(cmbQtyType.SelectedValue) == 193 || Convert.ToInt32(cmbQtyType.SelectedValue) == 194 || Convert.ToInt32(cmbQtyType.SelectedValue)==255 || Convert.ToInt32(cmbQtyType.SelectedValue) == 226)
+                //{
+                if (Convert.ToInt32(cmbQtyType.SelectedValue) != 202)
                 {
-                    lblQty.Text = cmbQtyType.Text; //+ " Qty";
-                    txtInvoiceQty.Enabled = true;
+                        lblQty.Text = "Mismatch Qty"; //+ " Qty";
+                        txtInvoiceQty.Enabled = true;
                 }
                 else
                 {
@@ -3040,6 +3042,14 @@ namespace ROMS
                     txtInvoiceQty.Enabled = false;
                     txtInvoiceQty.Text = "";
                 }
+                //if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202)
+                //{
+                //    lblQty.Text = "";
+                //}
+                //else
+                //{
+                //    lblQty.Text = "Mismatch Qty";
+                //}
                 if (Convert.ToString(cmbQtyType.SelectedValue) == "226" && Convert.ToString(cmbPONo.SelectedValue) == "215")
                 {
                     txtmrprate.Text = ""; //txtmrprate.Enabled = false; txtmrprate.ReadOnly = true;
@@ -3458,13 +3468,13 @@ namespace ROMS
                 if (Convert.ToInt32(cmbPONo.SelectedValue) == 215)
                 {
                     DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 AND MSTID NOT IN (227) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 AND MSTID NOT IN (227,194) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
                 else
                 {
                     DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 AND MSTID NOT IN (194) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
             }
@@ -5003,13 +5013,13 @@ namespace ROMS
                                 }
                             }
                         }
-                        else
-                        {
-                            if (objDS.Tables[2].Rows.Count > 0)
-                            {
-                                varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
-                            }
-                        }
+                        //else
+                        //{
+                        //    if (objDS.Tables[2].Rows.Count > 0)
+                        //    {
+                        //        //varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
+                        //    }
+                        //}
                     }
                     if(txtmrprate.Text.Trim()=="")
                     {
@@ -5124,8 +5134,10 @@ namespace ROMS
                                         txtInvoiceQty.Text = Qty;
                                     }
                                 }    
-                                if(varProConditionType==193 || varProConditionType == 194 || varProConditionType == 226 || varProConditionType == 225)
-                                {
+                                //if(varProConditionType==193 || varProConditionType == 194 || varProConditionType == 226 || varProConditionType == 225 || varProConditionType == 227)
+                                //{
+                                if(varProConditionType != 202)
+                                { 
                                     if (txtInvoiceQty.Text.Trim() != "")
                                     { varMismatchQty = Convert.ToDecimal(txtInvoiceQty.Text); }
                                 }
@@ -5188,7 +5200,7 @@ namespace ROMS
                                     cell.Style.ForeColor = Color.Black;
                                     cell.ReadOnly = true;
                                     DataGridView dataGridView1 = grdGrnlist;
-                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[""];
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceExpiry"];
                                     cell1.Style.BackColor = Color.LightGray;
                                     cell1.Style.ForeColor = Color.Black;
                                     cell1.ReadOnly = true;
@@ -5318,8 +5330,10 @@ namespace ROMS
                                         cell1.Style.ForeColor = Color.Black;
                                         cell1.ReadOnly = false;
                                     }
-                                    if (varProConditionType == 193 || varProConditionType == 194 || varProConditionType == 226 || varProConditionType == 225)
-                                    {
+                                    //if (varProConditionType == 193 || varProConditionType == 194 || varProConditionType == 226 || varProConditionType == 225 || varProConditionType == 227)
+                                    //{
+                                    if(varProConditionType!=202)
+                                    { 
                                         DataGridView dataGridView = grdGrnlist;
                                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMismatchQty"];
                                         cell.Style.BackColor = Color.PaleGreen;
@@ -5334,83 +5348,84 @@ namespace ROMS
                                         cell.Style.ForeColor = Color.Black;
                                         cell.ReadOnly = true;
                                     }
-                                    //if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202 || Convert.ToInt32(cmbQtyType.SelectedValue) == 226 || Convert.ToInt32(cmbQtyType.SelectedValue) == 227)
-                                    //{
-                                    //    DataGridView dataGridView = grdGrnlist;
-                                    //    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
-                                    //    cell.Style.BackColor = Color.LightGray;
-                                    //    cell.Style.ForeColor = Color.Black;
-                                    //    cell.ReadOnly = true;
-                                    //    DataGridView dataGridView1 = grdGrnlist;
-                                    //    DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
-                                    //    cell1.Style.BackColor = Color.LightGray;
-                                    //    cell1.Style.ForeColor = Color.Black;
-                                    //    cell1.ReadOnly = true;
-                                    //    DataGridView dataGridView2 = grdGrnlist;
-                                    //    DataGridViewCell cell2 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmDamageQty"];
-                                    //    cell2.Style.BackColor = Color.LightGray;
-                                    //    cell2.Style.ForeColor = Color.Black;
-                                    //    cell2.ReadOnly = true;
-                                    //}
-                                    //else
-                                    //{
-                                    //    DataGridView dataGridView1 = grdGrnlist;
-                                    //    DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
-                                    //    cell1.Style.BackColor = Color.PaleGreen;
-                                    //    cell1.Style.ForeColor = Color.Black;
-                                    //}
-                                    //    else if (Convert.ToInt32(cmbQtyType.SelectedValue) == 194)//Excess Qty
-                                    //    {
-                                    //        DataGridView dataGridView = grdGrnlist;
-                                    //        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
-                                    //        cell.Style.BackColor = Color.LightGray;
-                                    //        cell.Style.ForeColor = Color.Black;
-                                    //        cell.ReadOnly = true;
-                                    //        DataGridView dataGridView1 = grdGrnlist;
-                                    //        DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmDamageQty"];
-                                    //        cell1.Style.BackColor = Color.LightGray;
-                                    //        cell1.Style.ForeColor = Color.Black;
-                                    //        cell1.ReadOnly = true;
-                                    //    }
-                                    //    else if (Convert.ToInt32(cmbQtyType.SelectedValue) == 193) //Pending Qty
-                                    //    {
-                                    //        DataGridView dataGridView1 = grdGrnlist;
-                                    //        DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
-                                    //        cell1.Style.BackColor = Color.LightGray;
-                                    //        cell1.Style.ForeColor = Color.Black;
-                                    //        cell1.ReadOnly = true;
-                                    //        DataGridView dataGridView = grdGrnlist;
-                                    //        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmDamageQty"];
-                                    //        cell.Style.BackColor = Color.LightGray;
-                                    //        cell.Style.ForeColor = Color.Black;
-                                    //        cell.ReadOnly = true;
-                                    //    }
-                                    //    else if (Convert.ToInt32(cmbQtyType.SelectedValue) == 255) //Damage Qty
-                                    //    {
-                                    //        DataGridView dataGridView1 = grdGrnlist;
-                                    //        DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
-                                    //        cell1.Style.BackColor = Color.LightGray;
-                                    //        cell1.Style.ForeColor = Color.Black;
-                                    //        cell1.ReadOnly = true;
-                                    //        DataGridView dataGridView = grdGrnlist;
-                                    //        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
-                                    //        cell.Style.BackColor = Color.LightGray;
-                                    //        cell.Style.ForeColor = Color.Black;
-                                    //        cell.ReadOnly = true;
-                                    //    }
-                                    //}
-                                    //else
-                                    //{
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].ReadOnly = true;
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmmrp"].Style.BackColor = Color.LightGray;
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceBatch"].Style.BackColor = Color.LightGray;
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
-                                    //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightGray;
-                                    //}
+                                udfnrowclear();
+                                //if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202 || Convert.ToInt32(cmbQtyType.SelectedValue) == 226 || Convert.ToInt32(cmbQtyType.SelectedValue) == 227)
+                                //{
+                                //    DataGridView dataGridView = grdGrnlist;
+                                //    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
+                                //    cell.Style.BackColor = Color.LightGray;
+                                //    cell.Style.ForeColor = Color.Black;
+                                //    cell.ReadOnly = true;
+                                //    DataGridView dataGridView1 = grdGrnlist;
+                                //    DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
+                                //    cell1.Style.BackColor = Color.LightGray;
+                                //    cell1.Style.ForeColor = Color.Black;
+                                //    cell1.ReadOnly = true;
+                                //    DataGridView dataGridView2 = grdGrnlist;
+                                //    DataGridViewCell cell2 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmDamageQty"];
+                                //    cell2.Style.BackColor = Color.LightGray;
+                                //    cell2.Style.ForeColor = Color.Black;
+                                //    cell2.ReadOnly = true;
+                                //}
+                                //else
+                                //{
+                                //    DataGridView dataGridView1 = grdGrnlist;
+                                //    DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
+                                //    cell1.Style.BackColor = Color.PaleGreen;
+                                //    cell1.Style.ForeColor = Color.Black;
+                                //}
+                                //    else if (Convert.ToInt32(cmbQtyType.SelectedValue) == 194)//Excess Qty
+                                //    {
+                                //        DataGridView dataGridView = grdGrnlist;
+                                //        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
+                                //        cell.Style.BackColor = Color.LightGray;
+                                //        cell.Style.ForeColor = Color.Black;
+                                //        cell.ReadOnly = true;
+                                //        DataGridView dataGridView1 = grdGrnlist;
+                                //        DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmDamageQty"];
+                                //        cell1.Style.BackColor = Color.LightGray;
+                                //        cell1.Style.ForeColor = Color.Black;
+                                //        cell1.ReadOnly = true;
+                                //    }
+                                //    else if (Convert.ToInt32(cmbQtyType.SelectedValue) == 193) //Pending Qty
+                                //    {
+                                //        DataGridView dataGridView1 = grdGrnlist;
+                                //        DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
+                                //        cell1.Style.BackColor = Color.LightGray;
+                                //        cell1.Style.ForeColor = Color.Black;
+                                //        cell1.ReadOnly = true;
+                                //        DataGridView dataGridView = grdGrnlist;
+                                //        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmDamageQty"];
+                                //        cell.Style.BackColor = Color.LightGray;
+                                //        cell.Style.ForeColor = Color.Black;
+                                //        cell.ReadOnly = true;
+                                //    }
+                                //    else if (Convert.ToInt32(cmbQtyType.SelectedValue) == 255) //Damage Qty
+                                //    {
+                                //        DataGridView dataGridView1 = grdGrnlist;
+                                //        DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmExcessQty"];
+                                //        cell1.Style.BackColor = Color.LightGray;
+                                //        cell1.Style.ForeColor = Color.Black;
+                                //        cell1.ReadOnly = true;
+                                //        DataGridView dataGridView = grdGrnlist;
+                                //        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceQty"];
+                                //        cell.Style.BackColor = Color.LightGray;
+                                //        cell.Style.ForeColor = Color.Black;
+                                //        cell.ReadOnly = true;
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].ReadOnly = true;
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceQty"].Style.BackColor = Color.LightGray;
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmmrp"].Style.BackColor = Color.LightGray;
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceBatch"].Style.BackColor = Color.LightGray;
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
+                                //    grdGrnlist.Rows[grdGrnlist.Rows.Count - 1].Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightGray;
+                                //}
                                 //}
                             }
                             else
@@ -5420,7 +5435,7 @@ namespace ROMS
                                 //objDServ1.CloseConnection();
                                 //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                            udfnrowclear();
+                            //udfnrowclear();
                         }
                     }
                 }

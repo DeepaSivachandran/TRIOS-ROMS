@@ -1026,11 +1026,11 @@ namespace ROMS
                                             decimal varShQty = Convert.ToDecimal(grdInward.Rows[j].Cells["clmReceivedQty"].Value);
                                             string varSQty = string.Format("{0:0.00}", varShQty);
                                             string varSQty1 = string.Format("{0:G29}", decimal.Parse(varSQty));
-                                            if (Convert.ToString(grdInward.Rows[j].Cells["clmShopQty"].Value) != "" && Convert.ToInt32(varSQty1) < 1)
-                                            {
-                                                grdInward.Rows[j].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
-                                                varErrorFlag = false;
-                                            }
+                                            //if (Convert.ToString(grdInward.Rows[j].Cells["clmShopQty"].Value) != "" && Convert.ToInt32(varSQty1) < 1)
+                                            //{
+                                            //    grdInward.Rows[j].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                            //    varErrorFlag = false;
+                                            //}
                                         }
                                         if (Convert.ToString(grdInward.Rows[j].Cells["clmStatus"].Value)=="81")
                                         {
@@ -1329,19 +1329,19 @@ namespace ROMS
                                     {
                                         if (Convert.ToBoolean(grdInward.Rows[j].Cells["clmCheck"].Value) == true)
                                         {
-                                            if (Convert.ToString(grdInward.Rows[j].Cells["clmReceivedQty"].Value) != "")
-                                            {
-                                                if (Convert.ToDecimal(grdInward.Rows[j].Cells["clmReceivedQty"].Value) == 0)
-                                                {
-                                                    grdInward.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                                    varErrorFlag = false;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                grdInward.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                                varErrorFlag = false;
-                                            }
+                                            //if (Convert.ToString(grdInward.Rows[j].Cells["clmReceivedQty"].Value) != "")
+                                            //{
+                                            //    if (Convert.ToDecimal(grdInward.Rows[j].Cells["clmReceivedQty"].Value) == 0)
+                                            //    {
+                                            //        grdInward.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                            //        varErrorFlag = false;
+                                            //    }
+                                            //}
+                                            //else
+                                            //{
+                                            //    grdInward.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                            //    varErrorFlag = false;
+                                            //}
                                         }
                                     }
                                 }
