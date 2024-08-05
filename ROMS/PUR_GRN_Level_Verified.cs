@@ -104,6 +104,14 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
+                    if (lblVerified1.Text.Trim() == "" || lblVerified1.Text.Trim() == "0")
+                    {
+                        errVerified.SetError(txtVerified1, "Please enter valid verification detail.");
+                        txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpVerified1.ShowAlways = true;
+                        tpVerified1.Show("Please enter valid verification detail.", txtVerified1, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 if (Convert.ToString(txtVerified2.Text.Trim()) != "")
                 {
@@ -140,6 +148,14 @@ namespace ROMS
                             cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             blnErrorFlag = true;
                         }
+                    }
+                    if (lblVerified2.Text.Trim() == "" || lblVerified2.Text.Trim() == "0")
+                    {
+                        errVerified.SetError(txtVerified2, "Please enter valid verification detail.");
+                        txtVerified2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpVerified2.ShowAlways = true;
+                        tpVerified2.Show("Please enter valid verification detail.", txtVerified2, 5000);
+                        blnErrorFlag = true;
                     }
                 }
                 if (blnErrorFlag == false)
@@ -442,6 +458,7 @@ namespace ROMS
             try
             {
                 txtVerified1.BackColor = Color.White;
+                udfnVerificationValidation1();
             }
             catch (Exception ex)
             {
@@ -449,7 +466,68 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnVerificationValidation1()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnEmployeeList(12, txtVerified1.Text.Trim(), 0, "", 1, 0, 0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        { lblVerified1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMPID"]); }
+                        else
+                        {
+                            lblVerified1.Text = "0";
+                            errVerified.SetError(txtVerified1, "Please enter valid verification detail.");
+                            txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpVerified1.ShowAlways = true;
+                            tpVerified1.Show("Please enter valid verification detail.", txtVerified1, 5000);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerificationValidation2()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnEmployeeList(12, txtVerified2.Text.Trim(), 0, "", 1, 0, 0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        { lblVerified2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMPID"]); }
+                        else
+                        {
+                            lblVerified2.Text = "0";
+                            errVerified.SetError(txtVerified2, "Please enter valid verification detail.");
+                            txtVerified2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpVerified2.ShowAlways = true;
+                            tpVerified2.Show("Please enter valid verification detail.", txtVerified2, 5000);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtVerified1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -622,6 +700,7 @@ namespace ROMS
                     cmbFormat2.SelectedValue = "AM";
                     cmbFormat2.Enabled = true;
                 }
+                udfnVerificationValidation2();
             }
             catch (Exception ex)
             {

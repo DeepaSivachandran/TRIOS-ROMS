@@ -57,6 +57,17 @@ namespace ROMS
                     tpVerified1.Show("Please select verified by", txtVerified, 5000);
                     blnErrorFlag = true;
                 }
+                else
+                {
+                    if (lblVerified1.Text.Trim() == "" || lblVerified1.Text.Trim() == "0")
+                    {
+                        errVerified.SetError(txtVerified, "Please enter valid verification detail.");
+                        txtVerified.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpVerified1.ShowAlways = true;
+                        tpVerified1.Show("Please enter valid verification detail.", txtVerified, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (Convert.ToString(txtVerified.Text.Trim()) == "")
                 {
                     errVerified.SetError(txtVerified, "Please select verified by 1");
@@ -355,6 +366,7 @@ namespace ROMS
             try
             {
                 txtVerified.BackColor = Color.White;
+                udfnVerificationValidation();
             }
             catch (Exception ex)
             {
@@ -362,7 +374,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnVerificationValidation()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnEmployeeList(13, txtVerified.Text.Trim(), 0, "", 1, 0, 0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        { lblVerified1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMPID"]); }
+                        else
+                        {
+                            lblVerified1.Text = "0";
+                            errVerified.SetError(txtVerified, "Please enter valid verification detail.");
+                            txtVerified.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpVerified1.ShowAlways = true;
+                            tpVerified1.Show("Please enter valid verification detail.", txtVerified, 5000);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtVerified1_TextChanged(object sender, EventArgs e)
         {
             try
