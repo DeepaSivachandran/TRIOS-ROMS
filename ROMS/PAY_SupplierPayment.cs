@@ -1455,7 +1455,7 @@ namespace ROMS
                 varGrandTot = 0; varTotal = 0; varamt = 0; varReturnAmnt = 0; varDiscAmnt = 0; varSubtotal = 0;
                 bool varCheck = false;
                 decimal varResult = 0, CellAdvanceAmnt = 0;
-                lblAdvance.Text = Convert.ToString(varAdvanceAmnt);
+                lblAdvance.Text = varAdvanceAmnt.ToString("#,##0.00");
                 for (int i= 0; i < grdSupplierPayment.Rows.Count;i++)
                 {
                     if (Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmInvoiceAmnt"].Value)!="")
@@ -1857,7 +1857,7 @@ namespace ROMS
                             varGrandTotal = varGrandTotal - varTotal;
                             lblSubtotal.Text = varGrandTotal.ToString("#,##0.00");
                             decimal varAdvance = Convert.ToDecimal(lblAdvance.Text) - Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value);
-                            lblAdvance.Text = Convert.ToString(varAdvance);
+                            lblAdvance.Text = varAdvance.ToString("#,##0.00");
                             //grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value = 0.00;
                             //decimal varOverallGrand = Convert.ToDecimal(lblSubtotal.Text) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value);
                             //var sumOfAdvance = (from r in dtAdvance.AsEnumerable()
