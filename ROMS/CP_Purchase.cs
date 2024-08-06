@@ -1406,11 +1406,11 @@ namespace ROMS
                                 pbGRNNo= Convert.ToString(objDs.Tables[5].Rows[0]["GRNID"]);
                                 varGRNDate = Convert.ToString(objDs.Tables[5].Rows[0]["GRN_Date"]);
                             }
-                            else
-                            {
-                                grdGRN.Rows.Clear();
-                                grdGRN.Visible = false;
-                            }
+                            //else
+                            //{
+                            //    grdGRN.Rows.Clear();
+                            //    grdGRN.Visible = false;
+                            //}
                             if (objDs.Tables[0].Rows.Count != 0) //DETAILS LOAD
                             {
                                 cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_COMID"]);
@@ -1733,6 +1733,7 @@ namespace ROMS
                             if (objDs.Tables[4].Rows.Count != 0) //DC DETAILS LOAD
                             {
                                 grdDCVerificationDetails.Rows.Clear();
+                                grdDCVerificationDetails.BringToFront();
                                 lblFinishedNoRecord.Visible = false;
                                 for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
                                 {
@@ -1744,11 +1745,6 @@ namespace ROMS
                                 }
                                 grdReurnDC.Visible = true;
                                 varTypeErrId = Convert.ToString(objDs.Tables[4].Rows[0]["DCID"]);
-                            }
-                            else
-                            {
-                                grdReurnDC.Rows.Clear();
-                                grdReurnDC.Visible = false;
                             }
                             grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                             grdPODetails.Columns["clmRemovePO"].Visible = false;
@@ -2060,7 +2056,7 @@ namespace ROMS
                         grdReurnDC.Rows.Clear();
                         for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                         {
-                            lblNoRecordsFound.Visible = false; lblVerifyNorecord.Visible = false;
+                            lblNoRecordsFound.Visible = false; lblVerifyNorecord.Visible = false; grdReurnDC.BringToFront();
                             grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["DCNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["DCDate"]),
                                 Convert.ToString(objDs.Tables[1].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]) );
                             grdDCVerificationDetails.Rows.Add(objDs.Tables[1].Rows[i]["DCNo"], objDs.Tables[1].Rows[i]["DC Verification Details"]);
