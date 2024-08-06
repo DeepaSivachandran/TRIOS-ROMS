@@ -2890,10 +2890,10 @@ namespace ROMS
             {
                 if (txtInvoiceQty.Text.Trim() == "")
                 {
-                    errGRNDetails.SetError(txtInvoiceQty, "Please enter quentity");
+                    errGRNDetails.SetError(txtInvoiceQty, "Please enter quantity");
                     txtInvoiceQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpInvoiceQty.ShowAlways = true;
-                    tpInvoiceQty.Show("Please enter quentity", txtInvoiceQty, 5000);
+                    tpInvoiceQty.Show("Please enter quantity", txtInvoiceQty, 5000);
                 }
                 else
                 {

@@ -1765,6 +1765,7 @@ namespace ROMS
                             objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
                             objTRN_ReturnDC.paraOriginator = varorginator;
                             objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                            objTRN_ReturnDC.ParaSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
                             objTRN_ReturnDC.paraDeleteFlag = 0;
                             SPDataService objspdservice = new SPDataService();
                             result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);

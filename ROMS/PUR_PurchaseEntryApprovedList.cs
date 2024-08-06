@@ -306,6 +306,8 @@ namespace ROMS
                             { DGV_SearchGrid.Rows[0].Cells[i].ReadOnly = false; }
                         }
                         DGV_SearchGrid.Columns[0].ReadOnly = true;
+                        DGV_SearchGrid.Columns[1].ReadOnly = true;
+                        DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     }
                 }
             }

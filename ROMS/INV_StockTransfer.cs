@@ -975,7 +975,7 @@ namespace ROMS
                 //udfnSLocationValid();
                 lvDLocation.Items.Clear();
                 int varSLID = 0;
-                if(varLocation == "0")
+                if(txtSLocation.Text.Trim() != "")
                 {
                     varSLID = Convert.ToInt32(lblSLocation.Text);
                 }
@@ -1529,10 +1529,10 @@ namespace ROMS
             {
                 if(txtQuantity.Text.Trim()=="")
                 {
-                    errStockTransfer.SetError(txtQuantity, "Please enter quentity");
+                    errStockTransfer.SetError(txtQuantity, "Please enter quantity");
                     txtQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpTransferQty.ShowAlways = true;
-                    tpTransferQty.Show("Please enter quentity", txtQuantity, 5000);
+                    tpTransferQty.Show("Please enter quantity", txtQuantity, 5000);
                 }
                 else
                 {
@@ -1750,19 +1750,19 @@ namespace ROMS
                     }
                     else
                     {
-                        errStockTransfer.SetError(txtQuantity, "Please enter valid quentity");
+                        errStockTransfer.SetError(txtQuantity, "Please enter valid quantity");
                         txtQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpTransferQty.ShowAlways = true;
-                        tpTransferQty.Show("Please enter valid quentity", txtQuantity, 5000);
+                        tpTransferQty.Show("Please enter valid quantity", txtQuantity, 5000);
                         blnErrorFlag = true;
                     }
                 }
                 else
                 {
-                    errStockTransfer.SetError(txtQuantity, "Please enter quentity");
+                    errStockTransfer.SetError(txtQuantity, "Please enter quantity");
                     txtQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpTransferQty.ShowAlways = true;
-                    tpTransferQty.Show("Please enter quentity", txtQuantity, 5000);
+                    tpTransferQty.Show("Please enter quantity", txtQuantity, 5000);
                     blnErrorFlag = true;
                 }
                 

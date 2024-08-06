@@ -2953,7 +2953,7 @@ namespace ROMS
                         varExpiryDate = varDay + "/" + varMonth + "/" + varYear;
                     }
                     MR_Master objMR_Master = new MR_Master();
-                    objMR_Master.ViewType = 5;
+                    objMR_Master.ViewType = 10;
                     objMR_Master.paraDate = dpInwardDate.Text.Trim();
                     objMR_Master.ParaExpiryDate = varExpiryDate;
                     objMR_Master.paraProductId = Convert.ToInt32(varPRID);
