@@ -449,6 +449,13 @@ namespace ROMS
                 DGV_SearchGrid.Columns["SP_SupplierType"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_OrderType"].Visible = false;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PendingFlag"].Visible = false;
+                DGV_SearchGrid.Columns["DraftFlag"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_Payment_StsID"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_LastTransNo"].Visible = false;
+                DGV_SearchGrid.Columns["GRN_Created"].Visible = false;
+                DGV_SearchGrid.Columns["Completed"].Visible = false;
+                DGV_SearchGrid.Columns["PURREDCID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN_INVSTSID"].Visible = false;
                 DGV_SearchGrid.Columns["GRN Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;

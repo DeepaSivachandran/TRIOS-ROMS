@@ -152,6 +152,9 @@ namespace ROMS
                 {
                     btnSave.Enabled = true;
                 }
+                btnSave.Enabled = false;
+                txtRemark.Enabled = false;
+                txtRemark.ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -298,13 +301,13 @@ namespace ROMS
             {
 
                 //dpissuedateandtime.Enabled = true;
-                txtIssuedBy.Enabled = true;
-                txtissuemodevalue.Enabled = true;
-                txtTurnAroundTime.Enabled = true;
-                cmbIssueMode.Enabled = true;
-                txtIssuedBy.ReadOnly = false;
-                txtissuemodevalue.ReadOnly = false;
-                txtTurnAroundTime.ReadOnly = false;
+                //txtIssuedBy.Enabled = true;
+                //txtissuemodevalue.Enabled = true;
+                //txtTurnAroundTime.Enabled = true;
+                //cmbIssueMode.Enabled = true;
+                //txtIssuedBy.ReadOnly = false;
+                //txtissuemodevalue.ReadOnly = false;
+                //txtTurnAroundTime.ReadOnly = false;
                 if (VarStatusId != 12)
                 {
                     dpissuedateandtime.Enabled = false;
@@ -872,7 +875,7 @@ namespace ROMS
                                                 }
                                                 //if (dpissuedateandtime.Enabled == true)
                                                 //{
-                                                    issuedon();
+                                                    //issuedon();
                                                 //}
                                                 if (chkStatus.Checked==false)
                                                 {
@@ -3267,10 +3270,15 @@ namespace ROMS
                 if(chkStatus.Checked == true)
                 {
                     btnSave.Enabled = true;
+                    txtRemark.Enabled = true;
+                    txtRemark.ReadOnly = false;
                 }
                 else
                 {
                     btnSave.Enabled = false;
+                    txtRemark.Enabled = false;
+                    txtRemark.ReadOnly = true;
+                    txtRemark.Text = "";
                 }
             }
             catch (Exception ex)
