@@ -1128,9 +1128,9 @@
             this.lblQty.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQty.Location = new System.Drawing.Point(616, 3);
             this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(24, 17);
+            this.lblQty.Size = new System.Drawing.Size(74, 17);
             this.lblQty.TabIndex = 111111147;
-            this.lblQty.Text = "Qty";
+            this.lblQty.Text = "Mismatch Qty";
             // 
             // txtInvoiceQty
             // 
@@ -2842,7 +2842,6 @@
             this.grdGRN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGRN.Size = new System.Drawing.Size(352, 122);
             this.grdGRN.TabIndex = 111111139;
-            this.grdGRN.Visible = false;
             this.grdGRN.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRN_CellContentDoubleClick);
             // 
             // clmGRNDate
@@ -4030,7 +4029,7 @@
             // clmInwardDate
             // 
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightGray;
             this.clmInwardDate.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmInwardDate.HeaderText = "Inward Date";
             this.clmInwardDate.Name = "clmInwardDate";

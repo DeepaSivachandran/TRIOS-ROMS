@@ -284,6 +284,7 @@ namespace ROMS
                         if (MainForm.objCP_Purchase.grdPODetails.Rows.Count > 0)
                         {
                             MainForm.objCP_Purchase.lblFinishedNoRecord.Visible = false;
+                            MainForm.objCP_Purchase.lblPOnorecord.Visible = false;
                         }
                         else
                         {

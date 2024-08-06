@@ -45,13 +45,24 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false; errVerified.Clear();
-                if (Convert.ToString(txtVerified.Text.Trim()) == "")
+                if (Convert.ToString(txtVerified.Text.Trim()) == "" )
                 {
                     errVerified.SetError(txtVerified, "Please select verified by 1");
                     txtVerified.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpVerified1.ShowAlways = true;
                     tpVerified1.Show("Please select verified by", txtVerified, 5000);
                     blnErrorFlag = true;
+                }
+                else
+                {
+                    if( lblVerified1.Text.Trim()=="" ||  lblVerified1.Text.Trim()=="0")
+                    {
+                        errVerified.SetError(txtVerified, "Please enter valid verification detail.");
+                        txtVerified.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpVerified1.ShowAlways = true;
+                        tpVerified1.Show("Please enter valid verification detail.", txtVerified, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 if (Convert.ToString(txtVerified.Text.Trim()) == "")
                 {
@@ -196,24 +207,25 @@ namespace ROMS
         {
             try
             {
-                dpVerified.MinDate = MainForm.pbFYStartDate;
-                dpVerified.MaxDate = MainForm.pbCurrentDate;
-                MR_Master objMR_Master = new MR_Master();
-                objMR_Master.ViewType = 19;
-                SPDataService objDServ = new SPDataService();
-                DataSet objd = new DataSet();
-                objd = objDServ.udfnMaster(objMR_Master);
-                if (objd.Tables[0].Rows.Count > 0)
-                {
-                    DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    dpVerified.MaxDate = varmaxDate;
-                    dpVerified.MinDate = varminDate;
-                }
-                objDServ.CloseConnection();
                 udfnEditload();
                 if (txtVerified.Text.Trim() == "")
-                { cmbFormat.SelectedIndex = 0; }
+                { cmbFormat.SelectedIndex = 0; 
+                    dpVerified.MinDate = MainForm.pbFYStartDate;
+                    dpVerified.MaxDate = MainForm.pbCurrentDate;
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 19;
+                    SPDataService objDServ = new SPDataService();
+                    DataSet objd = new DataSet();
+                    objd = objDServ.udfnMaster(objMR_Master);
+                    if (objd.Tables[0].Rows.Count > 0)
+                    {
+                        DateTime varminDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MinDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        dpVerified.MaxDate = varmaxDate;
+                        dpVerified.MinDate = varminDate;
+                    }
+                    objDServ.CloseConnection();
+                }
             }
             catch (Exception ex)
             {
@@ -307,6 +319,38 @@ namespace ROMS
             try
             {
                 txtVerified.BackColor = Color.White;
+                udfnVerificationValidation();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerificationValidation()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnEmployeeList(14, txtVerified.Text.Trim(), 0, "", 1, 0, 0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        { lblVerified1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMPID"]); }
+                        else
+                        {
+                            lblVerified1.Text = "0";
+                            errVerified.SetError(txtVerified, "Please enter valid verification detail.");
+                            txtVerified.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpVerified1.ShowAlways = true;
+                            tpVerified1.Show("Please enter valid verification detail.", txtVerified, 5000);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

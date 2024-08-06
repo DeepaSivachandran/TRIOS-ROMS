@@ -407,8 +407,11 @@ namespace ROMS
                                     string varPICode = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmPICode"].Value);
                                     string varPTName = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmProductName"].Value);
                                     string varMRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
+                                    string varInvMRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceMRP"].Value);
                                     string varExpiryDate = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
-                                    string varBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
+                                    string varInvExpiryDate = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceExpiryDate"].Value);
+                                    string varBatchNo = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
+                                    string varInvBatchNo = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceBatchNo"].Value);
                                     string varPendingQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmQty"].Value);
                                     string varReceivedQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmReceivedQty"].Value);
                                     string varShopQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShopQty"].Value);
@@ -455,7 +458,7 @@ namespace ROMS
                                     }
                                     dtInwardPurchase.Rows.Add(value, Convert.ToInt32(varSno), varConvertType, varChildRowNo, Convert.ToInt32(varPRID), Convert.ToInt32(varUTID), 0, 0, Convert.ToInt32(0), varExpiryDate, varBatchNo, Convert.ToDecimal(0), varGRN_DC_PUR_ID, varclmMRPFlag, varclmShelflifeStatus, varclmBatchNoStatus, varclmBatchGeneration,varPRStatus,0,Convert.ToInt32(varShelflifeValue),Convert.ToInt32(varShelflifeType),Convert.ToInt32(varActualLife),Convert.ToInt32(varShelfStatus),Convert.ToDecimal(varShelflifePer));
 
-                                        grdInward.Rows.Add(false, null, "", varPICode, varPTName, varMRP, varExpiryDate, varBatchNo,
+                                        grdInward.Rows.Add(false, null, "", varPICode, varPTName, varMRP, varInvMRP, varExpiryDate, varInvExpiryDate,varBatchNo,varInvBatchNo,
                                      varPendingQty,0, varReceivedQty, varShopQty, varUnit, varRack, varPRID, varSLID, 0, varUTID, varGRN_DC_PUR_ID, varUT_Decimal, varRackCount, varConvertType, Convert.ToString(varChildRowNo),0, varclmBatchNoStatus, varclmBatchGeneration, varclmShelflifeStatus, varclmMRPFlag, varclmDisable, 0, varSno,0,0,0, Convert.ToInt32(varActualLife), Convert.ToDecimal(varShelflifePer), Convert.ToInt32(varShelflifeValue), Convert.ToInt32(varShelfStatus), Convert.ToInt32(varShelflifeType));
 
                                     DataGridView dataGridView = grdInward;
@@ -470,47 +473,55 @@ namespace ROMS
                                     {
                                         DataGridView dataGridView1 = grdInward;
                                         DataGridViewCell cell1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmMRP"];
+                                        DataGridViewCell cellInvMrp = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["clmInvoiceMRP"];
                                         if (varclmMRPFlag == "1")
                                         {
                                             cell1.Style.BackColor = Color.PaleGreen;
                                             cell1.Style.ForeColor = Color.Black;
                                             cell1.ReadOnly = false;
+                                            cellInvMrp.Style.BackColor = Color.PaleGreen;
+                                            cellInvMrp.Style.ForeColor = Color.Black;
+                                            cellInvMrp.ReadOnly = false;
                                         }
                                         else
                                         {
                                             cell1.Style.BackColor = Color.LightGray;
                                             cell1.Style.ForeColor = Color.Black;
                                             cell1.ReadOnly = true;
+                                            cellInvMrp.Style.BackColor = Color.LightGray;
+                                            cellInvMrp.Style.ForeColor = Color.Black;
+                                            cellInvMrp.ReadOnly = true;
                                         }
                                         //Expiry Date
                                         DataGridView dataGridView2 = grdInward;
                                         DataGridViewCell cell2 = dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells["clmExpiryDate"];
+                                        DataGridViewCell cellInvExpiryDate = dataGridView2.Rows[dataGridView2.Rows.Count - 1].Cells["clmInvoiceExpiryDate"];
                                         if (varclmShelflifeStatus == "1")
                                         {
-                                            cell2.Style.BackColor = Color.PaleGreen;
-                                            cell2.Style.ForeColor = Color.Black;
-                                            cell2.ReadOnly = false;
+                                            cell2.Style.BackColor = Color.PaleGreen; cell2.Style.ForeColor = Color.Black;   cell2.ReadOnly = false;
+                                            cellInvExpiryDate.Style.BackColor = Color.PaleGreen; cellInvExpiryDate.Style.ForeColor = Color.Black; cellInvExpiryDate.ReadOnly = false;
                                         }
                                         else
                                         {
-                                            cell2.Style.BackColor = Color.LightGray;
-                                            cell2.Style.ForeColor = Color.Black;
-                                            cell2.ReadOnly = true;
+                                            cell2.Style.BackColor = Color.LightGray;  cell2.Style.ForeColor = Color.Black;   cell2.ReadOnly = true;
+                                            cellInvExpiryDate.Style.BackColor = Color.LightGray; cellInvExpiryDate.Style.ForeColor = Color.Black; cellInvExpiryDate.ReadOnly = true;
                                         }
                                         //Batch No
                                         DataGridView dataGridView3 = grdInward;
                                         DataGridViewCell cell3 = dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells["clmBatchNo"];
+                                        DataGridViewCell cellInvBatchNo = dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells["clmInvoiceBatchNo"];
                                         if (varclmBatchNoStatus == "72" && varclmBatchGeneration == "75")
                                         {
-                                            cell3.Style.BackColor = Color.PaleGreen;
-                                            cell3.Style.ForeColor = Color.Black;
-                                            cell3.ReadOnly = false;
+                                            cell3.Style.BackColor = Color.PaleGreen;   cell3.Style.ForeColor = Color.Black;   cell3.ReadOnly = false;
+                                            cellInvBatchNo.Style.BackColor = Color.PaleGreen; cellInvBatchNo.Style.ForeColor = Color.Black; cellInvBatchNo.ReadOnly = false;
                                         }
                                         else
                                         {
-                                            cell3.Style.BackColor = Color.LightGray;
-                                            cell3.Style.ForeColor = Color.Black;
-                                            cell3.ReadOnly = true;
+                                            if(varclmBatchGeneration=="74")
+                                            { cell3.Value= Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value); }
+                                            { cellInvBatchNo.Value= Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceBatchNo"].Value); }
+                                            cell3.Style.BackColor = Color.LightGray;  cell3.Style.ForeColor = Color.Black;   cell3.ReadOnly = true;
+                                            cellInvBatchNo.Style.BackColor = Color.LightGray; cellInvBatchNo.Style.ForeColor = Color.Black; cellInvBatchNo.ReadOnly = true;
                                         }
                                     }
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
