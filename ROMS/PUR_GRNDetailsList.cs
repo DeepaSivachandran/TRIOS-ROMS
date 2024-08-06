@@ -254,7 +254,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "","");
+                objDs = objdserv.udfnGrnListLoad(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "","", 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1783,7 +1783,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(10, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "","");
+                objDs = objdserv.udfnGrnListLoad(10, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbstatus.SelectedValue), Convert.ToInt32(cmbOrdertype.SelectedValue), "", "", 0, 0, "0", "","", 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -2135,7 +2135,7 @@ namespace ROMS
                     int varPrint = 0;
                     DataSet objDs = new DataSet();
                     SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnGrnListLoad(13, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "0", "", varGrnId);
+                    objDs = objdserv.udfnGrnListLoad(13, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "0", "", varGrnId, 0, 0, 0, 0);
                     objdserv.CloseConnection();
                     if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                     if (varPrint == 1)
@@ -2217,7 +2217,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(12, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "0", "", "");
+                objDs = objdserv.udfnGrnListLoad(12, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "0", "", "", 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

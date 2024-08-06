@@ -483,6 +483,55 @@
     <Compile Include="PUR_ReturnDCApprovedList.designer.cs">
       <DependentUpon>PUR_ReturnDCApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_Assigned_Products.cs">
+      <DependentUpon>RPT_Assigned_Products.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Unassigned_Products.cs">
+      <DependentUpon>RPT_Unassigned_Products.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_SupplierWise_Products.cs">
+      <DependentUpon>RPT_SupplierWise_Products.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_GRNDetails.cs">
+      <DependentUpon>RPT_GRNDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_GRN_Defect_Product.cs">
+      <DependentUpon>RPT_GRN_Defect_Product.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_GRN_Supplier_Detail.cs">
+      <DependentUpon>RPT_GRN_Supplier_Detail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_GRN_Batch_Detail.cs">
+      <DependentUpon>RPT_GRN_Batch_Detail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_DC.cs">
       <DependentUpon>RPT_PUR_DC.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -628,6 +677,13 @@
     </Compile>
     <Compile Include="Reports\RPT_PUR_GRNDetailsBillPrint.cs">
       <DependentUpon>RPT_PUR_GRNDetailsBillPrint.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_GRNSummary.cs">
+      <DependentUpon>RPT_GRNSummary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1039,6 +1095,36 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="REPORT_GRN_Defect_Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_GRN_Defect_Product.designer.cs">
+      <DependentUpon>REPORT_GRN_Defect_Product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_GRN_Supplier_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_GRN_Supplier_Detail.designer.cs">
+      <DependentUpon>REPORT_GRN_Supplier_Detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_GRN_Batch_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_GRN_Batch_Detail.designer.cs">
+      <DependentUpon>REPORT_GRN_Batch_Detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_GRN_Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_GRN_Details.designer.cs">
+      <DependentUpon>REPORT_GRN_Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_GRNSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_GRNSummary.designer.cs">
+      <DependentUpon>REPORT_GRNSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_PUR_Purchaseorder_Summary.cs">
       <SubType>Form</SubType>
@@ -2413,6 +2499,41 @@
       <LastGenOutput>RPT_CP_Product_StockLocation_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Assigned_Products.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Assigned_Products.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Unassigned_Products.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Unassigned_Products.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_SupplierWise_Products.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SupplierWise_Products.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_GRNDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GRNDetails.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_GRN_Defect_Product.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GRN_Defect_Product.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_GRN_Supplier_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GRN_Supplier_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_GRN_Batch_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GRN_Batch_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_HDFC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_HDFC.cs</LastGenOutput>
@@ -2449,6 +2570,11 @@
     <EmbeddedResource Include="Reports\RPT_PUR_GRNDetailsBillPrint.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_GRNDetailsBillPrint.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_GRNSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_GRNSummary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_GRNDetailsListPrint.rpt">
@@ -2690,6 +2816,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_GRN_Defect_Product.resx">
+      <DependentUpon>REPORT_GRN_Defect_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_GRN_Supplier_Detail.resx">
+      <DependentUpon>REPORT_GRN_Supplier_Detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_GRN_Batch_Detail.resx">
+      <DependentUpon>REPORT_GRN_Batch_Detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_GRN_Details.resx">
+      <DependentUpon>REPORT_GRN_Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_GRNSummary.resx">
+      <DependentUpon>REPORT_GRNSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_Purchaseorder_Summary.resx">
       <DependentUpon>REPORT_PUR_Purchaseorder_Summary.cs</DependentUpon>

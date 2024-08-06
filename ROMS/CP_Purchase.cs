@@ -5972,7 +5972,7 @@ namespace ROMS
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "","");
+                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "","",0,0,0,0);
                                     objdserv.CloseConnection();
                                     if (objDs != null)
                                     {
@@ -6096,7 +6096,7 @@ namespace ROMS
                                 {
                                     varshelflife = cellValue.ToString();
                                     if (varshelflife != "" || varshelflife != null)
-                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "","");
+                                        objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, varshelflife, varEntryTypeDate, varCellprodid, 0, "0", "","",0,0,0, 0);
                                     objdserv.CloseConnection();
                                 }
                             }
@@ -10403,7 +10403,7 @@ namespace ROMS
                     string varQRCode = "";
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objdserv.udfnGrnListLoad(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "", txtQRCode.Text.Trim(),"");
+                    objDs = objdserv.udfnGrnListLoad(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedule.Text), 0, 0, "", "", 0, 0, 0, "", "", 0, 0, "", txtQRCode.Text.Trim(),"", 0, 0, 0, 0);
                     objdserv.CloseConnection();
                     varGrnId = Convert.ToInt32(objDs.Tables[0].Rows[0]["GRNID"]);
                     if (varGrnId == -1)

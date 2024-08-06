@@ -218,6 +218,11 @@ namespace ROMS
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
         public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
+        public static REPORT_GRNSummary objREPORT_GRNSummary;
+        public static REPORT_GRN_Details objREPORT_GRN_Details;
+        public static REPORT_GRN_Batch_Detail objREPORT_GRN_Batch_Detail;
+        public static REPORT_GRN_Supplier_Detail objREPORT_GRN_Supplier_Detail;
+        public static REPORT_GRN_Defect_Product objREPORT_GRN_Defect_Product;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2288,6 +2293,93 @@ namespace ROMS
                 MainForm.objPAY_BlockedSupplier.MdiParent = this;
                 MainForm.objPAY_BlockedSupplier.Show();
                 PbCurrentForm = "4.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GRNSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRNSummary = new REPORT_GRNSummary();
+                MainForm.objREPORT_GRNSummary.MdiParent = this;
+                MainForm.objREPORT_GRNSummary.Show();
+                PbCurrentForm = "7.4.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TSMGRNDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRN_Details = new REPORT_GRN_Details();
+                MainForm.objREPORT_GRN_Details.MdiParent = this;
+                MainForm.objREPORT_GRN_Details.Show();
+                PbCurrentForm = "7.4.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GRNBatchDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRN_Batch_Detail = new REPORT_GRN_Batch_Detail();
+                MainForm.objREPORT_GRN_Batch_Detail.MdiParent = this;
+                MainForm.objREPORT_GRN_Batch_Detail.Show();
+                PbCurrentForm = "7.4.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GRNSupplierDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRN_Supplier_Detail = new REPORT_GRN_Supplier_Detail();
+                MainForm.objREPORT_GRN_Supplier_Detail.MdiParent = this;
+                MainForm.objREPORT_GRN_Supplier_Detail.Show();
+                PbCurrentForm = "7.4.4";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GRNDefectProductToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_GRN_Defect_Product = new REPORT_GRN_Defect_Product();
+                MainForm.objREPORT_GRN_Defect_Product.MdiParent = this;
+                MainForm.objREPORT_GRN_Defect_Product.Show();
+                PbCurrentForm = "7.4.5";
             }
             catch (Exception ex)
             {

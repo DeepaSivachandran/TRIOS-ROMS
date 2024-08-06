@@ -3937,7 +3937,7 @@ namespace ROMS
                             {
                                 varExpiryDate = cellValue.ToString();
                                 if (varExpiryDate != "" || varExpiryDate != null)
-                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", 0, 0, 0, varExpiryDate, dpDCDate.Text, varCellprodid, 0, "0","", "");
+                                    objDs = objdserv.udfnGrnListLoad(3, 0, 0, 0, 0, "", "", 0, 0, 0, varExpiryDate, dpDCDate.Text, varCellprodid, 0, "0","", "", 0, 0, 0, 0);
                                 objdserv.CloseConnection();
                                 if (objDs != null)
                                 {
