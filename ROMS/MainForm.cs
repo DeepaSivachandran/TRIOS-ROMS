@@ -220,6 +220,9 @@ namespace ROMS
         public static REPORT_GRN_Batch_Detail objREPORT_GRN_Batch_Detail;
         public static REPORT_GRN_Supplier_Detail objREPORT_GRN_Supplier_Detail;
         public static REPORT_GRN_Defect_Product objREPORT_GRN_Defect_Product;
+        public static REPORT_SupplierWiseProduct objREPORT_SupplierWiseProduct;
+        public static REPORT_Unassigned_Products objREPORT_Unassigned_Products;
+        public static REPORT_Assigned_Products objREPORT_Assigned_Products;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2377,6 +2380,60 @@ namespace ROMS
                 MainForm.objREPORT_GRN_Defect_Product.MdiParent = this;
                 MainForm.objREPORT_GRN_Defect_Product.Show();
                 PbCurrentForm = "7.4.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void SupplierWiseProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_SupplierWiseProduct = new REPORT_SupplierWiseProduct();
+                MainForm.objREPORT_SupplierWiseProduct.MdiParent = this;
+                MainForm.objREPORT_SupplierWiseProduct.Show();
+                PbCurrentForm = "7.5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void UnassignedProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Unassigned_Products = new REPORT_Unassigned_Products();
+                MainForm.objREPORT_Unassigned_Products.MdiParent = this;
+                MainForm.objREPORT_Unassigned_Products.Show();
+                PbCurrentForm = "7.5.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void AssignedProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Assigned_Products = new REPORT_Assigned_Products();
+                MainForm.objREPORT_Assigned_Products.MdiParent = this;
+                MainForm.objREPORT_Assigned_Products.Show();
+                PbCurrentForm = "7.5.2";
             }
             catch (Exception ex)
             {

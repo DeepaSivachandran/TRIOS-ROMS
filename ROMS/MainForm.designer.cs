@@ -130,6 +130,7 @@ namespace ROMS
             this.TSMGRNDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNBatchDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNSupplierDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gRNDefectProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -138,7 +139,10 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gRNDefectProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierWiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierWiseProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignedProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unassignedProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -779,7 +783,8 @@ namespace ROMS
             this.stockReportToolStripMenuItem,
             this.itemMovementAnalysisToolStripMenuItem,
             this.purchaseOrderToolStripMenuItem,
-            this.TSMGRNReport});
+            this.TSMGRNReport,
+            this.supplierWiseReportToolStripMenuItem});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -809,91 +814,91 @@ namespace ROMS
             // cityToolStripMenuItem
             // 
             this.cityToolStripMenuItem.Name = "cityToolStripMenuItem";
-            this.cityToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.cityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cityToolStripMenuItem.Text = "City";
             this.cityToolStripMenuItem.Click += new System.EventHandler(this.CityToolStripMenuItem_Click);
             // 
             // stateToolStripMenuItem
             // 
             this.stateToolStripMenuItem.Name = "stateToolStripMenuItem";
-            this.stateToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.stateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stateToolStripMenuItem.Text = "State";
             this.stateToolStripMenuItem.Click += new System.EventHandler(this.StateToolStripMenuItem_Click_1);
             // 
             // companyToolStripMenuItem
             // 
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
-            this.companyToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.companyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.companyToolStripMenuItem.Text = "Company";
             this.companyToolStripMenuItem.Click += new System.EventHandler(this.CompanyToolStripMenuItem_Click);
             // 
             // hSNToolStripMenuItem
             // 
             this.hSNToolStripMenuItem.Name = "hSNToolStripMenuItem";
-            this.hSNToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.hSNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hSNToolStripMenuItem.Text = "HSN";
             this.hSNToolStripMenuItem.Click += new System.EventHandler(this.HSNToolStripMenuItem_Click);
             // 
             // productGroupToolStripMenuItem
             // 
             this.productGroupToolStripMenuItem.Name = "productGroupToolStripMenuItem";
-            this.productGroupToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.productGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.productGroupToolStripMenuItem.Text = "Product Group";
             this.productGroupToolStripMenuItem.Click += new System.EventHandler(this.ProductGroupToolStripMenuItem_Click);
             // 
             // brokerToolStripMenuItem
             // 
             this.brokerToolStripMenuItem.Name = "brokerToolStripMenuItem";
-            this.brokerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.brokerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.brokerToolStripMenuItem.Text = "Broker";
             this.brokerToolStripMenuItem.Click += new System.EventHandler(this.BrokerToolStripMenuItem_Click);
             // 
             // brandToolStripMenuItem
             // 
             this.brandToolStripMenuItem.Name = "brandToolStripMenuItem";
-            this.brandToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.brandToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.brandToolStripMenuItem.Text = "Brand";
             this.brandToolStripMenuItem.Click += new System.EventHandler(this.BrandToolStripMenuItem_Click);
             // 
             // productSubgroupToolStripMenuItem
             // 
             this.productSubgroupToolStripMenuItem.Name = "productSubgroupToolStripMenuItem";
-            this.productSubgroupToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.productSubgroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.productSubgroupToolStripMenuItem.Text = "Product Subgroup";
             this.productSubgroupToolStripMenuItem.Click += new System.EventHandler(this.ProductSubgroupToolStripMenuItem_Click);
             // 
             // stockLocationToolStripMenuItem
             // 
             this.stockLocationToolStripMenuItem.Name = "stockLocationToolStripMenuItem";
-            this.stockLocationToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.stockLocationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stockLocationToolStripMenuItem.Text = "Stock Location";
             this.stockLocationToolStripMenuItem.Click += new System.EventHandler(this.StockLocationToolStripMenuItem_Click);
             // 
             // rackToolStripMenuItem
             // 
             this.rackToolStripMenuItem.Name = "rackToolStripMenuItem";
-            this.rackToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.rackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rackToolStripMenuItem.Text = "Rack";
             this.rackToolStripMenuItem.Click += new System.EventHandler(this.RackToolStripMenuItem_Click);
             // 
             // rackGroupToolStripMenuItem
             // 
             this.rackGroupToolStripMenuItem.Name = "rackGroupToolStripMenuItem";
-            this.rackGroupToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.rackGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rackGroupToolStripMenuItem.Text = "Rack Group";
             this.rackGroupToolStripMenuItem.Click += new System.EventHandler(this.RackGroupToolStripMenuItem_Click);
             // 
             // supplierToolStripMenuItem
             // 
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.supplierToolStripMenuItem.Text = "Supplier";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.SupplierToolStripMenuItem_Click);
             // 
             // productToolStripMenuItem
             // 
             this.productToolStripMenuItem.Name = "productToolStripMenuItem";
-            this.productToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.productToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.productToolStripMenuItem.Text = "Product";
             this.productToolStripMenuItem.Click += new System.EventHandler(this.ProductToolStripMenuItem_Click);
             // 
@@ -982,6 +987,13 @@ namespace ROMS
             this.gRNSupplierDetailToolStripMenuItem.Text = "GRN Supplier Detail";
             this.gRNSupplierDetailToolStripMenuItem.Click += new System.EventHandler(this.GRNSupplierDetailToolStripMenuItem_Click);
             // 
+            // gRNDefectProductToolStripMenuItem
+            // 
+            this.gRNDefectProductToolStripMenuItem.Name = "gRNDefectProductToolStripMenuItem";
+            this.gRNDefectProductToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gRNDefectProductToolStripMenuItem.Text = "GRN Defect Product";
+            this.gRNDefectProductToolStripMenuItem.Click += new System.EventHandler(this.GRNDefectProductToolStripMenuItem_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1053,12 +1065,36 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // gRNDefectProductToolStripMenuItem
+            // supplierWiseReportToolStripMenuItem
             // 
-            this.gRNDefectProductToolStripMenuItem.Name = "gRNDefectProductToolStripMenuItem";
-            this.gRNDefectProductToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gRNDefectProductToolStripMenuItem.Text = "GRN Defect Product";
-            this.gRNDefectProductToolStripMenuItem.Click += new System.EventHandler(this.GRNDefectProductToolStripMenuItem_Click);
+            this.supplierWiseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.supplierWiseProductsToolStripMenuItem,
+            this.assignedProductsToolStripMenuItem,
+            this.unassignedProductsToolStripMenuItem});
+            this.supplierWiseReportToolStripMenuItem.Name = "supplierWiseReportToolStripMenuItem";
+            this.supplierWiseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.supplierWiseReportToolStripMenuItem.Text = "Supplier Wise Report";
+            // 
+            // supplierWiseProductsToolStripMenuItem
+            // 
+            this.supplierWiseProductsToolStripMenuItem.Name = "supplierWiseProductsToolStripMenuItem";
+            this.supplierWiseProductsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.supplierWiseProductsToolStripMenuItem.Text = "Supplier Wise Products";
+            this.supplierWiseProductsToolStripMenuItem.Click += new System.EventHandler(this.SupplierWiseProductsToolStripMenuItem_Click);
+            // 
+            // assignedProductsToolStripMenuItem
+            // 
+            this.assignedProductsToolStripMenuItem.Name = "assignedProductsToolStripMenuItem";
+            this.assignedProductsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.assignedProductsToolStripMenuItem.Text = "Assigned Products";
+            this.assignedProductsToolStripMenuItem.Click += new System.EventHandler(this.AssignedProductsToolStripMenuItem_Click);
+            // 
+            // unassignedProductsToolStripMenuItem
+            // 
+            this.unassignedProductsToolStripMenuItem.Name = "unassignedProductsToolStripMenuItem";
+            this.unassignedProductsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.unassignedProductsToolStripMenuItem.Text = "Unassigned Products";
+            this.unassignedProductsToolStripMenuItem.Click += new System.EventHandler(this.UnassignedProductsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1198,5 +1234,9 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem gRNBatchDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gRNSupplierDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gRNDefectProductToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supplierWiseReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supplierWiseProductsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assignedProductsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unassignedProductsToolStripMenuItem;
     }
 }
