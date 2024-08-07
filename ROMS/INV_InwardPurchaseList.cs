@@ -2038,16 +2038,16 @@ namespace ROMS
                 grdInwardList.Columns["Goods Inward Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdInwardList.Columns["Overall Status"].Frozen = true;
                 grdInwardList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardList.Columns["Inward No."].Frozen = true;
-                grdInwardList.Columns["Inward No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardList.Columns["Inward Date"].Frozen = true;
-                grdInwardList.Columns["Inward Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardList.Columns["Vouc No."].Frozen = true;
-                grdInwardList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardList.Columns["Vouc Date"].Frozen = true;
-                grdInwardList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdInwardList.Columns["Supplier"].Frozen = true;
-                grdInwardList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardList.Columns["Inward No."].Frozen = true;
+                //grdInwardList.Columns["Inward No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardList.Columns["Inward Date"].Frozen = true;
+                //grdInwardList.Columns["Inward Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardList.Columns["Vouc No."].Frozen = true;
+                //grdInwardList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardList.Columns["Vouc Date"].Frozen = true;
+                //grdInwardList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //grdInwardList.Columns["Supplier"].Frozen = true;
+                //grdInwardList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
                 for (int i = 0; i < grdInwardList.Rows.Count; i++)
                 {

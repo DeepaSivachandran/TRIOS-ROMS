@@ -341,42 +341,53 @@ namespace ROMS
         }
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (lblNoRecordsFound.Visible == false)
+            try
             {
-                DataGridViewColumn newColumn = grdPurchaseDCList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdPurchaseDCList.SortedColumn;
-                ListSortDirection direction;
-
-                // If oldColumn is null, then the DataGridView is not sorted.
-                if (oldColumn != null)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    // Sort the same column again, reversing the SortOrder.
-                    if (oldColumn == newColumn &&
-                        grdPurchaseDCList.SortOrder == SortOrder.Ascending)
+                    DataGridViewColumn newColumn = grdPurchaseDCList.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdPurchaseDCList.SortedColumn;
+                    ListSortDirection direction;
+
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
                     {
-                        direction = ListSortDirection.Descending;
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdPurchaseDCList.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
                     }
                     else
                     {
-                        // Sort a new column and remove the old SortGlyph.
                         direction = ListSortDirection.Ascending;
-                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
+                    if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                    {
+                        grdPurchaseDCList.Sort(newColumn, direction);
+                        newColumn.HeaderCell.SortGlyphDirection =
+                            direction == ListSortDirection.Ascending ?
+                            SortOrder.Ascending : SortOrder.Descending;
+
+                        DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseDCList.HorizontalScrollingOffset;
+                        DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                     }
                 }
-                else
-                {
-                    direction = ListSortDirection.Ascending;
-                }
-                grdPurchaseDCList.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
-
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-                DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseDCList.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
@@ -1016,16 +1027,17 @@ namespace ROMS
             {
                 grdPurchaseDCList.Columns["clmPrint"].Frozen = true;
                 grdPurchaseDCList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseDCList.Columns["S.No."].Frozen = true;
-                //grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseDCList.Columns["Pur Dc Status"].Frozen = true;
-                //grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseDCList.Columns["Overall Status"].Frozen = true;
-                //grdPurchaseDCList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["S.No."].Frozen = true;
+                grdPurchaseDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Pur Dc Status"].Frozen = true;
+                grdPurchaseDCList.Columns["Pur Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Overall Status"].Frozen = true;
+                grdPurchaseDCList.Columns["Concern"].Frozen = true;
+                grdPurchaseDCList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseDCList.Columns["DC Date"].Frozen = true;
                 //grdPurchaseDCList.Columns["Concern"].Frozen = true;
                 //grdPurchaseDCList.Columns["DC Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseDCList.Columns["DC No."].Frozen = true;
                 //grdPurchaseDCList.Columns["DC No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseDCList.Columns["Supplier"].Frozen = true;
@@ -1482,16 +1494,19 @@ namespace ROMS
                     {
                         direction = ListSortDirection.Ascending;
                     }
-                    grdProDetails.Sort(newColumn, direction);
-                    newColumn.HeaderCell.SortGlyphDirection =
-                        direction == ListSortDirection.Ascending ?
-                        SortOrder.Ascending : SortOrder.Descending;
+                    if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                    {
+                        grdProDetails.Sort(newColumn, direction);
+                        newColumn.HeaderCell.SortGlyphDirection =
+                            direction == ListSortDirection.Ascending ?
+                            SortOrder.Ascending : SortOrder.Descending;
 
-                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdProDetails.HorizontalScrollingOffset;
-                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdProDetails.HorizontalScrollingOffset;
+                        DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    }
                 }
             }
             catch (Exception ex)

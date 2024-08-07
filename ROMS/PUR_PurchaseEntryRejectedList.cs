@@ -1068,12 +1068,12 @@ namespace ROMS
                 //        cell.Style.ForeColor = Color.White;// Set the background color to the default background color
                 //    }
                 //}
-                //grdPurchaseEntryRejected.Columns["S.No."].Frozen = true;
-                //grdPurchaseEntryRejected.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryRejected.Columns["Concern"].Frozen = true;
-                //grdPurchaseEntryRejected.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryRejected.Columns["Overall Status"].Frozen = true;
-                //grdPurchaseEntryRejected.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["S.No."].Frozen = true;
+                grdPurchaseEntryRejected.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Concern"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryRejected.Columns["Overall Status"].Frozen = true;
+                grdPurchaseEntryRejected.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseEntryRejected.Columns["Vouc No."].Frozen = true;
                 //grdPurchaseEntryRejected.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseEntryRejected.Columns["Vouc Date"].Frozen = true;

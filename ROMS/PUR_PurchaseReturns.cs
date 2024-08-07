@@ -879,7 +879,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[2].Rows.Count != 0)
                             {
-                                if ((varStatusId == 39 || varStatusId==79) && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReason.SelectedValue) == 203 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 204 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 205 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207))
+                                if ((varStatusId == 39 || varStatusId==79 || varStatusId==110) && (Convert.ToInt32(cmbReason.SelectedValue) == 60 || Convert.ToInt32(cmbReason.SelectedValue) == 61 || Convert.ToInt32(cmbReason.SelectedValue) == 203 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 204 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 205 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207))
                                 {
                                     cmbReasonForClosing.SelectedValue = objDs.Tables[2].Rows[0]["PURREDC_ClosingReasonId"].ToString();
                                     txtCrNo.Text = objDs.Tables[2].Rows[0]["PURREDC_CNNo"].ToString();

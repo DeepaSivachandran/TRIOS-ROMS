@@ -1448,16 +1448,19 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdSettings.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
+                if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                {
+                    grdSettings.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
 
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                DGV_SearchGrid.HorizontalScrollingOffset = grdSettings.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdSettings.HorizontalScrollingOffset;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }

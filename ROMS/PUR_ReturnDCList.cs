@@ -282,40 +282,50 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdReturnDCList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdReturnDCList.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
+            try
             {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    grdReturnDCList.SortOrder == SortOrder.Ascending)
+                DataGridViewColumn newColumn = grdReturnDCList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdReturnDCList.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
                 {
-                    direction = ListSortDirection.Descending;
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn && grdReturnDCList.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
                 }
                 else
                 {
-                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
+                if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                {
+                    grdReturnDCList.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+
+                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdReturnDCList.HorizontalScrollingOffset;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                direction = ListSortDirection.Ascending;
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
-            grdReturnDCList.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
-
-            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-            DGV_SearchGrid.HorizontalScrollingOffset = grdReturnDCList.HorizontalScrollingOffset;
-            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
@@ -1433,12 +1443,12 @@ namespace ROMS
             {
                 grdReturnDCList.Columns["Print"].Frozen = true;
                 grdReturnDCList.Columns["Print"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdReturnDCList.Columns["S.No."].Frozen = true;
-                //grdReturnDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdReturnDCList.Columns["Pur Ret Dc Status"].Frozen = true;
-                //grdReturnDCList.Columns["Pur Ret Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdReturnDCList.Columns["Concern"].Frozen = true;
-                //grdReturnDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["S.No."].Frozen = true;
+                grdReturnDCList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["Pur Ret Dc Status"].Frozen = true;
+                grdReturnDCList.Columns["Pur Ret Dc Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdReturnDCList.Columns["Concern"].Frozen = true;
+                grdReturnDCList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdReturnDCList.Columns["Dc No."].Frozen = true;
                 //grdReturnDCList.Columns["Dc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdReturnDCList.Columns["Dc Date"].Frozen = true;

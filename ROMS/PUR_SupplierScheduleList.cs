@@ -1367,11 +1367,11 @@ namespace ROMS
                 dgvSupplierScheduleList.Columns["S.No."].Frozen = true;
                 dgvSupplierScheduleList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 dgvSupplierScheduleList.Columns["City"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                dgvSupplierScheduleList.Columns["Supplier Type"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                //dgvSupplierScheduleList.Columns["Supplier Type"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 dgvSupplierScheduleList.Columns["Supplier"].Frozen = true;
                 dgvSupplierScheduleList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                dgvSupplierScheduleList.Columns["GSTIN"].Frozen = true;
-                dgvSupplierScheduleList.Columns["GSTIN"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                dgvSupplierScheduleList.Columns["City"].Frozen = true;
+               // dgvSupplierScheduleList.Columns["GSTIN"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 for (int i = 0; i < dgvSupplierScheduleList.Rows.Count; i++)
                 {
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["MappedStatus"].Value) == "4" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["Pro. Mapping"].Value) != "")
