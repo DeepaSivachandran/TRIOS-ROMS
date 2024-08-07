@@ -93,7 +93,6 @@ namespace ROMS
             try
             {
                 grdInward.ClearSelection();
-
                 foreach (DataGridViewRow row in grdInward.Rows)
                 {
                     if (Convert.ToString(grdInward.Rows[row.Index].Cells["clmConvertType"].Value) == "0")
@@ -588,9 +587,7 @@ namespace ROMS
                                     }
                                 }
                             }
-
                             break;
-
                     }
                 }
             }
