@@ -1971,7 +1971,7 @@
             this.lblPOnorecord.AutoSize = true;
             this.lblPOnorecord.BackColor = System.Drawing.Color.White;
             this.lblPOnorecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPOnorecord.Location = new System.Drawing.Point(616, 193);
+            this.lblPOnorecord.Location = new System.Drawing.Point(636, 193);
             this.lblPOnorecord.Name = "lblPOnorecord";
             this.lblPOnorecord.Size = new System.Drawing.Size(84, 16);
             this.lblPOnorecord.TabIndex = 111111150;
@@ -2078,7 +2078,7 @@
             this.lblVerifyNorecord.AutoSize = true;
             this.lblVerifyNorecord.BackColor = System.Drawing.Color.White;
             this.lblVerifyNorecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerifyNorecord.Location = new System.Drawing.Point(636, 319);
+            this.lblVerifyNorecord.Location = new System.Drawing.Point(636, 325);
             this.lblVerifyNorecord.Name = "lblVerifyNorecord";
             this.lblVerifyNorecord.Size = new System.Drawing.Size(84, 16);
             this.lblVerifyNorecord.TabIndex = 111111147;
@@ -2189,7 +2189,7 @@
             this.lblFinishedNoRecord.AutoSize = true;
             this.lblFinishedNoRecord.BackColor = System.Drawing.Color.White;
             this.lblFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinishedNoRecord.Location = new System.Drawing.Point(634, 69);
+            this.lblFinishedNoRecord.Location = new System.Drawing.Point(636, 69);
             this.lblFinishedNoRecord.Name = "lblFinishedNoRecord";
             this.lblFinishedNoRecord.Size = new System.Drawing.Size(84, 16);
             this.lblFinishedNoRecord.TabIndex = 111111138;

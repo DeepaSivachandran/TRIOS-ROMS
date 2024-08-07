@@ -14,7 +14,7 @@ namespace ROMS
     public partial class CP_Purchase : Form
     {
         DataTable dtTaxTable = new DataTable();
-        DataTable dtRefresh = new DataTable();
+        DataTable dtRefresh = new DataTable(); 
         public DataTable dtPurchaseAutoComplete = new DataTable();
         DataTable dtProductDetails = new DataTable();
         DateTime varmaxdate;
@@ -1890,6 +1890,7 @@ namespace ROMS
                     txtSourceLocation.Enabled = false;
                     cmbrack.Enabled = false;
                     btnAdd.Enabled = false;
+                    cmbQtyType.Enabled = false;
                 }
                // btnClear.Enabled = false;
             }
@@ -3458,7 +3459,7 @@ namespace ROMS
             }
         }
         private void GrdSupplierList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
+       {
             try
             {
                 if (Convert.ToString(lblSupplierCode.Text) != "0")
@@ -3533,7 +3534,7 @@ namespace ROMS
                     {
                         if (Convert.ToString(cellSlid.Value) != "-1")
                         {
-                            string SelectedRackName = grdSupplierList.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString().Trim();
+                            string SelectedRackName = grdSupplierList.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString().Trim().ToLower();
                             if (!string.IsNullOrEmpty(SelectedRackName))
                             {
                                 /*check location have a rack or not*/
@@ -3552,7 +3553,7 @@ namespace ROMS
                                         }
                                     }
                                 }
-                                if (varId_PurchaseRack != "-1")
+                                if (varId_PurchaseRack != "-1" || SelectedRackName.ToLower()=="none")
                                 {
                                     cellRkname.Style.BackColor = Color.PaleGreen;
                                     cellRkid.Value = Convert.ToString(varId_PurchaseRack);
@@ -6625,7 +6626,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varcount == 0 && shelfLifeError == 0 && InvoiceAmountErr == 0 && varPrCountFlag==0)
+                            if (varcount == 0 && shelfLifeError == 0 && InvoiceAmountErr == 0 && varPrCountFlag==0 && VarGridError=="0")
                             { flagSave = 0; }
                             else { flagSave = 1; }
                         }
@@ -8856,7 +8857,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdGRN_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try

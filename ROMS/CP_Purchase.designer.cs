@@ -4021,6 +4021,7 @@
             // 
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.AliceBlue;
             this.clmPono.DefaultCellStyle = dataGridViewCellStyle6;
+            this.clmPono.Frozen = true;
             this.clmPono.HeaderText = "Type";
             this.clmPono.Name = "clmPono";
             this.clmPono.ReadOnly = true;
@@ -4031,6 +4032,7 @@
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightGray;
             this.clmInwardDate.DefaultCellStyle = dataGridViewCellStyle7;
+            this.clmInwardDate.Frozen = true;
             this.clmInwardDate.HeaderText = "Inward Date";
             this.clmInwardDate.Name = "clmInwardDate";
             this.clmInwardDate.ReadOnly = true;
@@ -4039,6 +4041,7 @@
             // 
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.AliceBlue;
             this.clmPicode.DefaultCellStyle = dataGridViewCellStyle8;
+            this.clmPicode.Frozen = true;
             this.clmPicode.HeaderText = "P.I Code";
             this.clmPicode.Name = "clmPicode";
             this.clmPicode.ReadOnly = true;
@@ -4049,6 +4052,7 @@
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.AliceBlue;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.clmProTname.DefaultCellStyle = dataGridViewCellStyle9;
+            this.clmProTname.Frozen = true;
             this.clmProTname.HeaderText = "Product Name";
             this.clmProTname.Name = "clmProTname";
             this.clmProTname.ReadOnly = true;
@@ -4059,6 +4063,7 @@
             // 
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.AliceBlue;
             this.clmUnit.DefaultCellStyle = dataGridViewCellStyle10;
+            this.clmUnit.Frozen = true;
             this.clmUnit.HeaderText = "Unit";
             this.clmUnit.Name = "clmUnit";
             this.clmUnit.ReadOnly = true;
