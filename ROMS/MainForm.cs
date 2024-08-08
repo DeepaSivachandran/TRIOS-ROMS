@@ -231,6 +231,7 @@ namespace ROMS
         public static REPORT_Purchase_Details objREPORT_Purchase_Details;
         public static REPORT_Unapproved_Purchase_Summary objREPORT_Unapproved_Purchase_Summary;
         public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
+        public static REPORT_Purchase_Defect_Product objREPORT_Purchase_Defect_Product;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2575,6 +2576,23 @@ namespace ROMS
             }
         }
 
+        private void PurchaseDefectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Purchase_Defect_Product = new REPORT_Purchase_Defect_Product();
+                MainForm.objREPORT_Purchase_Defect_Product.MdiParent = this;
+                MainForm.objREPORT_Purchase_Defect_Product.Show();
+                PbCurrentForm = "7.7.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try

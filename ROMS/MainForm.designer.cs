@@ -143,6 +143,7 @@ namespace ROMS
             this.purchaseSummaryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unapprovedPurchaseSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unapprovedPurchaseDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,7 +152,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unapprovedPurchaseDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseDefectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -973,35 +974,35 @@ namespace ROMS
             // TSMGRNSummary
             // 
             this.TSMGRNSummary.Name = "TSMGRNSummary";
-            this.TSMGRNSummary.Size = new System.Drawing.Size(170, 22);
+            this.TSMGRNSummary.Size = new System.Drawing.Size(180, 22);
             this.TSMGRNSummary.Text = "GRN Summary";
             this.TSMGRNSummary.Click += new System.EventHandler(this.GRNSummaryToolStripMenuItem_Click);
             // 
             // TSMGRNDetails
             // 
             this.TSMGRNDetails.Name = "TSMGRNDetails";
-            this.TSMGRNDetails.Size = new System.Drawing.Size(170, 22);
+            this.TSMGRNDetails.Size = new System.Drawing.Size(180, 22);
             this.TSMGRNDetails.Text = "GRN Detail";
             this.TSMGRNDetails.Click += new System.EventHandler(this.TSMGRNDetails_Click);
             // 
             // gRNBatchDetailToolStripMenuItem
             // 
             this.gRNBatchDetailToolStripMenuItem.Name = "gRNBatchDetailToolStripMenuItem";
-            this.gRNBatchDetailToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.gRNBatchDetailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gRNBatchDetailToolStripMenuItem.Text = "GRN Batch Detail";
             this.gRNBatchDetailToolStripMenuItem.Click += new System.EventHandler(this.GRNBatchDetailToolStripMenuItem_Click);
             // 
             // gRNSupplierDetailToolStripMenuItem
             // 
             this.gRNSupplierDetailToolStripMenuItem.Name = "gRNSupplierDetailToolStripMenuItem";
-            this.gRNSupplierDetailToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.gRNSupplierDetailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gRNSupplierDetailToolStripMenuItem.Text = "GRN Supplier Detail";
             this.gRNSupplierDetailToolStripMenuItem.Click += new System.EventHandler(this.GRNSupplierDetailToolStripMenuItem_Click);
             // 
             // gRNDefectProductToolStripMenuItem
             // 
             this.gRNDefectProductToolStripMenuItem.Name = "gRNDefectProductToolStripMenuItem";
-            this.gRNDefectProductToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.gRNDefectProductToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gRNDefectProductToolStripMenuItem.Text = "GRN Defect Product";
             this.gRNDefectProductToolStripMenuItem.Click += new System.EventHandler(this.GRNDefectProductToolStripMenuItem_Click);
             // 
@@ -1073,7 +1074,8 @@ namespace ROMS
             this.purchaseSummaryReportToolStripMenuItem,
             this.purchaseDetailToolStripMenuItem,
             this.unapprovedPurchaseSummaryToolStripMenuItem,
-            this.unapprovedPurchaseDetailToolStripMenuItem});
+            this.unapprovedPurchaseDetailToolStripMenuItem,
+            this.purchaseDefectToolStripMenuItem});
             this.purchaseReportToolStripMenuItem.Name = "purchaseReportToolStripMenuItem";
             this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.purchaseReportToolStripMenuItem.Text = "Purchase Report";
@@ -1099,6 +1101,13 @@ namespace ROMS
             this.unapprovedPurchaseSummaryToolStripMenuItem.Text = "Unapproved Purchase Summary";
             this.unapprovedPurchaseSummaryToolStripMenuItem.Click += new System.EventHandler(this.UnapprovedPurchaseSummaryToolStripMenuItem_Click);
             // 
+            // unapprovedPurchaseDetailToolStripMenuItem
+            // 
+            this.unapprovedPurchaseDetailToolStripMenuItem.Name = "unapprovedPurchaseDetailToolStripMenuItem";
+            this.unapprovedPurchaseDetailToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.unapprovedPurchaseDetailToolStripMenuItem.Text = "Unapproved Purchase Detail";
+            this.unapprovedPurchaseDetailToolStripMenuItem.Click += new System.EventHandler(this.UnapprovedPurchaseDetailToolStripMenuItem_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1116,14 +1125,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -1170,12 +1179,12 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // unapprovedPurchaseDetailToolStripMenuItem
+            // purchaseDefectToolStripMenuItem
             // 
-            this.unapprovedPurchaseDetailToolStripMenuItem.Name = "unapprovedPurchaseDetailToolStripMenuItem";
-            this.unapprovedPurchaseDetailToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.unapprovedPurchaseDetailToolStripMenuItem.Text = "Unapproved Purchase Detail";
-            this.unapprovedPurchaseDetailToolStripMenuItem.Click += new System.EventHandler(this.UnapprovedPurchaseDetailToolStripMenuItem_Click);
+            this.purchaseDefectToolStripMenuItem.Name = "purchaseDefectToolStripMenuItem";
+            this.purchaseDefectToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.purchaseDefectToolStripMenuItem.Text = "Purchase Defect Product";
+            this.purchaseDefectToolStripMenuItem.Click += new System.EventHandler(this.PurchaseDefectToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1328,5 +1337,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem purchaseDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unapprovedPurchaseSummaryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unapprovedPurchaseDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseDefectToolStripMenuItem;
     }
 }
