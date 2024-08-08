@@ -230,6 +230,7 @@ namespace ROMS
         public static REPORT_Purchase_Summary objREPORT_Purchase_Summary;
         public static REPORT_Purchase_Details objREPORT_Purchase_Details;
         public static REPORT_Unapproved_Purchase_Summary objREPORT_Unapproved_Purchase_Summary;
+        public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2555,6 +2556,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void UnapprovedPurchaseDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Unapproved_Purchase_Detail = new REPORT_Unapproved_Purchase_Detail();
+                MainForm.objREPORT_Unapproved_Purchase_Detail.MdiParent = this;
+                MainForm.objREPORT_Unapproved_Purchase_Detail.Show();
+                PbCurrentForm = "7.7.4";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try

@@ -142,6 +142,7 @@ namespace ROMS
             this.purchaseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseSummaryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unapprovedPurchaseSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,7 +151,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unapprovedPurchaseSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unapprovedPurchaseDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1071,7 +1072,8 @@ namespace ROMS
             this.purchaseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.purchaseSummaryReportToolStripMenuItem,
             this.purchaseDetailToolStripMenuItem,
-            this.unapprovedPurchaseSummaryToolStripMenuItem});
+            this.unapprovedPurchaseSummaryToolStripMenuItem,
+            this.unapprovedPurchaseDetailToolStripMenuItem});
             this.purchaseReportToolStripMenuItem.Name = "purchaseReportToolStripMenuItem";
             this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.purchaseReportToolStripMenuItem.Text = "Purchase Report";
@@ -1089,6 +1091,13 @@ namespace ROMS
             this.purchaseDetailToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.purchaseDetailToolStripMenuItem.Text = "Purchase Detail";
             this.purchaseDetailToolStripMenuItem.Click += new System.EventHandler(this.PurchaseDetailToolStripMenuItem_Click);
+            // 
+            // unapprovedPurchaseSummaryToolStripMenuItem
+            // 
+            this.unapprovedPurchaseSummaryToolStripMenuItem.Name = "unapprovedPurchaseSummaryToolStripMenuItem";
+            this.unapprovedPurchaseSummaryToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.unapprovedPurchaseSummaryToolStripMenuItem.Text = "Unapproved Purchase Summary";
+            this.unapprovedPurchaseSummaryToolStripMenuItem.Click += new System.EventHandler(this.UnapprovedPurchaseSummaryToolStripMenuItem_Click);
             // 
             // tsmMyProfile
             // 
@@ -1161,12 +1170,12 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // unapprovedPurchaseSummaryToolStripMenuItem
+            // unapprovedPurchaseDetailToolStripMenuItem
             // 
-            this.unapprovedPurchaseSummaryToolStripMenuItem.Name = "unapprovedPurchaseSummaryToolStripMenuItem";
-            this.unapprovedPurchaseSummaryToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.unapprovedPurchaseSummaryToolStripMenuItem.Text = "Unapproved Purchase Summary";
-            this.unapprovedPurchaseSummaryToolStripMenuItem.Click += new System.EventHandler(this.UnapprovedPurchaseSummaryToolStripMenuItem_Click);
+            this.unapprovedPurchaseDetailToolStripMenuItem.Name = "unapprovedPurchaseDetailToolStripMenuItem";
+            this.unapprovedPurchaseDetailToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.unapprovedPurchaseDetailToolStripMenuItem.Text = "Unapproved Purchase Detail";
+            this.unapprovedPurchaseDetailToolStripMenuItem.Click += new System.EventHandler(this.UnapprovedPurchaseDetailToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1318,5 +1327,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem purchaseSummaryReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unapprovedPurchaseSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unapprovedPurchaseDetailToolStripMenuItem;
     }
 }
