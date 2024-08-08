@@ -223,6 +223,7 @@ namespace ROMS
         public static REPORT_SupplierWiseProduct objREPORT_SupplierWiseProduct;
         public static REPORT_Unassigned_Products objREPORT_Unassigned_Products;
         public static REPORT_Assigned_Products objREPORT_Assigned_Products;
+        public static REPORT_PurchaseOrder_Summary objREPORT_PurchaseOrder_Summary;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2442,6 +2443,23 @@ namespace ROMS
             }
         }
 
+        private void PurchaseOrderSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PurchaseOrder_Summary = new REPORT_PurchaseOrder_Summary();
+                MainForm.objREPORT_PurchaseOrder_Summary.MdiParent = this;
+                MainForm.objREPORT_PurchaseOrder_Summary.Show();
+                PbCurrentForm = "7.6.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
