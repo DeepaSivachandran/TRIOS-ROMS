@@ -714,9 +714,9 @@
             // 
             // btnAdd
             // 
+            this.epGoodsOutward.SetIconAlignment(this.btnAdd, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(1232, 41);
+            this.btnAdd.Location = new System.Drawing.Point(1183, 42);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(25, 24);
             this.btnAdd.TabIndex = 6;

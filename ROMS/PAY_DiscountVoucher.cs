@@ -23,6 +23,8 @@ namespace ROMS
         bool varVoucherSkip = false;
         public int varClose = 0, varDateChange = 0, varCloseFlag = 0, varPURID = 0, varUpdate = 0, PbDiscID = 0, varSTSID = 0;
         public string varcomid = "";
+        decimal varInvoiceAmnt = 0;
+
         public PAY_DiscountVoucher()
         {
             InitializeComponent();
@@ -564,10 +566,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtInvoiceamt.Text) == "")
                 {
-                    epDiscount.SetError(txtInvoiceamt, "Please enter invoice amount");
+                    epDiscount.SetError(txtInvoiceamt, "Please enter discount amount");
                     txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpDiscamt.ShowAlways = true;
-                    tpDiscamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
+                    tpDiscamt.Show("Please enter discount amount", txtInvoiceamt, 5000);
                 }
                 else
                 {
@@ -578,6 +580,16 @@ namespace ROMS
                     string AMT = string.Format("{0:0.00}", varInvoiceAMT);
                     string AMT1 = string.Format("{0:G29}", decimal.Parse(AMT));
                     txtInvoiceamt.Text = AMT;
+                    if (varInvoiceAmnt!=0)
+                    {
+                        if (Convert.ToDecimal(txtInvoiceamt.Text) > varInvoiceAmnt)
+                        {
+                            epDiscount.SetError(txtInvoiceamt, "Please enter valid discount amount");
+                            txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpDiscamt.ShowAlways = true;
+                            tpDiscamt.Show("Please enter valid discount amount", txtInvoiceamt, 5000);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -665,6 +677,14 @@ namespace ROMS
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(136);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    VarErrorFlag = true;
+                }
+                if(Convert.ToDecimal(txtInvoiceamt.Text) > varInvoiceAmnt)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(145);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     VarErrorFlag = true;
@@ -838,6 +858,7 @@ namespace ROMS
         {
             try
             {   //for check box as radio button function
+                varInvoiceAmnt = 0;
                 if (grdInvoice.CurrentCell.ColumnIndex == 0)
                 {
                     for (int i = 0; i < grdInvoice.Rows.Count; i++)
@@ -845,6 +866,17 @@ namespace ROMS
                         grdInvoice.Rows[i].Cells[0].Value = false;
                     }
                     grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value = true;
+                    varInvoiceAmnt=Convert.ToDecimal(grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells["clmAmount"].Value);
+                    if (txtInvoiceamt.Text!="")
+                    {
+                        if (Convert.ToDecimal(txtInvoiceamt.Text)> varInvoiceAmnt)
+                        {
+                            epDiscount.SetError(txtInvoiceamt, "Please enter valid discount amount");
+                            txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpDiscamt.ShowAlways = true;
+                            tpDiscamt.Show("Please enter valid discount amount", txtInvoiceamt, 5000);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
