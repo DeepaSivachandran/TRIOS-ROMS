@@ -228,6 +228,7 @@ namespace ROMS
         public static REPORT_ProductWise_Po objREPORT_ProductWise_Po;
 
         public static REPORT_Purchase_Summary objREPORT_Purchase_Summary;
+        public static REPORT_Purchase_Details objREPORT_Purchase_Details;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2517,6 +2518,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void PurchaseDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Purchase_Details = new REPORT_Purchase_Details();
+                MainForm.objREPORT_Purchase_Details.MdiParent = this;
+                MainForm.objREPORT_Purchase_Details.Show();
+                PbCurrentForm = "7.7.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try

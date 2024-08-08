@@ -418,9 +418,8 @@
             this.Name = "REPORT_PurchaseOrder_Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
-            this.Load += new System.EventHandler(this.REPORT_CP_Product_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Product_KeyDown);
-            this.Leave += new System.EventHandler(this.REPORT_PUR_Purchaseorder_Summary_Leave);
+            this.Load += new System.EventHandler(this.REPORT_PurchaseOrder_Detail_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_PurchaseOrder_Detail_KeyDown);
             this.ReportProduct.ResumeLayout(false);
             this.ReportProduct.PerformLayout();
             this.pnlReportProduct.ResumeLayout(false);

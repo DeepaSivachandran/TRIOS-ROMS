@@ -238,45 +238,6 @@ namespace ROMS
                 GC.Collect();
 
             }
-        } 
-        private void REPORT_CP_Product_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbStatus.SelectedValue = 0;
-                //btnListPrint.Enabled = true; 
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID"); 
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
-                RPTViewer.Visible = true;
-                RPTViewer.BringToFront();
-                lblNoRecordsFound.Visible = true;
-                lblNoRecordsFound.BringToFront();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void REPORT_CP_Product_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
         }
         private void TxtSupplier_Enter(object sender, EventArgs e)
         {
@@ -710,14 +671,39 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void REPORT_PUR_Purchaseorder_Summary_Leave(object sender, EventArgs e)
+        private void REPORT_PurchaseOrder_Detail_Load(object sender, EventArgs e)
         {
             try
             {
-                string result = "";
-                SPDataService objspdservice = new SPDataService();
-                result = objspdservice.udfnPurchaseEntry(4, 0, 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0, Convert.ToInt32(varRefNo));
-                objspdservice.CloseConnection();
+                cmbStatus.SelectedValue = 0;
+                //btnListPrint.Enabled = true; 
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                lblNoRecordsFound.Visible = true;
+                lblNoRecordsFound.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void REPORT_PurchaseOrder_Detail_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
