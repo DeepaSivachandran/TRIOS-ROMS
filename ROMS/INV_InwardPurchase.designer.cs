@@ -1198,6 +1198,7 @@
             this.clmOrder.HeaderText = "Order";
             this.clmOrder.Name = "clmOrder";
             this.clmOrder.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmOrder.Visible = false;
             // 
             // clmError
             // 
