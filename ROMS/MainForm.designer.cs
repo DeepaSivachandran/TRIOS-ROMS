@@ -138,6 +138,7 @@ namespace ROMS
             this.pOWiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseOrderSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseOrderDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productWisePOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,7 +147,8 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productWisePOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseSummaryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -789,7 +791,8 @@ namespace ROMS
             this.purchaseOrderToolStripMenuItem,
             this.TSMGRNReport,
             this.supplierWiseReportToolStripMenuItem,
-            this.pOWiseReportToolStripMenuItem});
+            this.pOWiseReportToolStripMenuItem,
+            this.purchaseReportToolStripMenuItem});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -1054,6 +1057,13 @@ namespace ROMS
             this.purchaseOrderDetailToolStripMenuItem.Text = "Purchase Order Detail";
             this.purchaseOrderDetailToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderDetailToolStripMenuItem_Click);
             // 
+            // productWisePOToolStripMenuItem
+            // 
+            this.productWisePOToolStripMenuItem.Name = "productWisePOToolStripMenuItem";
+            this.productWisePOToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.productWisePOToolStripMenuItem.Text = "Product Wise PO";
+            this.productWisePOToolStripMenuItem.Click += new System.EventHandler(this.ProductWisePOToolStripMenuItem_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1125,12 +1135,20 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // productWisePOToolStripMenuItem
+            // purchaseReportToolStripMenuItem
             // 
-            this.productWisePOToolStripMenuItem.Name = "productWisePOToolStripMenuItem";
-            this.productWisePOToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.productWisePOToolStripMenuItem.Text = "Product Wise PO";
-            this.productWisePOToolStripMenuItem.Click += new System.EventHandler(this.ProductWisePOToolStripMenuItem_Click);
+            this.purchaseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.purchaseSummaryReportToolStripMenuItem});
+            this.purchaseReportToolStripMenuItem.Name = "purchaseReportToolStripMenuItem";
+            this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.purchaseReportToolStripMenuItem.Text = "Purchase Report";
+            // 
+            // purchaseSummaryReportToolStripMenuItem
+            // 
+            this.purchaseSummaryReportToolStripMenuItem.Name = "purchaseSummaryReportToolStripMenuItem";
+            this.purchaseSummaryReportToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.purchaseSummaryReportToolStripMenuItem.Text = "Purchase Summary Report";
+            this.purchaseSummaryReportToolStripMenuItem.Click += new System.EventHandler(this.PurchaseSummaryReportToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1278,5 +1296,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderSummaryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productWisePOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseSummaryReportToolStripMenuItem;
     }
 }
