@@ -10761,12 +10761,14 @@ namespace ROMS
                                             grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells[i].ReadOnly = true;
                                         }
                                     }
-                                      ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
-                                      ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+                                     // ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+                                      //((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
                                     //e.RowIndex =Convert.ToInt16( grdSupplierList.Rows[grdSupplierList.Rows.Count - 1]);
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmInwardDate"].ReadOnly = false;
                                     grdSupplierList.Columns["clmRemove"].Visible = true;
+                                    ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
                                     grdSupplierList.CurrentCell = grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"];
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmInwardDate"].Style.BackColor = Color.PaleGreen;
                                     udfnConvertProductDetails(sender,e);
                                 }
                             }
@@ -11872,6 +11874,10 @@ namespace ROMS
                             grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].ReadOnly = true;
                             grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
                         }
+                        if (PbSTS != "50")
+                        {
+                            ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(0, 0);
+                        }
                     }
                     string[] varShelflifevalue = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                     if (varShelflifevalue[0] != "")
@@ -11936,6 +11942,7 @@ namespace ROMS
                     grdSupplierList.Columns["clmLocation"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdSupplierList.Columns["clmrack"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
+                
             }
             catch (Exception ex)
             {
