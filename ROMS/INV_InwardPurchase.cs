@@ -841,6 +841,7 @@ namespace ROMS
             {
                 DataGridView dataGridView = (DataGridView)sender;
                 varExpiryDate = "";
+                string varDate = "";
                 varShelflife = 0;
                 varErroronGrid = 0;
                 int varExpiryDays = 0; int error = 0, rowIndex = value.RowIndex, columnIndex = value.ColumnIndex, varProid = 0;
@@ -866,12 +867,24 @@ namespace ROMS
                     //varTempMonth = DMY[1];
                     varTempExpiryDate = cellValue.ToString();
                 }
-                if (dpInwardDate.Text!="")
+                if(varGRNPurchaseFlag==1)
+                {
+                    varDate = dpGRNDate.Text;
+                }
+                else if(varGRNPurchaseFlag==2)
+                {
+                    varDate = dpInwardDate.Text;
+                }
+                else
+                {
+                    varDate = dpGRNDate.Text;
+                }
+                if (varDate != "")
                 {
                     string varTempExpiryDate = Convert.ToString(grdInward.Rows[rowIndex].Cells["clmExpiryDate"].Value);
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 10;
-                    objMR_Master.paraDate = dpInwardDate.Text.Trim();
+                    objMR_Master.paraDate = varDate.Trim();
                     objMR_Master.ParaExpiryDate = varTempExpiryDate;
                     objMR_Master.paraProductId = Convert.ToInt32(grdInward.CurrentRow.Cells["clmPRID"].Value);
                     SPDataService objDServe = new SPDataService();
