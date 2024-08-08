@@ -135,6 +135,9 @@ namespace ROMS
             this.supplierWiseProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assignedProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unassignedProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pOWiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrderSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrderDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,9 +146,6 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pOWiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseOrderSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseOrderDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1029,6 +1029,29 @@ namespace ROMS
             this.unassignedProductsToolStripMenuItem.Text = "Unassigned Products";
             this.unassignedProductsToolStripMenuItem.Click += new System.EventHandler(this.UnassignedProductsToolStripMenuItem_Click);
             // 
+            // pOWiseReportToolStripMenuItem
+            // 
+            this.pOWiseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.purchaseOrderSummaryToolStripMenuItem,
+            this.purchaseOrderDetailToolStripMenuItem});
+            this.pOWiseReportToolStripMenuItem.Name = "pOWiseReportToolStripMenuItem";
+            this.pOWiseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.pOWiseReportToolStripMenuItem.Text = "PO Wise Report";
+            // 
+            // purchaseOrderSummaryToolStripMenuItem
+            // 
+            this.purchaseOrderSummaryToolStripMenuItem.Name = "purchaseOrderSummaryToolStripMenuItem";
+            this.purchaseOrderSummaryToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.purchaseOrderSummaryToolStripMenuItem.Text = "Purchase Order Summary";
+            this.purchaseOrderSummaryToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderSummaryToolStripMenuItem_Click);
+            // 
+            // purchaseOrderDetailToolStripMenuItem
+            // 
+            this.purchaseOrderDetailToolStripMenuItem.Name = "purchaseOrderDetailToolStripMenuItem";
+            this.purchaseOrderDetailToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.purchaseOrderDetailToolStripMenuItem.Text = "Purchase Order Detail";
+            this.purchaseOrderDetailToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderDetailToolStripMenuItem_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1099,28 +1122,6 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
-            // 
-            // pOWiseReportToolStripMenuItem
-            // 
-            this.pOWiseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.purchaseOrderSummaryToolStripMenuItem,
-            this.purchaseOrderDetailToolStripMenuItem});
-            this.pOWiseReportToolStripMenuItem.Name = "pOWiseReportToolStripMenuItem";
-            this.pOWiseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.pOWiseReportToolStripMenuItem.Text = "PO Wise Report";
-            // 
-            // purchaseOrderSummaryToolStripMenuItem
-            // 
-            this.purchaseOrderSummaryToolStripMenuItem.Name = "purchaseOrderSummaryToolStripMenuItem";
-            this.purchaseOrderSummaryToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.purchaseOrderSummaryToolStripMenuItem.Text = "Purchase Order Summary";
-            this.purchaseOrderSummaryToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderSummaryToolStripMenuItem_Click);
-            // 
-            // purchaseOrderDetailToolStripMenuItem
-            // 
-            this.purchaseOrderDetailToolStripMenuItem.Name = "purchaseOrderDetailToolStripMenuItem";
-            this.purchaseOrderDetailToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.purchaseOrderDetailToolStripMenuItem.Text = "Purchase Order Detail";
             // 
             // MainForm
             // 

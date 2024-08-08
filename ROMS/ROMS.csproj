@@ -1096,6 +1096,12 @@
     <Compile Include="REPORT_PurchaseOrder_Summary.designer.cs">
       <DependentUpon>REPORT_PurchaseOrder_Summary.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT_PurchaseOrder_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PurchaseOrder_Detail.designer.cs">
+      <DependentUpon>REPORT_PurchaseOrder_Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_Unassigned_Products.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2830,6 +2836,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PurchaseOrder_Summary.resx">
       <DependentUpon>REPORT_PurchaseOrder_Summary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PurchaseOrder_Detail.resx">
+      <DependentUpon>REPORT_PurchaseOrder_Detail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Unassigned_Products.resx">
       <DependentUpon>REPORT_Unassigned_Products.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class REPORT_PurchaseOrder_Summary
+    partial class REPORT_PurchaseOrder_Detail
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblcityid = new System.Windows.Forms.Label();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtDelaydays = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.errGRNDetails = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblcityid = new System.Windows.Forms.Label();
             this.ReportProduct.SuspendLayout();
             this.pnlReportProduct.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -88,8 +88,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(163, 22);
-            this.tspHeader.Text = "Purchase Order Summary";
+            this.tspHeader.Size = new System.Drawing.Size(143, 22);
+            this.tspHeader.Text = "Purchase Order Detail";
             // 
             // pnlReportProduct
             // 
@@ -115,7 +115,7 @@
             this.lvCity.HideSelection = false;
             this.lvCity.Location = new System.Drawing.Point(280, 70);
             this.lvCity.Name = "lvCity";
-            this.lvCity.Size = new System.Drawing.Size(313, 151);
+            this.lvCity.Size = new System.Drawing.Size(313, 144);
             this.lvCity.TabIndex = 1111245;
             this.lvCity.UseCompatibleStateImageBehavior = false;
             this.lvCity.View = System.Windows.Forms.View.Details;
@@ -145,7 +145,7 @@
             this.LV_Supplier.HideSelection = false;
             this.LV_Supplier.Location = new System.Drawing.Point(12, 70);
             this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(309, 151);
+            this.LV_Supplier.Size = new System.Drawing.Size(309, 144);
             this.LV_Supplier.TabIndex = 1111236;
             this.LV_Supplier.UseCompatibleStateImageBehavior = false;
             this.LV_Supplier.View = System.Windows.Forms.View.Details;
@@ -188,6 +188,16 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // lblcityid
+            // 
+            this.lblcityid.AutoSize = true;
+            this.lblcityid.Location = new System.Drawing.Point(398, 20);
+            this.lblcityid.Name = "lblcityid";
+            this.lblcityid.Size = new System.Drawing.Size(16, 20);
+            this.lblcityid.TabIndex = 1111249;
+            this.lblcityid.Text = "0";
+            this.lblcityid.Visible = false;
             // 
             // txtCity
             // 
@@ -270,7 +280,7 @@
             // lblschedleCode
             // 
             this.lblschedleCode.AutoSize = true;
-            this.lblschedleCode.Location = new System.Drawing.Point(119, 18);
+            this.lblschedleCode.Location = new System.Drawing.Point(107, 21);
             this.lblschedleCode.Name = "lblschedleCode";
             this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
             this.lblschedleCode.TabIndex = 1111237;
@@ -280,7 +290,7 @@
             // lblSupplierCode
             // 
             this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(81, 18);
+            this.lblSupplierCode.Location = new System.Drawing.Point(69, 21);
             this.lblSupplierCode.Name = "lblSupplierCode";
             this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 1111236;
@@ -393,17 +403,7 @@
             // 
             this.errGRNDetails.ContainerControl = this;
             // 
-            // lblcityid
-            // 
-            this.lblcityid.AutoSize = true;
-            this.lblcityid.Location = new System.Drawing.Point(357, 21);
-            this.lblcityid.Name = "lblcityid";
-            this.lblcityid.Size = new System.Drawing.Size(16, 20);
-            this.lblcityid.TabIndex = 1111249;
-            this.lblcityid.Text = "0";
-            this.lblcityid.Visible = false;
-            // 
-            // REPORT_PurchaseOrder_Summary
+            // REPORT_PurchaseOrder_Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -415,7 +415,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_PurchaseOrder_Summary";
+            this.Name = "REPORT_PurchaseOrder_Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Product_Load);
@@ -465,7 +465,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDelaydays;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ErrorProvider errGRNDetails;
         private System.Windows.Forms.Label lblcityid;
+        private System.Windows.Forms.ErrorProvider errGRNDetails;
     }
 }
