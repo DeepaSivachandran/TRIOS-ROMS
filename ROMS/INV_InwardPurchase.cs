@@ -407,14 +407,10 @@ namespace ROMS
                                     string varPTName = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmProductName"].Value);
                                     string varMRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
                                     string varInvMRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
-                                    string varInvMRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceMRP"].Value);
                                     string varExpiryDate = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
                                     string varInvExpiryDate = "";
                                     string varBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
-                                    string varInvExpiryDate = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceExpiryDate"].Value);
-                                    string varBatchNo = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
                                     string varInvBatchNo = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceBatchNo"].Value);
-                                    string varInvBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceBatchNo"].Value);
                                     string varPendingQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmQty"].Value);
                                     string varReceivedQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmReceivedQty"].Value);
                                     string varShopQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShopQty"].Value);
@@ -439,31 +435,31 @@ namespace ROMS
                                     string varShelflifePer = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShelflifePer"].Value);
                                     string varShelflifeValue = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShelfValue"].Value);
                                     string varShelfStatus = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShelfStatus"].Value);
-                                    if (Convert.ToString(grdInward.CurrentRow.Cells["clmBatchNoGeneration"].Value)=="75")
+                                    if (Convert.ToString(grdInward.CurrentRow.Cells["clmBatchNoGeneration"].Value) == "75")
                                     {
                                         varBatchNo = "";
                                     }
                                     //SNO Order Here
                                     var varChildRowCount = from r in dtInwardPurchase.AsEnumerable()
-                                                             where (r.Field<int>("GIPPR_SNO").Equals(Convert.ToInt32(varSno))
-                                                             )group r by r.Field<int>("GIPPR_OrderID") into g
-                                                             select g.Key;
-                                    int varChildRowNo = Convert.ToInt32( Convert.ToString(varSno) + Convert.ToString(varChildRowCount.Count()));
+                                                           where (r.Field<int>("GIPPR_SNO").Equals(Convert.ToInt32(varSno))
+                                                           ) group r by r.Field<int>("GIPPR_OrderID") into g
+                                                           select g.Key;
+                                    int varChildRowNo = Convert.ToInt32(Convert.ToString(varSno) + Convert.ToString(varChildRowCount.Count()));
 
-                                    bool value = false;int varPRStatus = 0;
-                                    if(Convert.ToBoolean(dgv.Rows[e.RowIndex].Cells["clmCheck"].Value)==true)
+                                    bool value = false; int varPRStatus = 0;
+                                    if (Convert.ToBoolean(dgv.Rows[e.RowIndex].Cells["clmCheck"].Value) == true)
                                     {
                                         value = true;
                                     }
-                                    if(Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmStatus"].Value)!="")
+                                    if (Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmStatus"].Value) != "")
                                     {
                                         varPRStatus = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells["clmStatus"].Value);
                                     }
-                                    dtInwardPurchase.Rows.Add(value, Convert.ToInt32(varSno), varConvertType, varChildRowNo, Convert.ToInt32(varPRID), Convert.ToInt32(varUTID), 0, 0, Convert.ToInt32(0), varExpiryDate, varBatchNo, Convert.ToDecimal(0), varGRN_DC_PUR_ID, varclmMRPFlag, varclmShelflifeStatus, varclmBatchNoStatus, varclmBatchGeneration,varPRStatus,0,Convert.ToInt32(varShelflifeValue),Convert.ToInt32(varShelflifeType),Convert.ToInt32(varActualLife),Convert.ToInt32(varShelfStatus),Convert.ToDecimal(varShelflifePer));
+                                    dtInwardPurchase.Rows.Add(value, Convert.ToInt32(varSno), varConvertType, varChildRowNo, Convert.ToInt32(varPRID), Convert.ToInt32(varUTID), 0, 0, Convert.ToInt32(0), varExpiryDate, varBatchNo, Convert.ToDecimal(0), varGRN_DC_PUR_ID, varclmMRPFlag, varclmShelflifeStatus, varclmBatchNoStatus, varclmBatchGeneration, varPRStatus, 0, Convert.ToInt32(varShelflifeValue), Convert.ToInt32(varShelflifeType), Convert.ToInt32(varActualLife), Convert.ToInt32(varShelfStatus), Convert.ToDecimal(varShelflifePer));
 
-                                        grdInward.Rows.Add(false, null, "", varPICode, varPTName, varMRP, varInvMRP, varExpiryDate, varInvExpiryDate,varBatchNo,varInvBatchNo,
-                                        grdInward.Rows.Add(false, null, "", varPICode, varPTName, varMRP,varInvMRP, varExpiryDate,varInvExpiryDate, varBatchNo,varInvBatchNo,
-                                     varPendingQty,0, varReceivedQty, varShopQty, varUnit, varRack, varPRID, varSLID, 0, varUTID, varGRN_DC_PUR_ID, varUT_Decimal, varRackCount, varConvertType, Convert.ToString(varChildRowNo),0, varclmBatchNoStatus, varclmBatchGeneration, varclmShelflifeStatus, varclmMRPFlag, varclmDisable, 0, varSno,0,0,0, Convert.ToInt32(varActualLife), Convert.ToDecimal(varShelflifePer), Convert.ToInt32(varShelflifeValue), Convert.ToInt32(varShelfStatus), Convert.ToInt32(varShelflifeType));
+                                    grdInward.Rows.Add(false, null, "", varPICode, varPTName, varMRP, varInvMRP, varExpiryDate, varInvExpiryDate, varBatchNo, varInvBatchNo,
+                                 varPendingQty, 0, varReceivedQty, varShopQty, varUnit, varRack, varPRID, varSLID, 0, varUTID, varGRN_DC_PUR_ID, varUT_Decimal, varRackCount, varConvertType, Convert.ToString(varChildRowNo), 0, varclmBatchNoStatus, varclmBatchGeneration, varclmShelflifeStatus, varclmMRPFlag, varclmDisable, 0, varSno, 0, 0, 0, Convert.ToInt32(varActualLife), Convert.ToDecimal(varShelflifePer), Convert.ToInt32(varShelflifeValue), Convert.ToInt32(varShelfStatus), Convert.ToInt32(varShelflifeType));
+                                        
 
                                     DataGridView dataGridView = grdInward;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"];
