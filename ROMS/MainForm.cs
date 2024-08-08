@@ -225,6 +225,7 @@ namespace ROMS
         public static REPORT_Assigned_Products objREPORT_Assigned_Products;
         public static REPORT_PurchaseOrder_Summary objREPORT_PurchaseOrder_Summary;
         public static REPORT_PurchaseOrder_Detail objREPORT_PurchaseOrder_Detail;
+        public static REPORT_ProductWise_Po objREPORT_ProductWise_Po;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2471,6 +2472,24 @@ namespace ROMS
                 MainForm.objREPORT_PurchaseOrder_Detail.MdiParent = this;
                 MainForm.objREPORT_PurchaseOrder_Detail.Show();
                 PbCurrentForm = "7.6.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductWisePOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_ProductWise_Po = new REPORT_ProductWise_Po();
+                MainForm.objREPORT_ProductWise_Po.MdiParent = this;
+                MainForm.objREPORT_ProductWise_Po.Show();
+                PbCurrentForm = "7.6.3";
             }
             catch (Exception ex)
             {

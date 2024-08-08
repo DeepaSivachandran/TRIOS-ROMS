@@ -146,6 +146,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productWisePOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1033,7 +1034,8 @@ namespace ROMS
             // 
             this.pOWiseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.purchaseOrderSummaryToolStripMenuItem,
-            this.purchaseOrderDetailToolStripMenuItem});
+            this.purchaseOrderDetailToolStripMenuItem,
+            this.productWisePOToolStripMenuItem});
             this.pOWiseReportToolStripMenuItem.Name = "pOWiseReportToolStripMenuItem";
             this.pOWiseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.pOWiseReportToolStripMenuItem.Text = "PO Wise Report";
@@ -1069,14 +1071,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -1122,6 +1124,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
+            // 
+            // productWisePOToolStripMenuItem
+            // 
+            this.productWisePOToolStripMenuItem.Name = "productWisePOToolStripMenuItem";
+            this.productWisePOToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.productWisePOToolStripMenuItem.Text = "Product Wise PO";
+            this.productWisePOToolStripMenuItem.Click += new System.EventHandler(this.ProductWisePOToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1268,5 +1277,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem pOWiseReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderSummaryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productWisePOToolStripMenuItem;
     }
 }
