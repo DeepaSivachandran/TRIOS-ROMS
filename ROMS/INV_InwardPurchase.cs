@@ -503,7 +503,13 @@ namespace ROMS
                                             cell2.Style.BackColor = Color.PaleGreen; cell2.Style.ForeColor = Color.Black;   cell2.ReadOnly = false;
                                             cellInvExpiryDate.Style.BackColor = Color.PaleGreen; cellInvExpiryDate.Style.ForeColor = Color.Black; cellInvExpiryDate.ReadOnly = false;
                                         }
-                                        if(varclmRMFlag=="1")
+                                        else
+                                        {
+                                            cell2.Style.BackColor = Color.LightGray; cell2.Style.ForeColor = Color.Black; cell2.ReadOnly = true;
+                                            cell6.Style.BackColor = Color.LightGray; cell6.Style.ForeColor = Color.Black; cell6.ReadOnly = true;
+                                            cellInvExpiryDate.Style.BackColor = Color.LightGray; cellInvExpiryDate.Style.ForeColor = Color.Black; cellInvExpiryDate.ReadOnly = true;
+                                        }
+                                        if (varclmRMFlag=="1")
                                         {
                                             cell2.Value = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
                                             cellInvExpiryDate.Value = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceExpiryDate"].Value);
@@ -513,12 +519,7 @@ namespace ROMS
                                             cell6.Style.BackColor = Color.LightGray; cell6.Style.ForeColor = Color.Black; cell6.ReadOnly = true;
                                             cellInvExpiryDate.Style.BackColor = Color.LightGray; cellInvExpiryDate.Style.ForeColor = Color.Black; cellInvExpiryDate.ReadOnly = true;
                                         }
-                                        else
-                                        {
-                                            cell2.Style.BackColor = Color.LightGray;  cell2.Style.ForeColor = Color.Black;   cell2.ReadOnly = true;
-                                            cell6.Style.BackColor = Color.LightGray; cell6.Style.ForeColor = Color.Black; cell6.ReadOnly = true;
-                                            cellInvExpiryDate.Style.BackColor = Color.LightGray; cellInvExpiryDate.Style.ForeColor = Color.Black; cellInvExpiryDate.ReadOnly = true;
-                                        }
+                                       
                                         //Batch No
                                         DataGridView dataGridView3 = grdInward;
                                         DataGridViewCell cell3 = dataGridView3.Rows[dataGridView3.Rows.Count - 1].Cells["clmBatchNo"];
@@ -3330,6 +3331,9 @@ namespace ROMS
                                     txtVerifiedby1.Visible = true;
                                     txtVerifiedby1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Verified BY 1"]);
                                     Quantity = "Quantity";
+                                    grdInward.Columns["clmInvoiceMRP"].Visible = false;
+                                    grdInward.Columns["clmInvoiceExpiryDate"].Visible = false;
+                                    grdInward.Columns["clmInvoiceBatchNo"].Visible = false;
                                 }
                                 if(varStausId==46)
                                 {
@@ -3505,7 +3509,18 @@ namespace ROMS
                                         }
                                         if(Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
                                         {
-
+                                            grdInward.Columns["clmMRP"].DefaultCellStyle.BackColor = Color.LightGray;
+                                            grdInward.Columns["clmMRP"].ReadOnly = true;
+                                            grdInward.Columns["clmInvoiceMRP"].DefaultCellStyle.BackColor = Color.LightGray;
+                                            grdInward.Columns["clmInvoiceMRP"].ReadOnly = true;
+                                            grdInward.Columns["clmExpiryDate"].DefaultCellStyle.BackColor = Color.LightGray;
+                                            grdInward.Columns["clmExpiryDate"].ReadOnly = true;
+                                            grdInward.Columns["clmInvoiceExpiryDate"].DefaultCellStyle.BackColor = Color.LightGray;
+                                            grdInward.Columns["clmInvoiceExpiryDate"].ReadOnly = true;
+                                            grdInward.Columns["clmBatchNo"].DefaultCellStyle.BackColor = Color.LightGray;
+                                            grdInward.Columns["clmBatchNo"].ReadOnly = true;
+                                            grdInward.Columns["clmInvoiceBatchNo"].DefaultCellStyle.BackColor = Color.LightGray;
+                                            grdInward.Columns["clmInvoiceBatchNo"].ReadOnly = true;
                                         }
                                     }
                                 }
