@@ -43,6 +43,7 @@ namespace ROMS.Model
         public string paraIPAddress { get; set; } = "";
         public string ParaInwardDate { get; set; } = "";
         public string ParaExpiryDate { get; set; } = "";
+        public int paraEditFlag { get; set; } = 0;
         public DataTable paraTRN_GoodsInward_Purchase_Products { get; set; } = null;
     }
 }
