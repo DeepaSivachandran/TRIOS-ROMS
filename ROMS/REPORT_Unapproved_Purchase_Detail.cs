@@ -176,8 +176,8 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                //objTRN_PurchaseEntry.ViewType = 1;
-                //objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbConditionType.SelectedValue);
+                objTRN_PurchaseEntry.ViewType = 22;
+                objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbConditionType.SelectedValue);
                 objTRN_PurchaseEntry.paraPaymentType = Convert.ToInt32(cmbPayType.SelectedValue);
                 objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbBillType.SelectedValue);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
@@ -196,18 +196,17 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    //objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRNDetails.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Unapproved_Purchase_Details.rpt");
+                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbPayType.SelectedValue));
                     objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbBillType.SelectedValue));
-                    objBillreport.SetParameterValue("paraPaymentType", Convert.ToInt32(cmbPayType.SelectedValue));
                     objBillreport.SetParameterValue("paraConditionType", Convert.ToInt32(cmbConditionType.SelectedValue));
                     objBillreport.SetParameterValue("paraSupplierID", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
 
-                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbPayType.Text));
-                    objBillreport.SetParameterValue("paraPaymentName", Convert.ToString(cmbPayType.Text));
-                    objBillreport.SetParameterValue("paraConditonTypeName", Convert.ToString(cmbConditionType.Text));
+                    objBillreport.SetParameterValue("paraPayTypeName", Convert.ToString(cmbPayType.Text));
+                    objBillreport.SetParameterValue("paraConditionName", Convert.ToString(cmbConditionType.Text));
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("paraFromDateName", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("paraToDateName", Convert.ToString(dpToDate.Text));
@@ -564,7 +563,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14) AND STSID IN (0,50,92)", "STS_Name,STSID", cmbBillType, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14) AND STSID IN (0,62,63)", "STS_Name,STSID", cmbBillType, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,7) AND STSID IN (0,17,23)", "STS_Name,STSID", cmbPayType, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,61) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;

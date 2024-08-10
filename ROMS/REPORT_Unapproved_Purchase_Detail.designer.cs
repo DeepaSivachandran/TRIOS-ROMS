@@ -37,6 +37,8 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbBillType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbConditionType = new System.Windows.Forms.ComboBox();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -52,8 +54,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.cmbBillType = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -160,6 +160,28 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(803, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 20);
+            this.label4.TabIndex = 1111198;
+            this.label4.Text = "Bill Type";
+            // 
+            // cmbBillType
+            // 
+            this.cmbBillType.FormattingEnabled = true;
+            this.cmbBillType.Location = new System.Drawing.Point(803, 43);
+            this.cmbBillType.Name = "cmbBillType";
+            this.cmbBillType.Size = new System.Drawing.Size(213, 27);
+            this.cmbBillType.TabIndex = 6;
+            this.cmbBillType.Enter += new System.EventHandler(this.CmbBillType_Enter);
+            this.cmbBillType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBillType_KeyDown);
+            this.cmbBillType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBillType_KeyPress);
+            this.cmbBillType.Leave += new System.EventHandler(this.CmbBillType_Leave);
             // 
             // label5
             // 
@@ -290,7 +312,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(929, 41);
+            this.btnView.Location = new System.Drawing.Point(1022, 41);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
@@ -341,28 +363,6 @@
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
-            // 
-            // cmbBillType
-            // 
-            this.cmbBillType.FormattingEnabled = true;
-            this.cmbBillType.Location = new System.Drawing.Point(803, 43);
-            this.cmbBillType.Name = "cmbBillType";
-            this.cmbBillType.Size = new System.Drawing.Size(120, 27);
-            this.cmbBillType.TabIndex = 6;
-            this.cmbBillType.Enter += new System.EventHandler(this.CmbBillType_Enter);
-            this.cmbBillType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBillType_KeyDown);
-            this.cmbBillType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBillType_KeyPress);
-            this.cmbBillType.Leave += new System.EventHandler(this.CmbBillType_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(803, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 20);
-            this.label4.TabIndex = 1111198;
-            this.label4.Text = "Bill Type";
             // 
             // REPORT_Unapproved_Purchase_Detail
             // 
