@@ -176,9 +176,9 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                //objTRN_PurchaseEntry.ViewType = 1;
-                //objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbConditionType.SelectedValue);
-                objTRN_PurchaseEntry.paraPaymentType = Convert.ToInt32(cmbPayType.SelectedValue);
+                objTRN_PurchaseEntry.ViewType = 20;
+                objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbConditionType.SelectedValue);
+                objTRN_PurchaseEntry.paraType = Convert.ToInt32(cmbPayType.SelectedValue);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
                 objTRN_PurchaseEntry.paraFromDate = dpFromDate.Text;
@@ -195,16 +195,16 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    //objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRNDetails.rpt");
-                    objBillreport.SetParameterValue("paraPaymentType", Convert.ToInt32(cmbPayType.SelectedValue));
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Details.rpt");
+                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbPayType.SelectedValue));
                     objBillreport.SetParameterValue("paraConditionType", Convert.ToInt32(cmbConditionType.SelectedValue));
                     objBillreport.SetParameterValue("paraSupplierID", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
 
-                    objBillreport.SetParameterValue("paraPaymentName", Convert.ToString(cmbPayType.Text));
-                    objBillreport.SetParameterValue("paraConditionTypeName", Convert.ToString(cmbConditionType.Text));
+                    objBillreport.SetParameterValue("paraPayTypeName", Convert.ToString(cmbPayType.Text));
+                    objBillreport.SetParameterValue("paraConditionName", Convert.ToString(cmbConditionType.Text));
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("paraFromDateName", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("paraToDateName", Convert.ToString(dpToDate.Text));
