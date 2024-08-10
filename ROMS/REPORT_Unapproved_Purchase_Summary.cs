@@ -104,7 +104,7 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "";
+                string varSupplierName = ""; int varInvType = 2;
                 if (txtSupplier.Text.Trim()=="")
                 {
                     varSupplierName = "-All-";
@@ -114,6 +114,14 @@ namespace ROMS
                 else
                 {
                     varSupplierName = txtSupplier.Text;
+                }
+                if (Convert.ToInt32(cmbInvType.SelectedValue) == 258)
+                {
+                    varInvType = 1;
+                }
+                else if (Convert.ToInt32(cmbInvType.SelectedValue) == 259)
+                {
+                    varInvType = 0;
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -125,9 +133,9 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                //objTRN_PurchaseEntry.ViewType = 1;
-                //objTRN_PurchaseEntry.paraSupplierType = Convert.ToInt32(cmbSupplierType.SelectedValue);
-                objTRN_PurchaseEntry.paraEntryType = Convert.ToInt32(cmbInvType.SelectedValue);
+                objTRN_PurchaseEntry.ViewType = 21;
+                objTRN_PurchaseEntry.paraSupplierType = Convert.ToInt32(cmbSupplierType.SelectedValue);
+                objTRN_PurchaseEntry.paraEntryType = varInvType;
                 objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
@@ -145,18 +153,18 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    //objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRNDetails.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Unapproved_Purchase_Summary.rpt");
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
-                    objBillreport.SetParameterValue("paraEntryType", Convert.ToInt32(cmbInvType.SelectedValue));
                     objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraEntryType", varInvType);
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("paraSupplierTypeName", Convert.ToString(cmbSupplierType.Text));
-                    objBillreport.SetParameterValue("paraInvTypeName", Convert.ToString(cmbInvType.Text));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraInvTypeName", Convert.ToString(cmbInvType.Text));
                     objBillreport.SetParameterValue("paraFromDateName", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("paraToDateName", Convert.ToString(dpToDate.Text));
 
@@ -525,7 +533,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14) AND STSID IN (0,50,92)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14) AND STSID IN (0,62,63)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
