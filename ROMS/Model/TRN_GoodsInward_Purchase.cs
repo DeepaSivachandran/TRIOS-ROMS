@@ -28,6 +28,7 @@ namespace ROMS.Model
         public int paraInwardId { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
         public string paraGIP_Date { get; set; } = "";
+        public string paraGIP_TransDate { get; set; } = "";
         public string paraRemarks { get; set; } = "";
         public string paraGIP_NO { get; set; } = "";
         public string paraHostName { get; set; } = "";

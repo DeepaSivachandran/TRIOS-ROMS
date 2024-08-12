@@ -28,6 +28,7 @@ namespace ROMS
         public decimal varReQty = 0, varShQty = 0;
         public int varErrorQty = 0, varStsErr = 0;
         public string varTempExpiryDate = "0", varExpiryDate = "";
+        public string varGIPTransDate="";
         public INV_InwardPurchase()
         {
             InitializeComponent();
@@ -1332,7 +1333,6 @@ namespace ROMS
                                         //    grdInward.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
                                         //    varErrorFlag = false;
                                         //}
-                                        varErrorFlag = true;
                                         varInvoiceQty = Convert.ToDecimal(grdInward.Rows[j].Cells["clmQty"].Value);
                                         if (Convert.ToString(dtInwardPurchase.Rows[i]["GIPPR_INVSTSID"].ToString()) == "82" && Convert.ToString(dtInwardPurchase.Rows[i]["GIPPR_SNO"].ToString()) == Convert.ToString(grdInward.Rows[j].Cells["clmDuplicateSno"].Value))
                                         {
@@ -1546,7 +1546,7 @@ namespace ROMS
                                         {
                                             if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) == "1")
                                             {
-                                                if (varGRNPurchaseFlag == 3 && Convert.ToBoolean(grdInward.Rows[j].Cells["clmCheck"].Value) == true)   //From dc- Queue
+                                                if (varGRNPurchaseFlag == 3 && varGRNPurchaseFlag == 187)   //From dc- Queue
                                                 {
                                                     int varIDvalue = Convert.ToInt32(grdInward.Rows[j].Cells["clmDuplicateSno"].Value);
                                                     varQty1 = Convert.ToDecimal(grdInward.Rows[j].Cells["clmQty"].Value);
@@ -1580,7 +1580,7 @@ namespace ROMS
                                                     }
                                                 }
 
-                                                if (varGRNPurchaseFlag == 2 && Convert.ToBoolean(grdInward.Rows[j].Cells["clmCheck"].Value) == true)   //From Purchase- Queue
+                                                if (varGRNPurchaseFlag == 2 && varGRNPurchaseFlag==175)   //From Purchase- Queue
                                                 {
                                                     int varIDvalue = Convert.ToInt32(grdInward.Rows[j].Cells["clmSno"].Value);
 
@@ -1746,7 +1746,7 @@ namespace ROMS
                             {
                                 if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
                                 {
-                                    if (varGRNPurchaseFlag == 3 && Convert.ToBoolean(grdInward.Rows[i].Cells["clmCheck"].Value) == true)   //From dc- Queue
+                                    if (varGRNPurchaseFlag == 3 && varGRNPurchaseFlag == 187)   //From dc- Queue
                                     {
                                         int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmDuplicateSno"].Value);
                                         varQty1 = Convert.ToDecimal(grdInward.Rows[i].Cells["clmQty"].Value);
@@ -1762,11 +1762,12 @@ namespace ROMS
                                         if (varQty1 != 0)
                                         {
                                             varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
-                                            if (varQty1 > varTotalQty1 || varQty1 == varTotalQty1)
-                                            {
+                                            //if (varQty1 > varTotalQty1 || varQty1 == varTotalQty1)
+                                            //{
 
-                                            }
-                                            else
+                                            //}
+                                            //else
+                                            if(varTotalQty1!= varQty1)
                                             {
                                                 varQuantityErr++;
                                                 grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
@@ -1781,7 +1782,7 @@ namespace ROMS
                                 }
                                 if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
                                 {
-                                    if (varGRNPurchaseFlag == 2 && Convert.ToBoolean(grdInward.Rows[i].Cells["clmCheck"].Value) == true)   //From Purchase- Queue
+                                    if (varGRNPurchaseFlag == 2 || varGRNPurchaseFlag == 175)   //From Purchase- Queue
                                     {
                                         int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmSno"].Value);
 
@@ -1797,7 +1798,7 @@ namespace ROMS
                                         {
                                             varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
 
-                                            if (varQty1 < varTotalQty1)
+                                            if (varQty1 != varTotalQty1)
                                             {
                                                 varQuantityErr++;
                                                 grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
@@ -2412,6 +2413,7 @@ namespace ROMS
                                 objTRN_GoodsInward_Purchase.ParaScheduleId = Convert.ToInt32(varScheduleId);
                                 objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(varTypeID);
                                 objTRN_GoodsInward_Purchase.paraEditFlag = 0;
+                                objTRN_GoodsInward_Purchase.paraGIP_TransDate = varGIPTransDate;
                                 if (varEditFlag == 0)
                                 {
                                     objTRN_GoodsInward_Purchase.paraTRN_GoodsInward_Purchase_Products = dtChkProducts;
@@ -2457,6 +2459,7 @@ namespace ROMS
                                     objTRN_GoodsInward_Purchase.ParaScheduleId = Convert.ToInt32(varScheduleId);
                                     objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(varTypeID);
                                     objTRN_GoodsInward_Purchase.paraEditFlag = 1;
+                                    objTRN_GoodsInward_Purchase.paraGIP_TransDate = varGIPTransDate;
                                     if (varEditFlag == 0)
                                     {
                                         objTRN_GoodsInward_Purchase.paraTRN_GoodsInward_Purchase_Products = dtChkProducts;
@@ -3557,11 +3560,11 @@ namespace ROMS
                                         DataGridViewCell cell5 = dataGridView1.Rows[i].Cells["clmInvoiceMRP"];
                                         if (Convert.ToString(grdInward.Rows[i].Cells["clmMRPFlag"].Value) == "1")
                                         {
-                                            cell1.Style.BackColor = Color.PaleGreen;
-                                            cell1.Style.ForeColor = Color.Black;
+                                            //cell1.Style.BackColor = Color.PaleGreen;
+                                            //cell1.Style.ForeColor = Color.Black;
                                             cell1.ReadOnly = false;
-                                            cell5.Style.BackColor = Color.PaleGreen;
-                                            cell5.Style.ForeColor = Color.Black;
+                                            //cell5.Style.BackColor = Color.PaleGreen;
+                                            //cell5.Style.ForeColor = Color.Black;
                                             cell5.ReadOnly = false;
                                         }
                                         else
@@ -3580,11 +3583,11 @@ namespace ROMS
                                         DataGridViewCell cell4 = dataGridView1.Rows[i].Cells["clmInvoiceExpiryDate"];
                                         if (Convert.ToString(grdInward.Rows[i].Cells["clmShelfStatus"].Value) == "1")
                                         {
-                                            cell2.Style.BackColor = Color.PaleGreen;
-                                            cell2.Style.ForeColor = Color.Black;
+                                            //cell2.Style.BackColor = Color.PaleGreen;
+                                            //cell2.Style.ForeColor = Color.Black;
                                             cell2.ReadOnly = false;
-                                            cell4.Style.BackColor = Color.PaleGreen;
-                                            cell4.Style.ForeColor = Color.Black;
+                                            //cell4.Style.BackColor = Color.PaleGreen;
+                                            //cell4.Style.ForeColor = Color.Black;
                                             cell4.ReadOnly = false;
                                         }
                                         else
@@ -3613,11 +3616,11 @@ namespace ROMS
                                         DataGridViewCell cell6 = dataGridView3.Rows[i].Cells["clmInvoiceBatchNo"];
                                         if (Convert.ToString(grdInward.Rows[i].Cells["clmBatchNoStatus"].Value) == "72" && Convert.ToString(grdInward.Rows[i].Cells["clmBatchNoGeneration"].Value) == "75")
                                         {
-                                            cell3.Style.BackColor = Color.PaleGreen;
-                                            cell3.Style.ForeColor = Color.Black;
+                                            //cell3.Style.BackColor = Color.PaleGreen;
+                                            //cell3.Style.ForeColor = Color.Black;
                                             cell3.ReadOnly = false;
-                                            cell6.Style.BackColor = Color.PaleGreen;
-                                            cell6.Style.ForeColor = Color.Black;
+                                            //cell6.Style.BackColor = Color.PaleGreen;
+                                            //cell6.Style.ForeColor = Color.Black;
                                             cell6.ReadOnly = false;
                                         }
                                         else

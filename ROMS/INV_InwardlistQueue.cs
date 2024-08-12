@@ -20,7 +20,6 @@ namespace ROMS
         public string varStockLocaionId = "",varPRID="";
         public DataTable Deftable = new DataTable();
         public int varSTRID = 0, varSLID = 0, varUpDownKey = 0;
-
         public INV_InwardlistQueue()
         {
             InitializeComponent();

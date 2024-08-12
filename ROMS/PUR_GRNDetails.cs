@@ -3546,8 +3546,8 @@ namespace ROMS
             {
                 if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmBatchno" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmmrp" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmexpirydate" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmInvoiceQty" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmQtyType" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmExcessQty")
                 {
-                    //e.Control.KeyPress -= udfnHandleKeyPress;
-                    //e.Control.KeyPress += udfnHandleKeyPress;
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
                 }
                 if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmInvoiceQty" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmQtyType" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmmrp" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmExcessQty")
                 {
@@ -3588,7 +3588,7 @@ namespace ROMS
         {
             try
             {
-                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmmrp")
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmmrp" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmInvoiceMRP")
                 {
                     if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                     {
@@ -3610,7 +3610,7 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
-                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmBatchno")
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmBatchno" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmInvoiceBatch")
                 {
                     TextBox vartb = sender as TextBox;
                     if (vartb.Text.Length >= 10 && !char.IsControl(e.KeyChar))
@@ -3618,14 +3618,14 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
-                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmexpirydate")
+                if (grdGrnlist.CurrentCell.OwningColumn.Name == "clmexpirydate" || grdGrnlist.CurrentCell.OwningColumn.Name == "clmInvoiceExpiry")
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '/')
                     {
                         e.Handled = true;  // Disallow the character
                     }
                     TextBox vartb = sender as TextBox;
-                    if (vartb.Text.Length >= 8 && !char.IsControl(e.KeyChar))
+                    if (vartb.Text.Length >= 10 && !char.IsControl(e.KeyChar))
                     {
                         e.Handled = true;
                     }
@@ -4529,10 +4529,10 @@ namespace ROMS
                                                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                                }
+                                                //else
+                                                //{
+                                                //    grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                                //}
                                             }
                                             else
                                             {
@@ -4569,8 +4569,8 @@ namespace ROMS
                                 DataGridViewCell cell4 = dataGridView.Rows[rowIndex].Cells["clmExcessQty"];
                                 //cell.Style.BackColor = Color.PaleGreen;
                                 //cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
-                                cell1.Style.BackColor = Color.PaleGreen;
-                                cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
+                                //cell1.Style.BackColor = Color.PaleGreen;
+                                //cell1.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                 //cell2.Style.BackColor = Color.PaleGreen;
                                 //cell2.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                 //if (Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) !=202)
@@ -4592,11 +4592,11 @@ namespace ROMS
                                     cell2.Style.ForeColor = Color.Black;
                                     cell2.ReadOnly = true;
                                 }
-                                else
-                                {
-                                    cell2.Style.BackColor = Color.PaleGreen;
-                                    cell2.Style.ForeColor = Color.Black;
-                                }
+                                //else
+                                //{
+                                //    cell2.Style.BackColor = Color.PaleGreen;
+                                //    cell2.Style.ForeColor = Color.Black;
+                                //}
                             }
                         }
                         if (pbDateflag == 0)
@@ -4710,10 +4710,10 @@ namespace ROMS
                                                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                                 }
                                             }
-                                            else
-                                            {
-                                                grdGrnlist.Rows[rowIndex].Cells["clmInvoiceExpiry"].Style.BackColor = Color.PaleGreen;
-                                            }
+                                            //else
+                                            //{
+                                            //    grdGrnlist.Rows[rowIndex].Cells["clmInvoiceExpiry"].Style.BackColor = Color.PaleGreen;
+                                            //}
                                         }
                                         else
                                         {
@@ -4722,16 +4722,15 @@ namespace ROMS
                                     }
                                 }
                             }
-                        }
-                    }
+                        }                   
                     if (error == 1)
                     {
                         if (varTempExpiryDate != "")
                         {
-                            if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Value) == varTempExpiryDate)
+                            if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["l"].Value) == varTempExpiryDate)
                             {
                                 varErroronGrid = 1;
-                                grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                grdGrnlist.Rows[rowIndex].Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightPink;
                                 string varMessage = objDServ.udfnGetMessages(94);
                                 objDServ.CloseConnection();
                                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -4744,13 +4743,13 @@ namespace ROMS
                         {
                             //grdGrnlist.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
                             DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmmrp"];
-                            DataGridViewCell cell1 = dataGridView.Rows[rowIndex].Cells["clmexpirydate"];
+                            DataGridViewCell cell1 = dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiry"];
                             DataGridViewCell cell2 = dataGridView.Rows[rowIndex].Cells["clmBatchno"];
                             DataGridViewCell cell3 = dataGridView.Rows[rowIndex].Cells["clmInvoiceQty"];
                             DataGridViewCell cell4 = dataGridView.Rows[rowIndex].Cells["clmExcessQty"];
-                           // Set the background color to the default background color
-                            cell1.Style.BackColor = Color.PaleGreen;
-                            cell1.Style.ForeColor = Color.Black;
+                            // Set the background color to the default background color
+                            //cell1.Style.BackColor = Color.PaleGreen;
+                            //cell1.Style.ForeColor = Color.Black;
                             if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmBatchgeneration"].Value) == "74")
                             {
                                 cell2.Style.BackColor = Color.LightGray;
@@ -4763,13 +4762,14 @@ namespace ROMS
                                 cell2.Style.ForeColor = Color.Black;
                                 cell2.ReadOnly = true;
                             }
-                            else
-                            {
-                                cell2.Style.BackColor = Color.PaleGreen;
-                                cell2.Style.ForeColor = Color.Black;
-                            }
+                            //else
+                            //{
+                            //    cell2.Style.BackColor = Color.PaleGreen;
+                            //    cell2.Style.ForeColor = Color.Black;
+                            //}
                         }
                     }
+                }
                     
                 }
                 //}
@@ -6608,12 +6608,12 @@ namespace ROMS
                                             Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "255" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmQtyType"].Value) == "226")
                                         {
                                             grdGrnlist.Rows[i].Cells["clmMismatchQty"].ReadOnly = false;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.PaleGreen;
+                                            //grdGrnlist.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.PaleGreen;
                                         }
                                         else
                                         {
                                             grdGrnlist.Rows[i].Cells["clmMismatchQty"].ReadOnly = true;
-                                            grdGrnlist.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                                            grdGrnlist.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
                                         }
                                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmRMFlag"].Value)=="1")
                                         {
@@ -6773,10 +6773,12 @@ namespace ROMS
                 grdGrnlist.Columns["clmInvoiceExpiry"].ReadOnly = true;
                 grdGrnlist.Columns["clmBatchno"].ReadOnly = true;
                 grdGrnlist.Columns["clmInvoiceBatch"].ReadOnly = true;
+                grdGrnlist.Columns["clmMismatchQty"].ReadOnly = true;
                 grdGrnlist.Columns["clmexpirydate"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmInvoiceExpiry"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmBatchno"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmInvoiceBatch"].DefaultCellStyle.BackColor = Color.LightGray;
+                grdGrnlist.Columns["clmMismatchQty"].DefaultCellStyle.BackColor = Color.LightGray;
             }
             catch (Exception ex)
             {
