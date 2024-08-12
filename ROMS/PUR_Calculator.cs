@@ -61,7 +61,7 @@ namespace ROMS
                 if (txtValue.Text != "")
                 {
                     lbltemptext.Text = txtValue.Text.Replace("%","/100");
-                    varResult = Math.Round(Convert.ToDouble(new DataTable().Compute(lbltemptext.Text, null)), 3, MidpointRounding.AwayFromZero);
+                    varResult = Math.Round(Convert.ToDouble(new DataTable().Compute(lbltemptext.Text, null)), 6, MidpointRounding.AwayFromZero);
                 }
                 else { varResult = 0; }
             }
