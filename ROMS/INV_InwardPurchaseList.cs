@@ -681,8 +681,8 @@ namespace ROMS
                                 grdInwardList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Tot Pro in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInwardList.Columns["Con"].Width = 80;
-                                grdInwardList.Columns["Transaction Date"].Width = 80;
-                                grdInwardList.Columns["Transaction No."].Width = 70;
+                                grdInwardList.Columns["Transaction Date"].Width = 100;
+                                grdInwardList.Columns["Transaction No."].Width = 100;
                                 grdInwardList.Columns["Supplier"].Width = 250;
                                 grdInwardList.Columns["Tot Pro in Invoice"].Width = 160;
                                 grdInwardList.Columns["Location"].Width = 130;

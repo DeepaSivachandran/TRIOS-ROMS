@@ -470,26 +470,26 @@ namespace ROMS
                     tpshortname.Show("Please enter the short name.", txtSPShortName, 5000);
                     blnErrorFlag = true;
                 }
-                if(Convert.ToInt32(cmbPaymentDisc.SelectedValue)==229)
-                {
-                    if(txtDays.Text=="")
-                    {
-                        errCompany.SetError(txtDays, "Please enter the days");
-                        txtDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpDays.ShowAlways = true;
-                        tpDays.Show("Please enter the days", txtDays, 5000);
-                        blnErrorFlag = true;
-                    }
-                    if (txtDiscountPer.Text=="")
-                    {
-                        errCompany.SetError(txtDiscountPer, "Please enter the discount percentage");
-                        txtDiscountPer.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpDiscPer.ShowAlways = true;
-                        tpDiscPer.Show("Please enter the discount percentage", txtDiscountPer, 5000);
-                        blnErrorFlag = true;
-                    }
+                //if(Convert.ToInt32(cmbPaymentDisc.SelectedValue)==229)
+                //{
+                //    if(txtDays.Text=="")
+                //    {
+                //        errCompany.SetError(txtDays, "Please enter the days");
+                //        txtDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpDays.ShowAlways = true;
+                //        tpDays.Show("Please enter the days", txtDays, 5000);
+                //        blnErrorFlag = true;
+                //    }
+                //    if (txtDiscountPer.Text=="")
+                //    {
+                //        errCompany.SetError(txtDiscountPer, "Please enter the discount percentage");
+                //        txtDiscountPer.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpDiscPer.ShowAlways = true;
+                //        tpDiscPer.Show("Please enter the discount percentage", txtDiscountPer, 5000);
+                //        blnErrorFlag = true;
+                //    }
 
-                }
+                //}
                 if (txtArea.Text == "")
                 {
                     errCompany.SetError(txtArea, "Please enter Address");
@@ -638,14 +638,14 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if(cmbPaymentDisc.Text=="")
-                {
-                    errCompany.SetError(txtgstin, "Please select payment discount");
-                    cmbPaymentDisc.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPayment.ShowAlways = true;
-                    tpPayment.Show("Please select payment discount", cmbPaymentDisc, 5000);
-                    blnErrorFlag = true;
-                }
+                //if(cmbPaymentDisc.Text=="")
+                //{
+                //    errCompany.SetError(txtgstin, "Please select payment discount");
+                //    cmbPaymentDisc.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpPayment.ShowAlways = true;
+                //    tpPayment.Show("Please select payment discount", cmbPaymentDisc, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtCity.Text) != "")
                 {
                     if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
@@ -823,7 +823,7 @@ namespace ROMS
                    , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
                    Convert.ToInt32(cmbPaymentTerm.SelectedValue), varreturnapplicable, varretuencycle, Convert.ToInt32(cmbfinance.SelectedValue), openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, Convert.ToInt32(cmbDesignation.SelectedValue), txtcontactName.Text, creditlimit, -1, -1, -1, -1, "",
-                   "", "", "", 0, "", 0, 0, "", txtBankname.Text, txtBankShortName.Text.Trim().ToUpper(), txtbranchname.Text, txtAccno.Text, txtIFScode.Text, txtAccName.Text, "", varpaymentmethod,0,txtSPShortName.Text,0,0,Convert.ToInt32(cmbPaymentDisc.SelectedValue),Convert.ToInt32(varDiscDays),Convert.ToInt32(varDiscPer),0,0);
+                   "", "", "", 0, "", 0, 0, "", txtBankname.Text, txtBankShortName.Text.Trim().ToUpper(), txtbranchname.Text, txtAccno.Text, txtIFScode.Text, txtAccName.Text, "", varpaymentmethod,0,txtSPShortName.Text,0,0,0,Convert.ToInt32(varDiscDays),Convert.ToInt32(varDiscPer),0,0);
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
