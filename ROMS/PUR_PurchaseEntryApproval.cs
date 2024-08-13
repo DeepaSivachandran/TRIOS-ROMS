@@ -85,7 +85,7 @@ namespace ROMS
                             grdReurnDC.Rows.Clear();
                             txtQRCode.ReadOnly = false;
                             txtQRCode.Enabled = true;
-                            grdReurnDC.Visible = false;
+                            //grdReurnDC.Visible = false;
                             grdPODetails.Visible = true;
                             //if (grdPODetails.Rows.Count != 0)
                             //{
@@ -106,11 +106,11 @@ namespace ROMS
                         dpInvoiceDate.Enabled = true;
                         txtInvoiceNo.ReadOnly = false;
                         grdPODetails.Visible = true;
-                        grdReurnDC.Visible = false;
+                       // grdReurnDC.Visible = false;
                         
                         if (grdPODetails.Rows.Count != 0)
                         {
-                            lblFinishedNoRecord.Visible = false;
+                            lblPOnorecord.Visible = false;
                         }
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "56") // Direct
@@ -126,7 +126,7 @@ namespace ROMS
                         dpInvoiceDate.Enabled = true;
                         txtInvoiceNo.ReadOnly = false;
                         grdPODetails.Visible = true;
-                        grdReurnDC.Visible = false;
+                       // grdReurnDC.Visible = false;
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                     {
@@ -135,7 +135,7 @@ namespace ROMS
                             grdPODetails.Rows.Clear();
                             udfnPurchaseDC();
                             udfnDefReturnDc();
-                            grdPODetails.Visible = false;
+                            //grdPODetails.Visible = false;
                             //grdSupplierList.Columns["clmPono"].Visible = false;
                             txtQRCode.Text = "";
                             txtQRCode.ReadOnly = true;
@@ -952,8 +952,8 @@ namespace ROMS
                                 }
                                 if (cmbEntryType.SelectedValue.ToString() == "57") // Direct DC
                                 {
-                                    grdPODetails.Visible = false;
-                                    grdReurnDC.Visible = false;
+                                    //grdPODetails.Visible = false;
+                                    //grdReurnDC.Visible = false;
                                 }
                                 for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                 {
@@ -1080,7 +1080,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[3].Rows.Count != 0) //PO DETAILS LOAD
                             {
-                                lblFinishedNoRecord.Visible = false;
+                                lblPOnorecord.Visible = false;
                                 for (int i = 0; i < objDs.Tables[3].Rows.Count; i++)
                                 {
                                     grdPODetails.Rows.Add(Convert.ToString(objDs.Tables[3].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[3].Rows[i]["PO_Date"]),
@@ -1091,11 +1091,11 @@ namespace ROMS
                             else
                             {
                                 grdPODetails.Rows.Clear();
-                                lblFinishedNoRecord.Visible = true;
                             }
                             if (objDs.Tables[4].Rows.Count != 0) //DC DETAILS LOAD
                             {
-                                lblFinishedNoRecord.Visible = false;
+                                grdDCVerificationDetails.Rows.Clear();
+                                grdReurnDC.BringToFront();
                                 for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
                                 {
                                     grdDCVerificationDetails.Rows.Clear();
@@ -1111,12 +1111,13 @@ namespace ROMS
                             else
                             {
                                 grdReurnDC.Rows.Clear();
-                                grdReurnDC.Visible = false;
+                                //grdReurnDC.Visible = false;
                                 //lblFinishedNoRecord.Visible = true;
                             }
                             if (objDs.Tables[5].Rows.Count != 0) //GRN DETAILS LOAD
                             {
                                 lblFinishedNoRecord.Visible = false;
+                                grdGRN.BringToFront();
                                 for (int i = 0; i < objDs.Tables[5].Rows.Count; i++)
                                 {
                                     grdGRN.Rows.Add(Convert.ToString(objDs.Tables[5].Rows[i]["GRN_Date"]), Convert.ToString(objDs.Tables[5].Rows[i]["GRN_No"]),
@@ -1125,12 +1126,6 @@ namespace ROMS
                                 txtQRCode.Text = Convert.ToString(objDs.Tables[5].Rows[0]["GRN Code"]);
                                 grdGRN.Visible = true;
                                 varTypeErrId = Convert.ToString(objDs.Tables[5].Rows[0]["GRNID"]);
-                            }
-                            else
-                            {
-                                grdGRN.Rows.Clear();
-                                grdGRN.Visible = false;
-                                //  lblFinishedNoRecord.Visible = true;
                             }
                             grdReurnDC.Columns["clmRemoveDC"].Visible = false;
                             grdPODetails.Columns["clmRemovePO"].Visible = false;
@@ -1296,7 +1291,7 @@ namespace ROMS
                 //txtInvoiceNo.ReadOnly = true;
                 //txtInvoiceNo.Enabled = false;
                 grdPODetails.Visible = true;
-                grdReurnDC.Visible = false;
+                //grdReurnDC.Visible = false;
             }
             else if (PbFlag == "2")
             {
@@ -1305,7 +1300,7 @@ namespace ROMS
                 varTypeErrId = PbID;
                 udfnGRNDCDetailsLoadQueue();
                 udfnDefReturnDc();
-                grdPODetails.Visible = false;
+              //  grdPODetails.Visible = false;
                 grdReurnDC.Visible = true;
                 if (grdReurnDC.Rows.Count != 0)
                 {
@@ -1385,7 +1380,7 @@ namespace ROMS
                         grdReurnDC.Rows.Clear();
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
-                            lblNoRecordsFound.Visible = false;
+                            lblPOnorecord.Visible = false;
                             grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["DCNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["DCDate"]),
                                 Convert.ToString(objDs.Tables[0].Rows[i]["T.PRO"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"])
                             );
@@ -4624,6 +4619,33 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdGRN_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPODetails.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmpo":
+                            string cellGRNValue = Convert.ToString(grdGRN.Rows[e.RowIndex].Cells["clmGRNID"].Value);
+                            MainForm.objPUR_GRNProducts = new PUR_GRNProducts();
+                            MainForm.objPUR_GRNProducts.pbGRNid = cellGRNValue;
+                            MainForm.objPUR_GRNProducts.pbSupplierCode = lblSupplierCode.Text;
+                            MainForm.objPUR_GRNProducts.pbScheduleCode = lblschedule.Text;
+                            MainForm.objPUR_GRNProducts.ShowDialog();
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnButtonChange()
         {
             try
@@ -6322,17 +6344,17 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-                if (grdPODetails.Rows.Count > 0)
-                {
-                    lblFinishedNoRecord.Visible = false;
-                }
-                else
-                {
-                    lblFinishedNoRecord.Visible = true;
-                }
-            }
+            //finally
+            //{
+            //    if (grdPODetails.Rows.Count > 0)
+            //    {
+            //        lblFinishedNoRecord.Visible = false;
+            //    }
+            //    else
+            //    {
+            //        lblFinishedNoRecord.Visible = true;
+            //    }
+            //}
         }
 
         private void Txtdiscount_TextChanged(object sender, EventArgs e)
