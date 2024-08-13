@@ -131,6 +131,20 @@ namespace ROMS
             this.TSMGRNDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNBatchDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gRNSupplierDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gRNDefectProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierWiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierWiseProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignedProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unassignedProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pOWiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrderSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrderDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productWisePOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseSummaryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unapprovedPurchaseSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unapprovedPurchaseDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -139,7 +153,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gRNDefectProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseDefectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -788,7 +802,10 @@ namespace ROMS
             this.stockReportToolStripMenuItem,
             this.itemMovementAnalysisToolStripMenuItem,
             this.purchaseOrderToolStripMenuItem,
-            this.TSMGRNReport});
+            this.TSMGRNReport,
+            this.supplierWiseReportToolStripMenuItem,
+            this.pOWiseReportToolStripMenuItem,
+            this.purchaseReportToolStripMenuItem});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -991,6 +1008,115 @@ namespace ROMS
             this.gRNSupplierDetailToolStripMenuItem.Text = "GRN Supplier Detail";
             this.gRNSupplierDetailToolStripMenuItem.Click += new System.EventHandler(this.GRNSupplierDetailToolStripMenuItem_Click);
             // 
+            // gRNDefectProductToolStripMenuItem
+            // 
+            this.gRNDefectProductToolStripMenuItem.Name = "gRNDefectProductToolStripMenuItem";
+            this.gRNDefectProductToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gRNDefectProductToolStripMenuItem.Text = "GRN Defect Product";
+            this.gRNDefectProductToolStripMenuItem.Click += new System.EventHandler(this.GRNDefectProductToolStripMenuItem_Click);
+            // 
+            // supplierWiseReportToolStripMenuItem
+            // 
+            this.supplierWiseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.supplierWiseProductsToolStripMenuItem,
+            this.assignedProductsToolStripMenuItem,
+            this.unassignedProductsToolStripMenuItem});
+            this.supplierWiseReportToolStripMenuItem.Name = "supplierWiseReportToolStripMenuItem";
+            this.supplierWiseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.supplierWiseReportToolStripMenuItem.Text = "Supplier Wise Report";
+            // 
+            // supplierWiseProductsToolStripMenuItem
+            // 
+            this.supplierWiseProductsToolStripMenuItem.Name = "supplierWiseProductsToolStripMenuItem";
+            this.supplierWiseProductsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.supplierWiseProductsToolStripMenuItem.Text = "Supplier Wise Products";
+            this.supplierWiseProductsToolStripMenuItem.Click += new System.EventHandler(this.SupplierWiseProductsToolStripMenuItem_Click);
+            // 
+            // assignedProductsToolStripMenuItem
+            // 
+            this.assignedProductsToolStripMenuItem.Name = "assignedProductsToolStripMenuItem";
+            this.assignedProductsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.assignedProductsToolStripMenuItem.Text = "Assigned Products";
+            this.assignedProductsToolStripMenuItem.Click += new System.EventHandler(this.AssignedProductsToolStripMenuItem_Click);
+            // 
+            // unassignedProductsToolStripMenuItem
+            // 
+            this.unassignedProductsToolStripMenuItem.Name = "unassignedProductsToolStripMenuItem";
+            this.unassignedProductsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.unassignedProductsToolStripMenuItem.Text = "Unassigned Products";
+            this.unassignedProductsToolStripMenuItem.Click += new System.EventHandler(this.UnassignedProductsToolStripMenuItem_Click);
+            // 
+            // pOWiseReportToolStripMenuItem
+            // 
+            this.pOWiseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.purchaseOrderSummaryToolStripMenuItem,
+            this.purchaseOrderDetailToolStripMenuItem,
+            this.productWisePOToolStripMenuItem});
+            this.pOWiseReportToolStripMenuItem.Name = "pOWiseReportToolStripMenuItem";
+            this.pOWiseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.pOWiseReportToolStripMenuItem.Text = "PO Wise Report";
+            // 
+            // purchaseOrderSummaryToolStripMenuItem
+            // 
+            this.purchaseOrderSummaryToolStripMenuItem.Name = "purchaseOrderSummaryToolStripMenuItem";
+            this.purchaseOrderSummaryToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.purchaseOrderSummaryToolStripMenuItem.Text = "Purchase Order Summary";
+            this.purchaseOrderSummaryToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderSummaryToolStripMenuItem_Click);
+            // 
+            // purchaseOrderDetailToolStripMenuItem
+            // 
+            this.purchaseOrderDetailToolStripMenuItem.Name = "purchaseOrderDetailToolStripMenuItem";
+            this.purchaseOrderDetailToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.purchaseOrderDetailToolStripMenuItem.Text = "Purchase Order Detail";
+            this.purchaseOrderDetailToolStripMenuItem.Click += new System.EventHandler(this.PurchaseOrderDetailToolStripMenuItem_Click);
+            // 
+            // productWisePOToolStripMenuItem
+            // 
+            this.productWisePOToolStripMenuItem.Name = "productWisePOToolStripMenuItem";
+            this.productWisePOToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.productWisePOToolStripMenuItem.Text = "Product Wise PO";
+            this.productWisePOToolStripMenuItem.Click += new System.EventHandler(this.ProductWisePOToolStripMenuItem_Click);
+            // 
+            // purchaseReportToolStripMenuItem
+            // 
+            this.purchaseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.purchaseSummaryReportToolStripMenuItem,
+            this.purchaseDetailToolStripMenuItem,
+            this.unapprovedPurchaseSummaryToolStripMenuItem,
+            this.unapprovedPurchaseDetailToolStripMenuItem,
+            this.purchaseDefectToolStripMenuItem});
+            this.purchaseReportToolStripMenuItem.Name = "purchaseReportToolStripMenuItem";
+            this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.purchaseReportToolStripMenuItem.Text = "Purchase Report";
+            // 
+            // purchaseSummaryReportToolStripMenuItem
+            // 
+            this.purchaseSummaryReportToolStripMenuItem.Name = "purchaseSummaryReportToolStripMenuItem";
+            this.purchaseSummaryReportToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.purchaseSummaryReportToolStripMenuItem.Text = "Purchase Summary Report";
+            this.purchaseSummaryReportToolStripMenuItem.Click += new System.EventHandler(this.PurchaseSummaryReportToolStripMenuItem_Click);
+            // 
+            // purchaseDetailToolStripMenuItem
+            // 
+            this.purchaseDetailToolStripMenuItem.Name = "purchaseDetailToolStripMenuItem";
+            this.purchaseDetailToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.purchaseDetailToolStripMenuItem.Text = "Purchase Detail";
+            this.purchaseDetailToolStripMenuItem.Click += new System.EventHandler(this.PurchaseDetailToolStripMenuItem_Click);
+            // 
+            // unapprovedPurchaseSummaryToolStripMenuItem
+            // 
+            this.unapprovedPurchaseSummaryToolStripMenuItem.Name = "unapprovedPurchaseSummaryToolStripMenuItem";
+            this.unapprovedPurchaseSummaryToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.unapprovedPurchaseSummaryToolStripMenuItem.Text = "Unapproved Purchase Summary";
+            this.unapprovedPurchaseSummaryToolStripMenuItem.Click += new System.EventHandler(this.UnapprovedPurchaseSummaryToolStripMenuItem_Click);
+            // 
+            // unapprovedPurchaseDetailToolStripMenuItem
+            // 
+            this.unapprovedPurchaseDetailToolStripMenuItem.Name = "unapprovedPurchaseDetailToolStripMenuItem";
+            this.unapprovedPurchaseDetailToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.unapprovedPurchaseDetailToolStripMenuItem.Text = "Unapproved Purchase Detail";
+            this.unapprovedPurchaseDetailToolStripMenuItem.Click += new System.EventHandler(this.UnapprovedPurchaseDetailToolStripMenuItem_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1008,14 +1134,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -1062,12 +1188,12 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // gRNDefectProductToolStripMenuItem
+            // purchaseDefectToolStripMenuItem
             // 
-            this.gRNDefectProductToolStripMenuItem.Name = "gRNDefectProductToolStripMenuItem";
-            this.gRNDefectProductToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gRNDefectProductToolStripMenuItem.Text = "GRN Defect Product";
-            this.gRNDefectProductToolStripMenuItem.Click += new System.EventHandler(this.GRNDefectProductToolStripMenuItem_Click);
+            this.purchaseDefectToolStripMenuItem.Name = "purchaseDefectToolStripMenuItem";
+            this.purchaseDefectToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.purchaseDefectToolStripMenuItem.Text = "Purchase Defect Product";
+            this.purchaseDefectToolStripMenuItem.Click += new System.EventHandler(this.PurchaseDefectToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1207,6 +1333,20 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem gRNBatchDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gRNSupplierDetailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gRNDefectProductToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supplierWiseReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supplierWiseProductsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assignedProductsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unassignedProductsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pOWiseReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseOrderSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseOrderDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productWisePOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseSummaryReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unapprovedPurchaseSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unapprovedPurchaseDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseDefectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discountVoucherToolStripMenuItem;
     }
 }

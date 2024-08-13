@@ -13,13 +13,13 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_GRN_Defect_Product : Form
+    public partial class REPORT_Unapproved_Purchase_Summary : Form
     {
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public REPORT_GRN_Defect_Product()
+        public REPORT_Unapproved_Purchase_Summary()
         {
             InitializeComponent();
         }
@@ -92,7 +92,7 @@ namespace ROMS
                     }
                 }
                 LV_Supplier.Visible = false;
-                udfnGRNDefect();
+                udfnUnapprovePurchaseSummary();
             }
             catch (Exception ex)
             {
@@ -100,18 +100,28 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGRNDefect()
+        public void udfnUnapprovePurchaseSummary()
         {
             try
             {
-                string varSupplierName = "";
-                if(txtSupplier.Text.Trim()=="")
+                string varSupplierName = ""; int varInvType = 2;
+                if (txtSupplier.Text.Trim()=="")
                 {
                     varSupplierName = "-All-";
+                    lblSupplierCode.Text = "0";
+                    lblschedleCode.Text = "0";
                 }
                 else
                 {
                     varSupplierName = txtSupplier.Text;
+                }
+                if (Convert.ToInt32(cmbInvType.SelectedValue) == 258)
+                {
+                    varInvType = 1;
+                }
+                else if (Convert.ToInt32(cmbInvType.SelectedValue) == 259)
+                {
+                    varInvType = 0;
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -120,11 +130,19 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
+                SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(17, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, "","", 0, 0, 0, "", "", 0, 0, "0", "", "", Convert.ToInt32(cmbConditionType.SelectedValue), 0, 0, 0);
-                objdserv.CloseConnection();
+                TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                objTRN_PurchaseEntry.ViewType = 21;
+                objTRN_PurchaseEntry.paraSupplierType = Convert.ToInt32(cmbSupplierType.SelectedValue);
+                objTRN_PurchaseEntry.paraEntryType = varInvType;
+                objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
+                objTRN_PurchaseEntry.paraFromDate = dpFromDate.Text;
+                objTRN_PurchaseEntry.paraToDate = dpToDate.Text;
+                objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
+                objspdservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -135,12 +153,21 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRN_Defect_Product.rpt");
-                    objBillreport.SetParameterValue("paraQtyType", Convert.ToInt32(cmbConditionType.SelectedValue));
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Unapproved_Purchase_Summary.rpt");
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
-                    objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedleCode.Text));
-                    objBillreport.SetParameterValue("paraConditionName", Convert.ToString(cmbConditionType.Text));
+                    objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text));
+                    objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
+                    objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+                    objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraEntryType", varInvType);
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    objBillreport.SetParameterValue("paraSupplierTypeName", Convert.ToString(cmbSupplierType.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraInvTypeName", Convert.ToString(cmbInvType.Text));
+                    objBillreport.SetParameterValue("paraFromDateName", Convert.ToString(dpFromDate.Text));
+                    objBillreport.SetParameterValue("paraToDateName", Convert.ToString(dpToDate.Text));
+
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -185,7 +212,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbSupplierType.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -226,15 +253,15 @@ namespace ROMS
         {
             try
             {
-                LV_Supplier.BringToFront();
-                //RPTViewer.SendToBack();
                 LV_Supplier.Items.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    //Load all active Supplier here//
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 15;
+                    objMR_Supplier.ViewType = 26;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                    objMR_Supplier.ParaFromDate = dpFromDate.Text;
+                    objMR_Supplier.ParaToDate = dpToDate.Text;
+                    objMR_Supplier.paraFlag = 5;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -247,7 +274,8 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString()
+                                    , objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["ScheduleName"].ToString()};
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -256,6 +284,8 @@ namespace ROMS
                                 LV_Supplier.Columns[0].Width = 300;
                                 LV_Supplier.Columns[1].Width = 0;
                                 LV_Supplier.Columns[2].Width = 0;
+                                LV_Supplier.Columns[3].Width = 0;
+                                LV_Supplier.Columns[4].Width = 0;
                             }
                         }
                     }
@@ -314,7 +344,7 @@ namespace ROMS
                     lblschedleCode.Text = selectedItem.SubItems[2].Text;
                     txtSupplier.Text = selectedItem.SubItems[0].Text;
                 }
-                btnView.Focus();
+                cmbSupplierType.Focus();
             }
             catch (Exception ex)
             {
@@ -326,11 +356,11 @@ namespace ROMS
                 LV_Supplier.Visible = false;
             }
         }
-        private void CmbConditionType_Enter(object sender, EventArgs e)
+        private void DpFromDate_Enter(object sender, EventArgs e)
         {
             try
             {
-                cmbConditionType.BackColor = Color.LemonChiffon;
+                dpFromDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -338,7 +368,46 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CmbConditionType_KeyDown(object sender, KeyEventArgs e)
+        private void DpFromDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpFromDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpToDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpToDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dpToDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpToDate_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -353,7 +422,71 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CmbConditionType_KeyPress(object sender, KeyPressEventArgs e)
+        private void DpToDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpToDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbOrderType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSupplierType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbSupplierType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSupplierType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbSupplierType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbInvType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbSupplierType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -365,11 +498,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CmbConditionType_Leave(object sender, EventArgs e)
+        private void CmbSupplierType_Leave(object sender, EventArgs e)
         {
             try
             {
-                cmbConditionType.BackColor = Color.White;
+                cmbSupplierType.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -377,7 +510,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void REPORT_GRN_Defect_Product_KeyDown(object sender, KeyEventArgs e)
+        private void REPORT_GRN_Details_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -395,18 +528,125 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void REPORT_GRN_Defect_Product_Load(object sender, EventArgs e)
+        private void REPORT_GRN_Details_Load(object sender, EventArgs e)
         {
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,61) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14) AND STSID IN (0,62,63)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbInvType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbInvType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbInvType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbInvType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbInvType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbInvType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {

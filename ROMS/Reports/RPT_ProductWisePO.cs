@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_Assigned_Products : ReportClass {
+    public class RPT_ProductWisePO : ReportClass {
         
-        public RPT_Assigned_Products() {
+        public RPT_ProductWisePO() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_Assigned_Products.rpt";
+                return "RPT_ProductWisePO.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_Assigned_Products.rpt";
+                return "ROMS.Reports.RPT_ProductWisePO.rpt";
             }
             set {
                 // Do nothing
@@ -146,7 +146,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandID {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -154,7 +154,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGroup {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -162,7 +162,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroup {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProductName {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -170,7 +170,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_ParaGroupID {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -178,7 +178,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProductCode {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -186,7 +186,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandName {
+        public CrystalDecisions.Shared.IParameterField Parameter_ParaScheduleId {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -194,7 +194,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaProductCode {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraStatus {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -202,17 +202,41 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraProductName {
+        public CrystalDecisions.Shared.IParameterField Parameter_ParaSubGroupID {
             get {
                 return this.DataDefinition.ParameterFields[11];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ParaSupplierId {
+            get {
+                return this.DataDefinition.ParameterFields[12];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierName {
+            get {
+                return this.DataDefinition.ParameterFields[13];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraStatusName {
+            get {
+                return this.DataDefinition.ParameterFields[14];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_Assigned_Products : Component, ICachedReport {
+    public class CachedRPT_ProductWisePO : Component, ICachedReport {
         
-        public CachedRPT_Assigned_Products() {
+        public CachedRPT_ProductWisePO() {
         }
         
         [Browsable(false)]
@@ -249,7 +273,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_Assigned_Products rpt = new RPT_Assigned_Products();
+            RPT_ProductWisePO rpt = new RPT_ProductWisePO();
             rpt.Site = this.Site;
             return rpt;
         }

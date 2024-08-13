@@ -223,6 +223,18 @@ namespace ROMS
         public static REPORT_GRN_Batch_Detail objREPORT_GRN_Batch_Detail;
         public static REPORT_GRN_Supplier_Detail objREPORT_GRN_Supplier_Detail;
         public static REPORT_GRN_Defect_Product objREPORT_GRN_Defect_Product;
+        public static REPORT_SupplierWiseProduct objREPORT_SupplierWiseProduct;
+        public static REPORT_Unassigned_Products objREPORT_Unassigned_Products;
+        public static REPORT_Assigned_Products objREPORT_Assigned_Products;
+        public static REPORT_PurchaseOrder_Summary objREPORT_PurchaseOrder_Summary;
+        public static REPORT_PurchaseOrder_Detail objREPORT_PurchaseOrder_Detail;
+        public static REPORT_ProductWise_Po objREPORT_ProductWise_Po;
+
+        public static REPORT_Purchase_Summary objREPORT_Purchase_Summary;
+        public static REPORT_Purchase_Details objREPORT_Purchase_Details;
+        public static REPORT_Unapproved_Purchase_Summary objREPORT_Unapproved_Purchase_Summary;
+        public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
+        public static REPORT_Purchase_Defect_Product objREPORT_Purchase_Defect_Product;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2388,6 +2400,202 @@ namespace ROMS
             }
         }
 
+        private void SupplierWiseProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_SupplierWiseProduct = new REPORT_SupplierWiseProduct();
+                MainForm.objREPORT_SupplierWiseProduct.MdiParent = this;
+                MainForm.objREPORT_SupplierWiseProduct.Show();
+                PbCurrentForm = "7.5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void UnassignedProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Unassigned_Products = new REPORT_Unassigned_Products();
+                MainForm.objREPORT_Unassigned_Products.MdiParent = this;
+                MainForm.objREPORT_Unassigned_Products.Show();
+                PbCurrentForm = "7.5.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void AssignedProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Assigned_Products = new REPORT_Assigned_Products();
+                MainForm.objREPORT_Assigned_Products.MdiParent = this;
+                MainForm.objREPORT_Assigned_Products.Show();
+                PbCurrentForm = "7.5.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PurchaseOrderSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PurchaseOrder_Summary = new REPORT_PurchaseOrder_Summary();
+                MainForm.objREPORT_PurchaseOrder_Summary.MdiParent = this;
+                MainForm.objREPORT_PurchaseOrder_Summary.Show();
+                PbCurrentForm = "7.6.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void PurchaseOrderDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PurchaseOrder_Detail = new REPORT_PurchaseOrder_Detail();
+                MainForm.objREPORT_PurchaseOrder_Detail.MdiParent = this;
+                MainForm.objREPORT_PurchaseOrder_Detail.Show();
+                PbCurrentForm = "7.6.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductWisePOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_ProductWise_Po = new REPORT_ProductWise_Po();
+                MainForm.objREPORT_ProductWise_Po.MdiParent = this;
+                MainForm.objREPORT_ProductWise_Po.Show();
+                PbCurrentForm = "7.6.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PurchaseSummaryReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Purchase_Summary = new REPORT_Purchase_Summary();
+                MainForm.objREPORT_Purchase_Summary.MdiParent = this;
+                MainForm.objREPORT_Purchase_Summary.Show();
+                PbCurrentForm = "7.7.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PurchaseDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Purchase_Details = new REPORT_Purchase_Details();
+                MainForm.objREPORT_Purchase_Details.MdiParent = this;
+                MainForm.objREPORT_Purchase_Details.Show();
+                PbCurrentForm = "7.7.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void UnapprovedPurchaseSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Unapproved_Purchase_Summary = new REPORT_Unapproved_Purchase_Summary();
+                MainForm.objREPORT_Unapproved_Purchase_Summary.MdiParent = this;
+                MainForm.objREPORT_Unapproved_Purchase_Summary.Show();
+                PbCurrentForm = "7.7.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void UnapprovedPurchaseDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Unapproved_Purchase_Detail = new REPORT_Unapproved_Purchase_Detail();
+                MainForm.objREPORT_Unapproved_Purchase_Detail.MdiParent = this;
+                MainForm.objREPORT_Unapproved_Purchase_Detail.Show();
+                PbCurrentForm = "7.7.4";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PurchaseDefectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Purchase_Defect_Product = new REPORT_Purchase_Defect_Product();
+                MainForm.objREPORT_Purchase_Defect_Product.MdiParent = this;
+                MainForm.objREPORT_Purchase_Defect_Product.Show();
+                PbCurrentForm = "7.7.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DiscountVoucherToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try

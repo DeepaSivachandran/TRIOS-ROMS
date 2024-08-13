@@ -84,5 +84,6 @@ namespace ROMS.Model
         public string paraDate { get; set; } = "";
         public int paraFlag { get; set; } = 0;
         public int paraInwardId { get; set; } = 0;
+        public int paraConditionType { get; set; } = 0;
     }
 }
