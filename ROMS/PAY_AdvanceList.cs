@@ -419,43 +419,50 @@ namespace ROMS
         }
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (lblNoRecordsFound.Visible == false)
+            try
             {
-                DataGridViewColumn newColumn = grdAdvanceList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdAdvanceList.SortedColumn;
-                ListSortDirection direction;
-
-                // If oldColumn is null, then the DataGridView is not sorted.
-                if (oldColumn != null)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    // Sort the same column again, reversing the SortOrder.
-                    if (oldColumn == newColumn &&
-                        grdAdvanceList.SortOrder == SortOrder.Ascending)
+                    DataGridViewColumn newColumn = grdAdvanceList.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdAdvanceList.SortedColumn;
+                    ListSortDirection direction;
+
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
                     {
-                        direction = ListSortDirection.Descending;
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdAdvanceList.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
                     }
                     else
                     {
-                        // Sort a new column and remove the old SortGlyph.
                         direction = ListSortDirection.Ascending;
-                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
+                    if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                    {
+                        grdAdvanceList.Sort(newColumn, direction);
+                        newColumn.HeaderCell.SortGlyphDirection =
+                            direction == ListSortDirection.Ascending ?
+                            SortOrder.Ascending : SortOrder.Descending;
+
+                        DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdAdvanceList.HorizontalScrollingOffset;
+                        DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                     }
                 }
-                else
-                {
-                    direction = ListSortDirection.Ascending;
-                }
-                grdAdvanceList.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
-
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-                DGV_SearchGrid.HorizontalScrollingOffset = grdAdvanceList.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {

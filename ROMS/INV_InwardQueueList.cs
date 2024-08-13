@@ -1413,16 +1413,19 @@ namespace ROMS
                     {
                         direction = ListSortDirection.Ascending;
                     }
-                    grdInwardQueueList.Sort(newColumn, direction);
-                    newColumn.HeaderCell.SortGlyphDirection =
-                        direction == ListSortDirection.Ascending ?
-                        SortOrder.Ascending : SortOrder.Descending;
+                    if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                    {
+                        grdInwardQueueList.Sort(newColumn, direction);
+                        newColumn.HeaderCell.SortGlyphDirection =
+                            direction == ListSortDirection.Ascending ?
+                            SortOrder.Ascending : SortOrder.Descending;
 
-                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdInwardQueueList.HorizontalScrollingOffset;
-                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdInwardQueueList.HorizontalScrollingOffset;
+                        DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1566,10 +1569,10 @@ namespace ROMS
                 }
                 grdInwardQueueList.Columns["clmPrint"].Frozen = true;
                 grdInwardQueueList.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdInwardQueueList.Columns["S.No."].Frozen = true;
-                //grdInwardQueueList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdInwardQueueList.Columns["Con"].Frozen = true;
-                //grdInwardQueueList.Columns["Con"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardQueueList.Columns["S.No."].Frozen = true;
+                grdInwardQueueList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardQueueList.Columns["Con"].Frozen = true;
+                grdInwardQueueList.Columns["Con"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdInwardQueueList.Columns["Trans No."].Frozen = true;
                 //grdInwardQueueList.Columns["Trans No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdInwardQueueList.Columns["Trans Date"].Frozen = true;
@@ -1580,8 +1583,8 @@ namespace ROMS
                 //grdInwardQueueList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdInwardQueueList.Columns["Supplier"].Frozen = true;
                 //grdInwardQueueList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdInwardQueueList.Columns["Status"].Frozen = true;
-                //grdInwardQueueList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdInwardQueueList.Columns["Status"].Frozen = true;
+                grdInwardQueueList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
 
             }
             catch (Exception ex)

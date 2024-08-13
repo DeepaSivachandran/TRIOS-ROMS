@@ -997,7 +997,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
-                            grdPurchaseorderlist.Columns["Po Status"].Width = 90;
+                            grdPurchaseorderlist.Columns["Po Status"].Width = 120;
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
                             grdPurchaseorderlist.Columns["Overall Status"].Width = 130;
@@ -1899,43 +1899,54 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (lblNoRecordsFound.Visible == false)
+            try
             {
-                int i = e.ColumnIndex + 2;
-                if (e.ColumnIndex == 0)
+                if (lblNoRecordsFound.Visible == false)
                 {
-                    i = e.ColumnIndex;
-                }
-                DataGridViewColumn newColumn = grdPurchaseorderlist.Columns[i];
-                DataGridViewColumn oldColumn = grdPurchaseorderlist.SortedColumn;
-                ListSortDirection direction;
-
-                // If oldColumn is null, then the DataGridView is not sorted.
-                if (oldColumn != null)
-                {
-                    // Sort the same column again, reversing the SortOrder.
-                    if (oldColumn == newColumn &&
-                        grdPurchaseorderlist.SortOrder == SortOrder.Ascending)
+                    int i = e.ColumnIndex + 2;
+                    if (e.ColumnIndex == 0)
                     {
-                        direction = ListSortDirection.Descending;
+                        i = e.ColumnIndex;
+                    }
+                    DataGridViewColumn newColumn = grdPurchaseorderlist.Columns[i];
+                    DataGridViewColumn oldColumn = grdPurchaseorderlist.SortedColumn;
+                    ListSortDirection direction;
+
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
+                    {
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdPurchaseorderlist.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
                     }
                     else
                     {
-                        // Sort a new column and remove the old SortGlyph.
                         direction = ListSortDirection.Ascending;
-                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
+                    if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                    {
+                        grdPurchaseorderlist.Sort(newColumn, direction);
+                        newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+                        DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseorderlist.HorizontalScrollingOffset;
+                        DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                     }
                 }
-                else
-                {
-                    direction = ListSortDirection.Ascending;
-                }
-                grdPurchaseorderlist.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseorderlist.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -2414,16 +2425,16 @@ namespace ROMS
                 grdPurchaseorderlist.Columns["S.No."].Frozen = true;
                 grdPurchaseorderlist.Columns["Concern"].Frozen = true;
                 grdPurchaseorderlist.Columns["Po Status"].Frozen = true;
-                //grdPurchaseorderlist.Columns["Overall Status"].Frozen = true;
+                grdPurchaseorderlist.Columns["Overall Status"].Frozen = true;
                 //grdPurchaseorderlist.Columns["PO.No."].Frozen = true;
                 //grdPurchaseorderlist.Columns["PO Date"].Frozen = true;
                 //grdPurchaseorderlist.Columns["Supplier"].Frozen = true;
-                //grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["clmView"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["Po Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseorderlist.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseorderlist.Columns["PO.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseorderlist.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;

@@ -947,14 +947,17 @@ namespace ROMS
                         {
                             direction = ListSortDirection.Ascending;
                         }
-                        grdPurchaseEntryApproval.Sort(newColumn, direction);
-                        newColumn.HeaderCell.SortGlyphDirection =
-                            direction == ListSortDirection.Ascending ?
-                            SortOrder.Ascending : SortOrder.Descending;
-                        DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                        DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryApproval.HorizontalScrollingOffset;
-                        DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                        if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                        {
+                            grdPurchaseEntryApproval.Sort(newColumn, direction);
+                            newColumn.HeaderCell.SortGlyphDirection =
+                                direction == ListSortDirection.Ascending ?
+                                SortOrder.Ascending : SortOrder.Descending;
+                            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                            DGV_SearchGrid.HorizontalScrollingOffset = grdPurchaseEntryApproval.HorizontalScrollingOffset;
+                            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                        }
                     }
                 }
             }
@@ -1057,12 +1060,12 @@ namespace ROMS
                 grdPurchaseEntryApproval.Columns["clmCheck"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseEntryApproval.Columns["clmUnapproved"].Frozen = true;
                 grdPurchaseEntryApproval.Columns["clmUnapproved"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryApproval.Columns["S.No."].Frozen = true;
-                //grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryApproval.Columns["Concern"].Frozen = true;
-                //grdPurchaseEntryApproval.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryApproval.Columns["Overall Status"].Frozen = true;
-                //grdPurchaseEntryApproval.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryApproval.Columns["S.No."].Frozen = true;
+                grdPurchaseEntryApproval.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryApproval.Columns["Concern"].Frozen = true;
+                grdPurchaseEntryApproval.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryApproval.Columns["Overall Status"].Frozen = true;
+                grdPurchaseEntryApproval.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseEntryApproval.Columns["Approval No."].Frozen = true;
                 //grdPurchaseEntryApproval.Columns["Approval No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseEntryApproval.Columns["Vouc No."].Frozen = true;

@@ -43,6 +43,7 @@ namespace ROMS
         public double totalBulkqty = 0, varFinalBulkUnit = 0;
         public decimal totalOrderQty = 0, totalUnitqty = 0, varFinalUnit = 0, varFinalTotalQty = 0, varFinalTotalKg = 0, varBulkunitqty = 0, varUnitqty = 0, varTotalunitqty = 0;
         public string varBlockedSupplier = "0", varBlockedReason = "";
+        public int varEditFlag = 0;
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
@@ -152,7 +153,10 @@ namespace ROMS
                 {
                     btnSave.Enabled = true;
                 }
-                btnSave.Enabled = false;
+                if (varEditFlag==1)
+                {
+                    btnSave.Enabled = false;
+                }
                 txtRemark.Enabled = false;
                 txtRemark.ReadOnly = true;
             }
@@ -172,6 +176,7 @@ namespace ROMS
             {
                 if (varPOID != 0)
                 {
+                    varEditFlag = 1;
                     Application.DoEvents();
                     //cmbStatus.SelectedValue = Convert.ToInt32(MainForm.objPUR_PurchaseOrderList.grdPurchaseorderlist.SelectedRows[0].Cells["po_stsid"].Value.ToString());
 

@@ -73,15 +73,15 @@ namespace ROMS
         {
             try
             {
-                //if(ApprovalFlag == 1)
-                //{
-                //    tsbApproval.Visible = true;
-                //}
-                //else
-                //{
-                //    tsbApproval.Visible = false;
-                //    tsbEdit.Visible = true;
-                //}
+                if (ApprovalFlag == 1)
+                {
+                    tsbApproval.Visible = true;
+                }
+                else
+                {
+                    tsbApproval.Visible = false;
+                    tsbEdit.Visible = true;
+                }
                 cmbConcern.Focus();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -1450,14 +1450,14 @@ namespace ROMS
         {
             try
             {
-                //grdGrnApprovalList.Columns["S.No."].Frozen = true;
-                //grdGrnApprovalList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGrnApprovalList.Columns["Concern"].Frozen = true;
-                //grdGrnApprovalList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGrnApprovalList.Columns["Overall Status"].Frozen = true;
-                //grdGrnApprovalList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGrnApprovalList.Columns["Status"].Frozen = true;
-                //grdGrnApprovalList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["S.No."].Frozen = true;
+                grdGrnApprovalList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Concern"].Frozen = true;
+                grdGrnApprovalList.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Overall Status"].Frozen = true;
+                grdGrnApprovalList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Status"].Frozen = true;
+                grdGrnApprovalList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdGrnApprovalList.Columns["GRN No."].Frozen = true;
                 //grdGrnApprovalList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdGrnApprovalList.Columns["Vouc No."].Frozen = true;
