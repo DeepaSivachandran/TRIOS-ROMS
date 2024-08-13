@@ -6992,6 +6992,10 @@ namespace ROMS
                                 }
                                 else
                                 {
+                                    if (varvalue1[0] == "4")
+                                    {
+                                        MessageBox.Show(result2.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
                                     if (varvalue1[0] == "5")
                                     {
                                         MessageBox.Show(result2.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
