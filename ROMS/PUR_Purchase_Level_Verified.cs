@@ -208,7 +208,7 @@ namespace ROMS
             try
             {
                 udfnEditload();
-                if (txtVerified.Text.Trim() == "")
+                if (Convert.ToString(MainForm.objCP_Purchase.PbSTS) != "50")
                 { cmbFormat.SelectedIndex = 0; 
                     dpVerified.MinDate = MainForm.pbFYStartDate;
                     dpVerified.MaxDate = MainForm.pbCurrentDate;
@@ -239,7 +239,9 @@ namespace ROMS
             {
                 lblVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy);
                 txtVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName);
-                dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
+                DateTime varminDate = DateTime.ParseExact(Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpVerified.MaxDate = varminDate;
+                //dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
                 mtbTime.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime);
                 cmbFormat.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat);
                 varEditFlag = Convert.ToString(MainForm.objCP_Purchase.varPurVerifyFlag);
