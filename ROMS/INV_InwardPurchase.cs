@@ -348,6 +348,23 @@ namespace ROMS
             }
         }
 
+        private void GrdInward_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdInward.Columns["clmReason"].Index)
+                {
+                    var cell = grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    //cell.ToolTipText = grdInward.Rows[e.RowIndex].Cells[].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void BtnSelectAll_Click(object sender, EventArgs e)
         {
             try
@@ -1322,11 +1339,11 @@ namespace ROMS
                                             decimal varShQty = Convert.ToDecimal(grdInward.Rows[j].Cells["clmShopQty"].Value);
                                             string varSQty = string.Format("{0:0.00}", varShQty);
                                             string varSQty1 = string.Format("{0:G29}", decimal.Parse(varSQty));
-                                            if (Convert.ToString(grdInward.Rows[j].Cells["clmShopQty"].Value) != "" && Convert.ToInt32(varSQty1) < 1)
-                                            {
-                                                grdInward.Rows[j].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
-                                                varErrorFlag = false;
-                                            }
+                                            //if (Convert.ToString(grdInward.Rows[j].Cells["clmShopQty"].Value) != "" && Convert.ToInt32(varSQty1) < 1)
+                                            //{
+                                            //    grdInward.Rows[j].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                            //    varErrorFlag = false;
+                                            //}
                                         }
                                         //if (Convert.ToString(grdInward.Rows[j].Cells["clmStatus"].Value)=="81")
                                         //{
