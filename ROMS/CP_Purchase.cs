@@ -6652,6 +6652,7 @@ namespace ROMS
                             objTRN_PurchaseEntry1.paraTinFlag = varTinFlag;
                             objTRN_PurchaseEntry1.paraEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
                             objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
+                            objTRN_PurchaseEntry1.paraINVNo = txtInvoiceNo.Text.Trim();
                             objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                             result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
                             objspdservice.CloseConnection();
@@ -6688,6 +6689,7 @@ namespace ROMS
                                 objTRN_PurchaseEntry1.paraSupplierType = varSupplierType;
                                 objTRN_PurchaseEntry1.paraTinFlag = varTinFlag;
                                 objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
+                                objTRN_PurchaseEntry1.paraINVNo = txtInvoiceNo.Text.Trim();
                                 objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                                 result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
                                 objspdservice.CloseConnection();
