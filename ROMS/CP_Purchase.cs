@@ -7451,11 +7451,12 @@ namespace ROMS
 
                                     varFlag = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmInwardFlag"].Value);
                                     // varQty = varRecqty + varFreeQuantity + varDiffQty;
-                                    varQty = varRecqty + varFreeQuantity;
+                                   // varQty = varRecqty + varFreeQuantity;
+                                    varQty = varInvqty + varFreeQuantity;
                                     varProductType = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["poid"].Value);
                                     if (varFlag == 1)
                                     {
-                                        if (varDCQty != varQty || varInvqty != varQty || varInvqty != varDCQty)
+                                        if (varDCQty != varQty || varRecqty != varQty || varInvqty != varRecqty)
                                         {
                                             varcount++; varQuantityErr++; varerrFlag = 1;
                                         }
@@ -7464,7 +7465,7 @@ namespace ROMS
                                     {
                                         if (varProductType == 220) //dc products
                                         {
-                                            if (varDCQty != varQty || varInvqty != varQty || varInvqty != varDCQty)
+                                            if (varDCQty != varQty || varRecqty != varQty || varRecqty != varDCQty)
                                             {
                                                 varcount++; varQuantityErr++; varerrFlag = 1;
                                             }
@@ -7520,7 +7521,8 @@ namespace ROMS
                                     //    }
                                     //}
                                     varFlag = Convert.ToInt16(grdPurchaseList.Rows[i].Cells["clmInwardFlag"].Value);
-                                    varQty = Math.Abs(varInvqty - (varRecqty + varFreeQuantity));
+                                    //varQty = Math.Abs(varInvqty - (varRecqty + varFreeQuantity));
+                                    varQty = Math.Abs((varInvqty+ varFreeQuantity) - (varRecqty ));
 
                                     //if (varFlag == 1)
                                     //{
@@ -7538,7 +7540,7 @@ namespace ROMS
                                     //}
                                     if(varRecqty==0)
                                     { varerrFlag = 1; }
-                                    if ((varDiffQty != varQty || varInvqty != (varRecqty + varFreeQuantity + varDiffQty)) && varConvertProductFlag=="0")
+                                    if ((varDiffQty != varQty || (varInvqty + varDiffQty) != (varRecqty + varFreeQuantity )) && varConvertProductFlag=="0")
                                     {
                                         varcount++; varQuantityErr++; varerrFlag = 1;
                                     }
@@ -7566,11 +7568,12 @@ namespace ROMS
                                         varFlag = Convert.ToInt16(grdPurchaseList.Rows[i].Cells["clmInwardFlag"].Value);
                                         if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDCQuantity"].Value) != "")
                                         { varDCQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDCQuantity"].Value); }
-                                        varQty = Math.Abs(varInvqty - (varRecqty + varFreeQuantity));
+                                        varQty = Math.Abs((varInvqty + varFreeQuantity) - (varRecqty));
 
                                         if (varFlag == 1)
                                         {
-                                            if (varDCQty != (varRecqty + varFreeQuantity) || varDiffQty != varQty)
+                                           // if (varDCQty != (varRecqty + varFreeQuantity) || varDiffQty != varQty)
+                                            if (varDCQty != (varRecqty ) || varDiffQty != varQty)
                                             {
                                                 varcount++; varQuantityErr++; varerrFlag = 1;
                                             }
