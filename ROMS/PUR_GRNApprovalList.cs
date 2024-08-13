@@ -50,8 +50,8 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
                     MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
-                    MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Flag"].Value);
-                    MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNID"].Value);
+                    MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["FLAG"].Value);
+                    MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID "].Value);
                    //nForm.objPUR_GRNApproval.varInwardID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GIPPRID"].Value);
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
@@ -564,6 +564,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product English Name";
+                                    DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
                                 }
                                 else
                                 {
@@ -1578,7 +1579,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdGrnApprovalList.Columns["Tot Pro in Inv"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdGrnApprovalList.Columns["Tot Issue Pro in Inv"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGrnApprovalList.Columns["Concern"].Width = 70;
                                 grdGrnApprovalList.Columns["Vouc No."].Width = 70;
                                 grdGrnApprovalList.Columns["GRN Date"].Width = 80;
@@ -1587,7 +1588,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Overall Status"].Width = 150;
                                 grdGrnApprovalList.Columns["GRN No."].Width = 70;
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
-                                grdGrnApprovalList.Columns["Tot Pro in Inv"].Width = 150;
+                                grdGrnApprovalList.Columns["Tot Issue Pro in Inv"].Width = 150;
                                 grdGrnApprovalList.Columns["Created By"].Width = 200;
                                 grdGrnApprovalList.Columns["last Seen"].Width = 180;
                                 //grdGrnApprovalList.Columns["Created On"].Width = 140;
@@ -1596,24 +1597,24 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["ID"].Visible = false;
                                 grdGrnApprovalList.Columns["SPID"].Visible = false;
                                 grdGrnApprovalList.Columns["GRNAID"].Visible = false;
-                                grdGrnApprovalList.Columns["Condition"].Visible = false;
+                                //grdGrnApprovalList.Columns["Condition"].Visible = false;
                                 grdGrnApprovalList.Columns["SPSCID"].Visible = false;
                                 grdGrnApprovalList.Columns["Concern ID"].Visible = false;
-                                grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
-                                grdGrnApprovalList.Columns["Purchase Type"].Visible = false;
+                                //grdGrnApprovalList.Columns["PUR_EntryType"].Visible = false;
+                                //grdGrnApprovalList.Columns["Purchase Type"].Visible = false;
                                 grdGrnApprovalList.Columns["Overall Full Status"].Visible = false;
-                                grdGrnApprovalList.Columns["MRP"].Visible = false;
-                                grdGrnApprovalList.Columns["Exp"].Visible = false;
+                                //grdGrnApprovalList.Columns["MRP"].Visible = false;
+                                //grdGrnApprovalList.Columns["Exp"].Visible = false;
                                 grdGrnApprovalList.Columns["GRNFilterDate"].Visible = false;
                                 grdGrnApprovalList.Columns["InvFilterDate"].Visible = false;
-                                grdGrnApprovalList.Columns["GRNID"].Visible = false;
-                                grdGrnApprovalList.Columns["PURID"].Visible = false;
-                                grdGrnApprovalList.Columns["Trans ID"].Visible = false;
+                                //grdGrnApprovalList.Columns["GRNID"].Visible = false;
+                                //grdGrnApprovalList.Columns["PURID"].Visible = false;
+                                grdGrnApprovalList.Columns["Trans ID "].Visible = false;
                                 grdGrnApprovalList.Columns["Pur_LastTransNo"].Visible = false;
                                 grdGrnApprovalList.Columns["Transaction Date"].Visible = false;
                                 grdGrnApprovalList.Columns["Full Status"].Visible = false;
-                                grdGrnApprovalList.Columns["Flag"].Visible = false;
-                                grdGrnApprovalList.Columns["GRN_STSID"].Visible = false;
+                                grdGrnApprovalList.Columns["FLAG"].Visible = false;
+                                grdGrnApprovalList.Columns["PUR_GRNALastSeenBy"].Visible = false;
                                 grdGrnApprovalList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             else

@@ -2807,7 +2807,7 @@ namespace ROMS
                                             if (Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmPRID"].Value) == varProductID && Convert.ToString(grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Value) == Expirydate)
                                             {
                                                 grdPurchaseDC.Rows[j].DefaultCellStyle.BackColor = Color.LightPink;
-                                                //  grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
+                                                grdPurchaseDC.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
                                             }
                                         }
                                     }

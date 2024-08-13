@@ -3344,7 +3344,8 @@ namespace ROMS
                         txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
-                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate" 
+                    || grdSupplierList.CurrentCell.OwningColumn.Name == "clmProductExpiryDate" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmProductBatchNo" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmProductMrp")
                 {
                     e.Control.KeyPress -= udfnHandleKeyPressGRD1;
                     e.Control.KeyPress += udfnHandleKeyPressGRD1;
@@ -3414,7 +3415,7 @@ namespace ROMS
         {
             try
             {
-                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP")
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmMRP" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmProductMrp")
                 {
                     if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
                     {
@@ -3431,7 +3432,7 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
-                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno")
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno" || grdSupplierList.CurrentCell.OwningColumn.Name =="clmProductBatchNo")
                 {
                     TextBox vartb = sender as TextBox;
                     if (vartb.Text.Length >= 10 && !char.IsControl(e.KeyChar))
@@ -3439,7 +3440,7 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
-                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate" || grdSupplierList.CurrentCell.OwningColumn.Name == "clmProductExpiryDate")
                 {
                     if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '/')
                     {

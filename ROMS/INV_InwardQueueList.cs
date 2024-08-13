@@ -99,8 +99,10 @@ namespace ROMS
                     //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
                     MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Inv Date"].Value);
                     MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Inv No."].Value);
-                    MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Vouc Date"].Value);
-                    MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Vouc No."].Value);
+                    MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
+                    MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans No."].Value);
+                    MainForm.objINV_InwardPurchase.varGIPTransDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
+
                     picLoader.Visible = false;
                     picLoader.SendToBack();
                     MainForm.objINV_InwardPurchase.Show();
@@ -790,14 +792,14 @@ namespace ROMS
                                 grdInwardQueueList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 // grdInwardQueueList.Columns["GRN No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 //grdInwardQueueList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdInwardQueueList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                //grdInwardQueueList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardQueueList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardQueueList.Columns["Tot Pro in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInwardQueueList.Columns["Con"].Width = 80;
                                 grdInwardQueueList.Columns["Trans Date"].Width = 80;
-                                grdInwardQueueList.Columns["Vouc Date"].Width = 80;
+                                //grdInwardQueueList.Columns["Vouc Date"].Width = 80;
                                 grdInwardQueueList.Columns["Trans No."].Width = 70;
-                                grdInwardQueueList.Columns["Vouc No."].Width = 70;
+                                //grdInwardQueueList.Columns["Vouc No."].Width = 70;
                                 //grdInwardQueueList.Columns["GRN Date"].Width = 100;
                                 //grdInwardQueueList.Columns["GRN No."].Width = 80;
                                 grdInwardQueueList.Columns["Supplier"].Width = 250;
@@ -820,7 +822,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["UnReadable"].Visible = false;
                                 grdInwardQueueList.Columns["Full Status"].Visible = false;
                                 grdInwardQueueList.Columns["Full Reason"].Visible = false;
-                                grdInwardQueueList.Columns["Entry Type"].Width = 150;
+                                grdInwardQueueList.Columns["Transaction Date"].Visible = false;
                             }
 
                             else

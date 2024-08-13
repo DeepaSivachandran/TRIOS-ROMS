@@ -5989,9 +5989,9 @@ namespace ROMS
                     grdPurchaseList.Columns["clmInvQty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdPurchaseList.Columns["clmRecqty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdPurchaseList.Columns["clmFreeqty"].DefaultCellStyle.BackColor = Color.LightGray;
-                    grdPurchaseList.Columns["clmPurchaseRate"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                    grdPurchaseList.Columns["clmDiscAmt"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                    grdPurchaseList.Columns["clmDiscPer"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                    //grdPurchaseList.Columns["clmPurchaseRate"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                    //grdPurchaseList.Columns["clmDiscAmt"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                    //grdPurchaseList.Columns["clmDiscPer"].DefaultCellStyle.BackColor = Color.PaleGreen;
                 }
                 DataGridView dataGridView = (DataGridView)sender;
                 for (int i = 0; i < grdPurchaseList.Rows.Count; i++)

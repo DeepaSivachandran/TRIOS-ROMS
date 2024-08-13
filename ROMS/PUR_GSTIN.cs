@@ -120,7 +120,8 @@ namespace ROMS
                         errGSTIN.SetError(txtGstin, "Please enter valid supplier GSTIN");
                         txtGstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpgst.ShowAlways = true;
-                        tpgst.Show("Please enter valid supplier GSTIN.", txtGstin, 5000); 
+                        tpgst.Show("Please enter valid supplier GSTIN.", txtGstin, 5000);
+                        varErrorFlag = true;
                     }
                     else
                     {

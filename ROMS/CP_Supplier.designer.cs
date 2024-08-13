@@ -431,12 +431,13 @@
             this.groupBox2.Controls.Add(this.txtDiscountPer);
             this.groupBox2.Controls.Add(this.textBox30);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(587, 26);
+            this.groupBox2.Location = new System.Drawing.Point(937, 26);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(291, 115);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Payment Details";
+            this.groupBox2.Visible = false;
             // 
             // cmbPaymentDisc
             // 
@@ -531,7 +532,7 @@
             this.groupBox5.Controls.Add(this.textBox19);
             this.groupBox5.Controls.Add(this.txtBankname);
             this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(587, 143);
+            this.groupBox5.Location = new System.Drawing.Point(587, 26);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(291, 195);
             this.groupBox5.TabIndex = 4;
@@ -774,7 +775,7 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(719, 349);
+            this.panelStatus.Location = new System.Drawing.Point(717, 237);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(161, 27);
             this.panelStatus.TabIndex = 31;
@@ -1061,7 +1062,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(608, 349);
+            this.textBox4.Location = new System.Drawing.Point(607, 237);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(111, 27);
@@ -1409,7 +1410,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(717, 387);
+            this.btnSave.Location = new System.Drawing.Point(716, 275);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 32;
@@ -1425,7 +1426,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(805, 388);
+            this.btnClose.Location = new System.Drawing.Point(804, 275);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 33;

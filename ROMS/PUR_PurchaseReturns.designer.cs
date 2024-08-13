@@ -1818,7 +1818,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtReturnDcNo;
         private System.Windows.Forms.Label lblDEVisitDay;
-        private System.Windows.Forms.DateTimePicker dpReturnDCDate;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label lblDESupplier;
         private System.Windows.Forms.Label label1;
@@ -1921,5 +1920,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         public System.Windows.Forms.ToolStripButton tsbSupplier;
+        public System.Windows.Forms.DateTimePicker dpReturnDCDate;
     }
 }

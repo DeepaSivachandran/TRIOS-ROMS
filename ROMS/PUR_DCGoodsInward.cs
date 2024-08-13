@@ -1910,7 +1910,7 @@ namespace ROMS
                     }
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 10;
-                    objMR_Master.paraDate = varTodayDate;
+                    objMR_Master.paraDate = MainForm.objPUR_PurchaseReturns.dpReturnDCDate.Text;
                     objMR_Master.ParaExpiryDate = varExpiryDate;
                     objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
                     objDS = objDServ.udfnMaster(objMR_Master);

@@ -28,6 +28,7 @@ namespace ROMS.Model
         public int paraInwardId { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
         public string paraGIP_Date { get; set; } = "";
+        public string paraGIP_TransDate { get; set; } = "";
         public string paraRemarks { get; set; } = "";
         public string paraGIP_NO { get; set; } = "";
         public string paraHostName { get; set; } = "";
@@ -43,6 +44,7 @@ namespace ROMS.Model
         public string paraIPAddress { get; set; } = "";
         public string ParaInwardDate { get; set; } = "";
         public string ParaExpiryDate { get; set; } = "";
+        public int paraEditFlag { get; set; } = 0;
         public DataTable paraTRN_GoodsInward_Purchase_Products { get; set; } = null;
     }
 }
