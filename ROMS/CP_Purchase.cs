@@ -8133,9 +8133,16 @@ namespace ROMS
                             }
                         }
                     }
-                    if (Convert.ToString(cmbEntryType.SelectedValue) == "57" || Convert.ToString(cmbEntryType.SelectedValue) == "54")
+                    if (Convert.ToString(cmbEntryType.SelectedValue) == "57" )
                     {
                         if (Convert.ToInt16(tsbTotalProducts.Text) != varPrCount && chkCompleted.Checked == true)
+                        {
+                            varPrCountFlag = 1;
+                        }
+                    }
+                    else if( Convert.ToString(cmbEntryType.SelectedValue) == "54")
+                    {
+                        if (Convert.ToInt16(tsbTotalProducts.Text) < varPrCount && chkCompleted.Checked == true)
                         {
                             varPrCountFlag = 1;
                         }
