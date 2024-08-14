@@ -33,7 +33,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public bool VarSearchFlag = true;
         bool varVoucherSkip = false;
-        public int varClose = 0, varDateChange = 0, varDamage = 0;
+        public int varClose = 0, varDateChange = 0, varDamage = 0, varParentSHID = 0, varParentQty=0;
         public INV_StockHold()
         {
             InitializeComponent();
@@ -459,7 +459,7 @@ namespace ROMS
                     tpRack.Show("Please enter rack name", txtRack, 5000);
                     blnErrorFlag = false;
                 }
-                if (Convert.ToString(txtStockQty.Text).Trim() == "")
+                if (Convert.ToString(txtStockQty.Text).Trim() == "" && varParentSHID==0)
                 {
                     epStockHold.SetError(txtStockQty, "Please enter stock quantity");
                     txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -475,18 +475,36 @@ namespace ROMS
                     tpQty.Show("Please enter quantity", txtQty, 5000);
                     blnErrorFlag = false;
                 }
-                if (Convert.ToDecimal(txtQty.Text) > Convert.ToDecimal(txtStockQty.Text) || Convert.ToDecimal(txtQty.Text)==0)
+                if (varParentSHID == 0)
                 {
-                    //epGoodsOutward.SetError(txtQty, "Please enter a correct Outward Quantity");
-                    txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpQty.ShowAlways = true;
-                    tpQty.Show("Please enter a correct outward quantity", txtQty, 5000);
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(96);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    blnErrorFlag = false;
-                    txtQty.Focus();
+                    if (Convert.ToDecimal(txtQty.Text) > Convert.ToDecimal(txtStockQty.Text) || Convert.ToDecimal(txtQty.Text) == 0)
+                    {
+                        //epGoodsOutward.SetError(txtQty, "Please enter a correct Outward Quantity");
+                        txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpQty.ShowAlways = true;
+                        tpQty.Show("Please enter a correct outward quantity", txtQty, 5000);
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(96);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrorFlag = false;
+                        txtQty.Focus();
+                    }
+                }
+                else
+                {
+                    if(Convert.ToDecimal(txtQty.Text) >= Convert.ToDecimal(varParentQty))
+                    {
+                        txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpQty.ShowAlways = true;
+                        tpQty.Show("Please enter a correct outward quantity", txtQty, 5000);
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(96);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrorFlag = false;
+                        txtQty.Focus();
+                    }
                 }
                 if(Convert.ToInt32(cmbReason.SelectedValue)==-1)
                 {
@@ -526,6 +544,7 @@ namespace ROMS
                     objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);                   
                     objTRNS_StockHold.paraFlag = 0;
                     objTRNS_StockHold.paraStatus = 96;
+                    objTRNS_StockHold.paraParentSHID = varParentSHID;
                     objTRNS_StockHold.paraOriginator = varoriginator;
                     varResult = objspservice.udfnStockHold(objTRNS_StockHold);
                     objspservice.CloseConnection();
@@ -558,6 +577,7 @@ namespace ROMS
                                 objTRNS_StockHold.paraOriginator = varoriginator;
                                 objTRNS_StockHold.paraSupplierID = varSPID;
                                 objTRNS_StockHold.paraScheduleID = varSPSCID;
+                                objTRNS_StockHold.paraParentSHID = varParentSHID;
                                 varResult = objspservice.udfnStockHold(objTRNS_StockHold);
                                 objspservice.CloseConnection();
                                 string[] varvalue1 = varResult.Split('~');
@@ -608,6 +628,7 @@ namespace ROMS
         {
             try
             {
+                varParentSHID = 0;
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 grdStockHold.DataSource = null;
@@ -1104,6 +1125,7 @@ namespace ROMS
                             txtBatchNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Batch No"]);
                             txtStockQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Stock Qty"]);
                             txtQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Hold Qty"]);
+                            varParentQty = Convert.ToInt32(objDs.Tables[0].Rows[0]["Hold Qty"]);
                             cmbReason.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);
                             varPRID = Convert.ToInt32(objDs.Tables[0].Rows[0]["PRID"]);
                             varRKID = Convert.ToInt32(objDs.Tables[0].Rows[0]["RKID"]);
@@ -1112,6 +1134,7 @@ namespace ROMS
                             lblSupplierName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
                             lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SH_SPID"]);
                             lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SH_SPSCID"]);
+                            varParentSHID = Convert.ToInt32(objDs.Tables[0].Rows[0]["SH_parentSHID"]);
                             // btnSave.Text = "Update";
                         }
                     }

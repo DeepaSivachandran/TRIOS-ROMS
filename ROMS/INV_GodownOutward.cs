@@ -1934,7 +1934,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
         public void udfnSave()
         {
@@ -2037,7 +2036,7 @@ namespace ROMS
                 }
                 for (int i = 0; i < grdGoodsOutward.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdGoodsOutward.Rows[i].Cells["clmOutward"].Value) == "" || Convert.ToDecimal(grdGoodsOutward.Rows[i].Cells["clmOutward"].Value) == 0)
+                    if (Convert.ToString(grdGoodsOutward.Rows[i].Cells["clmOutward"].Value) == "" || Convert.ToDecimal(grdGoodsOutward.Rows[i].Cells["clmOutward"].Value) == 0 || Convert.ToDecimal(grdGoodsOutward.Rows[i].Cells["clmQty"].Value)< Convert.ToDecimal(grdGoodsOutward.Rows[i].Cells["clmOutward"].Value))
                     {
                         varErrorFlag = false; varErrQty = 1;
                         grdGoodsOutward.Rows[i].Cells["clmOutward"].Style.BackColor = Color.LightPink;

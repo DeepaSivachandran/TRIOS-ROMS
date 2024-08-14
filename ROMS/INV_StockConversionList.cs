@@ -1026,13 +1026,6 @@ namespace ROMS
                 {
                     udfndelete();
                 }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
             }
             catch (Exception ex)
             {

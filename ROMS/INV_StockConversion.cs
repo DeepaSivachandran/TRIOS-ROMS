@@ -18,7 +18,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public bool skipValidation = false;
-        private ToolTip tpbrandname = new ToolTip();
+        private ToolTip tpConvertionNo = new ToolTip();
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
@@ -1001,6 +1001,18 @@ namespace ROMS
                     tpRack.ShowAlways = true;
                     tpRack.Show("Please enter rack name", txtRack, 5000);
                     varErrorFlag = false;
+                }
+                if (txtConversionNo.Text == "")
+                {
+                    epBatchConversion.SetError(txtConversionNo, "Please enter convertion no.");
+                    txtConversionNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConvertionNo.ShowAlways = true;
+                    tpConvertionNo.Show("Please enter convertion no.", txtConversionNo, 5000);
+                    varErrorFlag = false;
+                }
+                else
+                {
+                    txtConversionNo.BackColor = SystemColors.Control;
                 }
                 //if (txtExpiryDate.Text == "")
                 //{
