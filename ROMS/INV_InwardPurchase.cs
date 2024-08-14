@@ -2645,7 +2645,7 @@ namespace ROMS
                         txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
-                if (grdInward.CurrentCell.OwningColumn.Name == "clmMRP" || grdInward.CurrentCell.OwningColumn.Name == "clmShopQty" || grdInward.CurrentCell.OwningColumn.Name == "clmReceivedQty")
+                if (grdInward.CurrentCell.OwningColumn.Name == "clmMRP" || grdInward.CurrentCell.OwningColumn.Name == "clmShopQty" || grdInward.CurrentCell.OwningColumn.Name == "clmReceivedQty" || grdInward.CurrentCell.OwningColumn.Name == "clmExpiryDate" || grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
@@ -2669,6 +2669,18 @@ namespace ROMS
                     }
                     //only allow one decimal point
                     if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                    {
+                        e.Handled = true;
+                    }
+                }
+                if (grdInward.CurrentCell.OwningColumn.Name == "clmExpiryDate" || grdInward.CurrentCell.OwningColumn.Name == "clmInvoiceExpiryDate")
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '/')
+                    {
+                        e.Handled = true;  // Disallow the character
+                    }
+                    TextBox vartb = sender as TextBox;
+                    if (vartb.Text.Length >= 10 && !char.IsControl(e.KeyChar))
                     {
                         e.Handled = true;
                     }
