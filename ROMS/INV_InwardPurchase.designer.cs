@@ -146,6 +146,7 @@
             this.clmShelfStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmShelfType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmFullReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
@@ -331,6 +332,7 @@
             this.clmShelfStatus,
             this.clmShelfType,
             this.clmReason,
+            this.clmFullReason,
             this.clmStatus,
             this.clmRemove});
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1310,6 +1312,12 @@
             this.clmReason.Name = "clmReason";
             this.clmReason.ReadOnly = true;
             // 
+            // clmFullReason
+            // 
+            this.clmFullReason.HeaderText = "Full Reason";
+            this.clmFullReason.Name = "clmFullReason";
+            this.clmFullReason.Visible = false;
+            // 
             // clmStatus
             // 
             this.clmStatus.DataPropertyName = "Status";
@@ -1464,6 +1472,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShelfStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShelfType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReason;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmFullReason;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
