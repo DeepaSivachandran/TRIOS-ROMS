@@ -355,7 +355,7 @@ namespace ROMS
                 if (e.ColumnIndex == grdInward.Columns["clmReason"].Index)
                 {
                     var cell = grdInward.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                    //cell.ToolTipText = grdInward.Rows[e.RowIndex].Cells[].Value.ToString();
+                    cell.ToolTipText = grdInward.Rows[e.RowIndex].Cells["clmFullReason"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -3526,7 +3526,7 @@ namespace ROMS
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[0].Rows[i][OrderID]),0
                                             ,Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP Flag"]), 
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), 
-                                           Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeType"]), Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]));
+                                           Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeType"]), Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]), Convert.ToString(objDs.Tables[0].Rows[i]["Full Reason"]));
                                     udfnStatus();
                                     if(varEditFlag==0)
                                     {
