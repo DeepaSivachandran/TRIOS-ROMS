@@ -1190,8 +1190,12 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PAY_STSID"].Value) == "76")
                     {
-
                         grdSupllierPaymentList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdSupllierPaymentList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PAY_STSID"].Value) == "77")
+                    {
+                        grdSupllierPaymentList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdSupllierPaymentList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                 }

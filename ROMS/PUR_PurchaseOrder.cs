@@ -153,7 +153,7 @@ namespace ROMS
                 {
                     btnSave.Enabled = true;
                 }
-                if (varEditFlag==1)
+                if (varEditFlag==1 && VarStatusId!=12)
                 {
                     btnSave.Enabled = false;
                 }

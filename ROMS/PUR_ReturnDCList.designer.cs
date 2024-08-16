@@ -235,6 +235,7 @@
             this.grdReturnDCList.Size = new System.Drawing.Size(1348, 510);
             this.grdReturnDCList.TabIndex = 1;
             this.grdReturnDCList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReturnDCList_CellContentClick);
+            this.grdReturnDCList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdReturnDCList_CellFormatting);
             this.grdReturnDCList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReturnDCList_DataBindingComplete);
             this.grdReturnDCList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReturnDCList_RowEnter);
             this.grdReturnDCList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdReturnDCList_Scroll);

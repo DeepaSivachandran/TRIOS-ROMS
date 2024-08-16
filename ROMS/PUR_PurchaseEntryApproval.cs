@@ -7549,7 +7549,8 @@ namespace ROMS
                             cell.Style.ForeColor = Color.Black;
                         }
                     }
-                    if((Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value)==1 && (varReason==0)) || (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value) == 1 && (varReason ==230 || varReason==234)) /*&& varApprovedStatus!=0*/)  
+                    //if((Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value)==1 && (varReason==0)) || (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value) == 1 && (varReason ==230 || varReason==234)) /*&& varApprovedStatus!=0*/)  
+                    if ((Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value) == 1 && (varReason == 0)) || (Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmError"].Value) == 1 && (varReason == 230 || varReason == 234)) /*&& Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmApprovalStatus"].Value) != 0*/)
                     {
                         grdSupplierList.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                         grdSupplierList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;

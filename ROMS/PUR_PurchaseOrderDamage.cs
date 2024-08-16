@@ -93,6 +93,12 @@ namespace ROMS
                     varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text);
                     varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNEntry.cmbConcern.SelectedValue);
                 }
+                else if (varMasterType == "4")
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.cmbConcern.SelectedValue);
+                }
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -160,6 +166,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void PUR_PurchaseOrderDamage_KeyDown(object sender, KeyEventArgs e)
         {
             try
