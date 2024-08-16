@@ -3688,7 +3688,7 @@ namespace ROMS
                                 {
                                     grdInward.Columns["clmReason"].Visible = false;
                                     grdInward.Columns["clmPendingQty"].Visible = false;
-                                    grdInward.Columns["clmQty"].Visible = false;
+                                    //grdInward.Columns["clmQty"].Visible = false;
                                     grdInward.Columns["clmConvert"].Visible = false;
                                     grdInward.Columns["clmRemove"].Visible = false;
                                     //grdInward.Columns["clmStatus"].Visible = false;
