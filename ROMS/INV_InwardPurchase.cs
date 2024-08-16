@@ -293,7 +293,7 @@ namespace ROMS
                 dtInwardPurchase.Columns.Add("GIPPR_ExpiryDate", typeof(string));
                 dtInwardPurchase.Columns.Add("GIPPR_BatchNo", typeof(string));
                 dtInwardPurchase.Columns.Add("GIPPR_MRP", typeof(decimal));
-                dtInwardPurchase.Columns.Add("IDS", typeof(string));
+                dtInwardPurchase.Columns.Add("IDS", typeof(int));
                 dtInwardPurchase.Columns.Add("PR_MRPStatus", typeof(int));
                 dtInwardPurchase.Columns.Add("PR_ExpiryStatus", typeof(int));
                 dtInwardPurchase.Columns.Add("PR_BatchNoStatus", typeof(int));
@@ -321,7 +321,7 @@ namespace ROMS
                 dtChkProducts.Columns.Add("GIPPR_ExpiryDate", typeof(string));
                 dtChkProducts.Columns.Add("GIPPR_BatchNo", typeof(string));
                 dtChkProducts.Columns.Add("GIPPR_MRP", typeof(decimal));
-                dtChkProducts.Columns.Add("IDS", typeof(string));
+                dtChkProducts.Columns.Add("IDS", typeof(int));
                 dtChkProducts.Columns.Add("GIPPR_INVSTSID", typeof(int));
                 dtChkProducts.Columns.Add("GIPPR_RMProductionFlag", typeof(int));
                 dtChkProducts.Columns.Add("GIPPR_InvoiceExpiryDate", typeof(string));
@@ -1679,13 +1679,12 @@ namespace ROMS
                             {
                                 if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
                                 {
-                                    int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmPRID"].Value);
-
+                                    int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmDuplicateSno"].Value);
                                     var varSumRequestQty = dtInwardPurchase.AsEnumerable()
-                                                            .Where(y => y.Field<int>("GIPPR_PRID").Equals(varIDvalue))
+                                                            .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
                                                              .Sum(x => x.Field<decimal>("GIPPR_ReceivedQty")).ToString();
                                     var varSumShopQty = dtInwardPurchase.AsEnumerable()
-                                                            .Where(y => y.Field<int>("GIPPR_PRID").Equals(varIDvalue))
+                                                            .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
                                                              .Sum(x => x.Field<decimal>("GIPPR_ShopQty")).ToString();
 
                                     varQty1 = Convert.ToDecimal(grdInward.Rows[i].Cells["clmQty"].Value);
@@ -3580,6 +3579,8 @@ namespace ROMS
                                         {
                                             ((DataGridViewImageCell)grdInward.Rows[i].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
                                             grdInward.Rows[i].ReadOnly = true;
+                                            grdInward.Rows[i].Cells["clmCheck"].ReadOnly = true;
+                                            //((DataGridViewCheckBoxCell)grdInward.Rows[i].Cells["clmCheck"]).Value = new System.Drawing.Bitmap(1, 1);
                                             grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
                                         }
                                         DataGridView dataGridView1 = grdInward;
@@ -3636,45 +3637,45 @@ namespace ROMS
                                             cell4.Style.ForeColor = Color.Black;
                                             cell4.ReadOnly = true;
                                         }
-                                      
-                                        //Batch No
-                                        DataGridView dataGridView3 = grdInward;
-                                        DataGridViewCell cell3 = dataGridView3.Rows[i].Cells["clmBatchNo"];
-                                        DataGridView dataGridView6 = grdInward;
-                                        DataGridViewCell cell6 = dataGridView3.Rows[i].Cells["clmInvoiceBatchNo"];
-                                        if (Convert.ToString(grdInward.Rows[i].Cells["clmBatchNoStatus"].Value) == "72" && Convert.ToString(grdInward.Rows[i].Cells["clmBatchNoGeneration"].Value) == "75")
-                                        {
-                                            //cell3.Style.BackColor = Color.PaleGreen;
-                                            //cell3.Style.ForeColor = Color.Black;
-                                            cell3.ReadOnly = false;
-                                            //cell6.Style.BackColor = Color.PaleGreen;
-                                            //cell6.Style.ForeColor = Color.Black;
-                                            cell6.ReadOnly = false;
-                                        }
-                                        else
-                                        {
-                                            cell3.Style.BackColor = Color.LightGray;
-                                            cell3.Style.ForeColor = Color.Black;
-                                            cell3.ReadOnly = true;
-                                            cell6.Style.BackColor = Color.LightGray;
-                                            cell6.Style.ForeColor = Color.Black;
-                                            cell6.ReadOnly = true;
-                                        }
-                                        if(Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
-                                        {
-                                            grdInward.Columns["clmMRP"].DefaultCellStyle.BackColor = Color.LightGray;
-                                            grdInward.Columns["clmMRP"].ReadOnly = true;
-                                            grdInward.Columns["clmInvoiceMRP"].DefaultCellStyle.BackColor = Color.LightGray;
-                                            grdInward.Columns["clmInvoiceMRP"].ReadOnly = true;
-                                            grdInward.Columns["clmExpiryDate"].DefaultCellStyle.BackColor = Color.LightGray;
-                                            grdInward.Columns["clmExpiryDate"].ReadOnly = true;
-                                            grdInward.Columns["clmInvoiceExpiryDate"].DefaultCellStyle.BackColor = Color.LightGray;
-                                            grdInward.Columns["clmInvoiceExpiryDate"].ReadOnly = true;
-                                            grdInward.Columns["clmBatchNo"].DefaultCellStyle.BackColor = Color.LightGray;
-                                            grdInward.Columns["clmBatchNo"].ReadOnly = true;
-                                            grdInward.Columns["clmInvoiceBatchNo"].DefaultCellStyle.BackColor = Color.LightGray;
-                                            grdInward.Columns["clmInvoiceBatchNo"].ReadOnly = true;
-                                        }
+
+                                        ////Batch No
+                                        //DataGridView dataGridView3 = grdInward;
+                                        //DataGridViewCell cell3 = dataGridView3.Rows[i].Cells["clmBatchNo"];
+                                        //DataGridView dataGridView6 = grdInward;
+                                        //DataGridViewCell cell6 = dataGridView3.Rows[i].Cells["clmInvoiceBatchNo"];
+                                        //if (Convert.ToString(grdInward.Rows[i].Cells["clmBatchNoStatus"].Value) == "72" && Convert.ToString(grdInward.Rows[i].Cells["clmBatchNoGeneration"].Value) == "75")
+                                        //{
+                                        //    //cell3.Style.BackColor = Color.PaleGreen;
+                                        //    //cell3.Style.ForeColor = Color.Black;
+                                        //    cell3.ReadOnly = false;
+                                        //    //cell6.Style.BackColor = Color.PaleGreen;
+                                        //    //cell6.Style.ForeColor = Color.Black;
+                                        //    cell6.ReadOnly = false;
+                                        //}
+                                        //else
+                                        //{
+                                        //    cell3.Style.BackColor = Color.LightGray;
+                                        //    cell3.Style.ForeColor = Color.Black;
+                                        //    cell3.ReadOnly = true;
+                                        //    cell6.Style.BackColor = Color.LightGray;
+                                        //    cell6.Style.ForeColor = Color.Black;
+                                        //    cell6.ReadOnly = true;
+                                        //}
+                                        //if(Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
+                                        //{
+                                        //    grdInward.Columns["clmMRP"].DefaultCellStyle.BackColor = Color.LightGray;
+                                        //    grdInward.Columns["clmMRP"].ReadOnly = true;
+                                        //    grdInward.Columns["clmInvoiceMRP"].DefaultCellStyle.BackColor = Color.LightGray;
+                                        //    grdInward.Columns["clmInvoiceMRP"].ReadOnly = true;
+                                        //    grdInward.Columns["clmExpiryDate"].DefaultCellStyle.BackColor = Color.LightGray;
+                                        //    grdInward.Columns["clmExpiryDate"].ReadOnly = true;
+                                        //    grdInward.Columns["clmInvoiceExpiryDate"].DefaultCellStyle.BackColor = Color.LightGray;
+                                        //    grdInward.Columns["clmInvoiceExpiryDate"].ReadOnly = true;
+                                        //    grdInward.Columns["clmBatchNo"].DefaultCellStyle.BackColor = Color.LightGray;
+                                        //    grdInward.Columns["clmBatchNo"].ReadOnly = true;
+                                        //    grdInward.Columns["clmInvoiceBatchNo"].DefaultCellStyle.BackColor = Color.LightGray;
+                                        //    grdInward.Columns["clmInvoiceBatchNo"].ReadOnly = true;
+                                        //}
                                     }
                                 }
                                 grdInward.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

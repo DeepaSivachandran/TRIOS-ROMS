@@ -970,7 +970,7 @@ namespace ROMS
                                 lblNoRecordsFound.SendToBack();
                                 grdReturnDCList.DataSource = objDs.Tables[0];
                                 grdReturnDCList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdReturnDCList.Columns["Pur Ret Dc Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdReturnDCList.Columns["Pur Ret Dc Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                                 grdReturnDCList.Columns["Dc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdReturnDCList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdReturnDCList.Columns["Tot Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -991,6 +991,7 @@ namespace ROMS
                                 grdReturnDCList.Columns["Schedule ID"].Visible = false;
                                 grdReturnDCList.Columns["Status ID"].Visible = false;
                                 grdReturnDCList.Columns["PURREDC_ReasonId"].Visible = false;
+                                grdReturnDCList.Columns["Full Status"].Visible = false;
                             }
                             else
                             {
@@ -1747,6 +1748,23 @@ namespace ROMS
                 MainForm.objPUR_ReturnApprovedList = new PUR_ReturnDCApprovedList();
                 MainForm.objPUR_ReturnApprovedList.MdiParent = this.ParentForm;
                 MainForm.objPUR_ReturnApprovedList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdReturnDCList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == grdReturnDCList.Columns["Pur Ret Dc Status"].Index)
+                {
+                    var cell = grdReturnDCList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.ToolTipText = grdReturnDCList.Rows[e.RowIndex].Cells["Full Status"].Value.ToString();
+                }
             }
             catch (Exception ex)
             {

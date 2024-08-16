@@ -189,6 +189,15 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                if(MainForm.objPAY_SupplierPayment.varPaymentStatus==77)
+                {
+                    btnOk.Enabled = false;
+                    grdAdvance.Enabled = false;
+                    grdAdvance.ReadOnly = true;
+                }
+            }
         }
         public void udfnEditAdvance()
         {
