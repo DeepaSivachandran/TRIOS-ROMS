@@ -110,7 +110,7 @@ namespace ROMS
                     if (Convert.ToString(grdInward.Rows[row.Index].Cells["clmRMFlag"].Value) == "1")
                     {
                         grdInward.Rows[row.Index].Cells["clmExpiryDate"].ReadOnly = true;
-                        grdInward.Rows[row.Index].DefaultCellStyle.BackColor = Color.LightGray;
+                        grdInward.Rows[row.Index].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
                     }
                 }
                 //for (int i = 0; i < grdGrnlist.Rows.Count; i++)
@@ -532,9 +532,9 @@ namespace ROMS
                                             cellInvExpiryDate.Value = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceExpiryDate"].Value);
                                             dtInwardPurchase.Rows[dtInwardPurchase.Rows.Count - 1]["GIPPR_ExpiryDate"] = cellInvExpiryDate.Value;
                                             dtInwardPurchase.Rows[dtInwardPurchase.Rows.Count - 1]["GIPPR_InvoiceExpiryDate"] = cellInvExpiryDate.Value;
-                                            cell2.Style.BackColor = Color.LightGray; cell2.Style.ForeColor = Color.Black; cell2.ReadOnly = true;
-                                            cell6.Style.BackColor = Color.LightGray; cell6.Style.ForeColor = Color.Black; cell6.ReadOnly = true;
-                                            cellInvExpiryDate.Style.BackColor = Color.LightGray; cellInvExpiryDate.Style.ForeColor = Color.Black; cellInvExpiryDate.ReadOnly = true;
+                                            //cell2.Style.BackColor = Color.LightGray; cell2.Style.ForeColor = Color.Black; cell2.ReadOnly = true;
+                                            //cell6.Style.BackColor = Color.LightGray; cell6.Style.ForeColor = Color.Black; cell6.ReadOnly = true;
+                                            //cellInvExpiryDate.Style.BackColor = Color.LightGray; cellInvExpiryDate.Style.ForeColor = Color.Black; cellInvExpiryDate.ReadOnly = true;
                                         }
                                        
                                         //Batch No
