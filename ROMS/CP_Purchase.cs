@@ -8947,7 +8947,7 @@ namespace ROMS
                 {
                     if(txtMrp.Enabled==true)
                     { txtMrp.Focus(); }
-                    if (txtDate.Enabled == true)
+                    else if (txtDate.Enabled == true)
                     { txtDate.Focus(); }
                     else if (txtBatchno.Enabled == true)
                     { txtBatchno.Focus(); }
