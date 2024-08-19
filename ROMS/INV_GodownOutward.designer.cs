@@ -37,6 +37,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_GodownOutward));
             this.epGoodsOutward = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnAdd = new System.Windows.Forms.Button();
             this.tsStockTransferList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlGoodsOutward = new System.Windows.Forms.Panel();
@@ -87,7 +88,6 @@
             this.txtStockQuantity = new System.Windows.Forms.TextBox();
             this.lblRack = new System.Windows.Forms.Label();
             this.txtRack = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.txtOutwardQuantity = new System.Windows.Forms.TextBox();
@@ -113,6 +113,17 @@
             // epGoodsOutward
             // 
             this.epGoodsOutward.ContainerControl = this;
+            // 
+            // btnAdd
+            // 
+            this.epGoodsOutward.SetIconAlignment(this.btnAdd, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(1217, 41);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(25, 24);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // tsStockTransferList
             // 
@@ -712,17 +723,6 @@
             this.txtRack.Size = new System.Drawing.Size(100, 27);
             this.txtRack.TabIndex = 1111158;
             // 
-            // btnAdd
-            // 
-            this.epGoodsOutward.SetIconAlignment(this.btnAdd, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1183, 42);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(25, 24);
-            this.btnAdd.TabIndex = 6;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
             // textBox5
             // 
             this.textBox5.Enabled = false;
@@ -737,7 +737,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(1175, 42);
+            this.lblQuantity.Location = new System.Drawing.Point(1172, 43);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(0, 20);
             this.lblQuantity.TabIndex = 958834;

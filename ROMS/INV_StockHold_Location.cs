@@ -200,7 +200,7 @@ namespace ROMS
                 objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
-                varStockQty = Convert.ToInt32(objDs.Tables[0].Rows[0]["Stock Qty"]);
+                //varStockQty = Convert.ToInt32(objDs.Tables[0].Rows[0]["Stock Qty"])- Convert.ToInt32(objDs.Tables[0].Rows[0]["Hold Qty"]);
                 txtStockLocation.Focus();
                 txtQty.Text = Convert.ToString(varQty);
             }
@@ -345,6 +345,7 @@ namespace ROMS
                 objTRNS_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNS_StockHold.paraFlag = 1;
                 objTRNS_StockHold.paraStatus = 96;
+                objTRNS_StockHold.paraParentSHID = varSHID;
                 objTRNS_StockHold.paraOriginator = "Stock Hold Move Location";
                 varResult = objspservice.udfnStockHold(objTRNS_StockHold);
                 objspservice.CloseConnection();
