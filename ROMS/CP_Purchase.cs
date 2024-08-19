@@ -2225,7 +2225,7 @@ namespace ROMS
                 {
                     tbDetails.TabPages[0].Enabled = true; // First tab 
                                                           // tbDetails.TabPages[1].Enabled = true; // Second tab 
-                    udfnPurchaseEntryTabLoad(); //tab2 load
+                   // udfnPurchaseEntryTabLoad(); //tab2 load
                     udfnDisableDiscount();
                 }
                 else
@@ -7250,14 +7250,14 @@ namespace ROMS
                                     grdPurchaseList.Rows[i].ReadOnly = true;
                                     grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = true;
                                     grdPurchaseList.Rows[i].Cells["clmRecqty"].ReadOnly = false;
-                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = false;
+                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = true;
                                     grdPurchaseList.Rows[i].Cells["clmFreeqty"].ReadOnly = false;
                                     grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = true;
                                     grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = true;
 
                                     grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightGray;
                                     grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
-                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightGray;
                                     grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.PaleGreen;
                                     grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightGray;
                                     grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
@@ -7286,6 +7286,7 @@ namespace ROMS
                                 grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
                                 grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
                             }
+                           
                             //else if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "227")
                             //{
                             //    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightGray;
@@ -10926,7 +10927,8 @@ namespace ROMS
                     }
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmInvQty"].Index || e.ColumnIndex == grdPurchaseList.Columns["clmRecqty"].Index || e.ColumnIndex == grdPurchaseList.Columns["clmPurchaseRate"].Index) || e.ColumnIndex == grdPurchaseList.Columns["clmFreeqty"].Index && e.RowIndex >= 0)
                     {
-                        CellInvQty.Style.BackColor = Color.PaleGreen;
+                        if (Convert.ToString(grdPurchaseList.Rows[e.RowIndex].Cells["clmConvertedProID"].Value) == "0")
+                        { CellInvQty.Style.BackColor = Color.PaleGreen; }
                     }
                     if ((e.ColumnIndex == grdPurchaseList.Columns["clmDiscPer"].Index) && e.RowIndex >= 0)
                     {
@@ -11911,10 +11913,10 @@ namespace ROMS
                                 grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
                             }
                         }
-                        if (PbSTS != "50")
-                        {
-                            ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(0, 0);
-                        }
+                        //if (PbSTS != "50")
+                        //{
+                        //    ((DataGridViewImageCell)grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(0, 0);
+                        //}
                     }
                     string[] varShelflifevalue = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                     if (varShelflifevalue[0] != "")
