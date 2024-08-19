@@ -253,7 +253,8 @@ namespace ROMS
                             if (objDs.Tables[0].Rows.Count > 0)
                             {
                                 Verified1 = Convert.ToInt32(objDs.Tables[0].Rows[0]["Verifiedby"].ToString());
-                                dpVerified.Text = objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString();
+                                DateTime varDate = DateTime.ParseExact(Convert.ToString(objDs.Tables[0].Rows[0]["DC_VerfiedOn"].ToString()), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                dpVerified.Text = Convert.ToString(varDate);
                                 mtbTime.Text = objDs.Tables[0].Rows[0]["DC_Verified_Time"].ToString();
                                 cmbFormat.Text = objDs.Tables[0].Rows[0]["DC_Verified_format"].ToString();
                                 DateTime varmaxdate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["MAXDATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -268,15 +269,15 @@ namespace ROMS
                                 }
 
                             }
-                        }
-                        if (objDs.Tables[1].Rows.Count != 0)
-                        {
-                            if (objDs.Tables[1].Rows.Count > 0)
+                            if (objDs.Tables[1].Rows.Count != 0)
                             {
-                                txtVerified.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee"].ToString());
-                                lblVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EmpID"].ToString());
+                                if (objDs.Tables[1].Rows.Count > 0)
+                                {
+                                    txtVerified.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee"].ToString());
+                                    lblVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EmpID"].ToString());
+                                }
+                                lvVerified.Visible = false;
                             }
-                            lvVerified.Visible = false;
                         }
                     }
                     if (txtVerified.Text.Trim() == "")

@@ -1141,6 +1141,7 @@ namespace ROMS
         {
             try
             {
+                txtAdvanceAmt.Text = txtAdvanceAmt.Text;
                 cmbPaymentmode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

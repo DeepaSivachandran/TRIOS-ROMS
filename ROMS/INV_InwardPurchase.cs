@@ -1426,7 +1426,24 @@ namespace ROMS
                                                             varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
                                                             if (varQty1 > varTotalQty1 || varQty1 == varTotalQty1)
                                                             {
-                                                                
+                                                                grdInward.Rows[j].DefaultCellStyle.BackColor = Color.White;
+                                                                if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) == "1")
+                                                                {
+                                                                    grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                                                                    grdInward.Rows[j].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
+                                                                    grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                                                    grdInward.Rows[j].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.LightGray;
+                                                                    grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                                                    grdInward.Rows[j].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.LightGray;
+                                                                    grdInward.Rows[j].Cells["clmQty"].Style.BackColor = Color.PaleGreen;
+                                                                    grdInward.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.PaleGreen;
+                                                                    grdInward.Rows[j].Cells["clmShopQty"].Style.BackColor = Color.PaleGreen;
+                                                                    grdInward.Rows[j].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
+                                                                }
+                                                                else
+                                                                {
+                                                                    grdInward.Rows[j].DefaultCellStyle.BackColor = Color.White;
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -1587,7 +1604,24 @@ namespace ROMS
                                                         varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
                                                         if (varQty1 > varTotalQty1 || varQty1 == varTotalQty1)
                                                         {
-
+                                                            grdInward.Rows[j].DefaultCellStyle.BackColor = Color.White;
+                                                            if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) == "1")
+                                                            {
+                                                                grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                                                                grdInward.Rows[j].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
+                                                                grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                                                grdInward.Rows[j].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.LightGray;
+                                                                grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                                                grdInward.Rows[j].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.LightGray;
+                                                                grdInward.Rows[j].Cells["clmQty"].Style.BackColor = Color.PaleGreen;
+                                                                grdInward.Rows[j].Cells["clmReceivedQty"].Style.BackColor = Color.PaleGreen;
+                                                                grdInward.Rows[j].Cells["clmShopQty"].Style.BackColor = Color.PaleGreen;
+                                                                grdInward.Rows[j].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
+                                                            }
+                                                            else
+                                                            {
+                                                                grdInward.Rows[j].DefaultCellStyle.BackColor = Color.White;
+                                                            }
                                                         }
                                                         else
                                                         {

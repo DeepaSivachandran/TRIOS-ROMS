@@ -235,7 +235,7 @@
             this.tsbSupplier});
             this.tsPurchaseInvoiceList.Location = new System.Drawing.Point(0, 0);
             this.tsPurchaseInvoiceList.Name = "tsPurchaseInvoiceList";
-            this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 27);
+            this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 25);
             this.tsPurchaseInvoiceList.TabIndex = 36;
             this.tsPurchaseInvoiceList.Text = "Purchase Invoice";
             // 
@@ -246,14 +246,14 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(94, 24);
+            this.tspHeader.Size = new System.Drawing.Size(94, 22);
             this.tspHeader.Text = "Purchase DC";
             // 
             // tsbSupplier
             // 
             this.tsbSupplier.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbSupplier.ForeColor = System.Drawing.Color.Red;
-            this.tsbSupplier.Image = global::ROMS.Properties.Resources.right_arrow;
+            this.tsbSupplier.Image = global::ROMS.Properties.Resources.Blocked_Supplier;
             this.tsbSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbSupplier.Name = "tsbSupplier";

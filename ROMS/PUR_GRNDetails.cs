@@ -576,6 +576,7 @@ namespace ROMS
         {
             try
             {
+                int varErrEmp = 0;
                 if (grdGrnlist.Rows.Count != 0)
                 {
                     string result = "", varPurchaseDC = "0", varSkip = "0", varDC = "0";
@@ -808,6 +809,7 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
+                        varErrEmp = 1;
                     }
                     if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text)) >= varDVA)
                     {
@@ -821,6 +823,7 @@ namespace ROMS
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             result1 = DialogResult.No;
                             varErrorFormat = 1;
+                            varErrEmp = 1;
                         }
                     }
                     if (txtInvoiceamt.Text.Trim() == "")
@@ -832,15 +835,18 @@ namespace ROMS
                         result1 = DialogResult.No;
                         varErrorFormat = 1;
                     }
-                    if (varBlockedSupplier == "98")
+                    if (varErrEmp == 0)
                     {
-                        SPDataService objDS = new SPDataService();
-                        string varMessage = objDS.udfnGetMessages(134);
-                        objDS.CloseConnection();
-                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.No)
+                        if (varBlockedSupplier == "98")
                         {
-                            result1 = DialogResult.No;
+                            SPDataService objDS = new SPDataService();
+                            string varMessage = objDS.udfnGetMessages(134);
+                            objDS.CloseConnection();
+                            DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.No)
+                            {
+                                result1 = DialogResult.No;
+                            }
                         }
                     }
                     if (result1 == DialogResult.Yes)
@@ -3675,8 +3681,8 @@ namespace ROMS
         {
             try
             {
-                if (chkCompleted.Checked == true && pbStsID != "17") //Status not pending
-                {
+                //if (chkCompleted.Checked == true && pbStsID != "17") //Status not pending
+                //{
                     //if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
                     //{
                     //    DataGridView dataGridView = (DataGridView)sender;
@@ -3719,9 +3725,9 @@ namespace ROMS
                     //btnSave.Enabled = false;
                     //txtRemark.Enabled = false;
                     //udfnDisable();
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                     {
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchenable"].Value) == "72" && Convert.ToString(grdGrnlist.Rows[i].Cells["clmBatchgeneration"].Value) == "74")
@@ -3812,7 +3818,7 @@ namespace ROMS
                     }
 
                     }
-                }
+                //}
             }
             catch (Exception ex)
             {

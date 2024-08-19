@@ -213,9 +213,11 @@
     <Compile Include="Model\MR_Status.cs" />
     <Compile Include="PAY_Advance.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PAY_Advance.designer.cs">
       <DependentUpon>PAY_Advance.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PAY_AdvanceList.cs">
       <SubType>Form</SubType>
@@ -1503,9 +1505,11 @@
     </Compile>
     <Compile Include="PUR_GRNEntry.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PUR_GRNEntry.designer.cs">
       <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PUR_GSTIN.cs">
       <SubType>Form</SubType>
@@ -2036,6 +2040,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_Advance.resx">
       <DependentUpon>PAY_Advance.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_AdvanceList.resx">
       <DependentUpon>PAY_AdvanceList.cs</DependentUpon>
@@ -2235,6 +2240,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNEntry.resx">
       <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GSTIN.resx">
       <DependentUpon>PUR_GSTIN.cs</DependentUpon>
