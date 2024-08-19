@@ -765,6 +765,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 22;
+                objMR_Master.paraFlag = varFlag;
                 DataSet objDSer = new DataSet();
                 SPDataService objdServ = new SPDataService();
                 objDSer = objdServ.udfnMaster(objMR_Master);
