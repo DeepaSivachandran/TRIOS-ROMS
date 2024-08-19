@@ -680,6 +680,7 @@ namespace ROMS
                 dtPurchaseReturnDC.Columns.Add("DMID", typeof(string));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_SLID", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_RKID", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_FreeQty", typeof(decimal));
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnEdit();
