@@ -446,17 +446,32 @@ namespace ROMS
                     string varID = "0";
                     string varGRNPRID = "0";
                     string varGIPPRID = "0";
+                    decimal varReturnQty = 0, varInvoiceQty = 0, varFreeQty = 0;
                     for (int i = 0; i < dtApproval.Rows.Count; i++)
                     {
                         if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == "233" && varFlag == 1)
                         {
-                            string varRecQty = "";
-                            varRecQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
-                            grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = varRecQty;
+                        //for (int i = 0; i < dtApproval.Rows.Count; i++)
+                        //{
+                            string varRecQty = "0"; varInvoiceQty = 0; 
+                            varRecQty = Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value);
+                            grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value = varRecQty;
+                            varReturnQty=Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value);
                             object Quantity = varRecQty;
+                            if (varRecQty == Convert.ToString(varReturnQty))
+                            {
+                                varFreeQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value);
+                            }
+                            else
+                            {
+                                varFreeQty = 0;
+                            }
                             dtApproval.Rows[i]["GRNAPR_ReturnedQty"] = Quantity;
-                            dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
+                            dtPurchaseReturnDC.Rows[i]["PURREDCPR_Qty"] = Quantity;
+                            dtPurchaseReturnDC.Rows[i]["PURREDCPR_FreeQty"] = varFreeQty;
+                        //}
                         }
+                    
                         varID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_PURPRID"]);
                         varGRNPRID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_GRNPRID"]);
                         varGIPPRID = Convert.ToString(dtApproval.Rows[i]["GRNAPR_GIPPRID"]);
@@ -1010,15 +1025,15 @@ namespace ROMS
                                 Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]),
                                 /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), 
                                 Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["IssueProCount"]), 
-                                Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]));
-                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 1)
-                            {
+                                Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Free Qty"]));
+                            //if (Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 1)
+                            //{
                                 dtApproval.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), 
                                     Convert.ToString(objDs.Tables[0].Rows[i]["actual"]),     Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]), 
                                     Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]),
                                 0/*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), 
-                                Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Qty"]));
-                            }
+                                Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Free Qty"]));
+                            //}
                             dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),
                                 Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0,0 /*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0);
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

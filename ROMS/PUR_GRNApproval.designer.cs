@@ -119,6 +119,7 @@
             this.clmErrorCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGRNPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGIPPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmFreeQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -791,6 +792,7 @@
             this.clmErrorCount,
             this.clmGRNPRID,
             this.clmGIPPRID,
+            this.clmFreeQty,
             this.clmReason});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -1077,6 +1079,11 @@
             this.clmGIPPRID.Name = "clmGIPPRID";
             this.clmGIPPRID.Visible = false;
             // 
+            // clmFreeQty
+            // 
+            this.clmFreeQty.HeaderText = "Free Qty";
+            this.clmFreeQty.Name = "clmFreeQty";
+            // 
             // clmReason
             // 
             this.clmReason.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
@@ -1207,6 +1214,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmErrorCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGRNPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGIPPRID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmFreeQty;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
     }
 }
