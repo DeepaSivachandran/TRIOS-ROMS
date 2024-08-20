@@ -269,6 +269,7 @@ namespace ROMS
             try
             {
                 udfnAdvanceAdd();
+                MainForm.objPAY_SupplierPayment.varApplyFlag = 0;
             }
             catch (Exception ex)
             {

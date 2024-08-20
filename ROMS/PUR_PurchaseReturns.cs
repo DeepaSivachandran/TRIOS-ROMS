@@ -91,6 +91,10 @@ namespace ROMS
                 lblWhatsAppNo.Text = "";
                 lblInvoiceDate.Text = "";
                 lblInvoiceNo.Text = "";
+                lblInvoiceDate2.Text = "";
+                lblInvoiceNo2.Text = "";
+                lblVoucherNo.Text = "";
+                lblVoucherDate.Text = "";
                 grdRepDetails.DataSource = null;
             }
             catch (Exception ex)
@@ -676,13 +680,13 @@ namespace ROMS
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdReturnDC.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Name"]),0,0, Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]),
-                                    Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[0].Rows[i]["Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]),
                                     Convert.ToString(objDs.Tables[0].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST%"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PRID"]));
 
                                 dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]),
                                         Convert.ToDecimal(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["UTID"]),
                                         Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GST Amt"]),
-                                        Convert.ToDecimal(objDs.Tables[0].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["DMID"]), 0,0);
+                                        Convert.ToDecimal(objDs.Tables[0].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["DMID"]), 0,0,0);
                             }
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
@@ -817,7 +821,7 @@ namespace ROMS
                                         dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["UTID"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST Amt"]),
-                                        Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]));
+                                        Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["FreeQty"]));
                                     }
                                     grdReturnDC.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lblNoRecordsFound.Visible = false;
@@ -890,10 +894,18 @@ namespace ROMS
                             }
                             if (objDs.Tables[3].Rows.Count > 0)
                             {
+                                //if (objDs.Tables[3].Rows[0]["InvoiceNo"].ToString() != "")
+                                //{ lblInvoiceNo.Text = "Invoice No. - " + objDs.Tables[3].Rows[0]["InvoiceNo"].ToString(); }
+                                //if (objDs.Tables[3].Rows[0]["InvoiceDate"].ToString() != "")
+                                //{ lblInvoiceDate.Text = "Invoice Date - " + objDs.Tables[3].Rows[0]["InvoiceDate"].ToString(); }
                                 if (objDs.Tables[3].Rows[0]["InvoiceNo"].ToString() != "")
-                                { lblInvoiceNo.Text = "Invoice No. - " + objDs.Tables[3].Rows[0]["InvoiceNo"].ToString(); }
+                                { lblInvoiceNo2.Text = "Invoice No. - " + objDs.Tables[3].Rows[0]["InvoiceNo"].ToString(); }
                                 if (objDs.Tables[3].Rows[0]["InvoiceDate"].ToString() != "")
-                                { lblInvoiceDate.Text = "Invoice Date - " + objDs.Tables[3].Rows[0]["InvoiceDate"].ToString(); }
+                                { lblInvoiceDate2.Text = "Invoice Date - " + objDs.Tables[3].Rows[0]["InvoiceDate"].ToString(); }
+                                if (objDs.Tables[3].Rows[0]["VoucherNo"].ToString() != "")
+                                { lblVoucherNo.Text = "Voucher No. - " + objDs.Tables[3].Rows[0]["VoucherNo"].ToString(); }
+                                if (objDs.Tables[3].Rows[0]["VoucherDate"].ToString() != "")
+                                { lblVoucherDate.Text = "Voucher Date - " + objDs.Tables[3].Rows[0]["VoucherDate"].ToString(); }
                             }
                         }
                     }
@@ -2865,8 +2877,8 @@ namespace ROMS
                 dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), 0, (txtQuantity.Text).Trim(), 0,varSLID, varRKID,0,0);
 
                 dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(lblProduct.Text), Convert.ToDecimal(txtMRP.Text), Convert.ToString(txtExpiryDate.Text), Convert.ToString(txtBatchNo.Text),
-                Convert.ToDecimal(varApprox), Convert.ToDecimal(txtQuantity.Text),0,Convert.ToDecimal(Tax), Convert.ToDecimal(varGST), Convert.ToDecimal(GST),
-                Convert.ToDecimal(Net), 0, varSLID, varRKID);
+                Convert.ToDecimal(varApprox), Convert.ToDecimal(txtQuantity.Text),Convert.ToDecimal(Tax), Convert.ToDecimal(varGST), Convert.ToDecimal(GST),
+                Convert.ToDecimal(Net), 0, varSLID, varRKID,0);
                 udfnTotal();
                 grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -3058,6 +3070,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
 
         private void GrdReturnDC_CellContentClick(object sender, DataGridViewCellEventArgs e)

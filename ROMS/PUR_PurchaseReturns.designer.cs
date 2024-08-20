@@ -35,9 +35,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseReturns));
             this.epReturnDc = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
@@ -56,6 +56,11 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblVoucherDate = new System.Windows.Forms.Label();
+            this.lblVoucherNo = new System.Windows.Forms.Label();
+            this.lblInvoiceDate2 = new System.Windows.Forms.Label();
+            this.lblInvoiceNo2 = new System.Windows.Forms.Label();
             this.chkVerified = new System.Windows.Forms.CheckBox();
             this.chkCompleted = new System.Windows.Forms.CheckBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
@@ -82,6 +87,28 @@
             this.lblProductNamePICode = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdReturnDC = new System.Windows.Forms.DataGridView();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmApprox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmFreeQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGSTAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNettAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpReason = new System.Windows.Forms.GroupBox();
             this.btnView = new System.Windows.Forms.Button();
             this.dpCreditNoteDate = new System.Windows.Forms.DateTimePicker();
@@ -150,34 +177,13 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtDMrp = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmApprox = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmFreeQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGSTAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNettAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpInvoiceDetails.SuspendLayout();
             this.grpExcessProduct.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.grbProDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReturnDC)).BeginInit();
@@ -283,6 +289,7 @@
             this.grpInvoiceDetails.TabIndex = 1111240;
             this.grpInvoiceDetails.TabStop = false;
             this.grpInvoiceDetails.Text = "Invoice Details";
+            this.grpInvoiceDetails.Visible = false;
             // 
             // lblInvoiceDate
             // 
@@ -351,6 +358,7 @@
             // 
             // grpExcessProduct
             // 
+            this.grpExcessProduct.Controls.Add(this.groupBox2);
             this.grpExcessProduct.Controls.Add(this.chkVerified);
             this.grpExcessProduct.Controls.Add(this.chkCompleted);
             this.grpExcessProduct.Controls.Add(this.DGV_FilterProduct);
@@ -376,6 +384,63 @@
             this.grpExcessProduct.Size = new System.Drawing.Size(1313, 490);
             this.grpExcessProduct.TabIndex = 1111204;
             this.grpExcessProduct.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblVoucherDate);
+            this.groupBox2.Controls.Add(this.lblVoucherNo);
+            this.groupBox2.Controls.Add(this.lblInvoiceDate2);
+            this.groupBox2.Controls.Add(this.lblInvoiceNo2);
+            this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 9F);
+            this.groupBox2.Location = new System.Drawing.Point(356, 340);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(208, 104);
+            this.groupBox2.TabIndex = 111111146;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Invoice Details";
+            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
+            // 
+            // lblVoucherDate
+            // 
+            this.lblVoucherDate.AutoSize = true;
+            this.lblVoucherDate.Location = new System.Drawing.Point(5, 76);
+            this.lblVoucherDate.Name = "lblVoucherDate";
+            this.lblVoucherDate.Size = new System.Drawing.Size(66, 16);
+            this.lblVoucherDate.TabIndex = 1111216;
+            this.lblVoucherDate.Text = "Voucher Date";
+            // 
+            // lblVoucherNo
+            // 
+            this.lblVoucherNo.AutoSize = true;
+            this.lblVoucherNo.Location = new System.Drawing.Point(5, 57);
+            this.lblVoucherNo.Name = "lblVoucherNo";
+            this.lblVoucherNo.Size = new System.Drawing.Size(57, 16);
+            this.lblVoucherNo.TabIndex = 1111215;
+            this.lblVoucherNo.Text = "Voucher No";
+            // 
+            // lblInvoiceDate2
+            // 
+            this.lblInvoiceDate2.AutoSize = true;
+            this.lblInvoiceDate2.BackColor = System.Drawing.Color.White;
+            this.lblInvoiceDate2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceDate2.Location = new System.Drawing.Point(5, 38);
+            this.lblInvoiceDate2.Name = "lblInvoiceDate2";
+            this.lblInvoiceDate2.Size = new System.Drawing.Size(62, 16);
+            this.lblInvoiceDate2.TabIndex = 1111214;
+            this.lblInvoiceDate2.Text = "Invoice Date";
+            this.lblInvoiceDate2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInvoiceNo2
+            // 
+            this.lblInvoiceNo2.AutoSize = true;
+            this.lblInvoiceNo2.BackColor = System.Drawing.Color.White;
+            this.lblInvoiceNo2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceNo2.Location = new System.Drawing.Point(6, 19);
+            this.lblInvoiceNo2.Name = "lblInvoiceNo2";
+            this.lblInvoiceNo2.Size = new System.Drawing.Size(50, 16);
+            this.lblInvoiceNo2.TabIndex = 1111212;
+            this.lblInvoiceNo2.Text = "InvoiceNo";
+            this.lblInvoiceNo2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // chkVerified
             // 
@@ -748,6 +813,179 @@
             this.grdReturnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReturnDC_CellContentClick);
             this.grdReturnDC.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReturnDC_DataBindingComplete);
             // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSno.Width = 50;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
+            this.clmPICode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPICode.Width = 90;
+            // 
+            // clmProduct
+            // 
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+            this.clmProduct.DefaultCellStyle = dataGridViewCellStyle5;
+            this.clmProduct.HeaderText = "Product Name";
+            this.clmProduct.Name = "clmProduct";
+            this.clmProduct.ReadOnly = true;
+            this.clmProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmProduct.Width = 220;
+            // 
+            // clmLocation
+            // 
+            this.clmLocation.HeaderText = "Location";
+            this.clmLocation.Name = "clmLocation";
+            this.clmLocation.ReadOnly = true;
+            this.clmLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmMRP
+            // 
+            this.clmMRP.HeaderText = "MRP";
+            this.clmMRP.Name = "clmMRP";
+            this.clmMRP.ReadOnly = true;
+            this.clmMRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmExpiryDate
+            // 
+            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.ReadOnly = true;
+            this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmBatchno
+            // 
+            this.clmBatchno.HeaderText = "Batch No.";
+            this.clmBatchno.Name = "clmBatchno";
+            this.clmBatchno.ReadOnly = true;
+            this.clmBatchno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmApprox
+            // 
+            this.clmApprox.HeaderText = "Approximate Rate";
+            this.clmApprox.Name = "clmApprox";
+            this.clmApprox.ReadOnly = true;
+            this.clmApprox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmApprox.Width = 120;
+            // 
+            // clmQuantity
+            // 
+            this.clmQuantity.HeaderText = "Qty";
+            this.clmQuantity.Name = "clmQuantity";
+            this.clmQuantity.ReadOnly = true;
+            this.clmQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmQuantity.Width = 75;
+            // 
+            // clmFreeQty
+            // 
+            this.clmFreeQty.HeaderText = "Free Qty";
+            this.clmFreeQty.Name = "clmFreeQty";
+            this.clmFreeQty.ReadOnly = true;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUnit.Width = 75;
+            // 
+            // clmTax
+            // 
+            this.clmTax.HeaderText = "Taxable Amt";
+            this.clmTax.Name = "clmTax";
+            this.clmTax.ReadOnly = true;
+            this.clmTax.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmTax.Width = 80;
+            // 
+            // clmGST
+            // 
+            this.clmGST.HeaderText = "GST %";
+            this.clmGST.Name = "clmGST";
+            this.clmGST.ReadOnly = true;
+            this.clmGST.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmGST.Width = 60;
+            // 
+            // clmGSTAmount
+            // 
+            this.clmGSTAmount.HeaderText = "GST Amt";
+            this.clmGSTAmount.Name = "clmGSTAmount";
+            this.clmGSTAmount.ReadOnly = true;
+            this.clmGSTAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmGSTAmount.Width = 80;
+            // 
+            // clmNettAmount
+            // 
+            this.clmNettAmount.HeaderText = "Nett Amt";
+            this.clmNettAmount.Name = "clmNettAmount";
+            this.clmNettAmount.ReadOnly = true;
+            this.clmNettAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmNettAmount.Width = 80;
+            // 
+            // clmPRID
+            // 
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.ReadOnly = true;
+            this.clmPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPRID.Visible = false;
+            // 
+            // clmUTID
+            // 
+            this.clmUTID.HeaderText = "UTID";
+            this.clmUTID.Name = "clmUTID";
+            this.clmUTID.ReadOnly = true;
+            this.clmUTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUTID.Visible = false;
+            // 
+            // clmDMID
+            // 
+            this.clmDMID.HeaderText = "DMID";
+            this.clmDMID.Name = "clmDMID";
+            this.clmDMID.ReadOnly = true;
+            this.clmDMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmDMID.Visible = false;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
+            this.clmSLID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSLID.Visible = false;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
+            this.clmRKID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmRKID.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.Visible = false;
+            // 
             // grpReason
             // 
             this.grpReason.Controls.Add(this.btnView);
@@ -995,7 +1233,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(355, 362);
+            this.label5.Location = new System.Drawing.Point(577, 362);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 1111173;
@@ -1004,11 +1242,11 @@
             // txtRemarks
             // 
             this.txtRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(412, 357);
+            this.txtRemarks.Location = new System.Drawing.Point(640, 357);
             this.txtRemarks.MaxLength = 200;
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(575, 72);
+            this.txtRemarks.Size = new System.Drawing.Size(305, 72);
             this.txtRemarks.TabIndex = 6;
             this.txtRemarks.Enter += new System.EventHandler(this.TxtRemarks_Enter);
             this.txtRemarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemarks_KeyDown);
@@ -1571,179 +1809,6 @@
             this.lblStatus.Size = new System.Drawing.Size(0, 20);
             this.lblStatus.TabIndex = 38;
             // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmSno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmSno.Width = 50;
-            // 
-            // clmPICode
-            // 
-            this.clmPICode.HeaderText = "P.I Code";
-            this.clmPICode.Name = "clmPICode";
-            this.clmPICode.ReadOnly = true;
-            this.clmPICode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmPICode.Width = 90;
-            // 
-            // clmProduct
-            // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-            this.clmProduct.DefaultCellStyle = dataGridViewCellStyle5;
-            this.clmProduct.HeaderText = "Product Name";
-            this.clmProduct.Name = "clmProduct";
-            this.clmProduct.ReadOnly = true;
-            this.clmProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmProduct.Width = 220;
-            // 
-            // clmLocation
-            // 
-            this.clmLocation.HeaderText = "Location";
-            this.clmLocation.Name = "clmLocation";
-            this.clmLocation.ReadOnly = true;
-            this.clmLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
-            this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmMRP
-            // 
-            this.clmMRP.HeaderText = "MRP";
-            this.clmMRP.Name = "clmMRP";
-            this.clmMRP.ReadOnly = true;
-            this.clmMRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmExpiryDate
-            // 
-            this.clmExpiryDate.HeaderText = "Expiry Date";
-            this.clmExpiryDate.Name = "clmExpiryDate";
-            this.clmExpiryDate.ReadOnly = true;
-            this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmBatchno
-            // 
-            this.clmBatchno.HeaderText = "Batch No.";
-            this.clmBatchno.Name = "clmBatchno";
-            this.clmBatchno.ReadOnly = true;
-            this.clmBatchno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmApprox
-            // 
-            this.clmApprox.HeaderText = "Approximate Rate";
-            this.clmApprox.Name = "clmApprox";
-            this.clmApprox.ReadOnly = true;
-            this.clmApprox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmApprox.Width = 120;
-            // 
-            // clmQuantity
-            // 
-            this.clmQuantity.HeaderText = "Qty";
-            this.clmQuantity.Name = "clmQuantity";
-            this.clmQuantity.ReadOnly = true;
-            this.clmQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmQuantity.Width = 75;
-            // 
-            // clmFreeQty
-            // 
-            this.clmFreeQty.HeaderText = "Free Qty";
-            this.clmFreeQty.Name = "clmFreeQty";
-            this.clmFreeQty.ReadOnly = true;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUnit.Width = 75;
-            // 
-            // clmTax
-            // 
-            this.clmTax.HeaderText = "Taxable Amt";
-            this.clmTax.Name = "clmTax";
-            this.clmTax.ReadOnly = true;
-            this.clmTax.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmTax.Width = 80;
-            // 
-            // clmGST
-            // 
-            this.clmGST.HeaderText = "GST %";
-            this.clmGST.Name = "clmGST";
-            this.clmGST.ReadOnly = true;
-            this.clmGST.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmGST.Width = 60;
-            // 
-            // clmGSTAmount
-            // 
-            this.clmGSTAmount.HeaderText = "GST Amt";
-            this.clmGSTAmount.Name = "clmGSTAmount";
-            this.clmGSTAmount.ReadOnly = true;
-            this.clmGSTAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmGSTAmount.Width = 80;
-            // 
-            // clmNettAmount
-            // 
-            this.clmNettAmount.HeaderText = "Nett Amt";
-            this.clmNettAmount.Name = "clmNettAmount";
-            this.clmNettAmount.ReadOnly = true;
-            this.clmNettAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmNettAmount.Width = 80;
-            // 
-            // clmPRID
-            // 
-            this.clmPRID.HeaderText = "PRID";
-            this.clmPRID.Name = "clmPRID";
-            this.clmPRID.ReadOnly = true;
-            this.clmPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmPRID.Visible = false;
-            // 
-            // clmUTID
-            // 
-            this.clmUTID.HeaderText = "UTID";
-            this.clmUTID.Name = "clmUTID";
-            this.clmUTID.ReadOnly = true;
-            this.clmUTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUTID.Visible = false;
-            // 
-            // clmDMID
-            // 
-            this.clmDMID.HeaderText = "DMID";
-            this.clmDMID.Name = "clmDMID";
-            this.clmDMID.ReadOnly = true;
-            this.clmDMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmDMID.Visible = false;
-            // 
-            // clmSLID
-            // 
-            this.clmSLID.HeaderText = "SLID";
-            this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
-            this.clmSLID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmSLID.Visible = false;
-            // 
-            // clmRKID
-            // 
-            this.clmRKID.HeaderText = "RKID";
-            this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
-            this.clmRKID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmRKID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.Visible = false;
-            // 
             // PUR_PurchaseReturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1777,6 +1842,8 @@
             this.grpInvoiceDetails.PerformLayout();
             this.grpExcessProduct.ResumeLayout(false);
             this.grpExcessProduct.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
             this.grbProDetails.ResumeLayout(false);
             this.grbProDetails.PerformLayout();
@@ -1930,5 +1997,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblVoucherDate;
+        private System.Windows.Forms.Label lblVoucherNo;
+        private System.Windows.Forms.Label lblInvoiceDate2;
+        private System.Windows.Forms.Label lblInvoiceNo2;
     }
 }

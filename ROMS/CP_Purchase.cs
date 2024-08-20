@@ -13264,7 +13264,14 @@ namespace ROMS
                                 {
                                     if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmrack")
                                     {
-                                        grdSupplierList.CurrentCell = grdSupplierList[6, irow + 1];
+                                        //To set the focus on next row's 1st editable cell
+                                        icolumn = 11;
+                                        L: if (grdSupplierList[icolumn, irow + 1].ReadOnly==true)
+                                        {
+                                            icolumn++;
+                                            goto L;
+                                        }
+                                        grdSupplierList.CurrentCell = grdSupplierList[icolumn, irow + 1];
                                         icolumn = grdSupplierList.CurrentCell.ColumnIndex;
                                         irow = grdSupplierList.CurrentCell.RowIndex;
                                     }
@@ -13343,22 +13350,15 @@ namespace ROMS
                             {
                                 A: if (icolumn == grdPurchaseList.Columns.Count - 1)
                                 {
-                                    //grdProDetails.Rows.Add();
                                     if (irow < grdPurchaseList.Rows.Count - 1)
                                     {
-                                        grdPurchaseList.CurrentCell = grdPurchaseList[11, irow + 1];
+                                        //To set the focus on next row's 1st editable cell
+                                        grdPurchaseList.CurrentCell = grdPurchaseList[13, irow + 1];
                                         icolumn = grdPurchaseList.CurrentCell.ColumnIndex;
                                         irow = grdPurchaseList.CurrentCell.RowIndex;
-                                        //goto A;
                                     }
                                     else
                                     {
-                                        //grdPurchaseList.CurrentCell = grdPurchaseList[icolumn + 1, irow];
-
-                                        //if (grdPurchaseList.CurrentCell.ReadOnly == true)
-                                        //{
-                                        //    icolumn++; goto A;
-                                        //}
                                         grdPurchaseList.ClearSelection();
                                         txtLoadingCharge.Focus();
                                     }

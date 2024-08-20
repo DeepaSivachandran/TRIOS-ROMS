@@ -1792,6 +1792,7 @@ namespace ROMS
                 if (dialogResult == DialogResult.Yes)
                 {
                     clearClick = 1;
+                    varApplyFlag = 0;
                     udfnClearAdvance();
                 }
             }
@@ -1841,17 +1842,11 @@ namespace ROMS
                                 if (PurchaseID == "0")
                                 {
                                     PurchaseID = Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
-                                    //varPayAmnt = Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmountLoad"].Value);
                                 }
                                 else
                                 {
                                     PurchaseID = PurchaseID + ',' + Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
-                                    //decimal varAdvance = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value);
-                                    //decimal varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value);
-                                    //decimal varReturnAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmnt"].Value);
-                                    //decimal varInvoiceAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value);
-                                    //grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = varInvoiceAmnt;
-                                    //grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value = 0;
+
                                 }
                                 varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value);
                                 varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
@@ -1867,8 +1862,7 @@ namespace ROMS
                             {
                                 VARFLAG--;
                                 varUncheckFlag = 1;
-                                decimal varCurrentBalance = 0;
-                                var ADID = 0;
+                                varApplyFlag = 0;
                                 for (int i = 0; i < grdSupplierPayment.Rows.Count; i++)
                                 {
                                     decimal varInvoiceAmnt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAmnt = 0;
@@ -1878,11 +1872,6 @@ namespace ROMS
                                     varAmnt = varInvoiceAmnt - (varReturnAmnt + varDiscAmnt);
                                     grdSupplierPayment.Rows[i].Cells["clmPaymentAmount"].Value = varAmnt;
                                 }
-                                //decimal varAdvance = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value);
-                                //decimal varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value);
-                                //decimal varReturnAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value);
-                                //decimal varInvoiceAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value);
-                                //grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = varInvoiceAmnt;
                                 grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
                                 grdSupplierPayment.Rows[e.RowIndex].Cells["clmPaymentAmount"].Value = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
                                 int varPurchaseID = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
@@ -1951,22 +1940,7 @@ namespace ROMS
                             }
                         }
                     }
-                    //if (grdSupplierPayment.Rows.Count > 0)
-                    //{
-                    //    if (Convert.ToBoolean(grdSupplierPayment.Rows[e.RowIndex].Cells["clmcheck"].Value) == true)
-                    //    {
-                    //        grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].ReadOnly = false;
-                    //        grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Style.BackColor = Color.PaleGreen;
-                    //    }
-                    //    else
-                    //    {
-                    //        grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].ReadOnly = true;
-                    //        grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Style.BackColor = Color.LightGray;
-                    //    }
-
-                    //}
                 }
-                //varGrandTotal = 0;
             }
             catch (Exception ex)
             {
@@ -2029,16 +2003,16 @@ namespace ROMS
         {
             try
             {
-                decimal CurrentAdvace = 0, AdvanceAmount = 0, varFinalAmount = 0, varFinalTotAmnt = 0, varAmountCalc = 0, varTotAmount = 0, varAdvAmount = 0,
-                RemainingAmnt = 0, varFixedAdvance = 0, varInvoiceAmnt = 0, varDiscAmnt = 0, varReturnAmnt = 0;
-                bool varCheck = true;
-                string varValue = "0", varID = "0", varAdvanceID = "0";
-                int varPurchaseID = 0;
-                string varResult = "";
-                varApplyFlag = 1;
-                dtAdvance.Clear();
-                //if(varSupplierPaymentID==0 && varUncheckFlag==0)
-                //{
+                if (varApplyFlag == 0)
+                {
+                    decimal CurrentAdvace = 0, AdvanceAmount = 0, varFinalAmount = 0, varFinalTotAmnt = 0, varAmountCalc = 0, varTotAmount = 0, varAdvAmount = 0,
+                    RemainingAmnt = 0, varFixedAdvance = 0;
+                    bool varCheck = true;
+                    string varValue = "0", varID = "0", varAdvanceID = "0";
+                    varApplyFlag = 1;
+                    dtAdvance.Clear();
+                    //if(varSupplierPaymentID==0 && varUncheckFlag==0)
+                    //{
                     for (int i = 0; i < dtCheckAdv.Rows.Count; i++)
                     {
                         AdvanceAmount = Convert.ToDecimal(dtCheckAdv.Rows[i]["Current balance"]);
@@ -2095,99 +2069,33 @@ namespace ROMS
                             }
                         }
                     }
-                //}
-                //else
-                //{
-                //    for (int i = 0; i < dtCheckAdv.Rows.Count; i++)
-                //    {
-                //        AdvanceAmount = Convert.ToDecimal(dtCheckAdv.Rows[i]["Current balance"]);
-                //        varFixedAdvance = Convert.ToDecimal(dtCheckAdv.Rows[i]["Current balance"]);
-                //        varAdvanceID = Convert.ToString(dtCheckAdv.Rows[i]["ADID"]);
-                //        for (int j = 0; j < grdSupplierPayment.Rows.Count; j++)
-                //        {
-                //            if (Convert.ToString(grdSupplierPayment.Rows[j].Cells["clmcheck"].Value) == "")
-                //            {
-                //                varCheck = false;
-                //            }
-                //            else if (Convert.ToBoolean(grdSupplierPayment.Rows[j].Cells["clmcheck"].Value) == true)
-                //            {
-                //                varCheck = true;
-                //            }
-                //            else
-                //            {
-                //                varCheck = false;
-                //            }
-                //            if (varCheck == true)
-                //            {
-                //                varamt = 0;
-                //                varInvoiceAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[j].Cells["clmInvoiceAmnt"].Value);
-                //                varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[j].Cells["clmDiscAmount"].Value);
-                //                varReturnAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[j].Cells["clmReturnAmt"].Value);
-                //                grdSupplierPayment.Rows[j].Cells["clmAdvanceAmnt"].Value = 0;
-                //                varamt = varInvoiceAmnt - (varDiscAmnt + varReturnAmnt);
-                //                grdSupplierPayment.Rows[j].Cells["clmPaymentAmount"].Value = varamt;
-                //                //grdSupplierPayment.Rows[j].Cells["clmAdvanceAmnt"].Value = 0;
-                //                varID = Convert.ToString(grdSupplierPayment.Rows[j].Cells["clmID"].Value);
-                //                if (varamt != 0 && AdvanceAmount != 0)
-                //                {
-                //                    if (Convert.ToDecimal(varamt) > Convert.ToDecimal(AdvanceAmount))
-                //                    {
-                //                        varFinalAmount = Convert.ToDecimal(varamt) - Convert.ToDecimal(AdvanceAmount);
-                //                        //dtCheckAdv.Rows[i]["Current balance"] = 0;
-                //                        grdSupplierPayment.Rows[j].Cells["clmPaymentAmount"].Value = varFinalAmount;
-                //                        grdSupplierPayment.Rows[j].Cells["clmPayAmount"].Value = varFinalAmount;
-                //                        varTotAmount = AdvanceAmount;
-                //                        dtAdvance.Rows.Add(Convert.ToInt32(varAdvanceID), Convert.ToInt32(varID), 0, varFinalAmount, AdvanceAmount, varFixedAdvance, dtAdvance.Rows.Count + 1);
-                //                        AdvanceAmount = 0;
-                //                    }
-                //                    else
-                //                    {
-                //                        CurrentAdvace = AdvanceAmount - Convert.ToDecimal(varamt);
-                //                        //dtCheckAdv.Rows[i]["Current balance"] = CurrentAdvace;
-                //                        RemainingAmnt = AdvanceAmount - CurrentAdvace;
-                //                        varAdvAmount = RemainingAmnt;
-                //                        varFinalAmount = 0;
-                //                        grdSupplierPayment.Rows[j].Cells["clmPaymentAmount"].Value = varFinalAmount;
-                //                        grdSupplierPayment.Rows[j].Cells["clmPayAmount"].Value = varFinalAmount;
-                //                        dtAdvance.Rows.Add(Convert.ToInt32(varAdvanceID), Convert.ToInt32(varID), CurrentAdvace, varFinalAmount, RemainingAmnt, varFixedAdvance, dtAdvance.Rows.Count + 1);
-                //                        AdvanceAmount = CurrentAdvace;
-                //                    }
-                //                    varAmountCalc = varTotAmount + varAdvAmount;
-                //                    varFinalTotAmnt = varFinalTotAmnt + varAmountCalc;
-                //                    varAdvAmount = 0;
-                //                    varTotAmount = 0;
-                //                }
+                    varAdvanceAmnt = Convert.ToDecimal(varFinalTotAmnt);
 
-                //            }
-                //        }
-                //    }
-                //}
-                varAdvanceAmnt = Convert.ToDecimal(varFinalTotAmnt);
-               
-                //for (int i = 0; i < grdSupplierPayment.Rows.Count; i++)
-                //{
-                //varPurchaseID = Convert.ToInt32(grdSupplierPayment.Rows[i].Cells["clmID"].Value);
-                //varSumRequestQty = dtAdvance.AsEnumerable()
-                //                        //.Where(y => y.Field<int>("PURID").Equals(varPurchaseID))
-                //                                    .Sum(x => x.Field<decimal>("Payed Amount")).ToString();
+                    //for (int i = 0; i < grdSupplierPayment.Rows.Count; i++)
+                    //{
+                    //varPurchaseID = Convert.ToInt32(grdSupplierPayment.Rows[i].Cells["clmID"].Value);
+                    //varSumRequestQty = dtAdvance.AsEnumerable()
+                    //                        //.Where(y => y.Field<int>("PURID").Equals(varPurchaseID))
+                    //                                    .Sum(x => x.Field<decimal>("Payed Amount")).ToString();
 
-                var sumOfAdvance = (from r in dtAdvance.AsEnumerable()
-                                    group r by r["PURID"] into g
-                select new
-                {
-                    PURID = g.Key,
-                    TotalAdvanceAmnt = g.Sum(x => x.Field<decimal>("Payed Amount"))
-                }).ToList();
-             
-                for (int j = 0; j < sumOfAdvance.Count(); j++)
-                {
-                    for (int i = 0; i < grdSupplierPayment.Rows.Count; i++)
-                    {                       
-                        var key = sumOfAdvance[j];
-                        var ID = key.PURID; 
-                        if (Convert.ToString(ID) == Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value))
+                    var sumOfAdvance = (from r in dtAdvance.AsEnumerable()
+                                        group r by r["PURID"] into g
+                                        select new
+                                        {
+                                            PURID = g.Key,
+                                            TotalAdvanceAmnt = g.Sum(x => x.Field<decimal>("Payed Amount"))
+                                        }).ToList();
+
+                    for (int j = 0; j < sumOfAdvance.Count(); j++)
+                    {
+                        for (int i = 0; i < grdSupplierPayment.Rows.Count; i++)
                         {
-                            grdSupplierPayment.Rows[i].Cells["clmAdvanceAmnt"].Value = key.TotalAdvanceAmnt;
+                            var key = sumOfAdvance[j];
+                            var ID = key.PURID;
+                            if (Convert.ToString(ID) == Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value))
+                            {
+                                grdSupplierPayment.Rows[i].Cells["clmAdvanceAmnt"].Value = key.TotalAdvanceAmnt;
+                            }
                         }
                     }
                 }
