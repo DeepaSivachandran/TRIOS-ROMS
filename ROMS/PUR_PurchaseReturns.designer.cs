@@ -228,7 +228,7 @@
             // 
             this.tsbSupplier.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbSupplier.ForeColor = System.Drawing.Color.Red;
-            this.tsbSupplier.Image = global::ROMS.Properties.Resources.right_arrow;
+            this.tsbSupplier.Image = global::ROMS.Properties.Resources.Blocked_Supplier;
             this.tsbSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbSupplier.Name = "tsbSupplier";

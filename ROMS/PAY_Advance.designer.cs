@@ -40,6 +40,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtCurrentBalance = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtAmountInWords = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.grbIssuedDetails = new System.Windows.Forms.GroupBox();
@@ -101,8 +103,6 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.txtCurrentBalance = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.grbIssuedDetails.SuspendLayout();
             this.grbBankDetails.SuspendLayout();
@@ -212,6 +212,32 @@
             // columnHeader6
             // 
             this.columnHeader6.Width = 10;
+            // 
+            // txtCurrentBalance
+            // 
+            this.txtCurrentBalance.Enabled = false;
+            this.txtCurrentBalance.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCurrentBalance.Location = new System.Drawing.Point(139, 187);
+            this.txtCurrentBalance.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtCurrentBalance.MaxLength = 100;
+            this.txtCurrentBalance.Multiline = true;
+            this.txtCurrentBalance.Name = "txtCurrentBalance";
+            this.txtCurrentBalance.ReadOnly = true;
+            this.txtCurrentBalance.Size = new System.Drawing.Size(335, 27);
+            this.txtCurrentBalance.TabIndex = 14465648;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(17, 186);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(122, 28);
+            this.textBox4.TabIndex = 14465647;
+            this.textBox4.Text = "Current Balance";
             // 
             // txtAmountInWords
             // 
@@ -480,6 +506,7 @@
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(107, 41);
             this.txtAmount.TabIndex = 3;
+            this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
             this.txtAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAmount_KeyDown);
             this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAmount_KeyPress);
@@ -973,32 +1000,6 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 37;
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(17, 186);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(122, 28);
-            this.textBox4.TabIndex = 14465647;
-            this.textBox4.Text = "Current Balance";
-            // 
-            // txtCurrentBalance
-            // 
-            this.txtCurrentBalance.Enabled = false;
-            this.txtCurrentBalance.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCurrentBalance.Location = new System.Drawing.Point(139, 187);
-            this.txtCurrentBalance.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtCurrentBalance.MaxLength = 100;
-            this.txtCurrentBalance.Multiline = true;
-            this.txtCurrentBalance.Name = "txtCurrentBalance";
-            this.txtCurrentBalance.ReadOnly = true;
-            this.txtCurrentBalance.Size = new System.Drawing.Size(335, 27);
-            this.txtCurrentBalance.TabIndex = 14465648;
             // 
             // PAY_Advance
             // 

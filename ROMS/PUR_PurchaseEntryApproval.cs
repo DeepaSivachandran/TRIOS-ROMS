@@ -989,10 +989,10 @@ namespace ROMS
                                         varTempExpiryDate = "";
                                     }
                                     grdSupplierList.Rows.Add(0,grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["ProductEntryType"]),
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[1].Rows[i]["PTNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]), varMRP, varMRP,0,
-                                    Convert.ToString(varTempExpiryDate),0, Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[1].Rows[i]["PTNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]), varMRP, varMRP, Convert.ToString(objDs.Tables[1].Rows[i]["Product MRP"]), 0,
+                                    Convert.ToString(varTempExpiryDate),Convert.ToString(objDs.Tables[1].Rows[i]["Product Expiry"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]),
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]),0, Convert.ToString(objDs.Tables[1].Rows[i]["Location"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product BatchNo"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["Location"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["RKNAME"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["POID"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["BATCHNO"]),
@@ -7571,8 +7571,11 @@ namespace ROMS
                     }                 
                     //grdSupplierList.Rows[i].ReadOnly = true;
                     grdSupplierList.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                    grdSupplierList.Rows[i].Cells["clmProMRP"].Style.BackColor = Color.LightGray;
                     grdSupplierList.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
+                    grdSupplierList.Rows[i].Cells["clmProExpiryDate"].Style.BackColor = Color.LightGray;
                     grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;
+                    grdSupplierList.Rows[i].Cells["clmProBatchNo"].Style.BackColor = Color.LightGray;
                     grdSupplierList.Rows[i].Cells["clmLocation"].Style.BackColor = Color.LightGray;
                     grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;
                 }
