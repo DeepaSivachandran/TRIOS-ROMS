@@ -68,9 +68,6 @@ namespace ROMS
                     MainForm.objPAY_SupplierPayment.btnSave.Text = "Update";
                     MainForm.objPAY_SupplierPayment.varSupplierPaymentID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
                     MainForm.objPAY_SupplierPayment.varPaymentStatus = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
-                    //MainForm.objPAY_SupplierPayment.varSupplierID = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_SPID"].Value);
-                    //MainForm.objPAY_SupplierPayment.varSupplierScheduleID = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_SPSCID"].Value);
-                    //MainForm.objPAY_SupplierPayment.varCompanyID = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_COMID"].Value);
                     MainForm.objPAY_SupplierPayment.Show();
                 }
                 
@@ -255,6 +252,8 @@ namespace ROMS
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -306,6 +305,8 @@ namespace ROMS
 
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1198,6 +1199,14 @@ namespace ROMS
                         grdSupllierPaymentList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdSupllierPaymentList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PAY_BankID"].Value) == "0")
+                    {
+                        grdSupllierPaymentList.Rows[i].Cells["clmPrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdSupllierPaymentList.Rows[i].Cells["clmPrint"] = print;
+                        print.ReadOnly = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1228,6 +1237,72 @@ namespace ROMS
             try
             {
                 tsbEdit_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupllierPaymentList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdSupllierPaymentList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            if (Convert.ToUInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_BankID"].Value)!=0)
+                            {
+                                DialogResult result1 = DialogResult.Yes;
+                                SPDataService objDServs = new SPDataService();
+                                string varMessage = objDServs.udfnGetMessages(87);
+                                objDServs.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varGrandTotal = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["Grand Total"].Value);
+                                    decimal varMRP = Math.Round(Convert.ToDecimal(varGrandTotal.Trim()), 2, MidpointRounding.AwayFromZero);
+                                    string varAmt = string.Format("{0:0}", varMRP);
+                                    int varAmount = Convert.ToInt32(varAmt);
+                                    string lblAmount = Currency.NumbersToWords(varAmount);                                    
+                                    string varSupplierName = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["Supplier"].Value);
+                                    string varChequeDate = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["ChequeDate"].Value);
+                                    if (Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_BankID"].Value) == 224)
+                                    {
+                                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TMB.rpt");
+                                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                                        objBillreport.SetParameterValue("paraAmountInWords", lblAmount);
+                                        objBillreport.SetParameterValue("paraAmount", varGrandTotal);
+                                        objBillreport.SetParameterValue("paraChequeDate", varChequeDate);
+                                        objValidation.CrySqlConnection(objBillreport);
+                                        MainForm.objReportLoad = new ReportLoad();
+                                        MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                        MainForm.objReportLoad.ShowDialog();
+                                    }
+                                    else if (Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_BankID"].Value) == 225)
+                                    {
+                                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_HDFC.rpt");
+                                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                                        objBillreport.SetParameterValue("paraAmountInWords", lblAmount);
+                                        objBillreport.SetParameterValue("paraAmount", varGrandTotal);
+                                        objBillreport.SetParameterValue("paraChequeDate", varChequeDate);
+                                        objValidation.CrySqlConnection(objBillreport);
+                                        MainForm.objReportLoad = new ReportLoad();
+                                        MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                        MainForm.objReportLoad.ShowDialog();
+                                    }
+                                }
+                            }
+                            break;
+                    }
+                }
             }
             catch (Exception ex)
             {
