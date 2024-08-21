@@ -1065,38 +1065,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    //if (e.RowIndex < 0 || e.ColumnIndex < 0/*e.ColumnIndex < 3 && e.ColumnIndex != 1*/)        /*If a header cell*/
-                    //    return;
-                    //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name == "Image" && e.ColumnIndex != 1)
-                    //    return;
-                    ////if ((e.ColumnIndex <2))  //|| e.ColumnIndex == IntDispIndex /*If not our desired columns*/
-                    ////    return;
-                    //if (!(e.ColumnIndex == 0))
-                    //    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                    //    {
-                    //        e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                    //            & ~(DataGridViewPaintParts.ContentForeground));
-
-                    //        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                    //            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-
-                    //        e.Handled = true;
-                    //    }
-                    //DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
-                    //if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
-                    //{
-                    //    if (e.ColumnIndex == 1)
-                    //    {
-                    //        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = null;
-                    //        DGV_SearchGrid.Rows[e.RowIndex].Cells[3] = new DataGridViewTextBoxCell();
-                    //        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = "";
-                    //        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].ReadOnly = true;
-                    //        //DGV_SearchGrid.Columns[1].ReadOnly = true;
-                    //        //DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
-                    //        //DGV_SearchGrid.Columns[2].ReadOnly = false;
-                    //        //DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
-                    //    }
-                    //}
+                    
                     if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                         return;
                     if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
@@ -1297,7 +1266,8 @@ namespace ROMS
                     if (newColumn.GetType() != typeof(DataGridViewImageColumn))
                     {
                         grdGRNList.Sort(newColumn, direction);
-                        newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+                        newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? 
+                            SortOrder.Ascending : SortOrder.Descending;
                         DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                         DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
                         DGV_SearchGrid.HorizontalScrollingOffset = grdGRNList.HorizontalScrollingOffset;

@@ -277,6 +277,12 @@
     <Compile Include="PAY_DiscountVoucher.designer.cs">
       <DependentUpon>PAY_DiscountVoucher.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAY_DebitNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_DebitNote.designer.cs">
+      <DependentUpon>PAY_DebitNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_Purchase_Level_Verified.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2069,6 +2075,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNProducts .resx">
       <DependentUpon>PUR_GRNProducts .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_DebitNote.resx">
+      <DependentUpon>PAY_DebitNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_Purchase_Level_Verified.resx">
       <DependentUpon>PUR_Purchase_Level_Verified.cs</DependentUpon>
