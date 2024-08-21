@@ -997,7 +997,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["Mode of Issue"].Width = 100;
                             grdPurchaseorderlist.Columns["Issue Date"].Width = 100;
                             grdPurchaseorderlist.Columns["Issued By"].Width = 100;
-                            grdPurchaseorderlist.Columns["Po Status"].Width = 120;
+                            grdPurchaseorderlist.Columns["PO Status"].Width = 120;
                             grdPurchaseorderlist.Columns["clmView"].Width = 50;
                             grdPurchaseorderlist.Columns["clmPrint"].Width = 50;
                             grdPurchaseorderlist.Columns["Overall Status"].Width = 130;
@@ -1039,7 +1039,7 @@ namespace ROMS
                             grdPurchaseorderlist.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["T.Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseorderlist.Columns["TAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdPurchaseorderlist.Columns["DTAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdPurchaseorderlist.Columns["DTAT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["Issue Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1176,7 +1176,7 @@ namespace ROMS
                     DGV_SearchGrid.Columns["Mode of Issue"].Width = 100;
                     DGV_SearchGrid.Columns["Issue Date"].Width = 100;
                     DGV_SearchGrid.Columns["Issued By"].Width = 100;
-                    DGV_SearchGrid.Columns["Po Status"].Width = 100;
+                    DGV_SearchGrid.Columns["PO Status"].Width = 100;
                     //DGV_SearchGrid.Columns["clmView"].Width = 50;
                     //DGV_SearchGrid.Columns["clmPrint"].Width = 50;
                     DGV_SearchGrid.ScrollBars = ScrollBars.Both;
@@ -2424,7 +2424,7 @@ namespace ROMS
                 grdPurchaseorderlist.Columns["clmPrint"].Frozen = true;
                 grdPurchaseorderlist.Columns["S.No."].Frozen = true;
                 grdPurchaseorderlist.Columns["Concern"].Frozen = true;
-                grdPurchaseorderlist.Columns["Po Status"].Frozen = true;
+                grdPurchaseorderlist.Columns["PO Status"].Frozen = true;
                 grdPurchaseorderlist.Columns["Overall Status"].Frozen = true;
                 //grdPurchaseorderlist.Columns["PO.No."].Frozen = true;
                 //grdPurchaseorderlist.Columns["PO Date"].Frozen = true;
@@ -2433,7 +2433,7 @@ namespace ROMS
                 grdPurchaseorderlist.Columns["clmView"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdPurchaseorderlist.Columns["Po Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["PO Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseorderlist.Columns["PO.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdPurchaseorderlist.Columns["PO Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -2442,7 +2442,7 @@ namespace ROMS
                 for (int i = 0; i < grdPurchaseorderlist.Rows.Count; i++)
                 {
                     DataGridView dataGridView = (DataGridView)sender;
-                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Po Status"];
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["PO Status"];
                     DataGridViewCell cell1 = dataGridView.Rows[i].Cells["clmView"];
                     if (Convert.ToInt32(grdPurchaseorderlist.Rows[i].Cells["STS"].Value.ToString()) != 12)
                     {
