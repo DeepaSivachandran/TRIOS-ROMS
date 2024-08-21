@@ -1503,7 +1503,7 @@ namespace ROMS
                                                                                  r.Field<string>("GIPPR_ExpiryDate").Equals("") &&
                                                                                  r.Field<int>("PR_ExpiryStatus").Equals(1) || //////Expiry
                                                                                  r.Field<string>("GIPPR_BatchNo").Equals("") &&
-                                                                                 r.Field<int>("PR_BatchNoGeneration").Equals(74) ||
+                                                                                 //r.Field<int>("PR_BatchNoGeneration").Equals(74) ||
                                                                                  r.Field<int>("PR_BatchNoGeneration").Equals(75))
                                                                           group r by r.Field<int>("GIPPR_OrderID")
                                                                          into g
@@ -1709,19 +1709,45 @@ namespace ROMS
                                             }
                                         }
                                     }
-                                    if (varGRNPurchaseFlag != 3 && varGRNPurchaseFlag != 187)
+
+                                    //Empty then Cell Highlight
+                                    if ((Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "" || Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "0" || Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "0.00") && Convert.ToString(grdInward.Rows[j].Cells["clmMRPFlag"].Value) == "1")
                                     {
-                                        if ((Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "" || Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "0") && Convert.ToString(grdInward.Rows[j].Cells["clmMRPFlag"].Value) == "1")
+                                        if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
                                         {
-                                            if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
-                                            {
-                                                grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightPink;
-                                            }
-                                            else
-                                            {
-                                                grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightGray;
-                                            }
+                                            grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightPink;
                                         }
+                                        else
+                                        {
+                                            grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                                        }
+                                    }
+
+                                    if ((Convert.ToString(grdInward.Rows[j].Cells["clmExpiryDate"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmShelflifeStatus"].Value) == "1")
+                                    {
+                                        if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
+                                        {
+                                            grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
+                                        }
+                                        else
+                                        {
+                                            grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                        }
+                                    }
+
+                                    if ((Convert.ToString(grdInward.Rows[j].Cells["clmBatchNo"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmBatchNoStatus"].Value) == "1")
+                                    {
+                                        if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
+                                        {
+                                            grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
+                                        }
+                                        else
+                                        {
+                                            grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                        }
+                                    }
+                                    if (varGRNPurchaseFlag != 3 && varGRNPurchaseFlag != 187) //DC Wise no show Invoice MRP,Expiry,Batch 
+                                    {
                                         if ((Convert.ToString(grdInward.Rows[j].Cells["clmInvoiceMRP"].Value) == "" || Convert.ToString(grdInward.Rows[j].Cells["clmInvoiceMRP"].Value) == "0.00") && Convert.ToString(grdInward.Rows[j].Cells["clmMRPFlag"].Value) == "1")
                                         {
                                             varErrorFlag = false;
@@ -1734,17 +1760,6 @@ namespace ROMS
                                                 grdInward.Rows[j].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray;
                                             }
                                         }
-                                        if ((Convert.ToString(grdInward.Rows[j].Cells["clmExpiryDate"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmShelflifeStatus"].Value) == "1")
-                                        {
-                                            if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
-                                            {
-                                                grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
-                                            }
-                                            else
-                                            {
-                                                grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
-                                            }
-                                        }
                                         if ((Convert.ToString(grdInward.Rows[j].Cells["clmInvoiceExpiryDate"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmShelflifeStatus"].Value) == "1")
                                         {
                                             varErrorFlag = false;
@@ -1755,17 +1770,6 @@ namespace ROMS
                                             else
                                             {
                                                 grdInward.Rows[j].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.LightGray;
-                                            }
-                                        }
-                                        if ((Convert.ToString(grdInward.Rows[j].Cells["clmBatchNo"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmBatchNoStatus"].Value) == "1")
-                                        {
-                                            if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
-                                            {
-                                                grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
-                                            }
-                                            else
-                                            {
-                                                grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
                                             }
                                         }
                                         if ((Convert.ToString(grdInward.Rows[j].Cells["clmInvoiceBatchNo"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmBatchNoStatus"].Value) == "1")
