@@ -29,12 +29,16 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -119,6 +123,7 @@
             this.clmErrorCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGRNPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGIPPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmFreeQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -791,23 +796,24 @@
             this.clmErrorCount,
             this.clmGRNPRID,
             this.clmGIPPRID,
+            this.clmFreeQty,
             this.clmReason});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle10;
             this.grdGrnApproval.EnableHeadersVisualStyles = false;
             this.grdGrnApproval.GridColor = System.Drawing.Color.White;
             this.grdGrnApproval.Location = new System.Drawing.Point(6, 135);
             this.grdGrnApproval.Name = "grdGrnApproval";
             this.grdGrnApproval.RowHeadersVisible = false;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle11;
             this.grdGrnApproval.RowTemplate.Height = 25;
             this.grdGrnApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnApproval.Size = new System.Drawing.Size(1335, 434);
@@ -904,6 +910,8 @@
             // 
             // Sno
             // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+            this.Sno.DefaultCellStyle = dataGridViewCellStyle2;
             this.Sno.Frozen = true;
             this.Sno.HeaderText = "S.No";
             this.Sno.Name = "Sno";
@@ -912,6 +920,8 @@
             // 
             // Column2
             // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column2.Frozen = true;
             this.Column2.HeaderText = "P.I Code";
             this.Column2.Name = "Column2";
@@ -920,6 +930,8 @@
             // 
             // clmproduct
             // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmproduct.DefaultCellStyle = dataGridViewCellStyle4;
             this.clmproduct.Frozen = true;
             this.clmproduct.HeaderText = "Product Name";
             this.clmproduct.Name = "clmproduct";
@@ -928,6 +940,8 @@
             // 
             // Column6
             // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.AliceBlue;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column6.Frozen = true;
             this.Column6.HeaderText = "Unit";
             this.Column6.Name = "Column6";
@@ -936,8 +950,8 @@
             // 
             // clmmrp
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmmrp.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmmrp.DefaultCellStyle = dataGridViewCellStyle6;
             this.clmmrp.HeaderText = "Inv MRP";
             this.clmmrp.Name = "clmmrp";
             this.clmmrp.ReadOnly = true;
@@ -945,24 +959,24 @@
             // 
             // clmProMrp
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmProMrp.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmProMrp.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmProMrp.HeaderText = "Pro MRP";
             this.clmProMrp.Name = "clmProMrp";
             this.clmProMrp.ReadOnly = true;
             // 
             // clmexpirydate
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmexpirydate.DefaultCellStyle = dataGridViewCellStyle8;
             this.clmexpirydate.HeaderText = "Inv Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
             this.clmexpirydate.ReadOnly = true;
             // 
             // clmProExpiryDate
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmProExpiryDate.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmProExpiryDate.DefaultCellStyle = dataGridViewCellStyle9;
             this.clmProExpiryDate.HeaderText = "Pro Expiry Date";
             this.clmProExpiryDate.Name = "clmProExpiryDate";
             this.clmProExpiryDate.ReadOnly = true;
@@ -1076,6 +1090,11 @@
             this.clmGIPPRID.HeaderText = "GIPPRID";
             this.clmGIPPRID.Name = "clmGIPPRID";
             this.clmGIPPRID.Visible = false;
+            // 
+            // clmFreeQty
+            // 
+            this.clmFreeQty.HeaderText = "Free Qty";
+            this.clmFreeQty.Name = "clmFreeQty";
             // 
             // clmReason
             // 
@@ -1207,6 +1226,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmErrorCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGRNPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGIPPRID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmFreeQty;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
     }
 }
