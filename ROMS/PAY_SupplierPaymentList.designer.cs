@@ -196,6 +196,7 @@
             this.grdSupllierPaymentList.TabIndex = 1;
             this.grdSupllierPaymentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupllierPaymentList_CellContentClick);
             this.grdSupllierPaymentList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupllierPaymentList_DataBindingComplete);
+            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll);
             this.grdSupllierPaymentList.DoubleClick += new System.EventHandler(this.GrdSupllierPaymentList_DoubleClick);
             this.grdSupllierPaymentList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSupllierPaymentList_KeyDown);
             // 
@@ -245,7 +246,6 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
-            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);

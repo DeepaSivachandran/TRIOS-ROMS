@@ -765,9 +765,9 @@ namespace ROMS
                             grdSupllierPaymentList.DataSource = objDs.Tables[0];                           
                             grdSupllierPaymentList.Columns["S.No."].Width = 50;
                             grdSupllierPaymentList.Columns["Transaction Date"].Width = 120;
-                            grdSupllierPaymentList.Columns["Transaction No."].Width = 120;
+                            grdSupllierPaymentList.Columns["Transaction No."].Width = 110;
                             grdSupllierPaymentList.Columns["Supplier"].Width = 300;
-                            grdSupllierPaymentList.Columns["GSTIN"].Width = 200;
+                            grdSupllierPaymentList.Columns["GSTIN"].Width = 120;
                             grdSupllierPaymentList.Columns["Advance"].Width = 100;
                             grdSupllierPaymentList.Columns["Sub Total"].Width = 100;
                             grdSupllierPaymentList.Columns["Grand Total"].Width = 100;
@@ -776,6 +776,8 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["PAY_PaymentMode"].Visible = false;
                             grdSupllierPaymentList.Columns["PAYID"].Visible = false;
                             grdSupllierPaymentList.Columns["PAY_STSID"].Visible = false;
+                            grdSupllierPaymentList.Columns["PAY_BankID"].Visible = false;
+                            grdSupllierPaymentList.Columns["ChequeDate"].Visible = false;
                             grdSupllierPaymentList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["Advance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1159,6 +1161,7 @@ namespace ROMS
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdSupllierPaymentList);
                 }
             }
             catch (Exception ex)
@@ -1303,6 +1306,33 @@ namespace ROMS
                             break;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupllierPaymentList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int cl = grdSupllierPaymentList.ColumnCount;
+                int cls = DGV_SearchGrid.ColumnCount;
+                int offSetValue = grdSupllierPaymentList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+
+                if (totalWidth - grdSupllierPaymentList.Width > grdSupllierPaymentList.HorizontalScrollingOffset && grdSupllierPaymentList.HorizontalScrollingOffset > 0)
+                {
+                    //offSetValue = offSetValue ;
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdSupllierPaymentList);
             }
             catch (Exception ex)
             {
