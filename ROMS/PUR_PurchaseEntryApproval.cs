@@ -5708,165 +5708,181 @@ namespace ROMS
                     if (varCheckCount > 0 || varButtonFlag>0 || varApprovalStatus == 62)
                     {
                         int varStatus = 0; string result = "";
-                    l: MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
+
+
+                        varStatus = 63;
+                        int varBrokerid = 0;
+                        if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); }
+
+                        decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
+                        otherdiscount = 0, Unloadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0, total = 0;
+                        if (txtUnLoadingchargeGrn.Text != "")
                         {
+                            Unloadinggrn = Convert.ToDecimal(txtUnLoadingchargeGrn.Text);
+                        }
+                        if (txtFrightGrn.Text != "")
+                        {
+                            frightgrn = Convert.ToDecimal(txtFrightGrn.Text);
+                        }
+                        if (txtLoadingCharge.Text != "")
+                        {
+                            loadcharge = Convert.ToDecimal(txtLoadingCharge.Text);
+                        }
+                        if (txtUnLoadingCharge.Text != "")
+                        {
+                            unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text);
+                        }
+                        if (txtCouriercharge.Text != "")
+                        {
+                            couriercharge = Convert.ToDecimal(txtCouriercharge.Text);
+                        }
+                        if (txtotherexpense.Text != "")
+                        {
+                            otherexpense = Convert.ToDecimal(txtotherexpense.Text);
+                        }
+                        if (Txtdiscount.Text != "")
+                        {
+                            discountper = Convert.ToDecimal(Txtdiscount.Text);
+                        }
+                        if (txtDiscountamt.Text != "")
+                        {
+                            discountamt = Convert.ToDecimal(txtDiscountamt.Text);
+                        }
+                        if (txtTcsamt.Text != "")
+                        {
+                            tcsamt = Convert.ToDecimal(txtTcsamt.Text);
+                        }
+                        if (txtDamagecost.Text != "")
+                        {
+                            damagecost = Convert.ToDecimal(txtDamagecost.Text);
+                        }
+                        if (txtOtherdiscount.Text != "")
+                        {
+                            otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text);
+                        }
+                        if (lblGrandTotal.Text != "")
+                        {
+                            grandtotal = Convert.ToDecimal(lblGrandTotal.Text);
+                        }
+                        if (lblRoundoff.Text != "")
+                        {
+                            roundoff = Convert.ToDecimal(lblRoundoff.Text);
+                        }
+                        if (lblRoundoff.Text != "")
+                        {
+                            roundoff = Convert.ToDecimal(lblRoundoff.Text);
+                        }
+                        if (lblTotal.Text != "")
+                        {
+                            total = Convert.ToDecimal(lblTotal.Text);
+                        }
+                        if (lblSubtotal.Text != "")
+                        {
+                            subtotal = Convert.ToDecimal(lblSubtotal.Text);
+                        }
+                        if (lblGstamt.Text != "")
+                        {
+                            gstamt = Convert.ToDecimal(lblGstamt.Text);
+                        }
 
-                            varStatus = 63;
-                            int varBrokerid = 0;
-                            if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); }
-
-                            decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
-                            otherdiscount = 0, Unloadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0 , total=0;
-                            if (txtUnLoadingchargeGrn.Text != "")
+                        TRN_PurchaseEntryApproval objTRN_PurchaseEntryApproval = new TRN_PurchaseEntryApproval();
+                        objTRN_PurchaseEntryApproval.ViewType = 0;
+                        objTRN_PurchaseEntryApproval.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objTRN_PurchaseEntryApproval.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
+                        objTRN_PurchaseEntryApproval.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                        objTRN_PurchaseEntryApproval.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                        objTRN_PurchaseEntryApproval.paraStatus = varStatus;
+                        objTRN_PurchaseEntryApproval.paraINVDate = dpInvoiceDate.Text.Trim();
+                        objTRN_PurchaseEntryApproval.paraPurchaseDate = dpVoucherDate.Text.Trim();
+                        objTRN_PurchaseEntryApproval.paraINVNo = txtInvoiceNo.Text.Trim();
+                        objTRN_PurchaseEntryApproval.paraRemarks = txtRemarks.Text.Trim();
+                        objTRN_PurchaseEntryApproval.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
+                        objTRN_PurchaseEntryApproval.paraBrokerID = varBrokerid;
+                        if (chkInvoice.Checked == true)
+                        { objTRN_PurchaseEntryApproval.paraEinvoice = "1"; }
+                        else
+                        { objTRN_PurchaseEntryApproval.paraEinvoice = "0"; }
+                        if (rbPurchaseCash.Checked == true)
+                        {
+                            objTRN_PurchaseEntryApproval.paraPurchaseType = 1;
+                        }
+                        if (rbPurchaseCredit.Checked == true)
+                        {
+                            objTRN_PurchaseEntryApproval.paraPurchaseType = 2;
+                        }
+                        if (rbPaymentCash.Checked == true)
+                        {
+                            objTRN_PurchaseEntryApproval.paraPaymentType = 1;
+                        }
+                        if (rbPaymentCheque.Checked == true)
+                        {
+                            objTRN_PurchaseEntryApproval.paraPaymentType = 2;
+                        }
+                        if (rbDiscountBefore.Checked == true)
+                        {
+                            objTRN_PurchaseEntryApproval.paraDiscCalculation = 1;
+                        }
+                        if (rbDiscountAfter.Checked == true)
+                        {
+                            objTRN_PurchaseEntryApproval.paraDiscCalculation = 2;
+                        }
+                        objTRN_PurchaseEntryApproval.paraLoadingCharges = loadcharge;
+                        objTRN_PurchaseEntryApproval.paraUnloadingCharges = unloadcharge;
+                        objTRN_PurchaseEntryApproval.paraCourierCharges = couriercharge;
+                        objTRN_PurchaseEntryApproval.paraOtherExpenses = otherexpense;
+                        objTRN_PurchaseEntryApproval.paraDiscAmnt = discountamt;
+                        objTRN_PurchaseEntryApproval.paraDiscPer = discountper;
+                        objTRN_PurchaseEntryApproval.paraTcsAmnt = tcsamt;
+                        objTRN_PurchaseEntryApproval.paraDamageCost = damagecost;
+                        objTRN_PurchaseEntryApproval.paraOtherDisc = otherdiscount;
+                        objTRN_PurchaseEntryApproval.paraUnLoadingChargesGRN = Unloadinggrn;
+                        objTRN_PurchaseEntryApproval.paraFrightGRN = frightgrn;
+                        objTRN_PurchaseEntryApproval.paraSubTotal = subtotal;
+                        objTRN_PurchaseEntryApproval.paraGSTAmnt = gstamt;
+                        objTRN_PurchaseEntryApproval.paraRoundOff = roundoff;
+                        objTRN_PurchaseEntryApproval.paraGrandTotal = grandtotal;
+                        objTRN_PurchaseEntryApproval.paraTotal = total;
+                        objTRN_PurchaseEntryApproval.paraSaveFlag = 0;
+                        objTRN_PurchaseEntryApproval.paraPurchaseEntryApprovalDate = dpPurchaseApprovalVocDate.Text;
+                        objTRN_PurchaseEntryApproval.paraUserID = Convert.ToInt32(varUserID);
+                        objTRN_PurchaseEntryApproval.ParaTRN_Purchase_Products_Error = objPurchaseentryApprovalError;
+                        SPDataService objspdservice = new SPDataService();
+                        result = objspdservice.udfnSetPurchaseEntryApproval(objTRN_PurchaseEntryApproval);
+                        objspdservice.CloseConnection();
+                        string[] varvalue1 = result.Split('~');
+                        if (result.Split('~')[1] == "1")
+                        {
+                            l: MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
                             {
-                                Unloadinggrn = Convert.ToDecimal(txtUnLoadingchargeGrn.Text);
-                            }
-                            if (txtFrightGrn.Text != "")
-                            {
-                                frightgrn = Convert.ToDecimal(txtFrightGrn.Text);
-                            }
-                            if (txtLoadingCharge.Text != "")
-                            {
-                                loadcharge = Convert.ToDecimal(txtLoadingCharge.Text);
-                            }
-                            if (txtUnLoadingCharge.Text != "")
-                            {
-                                unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text);
-                            }
-                            if (txtCouriercharge.Text != "")
-                            {
-                                couriercharge = Convert.ToDecimal(txtCouriercharge.Text);
-                            }
-                            if (txtotherexpense.Text != "")
-                            {
-                                otherexpense = Convert.ToDecimal(txtotherexpense.Text);
-                            }
-                            if (Txtdiscount.Text != "")
-                            {
-                                discountper = Convert.ToDecimal(Txtdiscount.Text);
-                            }
-                            if (txtDiscountamt.Text != "")
-                            {
-                                discountamt = Convert.ToDecimal(txtDiscountamt.Text);
-                            }
-                            if (txtTcsamt.Text != "")
-                            {
-                                tcsamt = Convert.ToDecimal(txtTcsamt.Text);
-                            }
-                            if (txtDamagecost.Text != "")
-                            {
-                                damagecost = Convert.ToDecimal(txtDamagecost.Text);
-                            }
-                            if (txtOtherdiscount.Text != "")
-                            {
-                                otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text);
-                            }
-                            if (lblGrandTotal.Text != "")
-                            {
-                                grandtotal = Convert.ToDecimal(lblGrandTotal.Text);
-                            }
-                            if (lblRoundoff.Text != "")
-                            {
-                                roundoff = Convert.ToDecimal(lblRoundoff.Text);
-                            }
-                            if (lblRoundoff.Text != "")
-                            {
-                                roundoff = Convert.ToDecimal(lblRoundoff.Text);
-                            }
-                            if (lblTotal.Text != "")
-                            {
-                                total = Convert.ToDecimal(lblTotal.Text);
-                            }
-                            if (lblSubtotal.Text != "")
-                            {
-                                subtotal = Convert.ToDecimal(lblSubtotal.Text);
-                            }
-                            if (lblGstamt.Text != "")
-                            {
-                                gstamt = Convert.ToDecimal(lblGstamt.Text);
-                            }
-
-                            TRN_PurchaseEntryApproval objTRN_PurchaseEntryApproval = new TRN_PurchaseEntryApproval();
-                            objTRN_PurchaseEntryApproval.ViewType = 0;
-                            objTRN_PurchaseEntryApproval.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                            objTRN_PurchaseEntryApproval.paraPurchaseId = Convert.ToInt32(pbPurchaseno);
-                            objTRN_PurchaseEntryApproval.paraStatus = varStatus;
-                            objTRN_PurchaseEntryApproval.paraINVDate = dpInvoiceDate.Text.Trim();
-                            objTRN_PurchaseEntryApproval.paraPurchaseDate = dpVoucherDate.Text.Trim();
-                            objTRN_PurchaseEntryApproval.paraINVNo = txtInvoiceNo.Text.Trim();
-                            objTRN_PurchaseEntryApproval.paraRemarks = txtRemarks.Text.Trim();
-                            objTRN_PurchaseEntryApproval.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
-                            objTRN_PurchaseEntryApproval.paraBrokerID = varBrokerid;
-                            if (chkInvoice.Checked == true)
-                            { objTRN_PurchaseEntryApproval.paraEinvoice = "1"; }
-                            else
-                            { objTRN_PurchaseEntryApproval.paraEinvoice = "0"; }
-                            if (rbPurchaseCash.Checked == true)
-                            {
-                                objTRN_PurchaseEntryApproval.paraPurchaseType = 1;
-                            }
-                            if (rbPurchaseCredit.Checked == true)
-                            {
-                                objTRN_PurchaseEntryApproval.paraPurchaseType = 2;
-                            }
-                            if (rbPaymentCash.Checked == true)
-                            {
-                                objTRN_PurchaseEntryApproval.paraPaymentType = 1;
-                            }
-                            if (rbPaymentCheque.Checked == true)
-                            {
-                                objTRN_PurchaseEntryApproval.paraPaymentType = 2;
-                            }
-                            if (rbDiscountBefore.Checked == true)
-                            {
-                                objTRN_PurchaseEntryApproval.paraDiscCalculation = 1;
-                            }
-                            if (rbDiscountAfter.Checked == true)
-                            {
-                                objTRN_PurchaseEntryApproval.paraDiscCalculation = 2;
-                            }
-                            objTRN_PurchaseEntryApproval.paraLoadingCharges = loadcharge;
-                            objTRN_PurchaseEntryApproval.paraUnloadingCharges = unloadcharge;
-                            objTRN_PurchaseEntryApproval.paraCourierCharges = couriercharge;
-                            objTRN_PurchaseEntryApproval.paraOtherExpenses = otherexpense;
-                            objTRN_PurchaseEntryApproval.paraDiscAmnt = discountamt;
-                            objTRN_PurchaseEntryApproval.paraDiscPer = discountper;
-                            objTRN_PurchaseEntryApproval.paraTcsAmnt = tcsamt;
-                            objTRN_PurchaseEntryApproval.paraDamageCost = damagecost;
-                            objTRN_PurchaseEntryApproval.paraOtherDisc = otherdiscount;
-                            objTRN_PurchaseEntryApproval.paraUnLoadingChargesGRN = Unloadinggrn;
-                            objTRN_PurchaseEntryApproval.paraFrightGRN = frightgrn;
-                            objTRN_PurchaseEntryApproval.paraSubTotal = subtotal;
-                            objTRN_PurchaseEntryApproval.paraGSTAmnt = gstamt;
-                            objTRN_PurchaseEntryApproval.paraRoundOff = roundoff;
-                            objTRN_PurchaseEntryApproval.paraGrandTotal = grandtotal;
-                            objTRN_PurchaseEntryApproval.paraTotal = total;
-                            objTRN_PurchaseEntryApproval.paraPurchaseEntryApprovalDate = dpPurchaseApprovalVocDate.Text;
-                            objTRN_PurchaseEntryApproval.paraUserID = Convert.ToInt32(varUserID);
-                            objTRN_PurchaseEntryApproval.ParaTRN_Purchase_Products_Error = objPurchaseentryApprovalError;
-                            SPDataService objspdservice = new SPDataService();
-                            result = objspdservice.udfnSetPurchaseEntryApproval(objTRN_PurchaseEntryApproval);
-                            objspdservice.CloseConnection();
-                            string[] varvalue = result.Split('~');
-                            if (varvalue[0] == "3")
-                            {
-                                varModifiedFlag = 0;
-                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                varCloseflag = 1;
-                                MainForm.objPUR_PurchaseApprovalList.udfnList();
-                                udfnclose();
-                            }
-                            else
-                            {
-                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                if (varvalue[0] == "5")
+                                objTRN_PurchaseEntryApproval.paraSaveFlag = 1;
+                                objTRN_PurchaseEntryApproval.paraUserID = Convert.ToInt32(varUserID);
+                                result = objspdservice.udfnSetPurchaseEntryApproval(objTRN_PurchaseEntryApproval);
+                                objspdservice.CloseConnection();
+                                string[] varvalue = result.Split('~');
+                                if (varvalue[0] == "3")
                                 {
-                                    goto l;
+                                    varModifiedFlag = 0;
+                                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    varCloseflag = 1;
+                                    MainForm.objPUR_PurchaseApprovalList.udfnList();
+                                    udfnclose();
+                                }
+                                else
+                                {
+                                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    if (varvalue[0] == "5")
+                                    {
+                                        goto l;
+                                    }
                                 }
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
