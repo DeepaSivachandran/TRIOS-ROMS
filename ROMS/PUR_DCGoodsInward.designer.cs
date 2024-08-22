@@ -334,7 +334,6 @@
             // 
             // grpproductname
             // 
-            this.grpproductname.Controls.Add(this.dpExpProReturnDCDate);
             this.grpproductname.Controls.Add(this.lblRackCode);
             this.grpproductname.Controls.Add(this.lblProductcode);
             this.grpproductname.Controls.Add(this.lblStockLocationCode);
@@ -963,11 +962,10 @@
             // 
             this.dpExpProReturnDCDate.CustomFormat = "dd/MM/yyyy";
             this.dpExpProReturnDCDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpExpProReturnDCDate.Location = new System.Drawing.Point(1190, 28);
+            this.dpExpProReturnDCDate.Location = new System.Drawing.Point(1189, 56);
             this.dpExpProReturnDCDate.Name = "dpExpProReturnDCDate";
-            this.dpExpProReturnDCDate.Size = new System.Drawing.Size(100, 27);
+            this.dpExpProReturnDCDate.Size = new System.Drawing.Size(107, 27);
             this.dpExpProReturnDCDate.TabIndex = 1111254;
-            this.dpExpProReturnDCDate.Visible = false;
             // 
             // PUR_DCGoodsInward
             // 
@@ -976,6 +974,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1340, 636);
             this.Controls.Add(this.pnlinward);
+            this.Controls.Add(this.dpExpProReturnDCDate);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1085,6 +1084,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflife;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
-        public System.Windows.Forms.DateTimePicker dpExpProReturnDCDate;
+        private System.Windows.Forms.DateTimePicker dpExpProReturnDCDate;
     }
 }

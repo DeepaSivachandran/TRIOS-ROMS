@@ -279,6 +279,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdProductExchage.ClearSelection();
+            }
         }
         public void udfnclose()
         {
@@ -314,10 +318,79 @@ namespace ROMS
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
 
+                                MR_Product objMR_Product = new MR_Product();
+                                objMR_Product.paraViewType = 34;
+                                objMR_Product.ParaProductCode = Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"].ToString());
+                                objMR_Product.ParaScheduleid = Convert.ToString(varScheduleId);
+                                objMR_Product.ParaSupplierId = varSupplierId;
+                                SPDataService objspdservice = new SPDataService();
+                                DataSet objDss = new DataSet();
+                                objDss = objspdservice.udfnproductmasterlist(objMR_Product);
+                                objspdservice.CloseConnection();
+                                if (objDss != null)
+                                {
+                                    if (objDss.Tables[0].Rows.Count > 0)
+                                    {
+                                        flag = objDss.Tables[0].Rows[0]["PRODUCTEXP"].ToString();
+                                    }
+                                }
+                                int varflag = 0; ProShelflife = 0; int Shelflifevalue = 0, ProShelfLifeType = 0, ProShelflifeValue = 0;
+                                string varShelflifevalue = "", varAcutalshelflife = "";
+                                //if (varExpiryDate != "")
+                                //{
+                                SPDataService objDServ = new SPDataService();
+                                DataSet objDSe = new DataSet();
+                                MR_Master objMR_Master = new MR_Master();
+                                objMR_Master.ViewType = 7;
+                                objMR_Master.paraDate = varReturnDCDate;
+                                objMR_Master.ParaExpiryDate = Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"].ToString());
+                                objMR_Master.paraProductId = Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"].ToString());
+                                objDSe = objDServ.udfnMaster(objMR_Master);
+                                objDServ.CloseConnection();
+                                if (Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeFlag"]) == 1)
+                                {
+                                    if (objDSe.Tables[0].Rows.Count > 0)
+                                    {
+                                        if (Convert.ToString(objDSe.Tables[0].Rows[0]["DATEVALIDATE"]) != "0")
+                                        {
+                                            if (objDSe.Tables[1].Rows.Count > 0)
+                                            {
+                                                varShelflifevalue = Convert.ToString(objDSe.Tables[1].Rows[0]["SHELFLIFE"]);
+                                                string[] varProShelfLife = varShelflifevalue.Split(' ');
+                                                if (Convert.ToString(varProShelfLife[0]) != "")
+                                                {
+                                                    ProShelflife = Convert.ToDecimal(varProShelfLife[0]);
+                                                }
+                                            }
+                                            if (objDSe.Tables[2].Rows.Count > 0)
+                                            {
+                                                varAcutalshelflife = Convert.ToString(objDSe.Tables[2].Rows[0]["ACUTAL"]);
+                                                string[] varShelflifevaluesplit = varAcutalshelflife.Split(' ');
+                                                if (Convert.ToString(varShelflifevaluesplit[0]) != "")
+                                                {
+                                                    Shelflifevalue = Convert.ToInt32(varShelflifevaluesplit[0]);
+                                                }
+                                            }
+                                            if (objDSe.Tables[3].Rows.Count > 0)
+                                            {
+                                                ProShelfLifeType = Convert.ToInt32(objDSe.Tables[3].Rows[0]["PR_ShelfLifeType"]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (objDSe.Tables[2].Rows.Count > 0)
+                                    {
+                                        varAcutalshelflife = Convert.ToString(objDSe.Tables[2].Rows[0]["ACUTAL"]);
+                                    }
+                                }
+                                //}
+
                                 grdProductExchage.Rows.Add(objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"].ToString(),
                                 objDs.Tables[0].Rows[i]["Product Name"].ToString(),
                                 Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]),
-                                objDs.Tables[0].Rows[i]["Expiry Date"].ToString(), objDs.Tables[0].Rows[i]["Batch No."].ToString(),
+                                objDs.Tables[0].Rows[i]["Expiry Date"].ToString(), (flag).Trim(), varAcutalshelflife, varShelflifevalue, objDs.Tables[0].Rows[i]["Batch No."].ToString(),
                                 objDs.Tables[0].Rows[i]["Qty"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
                                 objDs.Tables[0].Rows[i]["Location"].ToString(), objDs.Tables[0].Rows[i]["Rack"].ToString()
                                 , objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),
@@ -330,7 +403,34 @@ namespace ROMS
                                 objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),
                                 objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
                                 objDs.Tables[0].Rows[i]["Location"].ToString(), objDs.Tables[0].Rows[i]["Rack"].ToString(), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_MRPflag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeFlag"]));
-                              
+
+
+                                string[] varShelflifeper = Convert.ToString(ProShelflife).Split(' ');
+                                if (varShelflifeper[0] != "")
+                                {
+                                    if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1) + 1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
+                                    {
+                                        DataGridView dataGridView = grdProductExchage;
+                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                        cell.Style.BackColor = Color.Orange;
+                                        cell.Style.ForeColor = Color.Black;
+                                    }
+                                    else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1))
+                                    {
+                                        DataGridView dataGridView = grdProductExchage;
+                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                        cell.Style.BackColor = Color.Red;
+                                        cell.Style.ForeColor = Color.White;
+                                    }
+                                    else
+                                    {
+                                        DataGridView dataGridView = grdProductExchage;
+                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                        cell.Style.BackColor = Color.White;
+                                        cell.Style.ForeColor = Color.Black;
+                                    }
+                                }
+
                             }
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Remarks"]);
                         }
@@ -389,7 +489,7 @@ namespace ROMS
                             objTRN_PurchaseReturnDC.paraOriginator = varorginator;
                             objTRN_PurchaseReturnDC.paraReturnDCID = varReturnDCID;
                             objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(MainForm.objPUR_PurchaseReturns.varStatusId);
-                            objTRN_PurchaseReturnDC.paraReturnDC_Date = varTodayDate;
+                            objTRN_PurchaseReturnDC.paraReturnDC_Date = dpExpProReturnDCDate.Text;
                             objTRN_PurchaseReturnDC.paraExchangeRemarks = txtRemark.Text.Trim();
                             objTRN_PurchaseReturnDC.paraDeleteFlag = 0;
                             objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtPurchaseDC;
@@ -2652,7 +2752,7 @@ namespace ROMS
                         {
                             MR_Master objMR_Master = new MR_Master();
                             objMR_Master.ViewType = 15;
-                            objMR_Master.paraDate = varTodayDate;
+                            objMR_Master.paraDate = dpExpProReturnDCDate.Text;
                             objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text.Trim());
                             SPDataService objspdservice = new SPDataService();
                             DataSet objDs = new DataSet();
