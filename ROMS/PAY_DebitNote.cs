@@ -752,17 +752,17 @@ namespace ROMS
             {
                 if (varReturnDCID != 0)
                 {
-                    int varviewtype = 4;
+                    int varviewtype = 0;
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
-                    objTRN_ReturnDC.paraViewType = varviewtype;
-                    objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                    objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                    objTRN_ReturnDC.paraReturnDCID = varReturnDCID;
-                    objTRN_ReturnDC.ParaSupplierId = pbSupplierId;
-                    objTRN_ReturnDC.ParaScheduleID = pbScheduleid;
-                    objDs = objdserv.udfnReturnDC(objTRN_ReturnDC);
+                    TRN_DebitNote objTRN_DebitNote = new TRN_DebitNote();
+                    objTRN_DebitNote.ViewType = varviewtype;
+                    objTRN_DebitNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRN_DebitNote.paraIPAddress = MainForm.pbIpAddress;
+                    objTRN_DebitNote.paraDebitID = varReturnDCID;
+                    objTRN_DebitNote.paraSupplierID = pbSupplierId;
+                    objTRN_DebitNote.paraScheduleID = pbScheduleid;
+                    objDs = objdserv.udfnDebitNoteList(objTRN_DebitNote);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -771,20 +771,19 @@ namespace ROMS
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
                                 grdReturnDC.Rows.Clear();
-                                cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["PURREDC_COMID"].ToString();
-                                dpReturnDCDate.Text = objDs.Tables[0].Rows[0]["PURREDC_DCDate"].ToString();
-                                txtReturnDcNo.Text = objDs.Tables[0].Rows[0]["PURREDC_DCNO"].ToString();
+                                cmbConcern.SelectedValue = objDs.Tables[0].Rows[0]["DN_COMID"].ToString();
+                                dpReturnDCDate.Text = objDs.Tables[0].Rows[0]["DN_TransactionDate"].ToString();
+                                txtReturnDcNo.Text = objDs.Tables[0].Rows[0]["DN_No"].ToString();
                                 txtSupplier.Text = objDs.Tables[0].Rows[0]["Supplier"].ToString();
                                 lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString();
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
-                                txtRemarks.Text = objDs.Tables[0].Rows[0]["PURREDC_Remarks"].ToString();
-                                cmbReason.SelectedValue = objDs.Tables[0].Rows[0]["PURREDC_ReasonId"].ToString();
+                                txtRemarks.Text = objDs.Tables[0].Rows[0]["DN_Remarks"].ToString();
+                                cmbReason.SelectedValue = objDs.Tables[0].Rows[0]["DN_ReasonId"].ToString();
                                 txtSubTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SubTotal"]);
                                 txtTotalTax.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Total Tax"]);
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
                                 varStatusId = Convert.ToInt32(objDs.Tables[0].Rows[0]["Status ID"]);
                                 lblStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
-                                VerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["PURREDC_VerifiedBy"]);                              
                                 udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                             }
@@ -804,15 +803,13 @@ namespace ROMS
                                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                     {
                                         grdReturnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product Name"]),Convert.ToString(objDs.Tables[1].Rows[i]["Location"]), Convert.ToString(objDs.Tables[1].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]),
-                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["FreeQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]),
-                                        Convert.ToString(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]));
-
-                                        dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), 0, 0);
+                                        Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]),
+                                        Convert.ToString(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["Gst%"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]));
 
                                         dtDebitNote.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["UTID"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST Amt"]),
-                                        Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["FreeQty"]));
+                                        Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]),0, Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"])); 
                                     }
                                     grdReturnDC.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                     lblNoRecordsFound.Visible = false;
@@ -1380,48 +1377,6 @@ namespace ROMS
                         tpDcNo.Show("DC No. is empty.", txtReturnDcNo, 5000);
                         varErrorFlag = false;
                     }
-                    if (varStatusId == 16)
-                    {
-                        if (Convert.ToString(cmbReasonForClosing.SelectedValue) == "" || Convert.ToString(cmbReasonForClosing.SelectedValue) == "-1")
-                        {
-                            epReturnDc.SetError(cmbReasonForClosing, "Please select reason for closing.");
-                            cmbReasonForClosing.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpReason.ShowAlways = true;
-                            tpReason.Show("Please select reason for closing.", cmbReasonForClosing, 5000);
-                            varErrorFlag = false;
-                        }
-                        if (txtAmount.Text == "")
-                        {
-                            epReturnDc.SetError(txtAmount, "Please enter amount.");
-                            txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpAmount.ShowAlways = true;
-                            tpAmount.Show("Please enter amount.", txtAmount, 5000);
-                            varErrorFlag = false;
-                        }
-                        if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62)
-                        {
-                            if (txtCrNo.Text == "")
-                            {
-                                epReturnDc.SetError(txtCrNo, "Please enter credit number.");
-                                txtCrNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                                tpCrNo.ShowAlways = true;
-                                tpCrNo.Show("Please enter credit number.", txtCrNo, 5000);
-                                varErrorFlag = false;
-                            }
-                        }
-                    }
-                    if (varBlockedSupplier == "98")
-                    {
-                        txtSupplier.BackColor = Color.LightPink;
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(134);
-                        objDServ.CloseConnection();
-                        DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.No)
-                        {
-                            varErrorFlag = false;
-                        }
-                    }
                     if (varErrorFlag == true)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0; int varReasonforClosingId = 0;
@@ -1452,50 +1407,7 @@ namespace ROMS
                             if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
                             {
                                 string result = "", varorginator = ""; int varviewtype = 0;
-                                if (varReturnDCID == 0)
-                                {
-                                    varviewtype = 0;
-                                    //if (Convert.ToInt32(cmbReason.SelectedValue) == 203)
-                                    //{
-                                        if (chkCompleted.Checked == true)
-                                        {
-                                            varStatusId = 15;
-                                        }
-                                        else
-                                        {
-                                            varStatusId = 68;
-                                        }
-                                    //}
-                                    //else
-                                    //{
-                                        //varStatusId = 68;
-                                    //}
-                                    varorginator = "Purchase Return DC insertion";
-                                }
-                                if (varStatusId == 16 || varStatusId==39 || varStatusId==101)
-                                {
-                                    varviewtype = 1;
-                                    varorginator = "Purchase Return DC updation";
-                                    //varStatusId = 39;
-                                }
-                                if((varStatusId==15 && varReturnDCID!=0) || varStatusId==79)
-                                {
-                                    varviewtype = 1;
-                                    varorginator = "Purchase Return DC updation";
-                                }
-                                if(varStatusId==68 && varReturnDCID!=0)
-                                {
-                                    if(chkCompleted.Checked==true)
-                                    {
-                                        varStatusId = 15;
-                                    }
-                                    else
-                                    {
-                                        varStatusId = 68;
-                                    }
-                                    varviewtype = 1;
-                                    varorginator = "Purchase Return DC updation";
-                                }
+                                varorginator = "Purchase Return DC insertion";
                                 decimal subtotal = 0, TotalTax = 0;
                                 if(txtSubTotal.Text.Trim()!="")
                                 {
@@ -1505,138 +1417,36 @@ namespace ROMS
                                 {
                                     TotalTax = Convert.ToDecimal(txtTotalTax.Text);
                                 }
-                                if(chkVerified.Checked==true)
-                                {
-                                    varVerifiedflag = 1;
-                                    varStatusId = 79;
-                                }
-                                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
-                                objTRN_PurchaseReturnDC.paraViewType = varviewtype;
-                                objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                                objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                                objTRN_PurchaseReturnDC.paraOriginator = varorginator;
-                                objTRN_PurchaseReturnDC.paraReturnDCID = varReturnDCID;
-                                objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
-                                objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                                objTRN_PurchaseReturnDC.paraReturnDC_Date = dpReturnDCDate.Text;
-                                objTRN_PurchaseReturnDC.ParaSubtotal = subtotal;
-                                objTRN_PurchaseReturnDC.paraTax = TotalTax;
-                                objTRN_PurchaseReturnDC.paraReturnDC_NO = txtReturnDcNo.Text.Trim();
-                                objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
-                                objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
-                                objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
-                                objTRN_PurchaseReturnDC.paraStatusID = varStatusId;
-                                objTRN_PurchaseReturnDC.paraClosingReasonId = varReasonforClosingId;
-                                objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(varReturnDcAmount);
-                                objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
-                                objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
-                                objTRN_PurchaseReturnDC.paraPurchaseId = 0;
-                                objTRN_PurchaseReturnDC.paraFlag = varVerifiedflag;
-                                objTRN_PurchaseReturnDC.paraUpdateflag = 0;
-                                objTRN_PurchaseReturnDC.paraTRN_Purchase_ReturnDC = dtDebitNote;
-                                
+                                TRN_DebitNote objTRN_DebitNote = new TRN_DebitNote();
+                                objTRN_DebitNote.ViewType = varviewtype;
+                                objTRN_DebitNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                objTRN_DebitNote.paraIPAddress = MainForm.pbIpAddress;
+                                objTRN_DebitNote.paraOriginator = varorginator;
+                                objTRN_DebitNote.paraDebitID = varReturnDCID;
+                                objTRN_DebitNote.paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
+                                objTRN_DebitNote.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
+                                objTRN_DebitNote.paraDebit_Date = dpReturnDCDate.Text;
+                                objTRN_DebitNote.ParaSubtotal = subtotal;
+                                objTRN_DebitNote.paraTax = TotalTax;
+                                objTRN_DebitNote.paraDebit_NO = txtReturnDcNo.Text.Trim();
+                                objTRN_DebitNote.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text.Trim());
+                                objTRN_DebitNote.paraScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
+                                objTRN_DebitNote.paraDebit_Remarks = txtRemarks.Text.Trim();
+                                objTRN_DebitNote.paraStatusID = varStatusId;
+                                objTRN_DebitNote.paraDebitAmount = Convert.ToDecimal(varReturnDcAmount);
+                                objTRN_DebitNote.paraPurchaseId = 0;
+                                objTRN_DebitNote.paraTRN_DebitNote = dtDebitNote;                           
                                 SPDataService objspdservice = new SPDataService();
-                                result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
+                                result = objspdservice.udfnSetDebitNote(objTRN_DebitNote);
                                 objspdservice.CloseConnection();
-
                                 string[] varvalue = result.Split('~');
-                                if (result.Split('~')[0] == "3")
+                                varvalue = result.Split('~');
+                                if (varvalue[0] == "3")
                                 {
-                                    if (result.Split('~')[1] == "1")
-                                    {
-                                        MainForm.objCP_Verify = new CP_Verify();
-                                        MainForm.objCP_Verify.ShowDialog();
-                                        varVerified = Convert.ToString(MainForm.objCP_Verify.varUserId);
-                                        if (MainForm.objCP_Verify.flag == 1)
-                                        {
-                                            objTRN_PurchaseReturnDC.paraViewType = varviewtype;
-                                            objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                                            objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                                            objTRN_PurchaseReturnDC.paraOriginator = varorginator;
-                                            objTRN_PurchaseReturnDC.paraReturnDCID = varReturnDCID;
-                                            objTRN_PurchaseReturnDC.paraReasonId = Convert.ToInt32(cmbReason.SelectedValue);
-                                            objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                                            objTRN_PurchaseReturnDC.paraReturnDC_Date = dpReturnDCDate.Text;
-                                            objTRN_PurchaseReturnDC.ParaSubtotal = subtotal;
-                                            objTRN_PurchaseReturnDC.paraTax = TotalTax;
-                                            objTRN_PurchaseReturnDC.paraReturnDC_NO = txtReturnDcNo.Text.Trim();
-                                            objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text.Trim());
-                                            objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text.Trim());
-                                            objTRN_PurchaseReturnDC.paraReturnDC_Remarks = txtRemarks.Text.Trim();
-                                            objTRN_PurchaseReturnDC.paraStatusID = varStatusId;
-                                            objTRN_PurchaseReturnDC.paraClosingReasonId = varReasonforClosingId;
-                                            objTRN_PurchaseReturnDC.paraReturnDCAmount = Convert.ToDecimal(varReturnDcAmount);
-                                            objTRN_PurchaseReturnDC.paraCreditNoteNo = txtCrNo.Text.Trim();
-                                            objTRN_PurchaseReturnDC.paraCreditNoteDate = dpCreditNoteDate.Text.Trim();
-                                            objTRN_PurchaseReturnDC.paraPurchaseId = 0;
-                                            objTRN_PurchaseReturnDC.paraFlag = 0;
-                                            objTRN_PurchaseReturnDC.paraUpdateflag = 1;
-                                            objTRN_PurchaseReturnDC.paraVerifiedBy = Convert.ToInt32(varVerified);
-                                            result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
-                                        }
-                                    }
-                                    string[] varvalue1 = result.Split('~');
-                                    if (varvalue1[0] == "3")
-                                    {
-                                        if (varvalue1[1] != "1")
-                                        {
-                                            MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); this.ActiveControl = txtSupplier;                                      
-                                        if (varReturnDCID != 0)
-                                        {
-                                            varCloseFlag = 1;
-                                            varModifiedFlag = 0;
-                                        }
-                                        string ReturnDCID = "0";
-                                        if (varReturnDCID == 0)
-                                        {
-                                            ReturnDCID = varvalue[2];
-                                        }
-                                        else
-                                        {
-                                            ReturnDCID = Convert.ToString(varReturnDCID);
-                                        }
-                                        DialogResult result1;
-                                        SPDataService objDServ = new SPDataService();
-                                        string varMessage = objDServ.udfnGetMessages(87);
-                                        objDServ.CloseConnection();
-                                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if (result1 == DialogResult.Yes)
-                                        {
-                                            string varHeader = "";
-                                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_PUR_ReturnDC.rpt");
-                                            varHeader = "Purchase Return DC";
-
-                                            objBillreport.SetParameterValue("paraReturnDCID", Convert.ToInt32(ReturnDCID));
-                                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                                            objValidation.CrySqlConnection(objBillreport);
-
-                                            MainForm.objReportLoad = new ReportLoad();
-                                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                            MainForm.objReportLoad.Text = varHeader;
-                                            MainForm.objReportLoad.ShowDialog();
-                                        }
-
-                                        udfnClear();      
-                                        this.Close();
-                                            if(vareditflag == 1)
-                                            {
-                                                MainForm.objPUR_ReturnApprovedList.udfnList();
-                                            }
-                                            else
-                                            {
-                                                MainForm.objINV_SalesInvoiceList.udfnList();
-                                            }
-                                        }
-                                }
-                                }
-                                else if (varvalue[0] == "4")
-                                {
-                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    this.ActiveControl = txtSupplier;
+                                    MainForm.objPAY_DebitNoteList.udfnList();
+                                    udfnclose();
                                 }
                             }
                         }

@@ -25,11 +25,10 @@ namespace ROMS.Model
         public int paraDebitID { get; set; } = 0;
         public int paraReasonId { get; set; } = 0;
         public decimal paraDebitAmount { get; set; } = 0;
-        public int paraCreditNoteNo { get; set; } = 0;
-        public string paraCreditNoteDate { get; set; } = "";
         public decimal ParaSubtotal { get; set; } = 0;
        public int paraDCID { get; set; } = 0;
        public int paraPurchaseId { get; set; } = 0;
+       public decimal paraTax { get; set; } = 0;
        public DataTable paraTRN_DebitNote { get; set; } = null;
     }
 }
