@@ -715,6 +715,7 @@ namespace ROMS
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_SLID", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_RKID", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_FreeQty", typeof(decimal));
+                dtPurchaseReturnDC.Columns.Add("PURREDCPR_PURPRID", typeof(int));
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnEdit();
@@ -1054,7 +1055,7 @@ namespace ROMS
                                 Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]),0);
                             //}
                             dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),
-                                Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0,0 /*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0);
+                                Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0,0 /*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]));
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGrnApproval.Columns["clmShelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
