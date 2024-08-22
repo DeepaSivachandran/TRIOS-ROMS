@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class GRN_GSTIN : Form
+    public partial class PUR_GSTINVerify : Form
     {
         DataValidation objvalidation = new DataValidation();
         DataError objError;
@@ -20,14 +20,24 @@ namespace ROMS
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
         private ToolTip tpgst = new ToolTip();
+        private const int closebtnhide = 0x200;
         public string varbrandcode;
         public string pbFormStatus;
         public int pbvarSupplierCode = 0;
         public string varGSTIN = "0";
         public string varGSTINText = "";
-        public GRN_GSTIN()
+        public PUR_GSTINVerify()
         {
             InitializeComponent();
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | closebtnhide;
+                return myCp;
+            }
         }
         public void udfnGSTINSave()
         {
@@ -194,6 +204,26 @@ namespace ROMS
             try
             {
                 objvalidation.udfnGSTIN(e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+                MainForm.objCP_Purchase.varCloseflag = 1;
+                MainForm.objCP_Purchase.udfnclose();
+                //this.Hide();
+                //MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                //MainForm.objCP_PurchaseList.Closed += (s, args) => this.Close();
+                //MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
+                //MainForm.objCP_PurchaseList.Show();
             }
             catch (Exception ex)
             {

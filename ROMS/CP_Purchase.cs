@@ -1352,9 +1352,13 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
-                MainForm.objPUR_GSTIN.ShowDialog();
+                //MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                //MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
+                //MainForm.objPUR_GSTIN.ShowDialog();
+                MainForm.objPUR_GSTINVerify = new PUR_GSTINVerify();
+                MainForm.objPUR_GSTINVerify.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
+                MainForm.objPUR_GSTINVerify.ShowDialog();
+                txtGstin.Text = Convert.ToString(MainForm.objPUR_GSTINVerify.varGSTINText);
             }
             catch (Exception ex)
             {

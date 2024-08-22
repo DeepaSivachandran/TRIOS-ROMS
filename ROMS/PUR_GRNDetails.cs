@@ -1013,7 +1013,9 @@ namespace ROMS
                                             {
                                                 varGSTIN = "0";
                                                 MainForm.objGRN_GSTIN = new GRN_GSTIN();
+                                                MainForm.objGRN_GSTIN.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
                                                 MainForm.objGRN_GSTIN.ShowDialog();
+                                                varGSTIN = Convert.ToString(MainForm.objGRN_GSTIN.varGSTIN);
                                             }
                                             else
                                             {
