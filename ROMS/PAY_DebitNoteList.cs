@@ -649,7 +649,7 @@ namespace ROMS
                 objTRNG_DebitNote.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNG_DebitNote.paraFromDate = dpFromDate.Text;
                 objTRNG_DebitNote.paraToDate = dpToDate.Text;
-                objTRNG_DebitNote.paraSupplierID = varSupplierCode;
+                objTRNG_DebitNote.paraSupplierID = Convert.ToInt32(varSupplierCode);
                 objTRNG_DebitNote.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnDebitNoteList(objTRNG_DebitNote);
                 objdserv.CloseConnection();
