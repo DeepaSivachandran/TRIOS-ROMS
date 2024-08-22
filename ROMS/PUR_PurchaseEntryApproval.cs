@@ -5844,7 +5844,6 @@ namespace ROMS
                         objTRN_PurchaseEntryApproval.paraTotal = total;
                         objTRN_PurchaseEntryApproval.paraSaveFlag = 0;
                         objTRN_PurchaseEntryApproval.paraPurchaseEntryApprovalDate = dpPurchaseApprovalVocDate.Text;
-                        objTRN_PurchaseEntryApproval.paraUserID = Convert.ToInt32(varUserID);
                         objTRN_PurchaseEntryApproval.ParaTRN_Purchase_Products_Error = objPurchaseentryApprovalError;
                         SPDataService objspdservice = new SPDataService();
                         result = objspdservice.udfnSetPurchaseEntryApproval(objTRN_PurchaseEntryApproval);

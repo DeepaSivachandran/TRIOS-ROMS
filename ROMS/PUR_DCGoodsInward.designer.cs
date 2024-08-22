@@ -99,6 +99,9 @@
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProshelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmactuallife = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshelflifeper = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,6 +119,7 @@
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dpExpProReturnDCDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.grpproductname.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -330,6 +334,7 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.dpExpProReturnDCDate);
             this.grpproductname.Controls.Add(this.lblRackCode);
             this.grpproductname.Controls.Add(this.lblProductcode);
             this.grpproductname.Controls.Add(this.lblStockLocationCode);
@@ -723,6 +728,9 @@
             this.clmProductName,
             this.clmMRP,
             this.clmExpiryDate,
+            this.clmProshelflife,
+            this.clmactuallife,
+            this.clmshelflifeper,
             this.clmBatchNo,
             this.clmQuantity,
             this.clmUnit,
@@ -803,6 +811,26 @@
             this.clmExpiryDate.Name = "clmExpiryDate";
             this.clmExpiryDate.ReadOnly = true;
             this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmProshelflife
+            // 
+            this.clmProshelflife.HeaderText = "Product Shelf Life";
+            this.clmProshelflife.Name = "clmProshelflife";
+            this.clmProshelflife.ReadOnly = true;
+            this.clmProshelflife.Width = 130;
+            // 
+            // clmactuallife
+            // 
+            this.clmactuallife.HeaderText = "Actual Shelf Life";
+            this.clmactuallife.Name = "clmactuallife";
+            this.clmactuallife.ReadOnly = true;
+            this.clmactuallife.Width = 130;
+            // 
+            // clmshelflifeper
+            // 
+            this.clmshelflifeper.HeaderText = "Shelf Life(%)";
+            this.clmshelflifeper.Name = "clmshelflifeper";
+            this.clmshelflifeper.ReadOnly = true;
             // 
             // clmBatchNo
             // 
@@ -886,6 +914,7 @@
             // 
             this.clmStockQuantity.HeaderText = "Stock Quantity";
             this.clmStockQuantity.Name = "clmStockQuantity";
+            this.clmStockQuantity.ReadOnly = true;
             this.clmStockQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmStockQuantity.Visible = false;
             // 
@@ -893,6 +922,7 @@
             // 
             this.clmRemoveFlag.HeaderText = "Remove Flag";
             this.clmRemoveFlag.Name = "clmRemoveFlag";
+            this.clmRemoveFlag.ReadOnly = true;
             this.clmRemoveFlag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmRemoveFlag.Visible = false;
             // 
@@ -900,6 +930,7 @@
             // 
             this.clmmrpflag.HeaderText = "MRP Flag";
             this.clmmrpflag.Name = "clmmrpflag";
+            this.clmmrpflag.ReadOnly = true;
             this.clmmrpflag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmmrpflag.Visible = false;
             // 
@@ -907,6 +938,7 @@
             // 
             this.clmShelflife.HeaderText = "Shelflife flag";
             this.clmShelflife.Name = "clmShelflife";
+            this.clmShelflife.ReadOnly = true;
             this.clmShelflife.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmShelflife.Visible = false;
             // 
@@ -920,11 +952,22 @@
             // 
             this.clmError.HeaderText = "Error";
             this.clmError.Name = "clmError";
+            this.clmError.ReadOnly = true;
             this.clmError.Visible = false;
             // 
             // epProductExchange
             // 
             this.epProductExchange.ContainerControl = this;
+            // 
+            // dpExpProReturnDCDate
+            // 
+            this.dpExpProReturnDCDate.CustomFormat = "dd/MM/yyyy";
+            this.dpExpProReturnDCDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpExpProReturnDCDate.Location = new System.Drawing.Point(1190, 28);
+            this.dpExpProReturnDCDate.Name = "dpExpProReturnDCDate";
+            this.dpExpProReturnDCDate.Size = new System.Drawing.Size(100, 27);
+            this.dpExpProReturnDCDate.TabIndex = 1111254;
+            this.dpExpProReturnDCDate.Visible = false;
             // 
             // PUR_DCGoodsInward
             // 
@@ -1023,6 +1066,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMRP;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProshelflife;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmactuallife;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmshelflifeper;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
@@ -1039,5 +1085,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflife;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
+        public System.Windows.Forms.DateTimePicker dpExpProReturnDCDate;
     }
 }
