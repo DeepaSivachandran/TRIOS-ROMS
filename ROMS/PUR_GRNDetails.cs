@@ -5147,6 +5147,15 @@ namespace ROMS
                                     if (txtInvoiceQty.Text.Trim() != "")
                                     { varMismatchQty = Convert.ToDecimal(txtInvoiceQty.Text); }
                                 }
+
+                                var maxSno = 0;
+                                if (grdGrnlist.Rows.Count > 0)
+                                {
+                                    maxSno = (from row in grdGrnlist.Rows.Cast<DataGridViewRow>()
+                                              let snoValue = string.IsNullOrEmpty(Convert.ToString(row.Cells["clmsno"].Value)) ? 0 : Convert.ToInt32(row.Cells["clmsno"].Value)
+                                              select snoValue).Max();
+                                }
+
                                 //if (Convert.ToInt32(cmbQtyType.SelectedValue) == 194)
                                 //{
                                 //    varExcessQuantity = Convert.ToDecimal(txtInvoiceQty.Text);
@@ -5194,9 +5203,9 @@ namespace ROMS
                                 } 
                                 //string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
                                 grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdGrnlist.Rows.Add(grdGrnlist.Rows.Count + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(),Convert.ToString(cmbQtyType.Text), varPendingQty,varExcessQuantity, varDamageQty,varMismatchQty, Convert.ToInt32(cmbQtyType.SelectedValue) ,Convert.ToDecimal(mrp), Convert.ToDecimal(mrp), (varExpiryDate).Trim(), varExpiryDate.Trim()
+                                grdGrnlist.Rows.Add(maxSno + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(),Convert.ToString(cmbQtyType.Text), varPendingQty,varExcessQuantity, varDamageQty,varMismatchQty, Convert.ToInt32(cmbQtyType.SelectedValue) ,Convert.ToDecimal(mrp), Convert.ToDecimal(mrp), (varExpiryDate).Trim(), varExpiryDate.Trim()
                                     , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (txtBatchno.Text).Trim(), varLocationName, varLocationID, varRack, varRackID,  (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo,varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal,varMRPFlag, varRMProductionFlag);
-                                dtPurchaseAutoComplete.Rows.Add(grdGrnlist.Rows.Count + 1, productCode, mrp1, varExpiryDate, (txtBatchno.Text).Trim(), varunitid, varLocationID ,
+                                dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDate, (txtBatchno.Text).Trim(), varunitid, varLocationID ,
                                     (varRackID), expirydateFlag, Convert.ToInt16(cmbPONo.SelectedValue), 0);
                                 if (varDateEnable == 1)
                                 {
@@ -5453,7 +5462,8 @@ namespace ROMS
             }
             finally
             {
-                grdGrnlist.Sort(grdGrnlist.Columns[2], ListSortDirection.Ascending);
+                grdGrnlist.Sort(grdGrnlist.Columns[0], ListSortDirection.Descending);
+                //grdGrnlist.Sort(grdGrnlist.Columns[2], ListSortDirection.Ascending);
                 if(grdGrnlist.Rows.Count>0)
                 {
                     grdGrnlist.CurrentCell = grdGrnlist[2,0];
