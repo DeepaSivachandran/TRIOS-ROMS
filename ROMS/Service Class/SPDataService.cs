@@ -3098,10 +3098,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_DebitNote.paraReasonId);
                 varSqlCommand.Parameters.AddWithValue("@paraDebitAmount", objTRN_DebitNote.paraDebitAmount);
                 varSqlCommand.Parameters.AddWithValue("@paraCreditNoteNo", objTRN_DebitNote.paraCreditNoteNo);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_DebitNote.paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraBatchConversion", objTRN_DebitNote.paraBatchConversion);
+                varSqlCommand.Parameters.AddWithValue("@paraCreditNoteDate", objTRN_DebitNote.paraCreditNoteDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaSubtotal", objTRN_DebitNote.ParaSubtotal);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_DebitNote.paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_DebitNote.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
