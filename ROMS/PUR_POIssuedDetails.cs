@@ -238,6 +238,12 @@ namespace ROMS
                         gpissued.Enabled = false;
                         btnSave.Enabled = false;
                     }
+                    if(varsts==11)
+                    {
+                        gpissued.Enabled = false;
+                        gpissued.Enabled = false;
+                        btnSave.Enabled = false;
+                    }
                 }
                 //DateTime varmindate = DateTime.ParseExact(txtPODate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 //dpissuedateandtime.MinDate = varmindate;
