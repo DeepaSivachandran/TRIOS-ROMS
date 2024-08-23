@@ -1187,7 +1187,7 @@ namespace ROMS
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                    //DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
                     //DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
