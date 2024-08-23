@@ -27,7 +27,7 @@ namespace ROMS
         public string varSupplierName="";
         public Decimal varNeftAmount = 0, varGrandTotal = 0;
         public string varAdvanceID = "";
-        public int id = 0, varEditFlag = 0, varModifiedFlag = 0, VARFLAG = 0;
+        public int id = 0, varEditFlag = 0, varModifiedFlag = 0, VARFLAG = 0,varCellclickFlag=0;
         decimal varGrandTot = 0, varTotal = 0, varamt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAdvanceAmnt = 0;
         public int varCloseFlag = 0, varClose = 0;
         public string advanceid = "";
@@ -1063,7 +1063,7 @@ namespace ROMS
                                 //    lblGrandTotal.Text = GrandTot.ToString("#,##0.00");
                                 //}
                                 //else 
-                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0 && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 39))
+                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0 && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 79))
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = false;
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;
@@ -1760,22 +1760,44 @@ namespace ROMS
                 objTRN_Supplier_Payment.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objDs = objspdservice.udfnGetSupplierPayment(objTRN_Supplier_Payment);
                 objspdservice.CloseConnection();
-                if(objDs!=null)
+                if (objDs != null)
                 {
-                    if(objDs.Tables[1].Rows.Count>0)
+                    if (varCellclickFlag == 0)
                     {
-                        grdReurnDC.Rows.Clear();
-                        for(int i=0;i< objDs.Tables[1].Rows.Count;i++)
+                        if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PURREDC_DCNO"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURREDC_DCDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Amount"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]));
-                            grdReurnDC.Columns["clmReturnAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReurnDC.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                            {
+                                grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PURREDC_DCNO"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURREDC_DCDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Amount"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]));
+                                grdReurnDC.Columns["clmReturnAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            }
+                        }
+                        else
+                        {
+                            grdReurnDC.Rows.Clear();
                         }
                     }
+
                     else
                     {
-                        grdReurnDC.Rows.Clear();
+                        if (objDs.Tables[2].Rows.Count > 0)
+                        {
+                            grdReurnDC.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
+                            {
+                                grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[2].Rows[i]["Trans No"]), Convert.ToString(objDs.Tables[2].Rows[i]["Trans Date"]), Convert.ToString(objDs.Tables[2].Rows[i]["Amount"]), Convert.ToString(objDs.Tables[2].Rows[i]["ID"]));
+                                grdReurnDC.Columns["clmReturnAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            }
+                        }
+                        else
+                        {
+                            grdReurnDC.Rows.Clear();
+                        }
+
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -2050,15 +2072,19 @@ namespace ROMS
         {
             try
             {
-                id = 0;
+                id = 0; varCellclickFlag=0;
                 if (grdSupplierPayment.Rows.Count > 0)
                 {
                     if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmReturnAmt")
                     {
-                        id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
-                        udfnReturnDCLoad();
-
+                        varCellclickFlag = 0;
                     }
+                    else if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmDiscAmount")
+                    {
+                        varCellclickFlag = 1;
+                    }
+                    id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
+                    udfnReturnDCLoad();
                 }
             }
             catch (Exception ex)
@@ -2067,7 +2093,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdSupplierPayment_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try

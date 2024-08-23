@@ -193,6 +193,7 @@ namespace ROMS
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static PAY_ChequePrint objPAY_ChequePrint;
         public static PAY_DebitNoteList objPAY_DebitNoteList;
+        public static PAY_DebitNote objPAY_DebitNote;
         public static PAY_AdvanceList objPAY_AdvanceList;
         public static PAY_GSTRDetails objPAY_GSTRDetails;
         public static PAY_Advance objPAY_Advance;

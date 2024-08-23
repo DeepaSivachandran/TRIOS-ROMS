@@ -3062,6 +3062,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_DebitNote.paraToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_DebitNote.paraCompanyCode);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_DebitNote.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraDebitID", objTRNG_DebitNote.paraDebitID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_DebitNote.paraIPAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
@@ -3092,15 +3093,16 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRN_DebitNote.paraCompanyCode);
                 varSqlCommand.Parameters.AddWithValue("@paraDebit_Date", objTRN_DebitNote.paraDebit_Date);
                 varSqlCommand.Parameters.AddWithValue("@paraDebit_NO", objTRN_DebitNote.paraDebit_NO);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_DebitNote.paraSupplierID);
                 varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_DebitNote.paraScheduleID);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_DebitNote.paraStatusID);
-                varSqlCommand.Parameters.AddWithValue("@paraDebitID", objTRN_DebitNote.paraDebitID);
                 varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_DebitNote.paraReasonId);
-                varSqlCommand.Parameters.AddWithValue("@paraDebitAmount", objTRN_DebitNote.paraDebitAmount);
                 varSqlCommand.Parameters.AddWithValue("@ParaSubtotal", objTRN_DebitNote.ParaSubtotal);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_DebitNote.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraPurchaseId", objTRN_DebitNote.paraPurchaseId);
                 varSqlCommand.Parameters.AddWithValue("@paraTax", objTRN_DebitNote.paraTax);
+                varSqlCommand.Parameters.AddWithValue("@paraAmount", objTRN_DebitNote.paraAmount);
+                varSqlCommand.Parameters.AddWithValue("@paraDebit_Remarks", objTRN_DebitNote.paraDebit_Remarks);
                 varSqlCommand.Parameters.AddWithValue("@paraTRN_DebitNote", objTRN_DebitNote.paraTRN_DebitNote);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);

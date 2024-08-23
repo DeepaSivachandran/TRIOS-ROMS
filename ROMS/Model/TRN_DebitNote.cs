@@ -29,6 +29,7 @@ namespace ROMS.Model
        public int paraDCID { get; set; } = 0;
        public int paraPurchaseId { get; set; } = 0;
        public decimal paraTax { get; set; } = 0;
+       public decimal paraAmount { get; set; } = 0;
        public DataTable paraTRN_DebitNote { get; set; } = null;
     }
 }
