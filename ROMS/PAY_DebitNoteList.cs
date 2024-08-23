@@ -633,6 +633,10 @@ namespace ROMS
         {
             try
             {
+                if(varSupplierCode=="")
+                {
+                    varSupplierCode = "0";
+                }
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
@@ -649,7 +653,7 @@ namespace ROMS
                 objTRNG_DebitNote.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNG_DebitNote.paraFromDate = dpFromDate.Text;
                 objTRNG_DebitNote.paraToDate = dpToDate.Text;
-                objTRNG_DebitNote.paraSupplierID = varSupplierCode;
+                objTRNG_DebitNote.paraSupplierID = Convert.ToInt32(varSupplierCode);
                 objTRNG_DebitNote.paraIPAddress = MainForm.pbIpAddress;
                 objDs = objdserv.udfnDebitNoteList(objTRNG_DebitNote);
                 objdserv.CloseConnection();
@@ -1119,15 +1123,22 @@ namespace ROMS
                     picLoader.Visible = true;
                     picLoader.BringToFront();
                     Application.DoEvents();
-                    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseReturns.varDebitDCID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.varStatusId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DC_STSID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
-                    MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
-                    MainForm.objPUR_PurchaseReturns.Show();
+                    if (Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["Flag"].Value)==0)
+                    {
+                        MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                        MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                        MainForm.objPUR_PurchaseReturns.varDebitDCID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.varStatusId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DC_STSID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
+                        MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
+                        MainForm.objPUR_PurchaseReturns.Show();
+                    }
+                    else
+                    {
+
+                    }
                 }
             }
             catch(Exception ex)

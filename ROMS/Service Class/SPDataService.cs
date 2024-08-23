@@ -3079,7 +3079,46 @@ namespace ROMS
             return ds;
         }
 
-
+        public string udfnSetDebitNote(TRN_DebitNote objTRN_DebitNote)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_DebitNote]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_DebitNote.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDebitID", objTRN_DebitNote.paraDebitID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRN_DebitNote.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraDebit_Date", objTRN_DebitNote.paraDebit_Date);
+                varSqlCommand.Parameters.AddWithValue("@paraDebit_NO", objTRN_DebitNote.paraDebit_NO);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_DebitNote.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_DebitNote.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraDebitID", objTRN_DebitNote.paraDebitID);
+                varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_DebitNote.paraReasonId);
+                varSqlCommand.Parameters.AddWithValue("@paraDebitAmount", objTRN_DebitNote.paraDebitAmount);
+                varSqlCommand.Parameters.AddWithValue("@ParaSubtotal", objTRN_DebitNote.ParaSubtotal);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_DebitNote.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseId", objTRN_DebitNote.paraPurchaseId);
+                varSqlCommand.Parameters.AddWithValue("@paraTax", objTRN_DebitNote.paraTax);
+                varSqlCommand.Parameters.AddWithValue("@paraTRN_DebitNote", objTRN_DebitNote.paraTRN_DebitNote);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
         // added by venkat on 08/01/2024 for Purchase entry
         public DataSet udfnGetPurchaseEntry(TRN_PurchaseEntry objTRN_PurchaseEntry)
         {
@@ -3666,6 +3705,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Supplier_Payment.paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraPurchaseID", objTRN_Supplier_Payment.paraPurchaseID);
                 varSqlCommand.Parameters.AddWithValue("@paradtparaAdvance", objTRN_Supplier_Payment.paradtparaAdvance);
+                varSqlCommand.Parameters.AddWithValue("@paraComBank", objTRN_Supplier_Payment.paraComBank);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

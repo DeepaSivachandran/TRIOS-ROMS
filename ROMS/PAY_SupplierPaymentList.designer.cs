@@ -62,6 +62,7 @@
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierPaymentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -170,6 +171,8 @@
             this.grdSupllierPaymentList.ColumnHeadersHeight = 30;
             this.grdSupllierPaymentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupllierPaymentList.ColumnHeadersVisible = false;
+            this.grdSupllierPaymentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmPrint});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -191,7 +194,9 @@
             this.grdSupllierPaymentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupllierPaymentList.Size = new System.Drawing.Size(1348, 515);
             this.grdSupllierPaymentList.TabIndex = 1;
+            this.grdSupllierPaymentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupllierPaymentList_CellContentClick);
             this.grdSupllierPaymentList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupllierPaymentList_DataBindingComplete);
+            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll);
             this.grdSupllierPaymentList.DoubleClick += new System.EventHandler(this.GrdSupllierPaymentList_DoubleClick);
             this.grdSupllierPaymentList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSupllierPaymentList_KeyDown);
             // 
@@ -241,7 +246,6 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
-            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
@@ -464,6 +468,16 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmPrint.Width = 50;
+            // 
             // PAY_SupplierPaymentList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -525,5 +539,6 @@
         private System.Windows.Forms.Label lblSchedule;
         private System.Windows.Forms.Label lblSupplierCode;
         private System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }
