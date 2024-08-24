@@ -1352,9 +1352,13 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
-                MainForm.objPUR_GSTIN.ShowDialog();
+                //MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                //MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
+                //MainForm.objPUR_GSTIN.ShowDialog();
+                MainForm.objPUR_GSTINVerify = new PUR_GSTINVerify();
+                MainForm.objPUR_GSTINVerify.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
+                MainForm.objPUR_GSTINVerify.ShowDialog();
+                txtGstin.Text = Convert.ToString(MainForm.objPUR_GSTINVerify.varGSTINText);
             }
             catch (Exception ex)
             {
@@ -1669,17 +1673,17 @@ namespace ROMS
                                         grdTaxDetails.Columns["IGST%"].Width = 80;
                                         grdTaxDetails.Columns["CGST%"].Width = 80;
                                         grdTaxDetails.Columns["SGST%"].Width = 80;
-                                        grdTaxDetails.Columns["IGST"].Width = 100;
-                                        grdTaxDetails.Columns["CGST"].Width = 100;
-                                        grdTaxDetails.Columns["SGST"].Width = 100;
+                                        grdTaxDetails.Columns["IGST Value"].Width = 100;
+                                        grdTaxDetails.Columns["CGST Value"].Width = 100;
+                                        grdTaxDetails.Columns["SGST Value"].Width = 100;
                                         grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["CGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        grdTaxDetails.Columns["IGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        grdTaxDetails.Columns["CGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                        grdTaxDetails.Columns["SGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["IGST Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["CGST Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        grdTaxDetails.Columns["SGST Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         
                                     }
@@ -1688,21 +1692,21 @@ namespace ROMS
                                 {
                                     grdTaxDetails.Columns["SGST%"].Visible = false;
                                     grdTaxDetails.Columns["CGST%"].Visible = false;
-                                    grdTaxDetails.Columns["SGST"].Visible = false;
-                                    grdTaxDetails.Columns["CGST"].Visible = false;
+                                    grdTaxDetails.Columns["SGST Value"].Visible = false;
+                                    grdTaxDetails.Columns["CGST Value"].Visible = false;
                                     grdTaxDetails.Columns["IGST%"].Visible = true;
-                                    grdTaxDetails.Columns["IGST"].Visible = true;
+                                    grdTaxDetails.Columns["IGST Value"].Visible = true;
                                 }
                                 else
                                 {
                                     grdTaxDetails.Columns["GST%"].Visible = true;
                                     grdTaxDetails.Columns["CGST%"].Visible = true;
-                                    grdTaxDetails.Columns["SGST"].Visible = true;
-                                    grdTaxDetails.Columns["CGST"].Visible = true;
+                                    grdTaxDetails.Columns["SGST Value"].Visible = true;
+                                    grdTaxDetails.Columns["CGST Value"].Visible = true;
                                     grdTaxDetails.Columns["GST%"].Visible = true;
                                     grdTaxDetails.Columns["CGST%"].Visible = true;
                                     grdTaxDetails.Columns["IGST%"].Visible = false;
-                                    grdTaxDetails.Columns["IGST"].Visible = false;
+                                    grdTaxDetails.Columns["IGST Value"].Visible = false;
                                 }
                                 grdTaxDetails.Columns["Taxable Value"].Visible = false;
                             }
@@ -7138,11 +7142,8 @@ namespace ROMS
                             }
                             grdPurchaseList.Rows.Add(grdPurchaseList.Rows.Count + 1, "None", Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_InvoiceMRP"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_Batch"]), Convert.ToString(objDs.Tables[0].Rows[i]["SL_EName"]), Convert.ToString(objDs.Tables[0].Rows[i]["RK_ShortName"]),
-                            Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Name"]), 
-                            Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Code"]), 
-                            Convert.ToString(objDs.Tables[0].Rows[i]["GST_Text"]), 
-                            varQty, Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"])
-                            , Convert.ToString(objDs.Tables[0].Rows[i]["RecivedQty"]), Convert.ToString(objDs.Tables[0].Rows[i]["diffqty"]), Convert.ToString(objDs.Tables[0].Rows[i]["freeqty"])
+                            Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Name"]),    Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Code"]),   Convert.ToString(objDs.Tables[0].Rows[i]["GST_Text"]), 
+                            varQty, Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"]) , Convert.ToString(objDs.Tables[0].Rows[i]["RecivedQty"]), Convert.ToString(objDs.Tables[0].Rows[i]["diffqty"]), Convert.ToString(objDs.Tables[0].Rows[i]["freeqty"])
                              , Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_PurchaseRate"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_DiscAmnt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_DiscPer"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["TAX"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_GSTAmnt"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_CGSTPer"]), Convert.ToString(objDs.Tables[0].Rows[i]["CGSTAmnt"]),
@@ -7496,7 +7497,6 @@ namespace ROMS
                                     if (varDiffQty != 0)
                                     {
                                         varcount++; varQuantityErr++; varerrFlag = 1;
-
                                     }
                                     if (varerrFlag == 1)
                                     {
@@ -7730,7 +7730,7 @@ namespace ROMS
                             {
                                 if (Convert.ToString(varPURPRIDs[i]) == Convert.ToString(grdPurchaseList.Rows[j].Cells["clmPURPRID"].Value))
                                 {
-                                    if (Convert.ToDecimal(varTotReceivedQty[i]) > Convert.ToDecimal(grdPurchaseList.Rows[j].Cells["clmDiffqty"].Value) || Convert.ToDecimal(varTotReceivedQty[i])==0)
+                                    if (Convert.ToDecimal(varTotReceivedQty[i]) > Convert.ToDecimal(grdPurchaseList.Rows[j].Cells["clmParentRemaingingQty"].Value) || Convert.ToDecimal(varTotReceivedQty[i])==0)
                                     {
                                         for (int k = 0; k < grdPurchaseList.RowCount; k++)
                                         {
@@ -8461,7 +8461,7 @@ namespace ROMS
                 }, false)).CopyToDataTable();
 
                 var varTaxValue = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("Tax Value")).ToString();
-                var varIGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("IGST")).ToString();
+                var varIGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("IGST ")).ToString();
                 var varCGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("CGST")).ToString();
                 var varSGST = dtTaxTable.AsEnumerable() .Sum(x => x.Field<decimal>("CGST")).ToString();
 
@@ -8475,16 +8475,16 @@ namespace ROMS
                 grdTaxDetails.Columns["IGST%"].Width = 60;
                 grdTaxDetails.Columns["CGST%"].Width = 60;
                 grdTaxDetails.Columns["SGST%"].Width = 60;
-                grdTaxDetails.Columns["IGST"].Width = 80;
-                grdTaxDetails.Columns["CGST"].Width = 80;
-                grdTaxDetails.Columns["SGST"].Width = 80;
+                grdTaxDetails.Columns["IGST Value"].Width = 80;
+                grdTaxDetails.Columns["CGST Value"].Width = 80;
+                grdTaxDetails.Columns["SGST Value"].Width = 80;
                 grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Taxable Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdTaxDetails.Columns["IGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdTaxDetails.Columns["CGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdTaxDetails.Columns["SGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["IGST Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["CGST Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdTaxDetails.Columns["SGST Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdTaxDetails.Columns["Tax Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 if (grdTaxDetails.Rows.Count != 0)
@@ -8497,21 +8497,21 @@ namespace ROMS
                 {
                     grdTaxDetails.Columns["SGST%"].Visible = false;
                     grdTaxDetails.Columns["CGST%"].Visible = false;
-                    grdTaxDetails.Columns["SGST"].Visible = false;
-                    grdTaxDetails.Columns["CGST"].Visible = false;
+                    grdTaxDetails.Columns["SGST Value"].Visible = false;
+                    grdTaxDetails.Columns["CGST Value"].Visible = false;
                     grdTaxDetails.Columns["IGST%"].Visible = true;
-                    grdTaxDetails.Columns["IGST"].Visible = true;
+                    grdTaxDetails.Columns["IGST Value"].Visible = true;
                 }
                 else
                 {
                     grdTaxDetails.Columns["GST%"].Visible = true;
                     grdTaxDetails.Columns["CGST%"].Visible = true;
-                    grdTaxDetails.Columns["SGST"].Visible = true;
-                    grdTaxDetails.Columns["CGST"].Visible = true;
+                    grdTaxDetails.Columns["SGST Value"].Visible = true;
+                    grdTaxDetails.Columns["CGST Value"].Visible = true;
                     grdTaxDetails.Columns["GST%"].Visible = true;
                     grdTaxDetails.Columns["CGST%"].Visible = true;
                     grdTaxDetails.Columns["IGST%"].Visible = false;
-                    grdTaxDetails.Columns["IGST"].Visible = false;
+                    grdTaxDetails.Columns["IGST Value"].Visible = false;
                 }
                 grdTaxDetails.Columns["Taxable Value"].Visible = false;
             }
@@ -8884,6 +8884,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void GrdGRN_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
