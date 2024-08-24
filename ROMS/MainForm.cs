@@ -153,6 +153,7 @@ namespace ROMS
         public static PUR_Purchase_GRNDetails objPUR_Purchase_GRNDetails;
         public static PUR_Product objPUR_Product;
         public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
+        public static PUR_DebitnoteDetails objPUR_DebitnoteDetails;
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
         public static PUR_PurchaseReturns objPUR_PurchaseReturns;

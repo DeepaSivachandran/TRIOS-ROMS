@@ -1668,18 +1668,21 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-                    switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                    if (varCellclickFlag == 0)
                     {
-                        case "InvoiceNo":
-                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                            {
-                                string cellPOValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmREDDCID"].Value);
-                                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "4";
-                                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellPOValue);
-                                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
-                            }
-                            break;
+                        switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                        {
+                            case "InvoiceNo":
+                                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                                {
+                                    string cellPOValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmREDDCID"].Value);
+                                    MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                                    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "4";
+                                    MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellPOValue);
+                                    MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                                }
+                                break;
+                        }
                     }
                 }
             }
@@ -2075,16 +2078,21 @@ namespace ROMS
                 id = 0; varCellclickFlag=0;
                 if (grdSupplierPayment.Rows.Count > 0)
                 {
+                    id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
                     if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmReturnAmt")
                     {
                         varCellclickFlag = 0;
+                        udfnReturnDCLoad();
                     }
                     else if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmDiscAmount")
                     {
                         varCellclickFlag = 1;
+                        udfnReturnDCLoad();
                     }
-                    id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
-                    udfnReturnDCLoad();
+                    else
+                    {
+                        grdReurnDC.Rows.Clear();
+                    }
                 }
             }
             catch (Exception ex)
