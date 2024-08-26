@@ -24,6 +24,7 @@ namespace ROMS
         public int varClose = 0, varDateChange = 0, varCloseFlag = 0, varPURID = 0, varUpdate = 0, PbDiscID = 0, varSTSID = 0;
         public string varcomid = "";
         decimal varInvoiceAmnt = 0;
+        public int varSaveDisable = 0;
 
         public PAY_DiscountVoucher()
         {
@@ -449,6 +450,14 @@ namespace ROMS
                     udfnsupplierLoad();
                     udfnGridLoad();
                     txtInvoiceamt.Focus();
+                    if (varSaveDisable == 0)
+                    {
+                        btnSave.Visible = false;
+                    }
+                    else
+                    {
+                        btnSave.Visible = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -488,7 +497,7 @@ namespace ROMS
                             lblsupplierScheduletype.Visible = true;
                             lblsupplierpayment.Visible = true;
                             lblSupplierOrderpolicy.Visible = true;
-                            lblReturn.Visible = true;
+                            //lblReturn.Visible = true;
 
                             lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
                             lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
@@ -498,7 +507,7 @@ namespace ROMS
                             lblSupplierOrderpolicy.Text = "Return Policy - " + objDs.Tables[0].Rows[0]["ORDERTYPE"].ToString();
                             varReturnApplicable = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnType = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURNCYCLEID"].ToString());
-                            lblReturn.Text = objDs.Tables[0].Rows[0]["RETURNAPPLICABLE"].ToString();
+                            //lblReturn.Text = objDs.Tables[0].Rows[0]["RETURNAPPLICABLE"].ToString();
                         }
                     }
                 }
@@ -546,6 +555,7 @@ namespace ROMS
                                 {
                                     if (PbDiscID != 0)
                                     {
+                                        varSaveDisable = 1;
                                         grdInvoice.Rows[i].Cells["clmCheck"].Value = true;
                                     }
                                 }

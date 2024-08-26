@@ -1716,6 +1716,7 @@ namespace ROMS
                         Check.Value = "";
                         grdGRNList.Rows[i].Cells["clmCheck"] = Check;
                         Check.ReadOnly = true;
+                        //Check.Style.BackColor = Color.LightGray;
                     }
                 } 
                 
@@ -1733,6 +1734,7 @@ namespace ROMS
                 grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdGRNList.Columns["Overall Status"].Frozen = true;
                 grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["clmCheck"].ReadOnly = true;
                 //grdGRNList.Columns["GRN No."].Frozen = true;
                 //grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdGRNList.Columns["GRN Date"].Frozen = true;

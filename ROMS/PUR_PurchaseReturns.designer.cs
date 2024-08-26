@@ -1807,6 +1807,7 @@
             this.clmPURPRID.HeaderText = "PURPRID";
             this.clmPURPRID.Name = "clmPURPRID";
             this.clmPURPRID.ReadOnly = true;
+            this.clmPURPRID.Visible = false;
             // 
             // clmRemove
             // 
