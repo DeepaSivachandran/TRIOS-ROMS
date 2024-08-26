@@ -25,6 +25,7 @@ namespace ROMS
         public int varGRNPrintFlag = 0;
         public int varCheckChange = 0;
         public ToolTip tpSupplier = new ToolTip();
+        public string[] varGRNCheckedId;
         public PUR_GRNDetailsList()
         {
             InitializeComponent();
@@ -589,6 +590,21 @@ namespace ROMS
                                     objError.WriteFile(ex);
                                 }
                             }
+                            break;
+                        case "clmCheck":
+                            List<string> varValues = new List<string>();
+                            foreach (DataGridViewRow row in grdGRNList.Rows)
+                            {
+                                if (Convert.ToString(row.Cells["clmCheck"].Value) != "")
+                                {
+                                    if (Convert.ToBoolean(row.Cells["clmCheck"].Value) == true)
+                                    {
+                                        varValues.Add((row.Cells["GRNID"].Value.ToString()));
+                                    }
+                                }
+                            }
+                            varGRNCheckedId = varValues.ToArray();
+
                             break;
                     }
                 }
@@ -1362,6 +1378,18 @@ namespace ROMS
                 objDser.CloseConnection();
                 grdGRNList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
+
+                //DGV Grid Searching time checked value again Check 
+                if (varGRNCheckedId != null)
+                {
+                    for (int i = 0; i < grdGRNList.RowCount; i++)
+                    {
+                        if (varGRNCheckedId.Contains(Convert.ToString(grdGRNList.Rows[i].Cells["GRNID"].Value)))
+                        {
+                            grdGRNList.Rows[i].Cells["clmCheck"].Value = true;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
