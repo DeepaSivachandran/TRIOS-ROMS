@@ -1221,16 +1221,25 @@ namespace ROMS
                                 MXSTK = Convert.ToString(varSTOCK);
                             }
                             udfnProductAdd();
+
+                            var maxSno = 0;
+                            if (grdsupplieradd.Rows.Count > 0)
+                            {
+                                maxSno = (from row in grdsupplieradd.Rows.Cast<DataGridViewRow>()
+                                          let snoValue = string.IsNullOrEmpty(Convert.ToString(row.Cells["clmsno"].Value)) ? 0 : Convert.ToInt32(row.Cells["clmsno"].Value)
+                                          select snoValue).Max();
+                            }
+
                             //string[] unitparts = unitperbox.Split('/'); 
                             //string bunits = unitparts[0].Trim() +'/' + Convert.ToString(cmbUnit.Text);
                             grdsupplieradd.Rows.Add(grdsupplieradd.Rows.Count + 1, (varPICode).Trim(), (varEName).Trim(), (var_Symbol).Trim(),
                             (unitweight), unitperbox, bulkunitweight, (var_Text).Trim(), (var_RMinSaleQty).Trim(), (MXSQ).Trim(), (MXSTK).Trim(), (varPrevious).Trim(), (varOtherSupPrevious).Trim(),
                             (varPARITAL).Trim(), (varOtherSupPartial).Trim(), (varReOrderQty).Trim(), bulk, var_BulkSymbol, unit, var_Symbol, varFinalTotalQty, var_Symbol, varFinalTotalKg, var_TotSymbol,
-                            (addproductid).Trim(), defflag, 1, "", 10, (Convert.ToInt32(varUnitvalue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue,"",lblUnitDecimal.Text);
+                            (addproductid).Trim(), defflag, 1, "", 10, (Convert.ToInt32(varUnitvalue)), varNetweight, varUPP, 0, varBulkunitvalue, varTotalunitvalue, "", lblUnitDecimal.Text, maxSno + 1);
 
                             //grdsupplieradd.Columns[10].ReadOnly = true;
                             udfnrowclear();
-                            grdsupplieradd.Sort(grdsupplieradd.Columns[1], ListSortDirection.Ascending);
+                            grdsupplieradd.Sort(grdsupplieradd.Columns[37], ListSortDirection.Descending);
                             for (int i = 0; i < grdsupplieradd.RowCount; i++)
                             {
                                 grdsupplieradd.Rows[i].Cells["clmsno"].Value = i + 1;

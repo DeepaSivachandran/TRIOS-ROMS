@@ -687,7 +687,7 @@ namespace ROMS
                                 dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Batch No."]),
                                         Convert.ToDecimal(objDs.Tables[0].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["UTID"]),
                                         Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GST Amt"]),
-                                        Convert.ToDecimal(objDs.Tables[0].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["DMID"]), 0,0,0,0);
+                                        Convert.ToDecimal(objDs.Tables[0].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[0].Rows[i]["DMID"]), Convert.ToString(objDs.Tables[0].Rows[i]["DM_Dest_SLID"]), 0,0,0);
                             }
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
@@ -2878,7 +2878,7 @@ namespace ROMS
                 dtStock.Rows.Add((lblProduct.Text).Trim(), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMRP.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), 0, (txtQuantity.Text).Trim(), 0,varSLID, varRKID,0,0);
 
                 dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(lblProduct.Text), Convert.ToDecimal(txtMRP.Text), Convert.ToString(txtExpiryDate.Text), Convert.ToString(txtBatchNo.Text),
-                Convert.ToDecimal(varApprox), Convert.ToDecimal(txtQuantity.Text),Convert.ToDecimal(Tax), Convert.ToDecimal(varGST), Convert.ToDecimal(GST),
+                Convert.ToDecimal(varApprox), Convert.ToDecimal(txtQuantity.Text),0,Convert.ToDecimal(Tax), Convert.ToDecimal(varGST), Convert.ToDecimal(GST),
                 Convert.ToDecimal(Net), 0, varSLID, varRKID,0,0);
                 udfnTotal();
                 grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

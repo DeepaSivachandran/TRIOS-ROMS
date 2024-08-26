@@ -142,89 +142,45 @@ namespace ROMS
                 {
                     if (MainForm.objPUR_PurchaseReturns.dtExchangeProducts.Rows.Count != 0)
                     {
+                        string varProShelife = "", varActualShelife = "", varShelifePer = "", varProShelflifeType = "";
                         // dtPurchaseDC.DataSet = MainForm.objPUR_PurchaseReturns.dtExchangeProducts;
                         dtPurchaseDC = (MainForm.objPUR_PurchaseReturns.dtExchangeProducts).Copy();
                         for (int i = 0; i < dtPurchaseDC.Rows.Count; i++)
                         {
-                            MR_Product objMR_Product = new MR_Product();
-                            objMR_Product.paraViewType = 34;
-                            objMR_Product.ParaProductCode = Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_PRID"].ToString());
-                            objMR_Product.ParaScheduleid = Convert.ToString(varScheduleId);
-                            objMR_Product.ParaSupplierId = varSupplierId;
-                            SPDataService objspdservice = new SPDataService();
-                            DataSet objDs = new DataSet();
-                            objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                            objspdservice.CloseConnection();
-                            if (objDs != null)
+                            if(Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_ShelfLifeValue"].ToString())!=0)
                             {
-                                if (objDs.Tables[0].Rows.Count > 0)
+                                if (Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_ShelfLifeType"].ToString()) == 17)
                                 {
-                                    flag = objDs.Tables[0].Rows[0]["PRODUCTEXP"].ToString();
+                                    varProShelflifeType = " DAY(S)";
                                 }
+                                else if (Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_ShelfLifeType"].ToString()) == 18)
+                                {
+                                    varProShelflifeType = " MONTH(S)";
+                                }
+                                else if (Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_ShelfLifeType"].ToString()) == 19)
+                                {
+                                    varProShelflifeType = " YEAR(S)";
+                                }
+                                varProShelife = Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_ShelfLifeValue"].ToString()) +  varProShelflifeType;
                             }
-                            int varflag = 0; ProShelflife = 0; int Shelflifevalue = 0, ProShelfLifeType = 0, ProShelflifeValue = 0;
-                            string varShelflifevalue = "", varAcutalshelflife = "";
-                            //if (varExpiryDate != "")
-                            //{
-                                SPDataService objDServ = new SPDataService();
-                                DataSet objDS = new DataSet();
-                                MR_Master objMR_Master = new MR_Master();
-                                objMR_Master.ViewType = 7;
-                                objMR_Master.paraDate = varReturnDCDate;
-                                objMR_Master.ParaExpiryDate = Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_ExpiryDate"].ToString());
-                                objMR_Master.paraProductId = Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_PRID"].ToString());
-                                objDS = objDServ.udfnMaster(objMR_Master);
-                                objDServ.CloseConnection();
-                                if (Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_Shelflifeflag"]) == 1)
-                                {
-                                    if (objDS.Tables[0].Rows.Count > 0)
-                                    {
-                                        if (Convert.ToString(objDS.Tables[0].Rows[0]["DATEVALIDATE"]) != "0")
-                                        {
-                                            if (objDS.Tables[1].Rows.Count > 0)
-                                            {
-                                                varShelflifevalue = Convert.ToString(objDS.Tables[1].Rows[0]["SHELFLIFE"]);
-                                                string[] varProShelfLife = varShelflifevalue.Split(' ');
-                                                if (Convert.ToString(varProShelfLife[0]) != "")
-                                                {
-                                                    ProShelflife = Convert.ToDecimal(varProShelfLife[0]);
-                                                }
-                                            }
-                                            if (objDS.Tables[2].Rows.Count > 0)
-                                            {
-                                                varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
-                                                string[] varShelflifevaluesplit = varAcutalshelflife.Split(' ');
-                                                if (Convert.ToString(varShelflifevaluesplit[0]) != "")
-                                                {
-                                                    Shelflifevalue = Convert.ToInt32(varShelflifevaluesplit[0]);
-                                                }
-                                            }
-                                            if (objDS.Tables[3].Rows.Count > 0)
-                                            {
-                                                ProShelfLifeType = Convert.ToInt32(objDS.Tables[3].Rows[0]["PR_ShelfLifeType"]);
-                                            }
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (objDS.Tables[2].Rows.Count > 0)
-                                    {
-                                        varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
-                                    }
-                                }
-                            //}
-
+                            if(Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_Shelflifeflag"].ToString())!=0)
+                            {
+                                varActualShelife = Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_Shelflifeflag"].ToString()) + " DAY(S)";
+                            }
+                            if (Convert.ToDecimal(dtPurchaseDC.Rows[i]["DCPR_ShelfLife_Per"].ToString()) != 0)
+                            {
+                                varShelifePer = Convert.ToDecimal(dtPurchaseDC.Rows[i]["DCPR_ShelfLife_Per"].ToString()) + " %";
+                            }
                             grdProductExchage.Rows.Add(i+1, dtPurchaseDC.Rows[i]["P.I Code"].ToString(),
                             dtPurchaseDC.Rows[i]["ProductName"].ToString(),
                             Convert.ToDecimal(dtPurchaseDC.Rows[i]["DCPR_MRP"]),
-                            dtPurchaseDC.Rows[i]["DCPR_ExpiryDate"].ToString(), (flag).Trim(), varAcutalshelflife, varShelflifevalue, dtPurchaseDC.Rows[i]["DCPR_BatchNo"].ToString(),
+                            dtPurchaseDC.Rows[i]["DCPR_ExpiryDate"].ToString(), varProShelife, varActualShelife, varShelifePer, dtPurchaseDC.Rows[i]["DCPR_BatchNo"].ToString(),
                             dtPurchaseDC.Rows[i]["DCPR_Qty"].ToString(), dtPurchaseDC.Rows[i]["Unit"].ToString(), dtPurchaseDC.Rows[i]["Location"].ToString(), dtPurchaseDC.Rows[i]["Rack"].ToString(),
                             dtPurchaseDC.Rows[i]["DCPR_PRID"].ToString(), dtPurchaseDC.Rows[i]["DCPR_SLID"].ToString(),
-                            dtPurchaseDC.Rows[i]["DCPR_RKID"].ToString(), Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_UTID"]),0,0,0, Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_MRPflag"]), Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_Shelflifeflag"])
+                            dtPurchaseDC.Rows[i]["DCPR_RKID"].ToString(), Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_UTID"]),0,0,0, Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_MRPflag"]), Convert.ToInt32(dtPurchaseDC.Rows[i]["DCPR_ShelfLifeStatus"])
                             );
 
-                            string[] varShelflifeper = Convert.ToString(ProShelflife).Split(' ');
+                            string[] varShelflifeper = Convert.ToString(varShelifePer).Split(' ');
                             if (varShelflifeper[0] != "")
                             {
                                 if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1) + 1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
@@ -271,6 +227,7 @@ namespace ROMS
                     grpproductname.Enabled = false;
                     btnSave.Enabled = false;
                     txtRemark.Enabled = false;
+                    grdProductExchage.ReadOnly = true;
                     grdProductExchage.Columns["clmRemove"].Visible = false;
                 }
             }
@@ -317,80 +274,10 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-
-                                MR_Product objMR_Product = new MR_Product();
-                                objMR_Product.paraViewType = 34;
-                                objMR_Product.ParaProductCode = Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"].ToString());
-                                objMR_Product.ParaScheduleid = Convert.ToString(varScheduleId);
-                                objMR_Product.ParaSupplierId = varSupplierId;
-                                SPDataService objspdservice = new SPDataService();
-                                DataSet objDss = new DataSet();
-                                objDss = objspdservice.udfnproductmasterlist(objMR_Product);
-                                objspdservice.CloseConnection();
-                                if (objDss != null)
-                                {
-                                    if (objDss.Tables[0].Rows.Count > 0)
-                                    {
-                                        flag = objDss.Tables[0].Rows[0]["PRODUCTEXP"].ToString();
-                                    }
-                                }
-                                int varflag = 0; ProShelflife = 0; int Shelflifevalue = 0, ProShelfLifeType = 0, ProShelflifeValue = 0;
-                                string varShelflifevalue = "", varAcutalshelflife = "";
-                                //if (varExpiryDate != "")
-                                //{
-                                SPDataService objDServ = new SPDataService();
-                                DataSet objDSe = new DataSet();
-                                MR_Master objMR_Master = new MR_Master();
-                                objMR_Master.ViewType = 7;
-                                objMR_Master.paraDate = varReturnDCDate;
-                                objMR_Master.ParaExpiryDate = Convert.ToString(objDs.Tables[0].Rows[i]["Expiry Date"].ToString());
-                                objMR_Master.paraProductId = Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"].ToString());
-                                objDSe = objDServ.udfnMaster(objMR_Master);
-                                objDServ.CloseConnection();
-                                if (Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeFlag"]) == 1)
-                                {
-                                    if (objDSe.Tables[0].Rows.Count > 0)
-                                    {
-                                        if (Convert.ToString(objDSe.Tables[0].Rows[0]["DATEVALIDATE"]) != "0")
-                                        {
-                                            if (objDSe.Tables[1].Rows.Count > 0)
-                                            {
-                                                varShelflifevalue = Convert.ToString(objDSe.Tables[1].Rows[0]["SHELFLIFE"]);
-                                                string[] varProShelfLife = varShelflifevalue.Split(' ');
-                                                if (Convert.ToString(varProShelfLife[0]) != "")
-                                                {
-                                                    ProShelflife = Convert.ToDecimal(varProShelfLife[0]);
-                                                }
-                                            }
-                                            if (objDSe.Tables[2].Rows.Count > 0)
-                                            {
-                                                varAcutalshelflife = Convert.ToString(objDSe.Tables[2].Rows[0]["ACUTAL"]);
-                                                string[] varShelflifevaluesplit = varAcutalshelflife.Split(' ');
-                                                if (Convert.ToString(varShelflifevaluesplit[0]) != "")
-                                                {
-                                                    Shelflifevalue = Convert.ToInt32(varShelflifevaluesplit[0]);
-                                                }
-                                            }
-                                            if (objDSe.Tables[3].Rows.Count > 0)
-                                            {
-                                                ProShelfLifeType = Convert.ToInt32(objDSe.Tables[3].Rows[0]["PR_ShelfLifeType"]);
-                                            }
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (objDSe.Tables[2].Rows.Count > 0)
-                                    {
-                                        varAcutalshelflife = Convert.ToString(objDSe.Tables[2].Rows[0]["ACUTAL"]);
-                                    }
-                                }
-                                //}
-
                                 grdProductExchage.Rows.Add(objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"].ToString(),
                                 objDs.Tables[0].Rows[i]["Product Name"].ToString(),
                                 Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]),
-                                objDs.Tables[0].Rows[i]["Expiry Date"].ToString(), (flag).Trim(), varAcutalshelflife, varShelflifevalue, objDs.Tables[0].Rows[i]["Batch No."].ToString(),
+                                objDs.Tables[0].Rows[i]["Expiry Date"].ToString(), objDs.Tables[0].Rows[i]["Product Shelflife"].ToString(),objDs.Tables[0].Rows[i]["Actual Shelflife"].ToString(), objDs.Tables[0].Rows[i]["Shelflife Per"].ToString(), objDs.Tables[0].Rows[i]["Batch No."].ToString(),
                                 objDs.Tables[0].Rows[i]["Qty"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
                                 objDs.Tables[0].Rows[i]["Location"].ToString(), objDs.Tables[0].Rows[i]["Rack"].ToString()
                                 , objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),
@@ -402,10 +289,10 @@ namespace ROMS
                                 objDs.Tables[0].Rows[i]["Batch No."].ToString(), objDs.Tables[0].Rows[i]["Qty"].ToString(),
                                 objDs.Tables[0].Rows[i]["UTID"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(),
                                 objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["Unit"].ToString(),
-                                objDs.Tables[0].Rows[i]["Location"].ToString(), objDs.Tables[0].Rows[i]["Rack"].ToString(), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_MRPflag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeFlag"]));
+                                objDs.Tables[0].Rows[i]["Location"].ToString(), objDs.Tables[0].Rows[i]["Rack"].ToString(), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_MRPflag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeFlag"]),Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeValue"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeType"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLife_Per"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeStatus"]));
 
 
-                                string[] varShelflifeper = Convert.ToString(ProShelflife).Split(' ');
+                                string[] varShelflifeper = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Per"].ToString()).Split(' ');
                                 if (varShelflifeper[0] != "")
                                 {
                                     if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1) + 1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
@@ -828,7 +715,22 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtMrp.Focus();
+                        if (txtMrp.Enabled == true)
+                        {
+                            txtMrp.Focus();
+                        }
+                        else if (txtDay.Enabled == true)
+                        {
+                            txtDay.Focus();
+                        }
+                        else if (txtBatchNo.Enabled == true)
+                        {
+                            txtBatchNo.Focus();
+                        }
+                        else
+                        {
+                            txtActualQty.Focus();
+                        }
                     }
                 }
             }
@@ -878,7 +780,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDay.Focus();
+                    if (txtDay.Enabled == true)
+                    {
+                        txtDay.Focus();
+                    }
+                    else if (txtBatchNo.Enabled == true)
+                    {
+                        txtBatchNo.Focus();
+                    }
+                    else
+                    {
+                        txtActualQty.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2193,6 +2106,11 @@ namespace ROMS
             dtPurchaseDC.Columns.Add("Rack", typeof(string));
             dtPurchaseDC.Columns.Add("DCPR_MRPflag", typeof(int));
             dtPurchaseDC.Columns.Add("DCPR_Shelflifeflag", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLifeValue", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLifeType", typeof(int));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLife_Per", typeof(decimal));
+            dtPurchaseDC.Columns.Add("DCPR_ShelfLifeStatus", typeof(int));
+
         }
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -2322,81 +2240,90 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                /*check location have a rack or not*/
-                string varId_PurchaseRack = "0";
-                string varId_PurchaseRackCount = "0";
-                DataSet objDsPurchaseRack = new DataSet();
-                SPDataService objDServ6 = new SPDataService();
-                objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblStockLocationCode.Text), 0, txtRack.Text.Trim(), 0, 0);
-                objDServ6.CloseConnection();
                 if (txtRack.Text.Trim() != "")
                 {
-                    if (lblStockLocationCode.Text != "0")
+                    /*check location have a rack or not*/
+                    string varId_PurchaseRack = "0";
+                    string varId_PurchaseRackCount = "0";
+                    DataSet objDsPurchaseRack = new DataSet();
+                    SPDataService objDServ6 = new SPDataService();
+                    objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(lblStockLocationCode.Text), 0, txtRack.Text.Trim(), 0, 0);
+                    objDServ6.CloseConnection();
+                    if (txtRack.Text.Trim() != "")
                     {
-                        if (objDsPurchaseRack != null)
+                        if (lblStockLocationCode.Text != "0")
                         {
-                            if (objDsPurchaseRack.Tables.Count > 0)
+                            if (objDsPurchaseRack != null)
                             {
-                                if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                if (objDsPurchaseRack.Tables.Count > 0)
                                 {
-                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                    if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                    }
+                                    if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRackCount = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                    }
+                                    if (varId_PurchaseRackCount == "0")
+                                    { varId_PurchaseRack = "0"; }
                                 }
-                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
-                                {
-                                    varId_PurchaseRackCount = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
-                                }
-                                if (varId_PurchaseRackCount == "0")
-                                { varId_PurchaseRack = "0"; }
                             }
-                        }
-                        lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (Convert.ToInt32(varId_PurchaseRackCount) > 0)
-                        {
-                            if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
+                            lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                            if (Convert.ToInt32(varId_PurchaseRackCount) > 0)
                             {
-                                epProductExchange.SetError(txtRack, "Please enter valid rack.");
-                                txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                                tpRack.ShowAlways = true;
-                                tpRack.Show("Please enter valid rack.", txtRack, 5000);
-                                blnErrorFlag = true;
+                                if (Convert.ToInt32(varId_PurchaseRack) < 0 || varId_PurchaseRack == "-1")
+                                {
+                                    epProductExchange.SetError(txtRack, "Please enter valid rack.");
+                                    txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                    tpRack.ShowAlways = true;
+                                    tpRack.Show("Please enter valid rack.", txtRack, 5000);
+                                    blnErrorFlag = true;
+                                }
                             }
                         }
                     }
+                    /*
+                    else
+                    {
+                        if (lblStockLocationCode.Text != "0")
+                        {
+                            if (objDsPurchaseRack != null)
+                            {
+                                if (objDsPurchaseRack.Tables.Count > 0)
+                                {
+                                    if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
+                                    }
+                                }
+                            }
+                            lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
+                            if (Convert.ToInt32(varId_PurchaseRack) > 0)
+                            {
+                                epProductExchange.SetError(txtRack, "Please enter rack.");
+                                txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpRack.ShowAlways = true;
+                                tpRack.Show("Please enter rack.", txtRack, 5000);
+                                blnErrorFlag = true;
+                            }
+                            if (varId_PurchaseRack == "0")
+                            {
+                                txtRack.Text = "None";
+                                txtRack.Enabled = false;
+                                lblRackCode.Text = "0";
+                            }
+                            else
+                            {
+                                txtRack.Enabled = true;
+                            }
+                        }
+                    }
+                    */
                 }
                 else
                 {
-                    if (lblStockLocationCode.Text != "0")
-                    {
-                        if (objDsPurchaseRack != null)
-                        {
-                            if (objDsPurchaseRack.Tables.Count > 0)
-                            {
-                                if (objDsPurchaseRack.Tables[1].Rows.Count > 0)
-                                {
-                                    varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[1].Rows[0][0]);
-                                }
-                            }
-                        }
-                        lblRackCode.Text = Convert.ToString(varId_PurchaseRack);
-                        if (Convert.ToInt32(varId_PurchaseRack) > 0)
-                        {
-                            epProductExchange.SetError(txtRack, "Please enter rack.");
-                            txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpRack.ShowAlways = true;
-                            tpRack.Show("Please enter rack.", txtRack, 5000);
-                            blnErrorFlag = true;
-                        }
-                        if (varId_PurchaseRack == "0")
-                        {
-                            txtRack.Text = "None";
-                            txtRack.Enabled = false;
-                            lblRackCode.Text = "0";
-                        }
-                        else
-                        {
-                            txtRack.Enabled = true;
-                        }
-                    }
+                    lblRackCode.Text = "0";
                 }
                 if (Convert.ToString(txtProductName.Text.Trim()) != "")
                 {
@@ -2775,6 +2702,7 @@ namespace ROMS
                         varEditflag = 1;
                         txtMrp.Enabled = true;
                         txtMrp.ReadOnly = false;
+                        txtMrp.Focus();
                     }
                     else
                     {
@@ -2783,7 +2711,6 @@ namespace ROMS
                         txtMrp.ReadOnly = true;
                     }
                 }
-                txtMrp.Focus();
             }
             catch (Exception ex)
             {
@@ -2952,7 +2879,7 @@ namespace ROMS
                 }
                 else
                 {
-                    int varflag = 0; ProShelflife = 0; int Shelflifevalue = 0, ProShelfLifeType = 0, ProShelflifeValue = 0;
+                    int varflag = 0, varShelflifeType = 0; ProShelflife = 0; int Shelflifeflag = 0, ProShelfLifeType = 0, ProShelflifeValue = 0;
                     string varShelflifevalue = "", varAcutalshelflife = "";
                     if (varExpiryDate != "")
                     {
@@ -2996,7 +2923,7 @@ namespace ROMS
                                         string[] varShelflifevaluesplit = varAcutalshelflife.Split(' ');
                                         if (Convert.ToString(varShelflifevaluesplit[0]) != "")
                                         {
-                                            Shelflifevalue = Convert.ToInt32(varShelflifevaluesplit[0]);
+                                            Shelflifeflag = Convert.ToInt32(varShelflifevaluesplit[0]);
                                         }
                                     }
                                     if (objDS.Tables[3].Rows.Count > 0)
@@ -3013,6 +2940,24 @@ namespace ROMS
                                 varAcutalshelflife = Convert.ToString(objDS.Tables[2].Rows[0]["ACUTAL"]);
                             }
                         }
+                        if (flag != "")
+                        {
+                            string [] varType = flag.Split(' ');
+                            string varTypeName = varType[1];
+                            ProShelflifeValue = Convert.ToInt32(varType[0]);
+                            if (varTypeName== "DAY(S)")
+                            {
+                                varShelflifeType = 17;
+                            }
+                            else if(varTypeName == "MONTH(S)")
+                            {
+                                varShelflifeType = 18;
+                            }
+                            else if (varTypeName == "YEAR(S)")
+                            {
+                                varShelflifeType = 19;
+                            }
+                        }
                     }
                     // udfnExpiryDate();
                     if (pbDateflag == 0)
@@ -3023,7 +2968,7 @@ namespace ROMS
                         string mrp = string.Format("{0:0.00}", varMRP);
                         string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                         grdProductExchage.Rows.Add(grdProductExchage.Rows.Count + 1, varPICode.Trim(), varTName.Trim(), Convert.ToDecimal(mrp), varExpiryDate, (flag).Trim(), varAcutalshelflife, varShelflifevalue, txtBatchNo.Text.Trim(), txtActualQty.Text.Trim(), lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(), addproductid, lblStockLocationCode.Text, lblRackCode.Text, varunitid, varDecimal,0,0,varMRPflag,varShelflife);
-                        dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text), varTName, varPICode, lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(),varMRPflag, varShelflife);
+                        dtPurchaseDC.Rows.Add(Convert.ToInt32(addproductid), Convert.ToDecimal(mrp1), varExpiryDate, txtBatchNo.Text.Trim(), Convert.ToDecimal(txtActualQty.Text.Trim()), Convert.ToInt32(varunitid), Convert.ToInt32(lblStockLocationCode.Text), Convert.ToInt32(lblRackCode.Text), varTName, varPICode, lblUnit.Text, txtStockLocation.Text.Trim(), txtRack.Text.Trim(),varMRPflag, Shelflifeflag, ProShelflifeValue,   varShelflifeType, ProShelflife, varShelflife);
                         ((DataGridViewTextBoxColumn)grdProductExchage.Columns["clmQuantity"]).MaxInputLength = 8;
                         grdProductExchage.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         //grdPurchaseDC.Columns["clmQuantity"].ReadOnly = false;
