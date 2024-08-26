@@ -289,6 +289,12 @@
     <Compile Include="PAY_DebitNote.designer.cs">
       <DependentUpon>PAY_DebitNote.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_DebitnoteDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_DebitnoteDetails.designer.cs">
+      <DependentUpon>PUR_DebitnoteDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_Purchase_Level_Verified.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2087,6 +2093,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_DebitNote.resx">
       <DependentUpon>PAY_DebitNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_DebitnoteDetails.resx">
+      <DependentUpon>PUR_DebitnoteDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_Purchase_Level_Verified.resx">
       <DependentUpon>PUR_Purchase_Level_Verified.cs</DependentUpon>

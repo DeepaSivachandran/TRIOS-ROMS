@@ -153,6 +153,7 @@ namespace ROMS
         public static PUR_Purchase_GRNDetails objPUR_Purchase_GRNDetails;
         public static PUR_Product objPUR_Product;
         public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
+        public static PUR_DebitnoteDetails objPUR_DebitnoteDetails;
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
         public static PUR_PurchaseReturns objPUR_PurchaseReturns;
@@ -194,6 +195,7 @@ namespace ROMS
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static PAY_ChequePrint objPAY_ChequePrint;
         public static PAY_DebitNoteList objPAY_DebitNoteList;
+        public static PAY_DebitNote objPAY_DebitNote;
         public static PAY_AdvanceList objPAY_AdvanceList;
         public static PAY_GSTRDetails objPAY_GSTRDetails;
         public static PAY_Advance objPAY_Advance;

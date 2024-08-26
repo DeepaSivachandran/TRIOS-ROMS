@@ -633,7 +633,7 @@ namespace ROMS
         {
             try
             {
-                if(varSupplierCode=="")
+                if(txtSupplier.Text=="")
                 {
                     varSupplierCode = "0";
                 }
@@ -678,6 +678,9 @@ namespace ROMS
                             grdDebitNoteList.Columns["SPID"].Visible = false;
                             grdDebitNoteList.Columns["DCID"].Visible = false;
                             grdDebitNoteList.Columns["DC_STSID"].Visible = false;
+                            grdDebitNoteList.Columns["STSID"].Visible = false;
+                            grdDebitNoteList.Columns["Flag"].Visible = false;
+                            grdDebitNoteList.Columns["DNID"].Visible = false;
                             grdDebitNoteList.Columns["GSTIN"].Width = 120;
                             grdDebitNoteList.Columns["Amount"].Width = 100;
                             //grdDebitNoteList.Columns["Created By"].Width = 100;
@@ -918,6 +921,19 @@ namespace ROMS
             try
             {
                 grdDebitNoteList.ClearSelection();
+                for (int i= 0;i <grdDebitNoteList.Rows.Count;i++)
+                {
+                    if (Convert.ToInt32(grdDebitNoteList.Rows[i].Cells["STSID"].Value) == 111)
+                    {
+                        grdDebitNoteList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdDebitNoteList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if(Convert.ToInt32(grdDebitNoteList.Rows[i].Cells["STSID"].Value) == 112)
+                    {
+                        grdDebitNoteList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdDebitNoteList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1137,7 +1153,14 @@ namespace ROMS
                     }
                     else
                     {
-
+                        MainForm.objPAY_DebitNote = new PAY_DebitNote();
+                        MainForm.objPAY_DebitNote.MdiParent = this.ParentForm;
+                        MainForm.objPAY_DebitNote.btnSave.Text = "Update";
+                        MainForm.objPAY_DebitNote.varDebitID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DNID"].Value);
+                        MainForm.objPAY_DebitNote.pbSupplierId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                        MainForm.objPAY_DebitNote.pbScheduleid = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                        MainForm.objPAY_DebitNote.varStatusId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["STSID"].Value.ToString());
+                        MainForm.objPAY_DebitNote.Show();
                     }
                 }
             }

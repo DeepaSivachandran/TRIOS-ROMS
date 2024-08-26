@@ -846,6 +846,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PAYID"].Visible = false;
                 DGV_SearchGrid.Columns["Status"].Width = 150;
                 DGV_SearchGrid.Columns["PAY_STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PAY_BankID"].Visible = false;
+                DGV_SearchGrid.Columns["ChequeDate"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)

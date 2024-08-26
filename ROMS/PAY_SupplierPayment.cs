@@ -27,7 +27,7 @@ namespace ROMS
         public string varSupplierName="";
         public Decimal varNeftAmount = 0, varGrandTotal = 0;
         public string varAdvanceID = "";
-        public int id = 0, varEditFlag = 0, varModifiedFlag = 0, VARFLAG = 0;
+        public int id = 0, varEditFlag = 0, varModifiedFlag = 0, VARFLAG = 0,varCellclickFlag=0;
         decimal varGrandTot = 0, varTotal = 0, varamt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAdvanceAmnt = 0;
         public int varCloseFlag = 0, varClose = 0;
         public string advanceid = "";
@@ -1038,7 +1038,7 @@ namespace ROMS
                             grdSupplierPayment.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Discount Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]),0.00, Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]), 0,Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),Convert.ToString(objDs.Tables[0].Rows[i]["RetStatus"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]));
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Discount Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]),0.00, Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]), 0,Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),Convert.ToString(objDs.Tables[0].Rows[i]["RetStatus"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[0].Rows[i]["DNID"]));
                                 grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 decimal varAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmInvoiceAmnt"].Value);
@@ -1063,7 +1063,7 @@ namespace ROMS
                                 //    lblGrandTotal.Text = GrandTot.ToString("#,##0.00");
                                 //}
                                 //else 
-                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0 && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 39))
+                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0 && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 79))
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = false;
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;
@@ -1668,18 +1668,36 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-                    switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                    if (varCellclickFlag == 0)
                     {
-                        case "InvoiceNo":
-                            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                            {
-                                string cellPOValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmREDDCID"].Value);
-                                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "4";
-                                MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellPOValue);
-                                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
-                            }
-                            break;
+                        switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                        {
+                            case "InvoiceNo":
+                                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                                {
+                                    string cellDCID = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmREDDCID"].Value);
+                                    MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                                    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "4";
+                                    MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellDCID);
+                                    MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                        {
+                            case "InvoiceNo":
+                                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                                {
+                                    string cellDebitID = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmREDDCID"].Value);
+                                    MainForm.objPUR_DebitnoteDetails = new PUR_DebitnoteDetails();
+                                    MainForm.objPUR_DebitnoteDetails.varDebitID = Convert.ToString(cellDebitID);
+                                    MainForm.objPUR_DebitnoteDetails.ShowDialog();
+                                }
+                                break;
+                        }
                     }
                 }
             }
@@ -1760,22 +1778,44 @@ namespace ROMS
                 objTRN_Supplier_Payment.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objDs = objspdservice.udfnGetSupplierPayment(objTRN_Supplier_Payment);
                 objspdservice.CloseConnection();
-                if(objDs!=null)
+                if (objDs != null)
                 {
-                    if(objDs.Tables[1].Rows.Count>0)
+                    if (varCellclickFlag == 0)
                     {
-                        grdReurnDC.Rows.Clear();
-                        for(int i=0;i< objDs.Tables[1].Rows.Count;i++)
+                        if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PURREDC_DCNO"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURREDC_DCDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Amount"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]));
-                            grdReurnDC.Columns["clmReturnAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdReurnDC.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                            {
+                                grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PURREDC_DCNO"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURREDC_DCDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Amount"]), Convert.ToString(objDs.Tables[1].Rows[i]["ID"]));
+                                grdReurnDC.Columns["clmReturnAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            }
+                        }
+                        else
+                        {
+                            grdReurnDC.Rows.Clear();
                         }
                     }
+
                     else
                     {
-                        grdReurnDC.Rows.Clear();
+                        if (objDs.Tables[2].Rows.Count > 0)
+                        {
+                            grdReurnDC.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
+                            {
+                                grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[2].Rows[i]["Trans No"]), Convert.ToString(objDs.Tables[2].Rows[i]["Trans Date"]), Convert.ToString(objDs.Tables[2].Rows[i]["Amount"]), Convert.ToString(objDs.Tables[2].Rows[i]["ID"]));
+                                grdReurnDC.Columns["clmReturnAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            }
+                        }
+                        else
+                        {
+                            grdReurnDC.Rows.Clear();
+                        }
+
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -2050,14 +2090,23 @@ namespace ROMS
         {
             try
             {
-                id = 0;
+                id = 0; varCellclickFlag=0;
                 if (grdSupplierPayment.Rows.Count > 0)
                 {
+                    id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
                     if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmReturnAmt")
                     {
-                        id = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
+                        varCellclickFlag = 0;
                         udfnReturnDCLoad();
-
+                    }
+                    else if (Convert.ToString(grdSupplierPayment.Columns[grdSupplierPayment.SelectedCells[0].ColumnIndex].Name) == "clmDiscAmount")
+                    {
+                        varCellclickFlag = 1;
+                        udfnReturnDCLoad();
+                    }
+                    else
+                    {
+                        grdReurnDC.Rows.Clear();
                     }
                 }
             }
@@ -2067,7 +2116,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdSupplierPayment_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -2351,7 +2399,7 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Disc Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Advance Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), Convert.ToString(objDs.Tables[1].Rows[i]["status"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Status"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]));
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Disc Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Advance Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), Convert.ToString(objDs.Tables[1].Rows[i]["status"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Status"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[1].Rows[i]["DNID"]));
                                 dtPayment.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYI_STSID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), 0, 0, Convert.ToDecimal(objDs.Tables[1].Rows[i]["Disc Amount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]));
                                 //dtAdvance.Rows.Add(Convert.ToInt32(objDs.Tables[2].Rows[i]["PAYAD_ADID"]), Convert.ToInt32(objDs.Tables[2].Rows[i]["PAYAD_PURID"]), Convert.ToDecimal(objDs.Tables[2].Rows[i]["AD_CurrentBalance"]), 0, Convert.ToDecimal(objDs.Tables[2].Rows[i]["PAYAD_PayedAdvanceAmnt"]), Convert.ToDecimal(objDs.Tables[2].Rows[i]["AD_Amount"]));
                                 grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

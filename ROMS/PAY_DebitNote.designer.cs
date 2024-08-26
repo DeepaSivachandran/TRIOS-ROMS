@@ -51,20 +51,12 @@
             this.lblVoucherNo = new System.Windows.Forms.Label();
             this.lblInvoiceDate2 = new System.Windows.Forms.Label();
             this.lblInvoiceNo2 = new System.Windows.Forms.Label();
-            this.chkVerified = new System.Windows.Forms.CheckBox();
-            this.chkCompleted = new System.Windows.Forms.CheckBox();
+            this.chkClosed = new System.Windows.Forms.CheckBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdReturnDC = new System.Windows.Forms.DataGridView();
             this.grpReason = new System.Windows.Forms.GroupBox();
-            this.btnView = new System.Windows.Forms.Button();
-            this.dpCreditNoteDate = new System.Windows.Forms.DateTimePicker();
-            this.dpDCreditNoteDate = new System.Windows.Forms.TextBox();
-            this.txtCrNo = new System.Windows.Forms.TextBox();
-            this.txtDCrNo = new System.Windows.Forms.TextBox();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtDAmount = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.cmbReasonForClosing = new System.Windows.Forms.ComboBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -140,10 +132,8 @@
             this.clmNettAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epReturnDc)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -282,8 +272,7 @@
             // grpExcessProduct
             // 
             this.grpExcessProduct.Controls.Add(this.groupBox2);
-            this.grpExcessProduct.Controls.Add(this.chkVerified);
-            this.grpExcessProduct.Controls.Add(this.chkCompleted);
+            this.grpExcessProduct.Controls.Add(this.chkClosed);
             this.grpExcessProduct.Controls.Add(this.lblNoRecordsFound);
             this.grpExcessProduct.Controls.Add(this.grdReturnDC);
             this.grpExcessProduct.Controls.Add(this.grpReason);
@@ -363,27 +352,16 @@
             this.lblInvoiceNo2.Text = "InvoiceNo";
             this.lblInvoiceNo2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // chkVerified
+            // chkClosed
             // 
-            this.chkVerified.AutoSize = true;
-            this.chkVerified.Location = new System.Drawing.Point(953, 445);
-            this.chkVerified.Name = "chkVerified";
-            this.chkVerified.Size = new System.Drawing.Size(70, 24);
-            this.chkVerified.TabIndex = 111111145;
-            this.chkVerified.Text = "Verified";
-            this.chkVerified.UseVisualStyleBackColor = true;
-            this.chkVerified.CheckedChanged += new System.EventHandler(this.ChkVerified_CheckedChanged);
-            // 
-            // chkCompleted
-            // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.Location = new System.Drawing.Point(1038, 445);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(86, 24);
-            this.chkCompleted.TabIndex = 111111144;
-            this.chkCompleted.Text = "Completed";
-            this.chkCompleted.UseVisualStyleBackColor = true;
-            this.chkCompleted.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
+            this.chkClosed.AutoSize = true;
+            this.chkClosed.Location = new System.Drawing.Point(1069, 446);
+            this.chkClosed.Name = "chkClosed";
+            this.chkClosed.Size = new System.Drawing.Size(57, 24);
+            this.chkClosed.TabIndex = 111111144;
+            this.chkClosed.Text = "Close";
+            this.chkClosed.UseVisualStyleBackColor = true;
+            this.chkClosed.CheckedChanged += new System.EventHandler(this.ChkCompleted_CheckedChanged);
             // 
             // lblNoRecordsFound
             // 
@@ -433,10 +411,8 @@
             this.clmNettAmount,
             this.clmPRID,
             this.clmUTID,
-            this.clmDMID,
             this.clmSLID,
-            this.clmRKID,
-            this.clmRemove});
+            this.clmRKID});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -458,91 +434,21 @@
             this.grdReturnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdReturnDC.Size = new System.Drawing.Size(1289, 324);
             this.grdReturnDC.TabIndex = 1111170;
-            this.grdReturnDC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReturnDC_CellContentClick);
             this.grdReturnDC.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReturnDC_DataBindingComplete);
             // 
             // grpReason
             // 
-            this.grpReason.Controls.Add(this.btnView);
-            this.grpReason.Controls.Add(this.dpCreditNoteDate);
-            this.grpReason.Controls.Add(this.dpDCreditNoteDate);
-            this.grpReason.Controls.Add(this.txtCrNo);
-            this.grpReason.Controls.Add(this.txtDCrNo);
             this.grpReason.Controls.Add(this.txtAmount);
             this.grpReason.Controls.Add(this.txtDAmount);
-            this.grpReason.Controls.Add(this.textBox10);
-            this.grpReason.Controls.Add(this.cmbReasonForClosing);
             this.grpReason.Location = new System.Drawing.Point(10, 340);
             this.grpReason.Name = "grpReason";
             this.grpReason.Size = new System.Drawing.Size(339, 142);
             this.grpReason.TabIndex = 5;
             this.grpReason.TabStop = false;
             // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(302, 20);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(31, 29);
-            this.btnView.TabIndex = 1;
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
-            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
-            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
-            // 
-            // dpCreditNoteDate
-            // 
-            this.dpCreditNoteDate.CustomFormat = "dd/MM/yyyy";
-            this.dpCreditNoteDate.Enabled = false;
-            this.dpCreditNoteDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpCreditNoteDate.Location = new System.Drawing.Point(116, 104);
-            this.dpCreditNoteDate.Name = "dpCreditNoteDate";
-            this.dpCreditNoteDate.Size = new System.Drawing.Size(183, 28);
-            this.dpCreditNoteDate.TabIndex = 4;
-            this.dpCreditNoteDate.ValueChanged += new System.EventHandler(this.DpCreditNoteDate_ValueChanged);
-            this.dpCreditNoteDate.Enter += new System.EventHandler(this.DpCreditNoteDate_Enter);
-            this.dpCreditNoteDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpCreditNoteDate_KeyDown);
-            this.dpCreditNoteDate.Leave += new System.EventHandler(this.DpCreditNoteDate_Leave);
-            // 
-            // dpDCreditNoteDate
-            // 
-            this.dpDCreditNoteDate.Enabled = false;
-            this.dpDCreditNoteDate.Location = new System.Drawing.Point(6, 104);
-            this.dpDCreditNoteDate.Name = "dpDCreditNoteDate";
-            this.dpDCreditNoteDate.ReadOnly = true;
-            this.dpDCreditNoteDate.Size = new System.Drawing.Size(110, 28);
-            this.dpDCreditNoteDate.TabIndex = 1111237;
-            this.dpDCreditNoteDate.Text = "Credit Note Date";
-            this.dpDCreditNoteDate.Visible = false;
-            // 
-            // txtCrNo
-            // 
-            this.txtCrNo.Location = new System.Drawing.Point(116, 76);
-            this.txtCrNo.MaxLength = 30;
-            this.txtCrNo.Name = "txtCrNo";
-            this.txtCrNo.Size = new System.Drawing.Size(183, 28);
-            this.txtCrNo.TabIndex = 3;
-            this.txtCrNo.Visible = false;
-            this.txtCrNo.Enter += new System.EventHandler(this.TxtCrNo_Enter);
-            this.txtCrNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCrNo_KeyDown);
-            this.txtCrNo.Leave += new System.EventHandler(this.TxtCrNo_Leave);
-            // 
-            // txtDCrNo
-            // 
-            this.txtDCrNo.Enabled = false;
-            this.txtDCrNo.Location = new System.Drawing.Point(6, 76);
-            this.txtDCrNo.Name = "txtDCrNo";
-            this.txtDCrNo.ReadOnly = true;
-            this.txtDCrNo.Size = new System.Drawing.Size(110, 28);
-            this.txtDCrNo.TabIndex = 1111235;
-            this.txtDCrNo.Text = "Credit Note No.";
-            this.txtDCrNo.Visible = false;
-            // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(116, 48);
+            this.txtAmount.Location = new System.Drawing.Point(116, 22);
             this.txtAmount.MaxLength = 8;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(183, 28);
@@ -556,35 +462,12 @@
             // txtDAmount
             // 
             this.txtDAmount.Enabled = false;
-            this.txtDAmount.Location = new System.Drawing.Point(6, 48);
+            this.txtDAmount.Location = new System.Drawing.Point(6, 22);
             this.txtDAmount.Name = "txtDAmount";
             this.txtDAmount.ReadOnly = true;
             this.txtDAmount.Size = new System.Drawing.Size(110, 28);
             this.txtDAmount.TabIndex = 1111225;
             this.txtDAmount.Text = "Amount";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(6, 20);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(110, 28);
-            this.textBox10.TabIndex = 1111224;
-            this.textBox10.Text = "Reason for closing";
-            // 
-            // cmbReasonForClosing
-            // 
-            this.cmbReasonForClosing.FormattingEnabled = true;
-            this.cmbReasonForClosing.Location = new System.Drawing.Point(116, 20);
-            this.cmbReasonForClosing.Name = "cmbReasonForClosing";
-            this.cmbReasonForClosing.Size = new System.Drawing.Size(183, 28);
-            this.cmbReasonForClosing.TabIndex = 0;
-            this.cmbReasonForClosing.SelectedIndexChanged += new System.EventHandler(this.CmbReasonForClosing_SelectedIndexChanged);
-            this.cmbReasonForClosing.Enter += new System.EventHandler(this.CmbReasonForClosing_Enter);
-            this.cmbReasonForClosing.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReasonForClosing_KeyDown);
-            this.cmbReasonForClosing.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReasonForClosing_KeyPress);
-            this.cmbReasonForClosing.Leave += new System.EventHandler(this.CmbReasonForClosing_Leave);
             // 
             // textBox7
             // 
@@ -1318,6 +1201,7 @@
             this.clmLocation.Name = "clmLocation";
             this.clmLocation.ReadOnly = true;
             this.clmLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmLocation.Visible = false;
             // 
             // clmRack
             // 
@@ -1325,6 +1209,7 @@
             this.clmRack.Name = "clmRack";
             this.clmRack.ReadOnly = true;
             this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmRack.Visible = false;
             // 
             // clmMRP
             // 
@@ -1419,14 +1304,6 @@
             this.clmUTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmUTID.Visible = false;
             // 
-            // clmDMID
-            // 
-            this.clmDMID.HeaderText = "DMID";
-            this.clmDMID.Name = "clmDMID";
-            this.clmDMID.ReadOnly = true;
-            this.clmDMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmDMID.Visible = false;
-            // 
             // clmSLID
             // 
             this.clmSLID.HeaderText = "SLID";
@@ -1442,15 +1319,6 @@
             this.clmRKID.ReadOnly = true;
             this.clmRKID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmRKID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.Visible = false;
             // 
             // PAY_DebitNote
             // 
@@ -1551,15 +1419,10 @@
         private System.Windows.Forms.GroupBox grpReason;
         public System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.TextBox txtDAmount;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.ComboBox cmbReasonForClosing;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox dpDCreditNoteDate;
-        public System.Windows.Forms.TextBox txtCrNo;
-        private System.Windows.Forms.TextBox txtDCrNo;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox grbSupplierDetails;
@@ -1577,13 +1440,10 @@
         private System.Windows.Forms.Label lblSalesmanName;
         public System.Windows.Forms.DataGridView grdRepDetails;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        private System.Windows.Forms.DateTimePicker dpCreditNoteDate;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.CheckBox chkCompleted;
+        private System.Windows.Forms.CheckBox chkClosed;
         private System.Windows.Forms.GroupBox grpInvoiceDetails;
         private System.Windows.Forms.Label lblInvoiceDate;
         private System.Windows.Forms.Label lblInvoiceNo;
-        public System.Windows.Forms.CheckBox chkVerified;
         public System.Windows.Forms.ToolStripButton tsbSupplier;
         public System.Windows.Forms.DateTimePicker dpReturnDCDate;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1608,9 +1468,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNettAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDMID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
-        private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
