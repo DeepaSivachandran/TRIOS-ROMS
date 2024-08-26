@@ -1513,7 +1513,7 @@ namespace ROMS
                                 if (cmbEntryType.SelectedValue.ToString() == "54") // GRN
                                 {
                                     grdGRN.Visible = true;
-                                    grdSupplierList.Columns["clmGrnMrp"].Visible = true;
+                                   // grdSupplierList.Columns["clmGrnMrp"].Visible = true;
                                     //grdSupplierList.Columns["clmMismatchQty"].ReadOnly = true;
                                 }
                                 gpPurchase.Enabled = false;
