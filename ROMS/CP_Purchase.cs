@@ -542,6 +542,11 @@ namespace ROMS
             txtDiscountamt.Enabled = false;
             txtOtherdiscount.Enabled = false;
             txtDamagecost.Enabled = false;
+            if(Convert.ToString(cmbEntryType.SelectedValue)=="54")
+            {
+                txtUnLoadingchargeGrn.Enabled = true;
+                txtFrightGrn.Enabled = true;
+            }
         }
         public void udfnPendingPOLoad()
         {
@@ -718,11 +723,7 @@ namespace ROMS
                             Convert.ToString(objDs.Tables[1].Rows[i]["Procount"]), Convert.ToString(objDs.Tables[1].Rows[i]["POID"]));
                         }
                     }
-                    else
-                    {
-                        lblFinishedNoRecord.Visible = true;
-                        lblFinishedNoRecord.BringToFront();
-                    }
+                   
                     if (objDs.Tables[2].Rows.Count != 0)
                     {
                         lblVerifyDateTime.Text = Convert.ToString(objDs.Tables[2].Rows[0]["VERIFIED1"]);
@@ -1249,6 +1250,8 @@ namespace ROMS
                             grdPurchaseList.Columns["clmDiscountValue"].ReadOnly = true;
                             grdPurchaseList.Columns["clmnetamt"].ReadOnly = true;
                             grdPurchaseList.Columns["clmCosting"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmHSNCode"].ReadOnly = true;
+                            grdPurchaseList.Columns["clmHSNGST"].ReadOnly = true;
                         }
                     }
                    
@@ -2383,7 +2386,7 @@ namespace ROMS
         {
             try
             {
-                if (PbSTS != "50")
+                if (PbSTS != "50"  || PbSTS=="70")
                 {
                     if (e.KeyCode == Keys.F4)
                     {
@@ -6665,6 +6668,7 @@ namespace ROMS
                             objTRN_PurchaseEntry1.paraEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
                             objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
                             objTRN_PurchaseEntry1.paraINVNo = txtInvoiceNo.Text.Trim();
+                            objTRN_PurchaseEntry1.paraGRNID = Convert.ToInt32(pbGRNNo);
                             objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                             result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
                             objspdservice.CloseConnection();
@@ -6702,6 +6706,7 @@ namespace ROMS
                                 objTRN_PurchaseEntry1.paraTinFlag = varTinFlag;
                                 objTRN_PurchaseEntry1.paraRefreshFlag = pbRefreshFlag;
                                 objTRN_PurchaseEntry1.paraINVNo = txtInvoiceNo.Text.Trim();
+                                objTRN_PurchaseEntry1.paraGRNID = Convert.ToInt32(pbGRNNo);
                                 objTRN_PurchaseEntry1.ParaPurchase_Products = objPurchaseentry;
                                 result2 = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry1);
                                 objspdservice.CloseConnection();
@@ -11081,7 +11086,7 @@ namespace ROMS
                 {
                     PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
                     PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
-                    if (varSupplierType != 30) //GSTIN registered supplier
+                    if (varSupplierType != 32) //32 -  GSTIN Unregistered supplier
                     {
                         PbNetamt = (PbTaxvalue + PbGstamt);
                     }
@@ -11094,7 +11099,7 @@ namespace ROMS
                 {
                     PbTaxvalue = (varPurchaseRate * varInvQty) ;
                     PbGstamt = ((PbTaxvalue * varHSNGSTValue) / 100);
-                    if (varSupplierType != 30) //GSTIN registered supplier
+                    if (varSupplierType != 32) //GSTIN Unregistered supplier
                     {
                         PbNetamt = (PbTaxvalue + PbGstamt - varCellDiscAmt);
                     }
@@ -11133,7 +11138,7 @@ namespace ROMS
                     decimal varNetAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmnetamt"].Value);
                     if (rbDiscountBefore.Checked == true)
                     {
-                        if (varSupplierType != 30) //GSTIN registered suppplier
+                        if (varSupplierType != 32) //GSTIN unregistered suppplier
                         {
                             varSubtotal = varSubtotal + varTaxValue;
                             varTaxTotal = varTaxTotal + varGstAmt;
@@ -11147,7 +11152,7 @@ namespace ROMS
                     if(rbDiscountAfter.Checked==true)
                     {
                         decimal varDiscountValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscountValue"].Value);
-                        if (varSupplierType != 30) //GSTIN registered suppplier
+                        if (varSupplierType != 32) //GSTIN unregistered suppplier
                         {
                             varSubtotal = varSubtotal + varDiscountValue;
                             varTaxTotal = varTaxTotal + varGstAmt;
@@ -11171,7 +11176,7 @@ namespace ROMS
                     }
                 }
                 lblSubtotal.Text = Convert.ToString(varSubtotal);
-                if (varSupplierType != 30) //GSTIN registered suppplier
+                if (varSupplierType != 32) //GSTIN unregistered suppplier
                 {
                     lblGstamt.Text = varTaxTotal.ToString("0.00");
                     lblTotal.Text = (varSubtotal + varTaxTotal).ToString("0.00");
