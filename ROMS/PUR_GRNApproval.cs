@@ -945,7 +945,7 @@ namespace ROMS
                         grdGrnApproval.Rows[i].Cells["clmDebitQty"].Style.BackColor = Color.LightPink;
                         varErrorFlag = false;
                     }
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value)!=0 && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value)=="")
+                    if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0" || (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmDebitQty"].Value) != "0")) && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value)=="")
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(131);
@@ -953,14 +953,18 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
                     }
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != 0 && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "233") //Reason should be amount credit accepted if return quantity entered
+                    if((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0"  || (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmDebitQty"].Value) != "0"))  
+                        && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "233") //Reason should be amount credit accepted if return quantity entered or debit note entered
                     {
-                        //grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
-                        //SPDataService objDServ = new SPDataService();
-                        //string varMessage = objDServ.udfnGetMessages(131);
-                        //objDServ.CloseConnection();
-                        //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        //varErrorFlag = false;
+                        if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0"))
+                        {grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink; }
+                        if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmDebitQty"].Value) != "0"))
+                        { grdGrnApproval.Rows[i].Cells["clmDebitQty"].Style.BackColor = Color.LightPink; }
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(131);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrorFlag = false;
                     }
                 }
                 if (varQtyErr != 0)
