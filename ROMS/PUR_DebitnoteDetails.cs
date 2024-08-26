@@ -22,7 +22,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus, varMasterType="0";
-        public string varDcCode = "0";
+        public string varDebitID = "0";
         public PUR_DebitnoteDetails()
         {
             InitializeComponent();
@@ -75,43 +75,23 @@ namespace ROMS
                 //********** To display a data in a grid  ****************** 
                 int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0;
                 //Varmaster type means which form is access this form
-                if (varMasterType == "1")
-                {
-                    varSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
-                    varScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
-                    varcompanyid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
-                }
-                else if (varMasterType == "3")
-                {
-                    varSupplierid = Convert.ToInt32(MainForm.objPUR_GRNDetails.lblSupplierCode.Text);
-                    varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNDetails.lblschedule.Text);
-                    varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNDetails.cmbConcern.SelectedValue);
-                }
-                else if (varMasterType == "2")
-                {
-                    varSupplierid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblSupplierCode.Text);
-                    varScheduleid = Convert.ToInt32(MainForm.objPUR_GRNEntry.lblschedule.Text);
-                    varcompanyid = Convert.ToInt32(MainForm.objPUR_GRNEntry.cmbConcern.SelectedValue);
-                }
-                else if (varMasterType == "4")
-                {
-                    varSupplierid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblSupplierCode.Text);
-                    varScheduleid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblschedule.Text);
-                    varcompanyid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.cmbConcern.SelectedValue);
-                }
+                varSupplierid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblSupplierCode.Text);
+                varScheduleid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblschedule.Text);
+                varcompanyid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.cmbConcern.SelectedValue);
+
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                // objDs = objdserv.udfnReturnDC(1, varSupplierid, varScheduleid, varcompanyid, varDcCode,0,0,0,0);
-                TRN_ReturnDC objTRN_PurchaseReturnDC = new TRN_ReturnDC();
-                objTRN_PurchaseReturnDC.paraViewType = 1;
-                objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRN_PurchaseReturnDC.paraCompanyId = varcompanyid;
-                objTRN_PurchaseReturnDC.ParaSupplierId = varSupplierid;
-                objTRN_PurchaseReturnDC.ParaScheduleID = varScheduleid;
-                objTRN_PurchaseReturnDC.paraDcID =Convert.ToInt32(varDcCode);
-                objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
+                TRN_DebitNote objTRN_DebitNote = new TRN_DebitNote();
+                objTRN_DebitNote.ViewType = 2;
+                objTRN_DebitNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_DebitNote.paraCompanyCode = varcompanyid;
+                objTRN_DebitNote.paraSupplierID = varSupplierid;
+                objTRN_DebitNote.paraScheduleID = varScheduleid;
+                objTRN_DebitNote.paraDebitID =Convert.ToInt32(varDebitID);
+                objTRN_DebitNote.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnDebitNoteList(objTRN_DebitNote);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -125,14 +105,14 @@ namespace ROMS
 
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdPurchaseOrder.Rows.Add(objDs.Tables[0].Rows[i]["SINO"], objDs.Tables[0].Rows[i]["PICODE"], objDs.Tables[0].Rows[i]["PRODUCT"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["EXPIRY"], objDs.Tables[0].Rows[i]["BATCH"], objDs.Tables[0].Rows[i]["Approximate Rate"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["Taxable Amt"], objDs.Tables[0].Rows[i]["Gst%"], objDs.Tables[0].Rows[i]["GST Amt"], objDs.Tables[0].Rows[i]["Nett Amt"], objDs.Tables[0].Rows[i]["ID"]);
-                                grdPurchaseOrder.Columns["clmApproxRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPurchaseOrder.Columns["clmtotqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPurchaseOrder.Columns["clmTaxableAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPurchaseOrder.Columns["clmgstamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPurchaseOrder.Columns["clmnettamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdPurchaseOrder.Columns["clmunit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdPurchaseOrder.Columns["clmExpiry"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdDebitnote.Rows.Add(objDs.Tables[0].Rows[i]["S.No"], objDs.Tables[0].Rows[i]["PICode"], objDs.Tables[0].Rows[i]["Product"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["ExpiryDate"], objDs.Tables[0].Rows[i]["Batch"], objDs.Tables[0].Rows[i]["Approximate Rate"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["Taxable Amt"], objDs.Tables[0].Rows[i]["Gst%"], objDs.Tables[0].Rows[i]["GST Amt"], objDs.Tables[0].Rows[i]["Nett Amt"], objDs.Tables[0].Rows[i]["ID"]);
+                                grdDebitnote.Columns["clmApproxRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdDebitnote.Columns["clmtotqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdDebitnote.Columns["clmTaxableAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdDebitnote.Columns["clmgstamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdDebitnote.Columns["clmnettamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdDebitnote.Columns["clmunit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdDebitnote.Columns["clmExpiry"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             }
                         }
                         else
@@ -142,11 +122,10 @@ namespace ROMS
                         }
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
-                            txtDLNo.Text= objDs.Tables[1].Rows[0]["DCNO"].ToString();
-                            txtReason.Text= objDs.Tables[1].Rows[0]["REASON"].ToString();
-                            txtCreatedBy.Text= objDs.Tables[1].Rows[0]["CREATEDBY"].ToString();
-                            txtCreatedOn.Text= objDs.Tables[1].Rows[0]["CREATEDON"].ToString();
-                        } 
+                            txtDLNo.Text= objDs.Tables[1].Rows[0]["DebitNo"].ToString();
+                            txtCreatedBy.Text= objDs.Tables[1].Rows[0]["CreatedBy"].ToString();
+                            txtCreatedOn.Text= objDs.Tables[1].Rows[0]["CreatedOn"].ToString();
+                        }
                     }
                     else
                     {

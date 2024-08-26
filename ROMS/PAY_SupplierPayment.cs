@@ -1038,7 +1038,7 @@ namespace ROMS
                             grdSupplierPayment.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Discount Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]),0.00, Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]), 0,Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),Convert.ToString(objDs.Tables[0].Rows[i]["RetStatus"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]));
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Discount Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]),0.00, Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]), 0,Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),Convert.ToString(objDs.Tables[0].Rows[i]["RetStatus"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[0].Rows[i]["DNID"]));
                                 grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 decimal varAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmInvoiceAmnt"].Value);
@@ -1675,11 +1675,26 @@ namespace ROMS
                             case "InvoiceNo":
                                 if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                                 {
-                                    string cellPOValue = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmREDDCID"].Value);
+                                    string cellDCID = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmREDDCID"].Value);
                                     MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
                                     MainForm.objPUR_PurchaseOrderDamage.varMasterType = "4";
-                                    MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellPOValue);
+                                    MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(cellDCID);
                                     MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                        {
+                            case "InvoiceNo":
+                                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                                {
+                                    string cellDebitID = Convert.ToString(grdReurnDC.Rows[e.RowIndex].Cells["clmREDDCID"].Value);
+                                    MainForm.objPUR_DebitnoteDetails = new PUR_DebitnoteDetails();
+                                    MainForm.objPUR_DebitnoteDetails.varDebitID = Convert.ToString(cellDebitID);
+                                    MainForm.objPUR_DebitnoteDetails.ShowDialog();
                                 }
                                 break;
                         }
@@ -2384,7 +2399,7 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Disc Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Advance Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), Convert.ToString(objDs.Tables[1].Rows[i]["status"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Status"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]));
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Disc Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Purchase Return Adjustment"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Advance Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), Convert.ToString(objDs.Tables[1].Rows[i]["status"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Status"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[1].Rows[i]["DNID"]));
                                 dtPayment.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYI_STSID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), 0, 0, Convert.ToDecimal(objDs.Tables[1].Rows[i]["Disc Amount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]));
                                 //dtAdvance.Rows.Add(Convert.ToInt32(objDs.Tables[2].Rows[i]["PAYAD_ADID"]), Convert.ToInt32(objDs.Tables[2].Rows[i]["PAYAD_PURID"]), Convert.ToDecimal(objDs.Tables[2].Rows[i]["AD_CurrentBalance"]), 0, Convert.ToDecimal(objDs.Tables[2].Rows[i]["PAYAD_PayedAdvanceAmnt"]), Convert.ToDecimal(objDs.Tables[2].Rows[i]["AD_Amount"]));
                                 grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

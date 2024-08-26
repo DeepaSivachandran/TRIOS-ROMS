@@ -46,6 +46,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsSupplierPayment = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.lblAmount = new System.Windows.Forms.Label();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.txtBank = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
@@ -56,6 +57,10 @@
             this.label33 = new System.Windows.Forms.Label();
             this.btnAdvance = new System.Windows.Forms.Button();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
+            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReturnAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmREDDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblRupee = new System.Windows.Forms.Label();
             this.l = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
@@ -79,27 +84,6 @@
             this.txtChequeDate = new System.Windows.Forms.TextBox();
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
             this.grdSupplierPayment = new System.Windows.Forms.DataGridView();
-            this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmvoucherno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTaxableAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDiscAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReturnAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAdvanceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPayAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPAYIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReturnSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDISCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPaymentAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmenteredBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmApprovedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
             this.lblReturn = new System.Windows.Forms.Label();
             this.lblSuppliername = new System.Windows.Forms.Label();
@@ -125,11 +109,28 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epSupplier = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblAmount = new System.Windows.Forms.Label();
-            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReturnAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmREDDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmvoucherno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTaxableAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDiscAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReturnAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAdvanceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPayAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPAYIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReturnSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDISCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPaymentAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmenteredBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmApprovedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDebitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -200,6 +201,16 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 643);
             this.pnlinward.TabIndex = 36;
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Location = new System.Drawing.Point(825, 618);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(41, 20);
+            this.lblAmount.TabIndex = 111111148;
+            this.lblAmount.Text = "label1";
+            this.lblAmount.Visible = false;
             // 
             // cmbBank
             // 
@@ -351,6 +362,33 @@
             this.grdReurnDC.Size = new System.Drawing.Size(355, 108);
             this.grdReurnDC.TabIndex = 111111138;
             this.grdReurnDC.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentDoubleClick);
+            // 
+            // InvoiceNo
+            // 
+            this.InvoiceNo.HeaderText = "Trans No.";
+            this.InvoiceNo.Name = "InvoiceNo";
+            this.InvoiceNo.ReadOnly = true;
+            this.InvoiceNo.Width = 102;
+            // 
+            // DCDate
+            // 
+            this.DCDate.HeaderText = "Trans Date";
+            this.DCDate.Name = "DCDate";
+            this.DCDate.ReadOnly = true;
+            // 
+            // clmReturnAmnt
+            // 
+            this.clmReturnAmnt.HeaderText = "Amount";
+            this.clmReturnAmnt.Name = "clmReturnAmnt";
+            this.clmReturnAmnt.ReadOnly = true;
+            this.clmReturnAmnt.Width = 150;
+            // 
+            // clmREDDCID
+            // 
+            this.clmREDDCID.HeaderText = "ID";
+            this.clmREDDCID.Name = "clmREDDCID";
+            this.clmREDDCID.ReadOnly = true;
+            this.clmREDDCID.Visible = false;
             // 
             // lblRupee
             // 
@@ -624,7 +662,8 @@
             this.clmDISCID,
             this.clmPaymentAmount,
             this.clmenteredBy,
-            this.clmApprovedBy});
+            this.clmApprovedBy,
+            this.clmDebitID});
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -654,169 +693,6 @@
             this.grdSupplierPayment.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdSupplierPayment_CurrentCellDirtyStateChanged);
             this.grdSupplierPayment.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdSupplierPayment_EditingControlShowing);
             this.grdSupplierPayment.SelectionChanged += new System.EventHandler(this.GrdSupplierPayment_SelectionChanged);
-            // 
-            // clmcheck
-            // 
-            this.clmcheck.Frozen = true;
-            this.clmcheck.HeaderText = "";
-            this.clmcheck.Name = "clmcheck";
-            this.clmcheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmcheck.Width = 50;
-            // 
-            // clmdsno
-            // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmdsno.DefaultCellStyle = dataGridViewCellStyle5;
-            this.clmdsno.Frozen = true;
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.ReadOnly = true;
-            this.clmdsno.Width = 50;
-            // 
-            // clmVoucherDate
-            // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmVoucherDate.DefaultCellStyle = dataGridViewCellStyle6;
-            this.clmVoucherDate.Frozen = true;
-            this.clmVoucherDate.HeaderText = "Voucher Date";
-            this.clmVoucherDate.Name = "clmVoucherDate";
-            this.clmVoucherDate.ReadOnly = true;
-            this.clmVoucherDate.Width = 90;
-            // 
-            // clmvoucherno
-            // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmvoucherno.DefaultCellStyle = dataGridViewCellStyle7;
-            this.clmvoucherno.Frozen = true;
-            this.clmvoucherno.HeaderText = "Voucher No.";
-            this.clmvoucherno.Name = "clmvoucherno";
-            this.clmvoucherno.ReadOnly = true;
-            // 
-            // clmInvoiceDate
-            // 
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle8;
-            this.clmInvoiceDate.Frozen = true;
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
-            // 
-            // clmInvoiceNo
-            // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmInvoiceNo.DefaultCellStyle = dataGridViewCellStyle9;
-            this.clmInvoiceNo.Frozen = true;
-            this.clmInvoiceNo.HeaderText = "Invoice No";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
-            // 
-            // clmTaxableAmnt
-            // 
-            this.clmTaxableAmnt.HeaderText = "Taxable Amount";
-            this.clmTaxableAmnt.Name = "clmTaxableAmnt";
-            this.clmTaxableAmnt.ReadOnly = true;
-            // 
-            // clmTaxAmount
-            // 
-            this.clmTaxAmount.HeaderText = "Tax Amount";
-            this.clmTaxAmount.Name = "clmTaxAmount";
-            this.clmTaxAmount.ReadOnly = true;
-            this.clmTaxAmount.Width = 80;
-            // 
-            // clmInvoiceAmnt
-            // 
-            this.clmInvoiceAmnt.HeaderText = "Invoice Amount";
-            this.clmInvoiceAmnt.Name = "clmInvoiceAmnt";
-            this.clmInvoiceAmnt.ReadOnly = true;
-            // 
-            // clmDiscAmount
-            // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmDiscAmount.DefaultCellStyle = dataGridViewCellStyle10;
-            this.clmDiscAmount.HeaderText = "Discount Amount";
-            this.clmDiscAmount.Name = "clmDiscAmount";
-            this.clmDiscAmount.ReadOnly = true;
-            this.clmDiscAmount.Width = 120;
-            // 
-            // clmReturnAmt
-            // 
-            this.clmReturnAmt.HeaderText = "Purchase Return Adjustment";
-            this.clmReturnAmt.Name = "clmReturnAmt";
-            this.clmReturnAmt.ReadOnly = true;
-            this.clmReturnAmt.Width = 180;
-            // 
-            // clmAdvanceAmnt
-            // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmAdvanceAmnt.DefaultCellStyle = dataGridViewCellStyle11;
-            this.clmAdvanceAmnt.HeaderText = "Advance Amount";
-            this.clmAdvanceAmnt.Name = "clmAdvanceAmnt";
-            this.clmAdvanceAmnt.ReadOnly = true;
-            this.clmAdvanceAmnt.Width = 120;
-            // 
-            // clmPayAmount
-            // 
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle12;
-            this.clmPayAmount.HeaderText = "Pay Amount";
-            this.clmPayAmount.Name = "clmPayAmount";
-            this.clmPayAmount.ReadOnly = true;
-            // 
-            // clmID
-            // 
-            this.clmID.HeaderText = "ID";
-            this.clmID.Name = "clmID";
-            this.clmID.ReadOnly = true;
-            this.clmID.Visible = false;
-            // 
-            // clmPAYIID
-            // 
-            this.clmPAYIID.HeaderText = "PAYIID";
-            this.clmPAYIID.Name = "clmPAYIID";
-            this.clmPAYIID.ReadOnly = true;
-            this.clmPAYIID.Visible = false;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            this.clmStatus.Width = 150;
-            // 
-            // clmReturnSts
-            // 
-            this.clmReturnSts.HeaderText = "Return Status";
-            this.clmReturnSts.Name = "clmReturnSts";
-            this.clmReturnSts.ReadOnly = true;
-            this.clmReturnSts.Visible = false;
-            // 
-            // clmDISCID
-            // 
-            this.clmDISCID.HeaderText = "DISCID";
-            this.clmDISCID.Name = "clmDISCID";
-            this.clmDISCID.ReadOnly = true;
-            this.clmDISCID.Visible = false;
-            // 
-            // clmPaymentAmount
-            // 
-            this.clmPaymentAmount.HeaderText = "PaymentAmount";
-            this.clmPaymentAmount.Name = "clmPaymentAmount";
-            this.clmPaymentAmount.ReadOnly = true;
-            this.clmPaymentAmount.Visible = false;
-            // 
-            // clmenteredBy
-            // 
-            this.clmenteredBy.HeaderText = "Entered By";
-            this.clmenteredBy.Name = "clmenteredBy";
-            this.clmenteredBy.ReadOnly = true;
-            // 
-            // clmApprovedBy
-            // 
-            this.clmApprovedBy.HeaderText = "Approved By";
-            this.clmApprovedBy.Name = "clmApprovedBy";
-            this.clmApprovedBy.ReadOnly = true;
             // 
             // grbSupplierDetails
             // 
@@ -1107,42 +983,173 @@
             // 
             this.epSupplier.ContainerControl = this;
             // 
-            // lblAmount
+            // clmcheck
             // 
-            this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(825, 618);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(41, 20);
-            this.lblAmount.TabIndex = 111111148;
-            this.lblAmount.Text = "label1";
-            this.lblAmount.Visible = false;
+            this.clmcheck.Frozen = true;
+            this.clmcheck.HeaderText = "";
+            this.clmcheck.Name = "clmcheck";
+            this.clmcheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmcheck.Width = 50;
             // 
-            // InvoiceNo
+            // clmdsno
             // 
-            this.InvoiceNo.HeaderText = "Trans No.";
-            this.InvoiceNo.Name = "InvoiceNo";
-            this.InvoiceNo.ReadOnly = true;
-            this.InvoiceNo.Width = 102;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmdsno.DefaultCellStyle = dataGridViewCellStyle5;
+            this.clmdsno.Frozen = true;
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            this.clmdsno.ReadOnly = true;
+            this.clmdsno.Width = 50;
             // 
-            // DCDate
+            // clmVoucherDate
             // 
-            this.DCDate.HeaderText = "Trans Date";
-            this.DCDate.Name = "DCDate";
-            this.DCDate.ReadOnly = true;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmVoucherDate.DefaultCellStyle = dataGridViewCellStyle6;
+            this.clmVoucherDate.Frozen = true;
+            this.clmVoucherDate.HeaderText = "Voucher Date";
+            this.clmVoucherDate.Name = "clmVoucherDate";
+            this.clmVoucherDate.ReadOnly = true;
+            this.clmVoucherDate.Width = 90;
             // 
-            // clmReturnAmnt
+            // clmvoucherno
             // 
-            this.clmReturnAmnt.HeaderText = "Amount";
-            this.clmReturnAmnt.Name = "clmReturnAmnt";
-            this.clmReturnAmnt.ReadOnly = true;
-            this.clmReturnAmnt.Width = 150;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmvoucherno.DefaultCellStyle = dataGridViewCellStyle7;
+            this.clmvoucherno.Frozen = true;
+            this.clmvoucherno.HeaderText = "Voucher No.";
+            this.clmvoucherno.Name = "clmvoucherno";
+            this.clmvoucherno.ReadOnly = true;
             // 
-            // clmREDDCID
+            // clmInvoiceDate
             // 
-            this.clmREDDCID.HeaderText = "ID";
-            this.clmREDDCID.Name = "clmREDDCID";
-            this.clmREDDCID.ReadOnly = true;
-            this.clmREDDCID.Visible = false;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle8;
+            this.clmInvoiceDate.Frozen = true;
+            this.clmInvoiceDate.HeaderText = "Invoice Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
+            // 
+            // clmInvoiceNo
+            // 
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmInvoiceNo.DefaultCellStyle = dataGridViewCellStyle9;
+            this.clmInvoiceNo.Frozen = true;
+            this.clmInvoiceNo.HeaderText = "Invoice No";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
+            // 
+            // clmTaxableAmnt
+            // 
+            this.clmTaxableAmnt.HeaderText = "Taxable Amount";
+            this.clmTaxableAmnt.Name = "clmTaxableAmnt";
+            this.clmTaxableAmnt.ReadOnly = true;
+            // 
+            // clmTaxAmount
+            // 
+            this.clmTaxAmount.HeaderText = "Tax Amount";
+            this.clmTaxAmount.Name = "clmTaxAmount";
+            this.clmTaxAmount.ReadOnly = true;
+            this.clmTaxAmount.Width = 80;
+            // 
+            // clmInvoiceAmnt
+            // 
+            this.clmInvoiceAmnt.HeaderText = "Invoice Amount";
+            this.clmInvoiceAmnt.Name = "clmInvoiceAmnt";
+            this.clmInvoiceAmnt.ReadOnly = true;
+            // 
+            // clmDiscAmount
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmDiscAmount.DefaultCellStyle = dataGridViewCellStyle10;
+            this.clmDiscAmount.HeaderText = "Discount Amount";
+            this.clmDiscAmount.Name = "clmDiscAmount";
+            this.clmDiscAmount.ReadOnly = true;
+            this.clmDiscAmount.Width = 120;
+            // 
+            // clmReturnAmt
+            // 
+            this.clmReturnAmt.HeaderText = "Purchase Return Adjustment";
+            this.clmReturnAmt.Name = "clmReturnAmt";
+            this.clmReturnAmt.ReadOnly = true;
+            this.clmReturnAmt.Width = 180;
+            // 
+            // clmAdvanceAmnt
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmAdvanceAmnt.DefaultCellStyle = dataGridViewCellStyle11;
+            this.clmAdvanceAmnt.HeaderText = "Advance Amount";
+            this.clmAdvanceAmnt.Name = "clmAdvanceAmnt";
+            this.clmAdvanceAmnt.ReadOnly = true;
+            this.clmAdvanceAmnt.Width = 120;
+            // 
+            // clmPayAmount
+            // 
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle12;
+            this.clmPayAmount.HeaderText = "Pay Amount";
+            this.clmPayAmount.Name = "clmPayAmount";
+            this.clmPayAmount.ReadOnly = true;
+            // 
+            // clmID
+            // 
+            this.clmID.HeaderText = "ID";
+            this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
+            this.clmID.Visible = false;
+            // 
+            // clmPAYIID
+            // 
+            this.clmPAYIID.HeaderText = "PAYIID";
+            this.clmPAYIID.Name = "clmPAYIID";
+            this.clmPAYIID.ReadOnly = true;
+            this.clmPAYIID.Visible = false;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 150;
+            // 
+            // clmReturnSts
+            // 
+            this.clmReturnSts.HeaderText = "Return Status";
+            this.clmReturnSts.Name = "clmReturnSts";
+            this.clmReturnSts.ReadOnly = true;
+            this.clmReturnSts.Visible = false;
+            // 
+            // clmDISCID
+            // 
+            this.clmDISCID.HeaderText = "DISCID";
+            this.clmDISCID.Name = "clmDISCID";
+            this.clmDISCID.ReadOnly = true;
+            this.clmDISCID.Visible = false;
+            // 
+            // clmPaymentAmount
+            // 
+            this.clmPaymentAmount.HeaderText = "PaymentAmount";
+            this.clmPaymentAmount.Name = "clmPaymentAmount";
+            this.clmPaymentAmount.ReadOnly = true;
+            this.clmPaymentAmount.Visible = false;
+            // 
+            // clmenteredBy
+            // 
+            this.clmenteredBy.HeaderText = "Entered By";
+            this.clmenteredBy.Name = "clmenteredBy";
+            this.clmenteredBy.ReadOnly = true;
+            // 
+            // clmApprovedBy
+            // 
+            this.clmApprovedBy.HeaderText = "Approved By";
+            this.clmApprovedBy.Name = "clmApprovedBy";
+            this.clmApprovedBy.ReadOnly = true;
+            // 
+            // clmDebitID
+            // 
+            this.clmDebitID.HeaderText = "DebitID";
+            this.clmDebitID.Name = "clmDebitID";
             // 
             // PAY_SupplierPayment
             // 
@@ -1240,6 +1247,13 @@
         public System.Windows.Forms.Label lblSubtotal;
         public System.Windows.Forms.Button btnClear;
         public System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.ComboBox cmbBank;
+        private System.Windows.Forms.TextBox txtBank;
+        private System.Windows.Forms.Label lblAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnAmnt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmREDDCID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmVoucherDate;
@@ -1261,12 +1275,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPaymentAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmenteredBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmApprovedBy;
-        private System.Windows.Forms.ComboBox cmbBank;
-        private System.Windows.Forms.TextBox txtBank;
-        private System.Windows.Forms.Label lblAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnAmnt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmREDDCID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDebitID;
     }
 }
