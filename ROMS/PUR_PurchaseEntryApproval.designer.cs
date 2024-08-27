@@ -3398,6 +3398,7 @@
             this.clmGrnMrp.Name = "clmGrnMrp";
             this.clmGrnMrp.ReadOnly = true;
             this.clmGrnMrp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmGrnMrp.Visible = false;
             // 
             // clmMRP
             // 
