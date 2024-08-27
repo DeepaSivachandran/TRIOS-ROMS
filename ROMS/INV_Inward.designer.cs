@@ -121,6 +121,11 @@
             this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMRPFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmShelflifeenable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchnoEnable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpiryErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -611,6 +616,11 @@
             this.clmUnitDecimal,
             this.clmMRPFlag,
             this.clmRMFlag,
+            this.clmShelflifeenable,
+            this.clmBatchStatus,
+            this.clmBatchnoEnable,
+            this.clmExpiryErr,
+            this.clmBatchErr,
             this.clmremove});
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
@@ -629,7 +639,6 @@
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdInward.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.grdInward.RowTemplate.Height = 25;
-            this.grdInward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdInward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdInward.ShowRowErrors = false;
             this.grdInward.Size = new System.Drawing.Size(1340, 422);
@@ -637,6 +646,7 @@
             this.grdInward.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInward_CellContentClick);
             this.grdInward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInward_CellEndEdit);
             this.grdInward.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdInward_CellLeave);
+            this.grdInward.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdInward_CurrentCellDirtyStateChanged);
             this.grdInward.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInward_DataBindingComplete);
             this.grdInward.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdInward_EditingControlShowing);
             this.grdInward.Enter += new System.EventHandler(this.GrdInward_Enter);
@@ -997,7 +1007,6 @@
             this.clmbatchno.Frozen = true;
             this.clmbatchno.HeaderText = "Batch No.";
             this.clmbatchno.Name = "clmbatchno";
-            this.clmbatchno.ReadOnly = true;
             this.clmbatchno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmbatchno.Width = 80;
             // 
@@ -1096,6 +1105,36 @@
             this.clmRMFlag.Name = "clmRMFlag";
             this.clmRMFlag.ReadOnly = true;
             this.clmRMFlag.Visible = false;
+            // 
+            // clmShelflifeenable
+            // 
+            this.clmShelflifeenable.HeaderText = "ShelflifeEnable";
+            this.clmShelflifeenable.Name = "clmShelflifeenable";
+            this.clmShelflifeenable.Visible = false;
+            // 
+            // clmBatchStatus
+            // 
+            this.clmBatchStatus.HeaderText = "Batch Status";
+            this.clmBatchStatus.Name = "clmBatchStatus";
+            this.clmBatchStatus.Visible = false;
+            // 
+            // clmBatchnoEnable
+            // 
+            this.clmBatchnoEnable.HeaderText = "Batchno Enable";
+            this.clmBatchnoEnable.Name = "clmBatchnoEnable";
+            this.clmBatchnoEnable.Visible = false;
+            // 
+            // clmExpiryErr
+            // 
+            this.clmExpiryErr.HeaderText = "Expiry Error";
+            this.clmExpiryErr.Name = "clmExpiryErr";
+            this.clmExpiryErr.Visible = false;
+            // 
+            // clmBatchErr
+            // 
+            this.clmBatchErr.HeaderText = "Batch Err";
+            this.clmBatchErr.Name = "clmBatchErr";
+            this.clmBatchErr.Visible = false;
             // 
             // clmremove
             // 
@@ -1225,6 +1264,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMRPFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflifeenable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchnoEnable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryErr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchErr;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
     }
 }
