@@ -553,9 +553,9 @@ namespace ROMS
                                 }
                                 else
                                 {
+                                    varSaveDisable = 1;
                                     if (PbDiscID != 0)
                                     {
-                                        varSaveDisable = 1;
                                         grdInvoice.Rows[i].Cells["clmCheck"].Value = true;
                                     }
                                 }
@@ -691,13 +691,24 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     VarErrorFlag = true;
                 }
-                if(Convert.ToDecimal(txtInvoiceamt.Text) > varInvoiceAmnt)
+                if (Convert.ToString(txtInvoiceamt.Text.Trim()) != "")
                 {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(145);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    VarErrorFlag = true;
+                    if (Convert.ToDecimal(txtInvoiceamt.Text) > varInvoiceAmnt)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(145);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        VarErrorFlag = true;
+                    }
+                    if (Convert.ToDecimal(txtInvoiceamt.Text) == 0)
+                    {
+                        epDiscount.SetError(txtInvoiceamt, "Please enter valid discount amount");
+                        txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpDiscamt.ShowAlways = true;
+                        tpDiscamt.Show("Please enter valid discount amount", txtInvoiceamt, 5000);
+                        VarErrorFlag = true;
+                    }
                 }
                 if (VarErrorFlag == false)
                 {
