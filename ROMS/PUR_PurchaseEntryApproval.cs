@@ -505,7 +505,7 @@ namespace ROMS
                             , Convert.ToString(objDs.Tables[0].Rows[i]["GRNID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["TotQty"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNQty"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["DCQty"]), 0, Convert.ToString(objDs.Tables[0].Rows[i]["GRNPR_PRFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["GRNPRID"]),
                             Convert.ToInt32(objDs.Tables[0].Rows[i]["InvFlag"]),Convert.ToString(objDs.Tables[0].Rows[i]["HSNID"]));
-                            grdSupplierList.Columns["clmGrnMrp"].Visible = true;
+                            //grdSupplierList.Columns["clmGrnMrp"].Visible = true;
                             // grdSupplierList.Columns["clmAddPro"].Visible = true;
                             grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
@@ -939,7 +939,7 @@ namespace ROMS
                                 {
                                     // grdPODetails.Visible = true;
                                     grdGRN.Visible = true;
-                                    grdSupplierList.Columns["clmGrnMrp"].Visible = true;
+                                   // grdSupplierList.Columns["clmGrnMrp"].Visible = true;
                                 }
                                 if (cmbEntryType.SelectedValue.ToString() == "55") // PO
                                 {
