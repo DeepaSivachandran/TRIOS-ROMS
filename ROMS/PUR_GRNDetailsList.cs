@@ -145,7 +145,7 @@ namespace ROMS
                 {
                     lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
                 }
-                grdGRNList.Columns["clmCheck"].ReadOnly = false;
+                //grdGRNList.Columns["clmCheck"].ReadOnly = false;
             }
             catch (Exception ex)
             {
@@ -416,7 +416,7 @@ namespace ROMS
                     grdGRNList.Columns["clmPrint"].ReadOnly = true;
                     grdGRNList.Columns["Tot Pro"].ReadOnly = true;
                     grdGRNList.Columns["Payment Mode"].ReadOnly = true;
-                    grdGRNList.Columns["clmCheck"].ReadOnly = false;
+                    //grdGRNList.Columns["clmCheck"].ReadOnly = false;
                 }
             }
             
@@ -1718,6 +1718,10 @@ namespace ROMS
                         Check.ReadOnly = true;
                         //Check.Style.BackColor = Color.LightGray;
                     }
+                    else
+                    {
+                        grdGRNList.Rows[i].Cells["clmCheck"].ReadOnly = false;
+                    }
                 } 
                 
                 grdGRNList.Columns["ClmEdit"].Frozen = true;
@@ -1734,7 +1738,7 @@ namespace ROMS
                 grdGRNList.Columns["GRN Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdGRNList.Columns["Overall Status"].Frozen = true;
                 grdGRNList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdGRNList.Columns["clmCheck"].ReadOnly = true;
+                //grdGRNList.Columns["clmCheck"].ReadOnly = true;
                 //grdGRNList.Columns["GRN No."].Frozen = true;
                 //grdGRNList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdGRNList.Columns["GRN Date"].Frozen = true;

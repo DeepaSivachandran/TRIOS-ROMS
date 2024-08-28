@@ -831,6 +831,7 @@ namespace ROMS
                                     grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    grdReturnDC.Columns["clmFreeQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["clmTax"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["clmGSTAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     grdReturnDC.Columns["clmNettAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1451,7 +1452,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    // dpDCDate.Focus();
+                    if (Convert.ToInt32(cmbReason.SelectedValue)==203)
+                    {
+                        txtProductNamePICode.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2564,6 +2568,7 @@ namespace ROMS
                             }
                     }
                     txtProductNamePICode.Focus();
+                    txtProductNamePICode.SelectionStart = txtProductNamePICode.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -2884,6 +2889,7 @@ namespace ROMS
                 grdReturnDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 grdReturnDC.Columns["clmApprox"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdReturnDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdReturnDC.Columns["clmFreeQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdReturnDC.Columns["clmTax"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdReturnDC.Columns["clmGSTAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdReturnDC.Columns["clmNettAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

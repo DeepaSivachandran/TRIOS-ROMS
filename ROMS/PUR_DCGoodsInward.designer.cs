@@ -33,9 +33,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_DCGoodsInward));
             this.epLocation = new System.Windows.Forms.ErrorProvider(this.components);
             this.label23 = new System.Windows.Forms.Label();
@@ -94,6 +97,8 @@
             this.lblnarration = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdProductExchage = new System.Windows.Forms.DataGridView();
+            this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dpExpProReturnDCDate = new System.Windows.Forms.DateTimePicker();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,10 +121,15 @@
             this.clmRemoveFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmmrpflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmShelflife = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmBatchNoStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchGeneration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRMFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmError = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.epProductExchange = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dpExpProReturnDCDate = new System.Windows.Forms.DateTimePicker();
+            this.clmExpiryErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDuplicateErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmShelflifeenable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.grpproductname.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -744,32 +754,54 @@
             this.clmRemoveFlag,
             this.clmmrpflag,
             this.clmShelflife,
-            this.clmRemove,
-            this.clmError});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdProductExchage.DefaultCellStyle = dataGridViewCellStyle6;
+            this.clmBatchNoStatus,
+            this.clmBatchGeneration,
+            this.clmRMFlag,
+            this.clmError,
+            this.clmExpiryErr,
+            this.clmBatchErr,
+            this.clmDuplicateErr,
+            this.clmShelflifeenable,
+            this.clmRemove});
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdProductExchage.DefaultCellStyle = dataGridViewCellStyle9;
             this.grdProductExchage.EnableHeadersVisualStyles = false;
             this.grdProductExchage.GridColor = System.Drawing.Color.White;
             this.grdProductExchage.Location = new System.Drawing.Point(17, 89);
             this.grdProductExchage.Name = "grdProductExchage";
             this.grdProductExchage.RowHeadersVisible = false;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdProductExchage.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdProductExchage.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.grdProductExchage.RowTemplate.Height = 25;
-            this.grdProductExchage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdProductExchage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdProductExchage.ShowRowErrors = false;
             this.grdProductExchage.Size = new System.Drawing.Size(1298, 422);
             this.grdProductExchage.TabIndex = 1111214;
             this.grdProductExchage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellContentClick);
             this.grdProductExchage.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellEndEdit);
+            this.grdProductExchage.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellLeave);
+            this.grdProductExchage.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdProductExchage_CurrentCellDirtyStateChanged);
             this.grdProductExchage.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdProductExchage_EditingControlShowing);
+            // 
+            // epProductExchange
+            // 
+            this.epProductExchange.ContainerControl = this;
+            // 
+            // dpExpProReturnDCDate
+            // 
+            this.dpExpProReturnDCDate.CustomFormat = "dd/MM/yyyy";
+            this.dpExpProReturnDCDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpExpProReturnDCDate.Location = new System.Drawing.Point(1189, 56);
+            this.dpExpProReturnDCDate.Name = "dpExpProReturnDCDate";
+            this.dpExpProReturnDCDate.Size = new System.Drawing.Size(107, 27);
+            this.dpExpProReturnDCDate.TabIndex = 1111254;
             // 
             // clmSno
             // 
@@ -798,6 +830,8 @@
             // 
             // clmMRP
             // 
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmMRP.DefaultCellStyle = dataGridViewCellStyle6;
             this.clmMRP.HeaderText = "MRP";
             this.clmMRP.Name = "clmMRP";
             this.clmMRP.ReadOnly = true;
@@ -806,9 +840,10 @@
             // 
             // clmExpiryDate
             // 
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmExpiryDate.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmExpiryDate.HeaderText = "Expiry Date";
             this.clmExpiryDate.Name = "clmExpiryDate";
-            this.clmExpiryDate.ReadOnly = true;
             this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmProshelflife
@@ -833,6 +868,8 @@
             // 
             // clmBatchNo
             // 
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmBatchNo.DefaultCellStyle = dataGridViewCellStyle8;
             this.clmBatchNo.HeaderText = "Batch No.";
             this.clmBatchNo.Name = "clmBatchNo";
             this.clmBatchNo.ReadOnly = true;
@@ -941,11 +978,27 @@
             this.clmShelflife.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmShelflife.Visible = false;
             // 
-            // clmRemove
+            // clmBatchNoStatus
             // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
+            this.clmBatchNoStatus.HeaderText = "Batch No Status";
+            this.clmBatchNoStatus.Name = "clmBatchNoStatus";
+            this.clmBatchNoStatus.ReadOnly = true;
+            this.clmBatchNoStatus.Visible = false;
+            // 
+            // clmBatchGeneration
+            // 
+            this.clmBatchGeneration.HeaderText = "Batch Generation";
+            this.clmBatchGeneration.Name = "clmBatchGeneration";
+            this.clmBatchGeneration.ReadOnly = true;
+            this.clmBatchGeneration.Visible = false;
+            // 
+            // clmRMFlag
+            // 
+            this.clmRMFlag.HeaderText = "RM Flag";
+            this.clmRMFlag.Name = "clmRMFlag";
+            this.clmRMFlag.ReadOnly = true;
+            this.clmRMFlag.Visible = false;
+            this.clmRMFlag.Width = 10;
             // 
             // clmError
             // 
@@ -953,19 +1006,40 @@
             this.clmError.Name = "clmError";
             this.clmError.ReadOnly = true;
             this.clmError.Visible = false;
+            this.clmError.Width = 10;
             // 
-            // epProductExchange
+            // clmExpiryErr
             // 
-            this.epProductExchange.ContainerControl = this;
+            this.clmExpiryErr.HeaderText = "Expiry Err";
+            this.clmExpiryErr.Name = "clmExpiryErr";
+            this.clmExpiryErr.Visible = false;
+            this.clmExpiryErr.Width = 10;
             // 
-            // dpExpProReturnDCDate
+            // clmBatchErr
             // 
-            this.dpExpProReturnDCDate.CustomFormat = "dd/MM/yyyy";
-            this.dpExpProReturnDCDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpExpProReturnDCDate.Location = new System.Drawing.Point(1189, 56);
-            this.dpExpProReturnDCDate.Name = "dpExpProReturnDCDate";
-            this.dpExpProReturnDCDate.Size = new System.Drawing.Size(107, 27);
-            this.dpExpProReturnDCDate.TabIndex = 1111254;
+            this.clmBatchErr.HeaderText = "Batch Err";
+            this.clmBatchErr.Name = "clmBatchErr";
+            this.clmBatchErr.Visible = false;
+            this.clmBatchErr.Width = 10;
+            // 
+            // clmDuplicateErr
+            // 
+            this.clmDuplicateErr.HeaderText = "MRP Err";
+            this.clmDuplicateErr.Name = "clmDuplicateErr";
+            this.clmDuplicateErr.Visible = false;
+            this.clmDuplicateErr.Width = 10;
+            // 
+            // clmShelflifeenable
+            // 
+            this.clmShelflifeenable.HeaderText = "ShelfLife Type";
+            this.clmShelflifeenable.Name = "clmShelflifeenable";
+            this.clmShelflifeenable.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
             // 
             // PUR_DCGoodsInward
             // 
@@ -1060,6 +1134,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         public System.Windows.Forms.DataGridView grdProductExchage;
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
+        private System.Windows.Forms.DateTimePicker dpExpProReturnDCDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductName;
@@ -1082,8 +1157,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRemoveFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmmrpflag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflife;
-        private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchNoStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchGeneration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRMFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmError;
-        private System.Windows.Forms.DateTimePicker dpExpProReturnDCDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpiryErr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchErr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDuplicateErr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflifeenable;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
