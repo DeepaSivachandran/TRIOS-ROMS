@@ -130,32 +130,8 @@ namespace ROMS
                     }
                     else
                     {
-                        if (varModifiedFlag == 1)
-                        {
-                            DialogResult dialogResult = MessageBox.Show("Do you want to discard changes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult == DialogResult.Yes)
-                            {
-                                this.Close();
-                                MainForm.objINV_SalesInvoiceList.Show();
-                                MainForm.objINV_SalesInvoiceList.udfnList();
-                            }
-                            else
-                            { btnSave.Focus(); }
-                        }
-                        else
-                        {
-                            if (varCloseFlag == 0)
-                            {
-                                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (dialogResult == DialogResult.Yes)
-                                {
-                                    this.Close();
-                                    MainForm.objINV_SalesInvoiceList.Show();
-                                    MainForm.objINV_SalesInvoiceList.udfnList();
-                                }
-                            }
-                            else { this.Close(); }
-                        }
+                        this.Close();
+                        MainForm.objPAY_DebitNoteList.udfnList();
                     }
                     //MainForm.objINV_SalesInvoiceList.udfnList();
                 }
