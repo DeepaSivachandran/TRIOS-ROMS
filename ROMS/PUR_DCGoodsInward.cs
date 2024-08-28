@@ -171,9 +171,16 @@ namespace ROMS
                             {
                                 varShelifePer = Convert.ToDecimal(dtPurchaseDC.Rows[i]["DCPR_ShelfLife_Per"].ToString()) + " %";
                             }
+                            string mrp = "";
+                            if (Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_MRP"].ToString())!="")
+                            {
+                                decimal varMRP = Math.Round(Convert.ToDecimal(dtPurchaseDC.Rows[i]["DCPR_MRP"].ToString()), 2, MidpointRounding.AwayFromZero);
+                                mrp = string.Format("{0:0.00}", varMRP);
+                            }
+
                             grdProductExchage.Rows.Add(i+1, dtPurchaseDC.Rows[i]["P.I Code"].ToString(),
                             dtPurchaseDC.Rows[i]["ProductName"].ToString(),
-                            Convert.ToDecimal(dtPurchaseDC.Rows[i]["DCPR_MRP"]),
+                            Convert.ToDecimal(mrp),
                             dtPurchaseDC.Rows[i]["DCPR_ExpiryDate"].ToString(), varProShelife, varActualShelife, varShelifePer, dtPurchaseDC.Rows[i]["DCPR_BatchNo"].ToString(),
                             dtPurchaseDC.Rows[i]["DCPR_Qty"].ToString(), dtPurchaseDC.Rows[i]["Unit"].ToString(), dtPurchaseDC.Rows[i]["Location"].ToString(), dtPurchaseDC.Rows[i]["Rack"].ToString(),
                             dtPurchaseDC.Rows[i]["DCPR_PRID"].ToString(), dtPurchaseDC.Rows[i]["DCPR_SLID"].ToString(),
@@ -206,6 +213,46 @@ namespace ROMS
                                 }
                             }
 
+                            if (Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_RMProductionFlag"].ToString()) == "1")
+                            {
+                                grdProductExchage.Rows[i].Cells["clmExpiryDate"].ReadOnly = true;
+                                grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                            }
+                            else
+                            {
+                                if (Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_ShelfLifeStatus"].ToString()) == "0")
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmExpiryDate"].ReadOnly = true;
+                                    grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                }
+                                else
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmExpiryDate"].ReadOnly = false;
+                                    grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
+                                }
+                            }
+
+                            if (Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_MRPflag"].ToString()) == "0")
+                            {
+                                grdProductExchage.Rows[i].Cells["clmMRP"].ReadOnly = true;
+                                grdProductExchage.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                            }
+                            else
+                            {
+                                grdProductExchage.Rows[i].Cells["clmMRP"].ReadOnly = false;
+                                grdProductExchage.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                            }
+
+                            if (Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_BatchNoStatus"].ToString()) == "72" && Convert.ToString(dtPurchaseDC.Rows[i]["DCPR_BatchNoGenration"].ToString()) == "75")
+                            {
+                                grdProductExchage.Rows[i].Cells["clmBatchNo"].ReadOnly = false;
+                                grdProductExchage.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
+                            }
+                            else
+                            {
+                                grdProductExchage.Rows[i].Cells["clmBatchNo"].ReadOnly = true;
+                                grdProductExchage.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                            }
                         }
                         grdProductExchage.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdProductExchage.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -317,7 +364,39 @@ namespace ROMS
                                         cell.Style.ForeColor = Color.Black;
                                     }
                                 }
+                                if(Convert.ToString(objDs.Tables[0].Rows[i]["PURREDCEX_RMProductionFlag"].ToString())=="1")
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                }
+                                else
+                                {
+                                    if(Convert.ToString(objDs.Tables[0].Rows[i]["PURREDCEX_ShelfLifeStatus"].ToString()) == "0")
+                                    {
+                                        grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                    }
+                                    else
+                                    {
+                                        grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
+                                    }
+                                }
 
+                                if(Convert.ToString(objDs.Tables[0].Rows[i]["PURREDCEX_MRPflag"].ToString()) == "0")
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                                }
+                                else
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                                }
+
+                                if(Convert.ToString(objDs.Tables[0].Rows[i]["PURREDCEX_BatchNoStatus"].ToString()) == "72" && Convert.ToString(objDs.Tables[0].Rows[i]["PURREDCEX_BatchNoGenration"].ToString()) == "75")
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
+                                }
+                                else
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                }
                             }
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Remarks"]);
                         }
@@ -359,6 +438,61 @@ namespace ROMS
                         {
                             grdProductExchage.CurrentRow.DefaultCellStyle.BackColor = Color.White;
                             grdProductExchage.Rows[i].Cells["clmQuantity"].Style.BackColor = Color.PaleGreen;
+                        }
+                        if ((Convert.ToString(grdProductExchage.Rows[i].Cells["clmExpiryErr"].Value) == "1" || Convert.ToString(grdProductExchage.Rows[i].Cells["clmExpiryDate"].Value).Trim() == "") && Convert.ToString(grdProductExchage.Rows[i].Cells["clmShelflifeenable"].Value) == "1")
+                        {
+                            varErrorFlag = false;
+                            grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
+                        }
+                        else
+                        {
+                            if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmRMflag"].Value) == "1")
+                            {
+                                grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                            }
+                            else
+                            {
+                                if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmShelflife"].Value) == "0")
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                }
+                                else
+                                {
+                                    grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
+                                }
+                            }
+                        }
+                        if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmMRPflag"].Value) == "1" && Convert.ToString(grdProductExchage.Rows[i].Cells["clmDuplicateErr"].Value).Trim() == "1"|| Convert.ToString(grdProductExchage.Rows[i].Cells["clmMRP"].Value).Trim() == "") 
+                        {
+                            varErrorFlag = false;
+                            grdProductExchage.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                        }
+                        else
+                        {
+                            if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmmrpflag"].Value) == "0")
+                            {
+                                grdProductExchage.Rows[i].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                            }
+                            else
+                            {
+                                grdProductExchage.Rows[i].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                            }
+                        }
+                        if(Convert.ToString(grdProductExchage.Rows[i].Cells["clmBatchNoStatus"].Value)=="72" && Convert.ToString(grdProductExchage.Rows[i].Cells["clmBatchGeneration"].Value) == "75" && Convert.ToString(grdProductExchage.Rows[i].Cells["clmBatchNo"].Value).Trim() == "")
+                        {
+                            varErrorFlag = false;
+                            grdProductExchage.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
+                        }
+                        else
+                        {
+                            if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmBatchNoStatus"].Value) == "72" && Convert.ToString(grdProductExchage.Rows[i].Cells["clmBatchGeneration"].Value) == "75")
+                            {
+                                grdProductExchage.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
+                            }
+                            else
+                            {
+                                grdProductExchage.Rows[i].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                            }
                         }
                     }
                     if (varErrorFlag == true && varErrQty == "0")
@@ -705,6 +839,7 @@ namespace ROMS
                             }
                     }
                     txtProductName.Focus();
+                    txtProductName.SelectionStart = txtProductName.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -1878,7 +2013,7 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
-                                varProductID = Convert.ToInt32(grdProductExchage.SelectedRows[0].Cells["clmPRID"].Value);
+                                varProductID = Convert.ToInt32(grdProductExchage.Rows[e.RowIndex].Cells["ClmPRID"].Value);
                                 DataGridViewRow row = grdProductExchage.Rows[e.RowIndex];
                                 grdProductExchage.Rows.Remove(row);
                                 for (int i = 0; i < dtPurchaseDC.Rows.Count; i++)
@@ -2061,6 +2196,7 @@ namespace ROMS
                         }
                         else
                         {
+                            grdProductExchage.Rows[e.RowIndex].Cells["clmDuplicateErr"].Value = 0;
                             grdProductExchage.Rows[e.RowIndex].Cells["clmMRP"].Value = mrp;
                             grdProductExchage.Rows[e.RowIndex].Cells["clmDuplicateErr"].Value = 0;
                             grdProductExchage.Rows[e.RowIndex].Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
@@ -2077,9 +2213,26 @@ namespace ROMS
                 }
                 if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmBatchNo")
                 {
-                    //Update the same column value in the DataTable
-                    object varEditBatch = grdProductExchage.Rows[e.RowIndex].Cells["clmBatchNo"].Value;
-                    dtPurchaseDC.Rows[e.RowIndex]["DCPR_BatchNo"] = varEditBatch;
+                    if (Convert.ToString(grdProductExchage.Rows[e.RowIndex].Cells["clmBatchNoStatus"].Value) == "72" && Convert.ToString(grdProductExchage.Rows[e.RowIndex].Cells["clmBatchGeneration"].Value) == "75" && Convert.ToString(grdProductExchage.Rows[e.RowIndex].Cells["clmBatchNo"].Value).Trim() == "")
+                    {
+                        grdProductExchage.Rows[e.RowIndex].Cells["clmBatchErr"].Value = 1;
+                        grdProductExchage.Rows[e.RowIndex].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        grdProductExchage.Rows[e.RowIndex].Cells["clmBatchErr"].Value = 0;
+                        if (Convert.ToString(grdProductExchage.Rows[e.RowIndex].Cells["clmBatchNoStatus"].Value) == "72" && Convert.ToString(grdProductExchage.Rows[e.RowIndex].Cells["clmBatchGeneration"].Value) == "75")
+                        {
+                            grdProductExchage.Rows[e.RowIndex].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
+                        }
+                        else
+                        {
+                            grdProductExchage.Rows[e.RowIndex].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                        }
+                        //Update the same column value in the DataTable
+                        object varEditBatch = grdProductExchage.Rows[e.RowIndex].Cells["clmBatchNo"].Value;
+                        dtPurchaseDC.Rows[e.RowIndex]["DCPR_BatchNo"] = varEditBatch;
+                    }
                 }
             }
             catch (Exception ex)
