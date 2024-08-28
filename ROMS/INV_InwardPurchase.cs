@@ -1837,7 +1837,7 @@ namespace ROMS
                     }
                     if(varEditFlag==1)
                     {
-                        int varRackID = 0;
+                        int varRackID = 0; decimal varFinalQty= 0;
                         for (int i = 0; i < grdInward.Rows.Count; i++)
                         {
                             varProCount = 1;
@@ -1845,7 +1845,7 @@ namespace ROMS
                             {
                                 if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
                                 {
-                                    int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmDuplicateSno"].Value);
+                                    int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmEntrytypeProID"].Value);
                                     var varSumRequestQty = dtInwardPurchase.AsEnumerable()
                                                             .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
                                                              .Sum(x => x.Field<decimal>("GIPPR_ReceivedQty")).ToString();
@@ -1854,11 +1854,12 @@ namespace ROMS
                                                              .Sum(x => x.Field<decimal>("GIPPR_ShopQty")).ToString();
 
                                     varQty1 = Convert.ToDecimal(grdInward.Rows[i].Cells["clmQty"].Value);
+                                    varFinalQty = Convert.ToDecimal(grdInward.Rows[i].Cells["clmFinalQty"].Value);
                                     varStockQty = Convert.ToString(grdInward.Rows[i].Cells["clmStockQty"].Value);
-                                    if (varQty1 != 0)
+                                    if (varFinalQty != 0)
                                     {
                                         varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
-                                        if (varQty1 < varTotalQty1)
+                                        if (varFinalQty < varTotalQty1)
                                         {
                                             varQuantityErr++;
                                             grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
@@ -3710,7 +3711,7 @@ namespace ROMS
                                             ,Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP Flag"]), 
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), 
                                            Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeType"]), Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]),
-                                           Convert.ToString(objDs.Tables[0].Rows[i]["Full Reason"]), Convert.ToString(objDs.Tables[0].Rows[i]["FinalQty"]));
+                                           Convert.ToString(objDs.Tables[0].Rows[i]["Full Reason"]), Convert.ToString(objDs.Tables[0].Rows[i]["FinalQty"]), Convert.ToString(objDs.Tables[0].Rows[i]["EntryTypeProID"]));
                                     udfnStatus();
                                     if(varEditFlag==0)
                                     {
@@ -3743,13 +3744,12 @@ namespace ROMS
                                     {
                                         ShopQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Shop Qty"]);
                                     }
-                                    if(Convert.ToString(objDs.Tables[0].Rows[i]["Rack ID"])=="0")
-                                    {
-                                        grdInward.Rows[i].Cells["clmRack"].ReadOnly = true;
-                                        grdInward.Rows[i].Cells["clmRack"].Style.BackColor = Color.LightGray;
-                                        //grdInward.Rows[i].Cells["clmRack"].Value = "None";
-                                    }
-                                    dtInwardPurchase.Rows.Add(false,Convert.ToInt32(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToInt32(objDs.Tables[0].Rows[i][OrderID]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Unit ID"]), ReceivedQty,ShopQty, Convert.ToInt32(objDs.Tables[0].Rows[i]["Rack ID"]),
+                                    int varSNO = 0; //for quantity validation
+                                    if(varEditFlag==0) 
+                                    { varSNO=Convert.ToInt32(objDs.Tables[0].Rows[i]["S.No."]);  }
+                                    else
+                                    { varSNO=Convert.ToInt32(objDs.Tables[0].Rows[i]["EntryTypeProID"]);  }
+                                    dtInwardPurchase.Rows.Add(false, varSNO, Convert.ToInt32(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToInt32(objDs.Tables[0].Rows[i][OrderID]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Unit ID"]), ReceivedQty,ShopQty, Convert.ToInt32(objDs.Tables[0].Rows[i]["Rack ID"]),
                                         Convert.ToString(objDs.Tables[0].Rows[i]["Pro Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro Batch No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Pro MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["MRP Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Shelflife Status"]),
                                         Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["PR_STSID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ShelflifeType"]),
                                         Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]),
