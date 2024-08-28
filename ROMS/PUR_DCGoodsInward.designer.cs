@@ -1024,7 +1024,7 @@
             // 
             // clmDuplicateErr
             // 
-            this.clmDuplicateErr.HeaderText = "Duplicate Err";
+            this.clmDuplicateErr.HeaderText = "MRP Err";
             this.clmDuplicateErr.Name = "clmDuplicateErr";
             this.clmDuplicateErr.Visible = false;
             this.clmDuplicateErr.Width = 10;
