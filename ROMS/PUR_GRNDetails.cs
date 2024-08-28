@@ -5199,9 +5199,9 @@ namespace ROMS
                                      mrp = string.Format("{0:0.00}", varMRP);
                                      mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                                 }
-                                if (varProConditionType == 226 && Convert.ToString(cmbPONo.SelectedValue) == "215")
+                                if (varProConditionType == 226)
                                 {
-                                    mrp = "0"; mrp1 = "0"; varExpiryDate = ""; txtBatchno.Text = ""; varLocationID = "0"; varRackID = "0"; varRack = ""; varLocationName = "";
+                                    varLocationID = "0"; varRackID = "0"; varRack = ""; varLocationName = "";
                                 } 
                                 //string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
                                 grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
