@@ -3689,6 +3689,8 @@ namespace ROMS
                     {
                         foreach (var row in varRowsToUpdate)
                         { row.SetField("DCPR_SLID", slid); }
+                         foreach (var row in varRowsToUpdate)
+                        { row.SetField("DCPR_RKID", rkid); }
                     }
                     if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmRack")
                     {
