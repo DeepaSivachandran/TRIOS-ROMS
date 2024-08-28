@@ -1852,10 +1852,10 @@ namespace ROMS
                                     varQty1 = Convert.ToDecimal(grdInward.Rows[i].Cells["clmQty"].Value);
                                     varFinalQty = Convert.ToDecimal(grdInward.Rows[i].Cells["clmFinalQty"].Value);
                                     varStockQty = Convert.ToString(grdInward.Rows[i].Cells["clmStockQty"].Value);
-                                    if (varQty1 != 0)
+                                    if (varFinalQty != 0)
                                     {
                                         varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
-                                        if (varQty1 < varTotalQty1)
+                                        if (varFinalQty < varTotalQty1)
                                         {
                                             varQuantityErr++;
                                             grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
