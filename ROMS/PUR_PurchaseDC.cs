@@ -3273,6 +3273,7 @@ namespace ROMS
                             varLocationErr = "0";
                             grdPurchaseDC.Rows[e.RowIndex].Cells["clmLocationErr"].Value = varLocationErr;
                         }
+
                         else
                         {
                             cellSlname.Style.BackColor = Color.LightPink;
