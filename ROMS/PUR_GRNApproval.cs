@@ -405,7 +405,7 @@ namespace ROMS
                 
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 {
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmreceivedqty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Value))
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clminvoiceqty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Value))
                     {
                         grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
                     }
@@ -593,7 +593,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdGrnApproval_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -931,9 +930,28 @@ namespace ROMS
             {
                 int varQtyErr = 0;
                 bool varErrorFlag = true;
+                decimal varFreeQty = 0, varReceivedQty = 0, varReturnQty = 0, varDebitQty = 0 ,varTotQty=0;
                 for (int i=0;i<grdGrnApproval.Rows.Count;i++)
                 {
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)<Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value))
+                    if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)!="")
+                    { varReceivedQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value);  }
+                    if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "")
+                    { varReturnQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value); }
+                    if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value) != "")
+                    { varFreeQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value); }
+                    if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmDebitQty"].Value) != "")
+                    { varDebitQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmDebitQty"].Value); }
+
+                    varTotQty = varReturnQty + varFreeQty + varDebitQty;
+                    if(varTotQty> varReceivedQty)
+                    {
+                        varQtyErr++;
+                        grdGrnApproval.Rows[i].Cells["clmDebitQty"].Style.BackColor = Color.LightPink;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                        grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
+                        varErrorFlag = false;
+                    }
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value)>Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clminvoiceqty"].Value))
                     {
                         varQtyErr++;
                         //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
@@ -962,6 +980,7 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
                     }
+                    
                     if((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0"  || (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmDebitQty"].Value) != "0"))  
                         && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "233") //Reason should be amount credit accepted if return quantity entered or debit note entered
                     {
