@@ -3313,6 +3313,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate", objTRN_PurchaseEntry.ParaVerifyDate);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime", objTRN_PurchaseEntry.paraVerifiedTime);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat", objTRN_PurchaseEntry.paraVerifiedFormat);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNFrightCharges", objTRN_PurchaseEntry.paraGRNFrightCharges);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNUnloadingCharge", objTRN_PurchaseEntry.paraGRNUnloadingCharge);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

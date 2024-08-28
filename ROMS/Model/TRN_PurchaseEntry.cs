@@ -85,5 +85,7 @@ namespace ROMS.Model
         public int paraFlag { get; set; } = 0;
         public int paraInwardId { get; set; } = 0;
         public int paraConditionType { get; set; } = 0;
+        public decimal paraGRNFrightCharges { get; set; } = 0;
+        public decimal paraGRNUnloadingCharge { get; set; } = 0;
     }
 }

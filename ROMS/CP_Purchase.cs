@@ -734,6 +734,16 @@ namespace ROMS
                         lblVerifyDateTime2.Text = Convert.ToString(objDs.Tables[3].Rows[0]["VERIFIED2"]);
                         lblGRNNoRecord.Visible = false;
                     }
+                    if (objDs.Tables[4].Rows.Count != 0)
+                    {
+                        lblFinishedNoRecord.Visible = false;
+                        for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
+                        {
+                            grdGRN.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["GRN_Date"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRN_No"]),
+                                Convert.ToString(objDs.Tables[4].Rows[i]["Procount"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRNID"]));
+                        }
+                        varGRNDate = Convert.ToString(objDs.Tables[4].Rows[0]["GRN_Date"]);
+                    }
                 }
             }
             catch (Exception ex)
@@ -6833,70 +6843,78 @@ namespace ROMS
                                             objTRN_PurchaseEntry.paraDiscCalculation = 2;
                                         }
                                         decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
-                                        otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0 , total=0;
-                                        if (txtUnLoadingchargeGrn.Text != "")
+                                        otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0 , total=0 , varGRNFrightCharges = 0; decimal varGRNUnloadingCharges = 0;
+                                        if (txtUnLoadingchargeGrn.Text.Trim() != "")
                                         {
                                             loadinggrn = Convert.ToDecimal(txtUnLoadingchargeGrn.Text.Trim());
                                         }
-                                        if (txtFrightGrn.Text != "")
+                                        if (txtFrightGrn.Text.Trim() != "")
                                         {
                                             frightgrn = Convert.ToDecimal(txtFrightGrn.Text.Trim());
                                         }
-                                        if (txtLoadingCharge.Text != "")
+                                        if (txtLoadingCharge.Text.Trim() != "")
                                         {
                                             loadcharge = Convert.ToDecimal(txtLoadingCharge.Text.Trim());
                                         }
-                                        if (txtUnLoadingCharge.Text != "")
+                                        if (txtUnLoadingCharge.Text.Trim() != "")
                                         {
                                             unloadcharge = Convert.ToDecimal(txtUnLoadingCharge.Text.Trim());
                                         }
-                                        if (txtCouriercharge.Text != "")
+                                        if (txtCouriercharge.Text.Trim() != "")
                                         {
                                             couriercharge = Convert.ToDecimal(txtCouriercharge.Text.Trim());
                                         }
-                                        if (txtotherexpense.Text != "")
+                                        if (txtotherexpense.Text.Trim() != "")
                                         {
                                             otherexpense = Convert.ToDecimal(txtotherexpense.Text.Trim());
                                         }
-                                        if (Txtdiscount.Text != "")
+                                        if (Txtdiscount.Text.Trim() != "")
                                         {
                                             discountper = Convert.ToDecimal(Txtdiscount.Text.Trim());
                                         }
-                                        if (txtDiscountamt.Text != "")
+                                        if (txtDiscountamt.Text.Trim() != "")
                                         {
                                             discountamt = Convert.ToDecimal(txtDiscountamt.Text.Trim());
                                         }
-                                        if (txtTcsamt.Text != "")
+                                        if (txtTcsamt.Text.Trim() != "")
                                         {
                                             tcsamt = Convert.ToDecimal(txtTcsamt.Text.Trim());
                                         }
-                                        if (txtDamagecost.Text != "")
+                                        if (txtDamagecost.Text.Trim() != "")
                                         {
                                             damagecost = Convert.ToDecimal(txtDamagecost.Text.Trim());
                                         }
-                                        if (txtOtherdiscount.Text != "")
+                                        if (txtOtherdiscount.Text.Trim() != "")
                                         {
                                             otherdiscount = Convert.ToDecimal(txtOtherdiscount.Text.Trim());
                                         }
-                                        if (lblSubtotal.Text != "")
+                                        if (lblSubtotal.Text.Trim() != "")
                                         {
                                             subtotal = Convert.ToDecimal(lblSubtotal.Text.Trim());
                                         }
-                                        if (lblGstamt.Text != "")
+                                        if (lblGstamt.Text.Trim() != "")
                                         {
                                             gstamt = Convert.ToDecimal(lblGstamt.Text.Trim());
                                         }
-                                        if (lblRoundoff.Text != "")
+                                        if (lblRoundoff.Text.Trim() != "")
                                         {
                                             roundoff = Convert.ToDecimal(lblRoundoff.Text.Trim());
                                         }
-                                        if (lblTotal.Text != "")
+                                        if (lblTotal.Text.Trim() != "")
                                         {
                                             total = Convert.ToDecimal(lblTotal.Text.Trim());
                                         }
-                                        if(lblGrandTotal.Text!="")
+                                        if(lblGrandTotal.Text.Trim() != "")
                                         {
                                             grandtotal = Convert.ToDecimal(lblGrandTotal.Text.Trim());
+                                        }
+                                        if(txtUnLoadingchargeGrn.Text.Trim()!="")
+                                        {
+                                            varGRNUnloadingCharges = Convert.ToDecimal(txtUnLoadingchargeGrn.Text);
+                                        }
+                                        if (txtFrightGrn.Text.Trim() != "")
+                                        {
+                                            varGRNFrightCharges = Convert.ToDecimal(txtFrightGrn.Text);
                                         }
                                         objTRN_PurchaseEntry.paraLoadingCharges = loadcharge;
                                         objTRN_PurchaseEntry.paraUnloadingCharges = unloadcharge;
@@ -6912,6 +6930,8 @@ namespace ROMS
                                         objTRN_PurchaseEntry.paraSubTotal = subtotal;
                                         objTRN_PurchaseEntry.paraGSTAmnt = gstamt;
                                         objTRN_PurchaseEntry.paraRoundOff = roundoff;
+                                        objTRN_PurchaseEntry.paraGRNFrightCharges = varGRNFrightCharges;
+                                        objTRN_PurchaseEntry.paraGRNUnloadingCharge = varGRNUnloadingCharges;
 
                                         objTRN_PurchaseEntry.paraGrandTotal = grandtotal;
                                         objTRN_PurchaseEntry.paraTotal = total;
