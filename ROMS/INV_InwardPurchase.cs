@@ -1484,6 +1484,10 @@ namespace ROMS
                                             {
                                                 varRackID = 0;
                                             }
+                                            else if(Convert.ToString(grdInward.Rows[j].Cells["clmRack"].Value) == "None" || Convert.ToString(grdInward.Rows[j].Cells["clmRack"].Value) == "none")
+                                            {
+                                                varRackID = 0;
+                                            }
                                             else
                                             {
                                                 varRackID = Convert.ToInt32(grdInward.Rows[j].Cells["clmRKID"].Value);
@@ -1872,6 +1876,10 @@ namespace ROMS
                             //    grdInward.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.PaleGreen;
                             //}
                             if (Convert.ToString(grdInward.Rows[i].Cells["clmRack"].Value) == "")
+                            {
+                                varRackID = 0;
+                            }
+                            else if(Convert.ToString(grdInward.Rows[i].Cells["clmRack"].Value) == "None" || Convert.ToString(grdInward.Rows[i].Cells["clmRack"].Value) == "none")
                             {
                                 varRackID = 0;
                             }
@@ -3427,6 +3435,10 @@ namespace ROMS
                                     cellRkname.Style.BackColor = Color.LightPink;
                                     cellRkid.Value = Convert.ToString(varId_PurchaseRack);
                                 }
+                                if(Convert.ToString(grdInward.Rows[e.RowIndex].Cells["clmRack"].Value) == "None" || Convert.ToString(grdInward.Rows[e.RowIndex].Cells["clmRack"].Value) == "none")
+                                {
+                                    cellRkid.Value = 0;
+                                }
                             }
                         }
                     }
@@ -3695,6 +3707,12 @@ namespace ROMS
                                     if (Convert.ToString(objDs.Tables[0].Rows[i]["Shop Qty"]) != "")
                                     {
                                         ShopQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Shop Qty"]);
+                                    }
+                                    if(Convert.ToString(objDs.Tables[0].Rows[i]["Rack ID"])=="0")
+                                    {
+                                        grdInward.Rows[i].Cells["clmRack"].ReadOnly = true;
+                                        grdInward.Rows[i].Cells["clmRack"].Style.BackColor = Color.LightGray;
+                                        //grdInward.Rows[i].Cells["clmRack"].Value = "None";
                                     }
                                     dtInwardPurchase.Rows.Add(false,Convert.ToInt32(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToInt32(objDs.Tables[0].Rows[i][OrderID]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Unit ID"]), ReceivedQty,ShopQty, Convert.ToInt32(objDs.Tables[0].Rows[i]["Rack ID"]),
                                         Convert.ToString(objDs.Tables[0].Rows[i]["Pro Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro Batch No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Pro MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["MRP Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Shelflife Status"]),
