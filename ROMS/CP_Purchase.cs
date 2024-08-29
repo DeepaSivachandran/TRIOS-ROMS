@@ -37,6 +37,7 @@ namespace ROMS
         ToolTip tpInvoiceQty = new ToolTip();
         int flag = 0;
         public bool skipValidation = false;
+        public DataTable objDtProductCondition = new DataTable();
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
         public string varPurchaseRate = "0", varcomid = "0", pbPONO = "0", pbPurchaseno = "0", pbDCNo = "0", pbGRNNo = "0", PbSTS = "0", PbID = "0", PbFlag = "0";
         public bool VarSearchFlag = true;
@@ -1976,7 +1977,6 @@ namespace ROMS
             int varconcerntype = 3;
             DataSet objDT = new DataSet();
             objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
-            objdserv.CloseConnection();
             cmbConcern.DataSource = null;
             if (objDT != null)
             {
@@ -1987,6 +1987,21 @@ namespace ROMS
                         cmbConcern.ValueMember = "COMID";
                         cmbConcern.DisplayMember = "COM_ShortName";
                         cmbConcern.DataSource = objDT.Tables[0];
+                    }
+                }
+            }
+            MR_Master objMR_Master = new MR_Master();
+            objMR_Master.ViewType = 23;
+            DataSet objds = new DataSet();
+            objds = objdserv.udfnMaster(objMR_Master);
+            objdserv.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDtProductCondition = objds.Tables[0];
                     }
                 }
             }
@@ -3325,6 +3340,16 @@ namespace ROMS
             }
             return varstr;
         }
+        public AutoCompleteStringCollection AutoCompleteProductCondition()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            var varValue = from r in objDtProductCondition.AsEnumerable() group r by r.Field<string>("MST_DisplayText") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
         private void GrdSupplierList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -3372,6 +3397,13 @@ namespace ROMS
                     int varCOMID = Convert.ToInt16(cmbConcern.SelectedValue);
                     txtProduct.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     txtProduct.AutoCompleteCustomSource = AutoCompleteProduct(varCOMID);
+                    txtProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                }
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmCondition")
+                {
+                    TextBox txtProduct = e.Control as TextBox;
+                    txtProduct.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtProduct.AutoCompleteCustomSource = AutoCompleteProductCondition();
                     txtProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 }
             }
@@ -3477,7 +3509,7 @@ namespace ROMS
             }
         }
         private void GrdSupplierList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-       {
+        {
             try
             {
                 if (Convert.ToString(lblSupplierCode.Text) != "0")
@@ -3490,6 +3522,7 @@ namespace ROMS
                     DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["rkid"];
                     DataGridViewCell cellRkcount = dataGridView.Rows[e.RowIndex].Cells["clmrkcount"];
                     DataGridViewCell cellSno = dataGridView.Rows[e.RowIndex].Cells["clmsno"];
+                    DataGridViewCell cellProConditionID = dataGridView.Rows[e.RowIndex].Cells["clmConditionID"];
 
                     int varsno = Convert.ToInt16(grdSupplierList.Rows[e.RowIndex].Cells["clmsno"].Value);
                     var varRowsToUpdate = dtPurchaseAutoComplete.AsEnumerable().Where(r => r.Field<int>("SNo") == Convert.ToInt16(varsno));
@@ -3586,6 +3619,24 @@ namespace ROMS
                             foreach (var row in varRowsToUpdate)
                             { row.SetField("RKID", cellRkid); }
                         }
+                    }
+                    else if (e.ColumnIndex == grdSupplierList.Columns["clmCondition"].Index && e.RowIndex >= 0)
+                    {
+                        string varConditionID = "0";
+                        string SelectedProductCondition = grdSupplierList.Rows[e.RowIndex].Cells["clmCondition"].Value?.ToString().Trim().ToLower();
+                        if (!string.IsNullOrEmpty(SelectedProductCondition))
+                        {
+                            var varRemoveProuct =    (from r in objDtProductCondition.AsEnumerable()
+                                                     where (r.Field<string>("MST_DisplayText").ToLower().Equals(SelectedProductCondition.ToLower()) )
+                                                     select r.Field<int>("MSTID")).ToList();
+
+                            if (varRemoveProuct.Count()!=0)
+                            {
+                                varConditionID = Convert.ToString(varRemoveProuct[0]);
+                                cellProConditionID.Value = Convert.ToInt16(varConditionID);
+                            }
+                        }
+                       
                     }
                 }
             }
@@ -10813,6 +10864,7 @@ namespace ROMS
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmBatchno"].Value = varInvoiceBatchNo;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmexpirydate"].Value = varInvoiceExpiryDate;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvertProductFlag"].Value = "1";
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmCondition"].ReadOnly = false;
                                     grdSupplierList.Columns["clmRemove"].Visible = true;
                                     for (int i=0;i<grdSupplierList.RowCount-1;i++)
                                     {
