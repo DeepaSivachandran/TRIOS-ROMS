@@ -37,7 +37,7 @@ namespace ROMS
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varExpiryDate = "";
         public string varPICode = "", varTName = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "",
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
-        public int varConcernId = 0, varScheduleId = 0, varSupplierId = 0, varMRPFlag = 0, varEditFlag = 0, varshelflifeflag = 0, varDateEnable = 0, varRMProductionFlag = 0, varErrorFormat = 0;
+        public int varConcernId = 0, varScheduleId = 0, varSupplierId = 0, varMRPFlag = 0, varEditFlag = 0, varshelflifeflag = 0, varDateEnable = 0, varRMProductionFlag = 0, varErrorFormat = 0, shelfLifeError = 0;
         public string varReturnDCDate = "", varErrQty="0";
         public string varTodayDate = "",varExchangeReturns="";
         decimal ProShelflife = 0;
@@ -425,6 +425,7 @@ namespace ROMS
         {
             try
             {
+                shelfLifeError = 0;
                 if (grdProductExchage.RowCount > 0)
                 {
                     bool varErrorFlag = true;
@@ -463,6 +464,20 @@ namespace ROMS
                                     grdProductExchage.Rows[i].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
                                 }
                             }
+
+                            if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmshelflifeper"].Value.ToString().Trim()) != "")
+                            {
+                                string shelfper = ""; decimal shelflifeper = 0;
+                                object cellValue1 = Convert.ToString(grdProductExchage.Rows[i].Cells["clmshelflifeper"].Value);
+
+                                shelfper = cellValue1.ToString();
+                                string[] shelfvalue = shelfper.Split('%');
+                                shelflifeper = Convert.ToDecimal(shelfvalue[0]);
+                                if (shelflifeper < (MainForm.pbShelflifeLevel2))
+                                {
+                                    shelfLifeError++;
+                                }
+                            }
                         }
                         if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmMRPflag"].Value) == "1" && Convert.ToString(grdProductExchage.Rows[i].Cells["clmDuplicateErr"].Value).Trim() == "1"|| Convert.ToString(grdProductExchage.Rows[i].Cells["clmMRP"].Value).Trim() == "") 
                         {
@@ -497,7 +512,23 @@ namespace ROMS
                             }
                         }
                     }
-                    if (varErrorFlag == true && varErrQty == "0")
+                    if (shelfLifeError != 0)
+                    {
+                        string varShelflifeMessage = "", varShelflifeLevel = "";
+                        varShelflifeLevel = Convert.ToString(MainForm.pbShelflifeLevel2) + '%';
+                        SPDataService objDServe1 = new SPDataService();
+                        string varMessage = objDServe1.udfnGetMessages(110);
+                        objDServe1.CloseConnection();
+
+                        varShelflifeMessage = Convert.ToString(varMessage.Replace("50%", varShelflifeLevel));
+
+                        DialogResult dialogResult1 = MessageBox.Show(varShelflifeMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult1 == DialogResult.Yes)
+                        {
+                            shelfLifeError = 0;
+                        }
+                    }
+                    if (varErrorFlag == true && varErrQty == "0" && shelfLifeError==0)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0;
                         int varStatusID = 4;
@@ -1784,6 +1815,18 @@ namespace ROMS
                         }
                     }
                 }
+                if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmExpiryDate")
+                {
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '/')
+                    {
+                        e.Handled = true;  // Disallow the character
+                    }
+                    TextBox vartb = sender as TextBox;
+                    if (vartb.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1918,7 +1961,7 @@ namespace ROMS
         {
             try
             {
-                if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmQuantity")
+                if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmQuantity" || grdProductExchage.CurrentCell.OwningColumn.Name == "clmExpiryDate")
                 {
                     e.Control.KeyPress -= udfnHandleKeyPress;
                     e.Control.KeyPress += udfnHandleKeyPress;
