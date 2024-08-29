@@ -3774,14 +3774,15 @@ namespace ROMS
                     string[] varShelflifevalue = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                     if (varShelflifevalue[0] != "")
                     {
-                        if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel1))
+                        //Shelflife Wise Color Set
+                        if (Convert.ToDecimal(varShelflifevalue[0]) <= (MainForm.pbShelflifeLevel1))
                         {
                             DataGridView dataGridView = grdGrnlist;
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmactuallife"];
                             cell.Style.BackColor = Color.Red;
                             cell.Style.ForeColor = Color.White;
                         }
-                        else if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
+                        else if (Convert.ToDecimal(varShelflifevalue[0]) > (MainForm.pbShelflifeLevel1) && Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
                         {
                             DataGridView dataGridView = grdGrnlist;
                             DataGridViewCell cell = dataGridView.Rows[i].Cells["clmactuallife"];
@@ -3970,22 +3971,21 @@ namespace ROMS
                                     string[] varShelflifevalue = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]).Split(' ');
                                     if (varShelflifevalue[0] != "")
                                     {
-                                        if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel1))
+                                        //Shelflife Wise Color Set
+                                        if (Convert.ToDecimal(varShelflifevalue[0]) <= (MainForm.pbShelflifeLevel1))
                                         {
                                             DataGridView dataGridView = grdGrnlist;
                                             DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.Red;
                                             cell.Style.ForeColor = Color.White;
-
                                         }
-                                        else if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
+                                        else if (Convert.ToDecimal(varShelflifevalue[0]) > (MainForm.pbShelflifeLevel1) && Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
                                         {
                                             DataGridView dataGridView = grdGrnlist;
                                             DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.Orange;
                                             cell.Style.ForeColor = Color.Black;
                                         }
-
                                         else
                                         {
                                             DataGridView dataGridView = grdGrnlist;
@@ -5094,7 +5094,7 @@ namespace ROMS
                     {
                         if (varflag == 0)
                         {
-                            if (pbDateflag == 0 )
+                            if (pbDateflag == 0)
                             {
                                 errGRNDetails.Clear();
                                 tpdate.Active = false;
@@ -5127,25 +5127,25 @@ namespace ROMS
                                         expirydateFlag = 0;
                                     }
                                 }
-                                
+
                                 if (txtInvoiceQty.Text != "")
                                 {
                                     string[] Quantity = txtInvoiceQty.Text.Split('.');
                                     string Qty = objValidation.udfnDecimal((txtInvoiceQty.Text).Trim(), varDecimal);
                                     string QtyValue = Quantity[0];
-                                    if(QtyValue=="0")
+                                    if (QtyValue == "0")
                                     {
-                                        txtInvoiceQty.Text ="0" + Qty;
+                                        txtInvoiceQty.Text = "0" + Qty;
                                     }
                                     else
                                     {
                                         txtInvoiceQty.Text = Qty;
                                     }
-                                }    
+                                }
                                 //if(varProConditionType==193 || varProConditionType == 194 || varProConditionType == 226 || varProConditionType == 225 || varProConditionType == 227)
                                 //{
-                                if(varProConditionType != 202)
-                                { 
+                                if (varProConditionType != 202)
+                                {
                                     if (txtInvoiceQty.Text.Trim() != "")
                                     { varMismatchQty = Convert.ToDecimal(txtInvoiceQty.Text); }
                                 }
@@ -5192,22 +5192,22 @@ namespace ROMS
                                 //    varPendingQty = 0;
                                 //    varExcessQuantity = 0;
                                 //}
-                                decimal varMRP = 0;string mrp = "", mrp1 = "";
+                                decimal varMRP = 0; string mrp = "", mrp1 = "";
                                 if (txtmrprate.Text.Trim() != "")
                                 {
-                                     varMRP = Math.Round(Convert.ToDecimal(txtmrprate.Text.Trim()), 2, MidpointRounding.AwayFromZero);
-                                     mrp = string.Format("{0:0.00}", varMRP);
-                                     mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                                    varMRP = Math.Round(Convert.ToDecimal(txtmrprate.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                                    mrp = string.Format("{0:0.00}", varMRP);
+                                    mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                                 }
                                 if (varProConditionType == 226)
                                 {
                                     varLocationID = "0"; varRackID = "0"; varRack = ""; varLocationName = "";
-                                } 
+                                }
                                 //string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
                                 grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                grdGrnlist.Rows.Add(maxSno + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(),Convert.ToString(cmbQtyType.Text), varPendingQty,varExcessQuantity, varDamageQty,varMismatchQty, Convert.ToInt32(cmbQtyType.SelectedValue) ,Convert.ToDecimal(mrp), Convert.ToDecimal(mrp), (varExpiryDate).Trim(), varExpiryDate.Trim()
-                                    , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (txtBatchno.Text).Trim(), varLocationName, varLocationID, varRack, varRackID,  (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo,varBatchNoGeneration, expirydateFlag, varNewFlag,0,varDecimal,varMRPFlag, varRMProductionFlag);
-                                dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDate, (txtBatchno.Text).Trim(), varunitid, varLocationID ,
+                                grdGrnlist.Rows.Add(maxSno + 1, (varpono[0]).Trim(), (varPICode).Trim(), (varEName).Trim(), (varTName).Trim(), (var_Symbol).Trim(), Convert.ToString(cmbQtyType.Text), varPendingQty, varExcessQuantity, varDamageQty, varMismatchQty, Convert.ToInt32(cmbQtyType.SelectedValue), Convert.ToDecimal(mrp), Convert.ToDecimal(mrp), (varExpiryDate).Trim(), varExpiryDate.Trim()
+                                    , (varexp).Trim(), varAcutalshelflife, varShelflifevalue, (txtBatchno.Text).Trim(), (txtBatchno.Text).Trim(), varLocationName, varLocationID, varRack, varRackID, (productCode).Trim(), (varunitid).Trim(), cmbPONo.SelectedValue, varBatchNo, varBatchNoGeneration, expirydateFlag, varNewFlag, 0, varDecimal, varMRPFlag, varRMProductionFlag);
+                                dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDate, (txtBatchno.Text).Trim(), varunitid, varLocationID,
                                     (varRackID), expirydateFlag, Convert.ToInt16(cmbPONo.SelectedValue), 0);
                                 if (varDateEnable == 1)
                                 {
@@ -5284,87 +5284,88 @@ namespace ROMS
                                 string[] varShelflifeper = Convert.ToString(varShelflifevalue).Split(' ');
                                 //if (varProConditionType != 226 || Convert.ToString(cmbPONo.SelectedValue) == "214")
                                 //{
-                                    if (varShelflifeper[0] != "")
-                                    {
-                                        if (Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1))
-                                        {
-                                            DataGridView dataGridView = grdGrnlist;
-                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
-                                            cell.Style.BackColor = Color.Red;
-                                            cell.Style.ForeColor = Color.White;
-                                        }
-                                        else if (Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
-                                        {
-                                            DataGridView dataGridView = grdGrnlist;
-                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
-                                            cell.Style.BackColor = Color.Orange;
-                                            cell.Style.ForeColor = Color.Black;
-                                        }
-                                        else
-                                        {
-                                            DataGridView dataGridView = grdGrnlist;
-                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
-                                            cell.Style.BackColor = Color.White;
-                                            cell.Style.ForeColor = Color.Black;
-                                        }
-                                    }
-                                    if (varBatchNo == "72" && varBatchNoGeneration == "75")
+                                if (varShelflifeper[0] != "")
+                                {
+                                    //Shelflife Wise Color Set
+                                    if (Convert.ToDecimal(varShelflifeper[0]) <= (MainForm.pbShelflifeLevel1))
                                     {
                                         DataGridView dataGridView = grdGrnlist;
-                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
-                                        cell.Style.BackColor = Color.PaleGreen;
-                                        cell.Style.ForeColor = Color.Black;
-                                        cell.ReadOnly = false;
-                                        DataGridView dataGridView1 = grdGrnlist;
-                                        DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
-                                        cell1.Style.BackColor = Color.PaleGreen;
-                                        cell1.Style.ForeColor = Color.Black;
-                                        cell1.ReadOnly = false;
+                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                        cell.Style.BackColor = Color.Red;
+                                        cell.Style.ForeColor = Color.White;
                                     }
-                                    if (varBatchNo == "72" && varBatchNoGeneration == "74")
+                                    else if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1) && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
                                     {
                                         DataGridView dataGridView = grdGrnlist;
-                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
-                                        cell.Style.BackColor = Color.LightGray;
+                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                        cell.Style.BackColor = Color.Orange;
                                         cell.Style.ForeColor = Color.Black;
-                                        cell.ReadOnly = true;
-                                        DataGridView dataGridView1 = grdGrnlist;
-                                        DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
-                                        cell1.Style.BackColor = Color.LightGray;
-                                        cell1.Style.ForeColor = Color.Black;
-                                        cell1.ReadOnly = false;
-                                    }
-                                    else if (varBatchNo == "73")
-                                    {
-                                        DataGridView dataGridView = grdGrnlist;
-                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
-                                        cell.Style.BackColor = Color.LightGray;
-                                        cell.Style.ForeColor = Color.Black;
-                                        cell.ReadOnly = true;
-                                        DataGridView dataGridView1 = grdGrnlist;
-                                        DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
-                                        cell1.Style.BackColor = Color.LightGray;
-                                        cell1.Style.ForeColor = Color.Black;
-                                        cell1.ReadOnly = false;
-                                    }
-                                    //if (varProConditionType == 193 || varProConditionType == 194 || varProConditionType == 226 || varProConditionType == 225 || varProConditionType == 227)
-                                    //{
-                                    if(varProConditionType!=202)
-                                    { 
-                                        DataGridView dataGridView = grdGrnlist;
-                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMismatchQty"];
-                                        cell.Style.BackColor = Color.PaleGreen;
-                                        cell.Style.ForeColor = Color.Black;
-                                        cell.ReadOnly = false;
                                     }
                                     else
                                     {
                                         DataGridView dataGridView = grdGrnlist;
-                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMismatchQty"];
-                                        cell.Style.BackColor = Color.LightGray;
+                                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                        cell.Style.BackColor = Color.White;
                                         cell.Style.ForeColor = Color.Black;
-                                        cell.ReadOnly = true;
                                     }
+                                }
+                                if (varBatchNo == "72" && varBatchNoGeneration == "75")
+                                {
+                                    DataGridView dataGridView = grdGrnlist;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
+                                    cell.Style.BackColor = Color.PaleGreen;
+                                    cell.Style.ForeColor = Color.Black;
+                                    cell.ReadOnly = false;
+                                    DataGridView dataGridView1 = grdGrnlist;
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
+                                    cell1.Style.BackColor = Color.PaleGreen;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = false;
+                                }
+                                if (varBatchNo == "72" && varBatchNoGeneration == "74")
+                                {
+                                    DataGridView dataGridView = grdGrnlist;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
+                                    cell.Style.BackColor = Color.LightGray;
+                                    cell.Style.ForeColor = Color.Black;
+                                    cell.ReadOnly = true;
+                                    DataGridView dataGridView1 = grdGrnlist;
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
+                                    cell1.Style.BackColor = Color.LightGray;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = false;
+                                }
+                                else if (varBatchNo == "73")
+                                {
+                                    DataGridView dataGridView = grdGrnlist;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
+                                    cell.Style.BackColor = Color.LightGray;
+                                    cell.Style.ForeColor = Color.Black;
+                                    cell.ReadOnly = true;
+                                    DataGridView dataGridView1 = grdGrnlist;
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmInvoiceBatch"];
+                                    cell1.Style.BackColor = Color.LightGray;
+                                    cell1.Style.ForeColor = Color.Black;
+                                    cell1.ReadOnly = false;
+                                }
+                                //if (varProConditionType == 193 || varProConditionType == 194 || varProConditionType == 226 || varProConditionType == 225 || varProConditionType == 227)
+                                //{
+                                if (varProConditionType != 202)
+                                {
+                                    DataGridView dataGridView = grdGrnlist;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMismatchQty"];
+                                    cell.Style.BackColor = Color.PaleGreen;
+                                    cell.Style.ForeColor = Color.Black;
+                                    cell.ReadOnly = false;
+                                }
+                                else
+                                {
+                                    DataGridView dataGridView = grdGrnlist;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMismatchQty"];
+                                    cell.Style.BackColor = Color.LightGray;
+                                    cell.Style.ForeColor = Color.Black;
+                                    cell.ReadOnly = true;
+                                }
                                 udfnrowclear();
                                 //if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202 || Convert.ToInt32(cmbQtyType.SelectedValue) == 226 || Convert.ToInt32(cmbQtyType.SelectedValue) == 227)
                                 //{

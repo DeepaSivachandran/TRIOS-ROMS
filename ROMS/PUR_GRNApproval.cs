@@ -1185,16 +1185,8 @@ namespace ROMS
 
                             if (varShelflifeper[0] != "")
                             {
-                                if (Convert.ToDecimal(varShelflifeper[0]) > varShelflifeLevel1 - 1 && Convert.ToDecimal(varShelflifeper[0]) < varShelflifeLevel2)
-                                {
-                                    DataGridView dataGridView = grdGrnApproval;
-                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
-                                    cell.Style.BackColor = Color.Orange;
-                                    cell.Style.ForeColor = Color.Black;
-                                    txtORPercentageCheck.Enabled = true;
-                                    lblFivetyPercentage.Enabled = true;
-                                }
-                                else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < varShelflifeLevel1)
+                                //Shelflife Wise Color Set
+                                if (Convert.ToDecimal(varShelflifeper[0]) <= varShelflifeLevel1)
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -1202,6 +1194,15 @@ namespace ROMS
                                     cell.Style.ForeColor = Color.White;
                                     txtRDPercentageCheck.Enabled = true;
                                     lbltwentyfiveper.Enabled = true;
+                                }
+                                else if (Convert.ToDecimal(varShelflifeper[0]) > varShelflifeLevel1 && Convert.ToDecimal(varShelflifeper[0]) < varShelflifeLevel2)
+                                {
+                                    DataGridView dataGridView = grdGrnApproval;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
+                                    cell.Style.BackColor = Color.Orange;
+                                    cell.Style.ForeColor = Color.Black;
+                                    txtORPercentageCheck.Enabled = true;
+                                    lblFivetyPercentage.Enabled = true;
                                 }
                                 else
                                 {
