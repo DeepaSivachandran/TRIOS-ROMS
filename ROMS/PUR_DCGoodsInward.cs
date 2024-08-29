@@ -37,7 +37,7 @@ namespace ROMS
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varExpiryDate = "";
         public string varPICode = "", varTName = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "",
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
-        public int varConcernId = 0, varScheduleId = 0, varSupplierId = 0, varMRPFlag = 0, varEditFlag = 0, varshelflifeflag = 0, varDateEnable = 0, varRMProductionFlag = 0, varErrorFormat = 0, shelfLifeError = 0;
+        public int varConcernId = 0, varScheduleId = 0, varSupplierId = 0, varMRPFlag = 0, varEditFlag = 0, varshelflifeflag = 0, varDateEnable = 0, varRMProductionFlag = 0, varErrorFormat = 0, shelfLifeError = 0, VarRackCount = 0;
         public string varReturnDCDate = "", varErrQty="0";
         public string varTodayDate = "",varExchangeReturns="";
         decimal ProShelflife = 0;
@@ -1247,10 +1247,57 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnPurLocationAutocomplete();
+                    udfnSourceRack();
                     if (txtRack.Enabled == false)
                     { btnAdd.Focus(); }
                     else
                     { txtRack.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSourceRack()
+        {
+            try
+            {
+                if (Convert.ToInt32(lblStockLocationCode.Text) != 0 && Convert.ToString(txtStockLocation.Text) != "")
+                {
+                    DataSet objDs = new DataSet();
+                    SPDataService objdserv = new SPDataService();
+                    objDs = objdserv.udfnRackList(7, 0, 0, Convert.ToInt32(lblStockLocationCode.Text), 0, "", 0, 0);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count > 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                if (Convert.ToInt32(objDs.Tables[0].Rows[0][0]) == 0)
+                                {
+                                    txtRack.Text = "None";
+                                    //lblLocationcode.Text = "0";
+                                    txtRack.Enabled = false;
+                                }
+                                else
+                                {
+                                    txtRack.Text = "";
+                                    txtRack.Enabled = true;
+                                    lblRackCode.Text = "0";
+                                }
+                            }
+                            else
+                            {
+                                txtRack.Text = "None";
+                                //lblLocationcode.Text = "0";
+                                txtRack.Enabled = false;
+                                lblRackCode.Text = "0";
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1465,6 +1512,121 @@ namespace ROMS
             }
         }
 
+        private void GrdProductExchage_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string varLocationErr = "", VarRackErr = "";
+                DataGridView dataGridView = (DataGridView)sender;
+                DataGridViewCell cellSlname = dataGridView.Rows[e.RowIndex].Cells["clmStockLocation"];
+                DataGridViewCell cellSlid = dataGridView.Rows[e.RowIndex].Cells["clmSLID"];
+                DataGridViewCell cellRkname = dataGridView.Rows[e.RowIndex].Cells["clmRack"];
+                DataGridViewCell cellRkid = dataGridView.Rows[e.RowIndex].Cells["clmRKID"];
+                // DataGridViewCell cellRkcount = dataGridView.Rows[e.RowIndex].Cells["clmrkcount"];
+                if (e.ColumnIndex == grdProductExchage.Columns["clmStockLocation"].Index && e.RowIndex >= 0)
+                {
+                    string SelectedLocationName = grdProductExchage.Rows[e.RowIndex].Cells["clmStockLocation"].Value?.ToString();
+                    if (!string.IsNullOrEmpty(SelectedLocationName))
+                    {
+                        /* Check purchase location is valid or not*/
+                        string varId_PurLocation = "0", varRkCount = "0";
+                        DataSet objDsPurLoc = new DataSet();
+                        SPDataService objDServ3 = new SPDataService();
+                        objDsPurLoc = objDServ3.udfnStockLocationList(14,0, 0, 0, SelectedLocationName, 0, 0, 0, "", "", 0);
+                        objDServ3.CloseConnection();
+                        if (objDsPurLoc != null)
+                        {
+                            if (objDsPurLoc.Tables.Count > 0)
+                            {
+                                if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                                {
+                                    varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                                }
+                            }
+                            if (objDsPurLoc.Tables[1].Rows.Count > 0)
+                            {
+                                varRkCount = Convert.ToString(objDsPurLoc.Tables[1].Rows[0][0]);
+                            }
+                        }
+                        if (varRkCount == "0")
+                        {
+                            cellRkid.Value = varRkCount;
+                            cellRkname.Value = "None";
+                            //cellRkcount.Value = 0;
+                            cellRkname.ReadOnly = true; cellRkname.Style.BackColor = Color.LightGray;
+                        }
+                        else
+                        {
+                            cellRkid.Value = "-1";
+                            cellRkname.Value = "";
+                            // cellRkcount.Value = 0;
+                            cellRkname.ReadOnly = false; cellRkname.Style.BackColor = Color.PaleGreen;
+                        }
+                        if (varId_PurLocation != "-1")
+                        {
+                            cellSlname.Style.BackColor = Color.PaleGreen;
+                            cellSlid.Value = Convert.ToString(varId_PurLocation);
+                            varLocationErr = "0";
+                            grdProductExchage.Rows[e.RowIndex].Cells["clmLocationErr"].Value = varLocationErr;
+                        }
+                        else
+                        {
+                            cellSlname.Style.BackColor = Color.LightPink;
+                            cellSlid.Value = Convert.ToString(varId_PurLocation);
+                            varLocationErr = "1";
+                            grdProductExchage.Rows[e.RowIndex].Cells["clmLocationErr"].Value = varLocationErr;
+                        }
+                    }
+                }
+                else if ((e.ColumnIndex == grdProductExchage.Columns["clmRack"].Index) && e.RowIndex >= 0)
+                {
+                    if (Convert.ToString(cellSlid.Value) != "-1")
+                    {
+                        string SelectedRackName = grdProductExchage.Rows[e.RowIndex].Cells["clmRack"].Value?.ToString().Trim();
+                        if (!string.IsNullOrEmpty(SelectedRackName))
+                        {
+                            /*check location have a rack or not*/
+                            string varId_PurchaseRack = "0";
+                            DataSet objDsPurchaseRack = new DataSet();
+                            SPDataService objDServ6 = new SPDataService();
+                            objDsPurchaseRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(cellSlid.Value), 0, SelectedRackName, 0, 0);
+                            objDServ6.CloseConnection();
+                            if (objDsPurchaseRack != null)
+                            {
+                                if (objDsPurchaseRack.Tables.Count > 0)
+                                {
+                                    if (objDsPurchaseRack.Tables[0].Rows.Count > 0)
+                                    {
+                                        varId_PurchaseRack = Convert.ToString(objDsPurchaseRack.Tables[0].Rows[0][0]);
+                                    }
+                                }
+                            }
+                            if (varId_PurchaseRack != "-1" || Convert.ToString(grdProductExchage.Rows[e.RowIndex].Cells["clmRack"].Value) == "None" || Convert.ToString(grdProductExchage.Rows[e.RowIndex].Cells["clmRack"].Value) == "")
+                            {
+                                VarRackErr = "0";
+                                cellRkname.Style.BackColor = Color.PaleGreen;
+                                //}
+                                cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                grdProductExchage.Rows[e.RowIndex].Cells["clmRackErr"].Value = VarRackErr;
+                            }
+                            else
+                            {
+                                cellRkname.Style.BackColor = Color.LightPink;
+                                cellRkid.Value = Convert.ToString(varId_PurchaseRack);
+                                VarRackErr = "1";
+                                grdProductExchage.Rows[e.RowIndex].Cells["clmRackErr"].Value = VarRackErr;
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void GrdProductExchage_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1971,6 +2133,32 @@ namespace ROMS
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
                 }
+                if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmStockLocation")
+                {
+                    TextBox txtPurStockLocation = e.Control as TextBox;
+                    if (txtPurStockLocation != null)
+                    {
+                        //int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
+                        int varCOMID = Convert.ToInt16(varConcernId);
+                        txtPurStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtPurStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName(varCOMID);
+                        txtPurStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdProductExchage.CurrentCell.OwningColumn.Name == "clmRack")
+                {
+                    TextBox txtPurRack = e.Control as TextBox;
+                    if (txtPurRack != null)
+                    {
+                        int varSLID = 0;
+                        string varSLName = "";
+                        int varPRID = Convert.ToInt16(grdProductExchage.CurrentRow.Cells["ClmPRID"].Value);
+                        varSLID = Convert.ToInt32(grdProductExchage.CurrentRow.Cells["clmSLID"].Value);
+                        txtPurRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID, varPRID);
+                        txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1978,7 +2166,69 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public AutoCompleteStringCollection AutoCompleteLocationName(int varCOMID)
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            //DataSet objds;
+            //objds = null;
+            //DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+            //if (varCOMID == 0)
+            //{
+            //    objds = objdservice.GetDataset("SELECT SLID,SL_EName  FROM MR_StockLocation WHERE  SLID NOT IN (-1,0) AND ISNULL(SL_Default,0) = 0 AND SL_STSID = 1");
+            //}
+            //else
+            //{
+            //    objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND ISNULL(SL_Default,0) = 0 AND SL_STSID = 1 AND SL_COMID=" + varCOMID);
+            //}
+            SPDataService objspdservice = new SPDataService();
+            DataSet objds = new DataSet();
+            objds = objspdservice.udfnStockLocationList(30, Convert.ToInt32(varCOMID), 0, 0, "", 0, 0, 0, "", "", 0);
+            objspdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("SL_EName") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        public AutoCompleteStringCollection AutoCompleteRackName(int varSLID, int varPRID)
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            //DataService objdservice = new DataService();
+            SPDataService objdservice = new SPDataService();
+            DataTable objDt = new DataTable();
+            //objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0) AND  RK_STSID=1 AND RK_SLID = " + varSLID);
+            objds = objdservice.udfnRackList(11, 0, 0, Convert.ToInt32(varSLID), 0, "", 0, 0);
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("RK_ShortName") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
         private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -3605,6 +3855,14 @@ namespace ROMS
                             }
                         }
                     }
+                    if (txtRack.Enabled == false)
+                    {
+                        VarRackCount = 0;
+                    }
+                    else
+                    {
+                        VarRackCount = 1;
+                    }
                     // udfnExpiryDate();
                     if (pbDateflag == 0)
                     {
@@ -3622,6 +3880,23 @@ namespace ROMS
                         grdProductExchage.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         grdProductExchage.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdProductExchage.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+
+                        if (VarRackCount == 0)
+                        {
+                            DataGridView dataGridView = grdProductExchage;
+                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmRack"];
+                            cell.Style.BackColor = Color.LightGray;
+                            cell.Style.ForeColor = Color.Black;
+                            cell.ReadOnly = true;
+                        }
+                        else
+                        {
+                            DataGridView dataGridView = grdProductExchage;
+                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmRack"];
+                            cell.Style.BackColor = Color.PaleGreen;
+                            cell.Style.ForeColor = Color.Black;
+                            cell.ReadOnly = false;
+                        }
 
                         if (varDateEnable == 1)
                         {
