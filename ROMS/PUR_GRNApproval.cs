@@ -24,6 +24,9 @@ namespace ROMS
         DataTable dtApproval = new DataTable();
         DataTable dtPurchaseReturnDC = new DataTable();
         DataTable dtDebitProduct = new DataTable();
+        DataTable dtAllReason = new DataTable();
+        DataTable dtFilteredReason = new DataTable();
+        DataTable dtGRNReason = new DataTable();
         public PUR_GRNApproval()
         {
             InitializeComponent();
@@ -779,9 +782,11 @@ namespace ROMS
 
                 ClearSupplier();
                 udfnsupplierLoad();
+                udfnReason();
                 udfnEdit();
+                
                 //udfnStatus();
-                if(MainForm.objPUR_GRNApprovalList.ApprovalFlag==1)
+                if (MainForm.objPUR_GRNApprovalList.ApprovalFlag==1)
                 {
                     btnSave.Enabled = false;
                     btnRemarks.Enabled = false;
@@ -843,7 +848,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 22;
-                objMR_Master.paraFlag = varFlag;
+                //objMR_Master.paraFlag = varFlag;
                 DataSet objDSer = new DataSet();
                 SPDataService objdServ = new SPDataService();
                 objDSer = objdServ.udfnMaster(objMR_Master);
@@ -854,11 +859,21 @@ namespace ROMS
                     {
                         if (objDSer.Tables[0].Rows.Count > 0)
                         {
-                            var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmReason"];
-                            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-                            varComboBoxColoumn.ValueMember = "ID";
-                            varComboBoxColoumn.DisplayMember = "Reason";
-                            varComboBoxColoumn.DataSource = objDSer.Tables[0];
+                            dtAllReason= objDSer.Tables[0];
+                        }
+                    }
+                    if (objDSer.Tables.Count > 1)
+                    {
+                        if (objDSer.Tables[1].Rows.Count > 0)
+                        {
+                            dtFilteredReason = objDSer.Tables[1];
+                        }
+                    }
+                    if (objDSer.Tables.Count > 2)
+                    {
+                        if (objDSer.Tables[2].Rows.Count > 0)
+                        {
+                            dtGRNReason = objDSer.Tables[2];
                         }
                     }
                 }
@@ -992,6 +1007,11 @@ namespace ROMS
                         string varMessage = objDServ.udfnGetMessages(131);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrorFlag = false;
+                    }
+                    if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == "233" && (varReturnQty==0 || varFreeQty==0))
+                    {
+                        varQtyErr++;
                         varErrorFlag = false;
                     }
                 }
@@ -1145,7 +1165,8 @@ namespace ROMS
                                 Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Free Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Debit Qty"]),
                                 /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), 
                                 Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["IssueProCount"]), 
-                                Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Free Qty Value"]));
+                                Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Free Qty Value"]),
+                                 Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]));
                             //if (Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 1)
                             //{
                            dtApproval.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), 
@@ -1212,8 +1233,49 @@ namespace ROMS
                                     cell.Style.ForeColor = Color.Black;
                                 }
                             }
-                            
-                            udfnReason();
+                            if(varFlag==1)//from purchase
+                            {
+                                var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmReason"];
+                                DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+                                varComboBoxColoumn.ValueMember = "ID";
+                                varComboBoxColoumn.DisplayMember = "Reason";
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
+                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
+                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
+                                {
+                                    varComboBoxColoumn.DataSource = dtFilteredReason; 
+                                }
+                                else
+                                {
+                                    varComboBoxColoumn.DataSource = dtAllReason;
+                                }
+                            }
+                            else if(varFlag==2)//from grn
+                            {
+                                var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmReason"];
+                                DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+                                varComboBoxColoumn.ValueMember = "ID";
+                                varComboBoxColoumn.DisplayMember = "Reason";
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
+                                   || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
+                                   || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
+                                {
+                                    varComboBoxColoumn.DataSource = dtFilteredReason;
+                                }
+                                else
+                                {
+                                    varComboBoxColoumn.DataSource = dtGRNReason;
+                                }
+                            }
+                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
+                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
+                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
+                            {
+                                grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightGray;
+                                grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightGray;
+                                grdGrnApproval.Rows[i].Cells["clmreturnqty"].ReadOnly = true;
+                                grdGrnApproval.Rows[i].Cells["clmFreeQty"].ReadOnly = true;
+                            }
                             if (Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]) == "0")
                             {
                                 grdGrnApproval.Rows[i].Cells["clmReason"].Value = 234;

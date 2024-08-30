@@ -494,7 +494,9 @@ namespace ROMS
                                         string cellUnit = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmUnit"].Value);
                                         string cellProductName = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmProductName"].Value);
                                         string cellUTID = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmUTID"].Value);
-                                        string cellInvMrp = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmInvoiceMRP"].Value);
+                                        string cellInvMrp = "0";
+                                        if (Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmInvoiceMRP"].Value) != "")
+                                        { cellInvMrp = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmInvoiceMRP"].Value);}
                                         string cellProMrp = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmMRP"].Value);
                                         string cellInvExpiryDate = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmInvoiceExpiryDate"].Value);
                                         string cellProExpiryDate = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmExpiryDate"].Value);
@@ -514,8 +516,10 @@ namespace ROMS
                                         string cellShelflifeType = Convert.ToString(grdInward.Rows[grdInward.Rows.Count - 1].Cells["clmShelfType"].Value);
 
                                         dtInwardPurchase.Rows.Add(value, Convert.ToInt32(varSno), varConvertType, varChildRowNo, Convert.ToInt32(cellPRID), Convert.ToInt32(cellUTID), 0,
-                                        0, Convert.ToInt32(0),Convert.ToString(cellProExpiryDate), Convert.ToString(cellProBatchNo), Convert.ToDecimal(0),Convert.ToInt16(varGRN_DC_PUR_ID),Convert.ToInt16(cellMRPFlag),
-                                        Convert.ToInt16(cellShelfLifeEnable),Convert.ToInt16(cellBatchenable), Convert.ToInt16(cellBatchgeneration), varPRStatus, 0, Convert.ToInt32(cellShelfLife), Convert.ToInt32(varShelflifeType), 
+                                        0, Convert.ToInt32(0),Convert.ToString(cellProExpiryDate), Convert.ToString(cellProBatchNo), Convert.ToDecimal(0),Convert.ToInt16(varGRN_DC_PUR_ID),
+                                        Convert.ToInt16(cellMRPFlag),
+                                        Convert.ToInt16(cellShelfLifeEnable),Convert.ToInt16(cellBatchenable), Convert.ToInt16(cellBatchgeneration), varPRStatus, 0, Convert.ToInt32(cellShelfLife),
+                                        Convert.ToInt32(varShelflifeType), 
                                         Convert.ToInt32(varActualLife),Convert.ToInt32(cellShelfLifeEnable), Convert.ToDecimal(cellShelfLifePer), Convert.ToString(cellInvExpiryDate), Convert.ToString(cellInvBatchNo),
                                         Convert.ToDecimal(cellInvMrp));
                                     }
