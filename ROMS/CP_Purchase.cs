@@ -4807,10 +4807,9 @@ namespace ROMS
                         varErrorFlag = true;
                     }
                 }
-                if(Convert.ToInt16(cmbQtyType.SelectedValue)==193 || Convert.ToInt16(cmbQtyType.SelectedValue) == 194 ||  Convert.ToInt16(cmbQtyType.SelectedValue) == 226 ||
-                    Convert.ToInt16(cmbQtyType.SelectedValue) == 255 || Convert.ToInt16(cmbQtyType.SelectedValue) == 257 || Convert.ToInt16(cmbQtyType.SelectedValue) == 227)
+                if(Convert.ToInt16(cmbQtyType.SelectedValue)!=202 )
                 {
-                    if (txtInvoiceQty.Text.Trim() == "" )
+                    if (txtInvoiceQty.Text.Trim() == "" || txtInvoiceQty.Text.Trim() == "0")
                     {
                         errPurchaseentry.SetError(txtInvoiceQty, "Please enter quantity");
                         txtInvoiceQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -5167,49 +5166,17 @@ namespace ROMS
                                 varPrMRPFlag,varGRNProType,varRMProductionFlag, varGrnType,Convert.ToString(cmbQtyType.SelectedValue));
                                 grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
-                                //if(Convert.ToString(cmbQtyType.SelectedValue)=="193")
-                                //{
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmExcessQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmDamageQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
-                                //}
-                                //else if (Convert.ToString(cmbQtyType.SelectedValue) == "194")
-                                //{
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmPendingQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmPendingQty"].Style.BackColor = Color.LightGray;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmDamageQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
-                                //}
-                                //else if (Convert.ToString(Convert.ToString(cmbQtyType.SelectedValue)) == "255")//Damage
-                                //{
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmExcessQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmPendingQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmPendingQty"].Style.BackColor = Color.LightGray;
-                                //}
-                                //else
-                                //{
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmExcessQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmPendingQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmPendingQty"].Style.BackColor = Color.LightGray;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmDamageQty"].ReadOnly = true;
-                                //    grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
-                                //}
                                 if (Convert.ToInt32(cmbEntryType.SelectedValue)!=54)
                                 {
-                                    if (Convert.ToString(cmbQtyType.SelectedValue) == "193" || Convert.ToString(cmbQtyType.SelectedValue) == "194" ||
-                                        Convert.ToString(cmbQtyType.SelectedValue) == "255" || Convert.ToString(cmbQtyType.SelectedValue) == "226"
-                                        || Convert.ToString(cmbQtyType.SelectedValue) == "257")
-                                    {
-                                        grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].ReadOnly = false;
-                                        grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].Style.BackColor = Color.PaleGreen;
-                                    }
-                                    else
+                                    if (Convert.ToString(cmbQtyType.SelectedValue) == "202" )//Product condition no difference
                                     {
                                         grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].ReadOnly = true;
                                         grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
+                                    }
+                                    else
+                                    {
+                                        grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].ReadOnly = false;
+                                        grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].Style.BackColor = Color.PaleGreen;
                                     }
                                 }
                                 if (varPrInvFlag == "1" && PbSTS!="0" && PbSTS != "49")
@@ -5290,7 +5257,6 @@ namespace ROMS
                                 }
                                 if (Convert.ToString(grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmid"].Value) == "220")
                                 {
-                                   // grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("#DEF9C4");
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmProTname"].Style.BackColor = ColorTranslator.FromHtml("#FFD3B6");
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("#FFD3B6");
                                 }
@@ -9050,16 +9016,14 @@ namespace ROMS
             {
                 string varProCondition = "0";
                 varProCondition = Convert.ToString(cmbQtyType.SelectedValue);
-                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 193 || Convert.ToInt32(cmbQtyType.SelectedValue) == 194 || Convert.ToInt32(cmbQtyType.SelectedValue) == 227 
-                    || Convert.ToInt32(cmbQtyType.SelectedValue) == 255 || Convert.ToInt32(cmbQtyType.SelectedValue) == 226 || Convert.ToInt32(cmbQtyType.SelectedValue) == 257)
+                if (Convert.ToInt32(cmbQtyType.SelectedValue) == 202 )
                 {
-                  //  lblQty.Text = cmbQtyType.Text; //+ " Qty";
-                    txtInvoiceQty.Enabled = true;
+                    txtInvoiceQty.Enabled = false; txtInvoiceQty.ReadOnly = true;
+                    txtInvoiceQty.Text = "";
                 }
                 else
                 {
-                   // lblQty.Text = "";
-                    txtInvoiceQty.Enabled = false;
+                    txtInvoiceQty.Enabled = true; txtInvoiceQty.ReadOnly = false;
                     txtInvoiceQty.Text = "";
                 }
                 //if (Convert.ToString(cmbQtyType.SelectedValue) == "226" && (varProCondition == "214" || varProCondition == "217" || varProCondition == "219"))
@@ -9153,6 +9117,12 @@ namespace ROMS
                                     txtDate.Text = objDs.Tables[0].Rows[0][0].ToString();
                                     txtMonth.Text = objDs.Tables[0].Rows[1][0].ToString();
                                     txtYear.Text = objDs.Tables[0].Rows[2][0].ToString();
+                                    txtDate.ReadOnly = true;
+                                    txtMonth.ReadOnly = true;
+                                    txtYear.ReadOnly = true;
+                                    txtDate.Enabled = false;
+                                    txtMonth.Enabled = false;
+                                    txtYear.Enabled = false;
                                 }
                             }
                         }
@@ -11986,16 +11956,15 @@ namespace ROMS
                         //}
                         //if (Convert.ToInt32(cmbEntryType.SelectedValue)!=54)
                         //{
-                            if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmConditionID"].Value) == "193" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmConditionID"].Value) == "194" ||
-                                        Convert.ToString(grdSupplierList.Rows[i].Cells["clmConditionID"].Value) == "255" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmConditionID"].Value) == "226")
-                            {
-                                grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].ReadOnly = false;
-                                grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].Style.BackColor = Color.PaleGreen;
-                            }
-                            else
+                            if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmConditionID"].Value) == "202" )//Nodifference
                             {
                                 grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].ReadOnly = true;
                                 grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
+                            }
+                            else
+                            {
+                                grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].ReadOnly = false;
+                                grdSupplierList.Rows[grdSupplierList.RowCount - 1].Cells["clmMismatchQty"].Style.BackColor = Color.PaleGreen;
                             }
                        // }
                         //if (PbSTS != "50")
@@ -12066,7 +12035,6 @@ namespace ROMS
                     grdSupplierList.Columns["clmLocation"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdSupplierList.Columns["clmrack"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
-                
             }
             catch (Exception ex)
             {
