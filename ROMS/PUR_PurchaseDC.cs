@@ -40,7 +40,7 @@ namespace ROMS
         public string varPICode = "", varTName = "", varEName = "", var_Symbol = "", var_Text = "", var_RMinSaleQty = "", varSTOCK = "", varPrevious = "", varPARITAL = "", varReOrderQty = "",
         varorderSaleQty = "", varorderqty = "", addproductid = "", flag = "", varunitid = "0", pbProductsCode = "", pbunitname = "", varupdate = "0", varpendingPOID = "0", varReturnDC = "0", varDamage = "0", varcomid = "0";
         public string pbFormStatus;
-        public int VarPrevSupplierid = 0, varDCID = 0, varCloseFlag = 0, varClose = 0, varDateChange = 0, varUpDownKey = 0, varErrorFormat = 0, varErroronGrid = 0;
+        public int VarPrevSupplierid = 0, varDCID = 0, varCloseFlag = 0, varClose = 0, varDateChange = 0, varUpDownKey = 0, varErrorFormat = 0, varErroronGrid = 0, shelfLifeError = 0;
         public string varBatchNo = "0";
         public string varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varTempExpiryDate = "0";
         public string varErrQty = "0", varErrBatchNo = "0", varErrExpiryDate = "0"; int expirydateFlag = 0, varMRPEditflag = 0;
@@ -218,19 +218,20 @@ namespace ROMS
                                     string[] varShelflifeper = Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]).Split(' ');
                                     if (varShelflifeper[0] != "")
                                     {
-                                        if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1)+1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
-                                        {
-                                            DataGridView dataGridView = grdPurchaseDC;
-                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
-                                            cell.Style.BackColor = Color.Orange;
-                                            cell.Style.ForeColor = Color.Black;
-                                        }
-                                        else if (Convert.ToDecimal(varShelflifeper[0]) >= 0 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1))
+                                        //Shelflife Wise Color Set
+                                        if (Convert.ToDecimal(varShelflifeper[0]) <= (MainForm.pbShelflifeLevel1))
                                         {
                                             DataGridView dataGridView = grdPurchaseDC;
                                             DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.Red;
                                             cell.Style.ForeColor = Color.White;
+                                        }
+                                        else if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1) && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
+                                        {
+                                            DataGridView dataGridView = grdPurchaseDC;
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                            cell.Style.BackColor = Color.Orange;
+                                            cell.Style.ForeColor = Color.Black;
                                         }
                                         else
                                         {
@@ -2500,6 +2501,7 @@ namespace ROMS
         {
             try
             {
+                shelfLifeError = 0;
                 if (grdPurchaseDC.RowCount > 0)
                 {
                     bool varErrorFlag = true;
@@ -2674,6 +2676,21 @@ namespace ROMS
                                         grdPurchaseDC.Rows[i].Cells["clmBatchNo"].ReadOnly = false;
                                     }
                                 }
+
+                                if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmshelfper"].Value.ToString().Trim()) != "")
+                                {
+                                    string shelfper = ""; decimal shelflifeper = 0;
+                                    object cellValue1 = Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmshelfper"].Value);
+
+                                    shelfper = cellValue1.ToString();
+                                    string[] shelfvalue = shelfper.Split('%');
+                                    shelflifeper = Convert.ToDecimal(shelfvalue[0]);
+                                    if (shelflifeper < (MainForm.pbShelflifeLevel2))
+                                    {
+                                        shelfLifeError++;
+                                    }
+                                }
+
                             }
                         }
                         if ((Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmMRPFlag"].Value) == "1") && ((Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmMRP"].Value) == "") || (Convert.ToDecimal(grdPurchaseDC.Rows[i].Cells["clmMRP"].Value) == 0)))
@@ -2698,7 +2715,24 @@ namespace ROMS
                             varErrorFlag = false;
                         }
                     }
-                    if (varErrorFlag == true && varErrQty == "0")
+                    if (shelfLifeError != 0)
+                    {
+                        string varShelflifeMessage = "", varShelflifeLevel = "";
+                        varShelflifeLevel = Convert.ToString(MainForm.pbShelflifeLevel2) + '%';
+                        SPDataService objDServe1 = new SPDataService();
+                        string varMessage = objDServe1.udfnGetMessages(110);
+                        objDServe1.CloseConnection();
+
+                        varShelflifeMessage = Convert.ToString(varMessage.Replace("50%", varShelflifeLevel));
+
+                        DialogResult dialogResult1 = MessageBox.Show(varShelflifeMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult1 == DialogResult.Yes)
+                        {
+                            shelfLifeError = 0;
+                        }
+                    }
+
+                    if (varErrorFlag == true && varErrQty == "0" && shelfLifeError==0)
                     {
                         udfnTooltipHide(); int varDC_PURID = 0;
                         int varStatusID = 0;
@@ -3960,24 +3994,25 @@ namespace ROMS
                                     string[] varShelflifevalue = Convert.ToString(objDs.Tables[0].Rows[0]["SHELFLIFE"]).Split(' ');
                                     if (varShelflifevalue[0] != "")
                                     {
-                                        if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel1))
+                                        //Shelflife Wise Color Set
+                                        if (Convert.ToDecimal(varShelflifevalue[0]) <= (MainForm.pbShelflifeLevel1))
                                         {
                                             DataGridView dataGridView = grdPurchaseDC;
-                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.Red;
                                             cell.Style.ForeColor = Color.White;
                                         }
-                                        else if (Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
+                                        else if (Convert.ToDecimal(varShelflifevalue[0]) > (MainForm.pbShelflifeLevel1) && Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
                                         {
                                             DataGridView dataGridView = grdPurchaseDC;
-                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.Orange;
                                             cell.Style.ForeColor = Color.Black;
                                         }
                                         else
                                         {
                                             DataGridView dataGridView = grdPurchaseDC;
-                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
+                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.White;
                                             cell.Style.ForeColor = Color.Black;
                                         }
@@ -5290,19 +5325,20 @@ namespace ROMS
                 string[] varShelflifeper = Convert.ToString(ProShelflife).Split(' ');
                 if (varShelflifeper[0] != "")
                 {
-                    if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1)+1 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
-                    {
-                        DataGridView dataGridView = grdPurchaseDC;
-                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
-                        cell.Style.BackColor = Color.Orange;
-                        cell.Style.ForeColor = Color.Black;
-                    }
-                    else if (Convert.ToDecimal(varShelflifeper[0]) > 0 && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel1))
+                    //Shelflife Wise Color Set
+                    if (Convert.ToDecimal(varShelflifeper[0]) <= (MainForm.pbShelflifeLevel1))
                     {
                         DataGridView dataGridView = grdPurchaseDC;
                         DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
                         cell.Style.BackColor = Color.Red;
                         cell.Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToDecimal(varShelflifeper[0]) > (MainForm.pbShelflifeLevel1) && Convert.ToDecimal(varShelflifeper[0]) < (MainForm.pbShelflifeLevel2))
+                    {
+                        DataGridView dataGridView = grdPurchaseDC;
+                        DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                        cell.Style.BackColor = Color.Orange;
+                        cell.Style.ForeColor = Color.Black;
                     }
                     else
                     {

@@ -33,12 +33,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_DCGoodsInward));
             this.epLocation = new System.Windows.Forms.ErrorProvider(this.components);
             this.label23 = new System.Windows.Forms.Label();
@@ -129,6 +131,9 @@
             this.clmBatchErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDuplicateErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmShelflifeenable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRackErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmLocationErr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRackCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.grpproductname.SuspendLayout();
@@ -762,23 +767,26 @@
             this.clmBatchErr,
             this.clmDuplicateErr,
             this.clmShelflifeenable,
+            this.clmRackErr,
+            this.clmLocationErr,
+            this.clmRackCount,
             this.clmRemove});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdProductExchage.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdProductExchage.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdProductExchage.EnableHeadersVisualStyles = false;
             this.grdProductExchage.GridColor = System.Drawing.Color.White;
             this.grdProductExchage.Location = new System.Drawing.Point(17, 89);
             this.grdProductExchage.Name = "grdProductExchage";
             this.grdProductExchage.RowHeadersVisible = false;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdProductExchage.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdProductExchage.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdProductExchage.RowTemplate.Height = 25;
             this.grdProductExchage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdProductExchage.ShowRowErrors = false;
@@ -787,6 +795,7 @@
             this.grdProductExchage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellContentClick);
             this.grdProductExchage.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellEndEdit);
             this.grdProductExchage.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellLeave);
+            this.grdProductExchage.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProductExchage_CellValueChanged);
             this.grdProductExchage.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdProductExchage_CurrentCellDirtyStateChanged);
             this.grdProductExchage.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdProductExchage_EditingControlShowing);
             // 
@@ -893,14 +902,17 @@
             // 
             // clmStockLocation
             // 
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmStockLocation.DefaultCellStyle = dataGridViewCellStyle9;
             this.clmStockLocation.HeaderText = "Stock Location";
             this.clmStockLocation.Name = "clmStockLocation";
-            this.clmStockLocation.ReadOnly = true;
             this.clmStockLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmStockLocation.Width = 180;
             // 
             // clmRack
             // 
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmRack.DefaultCellStyle = dataGridViewCellStyle10;
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
             this.clmRack.ReadOnly = true;
@@ -1035,6 +1047,27 @@
             this.clmShelflifeenable.Name = "clmShelflifeenable";
             this.clmShelflifeenable.Visible = false;
             // 
+            // clmRackErr
+            // 
+            this.clmRackErr.HeaderText = "Rack Err";
+            this.clmRackErr.Name = "clmRackErr";
+            this.clmRackErr.Visible = false;
+            this.clmRackErr.Width = 10;
+            // 
+            // clmLocationErr
+            // 
+            this.clmLocationErr.HeaderText = "Location Err";
+            this.clmLocationErr.Name = "clmLocationErr";
+            this.clmLocationErr.Visible = false;
+            this.clmLocationErr.Width = 10;
+            // 
+            // clmRackCount
+            // 
+            this.clmRackCount.HeaderText = "Rack Count";
+            this.clmRackCount.Name = "clmRackCount";
+            this.clmRackCount.Visible = false;
+            this.clmRackCount.Width = 10;
+            // 
             // clmRemove
             // 
             this.clmRemove.HeaderText = "Remove";
@@ -1165,6 +1198,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchErr;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDuplicateErr;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShelflifeenable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRackErr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmLocationErr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRackCount;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
