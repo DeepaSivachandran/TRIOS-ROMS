@@ -169,6 +169,8 @@ namespace ROMS
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
                                 txtRemark.Text = objDs.Tables[0].Rows[0]["DC_Remarks"].ToString();
                                 txtSupplierDCNo.Text = objDs.Tables[0].Rows[0]["DC_DCNo"].ToString();
+                                varBlockedSupplier = objDs.Tables[0].Rows[0]["SP_STSId"].ToString();
+                                varBlockedReason = objDs.Tables[0].Rows[0]["Reason"].ToString();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
                                 udfnDateLoad();
@@ -287,6 +289,19 @@ namespace ROMS
                             grdPurchaseDC.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdPurchaseDC.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdPurchaseDC.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+
+                            if (varBlockedSupplier == "98")
+                            {
+                                tsbSupplier.Visible = true;
+                                txtSupplier.BackColor = Color.LightPink;
+                                tsbSupplier.Text = varBlockedReason;
+                            }
+                            else
+                            {
+                                tsbSupplier.Visible = false;
+                                txtSupplier.BackColor = Color.White;
+                            }
+
                         }
                     }
                     udfnProductCount();

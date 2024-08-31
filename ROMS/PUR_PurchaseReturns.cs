@@ -793,10 +793,23 @@ namespace ROMS
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
                                 varStatusId = Convert.ToInt32(objDs.Tables[0].Rows[0]["Status ID"]);
                                 lblStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
-                                VerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["PURREDC_VerifiedBy"]);                              
+                                VerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["PURREDC_VerifiedBy"]);
+                                varBlockedSupplier = Convert.ToString(objDs.Tables[0].Rows[0]["SP_STSId"]);
+                                varBlockedReason = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);                      
                                 udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
+                                if (varBlockedSupplier == "98")
+                                {
+                                    tsbSupplier.Visible = true;
+                                    txtSupplier.BackColor = Color.LightPink;
+                                    tsbSupplier.Text = varBlockedReason;
+                                }
+                                else
+                                {
+                                    tsbSupplier.Visible = false;
+                                    txtSupplier.BackColor = Color.White;
+                                }
                             }
                             if(varStatusId==79)
                             {
