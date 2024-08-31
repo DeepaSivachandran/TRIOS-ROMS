@@ -756,16 +756,16 @@ namespace ROMS
                         cellProExpiryDate.Style.ForeColor = Color.Black;
                         cellProExpiryDate.ReadOnly = true;
                     }
-                    cellProductName.ReadOnly = true;
-                    cellProMrp.ReadOnly = true;
-                    cellInvExpiryDate.ReadOnly = true;
-                    cellInvBatchNo.ReadOnly = true;
-                    cellInvMrp.ReadOnly = true;
-                    cellPICode.ReadOnly = true;
-                    cellInvMrp.Style.BackColor = Color.LightGray;
-                    cellProMrp.Style.BackColor = Color.LightGray;
-                    cellInvMrp.Style.BackColor = Color.LightGray;
-                    cellInvBatchNo.Style.BackColor = Color.LightGray;
+                    //cellProductName.ReadOnly = true;
+                    //cellProMrp.ReadOnly = true;
+                    //cellInvExpiryDate.ReadOnly = true;
+                    //cellInvBatchNo.ReadOnly = true;
+                    //cellInvMrp.ReadOnly = true;
+                    //cellPICode.ReadOnly = true;
+                    //cellInvMrp.Style.BackColor = Color.LightGray;
+                    //cellProMrp.Style.BackColor = Color.LightGray;
+                    //cellInvMrp.Style.BackColor = Color.LightGray;
+                    //cellInvBatchNo.Style.BackColor = Color.LightGray;
                 }
             }
             catch (Exception ex)
