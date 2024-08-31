@@ -1009,10 +1009,12 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
                     }
-                    if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == "233" && (varReturnQty==0 || varFreeQty==0))
+                    if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == "233" && (varReturnQty==0 && varDebitQty==0))
                     {
                         varQtyErr++;
                         varErrorFlag = false;
+                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                        grdGrnApproval.Rows[i].Cells["clmDebitQty"].Style.BackColor = Color.LightPink;
                     }
                 }
                 if (varQtyErr != 0)
