@@ -1150,6 +1150,7 @@
             // 
             this.clmDebitID.HeaderText = "DebitID";
             this.clmDebitID.Name = "clmDebitID";
+            this.clmDebitID.Visible = false;
             // 
             // PAY_SupplierPayment
             // 
