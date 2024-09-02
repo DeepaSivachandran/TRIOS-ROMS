@@ -1127,6 +1127,7 @@
             this.clmCondition.HeaderText = "ProCondition";
             this.clmCondition.Name = "clmCondition";
             this.clmCondition.ReadOnly = true;
+            this.clmCondition.Visible = false;
             // 
             // clmReason
             // 
