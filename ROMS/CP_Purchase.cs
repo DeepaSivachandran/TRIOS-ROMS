@@ -7328,9 +7328,9 @@ namespace ROMS
                                 //    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
                                 //}
                             } 
-                            if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value)=="226" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "264" || 
+                            if (PbSTS=="49" && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value)=="226" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "264" || 
                             Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value)== "265" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "266"
-                                    || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "267" )
+                                    || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "267" ))
                             {
                                 grdPurchaseList.Rows[i].ReadOnly = true;
                                 grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = false;
@@ -7452,9 +7452,9 @@ namespace ROMS
                             varZero = 0 + objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
                             varConvertProductFlag = "0";
                             varConvertProductFlag = Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value);
-                            if ( (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "226" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "264" ||
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "265" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "266"
-                                    || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "267") && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "0") )  //Product not received
+                            if ( (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
+                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
+                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267") && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "0") )  //Product not received
                             {
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == 0)
                                 {
@@ -7508,9 +7508,9 @@ namespace ROMS
                             { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
 
 
-                            if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57 &&  (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "226" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "264" ||
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "265" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "266"
-                                    || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "267"))  //Against DC
+                            if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57 &&  (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
+                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
+                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267"))  //Against DC
                             {
                                 int varProductType = 0;
                                 if ( Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "" &&
@@ -7566,9 +7566,9 @@ namespace ROMS
                                     }
                                 }
                             }
-                            if ((varEntryType == 56 || varEntryType == 55) && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "226" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "264" ||
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "265" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "266"
-                                    || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "267"))  //Direct and against po
+                            if ((varEntryType == 56 || varEntryType == 55) && (  Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
+                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
+                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226"))  //Direct and against po
                             {
                                 if ( Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "" &&
                                     Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != 0 ||(Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != ""  
@@ -7633,13 +7633,13 @@ namespace ROMS
                                     }
                                 }
                             }
-                            if (varEntryType == 54 && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "226" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "264" ||
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "265" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "266"
-                                    || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "267") && varConvertProductFlag == "0") //  GRN
+                            if (varEntryType == 54 && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
+                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
+                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267") && varConvertProductFlag == "0") //  GRN
                             {
-                                if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "264" ||
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "265" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "266"
-                                    || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "267")  //Product not received
+                                if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
+                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
+                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267")  //Product not received
                                 {
                                     if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "" &&
                                         Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != 0 && Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != 0)
