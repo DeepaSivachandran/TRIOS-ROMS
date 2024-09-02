@@ -1063,7 +1063,7 @@ namespace ROMS
                                 //    lblGrandTotal.Text = GrandTot.ToString("#,##0.00");
                                 //}
                                 //else 
-                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0 && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 79))
+                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0 && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 101))
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = false;
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;

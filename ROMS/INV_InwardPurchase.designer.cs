@@ -1327,12 +1327,14 @@
             this.clmFinalQty.HeaderText = "Final Qty";
             this.clmFinalQty.Name = "clmFinalQty";
             this.clmFinalQty.ReadOnly = true;
+            this.clmFinalQty.Visible = false;
             // 
             // clmEntrytypeProID
             // 
             this.clmEntrytypeProID.HeaderText = "EntrytypeProID";
             this.clmEntrytypeProID.Name = "clmEntrytypeProID";
             this.clmEntrytypeProID.ReadOnly = true;
+            this.clmEntrytypeProID.Visible = false;
             // 
             // clmStatus
             // 
