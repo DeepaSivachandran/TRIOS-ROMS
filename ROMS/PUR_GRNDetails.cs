@@ -2958,6 +2958,31 @@ namespace ROMS
             }
         }
 
+        private void GrdReurnDC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int Remaining = 0;
+                if (e.RowIndex != -1)
+                {
+                    switch (grdReurnDC.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmDCRemove":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdReurnDC.Rows.RemoveAt(this.grdReurnDC.SelectedCells[0].RowIndex);
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtInvoiceQty_Enter(object sender, EventArgs e)
         {
             try

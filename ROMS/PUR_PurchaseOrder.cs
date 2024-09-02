@@ -262,6 +262,8 @@ namespace ROMS
                                 dpPlanDate.Enabled = false;
                                 txtpono.Text = objDs.Tables[0].Rows[0]["PONO"].ToString();
                                 txtSupplier.Text = objDs.Tables[0].Rows[0]["Supplier"].ToString();
+                                varBlockedSupplier = objDs.Tables[0].Rows[0]["SP_STSId"].ToString();
+                                varBlockedReason = objDs.Tables[0].Rows[0]["Reason"].ToString();
                                 lblSupplierCode.Text = objDs.Tables[0].Rows[0]["SPID"].ToString();
                                 lblschedule.Text = objDs.Tables[0].Rows[0]["SPSCID"].ToString();
                                 lblKG.Text = objDs.Tables[0].Rows[0]["PO_PRTotQty"].ToString();
@@ -280,6 +282,17 @@ namespace ROMS
                                 if(txtSupplier.Text.Trim() != "")
                                 {
                                     txtSupplier.BackColor = SystemColors.Control;
+                                }
+                                if (varBlockedSupplier == "98")
+                                {
+                                    tsbSupplier.Visible = true;
+                                    txtSupplier.BackColor = Color.LightPink;
+                                    tsbSupplier.Text = varBlockedReason;
+                                }
+                                else
+                                {
+                                    tsbSupplier.Visible = false;
+                                    txtSupplier.BackColor = Color.White;
                                 }
                             }
 
