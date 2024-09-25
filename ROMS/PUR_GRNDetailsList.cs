@@ -23,7 +23,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public string varUserID = "0", varsuppliername = "";
         public int varGRNPrintFlag = 0;
-        public int varCheckChange = 0;
+        public int varCheckChange = 0, varRedisConnect = 0;
         public ToolTip tpSupplier = new ToolTip();
         public string[] varGRNCheckedId;
         public PUR_GRNDetailsList()
@@ -146,6 +146,13 @@ namespace ROMS
                     lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
                 }
                 //grdGRNList.Columns["clmCheck"].ReadOnly = false;
+                Redis_Cache objRedis = new Redis_Cache();
+                string varResult = objRedis.RedisConnection();
+                if (varResult == "PONG")
+                {
+                    objRedis.RedisSet("SELECT CONCAT(SP_Name,'-',SPSC_Name)AS SP_NAME,SPID,SPSCID,SP_Name AS [SupplierName],SPSC_Name AS [ScheduleName],UPPER(CONCAT(SP_Name,'-',SPSC_Name)) AS Supplier FROM MR_Supplier INNER JOIN MR_Supplier_Schedule ON SPID=SPSC_SPID INNER JOIN TRN_GRN ON SPID=GRN_SPID", "Supplier");
+                }
+
             }
             catch (Exception ex)
             {
@@ -902,56 +909,144 @@ namespace ROMS
             }
 
         }
-
-        private void TxtSupplier_TextChanged(object sender, EventArgs e)
+        private async Task LoadDataAsync()
         {
             try
             {
                 LV_Supplier.BringToFront();
                 //RPTViewer.SendToBack();
                 LV_Supplier.Items.Clear();
-                if (txtSupplier.Text.Length > 0)
+                Redis_Cache objRedis = new Redis_Cache();
+                DataSet objDsSupplier = new DataSet();
+                objDsSupplier = await objRedis.udfnGetAsync(Convert.ToString(txtSupplier.Text.Trim()), "Supplier");
+                if (objDsSupplier != null)
                 {
-                    MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 26;
-                    objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
-                    objMR_Supplier.ParaFromDate = dpFromDate.Text;
-                    objMR_Supplier.ParaToDate = dpToDate.Text;
-                    objMR_Supplier.paraFlag = 6;
-                    DataSet objDs = new DataSet();
-                    SPDataService objspdservice = new SPDataService();
-                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    if (objDsSupplier.Tables.Count > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        if (objDsSupplier.Tables[0].Rows.Count > 0)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            for (int i = 0; i < objDsSupplier.Tables[0].Rows.Count; i++)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString()
-                                    , objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["ScheduleName"].ToString()};
-                                    ListViewItem objList = new ListViewItem(row);
-                                    LV_Supplier.Items.Add(objList);
-                                }
-                                LV_Supplier.Visible = true;
-                                LV_Supplier.BringToFront();
-                                LV_Supplier.Columns[0].Width = 300;
-                                LV_Supplier.Columns[1].Width = 0;
-                                LV_Supplier.Columns[2].Width = 0;
-                                LV_Supplier.Columns[3].Width = 0;
-                                LV_Supplier.Columns[4].Width = 0;
+                                string[] row = { objDsSupplier.Tables[0].Rows[i]["SP_Name"].ToString(), objDsSupplier.Tables[0].Rows[i]["SPID"].ToString(), objDsSupplier.Tables[0].Rows[i]["SPSCID"].ToString(),
+                                    objDsSupplier.Tables[0].Rows[i]["SupplierName"].ToString(), objDsSupplier.Tables[0].Rows[i]["ScheduleName"].ToString()};
+                                ListViewItem objList = new ListViewItem(row);
+                                LV_Supplier.Items.Add(objList);
                             }
+                            LV_Supplier.Visible = true;
+                            LV_Supplier.BringToFront();
+                            LV_Supplier.Columns[0].Width = 300;
+                            LV_Supplier.Columns[1].Width = 0;
+                            LV_Supplier.Columns[2].Width = 0;
+                            LV_Supplier.Columns[3].Width = 0;
+                            LV_Supplier.Columns[4].Width = 0;
+                        }
+                        else
+                        {
+                            LV_Supplier.Visible = false;
+                            LV_Supplier.Items.Clear();
                         }
                     }
-                    objspdservice.CloseConnection();
                 }
-                else
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtSupplier_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Redis_Cache objRedis = new Redis_Cache();
+
+                string varResult = objRedis.RedisConnection();
+                if (varResult == "PONG")
+                {
+                    if (varRedisConnect == 1)
+                    {
+                        objRedis.RedisSet("SELECT CONCAT(SP_Name,'-',SPSC_Name)AS SP_NAME,SPID,SPSCID,SP_Name AS [SupplierName],SPSC_Name AS [ScheduleName],UPPER(CONCAT(SP_Name,'-',SPSC_Name)) AS Supplier FROM MR_Supplier INNER JOIN MR_Supplier_Schedule ON SPID=SPSC_SPID INNER JOIN TRN_GRN ON SPID=GRN_SPID", "Supplier");
+                    }
+                    if (txtSupplier.Text.Length > 0)
+                    {
+                        _ = LoadDataAsync();
+                    }
+                    else
+                    {
+                        LV_Supplier.Visible = false;
+                        LV_Supplier.Items.Clear();
+                    }
+                }
+                else if (varResult == "Server Timeout")
                 {
                     LV_Supplier.Visible = false;
                     LV_Supplier.Items.Clear();
+                    DialogResult dialogResult = MessageBox.Show("Server is not reachable at the moment.Please try again later", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        MainForm.objStart = new DEF_Start();
+                        MainForm.objStart.MdiParent = this.ParentForm;
+                        MainForm.objStart.Show();
+                        this.Close();
+                        //if ((System.Windows.Forms.Application.MessageLoop))
+                        //{
+                        //    System.Windows.Forms.Application.Exit();
+                        //}
+                        //else
+                        //{
+                        //    System.Environment.Exit(1);
+                        //}
+                    }
+                }
+                else
+                {
+                    LV_Supplier.BringToFront();
+                    //RPTViewer.SendToBack();
+                    LV_Supplier.Items.Clear();
+                    if (txtSupplier.Text.Length > 0)
+                    {
+                        MR_Supplier objMR_Supplier = new MR_Supplier();
+                        objMR_Supplier.ViewType = 26;
+                        objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                        objMR_Supplier.ParaFromDate = dpFromDate.Text;
+                        objMR_Supplier.ParaToDate = dpToDate.Text;
+                        objMR_Supplier.paraFlag = 6;
+                        DataSet objDs = new DataSet();
+                        SPDataService objspdservice = new SPDataService();
+                        objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    {
+                                        string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString()
+                                    , objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["ScheduleName"].ToString()};
+                                        ListViewItem objList = new ListViewItem(row);
+                                        LV_Supplier.Items.Add(objList);
+                                    }
+                                    LV_Supplier.Visible = true;
+                                    LV_Supplier.BringToFront();
+                                    LV_Supplier.Columns[0].Width = 300;
+                                    LV_Supplier.Columns[1].Width = 0;
+                                    LV_Supplier.Columns[2].Width = 0;
+                                    LV_Supplier.Columns[3].Width = 0;
+                                    LV_Supplier.Columns[4].Width = 0;
+                                    varRedisConnect = 1;
+                                }
+                            }
+                        }
+                        objspdservice.CloseConnection();
+                    }
+                    else
+                    {
+                        LV_Supplier.Visible = false;
+                        LV_Supplier.Items.Clear();
+                    }
                 }
             }
             catch (Exception ex)
@@ -963,8 +1058,6 @@ namespace ROMS
             {
             }
         }
-
-
         private void LV_Supplier_DoubleClick(object sender, EventArgs e)
         {
             try
