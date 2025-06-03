@@ -6440,6 +6440,7 @@ namespace ROMS
                         tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                         varErrorFlag = true;
                     }
+                    int varVerifiedErr = 0;
                     if (chkCompleted.Checked == true && (pbVerifiedBy1 == 0 || PbVerified1 ==0) && (Convert.ToString(cmbEntryType.SelectedValue) == "55" || Convert.ToString(cmbEntryType.SelectedValue) == "56"))
                     {
                         SPDataService objDServ = new SPDataService();
@@ -6447,19 +6448,23 @@ namespace ROMS
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = true;
+                        varVerifiedErr = 1;
                         BtnVerified_Click(sender, e);
-                        if(pbVerifiedBy1!=0 || PbVerified1 != 0)
-                        { varErrorFlag = false; }
+                        //if(pbVerifiedBy1!=0 || PbVerified1 != 0)
+                        //{ varErrorFlag = false; }
                     }
-                    if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text)) >= varDVA)
+                    if (varVerifiedErr == 0)
                     {
-                        if (pbVerifiedBy1 == 0 || pbVerifiedBy1 == -1 || pbVerifiedBy2 == 0 || pbVerifiedBy2 == -1)
+                        if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text)) >= varDVA)
                         {
-                            SPDataService objDServ1 = new SPDataService();
-                            string varMessage = objDServ1.udfnGetMessages(120);
-                            objDServ1.CloseConnection();
-                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            varErrorFlag = true;
+                            if (pbVerifiedBy1 == 0 || pbVerifiedBy1 == -1 || pbVerifiedBy2 == 0 || pbVerifiedBy2 == -1)
+                            {
+                                SPDataService objDServ1 = new SPDataService();
+                                string varMessage = objDServ1.udfnGetMessages(120);
+                                objDServ1.CloseConnection();
+                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                varErrorFlag = true;
+                            }
                         }
                     }
                     if (varBlockedSupplier == "98")
