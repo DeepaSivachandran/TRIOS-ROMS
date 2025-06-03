@@ -28,7 +28,7 @@ namespace ROMS
         public string varUserId = "";
         public string varVerifiedName = "";
         public string pbPurID = "", pbstsId = "";
-        public string varPasskey = "",varEditFlag="0";
+        public string varPasskey = "", varEditFlag = "0", varEditFlag2 = "0";
         public int flag = 0, verified1 = 0, verified2 = 0;
         public PUR_Purchase_Level_Verified()
         {
@@ -45,24 +45,25 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false; errVerified.Clear();
-                if (Convert.ToString(txtVerified1.Text.Trim()) == "" )
+                if (Convert.ToString(txtVerified1.Text.Trim()) == "" && Convert.ToString(txtVerified2.Text.Trim()) == "")
+                {
+                    errVerified.SetError(txtVerified1, "Please select verified by 1");
+                    errVerified.SetError(txtVerified2, "Please select verified by 2");
+                    txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    txtVerified2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerified1.ShowAlways = true;
+                    tpVerified2.ShowAlways = true;
+                    tpVerified1.Show("Please select verified by 1", txtVerified1, 5000);
+                    tpVerified2.Show("Please select verified by 2", txtVerified2, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtVerified1.Text.Trim()) == "" && Convert.ToString(txtVerified2.Text.Trim()) != "")
                 {
                     errVerified.SetError(txtVerified1, "Please select verified by 1");
                     txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpVerified1.ShowAlways = true;
-                    tpVerified1.Show("Please select verified by", txtVerified1, 5000);
+                    tpVerified1.Show("Please select verified by 1", txtVerified1, 5000);
                     blnErrorFlag = true;
-                }
-                else
-                {
-                    if( lblVerified1.Text.Trim()=="" ||  lblVerified1.Text.Trim()=="0")
-                    {
-                        errVerified.SetError(txtVerified1, "Please enter valid verification detail.");
-                        txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpVerified1.ShowAlways = true;
-                        tpVerified1.Show("Please enter valid verification detail.", txtVerified1, 5000);
-                        blnErrorFlag = true;
-                    }
                 }
                 if (Convert.ToString(txtVerified1.Text.Trim()) != "")
                 {
@@ -86,7 +87,6 @@ namespace ROMS
                     objMR_Master.paraDate = dpVerified1.Text;
                     objMR_Master.paraTime = mtbTime1.Text;
                     objMR_Master.paraTimeFormat = cmbFormat1.Text;
-                    objMR_Master.paraDate = dpVerified1.Text;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
@@ -101,28 +101,12 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
-                }
-
-
-
-
-
-                if (Convert.ToString(txtVerified2.Text.Trim()) == "")
-                {
-                    errVerified.SetError(txtVerified2, "Please select verified by 2");
-                    txtVerified2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpVerified2.ShowAlways = true;
-                    tpVerified2.Show("Please select verified by 2", txtVerified2, 5000);
-                    blnErrorFlag = true;
-                }
-                else
-                {
-                    if (lblVerified2.Text.Trim() == "" || lblVerified2.Text.Trim() == "0")
+                    if (lblVerified1.Text.Trim() == "" || lblVerified1.Text.Trim() == "0" || lblVerified1.Text.Trim() == "-1")
                     {
-                        errVerified.SetError(txtVerified2, "Please enter valid verification detail.");
-                        txtVerified2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpVerified2.ShowAlways = true;
-                        tpVerified2.Show("Please enter valid verification detail.", txtVerified1, 5000);
+                        errVerified.SetError(txtVerified1, "Please enter valid verification detail.");
+                        txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpVerified1.ShowAlways = true;
+                        tpVerified1.Show("Please enter valid verification detail.", txtVerified1, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -148,7 +132,6 @@ namespace ROMS
                     objMR_Master.paraDate = dpVerified2.Text;
                     objMR_Master.paraTime = mtbTime2.Text;
                     objMR_Master.paraTimeFormat = cmbFormat2.Text;
-                    objMR_Master.paraDate = dpVerified2.Text;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
@@ -162,6 +145,14 @@ namespace ROMS
                             cmbFormat2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             blnErrorFlag = true;
                         }
+                    }
+                    if (lblVerified2.Text.Trim() == "" || lblVerified2.Text.Trim() == "0" || lblVerified2.Text.Trim() == "-1")
+                    {
+                        errVerified.SetError(txtVerified2, "Please enter valid verification detail.");
+                        txtVerified2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpVerified2.ShowAlways = true;
+                        tpVerified2.Show("Please enter valid verification detail.", txtVerified2, 5000);
+                        blnErrorFlag = true;
                     }
                 }
 
@@ -185,12 +176,34 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Purchase.pbVerifiedBy = Convert.ToInt32(lblVerified1.Text);
-                MainForm.objCP_Purchase.pbVerifiedOn = Convert.ToString(dpVerified1.Text);
-                MainForm.objCP_Purchase.pbVerifiedTime = Convert.ToString(mtbTime1.Text);
-                MainForm.objCP_Purchase.pbVerifiedFormat = Convert.ToString(cmbFormat1.Text);
-                MainForm.objCP_Purchase.pbVerifiedName = Convert.ToString(txtVerified1.Text);
-                MainForm.objCP_Purchase.PbVerified = 1;
+                MainForm.objCP_Purchase.pbVerifiedBy1 = Convert.ToInt32(lblVerified1.Text);
+                MainForm.objCP_Purchase.pbVerifiedOn1 = Convert.ToString(dpVerified1.Text);
+                MainForm.objCP_Purchase.pbVerifiedTime1 = Convert.ToString(mtbTime1.Text);
+                MainForm.objCP_Purchase.pbVerifiedFormat1 = Convert.ToString(cmbFormat1.Text);
+                MainForm.objCP_Purchase.pbVerifiedName1 = Convert.ToString(txtVerified1.Text);
+                MainForm.objCP_Purchase.PbVerified1 = 1;
+                MainForm.objCP_Purchase.lblPurchaseVerification.Text = Convert.ToString(txtVerified1.Text + " - " + dpVerified1.Text + " @ " + mtbTime1.Text + " " + cmbFormat1.Text);
+
+                if (txtVerified2.Text.Trim() != "")
+                {
+                    MainForm.objCP_Purchase.pbVerifiedBy2 = Convert.ToInt32(lblVerified2.Text);
+                    MainForm.objCP_Purchase.pbVerifiedOn2 = Convert.ToString(dpVerified2.Text);
+                    MainForm.objCP_Purchase.pbVerifiedTime2 = Convert.ToString(mtbTime2.Text);
+                    MainForm.objCP_Purchase.pbVerifiedFormat2 = Convert.ToString(cmbFormat2.Text);
+                    MainForm.objCP_Purchase.pbVerifiedName2 = Convert.ToString(txtVerified2.Text);
+                    MainForm.objCP_Purchase.PbVerified2 = 1;
+                    MainForm.objCP_Purchase.lblPurchaseVerification2.Text = Convert.ToString(txtVerified2.Text + " - " + dpVerified2.Text + " @ " + mtbTime2.Text + " " + cmbFormat2.Text);
+                }
+                else
+                {
+                    MainForm.objCP_Purchase.pbVerifiedBy2 = 0;
+                    MainForm.objCP_Purchase.pbVerifiedOn2 = "";
+                    MainForm.objCP_Purchase.pbVerifiedTime2 = "";
+                    MainForm.objCP_Purchase.pbVerifiedFormat2 = "";
+                    MainForm.objCP_Purchase.pbVerifiedName2 = "";
+                    MainForm.objCP_Purchase.PbVerified2 = 0;
+                    MainForm.objCP_Purchase.lblPurchaseVerification2.Text = "-";
+                }
                 this.Close();
             }
             catch (Exception ex)
@@ -203,11 +216,11 @@ namespace ROMS
         {
             try
             {
-                lblVerified1.Text =Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy);
-                dpVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
-                mtbTime1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime);
-                cmbFormat1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat);
-                txtVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName);
+                lblVerified1.Text =Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy1);
+                dpVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn1);
+                mtbTime1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime1);
+                cmbFormat1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat1);
+                txtVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName1);
             }
             catch(Exception ex)
             {
@@ -263,9 +276,13 @@ namespace ROMS
             {
                 udfnEditload();
                 if (Convert.ToString(MainForm.objCP_Purchase.PbSTS) != "50")
-                { cmbFormat1.SelectedIndex = 0; 
+                {
+                    cmbFormat1.SelectedIndex = 0;
+                    cmbFormat2.SelectedIndex = 0;
                     dpVerified1.MinDate = MainForm.pbFYStartDate;
                     dpVerified1.MaxDate = MainForm.pbCurrentDate;
+                    dpVerified2.MinDate = MainForm.pbFYStartDate;
+                    dpVerified2.MaxDate = MainForm.pbCurrentDate;
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 19;
                     SPDataService objDServ = new SPDataService();
@@ -277,6 +294,8 @@ namespace ROMS
                         DateTime varmaxDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["MaxDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                         dpVerified1.MaxDate = varmaxDate;
                         dpVerified1.MinDate = varminDate;
+                        dpVerified2.MaxDate = varmaxDate;
+                        dpVerified2.MinDate = varminDate;
                     }
                     objDServ.CloseConnection();
                 }
@@ -291,13 +310,13 @@ namespace ROMS
         {
             try
             {
-                lblVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy);
-                txtVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName);
-                DateTime varminDate = DateTime.ParseExact(Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                lblVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy1);
+                txtVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName1);
+                DateTime varminDate = DateTime.ParseExact(Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn1), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 dpVerified1.MaxDate = varminDate;
                 //dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
-                mtbTime1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime);
-                cmbFormat1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat);
+                mtbTime1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime1);
+                cmbFormat1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat1);
                 varEditFlag = Convert.ToString(MainForm.objCP_Purchase.varPurVerifyFlag);
                 lvVerified1.Visible = false;
                 if(varEditFlag=="1")
@@ -307,6 +326,25 @@ namespace ROMS
                     cmbFormat1.Enabled = false;
                     dpVerified1.Enabled = false;
                     lvVerified1.Visible = false;
+                    btnAuthorise.Enabled = false;
+                }
+
+                lblVerified2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy2);
+                txtVerified2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName2);
+                DateTime varminDate2 = DateTime.ParseExact(Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn2), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpVerified2.MaxDate = varminDate2;
+                //dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
+                mtbTime2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime2);
+                cmbFormat2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat2);
+                varEditFlag2 = Convert.ToString(MainForm.objCP_Purchase.varPurVerifyFlag2);
+                lvVerified2.Visible = false;
+                if (varEditFlag2 == "1")
+                {
+                    txtVerified2.Enabled = false;
+                    mtbTime2.Enabled = false;
+                    cmbFormat2.Enabled = false;
+                    dpVerified2.Enabled = false;
+                    lvVerified2.Visible = false;
                     btnAuthorise.Enabled = false;
                 }
             }
@@ -420,7 +458,7 @@ namespace ROMS
             {
                 if (txtVerified1.Text.Length > 0)
                 {
-                    if(txtVerified1.Text.Trim()=="")
+                    if(txtVerified2.Text.Trim()=="")
                     {
                         lblVerified2.Text = "0";
                     }
@@ -912,6 +950,65 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void LvVerified2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnVerified2();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerified2()
+        {
+            try
+            {
+                if (txtVerified2.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvVerified2.SelectedItems[0];
+                    txtVerified2.Text = selectedItem.SubItems[0].Text;
+                    lblVerified2.Text = selectedItem.SubItems[1].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvVerified2.Visible = false;
+                if (dpVerified2.Enabled == true)
+                { dpVerified2.Focus(); }
+                else if (mtbTime2.Enabled == true)
+                { mtbTime2.Focus(); }
+                else if (cmbFormat2.Enabled == true)
+                { cmbFormat2.Focus(); }
+                else
+                { btnAuthorise.Focus(); }
+            }
+        }
+
+        private void LvVerified2_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnVerified2();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbFormat2_KeyDown(object sender, KeyEventArgs e)
         {
             try

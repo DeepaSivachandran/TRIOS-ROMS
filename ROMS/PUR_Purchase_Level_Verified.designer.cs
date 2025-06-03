@@ -33,12 +33,12 @@
             this.errVerified = new System.Windows.Forms.ErrorProvider(this.components);
             this.dpVerified1 = new System.Windows.Forms.DateTimePicker();
             this.grpVerify = new System.Windows.Forms.GroupBox();
-            this.lvVerified2 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvVerified1 = new System.Windows.Forms.ListView();
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvVerified2 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmbFormat2 = new System.Windows.Forms.ComboBox();
             this.mtbTime2 = new System.Windows.Forms.MaskedTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -94,30 +94,6 @@
             this.grpVerify.TabIndex = 0;
             this.grpVerify.TabStop = false;
             // 
-            // lvVerified2
-            // 
-            this.lvVerified2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.lvVerified2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvVerified2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvVerified2.HideSelection = false;
-            this.lvVerified2.Location = new System.Drawing.Point(84, 73);
-            this.lvVerified2.Name = "lvVerified2";
-            this.lvVerified2.Size = new System.Drawing.Size(265, 68);
-            this.lvVerified2.TabIndex = 111111145;
-            this.lvVerified2.UseCompatibleStateImageBehavior = false;
-            this.lvVerified2.View = System.Windows.Forms.View.Details;
-            this.lvVerified2.Visible = false;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 120;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 0;
-            // 
             // lvVerified1
             // 
             this.lvVerified1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -143,6 +119,32 @@
             // columnHeader24
             // 
             this.columnHeader24.Width = 0;
+            // 
+            // lvVerified2
+            // 
+            this.lvVerified2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.lvVerified2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvVerified2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvVerified2.HideSelection = false;
+            this.lvVerified2.Location = new System.Drawing.Point(84, 73);
+            this.lvVerified2.Name = "lvVerified2";
+            this.lvVerified2.Size = new System.Drawing.Size(265, 68);
+            this.lvVerified2.TabIndex = 111111145;
+            this.lvVerified2.UseCompatibleStateImageBehavior = false;
+            this.lvVerified2.View = System.Windows.Forms.View.Details;
+            this.lvVerified2.Visible = false;
+            this.lvVerified2.DoubleClick += new System.EventHandler(this.LvVerified2_DoubleClick);
+            this.lvVerified2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvVerified2_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 120;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 0;
             // 
             // cmbFormat2
             // 
