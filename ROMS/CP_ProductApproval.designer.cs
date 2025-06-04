@@ -156,6 +156,7 @@
             this.tsStockTransferList.BackColor = System.Drawing.Color.White;
             this.tsStockTransferList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsStockTransferList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsStockTransferList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsStockTransferList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader});
             this.tsStockTransferList.Location = new System.Drawing.Point(0, 0);
@@ -933,6 +934,7 @@
             // 
             // txtpicode
             // 
+            this.txtpicode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpicode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtpicode.Location = new System.Drawing.Point(135, 21);
             this.txtpicode.MaxLength = 100;
