@@ -37,6 +37,8 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbInvType = new System.Windows.Forms.ComboBox();
             this.cmbSupplierType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -50,8 +52,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.cmbInvType = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -79,8 +79,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(129, 22);
-            this.tspHeader.Text = "Purchase Summary";
+            this.tspHeader.Size = new System.Drawing.Size(169, 22);
+            this.tspHeader.Text = "Purchase Summary Report";
             // 
             // pnlReportStockLocation
             // 
@@ -156,6 +156,29 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(656, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 20);
+            this.label5.TabIndex = 1111197;
+            this.label5.Text = "Inv Type";
+            // 
+            // cmbInvType
+            // 
+            this.cmbInvType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbInvType.FormattingEnabled = true;
+            this.cmbInvType.Location = new System.Drawing.Point(656, 43);
+            this.cmbInvType.Name = "cmbInvType";
+            this.cmbInvType.Size = new System.Drawing.Size(136, 27);
+            this.cmbInvType.TabIndex = 4;
+            this.cmbInvType.Enter += new System.EventHandler(this.CmbInvType_Enter);
+            this.cmbInvType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbInvType_KeyDown);
+            this.cmbInvType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbInvType_KeyPress);
+            this.cmbInvType.Leave += new System.EventHandler(this.CmbInvType_Leave);
             // 
             // cmbSupplierType
             // 
@@ -316,29 +339,6 @@
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
-            // 
-            // cmbInvType
-            // 
-            this.cmbInvType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbInvType.FormattingEnabled = true;
-            this.cmbInvType.Location = new System.Drawing.Point(656, 43);
-            this.cmbInvType.Name = "cmbInvType";
-            this.cmbInvType.Size = new System.Drawing.Size(136, 27);
-            this.cmbInvType.TabIndex = 4;
-            this.cmbInvType.Enter += new System.EventHandler(this.CmbInvType_Enter);
-            this.cmbInvType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbInvType_KeyDown);
-            this.cmbInvType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbInvType_KeyPress);
-            this.cmbInvType.Leave += new System.EventHandler(this.CmbInvType_Leave);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(656, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 20);
-            this.label5.TabIndex = 1111197;
-            this.label5.Text = "Inv Type";
             // 
             // REPORT_Purchase_Summary
             // 

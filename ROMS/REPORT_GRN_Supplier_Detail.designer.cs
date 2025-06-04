@@ -107,8 +107,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(131, 22);
-            this.tspHeader.Text = "GRN Supplier Detail";
+            this.tspHeader.Size = new System.Drawing.Size(171, 22);
+            this.tspHeader.Text = "GRN Supplier Detail Report";
             // 
             // pnlReportStockLocation
             // 
