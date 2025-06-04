@@ -359,6 +359,12 @@ namespace ROMS
             try
             {
                 DateTime varmindate = DateTime.ParseExact(dpVerified1.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpVerified2.MinDate = varmindate;
+                if (txtVerified2.Text != "")
+                {
+                    dpVerified2.Text = dpVerified1.Text;
+                    dpVerified2.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -413,7 +419,7 @@ namespace ROMS
             try
             {
                 txtVerified1.BackColor = Color.White;
-                udfnVerificationValidation();
+                udfnVerificationValidation(txtVerified1.Text.Trim(), 1);
             }
             catch (Exception ex)
             {
@@ -421,27 +427,81 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnVerificationValidation()
+
+        private void TxtVerified2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtVerified2.BackColor = Color.White;
+                if (txtVerified2.Text != "")
+                {
+                    dpVerified2.Text = dpVerified1.Text;
+                    dpVerified2.Enabled = false;
+                    mtbTime2.Text = mtbTime1.Text;
+                    mtbTime2.Enabled = false;
+                    mtbTime2.ReadOnly = true;
+                    cmbFormat2.SelectedValue = cmbFormat1.SelectedValue;
+                    cmbFormat2.Enabled = false;
+                }
+                else
+                {
+                    dpVerified2.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    dpVerified2.Enabled = true;
+                    mtbTime2.Text = "";
+                    mtbTime2.Enabled = true;
+                    mtbTime2.ReadOnly = false;
+                    cmbFormat2.SelectedValue = "AM";
+                    cmbFormat2.Enabled = true;
+                }
+                udfnVerificationValidation(txtVerified2.Text.Trim(), 2);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerificationValidation(string varVerifierName,int VerifiedByFlag)
         {
             try
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objdserv.udfnEmployeeList(14, txtVerified1.Text.Trim(), 0, "", 1, 0, 0);
+                objDs = objdserv.udfnEmployeeList(14, varVerifierName, 0, "", 1, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
-                        { lblVerified1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMPID"]); }
+                        {
+                            if (VerifiedByFlag == 1)
+                            {
+                                lblVerified1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMPID"]);
+                            }
+                            else
+                            {
+                                lblVerified2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EMPID"]);
+                            }
+                        }
                         else
                         {
-                            lblVerified1.Text = "0";
-                            errVerified.SetError(txtVerified1, "Please enter valid verification detail.");
-                            txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpVerified1.ShowAlways = true;
-                            tpVerified1.Show("Please enter valid verification detail.", txtVerified1, 5000);
+                            if (VerifiedByFlag == 1)
+                            {
+                                lblVerified1.Text = "0";
+                                errVerified.SetError(txtVerified1, "Please enter valid verification detail.");
+                                txtVerified1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpVerified1.ShowAlways = true;
+                                tpVerified1.Show("Please enter valid verification detail.", txtVerified1, 5000);
+                            }
+                            else
+                            {
+                                lblVerified2.Text = "0";
+                                errVerified.SetError(txtVerified2, "Please enter valid verification detail.");
+                                txtVerified2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpVerified2.ShowAlways = true;
+                                tpVerified2.Show("Please enter valid verification detail.", txtVerified2, 5000);
+                            }
                         }
                     }
                 }
@@ -591,6 +651,12 @@ namespace ROMS
                         error = 1;
                     }
                 }
+                if (txtVerified2.Text != "")
+                {
+                    mtbTime2.Text = mtbTime1.Text;
+                    mtbTime2.Enabled = false;
+                    mtbTime2.ReadOnly = true;
+                }
                 if (error == 0)
                 {
                     errVerified.Clear();
@@ -708,19 +774,6 @@ namespace ROMS
                 {
                     dpVerified2.Focus();
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtVerified2_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtVerified2.BackColor = Color.White;
-                udfnVerificationValidation();
             }
             catch (Exception ex)
             {
