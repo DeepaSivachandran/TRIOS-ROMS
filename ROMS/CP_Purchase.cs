@@ -105,7 +105,7 @@ namespace ROMS
                 {
                     conn.Open();
 
-                    string createTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase ( ID INTEGER PRIMARY KEY AUTOINCREMENT,VoucherDate NVARCHAR(15),VoucherNo NVARCHAR(30),SPID INT,SPName NVARCHAR(200),EntryType INT, GRNCode NVARCHAR(6), PurchaseType INT, PaymentType INT, DiscountCalculation INT, InvoiceDate NVARCHAR(15), InvoiceNo NVARCHAR(30), InvoiceAmt FLOAT, TransactionType INT, BRID INT, BrokerName NVARCHAR(200), GSTIN NVARCHAR(20), EInvoiceBill INT );";
+                    string createTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase ( ID INTEGER PRIMARY KEY AUTOINCREMENT,Concern INT,PurchaseID INT,VoucherDate NVARCHAR(15),VoucherNo NVARCHAR(30),SPID INT,SPName NVARCHAR(200),EntryType INT, GRNCode NVARCHAR(6), PurchaseType INT, PaymentType INT, DiscountCalculation INT, InvoiceDate NVARCHAR(15), InvoiceNo NVARCHAR(30), InvoiceAmt FLOAT, TransactionType INT, BRID INT, BrokerName NVARCHAR(200), GSTIN NVARCHAR(20), EInvoiceBill INT );";
 
                     using (var cmd = new SQLiteCommand(createTableQuery, conn))
                     {
@@ -137,16 +137,15 @@ namespace ROMS
                         {
                             if (btnSave.Text.Trim() == "Save as Draft")
                             {
-                                DialogResult dialogResult = MessageBox.Show("Are you want to continue with previous purchase entry?","Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (dialogResult == DialogResult.Yes)
-                                {
+                                //DialogResult dialogResult = MessageBox.Show("Are you want to continue with previous purchase entry?","Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                //if (dialogResult == DialogResult.Yes)
+                                //{
                                     LoadTempPurchaseData();
-                                }
+                                //}
                             }
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -169,8 +168,17 @@ namespace ROMS
                     {
                         if (reader.Read())
                         {
-                            dpVoucherDate.Text = reader["VoucherDate"].ToString();
-                            dpInvoiceDate.Text = reader["InvoiceDate"].ToString();
+                            DateTime varmindate = MainForm.pbCurrentDate;
+                            dpVoucherDate.MinDate = varmindate;
+                            dpVoucherDate.MaxDate = varmindate;
+
+                            DateTime varmindate1 = MainForm.pbFYStartDate;
+                            dpInvoiceDate.MinDate = varmindate1;
+                            dpInvoiceDate.MaxDate = varmaxdate;
+
+                            dpVoucherDate.Value = Convert.ToDateTime(reader["VoucherDate"]).Date;
+                            dpInvoiceDate.Value = Convert.ToDateTime(reader["InvoiceDate"]).Date;
+
 
                             cmbEntryType.SelectedValue = Convert.ToInt32(reader["EntryType"]);
                             cmbTransactionType.SelectedValue = Convert.ToInt32(reader["TransactionType"]);
@@ -184,7 +192,7 @@ namespace ROMS
                             lblBrokerId.Text = reader["BRID"].ToString();
                             txtGstin.Text = reader["GSTIN"].ToString();
                             txtQRCode.Text = reader["GRNCode"].ToString();
-                            udfnListViewData();
+                            //udfnListViewData();
                             LV_Supplier.Visible = false;
                             lv_Broker.Visible = false;
 
@@ -200,7 +208,6 @@ namespace ROMS
                             chkInvoice.Checked = Convert.ToInt32(reader["EInvoiceBill"]) == 1;
                         }
                     }
-
                 }
             }
             catch (Exception ex)
@@ -210,7 +217,7 @@ namespace ROMS
             }
         }
 
-        public void InsertTempPurchaseData()
+        public void SaveOrUpdateTempPurchase(string fieldName)
         {
             try
             {
@@ -218,57 +225,92 @@ namespace ROMS
                 {
                     conn.Open();
 
+                    // Check if TEMP_Purchase has any rows
                     string countQuery = "SELECT COUNT(ID) FROM TEMP_Purchase";
                     using (var countCmd = new SQLiteCommand(countQuery, conn))
                     {
                         long rowCount = (long)countCmd.ExecuteScalar();
-                        if (rowCount > 0)
+
+                        // If no row, insert one dummy row first
+                        if (rowCount == 0)
                         {
-                            string deleteQuery = "DELETE FROM TEMP_Purchase";
-                            using (var deleteCmd = new SQLiteCommand(deleteQuery, conn))
+                            string insertQuery = "INSERT INTO TEMP_Purchase (VoucherDate) VALUES (@VoucherDate)";
+                            using (var insertCmd = new SQLiteCommand(insertQuery, conn))
                             {
-                                deleteCmd.ExecuteNonQuery();
+                                insertCmd.Parameters.AddWithValue("@VoucherDate", DateTime.Now);
+                                insertCmd.ExecuteNonQuery();
                             }
                         }
                     }
 
-                    string insertQuery = @"INSERT INTO TEMP_Purchase (VoucherDate, VoucherNo, SPID, SPName, EntryType, GRNCode,PurchaseType, PaymentType, DiscountCalculation, InvoiceDate,InvoiceNo, InvoiceAmt, TransactionType, BRID, BrokerName,GSTIN, EInvoiceBill) VALUES (@VoucherDate, @VoucherNo, @SPID, @SPName, @EntryType, @GRNCode,@PurchaseType, @PaymentType, @DiscountCalculation, @InvoiceDate,@InvoiceNo, @InvoiceAmt, @TransactionType, @BRID, @BrokerName,@GSTIN, @EInvoiceBill );";
-
-                    using (var cmd = new SQLiteCommand(insertQuery, conn))
+                    // Now perform the update
+                    string updateQuery = $"UPDATE TEMP_Purchase SET {fieldName} = @value WHERE ID = (SELECT ID FROM TEMP_Purchase ORDER BY ID DESC LIMIT 1)";
+                    using (var updateCmd = new SQLiteCommand(updateQuery, conn))
                     {
-                        string varQRCode = "";
-                        int varPurchaseType = 1, varPaymentType = 1, varDiscountCalculation = 1, varInvoiceBill = 0;
+                        object value = DBNull.Value;
 
-                        if (rbPurchaseCredit.Checked == true)
-                            varPurchaseType = 2;
-                        if (rbPaymentCheque.Checked == true)
-                            varPaymentType = 2;
-                        if (rbDiscountAfter.Checked == true)
-                            varDiscountCalculation = 2;
-                        if (chkInvoice.Checked == true)
-                            varInvoiceBill = 1;
-                        if (txtQRCode.Text.Trim() != "")
-                            varQRCode = txtQRCode.Text.Trim();
+                        switch (fieldName)
+                        {
+                            case "Concern":
+                                value = Convert.ToInt32(cmbConcern.SelectedValue);
+                                break;
+                            case "SPName":
+                                value = txtSupplier.Text.Trim();
+                                break;
+                            case "SPID":
+                                value = Convert.ToInt32(lblSupplierCode.Text);
+                                break;
+                            case "VoucherDate":
+                                value = dpVoucherDate.Value;
+                                break;
+                            case "InvoiceDate":
+                                value = dpInvoiceDate.Value;
+                                break;
+                            case "EntryType":
+                                value = Convert.ToInt32(cmbEntryType.SelectedValue);
+                                break;
+                            case "TransactionType":
+                                value = Convert.ToInt32(cmbTransactionType.SelectedValue);
+                                break;
+                            case "VoucherNo":
+                                value = txtPENO.Text.Trim();
+                                break;
+                            case "InvoiceNo":
+                                value = txtInvoiceNo.Text.Trim();
+                                break;
+                            case "InvoiceAmt":
+                                value = string.IsNullOrWhiteSpace(txtInvoiceamt.Text) ? 0 : Convert.ToDouble(txtInvoiceamt.Text.Trim());
+                                break;
+                            case "BrokerName":
+                                value = txtBroker.Text.Trim();
+                                break;
+                            case "BRID":
+                                value = Convert.ToInt32(lblBrokerId.Text);
+                                break;
+                            case "GSTIN":
+                                value = txtGstin.Text.Trim();
+                                break;
+                            case "GRNCode":
+                                value = txtQRCode.Text.Trim();
+                                break;
+                            case "PurchaseType":
+                                value = rbPurchaseCredit.Checked ? 2 : 1;
+                                break;
+                            case "PaymentType":
+                                value = rbPaymentCheque.Checked ? 2 : 1;
+                                break;
+                            case "DiscountCalculation":
+                                value = rbDiscountAfter.Checked ? 2 : 1;
+                                break;
+                            case "EInvoiceBill":
+                                value = chkInvoice.Checked ? 1 : 0;
+                                break;
+                            default:
+                                return; 
+                        }
 
-                        cmd.Parameters.AddWithValue("@VoucherDate", dpVoucherDate.Value);
-                        cmd.Parameters.AddWithValue("@VoucherNo", txtPENO.Text);
-                        cmd.Parameters.AddWithValue("@SPID", Convert.ToInt32(lblSupplierCode.Text));
-                        cmd.Parameters.AddWithValue("@SPName", txtSupplier.Text.Trim());
-                        cmd.Parameters.AddWithValue("@EntryType", Convert.ToInt32(cmbEntryType.SelectedValue));
-                        cmd.Parameters.AddWithValue("@GRNCode", varQRCode);
-                        cmd.Parameters.AddWithValue("@PurchaseType", varPurchaseType);
-                        cmd.Parameters.AddWithValue("@PaymentType", varPaymentType);
-                        cmd.Parameters.AddWithValue("@DiscountCalculation", varDiscountCalculation);
-                        cmd.Parameters.AddWithValue("@InvoiceDate", dpInvoiceDate.Value);
-                        cmd.Parameters.AddWithValue("@InvoiceNo", txtInvoiceNo.Text.Trim());
-                        cmd.Parameters.AddWithValue("@InvoiceAmt", Convert.ToDouble(txtInvoiceamt.Text.Trim()));
-                        cmd.Parameters.AddWithValue("@TransactionType", Convert.ToInt32(cmbTransactionType.SelectedValue));
-                        cmd.Parameters.AddWithValue("@BRID", Convert.ToInt32(lblBrokerId.Text));
-                        cmd.Parameters.AddWithValue("@BrokerName", txtBroker.Text.Trim());
-                        cmd.Parameters.AddWithValue("@GSTIN", txtGstin.Text.Trim());
-                        cmd.Parameters.AddWithValue("@EInvoiceBill", varInvoiceBill);
-
-                        cmd.ExecuteNonQuery();
+                        updateCmd.Parameters.AddWithValue("@value", value);
+                        updateCmd.ExecuteNonQuery();
                     }
                 }
             }
@@ -278,6 +320,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
 
         private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -948,6 +991,12 @@ namespace ROMS
                         varGRNDate = Convert.ToString(objDs.Tables[4].Rows[0]["GRN_Date"]);
                     }
                 }
+                SaveOrUpdateTempPurchase("InvoiceNo");
+                SaveOrUpdateTempPurchase("InvoiceAmt");
+                SaveOrUpdateTempPurchase("GRNCode");
+                SaveOrUpdateTempPurchase("InvoiceDate");
+                SaveOrUpdateTempPurchase("PurchaseType");
+                SaveOrUpdateTempPurchase("PaymentType");
             }
             catch (Exception ex)
             {
@@ -2290,6 +2339,9 @@ namespace ROMS
                 cmbEntryType.SelectedValue = "-1";
             }
             cmbTransactionType.SelectedValue = "58";
+            SaveOrUpdateTempPurchase("Concern");
+            SaveOrUpdateTempPurchase("EntryType");
+            SaveOrUpdateTempPurchase("TransactionType");
         }
         public void udfnGRNDCDetailsLoadQueue()
         {
@@ -2868,6 +2920,7 @@ namespace ROMS
                     errPurchaseentry.Clear();
                     cmbConcern.BackColor = Color.White;
                 }
+                SaveOrUpdateTempPurchase("Concern");
             }
             catch (Exception ex)
             {
@@ -3116,6 +3169,8 @@ namespace ROMS
             }
             finally
             {
+                SaveOrUpdateTempPurchase("SPID");
+                SaveOrUpdateTempPurchase("SPName");
                 LV_Supplier.Visible = false;
             }
         }
@@ -3138,6 +3193,7 @@ namespace ROMS
                 {
                     cmbEntryType.BackColor = Color.White;
                 }
+                SaveOrUpdateTempPurchase("EntryType");
             }
             catch (Exception ex)
             {
@@ -3295,6 +3351,7 @@ namespace ROMS
                     errPurchaseentry.Clear();
                     txtInvoiceNo.BackColor = Color.White;
                 }
+                SaveOrUpdateTempPurchase("InvoiceNo");
             }
             catch (Exception ex)
             {
@@ -3380,6 +3437,7 @@ namespace ROMS
             try
             {
                 txtGstin.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("GSTIN");
             }
             catch (Exception ex)
             {
@@ -8523,6 +8581,7 @@ namespace ROMS
                     string Invoiceamt = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtInvoiceamt.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
                     txtInvoiceamt.Text = Invoiceamt;
                 }
+                SaveOrUpdateTempPurchase("InvoiceAmt");
             }
             catch (Exception ex)
 
@@ -9079,6 +9138,38 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void DpVoucherDate_Leave(object sender, EventArgs e)
+        {
+            SaveOrUpdateTempPurchase("VoucherDate");
+            SaveOrUpdateTempPurchase("VoucherNo");
+        }
+
+        private void RbPurchaseCash_CheckedChanged(object sender, EventArgs e)
+        {
+            SaveOrUpdateTempPurchase("PurchaseType");
+        }
+
+        private void RbPurchaseCredit_CheckedChanged(object sender, EventArgs e)
+        {
+            SaveOrUpdateTempPurchase("PurchaseType");
+        }
+
+        private void RbPaymentCash_CheckedChanged(object sender, EventArgs e)
+        {
+            SaveOrUpdateTempPurchase("PaymentType");
+        }
+
+        private void RbPaymentCheque_CheckedChanged(object sender, EventArgs e)
+        {
+            SaveOrUpdateTempPurchase("PaymentType");
+        }
+
+        private void DpInvoiceDate_Leave(object sender, EventArgs e)
+        {
+            SaveOrUpdateTempPurchase("InvoiceDate");
+        }
+
         private void Txtdiscount_Enter(object sender, EventArgs e)
         {
             try
@@ -10145,6 +10236,7 @@ namespace ROMS
             try
             {
                 udfnDiscountColumnHide();
+                SaveOrUpdateTempPurchase("DiscountCalculation");
             }
             catch (Exception ex)
             {
@@ -10209,6 +10301,7 @@ namespace ROMS
             try
             {
                 udfnDiscountColumnHide();
+                SaveOrUpdateTempPurchase("DiscountCalculation");
             }
             catch (Exception ex)
             {
@@ -10821,6 +10914,7 @@ namespace ROMS
                     txtQRCode.BackColor = Color.White;
                     tpQRCode.Hide(txtQRCode);
                 }
+                SaveOrUpdateTempPurchase("GRNCode");
             }
             catch (Exception ex)
             {
@@ -10888,6 +10982,8 @@ namespace ROMS
                 varDateChange = 1;
                 varVoucherDate = Convert.ToString(dpVoucherDate.Text);
                 udfnVocherno();
+                SaveOrUpdateTempPurchase("VoucherNo");
+                SaveOrUpdateTempPurchase("VoucherDate");
             }
             catch (Exception ex)
             {
@@ -11889,6 +11985,7 @@ namespace ROMS
             try
             {
                 cmbTransactionType.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("TransactionType");
             }
             catch (Exception ex)
             {
@@ -11960,6 +12057,7 @@ namespace ROMS
             try
             {
                 chkInvoice.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("EInvoiceBill");
             }
             catch (Exception ex)
             {
@@ -12339,7 +12437,6 @@ namespace ROMS
         {
             try
             {
-                InsertTempPurchaseData();
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -13415,6 +13512,8 @@ namespace ROMS
             }
             finally
             {
+                SaveOrUpdateTempPurchase("BRID");
+                SaveOrUpdateTempPurchase("BrokerName");
                 lv_Broker.Visible = false;
             }
         }
