@@ -90,6 +90,30 @@ namespace ROMS
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
         }
+        private bool isDirty = false;
+        private Timer saveTimer;
+
+        public void ControlChanged(object sender, EventArgs e)
+        {
+            isDirty = true;
+
+            if (saveTimer != null)
+                saveTimer.Stop();
+
+            saveTimer = new Timer();
+            saveTimer.Interval = 1000; // 1 second delay
+            saveTimer.Tick += (s, args) =>
+            {
+                saveTimer.Stop();
+                if (isDirty)
+                {
+                    //InsertTempPurchaseData();
+                    isDirty = false;
+                }
+            };
+            saveTimer.Start();
+        }
+
 
         public void udfnDBCreate()
         {
@@ -184,28 +208,40 @@ namespace ROMS
                             cmbTransactionType.SelectedValue = Convert.ToInt32(reader["TransactionType"]);
 
                             txtPENO.Text = reader["VoucherNo"].ToString();
+                            txtGstin.Text = reader["GSTIN"].ToString();
                             txtSupplier.Text = reader["SPName"].ToString();
+                            if (LV_Supplier.Items.Count > 0)
+                            {
+                                LV_Supplier.Items[0].Selected = true;
+                            }
+                            udfnListViewData();
                             lblSupplierCode.Text = reader["SPID"].ToString();
                             txtInvoiceNo.Text = reader["InvoiceNo"].ToString();
                             txtInvoiceamt.Text = reader["InvoiceAmt"].ToString();
                             txtBroker.Text = reader["BrokerName"].ToString();
                             lblBrokerId.Text = reader["BRID"].ToString();
-                            txtGstin.Text = reader["GSTIN"].ToString();
                             txtQRCode.Text = reader["GRNCode"].ToString();
                             //udfnListViewData();
                             LV_Supplier.Visible = false;
                             lv_Broker.Visible = false;
 
-                            rbPurchaseCash.Checked = Convert.ToInt32(reader["PurchaseType"]) == 1;
-                            rbPurchaseCredit.Checked = Convert.ToInt32(reader["PurchaseType"]) == 2;
+                            int purchaseType = reader["PurchaseType"] != DBNull.Value ? Convert.ToInt32(reader["PurchaseType"]) : 0;
+                            int paymentType = reader["PaymentType"] != DBNull.Value ? Convert.ToInt32(reader["PaymentType"]) : 0;
+                            int discountCalc = reader["DiscountCalculation"] != DBNull.Value ? Convert.ToInt32(reader["DiscountCalculation"]) : 0;
+                            int einvoice = reader["EInvoiceBill"] != DBNull.Value ? Convert.ToInt32(reader["EInvoiceBill"]) : 0;
 
-                            rbPaymentCash.Checked = Convert.ToInt32(reader["PaymentType"]) == 1;
-                            rbPaymentCheque.Checked = Convert.ToInt32(reader["PaymentType"]) == 2;
+                            rbPurchaseCash.Checked = purchaseType == 1;
+                            rbPurchaseCredit.Checked = purchaseType == 2;
 
-                            rbDiscountBefore.Checked = Convert.ToInt32(reader["DiscountCalculation"]) == 1;
-                            rbDiscountAfter.Checked = Convert.ToInt32(reader["DiscountCalculation"]) == 2;
+                            rbPaymentCash.Checked = paymentType == 1;
+                            rbPaymentCheque.Checked = paymentType == 2;
 
-                            chkInvoice.Checked = Convert.ToInt32(reader["EInvoiceBill"]) == 1;
+                            rbDiscountBefore.Checked = discountCalc == 1;
+                            rbDiscountAfter.Checked = discountCalc == 2;
+
+                            chkInvoice.Checked = einvoice == 1;
+
+
                         }
                     }
                 }
@@ -995,8 +1031,6 @@ namespace ROMS
                 SaveOrUpdateTempPurchase("InvoiceAmt");
                 SaveOrUpdateTempPurchase("GRNCode");
                 SaveOrUpdateTempPurchase("InvoiceDate");
-                SaveOrUpdateTempPurchase("PurchaseType");
-                SaveOrUpdateTempPurchase("PaymentType");
             }
             catch (Exception ex)
             {
@@ -1312,6 +1346,8 @@ namespace ROMS
 
             }
         }
+
+
         private void CP_Purchase_Load(object sender, EventArgs e)
         {
             try
@@ -1420,12 +1456,14 @@ namespace ROMS
                 if (grdSupplierList.RowCount != 0)
                 { btnClear.Enabled = false; }
 
-
                 if (btnSave.Text.Trim() == "Save as Draft" && pbPurchaseno == "0")
                 {
                     udfnGetPurchaseData();
                 }
-
+                SaveOrUpdateTempPurchase("PurchaseType");
+                SaveOrUpdateTempPurchase("PaymentType");
+                SaveOrUpdateTempPurchase("DiscountCalculation");
+                SaveOrUpdateTempPurchase("TransactionType");
             }
             catch (Exception ex)
             {
@@ -1652,13 +1690,17 @@ namespace ROMS
         {
             try
             {
-                //MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                //MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
-                //MainForm.objPUR_GSTIN.ShowDialog();
-                MainForm.objPUR_GSTINVerify = new PUR_GSTINVerify();
-                MainForm.objPUR_GSTINVerify.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
-                MainForm.objPUR_GSTINVerify.ShowDialog();
-                txtGstin.Text = Convert.ToString(MainForm.objPUR_GSTINVerify.varGSTINText);
+                if (txtGstin.Text.Trim() == "")
+                {
+                    //MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                    //MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
+                    //MainForm.objPUR_GSTIN.ShowDialog();
+                    MainForm.objPUR_GSTINVerify = new PUR_GSTINVerify();
+                    MainForm.objPUR_GSTINVerify.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
+                    MainForm.objPUR_GSTINVerify.ShowDialog();
+                    txtGstin.Text = Convert.ToString(MainForm.objPUR_GSTINVerify.varGSTINText);
+                    SaveOrUpdateTempPurchase("GSTIN");
+                }
             }
             catch (Exception ex)
             {
@@ -2339,9 +2381,6 @@ namespace ROMS
                 cmbEntryType.SelectedValue = "-1";
             }
             cmbTransactionType.SelectedValue = "58";
-            SaveOrUpdateTempPurchase("Concern");
-            SaveOrUpdateTempPurchase("EntryType");
-            SaveOrUpdateTempPurchase("TransactionType");
         }
         public void udfnGRNDCDetailsLoadQueue()
         {
@@ -2845,6 +2884,10 @@ namespace ROMS
                     lblschedule.Text = "0";
                     txtGstin.Text = "";
                 }
+                if (txtSupplier.Text.Length < 3)
+                {
+                    txtGstin.Text = "";
+                }
                 LV_Supplier.Items.Clear();
                 if (txtSupplier.Text.Length > 0)
                 {
@@ -2872,10 +2915,10 @@ namespace ROMS
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
                                 LV_Supplier.Columns[3].Width = 0;
-                                LV_Supplier.Columns[4].Width = 0;
-                                LV_Supplier.Columns[5].Width = 0;
-                                LV_Supplier.Columns[6].Width = 0;
-                                LV_Supplier.Columns[7].Width = 0;
+                                //LV_Supplier.Columns[4].Width = 0;
+                                //LV_Supplier.Columns[5].Width = 0;
+                                //LV_Supplier.Columns[6].Width = 0;
+                                //LV_Supplier.Columns[7].Width = 0;
                             }
                         }
                     }
@@ -3437,7 +3480,6 @@ namespace ROMS
             try
             {
                 txtGstin.BackColor = Color.White;
-                SaveOrUpdateTempPurchase("GSTIN");
             }
             catch (Exception ex)
             {
@@ -3504,6 +3546,7 @@ namespace ROMS
             try
             {
                 rbPurchaseCash.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("PurchaseType");
             }
             catch (Exception ex)
             {
@@ -3543,6 +3586,7 @@ namespace ROMS
             try
             {
                 rbPurchaseCredit.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("PurchaseType");
             }
             catch (Exception ex)
             {
@@ -9147,22 +9191,18 @@ namespace ROMS
 
         private void RbPurchaseCash_CheckedChanged(object sender, EventArgs e)
         {
-            SaveOrUpdateTempPurchase("PurchaseType");
         }
 
         private void RbPurchaseCredit_CheckedChanged(object sender, EventArgs e)
         {
-            SaveOrUpdateTempPurchase("PurchaseType");
         }
 
         private void RbPaymentCash_CheckedChanged(object sender, EventArgs e)
         {
-            SaveOrUpdateTempPurchase("PaymentType");
         }
 
         private void RbPaymentCheque_CheckedChanged(object sender, EventArgs e)
         {
-            SaveOrUpdateTempPurchase("PaymentType");
         }
 
         private void DpInvoiceDate_Leave(object sender, EventArgs e)
@@ -10236,7 +10276,6 @@ namespace ROMS
             try
             {
                 udfnDiscountColumnHide();
-                SaveOrUpdateTempPurchase("DiscountCalculation");
             }
             catch (Exception ex)
             {
@@ -10301,7 +10340,6 @@ namespace ROMS
             try
             {
                 udfnDiscountColumnHide();
-                SaveOrUpdateTempPurchase("DiscountCalculation");
             }
             catch (Exception ex)
             {
@@ -11867,6 +11905,7 @@ namespace ROMS
             try
             {
                 rbPaymentCheque.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("PaymentType");
             }
             catch (Exception ex)
             {
@@ -11913,6 +11952,7 @@ namespace ROMS
             try
             {
                 rbDiscountBefore.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("DiscountCalculation");
             }
             catch (Exception ex)
             {
@@ -11953,6 +11993,7 @@ namespace ROMS
             try
             {
                 rbDiscountAfter.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("DiscountCalculation");
             }
             catch (Exception ex)
             {
@@ -12099,7 +12140,8 @@ namespace ROMS
         {
             try
             {
-                rbPaymentCash.BackColor = Color.WhiteSmoke;
+                rbPaymentCash.BackColor = Color.White;
+                SaveOrUpdateTempPurchase("PaymentType");
             }
             catch (Exception ex)
             {
@@ -13589,7 +13631,7 @@ namespace ROMS
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["SP_GSTIN"]) != "" && pbPurchaseno == "0")
                             {
                                 LV_Supplier.Visible = false;
-                                if (Convert.ToInt32(cmbEntryType.SelectedValue) !=54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag==0 && varSupplierType !=32)
+                                if (Convert.ToInt32(cmbEntryType.SelectedValue) != 54 && (Convert.ToInt32(cmbEntryType.SelectedValue) != -1) && varQueueFlag == 0 && varSupplierType != 32)
                                 {
                                     udfnGSTINPopup();
                                 }
