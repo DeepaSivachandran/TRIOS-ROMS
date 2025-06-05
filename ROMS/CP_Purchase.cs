@@ -71,6 +71,16 @@ namespace ROMS
         public string pbVerifiedOn1 = "" , pbVerifiedTime1 = "" , pbVerifiedFormat1 = "", pbVerifiedName1 = "" ,pbVerifiedOn2 = "" , pbVerifiedTime2 = "" , pbVerifiedFormat2 = "", pbVerifiedName2 = "" , varPurVerifyFlag="0", varPurVerifyFlag2 = "0";
         public string varBlockedSupplier = "0", varBlockedReason = "", varInwardDate = "";
         public double varDVA = 0, varCPA = 0;
+
+
+        public static class DbConfig
+        {
+            public static readonly string DbFolderPath = Path.Combine(Application.StartupPath, "mydb");
+            public static readonly string DbFilePath = Path.Combine(DbFolderPath, "mydatabase.db");
+            public static readonly string ConnectionString = $"Data Source={DbFilePath};Version=3;";
+        }
+
+
         public CP_Purchase()
         {
             InitializeComponent();
@@ -85,25 +95,17 @@ namespace ROMS
         {
             try
             {
-                string folderPath = Path.Combine(Application.StartupPath, "mydb");
-                string dbFilePath = Path.Combine(folderPath, "mydatabase.db");
+                if (!Directory.Exists(DbConfig.DbFolderPath))
+                    Directory.CreateDirectory(DbConfig.DbFolderPath);
 
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
+                if (!File.Exists(DbConfig.DbFilePath))
+                    SQLiteConnection.CreateFile(DbConfig.DbFilePath);
 
-                if (!File.Exists(dbFilePath))
-                {
-                    SQLiteConnection.CreateFile(dbFilePath);
-                }
-
-                string connStr = $"Data Source={dbFilePath};Version=3;";
-                using (var conn = new SQLiteConnection(connStr))
+                using (var conn = new SQLiteConnection(DbConfig.ConnectionString))
                 {
                     conn.Open();
 
-                    string createTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase ( ID INTEGER PRIMARY KEY AUTOINCREMENT,VoucherDate DATETIME,VoucherNo NVARCHAR(30),SPID INT,SPName NVARCHAR(200),EntryType INT, GRNCode NVARCHAR(6), PurchaseType INT, PaymentType INT, DiscountCalculation INT, InvoiceDate DATETIME, InvoiceNo NVARCHAR(30), InvoiceAmt FLOAT, TransactionType INT, BRID INT, BrokerName NVARCHAR(200), GSTIN NVARCHAR(20), EInvoiceBill INT );";
+                    string createTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase ( ID INTEGER PRIMARY KEY AUTOINCREMENT,VoucherDate NVARCHAR(15),VoucherNo NVARCHAR(30),SPID INT,SPName NVARCHAR(200),EntryType INT, GRNCode NVARCHAR(6), PurchaseType INT, PaymentType INT, DiscountCalculation INT, InvoiceDate NVARCHAR(15), InvoiceNo NVARCHAR(30), InvoiceAmt FLOAT, TransactionType INT, BRID INT, BrokerName NVARCHAR(200), GSTIN NVARCHAR(20), EInvoiceBill INT );";
 
                     using (var cmd = new SQLiteCommand(createTableQuery, conn))
                     {
@@ -111,7 +113,95 @@ namespace ROMS
                     }
                 }
 
-                //MessageBox.Show("Database ready at: " + dbFilePath);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGetPurchaseData()
+        {
+            try
+            {
+                using (var conn = new SQLiteConnection(DbConfig.ConnectionString))
+                {
+                    conn.Open();
+
+                    string countQuery = "SELECT COUNT(ID) FROM TEMP_Purchase";
+                    using (var cmd = new SQLiteCommand(countQuery, conn))
+                    {
+                        long rowCount = (long)cmd.ExecuteScalar();
+
+                        if (rowCount > 0)
+                        {
+                            if (btnSave.Text.Trim() == "Save as Draft")
+                            {
+                                DialogResult dialogResult = MessageBox.Show("Are you want to continue with previous purchase entry?","Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    LoadTempPurchaseData();
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void LoadTempPurchaseData()
+        {
+            try
+            {
+                using (var conn = new SQLiteConnection(DbConfig.ConnectionString))
+                {
+                    conn.Open();
+
+                    string selectQuery = "SELECT * FROM TEMP_Purchase ORDER BY ID DESC LIMIT 1";
+
+                    using (var cmd = new SQLiteCommand(selectQuery, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            dpVoucherDate.Text = reader["VoucherDate"].ToString();
+                            dpInvoiceDate.Text = reader["InvoiceDate"].ToString();
+
+                            cmbEntryType.SelectedValue = Convert.ToInt32(reader["EntryType"]);
+                            cmbTransactionType.SelectedValue = Convert.ToInt32(reader["TransactionType"]);
+
+                            txtPENO.Text = reader["VoucherNo"].ToString();
+                            txtSupplier.Text = reader["SPName"].ToString();
+                            lblSupplierCode.Text = reader["SPID"].ToString();
+                            txtInvoiceNo.Text = reader["InvoiceNo"].ToString();
+                            txtInvoiceamt.Text = reader["InvoiceAmt"].ToString();
+                            txtBroker.Text = reader["BrokerName"].ToString();
+                            lblBrokerId.Text = reader["BRID"].ToString();
+                            txtGstin.Text = reader["GSTIN"].ToString();
+                            txtQRCode.Text = reader["GRNCode"].ToString();
+                            udfnListViewData();
+                            LV_Supplier.Visible = false;
+                            lv_Broker.Visible = false;
+
+                            rbPurchaseCash.Checked = Convert.ToInt32(reader["PurchaseType"]) == 1;
+                            rbPurchaseCredit.Checked = Convert.ToInt32(reader["PurchaseType"]) == 2;
+
+                            rbPaymentCash.Checked = Convert.ToInt32(reader["PaymentType"]) == 1;
+                            rbPaymentCheque.Checked = Convert.ToInt32(reader["PaymentType"]) == 2;
+
+                            rbDiscountBefore.Checked = Convert.ToInt32(reader["DiscountCalculation"]) == 1;
+                            rbDiscountAfter.Checked = Convert.ToInt32(reader["DiscountCalculation"]) == 2;
+
+                            chkInvoice.Checked = Convert.ToInt32(reader["EInvoiceBill"]) == 1;
+                        }
+                    }
+
+                }
             }
             catch (Exception ex)
             {
@@ -124,14 +214,23 @@ namespace ROMS
         {
             try
             {
-                // Same path as before
-                string folderPath = Path.Combine(Application.StartupPath, "mydb");
-                string dbFilePath = Path.Combine(folderPath, "mydatabase.db");
-
-                string connStr = $"Data Source={dbFilePath};Version=3;";
-                using (var conn = new SQLiteConnection(connStr))
+                using (var conn = new SQLiteConnection(DbConfig.ConnectionString))
                 {
                     conn.Open();
+
+                    string countQuery = "SELECT COUNT(ID) FROM TEMP_Purchase";
+                    using (var countCmd = new SQLiteCommand(countQuery, conn))
+                    {
+                        long rowCount = (long)countCmd.ExecuteScalar();
+                        if (rowCount > 0)
+                        {
+                            string deleteQuery = "DELETE FROM TEMP_Purchase";
+                            using (var deleteCmd = new SQLiteCommand(deleteQuery, conn))
+                            {
+                                deleteCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
 
                     string insertQuery = @"INSERT INTO TEMP_Purchase (VoucherDate, VoucherNo, SPID, SPName, EntryType, GRNCode,PurchaseType, PaymentType, DiscountCalculation, InvoiceDate,InvoiceNo, InvoiceAmt, TransactionType, BRID, BrokerName,GSTIN, EInvoiceBill) VALUES (@VoucherDate, @VoucherNo, @SPID, @SPName, @EntryType, @GRNCode,@PurchaseType, @PaymentType, @DiscountCalculation, @InvoiceDate,@InvoiceNo, @InvoiceAmt, @TransactionType, @BRID, @BrokerName,@GSTIN, @EInvoiceBill );";
 
@@ -141,26 +240,17 @@ namespace ROMS
                         int varPurchaseType = 1, varPaymentType = 1, varDiscountCalculation = 1, varInvoiceBill = 0;
 
                         if (rbPurchaseCredit.Checked == true)
-                        {
                             varPurchaseType = 2;
-                        }
                         if (rbPaymentCheque.Checked == true)
-                        {
                             varPaymentType = 2;
-                        }
                         if (rbDiscountAfter.Checked == true)
-                        {
                             varDiscountCalculation = 2;
-                        }
                         if (chkInvoice.Checked == true)
-                        {
                             varInvoiceBill = 1;
-                        }
                         if (txtQRCode.Text.Trim() != "")
-                        {
                             varQRCode = txtQRCode.Text.Trim();
-                        }
-                        cmd.Parameters.AddWithValue("@VoucherDate", dpVoucherDate.Text);
+
+                        cmd.Parameters.AddWithValue("@VoucherDate", dpVoucherDate.Value);
                         cmd.Parameters.AddWithValue("@VoucherNo", txtPENO.Text);
                         cmd.Parameters.AddWithValue("@SPID", Convert.ToInt32(lblSupplierCode.Text));
                         cmd.Parameters.AddWithValue("@SPName", txtSupplier.Text.Trim());
@@ -169,9 +259,9 @@ namespace ROMS
                         cmd.Parameters.AddWithValue("@PurchaseType", varPurchaseType);
                         cmd.Parameters.AddWithValue("@PaymentType", varPaymentType);
                         cmd.Parameters.AddWithValue("@DiscountCalculation", varDiscountCalculation);
-                        cmd.Parameters.AddWithValue("@InvoiceDate", dpInvoiceDate.Text);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", dpInvoiceDate.Value);
                         cmd.Parameters.AddWithValue("@InvoiceNo", txtInvoiceNo.Text.Trim());
-                        cmd.Parameters.AddWithValue("@InvoiceAmt", txtInvoiceamt.Text.Trim());
+                        cmd.Parameters.AddWithValue("@InvoiceAmt", Convert.ToDouble(txtInvoiceamt.Text.Trim()));
                         cmd.Parameters.AddWithValue("@TransactionType", Convert.ToInt32(cmbTransactionType.SelectedValue));
                         cmd.Parameters.AddWithValue("@BRID", Convert.ToInt32(lblBrokerId.Text));
                         cmd.Parameters.AddWithValue("@BrokerName", txtBroker.Text.Trim());
@@ -181,8 +271,6 @@ namespace ROMS
                         cmd.ExecuteNonQuery();
                     }
                 }
-
-                //MessageBox.Show("Record inserted successfully.");
             }
             catch (Exception ex)
             {
@@ -191,8 +279,7 @@ namespace ROMS
             }
         }
 
-
-    private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -1283,6 +1370,13 @@ namespace ROMS
                 { cmbQtyType.SelectedValue = 202; cmbQtyType.Enabled = false; }
                 if (grdSupplierList.RowCount != 0)
                 { btnClear.Enabled = false; }
+
+
+                if (btnSave.Text.Trim() == "Save as Draft" && pbPurchaseno == "0")
+                {
+                    udfnGetPurchaseData();
+                }
+
             }
             catch (Exception ex)
             {
