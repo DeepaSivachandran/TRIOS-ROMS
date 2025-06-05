@@ -8,6 +8,8 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.SQLite;
+using System.IO;
 
 namespace ROMS
 {
@@ -78,7 +80,119 @@ namespace ROMS
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
         }
-        private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void udfnDBCreate()
+        {
+            try
+            {
+                string folderPath = Path.Combine(Application.StartupPath, "mydb");
+                string dbFilePath = Path.Combine(folderPath, "mydatabase.db");
+
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                if (!File.Exists(dbFilePath))
+                {
+                    SQLiteConnection.CreateFile(dbFilePath);
+                }
+
+                string connStr = $"Data Source={dbFilePath};Version=3;";
+                using (var conn = new SQLiteConnection(connStr))
+                {
+                    conn.Open();
+
+                    string createTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase ( ID INTEGER PRIMARY KEY AUTOINCREMENT,VoucherDate DATETIME,VoucherNo NVARCHAR(30),SPID INT,SPName NVARCHAR(200),EntryType INT, GRNCode NVARCHAR(6), PurchaseType INT, PaymentType INT, DiscountCalculation INT, InvoiceDate DATETIME, InvoiceNo NVARCHAR(30), InvoiceAmt FLOAT, TransactionType INT, BRID INT, BrokerName NVARCHAR(200), GSTIN NVARCHAR(20), EInvoiceBill INT );";
+
+                    using (var cmd = new SQLiteCommand(createTableQuery, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                //MessageBox.Show("Database ready at: " + dbFilePath);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void InsertTempPurchaseData()
+        {
+            try
+            {
+                // Same path as before
+                string folderPath = Path.Combine(Application.StartupPath, "mydb");
+                string dbFilePath = Path.Combine(folderPath, "mydatabase.db");
+
+                string connStr = $"Data Source={dbFilePath};Version=3;";
+                using (var conn = new SQLiteConnection(connStr))
+                {
+                    conn.Open();
+
+                    string insertQuery = @"INSERT INTO TEMP_Purchase (VoucherDate, VoucherNo, SPID, SPName, EntryType, GRNCode,PurchaseType, PaymentType, DiscountCalculation, InvoiceDate,InvoiceNo, InvoiceAmt, TransactionType, BRID, BrokerName,GSTIN, EInvoiceBill) VALUES (@VoucherDate, @VoucherNo, @SPID, @SPName, @EntryType, @GRNCode,@PurchaseType, @PaymentType, @DiscountCalculation, @InvoiceDate,@InvoiceNo, @InvoiceAmt, @TransactionType, @BRID, @BrokerName,@GSTIN, @EInvoiceBill );";
+
+                    using (var cmd = new SQLiteCommand(insertQuery, conn))
+                    {
+                        string varQRCode = "";
+                        int varPurchaseType = 1, varPaymentType = 1, varDiscountCalculation = 1, varInvoiceBill = 0;
+
+                        if (rbPurchaseCredit.Checked == true)
+                        {
+                            varPurchaseType = 2;
+                        }
+                        if (rbPaymentCheque.Checked == true)
+                        {
+                            varPaymentType = 2;
+                        }
+                        if (rbDiscountAfter.Checked == true)
+                        {
+                            varDiscountCalculation = 2;
+                        }
+                        if (chkInvoice.Checked == true)
+                        {
+                            varInvoiceBill = 1;
+                        }
+                        if (txtQRCode.Text.Trim() != "")
+                        {
+                            varQRCode = txtQRCode.Text.Trim();
+                        }
+                        cmd.Parameters.AddWithValue("@VoucherDate", dpVoucherDate.Text);
+                        cmd.Parameters.AddWithValue("@VoucherNo", txtPENO.Text);
+                        cmd.Parameters.AddWithValue("@SPID", Convert.ToInt32(lblSupplierCode.Text));
+                        cmd.Parameters.AddWithValue("@SPName", txtSupplier.Text.Trim());
+                        cmd.Parameters.AddWithValue("@EntryType", Convert.ToInt32(cmbEntryType.SelectedValue));
+                        cmd.Parameters.AddWithValue("@GRNCode", varQRCode);
+                        cmd.Parameters.AddWithValue("@PurchaseType", varPurchaseType);
+                        cmd.Parameters.AddWithValue("@PaymentType", varPaymentType);
+                        cmd.Parameters.AddWithValue("@DiscountCalculation", varDiscountCalculation);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", dpInvoiceDate.Text);
+                        cmd.Parameters.AddWithValue("@InvoiceNo", txtInvoiceNo.Text.Trim());
+                        cmd.Parameters.AddWithValue("@InvoiceAmt", txtInvoiceamt.Text.Trim());
+                        cmd.Parameters.AddWithValue("@TransactionType", Convert.ToInt32(cmbTransactionType.SelectedValue));
+                        cmd.Parameters.AddWithValue("@BRID", Convert.ToInt32(lblBrokerId.Text));
+                        cmd.Parameters.AddWithValue("@BrokerName", txtBroker.Text.Trim());
+                        cmd.Parameters.AddWithValue("@GSTIN", txtGstin.Text.Trim());
+                        cmd.Parameters.AddWithValue("@EInvoiceBill", varInvoiceBill);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                //MessageBox.Show("Record inserted successfully.");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+    private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -1066,6 +1180,7 @@ namespace ROMS
         {
             try
             {
+                udfnDBCreate();
                 lblDPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel1) + "%";
                 lblPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel2) + "%";
                 varShelflifeLevel1 = Convert.ToInt32(MainForm.pbShelflifeLevel1);
@@ -12130,6 +12245,7 @@ namespace ROMS
         {
             try
             {
+                InsertTempPurchaseData();
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
