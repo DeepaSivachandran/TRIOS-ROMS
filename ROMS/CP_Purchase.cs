@@ -213,21 +213,20 @@ namespace ROMS
                     dpInvoiceDate.MinDate = MainForm.pbFYStartDate;
                     dpInvoiceDate.MaxDate = varmaxdate;
 
-                    // Use helper method to safely read values (to avoid repeated code)
-                    dpVoucherDate.Value = GetSafeDateTime(row, "VoucherDate", DateTime.Today);
-                    dpInvoiceDate.Value = GetSafeDateTime(row, "InvoiceDate", DateTime.Today);
-                    cmbEntryType.SelectedValue = GetSafeInt(row, "EntryType");
-                    cmbTransactionType.SelectedValue = GetSafeInt(row, "TransactionType");
+                    dpVoucherDate.Value = row["VoucherDate"] == DBNull.Value ? DateTime.Today : Convert.ToDateTime(row["VoucherDate"]);
+                    dpInvoiceDate.Value = row["InvoiceDate"] == DBNull.Value ? DateTime.Today : Convert.ToDateTime(row["InvoiceDate"]);
+                    cmbEntryType.SelectedValue = row["EntryType"] == DBNull.Value ? 0 : Convert.ToInt32(row["EntryType"]);
+                    cmbTransactionType.SelectedValue = row["TransactionType"] == DBNull.Value ? 0 : Convert.ToInt32(row["TransactionType"]);
 
-                    txtPENO.Text = GetSafeString(row, "VoucherNo");
-                    txtGstin.Text = GetSafeString(row, "GSTIN");
-                    txtSupplier.Text = GetSafeString(row, "SPName");
-                    lblSupplierCode.Text = GetSafeString(row, "SPID", "0");
-                    txtInvoiceNo.Text = GetSafeString(row, "InvoiceNo");
-                    txtInvoiceamt.Text = GetSafeString(row, "InvoiceAmt", "0");
-                    txtBroker.Text = GetSafeString(row, "BrokerName");
-                    lblBrokerId.Text = GetSafeString(row, "BRID", "0");
-                    txtQRCode.Text = GetSafeString(row, "GRNCode");
+                    txtPENO.Text = row["VoucherNo"] == DBNull.Value ? "" : row["VoucherNo"].ToString();
+                    txtGstin.Text = row["GSTIN"] == DBNull.Value ? "" : row["GSTIN"].ToString();
+                    txtSupplier.Text = row["SPName"] == DBNull.Value ? "" : row["SPName"].ToString();
+                    lblSupplierCode.Text = row["SPID"] == DBNull.Value ? "0" : row["SPID"].ToString();
+                    txtInvoiceNo.Text = row["InvoiceNo"] == DBNull.Value ? "" : row["InvoiceNo"].ToString();
+                    txtInvoiceamt.Text = row["InvoiceAmt"] == DBNull.Value ? "0" : row["InvoiceAmt"].ToString();
+                    txtBroker.Text = row["BrokerName"] == DBNull.Value ? "" : row["BrokerName"].ToString();
+                    lblBrokerId.Text = row["BRID"] == DBNull.Value ? "0" : row["BRID"].ToString();
+                    txtQRCode.Text = row["GRNCode"] == DBNull.Value ? "" : row["GRNCode"].ToString();
 
                     if (LV_Supplier.Items.Count > 0)
                         LV_Supplier.Items[0].Selected = true;
@@ -237,11 +236,10 @@ namespace ROMS
                     LV_Supplier.Visible = false;
                     lv_Broker.Visible = false;
 
-                    // Radio buttons
-                    int purchaseType = GetSafeInt(row, "PurchaseType");
-                    int paymentType = GetSafeInt(row, "PaymentType");
-                    int discountCalc = GetSafeInt(row, "DiscountCalculation");
-                    int einvoice = GetSafeInt(row, "EInvoiceBill");
+                    int purchaseType = row["PurchaseType"] == DBNull.Value ? 0 : Convert.ToInt32(row["PurchaseType"]);
+                    int paymentType = row["PaymentType"] == DBNull.Value ? 0 : Convert.ToInt32(row["PaymentType"]);
+                    int discountCalc = row["DiscountCalculation"] == DBNull.Value ? 0 : Convert.ToInt32(row["DiscountCalculation"]);
+                    int einvoice = row["EInvoiceBill"] == DBNull.Value ? 0 : Convert.ToInt32(row["EInvoiceBill"]);
 
                     rbPurchaseCash.Checked = (purchaseType == 1);
                     rbPurchaseCredit.Checked = (purchaseType == 2);
@@ -253,6 +251,7 @@ namespace ROMS
 
                     this.ResumeLayout();
                 }
+
             }
             catch (Exception ex)
             {
@@ -260,32 +259,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private DateTime GetSafeDateTime(DataRow row, string columnName, DateTime defaultVal)
-        {
-            if (row.Table.Columns.Contains(columnName) && row[columnName] != DBNull.Value)
-                return Convert.ToDateTime(row[columnName]);
-            else
-                return defaultVal;
-        }
-
-        private int GetSafeInt(DataRow row, string columnName)
-        {
-            if (row.Table.Columns.Contains(columnName) && row[columnName] != DBNull.Value)
-                return Convert.ToInt32(row[columnName]);
-            else
-                return 0;
-        }
-
-        private string GetSafeString(DataRow row, string columnName, string defaultVal = "")
-        {
-            if (row.Table.Columns.Contains(columnName) && row[columnName] != DBNull.Value)
-                return row[columnName].ToString();
-            else
-                return defaultVal;
-        }
-
-
 
         public void SaveOrUpdateTempPurchase(string fieldName)
         {
@@ -1501,6 +1474,8 @@ namespace ROMS
                 {
                     udfnGetPurchaseData();
                 }
+                SaveOrUpdateTempPurchase("Concern");
+                SaveOrUpdateTempPurchase("EntryType");
                 SaveOrUpdateTempPurchase("PurchaseType");
                 SaveOrUpdateTempPurchase("PaymentType");
                 SaveOrUpdateTempPurchase("DiscountCalculation");
@@ -9252,6 +9227,33 @@ namespace ROMS
         private void DpInvoiceDate_Leave(object sender, EventArgs e)
         {
             SaveOrUpdateTempPurchase("InvoiceDate");
+        }
+
+        private void CP_Purchase_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                tpconcern.Active = false;
+                tpInvoice.Active = false;
+                tpDiscountPer.Active = false;
+                tpbatchno.Active = false;
+                tpProduct.Active = false;
+                tpdate.Active = false;
+                tpRack.Active = false;
+                tpStockLocation.Active = false;
+                tpSuppliername.Active = false;
+                tpQRCode.Active = false;
+                tpinvamt.Active = false;
+                tpInvNo.Active = false;
+                tpEntryType.Active = false;
+                tpmrp.Active = false;
+                tpInvoiceQty.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Txtdiscount_Enter(object sender, EventArgs e)
