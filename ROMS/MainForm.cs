@@ -239,6 +239,7 @@ namespace ROMS
         public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
         public static REPORT_Purchase_Defect_Product objREPORT_Purchase_Defect_Product;
 
+        public static CP_UserRole objCP_UserRole;
 
         public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
@@ -2615,6 +2616,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void userRoleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_UserRole = new CP_UserRole();
+                MainForm.objCP_UserRole.MdiParent = this;
+                MainForm.objCP_UserRole.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
