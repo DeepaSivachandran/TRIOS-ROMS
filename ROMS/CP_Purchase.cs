@@ -254,12 +254,90 @@ namespace ROMS
                     this.ResumeLayout();
                 }
 
+                DataTable dtTempPurchaseProducts = new DataTable();
+
+                using (var conn = new SQLiteConnection(DbConfig.ConnectionString))
+                {
+                    conn.Open();
+                    string selectQuery = "SELECT * FROM TEMP_GRNProductDetails";
+
+                    using (var cmd = new SQLiteCommand(selectQuery, conn))
+                    using (var adapter = new SQLiteDataAdapter(cmd))
+                    {
+                        adapter.Fill(dtTempPurchaseProducts);
+                    }
+                }
+                if (dtTempPurchaseProducts.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dtTempPurchaseProducts.Rows.Count; i++)
+                    {
+                        DataRow row = dtTempPurchaseProducts.Rows[i];
+
+                        string varMRP = row["MRP"].ToString() == "0" ? "" : row["MRP"].ToString();
+                        string varTempExpiryDate = "";
+
+                        if (!string.IsNullOrWhiteSpace(row["expirydate"].ToString()))
+                        {
+                            varTempExpiryDate = row["expirydate"].ToString();
+                        }
+
+                        grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null,"",SafeConvert<string>(row["InwardDate"]),SafeConvert<string>(row["Picode"]),SafeConvert<string>(row["ProTname"]),SafeConvert<string>(row["Unit"]),SafeConvert<string>(row["Condition"]),SafeConvert<string>(row["PendingQty"]),SafeConvert<string>(row["ExcessQty"]),SafeConvert<string>(row["DamageQty"]),SafeConvert<string>(row["MismatchQty"]),varMRP,varMRP,    SafeConvert<string>(row["ProductMrp"]),varTempExpiryDate, SafeConvert<string>(row["ProductExpiryDate"]),    SafeConvert<string>(row["Shelflife"]),SafeConvert<string>(row["actuallife"]),SafeConvert<string>(row["shelfper"]),    SafeConvert<string>(row["Batchno"]),SafeConvert<string>(row["ProductBatchNo"]),SafeConvert<string>(row["Location"]),SafeConvert<string>(row["rack"]),"", SafeConvert<int>(row["id"]),SafeConvert<int>(row["UTID"]), SafeConvert<string>(row["Batchenable"]),SafeConvert<string>(row["Batchgeneration"]),SafeConvert<string>(row["Shelflifeenable"]),SafeConvert<string>(row["slid"]), SafeConvert<string>(row["rkid"]),SafeConvert<string>(row["rkcount"]),SafeConvert<string>(row["TransId"]),SafeConvert<decimal>(row["TotQty"]),SafeConvert<decimal>(row["GRNQty"]),SafeConvert<decimal>(row["DCQty"]),SafeConvert<string>(row["PURPRIDDetail"]),0,SafeConvert<int>(row["ProductID"]),SafeConvert<int>(row["InvFlag"]),SafeConvert<string>(row["HSNid"]),SafeConvert<string>(row["MrpFlag"]),SafeConvert<string>(row["GRNProductType"]),SafeConvert<string>(row["RMFlag"]),SafeConvert<string>(row["GRNType"]),SafeConvert<string>(row["ConditionID"]),SafeConvert<string>(row["ConvertProduct"]),  SafeConvert<string>(row["ConvertProductFlag"]),SafeConvert<string>(row["ConvertParentFlag"])
+);
+
+                        dtPurchaseAutoComplete.Rows.Add(grdSupplierList.Rows.Count + 1, SafeConvert<string>(dtTempPurchaseProducts.Rows[i]["ProductID"]), varMRP, varTempExpiryDate, SafeConvert<string>(dtTempPurchaseProducts.Rows[i]["ProductExpiryDate"]), SafeConvert<string>(dtTempPurchaseProducts.Rows[i]["UTID"]), SafeConvert<string>(dtTempPurchaseProducts.Rows[i]["slid"]), SafeConvert<string>(dtTempPurchaseProducts.Rows[i]["rkid"]), SafeConvert<string>(dtTempPurchaseProducts.Rows[i]["Shelflifeenable"]), SafeConvert<string>(dtTempPurchaseProducts.Rows[i]["GRNProductType"]), SafeConvert<short>(dtTempPurchaseProducts.Rows[i]["id"]));
+
+
+                        grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        varProductsIDs.Add(SafeConvert<int>(row["ProductID"]));
+                        if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmProductID"].Value) != 0)
+                        {
+                            ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
+                        }
+                        if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmConvertProduct"].Value) == 0)
+                        {
+                            ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+                        }
+                        else { varConvertFlag = 1; }
+                        if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmConvertParentFlag"].Value) == 1)
+                        {
+                            ((DataGridViewImageCell)grdSupplierList.Rows[i].Cells["clmConvert"]).Value = new System.Drawing.Bitmap(1, 1);
+                        }
+                        if (PbApprovalStsid == 70) // approval incomplete then allow to edit allow error column
+                        {
+                            grdSupplierList.Rows[i].Cells["clmPendingQty"].ReadOnly = true;
+                            grdSupplierList.Rows[i].Cells["clmPendingQty"].Style.BackColor = Color.LightGray;
+                            grdSupplierList.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
+                            grdSupplierList.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
+                            grdSupplierList.Rows[i].Cells["clmDamageQty"].ReadOnly = true;
+                            grdSupplierList.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
+                            grdSupplierList.Rows[i].Cells["clmMismatchQty"].ReadOnly = true;
+                            grdSupplierList.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
+                        }
+                        else
+                        {
+                            if (Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmInvFlag"].Value) == 1 || Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) == "220")
+                            { grdSupplierList.Rows[i].ReadOnly = true; }
+                            else
+                            {
+                                grdSupplierList.Rows[i].ReadOnly = false;
+                            }
+                            DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                            GrdSupplierList_DataBindingComplete(grdSupplierList, args2);
+                        }
+
+                    }
+                }
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        private T SafeConvert<T>(object value, T defaultValue = default)
+        {
+            return value == DBNull.Value || value == null ? defaultValue : (T)Convert.ChangeType(value, typeof(T));
         }
 
         public void SaveOrUpdateTempPurchase(string fieldName)
