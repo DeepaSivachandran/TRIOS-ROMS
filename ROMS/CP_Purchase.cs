@@ -9288,6 +9288,7 @@ namespace ROMS
             {
                 MainForm.objPUR_Purchase_Level_Verified = new PUR_Purchase_Level_Verified();
                 MainForm.objPUR_Purchase_Level_Verified.pbPurID = Convert.ToString(pbPurchaseno);
+                MainForm.objPUR_Purchase_Level_Verified.varVoucherDate = Convert.ToString(dpVoucherDate.Text);
                 MainForm.objPUR_Purchase_Level_Verified.ShowDialog();
                 btnSave.Focus();
             }
