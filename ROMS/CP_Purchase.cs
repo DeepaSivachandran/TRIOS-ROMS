@@ -132,7 +132,9 @@ namespace ROMS
 
                     string createTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase ( ID INTEGER PRIMARY KEY AUTOINCREMENT,Concern INT,PurchaseID INT,VoucherDate NVARCHAR(15),VoucherNo NVARCHAR(30),SPID INT,SPName NVARCHAR(200),EntryType INT, GRNCode NVARCHAR(6), PurchaseType INT, PaymentType INT, DiscountCalculation INT, InvoiceDate NVARCHAR(15), InvoiceNo NVARCHAR(30), InvoiceAmt FLOAT, TransactionType INT, BRID INT, BrokerName NVARCHAR(200), GSTIN NVARCHAR(20), EInvoiceBill INT );";
 
-                    string createProductsTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase_Products ( PURPR_PURID INT,PRID INT,ProductName NVARCHAR(200),PURPR_GRNMRP INT,PURPR_InvoiceMRP INT,PURPR_ExpiryDate NVARCHAR(15),PURPR_Batch NVARCHAR(15),PURPR_SLID INT,PURPR_RKID INT,PURPR_HSNID INT,PURPR_PurchaseRate FLOAT,PURPR_POQty FLOAT,PURPR_InvoiceQty FLOAT,PURPR_ReceivedQty FLOAT,PURPR_DiffQty FLOAT,PURPR_FreeQty FLOAT,PURPR_DiscPer FLOAT,PURPR_DiscAmnt FLOAT,PURPR_TaxableValue FLOAT,PURPR_GSTPer INT,PURPR_GSTAmnt FLOAT,PURPR_NettAmnt FLOAT,PURPR_ShelfLife INT,PURPR_ShelfLifeValue INT,PURPR_ShelfLifePer FLOAT,PURPR_Error INT,PURPR_ProductType INT,PURPR_BatchNoStatus INT,PURPR_BatchNoGenration INT,PURPR_ShelfLife_Flag INT,PURPR_ShelfLifeStatus INT,PURPR_INVSTSID INT,PURPR_TOTQTY FLOAT,PURPR_GRNQTY FLOAT,PURPR_DCQTY FLOAT,PURPR_DCPRID INT,PURPR_GRNPRID INT,PURPR_POPRID INT,PURPR_GIPPRID INT,PURPR_SL_StockApplicable INT,PURPR_Costing INT,PURPR_DiscountValue FLOAT,PURPR_IGSTAmnt FLOAT,PURPR_IGSTPer INT,PURPR_CGSTPer INT,PURPR_SGSTPer INT,PURPR_CGSTAmnt FLOAT,PURPR_SGSTAmnt FLOAT,PURPR_MRPflag INT,PURPR_RMProductionFlag INT,PURPR_Parent_PURPRID INT,PURPR_EntryApprovalSTSID INT,PURPR_ProductMRP FLOAT,PURPR_ProductExpirydate NVARCHAR(15),PURPR_ProductBatchNo INT,PURPR_Condition INT,PURPR_MismatchQty FLOAT,PURPR_InwardDate NVARCHAR(15));";
+                    //string createProductsTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase_Products ( PURPR_PURID INT,PRID INT,ProductName NVARCHAR(200),PURPR_GRNMRP INT,PURPR_InvoiceMRP INT,PURPR_ExpiryDate NVARCHAR(15),PURPR_Batch NVARCHAR(15),PURPR_SLID INT,PURPR_RKID INT,PURPR_HSNID INT,PURPR_PurchaseRate FLOAT,PURPR_POQty FLOAT,PURPR_InvoiceQty FLOAT,PURPR_ReceivedQty FLOAT,PURPR_DiffQty FLOAT,PURPR_FreeQty FLOAT,PURPR_DiscPer FLOAT,PURPR_DiscAmnt FLOAT,PURPR_TaxableValue FLOAT,PURPR_GSTPer INT,PURPR_GSTAmnt FLOAT,PURPR_NettAmnt FLOAT,PURPR_ShelfLife INT,PURPR_ShelfLifeValue INT,PURPR_ShelfLifePer FLOAT,PURPR_Error INT,PURPR_ProductType INT,PURPR_BatchNoStatus INT,PURPR_BatchNoGenration INT,PURPR_ShelfLife_Flag INT,PURPR_ShelfLifeStatus INT,PURPR_INVSTSID INT,PURPR_TOTQTY FLOAT,PURPR_GRNQTY FLOAT,PURPR_DCQTY FLOAT,PURPR_DCPRID INT,PURPR_GRNPRID INT,PURPR_POPRID INT,PURPR_GIPPRID INT,PURPR_SL_StockApplicable INT,PURPR_Costing INT,PURPR_DiscountValue FLOAT,PURPR_IGSTAmnt FLOAT,PURPR_IGSTPer INT,PURPR_CGSTPer INT,PURPR_SGSTPer INT,PURPR_CGSTAmnt FLOAT,PURPR_SGSTAmnt FLOAT,PURPR_MRPflag INT,PURPR_RMProductionFlag INT,PURPR_Parent_PURPRID INT,PURPR_EntryApprovalSTSID INT,PURPR_ProductMRP FLOAT,PURPR_ProductExpirydate NVARCHAR(15),PURPR_ProductBatchNo INT,PURPR_Condition INT,PURPR_MismatchQty FLOAT,PURPR_InwardDate NVARCHAR(15));";
+
+                    string createProductsTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_GRNProductDetails (sno INTEGER,Convert TEXT,Pono TEXT,InwardDate TEXT,Picode TEXT,ProTname TEXT,Unit TEXT,Condition TEXT,PendingQty REAL,ExcessQty REAL,DamageQty REAL,    MismatchQty REAL,GrnMrp REAL,MRP REAL,ProductMrp REAL,expirydate TEXT,ProductExpiryDate TEXT,Shelflife TEXT,actuallife TEXT,shelfper TEXT,Batchno TEXT,ProductBatchNo TEXT,Location TEXT,rack TEXT,id TEXT,Proid TEXT,UTID TEXT,Batchenable INTEGER,Batchgeneration INTEGER,Shelflifeenable INTEGER,slid TEXT,rkid TEXT,rkcount INTEGER,TransId INTEGER,TotQty REAL,    GRNQty REAL,DCQty REAL,PURPRIDDetail TEXT,Addproflag TEXT,ProductID TEXT,InvFlag TEXT,HSNid TEXT,MrpFlag TEXT,    GRNProductType TEXT,RMFlag TEXT,GRNType TEXT,ConditionID TEXT,ConvertProduct TEXT,ConvertProductFlag TEXT,ConvertParentFlag TEXT);";
 
 
                     using (var cmd = new SQLiteCommand(createTableQuery, conn))
@@ -5540,6 +5542,11 @@ namespace ROMS
                                 varPrMRPFlag,varGRNProType,varRMProductionFlag, varGrnType,Convert.ToString(cmbQtyType.SelectedValue),"0","0","0");
                                 grdSupplierList.Columns["clmProTname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
+
+                                InsertIntoTempGRNProductDetails(maxSno + 1, null, varPICode.Trim(), varTName.Trim(), var_Symbol.Trim(),    Convert.ToString(cmbQtyType.Text), varPendingQty, varExcessQty, varDamageQty, varMismatchQty,varGrnMrp, txtMrp.Text.Trim(), varProMrp, varExpiryDateAdd.Trim(), varProExpiry,varexp.Trim(), varAcutalshelflife, varShelflifevalue,txtBatchno.Text.Trim(), varProBatchNo, txtSourceLocation.Text, cmbrack.Text,    cmbPONo.SelectedValue, productCode.Trim(), varunitid.Trim(), varBatchNo, varBatchNoGeneration,    expirydateFlag, lblLocationcode.Text, varRackId, varRackCount,varId, varPrInvFlag, varHSNid, varPrMRPFlag, varGRNProType,varRMProductionFlag, varGrnType, Convert.ToString(cmbQtyType.SelectedValue),"0", "0", "0" );
+
+
+
                                 if (Convert.ToInt32(cmbEntryType.SelectedValue)!=54)
                                 {
                                     if (Convert.ToString(cmbQtyType.SelectedValue) == "202" )//Product condition no difference
@@ -5656,6 +5663,75 @@ namespace ROMS
                 grdSupplierList.Sort(grdSupplierList.Columns[0], ListSortDirection.Descending);
             }
         }
+        private void InsertIntoTempGRNProductDetails( int sno, object pono, string picode, string protName, string unit, string condition, object pendingQty, object excessQty, object damageQty, object mismatchQty, object grnMrp, string mrp, object productMrp, string expiryDate, object productExpiryDate, string shelfLife, object actualLife, object shelfPer, string batchNo, object productBatchNo, string location, string rack, object id, string proid, string utid, object batchEnable, object batchGen, object shelfLifeEnable, string slid, object rkid, object rkcount, object productID, object invFlag, object hsnid, object mrpFlag, object grnProductType, object rmFlag, object grnType, string conditionId, string convertProduct, string convertProductFlag, string convertParentFlag )
+        {
+            try
+            {
+                using (var conn = new SQLiteConnection(DbConfig.ConnectionString))
+                {
+                    conn.Open();
+                    using (var txn = conn.BeginTransaction())
+                    {
+                        var cmd = new SQLiteCommand(@" INSERT INTO TEMP_GRNProductDetails ( sno, Convert, Pono, InwardDate, Picode, protName, Unit, Condition, PendingQty, ExcessQty, DamageQty, MismatchQty, GrnMrp, MRP, ProductMrp, expirydate, ProductExpiryDate, Shelflife, actuallife, shelfper, Batchno, ProductBatchNo, Location, rack, id, Proid, UTID, Batchenable, batchGen, Shelflifeenable, slid, rkid, rkcount, ProductID, InvFlag, HSNid, MrpFlag, GRNProductType, RMFlag, GRNType, ConditionID, convertProduct, convertProductFlag, convertParentFlag ) VALUES ( @sno, @Convert, @Pono, @InwardDate, @Picode, @protName, @Unit, @Condition, @PendingQty, @ExcessQty, @DamageQty, @MismatchQty, @GrnMrp, @MRP, @ProductMrp, @expirydate, @ProductExpiryDate, @Shelflife, @actuallife, @shelfper, @Batchno, @ProductBatchNo, @Location, @rack, @id, @Proid, @UTID, @Batchenable, @batchGen, @Shelflifeenable, @slid, @rkid, @rkcount, @ProductID, @InvFlag, @HSNid, @MrpFlag, @GRNProductType, @RMFlag, @GRNType, @ConditionID, @convertProduct, @convertProductFlag, @convertParentFlag )", conn, txn);
+
+                        cmd.Parameters.AddWithValue("@sno", sno);
+                        cmd.Parameters.AddWithValue("@Convert", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Pono", pono);
+                        cmd.Parameters.AddWithValue("@InwardDate", "");
+                        cmd.Parameters.AddWithValue("@Picode", picode);
+                        cmd.Parameters.AddWithValue("@protName", protName);
+                        cmd.Parameters.AddWithValue("@Unit", unit);
+                        cmd.Parameters.AddWithValue("@Condition", condition);
+                        cmd.Parameters.AddWithValue("@PendingQty", pendingQty);
+                        cmd.Parameters.AddWithValue("@ExcessQty", excessQty);
+                        cmd.Parameters.AddWithValue("@DamageQty", damageQty);
+                        cmd.Parameters.AddWithValue("@MismatchQty", mismatchQty);
+                        cmd.Parameters.AddWithValue("@GrnMrp", grnMrp);
+                        cmd.Parameters.AddWithValue("@MRP", mrp);
+                        cmd.Parameters.AddWithValue("@ProductMrp", productMrp);
+                        cmd.Parameters.AddWithValue("@expirydate", expiryDate);
+                        cmd.Parameters.AddWithValue("@ProductExpiryDate", productExpiryDate);
+                        cmd.Parameters.AddWithValue("@Shelflife", shelfLife);
+                        cmd.Parameters.AddWithValue("@actuallife", actualLife);
+                        cmd.Parameters.AddWithValue("@shelfper", shelfPer);
+                        cmd.Parameters.AddWithValue("@Batchno", batchNo);
+                        cmd.Parameters.AddWithValue("@ProductBatchNo", productBatchNo);
+                        cmd.Parameters.AddWithValue("@Location", location);
+                        cmd.Parameters.AddWithValue("@rack", rack);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Parameters.AddWithValue("@Proid", proid);
+                        cmd.Parameters.AddWithValue("@UTID", utid);
+                        cmd.Parameters.AddWithValue("@Batchenable", batchEnable);
+                        cmd.Parameters.AddWithValue("@batchGen", batchGen);
+                        cmd.Parameters.AddWithValue("@Shelflifeenable", shelfLifeEnable);
+                        cmd.Parameters.AddWithValue("@slid", slid);
+                        cmd.Parameters.AddWithValue("@rkid", rkid);
+                        cmd.Parameters.AddWithValue("@rkcount", rkcount);
+                        cmd.Parameters.AddWithValue("@ProductID", productID);
+                        cmd.Parameters.AddWithValue("@InvFlag", invFlag);
+                        cmd.Parameters.AddWithValue("@HSNid", hsnid);
+                        cmd.Parameters.AddWithValue("@MrpFlag", mrpFlag);
+                        cmd.Parameters.AddWithValue("@GRNProductType", grnProductType);
+                        cmd.Parameters.AddWithValue("@RMFlag", rmFlag);
+                        cmd.Parameters.AddWithValue("@GRNType", grnType);
+                        cmd.Parameters.AddWithValue("@ConditionID", conditionId);
+                        cmd.Parameters.AddWithValue("@convertProduct", convertProduct);
+                        cmd.Parameters.AddWithValue("@convertProductFlag", convertProductFlag);
+                        cmd.Parameters.AddWithValue("@convertParentFlag", convertParentFlag);
+
+                        cmd.ExecuteNonQuery();
+                        txn.Commit();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
         public void udfnrowclear()
         {
             try
