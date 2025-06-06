@@ -10,6 +10,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.IO;
+using System.Diagnostics;
 
 namespace ROMS
 {
@@ -131,12 +132,18 @@ namespace ROMS
 
                     string createTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase ( ID INTEGER PRIMARY KEY AUTOINCREMENT,Concern INT,PurchaseID INT,VoucherDate NVARCHAR(15),VoucherNo NVARCHAR(30),SPID INT,SPName NVARCHAR(200),EntryType INT, GRNCode NVARCHAR(6), PurchaseType INT, PaymentType INT, DiscountCalculation INT, InvoiceDate NVARCHAR(15), InvoiceNo NVARCHAR(30), InvoiceAmt FLOAT, TransactionType INT, BRID INT, BrokerName NVARCHAR(200), GSTIN NVARCHAR(20), EInvoiceBill INT );";
 
+                    string createProductsTableQuery = @" CREATE TABLE IF NOT EXISTS TEMP_Purchase_Products ( PURPR_PURID INT,PRID INT,ProductName NVARCHAR(200),PURPR_GRNMRP INT,PURPR_InvoiceMRP INT,PURPR_ExpiryDate NVARCHAR(15),PURPR_Batch NVARCHAR(15),PURPR_SLID INT,PURPR_RKID INT,PURPR_HSNID INT,PURPR_PurchaseRate FLOAT,PURPR_POQty FLOAT,PURPR_InvoiceQty FLOAT,PURPR_ReceivedQty FLOAT,PURPR_DiffQty FLOAT,PURPR_FreeQty FLOAT,PURPR_DiscPer FLOAT,PURPR_DiscAmnt FLOAT,PURPR_TaxableValue FLOAT,PURPR_GSTPer INT,PURPR_GSTAmnt FLOAT,PURPR_NettAmnt FLOAT,PURPR_ShelfLife INT,PURPR_ShelfLifeValue INT,PURPR_ShelfLifePer FLOAT,PURPR_Error INT,PURPR_ProductType INT,PURPR_BatchNoStatus INT,PURPR_BatchNoGenration INT,PURPR_ShelfLife_Flag INT,PURPR_ShelfLifeStatus INT,PURPR_INVSTSID INT,PURPR_TOTQTY FLOAT,PURPR_GRNQTY FLOAT,PURPR_DCQTY FLOAT,PURPR_DCPRID INT,PURPR_GRNPRID INT,PURPR_POPRID INT,PURPR_GIPPRID INT,PURPR_SL_StockApplicable INT,PURPR_Costing INT,PURPR_DiscountValue FLOAT,PURPR_IGSTAmnt FLOAT,PURPR_IGSTPer INT,PURPR_CGSTPer INT,PURPR_SGSTPer INT,PURPR_CGSTAmnt FLOAT,PURPR_SGSTAmnt FLOAT,PURPR_MRPflag INT,PURPR_RMProductionFlag INT,PURPR_Parent_PURPRID INT,PURPR_EntryApprovalSTSID INT,PURPR_ProductMRP FLOAT,PURPR_ProductExpirydate NVARCHAR(15),PURPR_ProductBatchNo INT,PURPR_Condition INT,PURPR_MismatchQty FLOAT,PURPR_InwardDate NVARCHAR(15));";
+
+
                     using (var cmd = new SQLiteCommand(createTableQuery, conn))
                     {
                         cmd.ExecuteNonQuery();
                     }
+                    using (var cmd = new SQLiteCommand(createProductsTableQuery, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -181,69 +188,70 @@ namespace ROMS
         {
             try
             {
+                DataTable dtTempPurchase = new DataTable();
+
                 using (var conn = new SQLiteConnection(DbConfig.ConnectionString))
                 {
                     conn.Open();
-
                     string selectQuery = "SELECT * FROM TEMP_Purchase ORDER BY ID DESC LIMIT 1";
 
                     using (var cmd = new SQLiteCommand(selectQuery, conn))
-                    using (var reader = cmd.ExecuteReader())
+                    using (var adapter = new SQLiteDataAdapter(cmd))
                     {
-                        if (reader.Read())
-                        {
-                            DateTime varmindate = MainForm.pbCurrentDate;
-                            dpVoucherDate.MinDate = varmindate;
-                            dpVoucherDate.MaxDate = varmindate;
-
-                            DateTime varmindate1 = MainForm.pbFYStartDate;
-                            dpInvoiceDate.MinDate = varmindate1;
-                            dpInvoiceDate.MaxDate = varmaxdate;
-
-                            dpVoucherDate.Value = Convert.ToDateTime(reader["VoucherDate"]).Date;
-                            dpInvoiceDate.Value = Convert.ToDateTime(reader["InvoiceDate"]).Date;
-
-
-                            cmbEntryType.SelectedValue = Convert.ToInt32(reader["EntryType"]);
-                            cmbTransactionType.SelectedValue = Convert.ToInt32(reader["TransactionType"]);
-
-                            txtPENO.Text = reader["VoucherNo"].ToString();
-                            txtGstin.Text = reader["GSTIN"].ToString();
-                            txtSupplier.Text = reader["SPName"].ToString();
-                            if (LV_Supplier.Items.Count > 0)
-                            {
-                                LV_Supplier.Items[0].Selected = true;
-                            }
-                            udfnListViewData();
-                            lblSupplierCode.Text = reader["SPID"].ToString();
-                            txtInvoiceNo.Text = reader["InvoiceNo"].ToString();
-                            txtInvoiceamt.Text = reader["InvoiceAmt"].ToString();
-                            txtBroker.Text = reader["BrokerName"].ToString();
-                            lblBrokerId.Text = reader["BRID"].ToString();
-                            txtQRCode.Text = reader["GRNCode"].ToString();
-                            //udfnListViewData();
-                            LV_Supplier.Visible = false;
-                            lv_Broker.Visible = false;
-
-                            int purchaseType = reader["PurchaseType"] != DBNull.Value ? Convert.ToInt32(reader["PurchaseType"]) : 0;
-                            int paymentType = reader["PaymentType"] != DBNull.Value ? Convert.ToInt32(reader["PaymentType"]) : 0;
-                            int discountCalc = reader["DiscountCalculation"] != DBNull.Value ? Convert.ToInt32(reader["DiscountCalculation"]) : 0;
-                            int einvoice = reader["EInvoiceBill"] != DBNull.Value ? Convert.ToInt32(reader["EInvoiceBill"]) : 0;
-
-                            rbPurchaseCash.Checked = purchaseType == 1;
-                            rbPurchaseCredit.Checked = purchaseType == 2;
-
-                            rbPaymentCash.Checked = paymentType == 1;
-                            rbPaymentCheque.Checked = paymentType == 2;
-
-                            rbDiscountBefore.Checked = discountCalc == 1;
-                            rbDiscountAfter.Checked = discountCalc == 2;
-
-                            chkInvoice.Checked = einvoice == 1;
-
-
-                        }
+                        adapter.Fill(dtTempPurchase);
                     }
+                }
+
+                if (dtTempPurchase.Rows.Count > 0)
+                {
+                    var row = dtTempPurchase.Rows[0];
+
+                    this.SuspendLayout();
+
+                    dpVoucherDate.MinDate = MainForm.pbCurrentDate;
+                    dpVoucherDate.MaxDate = MainForm.pbCurrentDate;
+                    dpInvoiceDate.MinDate = MainForm.pbFYStartDate;
+                    dpInvoiceDate.MaxDate = varmaxdate;
+
+                    // Use helper method to safely read values (to avoid repeated code)
+                    dpVoucherDate.Value = GetSafeDateTime(row, "VoucherDate", DateTime.Today);
+                    dpInvoiceDate.Value = GetSafeDateTime(row, "InvoiceDate", DateTime.Today);
+                    cmbEntryType.SelectedValue = GetSafeInt(row, "EntryType");
+                    cmbTransactionType.SelectedValue = GetSafeInt(row, "TransactionType");
+
+                    txtPENO.Text = GetSafeString(row, "VoucherNo");
+                    txtGstin.Text = GetSafeString(row, "GSTIN");
+                    txtSupplier.Text = GetSafeString(row, "SPName");
+                    lblSupplierCode.Text = GetSafeString(row, "SPID", "0");
+                    txtInvoiceNo.Text = GetSafeString(row, "InvoiceNo");
+                    txtInvoiceamt.Text = GetSafeString(row, "InvoiceAmt", "0");
+                    txtBroker.Text = GetSafeString(row, "BrokerName");
+                    lblBrokerId.Text = GetSafeString(row, "BRID", "0");
+                    txtQRCode.Text = GetSafeString(row, "GRNCode");
+
+                    if (LV_Supplier.Items.Count > 0)
+                        LV_Supplier.Items[0].Selected = true;
+
+                    udfnListViewData();
+
+                    LV_Supplier.Visible = false;
+                    lv_Broker.Visible = false;
+
+                    // Radio buttons
+                    int purchaseType = GetSafeInt(row, "PurchaseType");
+                    int paymentType = GetSafeInt(row, "PaymentType");
+                    int discountCalc = GetSafeInt(row, "DiscountCalculation");
+                    int einvoice = GetSafeInt(row, "EInvoiceBill");
+
+                    rbPurchaseCash.Checked = (purchaseType == 1);
+                    rbPurchaseCredit.Checked = (purchaseType == 2);
+                    rbPaymentCash.Checked = (paymentType == 1);
+                    rbPaymentCheque.Checked = (paymentType == 2);
+                    rbDiscountBefore.Checked = (discountCalc == 1);
+                    rbDiscountAfter.Checked = (discountCalc == 2);
+                    chkInvoice.Checked = (einvoice == 1);
+
+                    this.ResumeLayout();
                 }
             }
             catch (Exception ex)
@@ -253,6 +261,32 @@ namespace ROMS
             }
         }
 
+        private DateTime GetSafeDateTime(DataRow row, string columnName, DateTime defaultVal)
+        {
+            if (row.Table.Columns.Contains(columnName) && row[columnName] != DBNull.Value)
+                return Convert.ToDateTime(row[columnName]);
+            else
+                return defaultVal;
+        }
+
+        private int GetSafeInt(DataRow row, string columnName)
+        {
+            if (row.Table.Columns.Contains(columnName) && row[columnName] != DBNull.Value)
+                return Convert.ToInt32(row[columnName]);
+            else
+                return 0;
+        }
+
+        private string GetSafeString(DataRow row, string columnName, string defaultVal = "")
+        {
+            if (row.Table.Columns.Contains(columnName) && row[columnName] != DBNull.Value)
+                return row[columnName].ToString();
+            else
+                return defaultVal;
+        }
+
+
+
         public void SaveOrUpdateTempPurchase(string fieldName)
         {
             try
@@ -261,25 +295,30 @@ namespace ROMS
                 {
                     conn.Open();
 
-                    // Check if TEMP_Purchase has any rows
                     string countQuery = "SELECT COUNT(ID) FROM TEMP_Purchase";
                     using (var countCmd = new SQLiteCommand(countQuery, conn))
                     {
                         long rowCount = (long)countCmd.ExecuteScalar();
 
-                        // If no row, insert one dummy row first
                         if (rowCount == 0)
                         {
-                            string insertQuery = "INSERT INTO TEMP_Purchase (VoucherDate) VALUES (@VoucherDate)";
+                            string getIdQuery = "SELECT COALESCE(MAX(ID), 0) + 1 FROM TEMP_Purchase";
+                            long nextId;
+                            using (var getIdCmd = new SQLiteCommand(getIdQuery, conn))
+                            {
+                                object result = getIdCmd.ExecuteScalar();
+                                nextId = (result != DBNull.Value) ? Convert.ToInt64(result) : 1;
+                            }
+
+                            string insertQuery = "INSERT INTO TEMP_Purchase (ID) VALUES (@ID)";
                             using (var insertCmd = new SQLiteCommand(insertQuery, conn))
                             {
-                                insertCmd.Parameters.AddWithValue("@VoucherDate", DateTime.Now);
+                                insertCmd.Parameters.AddWithValue("@ID", nextId);
                                 insertCmd.ExecuteNonQuery();
                             }
                         }
                     }
 
-                    // Now perform the update
                     string updateQuery = $"UPDATE TEMP_Purchase SET {fieldName} = @value WHERE ID = (SELECT ID FROM TEMP_Purchase ORDER BY ID DESC LIMIT 1)";
                     using (var updateCmd = new SQLiteCommand(updateQuery, conn))
                     {
@@ -1352,6 +1391,8 @@ namespace ROMS
         {
             try
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 udfnDBCreate();
                 lblDPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel1) + "%";
                 lblPercentage.Text = "< " + Convert.ToString(MainForm.pbShelflifeLevel2) + "%";
@@ -1464,6 +1505,8 @@ namespace ROMS
                 SaveOrUpdateTempPurchase("PaymentType");
                 SaveOrUpdateTempPurchase("DiscountCalculation");
                 SaveOrUpdateTempPurchase("TransactionType");
+                sw.Stop();
+                //MessageBox.Show("Time to load: " + sw.Elapsed.TotalSeconds.ToString("0.000") + " seconds");
             }
             catch (Exception ex)
             {
@@ -3212,6 +3255,9 @@ namespace ROMS
             }
             finally
             {
+                SaveOrUpdateTempPurchase("Concern");
+                SaveOrUpdateTempPurchase("VoucherDate");
+                SaveOrUpdateTempPurchase("VoucherNo");
                 SaveOrUpdateTempPurchase("SPID");
                 SaveOrUpdateTempPurchase("SPName");
                 LV_Supplier.Visible = false;
@@ -9185,8 +9231,6 @@ namespace ROMS
 
         private void DpVoucherDate_Leave(object sender, EventArgs e)
         {
-            SaveOrUpdateTempPurchase("VoucherDate");
-            SaveOrUpdateTempPurchase("VoucherNo");
         }
 
         private void RbPurchaseCash_CheckedChanged(object sender, EventArgs e)
@@ -11020,8 +11064,6 @@ namespace ROMS
                 varDateChange = 1;
                 varVoucherDate = Convert.ToString(dpVoucherDate.Text);
                 udfnVocherno();
-                SaveOrUpdateTempPurchase("VoucherNo");
-                SaveOrUpdateTempPurchase("VoucherDate");
             }
             catch (Exception ex)
             {
