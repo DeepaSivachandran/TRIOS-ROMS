@@ -1089,7 +1089,7 @@ namespace ROMS
                 {
                     cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                     DateTime varmindate = MainForm.pbCurrentDate;
-                    dpVoucherDate.MinDate = varmindate;
+                   // dpVoucherDate.MinDate = varmindate;
                     dpVoucherDate.MaxDate = varmindate;
                     dpVoucherDate.Text =Convert.ToString(MainForm.pbCurrentDate);
                 }
@@ -1386,6 +1386,7 @@ namespace ROMS
             {
                 if (pbPurchaseno != "0")
                 {
+                    dpVoucherDate.Enabled = false;
                     varEditFlag = 1;
                     varRemarkFlag = 1;
                     udfnRemark();
