@@ -465,7 +465,8 @@ namespace ROMS
                 }
                 else 
                 {
-                    /* Check product sub group is valid or not*/
+                    /*
+                    // Check product sub group is valid or not
                     string varId_SubGroup = "0";
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
@@ -494,6 +495,7 @@ namespace ROMS
                         txtSubgroup.BackColor = Color.White;
                         epProductApproval.Clear();
                     }
+                    */
                 }
                
             }
@@ -524,7 +526,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(),"", "","", "", "", "", "", "" };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString(), "", "", "", "" };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -809,10 +811,10 @@ namespace ROMS
                     varSubgroupCode = selectedItem.SubItems[2].Text;
                     //txtGroup.Text = selectedItem.SubItems[4].Text;
                     //varGroupCode = Convert.ToInt32(selectedItem.SubItems[5].Text);
-                    txtPurLocation.Text = selectedItem.SubItems[7].Text;
-                    varPurLocationCode = selectedItem.SubItems[6].Text;
-                    varPurRackCode = selectedItem.SubItems[8].Text;
-                    txtPurRack.Text = selectedItem.SubItems[9].Text;
+                    txtPurLocation.Text = selectedItem.SubItems[4].Text;
+                    varPurLocationCode = selectedItem.SubItems[3].Text;
+                    varPurRackCode = selectedItem.SubItems[5].Text;
+                    txtPurRack.Text = selectedItem.SubItems[6].Text;
                     string varbatchenable = selectedItem.SubItems[3].Text;
                     //txtRackDescription.Text = selectedItem.SubItems[10].Text;
                     txtBrand.Text = "";
