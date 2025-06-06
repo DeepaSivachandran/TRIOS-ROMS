@@ -265,6 +265,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 txtpicode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -302,6 +309,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 txtProductEname.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -337,6 +351,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 txtProductTname.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -372,6 +393,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 cmbProductCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -441,6 +469,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                //lvSubGroup.Visible = false;
                 txtSubgroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -492,10 +527,10 @@ namespace ROMS
                     }
                     else
                     {
-                        txtSubgroup.BackColor = Color.White;
                         epProductApproval.Clear();
                     }
                     */
+                    txtSubgroup.BackColor = Color.White;
                 }
                
             }
@@ -1226,6 +1261,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 cbShelflife.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1275,6 +1317,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 txtSelfLife.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1346,6 +1395,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 cmbPeriod.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1605,6 +1661,13 @@ namespace ROMS
         {
             try
             {
+                //lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 txtBrand.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1626,7 +1689,8 @@ namespace ROMS
                 }
                 else 
                 {
-                    /* Check product brand is valid or not*/
+                    /*
+                    // Check product brand is valid or not
                     string varId_Brand = "0";
                     DataSet objDsBrand = new DataSet();
                     SPDataService objDServ2 = new SPDataService();
@@ -1655,6 +1719,8 @@ namespace ROMS
                         txtBrand.BackColor = Color.White;
                         epProductApproval.Clear();
                     }
+                    */
+                    txtBrand.BackColor = Color.White;
                 }
 
             }
@@ -1674,6 +1740,12 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 txtPurLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1700,6 +1772,7 @@ namespace ROMS
                 /* Check purchase location is valid or not*/
                 else 
                 {
+                    /*
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
@@ -1729,6 +1802,8 @@ namespace ROMS
                         txtPurLocation.BackColor = Color.White;
                         epProductApproval.Clear();
                     }
+                    */
+                    txtPurLocation.BackColor = Color.White;
                 }
 
             }
@@ -1746,7 +1821,7 @@ namespace ROMS
                 txtPurRack.BackColor = Color.LemonChiffon;
                 lvPurLocation.Visible = false;
                 lvSaleLocation.Visible = false;
-                lvPurRack.Visible = false;
+                //lvPurRack.Visible = false;
                 lvSalesRack.Visible = false;
                 lvBrand.Visible = false;
                 lvSubGroup.Visible = false;
@@ -1772,6 +1847,7 @@ namespace ROMS
                 }
                 else
                 {
+                    /*
                     string varId_PurRack = "0";
                     DataSet objDsPurRack = new DataSet();
                     SPDataService objDServ4 = new SPDataService();
@@ -1800,6 +1876,8 @@ namespace ROMS
                         txtPurRack.BackColor = Color.White;
                         epProductApproval.Clear();
                     }
+                    */
+                    txtPurRack.BackColor = Color.White;
                 }
                
             }
@@ -1841,7 +1919,7 @@ namespace ROMS
                 lvPurLocation.Visible = false;
                 lvSaleLocation.Visible = false;
                 lvPurRack.Visible = false;
-                lvSalesRack.Visible = false;
+                //lvSalesRack.Visible = false;
                 lvBrand.Visible = false;
                 lvSubGroup.Visible = false;
                 lvHsnCode.Visible = false;
@@ -1859,6 +1937,13 @@ namespace ROMS
 
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 cmbBatchno.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1921,6 +2006,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 cmbGst.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1960,6 +2052,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                //lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 txtHsncode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2025,6 +2124,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 rbActive.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2051,6 +2157,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 rbInactive.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2143,6 +2256,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 cmbUnit.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2199,6 +2319,7 @@ namespace ROMS
                 }
                 else
                 {
+                    /*
                     string varId_SalesLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
@@ -2227,6 +2348,8 @@ namespace ROMS
                         txtSalesLocation.BackColor = Color.White;
                         epProductApproval.Clear();
                     }
+                    */
+                    txtSalesLocation.BackColor = Color.White;
                 }
 
             }
@@ -2248,6 +2371,7 @@ namespace ROMS
                 }
                 else 
                 {
+                    /*
                     string varId_PurRack = "0";
                     DataSet objDsPurRack = new DataSet();
                     SPDataService objDServ4 = new SPDataService();
@@ -2276,6 +2400,8 @@ namespace ROMS
                         txtSalesRack.BackColor = Color.White;
                         epProductApproval.Clear();
                     }
+                    */
+                    txtSalesRack.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -2579,6 +2705,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 cmbBatchGen.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2665,6 +2798,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 chkMrp.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2724,6 +2864,13 @@ namespace ROMS
         {
             try
             {
+                lvBrand.Visible = false;
+                //lvHsnCode.Visible = false;
+                lvPurLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvSalesRack.Visible = false;
+                lvSubGroup.Visible = false;
                 txtHsnname.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2737,7 +2884,7 @@ namespace ROMS
         {
             try
             {
-                txtHsnname.BackColor = Color.LemonChiffon;
+                txtHsnname.BackColor = Color.White;
             }
             catch (Exception ex)
             {
