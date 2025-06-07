@@ -1501,11 +1501,10 @@ namespace ROMS
         {
             try
             { 
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        cmbGst.Focus();
-                    }
-                
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtHsnName.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -5147,6 +5146,7 @@ namespace ROMS
                 //    errItems.Clear();
                 //    txtHsnName.BackColor = Color.White;
                 //}
+                txtHsnName.BackColor = Color.White;
             }
             catch (Exception ex)
 
