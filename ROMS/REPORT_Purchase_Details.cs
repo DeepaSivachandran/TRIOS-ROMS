@@ -10,6 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using System.Runtime.InteropServices;
+using ClosedXML.Excel;
 
 namespace ROMS
 {
@@ -23,7 +29,105 @@ namespace ROMS
         {
             InitializeComponent();
         }
-        private void cmbPayType_KeyDown(object sender, KeyEventArgs e)
+
+
+public class PurchaseEntry
+    {
+        [JsonProperty("PURID")]
+        public int PURID { get; set; }
+
+        [JsonProperty("Header")]
+        public string Header { get; set; }
+
+        [JsonProperty("Products")]
+        public List<Product> Products { get; set; }
+
+        [JsonProperty("ProductSummary")]
+        public string ProductSummary { get; set; }
+
+        [JsonProperty("Charges")]
+        public string Charges { get; set; }
+    }
+
+    public class Product
+    {
+        [JsonProperty("PR_PICode")]
+        public string PR_PICode { get; set; }
+
+        [JsonProperty("PR_TName")]
+        public string PR_TName { get; set; }
+
+        [JsonProperty("UT_Symbol")]
+        public string UT_Symbol { get; set; }
+
+        [JsonProperty("Condition")]
+        public string Condition { get; set; }
+
+        [JsonProperty("HSN_Code")]
+        public string HSN_Code { get; set; }
+
+        [JsonProperty("GST_Text")]
+        public string GST_Text { get; set; }
+
+        [JsonProperty("PURPR_InvoiceMRP")]
+        public decimal PURPR_InvoiceMRP { get; set; }
+
+        [JsonProperty("PURPR_ProductMRP")]
+        public decimal PURPR_ProductMRP { get; set; }
+
+        [JsonProperty("PURPR_ExpiryDate")]
+        public string PURPR_ExpiryDate { get; set; }
+
+        // If JSON properties have spaces, use JsonProperty attribute with exact name:
+        [JsonProperty("Product Shelflife")]
+        public string ProductShelflife { get; set; }
+
+        [JsonProperty("Actual Shelflife")]
+        public string ActualShelflife { get; set; }
+
+        [JsonProperty("Shelflife Per")]
+        public string ShelflifePer { get; set; }
+
+        [JsonProperty("PURPR_Batch")]
+        public string PURPR_Batch { get; set; }
+
+        [JsonProperty("SL_ShortName")]
+        public string SL_ShortName { get; set; }
+
+        [JsonProperty("Rack")]
+        public string Rack { get; set; }
+
+        [JsonProperty("PURPR_InvoiceQty")]
+        public decimal PURPR_InvoiceQty { get; set; }
+
+        [JsonProperty("PURPR_ReceivedQty")]
+        public decimal PURPR_ReceivedQty { get; set; }
+
+        [JsonProperty("PURPR_DiffQty")]
+        public decimal PURPR_DiffQty { get; set; }
+
+        [JsonProperty("PURPR_FreeQty")]
+        public decimal PURPR_FreeQty { get; set; }
+
+        [JsonProperty("PURPR_PurchaseRate")]
+        public decimal PURPR_PurchaseRate { get; set; }
+
+        [JsonProperty("PURPR_DiscAmnt")]
+        public decimal PURPR_DiscAmnt { get; set; }
+
+        [JsonProperty("PURPR_TaxableValue")]
+        public decimal PURPR_TaxableValue { get; set; }
+
+        [JsonProperty("PURPR_GSTAmnt")]
+        public decimal PURPR_GSTAmnt { get; set; }
+
+        [JsonProperty("PURPR_NettAmnt")]
+        public decimal PURPR_NettAmnt { get; set; }
+    }
+
+
+
+    private void cmbPayType_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -152,6 +256,177 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        public void ExportPurchaseJsonToExcelInterop(string jsonString)
+        {
+            try
+            {
+                var purchases = JArray.Parse(jsonString);
+
+                Excel._Application ExcelObj = new Excel.Application();
+                Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                Excel._Worksheet ExcelSheet = ExcelBook.Sheets[1];
+                ExcelSheet = ExcelBook.ActiveSheet;
+                ExcelSheet.Name = "Purchase Report";
+                ExcelObj.Visible = true;
+
+                int maxColCount = 25;
+                int currentRow = 1;
+
+                // Title
+                ExcelSheet.Cells[currentRow, 1].Value = "Purchase Details Report";
+                Excel.Range titleRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, maxColCount]];
+                titleRange.Merge();
+                titleRange.Font.Bold = true;
+                titleRange.Font.Size = 16;
+                titleRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                titleRange.Interior.Color = Color.LightGray;
+                currentRow++;
+
+                // Filters
+                string varSupplierName = string.IsNullOrWhiteSpace(txtSupplier.Text) ? "-All-" : txtSupplier.Text.Trim();
+                string filterLine = $"Date : {dpFromDate.Text} - {dpToDate.Text}     Supplier Name : {varSupplierName}     Pay Type : {cmbPayType.Text}     Condition Type : {cmbConditionType.Text}";
+                ExcelSheet.Cells[currentRow, 1].Value = filterLine;
+                Excel.Range filterRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, maxColCount]];
+                filterRange.Merge();
+                filterRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                currentRow += 2;
+
+                foreach (var purchase in purchases)
+                {
+                    var header = JObject.Parse(purchase["Header"].ToString());
+                    var products = purchase["Products"] as JArray;
+                    var footer = JObject.Parse(purchase["Footer"].ToString());
+
+                    // --- Grouped Header Sections ---
+                    ExcelSheet.Cells[currentRow, 1].Value = "Supplier Details";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, 7]].Merge();
+                    ExcelSheet.Cells[currentRow, 8].Value = "Invoice Details";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 8], ExcelSheet.Cells[currentRow, 13]].Merge();
+                    ExcelSheet.Cells[currentRow, 14].Value = "PO Details";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 14], ExcelSheet.Cells[currentRow, 17]].Merge();
+                    ExcelSheet.Cells[currentRow, 18].Value = "GRN Details";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 18], ExcelSheet.Cells[currentRow, 20]].Merge();
+                    ExcelSheet.Cells[currentRow, 21].Value = "Pur Entry Details";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 21], ExcelSheet.Cells[currentRow, 22]].Merge();
+                    ExcelSheet.Cells[currentRow, 23].Value = "Mismatch";
+                    ExcelSheet.Cells[currentRow, 24].Value = "Pur App Details";
+                    ExcelSheet.Cells[currentRow, 25].Value = "Cost App Details";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, maxColCount]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, maxColCount]].Font.Bold = true;
+                    currentRow++;
+
+                    // --- Actual Header Values ---
+                    int col = 1;
+                    foreach (var prop in header.Properties())
+                    {
+                        ExcelSheet.Cells[currentRow, col++].Value = prop.Value.ToString();
+                    }
+                    currentRow++;
+
+                    // --- Product Headers ---
+                    var productHeaders = new List<string> {
+                "Sl", "P.I Code", "Product Name", "Unit", "Con", "HSN Code", "GST %", "Inv Mrp", "Mrp",
+                "Exp Date", "To Shelf", "Lifet", "Shelf Life(days)", "Batch No", "St Loc", "Rack",
+                "Bill Qty", "Rec Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Nett Amt"
+            };
+
+                    col = 1;
+                    foreach (var h in productHeaders)
+                    {
+                        var cell = ExcelSheet.Cells[currentRow, col];
+                        cell.Value = h;
+                        cell.Font.Bold = true;
+                        cell.Interior.Color = Color.LightGray;
+                        col++;
+                    }
+                    currentRow++;
+
+                    // --- Products Section ---
+                    if (products != null && products.Count > 0)
+                    {
+                        col = 1;
+                        var firstProduct = products[0] as JObject;
+
+                        foreach (var prop in firstProduct.Properties())
+                        {
+                            var cell = ExcelSheet.Cells[currentRow, col];
+                            cell.Value = prop.Name;
+                            cell.Interior.Color = Color.LightGray;
+                            cell.Font.Bold = true;
+                            col++;
+                        }
+                        currentRow++;
+
+                        foreach (var prod in products)
+                        {
+                            if (prod is JObject prodObj)
+                            {
+                                col = 1;
+
+                                decimal invoiceQty = 0;
+                                if (prodObj["InvoiceQty"] != null)
+                                    decimal.TryParse(prodObj["InvoiceQty"].ToString(), out invoiceQty);
+
+                                foreach (var prop in prodObj.Properties())
+                                {
+                                    var cell = ExcelSheet.Cells[currentRow, col];
+                                    cell.Value = prop.Value?.ToString() ?? "";
+
+                                    // Red font if InvoiceQty == 0
+                                    cell.Font.Color = invoiceQty == 0 ? Color.Red : Color.Black;
+
+                                    if (prop.Name == "PR_TName")
+                                    {
+                                        cell.Font.Bold = true;
+                                        cell.Font.Name = "Uni Ila.Sundaram-03";
+                                        cell.Font.Size = 9.75;
+                                    }
+                                    col++;
+                                }
+                                currentRow++;
+                            }
+                        }
+                    }
+
+
+                    // --- Footer Sections ---
+                    ExcelSheet.Cells[currentRow, 1].Value = $"Bill Additions:   Loding charges: {GetValueOrEmpty(footer, "LodingCharges")}   Freight charges: {GetValueOrEmpty(footer, "FreightCharges")}   Other expenses: {GetValueOrEmpty(footer, "OtherExpenses")}";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, maxColCount]].Merge();
+                    currentRow++;
+
+                    ExcelSheet.Cells[currentRow, 1].Value = $"Bill Deductions:   Discount %: {GetValueOrEmpty(footer, "DiscountPercent")}   Discount Amount: {GetValueOrEmpty(footer, "DiscountAmount")}   Round Off: {GetValueOrEmpty(footer, "RoundOff")}   GST @ 5%: {GetValueOrEmpty(footer, "GST5")}";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, maxColCount]].Merge();
+                    currentRow++;
+
+                    ExcelSheet.Cells[currentRow, 1].Value = "Grand Total";
+                    ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, maxColCount - 1]].Merge();
+                    ExcelSheet.Cells[currentRow, maxColCount].Value = GetValueOrEmpty(footer, "GrandTotal");
+
+                    Excel.Range gtRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, maxColCount]];
+                    gtRange.Font.Bold = true;
+                    gtRange.Interior.Color = Color.LightYellow;
+                    currentRow += 2;
+
+                }
+
+                // Optional: Freeze panes below title row
+                ExcelSheet.Application.ActiveWindow.SplitRow = 4;
+                ExcelSheet.Application.ActiveWindow.FreezePanes = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        string GetValueOrEmpty(JObject obj, string key)
+        {
+            return obj != null && obj.TryGetValue(key, out var val) ? val.ToString() : "0.00";
+        }
+
+
+
         public void udfnPurchaseDetails()
         {
             try
@@ -572,6 +847,44 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dtPurchaseDetails = new DataTable();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
+                objTRN_PurchaseEntry.ViewType = 20;
+                objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbConditionType.SelectedValue);
+                objTRN_PurchaseEntry.paraType = Convert.ToInt32(cmbPayType.SelectedValue);
+                objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
+                objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
+                objTRN_PurchaseEntry.paraFromDate = dpFromDate.Text;
+                objTRN_PurchaseEntry.paraToDate = dpToDate.Text;
+                objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
+                objspdservice.CloseConnection();
+                if (objDs.Tables[0] != null)
+                {
+                    dtPurchaseDetails = objDs.Tables[0];
+                    List<JObject> purchaseList = new List<JObject>();
+                    foreach (DataRow dr in dtPurchaseDetails.Rows)
+                    {
+                        string purchaseJson = dr["PurchaseJson"].ToString();
+                        var purchaseObj = JObject.Parse(purchaseJson);
+                        purchaseList.Add(purchaseObj);
+                    }
+                    string combinedJson = JsonConvert.SerializeObject(purchaseList);
+                    ExportPurchaseJsonToExcelInterop(combinedJson);
+                }
             }
             catch (Exception ex)
             {
