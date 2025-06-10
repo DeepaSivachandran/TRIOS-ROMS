@@ -959,11 +959,11 @@ namespace ROMS
                     sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 5]].Merge();
                     sheet.Cells[row, 6] = "Invoice Details";
                     sheet.Range[sheet.Cells[row, 6], sheet.Cells[row, 8]].Merge();
-                    sheet.Cells[row, 9] = "Po Detail";
-                    sheet.Cells[row, 10] = "GRN Detail";
-                    sheet.Cells[row, 11] = "Pur Entry Det";
+                    sheet.Cells[row, 9] = "Po Details";
+                    sheet.Cells[row, 10] = "GRN Details";
+                    sheet.Cells[row, 11] = "Pur Entry Details";
                     sheet.Cells[row, 12] = "Pur Mismatch";
-                    sheet.Cells[row, 13] = "Pur App Det";
+                    sheet.Cells[row, 13] = "Pur App Details";
                     sheet.Cells[row, 14] = "Cost App Details";
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Font.Bold = true;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
