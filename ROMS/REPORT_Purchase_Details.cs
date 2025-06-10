@@ -31,103 +31,103 @@ namespace ROMS
         }
 
 
-public class PurchaseEntry
-    {
-        [JsonProperty("PURID")]
-        public int PURID { get; set; }
+        public class PurchaseEntry
+        {
+            [JsonProperty("PURID")]
+            public int PURID { get; set; }
 
-        [JsonProperty("Header")]
-        public string Header { get; set; }
+            [JsonProperty("Header")]
+            public string Header { get; set; }
 
-        [JsonProperty("Products")]
-        public List<Product> Products { get; set; }
+            [JsonProperty("Products")]
+            public List<Product> Products { get; set; }
 
-        [JsonProperty("ProductSummary")]
-        public string ProductSummary { get; set; }
+            [JsonProperty("ProductSummary")]
+            public string ProductSummary { get; set; }
 
-        [JsonProperty("Charges")]
-        public string Charges { get; set; }
-    }
+            [JsonProperty("Charges")]
+            public string Charges { get; set; }
+        }
 
-    public class Product
-    {
-        [JsonProperty("PR_PICode")]
-        public string PR_PICode { get; set; }
+        public class Product
+        {
+            [JsonProperty("PR_PICode")]
+            public string PR_PICode { get; set; }
 
-        [JsonProperty("PR_TName")]
-        public string PR_TName { get; set; }
+            [JsonProperty("PR_TName")]
+            public string PR_TName { get; set; }
 
-        [JsonProperty("UT_Symbol")]
-        public string UT_Symbol { get; set; }
+            [JsonProperty("UT_Symbol")]
+            public string UT_Symbol { get; set; }
 
-        [JsonProperty("Condition")]
-        public string Condition { get; set; }
+            [JsonProperty("Condition")]
+            public string Condition { get; set; }
 
-        [JsonProperty("HSN_Code")]
-        public string HSN_Code { get; set; }
+            [JsonProperty("HSN_Code")]
+            public string HSN_Code { get; set; }
 
-        [JsonProperty("GST_Text")]
-        public string GST_Text { get; set; }
+            [JsonProperty("GST_Text")]
+            public string GST_Text { get; set; }
 
-        [JsonProperty("PURPR_InvoiceMRP")]
-        public decimal PURPR_InvoiceMRP { get; set; }
+            [JsonProperty("PURPR_InvoiceMRP")]
+            public decimal PURPR_InvoiceMRP { get; set; }
 
-        [JsonProperty("PURPR_ProductMRP")]
-        public decimal PURPR_ProductMRP { get; set; }
+            [JsonProperty("PURPR_ProductMRP")]
+            public decimal PURPR_ProductMRP { get; set; }
 
-        [JsonProperty("PURPR_ExpiryDate")]
-        public string PURPR_ExpiryDate { get; set; }
+            [JsonProperty("PURPR_ExpiryDate")]
+            public string PURPR_ExpiryDate { get; set; }
 
-        // If JSON properties have spaces, use JsonProperty attribute with exact name:
-        [JsonProperty("Product Shelflife")]
-        public string ProductShelflife { get; set; }
+            // If JSON properties have spaces, use JsonProperty attribute with exact name:
+            [JsonProperty("Product Shelflife")]
+            public string ProductShelflife { get; set; }
 
-        [JsonProperty("Actual Shelflife")]
-        public string ActualShelflife { get; set; }
+            [JsonProperty("Actual Shelflife")]
+            public string ActualShelflife { get; set; }
 
-        [JsonProperty("Shelflife Per")]
-        public string ShelflifePer { get; set; }
+            [JsonProperty("Shelflife Per")]
+            public string ShelflifePer { get; set; }
 
-        [JsonProperty("PURPR_Batch")]
-        public string PURPR_Batch { get; set; }
+            [JsonProperty("PURPR_Batch")]
+            public string PURPR_Batch { get; set; }
 
-        [JsonProperty("SL_ShortName")]
-        public string SL_ShortName { get; set; }
+            [JsonProperty("SL_ShortName")]
+            public string SL_ShortName { get; set; }
 
-        [JsonProperty("Rack")]
-        public string Rack { get; set; }
+            [JsonProperty("Rack")]
+            public string Rack { get; set; }
 
-        [JsonProperty("PURPR_InvoiceQty")]
-        public decimal PURPR_InvoiceQty { get; set; }
+            [JsonProperty("PURPR_InvoiceQty")]
+            public decimal PURPR_InvoiceQty { get; set; }
 
-        [JsonProperty("PURPR_ReceivedQty")]
-        public decimal PURPR_ReceivedQty { get; set; }
+            [JsonProperty("PURPR_ReceivedQty")]
+            public decimal PURPR_ReceivedQty { get; set; }
 
-        [JsonProperty("PURPR_DiffQty")]
-        public decimal PURPR_DiffQty { get; set; }
+            [JsonProperty("PURPR_DiffQty")]
+            public decimal PURPR_DiffQty { get; set; }
 
-        [JsonProperty("PURPR_FreeQty")]
-        public decimal PURPR_FreeQty { get; set; }
+            [JsonProperty("PURPR_FreeQty")]
+            public decimal PURPR_FreeQty { get; set; }
 
-        [JsonProperty("PURPR_PurchaseRate")]
-        public decimal PURPR_PurchaseRate { get; set; }
+            [JsonProperty("PURPR_PurchaseRate")]
+            public decimal PURPR_PurchaseRate { get; set; }
 
-        [JsonProperty("PURPR_DiscAmnt")]
-        public decimal PURPR_DiscAmnt { get; set; }
+            [JsonProperty("PURPR_DiscAmnt")]
+            public decimal PURPR_DiscAmnt { get; set; }
 
-        [JsonProperty("PURPR_TaxableValue")]
-        public decimal PURPR_TaxableValue { get; set; }
+            [JsonProperty("PURPR_TaxableValue")]
+            public decimal PURPR_TaxableValue { get; set; }
 
-        [JsonProperty("PURPR_GSTAmnt")]
-        public decimal PURPR_GSTAmnt { get; set; }
+            [JsonProperty("PURPR_GSTAmnt")]
+            public decimal PURPR_GSTAmnt { get; set; }
 
-        [JsonProperty("PURPR_NettAmnt")]
-        public decimal PURPR_NettAmnt { get; set; }
-    }
+            [JsonProperty("PURPR_NettAmnt")]
+            public decimal PURPR_NettAmnt { get; set; }
+        }
 
 
 
-    private void cmbPayType_KeyDown(object sender, KeyEventArgs e)
+        private void cmbPayType_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -328,8 +328,7 @@ public class PurchaseEntry
                     var productHeaders = new List<string> {
                 "Sl", "P.I Code", "Product Name", "Unit", "Con", "HSN Code", "GST %", "Inv Mrp", "Mrp",
                 "Exp Date", "To Shelf", "Lifet", "Shelf Life(days)", "Batch No", "St Loc", "Rack",
-                "Bill Qty", "Rec Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Nett Amt"
-            };
+                "Bill Qty", "Rec Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Nett Amt" };
 
                     col = 1;
                     foreach (var h in productHeaders)
@@ -431,8 +430,8 @@ public class PurchaseEntry
         {
             try
             {
-                string varSupplierName = "",varDelay = ""; int varDelayMin = 0;
-                if (txtSupplier.Text.Trim()=="")
+                string varSupplierName = "", varDelay = ""; int varDelayMin = 0;
+                if (txtSupplier.Text.Trim() == "")
                 {
                     varSupplierName = "-All-";
                 }
@@ -883,7 +882,8 @@ public class PurchaseEntry
                         purchaseList.Add(purchaseObj);
                     }
                     string combinedJson = JsonConvert.SerializeObject(purchaseList);
-                    ExportPurchaseJsonToExcelInterop(combinedJson);
+                    //ExportPurchaseJsonToExcelInterop(combinedJson);
+                    ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text, txtSupplier.Text, cmbPayType.Text,cmbConditionType.Text );
                 }
             }
             catch (Exception ex)
@@ -892,5 +892,160 @@ public class PurchaseEntry
                 objError.WriteFile(ex);
             }
         }
+
+        // Updated method: ExportPurchaseJsonToExcelInterop
+        public void ExportPurchaseJsonToExcelInterop(string jsonString, string fromDate, string supplierName, string payType, string conditionType)
+        {
+            var purchases = JArray.Parse(jsonString);
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook workbook = excelApp.Workbooks.Add();
+            Excel.Worksheet sheet = workbook.Sheets[1];
+            excelApp.Visible = true;
+
+            int row = 1;
+
+            // Title
+            sheet.Cells[row, 1] = "Purchase Details Report";
+            var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
+            titleRange.Merge();
+            titleRange.Font.Bold = true;
+            titleRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
+            titleRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            row++;
+
+            // Filter Info
+            sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
+            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+            row++;
+
+            int purchaseIndex = 1;
+
+            foreach (var purchase in purchases)
+            {
+                var header = JObject.Parse(purchase["Header"]?.ToString() ?? "{}");
+                var footer = JObject.Parse(purchase["Footer"]?.ToString() ?? "{}");
+                var products = purchase["Products"] as JArray ?? new JArray();
+
+                row++;
+
+                // Section headers
+                sheet.Cells[row, 1] = "SI";
+                sheet.Cells[row, 2] = "Supplier Details";
+                sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 5]].Merge();
+                sheet.Cells[row, 6] = "Invoice Details";
+                sheet.Range[sheet.Cells[row, 6], sheet.Cells[row, 8]].Merge();
+                sheet.Cells[row, 9] = "Po Detail";
+                sheet.Cells[row, 10] = "GRN Detail";
+                sheet.Cells[row, 11] = "Pur Entry Det";
+                sheet.Cells[row, 12] = "Pur Mismatch";
+                sheet.Cells[row, 13] = "Pur App Det";
+                sheet.Cells[row, 14] = "Cost App Details";
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Font.Bold = true;
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                row++;
+
+                sheet.Cells[row, 1] = purchaseIndex++;
+                sheet.Cells[row, 2] = header["Supplier"];
+                sheet.Cells[row + 1, 2] = header["GSTIN"];
+                sheet.Cells[row + 2, 2] = $"{header["City"]} GST Type: {header["SupplierType"]} PT : {header["PaymentTerm"]}";
+
+                sheet.Cells[row, 6] = header["InvDate"];
+                sheet.Cells[row + 1, 6] = header["InvNo"];
+                sheet.Cells[row + 2, 6] = header["InvAmt"];
+
+                sheet.Cells[row, 7] = $"Entry Type : {header["EntryType"]}";
+                sheet.Cells[row + 1, 7] = $"Tr Type : {header["TransactionType"]}";
+                sheet.Cells[row + 2, 7] = $"Broker : {header["Broker"]}";
+
+                sheet.Cells[row, 8] = $"Pur Type: {header["PurchaseType"]}";
+                sheet.Cells[row + 1, 8] = $"Pay Type : {header["PaymentType"]}";
+                sheet.Cells[row + 2, 8] = $"E.Inv : {header["EInvoice"]}";
+
+                sheet.Cells[row, 9] = header["PONo"];
+                sheet.Cells[row + 1, 9] = header["POUser"] ?? "-";
+                sheet.Cells[row + 2, 9] = header["POHost"] ?? "-";
+
+                sheet.Cells[row, 10] = header["GRNNo"];
+                sheet.Cells[row + 1, 10] = header["GRNUser"];
+                sheet.Cells[row + 2, 10] = header["GRNHost"];
+
+                sheet.Cells[row, 11] = header["PURNo"];
+                sheet.Cells[row + 1, 11] = header["PURUser"];
+                sheet.Cells[row + 2, 11] = header["PURHost"];
+
+                sheet.Cells[row + 1, 12] = header["GRNAUser"] ?? "";
+                sheet.Cells[row + 2, 12] = header["GRNAHost"] ?? "";
+
+                sheet.Cells[row, 13] = header["PUREANo"];
+                sheet.Cells[row + 1, 13] = header["PUREAUser"];
+                sheet.Cells[row + 2, 13] = header["PUREAHost"];
+
+                row += 3;
+
+                string[] productHeaders = {
+            "PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "InvoiceMRP", "ProductMRP", "ExpiryDate",
+            "Product Shelflife", "Actual Shelflife", "ShelflifePer", "Batch No", "Stock Location", "Rack",
+            "InvoiceQty", "ReceivedQty", "DiffQty", "FreeQty", "PurchaseRate", "DiscAmnt",
+            "TaxableValue", "GSTAmnt", "NettAmount"
+        };
+
+                for (int i = 0; i < productHeaders.Length; i++)
+                    sheet.Cells[row, i + 1] = productHeaders[i];
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                row++;
+
+                decimal totalTaxable = 0, totalGst = 0, totalNet = 0;
+
+                foreach (var prod in products)
+                {
+                    int col = 1;
+                    foreach (var key in productHeaders)
+                        sheet.Cells[row, col++] = prod[key];
+
+                    sheet.Cells[row, 2].Font.Name = "Uni Ila.Sundaram-03";
+                    sheet.Cells[row, 2].Font.Size = 9.75;
+
+                    decimal invoiceQty = SafeConvertDecimal(prod["InvoiceQty"]);
+                    if (invoiceQty == 0)
+                        sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+
+                    totalTaxable += SafeConvertDecimal(prod["TaxableValue"]);
+                    totalGst += SafeConvertDecimal(prod["GSTAmnt"]);
+                    totalNet += SafeConvertDecimal(prod["NettAmount"]);
+                    row++;
+                }
+
+                // Aligned Grand Total
+                sheet.Cells[row, 21] = "Grand Total:";
+                sheet.Cells[row, 22] = totalTaxable;
+                sheet.Cells[row, 23] = totalGst;
+                sheet.Cells[row, 24] = totalNet;
+                sheet.Range[sheet.Cells[row, 21], sheet.Cells[row, 24]].Font.Bold = true;
+                row++;
+
+                // Charges
+                sheet.Cells[row, 1] = $"Bill Addition:    Loading Charges: {footer["Unloading"]}    Freight Charges: {footer["Freight"]}    Courier Charges: {footer["Courier"]}    Other Expenses: {footer["OtherExpenses"]}    TCS Amount: {footer["TCS"]}    Unloading GRN: {footer["UnloadingGRN"]}    Freight GRN: {footer["FreightGRN"]}";
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                row++;
+
+                sheet.Cells[row, 1] = $"Bill Deduction:    Discount: {footer["DiscAmnt"]}    Other Discount: {footer["OtherDisc"]}    Damage Cost: {footer["DamageCost"]}    Round Off: {footer["RoundOff"]}";
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                row += 2;
+            }
+
+            sheet.Columns.AutoFit();
+
+            decimal SafeConvertDecimal(JToken token)
+            {
+                decimal.TryParse(token?.ToString(), out decimal value);
+                return value;
+            }
+        }
+
+
+
     }
 }
