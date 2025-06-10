@@ -37,7 +37,6 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.btnExcel = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbConditionType = new System.Windows.Forms.ComboBox();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -139,7 +138,6 @@
             // 
             // grpfilter
             // 
-            this.grpfilter.Controls.Add(this.btnExcel);
             this.grpfilter.Controls.Add(this.label5);
             this.grpfilter.Controls.Add(this.cmbConditionType);
             this.grpfilter.Controls.Add(this.lblSupplierCode);
@@ -158,21 +156,6 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcel.Image = global::ROMS.Properties.Resources.view;
-            this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcel.Location = new System.Drawing.Point(884, 41);
-            this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 29);
-            this.btnExcel.TabIndex = 1111197;
-            this.btnExcel.Text = "View";
-            this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExcel.UseVisualStyleBackColor = true;
-            this.btnExcel.Click += new System.EventHandler(this.BtnExcel_Click);
             // 
             // label5
             // 
@@ -410,6 +393,5 @@
         public System.Windows.Forms.Label lblschedleCode;
         private System.Windows.Forms.ComboBox cmbConditionType;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnExcel;
     }
 }
