@@ -10875,7 +10875,8 @@ namespace ROMS
                             try
                             {
                                 DataGridView dgv = sender as DataGridView;
-                                string varPICode = "", varProMRP = "", varInvoiceMRP = "",varInvoiceBatchNo="",varInvoiceExpiryDate="";
+                                string varPICode = "", varProMRP = "", varInvoiceMRP = "",varInvoiceBatchNo="",
+                                    varInvoiceExpiryDate="", varProdutShelfLife="", varActualShelffLife="", varShelfLifePer="";
                                 if (e.ColumnIndex != 0)
                                 {
                                     grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null,"None",
@@ -10895,6 +10896,11 @@ namespace ROMS
                                     varInvoiceMRP = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmMRP"].Value);
                                     varInvoiceBatchNo = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmBatchno"].Value);
                                     varInvoiceExpiryDate = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmexpirydate"].Value);
+
+                                    varProdutShelfLife = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmShelflife"].Value);
+                                    varActualShelffLife = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmactuallife"].Value);
+                                    varShelfLifePer = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmshelfper"].Value);
+
                                     string varInwardDate = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                                     
 
@@ -10914,6 +10920,11 @@ namespace ROMS
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmInwardDate"].Value = varInwardDate;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmBatchno"].Value = varInvoiceBatchNo;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmexpirydate"].Value = varInvoiceExpiryDate;
+
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmShelflife"].Value = varProdutShelfLife;
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmactuallife"].Value = varActualShelffLife;
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmshelfper"].Value = varShelfLifePer;
+
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvertProductFlag"].Value = "1";
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmCondition"].ReadOnly = false;
                                     grdSupplierList.Columns["clmRemove"].Visible = true;
