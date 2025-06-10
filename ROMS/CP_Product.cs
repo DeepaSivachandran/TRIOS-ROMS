@@ -1076,7 +1076,8 @@ namespace ROMS
                 cmbNetQty.SelectedValue = 6; 
                 cmbPeriod.SelectedValue = -1;
                 cbExpiry.Checked = false;
-                cbRMFromProduction.Checked = false; 
+                cbRMFromProduction.Checked = false;
+                lblHsnName.Text = "0"; 
                 txtHsnName.Text = ""; 
                 txtPICode.Text = "";
                 txtItemNameEnglish.Text = "";
