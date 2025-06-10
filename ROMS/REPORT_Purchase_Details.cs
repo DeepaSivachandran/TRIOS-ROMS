@@ -883,7 +883,7 @@ namespace ROMS
                     }
                     string combinedJson = JsonConvert.SerializeObject(purchaseList);
                     //ExportPurchaseJsonToExcelInterop(combinedJson);
-                    ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text, txtSupplier.Text, cmbPayType.Text,cmbConditionType.Text );
+                    ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, txtSupplier.Text, cmbPayType.Text, cmbConditionType.Text);
                 }
             }
             catch (Exception ex)
@@ -896,6 +896,11 @@ namespace ROMS
         // Updated method: ExportPurchaseJsonToExcelInterop
         public void ExportPurchaseJsonToExcelInterop(string jsonString, string fromDate, string supplierName, string payType, string conditionType)
         {
+
+            DataSet objDs = new DataSet();
+            SPDataService objdserv = new SPDataService();
+            objDs = objdserv.udfnCompanyList(7, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+            objdserv.CloseConnection();
             var purchases = JArray.Parse(jsonString);
             Excel.Application excelApp = new Excel.Application();
             Excel.Workbook workbook = excelApp.Workbooks.Add();
@@ -903,6 +908,24 @@ namespace ROMS
             excelApp.Visible = true;
 
             int row = 1;
+            // Company Header
+            if (objDs.Tables[0].Rows.Count > 0)
+            {
+                var rowData = objDs.Tables[0].Rows[0];
+                string companyName = rowData["COM_Name"].ToString();
+                string address = rowData["AddressValue"].ToString();
+                string gstin = rowData["GSTIN"].ToString();
+
+                sheet.Cells[row, 1] = companyName;
+                ((Excel.Range)sheet.Cells[row, 1]).Font.Bold = true;
+                row++;
+
+                sheet.Cells[row, 1] = address;
+                row++;
+
+                sheet.Cells[row, 1] = $"GSTIN : {gstin}";
+                row++;
+            }
 
             // Title
             sheet.Cells[row, 1] = "Purchase Details Report";
