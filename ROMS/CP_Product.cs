@@ -68,6 +68,66 @@ namespace ROMS
             try
             {
                 lvHsnCode.Visible = false;
+                if (txtWeight.Text.Contains(".") && txtWeight.Text.Length < 2)
+                {
+                    txtWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtWeight, "Please enter valid weight");
+                    return;
+                }
+                if (txtGrossWeight.Text.Contains(".") && txtGrossWeight.Text.Length < 2)
+                {
+                    txtGrossWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtGrossWeight, "Please enter valid gross weight");
+                    return;
+                }
+                if (txtMinStock.Text.Contains(".") && txtMinStock.Text.Length < 2)
+                {
+                    txtMinStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtMinStock, "Please enter valid min stock");
+                    return;
+                }
+                if (txtMaxStock.Text.Contains(".") && txtMaxStock.Text.Length < 2)
+                {
+                    txtMaxStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtMaxStock, "Please enter valid max stock");
+                    return;
+                }
+                if (txtReOrderQty.Text.Contains(".") && txtReOrderQty.Text.Length < 2)
+                {
+                    txtReOrderQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtReOrderQty, "Please enter valid reorder qty");
+                    return;
+                }
+                if (txtRMinSaleQty.Text.Contains(".") && txtRMinSaleQty.Text.Length < 2)
+                {
+                    txtRMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtRMinSaleQty, "Please enter valid retail min sales stock");
+                    return;
+                }
+                if (txtRetailRate.Text.Contains(".") && txtRetailRate.Text.Length < 2)
+                {
+                    txtRetailRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtRetailRate, "Please enter valid retail rate");
+                    return;
+                }
+                if (txtWMinSaleQty.Text.Contains(".") && txtWMinSaleQty.Text.Length < 2)
+                {
+                    txtWMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtWMinSaleQty, "Please enter valid wholesales min qty");
+                    return;
+                }
+                if (txtWSaleRate.Text.Contains(".") && txtWSaleRate.Text.Length < 2)
+                {
+                    txtWSaleRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtWSaleRate, "Please enter valid wholesales rate");
+                    return;
+                }
+                if (txtBarcode.Text.Contains(".") && txtBarcode.Text.Length < 2)
+                {
+                    txtBarcode.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtBarcode, "Please enter valid barcode");
+                    return;
+                }
                 udfnSave(); 
             }
             catch (Exception ex)
@@ -1076,7 +1136,8 @@ namespace ROMS
                 cmbNetQty.SelectedValue = 6; 
                 cmbPeriod.SelectedValue = -1;
                 cbExpiry.Checked = false;
-                cbRMFromProduction.Checked = false; 
+                cbRMFromProduction.Checked = false;
+                lblHsnName.Text = "0"; 
                 txtHsnName.Text = ""; 
                 txtPICode.Text = "";
                 txtItemNameEnglish.Text = "";
@@ -1501,11 +1562,10 @@ namespace ROMS
         {
             try
             { 
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        cmbGst.Focus();
-                    }
-                
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtHsnName.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -5147,6 +5207,7 @@ namespace ROMS
                 //    errItems.Clear();
                 //    txtHsnName.BackColor = Color.White;
                 //}
+                txtHsnName.BackColor = Color.White;
             }
             catch (Exception ex)
 

@@ -116,10 +116,12 @@ namespace ROMS
                 }
                 if (VarRackCreation == "0")
                 {
+                    txtRack.Enabled = false;
                     btnNewRack.Enabled = false;
                 }
                 else
                 {
+                    txtRack.Enabled = true;
                     btnNewRack.Enabled = true;
                 }
             }
@@ -1178,7 +1180,21 @@ namespace ROMS
                 }
                 if(e.KeyCode==Keys.Enter)
                 {
-                    txtRack.Focus();
+                    if (txtRack.Enabled == true)
+                    {
+                        txtRack.Focus();
+                    }
+                    else
+                    {
+                        if (pnlStatus.Enabled == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            btnSave.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1270,7 +1286,21 @@ namespace ROMS
             try
             {
                 udfnLocationEvent();
-                txtRack.Focus();
+                if (txtRack.Enabled == true)
+                {
+                    txtRack.Focus();
+                }
+                else
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        rbActive.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1286,7 +1316,21 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLocationEvent();
-                    txtRack.Focus();
+                    if (txtRack.Enabled == true)
+                    {
+                        txtRack.Focus();
+                    }
+                    else
+                    {
+                        if (pnlStatus.Enabled == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            btnSave.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1356,10 +1400,12 @@ namespace ROMS
                     udfnLoadRackList();
                     if(VarRackCreation == "0")
                     {
+                        txtRack.Enabled = false;
                         btnNewRack.Enabled = false;
                     }
                     else
                     {
+                        txtRack.Enabled = true;
                         btnNewRack.Enabled = true;
                     }
                 }
