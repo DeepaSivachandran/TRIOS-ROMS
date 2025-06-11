@@ -5258,7 +5258,7 @@ namespace ROMS
                                 }
                                 if (varProConditionType == 226)
                                 {
-                                    varLocationID = "0"; varRackID = "0"; varRack = ""; varLocationName = "";
+                                    varLocationID = "0"; varRackID = "0"; varRack = "None"; varLocationName = "None";
                                 }
                                 //string ExpiryDate = txtDate.Text+'/'+txtMonth.Text+'/'+txtYear.Text;
                                 grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
