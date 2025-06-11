@@ -261,6 +261,11 @@ namespace ROMS
         {
             try
             {
+                btnView.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                lblStatus.Focus();
+                picLoader.Visible = true;
+                picLoader.BringToFront();
                 DataTable dtPurchaseDetails = new DataTable();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -276,27 +281,45 @@ namespace ROMS
                 objspdservice.CloseConnection();
                 if (objDs.Tables[0] != null)
                 {
-                    dtPurchaseDetails = objDs.Tables[0];
-                    List<JObject> purchaseList = new List<JObject>();
-                    foreach (DataRow dr in dtPurchaseDetails.Rows)
+                    if (objDs.Tables[0].Rows.Count > 0)
                     {
-                        string purchaseJson = dr["PurchaseJson"].ToString();
-                        var purchaseObj = JObject.Parse(purchaseJson);
-                        purchaseList.Add(purchaseObj);
+                        dtPurchaseDetails = objDs.Tables[0];
+                        List<JObject> purchaseList = new List<JObject>();
+                        foreach (DataRow dr in dtPurchaseDetails.Rows)
+                        {
+                            string purchaseJson = dr["PurchaseJson"].ToString();
+                            var purchaseObj = JObject.Parse(purchaseJson);
+                            purchaseList.Add(purchaseObj);
+                        }
+                        string combinedJson = JsonConvert.SerializeObject(purchaseList);
+                        string varSupplierName = "-All-";
+                        if (txtSupplier.Text.Trim() != "")
+                        {
+                            varSupplierName = txtSupplier.Text.Trim();
+                        }
+                        ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, varSupplierName, cmbPayType.Text, cmbConditionType.Text);
                     }
-                    string combinedJson = JsonConvert.SerializeObject(purchaseList);
-                    string varSupplierName = "-All-";
-                    if (txtSupplier.Text.Trim() != "")
+                    else
                     {
-                        varSupplierName = txtSupplier.Text.Trim();
+                        lblNoRecordsFound.Visible = true;
                     }
-                    ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, varSupplierName, cmbPayType.Text, cmbConditionType.Text);
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnView.Enabled = true;
+                GC.Collect();
             }
         }
         public void udfnPurchaseDetails()
