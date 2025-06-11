@@ -196,6 +196,7 @@
             this.grdConversionList.Size = new System.Drawing.Size(1348, 510);
             this.grdConversionList.TabIndex = 1;
             this.grdConversionList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdConversionList_DataBindingComplete);
+            this.grdConversionList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdConversionList_Scroll);
             this.grdConversionList.DoubleClick += new System.EventHandler(this.GrdConversionList_DoubleClick);
             this.grdConversionList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdConversionList_KeyDown);
             // 

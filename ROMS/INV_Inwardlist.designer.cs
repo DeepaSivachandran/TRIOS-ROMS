@@ -508,6 +508,7 @@
             this.grdInwardList.Size = new System.Drawing.Size(1348, 492);
             this.grdInwardList.TabIndex = 958797;
             this.grdInwardList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInwardList_DataBindingComplete);
+            this.grdInwardList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdInwardList_Scroll);
             this.grdInwardList.DoubleClick += new System.EventHandler(this.GrdInwardList_DoubleClick);
             this.grdInwardList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdInwardList_KeyDown);
             // 

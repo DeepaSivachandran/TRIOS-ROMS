@@ -31,6 +31,9 @@
             this.ReportSupplier = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
+            this.lvGRNNo = new System.Windows.Forms.ListView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvproduct = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,6 +53,9 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblGRNID = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtGRNNo = new System.Windows.Forms.TextBox();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblGroupCode = new System.Windows.Forms.Label();
             this.lblSubGroupCode = new System.Windows.Forms.Label();
@@ -66,12 +72,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.txtGRNNo = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lvGRNNo = new System.Windows.Forms.ListView();
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblGRNID = new System.Windows.Forms.Label();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -99,8 +99,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(118, 22);
-            this.tspHeader.Text = "GRN Batch Detail";
+            this.tspHeader.Size = new System.Drawing.Size(158, 22);
+            this.tspHeader.Text = "GRN Batch Detail Report";
             // 
             // pnlReportStockLocation
             // 
@@ -118,6 +118,31 @@
             this.pnlReportStockLocation.Name = "pnlReportStockLocation";
             this.pnlReportStockLocation.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportStockLocation.TabIndex = 0;
+            // 
+            // lvGRNNo
+            // 
+            this.lvGRNNo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader14});
+            this.lvGRNNo.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvGRNNo.HideSelection = false;
+            this.lvGRNNo.Location = new System.Drawing.Point(854, 72);
+            this.lvGRNNo.Name = "lvGRNNo";
+            this.lvGRNNo.Size = new System.Drawing.Size(167, 171);
+            this.lvGRNNo.TabIndex = 111111148;
+            this.lvGRNNo.UseCompatibleStateImageBehavior = false;
+            this.lvGRNNo.View = System.Windows.Forms.View.Details;
+            this.lvGRNNo.Visible = false;
+            this.lvGRNNo.DoubleClick += new System.EventHandler(this.LvGRNNo_DoubleClick);
+            this.lvGRNNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGRNNo_KeyDown);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 100;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Width = 10;
             // 
             // lvproduct
             // 
@@ -261,6 +286,39 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // lblGRNID
+            // 
+            this.lblGRNID.AutoSize = true;
+            this.lblGRNID.Location = new System.Drawing.Point(910, 23);
+            this.lblGRNID.Name = "lblGRNID";
+            this.lblGRNID.Size = new System.Drawing.Size(16, 20);
+            this.lblGRNID.TabIndex = 111111151;
+            this.lblGRNID.Text = "0";
+            this.lblGRNID.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(851, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 20);
+            this.label6.TabIndex = 111111150;
+            this.label6.Text = "GRN No.";
+            // 
+            // txtGRNNo
+            // 
+            this.txtGRNNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtGRNNo.Location = new System.Drawing.Point(851, 43);
+            this.txtGRNNo.MaxLength = 100;
+            this.txtGRNNo.Name = "txtGRNNo";
+            this.txtGRNNo.Size = new System.Drawing.Size(167, 27);
+            this.txtGRNNo.TabIndex = 111111149;
+            this.txtGRNNo.TextChanged += new System.EventHandler(this.TxtGRNNo_TextChanged);
+            this.txtGRNNo.Enter += new System.EventHandler(this.TxtGRNNo_Enter);
+            this.txtGRNNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGRNNo_KeyDown);
+            this.txtGRNNo.Leave += new System.EventHandler(this.TxtGRNNo_Leave);
             // 
             // lblProductcode
             // 
@@ -452,64 +510,6 @@
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
-            // 
-            // txtGRNNo
-            // 
-            this.txtGRNNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGRNNo.Location = new System.Drawing.Point(851, 43);
-            this.txtGRNNo.MaxLength = 100;
-            this.txtGRNNo.Name = "txtGRNNo";
-            this.txtGRNNo.Size = new System.Drawing.Size(167, 27);
-            this.txtGRNNo.TabIndex = 111111149;
-            this.txtGRNNo.TextChanged += new System.EventHandler(this.TxtGRNNo_TextChanged);
-            this.txtGRNNo.Enter += new System.EventHandler(this.TxtGRNNo_Enter);
-            this.txtGRNNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGRNNo_KeyDown);
-            this.txtGRNNo.Leave += new System.EventHandler(this.TxtGRNNo_Leave);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(851, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 20);
-            this.label6.TabIndex = 111111150;
-            this.label6.Text = "GRN No.";
-            // 
-            // lvGRNNo
-            // 
-            this.lvGRNNo.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10,
-            this.columnHeader14});
-            this.lvGRNNo.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvGRNNo.HideSelection = false;
-            this.lvGRNNo.Location = new System.Drawing.Point(854, 72);
-            this.lvGRNNo.Name = "lvGRNNo";
-            this.lvGRNNo.Size = new System.Drawing.Size(167, 171);
-            this.lvGRNNo.TabIndex = 111111148;
-            this.lvGRNNo.UseCompatibleStateImageBehavior = false;
-            this.lvGRNNo.View = System.Windows.Forms.View.Details;
-            this.lvGRNNo.Visible = false;
-            this.lvGRNNo.DoubleClick += new System.EventHandler(this.LvGRNNo_DoubleClick);
-            this.lvGRNNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGRNNo_KeyDown);
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Width = 100;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Width = 10;
-            // 
-            // lblGRNID
-            // 
-            this.lblGRNID.AutoSize = true;
-            this.lblGRNID.Location = new System.Drawing.Point(910, 23);
-            this.lblGRNID.Name = "lblGRNID";
-            this.lblGRNID.Size = new System.Drawing.Size(16, 20);
-            this.lblGRNID.TabIndex = 111111151;
-            this.lblGRNID.Text = "0";
-            this.lblGRNID.Visible = false;
             // 
             // REPORT_GRN_Batch_Detail
             // 

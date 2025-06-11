@@ -92,8 +92,8 @@
             this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspSupplierMapping.Name = "tspSupplierMapping";
-            this.tspSupplierMapping.Size = new System.Drawing.Size(132, 22);
-            this.tspSupplierMapping.Text = "Direct Cheque Print";
+            this.tspSupplierMapping.Size = new System.Drawing.Size(149, 22);
+            this.tspSupplierMapping.Text = "Direct Cheque Printing";
             // 
             // lblNoRecordsFound
             // 

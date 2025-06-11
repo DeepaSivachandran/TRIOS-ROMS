@@ -3313,6 +3313,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate", objTRN_PurchaseEntry.ParaVerifyDate);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime", objTRN_PurchaseEntry.paraVerifiedTime);
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat", objTRN_PurchaseEntry.paraVerifiedFormat);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyBy2", objTRN_PurchaseEntry.ParaVerifyBy2);
+                varSqlCommand.Parameters.AddWithValue("@ParaVerifyDate2", objTRN_PurchaseEntry.ParaVerifyDate2);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedTime2", objTRN_PurchaseEntry.paraVerifiedTime2);
+                varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat2", objTRN_PurchaseEntry.paraVerifiedFormat2);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNFrightCharges", objTRN_PurchaseEntry.paraGRNFrightCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNUnloadingCharge", objTRN_PurchaseEntry.paraGRNUnloadingCharge);
                 varSqlCommand.CommandTimeout = 0;

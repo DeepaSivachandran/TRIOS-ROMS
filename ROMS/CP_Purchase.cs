@@ -65,9 +65,10 @@ namespace ROMS
         List<int> varProductsIDs = new List<int>();
         public int varAutocompleteProduct = 0, pbPurchaseEntryUnapprovedFlag=0,pbUnapprovePURID=0,varGRNPRID=0 , varConvertFlag=0 , varPaymentStatus=0;
         public string varEditPRID = "0";
-        public int pbVerifiedBy = 0 , PbVerified = 0, varShelflifeLevel1 = 0, varShelflifeLevel2 = 0;
-        public string pbVerifiedOn = "" , pbVerifiedTime = "" , pbVerifiedFormat = "", pbVerifiedName = "" , varPurVerifyFlag="0";
-        public string varBlockedSupplier = "0", varBlockedReason = "" ,varInwardDate="";
+        public int pbVerifiedBy1 = 0 , PbVerified1 = 0,pbVerifiedBy2 = 0 , PbVerified2 = 0, varShelflifeLevel1 = 0, varShelflifeLevel2 = 0;
+        public string pbVerifiedOn1 = "" , pbVerifiedTime1 = "" , pbVerifiedFormat1 = "", pbVerifiedName1 = "" ,pbVerifiedOn2 = "" , pbVerifiedTime2 = "" , pbVerifiedFormat2 = "", pbVerifiedName2 = "" , varPurVerifyFlag="0", varPurVerifyFlag2 = "0";
+        public string varBlockedSupplier = "0", varBlockedReason = "", varInwardDate = "";
+        public double varDVA = 0, varCPA = 0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -1072,6 +1073,7 @@ namespace ROMS
                 MainForm objMainForm = new MainForm();
                 dtTaxTable = new DataTable();
                 udfnRefreshTable();
+                udfnGeneralSettingsList();
                 objMainForm.udfnGetDefaultCompany();
                 dtTaxTable.Columns.Add("GST%", typeof(string));
                 dtTaxTable.Columns.Add("Taxable Value", typeof(decimal));
@@ -1166,6 +1168,32 @@ namespace ROMS
                 { cmbQtyType.SelectedValue = 202; cmbQtyType.Enabled = false; }
                 if (grdSupplierList.RowCount != 0)
                 { btnClear.Enabled = false; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGeneralSettingsList()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objdserv.udfnGeneralSettingList(0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            varDVA = Convert.ToDouble(objDs.Tables[0].Rows[0]["GS_DVA"]);
+                            varCPA = Convert.ToDouble(objDs.Tables[0].Rows[0]["GS_CPA"]);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1824,14 +1852,22 @@ namespace ROMS
                             {
                                 if (objDs.Tables[9].Rows.Count != 0)
                                 {
-                                    PbVerified = 1;
+                                    PbVerified1 = 1;
                                     varPurVerifyFlag = Convert.ToString(objDs.Tables[9].Rows[0]["EditFlag"]);
-                                    pbVerifiedBy = Convert.ToInt16(objDs.Tables[9].Rows[0]["Verifiedby"]);
-                                    pbVerifiedName = Convert.ToString(objDs.Tables[9].Rows[0]["Verified Name"]);
-                                    pbVerifiedOn = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_VerfiedOn"]);
-                                    pbVerifiedTime = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_Verified_Time"]);
-                                    pbVerifiedFormat = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_Verified_format"]);
+                                    pbVerifiedBy1 = Convert.ToInt16(objDs.Tables[9].Rows[0]["Verifiedby"]);
+                                    pbVerifiedName1 = Convert.ToString(objDs.Tables[9].Rows[0]["Verified Name"]);
+                                    pbVerifiedOn1 = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_VerfiedOn"]);
+                                    pbVerifiedTime1 = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_Verified_Time"]);
+                                    pbVerifiedFormat1 = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_Verified_format"]);
                                     lblPurchaseVerification.Text=Convert.ToString(objDs.Tables[9].Rows[0]["Purchase Verification Details"]);
+                                    PbVerified2 = 1;
+                                    varPurVerifyFlag2 = Convert.ToString(objDs.Tables[9].Rows[0]["EditFlag2"]);
+                                    pbVerifiedBy2 = Convert.ToInt16(objDs.Tables[9].Rows[0]["Verifiedby2"]);
+                                    pbVerifiedName2 = Convert.ToString(objDs.Tables[9].Rows[0]["Verified Name2"]);
+                                    pbVerifiedOn2 = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_VerfiedOn2"]);
+                                    pbVerifiedTime2 = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_Verified_Time2"]);
+                                    pbVerifiedFormat2 = Convert.ToString(objDs.Tables[9].Rows[0]["PUR_Verified_format2"]);
+                                    lblPurchaseVerification2.Text=Convert.ToString(objDs.Tables[9].Rows[0]["Purchase Verification Details2"]);
                                 }
                             }
                         }
@@ -6404,16 +6440,32 @@ namespace ROMS
                         tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                         varErrorFlag = true;
                     }
-                    if (chkCompleted.Checked == true && (pbVerifiedBy == 0 || PbVerified ==0) && (Convert.ToString(cmbEntryType.SelectedValue) == "55" || Convert.ToString(cmbEntryType.SelectedValue) == "56"))
+                    int varVerifiedErr = 0;
+                    if (chkCompleted.Checked == true && (pbVerifiedBy1 == 0 || PbVerified1 ==0) && (Convert.ToString(cmbEntryType.SelectedValue) == "55" || Convert.ToString(cmbEntryType.SelectedValue) == "56"))
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(119);
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = true;
+                        varVerifiedErr = 1;
                         BtnVerified_Click(sender, e);
-                        if(pbVerifiedBy!=0 || PbVerified != 0)
-                        { varErrorFlag = false; }
+                        //if(pbVerifiedBy1!=0 || PbVerified1 != 0)
+                        //{ varErrorFlag = false; }
+                    }
+                    if (varVerifiedErr == 0)
+                    {
+                        if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text)) >= varDVA)
+                        {
+                            if (pbVerifiedBy1 == 0 || pbVerifiedBy1 == -1 || pbVerifiedBy2 == 0 || pbVerifiedBy2 == -1)
+                            {
+                                SPDataService objDServ1 = new SPDataService();
+                                string varMessage = objDServ1.udfnGetMessages(120);
+                                objDServ1.CloseConnection();
+                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                varErrorFlag = true;
+                            }
+                        }
                     }
                     if (varBlockedSupplier == "98")
                     {
@@ -6968,10 +7020,14 @@ namespace ROMS
                                         objTRN_PurchaseEntry.paraPOID = Convert.ToString(pbPONO);
                                         objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(varUserID);
                                         objTRN_PurchaseEntry.paraCompletedBy = Convert.ToInt32(varUserID);
-                                        objTRN_PurchaseEntry.ParaVerifyBy = pbVerifiedBy;
-                                        objTRN_PurchaseEntry.ParaVerifyDate = pbVerifiedOn;
-                                        objTRN_PurchaseEntry.paraVerifiedTime = pbVerifiedTime;
-                                        objTRN_PurchaseEntry.paraVerifiedFormat = pbVerifiedFormat;
+                                        objTRN_PurchaseEntry.ParaVerifyBy = pbVerifiedBy1;
+                                        objTRN_PurchaseEntry.ParaVerifyDate = pbVerifiedOn1;
+                                        objTRN_PurchaseEntry.paraVerifiedTime = pbVerifiedTime1;
+                                        objTRN_PurchaseEntry.paraVerifiedFormat = pbVerifiedFormat1;
+                                        objTRN_PurchaseEntry.ParaVerifyBy2 = pbVerifiedBy2;
+                                        objTRN_PurchaseEntry.ParaVerifyDate2 = pbVerifiedOn2;
+                                        objTRN_PurchaseEntry.paraVerifiedTime2 = pbVerifiedTime2;
+                                        objTRN_PurchaseEntry.paraVerifiedFormat2 = pbVerifiedFormat2;
                                         objTRN_PurchaseEntry.Purchase_Products_Details = objPurchaseentryDetails;
                                         result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                                         objspdservice.CloseConnection();
@@ -10819,7 +10875,8 @@ namespace ROMS
                             try
                             {
                                 DataGridView dgv = sender as DataGridView;
-                                string varPICode = "", varProMRP = "", varInvoiceMRP = "",varInvoiceBatchNo="",varInvoiceExpiryDate="";
+                                string varPICode = "", varProMRP = "", varInvoiceMRP = "",varInvoiceBatchNo="",
+                                    varInvoiceExpiryDate="", varProdutShelfLife="", varActualShelffLife="", varShelfLifePer="";
                                 if (e.ColumnIndex != 0)
                                 {
                                     grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, null,"None",
@@ -10839,6 +10896,11 @@ namespace ROMS
                                     varInvoiceMRP = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmMRP"].Value);
                                     varInvoiceBatchNo = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmBatchno"].Value);
                                     varInvoiceExpiryDate = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmexpirydate"].Value);
+
+                                    varProdutShelfLife = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmShelflife"].Value);
+                                    varActualShelffLife = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmactuallife"].Value);
+                                    varShelfLifePer = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmshelfper"].Value);
+
                                     string varInwardDate = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                                     
 
@@ -10858,6 +10920,11 @@ namespace ROMS
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmInwardDate"].Value = varInwardDate;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmBatchno"].Value = varInvoiceBatchNo;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmexpirydate"].Value = varInvoiceExpiryDate;
+
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmShelflife"].Value = varProdutShelfLife;
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmactuallife"].Value = varActualShelffLife;
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmshelfper"].Value = varShelfLifePer;
+
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvertProductFlag"].Value = "1";
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmCondition"].ReadOnly = false;
                                     grdSupplierList.Columns["clmRemove"].Visible = true;

@@ -194,6 +194,7 @@
             this.grdDiscountList.Size = new System.Drawing.Size(1348, 515);
             this.grdDiscountList.TabIndex = 1;
             this.grdDiscountList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDiscountList_DataBindingComplete);
+            this.grdDiscountList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdDiscountList_Scroll);
             this.grdDiscountList.SelectionChanged += new System.EventHandler(this.GrdDiscountList_SelectionChanged);
             this.grdDiscountList.DoubleClick += new System.EventHandler(this.GrdDiscountList_DoubleClick);
             this.grdDiscountList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdDiscountList_KeyDown);

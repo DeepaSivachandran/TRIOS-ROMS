@@ -40,7 +40,7 @@ namespace ROMS
         public int varErroronGrid = 0, varErrorFormat = 0, varUpDownKey = 0;
         public int varPRID = 0, varUTID = 0, varRKID = 0, varStockLocationId = 0, varDecimal = 0, pbDateflag = 0, varShelflife = 0, varUpdateFlag = 0, varEditFlag = 0;
         DataTable dtStock = new DataTable();
-        private bool varErrorFlag;
+        private bool varErrorFlag = true;
         int expirydateFlag = 0, error=0;
         public string varPICode = "", varTamilname = "", varAcutalshelflife = "", varShelflifevalue = "";
         public string varbrandcode;
@@ -1221,7 +1221,7 @@ namespace ROMS
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
                 }
-                else
+                else if (btnSave.Text == "Save")
                 {
                     //txtStockLocation.BackColor =Color.White;
                     cmbConcern.Enabled = true;
@@ -2602,8 +2602,8 @@ namespace ROMS
                             {
                                 grdBatchConversion.Rows[i].Cells["clmSno"].Value = i + 1;
                                 Sum += Convert.ToDecimal(grdBatchConversion.Rows[i].Cells["clmQty"].Value);
-                                totalQty.Text = Convert.ToString(Sum);
                             }
+                                totalQty.Text = Convert.ToString(Sum);
                             changedQuantity = Sum;
                             for (int i = 0; i < dtStock.Rows.Count; i++)
                             {
@@ -2638,7 +2638,7 @@ namespace ROMS
                     txtProductName.Enabled = false;
                     cmbConcern.Enabled = false;
                 }
-                else
+                else if (btnSave.Text == "Save")
                 {
                     //txtStockLocation.Enabled = true;
                     txtProductName.Enabled = true;

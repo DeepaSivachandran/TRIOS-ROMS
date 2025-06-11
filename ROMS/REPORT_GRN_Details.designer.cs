@@ -38,6 +38,8 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDelayMin = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbConditionType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,8 +58,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtDelayMin = new System.Windows.Forms.TextBox();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -85,8 +85,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(83, 22);
-            this.tspHeader.Text = "GRN Detail";
+            this.tspHeader.Size = new System.Drawing.Size(123, 22);
+            this.tspHeader.Text = "GRN Detail Report";
             // 
             // pnlReportStockLocation
             // 
@@ -178,6 +178,30 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1094, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 20);
+            this.label6.TabIndex = 1111198;
+            this.label6.Text = "Delay Min";
+            // 
+            // txtDelayMin
+            // 
+            this.txtDelayMin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDelayMin.Location = new System.Drawing.Point(1094, 43);
+            this.txtDelayMin.MaxLength = 5;
+            this.txtDelayMin.Name = "txtDelayMin";
+            this.txtDelayMin.Size = new System.Drawing.Size(61, 27);
+            this.txtDelayMin.TabIndex = 7;
+            this.txtDelayMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDelayMin.Enter += new System.EventHandler(this.TxtDelayMin_Enter);
+            this.txtDelayMin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDelayMin_KeyDown);
+            this.txtDelayMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDelayMin_KeyPress);
+            this.txtDelayMin.Leave += new System.EventHandler(this.TxtDelayMin_Leave);
             // 
             // label5
             // 
@@ -394,30 +418,6 @@
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1094, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 20);
-            this.label6.TabIndex = 1111198;
-            this.label6.Text = "Delay Min";
-            // 
-            // txtDelayMin
-            // 
-            this.txtDelayMin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDelayMin.Location = new System.Drawing.Point(1094, 43);
-            this.txtDelayMin.MaxLength = 5;
-            this.txtDelayMin.Name = "txtDelayMin";
-            this.txtDelayMin.Size = new System.Drawing.Size(61, 27);
-            this.txtDelayMin.TabIndex = 7;
-            this.txtDelayMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDelayMin.Enter += new System.EventHandler(this.TxtDelayMin_Enter);
-            this.txtDelayMin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDelayMin_KeyDown);
-            this.txtDelayMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDelayMin_KeyPress);
-            this.txtDelayMin.Leave += new System.EventHandler(this.TxtDelayMin_Leave);
             // 
             // REPORT_GRN_Details
             // 
