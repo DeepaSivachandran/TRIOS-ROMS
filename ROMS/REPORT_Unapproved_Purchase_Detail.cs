@@ -292,7 +292,6 @@ namespace ROMS
                     sheet.Cells[row, 11] = "Pur Entry Details";
                     sheet.Cells[row, 12] = "Pur Mismatch";
                     sheet.Cells[row, 13] = "Pur App Details";
-                    sheet.Cells[row, 14] = "Cost App Details";
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Font.Bold = true;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -336,7 +335,7 @@ namespace ROMS
 
                     row += 3;
 
-                    string[] productHeaders = { "PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "InvoiceMRP", "ProductMRP", "ExpiryDate", "Product Shelflife", "Actual Shelflife", "ShelflifePer", "Batch No", "Stock Location", "Rack", "InvoiceQty", "ReceivedQty", "DiffQty", "FreeQty", "PurchaseRate", "DiscAmnt", "TaxableValue", "GSTAmnt", "NettAmount" };
+                    string[] productHeaders = { "PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "Invoice MRP", "MRP", "Expiry Date", "Product Shelflife", "Actual Shelflife", "Shelf Life %", "Batch No", "Stock Location", "Rack", "Bill Qty", "Received Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Tax Value", "Nett Amount" };
 
                     for (int i = 0; i < productHeaders.Length; i++)
                         sheet.Cells[row, i + 1] = productHeaders[i];

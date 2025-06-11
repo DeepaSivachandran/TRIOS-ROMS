@@ -322,6 +322,181 @@ namespace ROMS
                 GC.Collect();
             }
         }
+        public void ExportPurchaseJsonToExcelInterop(string jsonString, string fromDate, string supplierName, string payType, string conditionType)
+        {
+
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnCompanyList(7, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objdserv.CloseConnection();
+                var purchases = JArray.Parse(jsonString);
+                Excel.Application excelApp = new Excel.Application();
+                Excel.Workbook workbook = excelApp.Workbooks.Add();
+                Excel.Worksheet sheet = workbook.Sheets[1];
+                excelApp.Visible = true;
+
+                int row = 1;
+                // Company Header
+                if (objDs.Tables[0].Rows.Count > 0)
+                {
+                    var rowData = objDs.Tables[0].Rows[0];
+                    string companyName = rowData["COM_Name"].ToString();
+                    string address = rowData["AddressValue"].ToString();
+                    string gstin = rowData["GSTIN"].ToString();
+
+                    sheet.Cells[row, 1] = companyName;
+                    ((Excel.Range)sheet.Cells[row, 1]).Font.Bold = true;
+                    row++;
+
+                    sheet.Cells[row, 1] = address;
+                    row++;
+
+                    sheet.Cells[row, 1] = $"GSTIN : {gstin}";
+                    row++;
+                }
+
+                // Title
+                sheet.Cells[row, 1] = "Purchase Details Report";
+                var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
+                titleRange.Merge();
+                titleRange.Font.Bold = true;
+                titleRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
+                titleRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                row++;
+
+                // Filter Info
+                sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                row++;
+
+                int purchaseIndex = 1;
+
+                foreach (var purchase in purchases)
+                {
+                    var header = JObject.Parse(purchase["Header"]?.ToString() ?? "{}");
+                    var footer = JObject.Parse(purchase["Footer"]?.ToString() ?? "{}");
+                    var products = purchase["Products"] as JArray ?? new JArray();
+
+                    row++;
+
+                    // Section headers
+                    sheet.Cells[row, 1] = "SI";
+                    sheet.Cells[row, 2] = "Supplier Details";
+                    sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 5]].Merge();
+                    sheet.Cells[row, 6] = "Invoice Details";
+                    sheet.Range[sheet.Cells[row, 6], sheet.Cells[row, 8]].Merge();
+                    sheet.Cells[row, 9] = "Po Details";
+                    sheet.Cells[row, 10] = "GRN Details";
+                    sheet.Cells[row, 11] = "Pur Entry Details";
+                    sheet.Cells[row, 12] = "Pur Mismatch";
+                    sheet.Cells[row, 13] = "Pur App Details";
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    row++;
+
+                    sheet.Cells[row, 1] = purchaseIndex++;
+                    sheet.Cells[row, 2] = header["Supplier"];
+                    sheet.Cells[row + 1, 2] = header["GSTIN"];
+                    sheet.Cells[row + 2, 2] = $"{header["City"]} GST Type: {header["SupplierType"]} PT : {header["PaymentTerm"]}";
+
+                    sheet.Cells[row, 6] = header["InvDate"];
+                    sheet.Cells[row + 1, 6] = header["InvNo"];
+                    sheet.Cells[row + 2, 6] = header["InvAmt"];
+
+                    sheet.Cells[row, 7] = $"Entry Type : {header["EntryType"]}";
+                    sheet.Cells[row + 1, 7] = $"Tr Type : {header["TransactionType"]}";
+                    sheet.Cells[row + 2, 7] = $"Broker : {header["Broker"]}";
+
+                    sheet.Cells[row, 8] = $"Pur Type: {header["PurchaseType"]}";
+                    sheet.Cells[row + 1, 8] = $"Pay Type : {header["PaymentType"]}";
+                    sheet.Cells[row + 2, 8] = $"E.Inv : {header["EInvoice"]}";
+
+                    sheet.Cells[row, 9] = header["PONo"];
+                    sheet.Cells[row + 1, 9] = header["POUser"] ?? "-";
+                    sheet.Cells[row + 2, 9] = header["POHost"] ?? "-";
+
+                    sheet.Cells[row, 10] = header["GRNNo"];
+                    sheet.Cells[row + 1, 10] = header["GRNUser"];
+                    sheet.Cells[row + 2, 10] = header["GRNHost"];
+
+                    sheet.Cells[row, 11] = header["PURNo"];
+                    sheet.Cells[row + 1, 11] = header["PURUser"];
+                    sheet.Cells[row + 2, 11] = header["PURHost"];
+
+                    sheet.Cells[row + 1, 12] = header["GRNAUser"] ?? "";
+                    sheet.Cells[row + 2, 12] = header["GRNAHost"] ?? "";
+
+                    sheet.Cells[row, 13] = header["PUREANo"];
+                    sheet.Cells[row + 1, 13] = header["PUREAUser"];
+                    sheet.Cells[row + 2, 13] = header["PUREAHost"];
+
+                    row += 3;
+
+                    string[] productHeaders = { "PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "Invoice MRP", "MRP", "Expiry Date", "Product Shelflife", "Actual Shelflife", "Shelf Life %", "Batch No", "Stock Location", "Rack", "Bill Qty", "Received Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Tax Value", "Nett Amount" };
+
+                    for (int i = 0; i < productHeaders.Length; i++)
+                        sheet.Cells[row, i + 1] = productHeaders[i];
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                    row++;
+
+                    decimal totalTaxable = 0, totalGst = 0, totalNet = 0;
+
+                    foreach (var prod in products)
+                    {
+                        int col = 1;
+                        foreach (var key in productHeaders)
+                            sheet.Cells[row, col++] = prod[key];
+
+                        sheet.Cells[row, 2].Font.Name = "Uni Ila.Sundaram-03";
+                        sheet.Cells[row, 2].Font.Size = 9.75;
+
+                        decimal invoiceQty = SafeConvertDecimal(prod["InvoiceQty"]);
+                        if (invoiceQty == 0)
+                            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+
+                        totalTaxable += SafeConvertDecimal(prod["TaxableValue"]);
+                        totalGst += SafeConvertDecimal(prod["GSTAmnt"]);
+                        totalNet += SafeConvertDecimal(prod["NettAmount"]);
+                        row++;
+                    }
+
+                    // Aligned Grand Total
+                    sheet.Cells[row, 21] = "Grand Total:";
+                    sheet.Cells[row, 22] = totalTaxable;
+                    sheet.Cells[row, 23] = totalGst;
+                    sheet.Cells[row, 24] = totalNet;
+                    sheet.Range[sheet.Cells[row, 21], sheet.Cells[row, 24]].Font.Bold = true;
+                    row++;
+
+                    // Charges
+                    sheet.Cells[row, 1] = $"Bill Addition:    Loading Charges: {footer["Unloading"]}    Freight Charges: {footer["Freight"]}    Courier Charges: {footer["Courier"]}    Other Expenses: {footer["OtherExpenses"]}    TCS Amount: {footer["TCS"]}    Unloading GRN: {footer["UnloadingGRN"]}    Freight GRN: {footer["FreightGRN"]}";
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                    row++;
+
+                    sheet.Cells[row, 1] = $"Bill Deduction:    Discount: {footer["DiscAmnt"]}    Other Discount: {footer["OtherDisc"]}    Damage Cost: {footer["DamageCost"]}    Round Off: {footer["RoundOff"]}";
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                    row += 2;
+                }
+
+                sheet.Columns.AutoFit();
+
+                decimal SafeConvertDecimal(JToken token)
+                {
+                    decimal.TryParse(token?.ToString(), out decimal value);
+                    return value;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnPurchaseDetails()
         {
             try
@@ -742,183 +917,6 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void ExportPurchaseJsonToExcelInterop(string jsonString, string fromDate, string supplierName, string payType, string conditionType)
-        {
-
-            try
-            {
-                DataSet objDs = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnCompanyList(7, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
-                objdserv.CloseConnection();
-                var purchases = JArray.Parse(jsonString);
-                Excel.Application excelApp = new Excel.Application();
-                Excel.Workbook workbook = excelApp.Workbooks.Add();
-                Excel.Worksheet sheet = workbook.Sheets[1];
-                excelApp.Visible = true;
-
-                int row = 1;
-                // Company Header
-                if (objDs.Tables[0].Rows.Count > 0)
-                {
-                    var rowData = objDs.Tables[0].Rows[0];
-                    string companyName = rowData["COM_Name"].ToString();
-                    string address = rowData["AddressValue"].ToString();
-                    string gstin = rowData["GSTIN"].ToString();
-
-                    sheet.Cells[row, 1] = companyName;
-                    ((Excel.Range)sheet.Cells[row, 1]).Font.Bold = true;
-                    row++;
-
-                    sheet.Cells[row, 1] = address;
-                    row++;
-
-                    sheet.Cells[row, 1] = $"GSTIN : {gstin}";
-                    row++;
-                }
-
-                // Title
-                sheet.Cells[row, 1] = "Purchase Details Report";
-                var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
-                titleRange.Merge();
-                titleRange.Font.Bold = true;
-                titleRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
-                titleRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                row++;
-
-                // Filter Info
-                sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
-                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
-                row++;
-
-                int purchaseIndex = 1;
-
-                foreach (var purchase in purchases)
-                {
-                    var header = JObject.Parse(purchase["Header"]?.ToString() ?? "{}");
-                    var footer = JObject.Parse(purchase["Footer"]?.ToString() ?? "{}");
-                    var products = purchase["Products"] as JArray ?? new JArray();
-
-                    row++;
-
-                    // Section headers
-                    sheet.Cells[row, 1] = "SI";
-                    sheet.Cells[row, 2] = "Supplier Details";
-                    sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 5]].Merge();
-                    sheet.Cells[row, 6] = "Invoice Details";
-                    sheet.Range[sheet.Cells[row, 6], sheet.Cells[row, 8]].Merge();
-                    sheet.Cells[row, 9] = "Po Details";
-                    sheet.Cells[row, 10] = "GRN Details";
-                    sheet.Cells[row, 11] = "Pur Entry Details";
-                    sheet.Cells[row, 12] = "Pur Mismatch";
-                    sheet.Cells[row, 13] = "Pur App Details";
-                    sheet.Cells[row, 14] = "Cost App Details";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Font.Bold = true;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    row++;
-
-                    sheet.Cells[row, 1] = purchaseIndex++;
-                    sheet.Cells[row, 2] = header["Supplier"];
-                    sheet.Cells[row + 1, 2] = header["GSTIN"];
-                    sheet.Cells[row + 2, 2] = $"{header["City"]} GST Type: {header["SupplierType"]} PT : {header["PaymentTerm"]}";
-
-                    sheet.Cells[row, 6] = header["InvDate"];
-                    sheet.Cells[row + 1, 6] = header["InvNo"];
-                    sheet.Cells[row + 2, 6] = header["InvAmt"];
-
-                    sheet.Cells[row, 7] = $"Entry Type : {header["EntryType"]}";
-                    sheet.Cells[row + 1, 7] = $"Tr Type : {header["TransactionType"]}";
-                    sheet.Cells[row + 2, 7] = $"Broker : {header["Broker"]}";
-
-                    sheet.Cells[row, 8] = $"Pur Type: {header["PurchaseType"]}";
-                    sheet.Cells[row + 1, 8] = $"Pay Type : {header["PaymentType"]}";
-                    sheet.Cells[row + 2, 8] = $"E.Inv : {header["EInvoice"]}";
-
-                    sheet.Cells[row, 9] = header["PONo"];
-                    sheet.Cells[row + 1, 9] = header["POUser"] ?? "-";
-                    sheet.Cells[row + 2, 9] = header["POHost"] ?? "-";
-
-                    sheet.Cells[row, 10] = header["GRNNo"];
-                    sheet.Cells[row + 1, 10] = header["GRNUser"];
-                    sheet.Cells[row + 2, 10] = header["GRNHost"];
-
-                    sheet.Cells[row, 11] = header["PURNo"];
-                    sheet.Cells[row + 1, 11] = header["PURUser"];
-                    sheet.Cells[row + 2, 11] = header["PURHost"];
-
-                    sheet.Cells[row + 1, 12] = header["GRNAUser"] ?? "";
-                    sheet.Cells[row + 2, 12] = header["GRNAHost"] ?? "";
-
-                    sheet.Cells[row, 13] = header["PUREANo"];
-                    sheet.Cells[row + 1, 13] = header["PUREAUser"];
-                    sheet.Cells[row + 2, 13] = header["PUREAHost"];
-
-                    row += 3;
-
-                    string[] productHeaders = { "PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "InvoiceMRP", "ProductMRP", "ExpiryDate", "Product Shelflife", "Actual Shelflife", "ShelflifePer", "Batch No", "Stock Location", "Rack", "InvoiceQty", "ReceivedQty", "DiffQty", "FreeQty", "PurchaseRate", "DiscAmnt", "TaxableValue", "GSTAmnt", "NettAmount" };
-
-                    for (int i = 0; i < productHeaders.Length; i++)
-                        sheet.Cells[row, i + 1] = productHeaders[i];
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
-                    row++;
-
-                    decimal totalTaxable = 0, totalGst = 0, totalNet = 0;
-
-                    foreach (var prod in products)
-                    {
-                        int col = 1;
-                        foreach (var key in productHeaders)
-                            sheet.Cells[row, col++] = prod[key];
-
-                        sheet.Cells[row, 2].Font.Name = "Uni Ila.Sundaram-03";
-                        sheet.Cells[row, 2].Font.Size = 9.75;
-
-                        decimal invoiceQty = SafeConvertDecimal(prod["InvoiceQty"]);
-                        if (invoiceQty == 0)
-                            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
-
-                        totalTaxable += SafeConvertDecimal(prod["TaxableValue"]);
-                        totalGst += SafeConvertDecimal(prod["GSTAmnt"]);
-                        totalNet += SafeConvertDecimal(prod["NettAmount"]);
-                        row++;
-                    }
-
-                    // Aligned Grand Total
-                    sheet.Cells[row, 21] = "Grand Total:";
-                    sheet.Cells[row, 22] = totalTaxable;
-                    sheet.Cells[row, 23] = totalGst;
-                    sheet.Cells[row, 24] = totalNet;
-                    sheet.Range[sheet.Cells[row, 21], sheet.Cells[row, 24]].Font.Bold = true;
-                    row++;
-
-                    // Charges
-                    sheet.Cells[row, 1] = $"Bill Addition:    Loading Charges: {footer["Unloading"]}    Freight Charges: {footer["Freight"]}    Courier Charges: {footer["Courier"]}    Other Expenses: {footer["OtherExpenses"]}    TCS Amount: {footer["TCS"]}    Unloading GRN: {footer["UnloadingGRN"]}    Freight GRN: {footer["FreightGRN"]}";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
-                    row++;
-
-                    sheet.Cells[row, 1] = $"Bill Deduction:    Discount: {footer["DiscAmnt"]}    Other Discount: {footer["OtherDisc"]}    Damage Cost: {footer["DamageCost"]}    Round Off: {footer["RoundOff"]}";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
-                    row += 2;
-                }
-
-                sheet.Columns.AutoFit();
-
-                decimal SafeConvertDecimal(JToken token)
-                {
-                    decimal.TryParse(token?.ToString(), out decimal value);
-                    return value;
-                }
             }
             catch (Exception ex)
             {
