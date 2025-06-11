@@ -290,7 +290,7 @@ namespace ROMS
                     sheet.Cells[row, 9] = "Po Details";
                     sheet.Cells[row, 10] = "GRN Details";
                     sheet.Cells[row, 11] = "Pur Entry Details";
-                    sheet.Cells[row, 12] = "Pur Mismatch";
+                    sheet.Cells[row, 12] = "Pur Mismatch App";
                     sheet.Cells[row, 13] = "Pur App Details";
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Font.Bold = true;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -353,13 +353,13 @@ namespace ROMS
                         sheet.Cells[row, 2].Font.Name = "Uni Ila.Sundaram-03";
                         sheet.Cells[row, 2].Font.Size = 9.75;
 
-                        decimal invoiceQty = SafeConvertDecimal(prod["InvoiceQty"]);
+                        decimal invoiceQty = SafeConvertDecimal(prod["Bill Qty"]);
                         if (invoiceQty == 0)
                             sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
 
-                        totalTaxable += SafeConvertDecimal(prod["TaxableValue"]);
-                        totalGst += SafeConvertDecimal(prod["GSTAmnt"]);
-                        totalNet += SafeConvertDecimal(prod["NettAmount"]);
+                        totalTaxable += SafeConvertDecimal(prod["Taxable Value"]);
+                        totalGst += SafeConvertDecimal(prod["Tax Value"]);
+                        totalNet += SafeConvertDecimal(prod["Nett Amount"]);
                         row++;
                     }
 
