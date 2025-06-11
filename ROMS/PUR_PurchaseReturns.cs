@@ -2352,7 +2352,7 @@ namespace ROMS
                     txtLocation.Text = "";
                     if (txtProductNamePICode.Text.Length > 0)
                     {
-                        if (grdReturnDC.Rows.Count < 1)
+                        if (dtStock.Rows.Count < 1)
                         {
                             dtStock.Rows.Add(0, 0, "", "", "", 0, "", "", "", 0);
                         }
