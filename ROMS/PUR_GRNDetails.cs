@@ -3005,6 +3005,7 @@ namespace ROMS
             {
                 MainForm.objPUR_GRN_Level_Verified = new PUR_GRN_Level_Verified();
                 MainForm.objPUR_GRN_Level_Verified.pbGRNId = pbGRNId;
+                MainForm.objPUR_GRN_Level_Verified.pbGRNDate = dpGrnDate.Text;
                 MainForm.objPUR_GRN_Level_Verified.ShowDialog();
                 btnSave.Focus();
                 if (PbVerified == 1)
