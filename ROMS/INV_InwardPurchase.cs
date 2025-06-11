@@ -2100,7 +2100,7 @@ namespace ROMS
                                 {
                                     if (varGRNPurchaseFlag == 2 || varGRNPurchaseFlag == 175)   //From Purchase- Queue
                                     {
-                                        int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmSno"].Value);
+                                        int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmEntrytypeProID"].Value);
 
                                         var varSumRequestQty = dtInwardPurchase.AsEnumerable()
                                                                 .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
