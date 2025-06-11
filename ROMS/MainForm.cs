@@ -2615,6 +2615,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void StatusWiseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_ProductWise_Po = new REPORT_ProductWise_Po();
+                MainForm.objREPORT_ProductWise_Po.MdiParent = this;
+                MainForm.objREPORT_ProductWise_Po.Show();
+                PbCurrentForm = "7.6.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
