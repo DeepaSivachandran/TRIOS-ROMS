@@ -103,6 +103,7 @@ namespace ROMS
                 dtRackList.Columns.Add("Rack Name", typeof(string));
                 dtRackList.Columns.Add("Rack Description", typeof(string));
                 dtRackList.Columns.Add("RKID", typeof(int));
+                dtRackList.Columns.Add("Rack ShortName", typeof(string));
                 udfnLoadCmbBatchNo();
                 if (btnSave.Text == "Save")
                 {
@@ -227,6 +228,7 @@ namespace ROMS
                 grdRackList.Columns["Rack Description"].Width = 270;
                 grdRackList.Columns["Rack Description"].ReadOnly = true;
                 grdRackList.Columns["RKID"].Visible = false;
+                grdRackList.Columns["Rack ShortName"].Visible = false;
                 grdRackList.Columns[0].Width = 30;
                 varStatusid = varStatus;
                 if(varStatusid==1)
@@ -320,8 +322,8 @@ namespace ROMS
                         varcheckedcount++;
                         if (varRackId == "") { varRackId = Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
                         else  {  varRackId = varRackId + ',' + Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
-                        if (varRackName == "") { varRackName = Convert.ToString(grdRackList.Rows[i].Cells["Rack Name"].Value); }
-                        else { varRackName = varRackName + ',' + Convert.ToString(grdRackList.Rows[i].Cells["Rack Name"].Value); }
+                        if (varRackName == "") { varRackName = Convert.ToString(grdRackList.Rows[i].Cells["Rack ShortName"].Value); }
+                        else { varRackName = varRackName + ',' + Convert.ToString(grdRackList.Rows[i].Cells["Rack ShortName"].Value); }
                         if (varRackDescription == "") { varRackDescription = Convert.ToString(grdRackList.Rows[i].Cells["Rack Description"].Value); }
                         else { varRackDescription = varRackDescription + ',' + Convert.ToString(grdRackList.Rows[i].Cells["Rack Description"].Value); }
                     }
@@ -1356,7 +1358,7 @@ namespace ROMS
                             if (objRackList.Tables[0].Rows.Count > 0)
                             {
                                 for (int i = 0; i < objRackList.Tables[0].Rows.Count; i++) {
-                                    dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Description"]), Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]));
+                                    dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Description"]), Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]), Convert.ToString(objRackList.Tables[0].Rows[i]["RK_ShortName"]));
                                 }
                                 grdRackList.DataSource = null;
                                 grdRackList.DataSource = dtRackList;
@@ -1369,6 +1371,7 @@ namespace ROMS
                                 grdRackList.Columns["Rack Name"].ReadOnly = true;
                                 grdRackList.Columns["Rack Description"].Width = 270;
                                 grdRackList.Columns["Rack Description"].ReadOnly = true;
+                                grdRackList.Columns["Rack ShortName"].Visible = false;
                                 grdRackList.Columns[0].Width = 30;
                             }
                         }
