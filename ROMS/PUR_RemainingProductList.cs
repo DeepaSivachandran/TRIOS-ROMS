@@ -95,6 +95,10 @@ namespace ROMS
                             {
                                 grdPODetails.Columns["ID"].Visible = false;
                             }
+                            if (varFlag == 1)
+                            {
+                                grdPODetails.Columns["Condition Type"].Width = 130;
+                            }
                             grdPODetails.Columns["Product Name"].Width = 400;
                             grdPODetails.Columns["PI Code"].Width = 150;
                             grdPODetails.Columns["Unit"].Width = 60;
