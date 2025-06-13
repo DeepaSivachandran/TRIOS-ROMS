@@ -200,14 +200,14 @@ namespace ROMS
                             grdRackGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                          
                             grdRackGroupList.Columns["S.No."].Width = 50;
-                            grdRackGroupList.Columns["Concern"].Width = 150;
+                            grdRackGroupList.Columns["Concern"].Width = 80;
                             grdRackGroupList.Columns["Rack Group"].Width = 150;
                             grdRackGroupList.Columns["Stock Location"].Width = 150;
                             grdRackGroupList.Columns["Rack"].Width = 150;
-                            grdRackGroupList.Columns["Short Name"].Width = 150;
-                            grdRackGroupList.Columns["Description"].Width = 150;
-                            grdRackGroupList.Columns["Employee Name"].Width = 150;
-                            grdRackGroupList.Columns["Total Products"].Width = 120;
+                            grdRackGroupList.Columns["Short Name"].Width = 130;
+                            grdRackGroupList.Columns["Description"].Width = 200;
+                            grdRackGroupList.Columns["Employee Name"].Width = 300;
+                            grdRackGroupList.Columns["Total Products"].Width = 100;
 
                             grdRackGroupList.Columns["ID"].Visible = false;
                             grdRackGroupList.Columns["COMID"].Visible = false;

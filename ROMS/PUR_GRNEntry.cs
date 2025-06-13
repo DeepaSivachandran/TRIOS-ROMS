@@ -2390,7 +2390,10 @@ namespace ROMS
                                     grdReurnDC.Rows.Add(Convert.ToString(objDs.Tables[7].Rows[i]["DCDATE"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCNO"]),
                                     Convert.ToString(objDs.Tables[7].Rows[i]["PRCOUNT"]), Convert.ToString(objDs.Tables[7].Rows[i]["DCVALUE"]), Convert.ToString(objDs.Tables[7].Rows[i]["ID"]));
                                 }
-                                //grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                                if (pbGRNSTS != "17")
+                                {
+                                    grdReurnDC.Columns["clmRemoveDC"].Visible = false;
+                                }
                             }
                             else
                             {

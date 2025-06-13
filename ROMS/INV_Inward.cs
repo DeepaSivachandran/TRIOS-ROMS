@@ -675,7 +675,28 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    txtMrp.Focus();
+                    if (txtMrp.Enabled == true)
+                    {
+                        txtMrp.Focus();
+                    }
+                    else
+                    {
+                        if (txtDay.Enabled == true)
+                        {
+                            txtDay.Focus();
+                        }
+                        else
+                        {
+                            if (txtBatchNo.Enabled == true)
+                            {
+                                txtBatchNo.Focus();
+                            }
+                            else
+                            {
+                                txtActualQty.Focus();
+                            }
+                        }
+                    }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1082,19 +1103,22 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtProductName.Text) == "")
-                {
-                    epGoodsInward.SetError(txtProductName, "Please enter the product");
-                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpProduct.ShowAlways = true;
-                    tpProduct.Show("Please enter the product", txtProductName, 5000);
-                }
-                else
-                {
-                    epGoodsInward.Clear();
-                    txtProductName.BackColor = Color.White;
-                    tpProduct.Active = false;
-                }
+                //if (Convert.ToString(txtProductName.Text.Trim()) == "")
+                //{
+                //    epGoodsInward.SetError(txtProductName, "Please enter the product");
+                //    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpProduct.ShowAlways = true;
+                //    tpProduct.Show("Please enter the product", txtProductName, 5000);
+                //}
+                //else
+                //{
+                //    epGoodsInward.Clear();
+                //    txtProductName.BackColor = Color.White;
+                //    tpProduct.Active = false;
+                //}
+                epGoodsInward.Clear();
+                txtProductName.BackColor = Color.White;
+                tpProduct.Active = false;
             }
             catch (Exception ex)
             {
@@ -1493,7 +1517,6 @@ namespace ROMS
                         string[] varShelflifeper = Convert.ToString(varShelflifevalue).Split(' ');
                         if (varShelflifevalue == "")
                         {
-
                             varShelflifeper[0] = "0";
                         }
                         if (txtActualQty.Text != "")
@@ -3111,6 +3134,18 @@ namespace ROMS
                     tpProduct.Show("Please enter product.", txtProductName, 5000);
                     blnErrorFlag = true;
                 }
+                else
+                {
+                    if (varPRID == "0")
+                    {
+                        epGoodsInward.SetError(txtProductName, "Please enter valid product.");
+                        txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpProduct.ShowAlways = true;
+                        tpProduct.Show("Please enter valid product.", txtProductName, 5000);
+                        blnErrorFlag = true;
+                    }
+
+                }
 
                 if (expirydateFlag == 1)
                 {
@@ -3989,7 +4024,7 @@ namespace ROMS
                     txtYear.Text = "";
                     txtunit.Text = "";
                     //SLID = varStockLocationId;
-
+                    varPRID = "0";
                     if (VarSearchFlag == true)
                     {
                         txtProductName.CharacterCasing = CharacterCasing.Upper;

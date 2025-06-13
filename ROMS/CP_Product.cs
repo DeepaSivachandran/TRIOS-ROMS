@@ -1137,6 +1137,8 @@ namespace ROMS
                 cmbPeriod.SelectedValue = -1;
                 cbExpiry.Checked = false;
                 cbRMFromProduction.Checked = false;
+                chkMRP.Checked = false;
+                cbCompleted.Checked = false;
                 lblHsnName.Text = "0"; 
                 txtHsnName.Text = ""; 
                 txtPICode.Text = "";
