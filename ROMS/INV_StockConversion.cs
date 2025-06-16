@@ -1108,7 +1108,7 @@ namespace ROMS
                 {
                     udfnExpiryDateCheck();
                 }
-                decimal varMRP = Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                decimal varMRP = Math.Round(Convert.ToDecimal(txtConvertMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                 string varConvertMRP = string.Format("{0:0.00}", varMRP);
                 MRP = varConvertMRP;
                 if (MRP == txtMrp.Text && txtExpiryDate.Text == varExpiryDate && txtBatchNo.Text == txtConvertBatch.Text)

@@ -2397,6 +2397,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["SLID"].Visible = false;
                                     DGV_FilterProduct.Columns["APPROX"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
+                                    DGV_FilterProduct.Columns["GST_Value"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 320;

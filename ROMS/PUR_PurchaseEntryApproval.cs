@@ -5959,22 +5959,22 @@ namespace ROMS
                 if (rbDiscountAfter.Checked == true)
                 {
                     grdPurchaseList.Columns["clmDiscountValue"].Visible = true;
-                    grdPurchaseList.Columns["clmTax"].DisplayIndex =17;
-                    grdPurchaseList.Columns["clmGstper"].DisplayIndex =18;
-                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex =19;
-                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex =20;
-                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex =21;
-                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex =22;
-                }
-                if(rbDiscountBefore.Checked == true)
-                {
-                    grdPurchaseList.Columns["clmDiscountValue"].Visible = false;
-                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 17;
-                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 18;
                     grdPurchaseList.Columns["clmTax"].DisplayIndex = 19;
                     grdPurchaseList.Columns["clmGstper"].DisplayIndex = 20;
                     grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 21;
-                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 22;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 22;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 23;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 24;
+                }
+                if (rbDiscountBefore.Checked == true)
+                {
+                    grdPurchaseList.Columns["clmDiscountValue"].Visible = false;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 19;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 20;
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 21;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 22;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 23;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 24;
                 }
             }
             catch (Exception ex)

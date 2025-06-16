@@ -327,6 +327,8 @@ namespace ROMS
 
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnCompanyList(7, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
@@ -335,7 +337,7 @@ namespace ROMS
                 Excel.Application excelApp = new Excel.Application();
                 Excel.Workbook workbook = excelApp.Workbooks.Add();
                 Excel.Worksheet sheet = workbook.Sheets[1];
-                excelApp.Visible = true;
+                excelApp.Visible = false;
 
                 int row = 1;
                 // Company Header
@@ -490,11 +492,31 @@ namespace ROMS
                     decimal.TryParse(token?.ToString(), out decimal value);
                     return value;
                 }
+                excelApp.Visible = false;
+
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                    FileName = "Purchase Details Report.xlsx"
+                };
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    workbook.SaveAs(sfd.FileName);
+                    MessageBox.Show("Excel file saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                workbook.Close(false);
+                excelApp.Quit();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
             }
         }
         public void udfnPurchaseDetails()
