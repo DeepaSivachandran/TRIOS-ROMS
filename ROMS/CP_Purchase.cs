@@ -69,6 +69,7 @@ namespace ROMS
         public string pbVerifiedOn1 = "" , pbVerifiedTime1 = "" , pbVerifiedFormat1 = "", pbVerifiedName1 = "" ,pbVerifiedOn2 = "" , pbVerifiedTime2 = "" , pbVerifiedFormat2 = "", pbVerifiedName2 = "" , varPurVerifyFlag="0", varPurVerifyFlag2 = "0";
         public string varBlockedSupplier = "0", varBlockedReason = "", varInwardDate = "";
         public double varDVA = 0, varCPA = 0;
+        public int pbAutoSaveFlag = 0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -2312,9 +2313,9 @@ namespace ROMS
                             grdTaxDetails.Columns["IGST%"].Width = 80;
                             grdTaxDetails.Columns["CGST%"].Width = 80;
                             grdTaxDetails.Columns["SGST%"].Width = 80;
-                            grdTaxDetails.Columns["IGST"].Width = 100;
-                            grdTaxDetails.Columns["CGST"].Width = 100;
-                            grdTaxDetails.Columns["SGST"].Width = 100;
+                            grdTaxDetails.Columns["IGST Value"].Width = 100;
+                            grdTaxDetails.Columns["CGST Value"].Width = 100;
+                            grdTaxDetails.Columns["SGST Value"].Width = 100;
                         }
                     }
                 }
@@ -2327,6 +2328,14 @@ namespace ROMS
                     if (grdPODetails.Visible == true)
                     {
                         grdPODetails.Columns["clmRemovePO"].Visible = false;
+                    }
+                }
+                if(pbAutoSaveFlag==1)
+                {
+                    if(btnSave.Enabled==true)
+                    {
+                        pbAutoSaveFlag = 0;
+                        BtnSave_Click(sender, e); 
                     }
                 }
             }
@@ -10071,6 +10080,7 @@ namespace ROMS
         {
             try
             {
+                pbAutoSaveFlag = 1;
                 if (e.ColumnIndex == grdPurchaseList.Columns["clmDiscAmt"].Index && e.RowIndex >= 0)
                 {
                     decimal varInvQty = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmInvQty"].Value)) != "") { varInvQty = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmInvQty"].Value); }
@@ -12172,13 +12182,13 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblDProduct.Text = "Search by P.I Code";
+                        lblDProduct.Text = "Search by P.I Code (F11)";
                         txtProductName.CharacterCasing = CharacterCasing.Upper;
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblDProduct.Text = "Search by Product Name";
+                        lblDProduct.Text = "Search by Product Name (F11)";
                         txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }
