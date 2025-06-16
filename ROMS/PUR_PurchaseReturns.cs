@@ -600,6 +600,14 @@ namespace ROMS
                         //    txtCrNo.Enabled = false;
                         //    dpCreditNoteDate.Enabled = false;
                         //}
+                        if (varStatusId == 39 || varStatusId == 79 || varStatusId == 101)
+                        {
+                            cmbReasonForClosing.Enabled = false;
+                            txtAmount.Enabled = false;
+                            txtCrNo.Enabled = false;
+                            dpCreditNoteDate.Enabled = false;
+                            btnSave.Enabled = false;
+                        }
                     }
                 }
                 ChkCompleted_CheckedChanged(sender, e);
