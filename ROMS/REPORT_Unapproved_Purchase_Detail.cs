@@ -235,7 +235,7 @@ namespace ROMS
                 Excel.Application excelApp = new Excel.Application();
                 Excel.Workbook workbook = excelApp.Workbooks.Add();
                 Excel.Worksheet sheet = workbook.Sheets[1];
-                excelApp.Visible = true;
+                excelApp.Visible = false;
 
                 int row = 1;
                 // Company Header
@@ -390,6 +390,22 @@ namespace ROMS
                     decimal.TryParse(token?.ToString(), out decimal value);
                     return value;
                 }
+                excelApp.Visible = false;
+
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                    FileName = "Unapproved Purchase Details Report.xlsx"
+                };
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    workbook.SaveAs(sfd.FileName);
+                    MessageBox.Show("Excel file saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                workbook.Close(false);
+                excelApp.Quit();
             }
             catch (Exception ex)
             {

@@ -88,7 +88,7 @@
             this.tspHeader});
             this.ReportSupplier.Location = new System.Drawing.Point(0, 0);
             this.ReportSupplier.Name = "ReportSupplier";
-            this.ReportSupplier.Size = new System.Drawing.Size(1354, 25);
+            this.ReportSupplier.Size = new System.Drawing.Size(1354, 31);
             this.ReportSupplier.TabIndex = 35;
             this.ReportSupplier.Text = "GRN Summary Report";
             // 
@@ -99,8 +99,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(115, 22);
-            this.tspHeader.Text = "Product Wise PO";
+            this.tspHeader.Size = new System.Drawing.Size(217, 28);
+            this.tspHeader.Text = "Purchase Order-Status Wise";
             // 
             // pnlReportStockLocation
             // 
@@ -264,7 +264,7 @@
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(625, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 20);
+            this.label6.Size = new System.Drawing.Size(110, 26);
             this.label6.TabIndex = 111111150;
             this.label6.Text = "Supplier Name";
             // 
@@ -274,7 +274,7 @@
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(9, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 20);
+            this.label5.Size = new System.Drawing.Size(167, 26);
             this.label5.TabIndex = 111111146;
             this.label5.Text = "Product Name/PI Code";
             // 
@@ -306,7 +306,7 @@
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Location = new System.Drawing.Point(904, 43);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(143, 27);
+            this.cmbStatus.Size = new System.Drawing.Size(143, 33);
             this.cmbStatus.TabIndex = 4;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
@@ -319,7 +319,7 @@
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(904, 19);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(63, 20);
+            this.lblStatus.Size = new System.Drawing.Size(79, 26);
             this.lblStatus.TabIndex = 111111155;
             this.lblStatus.Text = "PO Status";
             // 
@@ -328,7 +328,7 @@
             this.lblProductcode.AutoSize = true;
             this.lblProductcode.Location = new System.Drawing.Point(167, 21);
             this.lblProductcode.Name = "lblProductcode";
-            this.lblProductcode.Size = new System.Drawing.Size(16, 20);
+            this.lblProductcode.Size = new System.Drawing.Size(21, 25);
             this.lblProductcode.TabIndex = 111111148;
             this.lblProductcode.Text = "0";
             this.lblProductcode.Visible = false;
@@ -338,7 +338,7 @@
             this.lblGroupCode.AutoSize = true;
             this.lblGroupCode.Location = new System.Drawing.Point(324, 18);
             this.lblGroupCode.Name = "lblGroupCode";
-            this.lblGroupCode.Size = new System.Drawing.Size(16, 20);
+            this.lblGroupCode.Size = new System.Drawing.Size(21, 25);
             this.lblGroupCode.TabIndex = 111111146;
             this.lblGroupCode.Text = "0";
             this.lblGroupCode.Visible = false;
@@ -348,7 +348,7 @@
             this.lblSubGroupCode.AutoSize = true;
             this.lblSubGroupCode.Location = new System.Drawing.Point(524, 18);
             this.lblSubGroupCode.Name = "lblSubGroupCode";
-            this.lblSubGroupCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSubGroupCode.Size = new System.Drawing.Size(21, 25);
             this.lblSubGroupCode.TabIndex = 111111147;
             this.lblSubGroupCode.Text = "0";
             this.lblSubGroupCode.Visible = false;
@@ -359,7 +359,7 @@
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(452, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 20);
+            this.label4.Size = new System.Drawing.Size(75, 26);
             this.label4.TabIndex = 1111234;
             this.label4.Text = "Subgroup";
             // 
@@ -369,7 +369,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(625, 43);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(273, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(273, 32);
             this.txtSupplier.TabIndex = 3;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -382,7 +382,7 @@
             this.lblSupplierCode.BackColor = System.Drawing.Color.Green;
             this.lblSupplierCode.Location = new System.Drawing.Point(797, 20);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.Size = new System.Drawing.Size(21, 25);
             this.lblSupplierCode.TabIndex = 111111153;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
@@ -393,7 +393,7 @@
             this.txtProductName.Location = new System.Drawing.Point(9, 43);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(264, 27);
+            this.txtProductName.Size = new System.Drawing.Size(264, 32);
             this.txtProductName.TabIndex = 0;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -406,7 +406,7 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(279, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 20);
+            this.label2.Size = new System.Drawing.Size(52, 26);
             this.label2.TabIndex = 1111233;
             this.label2.Text = "Group";
             // 
@@ -416,7 +416,7 @@
             this.txtSubGroup.Location = new System.Drawing.Point(452, 43);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
-            this.txtSubGroup.Size = new System.Drawing.Size(167, 27);
+            this.txtSubGroup.Size = new System.Drawing.Size(167, 32);
             this.txtSubGroup.TabIndex = 2;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
             this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
@@ -429,7 +429,7 @@
             this.lblschedleCode.BackColor = System.Drawing.Color.LimeGreen;
             this.lblschedleCode.Location = new System.Drawing.Point(743, 20);
             this.lblschedleCode.Name = "lblschedleCode";
-            this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
+            this.lblschedleCode.Size = new System.Drawing.Size(21, 25);
             this.lblschedleCode.TabIndex = 111111152;
             this.lblschedleCode.Text = "0";
             this.lblschedleCode.Visible = false;
@@ -440,7 +440,7 @@
             this.txtGroup.Location = new System.Drawing.Point(279, 43);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(167, 27);
+            this.txtGroup.Size = new System.Drawing.Size(167, 32);
             this.txtGroup.TabIndex = 1;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
@@ -471,7 +471,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 356);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -506,7 +506,7 @@
             // 
             // REPORT_ProductWise_Po
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
