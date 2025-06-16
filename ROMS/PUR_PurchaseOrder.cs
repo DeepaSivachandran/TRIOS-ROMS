@@ -2201,12 +2201,12 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblDProduct.Text = "Search by P.I Code";
+                        lblDProduct.Text = "Search by P.I Code (F11)";
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblDProduct.Text = "Search by Product Name";
+                        lblDProduct.Text = "Search by Product Name (F11)";
                     }
                 }
                 //if (e.KeyCode == Keys.Enter)

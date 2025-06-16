@@ -5901,12 +5901,12 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblDEGroup.Text = "Search by P.I Code";
+                        lblDEGroup.Text = "Search by P.I Code (F11)";
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblDEGroup.Text = "Search by Product Name";
+                        lblDEGroup.Text = "Search by Product Name (F11)";
                     }
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
