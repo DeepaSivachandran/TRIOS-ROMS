@@ -1615,6 +1615,10 @@ namespace ROMS
         {
             try
             {
+                epPurchaseDC.Clear();
+                txtProductName.BackColor = Color.White;
+                tpProduct.Active = false;
+                /*
                 if (txtProductName.Text.Trim() == "")
                 {
                     epPurchaseDC.SetError(txtProductName, "Please enter product.");
@@ -1630,6 +1634,7 @@ namespace ROMS
                     txtProductName.BackColor = Color.White;
                     tpProduct.Active = false;
                 }
+                */
                 //udfnDefalutLocation();
             }
             catch (Exception ex)

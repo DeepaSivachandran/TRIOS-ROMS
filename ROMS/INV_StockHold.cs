@@ -148,6 +148,10 @@ namespace ROMS
         {
             try
             {
+                epStockHold.Clear();
+                txtProductNamePICode.BackColor = Color.White;
+                tpProductNamePICode.Active = false;
+                /*
                 if (Convert.ToString(txtProductNamePICode.Text) == "")
                 {
                     epStockHold.SetError(txtProductNamePICode, "Please enter the product");
@@ -161,6 +165,7 @@ namespace ROMS
                     txtProductNamePICode.BackColor = Color.White;
                     tpProductNamePICode.Active = false;
                 }
+                */
             }
             catch (Exception ex)
             {

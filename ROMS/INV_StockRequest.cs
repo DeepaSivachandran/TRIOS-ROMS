@@ -687,6 +687,9 @@ namespace ROMS
         {
             try
             {
+                errStockRequest.Clear();
+                txtProductNamePICode.BackColor = Color.White;
+                /*
                 if (Convert.ToString(txtProductNamePICode.Text).Trim() == "")
                 {
                     errStockRequest.SetError(txtProductNamePICode, "Please enter product name");
@@ -700,6 +703,7 @@ namespace ROMS
                     errStockRequest.Clear();
                     txtProductNamePICode.BackColor = Color.White;
                 }
+                */
             }
             catch (Exception ex)
             {

@@ -340,6 +340,10 @@ namespace ROMS
         {
             try
             {
+                epGoodsOutward.Clear();
+                txtProductName.BackColor = Color.White;
+                tpProduct.Active = false;
+                /*
                 if (Convert.ToString(txtProductName.Text) == "")
                 {
                     epGoodsOutward.SetError(txtProductName, "Please enter the product");
@@ -353,6 +357,7 @@ namespace ROMS
                     txtProductName.BackColor = Color.White;
                     tpProduct.Active = false;
                 }
+                */
             }
             catch (Exception ex)
             {

@@ -2475,6 +2475,9 @@ namespace ROMS
         {
             try
             {
+                epReturnDc.Clear();
+                txtProductNamePICode.BackColor = Color.White;
+                /*
                 if (Convert.ToString(txtProductNamePICode.Text).Trim() == "")
                 {
                     epReturnDc.SetError(txtProductNamePICode, "Please enter product name");
@@ -2487,6 +2490,7 @@ namespace ROMS
                     epReturnDc.Clear();
                     txtProductNamePICode.BackColor = Color.White;
                 }
+                */
             }
             catch (Exception ex)
             {
