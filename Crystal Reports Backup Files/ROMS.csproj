@@ -55,6 +55,9 @@
   <PropertyGroup>
     <ApplicationIcon>gnm.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ROMS.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.102.2.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.102.2\lib\netstandard2.0\ClosedXML.dll</HintPath>
@@ -86,6 +89,9 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
       <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
@@ -282,6 +288,18 @@
     </Compile>
     <Compile Include="PAY_DiscountVoucher.designer.cs">
       <DependentUpon>PAY_DiscountVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_DebitNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_DebitNote.designer.cs">
+      <DependentUpon>PAY_DebitNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_DebitnoteDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_DebitnoteDetails.designer.cs">
+      <DependentUpon>PUR_DebitnoteDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_Purchase_Level_Verified.cs">
       <SubType>Form</SubType>
@@ -607,6 +625,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_HDFC.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.cs">
       <AutoGen>True</AutoGen>
@@ -2078,6 +2097,12 @@
     <EmbeddedResource Include="PUR_GRNProducts .resx">
       <DependentUpon>PUR_GRNProducts .cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PAY_DebitNote.resx">
+      <DependentUpon>PAY_DebitNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_DebitnoteDetails.resx">
+      <DependentUpon>PUR_DebitnoteDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_Purchase_Level_Verified.resx">
       <DependentUpon>PUR_Purchase_Level_Verified.cs</DependentUpon>
     </EmbeddedResource>
@@ -2692,6 +2717,7 @@
     <EmbeddedResource Include="Reports\RPT_HDFC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_HDFC.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3463,6 +3489,17 @@
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.8.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.8.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.NetAnalyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -741,6 +741,9 @@ namespace ROMS
         {
             try
             {
+                txtProductName.BackColor = Color.White;
+                epDamageEntry.Clear();
+                /*
                 if (txtProductName.Text == "")
                 {
                     epDamageEntry.SetError(txtProductName, "Please enter product name or P.I Code");
@@ -753,6 +756,7 @@ namespace ROMS
                     txtProductName.BackColor = Color.White;
                     epDamageEntry.Clear();
                 }
+                */
             }
             catch (Exception ex)
             {

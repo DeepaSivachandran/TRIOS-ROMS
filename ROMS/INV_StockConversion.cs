@@ -387,6 +387,10 @@ namespace ROMS
         {
             try
             {
+                epBatchConversion.Clear();
+                txtProductName.BackColor = Color.White;
+                tpProductName.Active = false;
+                /*
                 if (Convert.ToString(txtProductName.Text) == "")
                 {
                     epBatchConversion.SetError(txtProductName, "Please enter the product");
@@ -400,6 +404,7 @@ namespace ROMS
                     txtProductName.BackColor = Color.White;
                     tpProductName.Active = false;
                 }
+                */
             }
             catch (Exception ex)
             {

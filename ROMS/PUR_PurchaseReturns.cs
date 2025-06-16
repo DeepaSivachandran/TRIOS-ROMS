@@ -600,6 +600,13 @@ namespace ROMS
                         //    txtCrNo.Enabled = false;
                         //    dpCreditNoteDate.Enabled = false;
                         //}
+                        if (varStatusId == 39 || varStatusId == 79 || varStatusId == 101)
+                        {
+                            cmbReasonForClosing.Enabled = false;
+                            txtAmount.Enabled = false;
+                            txtCrNo.Enabled = false;
+                            dpCreditNoteDate.Enabled = false;
+                        }
                     }
                 }
                 ChkCompleted_CheckedChanged(sender, e);
@@ -2476,6 +2483,9 @@ namespace ROMS
         {
             try
             {
+                epReturnDc.Clear();
+                txtProductNamePICode.BackColor = Color.White;
+                /*
                 if (Convert.ToString(txtProductNamePICode.Text).Trim() == "")
                 {
                     epReturnDc.SetError(txtProductNamePICode, "Please enter product name");
@@ -2488,6 +2498,7 @@ namespace ROMS
                     epReturnDc.Clear();
                     txtProductNamePICode.BackColor = Color.White;
                 }
+                */
             }
             catch (Exception ex)
             {
@@ -2506,13 +2517,13 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblProductNamePICode.Text = "Search by P.I Code";
+                        lblProductNamePICode.Text = "Search by P.I Code (F11)";
                         txtProductNamePICode.CharacterCasing = CharacterCasing.Upper;
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblProductNamePICode.Text = "Search by Product Name";
+                        lblProductNamePICode.Text = "Search by Product Name (F11)";
                         txtProductNamePICode.CharacterCasing = CharacterCasing.Normal;
                     }
                 }

@@ -1257,6 +1257,9 @@ namespace ROMS
         {
             try
             {
+                errStockTransfer.Clear();
+                txtProductNamePICode.BackColor = Color.White;
+                /*
                 if (Convert.ToString(txtProductNamePICode.Text).Trim() == "")
                 {
                     errStockTransfer.SetError(txtProductNamePICode, "Please enter product name");
@@ -1269,6 +1272,7 @@ namespace ROMS
                     errStockTransfer.Clear();
                     txtProductNamePICode.BackColor = Color.White;
                 }
+                */
             }
             catch (Exception ex)
             {
