@@ -571,13 +571,13 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblDEProductName.Text = "Search by P.I Code";
+                        lblDEProductName.Text = "Search by P.I Code (F11)";
                         txtProductNamePICode.CharacterCasing = CharacterCasing.Upper;
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblDEProductName.Text = "Search by Product Name";
+                        lblDEProductName.Text = "Search by Product Name (F11)";
                         txtProductNamePICode.CharacterCasing = CharacterCasing.Normal;
                     }
                 }

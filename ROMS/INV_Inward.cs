@@ -147,7 +147,7 @@ namespace ROMS
                 {
                     udfnTransactionData();
                     this.ActiveControl = txtStockLocation;
-                    lblProductName.Text = "Search by P.I Code";
+                    lblProductName.Text = "Search by P.I Code (F11)";
                     if (varEditflag == 0)
                     {
                         udfnEdit();
