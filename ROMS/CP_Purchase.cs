@@ -1095,7 +1095,7 @@ namespace ROMS
                 {
                     cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                     DateTime varmindate = MainForm.pbCurrentDate;
-                    dpVoucherDate.MinDate = varmindate;
+                   // dpVoucherDate.MinDate = varmindate;
                     dpVoucherDate.MaxDate = varmindate;
                     dpVoucherDate.Text =Convert.ToString(MainForm.pbCurrentDate);
                 }
@@ -1418,6 +1418,7 @@ namespace ROMS
             {
                 if (pbPurchaseno != "0")
                 {
+                    dpVoucherDate.Enabled = false;
                     varEditFlag = 1;
                     varRemarkFlag = 1;
                     udfnRemark();
@@ -9359,6 +9360,7 @@ namespace ROMS
             {
                 MainForm.objPUR_Purchase_Level_Verified = new PUR_Purchase_Level_Verified();
                 MainForm.objPUR_Purchase_Level_Verified.pbPurID = Convert.ToString(pbPurchaseno);
+                MainForm.objPUR_Purchase_Level_Verified.varVoucherDate = Convert.ToString(dpVoucherDate.Text);
                 MainForm.objPUR_Purchase_Level_Verified.ShowDialog();
                 btnSave.Focus();
             }

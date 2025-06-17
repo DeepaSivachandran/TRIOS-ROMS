@@ -3827,7 +3827,6 @@
             // dpVoucherDate
             // 
             this.dpVoucherDate.CustomFormat = "dd/MM/yyyy";
-            this.dpVoucherDate.Enabled = false;
             this.dpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpVoucherDate.Location = new System.Drawing.Point(88, 29);
             this.dpVoucherDate.Name = "dpVoucherDate";

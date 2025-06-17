@@ -28,6 +28,7 @@ namespace ROMS
         public string varUserId = "";
         public string pbGRNId = "";
         public string varPasskey = "";
+        public string pbGRNDate = "";
         public int flag = 0, verified1 = 0, verified2 = 0;
         public PUR_GRN_Level_Verified()
         {
@@ -297,7 +298,8 @@ namespace ROMS
                 //dpVerified2.MinDate = MainForm.pbFYStartDate;
                 //dpVerified2.MaxDate = MainForm.pbCurrentDate;
                 MR_Master objMR_Master = new MR_Master();
-                objMR_Master.ViewType =19;
+                objMR_Master.ViewType = 24;
+                objMR_Master.paraDate = pbGRNDate;
                 SPDataService objDServ = new SPDataService();
                 DataSet objd = new DataSet();
                 objd = objDServ.udfnMaster(objMR_Master);

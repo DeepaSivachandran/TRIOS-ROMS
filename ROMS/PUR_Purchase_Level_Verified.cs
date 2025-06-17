@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tpVerified2 = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varUserId = "";
+        public string varUserId = "",varVoucherDate="";
         public string varVerifiedName = "";
         public string pbPurID = "", pbstsId = "";
         public string varPasskey = "", varEditFlag = "0", varEditFlag2 = "0";
@@ -284,7 +284,8 @@ namespace ROMS
                     dpVerified2.MinDate = MainForm.pbFYStartDate;
                     dpVerified2.MaxDate = MainForm.pbCurrentDate;
                     MR_Master objMR_Master = new MR_Master();
-                    objMR_Master.ViewType = 19;
+                    objMR_Master.ViewType = 24;
+                    objMR_Master.paraDate = varVoucherDate;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
