@@ -70,6 +70,7 @@ namespace ROMS
         public string varBlockedSupplier = "0", varBlockedReason = "", varInwardDate = "";
         public double varDVA = 0, varCPA = 0;
         public int pbAutoSaveFlag = 0;
+        public int pbGSTINCloseFlag = 0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -768,6 +769,7 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                pbGSTINCloseFlag = 1;
                                 this.Close();
                             }
                         }
@@ -1398,13 +1400,16 @@ namespace ROMS
         {
             try
             {
-                //MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                //MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
-                //MainForm.objPUR_GSTIN.ShowDialog();
-                MainForm.objPUR_GSTINVerify = new PUR_GSTINVerify();
-                MainForm.objPUR_GSTINVerify.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
-                MainForm.objPUR_GSTINVerify.ShowDialog();
-                txtGstin.Text = Convert.ToString(MainForm.objPUR_GSTINVerify.varGSTINText);
+                if (pbGSTINCloseFlag == 0)
+                {
+                    //MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                    //MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
+                    //MainForm.objPUR_GSTIN.ShowDialog();
+                    MainForm.objPUR_GSTINVerify = new PUR_GSTINVerify();
+                    MainForm.objPUR_GSTINVerify.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
+                    MainForm.objPUR_GSTINVerify.ShowDialog();
+                    txtGstin.Text = Convert.ToString(MainForm.objPUR_GSTINVerify.varGSTINText);
+                }
             }
             catch (Exception ex)
             {

@@ -218,6 +218,7 @@ namespace ROMS
             {
                 this.Close();
                 MainForm.objCP_Purchase.varCloseflag = 1;
+                MainForm.objCP_Purchase.pbGSTINCloseFlag = 1;
                 MainForm.objCP_Purchase.udfnclose();
                 //this.Hide();
                 //MainForm.objCP_PurchaseList = new CP_PurchaseList();
