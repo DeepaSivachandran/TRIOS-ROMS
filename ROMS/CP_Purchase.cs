@@ -70,7 +70,7 @@ namespace ROMS
         public string varBlockedSupplier = "0", varBlockedReason = "", varInwardDate = "";
         public double varDVA = 0, varCPA = 0;
         public int pbAutoSaveFlag = 0;
-        public int pbGSTINCloseFlag = 0;
+        public int pbGSTINCloseFlag = 0, pbPaymentCompletedFlag = 0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -1174,6 +1174,10 @@ namespace ROMS
                 { cmbQtyType.SelectedValue = 202; cmbQtyType.Enabled = false; }
                 if (grdSupplierList.RowCount != 0)
                 { btnClear.Enabled = false; }
+                if (pbPaymentCompletedFlag == 65)
+                {
+                    btnUnapprove.Enabled = false;
+                }
             }
             catch (Exception ex)
             {

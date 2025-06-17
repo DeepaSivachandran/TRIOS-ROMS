@@ -144,6 +144,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["PURID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PUR_CompleteFlag"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Overall Full Status"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["Payment Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
                             grdPurchaseEntryApproval.Columns["Concern"].Width = 70;
                             grdPurchaseEntryApproval.Columns["Vouc No."].Width = 70;
@@ -236,6 +237,7 @@ namespace ROMS
                 MainForm.objCP_Purchase.pbUnapprovePURID = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value);
                 MainForm.objCP_Purchase.varUnApproveFlag = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PUR_CompleteFlag"].Value);
+                MainForm.objCP_Purchase.pbPaymentCompletedFlag = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["Payment Status"].Value);
                 //MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
@@ -259,6 +261,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
                 DGV_SearchGrid.Columns["clmUnapproved"].Visible = false;
                 DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
+                DGV_SearchGrid.Columns["Payment Status"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Concern"].Width = 80;
                 DGV_SearchGrid.Columns["Vouc No."].Width = 100;
@@ -1102,6 +1105,13 @@ namespace ROMS
                         Check.Value = "";
                         grdPurchaseEntryApproval.Rows[i].Cells["clmCheck"] = Check;
                         Check.ReadOnly = true;
+                    }
+                    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["Payment Status"].Value) == "65")
+                    {
+                        DataGridViewTextBoxCell UnApprove = new DataGridViewTextBoxCell();
+                        UnApprove.Value = "";
+                        grdPurchaseEntryApproval.Rows[i].Cells["clmUnapproved"] = UnApprove;
+                        UnApprove.ReadOnly = true;
                     }
                 }
             }
