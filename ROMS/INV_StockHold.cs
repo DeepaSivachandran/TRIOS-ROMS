@@ -48,7 +48,7 @@ namespace ROMS
                 objDBind = null;
                 this.ActiveControl = txtProductNamePICode;
                 VarSearchFlag = true;
-                lblProductName.Text = "Search by P.I Code";
+                lblProductName.Text = "Search by P.I Code (F11)";
                 lblUnit.Text = "";
                 udfnList();
                 //if (grdStockHold.Rows.Count>0)
@@ -209,13 +209,13 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
+                        lblProductName.Text = "Search by P.I Code (F11)";
                         txtProductNamePICode.CharacterCasing = CharacterCasing.Upper;
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
+                        lblProductName.Text = "Search by Product Name (F11)";
                         txtProductNamePICode.CharacterCasing = CharacterCasing.Normal;
                     }
                 }

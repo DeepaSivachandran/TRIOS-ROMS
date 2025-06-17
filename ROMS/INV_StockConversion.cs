@@ -138,7 +138,7 @@ namespace ROMS
                 {
                     this.ActiveControl = txtProductName;
                     VarSearchFlag = true;
-                    lblProductName.Text = "Search by P.I Code";
+                    lblProductName.Text = "Search by P.I Code (F11)";
                     grdBatchConversion.ClearSelection();
                     if (btnSave.Text == "Save")
                     {
@@ -275,13 +275,13 @@ namespace ROMS
                     if (VarSearchFlag == false)
                     {
                         VarSearchFlag = true;
-                        lblProductName.Text = "Search by P.I Code";
+                        lblProductName.Text = "Search by P.I Code (F11)";
                         txtProductName.CharacterCasing = CharacterCasing.Upper;
                     }
                     else
                     {
                         VarSearchFlag = false;
-                        lblProductName.Text = "Search by Product Name";
+                        lblProductName.Text = "Search by Product Name (F11)";
                         txtProductName.CharacterCasing = CharacterCasing.Normal;
                     }
                 }

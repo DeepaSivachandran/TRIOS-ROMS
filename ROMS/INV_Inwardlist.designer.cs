@@ -86,6 +86,7 @@
             this.tsInwardList.BackColor = System.Drawing.Color.White;
             this.tsInwardList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsInwardList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsInwardList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsInwardList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.toolStripButton1,
@@ -98,7 +99,7 @@
             this.tsbNew});
             this.tsInwardList.Location = new System.Drawing.Point(0, 0);
             this.tsInwardList.Name = "tsInwardList";
-            this.tsInwardList.Size = new System.Drawing.Size(1354, 27);
+            this.tsInwardList.Size = new System.Drawing.Size(1354, 32);
             this.tsInwardList.TabIndex = 35;
             this.tsInwardList.Text = "Inward";
             // 
@@ -109,8 +110,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(172, 24);
-            this.tspHeader.Text = "Goods Inward  From Others";
+            this.tspHeader.Size = new System.Drawing.Size(204, 29);
+            this.tspHeader.Text = "Goods Inward From Others";
             // 
             // toolStripButton1
             // 
@@ -121,7 +122,7 @@
             this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 29);
             // 
             // tsbQue
             // 
@@ -132,7 +133,7 @@
             this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbQue.Name = "tsbQue";
             this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbQue.Size = new System.Drawing.Size(63, 24);
+            this.tsbQue.Size = new System.Drawing.Size(74, 29);
             this.tsbQue.Text = "Queue";
             this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
             // 
@@ -141,7 +142,7 @@
             this.toolStripSeparator3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
             // 
             // tsbDelete
             // 
@@ -152,7 +153,7 @@
             this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbDelete.Name = "tsbDelete";
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
+            this.tsbDelete.Size = new System.Drawing.Size(75, 29);
             this.tsbDelete.Text = "Delete";
             this.tsbDelete.Click += new System.EventHandler(this.TsbDelete_Click);
             // 
@@ -161,7 +162,7 @@
             this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 32);
             // 
             // tsbEdit
             // 
@@ -172,7 +173,7 @@
             this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
+            this.tsbEdit.Size = new System.Drawing.Size(57, 29);
             this.tsbEdit.Text = "&Edit";
             this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
             // 
@@ -180,7 +181,7 @@
             // 
             this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
             // 
             // tsbNew
             // 
@@ -188,7 +189,7 @@
             this.tsbNew.Image = global::ROMS.Properties.Resources.New;
             this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNew.Name = "tsbNew";
-            this.tsbNew.Size = new System.Drawing.Size(52, 24);
+            this.tsbNew.Size = new System.Drawing.Size(65, 29);
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.TsbNew_Click_1);
             // 
@@ -239,6 +240,7 @@
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
+            this.DGV_FilterProduct.RowHeadersWidth = 51;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -311,7 +313,7 @@
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(943, 21);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.Size = new System.Drawing.Size(56, 26);
             this.lblStatus.TabIndex = 111111137;
             this.lblStatus.Text = "Status";
             // 
@@ -320,7 +322,7 @@
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Location = new System.Drawing.Point(948, 47);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(179, 27);
+            this.cmbStatus.Size = new System.Drawing.Size(179, 33);
             this.cmbStatus.TabIndex = 5;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
@@ -331,7 +333,7 @@
             // 
             this.txtStockLocation.Location = new System.Drawing.Point(358, 47);
             this.txtStockLocation.Name = "txtStockLocation";
-            this.txtStockLocation.Size = new System.Drawing.Size(171, 27);
+            this.txtStockLocation.Size = new System.Drawing.Size(171, 32);
             this.txtStockLocation.TabIndex = 3;
             this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtStockLocation_TextChanged);
             this.txtStockLocation.Enter += new System.EventHandler(this.TxtStockLocation_Enter);
@@ -343,7 +345,7 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(9, 47);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(121, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(121, 33);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -356,7 +358,7 @@
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpToDate.Location = new System.Drawing.Point(246, 47);
             this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(104, 27);
+            this.dpToDate.Size = new System.Drawing.Size(104, 32);
             this.dpToDate.TabIndex = 2;
             this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
@@ -367,7 +369,7 @@
             this.txtProductName.Location = new System.Drawing.Point(535, 47);
             this.txtProductName.MaxLength = 2;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(407, 27);
+            this.txtProductName.Size = new System.Drawing.Size(407, 32);
             this.txtProductName.TabIndex = 4;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -379,7 +381,7 @@
             this.lblDProductNamePicode.AutoSize = true;
             this.lblDProductNamePicode.Location = new System.Drawing.Point(532, 22);
             this.lblDProductNamePicode.Name = "lblDProductNamePicode";
-            this.lblDProductNamePicode.Size = new System.Drawing.Size(134, 20);
+            this.lblDProductNamePicode.Size = new System.Drawing.Size(164, 25);
             this.lblDProductNamePicode.TabIndex = 958811;
             this.lblDProductNamePicode.Text = "Product Name/P.I Code";
             // 
@@ -389,7 +391,7 @@
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpFromDate.Location = new System.Drawing.Point(138, 47);
             this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(104, 27);
+            this.dpFromDate.Size = new System.Drawing.Size(104, 32);
             this.dpFromDate.TabIndex = 1;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
@@ -402,7 +404,7 @@
             this.lblDGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lblDGodown.Location = new System.Drawing.Point(356, 22);
             this.lblDGodown.Name = "lblDGodown";
-            this.lblDGodown.Size = new System.Drawing.Size(87, 20);
+            this.lblDGodown.Size = new System.Drawing.Size(110, 25);
             this.lblDGodown.TabIndex = 38;
             this.lblDGodown.Text = "Stock Location";
             // 
@@ -411,7 +413,7 @@
             this.lblinwarddate.AutoSize = true;
             this.lblinwarddate.Location = new System.Drawing.Point(136, 22);
             this.lblinwarddate.Name = "lblinwarddate";
-            this.lblinwarddate.Size = new System.Drawing.Size(75, 20);
+            this.lblinwarddate.Size = new System.Drawing.Size(92, 25);
             this.lblinwarddate.TabIndex = 92;
             this.lblinwarddate.Text = "Inward Date";
             // 
@@ -421,7 +423,7 @@
             this.lblDConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lblDConcern.Location = new System.Drawing.Point(5, 22);
             this.lblDConcern.Name = "lblDConcern";
-            this.lblDConcern.Size = new System.Drawing.Size(54, 20);
+            this.lblDConcern.Size = new System.Drawing.Size(66, 25);
             this.lblDConcern.TabIndex = 36;
             this.lblDConcern.Text = "Concern";
             // 
@@ -462,7 +464,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(622, 381);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
             this.lblNoRecordsFound.TabIndex = 958798;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -500,6 +502,7 @@
             this.grdInwardList.Name = "grdInwardList";
             this.grdInwardList.ReadOnly = true;
             this.grdInwardList.RowHeadersVisible = false;
+            this.grdInwardList.RowHeadersWidth = 51;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdInwardList.RowsDefaultCellStyle = dataGridViewCellStyle6;
@@ -542,6 +545,7 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 90);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
+            this.DGV_SearchGrid.RowHeadersWidth = 51;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle9;
@@ -580,13 +584,13 @@
             this.lblQueueCount.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblQueueCount.Location = new System.Drawing.Point(1305, 4);
             this.lblQueueCount.Name = "lblQueueCount";
-            this.lblQueueCount.Size = new System.Drawing.Size(17, 20);
+            this.lblQueueCount.Size = new System.Drawing.Size(22, 26);
             this.lblQueueCount.TabIndex = 1111199;
             this.lblQueueCount.Text = "0";
             // 
             // INV_Inwardlist
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
