@@ -759,25 +759,28 @@ namespace ROMS
         {
             try
             {
-                if (varClose == 0)
+                if (pbAutoSaveFlag == 0)
                 {
-                    if (varCloseflag == 0)
+                    if (varClose == 0)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
+                        if (varCloseflag == 0)
+                        {
+                            DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                this.Close();
+                            }
+                        }
+                        else
                         {
                             this.Close();
                         }
                     }
-                    else
+                    if (varQueueFlag == 1)
                     {
-                        this.Close();
+                        MainForm.objPUR_PurchaseQueue.udfnDate();
+                        MainForm.objPUR_PurchaseQueue.udfnList();
                     }
-                }
-                if (varQueueFlag == 1)
-                {
-                    MainForm.objPUR_PurchaseQueue.udfnDate();
-                    MainForm.objPUR_PurchaseQueue.udfnList();
                 }
             }
             catch (Exception ex)
@@ -1475,6 +1478,7 @@ namespace ROMS
                                 varPaymentStatus = Convert.ToInt16(objDs.Tables[0].Rows[0]["Payment Status"]);
                                 varShelflifeLevel1 = Convert.ToInt32(objDs.Tables[0].Rows[0]["Level1"]);
                                 varShelflifeLevel2 = Convert.ToInt32(objDs.Tables[0].Rows[0]["Level2"]);
+                                PbSTS = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_STSID"]);
                                 
                                 if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Einvoice"]) == "0")
                                 {
@@ -2416,7 +2420,7 @@ namespace ROMS
                 decimal varFreeQty = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmFreeqty"].Value)) != "") { varFreeQty = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmFreeqty"].Value); }
                 decimal varPurRate = 0; if (Convert.ToString((grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value)) != "")
                 {
-                    string mrp = string.Format("{0:0.000000}", Math.Round(Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value), 6, MidpointRounding.AwayFromZero));
+                    string mrp = string.Format("{0:0.000}", Math.Round(Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value), 6, MidpointRounding.AwayFromZero));
                     grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value = mrp;
                     varPurRate = Convert.ToDecimal(grdPurchaseList.CurrentRow.Cells["clmPurchaseRate"].Value);
                 }
@@ -4828,13 +4832,16 @@ namespace ROMS
                             }
                         }
                         varSourceLocationID = Convert.ToInt32(varId_SourceLocation);
-                        if (varId_SourceLocation == "0" || varId_SourceLocation == "-1")
+                        if (varGRNProType != "226")
                         {
-                            errPurchaseentry.SetError(txtSourceLocation, "Please select valid location.");
-                            txtSourceLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpStockLocation.ShowAlways = true;
-                            tpStockLocation.Show("Please select valid location.", txtSourceLocation, 5000);
-                            varErrorFlag = true;
+                            if (varId_SourceLocation == "0" || varId_SourceLocation == "-1")
+                            {
+                                errPurchaseentry.SetError(txtSourceLocation, "Please select valid location.");
+                                txtSourceLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpStockLocation.ShowAlways = true;
+                                tpStockLocation.Show("Please select valid location.", txtSourceLocation, 5000);
+                                varErrorFlag = true;
+                            }
                         }
                     }
                     if (varPrMRPFlag == "1" && (txtMrp.Text.Trim() == "" || Convert.ToDecimal(txtMrp.Text) == 0) && (varQuantityType!="226" ||
@@ -10848,7 +10855,7 @@ namespace ROMS
                                             decimal varFreeQty = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value)) != "") { varFreeQty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmFreeqty"].Value); }
                                             decimal varPurchaseRate = 0; if (Convert.ToString((grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value)) != "")
                                             {
-                                                string mrp = string.Format("{0:0.000000}", Math.Round(Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value), 6, MidpointRounding.AwayFromZero));
+                                                string mrp = string.Format("{0:0.000}", Math.Round(Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value), 6, MidpointRounding.AwayFromZero));
                                                 grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value = mrp;
                                                 varPurchaseRate = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value);
                                             }
@@ -11016,7 +11023,7 @@ namespace ROMS
                     decimal varFreeQty = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmFreeqty"].Value)) != "") { varFreeQty = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmFreeqty"].Value); }
                     decimal varPurchaseRate = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value)) != "")
                     {
-                        string mrp = string.Format("{0:0.000000}", Math.Round(Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value), 6, MidpointRounding.AwayFromZero));
+                        string mrp = string.Format("{0:0.000}", Math.Round(Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value), 6, MidpointRounding.AwayFromZero));
                         grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value = mrp;
                         varPurchaseRate = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmPurchaseRate"].Value);
                     }
@@ -11786,7 +11793,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbPurchaseCash.Focus();
+                    if (gpPurchase.Enabled == true)
+                    { rbPurchaseCash.Focus(); }
+                    else
+                    {
+                        if (gpPayment.Enabled == true)
+                        { rbPaymentCash.Focus(); }
+                        else { rbDiscountBefore.Focus(); }
+                    }
                 }
             }
             catch (Exception ex)
