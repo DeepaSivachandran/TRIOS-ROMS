@@ -1727,9 +1727,9 @@ namespace ROMS
                                         grdTaxDetails.Columns["GST%"].Width = 60;
                                         grdTaxDetails.Columns["Taxable Value"].Width = 100;
                                         grdTaxDetails.Columns["Tax Value"].Width = 80;
-                                        grdTaxDetails.Columns["IGST%"].Width = 80;
-                                        grdTaxDetails.Columns["CGST%"].Width = 80;
-                                        grdTaxDetails.Columns["SGST%"].Width = 80;
+                                        grdTaxDetails.Columns["IGST%"].Width = 60;
+                                        grdTaxDetails.Columns["CGST%"].Width = 60;
+                                        grdTaxDetails.Columns["SGST%"].Width = 60;
                                         grdTaxDetails.Columns["IGST Value"].Width = 100;
                                         grdTaxDetails.Columns["CGST Value"].Width = 100;
                                         grdTaxDetails.Columns["SGST Value"].Width = 100;
@@ -2323,9 +2323,9 @@ namespace ROMS
                             grdTaxDetails.Columns["GST%"].Width = 60;
                             grdTaxDetails.Columns["Taxable Value"].Width = 100;
                             grdTaxDetails.Columns["Tax Value"].Width = 80;
-                            grdTaxDetails.Columns["IGST%"].Width = 80;
-                            grdTaxDetails.Columns["CGST%"].Width = 80;
-                            grdTaxDetails.Columns["SGST%"].Width = 80;
+                            grdTaxDetails.Columns["IGST%"].Width = 60;
+                            grdTaxDetails.Columns["CGST%"].Width = 60;
+                            grdTaxDetails.Columns["SGST%"].Width = 60;
                             grdTaxDetails.Columns["IGST Value"].Width = 100;
                             grdTaxDetails.Columns["CGST Value"].Width = 100;
                             grdTaxDetails.Columns["SGST Value"].Width = 100;
