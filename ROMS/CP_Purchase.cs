@@ -1094,7 +1094,7 @@ namespace ROMS
                 {
                     cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                     DateTime varmindate = MainForm.pbCurrentDate;
-                    dpVoucherDate.MinDate = varmindate;
+                    //dpVoucherDate.MinDate = varmindate;
                     dpVoucherDate.MaxDate = varmindate;
                     dpVoucherDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 }
