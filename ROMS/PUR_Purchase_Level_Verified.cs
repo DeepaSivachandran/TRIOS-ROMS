@@ -30,6 +30,7 @@ namespace ROMS
         public string pbPurID = "", pbstsId = "";
         public string varPasskey = "", varEditFlag = "0", varEditFlag2 = "0";
         public int flag = 0, verified1 = 0, verified2 = 0;
+        public string varVoucherDate = "";
         public PUR_Purchase_Level_Verified()
         {
 
@@ -284,7 +285,8 @@ namespace ROMS
                     dpVerified2.MinDate = MainForm.pbFYStartDate;
                     dpVerified2.MaxDate = MainForm.pbCurrentDate;
                     MR_Master objMR_Master = new MR_Master();
-                    objMR_Master.ViewType = 19;
+                    objMR_Master.ViewType = 24;
+                    objMR_Master.paraDate = varVoucherDate;
                     SPDataService objDServ = new SPDataService();
                     DataSet objd = new DataSet();
                     objd = objDServ.udfnMaster(objMR_Master);
