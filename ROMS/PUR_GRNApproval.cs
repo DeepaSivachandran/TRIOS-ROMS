@@ -28,6 +28,7 @@ namespace ROMS
         DataTable dtFilteredReason = new DataTable();
         DataTable dtGRNReason = new DataTable();
         DataTable dtProNotReceived = new DataTable();
+        public int pbLastSeenFlag = 0;
         public PUR_GRNApproval()
         {
             InitializeComponent();
@@ -41,6 +42,15 @@ namespace ROMS
                 DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    pbLastSeenFlag = 1;
+                    if (varFlag == 1)
+                    {
+                        udfnLastSeen();
+                    }
+                    if (varFlag == 2)
+                    {
+                        udfnGRNLastSeen();
+                    }
                     this.Close();
                     MainForm.objPUR_GRNApprovalList.udfnList();
                 }
@@ -724,9 +734,11 @@ namespace ROMS
             try
             {
                 if (varFlag == 1)
-                {   udfnLastSeen();   }
+                {//udfnLastSeen(); 
+                }
                 if (varFlag == 2)
-                { udfnGRNLastSeen(); }
+                {//udfnGRNLastSeen();
+                }
                
                 dtApproval.TableName = "TRN_GRNApproval_Product";
                 dtApproval.Columns.Add("GRNAPR_PRID", typeof(int));
@@ -903,6 +915,7 @@ namespace ROMS
                 objspdservice = new SPDataService();
                 objTRN_GRNApproval.ViewType = 1;
                 objTRN_GRNApproval.paraPURID = varID;
+                objTRN_GRNApproval.paraFlag = pbLastSeenFlag;
                 objTRN_GRNApproval.paraUserID = Convert.ToInt16(MainForm.pbUserID);
                 objTRN_GRNApproval.paraOriginator = "GRN Approval-Last Seen";
                 result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
@@ -924,6 +937,7 @@ namespace ROMS
                 objspdservice = new SPDataService();
                 objTRN_GRNApproval.ViewType = 3;
                 objTRN_GRNApproval.paraGRNID = varGRNID;
+                objTRN_GRNApproval.paraFlag = pbLastSeenFlag;
                 objTRN_GRNApproval.paraUserID = Convert.ToInt16(MainForm.pbUserID);
                 objTRN_GRNApproval.paraOriginator = "GRN Approval-Last Seen";
                 result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
@@ -1100,6 +1114,15 @@ namespace ROMS
                             MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             MainForm.objPUR_GRNApprovalList.udfnDate();
                             MainForm.objPUR_GRNApprovalList.udfnList();
+                            pbLastSeenFlag = 2;
+                            if (varFlag == 1)
+                            {
+                                udfnLastSeen();
+                            }
+                            if (varFlag == 2)
+                            {
+                                udfnGRNLastSeen();
+                            }
                             //udfnClear();
                             this.Close();
                         }
