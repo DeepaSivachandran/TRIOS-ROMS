@@ -218,7 +218,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(728, 10);
+            this.label4.Location = new System.Drawing.Point(728, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 26);
             this.label4.TabIndex = 111111158;
@@ -333,7 +333,7 @@
             // 
             this.lblBrand.AutoSize = true;
             this.lblBrand.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrand.Location = new System.Drawing.Point(902, 9);
+            this.lblBrand.Location = new System.Drawing.Point(900, 9);
             this.lblBrand.Name = "lblBrand";
             this.lblBrand.Size = new System.Drawing.Size(52, 26);
             this.lblBrand.TabIndex = 111111165;
