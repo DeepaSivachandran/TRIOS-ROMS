@@ -228,8 +228,8 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbEntryType.SelectedValue) == "55" || Convert.ToString(cmbEntryType.SelectedValue) == "56") //Direct and against PO
                 { btnVerified.Enabled = true; }
-                //else
-                //{ btnVerified.Enabled = false; }
+                else
+                { btnVerified.Enabled = false; }
                 if (Convert.ToString(cmbEntryType.SelectedValue) == "54")//GRN
                 {
                     grpGRNloadingUnloading.Enabled = true;
