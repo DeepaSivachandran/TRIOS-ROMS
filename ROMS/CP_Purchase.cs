@@ -760,8 +760,7 @@ namespace ROMS
         {
             try
             {
-                if (pbAutoSaveFlag == 0)
-                {
+                
                     if (varClose == 0)
                     {
                         if (varCloseflag == 0)
@@ -783,7 +782,7 @@ namespace ROMS
                         MainForm.objPUR_PurchaseQueue.udfnDate();
                         MainForm.objPUR_PurchaseQueue.udfnList();
                     }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1184,6 +1183,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { pbAutoSaveFlag = 0; }
         }
         public void udfnGeneralSettingsList()
         {
@@ -2346,9 +2347,9 @@ namespace ROMS
                 if(pbAutoSaveFlag==1)
                 {
                     if(btnSave.Enabled==true)
-                    {
+                    { 
+                        udfnSave(sender, e);
                         pbAutoSaveFlag = 0;
-                        BtnSave_Click(sender, e); 
                     }
                 }
             }
@@ -6298,6 +6299,7 @@ namespace ROMS
         {
             try
             {
+                pbAutoSaveFlag = 0;
                 if (varPaymentStatus == 65)
                 { udfnAfterPaymentSave(); }
                 else
@@ -6789,12 +6791,17 @@ namespace ROMS
                             {
                                 if (result2.Split('~')[0] == "5")
                                 {
-                                    DialogResult dialogResult = MessageBox.Show(result2.Split('~')[1], "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (dialogResult == DialogResult.No)
-                                    { varSaveFlag = 0; }
-                                    if (dialogResult == DialogResult.Yes)
+                                    if (pbAutoSaveFlag == 1)
+                                    { varSaveFlag = 1; }
+                                    else
                                     {
-                                        varSaveFlag = 1;
+                                        DialogResult dialogResult = MessageBox.Show(result2.Split('~')[1], "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if (dialogResult == DialogResult.No)
+                                        { varSaveFlag = 0; }
+                                        if (dialogResult == DialogResult.Yes)
+                                        {
+                                            varSaveFlag = 1;
+                                        }
                                     }
                                 }
                                 else { varSaveFlag = 1; }
@@ -7061,7 +7068,10 @@ namespace ROMS
                                         {
                                             chkCompleted.Enabled = true;
                                             varModifiedFlag = 0;
-                                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            if (pbAutoSaveFlag == 0)
+                                            {
+                                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            }
                                             this.ActiveControl = txtSupplier;
                                             MainForm.objCP_PurchaseList.udfnListLoad();
                                             
@@ -7088,7 +7098,7 @@ namespace ROMS
                                                     tbDetails.SelectedIndex = 1;
                                                 }
                                                 else
-                                                { varCloseflag = 1; } 
+                                                { if (pbAutoSaveFlag == 0) { varCloseflag = 1; } } 
                                             }
                                             else if (btnSave.Text == "Save as Draft" && varEditFlag==1 && varConvertFlag==0)
                                             {
@@ -7102,14 +7112,17 @@ namespace ROMS
                                                     tbDetails.SelectedIndex = 1;
                                                 }
                                                 else
-                                                { varCloseflag = 1; udfnclose(); }
+                                                { if (pbAutoSaveFlag == 0) { varCloseflag = 1; udfnclose(); } }
                                             }
                                             else if(varConvertFlag == 1)
                                             {
                                                 if(Convert.ToInt16(grdSupplierList.RowCount)==Convert.ToInt16(grdPurchaseList.RowCount))
                                                 {
-                                                    varCloseflag = 1;
-                                                    udfnclose();
+                                                    if (pbAutoSaveFlag == 0)
+                                                    {
+                                                        varCloseflag = 1;
+                                                        udfnclose();
+                                                    }
                                                 }
                                                 else
                                                 {
@@ -7119,8 +7132,11 @@ namespace ROMS
                                             }
                                             else
                                             {
-                                                varCloseflag = 1;
-                                                udfnclose();
+                                                if (pbAutoSaveFlag == 0)
+                                                {
+                                                    varCloseflag = 1;
+                                                    udfnclose();
+                                                }
                                             }
                                         }
                                         else
@@ -8561,6 +8577,7 @@ namespace ROMS
         {
             try
             {
+                pbAutoSaveFlag = 1;
                 //if (e.ColumnIndex == grdSupplierList.Columns["HSN Name"].Index && e.RowIndex >= 0)
                 //{ 
                 //    string SelectedGSTName = grdSupplierList.Rows[e.RowIndex].Cells["GSTValue"].Value?.ToString();
@@ -10095,8 +10112,7 @@ namespace ROMS
         private void GrdPurchaseList_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {
-                pbAutoSaveFlag = 1;
+            { 
                 if (e.ColumnIndex == grdPurchaseList.Columns["clmDiscAmt"].Index && e.RowIndex >= 0)
                 {
                     decimal varInvQty = 0; if (Convert.ToString((grdPurchaseList.Rows[e.RowIndex].Cells["clmInvQty"].Value)) != "") { varInvQty = Convert.ToDecimal(grdPurchaseList.Rows[e.RowIndex].Cells["clmInvQty"].Value); }
@@ -11011,7 +11027,7 @@ namespace ROMS
         {
             try
             {
-                varDiscountFlag = 0;
+                varDiscountFlag = 0; pbAutoSaveFlag = 1;
                 if (pbPurchaseno != "0")
                 {
                     varEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
