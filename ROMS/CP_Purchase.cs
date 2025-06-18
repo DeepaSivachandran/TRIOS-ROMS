@@ -70,6 +70,7 @@ namespace ROMS
         public string varBlockedSupplier = "0", varBlockedReason = "", varInwardDate = "";
         public double varDVA = 0, varCPA = 0;
         public int pbAutoSaveFlag = 0;
+        public int pbGSTINCloseFlag = 0, pbPaymentCompletedFlag = 0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -767,6 +768,7 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                pbGSTINCloseFlag = 1;
                                 this.Close();
                             }
                         }
@@ -1171,6 +1173,10 @@ namespace ROMS
                 { cmbQtyType.SelectedValue = 202; cmbQtyType.Enabled = false; }
                 if (grdSupplierList.RowCount != 0)
                 { btnClear.Enabled = false; }
+                if (pbPaymentCompletedFlag == 65)
+                {
+                    btnUnapprove.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1399,13 +1405,16 @@ namespace ROMS
         {
             try
             {
-                //MainForm.objPUR_GSTIN = new PUR_GSTIN();
-                //MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
-                //MainForm.objPUR_GSTIN.ShowDialog();
-                MainForm.objPUR_GSTINVerify = new PUR_GSTINVerify();
-                MainForm.objPUR_GSTINVerify.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
-                MainForm.objPUR_GSTINVerify.ShowDialog();
-                txtGstin.Text = Convert.ToString(MainForm.objPUR_GSTINVerify.varGSTINText);
+                if (pbGSTINCloseFlag == 0)
+                {
+                    //MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                    //MainForm.objPUR_GSTIN.pbPurchaseQueueFlag = varQueueFlag;
+                    //MainForm.objPUR_GSTIN.ShowDialog();
+                    MainForm.objPUR_GSTINVerify = new PUR_GSTINVerify();
+                    MainForm.objPUR_GSTINVerify.pbvarSupplierCode = Convert.ToInt16(lblSupplierCode.Text);
+                    MainForm.objPUR_GSTINVerify.ShowDialog();
+                    txtGstin.Text = Convert.ToString(MainForm.objPUR_GSTINVerify.varGSTINText);
+                }
             }
             catch (Exception ex)
             {
@@ -1719,9 +1728,9 @@ namespace ROMS
                                         grdTaxDetails.Columns["GST%"].Width = 60;
                                         grdTaxDetails.Columns["Taxable Value"].Width = 100;
                                         grdTaxDetails.Columns["Tax Value"].Width = 80;
-                                        grdTaxDetails.Columns["IGST%"].Width = 80;
-                                        grdTaxDetails.Columns["CGST%"].Width = 80;
-                                        grdTaxDetails.Columns["SGST%"].Width = 80;
+                                        grdTaxDetails.Columns["IGST%"].Width = 60;
+                                        grdTaxDetails.Columns["CGST%"].Width = 60;
+                                        grdTaxDetails.Columns["SGST%"].Width = 60;
                                         grdTaxDetails.Columns["IGST Value"].Width = 100;
                                         grdTaxDetails.Columns["CGST Value"].Width = 100;
                                         grdTaxDetails.Columns["SGST Value"].Width = 100;
@@ -2315,9 +2324,9 @@ namespace ROMS
                             grdTaxDetails.Columns["GST%"].Width = 60;
                             grdTaxDetails.Columns["Taxable Value"].Width = 100;
                             grdTaxDetails.Columns["Tax Value"].Width = 80;
-                            grdTaxDetails.Columns["IGST%"].Width = 80;
-                            grdTaxDetails.Columns["CGST%"].Width = 80;
-                            grdTaxDetails.Columns["SGST%"].Width = 80;
+                            grdTaxDetails.Columns["IGST%"].Width = 60;
+                            grdTaxDetails.Columns["CGST%"].Width = 60;
+                            grdTaxDetails.Columns["SGST%"].Width = 60;
                             grdTaxDetails.Columns["IGST Value"].Width = 100;
                             grdTaxDetails.Columns["CGST Value"].Width = 100;
                             grdTaxDetails.Columns["SGST Value"].Width = 100;

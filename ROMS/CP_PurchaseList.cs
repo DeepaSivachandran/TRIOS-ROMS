@@ -670,7 +670,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["GSTIN"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["Inv Date"].Width = 80;
                             grdPurchaseEntryList.Columns["Inv Date"].ReadOnly = true;
-                            grdPurchaseEntryList.Columns["Inv No."].Width = 70; 
+                            grdPurchaseEntryList.Columns["Inv No."].Width = 110; 
                             grdPurchaseEntryList.Columns["Inv No."].ReadOnly = true; 
                             grdPurchaseEntryList.Columns["Created By"].Width = 200;
                             grdPurchaseEntryList.Columns["Created By"].ReadOnly = true;
@@ -679,7 +679,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["Tot Pro"].Width = 100;
                             grdPurchaseEntryList.Columns["Tot Pro"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["clmCheck"].Width = 50;
-                            grdPurchaseEntryList.Columns["Inv Amt"].Width = 100;
+                            grdPurchaseEntryList.Columns["Inv Amt"].Width = 80;
                             grdPurchaseEntryList.Columns["Inv Amt"].ReadOnly = true;
                             grdPurchaseEntryList.Columns["Pur Entry Status"].Width = 110;
                             grdPurchaseEntryList.Columns["Pur Entry Status"].ReadOnly = true;
