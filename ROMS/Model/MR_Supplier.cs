@@ -29,5 +29,9 @@ namespace ROMS.Model
         public string ParaToDate = "";
         public int paraFlag = 0;
         public string ParaGSTIN = "";
+        public int paraProductCode = 0;
+        public int paraGroupCode = 0;
+        public int paraSubgroupCode = 0;
+        public int paraBrandCode = 0;
     }
 }
