@@ -104,17 +104,36 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "", varDelay = ""; int varDelayMin = 0;
-                if(txtSupplier.Text.Trim()=="")
+                string varSupplierName = "-All-",varProductName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = ""; int varDelayMin = 0;
+                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
+
+                if(txtSupplier.Text.Trim()!="")
                 {
-                    varSupplierName = "-All-";
-                    lblSupplierCode.Text = "0";
-                    lblschedleCode.Text = "0";
+                    varSupplierName = txtSupplier.Text.Trim();
+                    varSupplierCode = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleCode = Convert.ToInt32(lblschedleCode.Text);
                 }
-                else
+                if(txtProductName.Text.Trim()!="")
                 {
-                    varSupplierName = txtSupplier.Text;
+                    varProductName = txtProductName.Text.Trim();
+                    varProductCode = Convert.ToInt32(lblProductcode.Text);
                 }
+                if(txtGroup.Text.Trim()!="")
+                {
+                    varGroupName = txtGroup.Text.Trim();
+                    varGroupCode = Convert.ToInt32(lblGroupCode.Text);
+                }
+                if(txtSubGroup.Text.Trim()!="")
+                {
+                    varSubgroupName = txtSubGroup.Text.Trim();
+                    varSubgroupCode = Convert.ToInt32(lblSubGroupCode.Text);
+                }
+                if(txtBrand.Text.Trim()!="")
+                {
+                    varBrandName = txtBrand.Text.Trim();
+                    varBrandCode = Convert.ToInt32(lblBrandCode.Text);
+                }
+
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -126,8 +145,12 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 MR_Supplier objMR_Supplier = new MR_Supplier();
                 objMR_Supplier.ViewType = 41;
-                objMR_Supplier.paraSupplierid = Convert.ToInt32(0);
-                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(0);
+                objMR_Supplier.paraSupplierid = varSupplierCode;
+                objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
+                objMR_Supplier.paraProductCode = varProductCode;
+                objMR_Supplier.paraGroupCode = varGroupCode;
+                objMR_Supplier.paraSubgroupCode = varSubgroupCode;
+                objMR_Supplier.paraBrandCode = varBrandCode;
                 objMR_Supplier.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 SPDataService objspdservice = new SPDataService();
                 objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -144,10 +167,18 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Products.rpt");
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraSupplierid", Convert.ToInt32(lblSupplierCode.Text));
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
+                    objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    objBillreport.SetParameterValue("paraProductCode", varProductCode);
+                    objBillreport.SetParameterValue("paraProductName", varProductName);
+                    objBillreport.SetParameterValue("paraGroupCode", varGroupCode);
+                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                    objBillreport.SetParameterValue("paraSubgroupCode", varSubgroupCode);
+                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    objBillreport.SetParameterValue("paraBrandCode", varBrandCode);
+                    objBillreport.SetParameterValue("paraBrandName", varBrandName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);

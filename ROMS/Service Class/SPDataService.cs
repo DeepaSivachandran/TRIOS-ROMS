@@ -2022,6 +2022,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_Supplier.ParaFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_Supplier.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaGSTIN", objMR_Supplier.ParaGSTIN);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCode", objMR_Supplier.paraProductCode);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupCode", objMR_Supplier.paraGroupCode);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupCode", objMR_Supplier.paraSubgroupCode);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandCode", objMR_Supplier.paraBrandCode);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
