@@ -248,6 +248,8 @@ namespace ROMS
             }
             finally
             {
+                var distinctRackGroupCount = grdRackGroupList.Rows.Cast<DataGridViewRow>() .Where(row => row.Cells["ID"].Value != null) .Select(row => row.Cells["ID"].Value.ToString()).Distinct().Count();
+                lblTotalCount.Text = distinctRackGroupCount.ToString();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -1126,6 +1128,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                var distinctRackGroupCount = grdRackGroupList.Rows.Cast<DataGridViewRow>().Where(row => row.Cells["ID"].Value != null).Select(row => row.Cells["ID"].Value.ToString()).Distinct().Count();
+                lblTotalCount.Text = distinctRackGroupCount.ToString();
             }
         }
     }
