@@ -160,14 +160,22 @@ namespace ROMS
             }
             finally
             {
+                udfnTotal();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                btnView.Enabled = true;
+                btnView.Focus();
+            }
+        }
+        public void udfnTotal()
+        {
+            try
+            {
                 int ActiveCount = 0, InactiveCount = 0;
-
                 lblGC.Text = Convert.ToString(grdGroupList.Rows.Count);
                 for (int i = 0; i < grdGroupList.Rows.Count; i++)
                 {
-                    if((Convert.ToString(grdGroupList.Rows[i].Cells["StatusID"].Value) == "1"))
+                    if ((Convert.ToString(grdGroupList.Rows[i].Cells["StatusID"].Value) == "1"))
                     {
                         ActiveCount++;
                     }
@@ -178,8 +186,11 @@ namespace ROMS
                 }
                 lblActiveCount.Text = Convert.ToString(ActiveCount);
                 lblInactiveCount.Text = Convert.ToString(InactiveCount);
-                btnView.Enabled = true;
-                btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnDefaultSearchGrid()
@@ -845,6 +856,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                udfnTotal();
             }
         }
 

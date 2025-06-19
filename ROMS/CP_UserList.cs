@@ -166,9 +166,9 @@ namespace ROMS
             }
             finally
             {
+                lblTotalCount.Text = Convert.ToString(grdUserList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
-
                 btnView.Enabled = true;
                 btnView.Focus();
             }
@@ -966,6 +966,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblTotalCount.Text = Convert.ToString(grdUserList.Rows.Count);
             }
         }
 

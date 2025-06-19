@@ -366,6 +366,7 @@ namespace ROMS
             }
             finally
             {
+                lblTotalCount.Text = Convert.ToString(grdHSNList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -634,6 +635,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblTotalCount.Text = Convert.ToString(grdHSNList.Rows.Count);
             }
         }
 
