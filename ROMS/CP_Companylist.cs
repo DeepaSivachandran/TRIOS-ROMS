@@ -225,6 +225,7 @@ namespace ROMS
             }
             finally
             {
+                tsbTotalCount.Text = Convert.ToString(grdCompanyList.Rows.Count);
                 grdCompanyList.ClearSelection();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
@@ -638,6 +639,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                tsbTotalCount.Text = Convert.ToString(grdCompanyList.Rows.Count);
             }
         }
     }
