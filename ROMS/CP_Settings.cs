@@ -232,7 +232,7 @@ namespace ROMS
                             grdSettings.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSettings.Columns["S.No."].Width = 50;
                             grdSettings.Columns["Sample Transaction No."].Width =150;
-                            grdSettings.Columns["Transaction Type"].Width =150;
+                            grdSettings.Columns["Transaction Type"].Width =230;
                             grdSettings.Columns["Concern ID"].Visible = false;
                             grdSettings.Columns["No.of Digits"].Visible = false;
                             grdSettings.Columns["ID"].Visible = false;
