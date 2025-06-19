@@ -1419,6 +1419,7 @@ namespace ROMS
             {
                 if (pbPurchaseno != "0")
                 {
+                    dpVoucherDate.Enabled = false;
                     varEditFlag = 1;
                     varRemarkFlag = 1;
                     udfnRemark();
