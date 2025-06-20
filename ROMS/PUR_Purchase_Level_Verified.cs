@@ -29,8 +29,7 @@ namespace ROMS
         public string varVerifiedName = "";
         public string pbPurID = "", pbstsId = "";
         public string varPasskey = "", varEditFlag = "0", varEditFlag2 = "0";
-        public int flag = 0, verified1 = 0, verified2 = 0;
-        public string varVoucherDate = "";
+        public int flag = 0, verified1 = 0, verified2 = 0; 
         public PUR_Purchase_Level_Verified()
         {
 

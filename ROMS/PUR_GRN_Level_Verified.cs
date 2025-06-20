@@ -29,8 +29,7 @@ namespace ROMS
         public string pbGRNId = "";
         public string varPasskey = "";
         public string pbGRNDate = "";
-        public int flag = 0, verified1 = 0, verified2 = 0;
-        public string pbGRNDate = "";
+        public int flag = 0, verified1 = 0, verified2 = 0; 
         public PUR_GRN_Level_Verified()
         {
 
