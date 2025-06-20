@@ -25,7 +25,7 @@ namespace ROMS
         private ToolTip tpVerified2 = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varUserId = "";
+        public string varUserId = "",varVoucherDate="";
         public string varVerifiedName = "";
         public string pbPurID = "", pbstsId = "";
         public string varPasskey = "", varEditFlag = "0", varEditFlag2 = "0";

@@ -70,19 +70,22 @@ namespace ROMS
                     if (btnSave.Text == "Save")
                     {
                         btnViewedProduct.Enabled = false;
-                        MR_Master objMR_Master = new MR_Master();
-                        objMR_Master.ViewType = 4;
-                        objMR_Master.paraID = 6;
-                        objMR_Master.paraPOID = varPOID;
-                        SPDataService objDServ = new SPDataService();
-                        DataSet objd = new DataSet();
-                        objd = objDServ.udfnMaster(objMR_Master);
-                        objDServ.CloseConnection();
-                        if (objd.Tables[1].Rows.Count != 0)
-                        {
-                            DateTime varmindate = DateTime.ParseExact(objd.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                            dpPlanDate.MinDate = varmindate; dpPlanDate.MaxDate = varmindate;
-                        }
+                        //MR_Master objMR_Master = new MR_Master();
+                        //objMR_Master.ViewType = 4;
+                        //objMR_Master.paraID = 6;
+                        //objMR_Master.paraPOID = varPOID;
+                        //SPDataService objDServ = new SPDataService();
+                        //DataSet objd = new DataSet();
+                        //objd = objDServ.udfnMaster(objMR_Master);
+                        //objDServ.CloseConnection();
+                        //if (objd.Tables[1].Rows.Count != 0)
+                        //{
+                        //    DateTime varmindate = DateTime.ParseExact(objd.Tables[1].Rows[0]["MinToday"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        //    dpPlanDate.MinDate = varmindate; dpPlanDate.MaxDate = varmindate;
+                        //}
+
+                        dpPlanDate.MinDate = MainForm.pbFYStartDate;
+                        dpPlanDate.MaxDate = MainForm.pbCurrentDate;
                     }
                     udfnEditLoad();
                     //DataService objDservice = new DataService();
