@@ -6476,7 +6476,7 @@ namespace ROMS
                     }
                     if (varVerifiedErr == 0)
                     {
-                        if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text)) >= varDVA)
+                        if (chkCompleted.Checked == true && (Convert.ToDouble(txtInvoiceamt.Text)) >= varDVA && (Convert.ToString(cmbEntryType.SelectedValue) == "55" || Convert.ToString(cmbEntryType.SelectedValue) == "56"))
                         {
                             if (pbVerifiedBy1 == 0 || pbVerifiedBy1 == -1 || pbVerifiedBy2 == 0 || pbVerifiedBy2 == -1)
                             {
