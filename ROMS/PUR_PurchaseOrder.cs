@@ -47,7 +47,7 @@ namespace ROMS
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
-        } 
+        }
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
@@ -109,7 +109,7 @@ namespace ROMS
                     {
                         btnSave.Enabled = true;
                     }
-                    if (Currentsts == 38 || Currentsts == 51 || Currentsts==11)
+                    if (Currentsts == 38 || Currentsts == 51 || Currentsts == 11)
                     {
                         gpissued.Enabled = false;
                         btnAdd.Enabled = false;
@@ -145,7 +145,7 @@ namespace ROMS
                         }
                     }
                 }
-                if(Currentsts == 51)
+                if (Currentsts == 51)
                 {
                     btnSave.Enabled = false;
                 }
@@ -153,7 +153,7 @@ namespace ROMS
                 {
                     btnSave.Enabled = true;
                 }
-                if (varEditFlag==1 && VarStatusId!=12)
+                if (varEditFlag == 1 && VarStatusId != 12)
                 {
                     btnSave.Enabled = false;
                 }
@@ -167,7 +167,7 @@ namespace ROMS
             }
             finally
             {
-                lblPC.Text = grdsupplieradd.Rows.Count.ToString(); 
+                lblPC.Text = grdsupplieradd.Rows.Count.ToString();
             }
         }
         public void udfnEditLoad()
@@ -279,7 +279,7 @@ namespace ROMS
                                 udfnsupplierLoad();
                                 grdsupplieradd.Columns["clmStsname"].Visible = true;
                                 errPO.Clear();
-                                if(txtSupplier.Text.Trim() != "")
+                                if (txtSupplier.Text.Trim() != "")
                                 {
                                     txtSupplier.BackColor = SystemColors.Control;
                                 }
@@ -330,7 +330,7 @@ namespace ROMS
                 {
                     dpissuedateandtime.Enabled = false;
                     txtTurnAroundTime.Enabled = false;
-                    if (Currentsts == 38 || Currentsts == 51 || Currentsts==11)
+                    if (Currentsts == 38 || Currentsts == 51 || Currentsts == 11)
                     {
                         grdsupplieradd.Columns["clmRemove"].Visible = false;
                         grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
@@ -527,7 +527,7 @@ namespace ROMS
         {
             try
             {
-                udfnclose(); 
+                udfnclose();
                 MainForm.objPUR_PurchaseOrderList.udfnPOEntryLoad();
             }
             catch (Exception ex)
@@ -724,7 +724,7 @@ namespace ROMS
                     for (int i = 0; i < grdsupplieradd.Rows.Count; i++)
                     {
                         string varZero = "0"; int varDecimal = Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmUT_Decimal"].Value);
-                        varZero =0+objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
+                        varZero = 0 + objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
                         if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "" || Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == varZero || Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == 0)
                         {
                             varcount++; grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.LightPink;
@@ -737,7 +737,7 @@ namespace ROMS
                             grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Style.BackColor = Color.PaleGreen;
                         }
                         decimal OrderQty = 0;
-                        if(Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value)=="")
+                        if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value) == "")
                         {
                             OrderQty = 0;
                         }
@@ -752,7 +752,7 @@ namespace ROMS
                             varERRQty = "1";
                         }
                     }
-                    if(varERRQty=="1")
+                    if (varERRQty == "1")
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(89);
@@ -770,7 +770,7 @@ namespace ROMS
                     //}
                     if (chkStatus.Checked == true)
                     {
-                        if(txtRemark.Text.Trim()=="")
+                        if (txtRemark.Text.Trim() == "")
                         {
                             errPO.SetError(txtRemark, "Please enter remarks.");
                             txtRemark.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -893,9 +893,9 @@ namespace ROMS
                                                 }
                                                 //if (dpissuedateandtime.Enabled == true)
                                                 //{
-                                                    //issuedon();
+                                                //issuedon();
                                                 //}
-                                                if (chkStatus.Checked==false)
+                                                if (chkStatus.Checked == false)
                                                 {
                                                     SPDataService objDServ = new SPDataService();
                                                     string varMessage = objDServ.udfnGetMessages(87);
@@ -1032,7 +1032,7 @@ namespace ROMS
                     tpQty.Show("Please enter orderqty.", txtProductQty, 5000);
                     varErrorFlag = false;
                 }
-                if (txtProductQty.Text == "" || Convert.ToDecimal(txtProductQty.Text)==0)
+                if (txtProductQty.Text == "" || Convert.ToDecimal(txtProductQty.Text) == 0)
                 {
                     errPO.SetError(txtProductQty, "Order quantity should not be 0!");
                     txtProductQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1134,7 +1134,7 @@ namespace ROMS
                 if (varErrorFlag == true)
                 {
                     int varflag = 0;
-                    lblNoRecordsFound.Visible = false; 
+                    lblNoRecordsFound.Visible = false;
                     txtProductQty.BackColor = Color.White;
                     foreach (DataGridViewRow row in grdsupplieradd.Rows)
                     {
@@ -1602,7 +1602,7 @@ namespace ROMS
                     udfnSchedulecolorchange();
                     result = objspdservice.udfnSupplierMaster(11, Convert.ToInt32(lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", "", 0,
                     0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, txtSalesManName.Text,
-                    "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0,0,0);
+                    "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "");
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -1766,7 +1766,7 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                   cmbConcern.SelectedValue= varcomid;
+                                    cmbConcern.SelectedValue = varcomid;
                                 }
                             }
                         }
@@ -2389,7 +2389,7 @@ namespace ROMS
                                     DGV_FilterProduct.Visible = false;
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
-                            break;
+                                break;
                             }
                     }
                     txtProductName.Focus();
@@ -2429,9 +2429,9 @@ namespace ROMS
                 else
                 {
                     string Qty = objValidation.udfnDecimal((txtProductQty.Text).Trim(), Convert.ToInt32(lblUnitDecimal.Text)); txtProductQty.Text = Qty;
-                errPO.Clear();
-                txtProductQty.BackColor = Color.White;
-                tpQty.Active = false;
+                    errPO.Clear();
+                    txtProductQty.BackColor = Color.White;
+                    tpQty.Active = false;
                 }
             }
             catch (Exception ex)
@@ -3006,7 +3006,7 @@ namespace ROMS
                     //{
                     //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     //} 
-                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0,0,0);
+                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "");
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -3295,7 +3295,7 @@ namespace ROMS
         {
             try
             {
-                if(chkStatus.Checked == true)
+                if (chkStatus.Checked == true)
                 {
                     btnSave.Enabled = true;
                     txtRemark.Enabled = true;
@@ -3408,7 +3408,7 @@ namespace ROMS
                 //    udfnGridviewProduct();
                 //    udfnPossibleSupplierLoad();
                 //}
-                if(e.KeyCode==Keys.Up || e.KeyCode== Keys.Down || e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
                 {
                     int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
                     int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
@@ -3713,7 +3713,7 @@ namespace ROMS
         //        {
         //            e.Handled = true;
         //        } 
-                    
+
         //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
         //{
         //    e.Handled = true;
@@ -3886,7 +3886,7 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "0" && Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmMXSQ"].Value) != "-")
                     {
-                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38 || Currentsts != 51 || Currentsts!=11)
+                        if (VarStatusId != 14 || VarStatusId != 33 || Currentsts != 38 || Currentsts != 51 || Currentsts != 11)
                         {
                             switch (grdsupplieradd.Columns[e.ColumnIndex].Name)
                             {
@@ -3950,7 +3950,7 @@ namespace ROMS
                                             cell.Style.ForeColor = Color.Black;// Set the background color to the default background color
                                         }
                                         else
-                                        { 
+                                        {
                                             int stockval = 0;
                                             if (Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) == "-" || Convert.ToString(grdsupplieradd.Rows[e.RowIndex].Cells["clmstock"].Value) == "")
                                             {
@@ -4225,7 +4225,7 @@ namespace ROMS
                         //}
                     }
 
-                    if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1 && txtissuemodevalue.Text.Trim()=="")
+                    if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1 && txtissuemodevalue.Text.Trim() == "")
                     {
                         string Issue = cmbIssueMode.Text;
                         errPO.SetError(txtissuemodevalue, "Please enter mode of issue");
@@ -4504,7 +4504,7 @@ namespace ROMS
                     // Update the column value
                     varFinalUnit = 0;
                     varFinalBulkUnit = Convert.ToDouble(varBulkUnitQty);
-                    varFinalTotalQty =  Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
+                    varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
                     varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3));
 
                 }
@@ -4615,7 +4615,7 @@ namespace ROMS
                             varFinalUnit = totalUnitqty;
                             varFinalBulkUnit = Math.Round(Convert.ToDouble(totalBulkqty), 2, MidpointRounding.AwayFromZero);
                             varFinalTotalQty = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalOrderQty), varDecimal));
-                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3)); 
+                            varFinalTotalKg = Convert.ToDecimal(objValidation.udfnDecimal(Convert.ToString(totalKgQty), 3));
                         }
                         else
                         {
@@ -4707,7 +4707,7 @@ namespace ROMS
                     }
                     else
                     {
-                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51 || Currentsts==11)
+                        if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51 || Currentsts == 11)
                         {
 
                             DataGridView dataGridView = (DataGridView)sender;
@@ -4767,7 +4767,7 @@ namespace ROMS
             }
             finally
             {
-                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51 || Currentsts==11)
+                if (VarStatusId == 14 || VarStatusId == 33 || Currentsts == 38 || Currentsts == 51 || Currentsts == 11)
                 {
                     grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
                     grdsupplieradd.Columns["clmunitorderqty"].ReadOnly = true;
@@ -4994,7 +4994,7 @@ namespace ROMS
                         lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                         lblschedule.Text = selectedItem.SubItems[2].Text;
                         varSuppliervalue = selectedItem.SubItems[3].Text;
-                        varBlockedSupplier =selectedItem.SubItems[4].Text;
+                        varBlockedSupplier = selectedItem.SubItems[4].Text;
                         varBlockedReason = selectedItem.SubItems[5].Text;
                     }
                     if (Convert.ToInt32(grdsupplieradd.Rows.Count) != 0)
@@ -5181,10 +5181,10 @@ namespace ROMS
                                     objDs.Tables[3].Rows[i]["PRID"].ToString(), objDs.Tables[3].Rows[i]["FLAG"].ToString(), 1, "", "",
                                      objDs.Tables[3].Rows[i]["UTID"].ToString(), Convert.ToString(objDs.Tables[3].Rows[i]["PR_NettWeight"]),
                                      Convert.ToString(objDs.Tables[3].Rows[i]["PR_UPP"]), Convert.ToString(objDs.Tables[3].Rows[i]["bulkwtval"]),
-                                     Convert.ToString(objDs.Tables[3].Rows[i]["B.UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["T.UTID"]),"", 
+                                     Convert.ToString(objDs.Tables[3].Rows[i]["B.UTID"]), Convert.ToString(objDs.Tables[3].Rows[i]["T.UTID"]), "",
                                      Convert.ToString(objDs.Tables[3].Rows[i]["UT_Decimal"])
                                      );
-                                    if(Convert.ToInt32(objDs.Tables[3].Rows[i]["PR_UPP"])==0)
+                                    if (Convert.ToInt32(objDs.Tables[3].Rows[i]["PR_UPP"]) == 0)
                                     {
                                         grdsupplieradd.Rows[i].Cells["clmOrderqty"].ReadOnly = true;
                                         //grdsupplieradd.Columns["clmOrderqty"].ReadOnly = true;
@@ -5243,9 +5243,9 @@ namespace ROMS
                         {
                             string COUNTING = "";
                             COUNTING = Convert.ToString(objDs.Tables[11].Rows[0]["COUNTING"].ToString());
-                            if(COUNTING=="1")
+                            if (COUNTING == "1")
                             {
-                                tsbEdit.Visible = true; 
+                                tsbEdit.Visible = true;
                             }
                             else
                             {
@@ -6024,7 +6024,7 @@ namespace ROMS
                                     grdsupplieradd.CurrentCell = grdsupplieradd[icolumn + 1, irow];
                                     if (grdsupplieradd.CurrentCell.ReadOnly == true) { icolumn++; goto A; }
                                 }
-                               
+
                             }
                         }
                         //A: if (icolumn == grdProDetails.Columns.Count - 1)

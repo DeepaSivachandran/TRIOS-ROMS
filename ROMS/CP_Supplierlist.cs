@@ -15,7 +15,7 @@ namespace ROMS
     {
         ToolTip tpSupplier = new ToolTip();
         public string varUserID = "";
-        public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0, Varflag = 0, varNotDefinedCount = 0,varDeleteFlag=0;
+        public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0, Varflag = 0, varNotDefinedCount = 0, varDeleteFlag = 0;
         DataTable dtDefaultGrid = new DataTable();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -130,14 +130,14 @@ namespace ROMS
                             varscheduleid = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString());
                         }
                         SPDataService objspdservice = new SPDataService();
-                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 0, "", 0,0,0,0,0,0,0);
+                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "");
                         string[] varvalue = varResult.Split('~');
                         objspdservice.CloseConnection();
                         if (varvalue[0] == "3")
                         {
                             varDeleteFlag = 1;
                         }
-                        else if(varvalue[0] == "5")
+                        else if (varvalue[0] == "5")
                         {
                             DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult1 == DialogResult.Yes)
@@ -161,24 +161,24 @@ namespace ROMS
                             //{
                             //    if (varResult.Split('~')[1] == "1")
                             //    {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
-                                    {
-                                        objspdservice = new SPDataService();
-                                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 1, "", 0,1,0,0,0,0,0);
-                                        objspdservice.CloseConnection();
-                                        if (varResult.Split('~')[0] == "3")
-                                        {
-                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            MainForm.objCP_Supplierlist.udfnList();
-                                        }
-                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                                    }
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
+                            {
+                                objspdservice = new SPDataService();
+                                varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 1, "", 0, 1, 0, 0, 0, 0, 0, "");
+                                objspdservice.CloseConnection();
+                                if (varResult.Split('~')[0] == "3")
+                                {
+                                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MainForm.objCP_Supplierlist.udfnList();
+                                }
+                                else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                            }
                             //    }
                             //}
-                            
+
                         }
                     }
                 }
@@ -241,7 +241,7 @@ namespace ROMS
                     lblschedule.Text = "0";
                     lblSupplierCode.Text = "0";
                 }
-                else if(lblschedule.Text=="")
+                else if (lblschedule.Text == "")
                 {
                     lblschedule.Text = "0";
                 }
@@ -317,6 +317,7 @@ namespace ROMS
 
                                 grdSupplierList.Columns["S.No."].Width = 50;
                                 grdSupplierList.Columns["Supplier"].Width = 350;
+                                grdSupplierList.Columns["Tally Name"].Width = 200;
                                 // grdSupplierList.Columns["Schedule Name"].Width = 150;
                                 grdSupplierList.Columns["GSTIN"].Width = 130;
                                 grdSupplierList.Columns["Schedule Status"].Width = 110;
@@ -400,6 +401,7 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Supplier"].Width = 350;
+                DGV_SearchGrid.Columns["Tally Name"].Width = 200;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 130;
                 DGV_SearchGrid.Columns["Schedule Status"].Width = 110;
                 DGV_SearchGrid.Columns["Days"].Width = 90;
@@ -782,6 +784,8 @@ namespace ROMS
                 grdSupplierList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdSupplierList.Columns["Supplier"].Frozen = true;
                 grdSupplierList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdSupplierList.Columns["Tally Name"].Frozen = true;
+                grdSupplierList.Columns["Tally Name"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdSupplierList.Columns["City"].Frozen = true;
                 grdSupplierList.Columns["City"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdSupplierList.Columns["Supplier Type"].Frozen = true;
@@ -1172,7 +1176,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 8;
                             }
-                            else if (col.Name == "City" || col.Name == "Supplier Type" || col.Name == "GSTIN" || col.Name == "Order Type" || col.Name =="Days" || col.Name == "Payment Term" || col.Name == "Ret. Policy" || col.Name == "Ret.Condition" || col.Name == "T.Pro.Count" || col.Name == "Schedule Status")
+                            else if (col.Name == "City" || col.Name == "Supplier Type" || col.Name == "GSTIN" || col.Name == "Order Type" || col.Name == "Days" || col.Name == "Payment Term" || col.Name == "Ret. Policy" || col.Name == "Ret.Condition" || col.Name == "T.Pro.Count" || col.Name == "Schedule Status")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }

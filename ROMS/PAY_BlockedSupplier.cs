@@ -30,7 +30,7 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = true;
-                if (txtSupplier.Text.Trim()=="")
+                if (txtSupplier.Text.Trim() == "")
                 {
                     epBlockedSupplier.SetError(txtSupplier, "Please enter supplier");
                     txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -89,7 +89,7 @@ namespace ROMS
                         blnErrorFlag = false;
                     }
                 }
-                if(blnErrorFlag == true)
+                if (blnErrorFlag == true)
                 {
                     epBlockedSupplier.Clear();
                     udfnSave();
@@ -101,7 +101,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-       public void udfnSave()
+        public void udfnSave()
         {
             try
             {
@@ -109,7 +109,7 @@ namespace ROMS
                 string result = "";
                 result = objspdservice.udfnSupplierMaster(13, Convert.ToInt32(lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", "", 0,
                 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
-                "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0,Convert.ToInt32(lblschedule.Text),Convert.ToInt32(cmbReason.SelectedValue));
+                "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbReason.SelectedValue), "");
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -481,8 +481,8 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {                   
-                    btnSave.Focus();                
+                {
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -735,7 +735,7 @@ namespace ROMS
                 string result = "";
                 result = objspdservice.udfnSupplierMaster(13, Convert.ToInt32(grdBlockedSupplier.SelectedRows[0].Cells["SPID"].Value), "", "", "", 0, "", "", "", "", "", "", 0,
                 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
-                "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 1, 0, 0, 0, Convert.ToInt32(grdBlockedSupplier.SelectedRows[0].Cells["SPSCID"].Value), 0);
+                "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 1, 0, 0, 0, Convert.ToInt32(grdBlockedSupplier.SelectedRows[0].Cells["SPSCID"].Value), 0, "");
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
                 {

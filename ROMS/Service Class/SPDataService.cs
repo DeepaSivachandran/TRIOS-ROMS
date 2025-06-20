@@ -208,7 +208,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 05/10/2023    Description: General Settings
-        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath,int paraGRNPrint,int paraDCPrint,int paraLevel1,int paraLevel2)
+        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2)
         {
             string varResult = "";
             try
@@ -419,7 +419,7 @@ namespace ROMS
             return ds;
         }
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN Sp
-        public string udfnHsn(int ViewType, int paraHsnId, int paraGstId, string paraHsnName, string paraHsnCode, int paraStatusId, string paraOriginator, string pbUserID, int paraDeleteFlag,int paraVerify)
+        public string udfnHsn(int ViewType, int paraHsnId, int paraGstId, string paraHsnName, string paraHsnCode, int paraStatusId, string paraOriginator, string pbUserID, int paraDeleteFlag, int paraVerify)
         {
             string varResult = "";
             try
@@ -1243,7 +1243,7 @@ namespace ROMS
             return ds;
         }
         //Created By:-Sathish Created On:-21/08/2023
-        public string udfnUserCategory(int paraviewType, int paraUserCategoryId, string paraUserCategoryName, int paraStatusId, int paraSINO, string paraOriginator, string paraUserID, int paraDeleteFlag,string paraModules)
+        public string udfnUserCategory(int paraviewType, int paraUserCategoryId, string paraUserCategoryName, int paraStatusId, int paraSINO, string paraOriginator, string paraUserID, int paraDeleteFlag, string paraModules)
         {
             string varResult = "";
             try
@@ -1604,7 +1604,8 @@ namespace ROMS
 
         //Product Master List
         //created by Venkat,Created on 16/08/2023
-        public DataSet udfnproductmasterlist(MR_Product objMR_Product) {
+        public DataSet udfnproductmasterlist(MR_Product objMR_Product)
+        {
             DataSet ds = new DataSet();
             try
             {
@@ -1909,7 +1910,7 @@ namespace ROMS
             , int paraDesignation, string paraDesignationName, double paraCreditLimit, int paraDayid, int paramonthid, int paraweekid, int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile, string paraSalesmanWhatsapp, int paraSaleOrderType, string ParaOrderDays,
               int ParaSupplierOrderid, int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
-              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag,int paraDiscApplicable,int paraDiscDays,int paraDiscPer,int paraScheduleId,int paraReason)
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag, int paraDiscApplicable, int paraDiscDays, int paraDiscPer, int paraScheduleId, int paraReason, string paraTallyName)
         {
             string result = "";
             try
@@ -1977,6 +1978,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraScheduleId", paraScheduleId);
                 varSqlCommand.Parameters.AddWithValue("@paraReason", paraReason);
+                varSqlCommand.Parameters.AddWithValue("@paraTallyName", paraTallyName);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2562,7 +2564,7 @@ namespace ROMS
 
         // added by venkat on 03/11/2023 for GRN list
         public DataSet udfnGrnListLoad(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, string ParaGRNFromDate, string ParaGRNToDate,
-            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId, int paraLocationID, String paraGRNIds, string paraQRCode,string paraCompletedIDs,int paraQtyType,int paraGroupId,int paraSubgroupId,int paraDelayMin)
+            int paraGRNID, int paraStatus, int paraOrdertype, string ParaExpiryDate, string ParaGRNDate, int paraProductId, int paraLocationID, String paraGRNIds, string paraQRCode, string paraCompletedIDs, int paraQtyType, int paraGroupId, int paraSubgroupId, int paraDelayMin)
         {
             DataSet ds = new DataSet();
             try
@@ -3310,7 +3312,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUnapprovedby", objTRN_PurchaseEntry.paraUnapprovedby);
                 varSqlCommand.Parameters.AddWithValue("@paraPUR_GSTREnteredBy", objTRN_PurchaseEntry.paraPUR_GSTREnteredBy);
                 varSqlCommand.Parameters.AddWithValue("@paraTotal", objTRN_PurchaseEntry.paraTotal);
-               // varSqlCommand.Parameters.AddWithValue("@paraCompletedBy", objTRN_PurchaseEntry.paraCompletedBy);
+                // varSqlCommand.Parameters.AddWithValue("@paraCompletedBy", objTRN_PurchaseEntry.paraCompletedBy);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_Purchase_Products_Details", objTRN_PurchaseEntry.Purchase_Products_Details);
                 varSqlCommand.Parameters.AddWithValue("@ParaTRN_GSTR", objTRN_PurchaseEntry.ParaTRN_GSTR);
                 varSqlCommand.Parameters.AddWithValue("@ParaVerifyBy", objTRN_PurchaseEntry.ParaVerifyBy);
