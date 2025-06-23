@@ -2480,8 +2480,8 @@ namespace ROMS
                                 varTransactionNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans No."].Value);
                                 TransactionDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
                                 varSupplierName = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Supplier"].Value);
-                                varVoucherNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Vouc No."].Value);
-                                varVoucherDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Vouc Date"].Value);
+                                varVoucherNo = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans No."].Value);
+                                varVoucherDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
