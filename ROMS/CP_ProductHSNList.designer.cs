@@ -51,6 +51,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdHSNList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalCount = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlhsntaxlist.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
@@ -156,6 +158,8 @@
             // grbFilterByUser
             // 
             this.grbFilterByUser.BackColor = System.Drawing.Color.White;
+            this.grbFilterByUser.Controls.Add(this.label2);
+            this.grbFilterByUser.Controls.Add(this.lblTotalCount);
             this.grbFilterByUser.Controls.Add(this.cmbStatus);
             this.grbFilterByUser.Controls.Add(this.lblStatus);
             this.grbFilterByUser.Controls.Add(this.btnExport);
@@ -341,6 +345,28 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(355, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 20);
+            this.label2.TabIndex = 958820;
+            this.label2.Text = "No.of HSN :";
+            // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalCount.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalCount.Location = new System.Drawing.Point(423, 31);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(41, 20);
+            this.lblTotalCount.TabIndex = 958821;
+            this.lblTotalCount.Text = "0000";
+            // 
             // CP_ProductHSNList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -391,5 +417,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotalCount;
     }
 }

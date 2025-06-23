@@ -1590,7 +1590,8 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
                                 grdGrnApprovalList.Columns["Tot Issue Pro in Inv"].Width = 150;
                                 grdGrnApprovalList.Columns["Created By"].Width = 200;
-                                grdGrnApprovalList.Columns["last Seen"].Width = 180;
+                                grdGrnApprovalList.Columns["Last Seen"].Width = 180;
+                                grdGrnApprovalList.Columns["Last Update"].Width = 180;
                                 //grdGrnApprovalList.Columns["Created On"].Width = 140;
                                 grdGrnApprovalList.Columns["GSTIN"].Width = 150;
                                 grdGrnApprovalList.Columns["S.No."].Width = 60;

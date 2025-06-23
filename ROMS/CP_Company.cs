@@ -3834,6 +3834,10 @@ namespace ROMS
                             SPDataService objservice = new SPDataService();
                             pbLogoPath = objservice.udfnGetPath(0);
                             objservice.CloseConnection();
+                            if (!pbLogoPath.EndsWith("\\"))
+                            {
+                                pbLogoPath += "\\";
+                            }
                             pbCompanypath = pbLogoPath + lblCompanyLogoFilename.Text;
                             lblCompanyLogoPath.Text = pbCompanypath;
                             btnSave.Text = "Update";
@@ -4567,55 +4571,50 @@ namespace ROMS
 
                 if (btncollegeLogoUpload.Text == "Browse")
                 {
-                    string varFolderPath = "";
-
                     objfilelogo.Filter = "JPEG files (*.jpg)|*.jpg|GIF files (*.gif)|*.gif|PNG files (*.png)|*.png";
                     objfilelogo.FilterIndex = 1;
                     objfilelogo.Multiselect = false;
                     objfilelogo.ShowDialog();
-                    //************ find filename & filepath **************
-                    string varNewPath = Path.GetFullPath(objfilelogo.FileName);
-                    string varCompanyLogoFileName = System.IO.Path.GetFileNameWithoutExtension(varNewPath);
-                    varCompanyLogoFileName = "CompanyLogo";
-                    SPDataService objservice = new SPDataService();
-                    varFolderPath = objservice.udfnGetPath(0);
-                    objservice.CloseConnection();
-                    string varCustomPath = varFolderPath;
-                    string varExtension = System.IO.Path.GetExtension(objfilelogo.FileName);
-                    // ************** image size validation *************
-                    //if (ValidFile(objfilelogo.FileName, 102400, 100, 100))
-                    //{
-                    int varCount = 1;
-                    string varTempFileName = varCompanyLogoFileName;
-                    varNewfile = varCustomPath + varCompanyLogoFileName.ToString() + varExtension;
-                    while (File.Exists(varNewfile))
+
+                    if (objfilelogo.FileName != "")
                     {
-                        varTempFileName = string.Format("{0}({1})", varCompanyLogoFileName.ToString(), varCount++);
-                        varNewfile = Path.Combine(varCustomPath, varTempFileName + varExtension);
+                        string varExtension = Path.GetExtension(objfilelogo.FileName);
+
+                        SPDataService objservice = new SPDataService();
+                        string varFolderPath = objservice.udfnGetPath(0);
+                        objservice.CloseConnection();
+                        if (!varFolderPath.EndsWith("\\"))
+                        {
+                            varFolderPath += "\\";
+                        }
+                        string varFileName = "Company Logo" + varExtension;
+                        varNewfile = Path.Combine(varFolderPath, varFileName);
+
+                        File.Copy(objfilelogo.FileName, varNewfile, true);
+
+                        lblCompanyLogoFilename.Text = varFileName;
+                        lblCompanyLogoPath.Text = varNewfile;
+
+                        picCompanyLogo.BackgroundImage = null;
+                        picCompanyLogo.Image = null;
+                        picCompanyLogo.Image = new Bitmap(objfilelogo.FileName);
+                        picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                        {
+                            btncollegeLogoUpload.Text = "Browse";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                        }
+                        else
+                        {
+                            btncollegeLogoUpload.Text = "Remove";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                        }
+
+                        varflag = 1;
                     }
-                    lblCompanyLogoFilename.Text = varTempFileName + varExtension;
-                    lblCompanyLogoPath.Text = varNewfile;
-                    picCompanyLogo.BackgroundImage = null;
-                    picCompanyLogo.Image = null;
-                    picCompanyLogo.Image = new Bitmap(objfilelogo.FileName);
-                    picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
-                    if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
-                    {
-                        btncollegeLogoUpload.Text = "Browse";
-                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
-                    }
-                    else
-                    {
-                        btncollegeLogoUpload.Text = "Remove";
-                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
-                    }
-                    varflag = 1;
-                    //  }
-                    //else
-                    //{
-                    //    MessageBox.Show("Please select 100*100 size file", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //}
                 }
+
                 // ******* Remove  Company Logo ********
                 else
                 {

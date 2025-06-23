@@ -632,6 +632,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_INV_GoodsInwardQueue_IndividualPrint.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_ItemMovementAnalysis.cs">
       <DependentUpon>RPT_ItemMovementAnalysis.rpt</DependentUpon>
@@ -2656,8 +2657,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Purchase_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Purchase_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_Purchase_Summary1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_ProductWisePO.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2722,6 +2723,7 @@
     <EmbeddedResource Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_INV_GoodsInwardQueue_IndividualPrint.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_ItemMovementAnalysis.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

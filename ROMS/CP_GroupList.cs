@@ -1078,6 +1078,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
+            }
         }
 
  

@@ -48,6 +48,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblUserId = new System.Windows.Forms.Label();
             this.grbFilterByUser = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalCount = new System.Windows.Forms.Label();
             this.lblSystemUser = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -203,6 +205,8 @@
             // 
             // grbFilterByUser
             // 
+            this.grbFilterByUser.Controls.Add(this.label2);
+            this.grbFilterByUser.Controls.Add(this.lblTotalCount);
             this.grbFilterByUser.Controls.Add(this.lblSystemUser);
             this.grbFilterByUser.Controls.Add(this.cmbStatus);
             this.grbFilterByUser.Controls.Add(this.lblStatus);
@@ -217,6 +221,28 @@
             this.grbFilterByUser.TabIndex = 0;
             this.grbFilterByUser.TabStop = false;
             this.grbFilterByUser.Text = "Filter By";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(760, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 20);
+            this.label2.TabIndex = 958824;
+            this.label2.Text = "No.of System Users :";
+            // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalCount.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalCount.Location = new System.Drawing.Point(879, 30);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(41, 20);
+            this.lblTotalCount.TabIndex = 958825;
+            this.lblTotalCount.Text = "0000";
             // 
             // lblSystemUser
             // 
@@ -468,5 +494,7 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblSystemUser;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotalCount;
     }
 }

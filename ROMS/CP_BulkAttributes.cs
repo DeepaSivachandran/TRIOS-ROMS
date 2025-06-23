@@ -1077,6 +1077,35 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnTotalCount()
+        {
+            try
+            {
+                if (grdLoction.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdLoction.Rows.Count); }
+                else if (grdMSQ.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdMSQ.Rows.Count); }
+                else if (grdStock.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdStock.Rows.Count); }
+                else if (grdWeight.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdWeight.Rows.Count); }
+                else if (grdShelfLife.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdShelfLife.Rows.Count); }
+                else if (grdBatch.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdBatch.Rows.Count); }
+                else if (grdBrand.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdBrand.Rows.Count); }
+                else if (grdHSN.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdHSN.Rows.Count); }
+                else if (grdBulkAttributes.Visible == true)
+                { lblTotalCount.Text = Convert.ToString(grdBulkAttributes.Rows.Count); }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnList()
         {
             try
@@ -1593,7 +1622,7 @@ namespace ROMS
             }
             finally
             {
-               
+                udfnTotalCount();
             }
         }
         private void TsbLocation_Click(object sender, EventArgs e)
@@ -2641,6 +2670,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                udfnTotalCount();
             }
         }
 

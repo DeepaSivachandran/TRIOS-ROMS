@@ -42,6 +42,8 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlUserCategoryList = new System.Windows.Forms.Panel();
             this.grbFilterByUser = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalCount = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
@@ -155,6 +157,8 @@
             // grbFilterByUser
             // 
             this.grbFilterByUser.BackColor = System.Drawing.Color.White;
+            this.grbFilterByUser.Controls.Add(this.label2);
+            this.grbFilterByUser.Controls.Add(this.lblTotalCount);
             this.grbFilterByUser.Controls.Add(this.cmbStatus);
             this.grbFilterByUser.Controls.Add(this.lblStatus);
             this.grbFilterByUser.Controls.Add(this.btnExport);
@@ -167,6 +171,28 @@
             this.grbFilterByUser.TabIndex = 0;
             this.grbFilterByUser.TabStop = false;
             this.grbFilterByUser.Text = "Filter By";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(358, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(159, 20);
+            this.label2.TabIndex = 958824;
+            this.label2.Text = "No. of Employee Categories :";
+            // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalCount.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalCount.Location = new System.Drawing.Point(515, 30);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(41, 20);
+            this.lblTotalCount.TabIndex = 958825;
+            this.lblTotalCount.Text = "0000";
             // 
             // cmbStatus
             // 
@@ -380,5 +406,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotalCount;
     }
 }

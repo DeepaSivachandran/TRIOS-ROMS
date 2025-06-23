@@ -208,6 +208,7 @@ namespace ROMS
             }
             finally
             {
+                tsbTotalCount.Text = Convert.ToString(grdCityList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -565,18 +566,29 @@ namespace ROMS
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (DGV_SearchGrid.IsCurrentCellDirty)
+            try
             {
-                // Commit the changes immediately
-                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
+                objDser.CloseConnection();
+                grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
             }
-            //udfnGridSearchFilter();
-            DataService objDser = new DataService();
-            grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
-            objDser.CloseConnection();
-            grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-            //DGV_SearchGrid_CellPainting(sender,e);
-             
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tsbTotalCount.Text = Convert.ToString(grdCityList.Rows.Count);
+            }
         }
     }
 }

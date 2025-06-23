@@ -201,6 +201,7 @@ namespace ROMS
             }
             finally
             {
+                lblTotalCount.Text = Convert.ToString(grdGodownList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
@@ -766,6 +767,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lblTotalCount.Text = Convert.ToString(grdGodownList.Rows.Count);
+            }
         }
 
         private void TxtSearchbyLocationName_Enter(object sender, EventArgs e)
@@ -988,6 +993,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblTotalCount.Text = Convert.ToString(grdGodownList.Rows.Count);
             }
         }
 

@@ -1174,7 +1174,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //cmbStatus.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -1472,6 +1472,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
+            }
         }
 
         private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
@@ -1497,6 +1501,20 @@ namespace ROMS
                     udfnSubGroupevent();
                     btnView.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvSubGroup_DoubleClick_1(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnSubGroupevent();
+                btnView.Focus();
             }
             catch (Exception ex)
             {

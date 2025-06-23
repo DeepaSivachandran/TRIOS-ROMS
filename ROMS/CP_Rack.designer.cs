@@ -209,6 +209,7 @@
             // 
             // txtShortName
             // 
+            this.txtShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtShortName.Location = new System.Drawing.Point(221, 112);
             this.txtShortName.MaxLength = 10;

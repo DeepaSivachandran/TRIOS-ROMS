@@ -40,6 +40,9 @@
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbTotalCount = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlunitlist = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdUnitList = new System.Windows.Forms.DataGridView();
@@ -64,7 +67,10 @@
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
-            this.tsbNew});
+            this.tsbNew,
+            this.toolStripSeparator1,
+            this.tsbTotalCount,
+            this.toolStripButton1});
             this.tsUnitList.Location = new System.Drawing.Point(0, 0);
             this.tsUnitList.Name = "tsUnitList";
             this.tsUnitList.Size = new System.Drawing.Size(1354, 27);
@@ -136,6 +142,38 @@
             this.tsbNew.Size = new System.Drawing.Size(52, 24);
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbTotalCount
+            // 
+            this.tsbTotalCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbTotalCount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbTotalCount.ForeColor = System.Drawing.Color.Crimson;
+            this.tsbTotalCount.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbTotalCount.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTotalCount.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbTotalCount.Name = "tsbTotalCount";
+            this.tsbTotalCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbTotalCount.Size = new System.Drawing.Size(41, 24);
+            this.tsbTotalCount.Text = "0000";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton1.Size = new System.Drawing.Size(78, 24);
+            this.toolStripButton1.Text = "No.of Units :";
             // 
             // pnlunitlist
             // 
@@ -303,5 +341,8 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdUnitList;
         public System.Windows.Forms.PictureBox picLoader;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.ToolStripButton tsbTotalCount;
+        public System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
