@@ -172,8 +172,8 @@
             this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton1.Size = new System.Drawing.Size(72, 24);
-            this.toolStripButton1.Text = "No.of Unit :";
+            this.toolStripButton1.Size = new System.Drawing.Size(78, 24);
+            this.toolStripButton1.Text = "No.of Units :";
             // 
             // pnlunitlist
             // 

@@ -173,8 +173,8 @@
             this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton2.Size = new System.Drawing.Size(71, 24);
-            this.toolStripButton2.Text = "No.of City :";
+            this.toolStripButton2.Size = new System.Drawing.Size(83, 24);
+            this.toolStripButton2.Text = "No. of Cities :";
             // 
             // pnlCity
             // 
