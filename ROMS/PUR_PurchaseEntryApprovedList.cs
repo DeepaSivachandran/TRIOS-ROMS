@@ -145,6 +145,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["PUR_CompleteFlag"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Overall Full Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["Payment Status"].Visible = false;
+                            grdPurchaseEntryApproval.Columns["TallyExportFlag"].Visible = false;
                             grdPurchaseEntryApproval.Columns["S.No."].Width = 50;
                             grdPurchaseEntryApproval.Columns["Concern"].Width = 70;
                             grdPurchaseEntryApproval.Columns["Vouc No."].Width = 70;
@@ -262,6 +263,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["clmUnapproved"].Visible = false;
                 DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["Payment Status"].Visible = false;
+                DGV_SearchGrid.Columns["TallyExportFlag"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Concern"].Width = 80;
                 DGV_SearchGrid.Columns["Vouc No."].Width = 100;
