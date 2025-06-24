@@ -916,7 +916,14 @@ namespace ROMS
                 objTRN_GRNApproval.ViewType = 1;
                 objTRN_GRNApproval.paraPURID = varID;
                 objTRN_GRNApproval.paraFlag = pbLastSeenFlag;
-                objTRN_GRNApproval.paraUserID = Convert.ToInt16(MainForm.pbUserID);
+                if (pbLastSeenFlag == 1)
+                {
+                    objTRN_GRNApproval.paraUserID = Convert.ToInt16(MainForm.pbUserID);
+                }
+                else
+                {
+                    objTRN_GRNApproval.paraUserID = Convert.ToInt32(varUserID);
+                }
                 objTRN_GRNApproval.paraOriginator = "GRN Approval-Last Seen";
                 result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
                 objspdservice.CloseConnection();
@@ -938,7 +945,14 @@ namespace ROMS
                 objTRN_GRNApproval.ViewType = 3;
                 objTRN_GRNApproval.paraGRNID = varGRNID;
                 objTRN_GRNApproval.paraFlag = pbLastSeenFlag;
-                objTRN_GRNApproval.paraUserID = Convert.ToInt16(MainForm.pbUserID);
+                if (pbLastSeenFlag == 1)
+                {
+                    objTRN_GRNApproval.paraUserID = Convert.ToInt16(MainForm.pbUserID);
+                }
+                else
+                {
+                    objTRN_GRNApproval.paraUserID = Convert.ToInt32(varUserID);
+                }
                 objTRN_GRNApproval.paraOriginator = "GRN Approval-Last Seen";
                 result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
                 objspdservice.CloseConnection();
@@ -1125,6 +1139,7 @@ namespace ROMS
                             }
                             //udfnClear();
                             this.Close();
+                            MainForm.objPUR_GRNApprovalList.udfnList();
                         }
                         else
                         {
