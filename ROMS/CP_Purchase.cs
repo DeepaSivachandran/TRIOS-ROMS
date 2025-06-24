@@ -205,7 +205,7 @@ namespace ROMS
                 if (varEntryTypeViewFlag == 1 || varQueueFlag == 1)
                 {
                     udfnProDetailsTolProCount();
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -741,6 +741,7 @@ namespace ROMS
                     if (objDs.Tables[4].Rows.Count != 0)
                     {
                         lblFinishedNoRecord.Visible = false;
+                        grdGRN.Rows.Clear();
                         for (int i = 0; i < objDs.Tables[4].Rows.Count; i++)
                         {
                             grdGRN.Rows.Add(Convert.ToString(objDs.Tables[4].Rows[i]["GRN_Date"]), Convert.ToString(objDs.Tables[4].Rows[i]["GRN_No"]),
@@ -1453,7 +1454,7 @@ namespace ROMS
                         {
                             if (objDs.Tables[5].Rows.Count != 0) //GRN DETAILS LOAD
                             {
-                                lblFinishedNoRecord.Visible = false;
+                                lblFinishedNoRecord.Visible = false; 
                                 for (int i = 0; i < objDs.Tables[5].Rows.Count; i++)
                                 {
                                     grdGRN.Rows.Add(Convert.ToString(objDs.Tables[5].Rows[i]["GRN_Date"]), Convert.ToString(objDs.Tables[5].Rows[i]["GRN_No"]),
@@ -1695,6 +1696,12 @@ namespace ROMS
                                         grdSupplierList.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
                                         grdSupplierList.Rows[i].Cells["clmMismatchQty"].ReadOnly = true;
                                         grdSupplierList.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
+
+                                        grdSupplierList.Rows[i].Cells["clmProductMrp"].ReadOnly = true;
+                                        grdSupplierList.Rows[i].Cells["clmProductMrp"].Style.BackColor = Color.LightGray;
+                                        grdSupplierList.Rows[i].Cells["clmProductExpiryDate"].ReadOnly = true;
+                                        grdSupplierList.Rows[i].Cells["clmProductExpiryDate"].Style.BackColor = Color.LightGray;
+
                                     }
                                     else
                                     {
@@ -2129,7 +2136,7 @@ namespace ROMS
                         lblFinishedNoRecord.Visible = false;
                         for (int i = 0; i < objDs.Tables[2].Rows.Count; i++)
                         {
-                            grdGRN.Rows.Add(Convert.ToString(objDs.Tables[2].Rows[i]["GRN_No"]), Convert.ToString(objDs.Tables[2].Rows[i]["GRN_Date"]),
+                            grdGRN.Rows.Add(Convert.ToString( objDs.Tables[2].Rows[i]["GRN_Date"]),Convert.ToString(objDs.Tables[2].Rows[i]["GRN_No"]), 
                                 Convert.ToString(objDs.Tables[2].Rows[i]["GRNPRID"]), Convert.ToString(objDs.Tables[2].Rows[i]["GRNID"]));
                         }
                     }
