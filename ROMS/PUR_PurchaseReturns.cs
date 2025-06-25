@@ -610,7 +610,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            { grdReturnDC.ClearSelection(); }
+            {
+                if (btnSave.Enabled == false)
+                {
+                    cmbReasonForClosing.Enabled = false;
+                    txtAmount.Enabled = false;
+                    txtCrNo.Enabled = false;
+                    dpCreditNoteDate.Enabled = false;
+                }
+                grdReturnDC.ClearSelection();
+            }
         }
         public void udfnClosingDropdown()
         {
