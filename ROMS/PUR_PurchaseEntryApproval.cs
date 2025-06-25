@@ -3799,17 +3799,20 @@ namespace ROMS
                                 grdSupplierList.Rows[i].Cells["clmCheck"] = Check;
                                 Check.ReadOnly = true;
                             }
-                            if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmcheck"].Value) == "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmApprovalSts"].Value)=="0")
+                            if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmcheck"].Value) == "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmApprovalSts"].Value) == "0")
                             {
                                 varcheck = 0;
                             }
-                            else if(Convert.ToString(grdSupplierList.Rows[i].Cells["clmcheck"].Value) == "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmApprovalSts"].Value) == "63")
+                            else if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmcheck"].Value) == "" && Convert.ToString(grdSupplierList.Rows[i].Cells["clmApprovalSts"].Value) == "63")
                             {
                                 varcheck = 63;
                             }
-                            else if(Convert.ToBoolean(grdSupplierList.Rows[i].Cells["clmCheck"].Value)==true)
+                            else if (grdSupplierList.Rows[i].Cells["clmCheck"].ValueType == typeof(bool))
                             {
-                                varcheck = 63;
+                                if (Convert.ToBoolean(grdSupplierList.Rows[i].Cells["clmCheck"].Value) == true)
+                                {
+                                    varcheck = 63;
+                                }
                             }
                             if (varcount==0)
                             {

@@ -1316,7 +1316,7 @@ namespace ROMS
                         txtInvoiceamt.ReadOnly = true; txtInvoiceamt.Enabled = false;
                         txtInvoiceNo.ReadOnly = true; txtInvoiceNo.Enabled = false;
                         grdSupplierList.Columns["clmRemove"].Visible = false;
-                        tspHeader.Text = "Purchase Entry Unapproved Process";
+                        tspHeader.Text = "Purchase Entry - Unapprove";
                     }
                     if(PbSTS=="49")
                     {
