@@ -989,10 +989,10 @@ namespace ROMS
                                         varTempExpiryDate = "";
                                     }
                                     grdSupplierList.Rows.Add(0,grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["ProductEntryType"]),
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[1].Rows[i]["PTNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]), varMRP, varMRP, Convert.ToString(objDs.Tables[1].Rows[i]["Product MRP"]), 0,
-                                    Convert.ToString(varTempExpiryDate),Convert.ToString(objDs.Tables[1].Rows[i]["Product Expiry"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["PICODE"]), Convert.ToString(objDs.Tables[1].Rows[i]["PTNAME"]), Convert.ToString(objDs.Tables[1].Rows[i]["UNIT"]), varMRP, varMRP, Convert.ToString(objDs.Tables[1].Rows[i]["Product MRP"]), 0,0,
+                                    Convert.ToString(varTempExpiryDate),Convert.ToString(objDs.Tables[1].Rows[i]["Product Expiry"]), 0,0, Convert.ToString(objDs.Tables[1].Rows[i]["PRODUCTEXP"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["actuallife"]), Convert.ToString(objDs.Tables[1].Rows[i]["Shelflifeper"]),
-                                    Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product BatchNo"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["Location"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Product BatchNo"]), 0,0, Convert.ToString(objDs.Tables[1].Rows[i]["Location"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["RKNAME"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["POID"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["BATCHNO"]),
@@ -3496,8 +3496,11 @@ namespace ROMS
                     objPurchaseentryApprovalError.Columns.Add("PURPR_FreeQtyErr", typeof(int));
                     objPurchaseentryApprovalError.Columns.Add("PURPR_DiscAmntErr", typeof(int));
                     objPurchaseentryApprovalError.Columns.Add("PURPR_DiscPerErr", typeof(int));
-                    objPurchaseentryApprovalError.Columns.Add("PURPR_ApprovalSts", typeof(int));
-                    
+                    objPurchaseentryApprovalError.Columns.Add("PURPR_ApprovalSts", typeof(int));  
+                    objPurchaseentryApprovalError.Columns.Add("PURPR_ProMRPErr", typeof(int));
+                    objPurchaseentryApprovalError.Columns.Add("PURPR_ProBatchErr", typeof(int));
+                    objPurchaseentryApprovalError.Columns.Add("PURPR_ProExpiryDateErr", typeof(int));
+
                     if (grdPurchaseList.Rows.Count != 0)
                     {
                         for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
@@ -4649,7 +4652,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+        
         public void udfnButtonChange()
         {
             try
@@ -4900,21 +4903,34 @@ namespace ROMS
                         //grdSupplierList.CurrentRow.Cells["clmCheck"] = Check;
                         //Check.ReadOnly = true;
                     }
+                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProMRP")
+                    {
+                        grdSupplierList.CurrentRow.Cells["clmProMRP"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
+                        grdSupplierList.CurrentRow.Cells["clmProMRPError"].Value = 1;
+                        varButtonFlag++; 
+                    }
                     if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
                     {
                         grdSupplierList.CurrentRow.Cells["clmexpirydate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                         grdSupplierList.CurrentRow.Cells["clmExpiryDateError"].Value = 1;
-                        varButtonFlag++;
-                        //grdSupplierList.CurrentRow.Cells["clmCheck"].Value = false;
-                        //DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
-                        //Check.Value = "";
-                        //grdSupplierList.CurrentRow.Cells["clmCheck"] = Check;
-                        //Check.ReadOnly = true;
+                        varButtonFlag++; 
+                    }
+                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProExpiryDate")
+                    {
+                        grdSupplierList.CurrentRow.Cells["clmProExpiryDate"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
+                        grdSupplierList.CurrentRow.Cells["clmProExpiryDateError"].Value = 1;
+                        varButtonFlag++; 
                     }
                     if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno")
                     {
                         grdSupplierList.CurrentRow.Cells["clmBatchno"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
                         grdSupplierList.CurrentRow.Cells["clmBatchError"].Value = 1;
+                        varButtonFlag++;
+                    }
+                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProBatchNo")
+                    {
+                        grdSupplierList.CurrentRow.Cells["clmProBatchNo"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
+                        grdSupplierList.CurrentRow.Cells["clmProBatchError"].Value = 1;
                         varButtonFlag++;
                     }
                 }
@@ -5170,16 +5186,34 @@ namespace ROMS
                         grdSupplierList.CurrentRow.Cells["clmMRPError"].Value = 0;
                         varButtonFlag--;
                     }
+                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProMRP")
+                    {
+                        grdSupplierList.CurrentRow.Cells["clmProMRP"].Style.BackColor = Color.LightGray;
+                        grdSupplierList.CurrentRow.Cells["clmProMRPError"].Value = 0;
+                        varButtonFlag--;
+                    }
                     if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmexpirydate")
                     {
                         grdSupplierList.CurrentRow.Cells["clmexpirydate"].Style.BackColor = Color.LightGray;
                         grdSupplierList.CurrentRow.Cells["clmExpiryDateError"].Value = 0;
                         varButtonFlag--;
                     }
+                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProExpiryDate")
+                    {
+                        grdSupplierList.CurrentRow.Cells["clmProExpiryDate"].Style.BackColor = Color.LightGray;
+                        grdSupplierList.CurrentRow.Cells["clmProExpiryDateError"].Value = 0;
+                        varButtonFlag--;
+                    }
                     if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmBatchno")
                     {
                         grdSupplierList.CurrentRow.Cells["clmBatchno"].Style.BackColor = Color.LightGray;
                         grdSupplierList.CurrentRow.Cells["clmBatchError"].Value = 0;
+                        varButtonFlag--;
+                    }
+                    if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProBatchNo")
+                    {
+                        grdSupplierList.CurrentRow.Cells["clmProBatchNo"].Style.BackColor = Color.LightGray;
+                        grdSupplierList.CurrentRow.Cells["clmProBatchError"].Value = 0;
                         varButtonFlag--;
                     }
                 }
@@ -5204,8 +5238,7 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
                     if(Convert.ToString(grdSupplierList.CurrentRow.Cells["clmCheck"].Value)!="")
-                    { 
-                    
+                    {  
                         switch (grdSupplierList.Columns[e.ColumnIndex].Name)
                         {
                             case "clmMRP":
@@ -5232,11 +5265,59 @@ namespace ROMS
                                 }
                                 break;
 
+                            case "clmProMRP":
+                                if (e.Button == MouseButtons.Right)
+                                {
+                                    ContextMenuStrip menustrip = new ContextMenuStrip();
+                                    if (grdSupplierList.CurrentRow.Cells["clmProMRPError"].Value.ToString() == "0")
+                                    {
+                                        //cm.MenuItems.Add(new MenuItem("Error"));
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                        cm.Name = "Error";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(error_Click);
+                                    }
+                                    else
+                                    {
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                        cm.Name = "Clear";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(clear_Click);
+                                    }
+                                }
+                                break;
+
                             case "clmexpirydate":
                                 if (e.Button == MouseButtons.Right)
                                 {
                                     ContextMenuStrip menustrip = new ContextMenuStrip();
                                     if (grdSupplierList.CurrentRow.Cells["clmExpiryDateError"].Value.ToString() == "0")
+                                    {
+                                        //cm.MenuItems.Add(new MenuItem("Error"));
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                        cm.Name = "Error";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(error_Click);
+                                    }
+                                    else
+                                    {
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                        cm.Name = "Clear";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(clear_Click);
+                                    }
+                                }
+                                break;
+
+                            case "clmProExpiryDate":
+                                if (e.Button == MouseButtons.Right)
+                                {
+                                    ContextMenuStrip menustrip = new ContextMenuStrip();
+                                    if (grdSupplierList.CurrentRow.Cells["clmProExpiryDateError"].Value.ToString() == "0")
                                     {
                                         //cm.MenuItems.Add(new MenuItem("Error"));
                                         ToolStripMenuItem cm = new ToolStripMenuItem("Error");
