@@ -2109,7 +2109,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCrNo.Focus();
+                    if (txtCrNo.Enabled == true)
+                    {
+                        txtCrNo.Focus();
+                    }
+                    else
+                    {
+                        if (txtRemarks.Enabled == true)
+                        {
+                            txtRemarks.Focus();
+                        }
+                        else
+                        {
+                            btnSave.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
