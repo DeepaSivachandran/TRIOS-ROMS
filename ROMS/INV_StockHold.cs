@@ -1679,6 +1679,10 @@ namespace ROMS
                         grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
                         grdStockHold.Rows[i].Cells["clmMove"].Value = new Bitmap(1, 1);
                     }
+                    if (Convert.ToString(grdStockHold.Rows[i].Cells["Reason"].Value) == "Damage")
+                    {
+                        grdStockHold.Rows[i].Cells["clmMove"].Value = new Bitmap(1, 1);
+                    }
                 }
             }
             catch (Exception ex)

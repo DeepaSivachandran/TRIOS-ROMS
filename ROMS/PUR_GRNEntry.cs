@@ -2324,7 +2324,7 @@ namespace ROMS
                                 txtSupplier.Enabled = false;
                                 cmbOrderType.Enabled = false; 
                                 this.ActiveControl = dpinvoicedate;
-                                if (pbGRNSTS == "24" || pbGRNSTS == "23")
+                                if (pbGRNSTS == "24" || pbGRNSTS == "23" || pbGRNSTS == "44")
                                 {
                                     gpGRNEntry.Enabled = false;
                                     btnDC.Enabled = false;

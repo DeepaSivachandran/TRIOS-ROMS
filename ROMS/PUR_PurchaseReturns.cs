@@ -610,7 +610,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            { grdReturnDC.ClearSelection(); }
+            {
+                if (btnSave.Enabled == false)
+                {
+                    cmbReasonForClosing.Enabled = false;
+                    txtAmount.Enabled = false;
+                    txtCrNo.Enabled = false;
+                    dpCreditNoteDate.Enabled = false;
+                }
+                grdReturnDC.ClearSelection();
+            }
         }
         public void udfnClosingDropdown()
         {
@@ -2109,7 +2118,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCrNo.Focus();
+                    if (txtCrNo.Enabled == true)
+                    {
+                        txtCrNo.Focus();
+                    }
+                    else
+                    {
+                        if (txtRemarks.Enabled == true)
+                        {
+                            txtRemarks.Focus();
+                        }
+                        else
+                        {
+                            btnSave.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
