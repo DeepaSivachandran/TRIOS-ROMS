@@ -4059,6 +4059,7 @@ namespace ROMS
                 }
                 if (grdGrnlist.Columns[e.ColumnIndex].Name == "clmInvoiceExpiry")
                 {
+
                     int rowIndex = e.RowIndex;
                     int columnIndex = e.ColumnIndex;
                     if (Convert.ToString(grdGrnlist.Rows[e.RowIndex].Cells["clmInvoiceExpiry"].Value) != "")
