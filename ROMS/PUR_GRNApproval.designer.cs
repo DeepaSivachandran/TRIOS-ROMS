@@ -935,7 +935,7 @@
             this.Column2.HeaderText = "P.I Code";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 180;
+            this.Column2.Width = 90;
             // 
             // clmproduct
             // 
