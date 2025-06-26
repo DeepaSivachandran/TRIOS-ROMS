@@ -3738,7 +3738,7 @@ namespace ROMS
                             int varutid = 0, varSlid = 0, varRkid = 0, varHsnId = 0, varShelfLife = 0, varShelfLifeValue = 0, varError = 0, varPoid = 0, varBatchNoStatus = 0, varBatchNoGeneration = 0,
                                  varShelfLifeFlag = 0, varShelfLifeStatus = 0, varPURPR_ID = 0, varPURPRID = 0, varID = 0, 
                                  varMRPerr = 0, varPurchaseRateErr = 0, varExpiryErr = 0, varBatchErr = 0,varInvoiceQtyErr = 0, varReceivedQtyErr = 0, varFreeQtyErr = 0, 
-                                 varDisAmtErr = 0, varDisPerErr = 0 , varPURID=0 , varPRID=0, varcheck = 0;
+                                 varDisAmtErr = 0, varDisPerErr = 0 , varPURID=0 , varPRID=0, varcheck = 0, varProMRPErr = 0 , varProExpiryErr = 0 , varProBatchErr=0;
                             decimal varGrnMrp = 0, varInvoiceMrp = 0, varPurchaseRate = 0, varPoqty = 0, varInvoiceqty = 0, varReceivedqty = 0, varDiffQty = 0, varFreeqty = 0,
                                 varDisPer = 0, varDisAmt = 0, varTaxValue = 0, varGSTper = 0, varGSTAmt = 0, varNetAmt = 0, varCosting = 0, varShelfLifePer = 0, varTotqty = 0, varGRNqty = 0, varDCqty = 0,
                                 varDiscountValue = 0, varCGSTPer = 0, varCGSTAmnt = 0, varSGSTPer = 0, varSGSTAmnt = 0, varISGSTPer = 0, varIGSTAmnt = 0;
@@ -3787,9 +3787,14 @@ namespace ROMS
                             varFreeQtyErr = Convert.ToInt16(grdPurchaseList.Rows[i].Cells["clmFreeQtyErr"].Value);
                             varDisAmtErr = Convert.ToInt16(grdPurchaseList.Rows[i].Cells["clmDiscountErr"].Value);
                             varDisPerErr = Convert.ToInt16(grdPurchaseList.Rows[i].Cells["clmDisPerErr"].Value);
+
+                            varProBatchErr = Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmProBatchError"].Value);
+                            varProExpiryErr = Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmProExpiryDateError"].Value);
+                            varProMRPErr = Convert.ToInt16(grdSupplierList.Rows[i].Cells["clmProMRPError"].Value);
                             //varcheck = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmCheck"].Value);
                             //Error product status
-                            if (varMRPerr==0 && varPurchaseRateErr==0 &&  varExpiryErr ==0 &&  varBatchErr==0 && varInvoiceQtyErr==0 && varReceivedQtyErr==0 && varFreeQtyErr==0 && varDisAmtErr==0 && varDisPerErr==0)
+                            if (varMRPerr==0 && varPurchaseRateErr==0 &&  varExpiryErr ==0 &&  varBatchErr==0 && varInvoiceQtyErr==0 && varReceivedQtyErr==0 
+                                && varFreeQtyErr==0 && varDisAmtErr==0 && varDisPerErr==0 && varProBatchErr==0 && varProExpiryErr==0 && varProMRPErr==0)
                             {
                                 varError = 73; // Status no error                               
                             }
@@ -3823,9 +3828,8 @@ namespace ROMS
                                     varInvoiceqty, varReceivedqty, varDiffQty, varFreeqty,varDisPer, varDisAmt, varTaxValue, varGSTper, varGSTAmt, varNetAmt, 
                                 varCosting, varShelfLife, varShelfLifeValue, varShelfLifePer, varError, varPoid, varBatchNoStatus, varBatchNoGeneration, varShelfLifeFlag, varShelfLifeStatus, 
                                 varPURPR_ID,varTotqty, varGRNqty, varDCqty, varPURPRID, varID, varDiscountValue, varCGSTPer, varCGSTAmnt, varSGSTPer, varSGSTAmnt, varISGSTPer, varIGSTAmnt, varMRPerr, varPurchaseRateErr,
-                                varExpiryErr,  varBatchErr, varInvoiceQtyErr, varReceivedQtyErr, varFreeQtyErr, varDisAmtErr, varDisPerErr, varcheck);
-                            }
-
+                                varExpiryErr,  varBatchErr, varInvoiceQtyErr, varReceivedQtyErr, varFreeQtyErr, varDisAmtErr, varDisPerErr, varcheck,varProMRPErr,varProBatchErr,varProExpiryErr);
+                            } 
                         }
                     }
                 }

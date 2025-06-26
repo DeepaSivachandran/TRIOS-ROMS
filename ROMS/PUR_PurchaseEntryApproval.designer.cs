@@ -3574,6 +3574,7 @@
             this.clmProMRPError.HeaderText = "Pro MRP Error";
             this.clmProMRPError.Name = "clmProMRPError";
             this.clmProMRPError.ReadOnly = true;
+            this.clmProMRPError.Visible = false;
             // 
             // clmexpirydate
             // 
@@ -3608,6 +3609,7 @@
             this.clmProExpiryDateError.HeaderText = "ProExpiryDateError";
             this.clmProExpiryDateError.Name = "clmProExpiryDateError";
             this.clmProExpiryDateError.ReadOnly = true;
+            this.clmProExpiryDateError.Visible = false;
             // 
             // clmShelflife
             // 
@@ -3669,6 +3671,7 @@
             this.clmProBatchError.HeaderText = "ProBatchError";
             this.clmProBatchError.Name = "clmProBatchError";
             this.clmProBatchError.ReadOnly = true;
+            this.clmProBatchError.Visible = false;
             // 
             // clmLocation
             // 
