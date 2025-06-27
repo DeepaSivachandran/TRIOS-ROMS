@@ -642,6 +642,7 @@ namespace ROMS
             try
             {
                 DGV_ProdSearchGrid.DataSource = dtDefaultGrid;
+                DGV_ProdSearchGrid.Columns["S.No."].Width = 50;
                 DGV_ProdSearchGrid.Columns["Type"].Width = 80;
                 DGV_ProdSearchGrid.Columns["P.I Code"].Width = 100;
                 DGV_ProdSearchGrid.Columns["MRP"].Width = 80;
@@ -654,7 +655,7 @@ namespace ROMS
                 DGV_ProdSearchGrid.Columns["Trans No."].Width = 80;
                 DGV_ProdSearchGrid.Columns["Supplier"].Width = 200;
                 DGV_ProdSearchGrid.Columns["Product Name"].Width = 300;           
-                DGV_ProdSearchGrid.Columns["Order By"].Visible = false;           
+                //DGV_ProdSearchGrid.Columns["Order By"].Visible = false;           
                 DGV_ProdSearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -910,6 +911,7 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdProDetails.DataSource = objDs.Tables[0];
+                            grdProDetails.Columns["S.No."].Width = 50;
                             grdProDetails.Columns["Type"].Width = 80;
                             grdProDetails.Columns["Product Name"].Width = 300;
                             grdProDetails.Columns["P.I Code"].Width = 100;
@@ -923,9 +925,10 @@ namespace ROMS
                             grdProDetails.Columns["Transaction No."].Width = 90;
                             grdProDetails.Columns["Transaction Date"].Width = 80;
                             grdProDetails.Columns["SLID"].Visible = false;
-                            grdProDetails.Columns["Order By"].Visible = false;
+                            //grdProDetails.Columns["Order By"].Visible = false;
                             grdProDetails.Columns["Expiry Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
