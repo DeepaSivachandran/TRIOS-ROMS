@@ -3902,15 +3902,47 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if (Convert.ToString(txtSalesRack.Text.Trim()) != "" && Convert.ToString(txtSalesRack.Text.Trim()) != "None")
+                if (txtSalesLocation.Text.Trim() != "")
                 {
-                    /*check location have a rack or not*/
+                    string varId_SalesRack = "0";
+                    string varSalesRackCount = "0";
+                    DataSet objDsSalesRack = new DataSet();
+                    SPDataService objDServ6 = new SPDataService();
+                    objDsSalesRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(varSalesLocationCode), 0, txtSalesRack.Text.Trim(), 0, 0);
+                    objDServ6.CloseConnection();
+                    if (objDsSalesRack != null)
+                    {
+                        if (objDsSalesRack.Tables.Count > 0)
+                        {
+                            if (objDsSalesRack.Tables[0].Rows.Count > 0)
+                            {
+                                varId_SalesRack = Convert.ToString(objDsSalesRack.Tables[0].Rows[0][0]);
+                            }
+                            if (objDsSalesRack.Tables[1].Rows.Count > 0)
+                            {
+                                varSalesRackCount = Convert.ToString(objDsSalesRack.Tables[1].Rows[0][0]);
+                            }
+                            if (varId_SalesRack == "-1" && varSalesRackCount != "0")
+                            {
+                                epProductApproval.SetError(txtSalesRack, "Please select valid sales rack");
+                                txtSalesRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpsalesrack.ShowAlways = true;
+                                tpsalesrack.Show("Please select valid sales rack", txtSalesRack, 5000);
+                                blnErrorFlag = true;
+                            }
+                        }
+                    }
+                }
+                /*
+                if (Convert.ToString(txtSalesRack.Text.Trim()) != "" || Convert.ToString(txtSalesRack.Text.Trim()) == "None")
+                {
+                    //check location have a rack or not
                     string varId_SalesRack = "0";
                     DataSet objDsSalesRack = new DataSet();
                     SPDataService objDServ6 = new SPDataService();
                     objDsSalesRack = objDServ6.udfnRackList(17, 0, 0, Convert.ToInt32(varSalesLocationCode), 0, txtSalesRack.Text.Trim(), 0, 0);
                     objDServ6.CloseConnection();
-                    if (txtSalesRack.Text.Trim() != "")
+                    if (txtSalesRack.Text.Trim() == "" || txtSalesRack.Text.Trim() == "None")
                     {
                         if (varSalesLocationCode != "0")
                         {
@@ -3925,13 +3957,16 @@ namespace ROMS
                                 }
                             }
                             varSalesRackCode = Convert.ToString(varId_SalesRack);
-                            if (varId_SalesRack == "0" || varId_SalesRack == "-1")
+                            if (Convert.ToString(objDsSalesRack.Tables[1].Rows[0][0]) != "0" && txtSalesRack.Text.Trim() == "None")
                             {
-                                epProductApproval.SetError(txtSalesRack, "Please select valid sales rack");
-                                txtSalesRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                                tpsalesrack.ShowAlways = true;
-                                tpsalesrack.Show("Please select valid sales rack", txtSalesRack, 5000);
-                                blnErrorFlag = true;
+                                if (varId_SalesRack == "0" || varId_SalesRack == "-1")
+                                {
+                                    epProductApproval.SetError(txtSalesRack, "Please select valid sales rack");
+                                    txtSalesRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                    tpsalesrack.ShowAlways = true;
+                                    tpsalesrack.Show("Please select valid sales rack", txtSalesRack, 5000);
+                                    blnErrorFlag = true;
+                                }
                             }
                         }
                     }
@@ -3961,6 +3996,7 @@ namespace ROMS
                         }
                     }
                 }
+                */
                 if(txtPurRack.Text.Trim()=="")
                 {
                     varPurRackCode = "0";
