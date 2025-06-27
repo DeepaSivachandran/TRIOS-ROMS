@@ -3834,10 +3834,15 @@ namespace ROMS
                                     {
                                         OrderID = "ORDER ID";
                                     }
+                                    string varRackName = "None";
+                                    if (Convert.ToString(objDs.Tables[0].Rows[i]["Rack"]).Trim() != "")
+                                    {
+                                        varRackName = Convert.ToString(objDs.Tables[0].Rows[i]["Rack"]);
+                                    }
                                     grdInward.Rows.Add(false, null, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["P.I Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Name in Tamil"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice MRP"]),
                                         Convert.ToString(objDs.Tables[0].Rows[i]["Pro Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Expiry Date"]),Convert.ToString(objDs.Tables[0].Rows[i]["Pro Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Batch No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Pending Qty"]), 
                                         Convert.ToString(objDs.Tables[0].Rows[i][Quantity]),Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shop Qty"]),
-                                         Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack ID"]),
+                                         Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), varRackName, Convert.ToString(objDs.Tables[0].Rows[i]["Product ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Location ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Rack ID"]),
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Unit ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["RackCount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Convert"]), Convert.ToString(objDs.Tables[0].Rows[i][OrderID]),0
                                             ,Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP Flag"]), 
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), 
