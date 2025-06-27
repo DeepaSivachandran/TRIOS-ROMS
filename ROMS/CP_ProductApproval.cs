@@ -550,7 +550,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubgroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", Convert.ToInt32(varGroupId), 0, txtSubgroup.Text.Trim(), 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubgroup.Text.Trim(), 0, 0, 0, 0);
 
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -3713,6 +3713,23 @@ namespace ROMS
                     tpprdSG.Show("Please select valid subgroup", txtSubgroup, 5000);
                     blnErrorFlag = true;
                 }
+                else
+                {
+                    // Subgroup Depend Group Load
+                    DataSet objDsGroupCode = new DataSet();
+                    objDsGroupCode = objDserv.udfnSubGroupList(16, Convert.ToInt32(varSubgroupCode), "", 0, 0, "", 0, 0, 0, 0);
+                    objDserv.CloseConnection();
+                    if (objDsGroupCode != null)
+                    {
+                        if (objDsGroupCode.Tables.Count > 0)
+                        {
+                            if (objDsGroupCode.Tables[0].Rows.Count > 0)
+                            {
+                                varGroupId = Convert.ToInt32(objDsGroupCode.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
                 if (txtBrand.Text != "")
                 {
                     /* Check product brand is valid or not*/
@@ -3958,7 +3975,7 @@ namespace ROMS
                     SPDataService objspdservice = new SPDataService();
                     string varorignator = "Product approval update";
                     result = objspdservice.udfnProductMaster(14, varproductcode, txtProductEname.Text, txtProductTname.Text, txtpicode.Text.Trim().ToUpper(),
-                    0, Convert.ToInt32(cmbProductCategory.SelectedValue), 0, Convert.ToInt32(varSubgroupCode), Convert.ToInt32(varBrand),
+                    0, Convert.ToInt32(cmbProductCategory.SelectedValue),Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupCode), Convert.ToInt32(varBrand),
                     Convert.ToInt32(cmbUnit.SelectedValue), 0, "", Convert.ToInt32(varPurLocationCode), Convert.ToInt32(varSalesLocationCode)
                     , Convert.ToInt32(varPurRackCode), Convert.ToInt32(varSalesRackCode), 0, Convert.ToInt32(cmbBatchno.SelectedValue), Convert.ToInt32(cmbBatchGen.SelectedValue)
                     , varshelflife, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(varHsnCode), 0, shelflife,
