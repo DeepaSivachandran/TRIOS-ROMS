@@ -758,6 +758,8 @@ namespace ROMS
         {
             try
             {
+                // For Queue Count Calculation Process Directly Call the Queue Details SP the reason is Repeated calculate the issue count - 27-06-2025 Comment By Sathish
+                /*
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
@@ -771,6 +773,29 @@ namespace ROMS
                     if (objDs.Tables.Count != 0)
                     {
                         lblQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Queue Count"]);
+                    }
+                }
+                */
+                SPDataService objdserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
+                objTRN_GoodsInward_Purchase.ViewType = 3;
+                objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                DateTime vardate = MainForm.pbFYStartDate;
+                string formattedDate = vardate.ToString("dd'/'MM'/'yyyy", CultureInfo.InvariantCulture);
+                objTRN_GoodsInward_Purchase.ParaFromDate = formattedDate;
+                objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
+                objTRN_GoodsInward_Purchase.paraSLID = 0;
+                objTRN_GoodsInward_Purchase.paraProductId = 0;
+                objTRN_GoodsInward_Purchase.ParaSupplierId = 0;
+                objTRN_GoodsInward_Purchase.paraTypeID = 0;
+                objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows.Count.ToString());
                     }
                 }
             }
