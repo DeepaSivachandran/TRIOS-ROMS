@@ -120,7 +120,7 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
-                if(Convert.ToInt32(cmbPaymentType.SelectedValue)==91 && Convert.ToInt32(cmbBank.SelectedValue)== -1)
+                if(Convert.ToInt32(cmbPaymentmode.SelectedValue)==89 && Convert.ToInt32(cmbPaymentType.SelectedValue)==91 && Convert.ToInt32(cmbBank.SelectedValue)== -1)
                 {
                     epSupplier.SetError(cmbBank, "Please select bank");
                     cmbBank.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -573,7 +573,7 @@ namespace ROMS
                 dpDate.MinDate = MainForm.pbFYStartDate;
                 dpDate.MaxDate = MainForm.pbCurrentDate;
                 dtChequeDate.MinDate = MainForm.pbFYStartDate;
-                dtChequeDate.MaxDate = MainForm.pbCurrentDate;
+                //dtChequeDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 AND MSTID IN (88,89)", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
