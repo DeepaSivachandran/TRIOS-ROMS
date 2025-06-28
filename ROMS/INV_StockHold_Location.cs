@@ -333,6 +333,11 @@ namespace ROMS
         {
             try
             {
+                int varDeleteFlag = 0;
+                if (Convert.ToInt32(txtQty.Text) == varQty)
+                {
+                    varDeleteFlag = 1;
+                }
                 string varResult = "";
                 DataTable objGrnPO = new DataTable();
                 TRN_StockHold objTRNS_StockHold = new TRN_StockHold();
@@ -346,6 +351,7 @@ namespace ROMS
                 objTRNS_StockHold.paraFlag = 1;
                 objTRNS_StockHold.paraStatus = 96;
                 objTRNS_StockHold.paraParentSHID = varSHID;
+                objTRNS_StockHold.paraDeleteFlag = varDeleteFlag;
                 objTRNS_StockHold.paraOriginator = "Stock Hold Move Location";
                 varResult = objspservice.udfnStockHold(objTRNS_StockHold);
                 objspservice.CloseConnection();

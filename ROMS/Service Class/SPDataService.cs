@@ -2911,6 +2911,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraReason", objTRNS_StockHold.paraReason);
                 varSqlCommand.Parameters.AddWithValue("@paraParentSHID", objTRNS_StockHold.paraParentSHID);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_StockHold.paraDeleteFlag);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
