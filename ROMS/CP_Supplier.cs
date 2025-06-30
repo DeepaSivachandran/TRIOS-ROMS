@@ -1209,6 +1209,7 @@ namespace ROMS
 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,47) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
+                cmborderday.DataSource = null;
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmborderday, "", "DY_Name", "DYID");
                 objDataBind = null;
                 cmbOrderType.SelectedIndex = 0;
@@ -3788,6 +3789,7 @@ namespace ROMS
         {
             try
             {
+                if (cmborderday.DataSource == null) return;
                 mappedproductsfilter();
             }
             catch (Exception ex)
@@ -4256,6 +4258,7 @@ namespace ROMS
         {
             try
             {
+                if (cmbMappingorderschedule.DataSource == null) return;
                 dtSubGroupMapping = new DataTable();
                 dtSubGroupMapping.Columns.Add("", typeof(Boolean));
                 dtSubGroupMapping.Columns.Add("S.No.", typeof(string));
@@ -4544,7 +4547,7 @@ namespace ROMS
                 objMR_Supplier1.paraSupplierScheduleid = Convert.ToInt32(cmbMappingorderschedule.SelectedValue);
                 SPDataService objSPservice = new SPDataService();
                 DataSet objDS = new DataSet();
-                cmborderday.DataSource = null;
+                //cmborderday.DataSource = null;
                 objDS = objSPservice.udfnSupplierList(objMR_Supplier1);
                 objSPservice.CloseConnection();
                 if (objDS != null)
