@@ -360,10 +360,10 @@ namespace ROMS
                     {
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            txtVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee1"].ToString());
-                            txtVerified2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee2"].ToString());
                             lblVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EMP1"].ToString());
+                            txtVerified1.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee1"].ToString());
                             lblVerified2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["EMP2"].ToString());
+                            txtVerified2.Text = Convert.ToString(objDs.Tables[1].Rows[0]["Employee2"].ToString());
                         }
                         lvVerified1.Visible = false;
                         lvVerified2.Visible = false;
@@ -399,7 +399,8 @@ namespace ROMS
                 dpVerified2.MinDate = varmindate;
                 if(txtVerified2.Text!="")
                 {
-                    dpVerified2.Text = dpVerified1.Text;
+                    //dpVerified2.Text = dpVerified1.Text;
+                    dpVerified2.Value = dpVerified1.Value;
                     dpVerified2.Enabled = false;
                 }
             }
@@ -684,7 +685,8 @@ namespace ROMS
                 txtVerified2.BackColor = Color.White;
                 if(txtVerified2.Text!="")
                 {
-                    dpVerified2.Text = dpVerified1.Text;
+                    //dpVerified2.Text = dpVerified1.Text;
+                    dpVerified2.Value = dpVerified1.Value;
                     dpVerified2.Enabled=false;
                     mtbTime2.Text = mtbTime1.Text;
                     mtbTime2.Enabled = false;
@@ -694,7 +696,8 @@ namespace ROMS
                 }
                 else
                 {
-                    dpVerified2.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    //dpVerified2.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    dpVerified2.Value = DateTime.Now.Date;
                     dpVerified2.Enabled = true;
                     mtbTime2.Text = "";
                     mtbTime2.Enabled = true;
