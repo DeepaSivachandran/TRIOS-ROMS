@@ -499,7 +499,7 @@ namespace ROMS
                 }
                 else
                 {
-                    if(Convert.ToDecimal(txtQty.Text) >= Convert.ToDecimal(varParentQty))
+                    if(Convert.ToDecimal(txtQty.Text) > Convert.ToDecimal(varParentQty))
                     {
                         txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpQty.ShowAlways = true;
@@ -1131,7 +1131,7 @@ namespace ROMS
                             txtBatchNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Batch No"]);
                             txtStockQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Stock Qty"]);
                             txtQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Hold Qty"]);
-                            varParentQty = Convert.ToInt32(objDs.Tables[0].Rows[0]["Hold Qty"]);
+                            varParentQty = Convert.ToInt32(objDs.Tables[0].Rows[0]["Stock Qty"]);
                             cmbReason.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);
                             varPRID = Convert.ToInt32(objDs.Tables[0].Rows[0]["PRID"]);
                             varRKID = Convert.ToInt32(objDs.Tables[0].Rows[0]["RKID"]);
@@ -1669,14 +1669,14 @@ namespace ROMS
                     }
                     if (Convert.ToString(grdStockHold.Rows[i].Cells["SH_STSID"].Value) == "97")
                     {
-                        grdStockHold.Rows[i].Cells["clmDelete"].Value = new Bitmap(1, 1);
-                        grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
+                        //grdStockHold.Rows[i].Cells["clmDelete"].Value = new Bitmap(1, 1);
+                        //grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
                         //grdStockHold.Rows[i].Cells["clmMove"].Value = new Bitmap(1, 1);
                     }
                     if (Convert.ToString(grdStockHold.Rows[i].Cells["SH_STSID"].Value) == "95")
                     {
-                        grdStockHold.Rows[i].Cells["clmDelete"].Value = new Bitmap(1, 1);
-                        grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
+                        //grdStockHold.Rows[i].Cells["clmDelete"].Value = new Bitmap(1, 1);
+                        //grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
                         //grdStockHold.Rows[i].Cells["clmMove"].Value = new Bitmap(1, 1);
                     }
                     if (Convert.ToString(grdStockHold.Rows[i].Cells["Reason"].Value) == "Damage")
