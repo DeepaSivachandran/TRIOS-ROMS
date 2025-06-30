@@ -5365,7 +5365,7 @@ namespace ROMS
                                 }
                                 break;
                             case "clmProBatchNo":
-                                if (e.Button == MouseButtons.Right)
+                                if (e.Button ==   MouseButtons.Right)
                                 {
                                     ContextMenuStrip menustrip = new ContextMenuStrip();
                                     if (grdSupplierList.CurrentRow.Cells["clmProBatchError"].Value.ToString() == "0")
