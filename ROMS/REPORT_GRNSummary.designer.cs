@@ -175,7 +175,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(768, 22);
+            this.label4.Location = new System.Drawing.Point(835, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 20);
             this.label4.TabIndex = 1111193;
@@ -184,7 +184,7 @@
             // txtDelayMin
             // 
             this.txtDelayMin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDelayMin.Location = new System.Drawing.Point(768, 43);
+            this.txtDelayMin.Location = new System.Drawing.Point(835, 43);
             this.txtDelayMin.MaxLength = 5;
             this.txtDelayMin.Name = "txtDelayMin";
             this.txtDelayMin.Size = new System.Drawing.Size(61, 27);
@@ -293,7 +293,7 @@
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Location = new System.Drawing.Point(642, 43);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(120, 27);
+            this.cmbStatus.Size = new System.Drawing.Size(187, 27);
             this.cmbStatus.TabIndex = 4;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
@@ -315,7 +315,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(835, 42);
+            this.btnView.Location = new System.Drawing.Point(902, 42);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
