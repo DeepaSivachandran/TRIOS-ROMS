@@ -1138,6 +1138,7 @@ namespace ROMS
                             varUTID = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Remarks"]);
                             lblSupplierName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
+                            lblSupplierName.Visible = true;
                             lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SH_SPID"]);
                             lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SH_SPSCID"]);
                             varParentSHID = Convert.ToInt32(objDs.Tables[0].Rows[0]["SH_parentSHID"]);
