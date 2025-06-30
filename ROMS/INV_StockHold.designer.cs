@@ -92,10 +92,6 @@
             this.txtQty = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grdStockHold = new System.Windows.Forms.DataGridView();
-            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmMove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmConvert = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
@@ -105,6 +101,12 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmMove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmConvert = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
@@ -121,10 +123,11 @@
             this.tsStockRequest.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsStockRequest.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsStockRequest.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspStockRequest});
+            this.tspStockRequest,
+            this.tsbDelete});
             this.tsStockRequest.Location = new System.Drawing.Point(0, 0);
             this.tsStockRequest.Name = "tsStockRequest";
-            this.tsStockRequest.Size = new System.Drawing.Size(1354, 25);
+            this.tsStockRequest.Size = new System.Drawing.Size(1354, 27);
             this.tsStockRequest.TabIndex = 35;
             this.tsStockRequest.Text = "Stock Hold";
             // 
@@ -135,7 +138,7 @@
             this.tspStockRequest.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspStockRequest.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspStockRequest.Name = "tspStockRequest";
-            this.tspStockRequest.Size = new System.Drawing.Size(82, 22);
+            this.tspStockRequest.Size = new System.Drawing.Size(82, 24);
             this.tspStockRequest.Text = "Stock Hold";
             // 
             // lblNoRecordsFound
@@ -686,6 +689,7 @@
             this.grdStockHold.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStockHold.ColumnHeadersVisible = false;
             this.grdStockHold.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCheck,
             this.clmDelete,
             this.clmEdit,
             this.clmMove,
@@ -702,7 +706,6 @@
             this.grdStockHold.GridColor = System.Drawing.Color.White;
             this.grdStockHold.Location = new System.Drawing.Point(10, 145);
             this.grdStockHold.Name = "grdStockHold";
-            this.grdStockHold.ReadOnly = true;
             this.grdStockHold.RowHeadersVisible = false;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
@@ -712,40 +715,12 @@
             this.grdStockHold.Size = new System.Drawing.Size(1310, 478);
             this.grdStockHold.TabIndex = 1110000988;
             this.grdStockHold.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockHold_CellContentClick);
+            this.grdStockHold.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockHold_CellValueChanged);
             this.grdStockHold.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.GrdStockHold_ColumnWidthChanged);
+            this.grdStockHold.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdStockHold_CurrentCellDirtyStateChanged);
             this.grdStockHold.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockHold_DataBindingComplete);
             this.grdStockHold.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockHold_Scroll);
             this.grdStockHold.Enter += new System.EventHandler(this.GrdStockHold_Enter);
-            // 
-            // clmDelete
-            // 
-            this.clmDelete.HeaderText = "Delete";
-            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmDelete.Name = "clmDelete";
-            this.clmDelete.ReadOnly = true;
-            this.clmDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "Edit";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
-            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // clmMove
-            // 
-            this.clmMove.HeaderText = "Move";
-            this.clmMove.Image = global::ROMS.Properties.Resources.returns1;
-            this.clmMove.Name = "clmMove";
-            this.clmMove.ReadOnly = true;
-            // 
-            // clmConvert
-            // 
-            this.clmConvert.HeaderText = "Convert";
-            this.clmConvert.Image = global::ROMS.Properties.Resources.Convertion;
-            this.clmConvert.Name = "clmConvert";
-            this.clmConvert.ReadOnly = true;
             // 
             // txtProductNamePICode
             // 
@@ -829,6 +804,56 @@
             this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.Convertion;
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.ReadOnly = true;
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.Frozen = true;
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            // 
+            // clmDelete
+            // 
+            this.clmDelete.Frozen = true;
+            this.clmDelete.HeaderText = "Delete";
+            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmDelete.Name = "clmDelete";
+            this.clmDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.Frozen = true;
+            this.clmEdit.HeaderText = "Edit";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // clmMove
+            // 
+            this.clmMove.Frozen = true;
+            this.clmMove.HeaderText = "Move";
+            this.clmMove.Image = global::ROMS.Properties.Resources.returns1;
+            this.clmMove.Name = "clmMove";
+            // 
+            // clmConvert
+            // 
+            this.clmConvert.Frozen = true;
+            this.clmConvert.HeaderText = "Convert";
+            this.clmConvert.Image = global::ROMS.Properties.Resources.Convertion;
+            this.clmConvert.Name = "clmConvert";
+            // 
+            // tsbDelete
+            // 
+            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbDelete.Enabled = false;
+            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(-5, 1, 10, 2);
+            this.tsbDelete.Name = "tsbDelete";
+            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
+            this.tsbDelete.Text = "Delete";
+            this.tsbDelete.Click += new System.EventHandler(this.TsbDelete_Click);
             // 
             // INV_StockHold
             // 
@@ -927,9 +952,11 @@
         public System.Windows.Forms.Label lblschedule;
         public System.Windows.Forms.Label lblSupplierCode;
         public System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
         private System.Windows.Forms.DataGridViewImageColumn clmDelete;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmMove;
         private System.Windows.Forms.DataGridViewImageColumn clmConvert;
+        public System.Windows.Forms.ToolStripButton tsbDelete;
     }
 }

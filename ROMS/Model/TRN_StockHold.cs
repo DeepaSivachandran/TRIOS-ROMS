@@ -30,6 +30,7 @@ namespace ROMS.Model
         public int paraStockQty { get; set; } = 0;
         public int paraParentSHID { get; set; } = 0;
         public int paraDeleteFlag { get; set; } = 0;
+        public string paraSHIds { get; set; } = "";
         public string paraOriginator { get; set; } = "";
 
     }
