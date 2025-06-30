@@ -289,7 +289,9 @@ namespace ROMS
                 {
                     lblVerified1.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedBy);
                     txtVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedName);
-                    dpVerified.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedOn);
+                    string dateStr = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedOn);
+                    DateTime dt = DateTime.ParseExact(dateStr, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpVerified.Value = dt;
                     mtbTime.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedTime);
                     cmbFormat.Text = Convert.ToString(MainForm.objPUR_PurchaseDC.varVerifiedFormat);
                     lvVerified.Visible = false;

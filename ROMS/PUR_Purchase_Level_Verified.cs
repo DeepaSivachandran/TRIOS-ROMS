@@ -313,8 +313,11 @@ namespace ROMS
             {
                 lblVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy1);
                 txtVerified1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName1);
-                DateTime varminDate = DateTime.ParseExact(Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn1), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dpVerified1.MaxDate = varminDate;
+                if (MainForm.objCP_Purchase.pbVerifiedOn1 != "")
+                {
+                    DateTime varminDate = DateTime.ParseExact(Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn1), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpVerified1.MaxDate = varminDate;
+                }
                 //dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
                 mtbTime1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime1);
                 cmbFormat1.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat1);
@@ -332,13 +335,27 @@ namespace ROMS
 
                 lblVerified2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedBy2);
                 txtVerified2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedName2);
-                DateTime varminDate2 = DateTime.ParseExact(Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn2), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dpVerified2.MaxDate = varminDate2;
+                if (MainForm.objCP_Purchase.pbVerifiedOn2 != "")
+                {
+                    DateTime varminDate2 = DateTime.ParseExact(Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn2), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    dpVerified2.MaxDate = varminDate2;
+                }
                 //dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
                 mtbTime2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime2);
                 cmbFormat2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat2);
                 varEditFlag2 = Convert.ToString(MainForm.objCP_Purchase.varPurVerifyFlag2);
                 lvVerified2.Visible = false;
+
+                if (txtVerified2.Text.Trim() != "")
+                {
+                    dpVerified2.Value = dpVerified1.Value;
+                    dpVerified2.Enabled = false;
+                    mtbTime2.Text = mtbTime1.Text;
+                    mtbTime2.Enabled = false;
+                    mtbTime2.ReadOnly = true;
+                    cmbFormat2.SelectedValue = cmbFormat1.SelectedValue;
+                    cmbFormat2.Enabled = false;
+                }
                 if (varEditFlag2 == "1")
                 {
                     txtVerified2.Enabled = false;
@@ -363,7 +380,8 @@ namespace ROMS
                 dpVerified2.MinDate = varmindate;
                 if (txtVerified2.Text != "")
                 {
-                    dpVerified2.Text = dpVerified1.Text;
+                    //dpVerified2.Text = dpVerified1.Text;
+                    dpVerified2.Value = dpVerified1.Value;
                     dpVerified2.Enabled = false;
                 }
             }
@@ -436,7 +454,8 @@ namespace ROMS
                 txtVerified2.BackColor = Color.White;
                 if (txtVerified2.Text != "")
                 {
-                    dpVerified2.Text = dpVerified1.Text;
+                    dpVerified2.Value = dpVerified1.Value;
+                    //dpVerified2.Text = dpVerified1.Text;
                     dpVerified2.Enabled = false;
                     mtbTime2.Text = mtbTime1.Text;
                     mtbTime2.Enabled = false;
@@ -446,7 +465,8 @@ namespace ROMS
                 }
                 else
                 {
-                    dpVerified2.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    dpVerified2.Value = DateTime.Now.Date;
+                    //dpVerified2.Text = DateTime.Now.ToString("dd/MM/yyyy");
                     dpVerified2.Enabled = true;
                     mtbTime2.Text = "";
                     mtbTime2.Enabled = true;
