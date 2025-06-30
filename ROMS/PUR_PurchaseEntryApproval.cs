@@ -5364,6 +5364,30 @@ namespace ROMS
                                     }
                                 }
                                 break;
+                            case "clmProBatchNo":
+                                if (e.Button == MouseButtons.Right)
+                                {
+                                    ContextMenuStrip menustrip = new ContextMenuStrip();
+                                    if (grdSupplierList.CurrentRow.Cells["clmProBatchError"].Value.ToString() == "0")
+                                    {
+                                        //cm.MenuItems.Add(new MenuItem("Error"));
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                        cm.Name = "Error";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(error_Click);
+
+                                    }
+                                    else
+                                    {
+                                        ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                        cm.Name = "Clear";
+                                        menustrip.Items.Add(cm);
+                                        menustrip.Show(grdSupplierList, grdSupplierList.PointToClient(Cursor.Position));
+                                        cm.Click += new EventHandler(clear_Click);
+                                    }
+                                }
+                                break;
                         }
                     }
                 }
