@@ -1675,13 +1675,24 @@ namespace ROMS
                             tpReason.Show("Please select reason for closing.", cmbReasonForClosing, 5000);
                             varErrorFlag = false;
                         }
-                        if (txtAmount.Text == "")
+                        if (txtAmount.Text.Trim() == "")
                         {
                             epReturnDc.SetError(txtAmount, "Please enter amount.");
                             txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tpAmount.ShowAlways = true;
                             tpAmount.Show("Please enter amount.", txtAmount, 5000);
                             varErrorFlag = false;
+                        }
+                        else
+                        {
+                            //if (Convert.ToDecimal(txtAmount.Text) > Convert.ToDecimal(txtApproxTotal.Text))
+                            //{
+                            //    epReturnDc.SetError(txtAmount, "Please enter valid amount.");
+                            //    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            //    tpAmount.ShowAlways = true;
+                            //    tpAmount.Show("Please enter valid amount.", txtAmount, 5000);
+                            //    varErrorFlag = false;
+                            //}
                         }
                         if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62)
                         {
