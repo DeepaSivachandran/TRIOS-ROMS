@@ -1105,6 +1105,7 @@ namespace ROMS
         {
             try
             {
+                grdStockHold.CurrentRow.Cells[0].ReadOnly = true;
                 DGV_FilterProduct.Visible = false;
                 MainForm.objINV_StockHold.SHID = Convert.ToInt32(grdStockHold.SelectedRows[0].Cells["SHID"].Value);
                 if (SHID != 0)
