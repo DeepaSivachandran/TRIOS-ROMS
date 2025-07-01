@@ -53,6 +53,9 @@
             this.dpissuedateandtime = new System.Windows.Forms.DateTimePicker();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.lvVerified1 = new System.Windows.Forms.ListView();
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.errIssued)).BeginInit();
             this.gpissued.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +69,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.submit;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(433, 164);
+            this.btnSave.Location = new System.Drawing.Point(433, 171);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(81, 33);
@@ -81,7 +84,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(520, 164);
+            this.btnClose.Location = new System.Drawing.Point(520, 171);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
@@ -94,6 +97,7 @@
             // gpissued
             // 
             this.gpissued.BackColor = System.Drawing.Color.White;
+            this.gpissued.Controls.Add(this.lvVerified1);
             this.gpissued.Controls.Add(this.txtSupplier);
             this.gpissued.Controls.Add(this.txtPONo);
             this.gpissued.Controls.Add(this.txtPODate);
@@ -114,7 +118,7 @@
             this.gpissued.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpissued.Location = new System.Drawing.Point(9, 0);
             this.gpissued.Name = "gpissued";
-            this.gpissued.Size = new System.Drawing.Size(583, 160);
+            this.gpissued.Size = new System.Drawing.Size(583, 170);
             this.gpissued.TabIndex = 1111176;
             this.gpissued.TabStop = false;
             // 
@@ -285,6 +289,7 @@
             this.txtIssuedBY.Name = "txtIssuedBY";
             this.txtIssuedBY.Size = new System.Drawing.Size(160, 27);
             this.txtIssuedBY.TabIndex = 1;
+            this.txtIssuedBY.TextChanged += new System.EventHandler(this.TxtIssuedBY_TextChanged);
             this.txtIssuedBY.Enter += new System.EventHandler(this.TxtIssuedBY_Enter);
             this.txtIssuedBY.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIssuedBY_KeyDown);
             this.txtIssuedBY.Leave += new System.EventHandler(this.TxtIssuedBY_Leave);
@@ -344,7 +349,7 @@
             // lblschedule
             // 
             this.lblschedule.AutoSize = true;
-            this.lblschedule.Location = new System.Drawing.Point(205, 170);
+            this.lblschedule.Location = new System.Drawing.Point(205, 184);
             this.lblschedule.Name = "lblschedule";
             this.lblschedule.Size = new System.Drawing.Size(16, 20);
             this.lblschedule.TabIndex = 1111212;
@@ -354,19 +359,45 @@
             // lblSupplierCode
             // 
             this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(130, 170);
+            this.lblSupplierCode.Location = new System.Drawing.Point(130, 184);
             this.lblSupplierCode.Name = "lblSupplierCode";
             this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 1111211;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
+            // lvVerified1
+            // 
+            this.lvVerified1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader23,
+            this.columnHeader24});
+            this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvVerified1.HideSelection = false;
+            this.lvVerified1.Location = new System.Drawing.Point(403, 95);
+            this.lvVerified1.Name = "lvVerified1";
+            this.lvVerified1.Size = new System.Drawing.Size(160, 68);
+            this.lvVerified1.TabIndex = 111111134;
+            this.lvVerified1.UseCompatibleStateImageBehavior = false;
+            this.lvVerified1.View = System.Windows.Forms.View.Details;
+            this.lvVerified1.Visible = false;
+            this.lvVerified1.DoubleClick += new System.EventHandler(this.LvVerified1_DoubleClick);
+            this.lvVerified1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvVerified1_KeyDown);
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 120;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
             // PUR_POIssuedDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(602, 204);
+            this.ClientSize = new System.Drawing.Size(602, 212);
             this.Controls.Add(this.lblschedule);
             this.Controls.Add(this.lblSupplierCode);
             this.Controls.Add(this.gpissued);
@@ -417,5 +448,8 @@
         private System.Windows.Forms.TextBox textBox7;
         public System.Windows.Forms.Label lblschedule;
         public System.Windows.Forms.Label lblSupplierCode;
+        public System.Windows.Forms.ListView lvVerified1;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
     }
 }

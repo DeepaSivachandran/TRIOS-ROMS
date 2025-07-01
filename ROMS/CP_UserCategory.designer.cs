@@ -40,18 +40,18 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbUserCategory = new System.Windows.Forms.GroupBox();
+            this.grbModules = new System.Windows.Forms.GroupBox();
+            this.grdModules = new System.Windows.Forms.DataGridView();
             this.cmbCTSINO = new System.Windows.Forms.ComboBox();
             this.txtOrderNo = new System.Windows.Forms.TextBox();
             this.txtDCategoryName = new System.Windows.Forms.TextBox();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.epUserCategory = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grbModules = new System.Windows.Forms.GroupBox();
-            this.grdModules = new System.Windows.Forms.DataGridView();
             this.pnlStatus.SuspendLayout();
             this.grbUserCategory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).BeginInit();
             this.grbModules.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdModules)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlStatus
@@ -157,59 +157,6 @@
             this.grbUserCategory.TabIndex = 0;
             this.grbUserCategory.TabStop = false;
             // 
-            // cmbCTSINO
-            // 
-            this.cmbCTSINO.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCTSINO.FormattingEnabled = true;
-            this.cmbCTSINO.Location = new System.Drawing.Point(197, 53);
-            this.cmbCTSINO.Name = "cmbCTSINO";
-            this.cmbCTSINO.Size = new System.Drawing.Size(288, 27);
-            this.cmbCTSINO.TabIndex = 1;
-            this.cmbCTSINO.Enter += new System.EventHandler(this.CmbCTSINO_Enter);
-            this.cmbCTSINO.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCTSINO_KeyDown);
-            this.cmbCTSINO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCTSINO_KeyPress);
-            this.cmbCTSINO.Leave += new System.EventHandler(this.CmbCTSINO_Leave);
-            // 
-            // txtOrderNo
-            // 
-            this.txtOrderNo.BackColor = System.Drawing.SystemColors.Control;
-            this.txtOrderNo.Enabled = false;
-            this.txtOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderNo.Location = new System.Drawing.Point(17, 53);
-            this.txtOrderNo.Name = "txtOrderNo";
-            this.txtOrderNo.ReadOnly = true;
-            this.txtOrderNo.Size = new System.Drawing.Size(181, 27);
-            this.txtOrderNo.TabIndex = 20;
-            this.txtOrderNo.Text = "Order No.";
-            // 
-            // txtDCategoryName
-            // 
-            this.txtDCategoryName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDCategoryName.Enabled = false;
-            this.txtDCategoryName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDCategoryName.Location = new System.Drawing.Point(17, 26);
-            this.txtDCategoryName.Name = "txtDCategoryName";
-            this.txtDCategoryName.ReadOnly = true;
-            this.txtDCategoryName.Size = new System.Drawing.Size(181, 27);
-            this.txtDCategoryName.TabIndex = 19;
-            this.txtDCategoryName.Text = "Employee Category";
-            // 
-            // txtCategoryName
-            // 
-            this.txtCategoryName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCategoryName.Location = new System.Drawing.Point(197, 26);
-            this.txtCategoryName.MaxLength = 20;
-            this.txtCategoryName.Name = "txtCategoryName";
-            this.txtCategoryName.Size = new System.Drawing.Size(288, 27);
-            this.txtCategoryName.TabIndex = 0;
-            this.txtCategoryName.Enter += new System.EventHandler(this.TxtCategoryName_Enter);
-            this.txtCategoryName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCategoryName_KeyDown);
-            this.txtCategoryName.Leave += new System.EventHandler(this.TxtCategoryName_Leave);
-            // 
-            // epUserCategory
-            // 
-            this.epUserCategory.ContainerControl = this;
-            // 
             // grbModules
             // 
             this.grbModules.Controls.Add(this.grdModules);
@@ -262,6 +209,59 @@
             this.grdModules.TabStop = false;
             this.grdModules.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdModules_CurrentCellDirtyStateChanged);
             // 
+            // cmbCTSINO
+            // 
+            this.cmbCTSINO.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCTSINO.FormattingEnabled = true;
+            this.cmbCTSINO.Location = new System.Drawing.Point(197, 53);
+            this.cmbCTSINO.Name = "cmbCTSINO";
+            this.cmbCTSINO.Size = new System.Drawing.Size(288, 27);
+            this.cmbCTSINO.TabIndex = 1;
+            this.cmbCTSINO.Enter += new System.EventHandler(this.CmbCTSINO_Enter);
+            this.cmbCTSINO.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCTSINO_KeyDown);
+            this.cmbCTSINO.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCTSINO_KeyPress);
+            this.cmbCTSINO.Leave += new System.EventHandler(this.CmbCTSINO_Leave);
+            // 
+            // txtOrderNo
+            // 
+            this.txtOrderNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtOrderNo.Enabled = false;
+            this.txtOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrderNo.Location = new System.Drawing.Point(17, 53);
+            this.txtOrderNo.Name = "txtOrderNo";
+            this.txtOrderNo.ReadOnly = true;
+            this.txtOrderNo.Size = new System.Drawing.Size(181, 27);
+            this.txtOrderNo.TabIndex = 20;
+            this.txtOrderNo.Text = "Order No.";
+            // 
+            // txtDCategoryName
+            // 
+            this.txtDCategoryName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDCategoryName.Enabled = false;
+            this.txtDCategoryName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDCategoryName.Location = new System.Drawing.Point(17, 26);
+            this.txtDCategoryName.Name = "txtDCategoryName";
+            this.txtDCategoryName.ReadOnly = true;
+            this.txtDCategoryName.Size = new System.Drawing.Size(181, 27);
+            this.txtDCategoryName.TabIndex = 19;
+            this.txtDCategoryName.Text = "Employee Category";
+            // 
+            // txtCategoryName
+            // 
+            this.txtCategoryName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategoryName.Location = new System.Drawing.Point(197, 26);
+            this.txtCategoryName.MaxLength = 50;
+            this.txtCategoryName.Name = "txtCategoryName";
+            this.txtCategoryName.Size = new System.Drawing.Size(288, 27);
+            this.txtCategoryName.TabIndex = 0;
+            this.txtCategoryName.Enter += new System.EventHandler(this.TxtCategoryName_Enter);
+            this.txtCategoryName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCategoryName_KeyDown);
+            this.txtCategoryName.Leave += new System.EventHandler(this.TxtCategoryName_Leave);
+            // 
+            // epUserCategory
+            // 
+            this.epUserCategory.ContainerControl = this;
+            // 
             // CP_UserCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -286,9 +286,9 @@
             this.pnlStatus.PerformLayout();
             this.grbUserCategory.ResumeLayout(false);
             this.grbUserCategory.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).EndInit();
             this.grbModules.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdModules)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).EndInit();
             this.ResumeLayout(false);
 
         }
