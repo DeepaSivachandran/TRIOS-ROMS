@@ -258,7 +258,7 @@ namespace ROMS
                 }
 
                 // Title
-                sheet.Cells[row, 1] = "Unapproved Purchase Bills Details Report";
+                sheet.Cells[row, 1] = "Purchase Entry Approval Pending Detail Report";
                 var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
                 titleRange.Merge();
                 titleRange.Font.Bold = true;
