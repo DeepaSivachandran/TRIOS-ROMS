@@ -9742,6 +9742,10 @@ namespace ROMS
                 udfnrowclear();
                 if (Convert.ToString(cmbPONo.SelectedValue) == "220")
                 { cmbQtyType.Enabled = false; }
+                if (Convert.ToInt32(cmbPONo.SelectedValue) == 214)
+                {
+                    cmbQtyType.SelectedValue = 267;
+                }
             }
             catch (Exception ex)
             {

@@ -3521,6 +3521,7 @@ namespace ROMS
                     txtBatchno.BackColor = Color.White;
                 }
                 varpono = Convert.ToInt32(cmbPONo.SelectedValue);
+
                 if (Convert.ToInt32(cmbPONo.SelectedValue) == 215)
                 {
                     DataBind objDataBind = new DataBind();
@@ -3532,6 +3533,7 @@ namespace ROMS
                     DataBind objDataBind = new DataBind();
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 AND MSTID NOT IN (194) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
+                    cmbQtyType.SelectedValue = 267;
                 }
             }
             catch (Exception ex)
