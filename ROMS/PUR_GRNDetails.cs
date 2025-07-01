@@ -4786,7 +4786,7 @@ namespace ROMS
                     {
                         if (varTempExpiryDate != "")
                         {
-                            if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["l"].Value) == varTempExpiryDate)
+                            if (Convert.ToString(grdGrnlist.Rows[rowIndex].Cells["clmInvoiceExpiry"].Value) == varInvoiceExpiryDate)
                             {
                                 varErroronGrid = 1;
                                 grdGrnlist.Rows[rowIndex].Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightPink;
