@@ -280,16 +280,21 @@ namespace ROMS
                         return;
                     }
                     bool exists = false;
-                    exists = objDtMenuCloseDet.AsEnumerable().Where(c => c.Field<string>("MenuName").Equals(child.Text) && c.Field<int>("CloseFlag").Equals(0)).Count() > 0; 
+                    if (objDtMenuCloseDet != null)
+                    {
+                        exists = objDtMenuCloseDet.AsEnumerable().Where(c => c.Field<string>("MenuName").Equals(child.Text) && c.Field<int>("CloseFlag").Equals(0)).Count() > 0;
+                    }
                     if (isFound == true && exists == false)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            child.Close();
-                            isClose = true;
-                        }
-                        else { isClose = false; }
+                        //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        //if (dialogResult == DialogResult.Yes)
+                        //{
+                        //    child.Close();
+                        //    isClose = true;
+                        //}
+                        //else { isClose = false; }
+                        child.Close();
+                        isClose = true;
                         Str_ChildForm = child.Name;
                         //isFormClosedMenu = true ;
                     }

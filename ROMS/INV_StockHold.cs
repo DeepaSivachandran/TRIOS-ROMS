@@ -657,6 +657,7 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
+                            grdStockHold.Columns["clmCheck"].Visible = true;
                             grdStockHold.Columns["clmDelete"].Visible = true;
                             grdStockHold.Columns["clmEdit"].Visible = true;
                             grdStockHold.Columns["clmMove"].Visible = true;
@@ -677,6 +678,7 @@ namespace ROMS
                             grdStockHold.Columns["Batch No."].Width = 70;
                             grdStockHold.Columns["Hold Qty"].Width = 70;
                             grdStockHold.Columns["Created By"].Width = 80;
+                            grdStockHold.Columns["clmCheck"].Width = 40;
                             grdStockHold.Columns["clmDelete"].Width = 40;
                             grdStockHold.Columns["clmEdit"].Width = 30;
                             grdStockHold.Columns["clmMove"].Width = 40;
@@ -723,6 +725,24 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+
+                grdStockHold.Columns["S.No."].ReadOnly = true;
+                grdStockHold.Columns["Concern"].ReadOnly = true;
+                grdStockHold.Columns["P.I Code"].ReadOnly = true;
+                grdStockHold.Columns["Product Name"].ReadOnly = true;
+                grdStockHold.Columns["Unit"].ReadOnly = true;
+                grdStockHold.Columns["Stock Location"].ReadOnly = true;
+                grdStockHold.Columns["Rack"].ReadOnly = true;
+                grdStockHold.Columns["MRP"].ReadOnly = true;
+                grdStockHold.Columns["Expiry Date"].ReadOnly = true;
+                grdStockHold.Columns["Batch No."].ReadOnly = true;
+                grdStockHold.Columns["Hold Qty"].ReadOnly = true;
+                grdStockHold.Columns["Reason"].ReadOnly = true;
+                grdStockHold.Columns["Supplier"].ReadOnly = true;
+                grdStockHold.Columns["Created By"].ReadOnly = true;
+                grdStockHold.Columns["Created On"].ReadOnly = true;
+                grdStockHold.Columns["Remarks"].ReadOnly = true;
+                grdStockHold.Columns["clmCheck"].ReadOnly = false;
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDS.Tables[0];
@@ -1085,6 +1105,7 @@ namespace ROMS
         {
             try
             {
+                grdStockHold.CurrentRow.Cells[0].ReadOnly = true;
                 DGV_FilterProduct.Visible = false;
                 MainForm.objINV_StockHold.SHID = Convert.ToInt32(grdStockHold.SelectedRows[0].Cells["SHID"].Value);
                 if (SHID != 0)
@@ -1246,21 +1267,21 @@ namespace ROMS
                     int rowIndex = 0;
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
-                    DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[3].DefaultCellStyle.NullValue = null;
+                    DGV_SearchGrid.Columns[4].DefaultCellStyle.NullValue = null;
                     for (int i = 2; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    //DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
-                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[3].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[4].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1306,7 +1327,6 @@ namespace ROMS
                         dgv2.Rows[rowIndex].Cells[i].Value = "";
                     }
                 }
-
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1344,6 +1364,14 @@ namespace ROMS
                     }
 
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    if (e.Value == null || !(bool)e.Value)
+                    {
+                        e.PaintBackground(e.CellBounds, false);
+                        e.Handled = true;
+                    }
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1638,6 +1666,8 @@ namespace ROMS
         {
             try
             {
+                grdStockHold.Columns["clmCheck"].Frozen = true;
+                grdStockHold.Columns["clmCheck"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdStockHold.Columns["clmDelete"].Frozen = true;
                 grdStockHold.Columns["clmDelete"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdStockHold.Columns["clmEdit"].Frozen = true;
@@ -1670,9 +1700,13 @@ namespace ROMS
                     }
                     if (Convert.ToString(grdStockHold.Rows[i].Cells["SH_STSID"].Value) == "97")
                     {
-                        //grdStockHold.Rows[i].Cells["clmDelete"].Value = new Bitmap(1, 1);
-                        //grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
+                        grdStockHold.Rows[i].Cells["clmDelete"].Value = new Bitmap(1, 1);
+                        grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
                         //grdStockHold.Rows[i].Cells["clmMove"].Value = new Bitmap(1, 1);
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdStockHold.Rows[i].Cells["clmCheck"] = print;
+                        print.ReadOnly = true;
                     }
                     if (Convert.ToString(grdStockHold.Rows[i].Cells["SH_STSID"].Value) == "95")
                     {
@@ -1838,6 +1872,116 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TsbDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string varStockHoldIds = "";
+                if (grdStockHold.Rows.Count > 0)
+                {
+                    varStockHoldIds = string.Join(",",grdStockHold.Rows.Cast<DataGridViewRow>().Where(row => row.Cells[0].Value is bool isChecked && isChecked).Select(row => row.Cells["SHID"].Value?.ToString()).Where(id => !string.IsNullOrEmpty(id)));
+                }
+                if (varStockHoldIds != "")
+                {
+                    DialogResult dialogResult = MessageBox.Show("Are you sure want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        udfnBulkDelete(varStockHoldIds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnBulkDelete(string varStockHoldIds)
+        {
+            try
+            {
+                string result = "";
+                string varoriginator = "Stock Hold Bulk Delete";
+                SPDataService objspservice = new SPDataService();
+                DataTable objGrnPO = new DataTable();
+                TRN_StockHold objTRNS_StockHold = new TRN_StockHold();
+                MainForm.objCP_Verify = new CP_Verify();
+                MainForm.objCP_Verify.ShowDialog();
+                varUserID = MainForm.objCP_Verify.varUserId;
+                if (MainForm.objCP_Verify.flag == 1)
+                {
+                    objTRNS_StockHold.ViewType = 3;
+                    objTRNS_StockHold.paraSHIds = varStockHoldIds;
+                    objTRNS_StockHold.paraUserID = Convert.ToInt32(varUserID);
+                    objTRNS_StockHold.paraOriginator = varoriginator;
+                    result = objspservice.udfnStockHold(objTRNS_StockHold);
+                    objspservice.CloseConnection();
+                    if (result.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnList();
+                    }
+                    else if (result.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockHold_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+                {
+                    udfnCheckBoxEnable();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnCheckBoxEnable()
+        {
+            try
+            {
+                bool anyChecked = grdStockHold.Rows.Cast<DataGridViewRow>().Any(row => { var cellValue = row.Cells[0].Value;
+                                  return cellValue is bool b && b; });
+
+                tsbDelete.Enabled = anyChecked;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdStockHold_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdStockHold.CurrentCell is DataGridViewCheckBoxCell)
+                {
+                    grdStockHold.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbReason_Leave(object sender, EventArgs e)
         {
             try

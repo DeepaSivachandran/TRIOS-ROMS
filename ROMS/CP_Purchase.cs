@@ -6552,6 +6552,69 @@ namespace ROMS
                             varErrorFlag = true;
                         }
                     }
+
+                    if (grdSupplierList.Rows.Count > 0)
+                    {
+                        int varMismatchError = 0;
+
+                        for (int i = 0; i < grdSupplierList.Rows.Count; i++)
+                        {
+                            var row = grdSupplierList.Rows[i];
+                            if (row.IsNewRow) continue;
+                            row.Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmProductExpiryDate"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmProductBatchNo"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmMRP"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmProductMrp"].Style.BackColor = Color.PaleGreen;
+
+                            string expiry = row.Cells["clmexpirydate"].Value?.ToString()?.Trim();
+                            string invoiceExpiry = row.Cells["clmProductExpiryDate"].Value?.ToString()?.Trim();
+
+                            string batchNo = row.Cells["clmBatchno"].Value?.ToString()?.Trim();
+                            string invoiceBatch = row.Cells["clmProductBatchNo"].Value?.ToString()?.Trim();
+
+                            string mrp = row.Cells["clmMRP"].Value?.ToString()?.Trim();
+                            string invoiceMrp = row.Cells["clmProductMrp"].Value?.ToString()?.Trim();
+
+                            bool hasMismatch = false;
+
+                            if (expiry != invoiceExpiry || string.IsNullOrWhiteSpace(expiry) || string.IsNullOrWhiteSpace(invoiceExpiry))
+                            {
+                                row.Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                row.Cells["clmProductExpiryDate"].Style.BackColor = Color.LightPink;
+                                hasMismatch = true;
+                            }
+
+                            if (batchNo != invoiceBatch || string.IsNullOrWhiteSpace(batchNo) || string.IsNullOrWhiteSpace(invoiceBatch))
+                            {
+                                row.Cells["clmBatchno"].Style.BackColor = Color.LightPink;
+                                row.Cells["clmProductBatchNo"].Style.BackColor = Color.LightPink;
+                                hasMismatch = true;
+                            }
+
+                            if (mrp != invoiceMrp || string.IsNullOrWhiteSpace(mrp) || string.IsNullOrWhiteSpace(invoiceMrp))
+                            {
+                                row.Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                                row.Cells["clmProductMrp"].Style.BackColor = Color.LightPink;
+                                hasMismatch = true;
+                            }
+
+                            if (hasMismatch)
+                            {
+                                varMismatchError = 1;
+                            }
+                        }
+                        if (varMismatchError == 1)
+                        {
+                            DialogResult dialogResult = MessageBox.Show($"Some Products have different Expiry date, Batch No., and MRP.Are you sure want to continue", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.No)
+                            {
+                                varErrorFlag = true;
+                            }
+                        }
+                    }
+
                     if (varErrorFlag == false && varerrFlag == 0)
                     {
                         string result = "", varorginator = "Purchase entry save"; int varSaveFlag = 0;
@@ -9742,6 +9805,10 @@ namespace ROMS
                 udfnrowclear();
                 if (Convert.ToString(cmbPONo.SelectedValue) == "220")
                 { cmbQtyType.Enabled = false; }
+                if (Convert.ToInt32(cmbPONo.SelectedValue) == 214)
+                {
+                    cmbQtyType.SelectedValue = 267;
+                }
             }
             catch (Exception ex)
             {

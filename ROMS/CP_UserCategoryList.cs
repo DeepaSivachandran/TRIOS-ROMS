@@ -205,7 +205,7 @@ namespace ROMS
                             grdUserCategoryList.Columns["CT_SINO"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].Width = 50;
                             grdUserCategoryList.Columns["Order No."].Width = 80;
-                            grdUserCategoryList.Columns["Employee Category"].Width = 200;
+                            grdUserCategoryList.Columns["Employee Category"].Width = 350;
                             grdUserCategoryList.Columns["Status"].Width = 80;
                             grdUserCategoryList.Columns["ModuleID"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

@@ -26,6 +26,7 @@ namespace ROMS
         private ToolTip tpbackuppath = new ToolTip();
         private ToolTip tpPerLevel1 = new ToolTip();
         private ToolTip tpPerLevel2 = new ToolTip();
+        private ToolTip tpVerificationDays = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
         private ToolTip tpReportText = new ToolTip();
         DataSet objDs = new DataSet();
@@ -115,6 +116,7 @@ namespace ROMS
                             txtbackuppath.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_DBPath"]);
                             txtPerLevel1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Level1"]);
                             txtPerLevel2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Level2"]);
+                            txtVerificationDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_VerificationDays"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -171,6 +173,7 @@ namespace ROMS
         {
             try
             {
+                epGeneralSettings.Clear();
                 string varResult = "";
                 int Varflagstock = 0;
                 btnUpdate.Enabled = false; lblReportname.Focus();
@@ -211,7 +214,7 @@ namespace ROMS
                 {
                     varDCCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings,objGeneralSettingsRPT,varOriginator, Varflagstock,txtbackuppath.Text, varGRNCheck, varDCCheck,Convert.ToInt32(txtPerLevel1.Text),Convert.ToInt32(txtPerLevel2.Text));
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text));
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -649,6 +652,25 @@ namespace ROMS
                         txtPerLevel2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpPerLevel2.ShowAlways = true;
                         tpPerLevel2.Show("Please enter valid level2 value.", txtPerLevel2, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToString(txtVerificationDays.Text.Trim()) == "")
+                {
+                    epGeneralSettings.SetError(txtVerificationDays, "Please enter days.");
+                    txtVerificationDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerificationDays.ShowAlways = true;
+                    tpVerificationDays.Show("Please enter verification days.", txtVerificationDays, 5000);
+                    blnErrorFlag = true;
+                }
+                else
+                {
+                    if (Convert.ToInt32(txtVerificationDays.Text) < 1 || Convert.ToInt32(txtVerificationDays.Text) > 365)
+                    {
+                        epGeneralSettings.SetError(txtVerificationDays, "Please enter valid days.");
+                        txtVerificationDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpVerificationDays.ShowAlways = true;
+                        tpVerificationDays.Show("Please enter valid days.", txtVerificationDays, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -1348,7 +1370,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnUpdate.Focus();
+                    txtVerificationDays.Focus();
                 }
             }
             catch (Exception ex)
@@ -1377,6 +1399,64 @@ namespace ROMS
             try
             {
                 txtPerLevel2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtVerificationDays_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtVerificationDays.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtVerificationDays_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtVerificationDays.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtVerificationDays_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtVerificationDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
             }
             catch (Exception ex)
             {

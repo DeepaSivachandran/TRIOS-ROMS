@@ -319,6 +319,7 @@ namespace ROMS
                                 dpissuedateandtime.MaxDate = varmaxdate;
                             }
                             udfnDisableValue();
+                            lvVerified1.Visible = false;
                         } 
                     }
                 }
@@ -450,6 +451,21 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvVerified1.Items.Count == 0 || txtIssuedBY.Text == "")
+                    {
+                        lvVerified1.Visible = false;
+                    }
+                    else
+                    {
+                        lvVerified1.Focus();
+                    }
+                    if (lvVerified1.Items.Count > 0)
+                    {
+                        lvVerified1.Items[0].Selected = true;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
                     cmbIssueMode.Focus();
@@ -616,6 +632,111 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtIssuedBY_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtIssuedBY.Text.Length > 0)
+                {
+                    lvVerified1.Items.Clear();
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objdserv.udfnEmployeeList(14, txtIssuedBY.Text.Trim(), 0, "", 1, 0, 0);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvVerified1.Columns[1].Width = 0;
+                                    lvVerified1.Items.Add(objList);
+                                }
+                                lvVerified1.BringToFront();
+                                lvVerified1.Visible = true;
+                            }
+                            else
+                            {
+                                lvVerified1.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvVerified1.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvVerified1.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvVerified1.Visible = false;
+                    lvVerified1.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvVerified1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnVerified1();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerified1()
+        {
+            try
+            {
+                if (txtIssuedBY.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvVerified1.SelectedItems[0];
+                    txtIssuedBY.Text = selectedItem.SubItems[0].Text;
+                    //lblVerified1.Text = selectedItem.SubItems[1].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvVerified1.Visible = false;
+                cmbIssueMode.Focus();
+            }
+        }
+        private void LvVerified1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnVerified1();
             }
             catch (Exception ex)
             {
