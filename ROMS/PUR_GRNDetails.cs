@@ -653,8 +653,9 @@ namespace ROMS
                     }
                     if (grdGrnlist.Rows.Count > 0)
                     {
-                        varErrorFormat = 0;
                         /*
+                        varErrorFormat = 0;
+                        int varProid = 0;
                         for (int i = 0; i < grdGrnlist.Rows.Count; i++)
                         {
                             if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) != "0" || Convert.ToString(grdGrnlist.Rows[i].Cells["clmexpirydate"].Value) == "")
@@ -665,7 +666,7 @@ namespace ROMS
                                 {
                                     grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                     grdGrnlist.Rows[i].Cells["clmexpirydate"].Style.ForeColor = Color.Black;
-                                    varErrorFormat = 1;
+                                    //varErrorFormat = 1;
                                 }
                                 else
                                 {
@@ -690,8 +691,10 @@ namespace ROMS
 
                                         DataSet objDS = new DataSet();
                                         SPDataService objdServ = new SPDataService();
-                                        objDS = objdServ.udfnMaster(8, 0, 0, varTempExpiryDate, "", 0, "", 0);
-                                        objdServ.CloseConnection();
+                                        MR_Master objMR_Master = new MR_Master();
+                                        objMR_Master.ViewType = 8;
+                                        objMR_Master.paraDate = varTempExpiryDate;
+                                        objDS = objdServ.udfnMaster(objMR_Master);
                                         if (objDS.Tables[0].Rows.Count > 0)
                                         {
                                             if (Convert.ToString(objDS.Tables[0].Rows[0]["DATE"]) == "0")
@@ -723,11 +726,17 @@ namespace ROMS
                                         cellValue = DMY[0] + "/" + DMY[1] + "/" + 20 + varTempYear;
                                     }
                                 }
+                                varProid = Convert.ToInt32(grdGrnlist.Rows[i].Cells["clmProid"].Value);
                                 varTempExpiryDate = cellValue.ToString();
                                 SPDataService objDServe = new SPDataService();
                                 DataSet objDS = new DataSet();
-                                objDS = objDServe.udfnMaster(10, 0, 0, dpGrnDate.Text.Trim(), varTempExpiryDate, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0);
-                                objDServe.CloseConnection();
+                                MR_Master objMR_Master = new MR_Master();
+                                objMR_Master.ViewType = 10;
+                                objMR_Master.paraDate = dpGrnDate.Text.Trim();
+                                objMR_Master.ParaExpiryDate = varTempExpiryDate;
+                                objMR_Master.paraProductId = varProid;
+                                objDS = objDServ.udfnMaster(objMR_Master);
+                                objDServ.CloseConnection();
                                 if (objDS.Tables[0].Rows.Count > 0)
                                 {
                                     if (objDS.Tables[0].Rows[0]["Date"].ToString() == "0")
@@ -781,17 +790,77 @@ namespace ROMS
                         }
                         */
                     }
-                    if (varErrorFormat == 1)
+                    if (grdGrnlist.Rows.Count > 0)
                     {
-                        string varMessage = objDServ.udfnGetMessages(94);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        result1 = DialogResult.No;
+                        int varMismatchError = 0;
+
+                        for (int i = 0; i < grdGrnlist.Rows.Count; i++)
+                        {
+                            var row = grdGrnlist.Rows[i];
+                            if (row.IsNewRow) continue;
+                            row.Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmInvoiceExpiry"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmInvoiceBatch"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
+                            row.Cells["clmInvoiceMRP"].Style.BackColor = Color.PaleGreen;
+
+                            string expiry = row.Cells["clmexpirydate"].Value?.ToString()?.Trim();
+                            string invoiceExpiry = row.Cells["clmInvoiceExpiry"].Value?.ToString()?.Trim();
+
+                            string batchNo = row.Cells["clmBatchno"].Value?.ToString()?.Trim();
+                            string invoiceBatch = row.Cells["clmInvoiceBatch"].Value?.ToString()?.Trim();
+
+                            string mrp = row.Cells["clmmrp"].Value?.ToString()?.Trim();
+                            string invoiceMrp = row.Cells["clmInvoiceMRP"].Value?.ToString()?.Trim();
+
+                            bool hasMismatch = false;
+
+                            if (expiry != invoiceExpiry || string.IsNullOrWhiteSpace(expiry) || string.IsNullOrWhiteSpace(invoiceExpiry))
+                            {
+                                row.Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
+                                row.Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightPink;
+                                hasMismatch = true;
+                            }
+
+                            if (batchNo != invoiceBatch || string.IsNullOrWhiteSpace(batchNo) || string.IsNullOrWhiteSpace(invoiceBatch))
+                            {
+                                row.Cells["clmBatchno"].Style.BackColor = Color.LightPink;
+                                row.Cells["clmInvoiceBatch"].Style.BackColor = Color.LightPink;
+                                hasMismatch = true;
+                            }
+
+                            if (mrp != invoiceMrp || string.IsNullOrWhiteSpace(mrp) || string.IsNullOrWhiteSpace(invoiceMrp))
+                            {
+                                row.Cells["clmmrp"].Style.BackColor = Color.LightPink;
+                                row.Cells["clmInvoiceMRP"].Style.BackColor = Color.LightPink;
+                                hasMismatch = true;
+                            }
+
+                            if (hasMismatch)
+                            {
+                                varMismatchError = 1;
+                            }
+                        }
+                        if (varMismatchError == 1)
+                        {
+                            DialogResult dialogResult = MessageBox.Show($"Some Products have different Expiry date, Batch No., and MRP.Are you sure want to continue", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.No)
+                            {
+                                result1 = DialogResult.No;
+                                varErrorFormat = 1;
+                            }
+                        }
                     }
-                    else
-                    {
-                        result1 = DialogResult.Yes;
-                    }
+
+
+                    //if (varErrorFormat == 1)
+                    //{
+                    //    string varMessage = objDServ.udfnGetMessages(94);
+                    //    objDServ.CloseConnection();
+                    //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    result1 = DialogResult.No;
+                    //}
 
                     if (txtInvoiceno.Text.Trim() == "")
                     {
