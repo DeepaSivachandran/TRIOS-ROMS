@@ -348,20 +348,36 @@ namespace ROMS
                     string address = rowData["AddressValue"].ToString();
                     string gstin = rowData["GSTIN"].ToString();
 
-                    sheet.Cells[row, 1] = companyName;
-                    ((Excel.Range)sheet.Cells[row, 1]).Font.Bold = true;
+                    //sheet.Cells[row, 1] = companyName;
+                    //((Excel.Range)sheet.Cells[row, 1]).Font.Bold = true;
+                    //row++;
+
+                    //sheet.Cells[row, 1] = address;
+                    //row++;
+
+                    //sheet.Cells[row, 1] = $"GSTIN : {gstin}";
+                    //row++;
+                    var compNameRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 3]];
+                    compNameRange.Merge();
+                    compNameRange.Value = companyName;
+                    compNameRange.Font.Bold = true;
                     row++;
 
-                    sheet.Cells[row, 1] = address;
+                    var addressRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 3]];
+                    addressRange.Merge();
+                    addressRange.Value = address;
                     row++;
 
-                    sheet.Cells[row, 1] = $"GSTIN : {gstin}";
+                    var gstinRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 3]];
+                    gstinRange.Merge();
+                    gstinRange.Value = $"GSTIN : {gstin}";
                     row++;
+
                 }
 
                 // Title
                 sheet.Cells[row, 1] = "Purchase Details Report";
-                var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
+                var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]];
                 titleRange.Merge();
                 titleRange.Font.Bold = true;
                 titleRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
@@ -370,7 +386,7 @@ namespace ROMS
 
                 // Filter Info
                 sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
-                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
                 row++;
 
                 int purchaseIndex = 1;
@@ -394,9 +410,9 @@ namespace ROMS
                     sheet.Cells[row, 11] = "Pur Entry Details";
                     sheet.Cells[row, 12] = "Pur Mismatch App";
                     sheet.Cells[row, 13] = "Pur App Details";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Font.Bold = true;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 14]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                     row++;
 
                     sheet.Cells[row, 1] = purchaseIndex++;
@@ -436,12 +452,12 @@ namespace ROMS
                     sheet.Cells[row + 2, 13] = header["PUREAHost"];
 
                     row += 3;
-
-                    string[] productHeaders = { "PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "Invoice MRP", "MRP", "Expiry Date", "Product Shelflife", "Actual Shelflife", "Shelf Life %", "Batch No", "Stock Location", "Rack", "Bill Qty", "Received Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Tax Value", "Nett Amount" };
+                    int productStartRow = row;
+                    string[] productHeaders = { "SNo","PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "Invoice MRP", "MRP", "Expiry Date", "Product Shelflife", "Actual Shelflife", "Shelf Life %", "Batch No", "Stock Location", "Rack", "Bill Qty", "Received Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Tax Value", "Nett Amount" };
 
                     for (int i = 0; i < productHeaders.Length; i++)
                         sheet.Cells[row, i + 1] = productHeaders[i];
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
                     row++;
 
                     decimal totalTaxable = 0, totalGst = 0, totalNet = 0;
@@ -452,36 +468,47 @@ namespace ROMS
                         foreach (var key in productHeaders)
                             sheet.Cells[row, col++] = prod[key];
 
-                        sheet.Cells[row, 2].Font.Name = "Uni Ila.Sundaram-03";
-                        sheet.Cells[row, 2].Font.Size = 9.75;
+                        sheet.Cells[row, 3].Font.Name = "Uni Ila.Sundaram-03";
+                        sheet.Cells[row, 3].Font.Size = 9.75;
 
                         decimal invoiceQty = SafeConvertDecimal(prod["Bill Qty"]);
                         if (invoiceQty == 0)
-                            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+                            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
 
                         totalTaxable += SafeConvertDecimal(prod["Taxable Value"]);
                         totalGst += SafeConvertDecimal(prod["Tax Value"]);
                         totalNet += SafeConvertDecimal(prod["Nett Amount"]);
                         row++;
+
+                        int productEndRow = row - 1;
+                        var productTableRange = sheet.Range[sheet.Cells[productStartRow, 1], sheet.Cells[productEndRow, 26]];
+                        productTableRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
                     }
 
-                    // Aligned Grand Total
-                    sheet.Cells[row, 21] = "Grand Total:";
-                    sheet.Cells[row, 22] = totalTaxable;
-                    sheet.Cells[row, 23] = totalGst;
-                    sheet.Cells[row, 24] = totalNet;
-                    sheet.Range[sheet.Cells[row, 21], sheet.Cells[row, 24]].Font.Bold = true;
+                    // Aligned Net Total
+                    sheet.Cells[row, 22] = "Net Total:";
+                    sheet.Cells[row, 23] = totalTaxable;
+                    sheet.Cells[row, 24] = totalGst;
+                    sheet.Cells[row, 25] = totalNet;
+                    sheet.Range[sheet.Cells[row, 22], sheet.Cells[row, 25]].Font.Bold = true;
                     row++;
+
+                    sheet.Cells[row, 24] = "Grand Total:";
+                    sheet.Cells[row, 25] = footer["GrandTotal"]?.ToString() ?? "0";
+                    sheet.Range[sheet.Cells[row, 24], sheet.Cells[row, 25]].Font.Bold = true;
+                    row++;
+
 
                     // Charges
                     sheet.Cells[row, 1] = $"Bill Addition:    Loading Charges: {footer["Unloading"]}    Freight Charges: {footer["Freight"]}    Courier Charges: {footer["Courier"]}    Other Expenses: {footer["OtherExpenses"]}    TCS Amount: {footer["TCS"]}    Unloading GRN: {footer["UnloadingGRN"]}    Freight GRN: {footer["FreightGRN"]}";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
                     row++;
 
                     sheet.Cells[row, 1] = $"Bill Deduction:    Discount: {footer["DiscAmnt"]}    Other Discount: {footer["OtherDisc"]}    Damage Cost: {footer["DamageCost"]}    Round Off: {footer["RoundOff"]}";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
                     row += 2;
                 }
 
