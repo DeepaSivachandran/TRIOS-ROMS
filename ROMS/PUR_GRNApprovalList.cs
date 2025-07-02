@@ -88,6 +88,8 @@ namespace ROMS
                 udfnDate();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (57) OR MSTID =0", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (57) OR MSTID =0", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (61,0) AND  MSTID NOT IN (194,202,-1)  ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
@@ -1338,7 +1340,7 @@ namespace ROMS
             {
                 txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                btnView.Focus();
+                cmbReason.Focus();
             }
             catch (Exception ex)
             {
@@ -1528,6 +1530,61 @@ namespace ROMS
             }
         }
 
+        private void cmbReason_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReason.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReason_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReason_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReason_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReason.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnList()
         {
             try
@@ -1562,6 +1619,7 @@ namespace ROMS
                     objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                     objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                     objTRN_PurchaseEntry.paraProductID = Convert.ToInt32(lblProduct.Text);
+                    objTRN_PurchaseEntry.paraFlag = Convert.ToInt32(cmbReason.SelectedValue);
                     objDs = objdserv.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -1678,29 +1736,24 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Inv Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier"].Width = 300;
                 DGV_SearchGrid.Columns["GSTIN"].Width = 120;
-                DGV_SearchGrid.Columns["Tot Pro in Inv"].Width = 150;
+                DGV_SearchGrid.Columns["Tot Issue Pro in Inv"].Width = 150;
                 DGV_SearchGrid.Columns["Created By"].Width = 150;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["SPID"].Visible = false;
                 DGV_SearchGrid.Columns["GRNAID"].Visible = false;
-                DGV_SearchGrid.Columns["Condition"].Visible = false;
+               
                 DGV_SearchGrid.Columns["SPSCID"].Visible = false;
-                DGV_SearchGrid.Columns["Concern ID"].Visible = false;
-                DGV_SearchGrid.Columns["PUR_EntryType"].Visible = false;
+                DGV_SearchGrid.Columns["Concern ID"].Visible = false; 
                 DGV_SearchGrid.Columns["Purchase Type"].Visible = false;
-                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
-                DGV_SearchGrid.Columns["MRP"].Visible = false;
-                DGV_SearchGrid.Columns["Exp"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false; 
                 DGV_SearchGrid.Columns["GRNFilterDate"].Visible = false;
-                DGV_SearchGrid.Columns["InvFilterDate"].Visible = false;
-                DGV_SearchGrid.Columns["GRNID"].Visible = false;
-                DGV_SearchGrid.Columns["PURID"].Visible = false;
-                DGV_SearchGrid.Columns["Trans ID"].Visible = false;
+                DGV_SearchGrid.Columns["InvFilterDate"].Visible = false;   
                 DGV_SearchGrid.Columns["Pur_LastTransNo"].Visible = false;
                 DGV_SearchGrid.Columns["Transaction Date"].Visible = false;
                 DGV_SearchGrid.Columns["Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["Flag"].Visible = false;
-                DGV_SearchGrid.Columns["GRN_STSID"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_GRNALastSeenBy"].Visible = false;
+                DGV_SearchGrid.Columns["Trans ID "].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)

@@ -1119,7 +1119,7 @@ namespace ROMS
                         this.ActiveControl = txtSupplier;
                     }
                     grdTaxDetails.DataSource = dtTaxTable;
-                    grdTaxDetails.Columns["GST%"].Width = 60;
+                    grdTaxDetails.Columns["GST%"].Width = 40;
                     grdTaxDetails.Columns["Taxable Value"].Width = 80;
                     grdTaxDetails.Columns["Tax Value"].Width = 60;
                     udfnEditLoad();
@@ -1769,15 +1769,15 @@ namespace ROMS
                                     if (Convert.ToString(objDs.Tables[2].Rows[i]["Taxable Value"]) != "0")
                                     {
                                         grdTaxDetails.DataSource = objDs.Tables[2];
-                                        grdTaxDetails.Columns["GST%"].Width = 60;
+                                        grdTaxDetails.Columns["GST%"].Width = 40;
                                         grdTaxDetails.Columns["Taxable Value"].Width = 100;
                                         grdTaxDetails.Columns["Tax Value"].Width = 80;
-                                        grdTaxDetails.Columns["IGST%"].Width = 60;
-                                        grdTaxDetails.Columns["CGST%"].Width = 60;
-                                        grdTaxDetails.Columns["SGST%"].Width = 60;
-                                        grdTaxDetails.Columns["IGST Value"].Width = 100;
-                                        grdTaxDetails.Columns["CGST Value"].Width = 100;
-                                        grdTaxDetails.Columns["SGST Value"].Width = 100;
+                                        grdTaxDetails.Columns["IGST%"].Width = 45;
+                                        grdTaxDetails.Columns["CGST%"].Width = 45;
+                                        grdTaxDetails.Columns["SGST%"].Width = 45;
+                                        grdTaxDetails.Columns["IGST Value"].Width = 80;
+                                        grdTaxDetails.Columns["CGST Value"].Width = 80;
+                                        grdTaxDetails.Columns["SGST Value"].Width = 80;
                                         grdTaxDetails.Columns["GST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["IGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         grdTaxDetails.Columns["SGST%"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1810,15 +1810,15 @@ namespace ROMS
                                     grdTaxDetails.Columns["IGST%"].Visible = false;
                                     grdTaxDetails.Columns["IGST Value"].Visible = false;
                                 }
-                                grdTaxDetails.Columns["Taxable Value"].Visible = false;
+                                //grdTaxDetails.Columns["Taxable Value"].Visible = false;
                             }
                             else
                             {
                                 grdTaxDetails.DataSource = grdTaxDetails;
-                                grdTaxDetails.Columns["GST%"].Width = 60;
+                                grdTaxDetails.Columns["GST%"].Width = 40;
                                 grdTaxDetails.Columns["Taxable Value"].Width = 80;
                                 grdTaxDetails.Columns["Tax Value"].Width = 60;
-                                grdTaxDetails.Columns["Taxable Value"].Visible = false;
+                                //grdTaxDetails.Columns["Taxable Value"].Visible = false;
                             }
                             if (objDs.Tables[3].Rows.Count != 0) //PO DETAILS LOAD
                             {
@@ -2365,15 +2365,15 @@ namespace ROMS
                     {
                         if (grdTaxDetails.Rows.Count > 0)
                         {
-                            grdTaxDetails.Columns["GST%"].Width = 60;
+                            grdTaxDetails.Columns["GST%"].Width = 40;
                             grdTaxDetails.Columns["Taxable Value"].Width = 100;
                             grdTaxDetails.Columns["Tax Value"].Width = 80;
-                            grdTaxDetails.Columns["IGST%"].Width = 60;
-                            grdTaxDetails.Columns["CGST%"].Width = 60;
-                            grdTaxDetails.Columns["SGST%"].Width = 60;
-                            grdTaxDetails.Columns["IGST Value"].Width = 100;
-                            grdTaxDetails.Columns["CGST Value"].Width = 100;
-                            grdTaxDetails.Columns["SGST Value"].Width = 100;
+                            grdTaxDetails.Columns["IGST%"].Width = 45;
+                            grdTaxDetails.Columns["CGST%"].Width = 45;
+                            grdTaxDetails.Columns["SGST%"].Width = 45;
+                            grdTaxDetails.Columns["IGST Value"].Width = 80;
+                            grdTaxDetails.Columns["CGST Value"].Width = 80;
+                            grdTaxDetails.Columns["SGST Value"].Width = 80;
                         }
                     }
                 }
@@ -8742,13 +8742,13 @@ namespace ROMS
                 dtTaxTable.Rows.Add("Total", 0, Convert.ToDecimal(varTaxValue), "", Convert.ToDecimal(varIGST), "",
                     Convert.ToDecimal(varSGST), "", Convert.ToDecimal(varCGST));
                 grdTaxDetails.DataSource = dtTaxTable;
-                grdTaxDetails.Columns["GST%"].Width = 60;
+                grdTaxDetails.Columns["GST%"].Width = 40;
                 grdTaxDetails.Columns["Taxable Value"].Width = 80;
 
-                grdTaxDetails.Columns["Tax Value"].Width = 60;
-                grdTaxDetails.Columns["IGST%"].Width = 60;
-                grdTaxDetails.Columns["CGST%"].Width = 60;
-                grdTaxDetails.Columns["SGST%"].Width = 60;
+                grdTaxDetails.Columns["Tax Value"].Width = 40;
+                grdTaxDetails.Columns["IGST%"].Width = 45;
+                grdTaxDetails.Columns["CGST%"].Width = 45;
+                grdTaxDetails.Columns["SGST%"].Width = 45;
                 grdTaxDetails.Columns["IGST Value"].Width = 80;
                 grdTaxDetails.Columns["CGST Value"].Width = 80;
                 grdTaxDetails.Columns["SGST Value"].Width = 80;
@@ -8765,7 +8765,7 @@ namespace ROMS
                 {
                     grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
                     grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Black;
-                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.Font = new Font("Oswald Regular", 11, FontStyle.Bold);
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.Font = new Font("Oswald Regular", 9, FontStyle.Bold);
                 }
                 if (pbSupplierTin != pbConcernTin) //IGST
                 {
@@ -8787,7 +8787,7 @@ namespace ROMS
                     grdTaxDetails.Columns["IGST%"].Visible = false;
                     grdTaxDetails.Columns["IGST Value"].Visible = false;
                 }
-                grdTaxDetails.Columns["Taxable Value"].Visible = false;
+                //grdTaxDetails.Columns["Taxable Value"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -9678,7 +9678,7 @@ namespace ROMS
                 {
                     grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
                     grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.ForeColor = Color.Black;
-                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.Font = new Font("Oswald Regular", 11, FontStyle.Bold);
+                    grdTaxDetails.Rows[grdTaxDetails.Rows.Count - 1].DefaultCellStyle.Font = new Font("Oswald Regular", 9, FontStyle.Bold);
                 }
             }
             catch (Exception ex)

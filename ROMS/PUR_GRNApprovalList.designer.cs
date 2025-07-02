@@ -80,6 +80,8 @@
             this.grdGrnApprovalList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbReason = new System.Windows.Forms.ComboBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -193,7 +195,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(778, 71);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(672, 71);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -202,7 +204,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(569, 232);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(672, 232);
             this.DGV_FilterProduct.TabIndex = 111111148;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -219,7 +221,7 @@
             this.lvProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvProduct.HideSelection = false;
-            this.lvProduct.Location = new System.Drawing.Point(778, 71);
+            this.lvProduct.Location = new System.Drawing.Point(669, 71);
             this.lvProduct.Name = "lvProduct";
             this.lvProduct.Size = new System.Drawing.Size(400, 161);
             this.lvProduct.TabIndex = 111111144;
@@ -250,7 +252,7 @@
             this.columnHeader4});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(521, 71);
+            this.LV_Supplier.Location = new System.Drawing.Point(415, 71);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(366, 161);
             this.LV_Supplier.TabIndex = 111111147;
@@ -274,6 +276,8 @@
             // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.label4);
+            this.grbFilterBy.Controls.Add(this.cmbReason);
             this.grbFilterBy.Controls.Add(this.lblschedule);
             this.grbFilterBy.Controls.Add(this.lblProduct);
             this.grbFilterBy.Controls.Add(this.lblSupplierCode);
@@ -305,7 +309,7 @@
             // lblschedule
             // 
             this.lblschedule.AutoSize = true;
-            this.lblschedule.Location = new System.Drawing.Point(602, 45);
+            this.lblschedule.Location = new System.Drawing.Point(554, 45);
             this.lblschedule.Name = "lblschedule";
             this.lblschedule.Size = new System.Drawing.Size(16, 20);
             this.lblschedule.TabIndex = 111111149;
@@ -315,7 +319,7 @@
             // lblProduct
             // 
             this.lblProduct.AutoSize = true;
-            this.lblProduct.Location = new System.Drawing.Point(907, 19);
+            this.lblProduct.Location = new System.Drawing.Point(810, 19);
             this.lblProduct.Name = "lblProduct";
             this.lblProduct.Size = new System.Drawing.Size(16, 20);
             this.lblProduct.TabIndex = 1111143;
@@ -325,7 +329,7 @@
             // lblSupplierCode
             // 
             this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(578, 45);
+            this.lblSupplierCode.Location = new System.Drawing.Point(530, 45);
             this.lblSupplierCode.Name = "lblSupplierCode";
             this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 111111148;
@@ -335,7 +339,7 @@
             // lblDSupplier
             // 
             this.lblDSupplier.AutoSize = true;
-            this.lblDSupplier.Location = new System.Drawing.Point(518, 20);
+            this.lblDSupplier.Location = new System.Drawing.Point(412, 20);
             this.lblDSupplier.Name = "lblDSupplier";
             this.lblDSupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDSupplier.TabIndex = 111111146;
@@ -343,7 +347,7 @@
             // 
             // txtSupplier
             // 
-            this.txtSupplier.Location = new System.Drawing.Point(518, 42);
+            this.txtSupplier.Location = new System.Drawing.Point(412, 42);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(253, 27);
@@ -356,7 +360,7 @@
             // lblSLocation
             // 
             this.lblSLocation.AutoSize = true;
-            this.lblSLocation.Location = new System.Drawing.Point(625, 19);
+            this.lblSLocation.Location = new System.Drawing.Point(577, 19);
             this.lblSLocation.Name = "lblSLocation";
             this.lblSLocation.Size = new System.Drawing.Size(0, 20);
             this.lblSLocation.TabIndex = 1111142;
@@ -364,10 +368,10 @@
             // 
             // txtProductNamePICode
             // 
-            this.txtProductNamePICode.Location = new System.Drawing.Point(775, 42);
+            this.txtProductNamePICode.Location = new System.Drawing.Point(669, 42);
             this.txtProductNamePICode.MaxLength = 100;
             this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(320, 27);
+            this.txtProductNamePICode.Size = new System.Drawing.Size(312, 27);
             this.txtProductNamePICode.TabIndex = 5;
             this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
             this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
@@ -380,7 +384,7 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(9, 41);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(130, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(78, 27);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -391,7 +395,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(408, 19);
+            this.label3.Location = new System.Drawing.Point(304, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 20);
             this.label3.TabIndex = 1111141;
@@ -401,7 +405,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(298, 19);
+            this.label2.Location = new System.Drawing.Point(194, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
             this.label2.TabIndex = 1111140;
@@ -411,7 +415,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.Location = new System.Drawing.Point(145, 19);
+            this.label1.Location = new System.Drawing.Point(91, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 20);
             this.label1.TabIndex = 958816;
@@ -423,9 +427,9 @@
             this.cmbDateType.Items.AddRange(new object[] {
             "GRN Date",
             "Purchase Date"});
-            this.cmbDateType.Location = new System.Drawing.Point(145, 42);
+            this.cmbDateType.Location = new System.Drawing.Point(91, 42);
             this.cmbDateType.Name = "cmbDateType";
-            this.cmbDateType.Size = new System.Drawing.Size(147, 27);
+            this.cmbDateType.Size = new System.Drawing.Size(97, 27);
             this.cmbDateType.TabIndex = 1;
             this.cmbDateType.SelectedIndexChanged += new System.EventHandler(this.CmbDateType_SelectedIndexChanged);
             this.cmbDateType.Enter += new System.EventHandler(this.CmbDateType_Enter);
@@ -437,7 +441,7 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(408, 42);
+            this.dpToDate.Location = new System.Drawing.Point(304, 42);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(104, 27);
             this.dpToDate.TabIndex = 3;
@@ -448,7 +452,7 @@
             // lblDProductNamePicode
             // 
             this.lblDProductNamePicode.AutoSize = true;
-            this.lblDProductNamePicode.Location = new System.Drawing.Point(775, 19);
+            this.lblDProductNamePicode.Location = new System.Drawing.Point(669, 19);
             this.lblDProductNamePicode.Name = "lblDProductNamePicode";
             this.lblDProductNamePicode.Size = new System.Drawing.Size(134, 20);
             this.lblDProductNamePicode.TabIndex = 958811;
@@ -458,7 +462,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(298, 42);
+            this.dpFromDate.Location = new System.Drawing.Point(194, 42);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(104, 27);
             this.dpFromDate.TabIndex = 2;
@@ -469,7 +473,7 @@
             // lblinwarddate
             // 
             this.lblinwarddate.AutoSize = true;
-            this.lblinwarddate.Location = new System.Drawing.Point(307, 19);
+            this.lblinwarddate.Location = new System.Drawing.Point(259, 19);
             this.lblinwarddate.Name = "lblinwarddate";
             this.lblinwarddate.Size = new System.Drawing.Size(0, 20);
             this.lblinwarddate.TabIndex = 92;
@@ -488,10 +492,10 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1179, 41);
+            this.btnExport.Location = new System.Drawing.Point(1262, 41);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
-            this.btnExport.TabIndex = 7;
+            this.btnExport.TabIndex = 8;
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
@@ -503,10 +507,10 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1099, 41);
+            this.btnView.Location = new System.Drawing.Point(1182, 41);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 6;
+            this.btnView.TabIndex = 7;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -648,6 +652,31 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label4.Location = new System.Drawing.Point(985, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 20);
+            this.label4.TabIndex = 111111151;
+            this.label4.Text = "Reason";
+            // 
+            // cmbReason
+            // 
+            this.cmbReason.FormattingEnabled = true;
+            this.cmbReason.Items.AddRange(new object[] {
+            "GRN Date",
+            "Purchase Date"});
+            this.cmbReason.Location = new System.Drawing.Point(985, 42);
+            this.cmbReason.Name = "cmbReason";
+            this.cmbReason.Size = new System.Drawing.Size(193, 27);
+            this.cmbReason.TabIndex = 6;
+            this.cmbReason.Enter += new System.EventHandler(this.cmbReason_Enter);
+            this.cmbReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReason_KeyDown);
+            this.cmbReason.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReason_KeyPress);
+            this.cmbReason.Leave += new System.EventHandler(this.cmbReason_Leave);
+            // 
             // PUR_GRNApprovalList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -725,5 +754,7 @@
         public System.Windows.Forms.ToolStripButton tsbApproval;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbReason;
     }
 }
