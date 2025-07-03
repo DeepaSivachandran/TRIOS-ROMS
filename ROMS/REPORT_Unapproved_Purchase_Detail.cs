@@ -312,6 +312,7 @@ namespace ROMS
                     sheet.Cells[row, 11] = "Pur Entry Details";
                     sheet.Cells[row, 12] = "Pur Mismatch App";
                     sheet.Cells[row, 13] = "Pur App Details";
+                    sheet.Cells[row, 14] = "Status";
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -352,6 +353,8 @@ namespace ROMS
                     sheet.Cells[row, 13] = header["PUREANo"];
                     sheet.Cells[row + 1, 13] = header["PUREAUser"];
                     sheet.Cells[row + 2, 13] = header["PUREAHost"];
+
+                    sheet.Cells[row + 1, 14] = header["Status"];
 
                     row += 3;
                     int productStartRow = row;
@@ -856,7 +859,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14) AND STSID IN (0,62,63)", "STS_Name,STSID", cmbBillType, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14,15,26) AND STSID IN (0,62,70,114)", "STS_Name,STSID", cmbBillType, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,7) AND STSID IN (0,17,23)", "STS_Name,STSID", cmbPayType, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,61) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
