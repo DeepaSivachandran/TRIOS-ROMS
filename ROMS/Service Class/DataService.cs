@@ -188,6 +188,33 @@ namespace ROMS
             }
             return bs;
         }
+        public BindingSource udfnGridSearchFilterStartWith(DataGridView DGV_SearchGrid, DataGridView grdOutwardList)
+        {
+            DataValidation objValidation = new DataValidation();
+            int i = 0;
+            BindingSource bs = new BindingSource();
+            if (DGV_SearchGrid.ColumnCount > 0)
+            {
+                bs.DataSource = grdOutwardList.DataSource;
+                string filter = "";
+                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+                {
+                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "CheckBox")
+                    {
+                        if (filter != "") filter += "And ";
+                        if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+                            filter += "Convert([" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + ", System.String) LIKE '" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                        else
+                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                    }
+                }
+                bs.Filter = filter;
+                grdOutwardList.DataSource = bs;
+
+
+            }
+            return bs;
+        }
         public BindingSource udfnreportGridSearchFilter(DataGridView GrdRMFGHeader, DataGridView GrdRMFGReport)
         {
             DataValidation objValidation = new DataValidation();
