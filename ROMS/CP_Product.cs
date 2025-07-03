@@ -5572,6 +5572,19 @@ namespace ROMS
             }
         }
 
+        private void CmbNetQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
