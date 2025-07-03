@@ -1068,7 +1068,7 @@ namespace ROMS
                                     grdTaxDetails.Columns["IGST%"].Visible = false;
                                     grdTaxDetails.Columns["IGST Value"].Visible = false;
                                 }
-                                grdTaxDetails.Columns["Taxable Value"].Visible = false;
+                                //grdTaxDetails.Columns["Taxable Value"].Visible = false;
                             }
                             else
                             {
@@ -1076,7 +1076,7 @@ namespace ROMS
                                 grdTaxDetails.Columns["GST%"].Width = 40;
                                 grdTaxDetails.Columns["Taxable Value"].Width = 100;
                                 grdTaxDetails.Columns["Tax Value"].Width = 80;
-                                grdTaxDetails.Columns["Taxable Value"].Visible = false;
+                                //grdTaxDetails.Columns["Taxable Value"].Visible = false;
                             }
                             if (objDs.Tables[3].Rows.Count != 0) //PO DETAILS LOAD
                             {
@@ -4193,7 +4193,7 @@ namespace ROMS
                     grdTaxDetails.Columns["IGST%"].Visible = false;
                     grdTaxDetails.Columns["IGST Value"].Visible = false;
                 }
-                grdTaxDetails.Columns["Taxable Value"].Visible = false;
+                //grdTaxDetails.Columns["Taxable Value"].Visible = false;
             }
             catch (Exception ex)
             {
