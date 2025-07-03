@@ -6536,7 +6536,7 @@ namespace ROMS
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
                     objDs = objdserv.udfnGrnListLoad(2, Convert.ToInt32(pbSupplierId), 0, 0, 0, "", "", Convert.ToInt32(pbGRNId), 0, 0, "", "", 0,0, "0","","", 0, 0, 0, 0);
-                    objdserv.CloseConnection(); 
+                    objdserv.CloseConnection();
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
