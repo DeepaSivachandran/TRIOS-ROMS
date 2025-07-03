@@ -3139,10 +3139,142 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GroupBox2_Enter(object sender, EventArgs e)
+        private void GrdReturnDC_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                //clmApprox
+                //clmQuantity
+                //clmTax
+                //clmGSTAmount
+                //clmNettAmount
+                //clmGST
+                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_AppRate", typeof(decimal));
+                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_TaxableAmnt", typeof(decimal));
+                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTPer", typeof(decimal));
+                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTAmnt", typeof(decimal));
+                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_NettAmnt", typeof(decimal));
 
+                //decimal TaxAmt = 0, GSTAmt = 0, NetAmt = 0;
+                //if (txtQuantity.Text.Trim() != "")
+                //{
+                //    TaxAmt = varApprox * Convert.ToDecimal(txtQuantity.Text);
+                //}
+                //if (TaxAmt != 0)
+                //{
+                //    GSTAmt = TaxAmt * varGST / 100;
+                //}
+                //if (TaxAmt != 0)
+                //{
+                //    NetAmt = TaxAmt + GSTAmt;
+                //}
+
+                decimal varApproxRate = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmApprox"].Value);
+                decimal varQuantity = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmQuantity"].Value);
+                decimal varGSTValue = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmGST"].Value);
+
+                decimal varTaxAmt = 0, varGSTAmt = 0, varNetAmt = 0;
+
+                if (grdReturnDC.CurrentCell.OwningColumn.Name == "clmApprox")
+                {
+                    if (Convert.ToDecimal(varApproxRate) == 0 || Convert.ToString(varApproxRate) == "")
+                    {
+                        grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        //SPDataService objDServ = new SPDataService();
+                        //string varMessage = objDServ.udfnGetMessages(89);
+                        //objDServ.CloseConnection();
+                        //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        varTaxAmt = varApproxRate * varQuantity;
+                        varGSTAmt = varTaxAmt * varGSTValue / 100;
+                        varNetAmt = varTaxAmt + varGSTAmt;
+                        grdReturnDC.CurrentRow.Cells["clmApprox"].Style.BackColor = Color.PaleGreen;
+                    }
+
+                    //Convert.ToString(varNetAmt.ToString("0." + new string('0', 2)));
+                    grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Value = Convert.ToString(varApproxRate.ToString("0." + new string('0', 2)));
+                    grdReturnDC.Rows[e.RowIndex].Cells["clmTax"].Value = Convert.ToString(varTaxAmt.ToString("0." + new string('0', 2)));
+                    grdReturnDC.Rows[e.RowIndex].Cells["clmGSTAmount"].Value = Convert.ToString(varGSTAmt.ToString("0." + new string('0', 2)));
+                    grdReturnDC.Rows[e.RowIndex].Cells["clmNettAmount"].Value = Convert.ToString(varNetAmt.ToString("0." + new string('0', 2)));
+
+                    object varEditRate = grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Value;
+                    object varEditTax = grdReturnDC.Rows[e.RowIndex].Cells["clmTax"].Value;
+                    object varEditGSTAmount = grdReturnDC.Rows[e.RowIndex].Cells["clmGSTAmount"].Value;
+                    object varEditNettAmount = grdReturnDC.Rows[e.RowIndex].Cells["clmNettAmount"].Value;
+
+
+                    dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_AppRate"] = varEditRate;
+                    dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_TaxableAmnt"] = varEditTax;
+                    dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_GSTAmnt"] = varEditGSTAmount;
+                    dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_NettAmnt"] = varEditNettAmount;
+
+                    udfnTotal();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdReturnDC_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdReturnDC.CurrentCell.OwningColumn.Name == "clmApprox")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void allowonlynumber(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (grdReturnDC.CurrentCell.OwningColumn.Name == "clmApprox")
+                {
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                    {
+                        e.Handled = true;
+                    }
+                    //only allow one decimal point
+                    if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdReturnDC_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdReturnDC.IsCurrentCellDirty)
+                {
+                    grdReturnDC.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdReturnDC_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -3150,7 +3282,7 @@ namespace ROMS
             try
             {
                 int varProductID = 0;
-                string varMRP = "", varExpiryDate = "", varBatchNo = "", varSLID = "", varRKID = "";
+                string varMRP = "", varStockMRP = "", varExpiryDate = "", varBatchNo = "", varSLID = "", varRKID = "";
                 if (e.RowIndex != -1)
                 {
                     switch (grdReturnDC.Columns[e.ColumnIndex].Name)
@@ -3159,20 +3291,21 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
-                                varProductID = Convert.ToInt32(grdReturnDC.SelectedRows[0].Cells["clmPRID"].Value);
-                                varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdReturnDC.SelectedRows[0].Cells["clmMRP"].Value)));
-                                varExpiryDate = Convert.ToString(grdReturnDC.SelectedRows[0].Cells["clmExpiryDate"].Value);
-                                varBatchNo = Convert.ToString(grdReturnDC.SelectedRows[0].Cells["clmBatchno"].Value);
-                                varSLID = Convert.ToString(grdReturnDC.SelectedRows[0].Cells["clmSLID"].Value);
-                                varRKID = Convert.ToString(grdReturnDC.SelectedRows[0].Cells["clmRKID"].Value);
-                                grdReturnDC.Rows.RemoveAt(this.grdReturnDC.SelectedRows[0].Index);
+                                varProductID = Convert.ToInt32(grdReturnDC.CurrentRow.Cells["clmPRID"].Value);
+                                varStockMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdReturnDC.CurrentRow.Cells["clmMRP"].Value)));
+                                varMRP = Convert.ToString(grdReturnDC.CurrentRow.Cells["clmMRP"].Value);
+                                varExpiryDate = Convert.ToString(grdReturnDC.CurrentRow.Cells["clmExpiryDate"].Value);
+                                varBatchNo = Convert.ToString(grdReturnDC.CurrentRow.Cells["clmBatchno"].Value);
+                                varSLID = Convert.ToString(grdReturnDC.CurrentRow.Cells["clmSLID"].Value);
+                                varRKID = Convert.ToString(grdReturnDC.CurrentRow.Cells["clmRKID"].Value);
+                                grdReturnDC.Rows.RemoveAt(this.grdReturnDC.CurrentRow.Index);
                                 for (int i = 0; i < grdReturnDC.RowCount; i++)
                                 {
                                 }
                                 varModifiedFlag = 1;
                                 for (int i = 0; i < dtStock.Rows.Count; i++)
                                 {
-                                    if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo && Convert.ToString(dtStock.Rows[i]["STK_Dest_SLID"]) == varSLID && Convert.ToString(dtStock.Rows[i]["STK_Dest_RKID"]) == varRKID)
+                                    if (Convert.ToInt32(dtStock.Rows[i]["STK_PRID"]) == Convert.ToInt32(varProductID) && Convert.ToString(dtStock.Rows[i]["STK_MRP"]) == varStockMRP && Convert.ToString(dtStock.Rows[i]["STK_ExpiryDate"]) == varExpiryDate && Convert.ToString(dtStock.Rows[i]["STK_BatchNo"]) == varBatchNo && Convert.ToString(dtStock.Rows[i]["STK_Dest_SLID"]) == varSLID && Convert.ToString(dtStock.Rows[i]["STK_Dest_RKID"]) == varRKID)
                                     {
                                         dtStock.Rows[i].Delete();
                                         dtStock.AcceptChanges();
