@@ -3602,7 +3602,7 @@ namespace ROMS
                     DataBind objDataBind = new DataBind();
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 AND MSTID NOT IN (194) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
-                    cmbQtyType.SelectedValue = 267;
+                    cmbQtyType.SelectedValue = 227;
                 }
             }
             catch (Exception ex)
@@ -5611,7 +5611,14 @@ namespace ROMS
             {
                 errGRNDetails.Clear();
                 //cmbPONo.SelectedIndex = 0;
-                cmbQtyType.SelectedValue = 202;
+                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53 && Convert.ToInt32(cmbPONo.SelectedValue) != 215)
+                {
+                    cmbQtyType.SelectedValue = 227;
+                }
+                else
+                {
+                    cmbQtyType.SelectedValue = 202;
+                }
                 cmbPONo.BackColor = Color.White;
                 txtProductName.Text = "";
                 txtmrprate.Text = "";
@@ -5640,7 +5647,15 @@ namespace ROMS
             {
                 errGRNDetails.Clear();
                 //cmbPONo.SelectedIndex = 0;
-                cmbQtyType.SelectedValue = 202;
+
+                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53 && Convert.ToInt32(cmbPONo.SelectedValue) != 215)
+                {
+                    cmbQtyType.SelectedValue = 227;
+                }
+                else
+                {
+                    cmbQtyType.SelectedValue = 202;
+                }
                 cmbPONo.BackColor = Color.White;
                 //txtProductName.Text = "";
                 txtmrprate.Text = "";
