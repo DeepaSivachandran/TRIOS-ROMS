@@ -844,7 +844,7 @@ namespace ROMS
                         }
                         if (varMismatchError == 1)
                         {
-                            DialogResult dialogResult = MessageBox.Show($"Some Products have different Expiry date, Batch No., and MRP.Are you sure want to continue", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            DialogResult dialogResult = MessageBox.Show("Invoice and product details do not match (Expiry Date, MRP, or Batch No). Are you sure want to continue", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.No)
                             {
                                 result1 = DialogResult.No;
