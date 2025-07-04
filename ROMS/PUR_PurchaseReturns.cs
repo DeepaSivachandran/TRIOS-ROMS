@@ -558,6 +558,8 @@ namespace ROMS
                             txtAmount.Enabled = true;
                             chkVerified.Visible = true;
                             //lblStatus.Text = "Closed";
+                            //chkVerified.Checked = true;
+                            //chkVerified.Enabled = false;
                         }
                         else if (varStatusId==79)
                         {
@@ -1674,7 +1676,7 @@ namespace ROMS
                         tpDcNo.Show("DC No. is empty.", txtReturnDcNo, 5000);
                         varErrorFlag = false;
                     }
-                    if (varStatusId == 16)
+                    if (varStatusId == 16 || varStatusId==101)
                     {
                         if (Convert.ToString(cmbReasonForClosing.SelectedValue) == "" || Convert.ToString(cmbReasonForClosing.SelectedValue) == "-1")
                         {
@@ -1684,24 +1686,27 @@ namespace ROMS
                             tpReason.Show("Please select reason for closing.", cmbReasonForClosing, 5000);
                             varErrorFlag = false;
                         }
-                        if (txtAmount.Text.Trim() == "")
+                        if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) != 205 && Convert.ToInt32(cmbReasonForClosing.SelectedValue) != 63)
                         {
-                            epReturnDc.SetError(txtAmount, "Please enter amount.");
-                            txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpAmount.ShowAlways = true;
-                            tpAmount.Show("Please enter amount.", txtAmount, 5000);
-                            varErrorFlag = false;
-                        }
-                        else
-                        {
-                            //if (Convert.ToDecimal(txtAmount.Text) > Convert.ToDecimal(txtApproxTotal.Text))
-                            //{
-                            //    epReturnDc.SetError(txtAmount, "Please enter valid amount.");
-                            //    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            //    tpAmount.ShowAlways = true;
-                            //    tpAmount.Show("Please enter valid amount.", txtAmount, 5000);
-                            //    varErrorFlag = false;
-                            //}
+                            if (txtAmount.Text.Trim() == "")
+                            {
+                                epReturnDc.SetError(txtAmount, "Please enter amount.");
+                                txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpAmount.ShowAlways = true;
+                                tpAmount.Show("Please enter amount.", txtAmount, 5000);
+                                varErrorFlag = false;
+                            }
+                            else
+                            {
+                                //if (Convert.ToDecimal(txtAmount.Text) > Convert.ToDecimal(txtApproxTotal.Text))
+                                //{
+                                //    epReturnDc.SetError(txtAmount, "Please enter valid amount.");
+                                //    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                //    tpAmount.ShowAlways = true;
+                                //    tpAmount.Show("Please enter valid amount.", txtAmount, 5000);
+                                //    varErrorFlag = false;
+                                //}
+                            }
                         }
                         if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62)
                         {
@@ -1818,10 +1823,10 @@ namespace ROMS
                                 {
                                     TotalTax = Convert.ToDecimal(txtTotalTax.Text);
                                 }
-                                if(chkVerified.Checked==true)
+                                //The Past Status is closed time no need to check the Exchange products
+                                varReturnDCStatusId = varStatusId;
+                                if (chkVerified.Checked==true)
                                 {
-                                    //The Past Status is closed time no need to check the Exchange products
-                                    varReturnDCStatusId = varStatusId;
                                     varVerifiedflag = 1;
                                     varStatusId = 79;
                                 }
@@ -3156,57 +3161,26 @@ namespace ROMS
         {
             try
             {
-                //clmApprox
-                //clmQuantity
-                //clmTax
-                //clmGSTAmount
-                //clmNettAmount
-                //clmGST
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_AppRate", typeof(decimal));
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_TaxableAmnt", typeof(decimal));
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTPer", typeof(decimal));
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTAmnt", typeof(decimal));
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_NettAmnt", typeof(decimal));
-
-                //decimal TaxAmt = 0, GSTAmt = 0, NetAmt = 0;
-                //if (txtQuantity.Text.Trim() != "")
-                //{
-                //    TaxAmt = varApprox * Convert.ToDecimal(txtQuantity.Text);
-                //}
-                //if (TaxAmt != 0)
-                //{
-                //    GSTAmt = TaxAmt * varGST / 100;
-                //}
-                //if (TaxAmt != 0)
-                //{
-                //    NetAmt = TaxAmt + GSTAmt;
-                //}
-
-                decimal varApproxRate = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmApprox"].Value);
-                decimal varQuantity = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmQuantity"].Value);
-                decimal varGSTValue = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmGST"].Value);
-
-                decimal varTaxAmt = 0, varGSTAmt = 0, varNetAmt = 0;
-
                 if (grdReturnDC.CurrentCell.OwningColumn.Name == "clmApprox")
                 {
-                    if (Convert.ToDecimal(varApproxRate) == 0 || Convert.ToString(varApproxRate) == "")
+                    if (grdReturnDC.CurrentRow.Cells["clmApprox"].Value.ToString().Trim() == "")
                     {
-                        grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //SPDataService objDServ = new SPDataService();
-                        //string varMessage = objDServ.udfnGetMessages(89);
-                        //objDServ.CloseConnection();
-                        //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Value = "0.00";
                     }
-                    else
+
+                    decimal varApproxRate = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmApprox"].Value);
+                    decimal varQuantity = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmQuantity"].Value);
+                    decimal varGSTValue = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmGST"].Value);
+
+                    decimal varTaxAmt = 0, varGSTAmt = 0, varNetAmt = 0;
+
+                    if (Convert.ToString(varApproxRate).Trim() != "")
                     {
                         varTaxAmt = varApproxRate * varQuantity;
                         varGSTAmt = varTaxAmt * varGSTValue / 100;
                         varNetAmt = varTaxAmt + varGSTAmt;
                         grdReturnDC.CurrentRow.Cells["clmApprox"].Style.BackColor = Color.PaleGreen;
                     }
-
-                    //Convert.ToString(varNetAmt.ToString("0." + new string('0', 2)));
                     grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Value = Convert.ToString(varApproxRate.ToString("0." + new string('0', 2)));
                     grdReturnDC.Rows[e.RowIndex].Cells["clmTax"].Value = Convert.ToString(varTaxAmt.ToString("0." + new string('0', 2)));
                     grdReturnDC.Rows[e.RowIndex].Cells["clmGSTAmount"].Value = Convert.ToString(varGSTAmt.ToString("0." + new string('0', 2)));

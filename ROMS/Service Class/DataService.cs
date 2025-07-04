@@ -162,59 +162,81 @@ namespace ROMS
         
         public BindingSource udfnGridSearchFilter(DataGridView DGV_SearchGrid,DataGridView grdOutwardList)
         {
-            DataValidation objValidation = new DataValidation();
-            int i = 0;
             BindingSource bs = new BindingSource();
-            if (DGV_SearchGrid.ColumnCount > 0)
+            try
             {
-                bs.DataSource = grdOutwardList.DataSource;
-                string filter = "";
-                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+                DataValidation objValidation = new DataValidation();
+                int i = 0;
+                if (DGV_SearchGrid.ColumnCount > 0)
                 {
-                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "CheckBox")
+                    bs.DataSource = grdOutwardList.DataSource;
+                    string filter = "";
+                    //Added By Sathish For PI Code Column Search Start With Value
+                    var validPICODEColumns = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
                     {
-                        if (filter != "") filter += "And ";
-                        if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
-                            //filter += "Convert([" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
-                            filter += "Convert([" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + ", System.String) LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
-                        else
-                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                        "P.I Code", "P.I.Code", "PI Code", "PICODE", "PR_PICode"
+                    };
+                    for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+                    {
+                        if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "CheckBox")
+                        {
+                            string varColumnName = DGV_SearchGrid.CurrentCell.OwningColumn.Name;
+                            if (validPICODEColumns.Contains(varColumnName))
+                            {
+                                if (filter != "") filter += "And ";
+                                if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+                                    filter += "Convert([" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + ", System.String) LIKE '" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                                else
+                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                            }
+                            else
+                            {
+                                if (filter != "") filter += "And ";
+                                if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+                                    filter += "Convert([" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + ", System.String) LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                                else
+                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                            }
+                        }
                     }
+                    bs.Filter = filter;
+                    grdOutwardList.DataSource = bs;
                 }
-                bs.Filter = filter;
-                grdOutwardList.DataSource = bs;
-
-       
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
             return bs;
         }
-        public BindingSource udfnGridSearchFilterStartWith(DataGridView DGV_SearchGrid, DataGridView grdOutwardList)
-        {
-            DataValidation objValidation = new DataValidation();
-            int i = 0;
-            BindingSource bs = new BindingSource();
-            if (DGV_SearchGrid.ColumnCount > 0)
-            {
-                bs.DataSource = grdOutwardList.DataSource;
-                string filter = "";
-                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
-                {
-                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "CheckBox")
-                    {
-                        if (filter != "") filter += "And ";
-                        if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
-                            filter += "Convert([" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + ", System.String) LIKE '" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
-                        else
-                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
-                    }
-                }
-                bs.Filter = filter;
-                grdOutwardList.DataSource = bs;
+        //public BindingSource udfnGridSearchFilterStartWith(DataGridView DGV_SearchGrid, DataGridView grdOutwardList)
+        //{
+        //    DataValidation objValidation = new DataValidation();
+        //    int i = 0;
+        //    BindingSource bs = new BindingSource();
+        //    if (DGV_SearchGrid.ColumnCount > 0)
+        //    {
+        //        bs.DataSource = grdOutwardList.DataSource;
+        //        string filter = "";
+        //        for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+        //        {
+        //            if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "CheckBox")
+        //            {
+        //                if (filter != "") filter += "And ";
+        //                if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+        //                    filter += "Convert([" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + ", System.String) LIKE '" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+        //                else
+        //                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+        //            }
+        //        }
+        //        bs.Filter = filter;
+        //        grdOutwardList.DataSource = bs;
 
 
-            }
-            return bs;
-        }
+        //    }
+        //    return bs;
+        //}
         public BindingSource udfnreportGridSearchFilter(DataGridView GrdRMFGHeader, DataGridView GrdRMFGReport)
         {
             DataValidation objValidation = new DataValidation();

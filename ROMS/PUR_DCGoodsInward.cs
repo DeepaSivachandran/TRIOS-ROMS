@@ -577,7 +577,7 @@ namespace ROMS
                             objTRN_PurchaseReturnDC.paraStatusID = Convert.ToInt32(MainForm.objPUR_PurchaseReturns.varStatusId);
                             objTRN_PurchaseReturnDC.paraReturnDC_Date = dpExpProReturnDCDate.Text;
                             objTRN_PurchaseReturnDC.paraExchangeRemarks = txtRemark.Text.Trim();
-                            objTRN_PurchaseReturnDC.paraDeleteFlag = 0;
+                            objTRN_PurchaseReturnDC.paraDeleteFlag = 2;
                             objTRN_PurchaseReturnDC.ParaTRN_ReturnDCProducts = dtPurchaseDC;
                             SPDataService objspdservice = new SPDataService();
                             result = objspdservice.udfnPurchaseReturnDc(objTRN_PurchaseReturnDC);
