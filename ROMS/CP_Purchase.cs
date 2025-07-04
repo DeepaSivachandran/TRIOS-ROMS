@@ -5402,7 +5402,6 @@ namespace ROMS
             {
                 errPurchaseentry.Clear();
                 cmbPONo.BackColor = Color.White;
-                cmbQtyType.SelectedValue = 202;
                 txtInvoiceQty.Text = "";
                 txtSourceLocation.Text = "";
                 cmbrack.Text = "";
@@ -5441,6 +5440,15 @@ namespace ROMS
                 txtInvoiceQty.Enabled = false;
                 txtInvoiceQty.ReadOnly = false;
                 //}
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55 && Convert.ToInt32(cmbPONo.SelectedValue) != 215)
+                {
+                    cmbQtyType.SelectedValue = 227;
+                    CmbQtyType_SelectedIndexChanged(cmbQtyType, EventArgs.Empty);
+                }
+                else
+                {
+                    cmbQtyType.SelectedValue = 202;
+                }
             }
             catch (Exception ex)
             {
@@ -6607,7 +6615,7 @@ namespace ROMS
                         }
                         if (varMismatchError == 1)
                         {
-                            DialogResult dialogResult = MessageBox.Show("Invoice and product details do not match (Expiry Date, MRP, or Batch No). Are you sure want to continue", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            DialogResult dialogResult = MessageBox.Show("Invoice and product details do not match (Expiry Date, MRP, or Batch No). Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.No)
                             {
                                 varErrorFlag = true;
@@ -9813,9 +9821,13 @@ namespace ROMS
                 udfnrowclear();
                 if (Convert.ToString(cmbPONo.SelectedValue) == "220")
                 { cmbQtyType.Enabled = false; }
-                if (Convert.ToInt32(cmbPONo.SelectedValue) == 214)
+                if (Convert.ToInt32(cmbEntryType.SelectedValue) == 55 && Convert.ToInt32(cmbPONo.SelectedValue) != 215)
                 {
-                    cmbQtyType.SelectedValue = 267;
+                    cmbQtyType.SelectedValue = 227;
+                }
+                else
+                {
+                    cmbQtyType.SelectedValue = 202;
                 }
             }
             catch (Exception ex)
