@@ -558,6 +558,8 @@ namespace ROMS
                             txtAmount.Enabled = true;
                             chkVerified.Visible = true;
                             //lblStatus.Text = "Closed";
+                            chkVerified.Checked = true;
+                            chkVerified.Enabled = false;
                         }
                         else if (varStatusId==79)
                         {
@@ -1674,7 +1676,7 @@ namespace ROMS
                         tpDcNo.Show("DC No. is empty.", txtReturnDcNo, 5000);
                         varErrorFlag = false;
                     }
-                    if (varStatusId == 16)
+                    if (varStatusId == 16 || varStatusId==101)
                     {
                         if (Convert.ToString(cmbReasonForClosing.SelectedValue) == "" || Convert.ToString(cmbReasonForClosing.SelectedValue) == "-1")
                         {
@@ -1684,24 +1686,27 @@ namespace ROMS
                             tpReason.Show("Please select reason for closing.", cmbReasonForClosing, 5000);
                             varErrorFlag = false;
                         }
-                        if (txtAmount.Text.Trim() == "")
+                        if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) != 205 && Convert.ToInt32(cmbReasonForClosing.SelectedValue) != 63)
                         {
-                            epReturnDc.SetError(txtAmount, "Please enter amount.");
-                            txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpAmount.ShowAlways = true;
-                            tpAmount.Show("Please enter amount.", txtAmount, 5000);
-                            varErrorFlag = false;
-                        }
-                        else
-                        {
-                            //if (Convert.ToDecimal(txtAmount.Text) > Convert.ToDecimal(txtApproxTotal.Text))
-                            //{
-                            //    epReturnDc.SetError(txtAmount, "Please enter valid amount.");
-                            //    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            //    tpAmount.ShowAlways = true;
-                            //    tpAmount.Show("Please enter valid amount.", txtAmount, 5000);
-                            //    varErrorFlag = false;
-                            //}
+                            if (txtAmount.Text.Trim() == "")
+                            {
+                                epReturnDc.SetError(txtAmount, "Please enter amount.");
+                                txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpAmount.ShowAlways = true;
+                                tpAmount.Show("Please enter amount.", txtAmount, 5000);
+                                varErrorFlag = false;
+                            }
+                            else
+                            {
+                                //if (Convert.ToDecimal(txtAmount.Text) > Convert.ToDecimal(txtApproxTotal.Text))
+                                //{
+                                //    epReturnDc.SetError(txtAmount, "Please enter valid amount.");
+                                //    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                //    tpAmount.ShowAlways = true;
+                                //    tpAmount.Show("Please enter valid amount.", txtAmount, 5000);
+                                //    varErrorFlag = false;
+                                //}
+                            }
                         }
                         if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62)
                         {
@@ -1818,10 +1823,10 @@ namespace ROMS
                                 {
                                     TotalTax = Convert.ToDecimal(txtTotalTax.Text);
                                 }
-                                if(chkVerified.Checked==true)
+                                //The Past Status is closed time no need to check the Exchange products
+                                varReturnDCStatusId = varStatusId;
+                                if (chkVerified.Checked==true)
                                 {
-                                    //The Past Status is closed time no need to check the Exchange products
-                                    varReturnDCStatusId = varStatusId;
                                     varVerifiedflag = 1;
                                     varStatusId = 79;
                                 }
