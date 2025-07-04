@@ -658,7 +658,7 @@ namespace ROMS
                     }
                     if (Convert.ToString(txtPurRack.Text) != "" && Convert.ToString(txtPurRack.Text) != "None")
                     {
-                        /*check location have a rack or not*/
+                        //check location have a rack or not
                         string varId_PurchaseRack = "0";
                         DataSet objDsPurchaseRack = new DataSet();
                         SPDataService objDServ6 = new SPDataService();
@@ -846,6 +846,9 @@ namespace ROMS
                         /* Check Rack Based on Subgroup or not */
                         //if (Convert.ToString(txtPurRack.Text) != "" && Convert.ToString(txtPurRack.Text)!="None")
                         //{
+
+                        //Rack Validation No Needed 
+                        /*
                         string varSubRackId = "0";
                         DataSet objDsSubGroupRack = new DataSet();
                         SPDataService objDSRack = new SPDataService();
@@ -870,6 +873,7 @@ namespace ROMS
                             tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
                             blnErrorFlag = true;
                         }
+                        */
                         //}
                     }
                 }
@@ -5564,6 +5568,19 @@ namespace ROMS
             try
             {
                 cbCompleted.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbNetQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {
