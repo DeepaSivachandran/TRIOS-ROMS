@@ -3156,57 +3156,26 @@ namespace ROMS
         {
             try
             {
-                //clmApprox
-                //clmQuantity
-                //clmTax
-                //clmGSTAmount
-                //clmNettAmount
-                //clmGST
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_AppRate", typeof(decimal));
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_TaxableAmnt", typeof(decimal));
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTPer", typeof(decimal));
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_GSTAmnt", typeof(decimal));
-                //dtPurchaseReturnDC.Columns.Add("PURREDCPR_NettAmnt", typeof(decimal));
-
-                //decimal TaxAmt = 0, GSTAmt = 0, NetAmt = 0;
-                //if (txtQuantity.Text.Trim() != "")
-                //{
-                //    TaxAmt = varApprox * Convert.ToDecimal(txtQuantity.Text);
-                //}
-                //if (TaxAmt != 0)
-                //{
-                //    GSTAmt = TaxAmt * varGST / 100;
-                //}
-                //if (TaxAmt != 0)
-                //{
-                //    NetAmt = TaxAmt + GSTAmt;
-                //}
-
-                decimal varApproxRate = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmApprox"].Value);
-                decimal varQuantity = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmQuantity"].Value);
-                decimal varGSTValue = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmGST"].Value);
-
-                decimal varTaxAmt = 0, varGSTAmt = 0, varNetAmt = 0;
-
                 if (grdReturnDC.CurrentCell.OwningColumn.Name == "clmApprox")
                 {
-                    if (Convert.ToDecimal(varApproxRate) == 0 || Convert.ToString(varApproxRate) == "")
+                    if (grdReturnDC.CurrentRow.Cells["clmApprox"].Value.ToString().Trim() == "")
                     {
-                        grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //SPDataService objDServ = new SPDataService();
-                        //string varMessage = objDServ.udfnGetMessages(89);
-                        //objDServ.CloseConnection();
-                        //MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Value = "0.00";
                     }
-                    else
+
+                    decimal varApproxRate = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmApprox"].Value);
+                    decimal varQuantity = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmQuantity"].Value);
+                    decimal varGSTValue = Convert.ToDecimal(grdReturnDC.CurrentRow.Cells["clmGST"].Value);
+
+                    decimal varTaxAmt = 0, varGSTAmt = 0, varNetAmt = 0;
+
+                    if (Convert.ToString(varApproxRate).Trim() != "")
                     {
                         varTaxAmt = varApproxRate * varQuantity;
                         varGSTAmt = varTaxAmt * varGSTValue / 100;
                         varNetAmt = varTaxAmt + varGSTAmt;
                         grdReturnDC.CurrentRow.Cells["clmApprox"].Style.BackColor = Color.PaleGreen;
                     }
-
-                    //Convert.ToString(varNetAmt.ToString("0." + new string('0', 2)));
                     grdReturnDC.Rows[e.RowIndex].Cells["clmApprox"].Value = Convert.ToString(varApproxRate.ToString("0." + new string('0', 2)));
                     grdReturnDC.Rows[e.RowIndex].Cells["clmTax"].Value = Convert.ToString(varTaxAmt.ToString("0." + new string('0', 2)));
                     grdReturnDC.Rows[e.RowIndex].Cells["clmGSTAmount"].Value = Convert.ToString(varGSTAmt.ToString("0." + new string('0', 2)));
