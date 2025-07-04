@@ -558,8 +558,8 @@ namespace ROMS
                             txtAmount.Enabled = true;
                             chkVerified.Visible = true;
                             //lblStatus.Text = "Closed";
-                            chkVerified.Checked = true;
-                            chkVerified.Enabled = false;
+                            //chkVerified.Checked = true;
+                            //chkVerified.Enabled = false;
                         }
                         else if (varStatusId==79)
                         {
