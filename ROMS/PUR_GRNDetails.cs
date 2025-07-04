@@ -3602,7 +3602,14 @@ namespace ROMS
                     DataBind objDataBind = new DataBind();
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 61 AND MSTID NOT IN (194) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbQtyType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
+                }
+                if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53 && Convert.ToInt32(cmbPONo.SelectedValue) != 215)
+                {
                     cmbQtyType.SelectedValue = 227;
+                }
+                else
+                {
+                    cmbQtyType.SelectedValue = 202;
                 }
             }
             catch (Exception ex)
