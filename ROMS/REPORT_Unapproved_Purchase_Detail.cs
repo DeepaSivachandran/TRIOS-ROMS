@@ -292,12 +292,56 @@ namespace ROMS
                 foreach (var purchase in purchases)
                 {
                     var headerJson = purchase["Header"]?.ToString() ?? "{}";
-                    var header = JsonConvert.DeserializeObject<JObject>(headerJson);
+
+                    if (headerJson.Contains("}{"))
+                    {
+                        var parts = headerJson.Split(new[] { "},{" }, StringSplitOptions.None);
+                        headerJson = "{" + parts[0].Trim('{', '}') + "}"; 
+                    }
+
+                    int endIndex = headerJson.LastIndexOf('}');
+                    if (endIndex != -1 && endIndex < headerJson.Length - 1)
+                    {
+                        headerJson = headerJson.Substring(0, endIndex + 1);
+                    }
+
+                    JObject header;
+                    try
+                    {
+                        header = JsonConvert.DeserializeObject<JObject>(headerJson) ?? new JObject();
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        header = new JObject(); 
+                    }
 
                     var footerJson = purchase["Footer"]?.ToString() ?? "{}";
-                    var footer = JsonConvert.DeserializeObject<JObject>(footerJson);
 
+                    if (footerJson.Contains("}{"))
+                    {
+                        var parts = footerJson.Split(new[] { "},{" }, StringSplitOptions.None);
+                        footerJson = "{" + parts[0].Trim('{', '}') + "}";
+                    }
+
+                    endIndex = footerJson.LastIndexOf('}');
+                    if (endIndex != -1 && endIndex < footerJson.Length - 1)
+                    {
+                        footerJson = footerJson.Substring(0, endIndex + 1);
+                    }
+
+                    JObject footer;
+                    try
+                    {
+                        footer = JsonConvert.DeserializeObject<JObject>(footerJson) ?? new JObject();
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        footer = new JObject();
+                    }
+
+                    // Get Products safely
                     var products = purchase["Products"] as JArray ?? new JArray();
+
 
                     row++;
 
@@ -859,7 +903,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14,15,26) AND STSID IN (0,62,70,114)", "STS_Name,STSID", cmbBillType, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14,15,26) AND STSID IN (0,62,70,114)", "STS_ShortName,STSID", cmbBillType, "", "STS_ShortName", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,7) AND STSID IN (0,17,23)", "STS_Name,STSID", cmbPayType, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,61) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;

@@ -175,6 +175,10 @@ namespace ROMS
                     dtExchangeProducts.Rows.Clear();
                     dtExchangeProducts.AcceptChanges();
                 }
+                if (txtAmount.Visible == true)
+                {
+                    txtAmount.Text = txtApproxTotal.Text;
+                }
             }
             catch (Exception ex)
             {
@@ -600,6 +604,10 @@ namespace ROMS
                         //    txtCrNo.Enabled = false;
                         //    dpCreditNoteDate.Enabled = false;
                         //}
+                        if(varStatusId!=39 && varStatusId!=79)
+                        {
+                            grbProDetails.Enabled = true;
+                        }
                     }
                 }
                 ChkCompleted_CheckedChanged(sender, e);
@@ -841,7 +849,7 @@ namespace ROMS
 
                                         dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), 0, Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), 0, 0); 
 
-                                        dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]),
+                                        dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["UTID"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST Amt"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["DMID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["FreeQty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"]));
@@ -874,20 +882,21 @@ namespace ROMS
                                     grdReturnDC.Columns["clmRKID"].Visible = false;
                                     if(Convert.ToInt32(cmbReason.SelectedValue) == 203)
                                     {
-                                        if (varStatusId == 68)
+                                        if (varStatusId != 39 && varStatusId != 79)
                                         {
                                             grdReturnDC.Columns["clmRemove"].Visible = true;
                                         }
                                         else
                                         {
-                                            grdReturnDC.Columns["clmRemove"].Visible = false;
+                                               grdReturnDC.Columns["clmApprox"].ReadOnly = true;
+                                               grdReturnDC.Columns["clmRemove"].Visible = false;
                                         }
                                         grdReturnDC.Columns["clmLocation"].Visible = true;
                                         grdReturnDC.Columns["clmRack"].Visible = true;
                                     }
                                     else
                                     {
-                                        grdReturnDC.Columns["clmRemove"].Visible = false;
+                                        //grdReturnDC.Columns["clmRemove"].Visible = false;
                                         grdReturnDC.Columns["clmLocation"].Visible = false;
                                         grdReturnDC.Columns["clmRack"].Visible = false;
                                     }
@@ -2974,6 +2983,10 @@ namespace ROMS
                 grdReturnDC.Columns["clmRemove"].Visible = true;
                 grdReturnDC.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 udfnProClear();
+                if (txtAmount.Visible == true)
+                {
+                    txtAmount.Text = txtApproxTotal.Text;
+                }
             }
             catch (Exception ex)
             {
@@ -3211,6 +3224,10 @@ namespace ROMS
                     dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_NettAmnt"] = varEditNettAmount;
 
                     udfnTotal();
+                    if (txtAmount.Visible == true)
+                    {
+                        txtAmount.Text = txtApproxTotal.Text;
+                    }
                 }
             }
             catch (Exception ex)
@@ -3321,6 +3338,10 @@ namespace ROMS
                                     //grdReturnDC.Rows[i].Cells["clmSno"].Value = i + 1;
                                 }
                                 udfnTotal();
+                                if (txtAmount.Visible == true)
+                                {
+                                    txtAmount.Text = txtApproxTotal.Text;
+                                }
                             }
                             break;
                     }
