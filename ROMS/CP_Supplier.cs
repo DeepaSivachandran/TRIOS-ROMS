@@ -4273,7 +4273,7 @@ namespace ROMS
                 dtSubGroupMapping.Columns.Add("PRODUCTID", typeof(int));
                 dtSubGroupMapping.Columns.Add("Product Name in English", typeof(string));
                 dtSubGroupMapping.Columns.Add("MappedCount", typeof(int));
-                udfnInitSubgroup();
+                //udfnInitSubgroup();
                 BeginInvoke(new Action(() => cmbMappingorderschedule.Select(int.MaxValue, 0)));
                 udfnMappingGridsLoad();
                 udfnMappingDropDownLoad();
@@ -4663,11 +4663,10 @@ namespace ROMS
                 grdFinalSupplierMapping.DataSource = null;
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                foreach (DataGridViewRow row in grdSupplierMappingLoad.Rows)
-                {
-                    row.Cells[0].Value = false;
-                }
-
+                //foreach (DataGridViewRow row in grdSupplierMappingLoad.Rows)
+                //{
+                //    row.Cells[0].Value = false;
+                //} 
                 SupplierUpdate = 0;
                 if (Convert.ToInt32(varsupplierID) != 0)
                 {
@@ -5712,20 +5711,40 @@ namespace ROMS
         {
             try
             {
-                string varRemoveGroup = "";
-                for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
+                //string varRemoveGroup = "";
+                //for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
+                //{
+                //    varRemoveGroup = Convert.ToString(grdFinalSupplierMapping.Rows[j].Cells["PRODUCTID"].Value);
+                //    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
+                //    {
+                //        if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["PRODUCTID"]))
+                //        {
+                //            dtSubGroup.Rows[i].Delete();
+                //            dtSubGroup.AcceptChanges();
+                //        }
+                //    }
+                //}
+                //grdSupplierMappingLoad.DataSource = dtSubGroup; 
+                HashSet<string> productIdsToRemove = new HashSet<string>();
+                foreach (DataGridViewRow row in grdFinalSupplierMapping.Rows)
                 {
-                    varRemoveGroup = Convert.ToString(grdFinalSupplierMapping.Rows[j].Cells["PRODUCTID"].Value);
-                    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
+                    if (row.IsNewRow) continue; // Skip the last row used for adding new entries 
+                    string productId = row.Cells["PRODUCTID"].Value?.ToString(); 
+                    if (!string.IsNullOrWhiteSpace(productId))
                     {
-                        if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["PRODUCTID"]))
-                        {
-                            dtSubGroup.Rows[i].Delete();
-                            dtSubGroup.AcceptChanges();
-                        }
+                        productIdsToRemove.Add(productId);
                     }
-                }
-                grdSupplierMappingLoad.DataSource = dtSubGroup;
+                } 
+                for (int i =0;i< dtSubGroup.Rows.Count ;  i++)  
+                {
+                    string productId = Convert.ToString(dtSubGroup.Rows[i]["PRODUCTID"]);
+                    if (productIdsToRemove.Contains(productId))
+                    {
+                        dtSubGroup.Rows[i].Delete(); // Mark row for deletion
+                    }
+                } 
+                dtSubGroup.AcceptChanges();  
+                grdSupplierMappingLoad.DataSource = dtSubGroup; 
             }
             catch (Exception ex)
             {
