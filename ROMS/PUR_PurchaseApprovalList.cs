@@ -65,7 +65,7 @@ namespace ROMS
                 {
                     DateTime varDate = DateTime.ParseExact(objd.Tables[0].Rows[0]["Transaction Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpToDate.MinDate = varDate;
-                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["Transaction Date"]);
+                    dpFromDate.Text = Convert.ToString(DateTime.ParseExact(objd.Tables[0].Rows[0]["Transaction Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture));
                 }
                 objDServ.CloseConnection();
                 dpFromDate.MinDate = MainForm.pbFYStartDate;

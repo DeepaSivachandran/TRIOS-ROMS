@@ -1178,6 +1178,8 @@ namespace ROMS
                 {
                     btnUnapprove.Enabled = false;
                 }
+                if (PbSTS == "50")
+                { udfndisablevalue(); }
             }
             catch (Exception ex)
             {
