@@ -13,6 +13,8 @@ namespace ROMS
 {
     public partial class CP_Supplierlist : Form
     {
+        Boolean BlnSearchImageYN = false;
+        public string varSupplierIds = "0";
         ToolTip tpSupplier = new ToolTip();
         public string varUserID = "";
         public int varActiveCount = 0, varInactiveCount = 0, varTotalCount = 0, Varflag = 0, varNotDefinedCount = 0, varDeleteFlag = 0;
@@ -468,11 +470,14 @@ namespace ROMS
                     int rowIndex = 0;
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
+                    DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
+                    DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -496,11 +501,31 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
+                    BlnSearchImageYN = false;
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                        {
+                            BlnSearchImageYN = true;
+                            dgv2.Rows[rowIndex].Cells[i].Value = false;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -1401,6 +1426,50 @@ namespace ROMS
                 {
                     BtnView_Click(sender, e);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnEnvelopPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int varCount = 0;
+                if (grdSupplierList.Rows.Count > 0)
+                {
+                    varSupplierIds = "0";
+                    for (int i = 0; i < grdSupplierList.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdSupplierList.Rows[i].Cells[0].Value) == true)
+                        {
+                            if (varSupplierIds == "0")
+                            {
+                                varSupplierIds = Convert.ToString(grdSupplierList.Rows[i].Cells["SupplierID"].Value);
+                            }
+                            else
+                            {
+                                varSupplierIds = varSupplierIds + ',' + Convert.ToString(grdSupplierList.Rows[i].Cells["SupplierID"].Value);
+                            }
+                            varCount++;
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+                if (varCount == 0)
+                {
+                    MessageBox.Show("Please select atleast one supplier.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                MainForm.objLabelCount = new LabelCount();
+                MainForm.objLabelCount.varSupplierIds = varSupplierIds;
+                MainForm.objLabelCount.ShowDialog();
             }
             catch (Exception ex)
             {
