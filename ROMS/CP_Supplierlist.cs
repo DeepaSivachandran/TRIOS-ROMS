@@ -333,6 +333,8 @@ namespace ROMS
                                 grdSupplierList.Columns["rownum"].Visible = false;
                                 grdSupplierList.Columns["SP_ReturnApplicable"].Visible = false;
                                 grdSupplierList.Columns["SPSC_OrderType"].Visible = false;
+                                grdSupplierList.Columns["clmCheck"].Visible = true;
+                                grdSupplierList.Columns["clmCheck"].ReadOnly = false;
                             }
                             else
                             {
@@ -452,7 +454,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void udfnSearchGridHead()
         {
             try
@@ -470,9 +471,10 @@ namespace ROMS
                     int rowIndex = 0;
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
+                    //DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
-                    for (int i = 0; i < visibleColumns.Count; i++)
+                    for (int i = 1; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
@@ -1062,6 +1064,14 @@ namespace ROMS
                     }
 
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    if (e.Value == null || !(bool)e.Value)
+                    {
+                        e.PaintBackground(e.CellBounds, false);
+                        e.Handled = true;
+                    }
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1470,6 +1480,22 @@ namespace ROMS
                 MainForm.objLabelCount = new LabelCount();
                 MainForm.objLabelCount.varSupplierIds = varSupplierIds;
                 MainForm.objLabelCount.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupplierList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            try
+            {
+                if (grdSupplierList.Columns[e.ColumnIndex].Name != "clmCheck")
+                {
+                    e.Cancel = true; // Block editing
+                }
             }
             catch (Exception ex)
             {

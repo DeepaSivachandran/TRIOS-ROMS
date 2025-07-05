@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -56,11 +57,15 @@ namespace ROMS
             try
             {
                 errBrand.Clear();
+                SPDataService objSPdataservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                SPDataService objSPdataservice = new SPDataService();
-                //objDs = objSPdataservice.udfnSPSupplierList("Address", 0, "", 0, 0, varSupplierIds, Convert.ToInt32(txtCount.Text.Trim()), 0);
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 42;
+                objMR_Supplier.paraSupplierIds = varSupplierIds;
+                objMR_Supplier.paraStickerCount = Convert.ToInt32(txtCount.Text.Trim());
+                objDs = objSPdataservice.udfnSupplierList(objMR_Supplier);
                 objSPdataservice.CloseConnection();
                 if (objDs != null)
                 {

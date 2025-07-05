@@ -61,8 +61,10 @@
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.grbFilterBySupplier = new System.Windows.Forms.GroupBox();
+            this.btnEnvelopPrint = new System.Windows.Forms.Button();
             this.lblschedule = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
@@ -76,8 +78,6 @@
             this.lblDay = new System.Windows.Forms.Label();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnEnvelopPrint = new System.Windows.Forms.Button();
             this.tsSupplierList.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -417,16 +417,23 @@
             this.grdSupplierList.GridColor = System.Drawing.Color.White;
             this.grdSupplierList.Location = new System.Drawing.Point(3, 130);
             this.grdSupplierList.Name = "grdSupplierList";
-            this.grdSupplierList.ReadOnly = true;
             this.grdSupplierList.RowHeadersVisible = false;
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1348, 501);
             this.grdSupplierList.TabIndex = 958797;
+            this.grdSupplierList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.GrdSupplierList_CellBeginEdit);
             this.grdSupplierList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierList_DataBindingComplete);
             this.grdSupplierList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupplierList_Scroll);
             this.grdSupplierList.DoubleClick += new System.EventHandler(this.GrdSupplierList_DoubleClick);
             this.grdSupplierList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSupplierList_KeyDown);
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.ReadOnly = true;
+            this.clmCheck.Width = 50;
             // 
             // picLoader
             // 
@@ -460,6 +467,17 @@
             this.grbFilterBySupplier.TabIndex = 958801;
             this.grbFilterBySupplier.TabStop = false;
             this.grbFilterBySupplier.Text = "Filter By Supplier";
+            // 
+            // btnEnvelopPrint
+            // 
+            this.btnEnvelopPrint.Image = global::ROMS.Properties.Resources.print_label;
+            this.btnEnvelopPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEnvelopPrint.Location = new System.Drawing.Point(818, 25);
+            this.btnEnvelopPrint.Name = "btnEnvelopPrint";
+            this.btnEnvelopPrint.Size = new System.Drawing.Size(33, 30);
+            this.btnEnvelopPrint.TabIndex = 1111229;
+            this.btnEnvelopPrint.UseVisualStyleBackColor = true;
+            this.btnEnvelopPrint.Click += new System.EventHandler(this.BtnEnvelopPrint_Click);
             // 
             // lblschedule
             // 
@@ -647,24 +665,6 @@
             // ep_Supplierlist
             // 
             this.ep_Supplierlist.ContainerControl = this;
-            // 
-            // clmCheck
-            // 
-            this.clmCheck.HeaderText = "";
-            this.clmCheck.Name = "clmCheck";
-            this.clmCheck.ReadOnly = true;
-            this.clmCheck.Width = 50;
-            // 
-            // btnEnvelopPrint
-            // 
-            this.btnEnvelopPrint.Image = global::ROMS.Properties.Resources.print_label;
-            this.btnEnvelopPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnvelopPrint.Location = new System.Drawing.Point(818, 25);
-            this.btnEnvelopPrint.Name = "btnEnvelopPrint";
-            this.btnEnvelopPrint.Size = new System.Drawing.Size(33, 30);
-            this.btnEnvelopPrint.TabIndex = 1111229;
-            this.btnEnvelopPrint.UseVisualStyleBackColor = true;
-            this.btnEnvelopPrint.Click += new System.EventHandler(this.BtnEnvelopPrint_Click);
             // 
             // CP_Supplierlist
             // 
