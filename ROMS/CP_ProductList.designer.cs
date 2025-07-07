@@ -88,6 +88,7 @@
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.clmClone = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsItemList.SuspendLayout();
             this.pnlItemList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemList)).BeginInit();
@@ -285,6 +286,8 @@
             this.grdItemList.ColumnHeadersHeight = 30;
             this.grdItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdItemList.ColumnHeadersVisible = false;
+            this.grdItemList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmClone});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -307,6 +310,7 @@
             this.grdItemList.ShowRowErrors = false;
             this.grdItemList.Size = new System.Drawing.Size(1348, 496);
             this.grdItemList.TabIndex = 958802;
+            this.grdItemList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdItemList_CellContentClick);
             this.grdItemList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdItemList_DataBindingComplete);
             this.grdItemList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdItemList_Scroll);
             this.grdItemList.DoubleClick += new System.EventHandler(this.GrdItemList_DoubleClick);
@@ -696,6 +700,13 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
+            // clmClone
+            // 
+            this.clmClone.HeaderText = "Clone";
+            this.clmClone.Image = global::ROMS.Properties.Resources.Convertion;
+            this.clmClone.Name = "clmClone";
+            this.clmClone.ReadOnly = true;
+            // 
             // CP_ProductList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -784,5 +795,6 @@
         private System.Windows.Forms.Label lblGroupId;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.DataGridViewImageColumn clmClone;
     }
 }

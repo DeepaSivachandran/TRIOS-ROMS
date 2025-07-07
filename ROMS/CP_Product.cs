@@ -56,7 +56,7 @@ namespace ROMS
         private ToolTip tpMxstock = new ToolTip();
         private ToolTip tpUPP = new ToolTip();
 
-        public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
+        public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varMasterType = "0", varSalesRack="",varBrandName="", varRackDescription="", varEname = "",varGRNid="0",varNewproid="0";
         public CP_Product()
         {
@@ -1023,13 +1023,13 @@ namespace ROMS
                     {
                         varbrandid = lblBrand.Text;
                     }
-                    if (varproductcode==0)
+                    if (varproductcode == 0 || pbCloneFlag == 1)
                     {
                         varviewtype = 0;
                         varorignator = "Product Create";
-                        varupdateproductcode = 0; 
+                        varupdateproductcode = 0;
                     }
-                    else if(varproductcode!=0)
+                    else if (varproductcode != 0)
                     {
                         varviewtype = 1;
                         varorignator = "Product Update";
@@ -3494,6 +3494,16 @@ namespace ROMS
                 udfnEdit();
                 txtHSNCode.Enabled = false;
                 txtHSNCode.ReadOnly = true;
+                if (pbCloneFlag == 1)
+                {
+                    btnSave.Text = "Save as Draft";
+                    rbInActive.Checked = true;
+                    pnlStatus.Enabled = false;
+                    cbCompleted.Checked = false;
+                    cbCompleted.Enabled = true;
+                    pbFormStatus = 71;
+                    this.ActiveControl = txtPICode;
+                }
             }
             catch (Exception ex)
             {
@@ -5452,7 +5462,7 @@ namespace ROMS
         {
             try
             {
-                if (varproductcode==0)
+                if (varproductcode == 0 || pbCloneFlag == 1)
                 {
                     if (cbCompleted.Checked)
                     {
@@ -5928,7 +5938,7 @@ namespace ROMS
                         }
                     }
                 }
-                if (pbFormStatus==2)
+                if (pbFormStatus == 2 && pbCloneFlag == 0)
                 {
                     udfnDisable();
                 }
