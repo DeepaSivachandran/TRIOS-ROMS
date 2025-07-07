@@ -184,6 +184,12 @@
     <Compile Include="LabelCount.designer.cs">
       <DependentUpon>LabelCount.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_StickerPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_StickerPrint.designer.cs">
+      <DependentUpon>CP_StickerPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_GSTINVerify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2041,6 +2047,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\view %281%29.png" />
     <None Include="Resources\Unapproved.jpg" />
     <None Include="Resources\Pur_Unapproved.jpg" />
     <None Include="Resources\Unchecked.jpg" />
@@ -2061,6 +2068,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LabelCount.resx">
       <DependentUpon>LabelCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_StickerPrint.resx">
+      <DependentUpon>CP_StickerPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GSTINVerify.resx">
       <DependentUpon>PUR_GSTINVerify.cs</DependentUpon>

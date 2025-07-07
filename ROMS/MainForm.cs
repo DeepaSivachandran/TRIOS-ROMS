@@ -109,6 +109,7 @@ namespace ROMS
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
         public static LabelCount objLabelCount;
+        public static CP_StickerPrint objCP_StickerPrint;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -2632,6 +2633,23 @@ namespace ROMS
                 MainForm.objREPORT_ProductWise_Po.MdiParent = this;
                 MainForm.objREPORT_ProductWise_Po.Show();
                 PbCurrentForm = "7.6.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void StickerPrintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_StickerPrint = new CP_StickerPrint();
+                MainForm.objCP_StickerPrint.MdiParent = this;
+                MainForm.objCP_StickerPrint.Show();
             }
             catch (Exception ex)
             {
