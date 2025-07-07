@@ -108,6 +108,7 @@ namespace ROMS
         public static CP_ProductApprovalList objCP_ProductApprovalList;
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
+        public static LabelCount objLabelCount;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;

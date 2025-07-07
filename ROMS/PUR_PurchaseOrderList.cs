@@ -172,6 +172,10 @@ namespace ROMS
                                 objError.WriteFile(ex);
                             }
                             break;
+                        case "clmEnvelopPrint":
+                            string POSPID = Convert.ToString((grdPurchaseorderlist.SelectedRows[0].Cells["PO_SPID"].Value.ToString()));
+                            udfnSupplierPrint(POSPID);
+                            break;
                     }
                 }
 
@@ -183,7 +187,41 @@ namespace ROMS
 
             }
         }
-
+        private void udfnSupplierPrint(string varSPID)
+        {
+            try
+            {
+                SPDataService objSPdataservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 42;
+                objMR_Supplier.paraSupplierIds = varSPID;
+                objMR_Supplier.paraStickerCount = 1;
+                objDs = objSPdataservice.udfnSupplierList(objMR_Supplier);
+                objSPdataservice.CloseConnection();
+                if (objDs != null)
+                {
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Supplier_Envelope.rpt");
+                    objBillreport.SetParameterValue("paraSupplierIds", varSPID);
+                    objBillreport.SetParameterValue("paraStickerCount", 1);
+                    objValidation.CrySqlConnection(objBillreport);
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void PUR_PurchaseOrderList_Load(object sender, EventArgs e)
         {
             try
@@ -977,6 +1015,7 @@ namespace ROMS
                         {
                             grdPurchaseorderlist.Columns["clmPrint"].Visible = true;
                             grdPurchaseorderlist.Columns["clmView"].Visible = true; 
+                            grdPurchaseorderlist.Columns["clmEnvelopPrint"].Visible = true; 
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdPurchaseorderlist.DataSource = objDs.Tables[0];
@@ -1049,8 +1088,9 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
-                        grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
+                            grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
                             grdPurchaseorderlist.Columns["clmView"].Visible = false;
+                            grdPurchaseorderlist.Columns["clmEnvelopPrint"].Visible = false;
                             lblTotal.Text = "0";
                             Deftable= objDs.Tables[0];
                         }
@@ -1082,6 +1122,7 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                         grdPurchaseorderlist.Columns["clmView"].Visible = false;
+                        grdPurchaseorderlist.Columns["clmEnvelopPrint"].Visible = false;
                         grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
                         Deftable = objDs.Tables[0];
                         lblTotal.Text = "0";
@@ -1091,6 +1132,7 @@ namespace ROMS
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
+                    grdPurchaseorderlist.Columns["clmEnvelopPrint"].Visible = false;
                     grdPurchaseorderlist.Columns["clmView"].Visible = false;
                     grdPurchaseorderlist.Columns["clmPrint"].Visible = false;
                     Deftable = objDs.Tables[0];
@@ -1838,6 +1880,8 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[2].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
                     //udfnGridSearchHeading(grdPurchaseorderlist, DGV_SearchGrid);
                     //if (DGV_SearchGrid.ColumnCount > 1)
                     //{
@@ -2422,6 +2466,7 @@ namespace ROMS
             {
                 grdPurchaseorderlist.Columns["clmView"].Frozen = true;
                 grdPurchaseorderlist.Columns["clmPrint"].Frozen = true;
+                grdPurchaseorderlist.Columns["clmEnvelopPrint"].Frozen = true;
                 grdPurchaseorderlist.Columns["S.No."].Frozen = true;
                 grdPurchaseorderlist.Columns["Concern"].Frozen = true;
                 grdPurchaseorderlist.Columns["PO Status"].Frozen = true;
@@ -2431,6 +2476,7 @@ namespace ROMS
                 //grdPurchaseorderlist.Columns["Supplier"].Frozen = true;
                 grdPurchaseorderlist.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["clmView"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseorderlist.Columns["clmEnvelopPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["Concern"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseorderlist.Columns["PO Status"].DefaultCellStyle.BackColor = Color.AliceBlue;

@@ -33,5 +33,7 @@ namespace ROMS.Model
         public int paraGroupCode = 0;
         public int paraSubgroupCode = 0;
         public int paraBrandCode = 0;
+        public string paraSupplierIds = "";
+        public int paraStickerCount = 0;
     }
 }

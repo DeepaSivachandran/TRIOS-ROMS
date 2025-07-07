@@ -119,9 +119,10 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gpStatus = new System.Windows.Forms.GroupBox();
             this.grdPurchaseorderlist = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.clmEnvelopPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).BeginInit();
@@ -1179,7 +1180,8 @@
             this.grdPurchaseorderlist.ColumnHeadersVisible = false;
             this.grdPurchaseorderlist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmView,
-            this.clmPrint});
+            this.clmPrint,
+            this.clmEnvelopPrint});
             this.grdPurchaseorderlist.EnableHeadersVisualStyles = false;
             this.grdPurchaseorderlist.GridColor = System.Drawing.Color.White;
             this.grdPurchaseorderlist.Location = new System.Drawing.Point(3, 159);
@@ -1201,20 +1203,6 @@
             this.grdPurchaseorderlist.DoubleClick += new System.EventHandler(this.GrdPurchaseorderlist_DoubleClick);
             this.grdPurchaseorderlist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseorderlist_KeyDown);
             // 
-            // clmView
-            // 
-            this.clmView.HeaderText = "Issue";
-            this.clmView.Image = global::ROMS.Properties.Resources.Issue;
-            this.clmView.Name = "clmView";
-            this.clmView.ReadOnly = true;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1230,6 +1218,29 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // clmView
+            // 
+            this.clmView.HeaderText = "Issue";
+            this.clmView.Image = global::ROMS.Properties.Resources.Issue;
+            this.clmView.Name = "clmView";
+            this.clmView.ReadOnly = true;
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            // 
+            // clmEnvelopPrint
+            // 
+            this.clmEnvelopPrint.HeaderText = "Envelop Print";
+            this.clmEnvelopPrint.Image = global::ROMS.Properties.Resources.printing;
+            this.clmEnvelopPrint.Name = "clmEnvelopPrint";
+            this.clmEnvelopPrint.ReadOnly = true;
+            this.clmEnvelopPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmEnvelopPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // PUR_PurchaseOrderList
             // 
@@ -1349,8 +1360,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnPrint;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
-        private System.Windows.Forms.DataGridViewImageColumn clmView;
-        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         public System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.Label lblDSearch;
         private System.Windows.Forms.Label lblStatus;
@@ -1363,5 +1372,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel pnlProduct;
+        private System.Windows.Forms.DataGridViewImageColumn clmView;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
+        private System.Windows.Forms.DataGridViewImageColumn clmEnvelopPrint;
     }
 }
