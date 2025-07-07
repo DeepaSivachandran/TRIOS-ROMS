@@ -808,7 +808,7 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PODamagedView = new PUR_PODamagedView();
-                MainForm.objPUR_PODamagedView.varMasterType = "3";
+                MainForm.objPUR_PODamagedView.varMasterType = "5";
                 MainForm.objPUR_PODamagedView.ShowDialog();
             }
             catch (Exception ex)
@@ -1178,6 +1178,8 @@ namespace ROMS
                 {
                     btnUnapprove.Enabled = false;
                 }
+                if (PbSTS == "50")
+                { udfndisablevalue(); }
             }
             catch (Exception ex)
             {

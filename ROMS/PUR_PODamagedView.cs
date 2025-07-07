@@ -68,7 +68,7 @@ namespace ROMS
                     varScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
                     varcompanyid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
                 }
-                else if (varMasterType == "3")
+                else if (varMasterType == "5")
                 {
                     varSupplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
                     varScheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
@@ -161,14 +161,16 @@ namespace ROMS
                         if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                         {
                             MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                            if (varMasterType == "1")
-                            {
-                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "1";
-                            }
-                            else
-                            {
-                                MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
-                            }
+                            //if (varMasterType == "1")
+                            //{
+                            //    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "1";
+                            //}
+                            //else
+                            //{
+                            //    MainForm.objPUR_PurchaseOrderDamage.varMasterType = "2";
+                            //}
+
+                            MainForm.objPUR_PurchaseOrderDamage.varMasterType = varMasterType;
                             MainForm.objPUR_PurchaseOrderDamage.varDcCode = Convert.ToString(grdGRNPODamaged.SelectedRows[0].Cells["ID"].Value);
                             MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
                         }

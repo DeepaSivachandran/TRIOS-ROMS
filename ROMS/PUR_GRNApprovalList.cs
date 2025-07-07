@@ -1619,7 +1619,7 @@ namespace ROMS
                     objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                     objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                     objTRN_PurchaseEntry.paraProductID = Convert.ToInt32(lblProduct.Text);
-                    objTRN_PurchaseEntry.paraFlag = Convert.ToInt32(cmbReason.SelectedValue);
+                    objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbReason.SelectedValue);
                     objDs = objdserv.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                     objdserv.CloseConnection();
                     if (objDs != null)

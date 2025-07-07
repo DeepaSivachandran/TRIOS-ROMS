@@ -99,6 +99,12 @@ namespace ROMS
                     varScheduleid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblschedule.Text);
                     varcompanyid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.cmbConcern.SelectedValue);
                 }
+                else if (varMasterType == "5")
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objCP_Purchase.cmbConcern.SelectedValue);
+                }
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
