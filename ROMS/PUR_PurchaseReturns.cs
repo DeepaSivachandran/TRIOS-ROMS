@@ -811,7 +811,9 @@ namespace ROMS
                                 txtTotalTax.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Total Tax"]);
                                 txtApproxTotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Approximate Total"]);
                                 varStatusId = Convert.ToInt32(objDs.Tables[0].Rows[0]["Status ID"]);
-                                lblStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
+                                //lblStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
+                                tsbStatus.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Status"]);
+                                tsbStatus.Visible = true;
                                 VerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["PURREDC_VerifiedBy"]);
                                 varBlockedSupplier = Convert.ToString(objDs.Tables[0].Rows[0]["SP_STSId"]);
                                 varBlockedReason = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);                      

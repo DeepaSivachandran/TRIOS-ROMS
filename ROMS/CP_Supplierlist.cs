@@ -1444,7 +1444,23 @@ namespace ROMS
             }
         }
 
-        private void BtnEnvelopPrint_Click(object sender, EventArgs e)
+        private void GrdSupplierList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            try
+            {
+                if (grdSupplierList.Columns[e.ColumnIndex].Name != "clmCheck")
+                {
+                    e.Cancel = true; // Block editing
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbEnvelopPrint_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1488,13 +1504,13 @@ namespace ROMS
             }
         }
 
-        private void GrdSupplierList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        private void GrdSupplierList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
             {
-                if (grdSupplierList.Columns[e.ColumnIndex].Name != "clmCheck")
+                if (grdSupplierList.CurrentCell is DataGridViewCheckBoxCell)
                 {
-                    e.Cancel = true; // Block editing
+                    grdSupplierList.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
             }
             catch (Exception ex)

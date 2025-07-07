@@ -50,7 +50,7 @@
             // txtCount
             // 
             this.txtCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCount.Location = new System.Drawing.Point(91, 6);
+            this.txtCount.Location = new System.Drawing.Point(106, 6);
             this.txtCount.MaxLength = 4;
             this.txtCount.Name = "txtCount";
             this.txtCount.Size = new System.Drawing.Size(84, 27);
@@ -70,7 +70,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.print;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(91, 39);
+            this.btnSave.Location = new System.Drawing.Point(105, 39);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(85, 29);
             this.btnSave.TabIndex = 1;
@@ -86,7 +86,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(188, 80);
+            this.ClientSize = new System.Drawing.Size(202, 80);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCount);
