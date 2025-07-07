@@ -89,7 +89,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (57) OR MSTID =0", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (57) OR MSTID =0", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (61,0) AND  MSTID NOT IN (194,202,-1)  ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (61,0) AND  MSTID NOT IN (194,202,-1)  ORDER BY MST_OrderID", "MST_DisplayText,ISNULL(MST_Eq_STSID,0)MST_Eq_STSID", cmbReason, "", "MST_DisplayText", "MST_Eq_STSID");
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
