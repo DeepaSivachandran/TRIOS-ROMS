@@ -244,6 +244,7 @@ namespace ROMS
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraCreatedON = dtCreatedOn.Text;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -829,7 +830,6 @@ namespace ROMS
                 udfnList();
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1006,7 +1006,9 @@ namespace ROMS
                 udfnDropdownbind();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnList();
-
+                dtCreatedOn.Format = DateTimePickerFormat.Custom;
+                dtCreatedOn.CustomFormat = " ";
+                dtCreatedOn.Checked = false;
             }
             catch (Exception ex)
 
@@ -1552,6 +1554,35 @@ namespace ROMS
                             break;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DtCreatedOn_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dtCreatedOn.Format = DateTimePickerFormat.Custom;
+                dtCreatedOn.CustomFormat = "dd/MM/yyyy";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LlClear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                dtCreatedOn.Format = DateTimePickerFormat.Custom;
+                dtCreatedOn.CustomFormat = " ";
+                dtCreatedOn.Checked = false;
             }
             catch (Exception ex)
             {
