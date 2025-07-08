@@ -1650,6 +1650,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaDCID", objMR_Product.ParaDCID);
                 varSqlCommand.Parameters.AddWithValue("@paraPurchaseAutoComplete", objMR_Product.paraPurchaseAutoComplete);
                 varSqlCommand.Parameters.AddWithValue("@paraCreatedON", objMR_Product.paraCreatedON);
+                varSqlCommand.Parameters.AddWithValue("@paraLabelCount", objMR_Product.paraLabelCount);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

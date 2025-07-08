@@ -533,6 +533,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Sticker_Print_Product_50x60.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_Supplier_Envelope.cs">
       <AutoGen>True</AutoGen>
@@ -2675,6 +2676,7 @@
     <EmbeddedResource Include="Reports\RPT_Sticker_Print_Product_50x60.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Sticker_Print_Product_50x60.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Supplier_Envelope.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

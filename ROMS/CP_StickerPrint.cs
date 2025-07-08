@@ -71,11 +71,44 @@ namespace ROMS
             {
                 picLoader4.Visible = true;
                 errRack.Clear();
-                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                string varPrintDetails = "";
+                RPTViewer.ReportSource = null;
+                int varPrint = 0;
                 SPDataService objSPdataservice = new SPDataService();
-
+                DataSet objDs = new DataSet();
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 65;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.ParaProductsCode = varProductCodes;
+                objMR_Product.paraLabelCount = Convert.ToInt32(txtLabelCount.Text);
+                objDs = objSPdataservice.udfnproductmasterlist(objMR_Product);
+                objSPdataservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x60.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraLabelCount", Convert.ToInt32(txtLabelCount.Text));
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("ParaProductsCode", varProductCodes);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                    picLoader4.Visible = false;
+                    lblNoRecordsFound.Visible = false;
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
             }
             catch (Exception ex)
             {
@@ -488,7 +521,7 @@ namespace ROMS
                     cmbConcern.Focus();
                     return;
                 }
-                if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 1)
+                if (Convert.ToInt32(cmbLabelsize.SelectedValue) == -1)
                 {
                     errRack.SetError(cmbLabelsize, "Please select label size.");
                     cmbLabelsize.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -508,6 +541,7 @@ namespace ROMS
                 }
                 List<string> varSelectedProductCodes = new List<string>();
                 int varCount = 0;
+                varProductCodes = "0";
                 for (int i = 0; i < grdProduct.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdProduct.Rows[i].Cells[0].EditedFormattedValue) == true)
