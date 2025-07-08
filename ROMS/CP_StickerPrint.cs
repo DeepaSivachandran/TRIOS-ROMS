@@ -24,10 +24,10 @@ namespace ROMS
         private ToolTip tpType = new ToolTip();
         private ToolTip tpLabelSize = new ToolTip();
         private ToolTip tpLabelCount = new ToolTip();
-        public string varProductCodes, varRMCodes, varFGCodes = "0";
-        List<string> varSubgroupCodes = new List<string>();
-        List<string> varGroupCodes = new List<string>();
+        public string varProductCodes, varSubgroupCodes, varGroupCodes = "0";
         private int varsno;
+        List<string> varListSubgroupCodes = new List<string>();
+        List<string> varListGroupCodes = new List<string>();
 
         public CP_StickerPrint()
         {
@@ -69,6 +69,22 @@ namespace ROMS
         {
             try
             {
+                int viewType = 0;string varCodes = "0";
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
+                {
+                    viewType = 67;
+                    varCodes = varGroupCodes;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
+                {
+                    viewType = 66;
+                    varCodes = varSubgroupCodes;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
+                {
+                    viewType = 66;
+                    varCodes = varProductCodes;
+                }
                 picLoader4.Visible = true;
                 errRack.Clear();
                 RPTViewer.ReportSource = null;
@@ -76,9 +92,9 @@ namespace ROMS
                 SPDataService objSPdataservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 65;
+                objMR_Product.paraViewType = viewType;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objMR_Product.ParaProductsCode = varProductCodes;
+                objMR_Product.ParaProductsCode = varCodes;
                 objMR_Product.paraLabelCount = Convert.ToInt32(txtLabelCount.Text);
                 objMR_Product.paraType = Convert.ToInt32(cmbProductName.SelectedValue);
                 objDs = objSPdataservice.udfnproductmasterlist(objMR_Product);
@@ -92,18 +108,43 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x60.rpt");
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_100x70.rpt");
+                        }
                     }
-                    else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_100x70.rpt");
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Subgroup_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Subgroup_100x70.rpt");
+                        }
+                    }
+                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
+                    {
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_100x70.rpt");
+                        }
+                        objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     }
                     objBillreport.SetParameterValue("paraLabelCount", Convert.ToInt32(txtLabelCount.Text));
-                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
-                    objBillreport.SetParameterValue("ParaProductsCode", varProductCodes);
+                    objBillreport.SetParameterValue("ParaProductsCode", varCodes);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
@@ -496,7 +537,6 @@ namespace ROMS
             try
             {
                 udfnPreview();
-                udfnReportView("Preview");
             }
             catch (Exception ex)
             {
@@ -514,14 +554,22 @@ namespace ROMS
         {
             try
             {
+                bool blnErrFlag = false;
                 if (Convert.ToInt32(cmbConcern.SelectedValue) == -1)
                 {
                     errRack.SetError(cmbConcern, "Please select concern.");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
                     tpConcern.Show("Please select concern", cmbConcern, 5000);
-                    cmbConcern.Focus();
-                    return;
+                    blnErrFlag = true;
+                }
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 0)
+                {
+                    errRack.SetError(cmbType, "Please select type.");
+                    cmbType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpType.ShowAlways = true;
+                    tpType.Show("Please select type", cmbType, 5000);
+                    blnErrFlag = true;
                 }
                 if (Convert.ToInt32(cmbLabelsize.SelectedValue) == -1)
                 {
@@ -529,8 +577,7 @@ namespace ROMS
                     cmbLabelsize.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLabelSize.ShowAlways = true;
                     tpLabelSize.Show("Please select label size", cmbLabelsize, 5000);
-                    //cmbLabelsize.Focus();
-                    return;
+                    blnErrFlag = true;
                 }
                 if (Convert.ToString(txtLabelCount.Text.Trim()) == "")
                 {
@@ -538,27 +585,76 @@ namespace ROMS
                     txtLabelCount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLabelCount.ShowAlways = true;
                     tpLabelCount.Show("Please enter label count", txtLabelCount, 5000);
-                    //txtLabelCount.Focus();
-                    return;
+                    blnErrFlag = true;
                 }
-                List<string> varSelectedProductCodes = new List<string>();
-                int varCount = 0;
-                varProductCodes = "0";
-                for (int i = 0; i < grdProduct.Rows.Count; i++)
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                 {
-                    if (Convert.ToBoolean(grdProduct.Rows[i].Cells[0].EditedFormattedValue) == true)
+                    List<string> varSelectedGroupCodes = new List<string>();
+                    int varCount = 0;
+                    varGroupCodes = "0";
+                    for (int i = 0; i < grdGroup.Rows.Count; i++)
                     {
-                        string varProductCode = grdProduct.Rows[i].Cells["PRID"].Value.ToString();
-                        varSelectedProductCodes.Add(varProductCode);
-                        varCount++;
+                        if (Convert.ToBoolean(grdGroup.Rows[i].Cells[0].EditedFormattedValue) == true)
+                        {
+                            string varGroupCode = grdGroup.Rows[i].Cells["GroupID"].Value.ToString();
+                            varSelectedGroupCodes.Add(varGroupCode);
+                            varCount++;
+                        }
                     }
+                    if (varCount == 0)
+                    {
+                        MessageBox.Show("Please select atleast one group.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrFlag = true;
+                    }
+                    varGroupCodes = string.Join(",", varSelectedGroupCodes);
                 }
-                if (varCount == 0)
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
                 {
-                    MessageBox.Show("Please select atleast one product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    List<string> varSelectedSubgroupCodes = new List<string>();
+                    int varCount = 0;
+                    varSubgroupCodes = "0";
+                    for (int i = 0; i < grdSubgroup.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdSubgroup.Rows[i].Cells[0].EditedFormattedValue) == true)
+                        {
+                            string varSubgroupCode = grdSubgroup.Rows[i].Cells["SubgroupID"].Value.ToString();
+                            varSelectedSubgroupCodes.Add(varSubgroupCode);
+                            varCount++;
+                        }
+                    }
+                    if (varCount == 0)
+                    {
+                        MessageBox.Show("Please select atleast one subgroup.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrFlag = true;
+                    }
+                    varSubgroupCodes = string.Join(",", varSelectedSubgroupCodes);
                 }
-                varProductCodes = string.Join(",", varSelectedProductCodes);
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
+                {
+                    List<string> varSelectedProductCodes = new List<string>();
+                    int varCount = 0;
+                    varProductCodes = "0";
+                    for (int i = 0; i < grdProduct.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdProduct.Rows[i].Cells[0].EditedFormattedValue) == true)
+                        {
+                            string varProductCode = grdProduct.Rows[i].Cells["PRID"].Value.ToString();
+                            varSelectedProductCodes.Add(varProductCode);
+                            varCount++;
+                        }
+                    }
+                    if (varCount == 0)
+                    {
+                        MessageBox.Show("Please select atleast one product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrFlag = true;
+                    }
+                    varProductCodes = string.Join(",", varSelectedProductCodes);
+                }
+                if (blnErrFlag == false)
+                {
+                    errRack.Clear();
+                    udfnReportView("Preview");
+                }
             }
             catch (Exception ex)
             {
@@ -974,7 +1070,7 @@ namespace ROMS
                         varSelectedGroupCodes.Add(varGroupCode);
                     }
                 }
-                varSubgroupCodes = varSelectedGroupCodes;
+                varListSubgroupCodes = varSelectedGroupCodes;
                 DataTable filteredProduct = dtProduct.Clone();
 
                 foreach (DataRow row in dtProduct.Rows)
@@ -1294,7 +1390,7 @@ namespace ROMS
                         varSelectedGroupCodes.Add(varGroupCode);
                     }
                 }
-                varGroupCodes = varSelectedGroupCodes;
+                varListGroupCodes = varSelectedGroupCodes;
                 DataTable filteredSubgroup = dtSubgroup.Clone();
 
                 foreach (DataRow row in dtSubgroup.Rows)
