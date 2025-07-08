@@ -1005,10 +1005,10 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                udfnList();
                 dtCreatedOn.Format = DateTimePickerFormat.Custom;
                 dtCreatedOn.CustomFormat = " ";
                 dtCreatedOn.Checked = false;
+                udfnList();
             }
             catch (Exception ex)
 
