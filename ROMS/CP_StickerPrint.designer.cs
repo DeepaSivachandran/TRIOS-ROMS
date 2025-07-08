@@ -545,7 +545,7 @@
             this.btnpreview.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnpreview.Image = global::ROMS.Properties.Resources.view__1_;
             this.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnpreview.Location = new System.Drawing.Point(1207, 36);
+            this.btnpreview.Location = new System.Drawing.Point(1178, 36);
             this.btnpreview.Name = "btnpreview";
             this.btnpreview.Size = new System.Drawing.Size(33, 33);
             this.btnpreview.TabIndex = 9;
@@ -781,7 +781,7 @@
             this.cmbProductName.Location = new System.Drawing.Point(1055, 39);
             this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbProductName.Name = "cmbProductName";
-            this.cmbProductName.Size = new System.Drawing.Size(147, 28);
+            this.cmbProductName.Size = new System.Drawing.Size(118, 28);
             this.cmbProductName.TabIndex = 8;
             this.cmbProductName.Enter += new System.EventHandler(this.CmbProductName_Enter);
             this.cmbProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductName_KeyDown);

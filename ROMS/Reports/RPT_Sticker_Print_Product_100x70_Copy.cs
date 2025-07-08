@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_Sticker_Print_Product_100x70 : ReportClass {
+    public class RPT_Sticker_Print_Product_100x70_Copy : ReportClass {
         
-        public RPT_Sticker_Print_Product_100x70() {
+        public RPT_Sticker_Print_Product_100x70_Copy() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_Sticker_Print_Product_100x70.rpt";
+                return "RPT_Sticker_Print_Product_100x70_Copy.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_Sticker_Print_Product_100x70.rpt";
+                return "ROMS.Reports.RPT_Sticker_Print_Product_100x70_Copy.rpt";
             }
             set {
                 // Do nothing
@@ -170,9 +170,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_Sticker_Print_Product_100x70 : Component, ICachedReport {
+    public class CachedRPT_Sticker_Print_Product_100x70_Copy : Component, ICachedReport {
         
-        public CachedRPT_Sticker_Print_Product_100x70() {
+        public CachedRPT_Sticker_Print_Product_100x70_Copy() {
         }
         
         [Browsable(false)]
@@ -209,7 +209,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_Sticker_Print_Product_100x70 rpt = new RPT_Sticker_Print_Product_100x70();
+            RPT_Sticker_Print_Product_100x70_Copy rpt = new RPT_Sticker_Print_Product_100x70_Copy();
             rpt.Site = this.Site;
             return rpt;
         }
