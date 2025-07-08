@@ -145,6 +145,10 @@ namespace ROMS
                     {
                         udfnAlphaProduct();
                     }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 272)
+                    {
+                        udfnProductCreatedDetails();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1116,6 +1120,138 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Alphabetic.rpt");
+                    objBillreport.SetParameterValue("paraPICode", Convert.ToString(txtSearchByPICode.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
+                GC.Collect();
+            }
+        }
+        public void udfnProductCreatedDetails()
+        {
+            try
+            { 
+                /* Check product group is valid or not*/
+                string varId_Group = "0";
+                string varGroupName = "";
+                if (txtGroup.Text == "")
+                {
+                    varId_Group = "0";
+                    varGroupName = "-All-";
+                }
+                else
+                {
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
+                    {
+                        if (objDsGroup.Tables.Count > 0)
+                        {
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                if (varId_Group == "-1" || varId_Group == "0")
+                {
+                    varGroupName = "-All-";
+                }
+                else { varGroupName = txtGroup.Text.Trim(); }
+                lblGroupCode.Text = Convert.ToString(varId_Group);
+
+                /* Check product sub group is valid or not*/
+                string varId_SubGroup = "0";
+                string varSubgroupName = "";
+                if (txtSubGroup.Text == "")
+                {
+                    varId_SubGroup = "0";
+                    varSubgroupName = "-All-";
+                }
+                else
+                {
+                    DataSet objDssubgroup = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDserv.CloseConnection();
+                    if (objDssubgroup != null)
+                    {
+                        if (objDssubgroup.Tables.Count > 0)
+                        {
+                            if (objDssubgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_SubGroup = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                if (varId_SubGroup == "-1" || varId_SubGroup == "0")
+                {
+                    varSubgroupName = "-All-";
+                }
+                else { varSubgroupName = txtSubGroup.Text.Trim(); }
+                lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
+
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 68;
+                objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
+                objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
+                objMR_Product.paraPicode = txtSearchByPICode.Text.Trim();
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_CreatedUpdated.rpt");
+                    objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
+                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
+                    objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraPICode", Convert.ToString(txtSearchByPICode.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
