@@ -112,11 +112,11 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
                         {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x60.rpt");
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Group_50x60.rpt");
                         }
                         else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
                         {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_100x70.rpt");
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Group_100x70.rpt");
                         }
                     }
                     else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
@@ -304,9 +304,12 @@ namespace ROMS
                 }
                 errRack.Clear();
                 udfnDataBind();
+
                 grdGroup.DataSource = null;
                 grdSubgroup.DataSource = null;
                 grdProduct.DataSource = null;
+                RPTViewer.ReportSource = null;
+
                 txtProduct.Text = "";
                 txtGroup.Text = "";
                 txtSubgroup.Text = "";
@@ -536,6 +539,7 @@ namespace ROMS
         {
             try
             {
+                RPTViewer.ReportSource = null;
                 udfnPreview();
             }
             catch (Exception ex)
@@ -1364,6 +1368,7 @@ namespace ROMS
                 grdGroup.DataSource = null;
                 grdSubgroup.DataSource = null;
                 grdProduct.DataSource = null;
+                RPTViewer.ReportSource = null;
             }
             catch (Exception ex)
             {
