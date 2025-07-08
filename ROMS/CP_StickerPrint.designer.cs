@@ -445,6 +445,7 @@
             // 
             // cmbProductName
             // 
+            this.cmbProductName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductName.FormattingEnabled = true;
             this.cmbProductName.Location = new System.Drawing.Point(1055, 39);

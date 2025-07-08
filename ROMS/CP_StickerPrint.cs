@@ -57,7 +57,7 @@ namespace ROMS
             try
             {
                 udfnPreview();
-                udfnReportView("Print");
+                //udfnReportView("Print");
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace ROMS
         {
             try
             {
-                int viewType = 0;string varCodes = "0";
+                int viewType = 0; string varCodes = "0";
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                 {
                     viewType = 67;
@@ -596,63 +596,72 @@ namespace ROMS
                     List<string> varSelectedGroupCodes = new List<string>();
                     int varCount = 0;
                     varGroupCodes = "0";
-                    for (int i = 0; i < grdGroup.Rows.Count; i++)
+                    if (grdGroup.Rows.Count > 0)
                     {
-                        if (Convert.ToBoolean(grdGroup.Rows[i].Cells[0].EditedFormattedValue) == true)
+                        for (int i = 0; i < grdGroup.Rows.Count; i++)
                         {
-                            string varGroupCode = grdGroup.Rows[i].Cells["GroupID"].Value.ToString();
-                            varSelectedGroupCodes.Add(varGroupCode);
-                            varCount++;
+                            if (Convert.ToBoolean(grdGroup.Rows[i].Cells[0].EditedFormattedValue) == true)
+                            {
+                                string varGroupCode = grdGroup.Rows[i].Cells["GroupID"].Value.ToString();
+                                varSelectedGroupCodes.Add(varGroupCode);
+                                varCount++;
+                            }
                         }
+                        varGroupCodes = string.Join(",", varSelectedGroupCodes);
                     }
                     if (varCount == 0)
                     {
                         MessageBox.Show("Please select atleast one group.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         blnErrFlag = true;
                     }
-                    varGroupCodes = string.Join(",", varSelectedGroupCodes);
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
                 {
                     List<string> varSelectedSubgroupCodes = new List<string>();
                     int varCount = 0;
                     varSubgroupCodes = "0";
-                    for (int i = 0; i < grdSubgroup.Rows.Count; i++)
+                    if (grdSubgroup.Rows.Count > 0)
                     {
-                        if (Convert.ToBoolean(grdSubgroup.Rows[i].Cells[0].EditedFormattedValue) == true)
+                        for (int i = 0; i < grdSubgroup.Rows.Count; i++)
                         {
-                            string varSubgroupCode = grdSubgroup.Rows[i].Cells["SubgroupID"].Value.ToString();
-                            varSelectedSubgroupCodes.Add(varSubgroupCode);
-                            varCount++;
+                            if (Convert.ToBoolean(grdSubgroup.Rows[i].Cells[0].EditedFormattedValue) == true)
+                            {
+                                string varSubgroupCode = grdSubgroup.Rows[i].Cells["SubgroupID"].Value.ToString();
+                                varSelectedSubgroupCodes.Add(varSubgroupCode);
+                                varCount++;
+                            }
                         }
+                        varSubgroupCodes = string.Join(",", varSelectedSubgroupCodes);
                     }
                     if (varCount == 0)
                     {
                         MessageBox.Show("Please select atleast one subgroup.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         blnErrFlag = true;
                     }
-                    varSubgroupCodes = string.Join(",", varSelectedSubgroupCodes);
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
                 {
                     List<string> varSelectedProductCodes = new List<string>();
                     int varCount = 0;
                     varProductCodes = "0";
-                    for (int i = 0; i < grdProduct.Rows.Count; i++)
+                    if (grdProduct.Rows.Count > 0)
                     {
-                        if (Convert.ToBoolean(grdProduct.Rows[i].Cells[0].EditedFormattedValue) == true)
+                        for (int i = 0; i < grdProduct.Rows.Count; i++)
                         {
-                            string varProductCode = grdProduct.Rows[i].Cells["PRID"].Value.ToString();
-                            varSelectedProductCodes.Add(varProductCode);
-                            varCount++;
+                            if (Convert.ToBoolean(grdProduct.Rows[i].Cells[0].EditedFormattedValue) == true)
+                            {
+                                string varProductCode = grdProduct.Rows[i].Cells["PRID"].Value.ToString();
+                                varSelectedProductCodes.Add(varProductCode);
+                                varCount++;
+                            }
                         }
+                        varProductCodes = string.Join(",", varSelectedProductCodes);
                     }
                     if (varCount == 0)
                     {
                         MessageBox.Show("Please select atleast one product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         blnErrFlag = true;
                     }
-                    varProductCodes = string.Join(",", varSelectedProductCodes);
                 }
                 if (blnErrFlag == false)
                 {
@@ -1423,7 +1432,7 @@ namespace ROMS
 
         private void GrdProduct_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void GrdGroup_CurrentCellDirtyStateChanged_1(object sender, EventArgs e)
