@@ -7663,7 +7663,7 @@ namespace ROMS
                         //Shelflife Wise Color Set
                         if (Convert.ToDecimal(varShelflifevalue[0]) <= varShelflifeLevel1)
                         {
-                            DataGridViewCell cell = dataGridView.Rows[i].Cells["clmactuallife"];
+                            DataGridViewCell cell = dataGridView.Rows[i].Cells["clmactuallife"];    
                             cell.Style.BackColor = Color.Red;
                             cell.Style.ForeColor = Color.White;
                         }
