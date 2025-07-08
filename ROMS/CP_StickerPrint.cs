@@ -161,6 +161,7 @@ namespace ROMS
                 objDataBind = null;
                 cmbLabelsize.SelectedValue = -1;
                 cmbProductName.SelectedValue = 270;
+                cmbType.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -175,7 +176,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnCompanyList(2, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)
@@ -247,8 +248,17 @@ namespace ROMS
                     errRack.SetError(cmbConcern, "Please select concern.");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please enter concern", cmbConcern, 5000);
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
                     cmbConcern.Focus();
+                    return;
+                }
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 0)
+                {
+                    errRack.SetError(cmbType, "Please select type.");
+                    cmbType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpType.ShowAlways = true;
+                    tpType.Show("Please select type", cmbType, 5000);
+                    cmbType.Focus();
                     return;
                 }
                 errRack.Clear();
@@ -452,22 +462,6 @@ namespace ROMS
             try
             {
                 cmbConcern.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbCompany_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
             }
             catch (Exception ex)
             {
@@ -683,46 +677,6 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(grdProduct.Rows.Count) > 0)
-                {
-                    for (int i = 0; i < grdProduct.Rows.Count; i++)
-                    {
-                        grdProduct.Rows[i].Cells[0].Value = true;
-                    }
-                    txtProduct.Text = "";
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnGroupUnSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToInt32(grdProduct.Rows.Count) > 0)
-                {
-                    for (int i = 0; i < grdProduct.Rows.Count; i++)
-                    {
-                        grdProduct.Rows[i].Cells[0].Value = false;
-                    }
-                    txtProduct.Text = "";
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnSubgroupSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
                 if (Convert.ToInt32(grdGroup.Rows.Count) > 0)
                 {
                     for (int i = 0; i < grdGroup.Rows.Count; i++)
@@ -740,7 +694,7 @@ namespace ROMS
             }
         }
 
-        private void BtnSubgroupUnSelect_Click(object sender, EventArgs e)
+        private void BtnGroupUnSelect_Click(object sender, EventArgs e)
         {
             try
             {
@@ -759,9 +713,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
         }
 
-        private void BtnProductSelect_Click(object sender, EventArgs e)
+        private void BtnSubgroupSelect_Click(object sender, EventArgs e)
         {
             try
             {
@@ -781,7 +736,7 @@ namespace ROMS
             }
         }
 
-        private void BtnProductUnSelect_Click(object sender, EventArgs e)
+        private void BtnSubgroupUnSelect_Click(object sender, EventArgs e)
         {
             try
             {
@@ -790,6 +745,46 @@ namespace ROMS
                     for (int i = 0; i < grdSubgroup.Rows.Count; i++)
                     {
                         grdSubgroup.Rows[i].Cells[0].Value = false;
+                    }
+                    txtProduct.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnProductSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(grdProduct.Rows.Count) > 0)
+                {
+                    for (int i = 0; i < grdProduct.Rows.Count; i++)
+                    {
+                        grdProduct.Rows[i].Cells[0].Value = true;
+                    }
+                    txtProduct.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnProductUnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(grdProduct.Rows.Count) > 0)
+                {
+                    for (int i = 0; i < grdProduct.Rows.Count; i++)
+                    {
+                        grdProduct.Rows[i].Cells[0].Value = false;
                     }
                     txtProduct.Text = "";
                 }
@@ -942,21 +937,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GrdProduct_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void GrdGroup_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (e.RowIndex >= 0 && e.ColumnIndex == 0)
                 {
-                    picLoader3.Visible = true;
-                    udfnSubgroupBind();
-                    picLoader3.Visible = false;
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 1)
+                    {
+                        picLoader3.Visible = true;
+                        udfnSubgroupBind();
+                        picLoader3.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1054,9 +1046,12 @@ namespace ROMS
             {
                 if (e.RowIndex >= 0 && e.ColumnIndex == 0)
                 {
-                    picLoader1.Visible = true;
-                    udfnProductBind();
-                    picLoader1.Visible = false;
+                    if (Convert.ToInt16(cmbType.SelectedIndex) != 1 && Convert.ToInt16(cmbType.SelectedIndex) != 2)
+                    {
+                        picLoader1.Visible = true;
+                        udfnProductBind();
+                        picLoader1.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1129,6 +1124,150 @@ namespace ROMS
             try
             {
                 cmbProductName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
+                {
+                    label2.Text = "Group Name";
+                    grdSubgroup.Visible = false;
+                    txtSubgroup.Visible = false;
+                    lblSubgroup.Visible = false;
+                    btnSubgroupSelect.Visible = false;
+                    btnSubgroupUnSelect.Visible = false;
+
+                    grdProduct.Visible = false;
+                    txtProduct.Visible = false;
+                    lblProduct.Visible = false;
+                    btnProductSelect.Visible = false;
+                    btnProductUnSelect.Visible = false;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
+                {
+                    label2.Text = "Subgroup Name";
+                    grdSubgroup.Visible = true;
+                    txtSubgroup.Visible = true;
+                    lblSubgroup.Visible = true;
+                    btnSubgroupSelect.Visible = true;
+                    btnSubgroupUnSelect.Visible = true;
+
+                    grdProduct.Visible = false;
+                    txtProduct.Visible = false;
+                    lblProduct.Visible = false;
+                    btnProductSelect.Visible = false;
+                    btnProductUnSelect.Visible = false;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 0 || Convert.ToInt32(cmbType.SelectedIndex) == 3)
+                {
+                    label2.Text = "Product Name";
+                    grdSubgroup.Visible = true;
+                    txtSubgroup.Visible = true;
+                    lblSubgroup.Visible = true;
+                    btnSubgroupSelect.Visible = true;
+                    btnSubgroupUnSelect.Visible = true;
+
+                    grdProduct.Visible = true;
+                    txtProduct.Visible = true;
+                    lblProduct.Visible = true;
+                    btnProductSelect.Visible = true;
+                    btnProductUnSelect.Visible = true;
+                }
+                grdGroup.DataSource = null;
+                grdSubgroup.DataSource = null;
+                grdProduct.DataSource = null;
             }
             catch (Exception ex)
             {

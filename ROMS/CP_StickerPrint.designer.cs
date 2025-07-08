@@ -46,6 +46,8 @@
             this.lblDLabelSize = new System.Windows.Forms.Label();
             this.lblRawCode = new System.Windows.Forms.Label();
             this.grdbFilter = new System.Windows.Forms.GroupBox();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -61,6 +63,8 @@
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grbGrid = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbProductName = new System.Windows.Forms.ComboBox();
             this.picLoader4 = new System.Windows.Forms.PictureBox();
             this.picLoader1 = new System.Windows.Forms.PictureBox();
             this.picLoader2 = new System.Windows.Forms.PictureBox();
@@ -84,8 +88,6 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cmbProductName = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tsHeader.SuspendLayout();
             this.grdbFilter.SuspendLayout();
             this.grbGrid.SuspendLayout();
@@ -125,6 +127,7 @@
             // 
             // cmbLabelsize
             // 
+            this.cmbLabelsize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLabelsize.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLabelsize.FormattingEnabled = true;
             this.cmbLabelsize.Location = new System.Drawing.Point(901, 39);
@@ -162,6 +165,8 @@
             // 
             // grdbFilter
             // 
+            this.grdbFilter.Controls.Add(this.cmbType);
+            this.grdbFilter.Controls.Add(this.label3);
             this.grdbFilter.Controls.Add(this.cmbConcern);
             this.grdbFilter.Controls.Add(this.label8);
             this.grdbFilter.Controls.Add(this.btnClose);
@@ -178,6 +183,36 @@
             this.grdbFilter.TabIndex = 0;
             this.grdbFilter.TabStop = false;
             // 
+            // cmbType
+            // 
+            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Items.AddRange(new object[] {
+            "-Select-",
+            "Group",
+            "Subgroup",
+            "Product"});
+            this.cmbType.Location = new System.Drawing.Point(135, 42);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(124, 28);
+            this.cmbType.TabIndex = 1;
+            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.CmbType_SelectedIndexChanged);
+            this.cmbType.Enter += new System.EventHandler(this.CmbType_Enter);
+            this.cmbType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbType_KeyDown);
+            this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbType_KeyPress);
+            this.cmbType.Leave += new System.EventHandler(this.CmbType_Leave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(135, 17);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 20);
+            this.label3.TabIndex = 958814;
+            this.label3.Text = "Type";
+            // 
             // cmbConcern
             // 
             this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -188,7 +223,8 @@
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbCompany_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbCompany_Enter);
-            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCompany_KeyDown_1);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
             this.cmbConcern.Leave += new System.EventHandler(this.CmbCompany_Leave);
             // 
             // label8
@@ -207,11 +243,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(213, 42);
+            this.btnClose.Location = new System.Drawing.Point(347, 42);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 2;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -224,11 +260,11 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(134, 42);
+            this.btnView.Location = new System.Drawing.Point(268, 42);
             this.btnView.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 1;
+            this.btnView.TabIndex = 2;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -396,6 +432,31 @@
             this.grbGrid.TabIndex = 3;
             this.grbGrid.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1055, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.TabIndex = 1111173;
+            this.label2.Text = "Product Name";
+            // 
+            // cmbProductName
+            // 
+            this.cmbProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProductName.FormattingEnabled = true;
+            this.cmbProductName.Location = new System.Drawing.Point(1055, 39);
+            this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.cmbProductName.Name = "cmbProductName";
+            this.cmbProductName.Size = new System.Drawing.Size(118, 28);
+            this.cmbProductName.TabIndex = 8;
+            this.cmbProductName.Enter += new System.EventHandler(this.CmbProductName_Enter);
+            this.cmbProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductName_KeyDown);
+            this.cmbProductName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbProductName_KeyPress);
+            this.cmbProductName.Leave += new System.EventHandler(this.CmbProductName_Leave);
+            // 
             // picLoader4
             // 
             this.picLoader4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -456,7 +517,7 @@
             // 
             this.btnProductUnSelect.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductUnSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductUnSelect.Location = new System.Drawing.Point(347, 515);
+            this.btnProductUnSelect.Location = new System.Drawing.Point(615, 515);
             this.btnProductUnSelect.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnProductUnSelect.Name = "btnProductUnSelect";
             this.btnProductUnSelect.Size = new System.Drawing.Size(80, 29);
@@ -469,7 +530,7 @@
             // 
             this.btnProductSelect.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductSelect.Location = new System.Drawing.Point(277, 515);
+            this.btnProductSelect.Location = new System.Drawing.Point(545, 515);
             this.btnProductSelect.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnProductSelect.Name = "btnProductSelect";
             this.btnProductSelect.Size = new System.Drawing.Size(66, 29);
@@ -482,7 +543,7 @@
             // 
             this.btnSubgroupUnSelect.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubgroupUnSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSubgroupUnSelect.Location = new System.Drawing.Point(79, 515);
+            this.btnSubgroupUnSelect.Location = new System.Drawing.Point(347, 515);
             this.btnSubgroupUnSelect.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnSubgroupUnSelect.Name = "btnSubgroupUnSelect";
             this.btnSubgroupUnSelect.Size = new System.Drawing.Size(80, 29);
@@ -495,7 +556,7 @@
             // 
             this.btnSubgroupSelect.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubgroupSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSubgroupSelect.Location = new System.Drawing.Point(9, 515);
+            this.btnSubgroupSelect.Location = new System.Drawing.Point(277, 515);
             this.btnSubgroupSelect.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnSubgroupSelect.Name = "btnSubgroupSelect";
             this.btnSubgroupSelect.Size = new System.Drawing.Size(66, 29);
@@ -508,7 +569,7 @@
             // 
             this.btnGroupUnSelect.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGroupUnSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGroupUnSelect.Location = new System.Drawing.Point(614, 515);
+            this.btnGroupUnSelect.Location = new System.Drawing.Point(79, 515);
             this.btnGroupUnSelect.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnGroupUnSelect.Name = "btnGroupUnSelect";
             this.btnGroupUnSelect.Size = new System.Drawing.Size(80, 29);
@@ -521,7 +582,7 @@
             // 
             this.btnGroupSelect.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGroupSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGroupSelect.Location = new System.Drawing.Point(544, 515);
+            this.btnGroupSelect.Location = new System.Drawing.Point(9, 515);
             this.btnGroupSelect.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnGroupSelect.Name = "btnGroupSelect";
             this.btnGroupSelect.Size = new System.Drawing.Size(66, 29);
@@ -727,7 +788,6 @@
             this.grdProduct.RowTemplate.Height = 25;
             this.grdProduct.Size = new System.Drawing.Size(351, 436);
             this.grdProduct.TabIndex = 70;
-            this.grdProduct.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdProduct_CellValueChanged);
             this.grdProduct.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdProduct_CurrentCellDirtyStateChanged);
             // 
             // errRack
@@ -773,31 +833,6 @@
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn4.Width = 150;
-            // 
-            // cmbProductName
-            // 
-            this.cmbProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbProductName.FormattingEnabled = true;
-            this.cmbProductName.Location = new System.Drawing.Point(1055, 39);
-            this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.cmbProductName.Name = "cmbProductName";
-            this.cmbProductName.Size = new System.Drawing.Size(118, 28);
-            this.cmbProductName.TabIndex = 8;
-            this.cmbProductName.Enter += new System.EventHandler(this.CmbProductName_Enter);
-            this.cmbProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductName_KeyDown);
-            this.cmbProductName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbProductName_KeyPress);
-            this.cmbProductName.Leave += new System.EventHandler(this.CmbProductName_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1055, 15);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 20);
-            this.label2.TabIndex = 1111173;
-            this.label2.Text = "Product Name";
             // 
             // CP_StickerPrint
             // 
@@ -887,5 +922,7 @@
         public System.Windows.Forms.PictureBox picLoader4;
         public System.Windows.Forms.ComboBox cmbProductName;
         public System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbType;
+        public System.Windows.Forms.Label label3;
     }
 }
