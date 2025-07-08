@@ -80,6 +80,7 @@ namespace ROMS
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.ParaProductsCode = varProductCodes;
                 objMR_Product.paraLabelCount = Convert.ToInt32(txtLabelCount.Text);
+                objMR_Product.paraType = Convert.ToInt32(cmbProductName.SelectedValue);
                 objDs = objSPdataservice.udfnproductmasterlist(objMR_Product);
                 objSPdataservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -101,6 +102,7 @@ namespace ROMS
                     }
                     objBillreport.SetParameterValue("paraLabelCount", Convert.ToInt32(txtLabelCount.Text));
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
                     objBillreport.SetParameterValue("ParaProductsCode", varProductCodes);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
@@ -155,8 +157,10 @@ namespace ROMS
                 udfnConcernLoad();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbLabelsize.SelectedValue = -1;
+                cmbProductName.SelectedValue = 270;
             }
             catch (Exception ex)
             {
@@ -335,7 +339,7 @@ namespace ROMS
             try
             {
                 cmbLabelsize.BackColor = Color.White;
-                udfnPrinterNameLoad();
+                //udfnPrinterNameLoad();
             }
             catch (Exception ex)
             {
@@ -391,7 +395,7 @@ namespace ROMS
         {
             try
             {
-                txtProduct.BackColor = Color.LemonChiffon;
+                txtGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -406,7 +410,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtGroup.Focus();
+                    txtSubgroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -420,7 +424,7 @@ namespace ROMS
         {
             try
             {
-                txtProduct.BackColor = Color.White;
+                txtGroup.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -572,7 +576,7 @@ namespace ROMS
         {
             try
             {
-                txtGroup.BackColor = Color.LemonChiffon;
+                txtSubgroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -585,7 +589,7 @@ namespace ROMS
         {
             try
             {
-                txtSubgroup.BackColor = Color.LemonChiffon;
+                txtProduct.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -598,7 +602,7 @@ namespace ROMS
         {
             try
             {
-                txtGroup.BackColor = Color.White;
+                txtSubgroup.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -611,7 +615,7 @@ namespace ROMS
         {
             try
             {
-                txtSubgroup.BackColor = Color.White;
+                txtProduct.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -639,7 +643,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnpreview.Focus();
+                    cmbProductName.Focus();
                 }
             }
             catch (Exception ex)
@@ -819,14 +823,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtSubgroup.Visible == true)
-                    {
-                        txtSubgroup.Focus();
-                    }
-                    else
-                    {
-                        cmbLabelsize.Focus();
-                    }
+                    txtProduct.Focus();
                 }
             }
             catch (Exception ex)
@@ -1077,6 +1074,61 @@ namespace ROMS
                 {
                     grdSubgroup.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnpreview.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductName.BackColor = Color.White;
             }
             catch (Exception ex)
             {

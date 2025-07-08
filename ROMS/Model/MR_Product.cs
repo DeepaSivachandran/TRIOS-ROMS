@@ -44,8 +44,9 @@ namespace ROMS.Model
         public DataTable paraPurchaseAutoComplete = null;
         public int paraId = 0;
         public int ParaGRNID = 0;
-        public int paraLabelCount = 0;
         public DataTable paraDamageEntry = null;
         public string paraCreatedON = "";
+        public int paraLabelCount = 0;
+        public int paraType = 0;
     }
 }
