@@ -1156,6 +1156,7 @@ namespace ROMS
                                 if (objDs.Tables[9].Rows.Count != 0)
                                 {
                                     lblPurchaseVerification.Text = Convert.ToString(objDs.Tables[9].Rows[0]["Purchase Verification Details"]);
+                                    lblPurchaseVerification2.Text = Convert.ToString(objDs.Tables[9].Rows[0]["Purchase Verification Details2"]);
                                 }
                             }
                         }
@@ -4656,7 +4657,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
+
+
         public void udfnButtonChange()
         {
             try

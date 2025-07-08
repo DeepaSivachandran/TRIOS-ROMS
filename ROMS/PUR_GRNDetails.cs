@@ -4470,7 +4470,7 @@ namespace ROMS
                                     Date= Convert.ToInt32(objDSer.Tables[0].Rows[0]["Date"].ToString());
                                     if(Date == 0)
                                     {
-                                        if (varTempExpiryDate!="")
+                                        if (varTempExpiryDate!="" )
                                         {
                                             MessageBox.Show("Invalid date!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                             grdGrnlist.Rows[rowIndex].Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
