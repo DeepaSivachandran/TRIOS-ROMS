@@ -95,6 +95,10 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x60.rpt");
                     }
+                    else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_100x70.rpt");
+                    }
                     objBillreport.SetParameterValue("paraLabelCount", Convert.ToInt32(txtLabelCount.Text));
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("ParaProductsCode", varProductCodes);
