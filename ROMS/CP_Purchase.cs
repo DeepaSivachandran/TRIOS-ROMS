@@ -5717,6 +5717,16 @@ namespace ROMS
                         { row.SetField("MRP", mrp1); }
                     }
                 }
+                if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmProductMrp")
+                {
+                    if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmProductMrp"].Value) != "")
+                    {
+                        decimal varMRP = Convert.ToDecimal(grdSupplierList.CurrentRow.Cells["clmProductMrp"].Value);
+                        string mrp = string.Format("{0:0.00}", varMRP);
+                        string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
+                        grdSupplierList.Rows[e.RowIndex].Cells["clmProductMrp"].Value = mrp; 
+                    }
+                }
                 if (grdSupplierList.CurrentCell.OwningColumn.Name == "clmInvoiceQty")
                 {
                     if (Convert.ToString(grdSupplierList.CurrentRow.Cells["clmInvoiceQty"].Value) != "" && Convert.ToString(grdSupplierList.CurrentRow.Cells["clmInvoiceQty"].Value) != "0")
@@ -11457,26 +11467,26 @@ namespace ROMS
                 {
                     PbTaxvalue = (varPurchaseRate * varInvQty) - varCellDiscAmt;
                     PbGstamt = (PbTaxvalue * varHSNGSTValue) / 100;
-                    if (varSupplierType != 32) //32 -  GSTIN Unregistered supplier
+                    if (varSupplierType != 32 && varSupplierType != 31) 
                     {
-                        PbNetamt = (PbTaxvalue + PbGstamt);
+                        PbNetamt = (PbTaxvalue + PbGstamt); //30 -Registered , 151 - IGST 
                     }
                     else
                     {
-                        PbNetamt = (PbTaxvalue);
+                        PbNetamt = (PbTaxvalue); //32 -  GSTIN Unregistered supplier 31-Composite
                     }
                 }
                 if (rbDiscountAfter.Checked == true)
                 {
                     PbTaxvalue = (varPurchaseRate * varInvQty);
                     PbGstamt = ((PbTaxvalue * varHSNGSTValue) / 100);
-                    if (varSupplierType != 32) //GSTIN Unregistered supplier
+                    if (varSupplierType != 32 && varSupplierType != 31 )  
                     {
-                        PbNetamt = (PbTaxvalue + PbGstamt - varCellDiscAmt);
+                        PbNetamt = (PbTaxvalue + PbGstamt - varCellDiscAmt); //30 -Registered , 151 - IGST 
                     }
                     else
                     {
-                        PbNetamt = (PbTaxvalue - varCellDiscAmt);
+                        PbNetamt = (PbTaxvalue - varCellDiscAmt); //32 -  GSTIN Unregistered supplier 31-Composite
                     }
                     PbDicountValue = (PbTaxvalue - varCellDiscAmt);
                 }
@@ -11509,28 +11519,28 @@ namespace ROMS
                     decimal varNetAmt = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmnetamt"].Value);
                     if (rbDiscountBefore.Checked == true)
                     {
-                        if (varSupplierType != 32) //GSTIN unregistered suppplier
+                        if (varSupplierType != 32 && varSupplierType != 31)  
                         {
-                            varSubtotal = varSubtotal + varTaxValue;
+                            varSubtotal = varSubtotal + varTaxValue; //30 -Registered , 151 - IGST 
                             varTaxTotal = varTaxTotal + varGstAmt;
                         }
                         else
                         {
-                            varSubtotal = varSubtotal + varNetAmt;
+                            varSubtotal = varSubtotal + varNetAmt; //32 -  GSTIN Unregistered supplier 31-Composite
                             varTaxTotal = varTaxTotal + varGstAmt;
                         }
                     }
                     if (rbDiscountAfter.Checked == true)
                     {
                         decimal varDiscountValue = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscountValue"].Value);
-                        if (varSupplierType != 32) //GSTIN unregistered suppplier
+                        if (varSupplierType != 32 && varSupplierType != 31) //GSTIN unregistered suppplier
                         {
-                            varSubtotal = varSubtotal + varDiscountValue;
+                            varSubtotal = varSubtotal + varDiscountValue; //30 -Registered , 151 - IGST 
                             varTaxTotal = varTaxTotal + varGstAmt;
                         }
                         else
                         {
-                            varSubtotal = varSubtotal + varNetAmt;
+                            varSubtotal = varSubtotal + varNetAmt; //32 -  GSTIN Unregistered supplier 31-Composite
                             varTaxTotal = varTaxTotal + varGstAmt;
                         }
                     }
@@ -11547,14 +11557,14 @@ namespace ROMS
                     }
                 }
                 lblSubtotal.Text = Convert.ToString(varSubtotal);
-                if (varSupplierType != 32) //GSTIN unregistered suppplier
+                if (varSupplierType != 32 && varSupplierType != 31)  
                 {
-                    lblGstamt.Text = varTaxTotal.ToString("0.00");
+                    lblGstamt.Text = varTaxTotal.ToString("0.00"); //30 -Registered , 151 - IGST 
                     lblTotal.Text = (varSubtotal + varTaxTotal).ToString("0.00");
                 }
                 else
                 {
-                    varTaxTotal = 0;
+                    varTaxTotal = 0; //32 -  GSTIN Unregistered supplier 31-Composite
                     lblGstamt.Text = varTaxTotal.ToString("0.00");
                     lblTotal.Text = varSubtotal.ToString("0.00");
                 }
