@@ -76,8 +76,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(88, 22);
-            this.tspHeader.Text = "HSN Report";
+            this.tspHeader.Size = new System.Drawing.Size(269, 22);
+            this.tspHeader.Text = "HSN Name Wise Product Consolidated Report";
             // 
             // pnlReportHSN
             // 
@@ -298,7 +298,7 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // REPORT_CP_HSN
+            // REPORT_HSN_NameWise_Product_Consolidated
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -310,7 +310,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_CP_HSN";
+            this.Name = "REPORT_HSN_NameWise_Product_Consolidated";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_CP_HSN_Load);

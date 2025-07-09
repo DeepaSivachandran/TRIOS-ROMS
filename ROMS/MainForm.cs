@@ -241,6 +241,11 @@ namespace ROMS
         public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
         public static REPORT_Purchase_Defect_Product objREPORT_Purchase_Defect_Product;
 
+        public static REPORT_HSN_Code objREPORT_HSN_Code;
+        public static REPORT_HSN_Name objREPORT_HSN_Name;
+        public static REPORT_HSN_NameWise_Product objREPORT_HSN_NameWise_Product;
+        public static REPORT_HSN_NameWise_Product_Consolidated objREPORT_HSN_NameWise_Product_Consolidated;
+
 
         public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
@@ -2660,22 +2665,70 @@ namespace ROMS
 
         private void TsmHSNCodeWiseReport_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_Code = new REPORT_HSN_Code();
+                MainForm.objREPORT_HSN_Code.MdiParent = this;
+                MainForm.objREPORT_HSN_Code.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmHSNNameWiseReport_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_Name = new REPORT_HSN_Name();
+                MainForm.objREPORT_HSN_Name.MdiParent = this;
+                MainForm.objREPORT_HSN_Name.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmHSNNameWiseProductReport_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_NameWise_Product = new REPORT_HSN_NameWise_Product();
+                MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this;
+                MainForm.objREPORT_HSN_NameWise_Product.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmHSNNameWiseProductConsolidatedReport_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_NameWise_Product_Consolidated = new REPORT_HSN_NameWise_Product_Consolidated();
+                MainForm.objREPORT_HSN_NameWise_Product_Consolidated.MdiParent = this;
+                MainForm.objREPORT_HSN_NameWise_Product_Consolidated.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)

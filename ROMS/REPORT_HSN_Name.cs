@@ -21,59 +21,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnListPrint.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-        private void CmbStatus_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbStatus.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbStatus_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbStatus.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {
             try
@@ -133,7 +80,7 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
-                lblStatus.Focus();
+                //lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -142,7 +89,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(5, 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "","");
+                //objDs = objspservice.udfnHsnList(5, 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -155,8 +102,8 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Master.rpt");
-                    objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    //objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
+                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -188,8 +135,8 @@ namespace ROMS
         {
             try
             {
-                string varHSNCode = "",HSNCodeName="";
-                if(txtHsnName.Text=="")
+                string varHSNCode = "", HSNCodeName = "";
+                if (txtHsnName.Text == "")
                 {
                     varHSNCode = "0";
                     HSNCodeName = "-All-";
@@ -199,8 +146,8 @@ namespace ROMS
                     varHSNCode = txtHsnName.Text.Trim();
                     HSNCodeName = txtHsnName.Text.Trim();
                 }
-                btnListPrint.Enabled = false; 
-                lblStatus.Focus();
+                btnListPrint.Enabled = false;
+                //lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -209,7 +156,7 @@ namespace ROMS
                 int varPrint = 0;
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 16;
-                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                //objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraGstId = Convert.ToInt32(cmbGST.SelectedValue);
                 objMR_Product.paraHSNCode = varHSNCode;
                 DataSet objDs = new DataSet();
@@ -229,10 +176,10 @@ namespace ROMS
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Product.rpt");
                     objBillreport.SetParameterValue("paraHSNCode", Convert.ToString(varHSNCode));
                     objBillreport.SetParameterValue("paraGSTID", Convert.ToInt32(cmbGST.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    //objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNName", Convert.ToString(HSNCodeName));
                     objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
-                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -276,7 +223,6 @@ namespace ROMS
                     HSNCodeName = txtHsnName.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
-                lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -285,7 +231,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(4,0, Convert.ToInt32(cmbGST.SelectedValue),0,"",varHSNCode);
+                objDs = objspservice.udfnHsnList(4, 0, Convert.ToInt32(cmbGST.SelectedValue), 0, "", varHSNCode);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -364,13 +310,11 @@ namespace ROMS
                 udfnHsnLoad();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,35) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
-                //objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  NOT IN (-1)", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
+                cmbSupplierType.SelectedValue = 0;
                 cmbGST.SelectedValue = 0;
-                cmbStatus.SelectedValue = 0;
-                //btnListPrint.Enabled = true;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -387,25 +331,22 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
-                if(cmbReportType.SelectedIndex==1)
+                if (cmbReportType.SelectedIndex == 1)
                 {
                     txtHsnName.Enabled = false;
                     cmbGST.Enabled = false;
-                    cmbStatus.Enabled = true;
                     udfnClear();
                 }
-                if(cmbReportType.SelectedIndex==2)
+                if (cmbReportType.SelectedIndex == 2)
                 {
                     txtHsnName.Enabled = true;
                     cmbGST.Enabled = true;
-                    cmbStatus.Enabled = true;
                     udfnClear();
                 }
-                if(cmbReportType.SelectedIndex==3)
+                if (cmbReportType.SelectedIndex == 3)
                 {
                     txtHsnName.Enabled = true;
                     cmbGST.Enabled = true;
-                    cmbStatus.Enabled = false;
                     udfnClear();
                 }
             }
@@ -419,7 +360,6 @@ namespace ROMS
         {
             txtHsnName.Text = "";
             cmbGST.SelectedValue = 0;
-            cmbStatus.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
@@ -427,14 +367,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtHsnName.Enabled == true)
-                    {
-                        txtHsnName.Focus();
-                    }
-                    else
-                    {
-                        cmbStatus.Focus();
-                    }
+                    dpFromDate.Focus();
                 }
             }
             catch (Exception ex)
@@ -462,7 +395,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -500,14 +432,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbStatus.Enabled == true)
-                    {
-                        cmbStatus.Focus();
-                    }
-                    else
-                    {
-                        btnListPrint.Focus();
-                    }
+                    btnListPrint.Focus();
                 }
             }
             catch (Exception ex)
@@ -523,7 +448,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -628,7 +552,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0,0, 0, txtHsnName.Text.Trim(),"");
+                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnName.Text.Trim(), "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -713,6 +637,93 @@ namespace ROMS
             {
                 lvHsnName.Visible = false;
                 cmbGST.Focus();
+            }
+        }
+
+        private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpToDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpToDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbSupplierType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplierType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtHsnName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplierType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSupplierType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplierType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSupplierType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplierType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
