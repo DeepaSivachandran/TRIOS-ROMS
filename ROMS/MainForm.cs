@@ -2658,6 +2658,26 @@ namespace ROMS
             }
         }
 
+        private void TsmHSNCodeWiseReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TsmHSNNameWiseReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TsmHSNNameWiseProductReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TsmHSNNameWiseProductConsolidatedReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
