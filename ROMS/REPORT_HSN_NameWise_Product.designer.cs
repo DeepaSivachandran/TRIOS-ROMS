@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.ReportHSN = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportHSN = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.lvproduct = new System.Windows.Forms.ListView();
@@ -53,14 +52,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblHsnName = new System.Windows.Forms.Label();
-            this.cmbGST = new System.Windows.Forms.ComboBox();
-            this.lblGST = new System.Windows.Forms.Label();
             this.lblHSN = new System.Windows.Forms.Label();
-            this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblReportType = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.lblGroupCode = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,6 +74,9 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnListPrint = new System.Windows.Forms.Button();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.ReportHSN.SuspendLayout();
             this.pnlReportHSN.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -98,16 +96,6 @@
             this.ReportHSN.Size = new System.Drawing.Size(1354, 25);
             this.ReportHSN.TabIndex = 35;
             this.ReportHSN.Text = "HSN Report";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(150, 22);
-            this.tspHeader.Text = "HSN Name Wise Report";
             // 
             // pnlReportHSN
             // 
@@ -227,8 +215,6 @@
             this.grpfilter.Controls.Add(this.label3);
             this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.lblHsnName);
-            this.grpfilter.Controls.Add(this.cmbGST);
-            this.grpfilter.Controls.Add(this.lblGST);
             this.grpfilter.Controls.Add(this.lblHSN);
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbReportType);
@@ -268,7 +254,7 @@
             this.cmbSupplierType.FormattingEnabled = true;
             this.cmbSupplierType.Location = new System.Drawing.Point(442, 44);
             this.cmbSupplierType.Name = "cmbSupplierType";
-            this.cmbSupplierType.Size = new System.Drawing.Size(143, 27);
+            this.cmbSupplierType.Size = new System.Drawing.Size(88, 27);
             this.cmbSupplierType.TabIndex = 3;
             this.cmbSupplierType.Enter += new System.EventHandler(this.CmbSupplierType_Enter);
             this.cmbSupplierType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSupplierType_KeyDown);
@@ -278,10 +264,10 @@
             // txtHsnName
             // 
             this.txtHsnName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsnName.Location = new System.Drawing.Point(591, 44);
+            this.txtHsnName.Location = new System.Drawing.Point(536, 44);
             this.txtHsnName.MaxLength = 50;
             this.txtHsnName.Name = "txtHsnName";
-            this.txtHsnName.Size = new System.Drawing.Size(177, 27);
+            this.txtHsnName.Size = new System.Drawing.Size(232, 27);
             this.txtHsnName.TabIndex = 4;
             this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
             this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
@@ -331,61 +317,22 @@
             // lblHsnName
             // 
             this.lblHsnName.AutoSize = true;
-            this.lblHsnName.Location = new System.Drawing.Point(748, 23);
+            this.lblHsnName.Location = new System.Drawing.Point(609, 23);
             this.lblHsnName.Name = "lblHsnName";
             this.lblHsnName.Size = new System.Drawing.Size(16, 20);
             this.lblHsnName.TabIndex = 958789;
             this.lblHsnName.Text = "0";
             this.lblHsnName.Visible = false;
             // 
-            // cmbGST
-            // 
-            this.cmbGST.FormattingEnabled = true;
-            this.cmbGST.Location = new System.Drawing.Point(774, 44);
-            this.cmbGST.Name = "cmbGST";
-            this.cmbGST.Size = new System.Drawing.Size(75, 27);
-            this.cmbGST.TabIndex = 5;
-            this.cmbGST.Enter += new System.EventHandler(this.CmbGST_Enter);
-            this.cmbGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGST_KeyDown);
-            this.cmbGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGST_KeyPress);
-            this.cmbGST.Leave += new System.EventHandler(this.CmbGST_Leave);
-            // 
-            // lblGST
-            // 
-            this.lblGST.AutoSize = true;
-            this.lblGST.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGST.Location = new System.Drawing.Point(770, 22);
-            this.lblGST.Name = "lblGST";
-            this.lblGST.Size = new System.Drawing.Size(30, 20);
-            this.lblGST.TabIndex = 1111180;
-            this.lblGST.Text = "GST";
-            // 
             // lblHSN
             // 
             this.lblHSN.AutoSize = true;
             this.lblHSN.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHSN.Location = new System.Drawing.Point(587, 22);
+            this.lblHSN.Location = new System.Drawing.Point(538, 22);
             this.lblHSN.Name = "lblHSN";
             this.lblHSN.Size = new System.Drawing.Size(65, 20);
             this.lblHSN.TabIndex = 1111178;
             this.lblHSN.Text = "HSN Name";
-            // 
-            // btnListPrint
-            // 
-            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
-            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(774, 98);
-            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 9;
-            this.btnListPrint.Text = "View";
-            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnListPrint.UseVisualStyleBackColor = true;
-            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
-            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
-            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
             // 
             // cmbReportType
             // 
@@ -421,21 +368,6 @@
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 146);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1348, 496);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958790;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
             // 
             // RPTViewer
             // 
@@ -591,6 +523,48 @@
             // 
             this.columnHeader29.Width = 0;
             // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(774, 98);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
+            this.btnListPrint.TabIndex = 9;
+            this.btnListPrint.Text = "View";
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
+            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
+            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(3, 146);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1348, 496);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958790;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(196, 22);
+            this.tspHeader.Text = "HSN Name Wise Product Report";
+            // 
             // REPORT_HSN_NameWise_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -605,7 +579,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_HSN_NameWise_Product";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HSN Report";
+            this.Text = "HSN Name Wise Product Report";
             this.Load += new System.EventHandler(this.REPORT_CP_HSN_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_HSN_KeyDown);
             this.ReportHSN.ResumeLayout(false);
@@ -633,8 +607,6 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;
         private System.Windows.Forms.Label lblHSN;
-        private System.Windows.Forms.Label lblGST;
-        private System.Windows.Forms.ComboBox cmbGST;
         private System.Windows.Forms.TextBox txtHsnName;
         public System.Windows.Forms.ListView lvHsnName;
         private System.Windows.Forms.ColumnHeader columnHeader10;

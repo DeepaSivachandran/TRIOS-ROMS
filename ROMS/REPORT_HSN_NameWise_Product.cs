@@ -59,14 +59,6 @@ namespace ROMS
                     {
                         udfnHSN();
                     }
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 104)
-                    {
-                        udfnHSNProduct();
-                    }
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 105)
-                    {
-                        udfnHSNSubgroup();
-                    }
                 }
             }
             catch (Exception ex)
@@ -131,190 +123,17 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnHSNProduct()
-        {
-            try
-            {
-                string varHSNCode = "", HSNCodeName = "";
-                if (txtHsnName.Text == "")
-                {
-                    varHSNCode = "0";
-                    HSNCodeName = "-All-";
-                }
-                else
-                {
-                    varHSNCode = txtHsnName.Text.Trim();
-                    HSNCodeName = txtHsnName.Text.Trim();
-                }
-                btnListPrint.Enabled = false;
-                //lblStatus.Focus();
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 16;
-                //objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
-                objMR_Product.paraGstId = Convert.ToInt32(cmbGST.SelectedValue);
-                objMR_Product.paraHSNCode = varHSNCode;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(objMR_Product);
-                objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Product.rpt");
-                    objBillreport.SetParameterValue("paraHSNCode", Convert.ToString(varHSNCode));
-                    objBillreport.SetParameterValue("paraGSTID", Convert.ToInt32(cmbGST.SelectedValue));
-                    //objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraHSNName", Convert.ToString(HSNCodeName));
-                    objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
-                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-                btnListPrint.Enabled = true;
-                btnListPrint.Focus();
-                GC.Collect();
-            }
-        }
-        public void udfnHSNSubgroup()
-        {
-            try
-            {
-                string varHSNCode = "", HSNCodeName = "";
-                if (txtHsnName.Text == "")
-                {
-                    varHSNCode = "0";
-                    HSNCodeName = "-All-";
-                }
-                else
-                {
-                    varHSNCode = txtHsnName.Text.Trim();
-                    HSNCodeName = txtHsnName.Text.Trim();
-                }
-                btnListPrint.Enabled = false;
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(4, 0, Convert.ToInt32(cmbGST.SelectedValue), 0, "", varHSNCode);
-                objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Subgroup.rpt");
-                    objBillreport.SetParameterValue("paraHSN_Code", Convert.ToString(varHSNCode));
-                    objBillreport.SetParameterValue("paraGSTID", Convert.ToInt32(cmbGST.SelectedValue));
-                    objBillreport.SetParameterValue("paraHSNName", Convert.ToString(HSNCodeName));
-                    objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-                btnListPrint.Enabled = true;
-                btnListPrint.Focus();
-                GC.Collect();
-            }
-        }
-        public void udfnHsnLoad()
-        {
-            try
-            {
-                DataSet objDs = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnHsnList(10, 0, 0, 0, "", txtHsnName.Text.Trim());
-                objdserv.CloseConnection();
-                cmbGST.DataSource = null;
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count > 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            cmbGST.ValueMember = "GSTID";
-                            cmbGST.DisplayMember = "GST_Text";
-                            cmbGST.DataSource = objDs.Tables[0];
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void REPORT_CP_HSN_Load(object sender, EventArgs e)
         {
             try
             {
-                udfnHsnLoad();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,35) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbSupplierType.SelectedValue = 0;
-                cmbGST.SelectedValue = 0;
+
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -390,60 +209,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CmbGST_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                lvHsnName.Visible = false;
-                udfnHsnLoad();
-                cmbGST.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbGST_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtGroup.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbGST_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbGST_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbGST.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void REPORT_CP_HSN_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -498,7 +263,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbGST.Focus();
+                    txtGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -614,7 +379,7 @@ namespace ROMS
             finally
             {
                 lvHsnName.Visible = false;
-                cmbGST.Focus();
+                txtGroup.Focus();
             }
         }
 
