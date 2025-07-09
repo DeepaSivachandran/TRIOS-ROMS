@@ -1155,7 +1155,7 @@ namespace ROMS
                     else { btnRemarks.Enabled = true; }
 
                     if (PbSTS == "50")
-                    { btnSave.Text = "Update"; }
+                    { btnSave.Text = "Update"; btnSave.Enabled = false; }
                     if (varConvertFlag == 1)
                     {
                         btnSave.Enabled = true;
@@ -1166,7 +1166,7 @@ namespace ROMS
                     txtInvoiceNo.Enabled = true;
                     txtInvoiceNo.ReadOnly = false;
                     dpInvoiceDate.Enabled = true;
-                    btnSave.Enabled = true;
+                    btnSave.Enabled = false;
                     txtRemarks.Enabled = false;
                     txtRemarks.ReadOnly = true;
                 }
@@ -1179,7 +1179,11 @@ namespace ROMS
                     btnUnapprove.Enabled = false;
                 }
                 if (PbSTS == "50")
-                { udfndisablevalue(); }
+                { 
+                    udfndisablevalue();
+                    txtInvoiceamt.Enabled = true;txtInvoiceamt.ReadOnly = false;
+                    txtInvoiceNo.Enabled = true;txtInvoiceNo.ReadOnly = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1868,7 +1872,7 @@ namespace ROMS
                             }
                             if (objDs.Tables[8].Rows.Count != 0)
                             {
-                                varPurEditFlag = Convert.ToInt32(objDs.Tables[8].Rows[0]["Flag"]);
+                                varPurEditFlag = Convert.ToInt32(objDs.Tables[8].Rows[0]["Flag"]); //From settings purchase should be edditaable or not
                             }
                             if (objDs.Tables.Count > 9)
                             {
