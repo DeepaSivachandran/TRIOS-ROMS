@@ -151,6 +151,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRateChange = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -518,7 +519,8 @@ namespace ROMS
             this.tsmSupplier,
             this.tsmBroker,
             this.tsmBulkUpdate,
-            this.tsmRepresentative});
+            this.tsmRepresentative,
+            this.tsmRateChange});
             this.mastersToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mastersToolStripMenuItem.Name = "mastersToolStripMenuItem";
             this.mastersToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
@@ -1168,6 +1170,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // tsmRateChange
+            // 
+            this.tsmRateChange.Name = "tsmRateChange";
+            this.tsmRateChange.Size = new System.Drawing.Size(225, 22);
+            this.tsmRateChange.Text = "Rate Change";
+            this.tsmRateChange.Click += new System.EventHandler(this.tsmRateChange_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1318,5 +1327,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem purchaseDefectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discountVoucherToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusWiseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmRateChange;
     }
 }

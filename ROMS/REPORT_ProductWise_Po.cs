@@ -495,10 +495,6 @@ namespace ROMS
                         lvproduct.Items[0].Selected = true;
                     }
                 }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtGroup.Focus();
-                }
             }
             catch (Exception ex)
             {

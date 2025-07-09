@@ -109,6 +109,8 @@ namespace ROMS
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
         public static LabelCount objLabelCount;
+        public static CP_Rate_ChangeList objCP_Rate_ChangeList;
+        public static CP_Rate_Change objCP_Rate_Change;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -2632,6 +2634,24 @@ namespace ROMS
                 MainForm.objREPORT_ProductWise_Po.MdiParent = this;
                 MainForm.objREPORT_ProductWise_Po.Show();
                 PbCurrentForm = "7.6.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRateChange_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Rate_ChangeList = new CP_Rate_ChangeList();
+                MainForm.objCP_Rate_ChangeList.MdiParent = this;
+                MainForm.objCP_Rate_ChangeList.Show();
+                PbCurrentForm = "5.19";
             }
             catch (Exception ex)
             {
