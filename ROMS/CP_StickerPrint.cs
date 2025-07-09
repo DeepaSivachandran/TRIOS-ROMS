@@ -82,7 +82,7 @@ namespace ROMS
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
                 {
-                    viewType = 66;
+                    viewType = 65;
                     varCodes = varProductCodes;
                 }
                 picLoader4.Visible = true;
