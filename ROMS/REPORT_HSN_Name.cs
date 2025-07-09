@@ -331,35 +331,13 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
-                if (cmbReportType.SelectedIndex == 1)
-                {
-                    txtHsnName.Enabled = false;
-                    cmbGST.Enabled = false;
-                    udfnClear();
-                }
-                if (cmbReportType.SelectedIndex == 2)
-                {
-                    txtHsnName.Enabled = true;
-                    cmbGST.Enabled = true;
-                    udfnClear();
-                }
-                if (cmbReportType.SelectedIndex == 3)
-                {
-                    txtHsnName.Enabled = true;
-                    cmbGST.Enabled = true;
-                    udfnClear();
-                }
+                
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfnClear()
-        {
-            txtHsnName.Text = "";
-            cmbGST.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
