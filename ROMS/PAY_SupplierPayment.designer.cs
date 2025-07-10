@@ -130,7 +130,7 @@
             this.clmPaymentAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmenteredBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmApprovedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDebitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCreditID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -663,7 +663,7 @@
             this.clmPaymentAmount,
             this.clmenteredBy,
             this.clmApprovedBy,
-            this.clmDebitID});
+            this.clmCreditID});
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1146,11 +1146,11 @@
             this.clmApprovedBy.Name = "clmApprovedBy";
             this.clmApprovedBy.ReadOnly = true;
             // 
-            // clmDebitID
+            // clmCreditID
             // 
-            this.clmDebitID.HeaderText = "DebitID";
-            this.clmDebitID.Name = "clmDebitID";
-            this.clmDebitID.Visible = false;
+            this.clmCreditID.HeaderText = "CreditID";
+            this.clmCreditID.Name = "clmCreditID";
+            this.clmCreditID.Visible = false;
             // 
             // PAY_SupplierPayment
             // 
@@ -1276,6 +1276,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPaymentAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmenteredBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmApprovedBy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDebitID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCreditID;
     }
 }

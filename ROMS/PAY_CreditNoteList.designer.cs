@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PAY_DebitNoteList
+    partial class PAY_CreditNoteList
     {
         /// <summary>
         /// Required designer variable.
@@ -45,7 +45,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.grdDebitNoteList = new System.Windows.Forms.DataGridView();
+            this.grdCreditNoteList = new System.Windows.Forms.DataGridView();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
@@ -61,7 +61,7 @@
             this.tsSupplierPaymentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlbrand.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDebitNoteList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCreditNoteList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.grbFilterBy.SuspendLayout();
             this.SuspendLayout();
@@ -88,7 +88,7 @@
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(82, 24);
-            this.tspHeader.Text = "Debit Note";
+            this.tspHeader.Text = "Credit Note";
             // 
             // tsbEdit
             // 
@@ -133,7 +133,7 @@
             // 
             this.pnlbrand.BackColor = System.Drawing.Color.White;
             this.pnlbrand.Controls.Add(this.LV_Supplier);
-            this.pnlbrand.Controls.Add(this.grdDebitNoteList);
+            this.pnlbrand.Controls.Add(this.grdCreditNoteList);
             this.pnlbrand.Controls.Add(this.DGV_SearchGrid);
             this.pnlbrand.Controls.Add(this.grbFilterBy);
             this.pnlbrand.Controls.Add(this.lblNoRecordsFound);
@@ -174,14 +174,14 @@
             // 
             this.columnHeader9.Width = 0;
             // 
-            // grdDebitNoteList
+            // grdCreditNoteList
             // 
-            this.grdDebitNoteList.AllowUserToAddRows = false;
-            this.grdDebitNoteList.AllowUserToDeleteRows = false;
-            this.grdDebitNoteList.AllowUserToResizeColumns = false;
-            this.grdDebitNoteList.AllowUserToResizeRows = false;
-            this.grdDebitNoteList.BackgroundColor = System.Drawing.Color.White;
-            this.grdDebitNoteList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdCreditNoteList.AllowUserToAddRows = false;
+            this.grdCreditNoteList.AllowUserToDeleteRows = false;
+            this.grdCreditNoteList.AllowUserToResizeColumns = false;
+            this.grdCreditNoteList.AllowUserToResizeRows = false;
+            this.grdCreditNoteList.BackgroundColor = System.Drawing.Color.White;
+            this.grdCreditNoteList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -189,11 +189,11 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDebitNoteList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdDebitNoteList.ColumnHeadersHeight = 30;
-            this.grdDebitNoteList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdDebitNoteList.ColumnHeadersVisible = false;
-            this.grdDebitNoteList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdCreditNoteList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdCreditNoteList.ColumnHeadersHeight = 30;
+            this.grdCreditNoteList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdCreditNoteList.ColumnHeadersVisible = false;
+            this.grdCreditNoteList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmPrint});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -202,24 +202,24 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdDebitNoteList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdDebitNoteList.EnableHeadersVisualStyles = false;
-            this.grdDebitNoteList.GridColor = System.Drawing.Color.White;
-            this.grdDebitNoteList.Location = new System.Drawing.Point(3, 130);
-            this.grdDebitNoteList.Name = "grdDebitNoteList";
-            this.grdDebitNoteList.ReadOnly = true;
-            this.grdDebitNoteList.RowHeadersVisible = false;
+            this.grdCreditNoteList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdCreditNoteList.EnableHeadersVisualStyles = false;
+            this.grdCreditNoteList.GridColor = System.Drawing.Color.White;
+            this.grdCreditNoteList.Location = new System.Drawing.Point(3, 130);
+            this.grdCreditNoteList.Name = "grdCreditNoteList";
+            this.grdCreditNoteList.ReadOnly = true;
+            this.grdCreditNoteList.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdDebitNoteList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdDebitNoteList.RowTemplate.Height = 25;
-            this.grdDebitNoteList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDebitNoteList.Size = new System.Drawing.Size(1348, 508);
-            this.grdDebitNoteList.TabIndex = 1110000989;
-            this.grdDebitNoteList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdDebitNoteList_CellDoubleClick);
-            this.grdDebitNoteList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDebitNoteList_DataBindingComplete);
-            this.grdDebitNoteList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdDebitNoteList_Scroll);
-            this.grdDebitNoteList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdDebitNoteList_KeyDown);
+            this.grdCreditNoteList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdCreditNoteList.RowTemplate.Height = 25;
+            this.grdCreditNoteList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdCreditNoteList.Size = new System.Drawing.Size(1348, 508);
+            this.grdCreditNoteList.TabIndex = 1110000989;
+            this.grdCreditNoteList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdCreditNoteList_CellDoubleClick);
+            this.grdCreditNoteList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCreditNoteList_DataBindingComplete);
+            this.grdCreditNoteList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCreditNoteList_Scroll);
+            this.grdCreditNoteList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdCreditNoteList_KeyDown);
             // 
             // clmPrint
             // 
@@ -405,7 +405,7 @@
             this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnView_KeyDown);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
-            // PAY_DebitNoteList
+            // PAY_CreditNoteList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -417,17 +417,17 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "PAY_DebitNoteList";
+            this.Name = "PAY_CreditNoteList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
-            this.Load += new System.EventHandler(this.PAY_DebitNoteList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_DebitNoteList_KeyDown);
+            this.Load += new System.EventHandler(this.PAY_CreditNoteList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_CreditNoteList_KeyDown);
             this.tsSupplierPaymentList.ResumeLayout(false);
             this.tsSupplierPaymentList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.pnlbrand.ResumeLayout(false);
             this.pnlbrand.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDebitNoteList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCreditNoteList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.grbFilterBy.ResumeLayout(false);
             this.grbFilterBy.PerformLayout();
@@ -459,7 +459,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
-        public System.Windows.Forms.DataGridView grdDebitNoteList;
+        public System.Windows.Forms.DataGridView grdCreditNoteList;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         public System.Windows.Forms.ToolStripButton tsbEdit;
     }

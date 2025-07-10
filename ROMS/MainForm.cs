@@ -154,7 +154,7 @@ namespace ROMS
         public static PUR_Purchase_GRNDetails objPUR_Purchase_GRNDetails;
         public static PUR_Product objPUR_Product;
         public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
-        public static PUR_DebitnoteDetails objPUR_DebitnoteDetails;
+        public static PUR_CreditnoteDetails objPUR_CreditnoteDetails;
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
         public static PUR_PurchaseReturns objPUR_PurchaseReturns;
@@ -195,8 +195,8 @@ namespace ROMS
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static PAY_ChequePrint objPAY_ChequePrint;
-        public static PAY_DebitNoteList objPAY_DebitNoteList;
-        public static PAY_DebitNote objPAY_DebitNote;
+        public static PAY_CreditNoteList objPAY_CreditNoteList;
+        public static PAY_CreditNote objPAY_CreditNote;
         public static PAY_AdvanceList objPAY_AdvanceList;
         public static PAY_GSTRDetails objPAY_GSTRDetails;
         public static PAY_Advance objPAY_Advance;
@@ -1370,15 +1370,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TsbDebitNote_Click(object sender, EventArgs e)
+        private void TsbCreditNote_Click(object sender, EventArgs e)
         {
             try
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objPAY_DebitNoteList = new PAY_DebitNoteList();
-                MainForm.objPAY_DebitNoteList.MdiParent = this;
-                MainForm.objPAY_DebitNoteList.Show();
+                MainForm.objPAY_CreditNoteList = new PAY_CreditNoteList();
+                MainForm.objPAY_CreditNoteList.MdiParent = this;
+                MainForm.objPAY_CreditNoteList.Show();
                 PbCurrentForm = "4.3";
             }
             catch (Exception ex)
@@ -1758,7 +1758,7 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "4.3")
                 {
-                    MainForm.objPAY_DebitNoteList.udfnList();
+                    MainForm.objPAY_CreditNoteList.udfnList();
                 }
                 if (PbCurrentForm == "5.1")
                 {

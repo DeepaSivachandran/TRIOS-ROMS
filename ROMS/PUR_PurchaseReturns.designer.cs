@@ -1090,7 +1090,7 @@
             this.dpDCreditNoteDate.ReadOnly = true;
             this.dpDCreditNoteDate.Size = new System.Drawing.Size(110, 28);
             this.dpDCreditNoteDate.TabIndex = 1111237;
-            this.dpDCreditNoteDate.Text = "Credit Note Date";
+            this.dpDCreditNoteDate.Text = "Debit Note Date";
             this.dpDCreditNoteDate.Visible = false;
             // 
             // txtCrNo
@@ -1113,7 +1113,7 @@
             this.txtDCrNo.ReadOnly = true;
             this.txtDCrNo.Size = new System.Drawing.Size(110, 28);
             this.txtDCrNo.TabIndex = 1111235;
-            this.txtDCrNo.Text = "Credit Note No.";
+            this.txtDCrNo.Text = "Debit Note No.";
             this.txtDCrNo.Visible = false;
             // 
             // txtAmount

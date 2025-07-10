@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class PUR_DebitnoteDetails : Form
+    public partial class PUR_CreditnoteDetails : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -22,8 +22,8 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus, varMasterType="0";
-        public string varDebitID = "0";
-        public PUR_DebitnoteDetails()
+        public string varCreditID = "0";
+        public PUR_CreditnoteDetails()
         {
             InitializeComponent();
         }
@@ -83,15 +83,15 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                // objDs = objdserv.udfnReturnDC(1, varSupplierid, varScheduleid, varcompanyid, varDcCode,0,0,0,0);
-                TRN_DebitNote objTRN_DebitNote = new TRN_DebitNote();
-                objTRN_DebitNote.ViewType = 2;
-                objTRN_DebitNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRN_DebitNote.paraCompanyCode = varcompanyid;
-                objTRN_DebitNote.paraSupplierID = varSupplierid;
-                objTRN_DebitNote.paraScheduleID = varScheduleid;
-                objTRN_DebitNote.paraDebitID =Convert.ToInt32(varDebitID);
-                objTRN_DebitNote.paraIPAddress = MainForm.pbIpAddress;
-                objDs = objdserv.udfnDebitNoteList(objTRN_DebitNote);
+                TRN_CreditNote objTRN_CreditNote = new TRN_CreditNote();
+                objTRN_CreditNote.ViewType = 2;
+                objTRN_CreditNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_CreditNote.paraCompanyCode = varcompanyid;
+                objTRN_CreditNote.paraSupplierID = varSupplierid;
+                objTRN_CreditNote.paraScheduleID = varScheduleid;
+                objTRN_CreditNote.paraCreditID =Convert.ToInt32(varCreditID);
+                objTRN_CreditNote.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnCreditNoteList(objTRN_CreditNote);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -105,14 +105,14 @@ namespace ROMS
 
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdDebitnote.Rows.Add(objDs.Tables[0].Rows[i]["S.No"], objDs.Tables[0].Rows[i]["PICode"], objDs.Tables[0].Rows[i]["Product"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["ExpiryDate"], objDs.Tables[0].Rows[i]["Batch"], objDs.Tables[0].Rows[i]["Approximate Rate"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["Taxable Amt"], objDs.Tables[0].Rows[i]["Gst%"], objDs.Tables[0].Rows[i]["GST Amt"], objDs.Tables[0].Rows[i]["Nett Amt"], objDs.Tables[0].Rows[i]["ID"]);
-                                grdDebitnote.Columns["clmApproxRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdDebitnote.Columns["clmtotqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdDebitnote.Columns["clmTaxableAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdDebitnote.Columns["clmgstamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdDebitnote.Columns["clmnettamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdDebitnote.Columns["clmunit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdDebitnote.Columns["clmExpiry"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdCreditnote.Rows.Add(objDs.Tables[0].Rows[i]["S.No"], objDs.Tables[0].Rows[i]["PICode"], objDs.Tables[0].Rows[i]["Product"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["ExpiryDate"], objDs.Tables[0].Rows[i]["Batch"], objDs.Tables[0].Rows[i]["Approximate Rate"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Qty"]), objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["Taxable Amt"], objDs.Tables[0].Rows[i]["Gst%"], objDs.Tables[0].Rows[i]["GST Amt"], objDs.Tables[0].Rows[i]["Nett Amt"], objDs.Tables[0].Rows[i]["ID"]);
+                                grdCreditnote.Columns["clmApproxRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdCreditnote.Columns["clmtotqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdCreditnote.Columns["clmTaxableAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdCreditnote.Columns["clmgstamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdCreditnote.Columns["clmnettamt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdCreditnote.Columns["clmunit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdCreditnote.Columns["clmExpiry"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             }
                         }
                         else
@@ -122,7 +122,7 @@ namespace ROMS
                         }
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
-                            txtDLNo.Text= objDs.Tables[1].Rows[0]["DebitNo"].ToString();
+                            txtDLNo.Text= objDs.Tables[1].Rows[0]["CreditNo"].ToString();
                             txtCreatedBy.Text= objDs.Tables[1].Rows[0]["CreatedBy"].ToString();
                             txtCreatedOn.Text= objDs.Tables[1].Rows[0]["CreatedOn"].ToString();
                         }

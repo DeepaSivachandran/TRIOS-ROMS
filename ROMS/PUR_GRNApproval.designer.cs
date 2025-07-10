@@ -119,7 +119,7 @@
             this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreturnqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFreeQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDebitQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCreditQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -795,7 +795,7 @@
             this.clmreceivedqty,
             this.clmreturnqty,
             this.clmFreeQty,
-            this.clmDebitQty,
+            this.clmCreditQty,
             this.clmPOID,
             this.clmUnitDecimal,
             this.clmStatus,
@@ -1058,12 +1058,12 @@
             this.clmFreeQty.HeaderText = "Free Qty";
             this.clmFreeQty.Name = "clmFreeQty";
             // 
-            // clmDebitQty
+            // clmCreditQty
             // 
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmDebitQty.DefaultCellStyle = dataGridViewCellStyle12;
-            this.clmDebitQty.HeaderText = "Debit Qty";
-            this.clmDebitQty.Name = "clmDebitQty";
+            this.clmCreditQty.DefaultCellStyle = dataGridViewCellStyle12;
+            this.clmCreditQty.HeaderText = "Debit Qty";
+            this.clmCreditQty.Name = "clmCreditQty";
             // 
             // clmPOID
             // 
@@ -1252,7 +1252,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreceivedqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreturnqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFreeQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDebitQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCreditQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPOID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;

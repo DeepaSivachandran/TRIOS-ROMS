@@ -12,7 +12,7 @@ using System.Globalization;
 
 namespace ROMS
 {
-    public partial class PAY_DebitNote : Form
+    public partial class PAY_CreditNote : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,15 +23,15 @@ namespace ROMS
         private ToolTip tpReason = new ToolTip();
         private ToolTip tpDcNo = new ToolTip();
         private ToolTip tpAmount = new ToolTip();
-        private ToolTip tpDebitAmount = new ToolTip();
+        private ToolTip tpCreditAmount = new ToolTip();
         private ToolTip tpProduct = new ToolTip();
         private ToolTip tpQTY = new ToolTip();
         public int varUpDownKey = 0;
         public int vareditflag = 0;
         public int varReturnDCID = 0, varCloseFlag = 0;
-        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varDebitDCID=0, varEditFlag=0,varClose = 0, varDateChange = 0;
+        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varCreditDCID=0, varEditFlag=0,varClose = 0, varDateChange = 0;
         public string varSuppliervalue = "";
-        DataTable dtDebitNote = new DataTable();
+        DataTable dtCreditNote = new DataTable();
         public string varExchangeRemarks = "";
         public string varSupplierID = "";
         public string varSupplierScheduleID = "";
@@ -42,14 +42,14 @@ namespace ROMS
         public string varPICode = "";
         public int varSLID = 0, vaReturnDCSts = 0;
         public int varGRNStatus = 0;
-        public int varRKID = 0, varDebitID = 0;
+        public int varRKID = 0, varCreditID = 0;
         public int varDecimal = 0;
         public decimal varApprox = 0;
         public int varGST = 0, VerifiedBy=0;
         public string varBlockedSupplier = "0", varBlockedReason = "";
 
 
-        public PAY_DebitNote()
+        public PAY_CreditNote()
         {
             InitializeComponent();
         }
@@ -125,13 +125,13 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             this.Close();
-                            MainForm.objPAY_DebitNoteList.udfnList();
+                            MainForm.objPAY_CreditNoteList.udfnList();
                         }
                     }
                     else
                     {
                         this.Close();
-                        MainForm.objPAY_DebitNoteList.udfnList();
+                        MainForm.objPAY_CreditNoteList.udfnList();
                     }
                     //MainForm.objINV_SalesInvoiceList.udfnList();
                 }
@@ -204,7 +204,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnDebitNoteVocherno()
+        public void udfnCreditNoteVocherno()
         {
             try
             {
@@ -331,22 +331,22 @@ namespace ROMS
         {
             try
             {
-                dtDebitNote.TableName = "TRN_DebitNote";
-                dtDebitNote.Columns.Add("DNPR_PRID", typeof(int));
-                dtDebitNote.Columns.Add("DNPR_MRP", typeof(decimal));
-                dtDebitNote.Columns.Add("DNPR_ExpDate", typeof(string));
-                dtDebitNote.Columns.Add("DNPR_BatchNo", typeof(string));
-                dtDebitNote.Columns.Add("DNPR_AppRate", typeof(decimal));
-                dtDebitNote.Columns.Add("DNPR_Qty", typeof(decimal));
-                dtDebitNote.Columns.Add("DNPR_UTID", typeof(int));
-                dtDebitNote.Columns.Add("DNPR_TaxableAmnt", typeof(decimal));
-                dtDebitNote.Columns.Add("DNPR_GSTPer", typeof(decimal));
-                dtDebitNote.Columns.Add("DNPR_GSTAmnt", typeof(decimal));
-                dtDebitNote.Columns.Add("DNPR_NettAmnt", typeof(decimal));
-                dtDebitNote.Columns.Add("DNPR_SLID", typeof(int));
-                dtDebitNote.Columns.Add("DNPR_RKID", typeof(int));
-                dtDebitNote.Columns.Add("DNPR_FreeQty", typeof(decimal));
-                dtDebitNote.Columns.Add("DNPR_PURPRID", typeof(int));
+                dtCreditNote.TableName = "TRN_CreditNote";
+                dtCreditNote.Columns.Add("DNPR_PRID", typeof(int));
+                dtCreditNote.Columns.Add("DNPR_MRP", typeof(decimal));
+                dtCreditNote.Columns.Add("DNPR_ExpDate", typeof(string));
+                dtCreditNote.Columns.Add("DNPR_BatchNo", typeof(string));
+                dtCreditNote.Columns.Add("DNPR_AppRate", typeof(decimal));
+                dtCreditNote.Columns.Add("DNPR_Qty", typeof(decimal));
+                dtCreditNote.Columns.Add("DNPR_UTID", typeof(int));
+                dtCreditNote.Columns.Add("DNPR_TaxableAmnt", typeof(decimal));
+                dtCreditNote.Columns.Add("DNPR_GSTPer", typeof(decimal));
+                dtCreditNote.Columns.Add("DNPR_GSTAmnt", typeof(decimal));
+                dtCreditNote.Columns.Add("DNPR_NettAmnt", typeof(decimal));
+                dtCreditNote.Columns.Add("DNPR_SLID", typeof(int));
+                dtCreditNote.Columns.Add("DNPR_RKID", typeof(int));
+                dtCreditNote.Columns.Add("DNPR_FreeQty", typeof(decimal));
+                dtCreditNote.Columns.Add("DNPR_PURPRID", typeof(int));
             }
             catch (Exception ex)
             {
@@ -497,19 +497,19 @@ namespace ROMS
         {
             try
             {
-                if (varDebitID != 0)
+                if (varCreditID != 0)
                 {
                     int varviewtype = 1;
                     SPDataService objdserv = new SPDataService();
                     DataSet objDs = new DataSet();
-                    TRN_DebitNote objTRN_DebitNote = new TRN_DebitNote();
-                    objTRN_DebitNote.ViewType = varviewtype;
-                    objTRN_DebitNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                    objTRN_DebitNote.paraIPAddress = MainForm.pbIpAddress;
-                    objTRN_DebitNote.paraDebitID = varDebitID;
-                    objTRN_DebitNote.paraSupplierID = pbSupplierId;
-                    objTRN_DebitNote.paraScheduleID = pbScheduleid;
-                    objDs = objdserv.udfnDebitNoteList(objTRN_DebitNote);
+                    TRN_CreditNote objTRN_CreditNote = new TRN_CreditNote();
+                    objTRN_CreditNote.ViewType = varviewtype;
+                    objTRN_CreditNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                    objTRN_CreditNote.paraIPAddress = MainForm.pbIpAddress;
+                    objTRN_CreditNote.paraCreditID = varCreditID;
+                    objTRN_CreditNote.paraSupplierID = pbSupplierId;
+                    objTRN_CreditNote.paraScheduleID = pbScheduleid;
+                    objDs = objdserv.udfnCreditNoteList(objTRN_CreditNote);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -546,7 +546,7 @@ namespace ROMS
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToString(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToString(objDs.Tables[1].Rows[i]["Unit"]),
                                         Convert.ToString(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["Gst%"]), Convert.ToString(objDs.Tables[1].Rows[i]["GST Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]));
 
-                                        dtDebitNote.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]),
+                                        dtCreditNote.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["MRP"]))), Convert.ToString(objDs.Tables[1].Rows[i]["Expiry Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["Batch No."]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Approximate Rate"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Qty"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["UTID"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amt"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST%"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GST Amt"]),
                                         Convert.ToDecimal(objDs.Tables[1].Rows[i]["Net Amt"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["SLID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["RKID"]),0, Convert.ToInt32(objDs.Tables[1].Rows[i]["PURPRID"])); 
@@ -692,7 +692,7 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        dtDebitNote.Rows.Clear();
+                        dtCreditNote.Rows.Clear();
                         grdReturnDC.DataSource = null;
                         grdRepDetails.DataSource = null;
                     }
@@ -704,7 +704,7 @@ namespace ROMS
                 txtReturnDcNo.Text = "";
                 varDateChange = 0;
                 udfnVocherno();
-                udfnDebitNoteVocherno();
+                udfnCreditNoteVocherno();
             }
             catch (Exception ex)
             {
@@ -757,7 +757,7 @@ namespace ROMS
             {
                 varDateChange = 1;
                 udfnVocherno();
-                udfnDebitNoteVocherno();
+                udfnCreditNoteVocherno();
             }
             catch (Exception ex)
             {
@@ -1068,20 +1068,20 @@ namespace ROMS
                     {
                         if(txtAmount.Text=="0")
                         {
-                            epReturnDc.SetError(txtAmount, "Debit amount is empty.");
-                            tpDebitAmount.ShowAlways = true;
-                            tpDebitAmount.Show("Debit amount is empty.", txtAmount, 5000);
+                            epReturnDc.SetError(txtAmount, "Credit amount is empty.");
+                            tpCreditAmount.ShowAlways = true;
+                            tpCreditAmount.Show("Credit amount is empty.", txtAmount, 5000);
                             varErrorFlag = false;
                         }
                     }
                     if (varErrorFlag == true)
                     {
                         udfnTooltipHide();
-                        string varDebitAmount = "";
-                        if (txtAmount.Text == "") { varDebitAmount = "0"; }
+                        string varCreditAmount = "";
+                        if (txtAmount.Text == "") { varCreditAmount = "0"; }
                         else
                         {
-                            varDebitAmount = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                            varCreditAmount = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
                         }
 
                         if (grdReturnDC.Rows.Count > 0)
@@ -1089,7 +1089,7 @@ namespace ROMS
                             if (lblSupplierCode.Text != "0" && lblschedule.Text != "0")
                             {
                                 string result = "", varorginator = ""; int varviewtype = 1;
-                                varorginator = "Debit note update";
+                                varorginator = "Credit note update";
                                 decimal subtotal = 0, TotalTax = 0;
                                 if(txtSubTotal.Text.Trim()!="")
                                 {
@@ -1099,17 +1099,17 @@ namespace ROMS
                                 {
                                     TotalTax = Convert.ToDecimal(txtTotalTax.Text);
                                 }
-                                TRN_DebitNote objTRNG_DebitNote = new TRN_DebitNote();
-                                objTRNG_DebitNote.ViewType = varviewtype;
-                                objTRNG_DebitNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                                objTRNG_DebitNote.paraIPAddress = MainForm.pbIpAddress;
-                                objTRNG_DebitNote.paraOriginator = varorginator;
-                                objTRNG_DebitNote.paraDebitID = varDebitID;
-                                objTRNG_DebitNote.paraStatusID = varStatusId;
-                                objTRNG_DebitNote.paraAmount = Convert.ToDecimal(txtAmount.Text);
-                                objTRNG_DebitNote.paraDebit_Remarks = Convert.ToString(txtRemarks.Text);
+                                TRN_CreditNote objTRNG_CreditNote = new TRN_CreditNote();
+                                objTRNG_CreditNote.ViewType = varviewtype;
+                                objTRNG_CreditNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                objTRNG_CreditNote.paraIPAddress = MainForm.pbIpAddress;
+                                objTRNG_CreditNote.paraOriginator = varorginator;
+                                objTRNG_CreditNote.paraCreditID = varCreditID;
+                                objTRNG_CreditNote.paraStatusID = varStatusId;
+                                objTRNG_CreditNote.paraAmount = Convert.ToDecimal(txtAmount.Text);
+                                objTRNG_CreditNote.paraCredit_Remarks = Convert.ToString(txtRemarks.Text);
                                 SPDataService objspdservice = new SPDataService();
-                                result = objspdservice.udfnSetDebitNote(objTRNG_DebitNote);
+                                result = objspdservice.udfnSetCreditNote(objTRNG_CreditNote);
                                 objspdservice.CloseConnection();
                                 string[] varvalue = result.Split('~');
                                 varvalue = result.Split('~');
@@ -1117,7 +1117,7 @@ namespace ROMS
                                 {
                                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     this.ActiveControl = txtSupplier;
-                                    MainForm.objPAY_DebitNoteList.udfnList();
+                                    MainForm.objPAY_CreditNoteList.udfnList();
                                     udfnclose();
                                 }
                             }
@@ -1282,7 +1282,7 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     if (dialogResult == DialogResult.OK)
                     {
-                        dtDebitNote.Rows.Clear();
+                        dtCreditNote.Rows.Clear();
                         grdReturnDC.DataSource = null;
                         grdRepDetails.DataSource = null;
                     }

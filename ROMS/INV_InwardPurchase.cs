@@ -1488,7 +1488,7 @@ namespace ROMS
                                         ////    varErrorFlag = false;
                                         ////}
                                         varInvoiceQty = Convert.ToDecimal(grdInward.Rows[j].Cells["clmQty"].Value);
-                                        varFinalQty = Convert.ToDecimal(grdInward.Rows[j].Cells["clmFinalQty"].Value); //received quatity subtracted when it has return qtty or free qty or debit qty
+                                        varFinalQty = Convert.ToDecimal(grdInward.Rows[j].Cells["clmFinalQty"].Value); //received quatity subtracted when it has return qtty or free qty or Credit qty
                                         if (Convert.ToString(dtInwardPurchase.Rows[i]["GIPPR_INVSTSID"].ToString()) == "82" && 
                                             Convert.ToString(dtInwardPurchase.Rows[i]["GIPPR_SNO"].ToString()) == Convert.ToString(grdInward.Rows[j].Cells["clmDuplicateSno"].Value)) // Product status approved
                                         {

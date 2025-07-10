@@ -22,7 +22,7 @@ namespace ROMS.Model
         public string paraReturnDC_Date { get; set; } = "";
         public DataTable paraApprovalProduct { get; set; } = null;
         public DataTable paraTRN_Purchase_ReturnDC { get; set; } = null;
-        public DataTable paraTRN_DebitNote { get; set; } = null;
+        public DataTable paraTRN_CreditNote { get; set; } = null;
         public int ParaGRNAID { get; set; } = 0;
         public int ParaGRNAPRID { get; set; } = 0;
         public int paraGRNID { get; set; } = 0;

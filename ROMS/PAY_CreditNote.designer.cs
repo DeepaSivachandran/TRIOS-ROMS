@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PAY_DebitNote
+    partial class PAY_CreditNote
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PAY_DebitNote));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PAY_CreditNote));
             this.epReturnDc = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
@@ -177,7 +177,7 @@
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(82, 22);
-            this.tspHeader.Text = "Debit Note";
+            this.tspHeader.Text = "Credit Note";
             // 
             // tsbSupplier
             // 
@@ -1042,7 +1042,7 @@
             this.lblDEVisitDay.Name = "lblDEVisitDay";
             this.lblDEVisitDay.Size = new System.Drawing.Size(66, 20);
             this.lblDEVisitDay.TabIndex = 1111163;
-            this.lblDEVisitDay.Text = "Debit Date";
+            this.lblDEVisitDay.Text = "Credit Date";
             // 
             // dpReturnDCDate
             // 
@@ -1087,7 +1087,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 20);
             this.label1.TabIndex = 1111165;
-            this.label1.Text = "Debit No.";
+            this.label1.Text = "Credit No.";
             // 
             // label12
             // 
@@ -1320,7 +1320,7 @@
             this.clmRKID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmRKID.Visible = false;
             // 
-            // PAY_DebitNote
+            // PAY_CreditNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1336,7 +1336,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PAY_DebitNote";
+            this.Name = "PAY_CreditNote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Returns";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PUR_PurchaseReturns_FormClosing);

@@ -62,7 +62,7 @@ namespace ROMS
             this.tsmBlockedSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.discountVoucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbDebitNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbCreditNote = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gSTRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
@@ -389,7 +389,7 @@ namespace ROMS
             this.tsmBlockedSupplier,
             this.discountVoucherToolStripMenuItem,
             this.advanceToolStripMenuItem,
-            this.tsbDebitNote,
+            this.tsbCreditNote,
             this.supplierPaymentToolStripMenuItem,
             this.gSTRToolStripMenuItem});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -427,12 +427,12 @@ namespace ROMS
             this.advanceToolStripMenuItem.Text = "Advance";
             this.advanceToolStripMenuItem.Click += new System.EventHandler(this.AdvanceToolStripMenuItem_Click);
             // 
-            // tsbDebitNote
+            // tsbCreditNote
             // 
-            this.tsbDebitNote.Name = "tsbDebitNote";
-            this.tsbDebitNote.Size = new System.Drawing.Size(183, 22);
-            this.tsbDebitNote.Text = "Debit Note";
-            this.tsbDebitNote.Click += new System.EventHandler(this.TsbDebitNote_Click);
+            this.tsbCreditNote.Name = "tsbCreditNote";
+            this.tsbCreditNote.Size = new System.Drawing.Size(183, 22);
+            this.tsbCreditNote.Text = "Credit Note";
+            this.tsbCreditNote.Click += new System.EventHandler(this.TsbCreditNote_Click);
             // 
             // supplierPaymentToolStripMenuItem
             // 
@@ -1234,7 +1234,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsbDirectCheque;
         private System.Windows.Forms.ToolStripMenuItem tsmStockHold;
         private System.Windows.Forms.ToolStripMenuItem tsbStockConversion;
-        private System.Windows.Forms.ToolStripMenuItem tsbDebitNote;
+        private System.Windows.Forms.ToolStripMenuItem tsbCreditNote;
         private System.Windows.Forms.ToolStripMenuItem mastersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmCity;
         private System.Windows.Forms.ToolStripMenuItem tsmCompany;
