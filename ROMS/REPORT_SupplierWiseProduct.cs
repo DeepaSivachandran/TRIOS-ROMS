@@ -872,7 +872,9 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtBrand.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnBrandList(6, "0", 0, 0, 0, txtBrand.Text.Trim(), 0);
+                    if (lblGroupCode.Text == "" || txtGroup.Text == "") { lblGroupCode.Text = "0"; }
+                    if (lblSubGroupCode.Text == "" || txtSubGroup.Text == "") { lblSubGroupCode.Text = "0"; }
+                    objDs = objspdservice.udfnBrandList(6, "0", Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), 0, txtBrand.Text.Trim(), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
