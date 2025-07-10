@@ -302,7 +302,10 @@ namespace ROMS
             }
             finally
             {
-                
+                if (EditFlag == 1)
+                {
+                    grbDStockTransfer.Enabled = false;
+                }
             }
         }
         public void udfnStatus()
