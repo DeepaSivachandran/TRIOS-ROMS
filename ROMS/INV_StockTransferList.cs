@@ -251,6 +251,35 @@ namespace ROMS
             this.ActiveControl = txtSLocation;
             //tsbDelete.Visible = true;
             udfnList();
+            udfnQueueCount();
+        }
+        public void udfnQueueCount()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                TRN_StockRequest objTRNG_StockRequest = new TRN_StockRequest();
+                objTRNG_StockRequest.ViewType = 7;
+                objDs = objspservice.udfnStockRequestList(objTRNG_StockRequest);
+                objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            //tsbQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["QueueCount"]);
+                            lblQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["QueueCount"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnCmbConcern()
         {
