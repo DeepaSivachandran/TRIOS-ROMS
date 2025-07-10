@@ -264,7 +264,7 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if(Convert.ToUInt32(cmbPaymentType.SelectedValue)== 91)
+                        if(Convert.ToUInt32(cmbPaymentType.SelectedValue)== 91 && Convert.ToUInt32(cmbPaymentmode.SelectedValue) == 89)
                         {
                             SPDataService objDServs = new SPDataService();
                             string varMessage = objDServs.udfnGetMessages(87);
@@ -575,7 +575,7 @@ namespace ROMS
                 dtChequeDate.MinDate = MainForm.pbFYStartDate;
                 //dtChequeDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 AND MSTID IN (88,89)", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=31 AND MSTID IN (88,89, 91)", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 udfnGeneralSettingsList();
                 udfnEditLoad();
