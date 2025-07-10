@@ -469,7 +469,7 @@ namespace ROMS
                             sheet.Cells[row, col++] = prod[key];
 
                         sheet.Cells[row, 3].Font.Name = "Uni Ila.Sundaram-03";
-                        sheet.Cells[row, 3].Font.Size = 10.75;
+                        sheet.Cells[row, 3].Font.Size = 11.75;
 
                         decimal invoiceQty = SafeConvertDecimal(prod["Bill Qty"]);
                         if (invoiceQty == 0)
