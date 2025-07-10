@@ -1155,7 +1155,10 @@ namespace ROMS
                     else { btnRemarks.Enabled = true; }
 
                     if (PbSTS == "50")
-                    { btnSave.Text = "Update"; btnSave.Enabled = false; }
+                    {
+                        btnSave.Text = "Update"; btnSave.Enabled = false; txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true;
+                        txtInvoiceNo.Enabled = false; txtInvoiceNo.ReadOnly = true;
+                    }
                     if (varConvertFlag == 1)
                     {
                         btnSave.Enabled = true;
@@ -7615,12 +7618,16 @@ namespace ROMS
                                 grdPurchaseList.Rows[i].ReadOnly = true;
                                 grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = false;
                                 grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = false;
+                                grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = false;
+                                grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = false;
                                 grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightGray;
                                 grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightGray;
                                 grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightGray;
                                 grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
                                 grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.PaleGreen;
+                                grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.PaleGreen;
                             }
 
                             //else if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "227")
@@ -11340,7 +11347,7 @@ namespace ROMS
                             varDiffQqty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
                             grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
                         }
-                    }
+                    } 
                     //if (varEntryType == 55 || varEntryType == 56) // direct and against po
                     //{
                     //    decimal varDiffQqty = 0;
@@ -11350,7 +11357,7 @@ namespace ROMS
                     //        varDiffQqty = Math.Abs(varInvQty - (varRecQty + varFreeQty));
                     //        grdPurchaseList.Rows[e.RowIndex].Cells["clmDiffqty"].Value = varDiffQqty;
                     //    }
-                    //}
+                    //} 
                     udfnValuesCalcultaion(varInvQty, varRecQty, varDiffQty, varPurchaseRate, varCellDiscAmt, varTaxValue, varGstAmt, varNetAmt, varDiscPer, varHSNGSTValue, varFreeQty);
                     udfnSubtotCalc();
                     udfnGstvalue();
