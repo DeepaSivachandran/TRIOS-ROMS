@@ -180,6 +180,22 @@ namespace ROMS
                     }
                     //grdInward.Columns["clmactualqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                 }
+                grdInward.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                grdInward.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                grdInward.ScrollBars = ScrollBars.Both;
+
+                foreach (DataGridViewColumn col in grdInward.Columns)
+                {
+                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                }
+
+                // Step 2: Handle column width change
+                grdInward.ColumnWidthChanged += (s, args) =>
+                {
+                    grdInward.PerformLayout();
+                    grdInward.Invalidate();
+                };
+
             }
             catch (Exception ex)
             {

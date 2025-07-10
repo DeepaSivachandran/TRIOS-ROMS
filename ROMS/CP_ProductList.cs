@@ -17,11 +17,12 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0;
         public string varUserID = "";
+        Boolean BlnSearchImageYN = false;
         public CP_ProductList()
         {
             InitializeComponent();
         }
-        
+
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
@@ -93,7 +94,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objspdservice = new SPDataService();
-                        varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null,0,"",0,0,0,0,0);
+                        varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null, 0, "", 0, 0, 0, 0, 0);
                         string[] varvalue = varResult.Split('~');
                         if (varvalue[0] == "3")
                         {
@@ -105,7 +106,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objspdservice = new SPDataService();
-                                    varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null, 1,"",0,0,0,0,0);
+                                    varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null, 1, "", 0, 0, 0, 0, 0);
                                     objspdservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -243,6 +244,7 @@ namespace ROMS
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraCreatedON = dtCreatedOn.Text;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -435,11 +437,14 @@ namespace ROMS
                     int rowIndex = 0;
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
+                    DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -477,27 +482,44 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible == false)
+                dgv2.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in dgv1.Columns)
                 {
-                    //dgv2.DataSource = null;
-                    dgv2.Columns.Clear();
-                    List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in dgv1.Columns)
+                    if (col.Visible)
                     {
-                        if (col.Visible)
-                        {
-                            dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                            visibleColumns.Add(col.Index);
-                        }
+                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
                     }
-                    int rowIndex = 0;
-                    dgv2.Rows.Clear();
-                    dgv2.Rows.Add();
-                    for (int i = 0; i < visibleColumns.Count; i++)
+                }
+                int rowIndex = 0;
+                int ColIndex = 0;
+                dgv2.Rows.Clear();
+                dgv2.Rows.Add();
+                BlnSearchImageYN = false;
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                    {
+                        BlnSearchImageYN = true;
+                        dgv2.Rows[rowIndex].Cells[i].Value = false;
+                    }
+                    else
                     {
                         dgv2.Rows[rowIndex].Cells[i].Value = "";
                     }
                 }
+
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -808,7 +830,6 @@ namespace ROMS
                 udfnList();
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -984,8 +1005,10 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dtCreatedOn.Format = DateTimePickerFormat.Custom;
+                dtCreatedOn.CustomFormat = " ";
+                dtCreatedOn.Checked = false;
                 udfnList();
-
             }
             catch (Exception ex)
 
@@ -1507,7 +1530,61 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void GrdItemList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdItemList.Columns[e.ColumnIndex].Name)
+                    {
+                        //Added by Sathish on 07/07/2025 for clone option for Product
+                        case "clmClone":
+                            MainForm.objCP_Items = new CP_Product();
+                            MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value);
+                            MainForm.objCP_Items.pbFormStatus = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["STSID"].Value.ToString());
+                            MainForm.objCP_Items.pbCloneFlag = 1;
+                            MainForm.objCP_Items.ShowDialog();
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DtCreatedOn_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dtCreatedOn.Format = DateTimePickerFormat.Custom;
+                dtCreatedOn.CustomFormat = "dd/MM/yyyy";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LlClear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                dtCreatedOn.Format = DateTimePickerFormat.Custom;
+                dtCreatedOn.CustomFormat = " ";
+                dtCreatedOn.Checked = false;
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1534,7 +1611,7 @@ namespace ROMS
                         grdItemList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdItemList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else if(Convert.ToString(grdItemList.Rows[i].Cells["STSID"].Value) == "2")
+                    else if (Convert.ToString(grdItemList.Rows[i].Cells["STSID"].Value) == "2")
                     {
                         grdItemList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdItemList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;

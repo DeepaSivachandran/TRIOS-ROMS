@@ -1032,6 +1032,12 @@ namespace ROMS
         {
             try
             {
+                int varSupplierId = 0; string varScheduleId = "0";
+                if (txtSupplier.Text.Trim() != "")
+                {
+                    varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleId = lblschedule.Text;
+                }
                 if (varUpDownKey == 0)
                 {
                     if (txtProductName.Text.Length > 0)
@@ -1043,6 +1049,8 @@ namespace ROMS
                         objMR_Product.paraProductName = txtProductName.Text;
                         objMR_Product.ParaFromDate = dpFromDate.Text;
                         objMR_Product.ParaToDate = dpToDate.Text;
+                        objMR_Product.ParaSupplierId = varSupplierId;
+                        objMR_Product.ParaScheduleid = varScheduleId;
                         objMR_Product.paraId = 0;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();

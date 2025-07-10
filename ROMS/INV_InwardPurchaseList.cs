@@ -648,6 +648,7 @@ namespace ROMS
                 if (Varflag == 0)
                 {
                     btnView.Enabled = false;
+                    lblStatus.Focus();
                     varviewtype = 1;
                     SPDataService objdserv = new SPDataService();
                     TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
@@ -681,7 +682,7 @@ namespace ROMS
                                 grdInwardList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInwardList.Columns["Tot Pro in Invoice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInwardList.Columns["Con"].Width = 80;
-                                grdInwardList.Columns["Transaction Date"].Width = 100;
+                                grdInwardList.Columns["Transaction Date"].Width = 110;
                                 grdInwardList.Columns["Transaction No."].Width = 100;
                                 grdInwardList.Columns["Supplier"].Width = 250;
                                 grdInwardList.Columns["Tot Pro in Invoice"].Width = 160;
@@ -750,6 +751,7 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                btnView.Focus();
                 btnView.Enabled = true;
                 udfnQueueListCount();
             }
@@ -1144,6 +1146,12 @@ namespace ROMS
                 //lvProduct.Items.Clear();
                 if (varUpDownKey == 0)
                 {
+                    int varSupplierId = 0; string varScheduleId = "0";
+                    if (txtSupplier.Text.Trim() != "")
+                    {
+                        varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                        varScheduleId = lblschedule.Text;
+                    }
                     if (txtProductName.Text.Length > 0)
                     {
                         MR_Product objMR_Product = new MR_Product();
@@ -1153,6 +1161,8 @@ namespace ROMS
                         objMR_Product.paraProductName = txtProductName.Text;
                         objMR_Product.ParaFromDate = dpFromDate.Text;
                         objMR_Product.ParaToDate = dpToDate.Text;
+                        objMR_Product.ParaSupplierId = varSupplierId;
+                        objMR_Product.ParaScheduleid = varScheduleId;
                         objMR_Product.paraId = 1;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();

@@ -409,6 +409,10 @@ namespace ROMS
                     //}
                     DGV_FilterProduct.Focus();
                 }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
                 if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
                 {
                     return;
@@ -1311,6 +1315,19 @@ namespace ROMS
                     DGV_SearchGrid.Invalidate();
                     udfnscrollVisible(DGV_SearchGrid, grdConversionList);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {

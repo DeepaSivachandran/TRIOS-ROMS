@@ -98,6 +98,7 @@ namespace ROMS
             this.hSNNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proCodeNameUnitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRepresentative = new System.Windows.Forms.ToolStripMenuItem();
+            this.stickerPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProMapping = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,6 +144,11 @@ namespace ROMS
             this.unapprovedPurchaseSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unapprovedPurchaseDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseDefectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSNReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHSNCodeWiseReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHSNNameWiseReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHSNNameWiseProductReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHSNNameWiseProductConsolidatedReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -518,7 +524,8 @@ namespace ROMS
             this.tsmSupplier,
             this.tsmBroker,
             this.tsmBulkUpdate,
-            this.tsmRepresentative});
+            this.tsmRepresentative,
+            this.stickerPrintToolStripMenuItem});
             this.mastersToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mastersToolStripMenuItem.Name = "mastersToolStripMenuItem";
             this.mastersToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
@@ -730,6 +737,13 @@ namespace ROMS
             this.tsmRepresentative.Size = new System.Drawing.Size(225, 22);
             this.tsmRepresentative.Text = "Representative";
             this.tsmRepresentative.Click += new System.EventHandler(this.TsmRepresentative_Click);
+            // 
+            // stickerPrintToolStripMenuItem
+            // 
+            this.stickerPrintToolStripMenuItem.Name = "stickerPrintToolStripMenuItem";
+            this.stickerPrintToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.stickerPrintToolStripMenuItem.Text = "Sticker Print";
+            this.stickerPrintToolStripMenuItem.Click += new System.EventHandler(this.StickerPrintToolStripMenuItem_Click);
             // 
             // tsmControlPanel
             // 
@@ -1057,7 +1071,8 @@ namespace ROMS
             this.purchaseDetailToolStripMenuItem,
             this.unapprovedPurchaseSummaryToolStripMenuItem,
             this.unapprovedPurchaseDetailToolStripMenuItem,
-            this.purchaseDefectToolStripMenuItem});
+            this.purchaseDefectToolStripMenuItem,
+            this.hSNReportToolStripMenuItem});
             this.purchaseReportToolStripMenuItem.Name = "purchaseReportToolStripMenuItem";
             this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.purchaseReportToolStripMenuItem.Text = "Purchase Report";
@@ -1096,6 +1111,45 @@ namespace ROMS
             this.purchaseDefectToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
             this.purchaseDefectToolStripMenuItem.Text = "Purchase Defect Product";
             this.purchaseDefectToolStripMenuItem.Click += new System.EventHandler(this.PurchaseDefectToolStripMenuItem_Click);
+            // 
+            // hSNReportToolStripMenuItem
+            // 
+            this.hSNReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmHSNCodeWiseReport,
+            this.tsmHSNNameWiseReport,
+            this.tsmHSNNameWiseProductReport,
+            this.tsmHSNNameWiseProductConsolidatedReport});
+            this.hSNReportToolStripMenuItem.Name = "hSNReportToolStripMenuItem";
+            this.hSNReportToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.hSNReportToolStripMenuItem.Text = "HSN Report";
+            // 
+            // tsmHSNCodeWiseReport
+            // 
+            this.tsmHSNCodeWiseReport.Name = "tsmHSNCodeWiseReport";
+            this.tsmHSNCodeWiseReport.Size = new System.Drawing.Size(292, 22);
+            this.tsmHSNCodeWiseReport.Text = "HSN Code Wise Report";
+            this.tsmHSNCodeWiseReport.Click += new System.EventHandler(this.TsmHSNCodeWiseReport_Click);
+            // 
+            // tsmHSNNameWiseReport
+            // 
+            this.tsmHSNNameWiseReport.Name = "tsmHSNNameWiseReport";
+            this.tsmHSNNameWiseReport.Size = new System.Drawing.Size(292, 22);
+            this.tsmHSNNameWiseReport.Text = "HSN Name Wise Report";
+            this.tsmHSNNameWiseReport.Click += new System.EventHandler(this.TsmHSNNameWiseReport_Click);
+            // 
+            // tsmHSNNameWiseProductReport
+            // 
+            this.tsmHSNNameWiseProductReport.Name = "tsmHSNNameWiseProductReport";
+            this.tsmHSNNameWiseProductReport.Size = new System.Drawing.Size(292, 22);
+            this.tsmHSNNameWiseProductReport.Text = "HSN Name Wise Product Report";
+            this.tsmHSNNameWiseProductReport.Click += new System.EventHandler(this.TsmHSNNameWiseProductReport_Click);
+            // 
+            // tsmHSNNameWiseProductConsolidatedReport
+            // 
+            this.tsmHSNNameWiseProductConsolidatedReport.Name = "tsmHSNNameWiseProductConsolidatedReport";
+            this.tsmHSNNameWiseProductConsolidatedReport.Size = new System.Drawing.Size(292, 22);
+            this.tsmHSNNameWiseProductConsolidatedReport.Text = "HSN Name Wise Product Consolidated Report";
+            this.tsmHSNNameWiseProductConsolidatedReport.Click += new System.EventHandler(this.TsmHSNNameWiseProductConsolidatedReport_Click);
             // 
             // tsmMyProfile
             // 
@@ -1318,5 +1372,11 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem purchaseDefectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discountVoucherToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statusWiseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stickerPrintToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hSNReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmHSNCodeWiseReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmHSNNameWiseReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmHSNNameWiseProductReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmHSNNameWiseProductConsolidatedReport;
     }
 }

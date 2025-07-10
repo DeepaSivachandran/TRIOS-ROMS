@@ -42,11 +42,16 @@ namespace ROMS
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-
-
-
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -3055,7 +3060,11 @@ namespace ROMS
             {
                 if (grdDamageEntryList.Rows.Count > 0)
                 {
-                    if (Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["DM_SHID"].Value) != "0")
+                    //if (Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["DM_SHID"].Value) != "0")
+                    //{
+                    //    tsbDelete.Visible = false;
+                    //}
+                    if (Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["StatusID"].Value) != "6" && Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["StatusID"].Value) != "20" )
                     {
                         tsbDelete.Visible = false;
                     }

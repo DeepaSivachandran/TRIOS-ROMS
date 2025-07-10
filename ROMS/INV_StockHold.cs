@@ -704,6 +704,25 @@ namespace ROMS
 
                             //DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                             //GrdStockHold_DataBindingComplete(grdStockHold, args2);
+
+
+                            grdStockHold.Columns["S.No."].ReadOnly = true;
+                            grdStockHold.Columns["Concern"].ReadOnly = true;
+                            grdStockHold.Columns["P.I Code"].ReadOnly = true;
+                            grdStockHold.Columns["Product Name"].ReadOnly = true;
+                            grdStockHold.Columns["Unit"].ReadOnly = true;
+                            grdStockHold.Columns["Stock Location"].ReadOnly = true;
+                            grdStockHold.Columns["Rack"].ReadOnly = true;
+                            grdStockHold.Columns["MRP"].ReadOnly = true;
+                            grdStockHold.Columns["Expiry Date"].ReadOnly = true;
+                            grdStockHold.Columns["Batch No."].ReadOnly = true;
+                            grdStockHold.Columns["Hold Qty"].ReadOnly = true;
+                            grdStockHold.Columns["Reason"].ReadOnly = true;
+                            grdStockHold.Columns["Supplier"].ReadOnly = true;
+                            grdStockHold.Columns["Created By"].ReadOnly = true;
+                            grdStockHold.Columns["Created On"].ReadOnly = true;
+                            grdStockHold.Columns["Remarks"].ReadOnly = true;
+                            grdStockHold.Columns["clmCheck"].ReadOnly = false;
                         }
                         else
                         {
@@ -726,23 +745,6 @@ namespace ROMS
                 }
                 udfnSearchGridHead();
 
-                grdStockHold.Columns["S.No."].ReadOnly = true;
-                grdStockHold.Columns["Concern"].ReadOnly = true;
-                grdStockHold.Columns["P.I Code"].ReadOnly = true;
-                grdStockHold.Columns["Product Name"].ReadOnly = true;
-                grdStockHold.Columns["Unit"].ReadOnly = true;
-                grdStockHold.Columns["Stock Location"].ReadOnly = true;
-                grdStockHold.Columns["Rack"].ReadOnly = true;
-                grdStockHold.Columns["MRP"].ReadOnly = true;
-                grdStockHold.Columns["Expiry Date"].ReadOnly = true;
-                grdStockHold.Columns["Batch No."].ReadOnly = true;
-                grdStockHold.Columns["Hold Qty"].ReadOnly = true;
-                grdStockHold.Columns["Reason"].ReadOnly = true;
-                grdStockHold.Columns["Supplier"].ReadOnly = true;
-                grdStockHold.Columns["Created By"].ReadOnly = true;
-                grdStockHold.Columns["Created On"].ReadOnly = true;
-                grdStockHold.Columns["Remarks"].ReadOnly = true;
-                grdStockHold.Columns["clmCheck"].ReadOnly = false;
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDS.Tables[0];
@@ -1073,6 +1075,7 @@ namespace ROMS
             {
                 MainForm.objINV_StockHold_Damages = new INV_StockHold_Damages();
                 MainForm.objINV_StockHold_Damages.varSHID = Convert.ToInt32(grdStockHold.SelectedRows[0].Cells["SHID"].Value);
+                MainForm.objINV_StockHold_Damages.pbDamageReason = Convert.ToString(grdStockHold.SelectedRows[0].Cells["Reason"].Value);
                 MainForm.objINV_StockHold_Damages.ShowDialog();
                 udfnList();
             }

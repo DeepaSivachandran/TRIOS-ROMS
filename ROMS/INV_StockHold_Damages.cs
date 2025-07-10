@@ -20,7 +20,7 @@ namespace ROMS
         private ToolTip tpSupplier = new ToolTip();
         public int varProductCode = 0, varQty = 0, varSLID = 0, varSHID = 0;
         private SecurityController _security;
-        public string pbFormStatus, varFlag = "0", varVerified = "0";
+        public string pbFormStatus, varFlag = "0", varVerified = "0", pbDamageReason = "";
 
         public INV_StockHold_Damages()
         {
@@ -210,7 +210,7 @@ namespace ROMS
                         objTRN_Damage.ParaCompanycode = Convert.ToInt32(lblCompanyCode.Text);
                         objTRN_Damage.paraTransferDate = lblTransactionDate.Text;
                         objTRN_Damage.paraLocationID = Convert.ToInt32(lblLocationCode.Text);
-                        //objTRN_Damage.paraRemarks = "Stock Hold Damage";
+                        objTRN_Damage.paraRemarks = pbDamageReason;
                         objTRN_Damage.paraStatusId = 20;
                         objTRN_Damage.paraOriginator = "Stock Hold Damage";
                         objTRN_Damage.paraDamageEntry = dtDamage;

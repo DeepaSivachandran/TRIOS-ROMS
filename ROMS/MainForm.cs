@@ -109,6 +109,7 @@ namespace ROMS
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
         public static LabelCount objLabelCount;
+        public static CP_StickerPrint objCP_StickerPrint;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -239,6 +240,11 @@ namespace ROMS
         public static REPORT_Unapproved_Purchase_Summary objREPORT_Unapproved_Purchase_Summary;
         public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
         public static REPORT_Purchase_Defect_Product objREPORT_Purchase_Defect_Product;
+
+        public static REPORT_HSN_Code objREPORT_HSN_Code;
+        public static REPORT_HSN_Name objREPORT_HSN_Name;
+        public static REPORT_HSN_NameWise_Product objREPORT_HSN_NameWise_Product;
+        public static REPORT_HSN_NameWise_Product_Consolidated objREPORT_HSN_NameWise_Product_Consolidated;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2632,6 +2638,91 @@ namespace ROMS
                 MainForm.objREPORT_ProductWise_Po.MdiParent = this;
                 MainForm.objREPORT_ProductWise_Po.Show();
                 PbCurrentForm = "7.6.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void StickerPrintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_StickerPrint = new CP_StickerPrint();
+                MainForm.objCP_StickerPrint.MdiParent = this;
+                MainForm.objCP_StickerPrint.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmHSNCodeWiseReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_Code = new REPORT_HSN_Code();
+                MainForm.objREPORT_HSN_Code.MdiParent = this;
+                MainForm.objREPORT_HSN_Code.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmHSNNameWiseReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_Name = new REPORT_HSN_Name();
+                MainForm.objREPORT_HSN_Name.MdiParent = this;
+                MainForm.objREPORT_HSN_Name.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmHSNNameWiseProductReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_NameWise_Product = new REPORT_HSN_NameWise_Product();
+                MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this;
+                MainForm.objREPORT_HSN_NameWise_Product.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmHSNNameWiseProductConsolidatedReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_NameWise_Product_Consolidated = new REPORT_HSN_NameWise_Product_Consolidated();
+                MainForm.objREPORT_HSN_NameWise_Product_Consolidated.MdiParent = this;
+                MainForm.objREPORT_HSN_NameWise_Product_Consolidated.Show();
             }
             catch (Exception ex)
             {
