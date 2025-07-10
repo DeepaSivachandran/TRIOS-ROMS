@@ -106,6 +106,11 @@ namespace ROMS
                         this.ActiveControl = txtProductNamePICode;
                     }
                 }
+                if (varStatus != 28 && varStatus != 47 && varStatus != 0)
+                {
+                    txtRemarks.Enabled = false;
+                    this.ActiveControl = btnClose;
+                }
             }
             catch (Exception ex)
             {
