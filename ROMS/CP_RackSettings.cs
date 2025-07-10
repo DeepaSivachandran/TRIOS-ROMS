@@ -83,15 +83,24 @@ namespace ROMS
                 DGV_SearchGrid.Columns.Add("clmPIcode", "P.I Code");
                 DGV_SearchGrid.Columns.Add("clmProductName", "Product Name in Tamil");
                 DGV_SearchGrid.Columns.Add("clmUnit", "Unit");
+
                 DGV_SearchGridMove.Columns.Add("clmRemove", "Remove");
                 DGV_SearchGridMove.Columns.Add("clmPIcode", "P.I Code");
                 DGV_SearchGridMove.Columns.Add("clmProductName", "Product Name in Tamil");
                 DGV_SearchGridMove.Columns.Add("clmUnit", "Unit");
                 DGV_SearchGridMove.Columns.Add("clmStock", "Stock Qty");
+
                 DGV_SearchGrid.Columns["clmProductName"].Width = 250;
+
+                DGV_SearchGridMove.Columns[0].Width = 50;
+                DGV_SearchGridMove.Columns["clmPIcode"].Width = 100;
+                DGV_SearchGridMove.Columns["clmStock"].Width = 80;
+                DGV_SearchGridMove.Columns["clmUnit"].Width = 80;
                 DGV_SearchGridMove.Columns["clmProductName"].Width = 250;
-                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 DGV_SearchGridMove.ScrollBars = ScrollBars.Both;
+
             }
             catch (Exception ex)
             {
@@ -711,7 +720,7 @@ namespace ROMS
                         grdViewProduct.DataSource = null;
                         grdViewProduct.DataSource = dtViewProduct;
                         grdViewProduct.Columns[0].HeaderText = "";
-                        grdViewProduct.Columns[0].Width = 50;
+                        grdViewProduct.Columns[0].Width = 40;
                         grdViewProduct.Columns["S.No."].Width = 50;
                         //grdViewProduct.Columns["PRODUCTID"].Visible = false;
                         grdViewProduct.Columns["P.I Code"].Width = 100;

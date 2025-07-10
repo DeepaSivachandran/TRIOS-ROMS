@@ -108,10 +108,10 @@
             this.txtSubGroup = new System.Windows.Forms.TextBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdMoveProduct = new System.Windows.Forms.DataGridView();
-            this.clmRemoveProduct = new System.Windows.Forms.DataGridViewImageColumn();
             this.epRackSettings = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmRemoveProduct = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsRackSettings.SuspendLayout();
             this.pnlRackSettings.SuspendLayout();
             this.grbMove.SuspendLayout();
@@ -625,6 +625,7 @@
             // 
             this.DGV_SearchGridMove.AllowUserToAddRows = false;
             this.DGV_SearchGridMove.AllowUserToDeleteRows = false;
+            this.DGV_SearchGridMove.AllowUserToResizeColumns = false;
             this.DGV_SearchGridMove.AllowUserToResizeRows = false;
             this.DGV_SearchGridMove.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGridMove.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -944,6 +945,7 @@
             // 
             this.DGV_SearchGrid.AllowUserToAddRows = false;
             this.DGV_SearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_SearchGrid.AllowUserToResizeColumns = false;
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -1034,15 +1036,6 @@
             this.grdMoveProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdMoveProduct_CellContentClick);
             this.grdMoveProduct.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdMoveProduct_Scroll);
             // 
-            // clmRemoveProduct
-            // 
-            this.clmRemoveProduct.HeaderText = "Remove";
-            this.clmRemoveProduct.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemoveProduct.Name = "clmRemoveProduct";
-            this.clmRemoveProduct.ReadOnly = true;
-            this.clmRemoveProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemoveProduct.Width = 70;
-            // 
             // epRackSettings
             // 
             this.epRackSettings.ContainerControl = this;
@@ -1062,6 +1055,15 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn2.Width = 70;
+            // 
+            // clmRemoveProduct
+            // 
+            this.clmRemoveProduct.HeaderText = "Remove";
+            this.clmRemoveProduct.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveProduct.Name = "clmRemoveProduct";
+            this.clmRemoveProduct.ReadOnly = true;
+            this.clmRemoveProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.clmRemoveProduct.Width = 70;
             // 
             // CP_RackSettings
             // 
@@ -1153,7 +1155,6 @@
         public System.Windows.Forms.DataGridView DGV_SearchGridMove;
         private System.Windows.Forms.Label lblViewProductCount;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DataGridViewImageColumn clmRemoveProduct;
         public System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtConcern;
         private System.Windows.Forms.Panel pnlStatus;
@@ -1176,5 +1177,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemoveProduct;
     }
 }
