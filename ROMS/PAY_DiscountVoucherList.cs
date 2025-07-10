@@ -686,6 +686,7 @@ namespace ROMS
 
                             grdDiscountList.Columns["DISCID"].Visible = false;
                             grdDiscountList.Columns["DISC_STSID"].Visible = false;
+                            grdDiscountList.Columns["Source"].Visible = false;
                             grdDiscountList.Columns["S.No."].Width = 50;
                             grdDiscountList.Columns["Status"].Width = 150;
                             grdDiscountList.Columns["Discount Date"].Width = 100;
@@ -1258,7 +1259,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["DISC_STSID"].Value) == "103" )
+                if (Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["DISC_STSID"].Value) == "103" || Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["Source"].Value) == "1")
                 { tsbDelete.Visible = false; }
                 else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
             }
