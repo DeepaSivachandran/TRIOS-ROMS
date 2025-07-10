@@ -1073,6 +1073,7 @@ namespace ROMS
             {
                 MainForm.objINV_StockHold_Damages = new INV_StockHold_Damages();
                 MainForm.objINV_StockHold_Damages.varSHID = Convert.ToInt32(grdStockHold.SelectedRows[0].Cells["SHID"].Value);
+                MainForm.objINV_StockHold_Damages.pbDamageReason = Convert.ToString(grdStockHold.SelectedRows[0].Cells["Reason"].Value);
                 MainForm.objINV_StockHold_Damages.ShowDialog();
                 udfnList();
             }
