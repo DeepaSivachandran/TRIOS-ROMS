@@ -469,7 +469,7 @@ namespace ROMS
                             sheet.Cells[row, col++] = prod[key];
 
                         sheet.Cells[row, 3].Font.Name = "Uni Ila.Sundaram-03";
-                        sheet.Cells[row, 3].Font.Size = 9.75;
+                        sheet.Cells[row, 3].Font.Size = 10.75;
 
                         decimal invoiceQty = SafeConvertDecimal(prod["Bill Qty"]);
                         if (invoiceQty == 0)
@@ -524,7 +524,7 @@ namespace ROMS
                 SaveFileDialog sfd = new SaveFileDialog
                 {
                     Filter = "Excel Workbook (*.xlsx)|*.xlsx",
-                    FileName = "Purchase Details Report.xlsx"
+                    FileName = "Purchase Details Report" + " _ " + dpFromDate.Text.Replace("/", "-") + "_" + dpToDate.Text.Replace("/", "-") + ".xlsx"
                 };
 
                 if (sfd.ShowDialog() == DialogResult.OK)
@@ -955,7 +955,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,7) AND STSID IN (0,17,23)", "STS_Name,STSID", cmbPayType, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,81) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MST_OrderID", cmbPayType, "", "MST_DisplayText", "MST_OrderID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,61) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
