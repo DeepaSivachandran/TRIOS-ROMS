@@ -420,7 +420,17 @@ namespace ROMS
                     sheet.Cells[row + 1, 2] = header["GSTIN"];
                     sheet.Cells[row + 2, 2] = $"{header["City"]} GST Type: {header["SupplierType"]} PT : {header["PaymentTerm"]}";
 
-                    sheet.Cells[row, 6] = header["InvDate"];
+                    var invDate = header["InvDate"]?.ToString();
+                    if (!string.IsNullOrEmpty(invDate))
+                    {
+                        var cell = sheet.Cells[row, 6];
+                        cell.NumberFormat = "@"; // Force text format
+                        cell.Value = invDate;
+                    }
+                    else
+                    {
+                        sheet.Cells[row, 6] = "";
+                    }
                     sheet.Cells[row + 1, 6] = header["InvNo"];
                     sheet.Cells[row + 2, 6] = header["InvAmt"];
 
@@ -460,13 +470,34 @@ namespace ROMS
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
                     row++;
 
+
                     decimal totalTaxable = 0, totalGst = 0, totalNet = 0;
 
                     foreach (var prod in products)
                     {
                         int col = 1;
                         foreach (var key in productHeaders)
-                            sheet.Cells[row, col++] = prod[key];
+                        {
+                            if (key == "Expiry Date")
+                            {
+                                var expiryDate = prod["Expiry Date"]?.ToString();
+                                if (!string.IsNullOrEmpty(expiryDate))
+                                {
+                                    var cell = sheet.Cells[row, col];
+                                    cell.NumberFormat = "@"; // Force as text
+                                    cell.Value = expiryDate;
+                                }
+                                else
+                                {
+                                    sheet.Cells[row, col] = "";
+                                }
+                            }
+                            else
+                            {
+                                sheet.Cells[row, col] = prod[key];
+                            }
+                            col++;
+                        }
 
                         sheet.Cells[row, 3].Font.Name = "Uni Ila.Sundaram-03";
                         sheet.Cells[row, 3].Font.Size = 11.75;
@@ -513,6 +544,10 @@ namespace ROMS
                 }
 
                 sheet.Columns.AutoFit();
+
+                sheet.Columns[1].ColumnWidth = 5;
+                sheet.Columns[2].ColumnWidth = 20;
+                sheet.Columns[3].ColumnWidth = 50;
 
                 decimal SafeConvertDecimal(JToken token)
                 {
