@@ -135,6 +135,16 @@ namespace ROMS
                         varSupplierName = txtSupplier.Text;
                     }
                 }
+                int varFlag = 0, varStatusID = 0;
+                if (rbComplete.Checked == true)
+                {
+                    varFlag = 1;
+                    varStatusID = Convert.ToInt32(cmbCompletedStatus.SelectedValue);
+                }
+                else
+                {
+                    varStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                }
                 LV_Supplier.Visible = false;
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -145,7 +155,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(11, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, 0, 0,varGroupId ,varSubgroupId , "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0",0, varProductId, 0, 0,0, 0);
+                objDs = objdserv.udfnPOEntry(11, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, 0, 0,varGroupId ,varSubgroupId , dpFromDate.Text, dpToDate.Text, 0, varStatusID, "0",0, varProductId, 0, 0,0, 0, varFlag);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -161,6 +171,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaGroupID", varGroupId);
                     objBillreport.SetParameterValue("ParaSubGroupID", varSubgroupId);
                     objBillreport.SetParameterValue("paraProductCode", varProductId);
+                    objBillreport.SetParameterValue("paraFlag", varFlag);
+                    objBillreport.SetParameterValue("ParaPOFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("ParaPOToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedleCode.Text));
@@ -220,7 +233,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,4) AND STSID IN (0,13,14)", "STS_Name,STSID", cmbCompletedStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,4) AND STSID IN (0,9,14)", "STS_Name,STSID", cmbCompletedStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
