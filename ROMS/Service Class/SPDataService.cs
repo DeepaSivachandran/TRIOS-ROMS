@@ -3061,23 +3061,23 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnDebitNoteList(TRN_DebitNote objTRNG_DebitNote)
+        public DataSet udfnCreditNoteList(TRN_CreditNote objTRNG_CreditNote)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_DebitNote]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_CreditNote]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_DebitNote.ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraDCID", objTRNG_DebitNote.paraDCID);
-                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNG_DebitNote.paraSupplierID);
-                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_DebitNote.paraFromDate);
-                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_DebitNote.paraToDate);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_DebitNote.paraCompanyCode);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_DebitNote.paraUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraDebitID", objTRNG_DebitNote.paraDebitID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_DebitNote.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_CreditNote.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDCID", objTRNG_CreditNote.paraDCID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNG_CreditNote.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_CreditNote.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_CreditNote.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_CreditNote.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_CreditNote.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraCreditID", objTRNG_CreditNote.paraCreditID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_CreditNote.paraIPAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -3094,30 +3094,30 @@ namespace ROMS
             return ds;
         }
 
-        public string udfnSetDebitNote(TRN_DebitNote objTRN_DebitNote)
+        public string udfnSetCreditNote(TRN_CreditNote objTRN_CreditNote)
         {
             string result = "";
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_DebitNote]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_CreditNote]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_DebitNote.ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraDebitID", objTRN_DebitNote.paraDebitID);
-                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRN_DebitNote.paraCompanyCode);
-                varSqlCommand.Parameters.AddWithValue("@paraDebit_Date", objTRN_DebitNote.paraDebit_Date);
-                varSqlCommand.Parameters.AddWithValue("@paraDebit_NO", objTRN_DebitNote.paraDebit_NO);
-                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_DebitNote.paraSupplierID);
-                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_DebitNote.paraScheduleID);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_DebitNote.paraStatusID);
-                varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_DebitNote.paraReasonId);
-                varSqlCommand.Parameters.AddWithValue("@ParaSubtotal", objTRN_DebitNote.ParaSubtotal);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_DebitNote.paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraPurchaseId", objTRN_DebitNote.paraPurchaseId);
-                varSqlCommand.Parameters.AddWithValue("@paraTax", objTRN_DebitNote.paraTax);
-                varSqlCommand.Parameters.AddWithValue("@paraAmount", objTRN_DebitNote.paraAmount);
-                varSqlCommand.Parameters.AddWithValue("@paraDebit_Remarks", objTRN_DebitNote.paraDebit_Remarks);
-                varSqlCommand.Parameters.AddWithValue("@paraTRN_DebitNote", objTRN_DebitNote.paraTRN_DebitNote);
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_CreditNote.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCreditID", objTRN_CreditNote.paraCreditID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRN_CreditNote.paraCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraCredit_Date", objTRN_CreditNote.paraCredit_Date);
+                varSqlCommand.Parameters.AddWithValue("@paraCredit_NO", objTRN_CreditNote.paraCredit_NO);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_CreditNote.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTRN_CreditNote.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_CreditNote.paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraReasonId", objTRN_CreditNote.paraReasonId);
+                varSqlCommand.Parameters.AddWithValue("@ParaSubtotal", objTRN_CreditNote.ParaSubtotal);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_CreditNote.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseId", objTRN_CreditNote.paraPurchaseId);
+                varSqlCommand.Parameters.AddWithValue("@paraTax", objTRN_CreditNote.paraTax);
+                varSqlCommand.Parameters.AddWithValue("@paraAmount", objTRN_CreditNote.paraAmount);
+                varSqlCommand.Parameters.AddWithValue("@paraCredit_Remarks", objTRN_CreditNote.paraCredit_Remarks);
+                varSqlCommand.Parameters.AddWithValue("@paraTRN_CreditNote", objTRN_CreditNote.paraTRN_CreditNote);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
@@ -3374,7 +3374,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_GRNApproval.paraGRNID);
                 varSqlCommand.Parameters.AddWithValue("@paraInwardId", objTRN_GRNApproval.paraInwardId);
                 varSqlCommand.Parameters.AddWithValue("@paraEditFlag", objTRN_GRNApproval.paraEditFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraTRN_DebitNote", objTRN_GRNApproval.paraTRN_DebitNote);
+                varSqlCommand.Parameters.AddWithValue("@paraTRN_CreditNote", objTRN_GRNApproval.paraTRN_CreditNote);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

@@ -1011,6 +1011,7 @@ namespace ROMS
                                 txtInvoiceamt.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_Amount"]);
                                 txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DISC_Remarks"]);
                                 varSTSID = Convert.ToInt32(objDs.Tables[0].Rows[0]["DISC_STSID"]);
+                                int varSource = Convert.ToInt32(objDs.Tables[0].Rows[0]["DISC_Source"]);
 
                                 LV_Supplier.Visible = false;
                                 udfnsupplierLoad();
@@ -1026,7 +1027,7 @@ namespace ROMS
                                 txtSupplier.Enabled = false;
                                 txtInvoiceamt.Focus();
                                 this.ActiveControl = txtInvoiceamt;
-                                if (varSTSID == 103)
+                                if (varSTSID == 103 || varSource == 1) // Source 1 - From mismatch approval, 2 - Direct discount voucher
                                 {
                                     grbDiscount.Enabled = false;
                                     this.ActiveControl = btnClose;

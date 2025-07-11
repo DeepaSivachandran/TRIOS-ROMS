@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ROMS.Model
 {
-    class TRN_DebitNote
+    class TRN_CreditNote
     {
         public int ViewType { get; set; } = 0;
         public int paraUserID { get; set; } = 0;
@@ -15,21 +15,21 @@ namespace ROMS.Model
         public int paraCompanyCode { get; set; } = 0;
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
-        public string paraDebit_Remarks { get; set; } = "";
+        public string paraCredit_Remarks { get; set; } = "";
         public int paraSupplierID { get; set; } = 0;
         public string paraOriginator { get; set; } = "";
-        public string paraDebit_Date { get; set; } = "";
-        public string paraDebit_NO { get; set; } = "";
+        public string paraCredit_Date { get; set; } = "";
+        public string paraCredit_NO { get; set; } = "";
         public int paraScheduleID { get; set; } = 0;
         public int paraStatusID { get; set; } = 0;
-        public int paraDebitID { get; set; } = 0;
+        public int paraCreditID { get; set; } = 0;
         public int paraReasonId { get; set; } = 0;
-        public decimal paraDebitAmount { get; set; } = 0;
+        public decimal paraCreditAmount { get; set; } = 0;
         public decimal ParaSubtotal { get; set; } = 0;
        public int paraDCID { get; set; } = 0;
        public int paraPurchaseId { get; set; } = 0;
        public decimal paraTax { get; set; } = 0;
        public decimal paraAmount { get; set; } = 0;
-       public DataTable paraTRN_DebitNote { get; set; } = null;
+       public DataTable paraTRN_CreditNote { get; set; } = null;
     }
 }

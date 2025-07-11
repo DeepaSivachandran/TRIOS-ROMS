@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PUR_DebitnoteDetails
+    partial class PUR_CreditnoteDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -35,9 +35,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_DebitnoteDetails));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_CreditnoteDetails));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grdDebitnote = new System.Windows.Forms.DataGridView();
+            this.grdCreditnote = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +61,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDebitnote)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCreditnote)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,14 +69,14 @@
             // 
             this.errUnit.ContainerControl = this;
             // 
-            // grdDebitnote
+            // grdCreditnote
             // 
-            this.grdDebitnote.AllowUserToAddRows = false;
-            this.grdDebitnote.AllowUserToDeleteRows = false;
-            this.grdDebitnote.AllowUserToResizeColumns = false;
-            this.grdDebitnote.AllowUserToResizeRows = false;
-            this.grdDebitnote.BackgroundColor = System.Drawing.Color.White;
-            this.grdDebitnote.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdCreditnote.AllowUserToAddRows = false;
+            this.grdCreditnote.AllowUserToDeleteRows = false;
+            this.grdCreditnote.AllowUserToResizeColumns = false;
+            this.grdCreditnote.AllowUserToResizeRows = false;
+            this.grdCreditnote.BackgroundColor = System.Drawing.Color.White;
+            this.grdCreditnote.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -84,10 +84,10 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDebitnote.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdDebitnote.ColumnHeadersHeight = 30;
-            this.grdDebitnote.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdDebitnote.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdCreditnote.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdCreditnote.ColumnHeadersHeight = 30;
+            this.grdCreditnote.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdCreditnote.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.clmpicode,
             this.clmproduct,
@@ -102,19 +102,19 @@
             this.clmgstamt,
             this.clmnettamt,
             this.id});
-            this.grdDebitnote.EnableHeadersVisualStyles = false;
-            this.grdDebitnote.GridColor = System.Drawing.Color.White;
-            this.grdDebitnote.Location = new System.Drawing.Point(12, 69);
-            this.grdDebitnote.Name = "grdDebitnote";
-            this.grdDebitnote.ReadOnly = true;
-            this.grdDebitnote.RowHeadersVisible = false;
+            this.grdCreditnote.EnableHeadersVisualStyles = false;
+            this.grdCreditnote.GridColor = System.Drawing.Color.White;
+            this.grdCreditnote.Location = new System.Drawing.Point(12, 69);
+            this.grdCreditnote.Name = "grdCreditnote";
+            this.grdCreditnote.ReadOnly = true;
+            this.grdCreditnote.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdDebitnote.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdDebitnote.RowTemplate.Height = 25;
-            this.grdDebitnote.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDebitnote.Size = new System.Drawing.Size(1006, 343);
-            this.grdDebitnote.TabIndex = 1111144;
+            this.grdCreditnote.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdCreditnote.RowTemplate.Height = 25;
+            this.grdCreditnote.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdCreditnote.Size = new System.Drawing.Size(1006, 343);
+            this.grdCreditnote.TabIndex = 1111144;
             // 
             // clmsno
             // 
@@ -302,7 +302,7 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // PUR_DebitnoteDetails
+            // PUR_CreditnoteDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -310,7 +310,7 @@
             this.ClientSize = new System.Drawing.Size(1038, 421);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.grdDebitnote);
+            this.Controls.Add(this.grdCreditnote);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -318,13 +318,13 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PUR_DebitnoteDetails";
+            this.Name = "PUR_CreditnoteDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Details";
             this.Load += new System.EventHandler(this.PUR_PurchaseOrderDamage_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseOrderDamage_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDebitnote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCreditnote)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -334,7 +334,7 @@
 
         #endregion
         private System.Windows.Forms.ErrorProvider errUnit;
-        public System.Windows.Forms.DataGridView grdDebitnote;
+        public System.Windows.Forms.DataGridView grdCreditnote;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtDLNo;
         private System.Windows.Forms.Label label2;

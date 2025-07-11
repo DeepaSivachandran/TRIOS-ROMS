@@ -13,7 +13,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
-    public partial class PAY_DebitNoteList : Form
+    public partial class PAY_CreditNoteList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -21,7 +21,7 @@ namespace ROMS
         public string varSupplierCode = "", varScheduleCode = "";
         Boolean BlnSearchImageYN = false;
         DataTable dtDefaultGrid = new DataTable();
-        public PAY_DebitNoteList()
+        public PAY_CreditNoteList()
         {
             InitializeComponent();
         }
@@ -81,10 +81,10 @@ namespace ROMS
         {
             try
             {
-                if (grdDebitNoteList.ColumnCount > 0)
+                if (grdCreditNoteList.ColumnCount > 0)
                 {
-                    grdDebitNoteList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdDebitNoteList.HorizontalScrollingOffset; 
+                    grdCreditNoteList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdCreditNoteList.HorizontalScrollingOffset; 
                 }
             }
             catch (Exception ex)
@@ -99,9 +99,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdDebitNoteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdDebitNoteList);
+                grdCreditNoteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCreditNoteList);
                 objDser.CloseConnection();
-                grdDebitNoteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdCreditNoteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -112,10 +112,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible==false)
                 {
-                    udfnGridSearchHeading(grdDebitNoteList, DGV_SearchGrid);
+                    udfnGridSearchHeading(grdCreditNoteList, DGV_SearchGrid);
                     DGV_SearchGrid.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in grdDebitNoteList.Columns)
+                    foreach (DataGridViewColumn col in grdCreditNoteList.Columns)
                     {
                         DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                         visibleColumns.Add(col.Index);
@@ -146,7 +146,7 @@ namespace ROMS
                     if (DGV_SearchGrid.ColumnCount > 0)
                     {
                         BindingSource bs = new BindingSource();
-                        bs.DataSource = grdDebitNoteList.DataSource;
+                        bs.DataSource = grdCreditNoteList.DataSource;
                         string filter = "";
                         for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
                         {
@@ -160,7 +160,7 @@ namespace ROMS
                             }
                         }
                         bs.Filter = filter;
-                        grdDebitNoteList.DataSource = bs;
+                        grdCreditNoteList.DataSource = bs;
                     }
                 }
             }
@@ -215,8 +215,8 @@ namespace ROMS
      
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdDebitNoteList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdDebitNoteList.SortedColumn;
+            DataGridViewColumn newColumn = grdCreditNoteList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdCreditNoteList.SortedColumn;
             ListSortDirection direction;
 
             // If oldColumn is null, then the DataGridView is not sorted.
@@ -224,7 +224,7 @@ namespace ROMS
             {
                 // Sort the same column again, reversing the SortOrder.
                 if (oldColumn == newColumn &&
-                    grdDebitNoteList.SortOrder == SortOrder.Ascending)
+                    grdCreditNoteList.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
@@ -239,7 +239,7 @@ namespace ROMS
             {
                 direction = ListSortDirection.Ascending;
             }
-            grdDebitNoteList.Sort(newColumn, direction);
+            grdCreditNoteList.Sort(newColumn, direction);
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ?
                 SortOrder.Ascending : SortOrder.Descending;
@@ -247,15 +247,15 @@ namespace ROMS
             DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
             DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV_SearchGrid.HorizontalScrollingOffset = grdDebitNoteList.HorizontalScrollingOffset;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdCreditNoteList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
          
-        public void udfnscrollVisible(DataGridView DGV,DataGridView grdDebitNoteList)
+        public void udfnscrollVisible(DataGridView DGV,DataGridView grdCreditNoteList)
         {
             try
             {
-                var vScrollbar = grdDebitNoteList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdCreditNoteList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -283,7 +283,7 @@ namespace ROMS
             }
         }
 
-        private void PAY_DebitNoteList_KeyDown(object sender, KeyEventArgs e)
+        private void PAY_CreditNoteList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -580,7 +580,7 @@ namespace ROMS
 
         }
 
-        private void PAY_DebitNoteList_Load(object sender, EventArgs e)
+        private void PAY_CreditNoteList_Load(object sender, EventArgs e)
         {
             try
             {
@@ -643,19 +643,19 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdDebitNoteList.DataSource = null;
+                grdCreditNoteList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                TRN_DebitNote objTRNG_DebitNote = new TRN_DebitNote();
-                objTRNG_DebitNote.ViewType = 0;
-                objTRNG_DebitNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRNG_DebitNote.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRNG_DebitNote.paraFromDate = dpFromDate.Text;
-                objTRNG_DebitNote.paraToDate = dpToDate.Text;
-                objTRNG_DebitNote.paraSupplierID = Convert.ToInt32(varSupplierCode);
-                objTRNG_DebitNote.paraIPAddress = MainForm.pbIpAddress;
-                objDs = objdserv.udfnDebitNoteList(objTRNG_DebitNote);
+                TRN_CreditNote objTRNG_CreditNote = new TRN_CreditNote();
+                objTRNG_CreditNote.ViewType = 0;
+                objTRNG_CreditNote.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_CreditNote.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_CreditNote.paraFromDate = dpFromDate.Text;
+                objTRNG_CreditNote.paraToDate = dpToDate.Text;
+                objTRNG_CreditNote.paraSupplierID = Convert.ToInt32(varSupplierCode);
+                objTRNG_CreditNote.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnCreditNoteList(objTRNG_CreditNote);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -666,29 +666,29 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdDebitNoteList.DataSource = objDs.Tables[0];
-                            grdDebitNoteList.Columns["S.No."].Width = 50;
-                            grdDebitNoteList.Columns["Concern"].Width = 100;
-                            grdDebitNoteList.Columns["Transaction Date"].Width = 120;
-                            grdDebitNoteList.Columns["Transaction No."].Width = 120;
-                            grdDebitNoteList.Columns["DC No."].Width = 120;
-                            grdDebitNoteList.Columns["DC Date"].Width = 120;
-                            grdDebitNoteList.Columns["Supplier"].Width = 300;
-                            grdDebitNoteList.Columns["SPSCID"].Visible = false;
-                            grdDebitNoteList.Columns["SPID"].Visible = false;
-                            grdDebitNoteList.Columns["DCID"].Visible = false;
-                            grdDebitNoteList.Columns["DC_STSID"].Visible = false;
-                            grdDebitNoteList.Columns["STSID"].Visible = false;
-                            grdDebitNoteList.Columns["Flag"].Visible = false;
-                            grdDebitNoteList.Columns["DNID"].Visible = false;
-                            grdDebitNoteList.Columns["GSTIN"].Width = 120;
-                            grdDebitNoteList.Columns["Amount"].Width = 100;
-                            //grdDebitNoteList.Columns["Created By"].Width = 100;
-                            //grdDebitNoteList.Columns["Created On"].Width = 150;
-                            grdDebitNoteList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdDebitNoteList.Columns["Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDebitNoteList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdDebitNoteList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCreditNoteList.DataSource = objDs.Tables[0];
+                            grdCreditNoteList.Columns["S.No."].Width = 50;
+                            grdCreditNoteList.Columns["Concern"].Width = 100;
+                            grdCreditNoteList.Columns["Transaction Date"].Width = 120;
+                            grdCreditNoteList.Columns["Transaction No."].Width = 120;
+                            grdCreditNoteList.Columns["DC No."].Width = 120;
+                            grdCreditNoteList.Columns["DC Date"].Width = 120;
+                            grdCreditNoteList.Columns["Supplier"].Width = 300;
+                            grdCreditNoteList.Columns["SPSCID"].Visible = false;
+                            grdCreditNoteList.Columns["SPID"].Visible = false;
+                            grdCreditNoteList.Columns["DCID"].Visible = false;
+                            grdCreditNoteList.Columns["DC_STSID"].Visible = false;
+                            grdCreditNoteList.Columns["STSID"].Visible = false;
+                            grdCreditNoteList.Columns["Flag"].Visible = false;
+                            grdCreditNoteList.Columns["CNID"].Visible = false;
+                            grdCreditNoteList.Columns["GSTIN"].Width = 120;
+                            grdCreditNoteList.Columns["Amount"].Width = 100;
+                            //grdCreditNoteList.Columns["Created By"].Width = 100;
+                            //grdCreditNoteList.Columns["Created On"].Width = 150;
+                            grdCreditNoteList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCreditNoteList.Columns["Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdCreditNoteList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCreditNoteList.Columns["DC Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -760,9 +760,9 @@ namespace ROMS
                 {
                     //udfnGridSearchFilter();
                     DataService objDser = new DataService();
-                    grdDebitNoteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdDebitNoteList);
+                    grdCreditNoteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCreditNoteList);
                     objDser.CloseConnection();
-                    grdDebitNoteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                    grdCreditNoteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                     //DGV_SearchGrid_CellPainting(sender,e);
                 }
                 catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -798,8 +798,8 @@ namespace ROMS
         {
             try
             {
-                DataGridViewColumn newColumn = grdDebitNoteList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdDebitNoteList.SortedColumn;
+                DataGridViewColumn newColumn = grdCreditNoteList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdCreditNoteList.SortedColumn;
                 ListSortDirection direction;
 
                 // If oldColumn is null, then the DataGridView is not sorted.
@@ -807,7 +807,7 @@ namespace ROMS
                 {
                     // Sort the same column again, reversing the SortOrder.
                     if (oldColumn == newColumn &&
-                        grdDebitNoteList.SortOrder == SortOrder.Ascending)
+                        grdCreditNoteList.SortOrder == SortOrder.Ascending)
                     {
                         direction = ListSortDirection.Descending;
                     }
@@ -824,7 +824,7 @@ namespace ROMS
                 }
                 if (newColumn.GetType() != typeof(DataGridViewImageColumn))
                 {
-                    grdDebitNoteList.Sort(newColumn, direction);
+                    grdCreditNoteList.Sort(newColumn, direction);
                     newColumn.HeaderCell.SortGlyphDirection =
                         direction == ListSortDirection.Ascending ?
                         SortOrder.Ascending : SortOrder.Descending;
@@ -832,7 +832,7 @@ namespace ROMS
                     DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                     DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdDebitNoteList.HorizontalScrollingOffset;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdCreditNoteList.HorizontalScrollingOffset;
                     DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
                 }
             }
@@ -843,10 +843,10 @@ namespace ROMS
         {
             try
             {
-                if (grdDebitNoteList.ColumnCount > 0)
+                if (grdCreditNoteList.ColumnCount > 0)
                 {
-                    grdDebitNoteList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdDebitNoteList.HorizontalScrollingOffset;
+                    grdCreditNoteList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdCreditNoteList.HorizontalScrollingOffset;
                     //grdBrandList.HorizontalScrollingOffset = 0;
                 }
             }
@@ -868,9 +868,9 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdDebitNoteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdDebitNoteList);
+                grdCreditNoteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCreditNoteList);
                 objDser.CloseConnection();
-                grdDebitNoteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdCreditNoteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
             }
             catch (Exception ex)
@@ -886,9 +886,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdDebitNoteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdDebitNoteList);
+                grdCreditNoteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCreditNoteList);
                 objDser.CloseConnection();
-                grdDebitNoteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdCreditNoteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -899,10 +899,10 @@ namespace ROMS
             try
             {
                 int totalWidth = 0;
-                int offSetValue = grdDebitNoteList.HorizontalScrollingOffset;
+                int offSetValue = grdCreditNoteList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
-                if (totalWidth - grdDebitNoteList.Width > grdDebitNoteList.HorizontalScrollingOffset && grdDebitNoteList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdCreditNoteList.Width > grdCreditNoteList.HorizontalScrollingOffset && grdCreditNoteList.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue;
                 }
@@ -916,22 +916,22 @@ namespace ROMS
             }
         }
 
-        private void GrdDebitNoteList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void GrdCreditNoteList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
             {
-                grdDebitNoteList.ClearSelection();
-                for (int i= 0;i <grdDebitNoteList.Rows.Count;i++)
+                grdCreditNoteList.ClearSelection();
+                for (int i= 0;i <grdCreditNoteList.Rows.Count;i++)
                 {
-                    if (Convert.ToInt32(grdDebitNoteList.Rows[i].Cells["STSID"].Value) == 111)
+                    if (Convert.ToInt32(grdCreditNoteList.Rows[i].Cells["STSID"].Value) == 111)
                     {
-                        grdDebitNoteList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
-                        grdDebitNoteList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdCreditNoteList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdCreditNoteList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else if(Convert.ToInt32(grdDebitNoteList.Rows[i].Cells["STSID"].Value) == 112)
+                    else if(Convert.ToInt32(grdCreditNoteList.Rows[i].Cells["STSID"].Value) == 112)
                     {
-                        grdDebitNoteList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdDebitNoteList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdCreditNoteList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdCreditNoteList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                 }
             }
@@ -1017,7 +1017,7 @@ namespace ROMS
                 btnExport.Enabled = false;
                 lblDSupplier.Focus();
 
-                if ((grdDebitNoteList.Rows.Count > 0))
+                if ((grdCreditNoteList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
@@ -1029,10 +1029,10 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "Debit note list";
+                    ExcelSheet.Name = "Credit note list";
                     int cIndex = 0;
                     int count = 0;
-                    foreach (DataGridViewColumn col in grdDebitNoteList.Columns)
+                    foreach (DataGridViewColumn col in grdCreditNoteList.Columns)
                     {
                         if (col.Visible)
                         {
@@ -1042,7 +1042,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "Debit note list";
+                    ExcelSheet.Cells[1, 1].Value = "Credit note list";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -1052,7 +1052,7 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
 
 
-                    foreach (DataGridViewColumn col in grdDebitNoteList.Columns)
+                    foreach (DataGridViewColumn col in grdCreditNoteList.Columns)
                     {
                         if (col.Visible)
                         {
@@ -1092,7 +1092,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-                            foreach (DataGridViewRow rowa in grdDebitNoteList.Rows)
+                            foreach (DataGridViewRow rowa in grdCreditNoteList.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = rowa.Cells[col.Index].Value;
                             }
@@ -1134,33 +1134,33 @@ namespace ROMS
         {
             try
             {
-                if (grdDebitNoteList.SelectedRows.Count > 0)
+                if (grdCreditNoteList.SelectedRows.Count > 0)
                 {
                     picLoader.Visible = true;
                     picLoader.BringToFront();
                     Application.DoEvents();
-                    if (Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["Flag"].Value)==0)
+                    if (Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["Flag"].Value)==0)
                     {
                         MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
                         MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                        MainForm.objPUR_PurchaseReturns.varDebitDCID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
-                        MainForm.objPUR_PurchaseReturns.varStatusId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DC_STSID"].Value.ToString());
-                        MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                        MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.varCreditDCID = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.varStatusId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["DC_STSID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
                         MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
                         MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
                         MainForm.objPUR_PurchaseReturns.Show();
                     }
                     else
                     {
-                        MainForm.objPAY_DebitNote = new PAY_DebitNote();
-                        MainForm.objPAY_DebitNote.MdiParent = this.ParentForm;
-                        MainForm.objPAY_DebitNote.btnSave.Text = "Update";
-                        MainForm.objPAY_DebitNote.varDebitID = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["DNID"].Value);
-                        MainForm.objPAY_DebitNote.pbSupplierId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                        MainForm.objPAY_DebitNote.pbScheduleid = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
-                        MainForm.objPAY_DebitNote.varStatusId = Convert.ToInt32(grdDebitNoteList.SelectedRows[0].Cells["STSID"].Value.ToString());
-                        MainForm.objPAY_DebitNote.Show();
+                        MainForm.objPAY_CreditNote = new PAY_CreditNote();
+                        MainForm.objPAY_CreditNote.MdiParent = this.ParentForm;
+                        MainForm.objPAY_CreditNote.btnSave.Text = "Update";
+                        MainForm.objPAY_CreditNote.varCreditID = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["CNID"].Value);
+                        MainForm.objPAY_CreditNote.pbSupplierId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                        MainForm.objPAY_CreditNote.pbScheduleid = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                        MainForm.objPAY_CreditNote.varStatusId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["STSID"].Value.ToString());
+                        MainForm.objPAY_CreditNote.Show();
                     }
                 }
             }
@@ -1176,7 +1176,7 @@ namespace ROMS
             }
         }
 
-        private void GrdDebitNoteList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void GrdCreditNoteList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -1189,7 +1189,7 @@ namespace ROMS
             }
         }
 
-        private void GrdDebitNoteList_KeyDown(object sender, KeyEventArgs e)
+        private void GrdCreditNoteList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -1205,23 +1205,23 @@ namespace ROMS
             }
         }
 
-        private void GrdDebitNoteList_Scroll(object sender, ScrollEventArgs e)
+        private void GrdCreditNoteList_Scroll(object sender, ScrollEventArgs e)
         {
             try
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdDebitNoteList.HorizontalScrollingOffset;
+                    int offSetValue = grdCreditNoteList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdDebitNoteList.Width > grdDebitNoteList.HorizontalScrollingOffset && grdDebitNoteList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdCreditNoteList.Width > grdCreditNoteList.HorizontalScrollingOffset && grdCreditNoteList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_SearchGrid, grdDebitNoteList);
+                    udfnscrollVisible(DGV_SearchGrid, grdCreditNoteList);
                 }
             }
             catch (Exception ex)

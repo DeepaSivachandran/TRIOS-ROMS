@@ -301,17 +301,17 @@
     <Compile Include="PAY_DiscountVoucher.designer.cs">
       <DependentUpon>PAY_DiscountVoucher.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAY_DebitNote.cs">
+    <Compile Include="PAY_CreditNote.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PAY_DebitNote.designer.cs">
-      <DependentUpon>PAY_DebitNote.cs</DependentUpon>
+    <Compile Include="PAY_CreditNote.designer.cs">
+      <DependentUpon>PAY_CreditNote.cs</DependentUpon>
     </Compile>
-    <Compile Include="PUR_DebitnoteDetails.cs">
+    <Compile Include="PUR_CreditnoteDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PUR_DebitnoteDetails.designer.cs">
-      <DependentUpon>PUR_DebitnoteDetails.cs</DependentUpon>
+    <Compile Include="PUR_CreditnoteDetails.designer.cs">
+      <DependentUpon>PUR_CreditnoteDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_Purchase_Level_Verified.cs">
       <SubType>Form</SubType>
@@ -467,7 +467,7 @@
     <Compile Include="Model\MR_Product.cs" />
     <Compile Include="Model\MR_Supplier.cs" />
     <Compile Include="Model\TRN_GoodsInward_Purchase.cs" />
-    <Compile Include="Model\TRN_DebitNote.cs" />
+    <Compile Include="Model\TRN_CreditNote.cs" />
     <Compile Include="Model\TRN_GoodsInward.cs" />
     <Compile Include="Model\TRN_PurchaseEntry.cs" />
     <Compile Include="Model\TRN_Stock.cs" />
@@ -1538,11 +1538,11 @@
     <Compile Include="PAY_ChequePrint.designer.cs">
       <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAY_DebitNoteList.cs">
+    <Compile Include="PAY_CreditNoteList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PAY_DebitNoteList.designer.cs">
-      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
+    <Compile Include="PAY_CreditNoteList.designer.cs">
+      <DependentUpon>PAY_CreditNoteList.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_PODamagedView.cs">
       <SubType>Form</SubType>
@@ -2218,11 +2218,11 @@
     <EmbeddedResource Include="PUR_GRNProducts .resx">
       <DependentUpon>PUR_GRNProducts .cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PAY_DebitNote.resx">
-      <DependentUpon>PAY_DebitNote.cs</DependentUpon>
+    <EmbeddedResource Include="PAY_CreditNote.resx">
+      <DependentUpon>PAY_CreditNote.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PUR_DebitnoteDetails.resx">
-      <DependentUpon>PUR_DebitnoteDetails.cs</DependentUpon>
+    <EmbeddedResource Include="PUR_CreditnoteDetails.resx">
+      <DependentUpon>PUR_CreditnoteDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_Purchase_Level_Verified.resx">
       <DependentUpon>PUR_Purchase_Level_Verified.cs</DependentUpon>
@@ -2341,8 +2341,8 @@
     <EmbeddedResource Include="PAY_ChequePrint.resx">
       <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PAY_DebitNoteList.resx">
-      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
+    <EmbeddedResource Include="PAY_CreditNoteList.resx">
+      <DependentUpon>PAY_CreditNoteList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PODamagedView.resx">
       <DependentUpon>PUR_PODamagedView.cs</DependentUpon>

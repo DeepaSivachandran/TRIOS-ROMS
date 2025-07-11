@@ -29,7 +29,7 @@ namespace ROMS
         public int varUpDownKey = 0;
         public int vareditflag = 0;
         public int varReturnDCID = 0, varCloseFlag = 0;
-        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varDebitDCID=0, varEditFlag=0,varClose = 0, varDateChange = 0;
+        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varCreditDCID=0, varEditFlag=0,varClose = 0, varDateChange = 0;
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
         DataTable dtStock = new DataTable();
@@ -119,7 +119,8 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 204) //received credit note
+                /*if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 61 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 62 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 204) *///received credit note
+                if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207)
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
@@ -149,7 +150,7 @@ namespace ROMS
                     }
                     varModifiedFlag = 1;
                 }
-                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207) //Debit Note Created
+                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 )//|| Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207) //Credit Note Created
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
@@ -304,7 +305,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnDebitNoteVocherno()
+        public void udfnCreditNoteVocherno()
         {
             try
             {
@@ -535,7 +536,7 @@ namespace ROMS
                     {
                         if (varEditFlag == 1)
                         {
-                            varReturnDCID = varDebitDCID;
+                            varReturnDCID = varCreditDCID;
                         }
                         EditLoad();
                         if (varStatusId == 39 && vareditflag==0)
@@ -1075,7 +1076,7 @@ namespace ROMS
                 txtReturnDcNo.Text = "";
                 varDateChange = 0;
                 udfnVocherno();
-                udfnDebitNoteVocherno();
+                udfnCreditNoteVocherno();
             }
             catch (Exception ex)
             {
@@ -1129,7 +1130,7 @@ namespace ROMS
             {
                 varDateChange = 1;
                 udfnVocherno();
-                udfnDebitNoteVocherno();
+                udfnCreditNoteVocherno();
             }
             catch (Exception ex)
             {

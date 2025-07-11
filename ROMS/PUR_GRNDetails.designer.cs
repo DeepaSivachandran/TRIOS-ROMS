@@ -1543,7 +1543,7 @@
             this.dpGrnDate.Location = new System.Drawing.Point(252, 16);
             this.dpGrnDate.Name = "dpGrnDate";
             this.dpGrnDate.Size = new System.Drawing.Size(105, 27);
-            this.dpGrnDate.TabIndex = 1; 
+            this.dpGrnDate.TabIndex = 1;
             this.dpGrnDate.Enter += new System.EventHandler(this.DpGrnDate_Enter);
             this.dpGrnDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpGrnDate_KeyDown);
             this.dpGrnDate.Leave += new System.EventHandler(this.DpGrnDate_Leave);
