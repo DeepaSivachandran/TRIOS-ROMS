@@ -220,11 +220,14 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,4) AND STSID IN (0,13,14)", "STS_Name,STSID", cmbCompletedStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                dpFromDate.Visible = false;
+                dpToDate.Visible = false;
             }
             catch (Exception ex)
             {
@@ -939,6 +942,121 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbNotcomplete_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbNotcomplete.Checked == true)
+                {
+                    cmbStatus.Enabled = true;
+                    cmbStatus.Visible = true;
+                    cmbCompletedStatus.Visible = false;
+                    dpFromDate.Visible = false;
+                    dpToDate.Visible = false;
+                }
+                else
+                {
+                    cmbStatus.Enabled = false;
+                    cmbStatus.Visible = false;
+                    cmbCompletedStatus.Visible = true;
+                    dpFromDate.Visible = true;
+                    dpToDate.Visible = true;
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbComplete_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbComplete.Checked == true)
+                {
+                    cmbStatus.Enabled = false;
+                    cmbStatus.Visible = false;
+                    cmbCompletedStatus.Visible = true;
+                    dpFromDate.Visible = true;
+                    dpToDate.Visible = true;
+                }
+                else
+                {
+                    cmbStatus.Visible = true;
+                    cmbStatus.Enabled = true;
+                    cmbCompletedStatus.Visible = false;
+                    dpFromDate.Visible = false;
+                    dpToDate.Visible = false;
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbCompletedStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                LV_Supplier.Visible = false;
+                cmbCompletedStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbCompletedStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbCompletedStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbCompletedStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                LV_Supplier.Visible = false;
+                cmbCompletedStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {
