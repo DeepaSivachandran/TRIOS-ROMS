@@ -413,6 +413,8 @@ namespace ROMS
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
                     row++;
 
                     sheet.Cells[row, 1] = purchaseIndex++;
@@ -467,7 +469,9 @@ namespace ROMS
 
                     for (int i = 0; i < productHeaders.Length; i++)
                         sheet.Cells[row, i + 1] = productHeaders[i];
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
+                    var headerRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]];
+                    headerRange.Font.Bold = true;
+                    headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                     row++;
 
 
