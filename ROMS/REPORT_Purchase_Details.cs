@@ -297,7 +297,11 @@ namespace ROMS
                         {
                             varSupplierName = txtSupplier.Text.Trim();
                         }
-                        ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, varSupplierName, cmbPayType.Text, cmbConditionType.Text);
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+
+                        }
+                        ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, varSupplierName, cmbPayType.Text, cmbConditionType.Text,objDs.Tables[1]);
                     }
                     else
                     {
@@ -322,7 +326,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void ExportPurchaseJsonToExcelInterop(string jsonString, string fromDate, string supplierName, string payType, string conditionType)
+        public void ExportPurchaseJsonToExcelInterop(string jsonString, string fromDate, string supplierName, string payType, string conditionType,DataTable footerData)
         {
 
             try
@@ -545,6 +549,113 @@ namespace ROMS
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
                     row += 2;
+
+
+                    // Headers for GST Summary Table
+                    string[] gstHeaders = { "GST %", "Register", "", "IGST", "", "URD", "", "Composite", "", "Total" };
+
+                    // Merge cells for main categories
+                    sheet.Cells[row, 1] = "GST %";
+                    sheet.Cells[row, 2] = "Register";
+                    sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 3]].Merge();
+                    sheet.Cells[row, 4] = "IGST";
+                    sheet.Range[sheet.Cells[row, 4], sheet.Cells[row, 5]].Merge();
+                    sheet.Cells[row, 6] = "URD";
+                    sheet.Range[sheet.Cells[row, 6], sheet.Cells[row, 7]].Merge();
+                    sheet.Cells[row, 8] = "Composite";
+                    sheet.Range[sheet.Cells[row, 8], sheet.Cells[row, 9]].Merge();
+                    sheet.Cells[row, 10] = "Total";
+
+                    var gstHeaderRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 10]];
+                    gstHeaderRange.Font.Bold = true;
+                    gstHeaderRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    gstHeaderRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    row++;
+
+                    // Sub-Headers
+                    string[] subHeaders = { "", "Taxable Value", "Tax Value", "Taxable Value", "IGST Value", "Taxable Value", "Reverse Tax Value", "Taxable Value", "Reverse Tax Value", "" };
+
+                    for (int i = 0; i < subHeaders.Length; i++)
+                    {
+                        sheet.Cells[row, i + 1] = subHeaders[i];
+                    }
+                    var subHeaderRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 10]];
+                    subHeaderRange.Font.Bold = true;
+                    subHeaderRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    subHeaderRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    row++;
+
+                    // Process footerData and bind rows
+                    var gstGroups = footerData.AsEnumerable()
+                        .GroupBy(r => r.Field<string>("GST %"))
+                        .OrderBy(g => g.Key);
+
+                    foreach (var gstGroup in gstGroups)
+                    {
+                        string gstPercent = gstGroup.Key;
+                        decimal regTaxable = 0, regTax = 0;
+                        decimal igstTaxable = 0, igstValue = 0;
+                        decimal urdTaxable = 0, urdTax = 0;
+                        decimal compTaxable = 0, compTax = 0;
+                        //decimal totalTaxable = 0, totalTax = 0;
+
+                        foreach (var rowItem in gstGroup)
+                        {
+                            string supplierType = rowItem.Field<string>("Supplier Type");
+                            decimal taxable = rowItem.Field<decimal>("Taxable Value");
+                            decimal taxValue = rowItem.Field<decimal>("Tax Value");
+                            decimal igst = rowItem.Field<decimal>("IGST Value");
+
+                            totalTaxable += taxable;
+                            //totalTax += taxValue;
+
+                            if (supplierType == "Registered")
+                            {
+                                regTaxable += taxable;
+                                regTax += taxValue;
+                            }
+                            else if (supplierType == "IGST")
+                            {
+                                igstTaxable += taxable;
+                                igstValue += igst;
+                            }
+                            else if (supplierType == "URD")
+                            {
+                                urdTaxable += taxable;
+                                urdTax += taxValue;
+                            }
+                            else if (supplierType == "Composite")
+                            {
+                                compTaxable += taxable;
+                                compTax += taxValue;
+                            }
+                        }
+
+                        // Write row data
+                        int col = 1;
+                        sheet.Cells[row, col++] = gstPercent;
+                        sheet.Cells[row, col++] = regTaxable;
+                        sheet.Cells[row, col++] = regTax;
+                        sheet.Cells[row, col++] = igstTaxable;
+                        sheet.Cells[row, col++] = igstValue;
+                        sheet.Cells[row, col++] = urdTaxable;
+                        sheet.Cells[row, col++] = urdTax;
+                        sheet.Cells[row, col++] = compTaxable;
+                        sheet.Cells[row, col++] = compTax;
+                        //sheet.Cells[row, col++] = totalTaxable + totalTax;
+
+                        var dataRowRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 10]];
+                        dataRowRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                        dataRowRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                        row++;
+                    }
+
+                    // Optional: Totals row
+                    sheet.Cells[row, 1] = "Total";
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 2]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 10]].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+
                 }
 
                 sheet.Columns.AutoFit();
