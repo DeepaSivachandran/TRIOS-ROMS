@@ -55,7 +55,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.dpToDate = new System.Windows.Forms.DateTimePicker();
+            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.pnlPO = new System.Windows.Forms.Panel();
+            this.rbNotcomplete = new System.Windows.Forms.RadioButton();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.cmbCompletedStatus = new System.Windows.Forms.ComboBox();
+            this.rbComplete = new System.Windows.Forms.RadioButton();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblGroupCode = new System.Windows.Forms.Label();
@@ -72,17 +78,11 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.pnlPO = new System.Windows.Forms.Panel();
-            this.rbNotcomplete = new System.Windows.Forms.RadioButton();
-            this.rbComplete = new System.Windows.Forms.RadioButton();
-            this.cmbCompletedStatus = new System.Windows.Forms.ComboBox();
-            this.dpToDate = new System.Windows.Forms.DateTimePicker();
-            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlPO.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportSupplier
@@ -310,17 +310,86 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // dpToDate
+            // 
+            this.dpToDate.CustomFormat = "dd/MM/yyyy";
+            this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpToDate.Location = new System.Drawing.Point(1208, 43);
+            this.dpToDate.Name = "dpToDate";
+            this.dpToDate.Size = new System.Drawing.Size(103, 27);
+            this.dpToDate.TabIndex = 9;
+            this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
+            // 
+            // dpFromDate
+            // 
+            this.dpFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpFromDate.Location = new System.Drawing.Point(1099, 43);
+            this.dpFromDate.Name = "dpFromDate";
+            this.dpFromDate.Size = new System.Drawing.Size(103, 27);
+            this.dpFromDate.TabIndex = 8;
+            this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
+            // 
+            // pnlPO
+            // 
+            this.pnlPO.Controls.Add(this.rbNotcomplete);
+            this.pnlPO.Controls.Add(this.cmbStatus);
+            this.pnlPO.Controls.Add(this.cmbCompletedStatus);
+            this.pnlPO.Controls.Add(this.rbComplete);
+            this.pnlPO.Location = new System.Drawing.Point(782, 39);
+            this.pnlPO.Name = "pnlPO";
+            this.pnlPO.Size = new System.Drawing.Size(316, 35);
+            this.pnlPO.TabIndex = 4;
+            // 
+            // rbNotcomplete
+            // 
+            this.rbNotcomplete.AutoSize = true;
+            this.rbNotcomplete.Checked = true;
+            this.rbNotcomplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbNotcomplete.Location = new System.Drawing.Point(7, 7);
+            this.rbNotcomplete.Name = "rbNotcomplete";
+            this.rbNotcomplete.Size = new System.Drawing.Size(97, 21);
+            this.rbNotcomplete.TabIndex = 4;
+            this.rbNotcomplete.TabStop = true;
+            this.rbNotcomplete.Text = "Not Completed";
+            this.rbNotcomplete.UseVisualStyleBackColor = true;
+            this.rbNotcomplete.CheckedChanged += new System.EventHandler(this.RbNotcomplete_CheckedChanged);
+            // 
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Location = new System.Drawing.Point(193, 4);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(117, 27);
-            this.cmbStatus.TabIndex = 4;
+            this.cmbStatus.TabIndex = 6;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
             this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            // 
+            // cmbCompletedStatus
+            // 
+            this.cmbCompletedStatus.FormattingEnabled = true;
+            this.cmbCompletedStatus.Location = new System.Drawing.Point(193, 4);
+            this.cmbCompletedStatus.Name = "cmbCompletedStatus";
+            this.cmbCompletedStatus.Size = new System.Drawing.Size(117, 27);
+            this.cmbCompletedStatus.TabIndex = 7;
+            this.cmbCompletedStatus.Enter += new System.EventHandler(this.CmbCompletedStatus_Enter);
+            this.cmbCompletedStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCompletedStatus_KeyDown);
+            this.cmbCompletedStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCompletedStatus_KeyPress);
+            this.cmbCompletedStatus.Leave += new System.EventHandler(this.CmbCompletedStatus_Leave);
+            // 
+            // rbComplete
+            // 
+            this.rbComplete.AutoSize = true;
+            this.rbComplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbComplete.Location = new System.Drawing.Point(110, 7);
+            this.rbComplete.Name = "rbComplete";
+            this.rbComplete.Size = new System.Drawing.Size(77, 21);
+            this.rbComplete.TabIndex = 5;
+            this.rbComplete.Text = "Completed";
+            this.rbComplete.UseVisualStyleBackColor = true;
+            this.rbComplete.CheckedChanged += new System.EventHandler(this.RbComplete_CheckedChanged);
             // 
             // lblStatus
             // 
@@ -465,7 +534,7 @@
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(33, 29);
-            this.btnView.TabIndex = 5;
+            this.btnView.TabIndex = 10;
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -512,73 +581,6 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // pnlPO
-            // 
-            this.pnlPO.Controls.Add(this.rbNotcomplete);
-            this.pnlPO.Controls.Add(this.cmbStatus);
-            this.pnlPO.Controls.Add(this.cmbCompletedStatus);
-            this.pnlPO.Controls.Add(this.rbComplete);
-            this.pnlPO.Location = new System.Drawing.Point(782, 39);
-            this.pnlPO.Name = "pnlPO";
-            this.pnlPO.Size = new System.Drawing.Size(316, 35);
-            this.pnlPO.TabIndex = 111111156;
-            // 
-            // rbNotcomplete
-            // 
-            this.rbNotcomplete.AutoSize = true;
-            this.rbNotcomplete.Checked = true;
-            this.rbNotcomplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbNotcomplete.Location = new System.Drawing.Point(7, 7);
-            this.rbNotcomplete.Name = "rbNotcomplete";
-            this.rbNotcomplete.Size = new System.Drawing.Size(97, 21);
-            this.rbNotcomplete.TabIndex = 8;
-            this.rbNotcomplete.TabStop = true;
-            this.rbNotcomplete.Text = "Not Completed";
-            this.rbNotcomplete.UseVisualStyleBackColor = true;
-            this.rbNotcomplete.CheckedChanged += new System.EventHandler(this.RbNotcomplete_CheckedChanged);
-            // 
-            // rbComplete
-            // 
-            this.rbComplete.AutoSize = true;
-            this.rbComplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbComplete.Location = new System.Drawing.Point(110, 7);
-            this.rbComplete.Name = "rbComplete";
-            this.rbComplete.Size = new System.Drawing.Size(77, 21);
-            this.rbComplete.TabIndex = 9;
-            this.rbComplete.Text = "Completed";
-            this.rbComplete.UseVisualStyleBackColor = true;
-            this.rbComplete.CheckedChanged += new System.EventHandler(this.RbComplete_CheckedChanged);
-            // 
-            // cmbCompletedStatus
-            // 
-            this.cmbCompletedStatus.FormattingEnabled = true;
-            this.cmbCompletedStatus.Location = new System.Drawing.Point(193, 4);
-            this.cmbCompletedStatus.Name = "cmbCompletedStatus";
-            this.cmbCompletedStatus.Size = new System.Drawing.Size(117, 27);
-            this.cmbCompletedStatus.TabIndex = 10;
-            this.cmbCompletedStatus.Enter += new System.EventHandler(this.CmbCompletedStatus_Enter);
-            this.cmbCompletedStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCompletedStatus_KeyDown);
-            this.cmbCompletedStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCompletedStatus_KeyPress);
-            this.cmbCompletedStatus.Leave += new System.EventHandler(this.CmbCompletedStatus_Leave);
-            // 
-            // dpToDate
-            // 
-            this.dpToDate.CustomFormat = "dd/MM/yyyy";
-            this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(1208, 43);
-            this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(103, 27);
-            this.dpToDate.TabIndex = 111111158;
-            // 
-            // dpFromDate
-            // 
-            this.dpFromDate.CustomFormat = "dd/MM/yyyy";
-            this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(1099, 43);
-            this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(103, 27);
-            this.dpFromDate.TabIndex = 111111157;
-            // 
             // REPORT_ProductWise_Po
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -602,9 +604,9 @@
             this.pnlReportStockLocation.PerformLayout();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.pnlPO.ResumeLayout(false);
             this.pnlPO.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

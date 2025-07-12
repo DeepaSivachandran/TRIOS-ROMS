@@ -174,7 +174,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraFlag", varFlag);
                     objBillreport.SetParameterValue("ParaPOFromDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("ParaPOToDate", dpToDate.Text);
-                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatus", varStatusID);
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
@@ -1041,7 +1041,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    dpFromDate.Focus();
                 }
             }
             catch (Exception ex)
@@ -1070,6 +1070,38 @@ namespace ROMS
             {
                 LV_Supplier.Visible = false;
                 cmbCompletedStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpToDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpToDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {
