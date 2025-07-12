@@ -3223,35 +3223,50 @@ namespace ROMS
         {
             try
             {
-                if (rbNotcomplete.Checked == true)
-                {
-                    cmbstatus.Enabled = true;
-                }
-                else
-                {
-                    cmbstatus.Enabled = false;
-                }
+                udfnStatusChangeDropdown();
             }
-            catch (Exception ex)
-
+            catch (Exception ex) 
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnStatusChangeDropdown()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                if (rbNotcomplete.Checked == true)
+                {
+                    //cmbstatus.Enabled = true;
+                    objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                }
+                else
+                {
+                    //cmbstatus.Enabled = false;
+                    objDataBind.BindComboBoxListSelected("DEF_Status", "  STS_ModuleID=5 OR STSID=0  ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                }
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void RbComplete_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                if (rbComplete.Checked == true)
-                {
-                    cmbstatus.Enabled = false;
-                }
-                else
-                {
-                    cmbstatus.Enabled = true;
-                }
+                //if (rbComplete.Checked == true)
+                //{
+                //    cmbstatus.Enabled = false;
+                //}
+                //else
+                //{
+                //    cmbstatus.Enabled = true;
+                //}
+                udfnStatusChangeDropdown();
             }
             catch (Exception ex)
 

@@ -707,7 +707,7 @@ namespace ROMS
 
                         if (values[0] == "-1")
                         {
-                            errPO.SetError(txtSupplier, "Invalid supplier");
+                            errPO.SetError(txtSupplier, "Invalid supplier.");
                             txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tpSuppliername.ShowAlways = true;
                             tpSuppliername.Show("Invalid supplier.", txtSupplier, 5000);

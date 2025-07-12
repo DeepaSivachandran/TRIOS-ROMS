@@ -6611,11 +6611,11 @@ namespace ROMS
                                 string varMessage = objDServ1.udfnGetMessages(120);
                                 objDServ1.CloseConnection();
                                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                varErrorFlag = true;
+                                varErrorFlag = true; 
                             }
                         }
                     }
-                    if (varBlockedSupplier == "98" && pbAutoSaveFlag=0)
+                    if (varBlockedSupplier == "98" && pbAutoSaveFlag==0)
                     {
                         txtSupplier.BackColor = Color.LightPink;
                         SPDataService objDServ = new SPDataService();
