@@ -971,6 +971,7 @@ namespace ROMS
                 {
                     cmbStatus.Enabled = true;
                     cmbStatus.Visible = true;
+                    cmbStatus.SelectedValue = 0;
                     cmbCompletedStatus.Visible = false;
                     dpFromDate.Visible = false;
                     dpToDate.Visible = false;
@@ -980,8 +981,11 @@ namespace ROMS
                     cmbStatus.Enabled = false;
                     cmbStatus.Visible = false;
                     cmbCompletedStatus.Visible = true;
+                    cmbCompletedStatus.SelectedValue = 0;
                     dpFromDate.Visible = true;
                     dpToDate.Visible = true;
+                    dpFromDate.Value = MainForm.pbCurrentDate;
+                    dpToDate.Value = MainForm.pbCurrentDate;
                 }
             }
             catch (Exception ex)
@@ -1001,13 +1005,17 @@ namespace ROMS
                     cmbStatus.Enabled = false;
                     cmbStatus.Visible = false;
                     cmbCompletedStatus.Visible = true;
+                    cmbCompletedStatus.SelectedValue = 0;
                     dpFromDate.Visible = true;
                     dpToDate.Visible = true;
+                    dpFromDate.Value = MainForm.pbCurrentDate;
+                    dpToDate.Value = MainForm.pbCurrentDate;
                 }
                 else
                 {
                     cmbStatus.Visible = true;
                     cmbStatus.Enabled = true;
+                    cmbStatus.SelectedValue = 0;
                     cmbCompletedStatus.Visible = false;
                     dpFromDate.Visible = false;
                     dpToDate.Visible = false;

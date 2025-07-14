@@ -230,19 +230,9 @@ namespace ROMS
                     varpono = 1;
                     varFilter = 1;
                 }
-                int varFlag = 0, varStatusID = 0;
-                if (rbComplete.Checked == true)
-                {
-                    varFlag = 1;
-                    varStatusID = Convert.ToInt32(cmbCompletedStatus.SelectedValue);
-                }
-                else
-                {
-                    varStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
-                }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), dpFromDate.Text, dpToDate.Text, 0, varStatusID, "0", varFilter, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, 0, varFlag);
+                objDs = objdserv.udfnPOEntry(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -296,15 +286,12 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaSubGroupID", Convert.ToString(lblSubGroupCode.Text));
                     objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("ParaScheduleId ", Convert.ToInt32(lblschedleCode.Text));
-                    objBillreport.SetParameterValue("paraStatus", varStatusID);
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text)); 
                     objBillreport.SetParameterValue("paraSubGroupname", varSubgroupName); 
                     objBillreport.SetParameterValue("paraGroupname", varGroupName); 
                     objBillreport.SetParameterValue("paraProductName", varProductname); 
                     objBillreport.SetParameterValue("paraSupplierName", varSuppliername);
-                    objBillreport.SetParameterValue("paraFlag", varFlag);
-                    objBillreport.SetParameterValue("ParaPOFromDate", dpFromDate.Text);
-                    objBillreport.SetParameterValue("ParaPOToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -679,14 +666,11 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=50 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,4) AND STSID IN (0,9,14)", "STS_Name,STSID", cmbCompletedStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
-                dpFromDate.Visible = false;
-                dpToDate.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1114,153 +1098,6 @@ namespace ROMS
             try
             {
                 e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbCompletedStatus_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                LV_Supplier.Visible = false;
-                cmbCompletedStatus.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbCompletedStatus_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    dpFromDate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbCompletedStatus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbCompletedStatus_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                LV_Supplier.Visible = false;
-                cmbCompletedStatus.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    dpToDate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void DpToDate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnListPrint.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void RbNotcomplete_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (rbNotcomplete.Checked == true)
-                {
-                    cmbStatus.Enabled = true;
-                    cmbStatus.Visible = true;
-                    cmbCompletedStatus.Visible = false;
-                    dpFromDate.Visible = false;
-                    dpToDate.Visible = false;
-                }
-                else
-                {
-                    cmbStatus.Enabled = false;
-                    cmbStatus.Visible = false;
-                    cmbCompletedStatus.Visible = true;
-                    dpFromDate.Visible = true;
-                    dpToDate.Visible = true;
-                }
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void RbComplete_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (rbComplete.Checked == true)
-                {
-                    cmbStatus.Enabled = false;
-                    cmbStatus.Visible = false;
-                    cmbCompletedStatus.Visible = true;
-                    dpFromDate.Visible = true;
-                    dpToDate.Visible = true;
-                }
-                else
-                {
-                    cmbStatus.Visible = true;
-                    cmbStatus.Enabled = true;
-                    cmbCompletedStatus.Visible = false;
-                    dpFromDate.Visible = false;
-                    dpToDate.Visible = false;
-                }
             }
             catch (Exception ex)
 
