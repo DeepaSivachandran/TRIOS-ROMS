@@ -367,7 +367,17 @@ namespace ROMS
                     sheet.Cells[row + 1, 2] = header["GSTIN"];
                     sheet.Cells[row + 2, 2] = $"{header["City"]} GST Type: {header["SupplierType"]} PT : {header["PaymentTerm"]}";
 
-                    sheet.Cells[row, 6] = header["InvDate"];
+                    var invDate = header["InvDate"]?.ToString();
+                    if (!string.IsNullOrEmpty(invDate))
+                    {
+                        var cell = sheet.Cells[row, 6];
+                        cell.NumberFormat = "@"; // Force text format
+                        cell.Value = invDate;
+                    }
+                    else
+                    {
+                        sheet.Cells[row, 6] = "";
+                    }
                     sheet.Cells[row + 1, 6] = header["InvNo"];
                     sheet.Cells[row + 2, 6] = header["InvAmt"];
 
@@ -416,10 +426,30 @@ namespace ROMS
                     {
                         int col = 1;
                         foreach (var key in productHeaders)
-                            sheet.Cells[row, col++] = prod[key];
+                        {
+                            if (key == "Expiry Date")
+                            {
+                                var expiryDate = prod["Expiry Date"]?.ToString();
+                                if (!string.IsNullOrEmpty(expiryDate))
+                                {
+                                    var cell = sheet.Cells[row, col];
+                                    cell.NumberFormat = "@"; // Force as text
+                                    cell.Value = expiryDate;
+                                }
+                                else
+                                {
+                                    sheet.Cells[row, col] = "";
+                                }
+                            }
+                            else
+                            {
+                                sheet.Cells[row, col] = prod[key];
+                            }
+                            col++;
+                        }
 
                         sheet.Cells[row, 3].Font.Name = "Uni Ila.Sundaram-03";
-                        sheet.Cells[row, 3].Font.Size = 9.75;
+                        sheet.Cells[row, 3].Font.Size = 11.75;
 
                         decimal invoiceQty = SafeConvertDecimal(prod["Bill Qty"]);
                         if (invoiceQty == 0)
@@ -462,6 +492,9 @@ namespace ROMS
                 }
 
                 sheet.Columns.AutoFit();
+                sheet.Columns[1].ColumnWidth = 5;
+                sheet.Columns[2].ColumnWidth = 20;
+                sheet.Columns[3].ColumnWidth = 50;
 
                 decimal SafeConvertDecimal(JToken token)
                 {
@@ -473,7 +506,7 @@ namespace ROMS
                 SaveFileDialog sfd = new SaveFileDialog
                 {
                     Filter = "Excel Workbook (*.xlsx)|*.xlsx",
-                    FileName = "Unapproved Purchase Details Report.xlsx"
+                    FileName = "Unapproved Purchase Details Report" + " _ " + dpFromDate.Text.Replace("/", "-") + "_" + dpToDate.Text.Replace("/", "-") + ".xlsx"
                 };
 
                 if (sfd.ShowDialog() == DialogResult.OK)
@@ -904,7 +937,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14,15,26) AND STSID IN (0,62,70,114)", "STS_ShortName,STSID", cmbBillType, "", "STS_ShortName", "STSID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,7) AND STSID IN (0,17,23)", "STS_Name,STSID", cmbPayType, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,81) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MST_OrderID", cmbPayType, "", "MST_DisplayText", "MST_OrderID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,61) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
