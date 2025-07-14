@@ -138,7 +138,7 @@ namespace ROMS
                 varTodayDate = Convert.ToString(MainForm.pbCurrentDate);
                 dpExpProReturnDCDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 udfnUddtTable();
-                if(MainForm.objPUR_PurchaseReturns.varStatusId==16)
+                if(MainForm.objPUR_PurchaseReturns.varStatusId==15 || MainForm.objPUR_PurchaseReturns.varStatusId == 16 || MainForm.objPUR_PurchaseReturns.varStatusId == 101)
                 {
                     if (MainForm.objPUR_PurchaseReturns.dtExchangeProducts.Rows.Count != 0)
                     {

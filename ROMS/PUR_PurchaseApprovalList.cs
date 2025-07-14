@@ -237,6 +237,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                lblTotal.Text = Convert.ToString(grdPurchaseEntryApproval.RowCount);
             }
         }
         public void udfnEdit()

@@ -38,5 +38,6 @@ namespace ROMS.Model
         public DataTable paraPayment { get; set; } = null;
         public DataTable paradtparaAdvance { get; set; } = null;
         public string paraPurchaseID { get; set; } = "";
+        public int paraSource { get; set; } = 0;
     }
 }

@@ -37,6 +37,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbMismatchCount = new System.Windows.Forms.ToolStripButton();
             this.tsbPurchaseApproval = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbQue = new System.Windows.Forms.ToolStripButton();
@@ -73,7 +74,8 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.tsbMismatchCount = new System.Windows.Forms.ToolStripButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
@@ -112,6 +114,19 @@
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(157, 25);
             this.toolStripLabel1.Text = "Purchase Entry Approval";
+            // 
+            // tsbMismatchCount
+            // 
+            this.tsbMismatchCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbMismatchCount.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbMismatchCount.ForeColor = System.Drawing.Color.Tomato;
+            this.tsbMismatchCount.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbMismatchCount.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMismatchCount.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbMismatchCount.Name = "tsbMismatchCount";
+            this.tsbMismatchCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbMismatchCount.Size = new System.Drawing.Size(23, 25);
+            this.tsbMismatchCount.Text = "0";
             // 
             // tsbPurchaseApproval
             // 
@@ -301,6 +316,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label6);
+            this.grpfilter.Controls.Add(this.lblTotal);
             this.grpfilter.Controls.Add(this.label3);
             this.grpfilter.Controls.Add(this.label5);
             this.grpfilter.Controls.Add(this.lblschedleCode);
@@ -593,18 +610,27 @@
             this.toolStripButton1.Size = new System.Drawing.Size(184, 25);
             this.toolStripButton1.Text = "Purchase Entry Rejected List";
             // 
-            // tsbMismatchCount
+            // label6
             // 
-            this.tsbMismatchCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbMismatchCount.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbMismatchCount.ForeColor = System.Drawing.Color.Tomato;
-            this.tsbMismatchCount.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbMismatchCount.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbMismatchCount.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbMismatchCount.Name = "tsbMismatchCount";
-            this.tsbMismatchCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbMismatchCount.Size = new System.Drawing.Size(23, 25);
-            this.tsbMismatchCount.Text = "0";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(1018, 27);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 20);
+            this.label6.TabIndex = 132344557;
+            this.label6.Text = "No.of Records :";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotal.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotal.Location = new System.Drawing.Point(1118, 27);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(17, 20);
+            this.lblTotal.TabIndex = 132344558;
+            this.lblTotal.Text = "0";
             // 
             // PUR_PurchaseApprovalList
             // 
@@ -680,5 +706,7 @@
         public System.Windows.Forms.ToolStripButton toolStripButton1;
         public System.Windows.Forms.ToolStripButton toolStripButton2;
         public System.Windows.Forms.ToolStripButton tsbMismatchCount;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

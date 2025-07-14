@@ -887,7 +887,7 @@ namespace ROMS
                                     grdReturnDC.Columns["clmRKID"].Visible = false;
                                     if(Convert.ToInt32(cmbReason.SelectedValue) == 203)
                                     {
-                                        if (varStatusId != 39 && varStatusId != 79)
+                                        if (varStatusId != 39 && varStatusId != 79 && varStatusId != 15)
                                         {
                                             grdReturnDC.Columns["clmRemove"].Visible = true;
                                         }

@@ -123,6 +123,7 @@
             this.clmAdvanceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPayAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmid1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPAYIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReturnSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -131,6 +132,7 @@
             this.clmenteredBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmApprovedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCreditID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -656,6 +658,7 @@
             this.clmAdvanceAmnt,
             this.clmPayAmount,
             this.clmID,
+            this.clmid1,
             this.clmPAYIID,
             this.clmStatus,
             this.clmReturnSts,
@@ -663,7 +666,8 @@
             this.clmPaymentAmount,
             this.clmenteredBy,
             this.clmApprovedBy,
-            this.clmCreditID});
+            this.clmCreditID,
+            this.clmFlag});
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1099,6 +1103,12 @@
             this.clmID.ReadOnly = true;
             this.clmID.Visible = false;
             // 
+            // clmid1
+            // 
+            this.clmid1.HeaderText = "ID1";
+            this.clmid1.Name = "clmid1";
+            this.clmid1.Visible = false;
+            // 
             // clmPAYIID
             // 
             this.clmPAYIID.HeaderText = "PAYIID";
@@ -1151,6 +1161,12 @@
             this.clmCreditID.HeaderText = "CreditID";
             this.clmCreditID.Name = "clmCreditID";
             this.clmCreditID.Visible = false;
+            // 
+            // clmFlag
+            // 
+            this.clmFlag.HeaderText = "Flag";
+            this.clmFlag.Name = "clmFlag";
+            this.clmFlag.Visible = false;
             // 
             // PAY_SupplierPayment
             // 
@@ -1269,6 +1285,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAdvanceAmnt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPayAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmid1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPAYIID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnSts;
@@ -1277,5 +1294,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmenteredBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmApprovedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCreditID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmFlag;
     }
 }

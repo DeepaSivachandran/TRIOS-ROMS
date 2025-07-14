@@ -1541,7 +1541,7 @@ namespace ROMS
                             txtActualQty.Text = Qty;
                         }
                         grdInward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                        grdInward.Rows.Add(grdInward.Rows.Count + 1,txtRack.Text,varPICode.Trim(), varTamilname.Trim(), Convert.ToDecimal(mrp), varExpiryDate, Shelflife, varAcutalshelflife,varShelflifevalue,txtBatchNo.Text.Trim(), txtActualQty.Text, 0,0,txtunit.Text,varPRID,varRKID,varStockLocationId,varUTID, varDecimal, varMRPFlag, varRMProductionFlag, varShelflife,varBatchNo,varBatchNoGeneration);
+                        grdInward.Rows.Add(grdInward.Rows.Count + 1,txtRack.Text,varPICode.Trim(), varTamilname.Trim(), Convert.ToDecimal(mrp), varExpiryDate, Shelflife, varAcutalshelflife,varShelflifevalue,txtBatchNo.Text.Trim(), txtActualQty.Text, 0, txtActualQty.Text, txtunit.Text,varPRID,varRKID,varStockLocationId,varUTID, varDecimal, varMRPFlag, varRMProductionFlag, varShelflife,varBatchNo,varBatchNoGeneration);
                         dtInward.Rows.Add(varPRID, Convert.ToDecimal(txtMrp.Text), varExpiryDate, txtBatchNo.Text.Trim(),txtActualQty.Text.Trim(),varRKID,varStockLocationId,0,0,varShelflife,ProductShelflifeValue,ProductShelflifeType,varShelflifeper[0],varMRPFlag,varRMProductionFlag, varBatchNo, varBatchNoGeneration, Shelflifevalue);
                         txttotalitem.Text = Convert.ToString(grdInward.Rows.Count);
                         //((DataGridViewTextBoxColumn)grdInward.Columns["clmQuantity"]).MaxInputLength = 8;
