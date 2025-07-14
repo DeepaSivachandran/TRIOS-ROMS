@@ -1082,6 +1082,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "PI Code";
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                    DGV_FilterProduct.Columns["PR_EName"].Visible = false;
+                                    DGV_FilterProduct.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 }
                                 else
                                 {

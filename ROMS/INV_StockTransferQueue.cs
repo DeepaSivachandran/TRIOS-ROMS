@@ -1189,7 +1189,7 @@ namespace ROMS
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 330;
-                                    DGV_FilterProduct.Columns["PR_TName"].Width = 330;
+                                    DGV_FilterProduct.Columns["PR_TName"].Width = 430;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 150;
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
                                     DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 2;
@@ -1197,6 +1197,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product English Name";
+                                    DGV_FilterProduct.Columns["PR_EName"].Visible = false;
+                                    DGV_FilterProduct.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 }
                                 else
                                 {
