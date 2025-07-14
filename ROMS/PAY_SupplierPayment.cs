@@ -35,6 +35,7 @@ namespace ROMS
         public string varAdvance = "", varPayAmnt="", varCompanyID="0";
         public decimal varSubtotal = 0;
         public int clearClick = 0, varApplyFlag = 0, varPaymentStatus = 0, varCreatemodeFlag = 0, varUncheckFlag = 0;
+        Boolean BlnSearchImageYN = false;
         public PAY_SupplierPayment()
         {
             InitializeComponent();
@@ -1038,6 +1039,7 @@ namespace ROMS
                                 grdSupplierPayment.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["paymentAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["Purchase Return Adjustment"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
                                 //dtPayment.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pay Amount"]),0);
                                 varModifiedFlag = 1;
                                 //if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"])==0)
@@ -1086,7 +1088,7 @@ namespace ROMS
             try
             {
                 udfnGridSearchHeading(grdSupplierPayment, DGV_SearchGrid);
-                //DGV_SearchGrid.Columns.Clear();
+                DGV_SearchGrid.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in grdSupplierPayment.Columns)
                 {
@@ -1096,11 +1098,14 @@ namespace ROMS
                 int rowIndex = 0;
                 DGV_SearchGrid.Rows.Clear();
                 DGV_SearchGrid.Rows.Add();
+                DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
                 DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+
+                DGV_SearchGrid.Columns[0].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1119,11 +1124,31 @@ namespace ROMS
                     }
                 }
                 int rowIndex = 0;
+                int ColIndex = 0;
                 dgv2.Rows.Clear();
                 dgv2.Rows.Add();
+                BlnSearchImageYN = false;
                 for (int i = 0; i < visibleColumns.Count; i++)
                 {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                    {
+                        BlnSearchImageYN = true;
+                        dgv2.Rows[rowIndex].Cells[i].Value = false;
+                    }
+                    else
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1793,23 +1818,29 @@ namespace ROMS
         {
             try
             {
+
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
-                                                                   //return;
+                if (!(e.ColumnIndex == 0)) /*If not our desired columns*/
+                                           //return;
 
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                     {
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
                             & ~(DataGridViewPaintParts.ContentForeground));
 
-                        //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                        //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-
                         e.Handled = true;
                     }
 
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    if (e.Value == null || !(bool)e.Value)
+                    {
+                        e.PaintBackground(e.CellBounds, false);
+                        e.Handled = true;
+                    }
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
