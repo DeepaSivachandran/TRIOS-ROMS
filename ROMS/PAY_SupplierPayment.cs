@@ -16,6 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataSet objDs = new DataSet();
+        Boolean BlnSearchImageYN = false;
         DataTable dtPayment = new DataTable();
         public DataTable dtCheckAdv = new DataTable();
         public DataTable dtAdvance = new DataTable();
@@ -35,7 +36,7 @@ namespace ROMS
         public string varAdvance = "", varPayAmnt="", varCompanyID="0";
         public decimal varSubtotal = 0;
         public int clearClick = 0, varApplyFlag = 0, varPaymentStatus = 0, varCreatemodeFlag = 0, varUncheckFlag = 0;
-        Boolean BlnSearchImageYN = false;
+        public DataTable dtSupplierPaymentDetails = new DataTable();
         public PAY_SupplierPayment()
         {
             InitializeComponent();
@@ -1010,7 +1011,6 @@ namespace ROMS
                 varSupplierName = txtsuppliername.Text;
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                grdSupplierPayment.DataSource = null;
                 if (lblSupplierCode.Text.Length > 0)
                 {
                     Model.TRN_Supplier_Payment objTRN_Supplier_Payment = new Model.TRN_Supplier_Payment();
@@ -1024,22 +1024,19 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            //grdSupplierPayment.Rows.Clear();
-
-                            grdSupplierPayment.DataSource = objDs.Tables[0];
-                            for (int i = 0; i < grdSupplierPayment.Rows.Count; i++)
+                            grdSupplierPayment.Rows.Clear();
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                //grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Discount Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]),0.00, Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID1"]), 0,Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),Convert.ToString(objDs.Tables[0].Rows[i]["RetStatus"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[0].Rows[i]["CNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Flag"]));
-                                grdSupplierPayment.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdSupplierPayment.Columns["Voucher Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                decimal varAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["Invoice Amount"].Value);
-                                grdSupplierPayment.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                grdSupplierPayment.Columns["Taxable Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdSupplierPayment.Columns["Tax Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdSupplierPayment.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdSupplierPayment.Columns["paymentAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdSupplierPayment.Columns["Purchase Return Adjustment"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Discount Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]),0.00, Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID1"]), 0,Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),Convert.ToString(objDs.Tables[0].Rows[i]["RetStatus"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[0].Rows[i]["CNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Flag"]));
+                                grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                decimal varAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmInvoiceAmnt"].Value);
+                                grdSupplierPayment.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdSupplierPayment.Columns["clmTaxableAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmTaxAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmInvoiceAmnt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmPayAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSupplierPayment.Columns["clmReturnAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 //dtPayment.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pay Amount"]),0);
                                 varModifiedFlag = 1;
                                 //if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"])==0)
@@ -1055,24 +1052,58 @@ namespace ROMS
                                 //    lblGrandTotal.Text = GrandTot.ToString("#,##0.00");
                                 //}
                                 //else 
-
-                                if (Convert.ToInt32(grdSupplierPayment.Rows[i].Cells["Flag"].Value) == 0 && (Convert.ToInt32(grdSupplierPayment.Rows[i].Cells["RetStatus"].Value) == 0 || Convert.ToInt32(grdSupplierPayment.Rows[i].Cells["RetStatus"].Value) == 79))
+                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]) == 0 && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 79))
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = false;
-                                    grdSupplierPayment.Rows[i].Cells["paymentAmount"].ReadOnly = true;
-                                    grdSupplierPayment.Rows[i].Cells["paymentAmount"].Style.BackColor = Color.LightGray;
+                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;
+                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Style.BackColor = Color.LightGray;
                                 }
                                 else
                                 {
-                                    grdSupplierPayment.Rows[i].Cells["paymentAmount"].ReadOnly = true;
-                                    grdSupplierPayment.Rows[i].Cells["paymentAmount"].Style.BackColor = Color.LightGray;
+                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].ReadOnly = true;
+                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Style.BackColor = Color.LightGray;
                                     DataGridViewTextBoxCell c = new DataGridViewTextBoxCell();
                                     c.Value = "";
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"] = c;
                                     c.ReadOnly = true;
                                 }
+
                             }
                             udfnSearchGridHead();
+                            grdSupplierPayment.Columns["clmdsno"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmVoucherDate"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmvoucherno"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmInvoiceDate"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmInvoiceNo"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmTaxableAmnt"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmTaxAmount"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmInvoiceAmnt"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmDiscAmount"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmReturnAmt"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmAdvanceAmnt"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmPayAmount"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmStatus"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmenteredBy"].ReadOnly = true;
+                            grdSupplierPayment.Columns["clmApprovedBy"].ReadOnly = true;
+
+                            foreach (DataGridViewColumn col in grdSupplierPayment.Columns)
+                            {
+                                dtSupplierPaymentDetails.Columns.Add(col.Name, typeof(string)); // Or proper type if known
+                            }
+
+                            // Add rows from the grid
+                            foreach (DataGridViewRow row in grdSupplierPayment.Rows)
+                            {
+                                if (!row.IsNewRow) // Skip the new row placeholder
+                                {
+                                    DataRow dr = dtSupplierPaymentDetails.NewRow();
+                                    foreach (DataGridViewCell cell in row.Cells)
+                                    {
+                                        dr[cell.OwningColumn.Name] = cell.Value ?? DBNull.Value;
+                                    }
+                                    dtSupplierPaymentDetails.Rows.Add(dr);
+                                }
+                            }
                         }
                     }
                 }
@@ -1082,6 +1113,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
         }
         private void udfnSearchGridHead()
         {
@@ -1098,14 +1130,16 @@ namespace ROMS
                 int rowIndex = 0;
                 DGV_SearchGrid.Rows.Clear();
                 DGV_SearchGrid.Rows.Add();
+                //DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                 DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
-                for (int i = 0; i < visibleColumns.Count; i++)
+                DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
+                for (int i = 1; i < visibleColumns.Count; i++)
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
                 DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-
                 DGV_SearchGrid.Columns[0].ReadOnly = true;
+
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1800,20 +1834,6 @@ namespace ROMS
             }
         }
 
-        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdSupplierPayment.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierPayment);
-                objDser.CloseConnection();
-                grdSupplierPayment.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -1821,13 +1841,14 @@ namespace ROMS
 
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0)) /*If not our desired columns*/
-                                           //return;
-
+                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                     {
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
                             & ~(DataGridViewPaintParts.ContentForeground));
+
+                        //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                        //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
                         e.Handled = true;
                     }
@@ -1841,6 +1862,18 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
+                if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
+                {
+                    if (e.ColumnIndex == 1)
+                    {
+                        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = null;
+                        DGV_SearchGrid.Rows[e.RowIndex].Cells[3] = new DataGridViewTextBoxCell();
+                        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = "";
+                        DGV_SearchGrid.Rows[e.RowIndex].Cells[3].ReadOnly = true;
+
+                    }
+                }
+
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -1849,7 +1882,12 @@ namespace ROMS
         {
             try
             {
-                DataGridViewColumn newColumn = grdSupplierPayment.Columns[e.ColumnIndex];
+                int i = e.ColumnIndex + 2;
+                if (e.ColumnIndex == 0)
+                {
+                    i = e.ColumnIndex;
+                }
+                DataGridViewColumn newColumn = grdSupplierPayment.Columns[i];
                 DataGridViewColumn oldColumn = grdSupplierPayment.SortedColumn;
                 ListSortDirection direction;
 
@@ -1873,18 +1911,22 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdSupplierPayment.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
-
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-                DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierPayment.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                {
+                    grdSupplierPayment.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierPayment.HorizontalScrollingOffset;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
             }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -1895,7 +1937,6 @@ namespace ROMS
                 {
                     grdSupplierPayment.Columns[e.Column.Index].Width = e.Column.Width;
                     DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierPayment.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
                 }
             }
             catch (Exception ex)
@@ -1916,30 +1957,21 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdSupplierPayment.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierPayment);
+
+                DataGridView tempGrid = new DataGridView();
+                tempGrid.DataSource = dtSupplierPaymentDetails;
+                tempGrid.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, tempGrid);
+                //grdSupplierPayment.Rows = tempGrid.DataSource;
                 objDser.CloseConnection();
                 grdSupplierPayment.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdSupplierPayment.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierPayment);
-                objDser.CloseConnection();
-                grdSupplierPayment.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
@@ -1947,21 +1979,105 @@ namespace ROMS
             try
             {
                 int totalWidth = 0;
+                int cl = grdSupplierPayment.ColumnCount;
+                int cls = DGV_SearchGrid.ColumnCount;
                 int offSetValue = grdSupplierPayment.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
+
                 if (totalWidth - grdSupplierPayment.Width > grdSupplierPayment.HorizontalScrollingOffset && grdSupplierPayment.HorizontalScrollingOffset > 0)
                 {
+                    //offSetValue = offSetValue ;
                     offSetValue = offSetValue;
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdSupplierPayment);
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GrdSupplierPayment_Scroll(object sender, ScrollEventArgs e)
+        {
+
+            try
+            {
+                int totalWidth = 0;
+                int cl = grdSupplierPayment.ColumnCount;
+                int cls = DGV_SearchGrid.ColumnCount;
+                int offSetValue = grdSupplierPayment.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+
+                if (totalWidth - grdSupplierPayment.Width > grdSupplierPayment.HorizontalScrollingOffset && grdSupplierPayment.HorizontalScrollingOffset > 0)
+                {
+                    //offSetValue = offSetValue ;
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdSupplierPayment);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnscrollVisible(DataGridView DGV, DataGridView grdGroupList)
+        {
+            try
+            {
+                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+
+                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            if (DGV_SearchGrid.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                            {
+                                DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            }
+                            else { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = ""; }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                DataGridView tempGrid = new DataGridView();
+                tempGrid.DataSource = dtSupplierPaymentDetails;
+                grdSupplierPayment.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, tempGrid);
+                objDser.CloseConnection();
+                grdSupplierPayment.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void CmbBank_KeyPress(object sender, KeyPressEventArgs e)
