@@ -27,7 +27,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbShow.Focus();
+                    btnListPrint.Focus();
                 }
             }
             catch (Exception ex)
@@ -229,10 +229,10 @@ namespace ROMS
                     varsupplier = 1;
                     varpono = 1;
                     varFilter = 1;
-                } 
+                }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter,Convert.ToInt32(lblProductcode.Text), 0, 0, 0, 0);
+                objDs = objdserv.udfnPOEntry(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -285,13 +285,13 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraProductCode", Convert.ToInt32(lblProductcode.Text));
                     objBillreport.SetParameterValue("ParaSubGroupID", Convert.ToString(lblSubGroupCode.Text));
                     objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
-                    objBillreport.SetParameterValue("ParaScheduleId ", Convert.ToInt32(lblschedleCode.Text)); 
-                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("ParaScheduleId ", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text)); 
                     objBillreport.SetParameterValue("paraSubGroupname", varSubgroupName); 
                     objBillreport.SetParameterValue("paraGroupname", varGroupName); 
                     objBillreport.SetParameterValue("paraProductName", varProductname); 
-                    objBillreport.SetParameterValue("paraSupplierName", varSuppliername); 
+                    objBillreport.SetParameterValue("paraSupplierName", varSuppliername);
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -1056,7 +1056,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)

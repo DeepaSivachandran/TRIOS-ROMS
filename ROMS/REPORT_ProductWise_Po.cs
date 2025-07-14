@@ -135,6 +135,16 @@ namespace ROMS
                         varSupplierName = txtSupplier.Text;
                     }
                 }
+                int varFlag = 0, varStatusID = 0;
+                if (rbComplete.Checked == true)
+                {
+                    varFlag = 1;
+                    varStatusID = Convert.ToInt32(cmbCompletedStatus.SelectedValue);
+                }
+                else
+                {
+                    varStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                }
                 LV_Supplier.Visible = false;
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -145,7 +155,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(11, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, 0, 0,varGroupId ,varSubgroupId , "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0",0, varProductId, 0, 0,0, 0);
+                objDs = objdserv.udfnPOEntry(11, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, 0, 0,varGroupId ,varSubgroupId , dpFromDate.Text, dpToDate.Text, 0, varStatusID, "0",0, varProductId, 0, 0,0, 0, varFlag);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -161,7 +171,10 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaGroupID", varGroupId);
                     objBillreport.SetParameterValue("ParaSubGroupID", varSubgroupId);
                     objBillreport.SetParameterValue("paraProductCode", varProductId);
-                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraFlag", varFlag);
+                    objBillreport.SetParameterValue("ParaPOFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("ParaPOToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraStatus", varStatusID);
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
@@ -220,11 +233,14 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,4) AND STSID IN (0,9,14)", "STS_Name,STSID", cmbCompletedStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                dpFromDate.Visible = false;
+                dpToDate.Visible = false;
             }
             catch (Exception ex)
             {
@@ -939,6 +955,161 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbNotcomplete_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbNotcomplete.Checked == true)
+                {
+                    cmbStatus.Enabled = true;
+                    cmbStatus.Visible = true;
+                    cmbStatus.SelectedValue = 0;
+                    cmbCompletedStatus.Visible = false;
+                    dpFromDate.Visible = false;
+                    dpToDate.Visible = false;
+                }
+                else
+                {
+                    cmbStatus.Enabled = false;
+                    cmbStatus.Visible = false;
+                    cmbCompletedStatus.Visible = true;
+                    cmbCompletedStatus.SelectedValue = 0;
+                    dpFromDate.Visible = true;
+                    dpToDate.Visible = true;
+                    dpFromDate.Value = MainForm.pbCurrentDate;
+                    dpToDate.Value = MainForm.pbCurrentDate;
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbComplete_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbComplete.Checked == true)
+                {
+                    cmbStatus.Enabled = false;
+                    cmbStatus.Visible = false;
+                    cmbCompletedStatus.Visible = true;
+                    cmbCompletedStatus.SelectedValue = 0;
+                    dpFromDate.Visible = true;
+                    dpToDate.Visible = true;
+                    dpFromDate.Value = MainForm.pbCurrentDate;
+                    dpToDate.Value = MainForm.pbCurrentDate;
+                }
+                else
+                {
+                    cmbStatus.Visible = true;
+                    cmbStatus.Enabled = true;
+                    cmbStatus.SelectedValue = 0;
+                    cmbCompletedStatus.Visible = false;
+                    dpFromDate.Visible = false;
+                    dpToDate.Visible = false;
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbCompletedStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                LV_Supplier.Visible = false;
+                cmbCompletedStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbCompletedStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpFromDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbCompletedStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbCompletedStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                LV_Supplier.Visible = false;
+                cmbCompletedStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpToDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpToDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {

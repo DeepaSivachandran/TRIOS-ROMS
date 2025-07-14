@@ -297,7 +297,11 @@ namespace ROMS
                         {
                             varSupplierName = txtSupplier.Text.Trim();
                         }
-                        ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, varSupplierName, cmbPayType.Text, cmbConditionType.Text);
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+
+                        }
+                        ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, varSupplierName, cmbPayType.Text, cmbConditionType.Text,objDs.Tables[1]);
                     }
                     else
                     {
@@ -322,7 +326,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void ExportPurchaseJsonToExcelInterop(string jsonString, string fromDate, string supplierName, string payType, string conditionType)
+        public void ExportPurchaseJsonToExcelInterop(string jsonString, string fromDate, string supplierName, string payType, string conditionType,DataTable footerData)
         {
 
             try
@@ -413,6 +417,8 @@ namespace ROMS
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
                     sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
                     row++;
 
                     sheet.Cells[row, 1] = purchaseIndex++;
@@ -467,7 +473,9 @@ namespace ROMS
 
                     for (int i = 0; i < productHeaders.Length; i++)
                         sheet.Cells[row, i + 1] = productHeaders[i];
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
+                    var headerRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]];
+                    headerRange.Font.Bold = true;
+                    headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                     row++;
 
 
@@ -543,11 +551,154 @@ namespace ROMS
                     row += 2;
                 }
 
+                if (footerData != null && footerData.Rows.Count > 0)
+                {
+                    row += 2; // Leave space from previous section
+                    int footerStartRow = row;
+
+                    int footerStartCol = 4; // Column D
+
+                    // Main Headers
+                    sheet.Cells[row, footerStartCol] = "GST %";
+
+                    string[] mainHeaders = { "Register", "IGST", "URD", "Composite", "" };
+                    int[] headerColSpan = { 2, 2, 2, 2, 1 };
+                    int startCol = footerStartCol + 1;
+
+                    for (int i = 0; i < mainHeaders.Length; i++)
+                    {
+                        int endCol = startCol + headerColSpan[i] - 1;
+                        var headerRange = sheet.Range[sheet.Cells[row, startCol], sheet.Cells[row, endCol]];
+                        headerRange.Merge();
+                        headerRange.Value = mainHeaders[i];
+                        headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                        headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                        headerRange.Font.Bold = true;
+
+                        headerRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                        startCol = endCol + 1;
+                    }
+
+                    var gstHeaderCell = sheet.Cells[row, footerStartCol];
+                    gstHeaderCell.Font.Bold = true;
+                    gstHeaderCell.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    gstHeaderCell.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+
+                    ((Excel.Range)gstHeaderCell).Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                    row++;
+
+                    // Subheaders
+                    string[] subHeaders = {
+        "Taxable Value", "Tax Value",
+        "Taxable Value", "IGST Value",
+        "Taxable Value", "Reverse Tax Value",
+        "Taxable Value", "Reverse Tax Value",
+        "Total"
+    };
+
+                    for (int col = footerStartCol + 1; col <= footerStartCol + 9; col++)
+                    {
+                        sheet.Cells[row, col] = subHeaders[col - (footerStartCol + 1)];
+                    }
+
+                    var subHeaderRange = sheet.Range[
+                        sheet.Cells[row, footerStartCol],
+                        sheet.Cells[row, footerStartCol + 9]
+                    ];
+                    subHeaderRange.Font.Bold = true;
+                    subHeaderRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    subHeaderRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                    subHeaderRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                    row++;
+
+                    int dataRowStart = row;
+
+                    // Insert Data Rows
+                    for (int i = 0; i < footerData.Rows.Count; i++)
+                    {
+                        decimal rowTotal = 0;
+
+                        for (int j = 0; j < footerData.Columns.Count; j++)
+                        {
+                            object cellValue = footerData.Rows[i][j];
+                            int colIndex = footerStartCol + j;
+
+                            sheet.Cells[row, colIndex] = cellValue;
+
+                            if (j > 0 && decimal.TryParse(cellValue?.ToString(), out decimal numericValue))
+                            {
+                                rowTotal += numericValue;
+                            }
+                        }
+
+                        sheet.Cells[row, footerStartCol + 9] = rowTotal;
+
+                        var dataRowRange = sheet.Range[
+                            sheet.Cells[row, footerStartCol],
+                            sheet.Cells[row, footerStartCol + 9]
+                        ];
+                        dataRowRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                        row++;
+                    }
+
+
+                    int dataRowEnd = row - 1;
+
+                    // Add Total Row
+                    sheet.Cells[row, footerStartCol] = "Total";
+                    sheet.Cells[row, footerStartCol].Font.Bold = true;
+
+                    for (int col = footerStartCol + 1; col <= footerStartCol + 9; col++)
+                    {
+                        string colLetter = GetExcelColumnName(col);
+                        string sumFormula = $"=SUM({colLetter}{dataRowStart}:{colLetter}{dataRowEnd})";
+                        sheet.Cells[row, col].Formula = sumFormula;
+                        sheet.Cells[row, col].Font.Bold = true;
+                    }
+
+                    var totalRowRange = sheet.Range[
+                        sheet.Cells[row, footerStartCol],
+                        sheet.Cells[row, footerStartCol + 9]
+                    ];
+                    totalRowRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightYellow);
+                    totalRowRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                    row++;
+
+                    var footerTableRange = sheet.Range[
+                        sheet.Cells[footerStartRow, footerStartCol],
+                        sheet.Cells[row - 1, footerStartCol + 9]
+                    ];
+                    footerTableRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                }
+
+                string GetExcelColumnName(int columnNumber)
+                {
+                    int dividend = columnNumber;
+                    string columnName = String.Empty;
+                    int modulo;
+
+                    while (dividend > 0)
+                    {
+                        modulo = (dividend - 1) % 26;
+                        columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
+                        dividend = (dividend - modulo) / 26;
+                    }
+
+                    return columnName;
+                }
+
+
                 sheet.Columns.AutoFit();
 
                 sheet.Columns[1].ColumnWidth = 5;
                 sheet.Columns[2].ColumnWidth = 20;
                 sheet.Columns[3].ColumnWidth = 50;
+
 
                 decimal SafeConvertDecimal(JToken token)
                 {

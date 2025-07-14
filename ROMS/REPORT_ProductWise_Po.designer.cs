@@ -55,7 +55,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.dpToDate = new System.Windows.Forms.DateTimePicker();
+            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.pnlPO = new System.Windows.Forms.Panel();
+            this.rbNotcomplete = new System.Windows.Forms.RadioButton();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.cmbCompletedStatus = new System.Windows.Forms.ComboBox();
+            this.rbComplete = new System.Windows.Forms.RadioButton();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.lblGroupCode = new System.Windows.Forms.Label();
@@ -75,6 +81,7 @@
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
+            this.pnlPO.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,7 +95,7 @@
             this.tspHeader});
             this.ReportSupplier.Location = new System.Drawing.Point(0, 0);
             this.ReportSupplier.Name = "ReportSupplier";
-            this.ReportSupplier.Size = new System.Drawing.Size(1354, 31);
+            this.ReportSupplier.Size = new System.Drawing.Size(1354, 25);
             this.ReportSupplier.TabIndex = 35;
             this.ReportSupplier.Text = "GRN Summary Report";
             // 
@@ -99,7 +106,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(217, 28);
+            this.tspHeader.Size = new System.Drawing.Size(179, 22);
             this.tspHeader.Text = "Purchase Order-Status Wise";
             // 
             // pnlReportStockLocation
@@ -262,9 +269,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(625, 22);
+            this.label6.Location = new System.Drawing.Point(526, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 26);
+            this.label6.Size = new System.Drawing.Size(87, 20);
             this.label6.TabIndex = 111111150;
             this.label6.Text = "Supplier Name";
             // 
@@ -274,13 +281,15 @@
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(9, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 26);
+            this.label5.Size = new System.Drawing.Size(132, 20);
             this.label5.TabIndex = 111111146;
             this.label5.Text = "Product Name/PI Code";
             // 
             // grpfilter
             // 
-            this.grpfilter.Controls.Add(this.cmbStatus);
+            this.grpfilter.Controls.Add(this.dpToDate);
+            this.grpfilter.Controls.Add(this.dpFromDate);
+            this.grpfilter.Controls.Add(this.pnlPO);
             this.grpfilter.Controls.Add(this.lblStatus);
             this.grpfilter.Controls.Add(this.lblProductcode);
             this.grpfilter.Controls.Add(this.lblGroupCode);
@@ -301,25 +310,94 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // dpToDate
+            // 
+            this.dpToDate.CustomFormat = "dd/MM/yyyy";
+            this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpToDate.Location = new System.Drawing.Point(1208, 43);
+            this.dpToDate.Name = "dpToDate";
+            this.dpToDate.Size = new System.Drawing.Size(103, 27);
+            this.dpToDate.TabIndex = 9;
+            this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
+            // 
+            // dpFromDate
+            // 
+            this.dpFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpFromDate.Location = new System.Drawing.Point(1099, 43);
+            this.dpFromDate.Name = "dpFromDate";
+            this.dpFromDate.Size = new System.Drawing.Size(103, 27);
+            this.dpFromDate.TabIndex = 8;
+            this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
+            // 
+            // pnlPO
+            // 
+            this.pnlPO.Controls.Add(this.rbNotcomplete);
+            this.pnlPO.Controls.Add(this.cmbStatus);
+            this.pnlPO.Controls.Add(this.cmbCompletedStatus);
+            this.pnlPO.Controls.Add(this.rbComplete);
+            this.pnlPO.Location = new System.Drawing.Point(782, 39);
+            this.pnlPO.Name = "pnlPO";
+            this.pnlPO.Size = new System.Drawing.Size(316, 35);
+            this.pnlPO.TabIndex = 4;
+            // 
+            // rbNotcomplete
+            // 
+            this.rbNotcomplete.AutoSize = true;
+            this.rbNotcomplete.Checked = true;
+            this.rbNotcomplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbNotcomplete.Location = new System.Drawing.Point(7, 7);
+            this.rbNotcomplete.Name = "rbNotcomplete";
+            this.rbNotcomplete.Size = new System.Drawing.Size(97, 21);
+            this.rbNotcomplete.TabIndex = 4;
+            this.rbNotcomplete.TabStop = true;
+            this.rbNotcomplete.Text = "Not Completed";
+            this.rbNotcomplete.UseVisualStyleBackColor = true;
+            this.rbNotcomplete.CheckedChanged += new System.EventHandler(this.RbNotcomplete_CheckedChanged);
+            // 
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(904, 43);
+            this.cmbStatus.Location = new System.Drawing.Point(193, 4);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(143, 33);
-            this.cmbStatus.TabIndex = 4;
+            this.cmbStatus.Size = new System.Drawing.Size(117, 27);
+            this.cmbStatus.TabIndex = 6;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
             this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
+            // cmbCompletedStatus
+            // 
+            this.cmbCompletedStatus.FormattingEnabled = true;
+            this.cmbCompletedStatus.Location = new System.Drawing.Point(193, 4);
+            this.cmbCompletedStatus.Name = "cmbCompletedStatus";
+            this.cmbCompletedStatus.Size = new System.Drawing.Size(117, 27);
+            this.cmbCompletedStatus.TabIndex = 7;
+            this.cmbCompletedStatus.Enter += new System.EventHandler(this.CmbCompletedStatus_Enter);
+            this.cmbCompletedStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCompletedStatus_KeyDown);
+            this.cmbCompletedStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCompletedStatus_KeyPress);
+            this.cmbCompletedStatus.Leave += new System.EventHandler(this.CmbCompletedStatus_Leave);
+            // 
+            // rbComplete
+            // 
+            this.rbComplete.AutoSize = true;
+            this.rbComplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbComplete.Location = new System.Drawing.Point(110, 7);
+            this.rbComplete.Name = "rbComplete";
+            this.rbComplete.Size = new System.Drawing.Size(77, 21);
+            this.rbComplete.TabIndex = 5;
+            this.rbComplete.Text = "Completed";
+            this.rbComplete.UseVisualStyleBackColor = true;
+            this.rbComplete.CheckedChanged += new System.EventHandler(this.RbComplete_CheckedChanged);
+            // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(904, 19);
+            this.lblStatus.Location = new System.Drawing.Point(971, 22);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(79, 26);
+            this.lblStatus.Size = new System.Drawing.Size(63, 20);
             this.lblStatus.TabIndex = 111111155;
             this.lblStatus.Text = "PO Status";
             // 
@@ -328,7 +406,7 @@
             this.lblProductcode.AutoSize = true;
             this.lblProductcode.Location = new System.Drawing.Point(167, 21);
             this.lblProductcode.Name = "lblProductcode";
-            this.lblProductcode.Size = new System.Drawing.Size(21, 25);
+            this.lblProductcode.Size = new System.Drawing.Size(16, 20);
             this.lblProductcode.TabIndex = 111111148;
             this.lblProductcode.Text = "0";
             this.lblProductcode.Visible = false;
@@ -338,7 +416,7 @@
             this.lblGroupCode.AutoSize = true;
             this.lblGroupCode.Location = new System.Drawing.Point(324, 18);
             this.lblGroupCode.Name = "lblGroupCode";
-            this.lblGroupCode.Size = new System.Drawing.Size(21, 25);
+            this.lblGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblGroupCode.TabIndex = 111111146;
             this.lblGroupCode.Text = "0";
             this.lblGroupCode.Visible = false;
@@ -346,9 +424,9 @@
             // lblSubGroupCode
             // 
             this.lblSubGroupCode.AutoSize = true;
-            this.lblSubGroupCode.Location = new System.Drawing.Point(524, 18);
+            this.lblSubGroupCode.Location = new System.Drawing.Point(448, 18);
             this.lblSubGroupCode.Name = "lblSubGroupCode";
-            this.lblSubGroupCode.Size = new System.Drawing.Size(21, 25);
+            this.lblSubGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblSubGroupCode.TabIndex = 111111147;
             this.lblSubGroupCode.Text = "0";
             this.lblSubGroupCode.Visible = false;
@@ -357,19 +435,19 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(452, 22);
+            this.label4.Location = new System.Drawing.Point(376, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 26);
+            this.label4.Size = new System.Drawing.Size(62, 20);
             this.label4.TabIndex = 1111234;
             this.label4.Text = "Subgroup";
             // 
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(625, 43);
+            this.txtSupplier.Location = new System.Drawing.Point(526, 43);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(273, 32);
+            this.txtSupplier.Size = new System.Drawing.Size(250, 27);
             this.txtSupplier.TabIndex = 3;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -380,9 +458,9 @@
             // 
             this.lblSupplierCode.AutoSize = true;
             this.lblSupplierCode.BackColor = System.Drawing.Color.Green;
-            this.lblSupplierCode.Location = new System.Drawing.Point(797, 20);
+            this.lblSupplierCode.Location = new System.Drawing.Point(742, 20);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(21, 25);
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 111111153;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
@@ -393,7 +471,7 @@
             this.txtProductName.Location = new System.Drawing.Point(9, 43);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(264, 32);
+            this.txtProductName.Size = new System.Drawing.Size(224, 27);
             this.txtProductName.TabIndex = 0;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -404,19 +482,19 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(279, 22);
+            this.label2.Location = new System.Drawing.Point(239, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 26);
+            this.label2.Size = new System.Drawing.Size(42, 20);
             this.label2.TabIndex = 1111233;
             this.label2.Text = "Group";
             // 
             // txtSubGroup
             // 
             this.txtSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubGroup.Location = new System.Drawing.Point(452, 43);
+            this.txtSubGroup.Location = new System.Drawing.Point(376, 43);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
-            this.txtSubGroup.Size = new System.Drawing.Size(167, 32);
+            this.txtSubGroup.Size = new System.Drawing.Size(144, 27);
             this.txtSubGroup.TabIndex = 2;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
             this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
@@ -427,9 +505,9 @@
             // 
             this.lblschedleCode.AutoSize = true;
             this.lblschedleCode.BackColor = System.Drawing.Color.LimeGreen;
-            this.lblschedleCode.Location = new System.Drawing.Point(743, 20);
+            this.lblschedleCode.Location = new System.Drawing.Point(720, 20);
             this.lblschedleCode.Name = "lblschedleCode";
-            this.lblschedleCode.Size = new System.Drawing.Size(21, 25);
+            this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
             this.lblschedleCode.TabIndex = 111111152;
             this.lblschedleCode.Text = "0";
             this.lblschedleCode.Visible = false;
@@ -437,10 +515,10 @@
             // txtGroup
             // 
             this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGroup.Location = new System.Drawing.Point(279, 43);
+            this.txtGroup.Location = new System.Drawing.Point(239, 43);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(167, 32);
+            this.txtGroup.Size = new System.Drawing.Size(131, 27);
             this.txtGroup.TabIndex = 1;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
@@ -452,12 +530,11 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1053, 42);
+            this.btnView.Location = new System.Drawing.Point(1315, 42);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 5;
-            this.btnView.Text = "View";
+            this.btnView.Size = new System.Drawing.Size(33, 29);
+            this.btnView.TabIndex = 10;
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -471,7 +548,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 356);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -506,7 +583,7 @@
             // 
             // REPORT_ProductWise_Po
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
@@ -527,6 +604,8 @@
             this.pnlReportStockLocation.PerformLayout();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
+            this.pnlPO.ResumeLayout(false);
+            this.pnlPO.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -579,5 +658,11 @@
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Panel pnlPO;
+        private System.Windows.Forms.RadioButton rbNotcomplete;
+        private System.Windows.Forms.RadioButton rbComplete;
+        public System.Windows.Forms.ComboBox cmbCompletedStatus;
+        private System.Windows.Forms.DateTimePicker dpToDate;
+        private System.Windows.Forms.DateTimePicker dpFromDate;
     }
 }
