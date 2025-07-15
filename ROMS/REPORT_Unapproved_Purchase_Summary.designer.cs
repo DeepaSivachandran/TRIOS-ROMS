@@ -414,6 +414,8 @@
             this.DGV_FilterProduct.Size = new System.Drawing.Size(273, 226);
             this.DGV_FilterProduct.TabIndex = 1111234;
             this.DGV_FilterProduct.Visible = false;
+            this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
+            this.DGV_FilterProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
             // 
             // REPORT_Unapproved_Purchase_Summary
             // 
