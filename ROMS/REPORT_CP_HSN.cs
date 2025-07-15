@@ -17,6 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+        public int varUpDownKey = 0;
         public REPORT_CP_HSN()
         {
             InitializeComponent();
@@ -484,7 +485,10 @@ namespace ROMS
         {
             try
             {
-                lvHsnName.Visible = false;
+                varUpDownKey = 0;
+                //lvHsnName.Visible = false;
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
                 udfnHsnLoad();
                 cmbGST.BackColor = Color.LemonChiffon;
             }
@@ -576,6 +580,7 @@ namespace ROMS
 
         private void TxtHsnName_KeyDown(object sender, KeyEventArgs e)
         {
+            /*
             try
             {
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
@@ -604,6 +609,116 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            */
+            try
+            {
+                varUpDownKey = 0;
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    //if (lvproduct.Items.Count == 0 && txtProductName.Text == "")
+                    //{
+                    //    txtMrp.Focus();
+                    //    lvproduct.Visible = false;
+                    //}
+                    //else
+                    //{
+                    //    lvproduct.Focus();
+                    //}
+                    //if (lvproduct.Items.Count > 0)
+                    //{
+                    //    lvproduct.Items[0].Selected = true;
+                    //}
+                    DGV_FilterProduct.Focus();
+
+                }
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    txtMrp.Focus();
+                //}
+                if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
+                {
+                    cmbGST.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_FilterProduct.Focus();
+                }
+                if (DGV_FilterProduct.CurrentCell == null && DGV_FilterProduct.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_FilterProduct.Focus();
+                    int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKey = 1;
+                    }
+                    else
+                    {
+                        varUpDownKey = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtHsnName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["HSN_Code"].Value.ToString();
+                            }
+                            txtHsnName.Focus();
+                            txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterProduct.Rows.Count))
+                            {
+                                txtHsnName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["HSN_Code"].Value.ToString();
+                            }
+
+                            txtHsnName.Focus();
+                            txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterProduct.Rows.Count > 0)
+                                {
+                                    varUpDownKey = 1;
+                                    udfnHSNAutocomplete();
+                                    DGV_FilterProduct.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    txtHsnName.Focus();
+                    txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        cmbGST.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtHsnName_Leave(object sender, EventArgs e)
@@ -623,38 +738,69 @@ namespace ROMS
         {
             try
             {
-                lvHsnName.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtHsnName.Text.Length > 0)
+                if (varUpDownKey == 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0,0, 0, txtHsnName.Text.Trim(),"");
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    //lvHsnName.Items.Clear();
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtHsnName.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnName.Text.Trim(), "");
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvHsnName.Items.Add(objList);
-                                    lvHsnName.Columns[0].Width = 90;
-                                    lvHsnName.Columns[1].Width = 210;
-                                    lvHsnName.Columns[2].Width = 0;
+                                    DGV_FilterProduct.Visible = true;
+                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    //{
+                                    //    string[] row = { objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
+                                    //    ListViewItem objList = new ListViewItem(row);
+                                    //    lvHsnName.Items.Add(objList);
+                                    //    lvHsnName.Columns[0].Width = 90;
+                                    //    lvHsnName.Columns[1].Width = 210;
+                                    //    lvHsnName.Columns[2].Width = 0;
+                                    //}
+                                    //lvHsnName.Visible = true;
+                                    //lvHsnName.BringToFront();
+                                    DGV_FilterProduct.DataSource = objDs.Tables[0];
+                                    DGV_FilterProduct.Columns["HSNID"].Visible = false;
+                                    DGV_FilterProduct.Columns["HSN_GSTID"].Visible = false;
+                                    DGV_FilterProduct.Columns["HSN_Name"].HeaderText = "HSN Name";
+                                    DGV_FilterProduct.Columns["HSN_Code"].HeaderText = "HSN Code";
+                                    DGV_FilterProduct.Columns["HSN_Name"].Width = 160;
+                                    DGV_FilterProduct.Columns["HSN_Code"].Width = 140;
+                                    DGV_FilterProduct.Columns["HSN_Code"].DisplayIndex = 0;
+                                    DGV_FilterProduct.Columns["HSN_Name"].DisplayIndex = 1;
+                                    DGV_FilterProduct.BringToFront();
                                 }
-                                lvHsnName.Visible = true;
-                                lvHsnName.BringToFront();
+                                else
+                                {
+                                    DGV_FilterProduct.Visible = false;
+                                    DGV_FilterProduct.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_FilterProduct.Visible = false;
+                                DGV_FilterProduct.DataSource = null;
                             }
                         }
+                        else
+                        {
+                            DGV_FilterProduct.Visible = false;
+                            DGV_FilterProduct.DataSource = null;
+                        }
                     }
-                }
-                else
-                {
-                    lvHsnName.Visible = false;
-                    lvHsnName.Items.Clear();
+                    else
+                    {
+                        DGV_FilterProduct.Visible = false;
+                        DGV_FilterProduct.DataSource = null;
+                        //lvHsnName.Visible = false;
+                        //lvHsnName.Items.Clear();
+                    }
                 }
             }
             catch (Exception ex)
@@ -696,12 +842,14 @@ namespace ROMS
         {
             try
             {
-                if (txtHsnName.Text != "")
+                if (txtHsnName.Text.Trim() != "")
                 {
-                    ListViewItem selectedItem = lvHsnName.SelectedItems[0];
-                    txtHsnName.Text = selectedItem.SubItems[0].Text;
-                    lblHsnName.Text = selectedItem.SubItems[2].Text;
+                    //ListViewItem selectedItem = lvHsnName.SelectedItems[0];
+                    //txtHsnName.Text = selectedItem.SubItems[0].Text;
+                    //lblHsnName.Text = selectedItem.SubItems[2].Text;
                     //txtHSNCode.Text = selectedItem.SubItems[1].Text;
+                    txtHsnName.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
+                    lblHsnName.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSNID"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -711,8 +859,103 @@ namespace ROMS
             }
             finally
             {
-                lvHsnName.Visible = false;
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                //lvHsnName.Visible = false;
                 cmbGST.Focus();
+            }
+        }
+
+        private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    udfnGridviewProduct();
+                //    udfnPossibleSupplierLoad();
+                //}
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKey = 1;
+                    }
+                    else
+                    {
+                        varUpDownKey = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtHsnName.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
+
+                            txtHsnName.Focus();
+                            txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterProduct.Rows.Count))
+                            {
+                                txtHsnName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["HSN_Code"].Value.ToString();
+                            }
+
+                            txtHsnName.Focus();
+                            txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterProduct.Rows.Count > 0)
+                                {
+                                    varUpDownKey = 1;
+                                    udfnHSNAutocomplete();
+                                    DGV_FilterProduct.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        cmbGST.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKey = 1;
+                udfnHSNAutocomplete();
+                cmbGST.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

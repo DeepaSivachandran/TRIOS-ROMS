@@ -280,7 +280,7 @@
             this.columnHeader6});
             this.lvStockLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvStockLocation.HideSelection = false;
-            this.lvStockLocation.Location = new System.Drawing.Point(689, 57);
+            this.lvStockLocation.Location = new System.Drawing.Point(700, 57);
             this.lvStockLocation.Name = "lvStockLocation";
             this.lvStockLocation.Size = new System.Drawing.Size(322, 157);
             this.lvStockLocation.TabIndex = 1111213;
