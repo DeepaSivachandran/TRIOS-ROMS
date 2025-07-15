@@ -458,7 +458,7 @@ namespace ROMS
         {
             try
             {
-                if (txtSupplier.Text != "")
+                if (txtSupplier.Text.Trim() != "")
                 {
                     //ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                     //lblSupplierCode.Text = selectedItem.SubItems[1].Text;
