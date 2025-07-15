@@ -19,6 +19,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+        public int varUpDownKey = 0;
         public REPORT_Unapproved_Purchase_Summary()
         {
             InitializeComponent();
@@ -253,48 +254,68 @@ namespace ROMS
         {
             try
             {
-                LV_Supplier.Items.Clear();
-                if (txtSupplier.Text.Length > 0)
+                if (varUpDownKey == 0)
                 {
-                    MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 26;
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
-                    objMR_Supplier.ParaFromDate = dpFromDate.Text;
-                    objMR_Supplier.ParaToDate = dpToDate.Text;
-                    objMR_Supplier.paraFlag = 5;
-                    DataSet objDs = new DataSet();
-                    SPDataService objspdservice = new SPDataService();
-                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    //LV_Supplier.Items.Clear();
+                    if (txtSupplier.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        MR_Supplier objMR_Supplier = new MR_Supplier();
+                        objMR_Supplier.ViewType = 26;
+                        objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                        objMR_Supplier.ParaFromDate = dpFromDate.Text;
+                        objMR_Supplier.ParaToDate = dpToDate.Text;
+                        objMR_Supplier.paraFlag = 5;
+                        DataSet objDs = new DataSet();
+                        SPDataService objspdservice = new SPDataService();
+                        objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString()
+                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    {
+                                        string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString()
                                     , objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["ScheduleName"].ToString()};
-                                    ListViewItem objList = new ListViewItem(row);
-                                    LV_Supplier.Items.Add(objList);
+                                        ListViewItem objList = new ListViewItem(row);
+                                        LV_Supplier.Items.Add(objList);
+                                    }
+                                    LV_Supplier.Visible = true;
+                                    LV_Supplier.BringToFront();
+                                    LV_Supplier.Columns[0].Width = 300;
+                                    LV_Supplier.Columns[1].Width = 0;
+                                    LV_Supplier.Columns[2].Width = 0;
+                                    LV_Supplier.Columns[3].Width = 0;
+                                    LV_Supplier.Columns[4].Width = 0;
                                 }
-                                LV_Supplier.Visible = true;
-                                LV_Supplier.BringToFront();
-                                LV_Supplier.Columns[0].Width = 300;
-                                LV_Supplier.Columns[1].Width = 0;
-                                LV_Supplier.Columns[2].Width = 0;
-                                LV_Supplier.Columns[3].Width = 0;
-                                LV_Supplier.Columns[4].Width = 0;
+                                else
+                                {
+                                    DGV_FilterProduct.Visible = false;
+                                    DGV_FilterProduct.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_FilterProduct.Visible = false;
+                                DGV_FilterProduct.DataSource = null;
                             }
                         }
+                        else
+                        {
+                            DGV_FilterProduct.Visible = false;
+                            DGV_FilterProduct.DataSource = null;
+                        }
+                        objspdservice.CloseConnection();
                     }
-                    objspdservice.CloseConnection();
-                }
-                else
-                {
-                    LV_Supplier.Visible = false;
-                    LV_Supplier.Items.Clear();
+                    else
+                    {
+                        DGV_FilterProduct.Visible = false;
+                        DGV_FilterProduct.DataSource = null;
+                        //LV_Supplier.Visible = false;
+                        //LV_Supplier.Items.Clear();
+                    }
                 }
             }
             catch (Exception ex)
