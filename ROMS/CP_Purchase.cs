@@ -5067,8 +5067,7 @@ namespace ROMS
                             varErrorFlag = true;
                         }
                     }
-                }
-
+                } 
                 if (Convert.ToString(varNewFlag) == "0")
                 {
                     //if (Convert.ToString(txtProductName.Text) != "")
@@ -5381,6 +5380,14 @@ namespace ROMS
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmexpirydate"];
                                     DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmProductExpiryDate"];
                                     cell.Style.BackColor = Color.LightGray;   cell.Style.ForeColor = Color.Black;  cell.ReadOnly = true;
+                                    cell1.Style.BackColor = Color.LightGray; cell1.Style.ForeColor = Color.Black; cell1.ReadOnly = true;
+                                }
+                                if(expirydateFlag == 0)
+                                {
+                                    DataGridView dataGridView = grdSupplierList;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmexpirydate"];
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmProductExpiryDate"];
+                                    cell.Style.BackColor = Color.LightGray; cell.Style.ForeColor = Color.Black; cell.ReadOnly = true;
                                     cell1.Style.BackColor = Color.LightGray; cell1.Style.ForeColor = Color.Black; cell1.ReadOnly = true;
                                 }
                                 if (varEditFlag == 1 && varEditProAdd == 1)
@@ -6643,29 +6650,30 @@ namespace ROMS
 
                             string procondition = row.Cells["clmConditionID"].Value?.ToString()?.Trim();
 
+                            string varMRPFlag = row.Cells["clmMrpFlag"].Value?.ToString()?.Trim();
+                            string varBactchEnableFlag = row.Cells["clmBatchenable"].Value?.ToString()?.Trim();
+                            string varExpiryDateFlag = row.Cells["clmShelflifeenable"].Value?.ToString()?.Trim();
+
                             bool hasMismatch = false;
 
-                            if (procondition!="226" &&(expiry != invoiceExpiry || string.IsNullOrWhiteSpace(expiry) || string.IsNullOrWhiteSpace(invoiceExpiry)))
+                            if (varExpiryDateFlag=="1" && procondition !="226" &&(expiry != invoiceExpiry || string.IsNullOrWhiteSpace(expiry) || string.IsNullOrWhiteSpace(invoiceExpiry)))
                             {
                                 row.Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                 row.Cells["clmProductExpiryDate"].Style.BackColor = Color.LightPink;
                                 hasMismatch = true;
                             }
-
-                            if (procondition!="226" &&( batchNo != invoiceBatch || string.IsNullOrWhiteSpace(batchNo) || string.IsNullOrWhiteSpace(invoiceBatch)))
+                            if (varBactchEnableFlag=="72" && procondition !="226" &&( batchNo != invoiceBatch || string.IsNullOrWhiteSpace(batchNo) || string.IsNullOrWhiteSpace(invoiceBatch)))
                             {
                                 row.Cells["clmBatchno"].Style.BackColor = Color.LightPink;
                                 row.Cells["clmProductBatchNo"].Style.BackColor = Color.LightPink;
                                 hasMismatch = true;
-                            }
-
-                            if (procondition!="226" && ( mrp != invoiceMrp || string.IsNullOrWhiteSpace(mrp) || string.IsNullOrWhiteSpace(invoiceMrp)))
+                            } 
+                            if (varMRPFlag=="1" && procondition !="226" && ( mrp != invoiceMrp || string.IsNullOrWhiteSpace(mrp) || string.IsNullOrWhiteSpace(invoiceMrp)))
                             {
                                 row.Cells["clmMRP"].Style.BackColor = Color.LightPink;
                                 row.Cells["clmProductMrp"].Style.BackColor = Color.LightPink;
                                 hasMismatch = true;
                             }
-
                             if (hasMismatch)
                             {
                                 varMismatchError = 1;
@@ -13283,7 +13291,7 @@ namespace ROMS
                             GRNID = Convert.ToInt16(pbGRNNo);
                             varViewType = 60;
                             varPOdropdownFlag = 2;
-                            DGV_FilterProduct.Width = 1110;
+                            DGV_FilterProduct.Width = 1133;
                         }
                         else if (Convert.ToInt32(cmbPONo.SelectedValue) == 220)  //Against DC
                         {
@@ -13291,7 +13299,7 @@ namespace ROMS
                             DCID = Convert.ToString(pbDCNo);
                             varViewType = 60;
                             varPOdropdownFlag = 2;
-                            DGV_FilterProduct.Width = 1110;
+                            DGV_FilterProduct.Width = 1133;
                         }
                         else
                         {

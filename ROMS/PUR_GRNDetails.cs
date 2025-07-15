@@ -816,29 +816,30 @@ namespace ROMS
 
                             string proCondition = row.Cells["clmQtyType"].Value?.ToString()?.Trim();
 
+                            string varBatchEnable = row.Cells["clmBatchenable"].Value?.ToString()?.Trim();
+                            string varExpiryDateFlag = row.Cells["clmShelflifeenable"].Value?.ToString()?.Trim();
+                            string varMRPFlag = row.Cells["clmMRPflag"].Value?.ToString()?.Trim();
+
                             bool hasMismatch = false;
 
-                            if (proCondition!="226" &&( expiry != invoiceExpiry || string.IsNullOrWhiteSpace(expiry) || string.IsNullOrWhiteSpace(invoiceExpiry)))
+                            if (varExpiryDateFlag=="1" && proCondition !="226" &&( expiry != invoiceExpiry || string.IsNullOrWhiteSpace(expiry) || string.IsNullOrWhiteSpace(invoiceExpiry)))
                             {
                                 row.Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                 row.Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightPink;
                                 hasMismatch = true;
-                            }
-
-                            if (proCondition != "226" && ( batchNo != invoiceBatch || string.IsNullOrWhiteSpace(batchNo) || string.IsNullOrWhiteSpace(invoiceBatch)))
+                            } 
+                            if (varBatchEnable=="72" && proCondition != "226" && ( batchNo != invoiceBatch || string.IsNullOrWhiteSpace(batchNo) || string.IsNullOrWhiteSpace(invoiceBatch)))
                             {
                                 row.Cells["clmBatchno"].Style.BackColor = Color.LightPink;
                                 row.Cells["clmInvoiceBatch"].Style.BackColor = Color.LightPink;
                                 hasMismatch = true;
-                            }
-
-                            if (proCondition != "226" && ( mrp != invoiceMrp || string.IsNullOrWhiteSpace(mrp) || string.IsNullOrWhiteSpace(invoiceMrp)))
+                            } 
+                            if (varMRPFlag=="1" && proCondition != "226" && ( mrp != invoiceMrp || string.IsNullOrWhiteSpace(mrp) || string.IsNullOrWhiteSpace(invoiceMrp)))
                             {
                                 row.Cells["clmmrp"].Style.BackColor = Color.LightPink;
                                 row.Cells["clmInvoiceMRP"].Style.BackColor = Color.LightPink;
                                 hasMismatch = true;
-                            }
-
+                            } 
                             if (hasMismatch)
                             {
                                 varMismatchError = 1;
@@ -853,17 +854,14 @@ namespace ROMS
                                 varErrorFormat = 1;
                             }
                         }
-                    }
-
-
+                    } 
                     //if (varErrorFormat == 1)
                     //{
                     //    string varMessage = objDServ.udfnGetMessages(94);
                     //    objDServ.CloseConnection();
                     //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     //    result1 = DialogResult.No;
-                    //}
-
+                    //} 
                     if (txtInvoiceno.Text.Trim() == "")
                     {
                         errGRNDetails.SetError(txtInvoiceno, "Please enter invoiceno.");
