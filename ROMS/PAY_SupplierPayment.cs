@@ -138,6 +138,7 @@ namespace ROMS
                 //}
                 if (blnErrorFlag==false)
                 {
+                    txtSearch.Text = "";
                     epSupplier.Clear();
                     //btnSave.Enabled = false;
                     udfnSave();
@@ -1717,6 +1718,55 @@ namespace ROMS
                 {
                         btnSave.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string filterText = txtSearch.Text.Trim().ToLower();
+
+                grdSupplierPayment.Rows.Cast<DataGridViewRow>().Where(row => !row.IsNewRow).ToList().ForEach(row =>
+                {
+                        var cellValue1 = Convert.ToString(row.Cells["clmVoucherDate"].Value ?? "").Trim().ToLower();
+                        var cellValue2 = Convert.ToString(row.Cells["clmVoucherNo"].Value ?? "").Trim().ToLower();
+                        var cellValue3 = Convert.ToString(row.Cells["clmInvoiceDate"].Value ?? "").Trim().ToLower();
+                        var cellValue4 = Convert.ToString(row.Cells["clmInvoiceNo"].Value ?? "").Trim().ToLower();
+                        bool match = cellValue1.Contains(filterText) || cellValue2.Contains(filterText) || cellValue3.Contains(filterText) || cellValue4.Contains(filterText);
+                        row.Visible = match;
+                });
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearch_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearch.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearch_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearch.BackColor = Color.White;
             }
             catch (Exception ex)
             {
