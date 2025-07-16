@@ -875,7 +875,6 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0)
                     {
-
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 49;
                         objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
@@ -1215,9 +1214,6 @@ namespace ROMS
             {
                 if (varUpDownKeySupplier == 0)
                 {
-                    //LV_Supplier.BringToFront();
-                    //RPTViewer.SendToBack();
-                    //LV_Supplier.Items.Clear();
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
