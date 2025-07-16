@@ -294,36 +294,44 @@ namespace ROMS
         {
             try
             {
-                LV_Supplier.BringToFront();
-                //RPTViewer.SendToBack();
-                LV_Supplier.Items.Clear();
-                if (txtSupplier.Text.Length > 0)
+                if (varUpDownKey == 0)
                 {
-                    //Load all active Supplier here//
-                    MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 15;
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
-                    DataSet objDs = new DataSet();
-                    SPDataService objspdservice = new SPDataService();
-                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    //LV_Supplier.BringToFront();
+                    //RPTViewer.SendToBack();
+                    //LV_Supplier.Items.Clear();
+                    if (txtSupplier.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        //Load all active Supplier here//
+                        MR_Supplier objMR_Supplier = new MR_Supplier();
+                        objMR_Supplier.ViewType = 15;
+                        objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                        DataSet objDs = new DataSet();
+                        SPDataService objspdservice = new SPDataService();
+                        objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                DGV_FilterSupplier.Visible = true;
-                                DGV_FilterSupplier.DataSource = objDs.Tables[0];
-                                DGV_FilterSupplier.Columns["SPID"].Visible = false;
-                                DGV_FilterSupplier.Columns["SPSCID"].Visible = false;
-                                DGV_FilterSupplier.Columns["SupplierName"].Visible = false;
-                                DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
-                                DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
-                                DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
-                                DGV_FilterSupplier.Columns["SP_NAME"].Width = 330;
-                                DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
-                                DGV_FilterSupplier.BringToFront();
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterSupplier.Visible = true;
+                                    DGV_FilterSupplier.DataSource = objDs.Tables[0];
+                                    DGV_FilterSupplier.Columns["SPID"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SPSCID"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SupplierName"].Visible = false;
+                                    DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
+                                    DGV_FilterSupplier.Columns["SP_NAME"].Width = 330;
+                                    DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
+                                    DGV_FilterSupplier.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterSupplier.Visible = false;
+                                    DGV_FilterSupplier.DataSource = null;
+                                }
                             }
                             else
                             {
@@ -342,11 +350,6 @@ namespace ROMS
                         DGV_FilterSupplier.Visible = false;
                         DGV_FilterSupplier.DataSource = null;
                     }
-                }
-                else
-                {
-                    DGV_FilterSupplier.Visible = false;
-                    DGV_FilterSupplier.DataSource = null;
                 }
             }
             catch (Exception ex)

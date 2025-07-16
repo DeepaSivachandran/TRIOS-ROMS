@@ -407,29 +407,37 @@ namespace ROMS
         {
             try
             {
-                //lvGroup.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtGroup.Text.Length > 0)
+                if (varUpDownKeyGroup == 0)
                 {
-                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtGroup.Text, 0);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    //lvGroup.Items.Clear();
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtGroup.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        objDs = objspdservice.udfnGroupList(7, 0, 0, txtGroup.Text, 0);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                DGV_FilterGroup.Visible = true;
-                                DGV_FilterGroup.DataSource = objDs.Tables[0];
-                                DGV_FilterGroup.Columns["PRGID"].Visible = false;
-                                DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
-                                DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
-                                DGV_FilterGroup.Columns["PRG_EName"].Width = 130;
-                                DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
-                                DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;
-                                DGV_FilterGroup.Columns["PRG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                DGV_FilterGroup.BringToFront();
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterGroup.Visible = true;
+                                    DGV_FilterGroup.DataSource = objDs.Tables[0];
+                                    DGV_FilterGroup.Columns["PRGID"].Visible = false;
+                                    DGV_FilterGroup.Columns["PRG_EName"].HeaderText = "Group English Name";
+                                    DGV_FilterGroup.Columns["PRG_TName"].HeaderText = "Group Tamil Name";
+                                    DGV_FilterGroup.Columns["PRG_EName"].Width = 130;
+                                    DGV_FilterGroup.Columns["PRG_TName"].Width = 130;
+                                    DGV_FilterGroup.Columns["PRG_EName"].DisplayIndex = 0;
+                                    DGV_FilterGroup.Columns["PRG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                    DGV_FilterGroup.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterGroup.Visible = false;
+                                    DGV_FilterGroup.DataSource = null;
+                                }
                             }
                             else
                             {
@@ -448,11 +456,6 @@ namespace ROMS
                         DGV_FilterGroup.Visible = false;
                         DGV_FilterGroup.DataSource = null;
                     }
-                }
-                else
-                {
-                    DGV_FilterGroup.Visible = false;
-                    DGV_FilterGroup.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -548,7 +551,6 @@ namespace ROMS
                             }
                     }
                     txtSubGroup.Focus();
-                    //txtSubGroup.SelectionStart = txtSubGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -585,33 +587,41 @@ namespace ROMS
         {
             try
             {
-                if (txtGroup.Text.Trim() == "")
+                if (varUpDownKeySubgroup == 0)
                 {
-                    lblGroupCode.Text = "0";
-                }
-                //lvSubGroup.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtSubGroup.Text.Length > 0)
-                {
-                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    if (txtGroup.Text.Trim() == "")
                     {
-                        if (objDs.Tables.Count != 0)
+                        lblGroupCode.Text = "0";
+                    }
+                    //lvSubGroup.Items.Clear();
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtSubGroup.Text.Length > 0)
+                    {
+                        objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                DGV_FilterSubgroup.Visible = true;
-                                DGV_FilterSubgroup.DataSource = objDs.Tables[0];
-                                DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
-                                DGV_FilterSubgroup.Columns["PRSG_EName"].HeaderText = "Subgroup English Name";
-                                DGV_FilterSubgroup.Columns["PRSG_TName"].HeaderText = "Subgroup Tamil Name";
-                                DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 150;
-                                DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 200;
-                                DGV_FilterSubgroup.Columns["PRSG_EName"].DisplayIndex = 0;
-                                DGV_FilterSubgroup.Columns["PRSG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                DGV_FilterSubgroup.BringToFront();
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterSubgroup.Visible = true;
+                                    DGV_FilterSubgroup.DataSource = objDs.Tables[0];
+                                    DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
+                                    DGV_FilterSubgroup.Columns["PRSG_EName"].HeaderText = "Subgroup English Name";
+                                    DGV_FilterSubgroup.Columns["PRSG_TName"].HeaderText = "Subgroup Tamil Name";
+                                    DGV_FilterSubgroup.Columns["PRSG_EName"].Width = 150;
+                                    DGV_FilterSubgroup.Columns["PRSG_TName"].Width = 200;
+                                    DGV_FilterSubgroup.Columns["PRSG_EName"].DisplayIndex = 0;
+                                    DGV_FilterSubgroup.Columns["PRSG_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                    DGV_FilterSubgroup.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterSubgroup.Visible = false;
+                                    DGV_FilterSubgroup.DataSource = null;
+                                }
                             }
                             else
                             {
@@ -630,11 +640,6 @@ namespace ROMS
                         DGV_FilterSubgroup.Visible = false;
                         DGV_FilterSubgroup.DataSource = null;
                     }
-                }
-                else
-                {
-                    DGV_FilterSubgroup.Visible = false;
-                    DGV_FilterSubgroup.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -664,7 +669,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterProduct.Focus();
-
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
@@ -766,39 +770,46 @@ namespace ROMS
         private void TxtProductName_TextChanged(object sender, EventArgs e)
         {
             try
-            {
-                //lvproduct.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtProductName.Text.Length > 0)
+            {if (varUpDownKeyProduct == 0)
                 {
-
-                    MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 49;
-                    objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
-                    objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
-                    objMR_Product.paraProductName = txtProductName.Text;
-                    objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                    if (objDs != null)
+                    //lvproduct.Items.Clear();
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtProductName.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 49;
+                        objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
+                        objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
+                        objMR_Product.paraProductName = txtProductName.Text;
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                DGV_FilterProduct.Visible = true;
-                                DGV_FilterProduct.DataSource = objDs.Tables[0];
-                                DGV_FilterProduct.Columns["PRID"].Visible = false;
-                                DGV_FilterProduct.Columns["PR_EName"].Visible = false;
-                                DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
-                                DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
-                                DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
-                                DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
-                                DGV_FilterProduct.Columns["PR_TName"].Width = 350;
-                                DGV_FilterProduct.Columns["UNIT"].Width = 50;
-                                DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 0;
-                                DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1;
-                                DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                DGV_FilterProduct.BringToFront();
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterProduct.Visible = true;
+                                    DGV_FilterProduct.DataSource = objDs.Tables[0];
+                                    DGV_FilterProduct.Columns["PRID"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_EName"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
+                                    DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
+                                    DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
+                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
+                                    DGV_FilterProduct.Columns["PR_TName"].Width = 350;
+                                    DGV_FilterProduct.Columns["UNIT"].Width = 50;
+                                    DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 0;
+                                    DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1;
+                                    DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                    DGV_FilterProduct.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterProduct.Visible = false;
+                                    DGV_FilterProduct.DataSource = null;
+                                }
                             }
                             else
                             {
@@ -817,11 +828,6 @@ namespace ROMS
                         DGV_FilterProduct.Visible = false;
                         DGV_FilterProduct.DataSource = null;
                     }
-                }
-                else
-                {
-                    DGV_FilterProduct.Visible = false;
-                    DGV_FilterProduct.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -1009,7 +1015,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterSupplier.Visible == false)
                 {
-                    cmbStatus.Focus();
+                    if (cmbStatus.Visible == true)
+                    {
+                        cmbStatus.Focus();
+                    }
+                    else
+                    {
+                        cmbCompletedStatus.Focus();
+                    }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1082,7 +1095,14 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbStatus.Focus();
+                        if (cmbStatus.Visible == true)
+                        {
+                            cmbStatus.Focus();
+                        }
+                        else
+                        {
+                            cmbCompletedStatus.Focus();
+                        }
                     }
                 }
             }
@@ -1108,34 +1128,42 @@ namespace ROMS
         {
             try
             {
-                //LV_Supplier.BringToFront();
-                //RPTViewer.SendToBack();
-                //LV_Supplier.Items.Clear();
-                if (txtSupplier.Text.Length > 0)
+                if (varUpDownKeySupplier == 0)
                 {
-                    MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 15;
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text;
-                    DataSet objDs = new DataSet();
-                    SPDataService objspdservice = new SPDataService();
-                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    //LV_Supplier.BringToFront();
+                    //RPTViewer.SendToBack();
+                    //LV_Supplier.Items.Clear();
+                    if (txtSupplier.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        MR_Supplier objMR_Supplier = new MR_Supplier();
+                        objMR_Supplier.ViewType = 15;
+                        objMR_Supplier.paraSupplierName = txtSupplier.Text;
+                        DataSet objDs = new DataSet();
+                        SPDataService objspdservice = new SPDataService();
+                        objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                DGV_FilterSupplier.Visible = true;
-                                DGV_FilterSupplier.DataSource = objDs.Tables[0];
-                                DGV_FilterSupplier.Columns["SPID"].Visible = false;
-                                DGV_FilterSupplier.Columns["SPSCID"].Visible = false;
-                                DGV_FilterSupplier.Columns["SupplierName"].Visible = false;
-                                DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
-                                DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
-                                DGV_FilterSupplier.Columns["SP_NAME"].Width = 260;
-                                DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
-                                DGV_FilterSupplier.BringToFront();
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterSupplier.Visible = true;
+                                    DGV_FilterSupplier.DataSource = objDs.Tables[0];
+                                    DGV_FilterSupplier.Columns["SPID"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SPSCID"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SupplierName"].Visible = false;
+                                    DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
+                                    DGV_FilterSupplier.Columns["SP_NAME"].Width = 260;
+                                    DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
+                                    DGV_FilterSupplier.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterSupplier.Visible = false;
+                                    DGV_FilterSupplier.DataSource = null;
+                                }
                             }
                             else
                             {
@@ -1154,11 +1182,6 @@ namespace ROMS
                         DGV_FilterSupplier.Visible = false;
                         DGV_FilterSupplier.DataSource = null;
                     }
-                }
-                else
-                {
-                    DGV_FilterSupplier.Visible = false;
-                    DGV_FilterSupplier.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -1209,7 +1232,14 @@ namespace ROMS
                     lblschedleCode.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SPSCID"].Value.ToString();
                     txtSupplier.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
-                cmbStatus.Focus();
+                if (cmbStatus.Visible == true)
+                {
+                    cmbStatus.Focus();
+                }
+                else
+                {
+                    cmbCompletedStatus.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1652,7 +1682,14 @@ namespace ROMS
             {
                 varUpDownKeySupplier = 1;
                 udfnListViewData();
-                cmbStatus.Focus();
+                if (cmbStatus.Visible == true)
+                {
+                    cmbStatus.Focus();
+                }
+                else
+                {
+                    cmbCompletedStatus.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1722,7 +1759,14 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbStatus.Focus();
+                        if (cmbStatus.Visible == true)
+                        {
+                            cmbStatus.Focus();
+                        }
+                        else
+                        {
+                            cmbCompletedStatus.Focus();
+                        }
                     }
                 }
             }
