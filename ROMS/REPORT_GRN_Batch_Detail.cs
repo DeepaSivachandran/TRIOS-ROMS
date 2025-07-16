@@ -310,36 +310,6 @@ namespace ROMS
         }
         private void TxtGroup_KeyDown(object sender, KeyEventArgs e)
         {
-            /*
-            try
-            {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    if (lvGroup.Items.Count == 0 || txtGroup.Text == "")
-                    {
-                        txtGroup.Focus();
-                        lvGroup.Visible = false;
-                    }
-                    else
-                    {
-                        lvGroup.Focus();
-                    }
-                    if (lvGroup.Items.Count > 0)
-                    {
-                        lvGroup.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtSubGroup.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            */
             try
             {
                 varUpDownKeyGroup = 0;
@@ -463,20 +433,7 @@ namespace ROMS
                             if (objDs.Tables.Count != 0)
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
-                                {
-                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    //{
-                                    //    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
-                                    //    ListViewItem objList = new ListViewItem(row);
-                                    //    objList.UseItemStyleForSubItems = false;
-                                    //    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                    //    lvGroup.Columns[2].Width = 0;
-                                    //    lvGroup.Columns[1].Width = 200;
-                                    //    lvGroup.Columns[0].Width = 200;
-                                    //    lvGroup.Items.Add(objList);
-                                    //}
-                                    //lvGroup.Visible = true;
-                                    //lvGroup.BringToFront();
+                                { 
                                     DGV_FilterGroup.Visible = true;
                                     DGV_FilterGroup.DataSource = objDs.Tables[0];
                                     DGV_FilterGroup.Columns["PRGID"].Visible = false;
