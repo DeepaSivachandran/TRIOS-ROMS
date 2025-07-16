@@ -699,7 +699,7 @@ namespace ROMS
                             }
                     }
                     txtHsnName.Focus();
-                    txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                    //txtHsnName.SelectionStart = txtHsnName.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {

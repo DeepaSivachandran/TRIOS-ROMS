@@ -382,7 +382,7 @@ namespace ROMS
                             }
                     }
                     txtGroup.Focus();
-                    txtGroup.SelectionStart = txtGroup.Text.Length;
+                    //txtGroup.SelectionStart = txtGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -601,7 +601,7 @@ namespace ROMS
                             }
                     }
                     txtSubGroup.Focus();
-                    txtSubGroup.SelectionStart = txtSubGroup.Text.Length;
+                    //txtSubGroup.SelectionStart = txtSubGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -836,7 +836,7 @@ namespace ROMS
                             }
                     }
                     txtProductName.Focus();
-                    txtProductName.SelectionStart = txtProductName.Text.Length;
+                    //txtProductName.SelectionStart = txtProductName.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -1244,7 +1244,7 @@ namespace ROMS
                             }
                     }
                     txtGRNNo.Focus();
-                    txtGRNNo.SelectionStart = txtGRNNo.Text.Length;
+                    //txtGRNNo.SelectionStart = txtGRNNo.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {

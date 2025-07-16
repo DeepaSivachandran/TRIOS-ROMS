@@ -751,7 +751,7 @@ namespace ROMS
                             }
                     }
                     txtSupplier.Focus();
-                    txtSupplier.SelectionStart = txtSupplier.Text.Length;
+                    //txtSupplier.SelectionStart = txtSupplier.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {

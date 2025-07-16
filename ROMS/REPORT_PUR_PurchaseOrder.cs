@@ -411,7 +411,7 @@ namespace ROMS
                             }
                     }
                     txtSubGroup.Focus();
-                    txtSubGroup.SelectionStart = txtSubGroup.Text.Length;
+                    //txtSubGroup.SelectionStart = txtSubGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -639,7 +639,7 @@ namespace ROMS
                             }
                     }
                     txtGroup.Focus();
-                    txtGroup.SelectionStart = txtGroup.Text.Length;
+                    //txtGroup.SelectionStart = txtGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {

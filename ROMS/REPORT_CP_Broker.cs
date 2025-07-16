@@ -503,7 +503,7 @@ namespace ROMS
                             }
                     }
                     txtCity.Focus();
-                    txtCity.SelectionStart = txtCity.Text.Length;
+                    //txtCity.SelectionStart = txtCity.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
