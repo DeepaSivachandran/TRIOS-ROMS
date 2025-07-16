@@ -55,20 +55,24 @@ namespace ROMS
             {
                 /*
                 varUpDownKeyGroup = 0;
-                varUpDownKeySubgroup = 0;
-                varUpDownKeyProduct = 0;
-                varUpDownKeyGRN = 0;
-                varUpDownKeySupplier = 0;
                 DGV_FilterGroup.DataSource = null;
                 DGV_FilterGroup.Visible = false;
+
+                varUpDownKeySubgroup = 0;
                 DGV_FilterSubgroup.DataSource = null;
                 DGV_FilterSubgroup.Visible = false;
+
+                varUpDownKeyProduct = 0;
                 DGV_FilterProduct.DataSource = null;
                 DGV_FilterProduct.Visible = false;
-                DGV_FilterSupplier.DataSource = null;
-                DGV_FilterSupplier.Visible = false;
+
+                varUpDownKeyGRN = 0;
                 DGV_FilterGRN.DataSource = null;
                 DGV_FilterGRN.Visible = false;
+
+                varUpDownKeySupplier = 0;
+                DGV_FilterSupplier.DataSource = null;
+                DGV_FilterSupplier.Visible = false;
                 */
             }
             catch (Exception ex)
