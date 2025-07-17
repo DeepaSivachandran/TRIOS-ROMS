@@ -502,6 +502,7 @@ namespace ROMS
                                     DGV_FilterSupplier.Columns["SPSCID"].Visible = false;
                                     DGV_FilterSupplier.Columns["SupplierName"].Visible = false;
                                     DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
                                     DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
                                     DGV_FilterSupplier.Columns["SP_NAME"].Width = 260;
                                     DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
@@ -616,6 +617,7 @@ namespace ROMS
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
                                 {
+                                    DGV_FilterCity.Visible = true;
                                     DGV_FilterCity.DataSource = objDs.Tables[0];
                                     DGV_FilterCity.Columns["CTYID"].Visible = false;
                                     DGV_FilterCity.Columns["STID"].Visible = false;

@@ -17,6 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+        public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0;
         public REPORT_CP_Product_Subgroup()
         {
             InitializeComponent();
@@ -1017,7 +1018,6 @@ namespace ROMS
         {
             try
             {
-                lvBrand.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtBrand.Text.Length > 0)

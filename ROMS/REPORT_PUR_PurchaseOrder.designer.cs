@@ -262,6 +262,8 @@
             this.DGV_FilterSubgroup.Size = new System.Drawing.Size(374, 226);
             this.DGV_FilterSubgroup.TabIndex = 111111151;
             this.DGV_FilterSubgroup.Visible = false;
+            this.DGV_FilterSubgroup.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSubgroup_CellDoubleClick);
+            this.DGV_FilterSubgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterSubgroup_KeyDown);
             // 
             // DGV_FilterGroup
             // 
