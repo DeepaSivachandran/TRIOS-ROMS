@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportRackgroup = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportRackgroup = new System.Windows.Forms.Panel();
@@ -61,10 +64,12 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.DGV_FilterRackgroup = new System.Windows.Forms.DataGridView();
             this.ReportRackgroup.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportRackgroup
@@ -94,6 +99,7 @@
             // pnlReportRackgroup
             // 
             this.pnlReportRackgroup.BackColor = System.Drawing.Color.White;
+            this.pnlReportRackgroup.Controls.Add(this.DGV_FilterRackgroup);
             this.pnlReportRackgroup.Controls.Add(this.lvRack);
             this.pnlReportRackgroup.Controls.Add(this.lvRackIncharge);
             this.pnlReportRackgroup.Controls.Add(this.lvRackgroup);
@@ -424,6 +430,50 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
+            // DGV_FilterRackgroup
+            // 
+            this.DGV_FilterRackgroup.AllowUserToAddRows = false;
+            this.DGV_FilterRackgroup.AllowUserToDeleteRows = false;
+            this.DGV_FilterRackgroup.AllowUserToResizeColumns = false;
+            this.DGV_FilterRackgroup.AllowUserToResizeRows = false;
+            this.DGV_FilterRackgroup.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_FilterRackgroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterRackgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_FilterRackgroup.ColumnHeadersHeight = 30;
+            this.DGV_FilterRackgroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterRackgroup.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_FilterRackgroup.EnableHeadersVisualStyles = false;
+            this.DGV_FilterRackgroup.GridColor = System.Drawing.Color.White;
+            this.DGV_FilterRackgroup.Location = new System.Drawing.Point(721, 48);
+            this.DGV_FilterRackgroup.Name = "DGV_FilterRackgroup";
+            this.DGV_FilterRackgroup.ReadOnly = true;
+            this.DGV_FilterRackgroup.RowHeadersVisible = false;
+            this.DGV_FilterRackgroup.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterRackgroup.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_FilterRackgroup.RowTemplate.Height = 25;
+            this.DGV_FilterRackgroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGV_FilterRackgroup.Size = new System.Drawing.Size(386, 226);
+            this.DGV_FilterRackgroup.TabIndex = 111111158;
+            this.DGV_FilterRackgroup.Visible = false;
+            this.DGV_FilterRackgroup.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
+            this.DGV_FilterRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
+            // 
             // REPORT_CP_Rackgroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -448,6 +498,7 @@
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -488,5 +539,6 @@
         private System.Windows.Forms.Label lblRackCode;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label lblConcern;
+        public System.Windows.Forms.DataGridView DGV_FilterRackgroup;
     }
 }
