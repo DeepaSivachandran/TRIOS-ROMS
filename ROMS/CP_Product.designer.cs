@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Product));
             this.txtDPICode = new System.Windows.Forms.TextBox();
             this.txtPICode = new System.Windows.Forms.TextBox();
@@ -47,15 +47,6 @@
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
             this.cmbRM = new System.Windows.Forms.ComboBox();
-            this.lvSubGroup = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblSaleRackCode = new System.Windows.Forms.Label();
             this.lblSaleLocationCode = new System.Windows.Forms.Label();
             this.lblPurRackCode = new System.Windows.Forms.Label();
@@ -87,10 +78,15 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvBrand = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvSubGroup = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.txtDShop = new System.Windows.Forms.TextBox();
             this.errItems = new System.Windows.Forms.ErrorProvider(this.components);
@@ -138,8 +134,14 @@
             this.txtRackDescription = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
             this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
+            this.lvSaleLocation = new System.Windows.Forms.ListView();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSaleRack = new System.Windows.Forms.TextBox();
             this.txtSaleLocation = new System.Windows.Forms.TextBox();
             this.txtRackDescriptionSales = new System.Windows.Forms.TextBox();
@@ -147,12 +149,15 @@
             this.txtDSalesGodown = new System.Windows.Forms.TextBox();
             this.txtDSalesShop = new System.Windows.Forms.TextBox();
             this.grpHsndetail = new System.Windows.Forms.GroupBox();
+            this.lvHsnCode = new System.Windows.Forms.ListView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblHsnName = new System.Windows.Forms.Label();
             this.txtHsnName = new System.Windows.Forms.TextBox();
             this.cmbGst = new System.Windows.Forms.ComboBox();
             this.txtHSNCode = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbBatchNoDetails = new System.Windows.Forms.GroupBox();
             this.cmbBatchNoGeneration = new System.Windows.Forms.ComboBox();
             this.txtBatchNoGeneration = new System.Windows.Forms.TextBox();
@@ -174,42 +179,51 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbCompleted = new System.Windows.Forms.CheckBox();
+            this.grbPurchaseHSN = new System.Windows.Forms.GroupBox();
+            this.grdPurHSN = new System.Windows.Forms.DataGridView();
+            this.btnPURHSN = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dpPurEffectiveFrom = new System.Windows.Forms.DateTimePicker();
+            this.txtPURHSNName = new System.Windows.Forms.TextBox();
+            this.grbSalesHSN = new System.Windows.Forms.GroupBox();
+            this.grdSalesHSN = new System.Windows.Forms.DataGridView();
+            this.btnSalesHSN = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dpSalesEffectiveFrom = new System.Windows.Forms.DateTimePicker();
+            this.txtSalesHSNName = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lvSaleRack = new System.Windows.Forms.ListView();
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvSaleLocation = new System.Windows.Forms.ListView();
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvHsnCode = new System.Windows.Forms.ListView();
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cbCompleted = new System.Windows.Forms.CheckBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.grdSubGroup = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.lvBrand = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHSNName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmHSNCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmEffectiveFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmEffectiveTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.lvPURHSNCode = new System.Windows.Forms.ListView();
+            this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader34 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -221,10 +235,14 @@
             this.grpHsndetail.SuspendLayout();
             this.grbBatchNoDetails.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.grbPurchaseHSN.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurHSN)).BeginInit();
+            this.grbSalesHSN.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSalesHSN)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.pnlProductDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -347,7 +365,6 @@
             // grbform
             // 
             this.grbform.Controls.Add(this.cmbRM);
-            this.grbform.Controls.Add(this.lvSubGroup);
             this.grbform.Controls.Add(this.lblSaleRackCode);
             this.grbform.Controls.Add(this.lblSaleLocationCode);
             this.grbform.Controls.Add(this.lblPurRackCode);
@@ -384,7 +401,7 @@
             this.grbform.Controls.Add(this.txtItemNameTamil);
             this.grbform.Controls.Add(this.txtDTamilName);
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbform.Location = new System.Drawing.Point(12, -6);
+            this.grbform.Location = new System.Drawing.Point(7, -9);
             this.grbform.Name = "grbform";
             this.grbform.Size = new System.Drawing.Size(550, 278);
             this.grbform.TabIndex = 0;
@@ -399,61 +416,6 @@
             this.cmbRM.Name = "cmbRM";
             this.cmbRM.Size = new System.Drawing.Size(164, 27);
             this.cmbRM.TabIndex = 127;
-            // 
-            // lvSubGroup
-            // 
-            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader28,
-            this.columnHeader29,
-            this.columnHeader8,
-            this.columnHeader9});
-            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(159, 185);
-            this.lvSubGroup.Name = "lvSubGroup";
-            this.lvSubGroup.Size = new System.Drawing.Size(363, 78);
-            this.lvSubGroup.TabIndex = 122;
-            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
-            this.lvSubGroup.View = System.Windows.Forms.View.Details;
-            this.lvSubGroup.Visible = false;
-            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
-            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 170;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 170;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Width = 0;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Width = 0;
-            // 
-            // columnHeader28
-            // 
-            this.columnHeader28.Width = 0;
-            // 
-            // columnHeader29
-            // 
-            this.columnHeader29.Width = 0;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Width = 0;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Width = 0;
             // 
             // lblSaleRackCode
             // 
@@ -794,7 +756,7 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(172, 207);
+            this.lvGroup.Location = new System.Drawing.Point(167, 203);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(363, 78);
             this.lvGroup.TabIndex = 123;
@@ -816,35 +778,60 @@
             // 
             this.columnHeader13.Width = 0;
             // 
-            // lvBrand
+            // lvSubGroup
             // 
-            this.lvBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvBrand.HideSelection = false;
-            this.lvBrand.Location = new System.Drawing.Point(172, 231);
-            this.lvBrand.Name = "lvBrand";
-            this.lvBrand.Size = new System.Drawing.Size(363, 78);
-            this.lvBrand.TabIndex = 121;
-            this.lvBrand.UseCompatibleStateImageBehavior = false;
-            this.lvBrand.View = System.Windows.Forms.View.Details;
-            this.lvBrand.Visible = false;
-            this.lvBrand.DoubleClick += new System.EventHandler(this.LvBrand_DoubleClick);
-            this.lvBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvBrand_KeyDown);
+            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader28,
+            this.columnHeader29,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSubGroup.HideSelection = false;
+            this.lvSubGroup.Location = new System.Drawing.Point(166, 175);
+            this.lvSubGroup.Name = "lvSubGroup";
+            this.lvSubGroup.Size = new System.Drawing.Size(363, 78);
+            this.lvSubGroup.TabIndex = 122;
+            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
+            this.lvSubGroup.View = System.Windows.Forms.View.Details;
+            this.lvSubGroup.Visible = false;
+            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
+            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
             // 
-            // columnHeader1
+            // columnHeader4
             // 
-            this.columnHeader1.Width = 120;
+            this.columnHeader4.Width = 170;
             // 
-            // columnHeader2
+            // columnHeader5
             // 
-            this.columnHeader2.Width = 130;
+            this.columnHeader5.Width = 170;
             // 
-            // columnHeader3
+            // columnHeader6
             // 
-            this.columnHeader3.Width = 0;
+            this.columnHeader6.Width = 0;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Width = 0;
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Width = 0;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Width = 0;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 0;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
             // 
             // textBox5
             // 
@@ -891,7 +878,7 @@
             this.groupBox1.Controls.Add(this.txtWeight);
             this.groupBox1.Controls.Add(this.txtDNettWeight);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(567, 106);
+            this.groupBox1.Location = new System.Drawing.Point(579, 124);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 166);
             this.groupBox1.TabIndex = 22;
@@ -1214,7 +1201,7 @@
             this.groupBox2.Controls.Add(this.txtRMinSaleQty);
             this.groupBox2.Controls.Add(this.txtDRMinSaleQty);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(567, 279);
+            this.groupBox2.Location = new System.Drawing.Point(579, 288);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(279, 163);
             this.groupBox2.TabIndex = 28;
@@ -1252,7 +1239,7 @@
             this.txtDGST.BackColor = System.Drawing.SystemColors.Control;
             this.txtDGST.Enabled = false;
             this.txtDGST.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDGST.Location = new System.Drawing.Point(582, 554);
+            this.txtDGST.Location = new System.Drawing.Point(350, 6);
             this.txtDGST.Name = "txtDGST";
             this.txtDGST.ReadOnly = true;
             this.txtDGST.Size = new System.Drawing.Size(111, 27);
@@ -1265,7 +1252,7 @@
             // 
             this.txtGST.Enabled = false;
             this.txtGST.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGST.Location = new System.Drawing.Point(693, 554);
+            this.txtGST.Location = new System.Drawing.Point(219, 5);
             this.txtGST.MaxLength = 50;
             this.txtGST.Name = "txtGST";
             this.txtGST.ReadOnly = true;
@@ -1283,7 +1270,7 @@
             this.rbInActive.AutoSize = true;
             this.rbInActive.Checked = true;
             this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbInActive.Location = new System.Drawing.Point(76, 1);
+            this.rbInActive.Location = new System.Drawing.Point(76, -2);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(71, 24);
             this.rbInActive.TabIndex = 36;
@@ -1298,7 +1285,7 @@
             // 
             this.rbActive.AutoSize = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActive.Location = new System.Drawing.Point(4, 1);
+            this.rbActive.Location = new System.Drawing.Point(4, -2);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
             this.rbActive.TabIndex = 35;
@@ -1313,7 +1300,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDStatus.Location = new System.Drawing.Point(980, 601);
+            this.txtDStatus.Location = new System.Drawing.Point(589, 583);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(111, 27);
@@ -1327,7 +1314,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Enabled = false;
-            this.pnlStatus.Location = new System.Drawing.Point(1091, 601);
+            this.pnlStatus.Location = new System.Drawing.Point(700, 583);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(158, 27);
             this.pnlStatus.TabIndex = 36;
@@ -1340,9 +1327,9 @@
             this.grpExpire.Controls.Add(this.cmbPeriod);
             this.grpExpire.Controls.Add(this.cbExpiry);
             this.grpExpire.Controls.Add(this.cbRMFromProduction);
-            this.grpExpire.Location = new System.Drawing.Point(289, 580);
+            this.grpExpire.Location = new System.Drawing.Point(287, 559);
             this.grpExpire.Name = "grpExpire";
-            this.grpExpire.Size = new System.Drawing.Size(273, 90);
+            this.grpExpire.Size = new System.Drawing.Size(273, 85);
             this.grpExpire.TabIndex = 19;
             this.grpExpire.TabStop = false;
             // 
@@ -1409,7 +1396,10 @@
             this.grplocation.Controls.Add(this.textBox1);
             this.grplocation.Controls.Add(this.txtDPurchaseLocation);
             this.grplocation.Controls.Add(this.txtDShop);
-            this.grplocation.Location = new System.Drawing.Point(12, 280);
+            this.grplocation.Controls.Add(this.txtDGST);
+            this.grplocation.Controls.Add(this.txtGST);
+            this.grplocation.Controls.Add(this.textBox4);
+            this.grplocation.Location = new System.Drawing.Point(7, 265);
             this.grplocation.Name = "grplocation";
             this.grplocation.Size = new System.Drawing.Size(550, 121);
             this.grplocation.TabIndex = 13;
@@ -1481,9 +1471,23 @@
             this.txtDPurchaseLocation.TabStop = false;
             this.txtDPurchaseLocation.Text = "Stock Location";
             // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox4.Location = new System.Drawing.Point(476, 5);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(21, 27);
+            this.textBox4.TabIndex = 116;
+            this.textBox4.Text = "%";
+            this.textBox4.Visible = false;
+            // 
             // grbSalesStockLocation
             // 
             this.grbSalesStockLocation.Controls.Add(this.chkSameasPurchase);
+            this.grbSalesStockLocation.Controls.Add(this.lvSaleLocation);
             this.grbSalesStockLocation.Controls.Add(this.txtSaleRack);
             this.grbSalesStockLocation.Controls.Add(this.txtSaleLocation);
             this.grbSalesStockLocation.Controls.Add(this.txtRackDescriptionSales);
@@ -1492,7 +1496,7 @@
             this.grbSalesStockLocation.Controls.Add(this.txtRackMOQQty);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesShop);
             this.grbSalesStockLocation.Controls.Add(this.txtDMaxOrderQty);
-            this.grbSalesStockLocation.Location = new System.Drawing.Point(12, 409);
+            this.grbSalesStockLocation.Location = new System.Drawing.Point(10, 388);
             this.grbSalesStockLocation.Name = "grbSalesStockLocation";
             this.grbSalesStockLocation.Size = new System.Drawing.Size(550, 172);
             this.grbSalesStockLocation.TabIndex = 15;
@@ -1509,6 +1513,41 @@
             this.chkSameasPurchase.Text = "Same as Purchase";
             this.chkSameasPurchase.UseVisualStyleBackColor = true;
             this.chkSameasPurchase.CheckedChanged += new System.EventHandler(this.ChkSameasPurchase_CheckedChanged);
+            // 
+            // lvSaleLocation
+            // 
+            this.lvSaleLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24,
+            this.columnHeader25});
+            this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSaleLocation.HideSelection = false;
+            this.lvSaleLocation.Location = new System.Drawing.Point(135, 79);
+            this.lvSaleLocation.Name = "lvSaleLocation";
+            this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
+            this.lvSaleLocation.TabIndex = 127;
+            this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
+            this.lvSaleLocation.View = System.Windows.Forms.View.Details;
+            this.lvSaleLocation.Visible = false;
+            this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
+            this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 120;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 130;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Width = 0;
             // 
             // txtSaleRack
             // 
@@ -1588,6 +1627,7 @@
             // 
             // grpHsndetail
             // 
+            this.grpHsndetail.Controls.Add(this.lvHsnCode);
             this.grpHsndetail.Controls.Add(this.textBox5);
             this.grpHsndetail.Controls.Add(this.lblHsnName);
             this.grpHsndetail.Controls.Add(this.txtHsnName);
@@ -1595,12 +1635,42 @@
             this.grpHsndetail.Controls.Add(this.txtHSNCode);
             this.grpHsndetail.Controls.Add(this.textBox8);
             this.grpHsndetail.Controls.Add(this.txtDHSNNumber);
-            this.grpHsndetail.Location = new System.Drawing.Point(568, 449);
+            this.grpHsndetail.Location = new System.Drawing.Point(579, 453);
             this.grpHsndetail.Name = "grpHsndetail";
             this.grpHsndetail.Size = new System.Drawing.Size(279, 118);
             this.grpHsndetail.TabIndex = 34;
             this.grpHsndetail.TabStop = false;
             this.grpHsndetail.Visible = false;
+            // 
+            // lvHsnCode
+            // 
+            this.lvHsnCode.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader30,
+            this.columnHeader31});
+            this.lvHsnCode.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvHsnCode.HideSelection = false;
+            this.lvHsnCode.Location = new System.Drawing.Point(11, 49);
+            this.lvHsnCode.Name = "lvHsnCode";
+            this.lvHsnCode.Size = new System.Drawing.Size(257, 78);
+            this.lvHsnCode.TabIndex = 128;
+            this.lvHsnCode.UseCompatibleStateImageBehavior = false;
+            this.lvHsnCode.View = System.Windows.Forms.View.Details;
+            this.lvHsnCode.Visible = false;
+            this.lvHsnCode.DoubleClick += new System.EventHandler(this.LvHsnName_DoubleClick);
+            this.lvHsnCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvHsnName_KeyDown);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 120;
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Width = 100;
+            // 
+            // columnHeader31
+            // 
+            this.columnHeader31.Width = 0;
             // 
             // lblHsnName
             // 
@@ -1665,20 +1735,7 @@
             this.textBox8.Size = new System.Drawing.Size(111, 27);
             this.textBox8.TabIndex = 118;
             this.textBox8.TabStop = false;
-            this.textBox8.Text = "GST";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(817, 554);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(21, 27);
-            this.textBox4.TabIndex = 116;
-            this.textBox4.Text = "%";
-            this.textBox4.Visible = false;
+            this.textBox8.Text = "`";
             // 
             // grbBatchNoDetails
             // 
@@ -1686,9 +1743,9 @@
             this.grbBatchNoDetails.Controls.Add(this.txtBatchNoGeneration);
             this.grbBatchNoDetails.Controls.Add(this.cmbBatchNoEntry);
             this.grbBatchNoDetails.Controls.Add(this.txtDBatchNoEntry);
-            this.grbBatchNoDetails.Location = new System.Drawing.Point(12, 580);
+            this.grbBatchNoDetails.Location = new System.Drawing.Point(10, 559);
             this.grbBatchNoDetails.Name = "grbBatchNoDetails";
-            this.grbBatchNoDetails.Size = new System.Drawing.Size(276, 90);
+            this.grbBatchNoDetails.Size = new System.Drawing.Size(272, 86);
             this.grbBatchNoDetails.TabIndex = 17;
             this.grbBatchNoDetails.TabStop = false;
             this.grbBatchNoDetails.Text = "Batch No. Details";
@@ -1752,7 +1809,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1060, 638);
+            this.btnSave.Location = new System.Drawing.Point(669, 616);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(113, 29);
             this.btnSave.TabIndex = 38;
@@ -1769,7 +1826,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1175, 638);
+            this.btnClose.Location = new System.Drawing.Point(784, 616);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
             this.btnClose.TabIndex = 39;
@@ -1786,7 +1843,7 @@
             this.groupBox3.Controls.Add(this.txtREnglishName);
             this.groupBox3.Controls.Add(this.txtRPICode);
             this.groupBox3.Controls.Add(this.lblDPicode);
-            this.groupBox3.Location = new System.Drawing.Point(567, -6);
+            this.groupBox3.Location = new System.Drawing.Point(579, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(278, 114);
             this.groupBox3.TabIndex = 95;
@@ -1838,7 +1895,7 @@
             this.columnHeader17});
             this.lvPurLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurLocation.HideSelection = false;
-            this.lvPurLocation.Location = new System.Drawing.Point(147, 339);
+            this.lvPurLocation.Location = new System.Drawing.Point(142, 324);
             this.lvPurLocation.Name = "lvPurLocation";
             this.lvPurLocation.Size = new System.Drawing.Size(388, 78);
             this.lvPurLocation.TabIndex = 124;
@@ -1872,7 +1929,7 @@
             this.columnHeader19});
             this.lvPurRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurRack.HideSelection = false;
-            this.lvPurRack.Location = new System.Drawing.Point(145, 366);
+            this.lvPurRack.Location = new System.Drawing.Point(142, 351);
             this.lvPurRack.Name = "lvPurRack";
             this.lvPurRack.Size = new System.Drawing.Size(388, 78);
             this.lvPurRack.TabIndex = 125;
@@ -1896,6 +1953,279 @@
             this.columnHeader19.DisplayIndex = 1;
             this.columnHeader19.Width = 0;
             // 
+            // cbCompleted
+            // 
+            this.cbCompleted.AutoSize = true;
+            this.cbCompleted.Location = new System.Drawing.Point(578, 618);
+            this.cbCompleted.Name = "cbCompleted";
+            this.cbCompleted.Size = new System.Drawing.Size(86, 24);
+            this.cbCompleted.TabIndex = 37;
+            this.cbCompleted.Text = "Completed";
+            this.cbCompleted.UseVisualStyleBackColor = true;
+            this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
+            this.cbCompleted.Enter += new System.EventHandler(this.CbCompleted_Enter);
+            this.cbCompleted.Leave += new System.EventHandler(this.CbCompleted_Leave);
+            // 
+            // grbPurchaseHSN
+            // 
+            this.grbPurchaseHSN.Controls.Add(this.lvPURHSNCode);
+            this.grbPurchaseHSN.Controls.Add(this.grdPurHSN);
+            this.grbPurchaseHSN.Controls.Add(this.btnPURHSN);
+            this.grbPurchaseHSN.Controls.Add(this.label2);
+            this.grbPurchaseHSN.Controls.Add(this.label1);
+            this.grbPurchaseHSN.Controls.Add(this.dpPurEffectiveFrom);
+            this.grbPurchaseHSN.Controls.Add(this.txtPURHSNName);
+            this.grbPurchaseHSN.Location = new System.Drawing.Point(15, 6);
+            this.grbPurchaseHSN.Name = "grbPurchaseHSN";
+            this.grbPurchaseHSN.Size = new System.Drawing.Size(860, 299);
+            this.grbPurchaseHSN.TabIndex = 129;
+            this.grbPurchaseHSN.TabStop = false;
+            this.grbPurchaseHSN.Text = "Purchase HSN";
+            // 
+            // grdPurHSN
+            // 
+            this.grdPurHSN.AllowUserToAddRows = false;
+            this.grdPurHSN.AllowUserToDeleteRows = false;
+            this.grdPurHSN.AllowUserToResizeColumns = false;
+            this.grdPurHSN.AllowUserToResizeRows = false;
+            this.grdPurHSN.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurHSN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurHSN.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdPurHSN.ColumnHeadersHeight = 30;
+            this.grdPurHSN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurHSN.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmHSNName,
+            this.clmHSNCode,
+            this.clmGST,
+            this.clmEffectiveFrom,
+            this.clmEffectiveTo,
+            this.clmRemove});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPurHSN.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdPurHSN.EnableHeadersVisualStyles = false;
+            this.grdPurHSN.GridColor = System.Drawing.Color.White;
+            this.grdPurHSN.Location = new System.Drawing.Point(10, 75);
+            this.grdPurHSN.Name = "grdPurHSN";
+            this.grdPurHSN.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPurHSN.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdPurHSN.RowTemplate.Height = 25;
+            this.grdPurHSN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurHSN.Size = new System.Drawing.Size(844, 218);
+            this.grdPurHSN.TabIndex = 1111142;
+            // 
+            // btnPURHSN
+            // 
+            this.btnPURHSN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPURHSN.Image = global::ROMS.Properties.Resources.plus;
+            this.btnPURHSN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPURHSN.Location = new System.Drawing.Point(314, 46);
+            this.btnPURHSN.Name = "btnPURHSN";
+            this.btnPURHSN.Size = new System.Drawing.Size(25, 25);
+            this.btnPURHSN.TabIndex = 131;
+            this.btnPURHSN.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(201, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.TabIndex = 126;
+            this.label2.Text = "Effective From";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.TabIndex = 125;
+            this.label1.Text = "HSN Name";
+            // 
+            // dpPurEffectiveFrom
+            // 
+            this.dpPurEffectiveFrom.CustomFormat = "dd/MM/yyyy";
+            this.dpPurEffectiveFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpPurEffectiveFrom.Location = new System.Drawing.Point(201, 45);
+            this.dpPurEffectiveFrom.Name = "dpPurEffectiveFrom";
+            this.dpPurEffectiveFrom.Size = new System.Drawing.Size(107, 27);
+            this.dpPurEffectiveFrom.TabIndex = 121;
+            this.dpPurEffectiveFrom.Enter += new System.EventHandler(this.DpPurEffectiveFrom_Enter);
+            // 
+            // txtPURHSNName
+            // 
+            this.txtPURHSNName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPURHSNName.Location = new System.Drawing.Point(10, 45);
+            this.txtPURHSNName.MaxLength = 50;
+            this.txtPURHSNName.Name = "txtPURHSNName";
+            this.txtPURHSNName.Size = new System.Drawing.Size(185, 27);
+            this.txtPURHSNName.TabIndex = 119;
+            this.txtPURHSNName.TextChanged += new System.EventHandler(this.TxtPURHSNName_TextChanged);
+            this.txtPURHSNName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPURHSNName_KeyDown);
+            // 
+            // grbSalesHSN
+            // 
+            this.grbSalesHSN.Controls.Add(this.grdSalesHSN);
+            this.grbSalesHSN.Controls.Add(this.btnSalesHSN);
+            this.grbSalesHSN.Controls.Add(this.label3);
+            this.grbSalesHSN.Controls.Add(this.label4);
+            this.grbSalesHSN.Controls.Add(this.dpSalesEffectiveFrom);
+            this.grbSalesHSN.Controls.Add(this.txtSalesHSNName);
+            this.grbSalesHSN.Location = new System.Drawing.Point(15, 311);
+            this.grbSalesHSN.Name = "grbSalesHSN";
+            this.grbSalesHSN.Size = new System.Drawing.Size(860, 305);
+            this.grbSalesHSN.TabIndex = 1111143;
+            this.grbSalesHSN.TabStop = false;
+            this.grbSalesHSN.Text = "Sales HSN";
+            // 
+            // grdSalesHSN
+            // 
+            this.grdSalesHSN.AllowUserToAddRows = false;
+            this.grdSalesHSN.AllowUserToDeleteRows = false;
+            this.grdSalesHSN.AllowUserToResizeColumns = false;
+            this.grdSalesHSN.AllowUserToResizeRows = false;
+            this.grdSalesHSN.BackgroundColor = System.Drawing.Color.White;
+            this.grdSalesHSN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSalesHSN.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdSalesHSN.ColumnHeadersHeight = 30;
+            this.grdSalesHSN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdSalesHSN.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.Column1,
+            this.Column2,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewImageColumn1});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSalesHSN.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdSalesHSN.EnableHeadersVisualStyles = false;
+            this.grdSalesHSN.GridColor = System.Drawing.Color.White;
+            this.grdSalesHSN.Location = new System.Drawing.Point(10, 75);
+            this.grdSalesHSN.Name = "grdSalesHSN";
+            this.grdSalesHSN.RowHeadersVisible = false;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSalesHSN.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdSalesHSN.RowTemplate.Height = 25;
+            this.grdSalesHSN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdSalesHSN.Size = new System.Drawing.Size(844, 219);
+            this.grdSalesHSN.TabIndex = 1111142;
+            // 
+            // btnSalesHSN
+            // 
+            this.btnSalesHSN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSalesHSN.Image = global::ROMS.Properties.Resources.plus;
+            this.btnSalesHSN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalesHSN.Location = new System.Drawing.Point(314, 46);
+            this.btnSalesHSN.Name = "btnSalesHSN";
+            this.btnSalesHSN.Size = new System.Drawing.Size(25, 25);
+            this.btnSalesHSN.TabIndex = 131;
+            this.btnSalesHSN.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(201, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 20);
+            this.label3.TabIndex = 126;
+            this.label3.Text = "Effective From";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 20);
+            this.label4.TabIndex = 125;
+            this.label4.Text = "HSN Name";
+            // 
+            // dpSalesEffectiveFrom
+            // 
+            this.dpSalesEffectiveFrom.CustomFormat = "dd/MM/yyyy";
+            this.dpSalesEffectiveFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpSalesEffectiveFrom.Location = new System.Drawing.Point(201, 45);
+            this.dpSalesEffectiveFrom.Name = "dpSalesEffectiveFrom";
+            this.dpSalesEffectiveFrom.Size = new System.Drawing.Size(107, 27);
+            this.dpSalesEffectiveFrom.TabIndex = 121;
+            // 
+            // txtSalesHSNName
+            // 
+            this.txtSalesHSNName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSalesHSNName.Location = new System.Drawing.Point(10, 45);
+            this.txtSalesHSNName.MaxLength = 50;
+            this.txtSalesHSNName.Name = "txtSalesHSNName";
+            this.txtSalesHSNName.Size = new System.Drawing.Size(185, 27);
+            this.txtSalesHSNName.TabIndex = 119;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(5, 2);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(889, 681);
+            this.tabControl1.TabIndex = 1111144;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.lvBrand);
+            this.tabPage1.Controls.Add(this.lvSaleRack);
+            this.tabPage1.Controls.Add(this.lvGroup);
+            this.tabPage1.Controls.Add(this.grpHsndetail);
+            this.tabPage1.Controls.Add(this.cbCompleted);
+            this.tabPage1.Controls.Add(this.lvSubGroup);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.pnlStatus);
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Controls.Add(this.txtDStatus);
+            this.tabPage1.Controls.Add(this.lvPurLocation);
+            this.tabPage1.Controls.Add(this.btnSave);
+            this.tabPage1.Controls.Add(this.lvPurRack);
+            this.tabPage1.Controls.Add(this.btnClose);
+            this.tabPage1.Controls.Add(this.grpExpire);
+            this.tabPage1.Controls.Add(this.grbform);
+            this.tabPage1.Controls.Add(this.grbSalesStockLocation);
+            this.tabPage1.Controls.Add(this.grbBatchNoDetails);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.grplocation);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(881, 649);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Product Details";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // lvSaleRack
             // 
             this.lvSaleRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1904,10 +2234,10 @@
             this.columnHeader21});
             this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSaleRack.HideSelection = false;
-            this.lvSaleRack.Location = new System.Drawing.Point(147, 515);
+            this.lvSaleRack.Location = new System.Drawing.Point(145, 493);
             this.lvSaleRack.Name = "lvSaleRack";
             this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
-            this.lvSaleRack.TabIndex = 126;
+            this.lvSaleRack.TabIndex = 134;
             this.lvSaleRack.UseCompatibleStateImageBehavior = false;
             this.lvSaleRack.View = System.Windows.Forms.View.Details;
             this.lvSaleRack.Visible = false;
@@ -1928,195 +2258,101 @@
             this.columnHeader21.DisplayIndex = 1;
             this.columnHeader21.Width = 0;
             // 
-            // lvSaleLocation
+            // tabPage2
             // 
-            this.lvSaleLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24,
-            this.columnHeader25});
-            this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSaleLocation.HideSelection = false;
-            this.lvSaleLocation.Location = new System.Drawing.Point(147, 489);
-            this.lvSaleLocation.Name = "lvSaleLocation";
-            this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
-            this.lvSaleLocation.TabIndex = 127;
-            this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
-            this.lvSaleLocation.View = System.Windows.Forms.View.Details;
-            this.lvSaleLocation.Visible = false;
-            this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
-            this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
+            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Controls.Add(this.button4);
+            this.tabPage2.Controls.Add(this.grbPurchaseHSN);
+            this.tabPage2.Controls.Add(this.grbSalesHSN);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(881, 649);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "HSN Details";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // columnHeader22
+            // button3
             // 
-            this.columnHeader22.Width = 120;
+            this.button3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.button3.Image = global::ROMS.Properties.Resources.save;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(721, 617);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(74, 29);
+            this.button3.TabIndex = 1111144;
+            this.button3.Text = "Save";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // columnHeader23
+            // button4
             // 
-            this.columnHeader23.Width = 130;
+            this.button4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.button4.Image = global::ROMS.Properties.Resources.close;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(801, 617);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(74, 29);
+            this.button4.TabIndex = 1111145;
+            this.button4.Text = "Close";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // columnHeader24
+            // pnlProductDetails
             // 
-            this.columnHeader24.Width = 0;
+            this.pnlProductDetails.Controls.Add(this.tabControl1);
+            this.pnlProductDetails.Location = new System.Drawing.Point(8, 0);
+            this.pnlProductDetails.Name = "pnlProductDetails";
+            this.pnlProductDetails.Size = new System.Drawing.Size(897, 683);
+            this.pnlProductDetails.TabIndex = 1111144;
             // 
-            // columnHeader25
+            // lvBrand
             // 
-            this.columnHeader25.Width = 0;
+            this.lvBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvBrand.HideSelection = false;
+            this.lvBrand.Location = new System.Drawing.Point(167, 228);
+            this.lvBrand.Name = "lvBrand";
+            this.lvBrand.Size = new System.Drawing.Size(363, 78);
+            this.lvBrand.TabIndex = 1111147;
+            this.lvBrand.UseCompatibleStateImageBehavior = false;
+            this.lvBrand.View = System.Windows.Forms.View.Details;
+            this.lvBrand.Visible = false;
+            this.lvBrand.DoubleClick += new System.EventHandler(this.LvBrand_DoubleClick);
+            this.lvBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvBrand_KeyDown);
             // 
-            // lvHsnCode
+            // columnHeader1
             // 
-            this.lvHsnCode.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10,
-            this.columnHeader30,
-            this.columnHeader31});
-            this.lvHsnCode.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvHsnCode.HideSelection = false;
-            this.lvHsnCode.Location = new System.Drawing.Point(579, 499);
-            this.lvHsnCode.Name = "lvHsnCode";
-            this.lvHsnCode.Size = new System.Drawing.Size(257, 78);
-            this.lvHsnCode.TabIndex = 128;
-            this.lvHsnCode.UseCompatibleStateImageBehavior = false;
-            this.lvHsnCode.View = System.Windows.Forms.View.Details;
-            this.lvHsnCode.Visible = false;
-            this.lvHsnCode.DoubleClick += new System.EventHandler(this.LvHsnName_DoubleClick);
-            this.lvHsnCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvHsnName_KeyDown);
+            this.columnHeader1.Width = 120;
             // 
-            // columnHeader10
+            // columnHeader2
             // 
-            this.columnHeader10.Width = 120;
+            this.columnHeader2.Width = 130;
             // 
-            // columnHeader30
+            // columnHeader3
             // 
-            this.columnHeader30.Width = 100;
-            // 
-            // columnHeader31
-            // 
-            this.columnHeader31.Width = 0;
-            // 
-            // cbCompleted
-            // 
-            this.cbCompleted.AutoSize = true;
-            this.cbCompleted.Location = new System.Drawing.Point(969, 641);
-            this.cbCompleted.Name = "cbCompleted";
-            this.cbCompleted.Size = new System.Drawing.Size(86, 24);
-            this.cbCompleted.TabIndex = 37;
-            this.cbCompleted.Text = "Completed";
-            this.cbCompleted.UseVisualStyleBackColor = true;
-            this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
-            this.cbCompleted.Enter += new System.EventHandler(this.CbCompleted_Enter);
-            this.cbCompleted.Leave += new System.EventHandler(this.CbCompleted_Leave);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.grdSubGroup);
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.dpFromDate);
-            this.groupBox4.Controls.Add(this.textBox9);
-            this.groupBox4.Location = new System.Drawing.Point(851, -1);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(396, 273);
-            this.groupBox4.TabIndex = 129;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Purchase HSN";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(10, 45);
-            this.textBox9.MaxLength = 50;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(185, 27);
-            this.textBox9.TabIndex = 119;
-            // 
-            // dpFromDate
-            // 
-            this.dpFromDate.CustomFormat = "dd/MM/yyyy";
-            this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(201, 45);
-            this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
-            this.dpFromDate.TabIndex = 121;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 20);
-            this.label1.TabIndex = 125;
-            this.label1.Text = "HSN Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(201, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 20);
-            this.label2.TabIndex = 126;
-            this.label2.Text = "Effective From";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.plus;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(314, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 25);
-            this.button1.TabIndex = 131;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // grdSubGroup
-            // 
-            this.grdSubGroup.AllowUserToAddRows = false;
-            this.grdSubGroup.AllowUserToDeleteRows = false;
-            this.grdSubGroup.AllowUserToResizeColumns = false;
-            this.grdSubGroup.AllowUserToResizeRows = false;
-            this.grdSubGroup.BackgroundColor = System.Drawing.Color.White;
-            this.grdSubGroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSubGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdSubGroup.ColumnHeadersHeight = 30;
-            this.grdSubGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdSubGroup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmHSNName,
-            this.clmEffectiveFrom,
-            this.clmEffectiveTo,
-            this.clmRemove});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSubGroup.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdSubGroup.EnableHeadersVisualStyles = false;
-            this.grdSubGroup.GridColor = System.Drawing.Color.White;
-            this.grdSubGroup.Location = new System.Drawing.Point(10, 75);
-            this.grdSubGroup.Name = "grdSubGroup";
-            this.grdSubGroup.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSubGroup.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdSubGroup.RowTemplate.Height = 25;
-            this.grdSubGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSubGroup.Size = new System.Drawing.Size(380, 184);
-            this.grdSubGroup.TabIndex = 1111142;
+            this.columnHeader3.Width = 0;
             // 
             // clmHSNName
             // 
             this.clmHSNName.HeaderText = "HSN Name";
             this.clmHSNName.Name = "clmHSNName";
-            this.clmHSNName.Width = 120;
+            this.clmHSNName.Width = 230;
+            // 
+            // clmHSNCode
+            // 
+            this.clmHSNCode.HeaderText = "HSN Code";
+            this.clmHSNCode.Name = "clmHSNCode";
+            this.clmHSNCode.Width = 160;
+            // 
+            // clmGST
+            // 
+            this.clmGST.HeaderText = "GST %";
+            this.clmGST.Name = "clmGST";
+            this.clmGST.Width = 80;
             // 
             // clmEffectiveFrom
             // 
@@ -2137,70 +2373,23 @@
             this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmRemove.Width = 50;
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.dataGridView1);
-            this.groupBox5.Controls.Add(this.button2);
-            this.groupBox5.Controls.Add(this.label3);
-            this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Controls.Add(this.dateTimePicker1);
-            this.groupBox5.Controls.Add(this.textBox6);
-            this.groupBox5.Location = new System.Drawing.Point(853, 280);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(396, 273);
-            this.groupBox5.TabIndex = 1111143;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Sales HSN";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeight = 30;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewImageColumn1});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 75);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(380, 184);
-            this.dataGridView1.TabIndex = 1111142;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "HSN Name";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 120;
+            this.dataGridViewTextBoxColumn1.Width = 230;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "HSN Code";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 160;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "GST %";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 80;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -2221,85 +2410,42 @@
             this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn1.Width = 50;
             // 
-            // button2
+            // lvPURHSNCode
             // 
-            this.button2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button2.Image = global::ROMS.Properties.Resources.plus;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(314, 46);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(25, 25);
-            this.button2.TabIndex = 131;
-            this.button2.UseVisualStyleBackColor = true;
+            this.lvPURHSNCode.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader32,
+            this.columnHeader33,
+            this.columnHeader34});
+            this.lvPURHSNCode.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvPURHSNCode.HideSelection = false;
+            this.lvPURHSNCode.Location = new System.Drawing.Point(10, 72);
+            this.lvPURHSNCode.Name = "lvPURHSNCode";
+            this.lvPURHSNCode.Size = new System.Drawing.Size(257, 78);
+            this.lvPURHSNCode.TabIndex = 1111143;
+            this.lvPURHSNCode.UseCompatibleStateImageBehavior = false;
+            this.lvPURHSNCode.View = System.Windows.Forms.View.Details;
+            this.lvPURHSNCode.Visible = false;
+            this.lvPURHSNCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvPURHSNCode_KeyDown);
             // 
-            // label3
+            // columnHeader32
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(201, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 20);
-            this.label3.TabIndex = 126;
-            this.label3.Text = "Effective From";
+            this.columnHeader32.Width = 120;
             // 
-            // label4
+            // columnHeader33
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 20);
-            this.label4.TabIndex = 125;
-            this.label4.Text = "HSN Name";
+            this.columnHeader33.Width = 100;
             // 
-            // dateTimePicker1
+            // columnHeader34
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(201, 45);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(107, 27);
-            this.dateTimePicker1.TabIndex = 121;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox6.Location = new System.Drawing.Point(10, 45);
-            this.textBox6.MaxLength = 50;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(185, 27);
-            this.textBox6.TabIndex = 119;
+            this.columnHeader34.Width = 0;
             // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1259, 674);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.cbCompleted);
-            this.Controls.Add(this.lvHsnCode);
-            this.Controls.Add(this.lvGroup);
-            this.Controls.Add(this.lvBrand);
-            this.Controls.Add(this.lvSaleLocation);
-            this.Controls.Add(this.lvPurLocation);
-            this.Controls.Add(this.lvSaleRack);
-            this.Controls.Add(this.lvPurRack);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.grbBatchNoDetails);
-            this.Controls.Add(this.txtDGST);
-            this.Controls.Add(this.pnlStatus);
-            this.Controls.Add(this.txtGST);
-            this.Controls.Add(this.txtDStatus);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.grbform);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.grbSalesStockLocation);
-            this.Controls.Add(this.grpHsndetail);
-            this.Controls.Add(this.grplocation);
-            this.Controls.Add(this.grpExpire);
+            this.ClientSize = new System.Drawing.Size(914, 689);
+            this.Controls.Add(this.pnlProductDetails);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2334,14 +2480,18 @@
             this.grbBatchNoDetails.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.grbPurchaseHSN.ResumeLayout(false);
+            this.grbPurchaseHSN.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurHSN)).EndInit();
+            this.grbSalesHSN.ResumeLayout(false);
+            this.grbSalesHSN.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSalesHSN)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.pnlProductDetails.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -2438,10 +2588,6 @@
         private System.Windows.Forms.Label txtRPICode;
         private System.Windows.Forms.Label lblDPicode;
         private System.Windows.Forms.TextBox txtBrand;
-        public System.Windows.Forms.ListView lvBrand;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         public System.Windows.Forms.ListView lvSubGroup;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
@@ -2472,15 +2618,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader23;
         private System.Windows.Forms.ColumnHeader columnHeader24;
         private System.Windows.Forms.ColumnHeader columnHeader25;
-        public System.Windows.Forms.ListView lvSaleRack;
-        private System.Windows.Forms.ColumnHeader columnHeader20;
-        private System.Windows.Forms.ColumnHeader columnHeader21;
         private System.Windows.Forms.TextBox txtSaleLocation;
         private System.Windows.Forms.TextBox txtSaleRack;
         private System.Windows.Forms.Label lblSaleRackCode;
         private System.Windows.Forms.Label lblSaleLocationCode;
         private System.Windows.Forms.ColumnHeader columnHeader26;
-        private System.Windows.Forms.ColumnHeader columnHeader27;
         public System.Windows.Forms.ComboBox cmbNetQty;
         private System.Windows.Forms.ColumnHeader columnHeader28;
         private System.Windows.Forms.ColumnHeader columnHeader29;
@@ -2499,27 +2641,49 @@
         private System.Windows.Forms.CheckBox chkSameasPurchase;
         private System.Windows.Forms.CheckBox chkMRP;
         private System.Windows.Forms.ComboBox cmbRM;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.DateTimePicker dpFromDate;
+        private System.Windows.Forms.GroupBox grbPurchaseHSN;
+        private System.Windows.Forms.TextBox txtPURHSNName;
+        private System.Windows.Forms.DateTimePicker dpPurEffectiveFrom;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.DataGridView grdSubGroup;
+        public System.Windows.Forms.Button btnPURHSN;
+        public System.Windows.Forms.DataGridView grdPurHSN;
+        private System.Windows.Forms.GroupBox grbSalesHSN;
+        public System.Windows.Forms.DataGridView grdSalesHSN;
+        public System.Windows.Forms.Button btnSalesHSN;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dpSalesEffectiveFrom;
+        private System.Windows.Forms.TextBox txtSalesHSNName;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel pnlProductDetails;
+        public System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        public System.Windows.Forms.ListView lvSaleRack;
+        private System.Windows.Forms.ColumnHeader columnHeader20;
+        private System.Windows.Forms.ColumnHeader columnHeader27;
+        private System.Windows.Forms.ColumnHeader columnHeader21;
+        public System.Windows.Forms.ListView lvBrand;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmHSNName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmHSNCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmEffectiveFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmEffectiveTo;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
-        private System.Windows.Forms.GroupBox groupBox5;
-        public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        public System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.ListView lvPURHSNCode;
+        private System.Windows.Forms.ColumnHeader columnHeader32;
+        private System.Windows.Forms.ColumnHeader columnHeader33;
+        private System.Windows.Forms.ColumnHeader columnHeader34;
     }
 }

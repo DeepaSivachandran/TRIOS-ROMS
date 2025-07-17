@@ -1570,7 +1570,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtHsnName.Focus();
+                    btnSave.Focus();
+                    //txtHsnName.Focus();
                 }
             }
             catch (Exception ex)
@@ -5585,6 +5586,137 @@ namespace ROMS
             try
             {
                 cbCompleted.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtPURHSNName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvPURHSNCode.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtPURHSNName.Text.Length > 0)
+                {
+                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtPURHSNName.Text.Trim(), "");
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString(), objDs.Tables[0].Rows[i]["HSN_GSTID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvPURHSNCode.Items.Add(objList);
+                                }
+                                lvPURHSNCode.Visible = true;
+                                lvPURHSNCode.BringToFront();
+                                lvPURHSNCode.Columns[0].Width = 200;
+                                lvPURHSNCode.Columns[1].Width = 0;
+                                lvPURHSNCode.Columns[2].Width = 0;
+                                lvPURHSNCode.Columns[3].Width = 0;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvPURHSNCode.Visible = false;
+                    lvPURHSNCode.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvPURHSNCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnPURHSNAutocomplete();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPURHSNAutocomplete()
+        {
+            try
+            {
+                if (txtPURHSNName.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvPURHSNCode.SelectedItems[0];
+                    cmbGst.SelectedValue = Convert.ToInt32(selectedItem.SubItems[3].Text);
+                    txtHSNCode.Text = selectedItem.SubItems[1].Text;
+                    lblHsnName.Text = selectedItem.SubItems[2].Text;
+                    txtPURHSNName.Text = selectedItem.SubItems[0].Text;
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvHsnCode.Visible = false;
+            }
+        }
+
+        private void TxtPURHSNName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvPURHSNCode.Items.Count == 0 || txtPURHSNName.Text == "")
+                    {
+                        txtPURHSNName.Focus();
+                        lvPURHSNCode.Visible = false;
+                    }
+                    else
+                    {
+                        lvPURHSNCode.Focus();
+                    }
+                    if (lvPURHSNCode.Items.Count > 0)
+                    {
+                        lvPURHSNCode.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpPurEffectiveFrom.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpPurEffectiveFrom_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvPURHSNCode.Visible = false;
             }
             catch (Exception ex)
             {
