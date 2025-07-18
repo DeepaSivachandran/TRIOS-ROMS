@@ -1988,7 +1988,7 @@
             this.grbPurchaseHSN.Location = new System.Drawing.Point(15, 6);
             this.grbPurchaseHSN.Name = "grbPurchaseHSN";
             this.grbPurchaseHSN.Size = new System.Drawing.Size(860, 299);
-            this.grbPurchaseHSN.TabIndex = 129;
+            this.grbPurchaseHSN.TabIndex = 0;
             this.grbPurchaseHSN.TabStop = false;
             this.grbPurchaseHSN.Text = "Purchase HSN";
             // 
@@ -2004,7 +2004,7 @@
             this.lvPURHSNCode.HideSelection = false;
             this.lvPURHSNCode.Location = new System.Drawing.Point(10, 72);
             this.lvPURHSNCode.Name = "lvPURHSNCode";
-            this.lvPURHSNCode.Size = new System.Drawing.Size(298, 122);
+            this.lvPURHSNCode.Size = new System.Drawing.Size(329, 122);
             this.lvPURHSNCode.TabIndex = 1111143;
             this.lvPURHSNCode.UseCompatibleStateImageBehavior = false;
             this.lvPURHSNCode.View = System.Windows.Forms.View.Details;
@@ -2136,7 +2136,7 @@
             this.btnPURHSN.Location = new System.Drawing.Point(314, 46);
             this.btnPURHSN.Name = "btnPURHSN";
             this.btnPURHSN.Size = new System.Drawing.Size(25, 25);
-            this.btnPURHSN.TabIndex = 131;
+            this.btnPURHSN.TabIndex = 2;
             this.btnPURHSN.UseVisualStyleBackColor = true;
             this.btnPURHSN.Click += new System.EventHandler(this.BtnPURHSN_Click);
             // 
@@ -2165,7 +2165,7 @@
             this.dpPurEffectiveFrom.Location = new System.Drawing.Point(201, 45);
             this.dpPurEffectiveFrom.Name = "dpPurEffectiveFrom";
             this.dpPurEffectiveFrom.Size = new System.Drawing.Size(107, 27);
-            this.dpPurEffectiveFrom.TabIndex = 121;
+            this.dpPurEffectiveFrom.TabIndex = 1;
             this.dpPurEffectiveFrom.Enter += new System.EventHandler(this.DpPurEffectiveFrom_Enter);
             this.dpPurEffectiveFrom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpPurEffectiveFrom_KeyDown);
             // 
@@ -2176,7 +2176,7 @@
             this.txtPURHSNName.MaxLength = 50;
             this.txtPURHSNName.Name = "txtPURHSNName";
             this.txtPURHSNName.Size = new System.Drawing.Size(185, 27);
-            this.txtPURHSNName.TabIndex = 119;
+            this.txtPURHSNName.TabIndex = 0;
             this.txtPURHSNName.TextChanged += new System.EventHandler(this.TxtPURHSNName_TextChanged);
             this.txtPURHSNName.Enter += new System.EventHandler(this.TxtPURHSNName_Enter);
             this.txtPURHSNName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPURHSNName_KeyDown);
@@ -2194,7 +2194,7 @@
             this.grbSalesHSN.Location = new System.Drawing.Point(15, 311);
             this.grbSalesHSN.Name = "grbSalesHSN";
             this.grbSalesHSN.Size = new System.Drawing.Size(860, 305);
-            this.grbSalesHSN.TabIndex = 1111143;
+            this.grbSalesHSN.TabIndex = 3;
             this.grbSalesHSN.TabStop = false;
             this.grbSalesHSN.Text = "Sales HSN";
             // 
@@ -2210,7 +2210,7 @@
             this.lvSalesHSNCode.HideSelection = false;
             this.lvSalesHSNCode.Location = new System.Drawing.Point(10, 72);
             this.lvSalesHSNCode.Name = "lvSalesHSNCode";
-            this.lvSalesHSNCode.Size = new System.Drawing.Size(298, 122);
+            this.lvSalesHSNCode.Size = new System.Drawing.Size(329, 122);
             this.lvSalesHSNCode.TabIndex = 1111144;
             this.lvSalesHSNCode.UseCompatibleStateImageBehavior = false;
             this.lvSalesHSNCode.View = System.Windows.Forms.View.Details;
@@ -2342,7 +2342,7 @@
             this.btnSalesHSN.Location = new System.Drawing.Point(314, 46);
             this.btnSalesHSN.Name = "btnSalesHSN";
             this.btnSalesHSN.Size = new System.Drawing.Size(25, 25);
-            this.btnSalesHSN.TabIndex = 131;
+            this.btnSalesHSN.TabIndex = 5;
             this.btnSalesHSN.UseVisualStyleBackColor = true;
             this.btnSalesHSN.Click += new System.EventHandler(this.BtnSalesHSN_Click);
             // 
@@ -2371,7 +2371,7 @@
             this.dpSalesEffectiveFrom.Location = new System.Drawing.Point(201, 45);
             this.dpSalesEffectiveFrom.Name = "dpSalesEffectiveFrom";
             this.dpSalesEffectiveFrom.Size = new System.Drawing.Size(107, 27);
-            this.dpSalesEffectiveFrom.TabIndex = 121;
+            this.dpSalesEffectiveFrom.TabIndex = 4;
             this.dpSalesEffectiveFrom.Enter += new System.EventHandler(this.DpSalesEffectiveFrom_Enter);
             this.dpSalesEffectiveFrom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpSalesEffectiveFrom_KeyDown);
             // 
@@ -2382,7 +2382,7 @@
             this.txtSalesHSNName.MaxLength = 50;
             this.txtSalesHSNName.Name = "txtSalesHSNName";
             this.txtSalesHSNName.Size = new System.Drawing.Size(185, 27);
-            this.txtSalesHSNName.TabIndex = 119;
+            this.txtSalesHSNName.TabIndex = 3;
             this.txtSalesHSNName.TextChanged += new System.EventHandler(this.TxtSalesHSNName_TextChanged);
             this.txtSalesHSNName.Enter += new System.EventHandler(this.TxtSalesHSNName_Enter);
             this.txtSalesHSNName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesHSNName_KeyDown);
@@ -2513,7 +2513,7 @@
             this.btnSaveHsn.Location = new System.Drawing.Point(721, 617);
             this.btnSaveHsn.Name = "btnSaveHsn";
             this.btnSaveHsn.Size = new System.Drawing.Size(74, 29);
-            this.btnSaveHsn.TabIndex = 1111144;
+            this.btnSaveHsn.TabIndex = 6;
             this.btnSaveHsn.Text = "Save";
             this.btnSaveHsn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSaveHsn.UseVisualStyleBackColor = true;
@@ -2529,7 +2529,7 @@
             this.btnHSNClose.Location = new System.Drawing.Point(801, 617);
             this.btnHSNClose.Name = "btnHSNClose";
             this.btnHSNClose.Size = new System.Drawing.Size(74, 29);
-            this.btnHSNClose.TabIndex = 1111145;
+            this.btnHSNClose.TabIndex = 7;
             this.btnHSNClose.Text = "Close";
             this.btnHSNClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnHSNClose.UseVisualStyleBackColor = true;
