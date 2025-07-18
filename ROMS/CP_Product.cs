@@ -6029,7 +6029,7 @@ namespace ROMS
             {
                 if (grdPurHSN.Rows.Count < 1)
                 {
-                    MessageBox.Show("Please add atleast one purchase hsn.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please add at least one Purchase HSN.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 /*
