@@ -768,6 +768,7 @@ namespace ROMS
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["HSNID"].Visible = false;
                                     DGV_FilterProduct.Columns["HSN_GSTID"].Visible = false;
+                                    DGV_FilterProduct.Columns["GST_Text"].Visible = false;
                                     DGV_FilterProduct.Columns["HSN_Name"].HeaderText = "HSN Name";
                                     DGV_FilterProduct.Columns["HSN_Code"].HeaderText = "HSN Code";
                                     DGV_FilterProduct.Columns["HSN_Name"].Width = 160;
