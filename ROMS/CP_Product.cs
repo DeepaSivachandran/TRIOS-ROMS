@@ -1089,15 +1089,16 @@ namespace ROMS
                         {
                             MainForm.objCP_Itemlist.udfnDropdownbind();
                             MainForm.objCP_Itemlist.udfnList();
-                            udfnclear();
+                            //udfnclear();
+                            if (btnSave.Text != "Update")
+                            {
+                                varproductcode = Convert.ToInt32(varvalue[2]);
+                                tbProduct.SelectedIndex = 1;
+                            }
                         }
                         if (btnSave.Text == "Update")
                         {
                             this.Close();
-                        }
-                        else
-                        {
-                            varproductcode = Convert.ToInt32(varvalue[2]);
                         }
                     }
                     else
@@ -1119,7 +1120,7 @@ namespace ROMS
             finally
             {
                 btnSave.Enabled = true;
-                cmbConcern.Focus();
+                //cmbConcern.Focus();
             }
         }
 
@@ -6109,7 +6110,7 @@ namespace ROMS
                     {
                         MainForm.objCP_Itemlist.udfnDropdownbind();
                         MainForm.objCP_Itemlist.udfnList();
-                        udfnclear();
+                        //udfnclear();
                         varupdate = "1";
                         this.Close();
                     }
