@@ -140,6 +140,7 @@ namespace ROMS
                 grdConditions.Columns["ConditionID"].Visible = false;
                 grdConditions.Columns["ConditionShortName"].Visible = false;
                 grdConditions.Columns["Conditions"].ReadOnly = true;
+                grdConditions.Columns["clmCheck"].HeaderText = "";
             }
         }
         public void udfnDtProductAutocomplte()
@@ -2795,6 +2796,7 @@ namespace ROMS
             try
             {
                 pnlConditions.Visible = false;
+                txtMismatchQty.Focus();
             }
             catch (Exception ex)
             {
@@ -2868,16 +2870,23 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    if (txtMismatchQty.Enabled == true)
-                    {  txtMismatchQty.Focus();  }
-                    else if(txtDate.Enabled==true)
-                    {   txtDate.Focus(); }
-                    else if(txtBatchno.Enabled==true)
-                    {  txtBatchno.Focus();  }
+                { 
+                    if (txtmrprate.Enabled == true)
+                    { txtmrprate.Focus();
+                    }
+                    else if (txtDate.Enabled == true)
+                    {
+                        txtDate.Focus();
+                    }
+                    else if (txtBatchno.Enabled == true)
+                    {
+                        txtBatchno.Focus();
+                    }
                     else
-                    {  btnAdd.Focus();  }
-                }
+                    {
+                        btnAdd.Focus();
+                    }
+                } 
             }
             catch (Exception ex)
             {
@@ -3030,7 +3039,105 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void grdConditions_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // Check if we're at the last row and last column
+                bool isLastRow = e.RowIndex == grdConditions.Rows.Count - 1;
+                if (isLastRow)
+                {
+                    // Move focus to the button
+                    btnApply.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnApply_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnApply.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnApply_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnApply.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConditionClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnConditionClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConditionClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnConditionClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConditionClear_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnConditionClear.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConditionClear_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnConditionClear.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void btnConditionClose_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -3538,7 +3645,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtmrprate.Enabled == true)
+                    if(cmbReason.Enabled==true)
+                    {
+                        cmbReason.Focus();
+                    }
+                    else if (txtmrprate.Enabled == true)
                     {
                         txtmrprate.Focus();
                     }
@@ -5439,31 +5550,20 @@ namespace ROMS
             try
             {
                 errGRNDetails.Clear();
-                //cmbPONo.SelectedIndex = 0;
-
-                //if (Convert.ToInt32(cmbOrderType.SelectedValue) == 53 && Convert.ToInt32(cmbPONo.SelectedValue) != 215)
-                //{
-                //    cmbQtyType.SelectedValue = 227;
-                //}
-                //else
-                //{
-                //    cmbQtyType.SelectedValue = 202;
-                //}
-                cmbProType.BackColor = Color.White;
-                //txtProductName.Text = "";
+                cmbProType.BackColor = Color.White; 
                 txtmrprate.Text = "";
                 txtDate.Text = "";
                 txtMonth.Text = "";
                 txtYear.Text = "";
                 txtBatchno.Text = "";
-                txtMismatchQty.Text = "";
-                //txtProductName.BackColor = Color.White;
+                txtMismatchQty.Text = ""; 
                 txtmrprate.BackColor = Color.White;
                 txtDate.BackColor = Color.White;
                 txtMonth.BackColor = Color.White;
                 txtYear.BackColor = Color.White;
                 txtBatchno.BackColor = Color.White;
                 txtMismatchQty.BackColor = Color.White;
+                udfnConditionClear();
             }
             catch (Exception ex)
             {
