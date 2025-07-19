@@ -622,7 +622,7 @@ namespace ROMS
                     objTRN_PurchaseReturnDC.paraViewType = 6;
                     objTRN_PurchaseReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRN_PurchaseReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                    objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    objTRN_PurchaseReturnDC.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text); 
                     objTRN_PurchaseReturnDC.ParaScheduleID = Convert.ToInt32(lblschedule.Text);
                     objTRN_PurchaseReturnDC.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                     objTRN_PurchaseReturnDC.paraDCIDs = Convert.ToString(dcid);
@@ -744,73 +744,73 @@ namespace ROMS
                                 varEditFlag = 1;
                             }
                             else
-                            { 
+                            {  
                                 for (int i=0;i<grdGrnlist.Rows.Count;i++)
                                 {
                                     var gridRow = grdGrnlist.Rows[i];
-                                    for (int j=0;j<Result.Tables[0].Rows.Count;j++)
-                                    {
-                                        if(  Convert.ToInt32(Result.Tables[0].Rows[0]["Expiry_Date_Issue"])!=0 ||  Convert.ToInt32(Result.Tables[0].Rows[0]["Expiry_Date_Issue"])!=0)
+                                    var varIssueow = Result.Tables[0].Rows[i];
+                                    if (Convert.ToString(gridRow.Cells["clmsno"].Value) == Convert.ToString(varIssueow["GRNPR_SNO"]))
+                                    { 
+                                        if (Convert.ToInt32(varIssueow["Expiry_Date_Issue"]) != 0 || Convert.ToInt32(varIssueow["Expiry_Date_Issue"]) != 0)
                                         {
                                             gridRow.Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                             gridRow.Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightPink;
                                         }
                                         else
                                         {
-                                            gridRow.Cells["clmexpirydate"].Style.BackColor = Color.White;
-                                            gridRow.Cells["clmInvoiceExpiry"].Style.BackColor = Color.White;
+                                            gridRow.Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
+                                            gridRow.Cells["clmInvoiceExpiry"].Style.BackColor = Color.PaleGreen;
                                         }
-                                        if (Convert.ToInt32(Result.Tables[0].Rows[0]["MRP_Valid_Issue"]) != 0 || Convert.ToInt32(Result.Tables[0].Rows[0]["Pro_MRP_Valid_Issue"]) != 0)
+                                        if (Convert.ToInt32(varIssueow["MRP_Valid_Issue"]) != 0 || Convert.ToInt32(varIssueow["Pro_MRP_Valid_Issue"]) != 0)
                                         {
                                             gridRow.Cells["clmmrp"].Style.BackColor = Color.LightPink;
                                             gridRow.Cells["clmInvoiceMRP"].Style.BackColor = Color.LightPink;
                                         }
                                         else
                                         {
-                                            gridRow.Cells["clmmrp"].Style.BackColor = Color.White;
-                                            gridRow.Cells["clmInvoiceMRP"].Style.BackColor = Color.White;
+                                            gridRow.Cells["clmmrp"].Style.BackColor = Color.PaleGreen;
+                                            gridRow.Cells["clmInvoiceMRP"].Style.BackColor = Color.PaleGreen;
                                         }
-                                        if (Convert.ToInt32(Result.Tables[0].Rows[0]["Pro_BatchNo_Issue"]) != 0 || Convert.ToInt32(Result.Tables[0].Rows[0]["Invoice_BatchNo_Issue"]) != 0)
+                                        if (Convert.ToInt32(varIssueow["Pro_BatchNo_Issue"]) != 0 || Convert.ToInt32(varIssueow["Invoice_BatchNo_Issue"]) != 0)
                                         {
                                             gridRow.Cells["clmBatchno"].Style.BackColor = Color.LightPink;
                                             gridRow.Cells["clmInvoiceBatch"].Style.BackColor = Color.LightPink;
                                         }
                                         else
                                         {
-                                            gridRow.Cells["clmBatchno"].Style.BackColor = Color.White;
-                                            gridRow.Cells["clmInvoiceBatch"].Style.BackColor = Color.White;
+                                            gridRow.Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
+                                            gridRow.Cells["clmInvoiceBatch"].Style.BackColor = Color.PaleGreen;
                                         }
-                                        if (Convert.ToInt32(Result.Tables[0].Rows[0]["Pro_BatchNo_Issue"]) != 0 || Convert.ToInt32(Result.Tables[0].Rows[0]["Invoice_BatchNo_Issue"]) != 0)
+                                        if (Convert.ToInt32(varIssueow["Pro_BatchNo_Issue"]) != 0 || Convert.ToInt32(varIssueow["Invoice_BatchNo_Issue"]) != 0)
                                         {
                                             gridRow.Cells["clmBatchno"].Style.BackColor = Color.LightPink;
                                             gridRow.Cells["clmInvoiceBatch"].Style.BackColor = Color.LightPink;
                                         }
                                         else
                                         {
-                                            gridRow.Cells["clmBatchno"].Style.BackColor = Color.White;
-                                            gridRow.Cells["clmInvoiceBatch"].Style.BackColor = Color.White;
+                                            gridRow.Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
+                                            gridRow.Cells["clmInvoiceBatch"].Style.BackColor = Color.PaleGreen;
                                         }
-                                        if (Convert.ToInt32(Result.Tables[0].Rows[0]["Location_Issue"]) != 0  )
+                                        if (Convert.ToInt32(varIssueow["Location_Issue"]) != 0)
                                         {
-                                            gridRow.Cells["clmLocation"].Style.BackColor = Color.LightPink; 
+                                            gridRow.Cells["clmLocation"].Style.BackColor = Color.LightPink;
                                         }
                                         else
                                         {
-                                            gridRow.Cells["clmLocation"].Style.BackColor = Color.White;
+                                            gridRow.Cells["clmLocation"].Style.BackColor = Color.PaleGreen;
                                         }
-                                        if (Convert.ToInt32(Result.Tables[0].Rows[0]["Rack_Issue"]) != 0)
+                                        if (Convert.ToInt32(varIssueow["Rack_Issue"]) != 0)
                                         {
                                             gridRow.Cells["clmRack"].Style.BackColor = Color.LightPink;
                                         }
                                         else
                                         {
-                                            gridRow.Cells["clmRack"].Style.BackColor = Color.White;
-                                        }
+                                            gridRow.Cells["clmRack"].Style.BackColor = Color.PaleGreen;
+                                        } 
                                     }
                                 }
                             }
-                        }
-
+                        } 
                         if (varTotalIssue == 0)
                         {
                             if (shelfLifeError != 0)
