@@ -17,6 +17,8 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+        private ToolTip tpReportType = new ToolTip();
+        private ToolTip tpSupplierType = new ToolTip();
         public REPORT_HSN_Code()
         {
             InitializeComponent();
@@ -49,7 +51,36 @@ namespace ROMS
         {
             try
             {
-
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    cmbReportType.Focus();
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
+                }
+                else
+                {
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 287)
+                    {
+                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 287 && Convert.ToInt32(cmbSupplierType.SelectedValue) == 0)
+                        {
+                            cmbSupplierType.Focus();
+                            epReport.SetError(cmbSupplierType, "Please select supplier type.");
+                            cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpReportType.ShowAlways = true;
+                            tpReportType.Show("Please select supplier type.", cmbSupplierType, 5000);
+                        }
+                        else
+                        {
+                            udfnHSNCodeWiseReport();
+                        }
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 288)
+                    {
+                        udfnHSNCodeWiseReport();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -57,20 +88,31 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnHSNProduct()
+        public void udfnHSNCodeWiseReport()
         {
             try
             {
-                string varHSNCode = "", HSNCodeName = "";
-                if (txtHsnName.Text == "")
+                epReport.Clear();
+                int varViewType = 3;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 287)
                 {
-                    varHSNCode = "0";
-                    HSNCodeName = "-All-";
+                    if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 30)
+                    {
+                        varViewType = 0;
+                    }
+                    else if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 151)
+                    {
+                        varViewType = 1;
+                    }
+                    else
+                    {
+                        varViewType = 2;
+                    }
                 }
-                else
+                string varHSNName = "-All-";
+                if (txtHsnName.Text.Trim() != "")
                 {
-                    varHSNCode = txtHsnName.Text.Trim();
-                    HSNCodeName = txtHsnName.Text.Trim();
+                    varHSNName = txtHsnName.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
                 //lblStatus.Focus();
@@ -80,14 +122,9 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
-                MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 16;
-                //objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
-                objMR_Product.paraGstId = Convert.ToInt32(cmbGST.SelectedValue);
-                objMR_Product.paraHSNCode = varHSNCode;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(objMR_Product);
+                objDs = objspservice.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), txtHsnName.Text.Trim(), Convert.ToInt32(cmbGST.SelectedValue), dpFromDate.Text, dpToDate.Text);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -99,15 +136,34 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Product.rpt");
-                    objBillreport.SetParameterValue("paraHSNCode", Convert.ToString(varHSNCode));
-                    objBillreport.SetParameterValue("paraGSTID", Convert.ToInt32(cmbGST.SelectedValue));
-                    //objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraHSNName", Convert.ToString(HSNCodeName));
-                    objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
-                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 287)
+                    {
+                        if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 30)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWise.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 31 || Convert.ToInt32(cmbSupplierType.SelectedValue) == 32)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWiseComposite.rpt");
+                        }
+                        else
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWise_IGST.rpt");
+                        }
+                        objBillreport.SetParameterValue("paraHSNName", varHSNName);
+                        objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWiseTaxDetails.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
+                    objBillreport.SetParameterValue("paraHSNCode", txtHsnName.Text.Trim());
+                    objBillreport.SetParameterValue("paraGST", Convert.ToInt32(cmbGST.SelectedValue));
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
+
+                    objBillreport.SetParameterValue("paraSupplierTypeName", Convert.ToString(cmbSupplierType.Text));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -167,14 +223,92 @@ namespace ROMS
             {
                 udfnHsnLoad();
                 DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,84) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbReportType.SelectedValue = -1;
                 cmbSupplierType.SelectedValue = 0;
                 cmbGST.SelectedValue = 0;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 288)
+                {
+                    txtHsnName.Text = "";
+                    txtHsnName.Enabled = false;
+                    cmbGST.SelectedValue = 0;
+                    cmbGST.Enabled = false;
+                    cmbSupplierType.SelectedValue = 0;
+                }
+                else
+                {
+                    txtHsnName.Enabled = true;
+                    cmbGST.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpFromDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbReportType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbReportType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbReportType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -448,7 +582,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtHsnName.Focus();
+                    if (txtHsnName.Enabled == true)
+                    {
+                        txtHsnName.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
                 }
             }
             catch (Exception ex)
