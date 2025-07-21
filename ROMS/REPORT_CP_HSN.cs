@@ -67,6 +67,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -79,6 +80,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -469,10 +471,28 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGridNull(Control skipControl)
+        {
+            try
+            {
+                if (skipControl != txtHsnName)
+                {
+                    varUpDownKey = 0;
+                    DGV_FilterProduct.DataSource = null;
+                    DGV_FilterProduct.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbReportType_Enter(object sender, EventArgs e)
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbReportType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -485,11 +505,8 @@ namespace ROMS
         {
             try
             {
-                varUpDownKey = 0;
-                //lvHsnName.Visible = false;
-                DGV_FilterProduct.Visible = false;
-                DGV_FilterProduct.DataSource = null;
                 udfnHsnLoad();
+                udfnGridNull((Control)sender);
                 cmbGST.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
