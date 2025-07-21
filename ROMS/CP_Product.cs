@@ -131,7 +131,7 @@ namespace ROMS
                     errItems.SetError(txtBarcode, "Please enter valid barcode");
                     return;
                 }
-                udfnSave();
+                udfnSave(0);
             }
             catch (Exception ex)
             {
@@ -140,7 +140,7 @@ namespace ROMS
             }
 
         }
-        public void udfnSave()
+        public void udfnSave(int varFlag)
         {
             try
             {
@@ -882,6 +882,16 @@ namespace ROMS
                         */
                         //}
                     }
+                    if (grdPurHSN.Rows.Count < 1)
+                    {
+                        SPDataService objDataService = new SPDataService();
+                        string varMessage = objDataService.udfnGetMessages(149);
+                        objDataService.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrorFlag = true;
+                        tbProduct.TabPages[1].Enabled = true;
+                        tbProduct.SelectedIndex = 1;
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -1058,13 +1068,17 @@ namespace ROMS
                     {
                         varMRPflag = 0;
                     }
+                    if (varFlag == 1 && cbCompleted.Checked == false)
+                    {
+                        varviewtype = 1;
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(lblPurLocationCode.Text), Convert.ToInt32(lblSaleLocationCode.Text)
                     , Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag,null);
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -1092,12 +1106,21 @@ namespace ROMS
                             //udfnclear();
                             if (btnSave.Text != "Update")
                             {
-                                varproductcode = Convert.ToInt32(varvalue[2]);
-                                tbProduct.SelectedIndex = 1;
+                                if (varFlag != 1)
+                                {
+                                    varproductcode = Convert.ToInt32(varvalue[2]);
+                                    tbProduct.TabPages[1].Enabled = true;
+                                    tbProduct.SelectedIndex = 1;
+                                }
                             }
                         }
                         if (btnSave.Text == "Update")
                         {
+                            this.Close();
+                        }
+                        if(varFlag==1)
+                        {
+                            varupdate = "1";
                             this.Close();
                         }
                     }
@@ -3524,6 +3547,14 @@ namespace ROMS
                     cbCompleted.Enabled = true;
                     pbFormStatus = 71;
                     this.ActiveControl = txtPICode;
+                }
+                if (btnSave.Text != "Update")
+                {
+                    tbProduct.TabPages[1].Enabled = false;
+                }
+                else
+                {
+                    tbProduct.TabPages[1].Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -6076,7 +6107,8 @@ namespace ROMS
                     }
                 }
                 errItems.Clear();
-                udfnHSNSave();
+                udfnSave(1);
+                //udfnHSNSave();
             }
             catch (Exception ex)
             {
