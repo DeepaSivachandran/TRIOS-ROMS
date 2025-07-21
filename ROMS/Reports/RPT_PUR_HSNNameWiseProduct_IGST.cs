@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_HSNNameWiseProduct : ReportClass {
+    public class RPT_PUR_HSNNameWiseProduct_IGST : ReportClass {
         
-        public RPT_PUR_HSNNameWiseProduct() {
+        public RPT_PUR_HSNNameWiseProduct_IGST() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_HSNNameWiseProduct.rpt";
+                return "RPT_PUR_HSNNameWiseProduct_IGST.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_HSNNameWiseProduct.rpt";
+                return "ROMS.Reports.RPT_PUR_HSNNameWiseProduct_IGST.rpt";
             }
             set {
                 // Do nothing
@@ -210,7 +210,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGSTName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProductName {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -218,7 +218,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraProductName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -226,7 +226,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
             get {
                 return this.DataDefinition.ParameterFields[11];
             }
@@ -234,7 +234,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetails_IGSTrpt_paraFromDate {
             get {
                 return this.DataDefinition.ParameterFields[12];
             }
@@ -242,7 +242,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsrpt_paraFromDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetails_IGSTrpt_paraGST {
             get {
                 return this.DataDefinition.ParameterFields[13];
             }
@@ -250,7 +250,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsrpt_paraGST {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetails_IGSTrpt_paraHSNCode {
             get {
                 return this.DataDefinition.ParameterFields[14];
             }
@@ -258,7 +258,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsrpt_paraHSNCode {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetails_IGSTrpt_paraSupplierType {
             get {
                 return this.DataDefinition.ParameterFields[15];
             }
@@ -266,25 +266,17 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsrpt_paraSupplierType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetails_IGSTrpt_paraToDate {
             get {
                 return this.DataDefinition.ParameterFields[16];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsrpt_paraToDate {
-            get {
-                return this.DataDefinition.ParameterFields[17];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_HSNNameWiseProduct : Component, ICachedReport {
+    public class CachedRPT_PUR_HSNNameWiseProduct_IGST : Component, ICachedReport {
         
-        public CachedRPT_PUR_HSNNameWiseProduct() {
+        public CachedRPT_PUR_HSNNameWiseProduct_IGST() {
         }
         
         [Browsable(false)]
@@ -321,7 +313,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_HSNNameWiseProduct rpt = new RPT_PUR_HSNNameWiseProduct();
+            RPT_PUR_HSNNameWiseProduct_IGST rpt = new RPT_PUR_HSNNameWiseProduct_IGST();
             rpt.Site = this.Site;
             return rpt;
         }
