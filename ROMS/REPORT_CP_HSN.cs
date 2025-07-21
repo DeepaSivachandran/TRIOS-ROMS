@@ -862,10 +862,6 @@ namespace ROMS
             {
                 if (txtHsnName.Text.Trim() != "")
                 {
-                    //ListViewItem selectedItem = lvHsnName.SelectedItems[0];
-                    //txtHsnName.Text = selectedItem.SubItems[0].Text;
-                    //lblHsnName.Text = selectedItem.SubItems[2].Text;
-                    //txtHSNCode.Text = selectedItem.SubItems[1].Text;
                     txtHsnName.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
                     lblHsnName.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSNID"].Value.ToString();
                 }
