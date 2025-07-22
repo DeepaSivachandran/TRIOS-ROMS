@@ -3259,7 +3259,7 @@ namespace ROMS
             return result;
         }
 
-        public string udfnSetPurchaseEntry(TRN_PurchaseEntry objTRN_PurchaseEntry)
+        public string udfnSetPurchaseEntry(TRN_PurchaseEntry objTRN_PurchaseEntry) 
         {
             string result = "";
             try

@@ -738,8 +738,7 @@ namespace ROMS
                 }
                 if (varFlag == 2)
                 {//udfnGRNLastSeen();
-                }
-               
+                } 
                 dtApproval.TableName = "TRN_GRNApproval_Product";
                 dtApproval.Columns.Add("GRNAPR_PRID", typeof(int));
                 dtApproval.Columns.Add("GRNAPR_MRP", typeof(decimal));
@@ -775,8 +774,7 @@ namespace ROMS
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_RKID", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_FreeQty", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_PURPRID", typeof(int));
-
-
+                 
                 dtCreditProduct.TableName = "TRN_CreditNote";
                 dtCreditProduct.Columns.Add("CNPR_PRID", typeof(int));
                 dtCreditProduct.Columns.Add("CNPR_MRP", typeof(decimal));
@@ -792,13 +790,11 @@ namespace ROMS
                 dtCreditProduct.Columns.Add("CNPR_SLID", typeof(decimal));
                 dtCreditProduct.Columns.Add("CNPR_RKID", typeof(decimal));
                 dtCreditProduct.Columns.Add("CNPR_FreeQty", typeof(decimal));
-                dtCreditProduct.Columns.Add("CNPR_PURPRID", typeof(int));
-
+                dtCreditProduct.Columns.Add("CNPR_PURPRID", typeof(int)); 
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnReason();
-                udfnEdit();
-                
+                udfnEdit(); 
                 //udfnStatus();
                 if (MainForm.objPUR_GRNApprovalList.ApprovalFlag==1)
                 {

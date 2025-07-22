@@ -598,7 +598,7 @@ namespace ROMS
             try
             {
                 int varErrEmp = 0;
-                if (grdGrnlist.Rows.Count != 0)
+                if (grdGrnlist.Rows.Count != 0) 
                 {
                     string result = "", varPurchaseDC = "0", varSkip = "0", varDC = "0";
                     varflag = "0"; varUserID = "0";
