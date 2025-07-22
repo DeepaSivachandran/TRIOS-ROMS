@@ -18,6 +18,8 @@ namespace ROMS
         DataValidation objvalidation = new DataValidation();
         DataError objError;
         DataTable dtProductHSN = new DataTable();
+        DataTable dtPurHSN = new DataTable();
+        DataTable dtSalesHSN = new DataTable();
         public int varproductcode = 0;
         public string varcompanycode;
         public int pbFormStatus = 0;
@@ -58,7 +60,7 @@ namespace ROMS
         private ToolTip tpPurHSN = new ToolTip();
         private ToolTip tpSalesHSN = new ToolTip();
 
-        public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0;
+        public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "";
         
         public CP_Product()
@@ -3487,6 +3489,18 @@ namespace ROMS
                 dtProductHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
                 dtProductHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
 
+
+                dtPurHSN.Columns.Add("HSN_Type", typeof(int));
+                dtPurHSN.Columns.Add("HSNID", typeof(int));
+                dtPurHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
+                dtPurHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
+
+
+                dtSalesHSN.Columns.Add("HSN_Type", typeof(int));
+                dtSalesHSN.Columns.Add("HSNID", typeof(int));
+                dtSalesHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
+                dtSalesHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
+
                 if (varMasterType == "0")
                 {
                     MainForm.objCP_Itemlist.picLoader.Visible = false;
@@ -5885,8 +5899,16 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                int varProductID = Convert.ToInt32(grdPurHSN.CurrentRow.Cells["clmPurHSNID"].Value);
+                                string varEffectiveFrom = Convert.ToString(grdPurHSN.CurrentRow.Cells["clmPurEffectiveFrom"].Value);
+
+                                var rowsToDelete = dtPurHSN.AsEnumerable().Where(row => row.Field<int>("HSNID") == varProductID && row.Field<string>("HSN_EffectiveFrom") == varEffectiveFrom).ToList();
+                                foreach (var row in rowsToDelete)
+                                {
+                                    dtPurHSN.Rows.Remove(row);
+                                }
                                 grdPurHSN.Rows.RemoveAt(this.grdPurHSN.CurrentRow.Index);
-                                udfnSetPurMinDate();
+                                //udfnSetPurMinDate();
                             }
                             break;
                     }
@@ -5911,8 +5933,16 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                int varProductID = Convert.ToInt32(grdSalesHSN.CurrentRow.Cells["clmSalesHSNID"].Value);
+                                string varEffectiveFrom = Convert.ToString(grdSalesHSN.CurrentRow.Cells["clmSalesEffectiveFrom"].Value);
+
+                                var rowsToDelete = dtSalesHSN.AsEnumerable().Where(row => row.Field<int>("HSNID") == varProductID && row.Field<string>("HSN_EffectiveFrom") == varEffectiveFrom).ToList();
+                                foreach (var row in rowsToDelete)
+                                {
+                                    dtSalesHSN.Rows.Remove(row);
+                                }
                                 grdSalesHSN.Rows.RemoveAt(this.grdSalesHSN.CurrentRow.Index);
-                                udfnSetSalesMinDate();
+                                //udfnSetSalesMinDate();
                             }
                             break;
                     }
@@ -6075,40 +6105,61 @@ namespace ROMS
                 */
 
                 dtProductHSN.Rows.Clear();
-
-                if (grdPurHSN.Rows.Count > 0)
+                foreach (DataRow row in dtPurHSN.Rows)
                 {
-                    // Add Purchase Grid Data (HSN_Type = 1)
-                    foreach (DataGridViewRow row in grdPurHSN.Rows)
-                    {
-                        if (row.IsNewRow) continue;
-                        DataRow dr = dtProductHSN.NewRow();
-                        dr["HSN_Type"] = 1; // Purchase
-                        dr["HSNID"] = Convert.ToInt32(row.Cells["clmPurHSNID"].Value);
-                        dr["HSN_EffectiveFrom"] = Convert.ToString(row.Cells["clmPurEffectiveFrom"].Value);
-                        dr["HSN_EffectiveTo"] = Convert.ToString(row.Cells["clmPurEffectiveTo"].Value);
-
-                        dtProductHSN.Rows.Add(dr);
-                    }
+                    dtProductHSN.ImportRow(row);
                 }
-                if (grdSalesHSN.Rows.Count > 0)
+                foreach (DataRow row in dtSalesHSN.Rows)
                 {
-                    // Add Sales Grid Data (HSN_Type = 2)
-                    foreach (DataGridViewRow row in grdSalesHSN.Rows)
-                    {
-                        if (row.IsNewRow) continue;
-                        DataRow dr = dtProductHSN.NewRow();
-                        dr["HSN_Type"] = 2; // Sales
-                        dr["HSNID"] = Convert.ToInt32(row.Cells["clmSalesHSNID"].Value);
-                        dr["HSN_EffectiveFrom"] = Convert.ToString(row.Cells["clmSalesEffectiveFrom"].Value);
-                        dr["HSN_EffectiveTo"] = Convert.ToString(row.Cells["clmSalesEffectiveTo"].Value);
-
-                        dtProductHSN.Rows.Add(dr);
-                    }
+                    dtProductHSN.ImportRow(row);
+                }
+                if (grdPurHSN.Rows.Count > 0 || grdSalesHSN.Rows.Count > 0)
+                {
+                    varPurEffectiveFromErr = 0;
+                    varSalesEffectiveFromErr = 0;
+                    udfnEffectiveDateValidation();
                 }
                 errItems.Clear();
-                udfnSave(1);
+                if (varPurEffectiveFromErr == 0 && varSalesEffectiveFromErr == 0)
+                {
+                    udfnSave(1);
+                }
                 //udfnHSNSave();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEffectiveDateValidation()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 26;
+                objMR_Master.ParaProduct_HSN = dtProductHSN;
+                objDT = objdserv.udfnMaster(objMR_Master);
+                objdserv.CloseConnection();
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            string result = objDT.Tables[0].Rows[0][0].ToString();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "4")
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                varPurEffectiveFromErr = 1;
+                                varSalesEffectiveFromErr = 1;
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -6283,15 +6334,56 @@ namespace ROMS
                         return;
                     }
                 }
+                varPurEffectiveFromErr = 0;
+                udfnPurMinDateValidation();
                 errItems.Clear();
-                grdPurHSN.Rows.Add(txtPURHSNName.Text.Trim(), varPurHSNCode, varPurGST, dpPurEffectiveFrom.Text, "", varPurHSNID);
-                grdPurHSN.ClearSelection();
-                udfnSetPurMinDate();
-                txtPURHSNName.Text = "";
-                varPurHSNCode = "";
-                varPurGST = "";
-                varPurHSNID = 0;
-                txtPURHSNName.Focus();
+                if (varPurEffectiveFromErr == 0)
+                {
+                    grdPurHSN.Rows.Add(txtPURHSNName.Text.Trim(), varPurHSNCode, varPurGST, dpPurEffectiveFrom.Text, "", varPurHSNID);
+                    dtPurHSN.Rows.Add(1, varPurHSNID, dpPurEffectiveFrom.Text, "");
+                    grdPurHSN.ClearSelection();
+                    //udfnSetPurMinDate();
+                    txtPURHSNName.Text = "";
+                    varPurHSNCode = "";
+                    varPurGST = "";
+                    varPurHSNID = 0;
+                    txtPURHSNName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPurMinDateValidation()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 26;
+                objMR_Master.ParaProduct_HSN = dtPurHSN;
+                objMR_Master.paraDate = dpPurEffectiveFrom.Text;
+                objDT = objdserv.udfnMaster(objMR_Master);
+                objdserv.CloseConnection();
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            string result = objDT.Tables[0].Rows[0][0].ToString();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "4")
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                varPurEffectiveFromErr = 1;
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -6358,15 +6450,56 @@ namespace ROMS
                         return;
                     }
                 }
+                varSalesEffectiveFromErr = 0;
+                udfnSalesMinDateValidation();
                 errItems.Clear();
-                grdSalesHSN.Rows.Add(txtSalesHSNName.Text.Trim(), varSalesHSNCode, varSalesGST, dpSalesEffectiveFrom.Text, "", varSalesHSNID);
-                grdSalesHSN.ClearSelection();
-                udfnSetSalesMinDate();
-                txtSalesHSNName.Text = "";
-                varSalesHSNCode = "";
-                varSalesGST = "";
-                varSalesHSNID = 0;
-                txtSalesHSNName.Focus();
+                if (varSalesEffectiveFromErr == 0)
+                {
+                    grdSalesHSN.Rows.Add(txtSalesHSNName.Text.Trim(), varSalesHSNCode, varSalesGST, dpSalesEffectiveFrom.Text, "", varSalesHSNID);
+                    dtSalesHSN.Rows.Add(2, varSalesHSNID, dpSalesEffectiveFrom.Text, "");
+                    grdSalesHSN.ClearSelection();
+                    //udfnSetSalesMinDate();
+                    txtSalesHSNName.Text = "";
+                    varSalesHSNCode = "";
+                    varSalesGST = "";
+                    varSalesHSNID = 0;
+                    txtSalesHSNName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSalesMinDateValidation()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 26;
+                objMR_Master.ParaProduct_HSN = dtSalesHSN;
+                objMR_Master.paraDate = dpSalesEffectiveFrom.Text;
+                objDT = objdserv.udfnMaster(objMR_Master);
+                objdserv.CloseConnection();
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            string result = objDT.Tables[0].Rows[0][0].ToString();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "4")
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                varSalesEffectiveFromErr = 1;
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -6736,6 +6869,8 @@ namespace ROMS
                             {
                                 grdPurHSN.Rows.Clear();
                                 grdSalesHSN.Rows.Clear();
+                                dtPurHSN.Rows.Clear();
+                                dtSalesHSN.Rows.Clear();
                                 DataTable dtHSN = objDS.Tables[1];
                                 foreach (DataRow dr in dtHSN.Rows)
                                 {
@@ -6751,17 +6886,19 @@ namespace ROMS
                                     if (varHsnType == 1)
                                     {
                                         grdPurHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom,varEffectiveTo, varHSNID);
+                                        dtPurHSN.Rows.Add(1, varHSNID, varEffectiveFrom, varEffectiveTo);
                                     }
                                     // Add row to Sales Grid (Type = 2)
                                     else if (varHsnType == 2)
                                     {
                                         grdSalesHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID);
+                                        dtSalesHSN.Rows.Add(2, varHSNID, varEffectiveFrom, varEffectiveTo);
                                     }
                                 }
                                 grdPurHSN.ClearSelection();
                                 grdSalesHSN.ClearSelection();
-                                udfnSetPurMinDate();
-                                udfnSetSalesMinDate();
+                                //udfnSetPurMinDate();
+                                //udfnSetSalesMinDate();
                             }
                         }
                     }
