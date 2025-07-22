@@ -214,6 +214,13 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraProductId", varProductId, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("ParaGroupId", varGroupId, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraHSNCode", txtHsnName.Text.Trim(), objBillreport.Subreports[0].Name.ToString());
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
@@ -263,7 +270,6 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
-                
             }
             catch (Exception ex)
             {
