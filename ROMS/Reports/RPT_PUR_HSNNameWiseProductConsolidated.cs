@@ -170,7 +170,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGST {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraHSNCode {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -178,7 +178,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraHSNCode {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierType {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -186,7 +186,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierType {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraToDate {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -194,7 +194,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraToDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierTypeName {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -202,7 +202,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierTypeName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraHSNName {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -210,7 +210,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraHSNName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProductName {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -218,7 +218,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraProductName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -226,7 +226,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -234,7 +234,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupId {
             get {
                 return this.DataDefinition.ParameterFields[11];
             }
@@ -242,7 +242,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupId {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProductId {
             get {
                 return this.DataDefinition.ParameterFields[12];
             }
@@ -250,7 +250,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraProductId {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupId {
             get {
                 return this.DataDefinition.ParameterFields[13];
             }
@@ -258,7 +258,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraFromDate {
             get {
                 return this.DataDefinition.ParameterFields[14];
             }
@@ -266,7 +266,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraFromDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraHSNCode {
             get {
                 return this.DataDefinition.ParameterFields[15];
             }
@@ -274,7 +274,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraGST {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraSupplierType {
             get {
                 return this.DataDefinition.ParameterFields[16];
             }
@@ -282,7 +282,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraHSNCode {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraToDate {
             get {
                 return this.DataDefinition.ParameterFields[17];
             }
@@ -290,7 +290,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraSupplierType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraGroupId {
             get {
                 return this.DataDefinition.ParameterFields[18];
             }
@@ -298,7 +298,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraToDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraProductId {
             get {
                 return this.DataDefinition.ParameterFields[19];
             }
@@ -306,25 +306,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraGroupId {
-            get {
-                return this.DataDefinition.ParameterFields[20];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraProductId {
-            get {
-                return this.DataDefinition.ParameterFields[21];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_RPT_PUR_HSNNameWiseProductSumDetailsConsolidatedrpt_paraSubgroupId {
             get {
-                return this.DataDefinition.ParameterFields[22];
+                return this.DataDefinition.ParameterFields[20];
             }
         }
     }

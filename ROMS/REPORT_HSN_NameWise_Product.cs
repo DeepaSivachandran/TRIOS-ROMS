@@ -145,6 +145,10 @@ namespace ROMS
                         varViewType = 6;
                     }
                 }
+                if(txtHsnName.Text.Trim()=="")
+                {
+                    varHSN_Name = "-All-";
+                }
                 if (txtProductName.Text.Trim() != "")
                 {
                     varProductName = txtProductName.Text.Trim();
@@ -198,6 +202,7 @@ namespace ROMS
                     }
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNCode", txtHsnName.Text.Trim());
+                    objBillreport.SetParameterValue("paraHSNName", varHSN_Name);
                     objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraSupplierTypeName", Convert.ToString(cmbSupplierType.Text));

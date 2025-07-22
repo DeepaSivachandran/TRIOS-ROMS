@@ -3844,7 +3844,7 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int ParaGroupId,int paraSubgroupId,int paraFlag)
+        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int paraGroupId, int paraSubgroupId,int paraFlag)
         {
             DataSet ds = new DataSet();
             try
@@ -3859,7 +3859,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraFromDate", paraFromDate);
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", paraToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
-                varSqlCommand.Parameters.AddWithValue("@ParaGroupId", ParaGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupId", paraGroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupId", paraSubgroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
