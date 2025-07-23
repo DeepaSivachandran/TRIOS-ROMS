@@ -1600,14 +1600,15 @@ namespace ROMS
                                 }
                                 for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                                 {
-                                    string varMRP = "";
+                                    string varMRP = "",varMRP1="0";
                                     if (Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]) == "0")
                                     {
                                         varMRP = "";
                                     }
                                     else
                                     {
-                                        varMRP = Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]);
+                                        varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"])));
+                                        varMRP1 = string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]))); 
                                     }
                                     if (Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_Expirydate"]) != "")
                                     {
@@ -1641,7 +1642,8 @@ namespace ROMS
                                     Convert.ToString(objDs.Tables[1].Rows[i]["Condition ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["ConvertProduct"]), Convert.ToString(objDs.Tables[1].Rows[i]["PURPR_Parent_PURPRID"]),
                                     Convert.ToString(objDs.Tables[1].Rows[i]["ConvertFlag"]),Convert.ToString(objDs.Tables[1].Rows[i]["ReturnID"]) );
 
-                                    dtPurchaseAutoComplete.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), string.Format("{0:G29}", decimal.Parse(varMRP)), varTempExpiryDate,
+                                    dtPurchaseAutoComplete.Rows.Add(grdSupplierList.Rows.Count + 1, Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), 
+                                        string.Format("{0:G29}", decimal.Parse(varMRP1)), varTempExpiryDate,
                                          Convert.ToString(objDs.Tables[1].Rows[i]["BATCHDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]),
                                          Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_ShelfLife"]), Convert.ToString(objDs.Tables[1].Rows[i]["ProductType"]), Convert.ToInt16(objDs.Tables[1].Rows[i]["ID"]));
 

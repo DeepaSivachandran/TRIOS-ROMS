@@ -23,11 +23,9 @@ namespace ROMS
         public int varWrongReason = 0, varCrtReason = 0, varShelflifeLevel1 = 0, varShelflifeLevel2 = 0;
         DataTable dtApproval = new DataTable();
         DataTable dtPurchaseReturnDC = new DataTable();
-        DataTable dtCreditProduct = new DataTable();
-        DataTable dtAllReason = new DataTable();
-        DataTable dtFilteredReason = new DataTable();
-        DataTable dtGRNReason = new DataTable();
-        DataTable dtProNotReceived = new DataTable();
+        DataTable dtCreditProduct = new DataTable();   
+        DataTable dtReceived = new DataTable();
+        DataTable dtReturn = new DataTable();
         public int pbLastSeenFlag = 0;
         public PUR_GRNApproval()
         {
@@ -352,22 +350,7 @@ namespace ROMS
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
-                }
-                //DataGridViewCell Cell = grdGrnApproval.CurrentCell;
-                //Type CellType = Cell.GetType();
-                //if (CellType == typeof(DataGridViewComboBoxCell))
-                //{
-                //    //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
-                //    //comboBoxCell.SelectedIndex = newIndex;
-
-                //}
-                //if (e.Control is ComboBox comboBox)
-                //{
-                //    // Subscribe to the KeyDown event of the ComboBox
-                //    grdGrnApproval.KeyDown -= GrdGrnApproval_KeyDown; // Ensure to unsubscribe to avoid multiple subscriptions
-                //    grdGrnApproval.KeyDown += GrdGrnApproval_KeyDown;
-                    
-                //}
+                } 
             }
             catch (Exception ex)
             {
@@ -869,30 +852,16 @@ namespace ROMS
                     {
                         if (objDSer.Tables[0].Rows.Count > 0)
                         {
-                            dtAllReason= objDSer.Tables[0];
+                            dtReceived= objDSer.Tables[0];
                         }
                     }
                     if (objDSer.Tables.Count > 1)
                     {
                         if (objDSer.Tables[1].Rows.Count > 0)
                         {
-                            dtFilteredReason = objDSer.Tables[1];
+                            dtReturn = objDSer.Tables[1];
                         }
-                    }
-                    if (objDSer.Tables.Count > 2)
-                    {
-                        if (objDSer.Tables[2].Rows.Count > 0)
-                        {
-                            dtGRNReason = objDSer.Tables[2];
-                        }
-                    }
-                    if (objDSer.Tables.Count > 3)
-                    {
-                        if (objDSer.Tables[3].Rows.Count > 0)
-                        {
-                            dtProNotReceived = objDSer.Tables[3];
-                        }
-                    }
+                    } 
                 }
             }
             catch (Exception ex)
@@ -1149,18 +1118,7 @@ namespace ROMS
                                 goto l;
                             }
                         }
-                    }
-                    //}
-                    //else if (result.Split('~')[0] == "4")
-                    //{
-                    //    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //}
-                    //else if (result.Split('~')[0] == "5")
-                    //{
-                    //    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    //}
-                    //}
+                    } 
                 }
             }
             catch (Exception ex)
@@ -1286,15 +1244,13 @@ namespace ROMS
                                 DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
                                 varComboBoxColoumn.ValueMember = "ID";
                                 varComboBoxColoumn.DisplayMember = "Reason";
-                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "264"
-                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "266"
-                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) =="284")
                                 {
-                                    varComboBoxColoumn.DataSource = dtAllReason ; 
+                                    varComboBoxColoumn.DataSource = dtReturn ; 
                                 }
                                 else
                                 {
-                                    varComboBoxColoumn.DataSource = dtProNotReceived;
+                                    varComboBoxColoumn.DataSource = dtReceived;
                                 }
                             }
                             else if(varFlag==2)//from grn
@@ -1303,15 +1259,13 @@ namespace ROMS
                                 DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
                                 varComboBoxColoumn.ValueMember = "ID";
                                 varComboBoxColoumn.DisplayMember = "Reason";
-                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
-                                   || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
-                                   || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "284")
                                 {
-                                    varComboBoxColoumn.DataSource = dtFilteredReason;
+                                    varComboBoxColoumn.DataSource = dtReturn;
                                 }
                                 else
                                 {
-                                    varComboBoxColoumn.DataSource = dtGRNReason;
+                                    varComboBoxColoumn.DataSource = dtReceived;
                                 }
                             }
                             if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
@@ -1372,16 +1326,7 @@ namespace ROMS
                         txtCompletedBy.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Completed By"]);
                         txtVerifiedBy1.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 1"]);
                         txtVerifiedBy2.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 2"]);
-                    }
-                    //if(objDs.Tables[1].Rows.Count>1)
-                    //{
-                    //    for(int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                    //    {
-                    //        grdpurchasedetails.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Created By"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_IssuedBy"]));
-                    //    }
-                    //}
-
-
+                    } 
                 }
             }
             catch (Exception ex)
