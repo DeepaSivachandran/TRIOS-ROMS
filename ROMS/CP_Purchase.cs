@@ -6501,12 +6501,9 @@ namespace ROMS
                                 if (Result.Tables[0].Rows.Count != 0)
                                 {
                                     varTotalIssue = Convert.ToInt32(Result.Tables[0].Rows[0]["Total_Issues"]);
-                                    if (varTotalIssue == 0)
+                                    if (varTotalIssue != 0)
                                     {
-                                        varEditFlag = 1;
-                                    }
-                                    else
-                                    {
+
                                         for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                                         {
                                             var gridRow = grdSupplierList.Rows[i];
@@ -6542,7 +6539,7 @@ namespace ROMS
                                                 {
                                                     gridRow.Cells["clmBatchno"].Style.BackColor = Color.PaleGreen;
                                                     gridRow.Cells["clmProductBatchNo"].Style.BackColor = Color.PaleGreen;
-                                                } 
+                                                }
                                                 if (Convert.ToInt32(varIssuerow["Location_Issue"]) != 0)
                                                 {
                                                     gridRow.Cells["clmLocation"].Style.BackColor = Color.LightPink;
