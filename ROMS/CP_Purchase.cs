@@ -1195,6 +1195,10 @@ namespace ROMS
                     txtInvoiceamt.Enabled = true;txtInvoiceamt.ReadOnly = false;
                     txtInvoiceNo.Enabled = true;txtInvoiceNo.ReadOnly = false;
                 }
+                if(varPaymentStatus==70)
+                {
+                    btnSave.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -1724,13 +1728,7 @@ namespace ROMS
                                         {
                                             grdSupplierList.Rows[i].Cells["clmProductMrp"].ReadOnly = true;
                                             grdSupplierList.Rows[i].Cells["clmProductMrp"].Style.BackColor = Color.LightGray;
-                                        } 
-                                        grdSupplierList.Rows[i].Cells["clmPendingQty"].ReadOnly = true;
-                                        grdSupplierList.Rows[i].Cells["clmPendingQty"].Style.BackColor = Color.LightGray;
-                                        grdSupplierList.Rows[i].Cells["clmExcessQty"].ReadOnly = true;
-                                        grdSupplierList.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                                        grdSupplierList.Rows[i].Cells["clmDamageQty"].ReadOnly = true;
-                                        grdSupplierList.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
+                                        }   
                                         grdSupplierList.Rows[i].Cells["clmMismatchQty"].ReadOnly = true;
                                         grdSupplierList.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;  
                                     }
@@ -6510,7 +6508,7 @@ namespace ROMS
                                             var varIssuerow = Result.Tables[0].Rows[i];
                                             if (Convert.ToString(gridRow.Cells["clmsno"].Value) == Convert.ToString(varIssuerow["GRNPR_SNO"]))
                                             {
-                                                if (Convert.ToInt32(varIssuerow["Expiry_Date_Issue"]) != 0 || Convert.ToInt32(varIssuerow["Expiry_Date_Issue"]) != 0)
+                                                if (Convert.ToInt32(varIssuerow["Expiry_Date_Issue"]) != 0 || Convert.ToInt32(varIssuerow["Pro_Expiry_Date_Issue"]) != 0)
                                                 {
                                                     gridRow.Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                                     gridRow.Cells["clmProductExpiryDate"].Style.BackColor = Color.LightPink;
@@ -6518,7 +6516,7 @@ namespace ROMS
                                                 else
                                                 {
                                                     gridRow.Cells["clmexpirydate"].Style.BackColor = Color.PaleGreen;
-                                                    gridRow.Cells["clmProductExpiryDate"].Style.BackColor = Color.PaleGreen;
+                                                    gridRow.Cells["clmProductExpiryDate"].Style.BackColor = Color.PaleGreen;    
                                                 }
                                                 if (Convert.ToInt32(varIssuerow["MRP_Valid_Issue"]) != 0 || Convert.ToInt32(varIssuerow["Pro_MRP_Valid_Issue"]) != 0)
                                                 {
@@ -6663,7 +6661,7 @@ namespace ROMS
                                         }
                                         if (varcount == 0)
                                         {
-                                            if (objPurchaseentryDetails == null)
+                                            if (objPurchaseentryDetails.Rows.Count==0)
                                             {
                                                 objPurchaseentryDetails.TableName = "TRN_Purchase_Products_Details";
                                                 objPurchaseentryDetails.Columns.Add("PURPR_PURID", typeof(int));
@@ -7271,17 +7269,7 @@ namespace ROMS
                                 grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.PaleGreen;
                                 grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.PaleGreen;
-                            }
-
-                            //else if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "227")
-                            //{
-                            //    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightGray;
-                            //    grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightGray;
-                            //    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightGray;
-                            //    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightGray;
-                            //    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
-                            //    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightGray;
-                            //}
+                            } 
                         }
                         grdPurchaseList.Columns["clmProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         lblTpro.Text = Convert.ToString(grdPurchaseList.RowCount) + " / " + Convert.ToString(varInvQty);
@@ -10871,7 +10859,7 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
                     switch (grdSupplierList.Columns[e.ColumnIndex].Name)
-                    { 
+                    {           
                         case "clmRemove":
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
@@ -11072,10 +11060,7 @@ namespace ROMS
                                      
                                     grdSupplierList.ReadOnly = false;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].ReadOnly = false;
-                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConditionID"].Value = "202"; // nodifference
-                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPendingQty"].Value = "0";
-                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmExcessQty"].Value = "0";
-                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmDamageQty"].Value = "0";
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConditionID"].Value = "202"; // nodifference 
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmMismatchQty"].Value = "0";
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmCondition"].Value = "No Difference";
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmid"].Value = varProductType;
@@ -12175,12 +12160,14 @@ namespace ROMS
                             grdSupplierList.Rows[i].Cells["clmProductExpiryDate"].Style.BackColor = Color.LightGray;
                             grdSupplierList.Rows[i].Cells["clmProductBatchNo"].Style.BackColor = Color.LightGray;
                             grdSupplierList.Rows[i].Cells["clmLocation"].Style.BackColor = Color.LightGray;
-                            grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;
-                            grdSupplierList.Rows[i].Cells["clmPendingQty"].Style.BackColor = Color.LightGray;
-                            grdSupplierList.Rows[i].Cells["clmExcessQty"].Style.BackColor = Color.LightGray;
-                            grdSupplierList.Rows[i].Cells["clmDamageQty"].Style.BackColor = Color.LightGray;
+                            grdSupplierList.Rows[i].Cells["clmrack"].Style.BackColor = Color.LightGray;  
                             grdSupplierList.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
-                        } 
+                        }
+                        if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmConditionID"].Value) == "275") //No difference
+                        {
+                            DataGridViewCell cell = dataGridView.Rows[i].Cells["clmMismatchQty"]; 
+                            cell.Style.BackColor = Color.LightGray; cell.Style.ForeColor = Color.Black;  cell.ReadOnly = true;  
+                        }
                     }
                     string[] varShelflifevalue = Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                     if (varShelflifevalue[0] != "")
@@ -12223,15 +12210,14 @@ namespace ROMS
                         DataGridViewCell cell = dataGridView.Rows[i].Cells["clmexpirydate"];
                         DataGridViewCell cellExpiry = dataGridView.Rows[i].Cells["clmProductExpiryDate"];
                         cell.Style.BackColor = Color.LightGray;
-                        cell.Style.ForeColor = Color.Black;
+                        cell.Style.ForeColor = Color.Black; 
                         cell.ReadOnly = true;
                         cellExpiry.Style.BackColor = Color.LightGray;
                         cellExpiry.Style.ForeColor = Color.Black;
                         cellExpiry.ReadOnly = true;
                     }
                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmid"].Value) == "220")
-                    {
-                        // grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("#DEF9C4");
+                    { 
                         grdSupplierList.Rows[i].Cells["clmProTname"].Style.BackColor = ColorTranslator.FromHtml("#FFD3B6");
                         grdSupplierList.Rows[i].Cells["clmPicode"].Style.BackColor = ColorTranslator.FromHtml("#FFD3B6");
                     }
