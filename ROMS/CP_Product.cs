@@ -6871,6 +6871,7 @@ namespace ROMS
                                 grdSalesHSN.Rows.Clear();
                                 dtPurHSN.Rows.Clear();
                                 dtSalesHSN.Rows.Clear();
+                                dtProductHSN.Rows.Clear();
                                 DataTable dtHSN = objDS.Tables[1];
                                 foreach (DataRow dr in dtHSN.Rows)
                                 {
@@ -6894,6 +6895,7 @@ namespace ROMS
                                         grdSalesHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID);
                                         dtSalesHSN.Rows.Add(2, varHSNID, varEffectiveFrom, varEffectiveTo);
                                     }
+                                    dtProductHSN.Rows.Add(varHsnType, varHSNID, varEffectiveFrom, varEffectiveTo);
                                 }
                                 grdPurHSN.ClearSelection();
                                 grdSalesHSN.ClearSelection();

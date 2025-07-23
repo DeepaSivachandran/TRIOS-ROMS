@@ -1634,6 +1634,8 @@ namespace ROMS
         {
             try
             {
+                varPurEffectiveFromErr = 0;
+                varSalesEffectiveFromErr = 0;
                 SPDataService objDataService = new SPDataService();
                 if (grdPurHSN.Rows.Count < 1)
                 {
@@ -1662,8 +1664,6 @@ namespace ROMS
                 }
                 if (grdPurHSN.Rows.Count > 0 || grdSalesHSN.Rows.Count > 0)
                 {
-                    varPurEffectiveFromErr = 0;
-                    varSalesEffectiveFromErr = 0;
                     udfnEffectiveDateValidation();
                 }
                 epProductApproval.Clear();
@@ -4379,14 +4379,14 @@ namespace ROMS
                     tpcompanyname.Show("Please select sales Batch No.", cmbBatchno, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(cmbGst.SelectedValue) == "" || Convert.ToString(cmbGst.SelectedValue) == "-1")
-                {
-                    epProductApproval.SetError(cmbGst, "Please select GST%");
-                    cmbGst.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpgst.ShowAlways = true;
-                    tpgst.Show("Please select GST%", cmbGst, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(cmbGst.SelectedValue) == "" || Convert.ToString(cmbGst.SelectedValue) == "-1")
+                //{
+                //    epProductApproval.SetError(cmbGst, "Please select GST%");
+                //    cmbGst.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpgst.ShowAlways = true;
+                //    tpgst.Show("Please select GST%", cmbGst, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToInt32(cmbBatchno.SelectedValue) == 72)
                 {
                     if (Convert.ToString(cmbBatchGen.SelectedValue) == "" || Convert.ToString(cmbBatchGen.SelectedValue) == "-1")
@@ -4406,14 +4406,14 @@ namespace ROMS
                     tpcompanyname.Show("Please select sales batcn no. generation", cmbBatchGen, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtHsncode.Text).Trim() == "")
-                {
-                    epProductApproval.SetError(txtHsncode, "Please enter HSN code");
-                    txtHsncode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpHsnCode.ShowAlways = true;
-                    tpHsnCode.Show("Please enter HSN code", txtHsncode, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(txtHsncode.Text).Trim() == "")
+                //{
+                //    epProductApproval.SetError(txtHsncode, "Please enter HSN code");
+                //    txtHsncode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpHsnCode.ShowAlways = true;
+                //    tpHsnCode.Show("Please enter HSN code", txtHsncode, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (cbShelflife.Checked == true)
                 {
                     epProductApproval.Clear();
@@ -4515,7 +4515,8 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                /* Check product HSN is valid or not*/
+                /* 
+                  //Check product HSN is valid or not
                 string varId_HSN = "0";
                 DataSet objDsHSN = new DataSet();
                 SPDataService objDs = new SPDataService();
@@ -4541,6 +4542,7 @@ namespace ROMS
                     blnErrorFlag = true;
                     txtHsnname.Text = "";
                 }
+                */
                 /* Check purchase location is valid or not*/
                 if (txtPurLocation.Text != "")
                 {
