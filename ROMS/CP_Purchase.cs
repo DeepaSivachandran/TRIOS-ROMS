@@ -35,6 +35,7 @@ namespace ROMS
         ToolTip tpEntryType = new ToolTip();
         ToolTip tpmrp = new ToolTip();
         ToolTip tpInvoiceQty = new ToolTip();
+        ToolTip tpReason = new ToolTip();
         int flag = 0;
         public bool skipValidation = false;
         public DataTable objDtProductCondition = new DataTable();
@@ -4897,8 +4898,19 @@ namespace ROMS
                 { varNoDiffFlag = 1; }
                  
                 udfnEntryTypeDate();
-                /* Check  source location is valid or not*/ 
-                if(varConCheckFlag==0 || varProConFlag==1)
+                if (varNoDiffFlag == 0)
+                {
+                    if (Convert.ToInt32(cmbReason.SelectedValue) == 286)
+                    {
+                        errPurchaseentry.SetError(cmbReason, "Please select valid reason.");
+                        cmbReason.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpReason.ShowAlways = true;
+                        tpReason.Show("Please select valid reason.", txtProductName, 5000);
+                        varErrorFlag = true;
+                    }
+                }
+                /* Check  source location is valid or not*/
+                if (varConCheckFlag==0 || varProConFlag==1)
                 {
                     if (txtSourceLocation.Text != "" && varRMFlag != 59 && Convert.ToString(cmbPONo.SelectedValue) != "220")
                     {
@@ -5261,6 +5273,20 @@ namespace ROMS
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmexpirydate"];
                                     DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmProductExpiryDate"];
                                     cell.Style.BackColor = Color.LightGray;   cell.Style.ForeColor = Color.Black;  cell.ReadOnly = true;
+                                    cell1.Style.BackColor = Color.LightGray; cell1.Style.ForeColor = Color.Black; cell1.ReadOnly = true;
+                                }
+                                if(varNoDiffFlag==1)
+                                {
+                                    DataGridView dataGridView = grdSupplierList;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMismatchQty"]; 
+                                    cell.Style.BackColor = Color.LightGray; cell.Style.ForeColor = Color.Black; cell.ReadOnly = true; 
+                                }
+                                if(varPrMRPFlag=="0")
+                                {
+                                    DataGridView dataGridView = grdSupplierList;
+                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMRP"];
+                                    DataGridViewCell cell1 = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmProductMrp"];
+                                    cell.Style.BackColor = Color.LightGray; cell.Style.ForeColor = Color.Black; cell.ReadOnly = true;
                                     cell1.Style.BackColor = Color.LightGray; cell1.Style.ForeColor = Color.Black; cell1.ReadOnly = true;
                                 }
                                 if (varEditFlag == 1 && varEditProAdd == 1)
@@ -6640,6 +6666,39 @@ namespace ROMS
                                         }
                                         if (varcount == 0)
                                         {
+                                            if (objPurchaseentryDetails == null)
+                                            {
+                                                objPurchaseentryDetails.TableName = "TRN_Purchase_Products_Details";
+                                                objPurchaseentryDetails.Columns.Add("PURPR_PURID", typeof(int));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_PRID", typeof(int));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_HSNID", typeof(int));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_PurchaseRate", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_POQty", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_InvoiceQty", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_ReceivedQty", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_DiffQty", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_FreeQty", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_DiscPer", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_DiscAmnt", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_TaxableValue", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_GSTPer", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_GSTAmnt", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_NettAmnt", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_Error", typeof(int));
+                                                objPurchaseentryDetails.Columns.Add("PURPRID", typeof(int));
+                                                objPurchaseentryDetails.Columns.Add("ID", typeof(int));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_Costing", typeof(decimal));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_DiscountValue", typeof(decimal));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_CGSTPer", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_SGSTPer", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_CGSTAmnt", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_SGSTAmnt", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_ISGSTPer", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_IGSTAmnt", typeof(float));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_ConvertedProductID", typeof(int));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_GRNProType", typeof(int));
+                                                objPurchaseentryDetails.Columns.Add("PURPR_ConvertProduct", typeof(int));
+                                            }
                                             objPurchaseentryDetails.Rows.Add(pbPurchaseno, Convert.ToInt32(grdPurchaseList.Rows[i].Cells["proid"].Value),
                                             Convert.ToInt32(grdPurchaseList.Rows[i].Cells["hsnid"].Value), Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value),
                                             Convert.ToDecimal(varPOqty), varInvQty, varRecQty, Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiffqty"].Value),
