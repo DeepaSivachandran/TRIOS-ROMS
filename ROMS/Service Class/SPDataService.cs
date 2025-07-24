@@ -155,6 +155,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Master.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraTime", objMR_Master.paraTime);
                 varSqlCommand.Parameters.AddWithValue("@paraTimeFormat", objMR_Master.paraTimeFormat);
+                varSqlCommand.Parameters.AddWithValue("@ParaProduct_HSN", objMR_Master.ParaProduct_HSN);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1528,7 +1529,7 @@ namespace ROMS
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
              , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator,
-              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId, int paraNewPRID, int paraMRPFlag)
+              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId, int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN)
         {
             string result = "";
             try
@@ -1585,6 +1586,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraGRNId", paraGRNId);
                 varSqlCommand.Parameters.AddWithValue("@paraNewPRID", paraNewPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraMRPFlag", paraMRPFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaProduct_HSN", ParaProduct_HSN);
 
                 varSqlCommand.CommandTimeout = 0;
 
@@ -3854,6 +3856,41 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ProductList", objTRN_Validate_Products_By_Condition.ProductList); 
                 varSqlCommand.Parameters.AddWithValue("@ParaEntryDate", objTRN_Validate_Products_By_Condition.ParaEntryDate);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int paraGroupId, int paraSubgroupId,int paraFlag)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Purchase_Reports]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierType", paraSupplierType);
+                varSqlCommand.Parameters.AddWithValue("@paraHSNCode", paraHSNCode);
+                varSqlCommand.Parameters.AddWithValue("@paraGST", paraGST);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupId", paraGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupId", paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

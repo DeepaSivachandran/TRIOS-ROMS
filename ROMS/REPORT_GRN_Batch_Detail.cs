@@ -51,6 +51,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGridNull(Control skipControl)
+        {
+            try
+            {
+                if (skipControl != txtGroup)
+                {
+                    varUpDownKeyGroup = 0;
+                    DGV_FilterGroup.DataSource = null;
+                    DGV_FilterGroup.Visible = false;
+                }
+                if (skipControl != txtSubGroup)
+                {
+                    varUpDownKeySubgroup = 0;
+                    DGV_FilterSubgroup.DataSource = null;
+                    DGV_FilterSubgroup.Visible = false;
+                }
+                if (skipControl != txtProductName)
+                {
+                    varUpDownKeyProduct = 0;
+                    DGV_FilterProduct.DataSource = null;
+                    DGV_FilterProduct.Visible = false;
+                }
+                if (skipControl != txtGRNNo)
+                {
+                    varUpDownKeyGRN = 0;
+                    DGV_FilterGRN.DataSource = null;
+                    DGV_FilterGRN.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
             try
@@ -300,6 +335,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -382,11 +418,9 @@ namespace ROMS
                             }
                     }
                     txtGroup.Focus();
-                    txtGroup.SelectionStart = txtGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
-                        //txtProductName.SelectedText = true;
                         TextBox txtProductName = sender as TextBox;
                         txtProductName.SelectAll();
                         e.Handled = true;
@@ -421,7 +455,6 @@ namespace ROMS
             {
                 if (varUpDownKeyGroup == 0)
                 {
-                    //lvGroup.Items.Clear();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtGroup.Text.Length > 0)
@@ -449,29 +482,24 @@ namespace ROMS
                                 {
                                     DGV_FilterGroup.Visible = false;
                                     DGV_FilterGroup.DataSource = null;
-                                    //lvGroup.Visible = false;
                                 }
                             }
                             else
                             {
                                 DGV_FilterGroup.Visible = false;
                                 DGV_FilterGroup.DataSource = null;
-                                //lvGroup.Visible = false;
                             }
                         }
                         else
                         {
                             DGV_FilterGroup.Visible = false;
                             DGV_FilterGroup.DataSource = null;
-                            //lvGroup.Visible = false;
                         }
                     }
                     else
                     {
                         DGV_FilterGroup.Visible = false;
                         DGV_FilterGroup.DataSource = null;
-                        //lvGroup.Visible = false;
-                        //lvGroup.Items.Clear();
                     }
                 }
             }
@@ -485,10 +513,7 @@ namespace ROMS
         {
             try
             {
-                varUpDownKeyGroup = 0;
-                DGV_FilterGroup.Visible = false;
-                DGV_FilterGroup.DataSource = null;
-                //lvGroup.Visible = false;
+                udfnGridNull((Control)sender);
                 txtSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -499,36 +524,6 @@ namespace ROMS
         }
         private void TxtSubGroup_KeyDown(object sender, KeyEventArgs e)
         {
-            /*
-            try
-            {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    if (lvSubGroup.Items.Count == 0 || txtSubGroup.Text == "")
-                    {
-                        txtSubGroup.Focus();
-                        lvSubGroup.Visible = false;
-                    }
-                    else
-                    {
-                        lvSubGroup.Focus();
-                    }
-                    if (lvSubGroup.Items.Count > 0)
-                    {
-                        lvSubGroup.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtProductName.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            */
             try
             {
                 varUpDownKeySubgroup = 0;
@@ -601,7 +596,6 @@ namespace ROMS
                             }
                     }
                     txtSubGroup.Focus();
-                    txtSubGroup.SelectionStart = txtSubGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -644,7 +638,6 @@ namespace ROMS
                     {
                         lblGroupCode.Text = "0";
                     }
-                    //lvSubGroup.Items.Clear();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtSubGroup.Text.Length > 0)
@@ -657,19 +650,6 @@ namespace ROMS
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    //{
-                                    //    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString() };
-                                    //    ListViewItem objList = new ListViewItem(row);
-                                    //    objList.UseItemStyleForSubItems = false;
-                                    //    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                    //    lvSubGroup.Columns[0].Width = 200;
-                                    //    lvSubGroup.Columns[1].Width = 200;
-                                    //    lvSubGroup.Columns[2].Width = 0;
-                                    //    lvSubGroup.Items.Add(objList);
-                                    //}
-                                    //lvSubGroup.Visible = true;
-                                    //lvSubGroup.BringToFront();
                                     DGV_FilterSubgroup.Visible = true;
                                     DGV_FilterSubgroup.DataSource = objDs.Tables[0];
                                     DGV_FilterSubgroup.Columns["PRSGID"].Visible = false;
@@ -685,29 +665,24 @@ namespace ROMS
                                 {
                                     DGV_FilterSubgroup.Visible = false;
                                     DGV_FilterSubgroup.DataSource = null;
-                                    //lvSubGroup.Visible = false;
                                 }
                             }
                             else
                             {
                                 DGV_FilterSubgroup.Visible = false;
                                 DGV_FilterSubgroup.DataSource = null;
-                                //lvSubGroup.Visible = false;
                             }
                         }
                         else
                         {
                             DGV_FilterSubgroup.Visible = false;
                             DGV_FilterSubgroup.DataSource = null;
-                            //lvSubGroup.Visible = false;
                         }
                     }
                     else
                     {
                         DGV_FilterSubgroup.Visible = false;
                         DGV_FilterSubgroup.DataSource = null;
-                        //lvSubGroup.Visible = false;
-                        //lvSubGroup.Items.Clear();
                     }
                 }
             }
@@ -721,9 +696,7 @@ namespace ROMS
         {
             try
             {
-                varUpDownKeySubgroup = 0;
-                DGV_FilterSubgroup.Visible = false;
-                DGV_FilterSubgroup.DataSource = null;
+                udfnGridNull((Control)sender);
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -734,36 +707,6 @@ namespace ROMS
         }
         private void TxtProductName_KeyDown(object sender, KeyEventArgs e)
         {
-            /*
-            try
-            {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
-                {
-                    if (lvproduct.Items.Count == 0 || txtProductName.Text == "")
-                    {
-                        btnView.Focus();
-                        lvproduct.Visible = false;
-                    }
-                    else
-                    {
-                        lvproduct.Focus();
-                    }
-                    if (lvproduct.Items.Count > 0)
-                    {
-                        lvproduct.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtGRNNo.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            */
             try
             {
                 varUpDownKeyProduct = 0;
@@ -836,7 +779,7 @@ namespace ROMS
                             }
                     }
                     txtProductName.Focus();
-                    txtProductName.SelectionStart = txtProductName.Text.Length;
+                    //txtProductName.SelectionStart = txtProductName.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -875,7 +818,6 @@ namespace ROMS
             {
                 if (varUpDownKeyProduct == 0)
                 {
-                    //lvproduct.Items.Clear();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0)
@@ -893,23 +835,6 @@ namespace ROMS
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    //{
-                                    //    string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString(), objDs.Tables[0].Rows[i]["UNIT"].ToString() };
-                                    //    ListViewItem objList = new ListViewItem(row);
-                                    //    objList.UseItemStyleForSubItems = false;
-                                    //    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                    //    objList.SubItems[0].Font = new Font("Oswald Regular", 11.25F);
-                                    //    lvproduct.Items.Add(objList);
-                                    //}
-                                    //lvproduct.Visible = true;
-                                    //lvproduct.BringToFront();
-
-                                    //lvproduct.Columns[0].Width = 100;
-                                    //lvproduct.Columns[1].Width = 0;
-                                    //lvproduct.Columns[2].Width = 250;
-                                    //lvproduct.Columns[3].Width = 0;
-                                    //lvproduct.Columns[4].Width = 70;
                                     DGV_FilterProduct.Visible = true;
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
@@ -947,8 +872,6 @@ namespace ROMS
                     {
                         DGV_FilterProduct.Visible = false;
                         DGV_FilterProduct.DataSource = null;
-                        //lvproduct.Visible = false;
-                        //lvproduct.Items.Clear();
                     }
                 }
             }
@@ -1128,9 +1051,7 @@ namespace ROMS
         {
             try
             {
-                varUpDownKeyProduct = 0;
-                DGV_FilterProduct.Visible = false;
-                DGV_FilterProduct.DataSource = null;
+                udfnGridNull((Control)sender);
                 txtGRNNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1142,36 +1063,6 @@ namespace ROMS
 
         private void TxtGRNNo_KeyDown(object sender, KeyEventArgs e)
         {
-            /*
-            try
-            {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    if (lvGRNNo.Items.Count == 0 || txtGRNNo.Text == "")
-                    {
-                        txtGRNNo.Focus();
-                        lvGRNNo.Visible = false;
-                    }
-                    else
-                    {
-                        lvGRNNo.Focus();
-                    }
-                    if (lvGRNNo.Items.Count > 0)
-                    {
-                        lvGRNNo.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            */
             try
             {
                 varUpDownKeyGRN = 0;
@@ -1244,7 +1135,6 @@ namespace ROMS
                             }
                     }
                     txtGRNNo.Focus();
-                    txtGRNNo.SelectionStart = txtGRNNo.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -1285,7 +1175,6 @@ namespace ROMS
             {
                 if (varUpDownKeyGRN == 0)
                 {
-                    //lvGRNNo.Items.Clear();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtGRNNo.Text.Length > 0)
@@ -1298,19 +1187,6 @@ namespace ROMS
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    //{
-                                    //    string[] row = { objDs.Tables[0].Rows[i]["GRN_No"].ToString(), objDs.Tables[0].Rows[i]["GRNID"].ToString() };
-                                    //    ListViewItem objList = new ListViewItem(row);
-                                    //    objList.UseItemStyleForSubItems = false;
-                                    //    objList.SubItems[0].Font = new Font("Oswald Regular", 11.25F);
-                                    //    lvGRNNo.Items.Add(objList);
-                                    //}
-                                    //lvGRNNo.Visible = true;
-                                    //lvGRNNo.BringToFront();
-
-                                    //lvGRNNo.Columns[0].Width = 100;
-                                    //lvGRNNo.Columns[1].Width = 0;
                                     DGV_FilterGRN.Visible = true;
                                     DGV_FilterGRN.DataSource = objDs.Tables[0];
                                     DGV_FilterGRN.Columns["GRNID"].Visible = false;
@@ -1341,8 +1217,6 @@ namespace ROMS
                     {
                         DGV_FilterGRN.Visible = false;
                         DGV_FilterGRN.DataSource = null;
-                        //lvGRNNo.Visible = false;
-                        //lvGRNNo.Items.Clear();
                     }
                 }
             }

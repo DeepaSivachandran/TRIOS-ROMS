@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace ROMS.Model
 {
@@ -18,5 +19,6 @@ namespace ROMS.Model
         public int paraFlag = 0;
         public string paraTime = "";
         public string paraTimeFormat = "";
+        public DataTable ParaProduct_HSN = null;
     }
 }

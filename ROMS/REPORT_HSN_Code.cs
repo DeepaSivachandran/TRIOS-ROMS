@@ -17,6 +17,10 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+        private ToolTip tpReportType = new ToolTip();
+        private ToolTip tpSupplierType = new ToolTip();
+        public int varUpDownKey = 0;
+        public string varHSN_Name = "-All-";
         public REPORT_HSN_Code()
         {
             InitializeComponent();
@@ -25,6 +29,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -45,6 +50,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGridNull(Control skipControl)
+        {
+            try
+            {
+                if (skipControl != txtHsnName)
+                {
+                    varUpDownKey = 0;
+                    DGV_FilterHSN.DataSource = null;
+                    DGV_FilterHSN.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
             try
@@ -52,20 +74,31 @@ namespace ROMS
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbReportType.Focus();
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
                 }
                 else
                 {
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 103)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 287 || Convert.ToInt32(cmbReportType.SelectedValue) == 289)
                     {
-                        udfnHSN();
+                        if ((Convert.ToInt32(cmbReportType.SelectedValue) == 287 || Convert.ToInt32(cmbReportType.SelectedValue) == 289) && Convert.ToInt32(cmbSupplierType.SelectedValue) == 0)
+                        {
+                            cmbSupplierType.Focus();
+                            epReport.SetError(cmbSupplierType, "Please select supplier type.");
+                            cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpReportType.ShowAlways = true;
+                            tpReportType.Show("Please select supplier type.", cmbSupplierType, 5000);
+                        }
+                        else
+                        {
+                            udfnHSNCodeWiseReport();
+                        }
                     }
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 104)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 288)
                     {
-                        udfnHSNProduct();
-                    }
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 105)
-                    {
-                        udfnHSNSubgroup();
+                        udfnHSNCodeWiseReport();
                     }
                 }
             }
@@ -75,10 +108,36 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnHSN()
+        public void udfnHSNCodeWiseReport()
         {
             try
             {
+                epReport.Clear();
+                int varViewType = 3;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 287 || Convert.ToInt32(cmbReportType.SelectedValue) == 289)
+                {
+                    if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 30)
+                    {
+                        varViewType = 0;
+                    }
+                    else if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 151)
+                    {
+                        varViewType = 1;
+                    }
+                    else
+                    {
+                        varViewType = 2;
+                    }
+                }
+                string varHSNName = "-All-";
+                if (txtHsnName.Text.Trim() != "")
+                {
+                    varHSNName = txtHsnName.Text.Trim();
+                }
+                else
+                {
+                    varHSN_Name = "-All";
+                }
                 btnListPrint.Enabled = false;
                 //lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;
@@ -89,7 +148,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                //objDs = objspservice.udfnHsnList(5, 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "","");
+                objDs = objspservice.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), txtHsnName.Text.Trim(), Convert.ToInt32(cmbGST.SelectedValue), dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -101,155 +160,51 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Master.rpt");
-                    //objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
-                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-                btnListPrint.Enabled = true;
-                btnListPrint.Focus();
-                GC.Collect();
-            }
-        }
-        public void udfnHSNProduct()
-        {
-            try
-            {
-                string varHSNCode = "", HSNCodeName = "";
-                if (txtHsnName.Text == "")
-                {
-                    varHSNCode = "0";
-                    HSNCodeName = "-All-";
-                }
-                else
-                {
-                    varHSNCode = txtHsnName.Text.Trim();
-                    HSNCodeName = txtHsnName.Text.Trim();
-                }
-                btnListPrint.Enabled = false;
-                //lblStatus.Focus();
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 16;
-                //objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
-                objMR_Product.paraGstId = Convert.ToInt32(cmbGST.SelectedValue);
-                objMR_Product.paraHSNCode = varHSNCode;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(objMR_Product);
-                objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 287)
+                    {
+                        if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 30)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWise.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 31 || Convert.ToInt32(cmbSupplierType.SelectedValue) == 32)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWiseComposite.rpt");
+                        }
+                        else
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWise_IGST.rpt");
+                        }
+                        objBillreport.SetParameterValue("paraHSNName", varHSNName);
+                        objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 289)
+                    {
+                        if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 30)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWise.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 31 || Convert.ToInt32(cmbSupplierType.SelectedValue) == 32)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWiseComposite.rpt");
+                        }
+                        else
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWise_IGST.rpt");
+                        }
+                        objBillreport.SetParameterValue("paraHSNName", varHSN_Name);
+                        objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWiseTaxDetails.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
+                    objBillreport.SetParameterValue("paraHSNCode", txtHsnName.Text.Trim());
+                    objBillreport.SetParameterValue("paraGST", Convert.ToInt32(cmbGST.SelectedValue));
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
 
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Product.rpt");
-                    objBillreport.SetParameterValue("paraHSNCode", Convert.ToString(varHSNCode));
-                    objBillreport.SetParameterValue("paraGSTID", Convert.ToInt32(cmbGST.SelectedValue));
-                    //objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraHSNName", Convert.ToString(HSNCodeName));
-                    objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
-                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-                btnListPrint.Enabled = true;
-                btnListPrint.Focus();
-                GC.Collect();
-            }
-        }
-        public void udfnHSNSubgroup()
-        {
-            try
-            {
-                string varHSNCode = "", HSNCodeName = "";
-                if (txtHsnName.Text == "")
-                {
-                    varHSNCode = "0";
-                    HSNCodeName = "-All-";
-                }
-                else
-                {
-                    varHSNCode = txtHsnName.Text.Trim();
-                    HSNCodeName = txtHsnName.Text.Trim();
-                }
-                btnListPrint.Enabled = false;
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(4, 0, Convert.ToInt32(cmbGST.SelectedValue), 0, "", varHSNCode);
-                objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Subgroup.rpt");
-                    objBillreport.SetParameterValue("paraHSN_Code", Convert.ToString(varHSNCode));
-                    objBillreport.SetParameterValue("paraGSTID", Convert.ToInt32(cmbGST.SelectedValue));
-                    objBillreport.SetParameterValue("paraHSNName", Convert.ToString(HSNCodeName));
-                    objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraSupplierTypeName", Convert.ToString(cmbSupplierType.Text));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -309,7 +264,7 @@ namespace ROMS
             {
                 udfnHsnLoad();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,35) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,84) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
@@ -331,23 +286,18 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
-                if (cmbReportType.SelectedIndex == 1)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 288)
                 {
+                    txtHsnName.Text = "";
                     txtHsnName.Enabled = false;
+                    cmbGST.SelectedValue = 0;
                     cmbGST.Enabled = false;
-                    udfnClear();
+                    cmbSupplierType.SelectedValue = 0;
                 }
-                if (cmbReportType.SelectedIndex == 2)
+                else
                 {
                     txtHsnName.Enabled = true;
                     cmbGST.Enabled = true;
-                    udfnClear();
-                }
-                if (cmbReportType.SelectedIndex == 3)
-                {
-                    txtHsnName.Enabled = true;
-                    cmbGST.Enabled = true;
-                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -355,11 +305,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfnClear()
-        {
-            txtHsnName.Text = "";
-            cmbGST.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
@@ -404,6 +349,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbReportType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -418,6 +364,7 @@ namespace ROMS
             {
                 lvHsnName.Visible = false;
                 udfnHsnLoad();
+                udfnGridNull((Control)sender);
                 cmbGST.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -502,25 +449,106 @@ namespace ROMS
         {
             try
             {
+                varUpDownKey = 0;
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
-                    if (lvHsnName.Items.Count == 0 || txtHsnName.Text == "")
+                    //if (lvproduct.Items.Count == 0 && txtProductName.Text == "")
+                    //{
+                    //    txtMrp.Focus();
+                    //    lvproduct.Visible = false;
+                    //}
+                    //else
+                    //{
+                    //    lvproduct.Focus();
+                    //}
+                    //if (lvproduct.Items.Count > 0)
+                    //{
+                    //    lvproduct.Items[0].Selected = true;
+                    //}
+                    DGV_FilterHSN.Focus();
+
+                }
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    txtMrp.Focus();
+                //}
+                if (e.KeyCode == Keys.Enter && DGV_FilterHSN.Visible == false)
+                {
+                    cmbGST.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_FilterHSN.Focus();
+                }
+                if (DGV_FilterHSN.CurrentCell == null && DGV_FilterHSN.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_FilterHSN.Focus();
+                    int RowIndex = DGV_FilterHSN.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterHSN.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                     {
-                        txtHsnName.Focus();
-                        lvHsnName.Visible = false;
+                        varUpDownKey = 1;
                     }
                     else
                     {
-                        lvHsnName.Focus();
+                        varUpDownKey = 0;
                     }
-                    if (lvHsnName.Items.Count > 0)
+                    switch (e.KeyCode)
                     {
-                        lvHsnName.Items[0].Selected = true;
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterHSN.CurrentCell = DGV_FilterHSN.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtHsnName.Text = DGV_FilterHSN.Rows[RowIndex].Cells["HSN_Code"].Value.ToString();
+                            }
+                            txtHsnName.Focus();
+                            txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterHSN.Rows.Count) DGV_FilterHSN.CurrentCell = DGV_FilterHSN.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterHSN.Rows.Count))
+                            {
+                                txtHsnName.Text = DGV_FilterHSN.Rows[RowIndex].Cells["HSN_Code"].Value.ToString();
+                            }
+
+                            txtHsnName.Focus();
+                            txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterHSN.Rows.Count > 0)
+                                {
+                                    varUpDownKey = 1;
+                                    udfnHSNAutocomplete();
+                                    DGV_FilterHSN.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
                     }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbGST.Focus();
+                    txtHsnName.Focus();
+                    //txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        cmbGST.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -547,38 +575,57 @@ namespace ROMS
         {
             try
             {
-                lvHsnName.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtHsnName.Text.Length > 0)
+                if (varUpDownKey == 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnName.Text.Trim(), "");
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    lvHsnName.Items.Clear();
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtHsnName.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnName.Text.Trim(), "");
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvHsnName.Items.Add(objList);
-                                    lvHsnName.Columns[0].Width = 90;
-                                    lvHsnName.Columns[1].Width = 210;
-                                    lvHsnName.Columns[2].Width = 0;
+                                    DGV_FilterHSN.Visible = true;
+                                    DGV_FilterHSN.DataSource = objDs.Tables[0];
+                                    DGV_FilterHSN.Columns["HSNID"].Visible = false;
+                                    DGV_FilterHSN.Columns["HSN_GSTID"].Visible = false;
+                                    DGV_FilterHSN.Columns["GST_Text"].Visible = false;
+                                    DGV_FilterHSN.Columns["HSN_Name"].HeaderText = "HSN Name";
+                                    DGV_FilterHSN.Columns["HSN_Code"].HeaderText = "HSN Code";
+                                    DGV_FilterHSN.Columns["HSN_Name"].Width = 160;
+                                    DGV_FilterHSN.Columns["HSN_Code"].Width = 140;
+                                    DGV_FilterHSN.Columns["HSN_Code"].DisplayIndex = 0;
+                                    DGV_FilterHSN.Columns["HSN_Name"].DisplayIndex = 1;
+                                    DGV_FilterHSN.BringToFront();
                                 }
-                                lvHsnName.Visible = true;
-                                lvHsnName.BringToFront();
+                                else
+                                {
+                                    DGV_FilterHSN.Visible = false;
+                                    DGV_FilterHSN.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_FilterHSN.Visible = false;
+                                DGV_FilterHSN.DataSource = null;
                             }
                         }
+                        else
+                        {
+                            DGV_FilterHSN.Visible = false;
+                            DGV_FilterHSN.DataSource = null;
+                        }
                     }
-                }
-                else
-                {
-                    lvHsnName.Visible = false;
-                    lvHsnName.Items.Clear();
+                    else
+                    {
+                        DGV_FilterHSN.Visible = false;
+                        DGV_FilterHSN.DataSource = null;
+                    }
                 }
             }
             catch (Exception ex)
@@ -620,12 +667,11 @@ namespace ROMS
         {
             try
             {
-                if (txtHsnName.Text != "")
+                if (txtHsnName.Text.Trim() != "")
                 {
-                    ListViewItem selectedItem = lvHsnName.SelectedItems[0];
-                    txtHsnName.Text = selectedItem.SubItems[0].Text;
-                    lblHsnName.Text = selectedItem.SubItems[2].Text;
-                    //txtHSNCode.Text = selectedItem.SubItems[1].Text;
+                    txtHsnName.Text = DGV_FilterHSN.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
+                    varHSN_Name = DGV_FilterHSN.SelectedRows[0].Cells["HSN_Name"].Value.ToString();
+                    lblHsnName.Text = DGV_FilterHSN.SelectedRows[0].Cells["HSNID"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -678,7 +724,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtHsnName.Focus();
+                    if (txtHsnName.Enabled == true)
+                    {
+                        txtHsnName.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -692,6 +745,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbSupplierType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -719,6 +773,94 @@ namespace ROMS
             try
             {
                 e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKey = 1;
+                udfnHSNAutocomplete();
+                cmbGST.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_FilterHSN.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterHSN.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKey = 1;
+                    }
+                    else
+                    {
+                        varUpDownKey = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterHSN.CurrentCell = DGV_FilterHSN.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtHsnName.Text = DGV_FilterHSN.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
+
+                            txtHsnName.Focus();
+                            txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterHSN.Rows.Count) DGV_FilterHSN.CurrentCell = DGV_FilterHSN.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterHSN.Rows.Count))
+                            {
+                                txtHsnName.Text = DGV_FilterHSN.Rows[RowIndex].Cells["HSN_Code"].Value.ToString();
+                            }
+
+                            txtHsnName.Focus();
+                            txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterHSN.Rows.Count > 0)
+                                {
+                                    varUpDownKey = 1;
+                                    udfnHSNAutocomplete();
+                                    DGV_FilterHSN.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        cmbGST.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -291,36 +291,6 @@ namespace ROMS
         }
         private void TxtSupplier_KeyDown(object sender, KeyEventArgs e)
         {
-            /*
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbOrderType.Focus();
-                }
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    if (LV_Supplier.Items.Count == 0 || txtSupplier.Text == "")
-                    {
-                        txtSupplier.Focus();
-                        LV_Supplier.Visible = false;
-                    }
-                    else
-                    {
-                        LV_Supplier.Focus();
-                    }
-                    if (LV_Supplier.Items.Count > 0)
-                    {
-                        LV_Supplier.Items[0].Selected = true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            */
             try
             {
                 varUpDownKey = 0;
@@ -393,7 +363,7 @@ namespace ROMS
                             }
                     }
                     txtSupplier.Focus();
-                    txtSupplier.SelectionStart = txtSupplier.Text.Length;
+                    //txtSupplier.SelectionStart = txtSupplier.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -432,9 +402,6 @@ namespace ROMS
             {
                 if (varUpDownKey == 0)
                 {
-                    //LV_Supplier.BringToFront();
-                    //RPTViewer.SendToBack();
-                    //LV_Supplier.Items.Clear();
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
@@ -454,18 +421,6 @@ namespace ROMS
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    //{
-                                    //    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString()
-                                    //, objDs.Tables[0].Rows[i]["SupplierName"].ToString(), objDs.Tables[0].Rows[i]["ScheduleName"].ToString()};
-                                    //    ListViewItem objList = new ListViewItem(row);
-                                    //    LV_Supplier.Items.Add(objList);
-                                    //}
-                                    //LV_Supplier.Visible = true;
-                                    //LV_Supplier.BringToFront();
-                                    //LV_Supplier.Columns[0].Width = 300;
-                                    //LV_Supplier.Columns[1].Width = 0;
-                                    //LV_Supplier.Columns[2].Width = 0;
                                     DGV_FilterSupplier.Visible = true;
                                     DGV_FilterSupplier.DataSource = objDs.Tables[0];
                                     DGV_FilterSupplier.Columns["SPID"].Visible = false;
@@ -500,8 +455,6 @@ namespace ROMS
                     {
                         DGV_FilterSupplier.Visible = false;
                         DGV_FilterSupplier.DataSource = null;
-                        //LV_Supplier.Visible = false;
-                        //LV_Supplier.Items.Clear();
                     }
                 }
             }

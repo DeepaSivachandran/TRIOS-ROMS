@@ -67,6 +67,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -79,6 +80,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -469,10 +471,28 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGridNull(Control skipControl)
+        {
+            try
+            {
+                if (skipControl != txtHsnName)
+                {
+                    varUpDownKey = 0;
+                    DGV_FilterProduct.DataSource = null;
+                    DGV_FilterProduct.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbReportType_Enter(object sender, EventArgs e)
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbReportType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -485,11 +505,8 @@ namespace ROMS
         {
             try
             {
-                varUpDownKey = 0;
-                //lvHsnName.Visible = false;
-                DGV_FilterProduct.Visible = false;
-                DGV_FilterProduct.DataSource = null;
                 udfnHsnLoad();
+                udfnGridNull((Control)sender);
                 cmbGST.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -699,7 +716,7 @@ namespace ROMS
                             }
                     }
                     txtHsnName.Focus();
-                    txtHsnName.SelectionStart = txtHsnName.Text.Length;
+                    //txtHsnName.SelectionStart = txtHsnName.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -768,6 +785,7 @@ namespace ROMS
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["HSNID"].Visible = false;
                                     DGV_FilterProduct.Columns["HSN_GSTID"].Visible = false;
+                                    DGV_FilterProduct.Columns["GST_Text"].Visible = false;
                                     DGV_FilterProduct.Columns["HSN_Name"].HeaderText = "HSN Name";
                                     DGV_FilterProduct.Columns["HSN_Code"].HeaderText = "HSN Code";
                                     DGV_FilterProduct.Columns["HSN_Name"].Width = 160;
@@ -844,10 +862,6 @@ namespace ROMS
             {
                 if (txtHsnName.Text.Trim() != "")
                 {
-                    //ListViewItem selectedItem = lvHsnName.SelectedItems[0];
-                    //txtHsnName.Text = selectedItem.SubItems[0].Text;
-                    //lblHsnName.Text = selectedItem.SubItems[2].Text;
-                    //txtHSNCode.Text = selectedItem.SubItems[1].Text;
                     txtHsnName.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
                     lblHsnName.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSNID"].Value.ToString();
                 }

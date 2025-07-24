@@ -28,7 +28,7 @@ namespace ROMS
         {
             try
             {
-                udfnGridNull();
+                udfnGridNull((Control)sender);
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -49,31 +49,40 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGridNull()
+        public void udfnGridNull(Control skipControl)
         {
             try
             {
-                /*
-                varUpDownKeyGroup = 0;
-                DGV_FilterGroup.DataSource = null;
-                DGV_FilterGroup.Visible = false;
-
-                varUpDownKeySubgroup = 0;
-                DGV_FilterSubgroup.DataSource = null;
-                DGV_FilterSubgroup.Visible = false;
-
-                varUpDownKeyProduct = 0;
-                DGV_FilterProduct.DataSource = null;
-                DGV_FilterProduct.Visible = false;
-
-                varUpDownKeyGRN = 0;
-                DGV_FilterGRN.DataSource = null;
-                DGV_FilterGRN.Visible = false;
-
-                varUpDownKeySupplier = 0;
-                DGV_FilterSupplier.DataSource = null;
-                DGV_FilterSupplier.Visible = false;
-                */
+                if (skipControl != txtGroup)
+                {
+                    varUpDownKeyGroup = 0;
+                    DGV_FilterGroup.DataSource = null;
+                    DGV_FilterGroup.Visible = false;
+                }
+                if (skipControl != txtSubGroup)
+                {
+                    varUpDownKeySubgroup = 0;
+                    DGV_FilterSubgroup.DataSource = null;
+                    DGV_FilterSubgroup.Visible = false;
+                }
+                if (skipControl != txtProductName)
+                {
+                    varUpDownKeyProduct = 0;
+                    DGV_FilterProduct.DataSource = null;
+                    DGV_FilterProduct.Visible = false;
+                }
+                if (skipControl != txtGRNNo)
+                {
+                    varUpDownKeyGRN = 0;
+                    DGV_FilterGRN.DataSource = null;
+                    DGV_FilterGRN.Visible = false;
+                }
+                if (skipControl != txtSupplier)
+                {
+                    varUpDownKeySupplier = 0;
+                    DGV_FilterSupplier.DataSource = null;
+                    DGV_FilterSupplier.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -377,7 +386,7 @@ namespace ROMS
         {
             try
             {
-                udfnGridNull();
+                udfnGridNull((Control)sender);
                 txtGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -459,7 +468,7 @@ namespace ROMS
                             }
                     }
                     txtGroup.Focus();
-                    txtGroup.SelectionStart = txtGroup.Text.Length;
+                    //txtGroup.SelectionStart = txtGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -556,7 +565,7 @@ namespace ROMS
         {
             try
             {
-                udfnGridNull();
+                udfnGridNull((Control)sender);
                 txtSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -639,7 +648,7 @@ namespace ROMS
                             }
                     }
                     txtSubGroup.Focus();
-                    txtSubGroup.SelectionStart = txtSubGroup.Text.Length;
+                    //txtSubGroup.SelectionStart = txtSubGroup.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -740,7 +749,7 @@ namespace ROMS
         {
             try
             {
-                udfnGridNull();
+                udfnGridNull((Control)sender);
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -823,7 +832,7 @@ namespace ROMS
                             }
                     }
                     txtProductName.Focus();
-                    txtProductName.SelectionStart = txtProductName.Text.Length;
+                    //txtProductName.SelectionStart = txtProductName.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -860,17 +869,25 @@ namespace ROMS
         {
             try
             {
+                int varGroupId = 0, varSubgroupId = 0, varProductId = 0;
+                if (txtGroup.Text.Trim() != "")
+                {
+                    varGroupId = Convert.ToInt32(lblGroupCode.Text);
+                }
+                if (txtSubGroup.Text.Trim() != "")
+                {
+                    varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text);
+                }
                 if (varUpDownKeyProduct == 0)
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0)
                     {
-
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 49;
-                        objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
-                        objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
+                        objMR_Product.paraGroup = varGroupId;
+                        objMR_Product.paraSubgroup = varSubgroupId;
                         objMR_Product.paraProductName = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         if (objDs != null)
@@ -1082,7 +1099,7 @@ namespace ROMS
         {
             try
             {
-                udfnGridNull();
+                udfnGridNull((Control)sender);
                 txtSupplier.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1166,7 +1183,7 @@ namespace ROMS
                             }
                     }
                     txtSupplier.Focus();
-                    txtSupplier.SelectionStart = txtSupplier.Text.Length;
+                    //txtSupplier.SelectionStart = txtSupplier.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
@@ -1206,9 +1223,6 @@ namespace ROMS
             {
                 if (varUpDownKeySupplier == 0)
                 {
-                    //LV_Supplier.BringToFront();
-                    //RPTViewer.SendToBack();
-                    //LV_Supplier.Items.Clear();
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
@@ -1328,7 +1342,7 @@ namespace ROMS
         {
             try
             {
-                udfnGridNull();
+                udfnGridNull((Control)sender);
                 txtGRNNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1412,7 +1426,7 @@ namespace ROMS
                             }
                     }
                     txtGRNNo.Focus();
-                    txtGRNNo.SelectionStart = txtGRNNo.Text.Length;
+                    //txtGRNNo.SelectionStart = txtGRNNo.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
