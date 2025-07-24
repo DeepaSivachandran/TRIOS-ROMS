@@ -7106,7 +7106,7 @@ namespace ROMS
                     grdPurchaseList.Rows.Clear();
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
-                        string varQty = "";
+                        string varQty = "";pbConditionIDs = "";
                         decimal varInvQty = 0;
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
@@ -7252,12 +7252,13 @@ namespace ROMS
                                 //    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
                                 //}
                             }
-                            if (PbSTS == "49" && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "226" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "264" ||
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "265" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "266"
-                                    || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) == "267"))
+                            pbConditionIDs = Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value);
+                            var idSet = new HashSet<string>(pbConditionIDs.Split(',').Select(id => id.Trim()));
+                            
+                            if (PbSTS == "49" && idSet.Contains("281"))
                             {
                                 grdPurchaseList.Rows[i].ReadOnly = true;
-                                grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = false;
+                                grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].ReadOnly = false;  
                                 grdPurchaseList.Rows[i].Cells["clmInvQty"].ReadOnly = false;
                                 grdPurchaseList.Rows[i].Cells["clmDiscAmt"].ReadOnly = false;
                                 grdPurchaseList.Rows[i].Cells["clmDiscPer"].ReadOnly = false;
@@ -7365,14 +7366,16 @@ namespace ROMS
                     {
                         for (int i = 0; i < grdPurchaseList.Rows.Count; i++)
                         {
-                            string varZero = "0";
+                            string varZero = "0"; pbConditionIDs = "";
                             int varDecimal = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["UT_Decimal"].Value);
                             varZero = 0 + objValidation.udfnDecimal(Convert.ToString(varZero), varDecimal);
                             varConvertProductFlag = "0";
                             varConvertProductFlag = Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value);
-                            if ((Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
-                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267") && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "0"))  //Product not received
+                            pbConditionIDs = Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value);
+                            var idSet = new HashSet<string>(pbConditionIDs.Split(',').Select(id => id.Trim()));
+                             
+
+                                if ( !idSet.Contains("281") && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmConvertedProID"].Value) == "0"))  //Product not received
                             {
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Value) == 0)
                                 {
@@ -7426,9 +7429,7 @@ namespace ROMS
                             { varInvqty = Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value); }
 
 
-                            if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57 && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
-                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267"))  //Against DC
+                            if (Convert.ToInt32(cmbEntryType.SelectedValue) == 57 && (!idSet.Contains("281")))  //Against DC
                             {
                                 int varProductType = 0;
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "" &&
@@ -7484,9 +7485,7 @@ namespace ROMS
                                     }
                                 }
                             }
-                            if ((varEntryType == 56 || varEntryType == 55) && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
-                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226"))  //Direct and against po
+                            if ((varEntryType == 56 || varEntryType == 55) && (!idSet.Contains("281")))  //Direct and against po
                             {
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "" &&
                                     Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != 0 || (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != ""
@@ -7518,13 +7517,9 @@ namespace ROMS
                                     }
                                 }
                             }
-                            if (varEntryType == 54 && (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
-                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267") && varConvertProductFlag == "0") //  GRN
+                            if (varEntryType == 54 && (!idSet.Contains("281")) && varConvertProductFlag == "0") //  GRN
                             {
-                                if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "226" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "264" &&
-                            Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "265" && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "266"
-                                    && Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value) != "267")  //Product not received
+                                if ((!idSet.Contains("281")))  //Product not received
                                 {
                                     if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != "" || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != "" &&
                                         Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) != 0 && Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) != 0)
@@ -8956,6 +8951,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
         private void btnConditionClear_Click(object sender, EventArgs e)
         {
             try
@@ -12191,6 +12187,7 @@ namespace ROMS
                             cell.Style.ForeColor = Color.Black;
                         }
                     }
+
                     if ( Convert.ToString(grdSupplierList.Rows[i].Cells["clmGRNProductType"].Value) == "264"
                         || Convert.ToString(grdSupplierList.Rows[i].Cells["clmGRNProductType"].Value) == "265" || Convert.ToString(grdSupplierList.Rows[i].Cells["clmGRNProductType"].Value) == "266"
                         || Convert.ToString(grdSupplierList.Rows[i].Cells["clmGRNProductType"].Value) == "227")

@@ -1183,7 +1183,7 @@
             this.pnlConditions.Name = "pnlConditions";
             this.pnlConditions.Size = new System.Drawing.Size(201, 299);
             this.pnlConditions.TabIndex = 111111149;
-            this.pnlConditions.Visible = false;
+            this.pnlConditions.Visible = false; 
             // 
             // btnConditionClear
             // 
@@ -2277,7 +2277,7 @@
             this.grdPurchaseList.Size = new System.Drawing.Size(1316, 401);
             this.grdPurchaseList.TabIndex = 1111201;
             this.grdPurchaseList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseList_CellEndEdit);
-            this.grdPurchaseList.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseList_CellLeave); 
+            this.grdPurchaseList.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseList_CellLeave);
             this.grdPurchaseList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseList_DataBindingComplete);
             this.grdPurchaseList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdPurchaseList_EditingControlShowing);
             this.grdPurchaseList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseList_KeyDown);
@@ -4457,6 +4457,7 @@
             // 
             // crToolStripTextBox1
             // 
+            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 
