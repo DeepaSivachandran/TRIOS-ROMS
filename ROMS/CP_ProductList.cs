@@ -1546,6 +1546,9 @@ namespace ROMS
                     {
                         //Added by Sathish on 07/07/2025 for clone option for Product
                         case "clmClone":
+                            picLoader.Visible = true;
+                            picLoader.BringToFront();
+                            Application.DoEvents();
                             MainForm.objCP_Items = new CP_Product();
                             MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value);
                             MainForm.objCP_Items.pbFormStatus = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["STSID"].Value.ToString());
@@ -1559,6 +1562,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
             }
         }
 
