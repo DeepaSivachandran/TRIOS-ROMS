@@ -2115,6 +2115,16 @@ namespace ROMS
                                     MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     this.ActiveControl = txtProductName;
                                     MainForm.objINV_GodownOutwardList.udfnList();
+                                    string OutwardId = "0";
+                                    if (varGOId == 0)
+                                    {
+                                        OutwardId = varvalue1[2];
+                                    }
+                                    else
+                                    {
+                                        OutwardId = Convert.ToString(varGOId);
+                                    }
+                                    udfnOutwardReport(OutwardId);
                                     udfnClear();
                                     this.Close();
                                 }
@@ -2169,6 +2179,16 @@ namespace ROMS
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.ActiveControl = txtProductName;
                             MainForm.objINV_GodownOutwardList.udfnList();
+                            string OutwardId = "0";
+                            if (varGOId == 0)
+                            {
+                                OutwardId = varvalue[2];
+                            }
+                            else
+                            {
+                                OutwardId = Convert.ToString(varGOId);
+                            }
+                            udfnOutwardReport(OutwardId);
                             udfnClear();
                             this.Close();
                         }
@@ -2235,6 +2255,40 @@ namespace ROMS
             finally
             {
                 grdGoodsOutward.ClearSelection();
+            }
+        }
+        public void udfnOutwardReport(string varOutwardId)
+        {
+            try
+            {
+                DialogResult result1;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(87);
+                objDServ.CloseConnection();
+                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result1 == DialogResult.Yes)
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsOutward.rpt");
+                    varHeader = "Goods Outward Report";
+
+                    objBillreport.SetParameterValue("paraGOID", Convert.ToInt32(varOutwardId));
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnClear()
