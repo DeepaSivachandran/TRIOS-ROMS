@@ -99,7 +99,7 @@ namespace ROMS
                 }
                 else
                 {
-                    if ((Convert.ToInt32(cmbReportType.SelectedValue) == 290) && Convert.ToInt32(cmbSupplierType.SelectedValue) == 0)
+                    if ((Convert.ToInt32(cmbReportType.SelectedValue) == 290) && Convert.ToInt32(cmbSupplierType.SelectedValue) == -1)
                     {
                         cmbSupplierType.Focus();
                         epReport.SetError(cmbSupplierType, "Please select supplier type.");
@@ -251,10 +251,10 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,85) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
-                cmbSupplierType.SelectedValue = 0;
+                cmbSupplierType.SelectedValue = -1;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -270,7 +270,20 @@ namespace ROMS
         {
             try
             {
+                DataBind objDataBind = new DataBind();
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 290)
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbSupplierType.SelectedValue = -1;
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbSupplierType.SelectedValue = 0;
+                }
             }
             catch (Exception ex)
             {
