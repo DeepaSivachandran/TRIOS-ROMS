@@ -1317,6 +1317,8 @@ namespace ROMS
                                 DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
                                 textBoxCell.Value = ""; // or any string value
                                 grdGrnApproval.Rows[i].Cells["clmReason"] = textBoxCell;
+                                grdGrnApproval.Rows[i].ReadOnly = true;
+                                grdGrnApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
                             }
                         }
                         txttotalitem.Text = Convert.ToString(grdGrnApproval.Rows.Count);
