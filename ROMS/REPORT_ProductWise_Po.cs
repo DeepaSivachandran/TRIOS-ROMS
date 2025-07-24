@@ -269,7 +269,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,4) AND STSID IN (0,9,14)", "STS_Name,STSID", cmbCompletedStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
