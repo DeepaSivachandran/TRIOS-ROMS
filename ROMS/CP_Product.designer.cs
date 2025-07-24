@@ -1062,6 +1062,7 @@
             this.txtRackMOQQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRackMOQQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
             this.txtRackMOQQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
+            this.txtRackMOQQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRackMOQQty_KeyPress);
             this.txtRackMOQQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
             // 
             // txtDMaxOrderQty

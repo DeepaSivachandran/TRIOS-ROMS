@@ -1182,7 +1182,7 @@ namespace ROMS
                                       select snoValue).Max();
                         }
                         grdBatchConversion.Rows.Add(grdBatchConversion.Rows.Count + 1, varPICode, (varTamilname), (txtConvertMrp.Text), (varExpiryDate).Trim(), (txtConvertBatch.Text).Trim(), (txtConvertQty.Text),varPRID,varRKID,varStockLocationId,varShelflife,varDecimal, varSNo+1);
-                        dtStock.Rows.Add(Convert.ToDecimal((txtConvertQty.Text).Trim()),Convert.ToDecimal (txtConvertMrp.Text), (varExpiryDate).Trim(),Convert.ToInt32 ((txtConvertBatch.Text).Trim()), Convert.ToInt32(varSNo+1));
+                        dtStock.Rows.Add(Convert.ToDecimal((txtConvertQty.Text).Trim()),Convert.ToDecimal (txtConvertMrp.Text), (varExpiryDate).Trim(),Convert.ToString ((txtConvertBatch.Text).Trim()), Convert.ToInt32(varSNo+1));
                         grdBatchConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmMrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdBatchConversion.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
