@@ -7668,7 +7668,8 @@ namespace ROMS
                                         {
                                             if (Convert.ToString(varPURPRIDs[i]) == Convert.ToString(grdPurchaseList.Rows[k].Cells["clmConvertedProID"].Value))
                                             {
-                                                varQuantityErr++;
+                                                varQuantityErr++; 
+
                                                 //Converted product error
                                                 grdPurchaseList.Rows[k].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
                                                 grdPurchaseList.Rows[k].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
