@@ -538,6 +538,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 420;
+                                    DGV_FilterProduct.Columns["Unit"].Width = 50;
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
                                     DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 2;
                                     DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 3;
