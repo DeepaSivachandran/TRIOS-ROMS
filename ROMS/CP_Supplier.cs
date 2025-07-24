@@ -5883,12 +5883,14 @@ namespace ROMS
                             {
                                 MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 varModifiedFlag = 0;
-                                MainForm.objCP_Supplierlist.udfnList();
+                                if (MainForm.objCP_Supplierlist != null)
+                                {
+                                    MainForm.objCP_Supplierlist.udfnList();
+                                }
                                 cmbMappingorderschedule.Focus();
                                 if (btnMappingsave.Text == "Update")
                                 {
-                                    varupdate = "1";
-
+                                    varupdate = "1"; 
                                     //udfnclose();
                                 }
                                 txtMappingGroup.Text = "";

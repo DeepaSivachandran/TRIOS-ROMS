@@ -2098,7 +2098,7 @@ namespace ROMS
                                 }
                                 if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
                                 {
-                                    if (varGRNPurchaseFlag == 2 || varGRNPurchaseFlag == 175)   //From Purchase- Queue
+                                    if (varGRNPurchaseFlag == 2 && varGRNPurchaseFlag == 175)   //From Purchase- Queue
                                     {
                                         int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmEntrytypeProID"].Value);
 

@@ -1367,6 +1367,13 @@ namespace ROMS
                                 grdGrnApproval.Rows[i].ReadOnly = true;
                                 grdGrnApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
                             }
+                            if(Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 0 && Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]) == 234)
+                            { 
+                                // Replace the cell in a specific row
+                                DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
+                                textBoxCell.Value = ""; // or any string value
+                                grdGrnApproval.Rows[i].Cells["clmReason"] = textBoxCell; 
+                            }
                         }
                         txttotalitem.Text = Convert.ToString(grdGrnApproval.Rows.Count);
                     }
