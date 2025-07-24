@@ -123,6 +123,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 btnListPrint.Enabled = false;
                 //lblStatus.Focus();
                 lblNoRecordsFound.Visible = false;

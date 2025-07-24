@@ -1103,8 +1103,11 @@ namespace ROMS
                         }
                         else
                         {
-                            MainForm.objCP_Itemlist.udfnDropdownbind();
-                            MainForm.objCP_Itemlist.udfnList();
+                            if (varproductcode != 0 || varFlag == 1)
+                            {
+                                MainForm.objCP_Itemlist.udfnDropdownbind();
+                                MainForm.objCP_Itemlist.udfnList();
+                            }
                             //udfnclear();
                             if (btnSave.Text != "Update")
                             {
