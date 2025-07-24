@@ -3259,7 +3259,7 @@ namespace ROMS
             return result;
         }
 
-        public string udfnSetPurchaseEntry(TRN_PurchaseEntry objTRN_PurchaseEntry)
+        public string udfnSetPurchaseEntry(TRN_PurchaseEntry objTRN_PurchaseEntry) 
         {
             string result = "";
             try
@@ -3828,6 +3828,32 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_DiscountVoucher.paraStatusID);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        /*Added by sivabharathi on 18/07/2025 for Purchase and grn product validation*/
+        public DataSet udfnValidateProductsByCondition(TRN_Validate_Products_By_Condition objTRN_Validate_Products_By_Condition)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Validate_Products_By_Condition]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ProductList", objTRN_Validate_Products_By_Condition.ProductList); 
+                varSqlCommand.Parameters.AddWithValue("@ParaEntryDate", objTRN_Validate_Products_By_Condition.ParaEntryDate);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

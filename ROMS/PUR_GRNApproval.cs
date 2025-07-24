@@ -23,11 +23,9 @@ namespace ROMS
         public int varWrongReason = 0, varCrtReason = 0, varShelflifeLevel1 = 0, varShelflifeLevel2 = 0;
         DataTable dtApproval = new DataTable();
         DataTable dtPurchaseReturnDC = new DataTable();
-        DataTable dtCreditProduct = new DataTable();
-        DataTable dtAllReason = new DataTable();
-        DataTable dtFilteredReason = new DataTable();
-        DataTable dtGRNReason = new DataTable();
-        DataTable dtProNotReceived = new DataTable();
+        DataTable dtCreditProduct = new DataTable();   
+        DataTable dtReceived = new DataTable();
+        DataTable dtReturn = new DataTable();
         public int pbLastSeenFlag = 0;
         public PUR_GRNApproval()
         {
@@ -352,22 +350,7 @@ namespace ROMS
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
-                }
-                //DataGridViewCell Cell = grdGrnApproval.CurrentCell;
-                //Type CellType = Cell.GetType();
-                //if (CellType == typeof(DataGridViewComboBoxCell))
-                //{
-                //    //int newIndex = Math.Min(comboBoxCell.Items.Count - 1, comboBoxCell.SelectedIndex + 1);
-                //    //comboBoxCell.SelectedIndex = newIndex;
-
-                //}
-                //if (e.Control is ComboBox comboBox)
-                //{
-                //    // Subscribe to the KeyDown event of the ComboBox
-                //    grdGrnApproval.KeyDown -= GrdGrnApproval_KeyDown; // Ensure to unsubscribe to avoid multiple subscriptions
-                //    grdGrnApproval.KeyDown += GrdGrnApproval_KeyDown;
-                    
-                //}
+                } 
             }
             catch (Exception ex)
             {
@@ -738,8 +721,7 @@ namespace ROMS
                 }
                 if (varFlag == 2)
                 {//udfnGRNLastSeen();
-                }
-               
+                } 
                 dtApproval.TableName = "TRN_GRNApproval_Product";
                 dtApproval.Columns.Add("GRNAPR_PRID", typeof(int));
                 dtApproval.Columns.Add("GRNAPR_MRP", typeof(decimal));
@@ -775,8 +757,7 @@ namespace ROMS
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_RKID", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_FreeQty", typeof(decimal));
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_PURPRID", typeof(int));
-
-
+                 
                 dtCreditProduct.TableName = "TRN_CreditNote";
                 dtCreditProduct.Columns.Add("CNPR_PRID", typeof(int));
                 dtCreditProduct.Columns.Add("CNPR_MRP", typeof(decimal));
@@ -792,13 +773,11 @@ namespace ROMS
                 dtCreditProduct.Columns.Add("CNPR_SLID", typeof(decimal));
                 dtCreditProduct.Columns.Add("CNPR_RKID", typeof(decimal));
                 dtCreditProduct.Columns.Add("CNPR_FreeQty", typeof(decimal));
-                dtCreditProduct.Columns.Add("CNPR_PURPRID", typeof(int));
-
+                dtCreditProduct.Columns.Add("CNPR_PURPRID", typeof(int)); 
                 ClearSupplier();
                 udfnsupplierLoad();
                 udfnReason();
-                udfnEdit();
-                
+                udfnEdit(); 
                 //udfnStatus();
                 if (MainForm.objPUR_GRNApprovalList.ApprovalFlag==1)
                 {
@@ -873,30 +852,16 @@ namespace ROMS
                     {
                         if (objDSer.Tables[0].Rows.Count > 0)
                         {
-                            dtAllReason= objDSer.Tables[0];
+                            dtReceived= objDSer.Tables[0];
                         }
                     }
                     if (objDSer.Tables.Count > 1)
                     {
                         if (objDSer.Tables[1].Rows.Count > 0)
                         {
-                            dtFilteredReason = objDSer.Tables[1];
+                            dtReturn = objDSer.Tables[1];
                         }
-                    }
-                    if (objDSer.Tables.Count > 2)
-                    {
-                        if (objDSer.Tables[2].Rows.Count > 0)
-                        {
-                            dtGRNReason = objDSer.Tables[2];
-                        }
-                    }
-                    if (objDSer.Tables.Count > 3)
-                    {
-                        if (objDSer.Tables[3].Rows.Count > 0)
-                        {
-                            dtProNotReceived = objDSer.Tables[3];
-                        }
-                    }
+                    } 
                 }
             }
             catch (Exception ex)
@@ -1153,18 +1118,7 @@ namespace ROMS
                                 goto l;
                             }
                         }
-                    }
-                    //}
-                    //else if (result.Split('~')[0] == "4")
-                    //{
-                    //    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //}
-                    //else if (result.Split('~')[0] == "5")
-                    //{
-                    //    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    //}
-                    //}
+                    } 
                 }
             }
             catch (Exception ex)
@@ -1205,27 +1159,22 @@ namespace ROMS
                             else
                             {
                                 varShelflifePer = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]) + ' ' + '%';
-                            }
-                            //string[] varActualShelflife = Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]).Split(' ');
-                            //int actualShelfLife = Convert.ToInt32(varActualShelflife);
+                            } 
                             grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]),
                                 Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),
                                  Convert.ToString(objDs.Tables[0].Rows[i]["Pro Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]),  Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, 
-                                Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), 
+                                Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Mismatch Qty"]),
                                 Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Free Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Debit Qty"]),
                                 /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), 
                                 Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["IssueProCount"]), 
                                 Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Free Qty Value"]),
-                                 Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]));
-                            //if (Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 1)
-                            //{
+                                 Convert.ToString(objDs.Tables[0].Rows[i]["Condition"])); 
                            dtApproval.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), 
                             Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]),  Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 
                             Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]),0/*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), 
                             Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Free Qty"]), 
-                            Convert.ToInt32(objDs.Tables[0].Rows[i]["Debit Qty"]) ,Convert.ToInt32(objDs.Tables[0].Rows[i]["StatusUpdate"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]));
-                            //}
+                            Convert.ToInt32(objDs.Tables[0].Rows[i]["Debit Qty"]) ,Convert.ToInt32(objDs.Tables[0].Rows[i]["StatusUpdate"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"])); 
                             dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),
                                  Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, 0 /*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
                             dtCreditProduct.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),
@@ -1245,8 +1194,7 @@ namespace ROMS
                             string[] varShelflifeper = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]).Split(' ');
                             varInvoiceQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Qty"]);
                             VarReceivedQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Received Qty"]);
-                            //varPOID = Convert.ToInt32(objDs.Tables[0].Rows[i]["POID"]);
-
+                            
                             if (objDs.Tables[3].Rows.Count > 0)
                             {
                                 lbltwentyfiveper.Text = "< " + Convert.ToString(objDs.Tables[3].Rows[0]["Level1"]) + "%";
@@ -1290,16 +1238,14 @@ namespace ROMS
                                 DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
                                 varComboBoxColoumn.ValueMember = "ID";
                                 varComboBoxColoumn.DisplayMember = "Reason";
-                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "264"
-                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "266"
-                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) =="284")
                                 {
-                                    varComboBoxColoumn.DataSource = dtAllReason ; 
+                                    varComboBoxColoumn.DataSource = dtReturn ; 
                                 }
-                                else
+                                else if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "285")
                                 {
-                                    varComboBoxColoumn.DataSource = dtProNotReceived;
-                                }
+                                    varComboBoxColoumn.DataSource = dtReceived;
+                                } 
                             }
                             else if(varFlag==2)//from grn
                             {
@@ -1307,16 +1253,14 @@ namespace ROMS
                                 DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
                                 varComboBoxColoumn.ValueMember = "ID";
                                 varComboBoxColoumn.DisplayMember = "Reason";
-                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
-                                   || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
-                                   || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "284")
                                 {
-                                    varComboBoxColoumn.DataSource = dtFilteredReason;
+                                    varComboBoxColoumn.DataSource = dtReturn;
                                 }
-                                else
+                                else if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "285")
                                 {
-                                    varComboBoxColoumn.DataSource = dtGRNReason;
-                                }
+                                    varComboBoxColoumn.DataSource = dtReceived;
+                                } 
                             }
                             if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
                                     || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
@@ -1367,12 +1311,12 @@ namespace ROMS
                                 grdGrnApproval.Rows[i].ReadOnly = true;
                                 grdGrnApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
                             }
-                            if(Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 0 && Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]) == 234)
+                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "286")
                             { 
                                 // Replace the cell in a specific row
                                 DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
                                 textBoxCell.Value = ""; // or any string value
-                                grdGrnApproval.Rows[i].Cells["clmReason"] = textBoxCell; 
+                                grdGrnApproval.Rows[i].Cells["clmReason"] = textBoxCell;
                             }
                         }
                         txttotalitem.Text = Convert.ToString(grdGrnApproval.Rows.Count);
@@ -1383,16 +1327,7 @@ namespace ROMS
                         txtCompletedBy.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Completed By"]);
                         txtVerifiedBy1.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 1"]);
                         txtVerifiedBy2.Text = Convert.ToString(objDs.Tables[2].Rows[0]["Verified BY 2"]);
-                    }
-                    //if(objDs.Tables[1].Rows.Count>1)
-                    //{
-                    //    for(int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                    //    {
-                    //        grdpurchasedetails.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["PO_Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Created By"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO_IssuedBy"]));
-                    //    }
-                    //}
-
-
+                    } 
                 }
             }
             catch (Exception ex)

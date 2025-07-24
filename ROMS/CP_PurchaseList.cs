@@ -70,8 +70,6 @@ namespace ROMS
                 MainForm.objCP_Purchase.PbApprovalStsid = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString()); 
                 MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString()); 
                 MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Pur Entry Full Status"].Value.ToString()); 
-                //MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Pur Entry Status"].Value.ToString()); 
-               // MainForm.objCP_Purchase.tallyFlag = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["TallyExportFlag"].Value); 
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
                 MainForm.objCP_Purchase.Show();
             }
@@ -1415,11 +1413,7 @@ namespace ROMS
         private void GrdPurchaseEntryList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
-            {
-                //grdPurchaseEntryList.Columns["clmCheck"].Frozen = true;
-                //grdPurchaseEntryList.Columns["clmCheck"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryList.Columns["clmEdit"].Frozen = true;
-                //grdPurchaseEntryList.Columns["clmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+            { 
                 grdPurchaseEntryList.Columns["S.No."].Frozen = true;
                 grdPurchaseEntryList.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseEntryList.Columns["Concern"].Frozen = true;
@@ -1427,13 +1421,7 @@ namespace ROMS
                 grdPurchaseEntryList.Columns["Pur Entry Status"].Frozen = true;
                 grdPurchaseEntryList.Columns["Pur Entry Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdPurchaseEntryList.Columns["Overall Status"].Frozen = true;
-                grdPurchaseEntryList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryList.Columns["Vouc No."].Frozen = true;
-                //grdPurchaseEntryList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryList.Columns["Vouc Date"].Frozen = true;
-                //grdPurchaseEntryList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdPurchaseEntryList.Columns["Supplier"].Frozen = true;
-                //grdPurchaseEntryList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdPurchaseEntryList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue; 
 
                 for (int i = 0; i < grdPurchaseEntryList.Rows.Count; i++)
                 {
@@ -1458,31 +1446,7 @@ namespace ROMS
                     if(Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["Flag"].Value) == "1") //flag =1 -Purchase entry incomplete
                     {
                         grdPurchaseEntryList.Rows[i].Cells["Overall Status"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("251, 154, 209");
-                    }
-                    //if(Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_Approval_STSID"].Value) != "63" || Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["TallyExportFlag"].Value)=="1")
-                    //{
-                    //    DataGridViewTextBoxCell Check = new DataGridViewTextBoxCell();
-                    //    Check.Value = "";
-                    //    grdPurchaseEntryList.Rows[i].Cells["clmCheck"] = Check;
-                    //    Check.ReadOnly = true;
-                    //}
-                    /*
-                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "49" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "49")
-                    {
-                        cell2.Style.BackColor = Color.Red;
-                        cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
-                    }
-                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "50")
-                    {
-                        cell2.Style.BackColor = Color.Orange;
-                        cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
-                    }
-                    if (Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["STSID"].Value) == "50" && Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "57" || Convert.ToString(grdPurchaseEntryList.Rows[i].Cells["PUR_INVSTSID"].Value) == "58")
-                    {
-                        cell2.Style.BackColor = Color.LimeGreen;
-                        cell2.Style.ForeColor = Color.White;// Set the background color to the default background color
-                    }
-                    */
+                    } 
                 }
             }
             catch (Exception ex)

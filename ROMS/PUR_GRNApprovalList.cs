@@ -24,8 +24,7 @@ namespace ROMS
         public PUR_GRNApprovalList()
         {
             InitializeComponent();
-        }
-         
+        } 
         private void tsbEdit_Click(object sender, EventArgs e)
         {
             try
@@ -51,12 +50,10 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
                     MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
                     MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["FLAG"].Value);
-                    MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID "].Value);
-                   //nForm.objPUR_GRNApproval.varInwardID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GIPPRID"].Value);
+                    MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID"].Value); 
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
-                }
-                
+                } 
             }
             catch (Exception ex)
             {
@@ -1670,7 +1667,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["InvFilterDate"].Visible = false;
                                 //grdGrnApprovalList.Columns["GRNID"].Visible = false;
                                 //grdGrnApprovalList.Columns["PURID"].Visible = false;
-                                grdGrnApprovalList.Columns["Trans ID "].Visible = false;
+                                grdGrnApprovalList.Columns["Trans ID"].Visible = false;
                                 grdGrnApprovalList.Columns["Pur_LastTransNo"].Visible = false;
                                 grdGrnApprovalList.Columns["Transaction Date"].Visible = false;
                                 grdGrnApprovalList.Columns["Full Status"].Visible = false;
@@ -1755,7 +1752,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["Flag"].Visible = false;
                 DGV_SearchGrid.Columns["PUR_GRNALastSeenBy"].Visible = false;
-                DGV_SearchGrid.Columns["Trans ID "].Visible = false;
+                DGV_SearchGrid.Columns["Trans ID"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)

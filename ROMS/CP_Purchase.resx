@@ -139,6 +139,18 @@
         Bghg42MPTnXNa2HqrAbtRk8zOEwnwManWrERTJ3y8cYhU/8/Qyx/AO4X2or8LzI8AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btnConditionClose.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        hQAAAIUB4uz/wQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEqSURBVEhLzZW/
+        TsJQFIf7COx9FRnFVQfYHTTKYiIwCF0wcZLBnT/aGF+AmBgHcNYQXH2HPsShx97D7e09N5zblIRf8iVl
+        6PelhdLANUgWXUiWYPEXMQwidZpsTjnCBhBhxJKvY4Cfacb3BGB+qfm49otY8uktwHFoEtZM7hqyiEjO
+        BSQRsRzhAogr4iVHODnBRUTyblMfk+z0yJQThYgO/L6aUuLtCf4Xj7LPKInOs3NGN3YA+WwzgdWzLe+1
+        Mjnt5RFgeKGvGDmr24H3K2EAGT8ou1pefp8+C0W5dwDJR3bJkcMK7PUWVfol7/1niswqeND6J1u5Cnx1
+        RBGCkxIFecpA/R95RDgx4pLTxJEycpooUlZOsyJer8wdcpoVyWMK88jkNGfESx4EG4xwmTJs4ghIAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
   <metadata name="clmsno.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -163,16 +175,10 @@
   <metadata name="clmCondition.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="clmPendingQty.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clmExcessQty.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clmDamageQty.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="clmMismatchQty.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="clmReason.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="clmGrnMrp.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -287,6 +293,9 @@
     <value>True</value>
   </metadata>
   <metadata name="clmConvertParentFlag.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="clmReasonID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="clmAddPro.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

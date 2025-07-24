@@ -28,17 +28,14 @@ namespace ROMS
         private void PUR_PurchaseApprovalList_Load(object sender, EventArgs e)
         {
             try
-            {
-                //grdPurchaseApproval.Rows.Add("1","","24/07/2023","PR001", "24/07/2023", "PO001", "15200", "","10","Pending","User1 24/06/2023 10:00AM","User2","");
-                //cmbConcern.Focus();
+            { 
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnDate();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (14) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,56) AND MSTID !=-1", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
-
+                objDataBind = null; 
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -149,8 +146,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                 objTRN_PurchaseEntry.ViewType = 12;
-                objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                //objTRN_PurchaseEntry.paraStatus = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue); 
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblScheduleCode.Text);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseEntry.ParaPEFromDate = dpFromDate.Text;
