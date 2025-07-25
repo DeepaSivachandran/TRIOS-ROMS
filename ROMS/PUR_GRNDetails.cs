@@ -765,7 +765,7 @@ namespace ROMS
                                         var varIssueow = Result.Tables[0].Rows[i];
                                         if (Convert.ToString(gridRow.Cells["clmsno"].Value) == Convert.ToString(varIssueow["GRNPR_SNO"]))
                                         {
-                                            if (Convert.ToInt32(varIssueow["Expiry_Date_Issue"]) != 0 || Convert.ToInt32(varIssueow["Expiry_Date_Issue"]) != 0)
+                                            if (Convert.ToInt32(varIssueow["Expiry_Date_Issue"]) != 0 || Convert.ToInt32(varIssueow["Pro_Expiry_Date_Issue"]) != 0)
                                             {
                                                 gridRow.Cells["clmexpirydate"].Style.BackColor = Color.LightPink;
                                                 gridRow.Cells["clmInvoiceExpiry"].Style.BackColor = Color.LightPink;
@@ -5130,7 +5130,7 @@ namespace ROMS
                     } 
                     SPDataService objDServ = new SPDataService();
                     DataSet objDS = new DataSet();
-                    if (varExpiryDate != "" && varLPFlag==0)
+                    if (varExpiryDate != "" || varLPFlag==0)
                     {
                         MR_Master objMR_Master = new MR_Master();
                         objMR_Master.ViewType = 7;
