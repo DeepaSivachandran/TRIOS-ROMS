@@ -301,11 +301,13 @@ namespace ROMS
                         {
                             varSupplierName = txtSupplier.Text.Trim();
                         }
-                        if (objDs.Tables[1].Rows.Count > 0)
+                        if (objDs.Tables[1] != null)
                         {
-
+                            if (objDs.Tables[1].Rows.Count > 0)
+                            {
+                                ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, varSupplierName, cmbPayType.Text, cmbConditionType.Text, objDs.Tables[1]);
+                            }
                         }
-                        ExportPurchaseJsonToExcelInterop(combinedJson, dpFromDate.Text + "-" + dpToDate.Text, varSupplierName, cmbPayType.Text, cmbConditionType.Text,objDs.Tables[1]);
                     }
                     else
                     {
@@ -401,8 +403,52 @@ namespace ROMS
 
                 foreach (var purchase in purchases)
                 {
-                    var header = JObject.Parse(purchase["Header"]?.ToString() ?? "{}");
-                    var footer = JObject.Parse(purchase["Footer"]?.ToString() ?? "{}");
+                    var headerJson = purchase["Header"]?.ToString() ?? "{}";
+
+                    if (headerJson.Contains("}{"))
+                    {
+                        var parts = headerJson.Split(new[] { "},{" }, StringSplitOptions.None);
+                        headerJson = "{" + parts[0].Trim('{', '}') + "}";
+                    }
+
+                    int endIndex = headerJson.LastIndexOf('}');
+                    if (endIndex != -1 && endIndex < headerJson.Length - 1)
+                    {
+                        headerJson = headerJson.Substring(0, endIndex + 1);
+                    }
+
+                    JObject header;
+                    try
+                    {
+                        header = JsonConvert.DeserializeObject<JObject>(headerJson) ?? new JObject();
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        header = new JObject();
+                    }
+                    var footerJson = purchase["Footer"]?.ToString() ?? "{}";
+
+                    if (footerJson.Contains("}{"))
+                    {
+                        var parts = footerJson.Split(new[] { "},{" }, StringSplitOptions.None);
+                        footerJson = "{" + parts[0].Trim('{', '}') + "}";
+                    }
+
+                    endIndex = footerJson.LastIndexOf('}');
+                    if (endIndex != -1 && endIndex < footerJson.Length - 1)
+                    {
+                        footerJson = footerJson.Substring(0, endIndex + 1);
+                    }
+
+                    JObject footer;
+                    try
+                    {
+                        footer = JsonConvert.DeserializeObject<JObject>(footerJson) ?? new JObject();
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        footer = new JObject();
+                    }
                     var products = purchase["Products"] as JArray ?? new JArray();
 
                     row++;

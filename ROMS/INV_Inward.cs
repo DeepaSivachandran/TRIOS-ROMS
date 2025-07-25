@@ -450,6 +450,16 @@ namespace ROMS
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.ActiveControl = txtProductName;
                         MainForm.objINV_Inwardlist.udfnList();
+                        string InwardId = "0";
+                        if (varGIId == 0)
+                        {
+                            InwardId = varvalue[2];
+                        }
+                        else
+                        {
+                            InwardId = Convert.ToString(varGIId);
+                        }
+                        udfnInwardReport(InwardId);
                         //udfnClear();
                         this.Close();
                     }
@@ -511,6 +521,40 @@ namespace ROMS
             finally
             {
                 grdInward.ClearSelection();
+            }
+        }
+        public void udfnInwardReport(string varInwardId)
+        {
+            try
+            {
+                DialogResult result1;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(87);
+                objDServ.CloseConnection();
+                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result1 == DialogResult.Yes)
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsInward.rpt");
+                    varHeader = "Goods Inward Report";
+
+                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varInwardId));
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void BtnRemarks_Click(object sender, EventArgs e)

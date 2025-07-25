@@ -1103,8 +1103,11 @@ namespace ROMS
                         }
                         else
                         {
-                            MainForm.objCP_Itemlist.udfnDropdownbind();
-                            MainForm.objCP_Itemlist.udfnList();
+                            if (varproductcode != 0 || varFlag == 1)
+                            {
+                                MainForm.objCP_Itemlist.udfnDropdownbind();
+                                MainForm.objCP_Itemlist.udfnList();
+                            }
                             //udfnclear();
                             if (btnSave.Text != "Update")
                             {
@@ -6271,6 +6274,22 @@ namespace ROMS
             try
             {
                 btnHSNClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRackMOQQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {

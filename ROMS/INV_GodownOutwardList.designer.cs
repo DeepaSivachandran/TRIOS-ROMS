@@ -68,6 +68,7 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsRackGroupList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -313,6 +314,8 @@
             this.grdOutwardList.ColumnHeadersHeight = 30;
             this.grdOutwardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdOutwardList.ColumnHeadersVisible = false;
+            this.grdOutwardList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmPrint});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -334,6 +337,7 @@
             this.grdOutwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdOutwardList.Size = new System.Drawing.Size(1348, 493);
             this.grdOutwardList.TabIndex = 111111133;
+            this.grdOutwardList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOutwardList_CellContentClick);
             this.grdOutwardList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
             this.grdOutwardList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserList_Scroll);
             this.grdOutwardList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
@@ -539,6 +543,14 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Width = 50;
+            // 
             // INV_GodownOutwardList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -604,5 +616,6 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }

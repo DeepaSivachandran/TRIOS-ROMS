@@ -83,7 +83,7 @@ namespace ROMS
                 {
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 287 || Convert.ToInt32(cmbReportType.SelectedValue) == 289)
                     {
-                        if ((Convert.ToInt32(cmbReportType.SelectedValue) == 287 || Convert.ToInt32(cmbReportType.SelectedValue) == 289) && Convert.ToInt32(cmbSupplierType.SelectedValue) == 0)
+                        if ((Convert.ToInt32(cmbReportType.SelectedValue) == 287 || Convert.ToInt32(cmbReportType.SelectedValue) == 289) && Convert.ToInt32(cmbSupplierType.SelectedValue) == -1)
                         {
                             cmbSupplierType.Focus();
                             epReport.SetError(cmbSupplierType, "Please select supplier type.");
@@ -265,10 +265,10 @@ namespace ROMS
                 udfnHsnLoad();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,84) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
-                cmbSupplierType.SelectedValue = 0;
+                cmbSupplierType.SelectedValue = -1;
                 cmbGST.SelectedValue = 0;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -285,6 +285,7 @@ namespace ROMS
         {
             try
             {
+                DataBind objDataBind = new DataBind();
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 288)
                 {
@@ -292,12 +293,17 @@ namespace ROMS
                     txtHsnName.Enabled = false;
                     cmbGST.SelectedValue = 0;
                     cmbGST.Enabled = false;
+                    objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
                     cmbSupplierType.SelectedValue = 0;
                 }
                 else
                 {
                     txtHsnName.Enabled = true;
                     cmbGST.Enabled = true;
+                    objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbSupplierType.SelectedValue = -1;
                 }
             }
             catch (Exception ex)
