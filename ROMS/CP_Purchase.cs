@@ -2523,7 +2523,7 @@ namespace ROMS
         {
             try
             {
-                if (PbSTS != "50" || PbSTS == "70")
+                if (PbSTS != "50" || PbSTS == "70" || varPaymentStatus==70)
                 {
                     if (e.KeyCode == Keys.F4)
                     {

@@ -953,7 +953,7 @@ namespace ROMS
                     if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)!="")
                     { varReceivedQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value);  }
                     if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "")
-                    { varReturnQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value); }
+                    { varReturnQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value);  }
                     if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value) != "")
                     { varFreeQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value); }
                     if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "")
