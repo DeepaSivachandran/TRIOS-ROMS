@@ -1492,7 +1492,14 @@ namespace ROMS
                         grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    
+                    if (Convert.ToString(grdInwardList.Rows[i].Cells["STSID"].Value) == "41")
+                    {
+                        grdInwardList.Rows[i].Cells["clmPrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdInwardList.Rows[i].Cells["clmPrint"] = print;
+                        print.ReadOnly = true;
+                    }
                 }
             }
             catch (Exception ex)

@@ -1402,7 +1402,6 @@ namespace ROMS
         {
             try
             {
-
                 for (int i = 0; i < grdOutwardList.Rows.Count; i++)
                 {
                     if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 35)
@@ -1419,6 +1418,14 @@ namespace ROMS
                     {
                         grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 35)
+                    {
+                        grdOutwardList.Rows[i].Cells["clmPrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdOutwardList.Rows[i].Cells["clmPrint"] = print;
+                        print.ReadOnly = true;
                     }
                 }
             }

@@ -450,16 +450,19 @@ namespace ROMS
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.ActiveControl = txtProductName;
                         MainForm.objINV_Inwardlist.udfnList();
-                        string InwardId = "0";
-                        if (varGIId == 0)
+                        if (cbCompleted.Checked == true)
                         {
-                            InwardId = varvalue[2];
+                            string InwardId = "0";
+                            if (varGIId == 0)
+                            {
+                                InwardId = varvalue[2];
+                            }
+                            else
+                            {
+                                InwardId = Convert.ToString(varGIId);
+                            }
+                            udfnInwardReport(InwardId);
                         }
-                        else
-                        {
-                            InwardId = Convert.ToString(varGIId);
-                        }
-                        udfnInwardReport(InwardId);
                         //udfnClear();
                         this.Close();
                     }

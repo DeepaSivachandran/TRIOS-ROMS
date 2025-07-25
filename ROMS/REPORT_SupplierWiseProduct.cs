@@ -435,6 +435,7 @@ namespace ROMS
                                     DGV_FilterSupplier.Columns["SPSCID"].Visible = false;
                                     DGV_FilterSupplier.Columns["SupplierName"].Visible = false;
                                     DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
+                                    DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
                                     DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
                                     DGV_FilterSupplier.Columns["SP_NAME"].Width = 260;
                                     DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;

@@ -231,6 +231,7 @@ namespace ROMS
         public static REPORT_SupplierWiseProduct objREPORT_SupplierWiseProduct;
         public static REPORT_Unassigned_Products objREPORT_Unassigned_Products;
         public static REPORT_Assigned_Products objREPORT_Assigned_Products;
+        public static REPORT_Suppllier_Ledger objREPORT_Suppllier_Ledger;
         public static REPORT_PurchaseOrder_Summary objREPORT_PurchaseOrder_Summary;
         public static REPORT_PurchaseOrder_Detail objREPORT_PurchaseOrder_Detail;
         public static REPORT_ProductWise_Po objREPORT_ProductWise_Po;
@@ -2672,6 +2673,7 @@ namespace ROMS
                 MainForm.objREPORT_HSN_Code = new REPORT_HSN_Code();
                 MainForm.objREPORT_HSN_Code.MdiParent = this;
                 MainForm.objREPORT_HSN_Code.Show();
+                PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
             {
@@ -2706,6 +2708,7 @@ namespace ROMS
                 MainForm.objREPORT_HSN_NameWise_Product = new REPORT_HSN_NameWise_Product();
                 MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this;
                 MainForm.objREPORT_HSN_NameWise_Product.Show();
+                PbCurrentForm = "7.8.2";
             }
             catch (Exception ex)
             {
@@ -2723,6 +2726,24 @@ namespace ROMS
                 MainForm.objREPORT_HSN_NameWise_Product_Consolidated = new REPORT_HSN_NameWise_Product_Consolidated();
                 MainForm.objREPORT_HSN_NameWise_Product_Consolidated.MdiParent = this;
                 MainForm.objREPORT_HSN_NameWise_Product_Consolidated.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void SupplierLedgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Suppllier_Ledger = new REPORT_Suppllier_Ledger();
+                MainForm.objREPORT_Suppllier_Ledger.MdiParent = this;
+                MainForm.objREPORT_Suppllier_Ledger.Show();
+                PbCurrentForm = "7.5.4";
             }
             catch (Exception ex)
             {

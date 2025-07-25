@@ -2179,6 +2179,7 @@ namespace ROMS
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.ActiveControl = txtProductName;
                             MainForm.objINV_GodownOutwardList.udfnList();
+                            /*
                             string OutwardId = "0";
                             if (varGOId == 0)
                             {
@@ -2189,6 +2190,7 @@ namespace ROMS
                                 OutwardId = Convert.ToString(varGOId);
                             }
                             udfnOutwardReport(OutwardId);
+                            */
                             udfnClear();
                             this.Close();
                         }
