@@ -3793,6 +3793,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_DiscountVoucher.paraRemarks);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_DiscountVoucher.paraStatusID);
                 varSqlCommand.Parameters.AddWithValue("@paraPURID", objTRN_DiscountVoucher.paraPURID);
+                varSqlCommand.Parameters.AddWithValue("@paraGRNID", objTRN_DiscountVoucher.paraGRNID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_DiscountVoucher.paraOriginator);

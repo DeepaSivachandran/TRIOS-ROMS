@@ -23,5 +23,6 @@ namespace ROMS.Model
         public int paraStatusID { get; set; } = 0;
         public string paraRemarks { get; set; } = "";
         public int paraPURID { get; set; } = 0;
+        public int paraGRNID { get; set; } = 0;
     }
 }
