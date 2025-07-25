@@ -3928,7 +3928,7 @@ namespace ROMS
                     cellUnit.ReadOnly = true;
                     cellProductName.ReadOnly = true;
                     cellUTID.ReadOnly = true; 
-                    cellProCondition.ReadOnly = false;
+                    //cellProCondition.ReadOnly = false;
                     //cellGRNMrp.ReadOnly = true;
                     //cellMrp.ReadOnly = true;
                     //cellProMrp.ReadOnly = true;
@@ -8694,13 +8694,17 @@ namespace ROMS
                     pbCondition = string.Join(",", result.Select(r => r.ConditionName));
                     if (pbConditionIDs == "275")
                     {
-                        cmbReason.Enabled = false; cmbReason.SelectedValue = 286;
+                        cmbReason.Enabled = false;
+                        if (Convert.ToString(cmbPONo.SelectedValue) != "218")
+                        { cmbReason.SelectedValue = 286; }
                         txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true;
                         txtMismatchQty.Enabled = false; txtMismatchQty.ReadOnly = true;
                     }
                     else
                     {
-                        cmbReason.Enabled = true; cmbReason.SelectedValue = 286;
+                        cmbReason.Enabled = true;
+                        if (Convert.ToString(cmbPONo.SelectedValue) != "218")
+                        { cmbReason.SelectedValue = 286; }
                         txtInvoiceamt.Enabled = true; txtInvoiceamt.ReadOnly = false;
                         txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false;
                     }
@@ -9044,7 +9048,7 @@ namespace ROMS
                 {
                     if(txtMrp.Enabled==true)
                     { txtMrp.Focus(); }
-                    if (txtDate.Enabled == true)
+                    else if (txtDate.Enabled == true)
                     { txtDate.Focus(); }
                     else if (txtBatchno.Enabled == true)
                     { txtBatchno.Focus(); }
@@ -11093,7 +11097,10 @@ namespace ROMS
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmshelfper"].Value = varShelfLifePer;
 
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmConvertProductFlag"].Value = "1";
-                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmCondition"].ReadOnly = false;
+                                    /*For converted product condition type is open to change when the item has only one condition allowed to map 
+                                     * But now item has allowed to map multiple condition so condition column changed to read only*/
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmCondition"].ReadOnly = true;
+                                    grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmReason"].ReadOnly = true;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmMismatchQty"].ReadOnly = true;
                                     grdSupplierList.Columns["clmRemove"].Visible = true;
                                     int rowcount = Convert.ToInt32(grdSupplierList.RowCount - 1);
@@ -12306,7 +12313,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    txtMrp.Focus();
+                    btnConditions.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
