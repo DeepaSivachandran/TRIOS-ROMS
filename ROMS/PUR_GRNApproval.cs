@@ -947,7 +947,7 @@ namespace ROMS
             {
                 int varQtyErr = 0;
                 bool varErrorFlag = true;
-                decimal varFreeQty = 0, varReceivedQty = 0, varReturnQty = 0, varCreditQty = 0 ,varTotQty=0;
+                decimal varFreeQty = 0, varReceivedQty = 0, varReturnQty = 0, varCreditQty = 0 ,varTotQty=0,varMismatchQty=0;
                 for (int i=0;i<grdGrnApproval.Rows.Count;i++)
                 {
                     if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)!="")
@@ -958,38 +958,50 @@ namespace ROMS
                     { varFreeQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value); }
                     if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "")
                     { varCreditQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value); }
+                    if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmMismatchQty"].Value) != "")
+                    { varMismatchQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmMismatchQty"].Value); }
 
-                    varTotQty = varReturnQty + varFreeQty + varCreditQty;
-                    if(varTotQty> varReceivedQty && (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCondition"].Value) != "226" && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCondition"].Value) != "264" &&
-                            Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCondition"].Value) != "265" && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCondition"].Value) != "266"
-                                    && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCondition"].Value) != "267"))
+                    if (varFlag == 2)
                     {
-                        varQtyErr++;
-                        grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
-                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
-                        grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
-                        varErrorFlag = false;
+                        varTotQty = varReturnQty + varFreeQty + varCreditQty;
+                        if (varTotQty > varMismatchQty)
+                        {
+                            varQtyErr++;
+                            grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
+                            grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                            grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
+                            varErrorFlag = false;
+                        }
                     }
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value)>Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clminvoiceqty"].Value))
+                    else 
                     {
-                        varQtyErr++;
-                        //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
-                        grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
-                        varErrorFlag = false;
-                    }
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQtyValue"].Value))
-                    {
-                        varQtyErr++;
-                        //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
-                        grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
-                        varErrorFlag = false;
-                    }
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clminvoiceqty"].Value))
-                    {
-                        varQtyErr++;
-                        //grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Style.BackColor = Color.LightPink;
-                        grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
-                        varErrorFlag = false;
+                        varTotQty = varReturnQty + varFreeQty + varCreditQty;
+                        if (varTotQty > varReceivedQty)
+                        {
+                            varQtyErr++;
+                            grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
+                            grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                            grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
+                            varErrorFlag = false;
+                        }
+                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clminvoiceqty"].Value))
+                        {
+                            varQtyErr++;
+                            grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                            varErrorFlag = false;
+                        }
+                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQtyValue"].Value))
+                        {
+                            varQtyErr++;
+                            grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
+                            varErrorFlag = false;
+                        }
+                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clminvoiceqty"].Value))
+                        {
+                            varQtyErr++;
+                            grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
+                            varErrorFlag = false;
+                        }
                     }
                     if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0" || (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "0")) && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value)=="")
                     {
@@ -998,8 +1010,7 @@ namespace ROMS
                         objDServ.CloseConnection();
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
-                    }
-                    
+                    } 
                     if((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0"  || (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "0"))  
                         && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "233") //Reason should be amount credit accepted if return quantity entered or Credit note entered
                     {
@@ -1041,26 +1052,7 @@ namespace ROMS
                     }
                     SPDataService objspdservice = new SPDataService();
                     DataTable objGrnPO = new DataTable();
-                    TRN_GRNApproval objTRN_GRNApproval = new TRN_GRNApproval();
-                    //objTRN_GRNApproval.ViewType = 0;
-                    //objTRN_GRNApproval.paraPURID = varID;
-                    //objTRN_GRNApproval.paraRemarks = txtRemark.Text;
-                    //objTRN_GRNApproval.paraFlag = 0;
-                    //objTRN_GRNApproval.paraOriginator = varoriginator;
-                    //objTRN_GRNApproval.paraCompanyId = varConcernID;
-                    //objTRN_GRNApproval.paraSupplierID = varSupplierID;
-                    //objTRN_GRNApproval.paraScheduleID = varScheduleID;
-                    //objTRN_GRNApproval.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                    //objTRN_GRNApproval.paraReturnDC_Date = vardate;
-                    //objTRN_GRNApproval.paraApprovalProduct = dtApproval;
-                    //objTRN_GRNApproval.paraTRN_Purchase_ReturnDC = dtPurchaseReturnDC;
-                    //result = objspdservice.udfnSetGRNApproval(objTRN_GRNApproval);
-                    //objspdservice.CloseConnection();
-                    //string[] varvalue = result.Split('~');
-                    //if (result.Split('~')[0] == "3")
-                    //{
-                    //l: if (result.Split('~')[1] == "1")
-                    //{
+                    TRN_GRNApproval objTRN_GRNApproval = new TRN_GRNApproval(); 
                     varUserID = Convert.ToString(MainForm.pbUserID);
                 l: MainForm.objCP_Verify = new CP_Verify();
                     MainForm.objCP_Verify.ShowDialog();
@@ -1101,15 +1093,12 @@ namespace ROMS
                             if (varFlag == 2)
                             {
                                 udfnGRNLastSeen();
-                            }
-                            //udfnClear();
+                            } 
                             this.Close();
                             MainForm.objPUR_GRNApprovalList.udfnList();
                         }
                         else
-                        {
-                            //epGoodsInward.Clear();
-                            //txtProductName.BackColor = Color.White;
+                        { 
                             MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             btnSave.Enabled = true;
                             btnSave.Focus();
