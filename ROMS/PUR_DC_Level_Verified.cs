@@ -196,6 +196,7 @@ namespace ROMS
         {
             try
             {
+                cmbFormat.SelectedIndex = 0;
                 udfnDateLoad();
                 dpVerified.MinDate = MainForm.pbFYStartDate;
                 dpVerified.MaxDate = MainForm.pbCurrentDate;
