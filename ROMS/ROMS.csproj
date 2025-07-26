@@ -178,6 +178,18 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Rate_Change.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rate_Change.designer.cs">
+      <DependentUpon>CP_Rate_Change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Rate_ChangeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rate_ChangeList.designer.cs">
+      <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="LabelCount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2278,6 +2290,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rate_Change.resx">
+      <DependentUpon>CP_Rate_Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rate_ChangeList.resx">
+      <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LabelCount.resx">
       <DependentUpon>LabelCount.cs</DependentUpon>

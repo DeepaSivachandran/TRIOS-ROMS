@@ -156,6 +156,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRateChange = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -524,6 +525,7 @@ namespace ROMS
             this.tsmBroker,
             this.tsmBulkUpdate,
             this.tsmRepresentative,
+            this.tsmRateChange});
             this.stickerPrintToolStripMenuItem});
             this.mastersToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mastersToolStripMenuItem.Name = "mastersToolStripMenuItem";
@@ -1214,6 +1216,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // tsmRateChange
+            // 
+            this.tsmRateChange.Name = "tsmRateChange";
+            this.tsmRateChange.Size = new System.Drawing.Size(225, 22);
+            this.tsmRateChange.Text = "Rate Change";
+            this.tsmRateChange.Click += new System.EventHandler(this.tsmRateChange_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1369,5 +1378,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmHSNCodeWiseReport;
         private System.Windows.Forms.ToolStripMenuItem tsmHSNNameWiseProductReport;
         private System.Windows.Forms.ToolStripMenuItem supplierLedgerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmRateChange;
     }
 }
