@@ -525,7 +525,7 @@ namespace ROMS
             this.tsmBroker,
             this.tsmBulkUpdate,
             this.tsmRepresentative,
-            this.tsmRateChange});
+            this.tsmRateChange,
             this.stickerPrintToolStripMenuItem});
             this.mastersToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mastersToolStripMenuItem.Name = "mastersToolStripMenuItem";
