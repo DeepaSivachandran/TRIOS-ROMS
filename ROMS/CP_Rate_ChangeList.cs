@@ -26,9 +26,6 @@ namespace ROMS
         {
             try
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
                 MainForm.objCP_Rate_Change = new CP_Rate_Change();
                 MainForm.objCP_Rate_Change.ShowDialog();
             }
@@ -41,123 +38,6 @@ namespace ROMS
             {
             }
         }
-        private void tsbEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfndelete()
-        {
-            try
-            {
-                if (grdItemList.SelectedRows.Count > 0)
-                {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        SPDataService objspdservice = new SPDataService();
-                        varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null,0,"",0,0,0,0,0,null);
-                        string[] varvalue = varResult.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            if (varResult.Split('~')[1] == "1")
-                            {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
-                                {
-                                    objspdservice = new SPDataService();
-                                    varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null, 1,"",0,0,0,0,0, null);
-                                    objspdservice.CloseConnection();
-                                    if (varResult.Split('~')[0] == "3")
-                                    {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
-                                    }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-        }
-
-        private void udfnEdit()
-        {
-            try
-            {
-
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                if (grdItemList.SelectedRows.Count > 0)
-                {
-                    MainForm.objCP_Items = new CP_Product();
-                    MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
-                    //MainForm.objCP_Items.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
-                    //MainForm.objCP_Items.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
-                    //MainForm.objCP_Items.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
-                    //MainForm.objCP_Items.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
-                    //MainForm.objCP_Items.varcompanyid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_COMID"].Value.ToString());
-                    //MainForm.objCP_Items.varBrandId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_BDID"].Value.ToString());
-                    //MainForm.objCP_Items.varPURSLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_SLID"].Value.ToString());
-                    //MainForm.objCP_Items.varPURRKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_RKID"].Value.ToString());
-                    //MainForm.objCP_Items.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
-                    //MainForm.objCP_Items.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
-                    MainForm.objCP_Items.pbFormStatus = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["STSID"].Value.ToString());
-                    MainForm.objCP_Items.btnSave.Text = "Update";
-                    MainForm.objCP_Items.ShowDialog();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-            }
-
-        }
-
         public void udfnList()
         {
             try
@@ -172,9 +52,9 @@ namespace ROMS
 
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService(); 
-                MR_Product objMR_Product = new MR_Product(); 
-                //objDs = objdserv.udfnproductmasterlist(objMR_Product);
+                SPDataService objdserv = new SPDataService();
+                TRN_RateChange objRateChange = new TRN_RateChange();
+                objDs = objdserv.udfnRateChangeList(objRateChange);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -183,6 +63,37 @@ namespace ROMS
                         lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            grdItemList.DataSource = objDs.Tables[0];
+                            grdItemList.Columns["S.No."].Width = 60;
+                            grdItemList.Columns["P.I Code"].Width = 100;
+                            grdItemList.Columns["Product"].Width = 360;
+                            grdItemList.Columns["Unit"].Width = 80;
+                            grdItemList.Columns["Last R.Rate"].Width = 100;
+                            grdItemList.Columns["Last W.Rate"].Width = 100;
+                            grdItemList.Columns["Live R.Rate"].Width = 100;
+                            grdItemList.Columns["Live W.Rate"].Width = 100;
+                            grdItemList.Columns["Teller"].Width = 100;
+                            grdItemList.Columns["Last Updated By"].Width = 200;
+                            grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdItemList.Columns["Last R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns["Last W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns["Live R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns["Live W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdItemList.Columns["Last R.Rate"].DefaultCellStyle.ForeColor = Color.White;
+                            grdItemList.Columns["Last R.Rate"].DefaultCellStyle.BackColor = Color.Red;
+                            grdItemList.Columns["Last W.Rate"].DefaultCellStyle.ForeColor = Color.White;
+                            grdItemList.Columns["Last W.Rate"].DefaultCellStyle.BackColor = Color.Red;
+                            grdItemList.Columns["Last R.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
+                            grdItemList.Columns["Last W.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
+
+                            grdItemList.Columns["Live R.Rate"].DefaultCellStyle.ForeColor = Color.White;
+                            grdItemList.Columns["Live R.Rate"].DefaultCellStyle.BackColor = Color.Green;
+                            grdItemList.Columns["Live W.Rate"].DefaultCellStyle.ForeColor = Color.White;
+                            grdItemList.Columns["Live W.Rate"].DefaultCellStyle.BackColor = Color.Green;
+                            grdItemList.Columns["Live R.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
+                            grdItemList.Columns["Live W.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
+
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                         }
@@ -339,6 +250,22 @@ namespace ROMS
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns["Live R.Rate"].DefaultCellStyle.ForeColor = Color.Black;
+                    DGV_SearchGrid.Columns["Live R.Rate"].DefaultCellStyle.BackColor = Color.White;
+                    DGV_SearchGrid.Columns["Live R.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
+
+                    DGV_SearchGrid.Columns["Live W.Rate"].DefaultCellStyle.ForeColor = Color.Black;
+                    DGV_SearchGrid.Columns["Live W.Rate"].DefaultCellStyle.BackColor = Color.White;
+                    DGV_SearchGrid.Columns["Live W.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
+
+                    DGV_SearchGrid.Columns["Last R.Rate"].DefaultCellStyle.ForeColor = Color.Black;
+                    DGV_SearchGrid.Columns["Last R.Rate"].DefaultCellStyle.BackColor = Color.White;
+                    DGV_SearchGrid.Columns["Last R.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
+
+                    DGV_SearchGrid.Columns["Last W.Rate"].DefaultCellStyle.ForeColor = Color.Black;
+                    DGV_SearchGrid.Columns["Last W.Rate"].DefaultCellStyle.BackColor = Color.White;
+                    DGV_SearchGrid.Columns["Last W.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
+
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -534,6 +461,12 @@ namespace ROMS
             }
 
         }
+
+        private void grdItemList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            grdItemList.ClearSelection();
+        }
+
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -603,40 +536,6 @@ namespace ROMS
                 objDser.CloseConnection();
                 grdItemList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-          
-        private void GrdItemList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdItemList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnEdit();
-                }
-
-                if (e.KeyCode == Keys.Delete)
-                {
-                    tsbDelete_Click(sender, e);
-                }
             }
             catch (Exception ex)
             {

@@ -3907,6 +3907,69 @@ namespace ROMS
             }
             return ds;
         }
+        public string udfnRateChange(TRN_RateChange objTrnRateChange)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Rate_Change]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTrnRateChange.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraProductID", objTrnRateChange.paraProductID);
+                varSqlCommand.Parameters.AddWithValue("@paraRRate", objTrnRateChange.paraRRate);
+                varSqlCommand.Parameters.AddWithValue("@paraWRate", objTrnRateChange.paraWRate);
+                varSqlCommand.Parameters.AddWithValue("@paraTeller", objTrnRateChange.paraTeller);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTrnRateChange.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        public DataSet udfnRateChangeList(TRN_RateChange objTrnRateChange)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_RateChange]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTrnRateChange.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupID", objTrnRateChange.paraGroupID);
+                varSqlCommand.Parameters.AddWithValue("@paraSubGroupID", objTrnRateChange.paraSubGroupID);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTrnRateChange.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraProductID", objTrnRateChange.paraProductID);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTrnRateChange.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTrnRateChange.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }

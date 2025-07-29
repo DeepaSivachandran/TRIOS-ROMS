@@ -202,6 +202,7 @@
     <Compile Include="CP_StickerPrint.designer.cs">
       <DependentUpon>CP_StickerPrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_RateChange.cs" />
     <Compile Include="Model\TRN_Validate_Products_By_Condition.cs" />
     <Compile Include="PUR_GSTINVerify.cs">
       <SubType>Form</SubType>
@@ -533,6 +534,20 @@
     </Compile>
     <Compile Include="PUR_ReturnDCApprovedList.designer.cs">
       <DependentUpon>PUR_ReturnDCApprovedList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Rate_Change_Live.cs">
+      <DependentUpon>RPT_CP_Rate_Change_Live.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Rate_Change.cs">
+      <DependentUpon>RPT_CP_Rate_Change.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_GoodsOutward.cs">
       <DependentUpon>RPT_INV_GoodsOutward.rpt</DependentUpon>
@@ -1385,6 +1400,12 @@
     </Compile>
     <Compile Include="REPORT_Assigned_Products.designer.cs">
       <DependentUpon>REPORT_Assigned_Products.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_CP_RateChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_RateChange.designer.cs">
+      <DependentUpon>REPORT_CP_RateChange.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_Suppllier_Ledger.cs">
       <SubType>Form</SubType>
@@ -2907,6 +2928,16 @@
       <LastGenOutput>RPT_INV_GoodsOutward.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_CP_Rate_Change.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rate_Change.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Rate_Change_Live.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rate_Change_Live.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_Purchase_Defect_Product.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Purchase_Defect_Product.cs</LastGenOutput>
@@ -3394,6 +3425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Assigned_Products.resx">
       <DependentUpon>REPORT_Assigned_Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_RateChange.resx">
+      <DependentUpon>REPORT_CP_RateChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Suppllier_Ledger.resx">
       <DependentUpon>REPORT_Suppllier_Ledger.cs</DependentUpon>

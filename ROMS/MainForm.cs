@@ -248,6 +248,7 @@ namespace ROMS
         public static REPORT_HSN_Name objREPORT_HSN_Name;
         public static REPORT_HSN_NameWise_Product objREPORT_HSN_NameWise_Product;
         public static REPORT_HSN_NameWise_Product_Consolidated objREPORT_HSN_NameWise_Product_Consolidated;
+        public static REPORT_CP_RateChange objREPORT_CP_RateChange;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2763,7 +2764,23 @@ namespace ROMS
                 MainForm.objCP_Rate_ChangeList = new CP_Rate_ChangeList();
                 MainForm.objCP_Rate_ChangeList.MdiParent = this;
                 MainForm.objCP_Rate_ChangeList.Show();
-                PbCurrentForm = "5.19";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRateChangeReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_RateChange = new REPORT_CP_RateChange();
+                MainForm.objREPORT_CP_RateChange.MdiParent = this;
+                MainForm.objREPORT_CP_RateChange.Show();
             }
             catch (Exception ex)
             {

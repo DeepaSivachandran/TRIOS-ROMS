@@ -27,9 +27,10 @@ namespace ROMS
         public string varupdate = "0";
         public int varProductload = 0;
         //tool tip
-        private ToolTip tpContactNo = new ToolTip();
-        private ToolTip tpAltContactNo = new ToolTip();
-        private ToolTip tpemail = new ToolTip();
+        private ToolTip tpRRate = new ToolTip();
+        private ToolTip tpWRate = new ToolTip();
+        private ToolTip tpVerifier = new ToolTip();
+        private ToolTip tpProduct = new ToolTip();
         public CP_Rate_Change()
         {
             InitializeComponent();
@@ -39,20 +40,43 @@ namespace ROMS
         {
             try
             {
-                
-                //if (txtReOrderQty.Text.Contains(".") && txtReOrderQty.Text.Length < 2)
-                //{
-                //    txtReOrderQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                //    errItems.SetError(txtReOrderQty, "Please enter valid reorder qty");
-                //    return;
-                //}
-                //if (txtRMinSaleQty.Text.Contains(".") && txtRMinSaleQty.Text.Length < 2)
-                //{
-                //    txtRMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                //    errItems.SetError(txtRMinSaleQty, "Please enter valid retail min sales stock");
-                //    return;
-                //}
-                udfnSave(); 
+                Boolean blnErrorFlag = false;
+                if ((txtRRateLive.Text.Contains(".") && txtRRateLive.Text.Length < 2) || Convert.ToString(txtRRateLive.Text).Trim() == "")
+                {
+                    errItems.SetError(txtRRateLive, "Please enter valid rate");
+                    txtRRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRRate.ShowAlways = true;
+                    tpRRate.Show("Please enter valid rate", txtRRateLive, 5000);
+                    blnErrorFlag = true;
+                }
+                if ((txtWRateLive.Text.Contains(".") && txtWRateLive.Text.Length < 2) || Convert.ToString(txtWRateLive.Text).Trim() == "")
+                {
+                    errItems.SetError(txtWRateLive, "Please enter valid rate");
+                    txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpWRate.ShowAlways = true;
+                    tpWRate.Show("Please enter valid rate", txtWRateLive, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtTeller.Text).Trim() == "")
+                {
+                    errItems.SetError(txtTeller, "Please enter valid name");
+                    txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerifier.ShowAlways = true;
+                    tpVerifier.Show("Please enter valid name", txtTeller, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(lblProductcode.Text).Trim() == "" || Convert.ToString(lblProductcode.Text).Trim() == "0")
+                {
+                    errItems.SetError(txtProductName, "Please enter valid product");
+                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter valid product", txtProductName, 5000);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    udfnSave();
+                }
             }
             catch (Exception ex)
             {
@@ -65,7 +89,33 @@ namespace ROMS
         {
             try
             {
-               
+                TRN_RateChange objRateChange = new TRN_RateChange();
+                objRateChange.paraViewType = 0;
+                objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text);
+                objRateChange.paraRRate = Convert.ToDouble(txtRRateLive.Text);
+                objRateChange.paraWRate = Convert.ToDouble(txtWRateLive.Text);
+                objRateChange.paraTeller = Convert.ToString(txtTeller.Text).Trim();
+                objRateChange.paraOriginator = "Rate Change";
+
+                SPDataService objspservice = new SPDataService();
+                string varResult  = objspservice.udfnRateChange(objRateChange);
+                objspservice.CloseConnection();
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnclear();
+                    varupdate = "1";
+                    udfnclose();
+                    MainForm.objCP_Rate_ChangeList.udfnList();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
+                }
+
             }
             catch (Exception ex)
             {
@@ -162,8 +212,8 @@ namespace ROMS
             try
             { 
                 this.Close();
-                MainForm.objCP_Itemlist.udfnList();
-                MainForm.objCP_Itemlist.grdItemList.ClearSelection();
+                MainForm.objCP_Rate_ChangeList.udfnList();
+                MainForm.objCP_Rate_ChangeList.grdItemList.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -373,9 +423,19 @@ namespace ROMS
         {
             try
             {
-                txtProductName.BackColor = Color.White;
+                if (txtProductName.Text == "")
+                {
+                    errItems.SetError(txtProductName, "Please enter valid product");
+                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please enter valid product", txtProductName, 5000);
+                }
+                else
+                {
+                    txtProductName.BackColor = Color.White;
+                    errItems.Clear();
+                }
                 txtRRatePrev.Focus();
-              //  lvproduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -422,7 +482,8 @@ namespace ROMS
                     ListViewItem selectedItem = lvproduct.SelectedItems[0];
                     txtProductName.Text = selectedItem.SubItems[1].Text;
                     lblProductcode.Text = selectedItem.SubItems[3].Text;
-                    if (lblProductcode.Text != "" && lblProductcode.Text != "0") {
+                    if (lblProductcode.Text != "" && lblProductcode.Text != "0")
+                    {
 
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 1;
@@ -443,10 +504,10 @@ namespace ROMS
                                     lblGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Group Name"]);
                                     lblProductName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ENAME"]);
                                     lblUnit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]);
-                                    txtRRateLast.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate"]);
-                                    txtRRatePrev.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate_Prev"]);
-                                    txtWRateLast.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholeSaleRate"]);
-                                    txtWRatePrev.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholeSaleRate_Prev"]);
+                                    txtRRatePrev.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate"]);
+                                    txtRRateLast.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate_Prev"]);
+                                    txtWRatePrev.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholeSaleRate"]);
+                                    txtWRateLast.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholeSaleRate_Prev"]);
                                 }
                                 else { udfnclear(); }
                             }
@@ -454,8 +515,9 @@ namespace ROMS
                         }
                         else { udfnclear(); }
                     }
-                    udfnclear();
+                    else { udfnclear(); }
                 }
+                else { udfnclear(); }
             }
             catch (Exception ex)
             {
@@ -546,7 +608,18 @@ namespace ROMS
         {
             try
             {
-                txtRRateLive.BackColor = Color.White;
+                if (txtRRateLive.Text == "")
+                {
+                    errItems.SetError(txtRRateLive, "Please enter valid rate");
+                    txtRRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRRate.ShowAlways = true;
+                    tpRRate.Show("Please enter valid rate", txtRRateLive, 5000);
+                }
+                else
+                {
+                    txtRRateLive.BackColor = Color.White;
+                    errItems.Clear();
+                }
                 txtWRateLive.Focus();
             }
             catch (Exception ex)
@@ -560,7 +633,18 @@ namespace ROMS
         {
             try
             {
-                txtWRateLive.BackColor = Color.White;
+                if (txtWRateLive.Text == "")
+                {
+                    errItems.SetError(txtWRateLive, "Please enter valid rate");
+                    txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpWRate.ShowAlways = true;
+                    tpWRate.Show("Please enter valid rate", txtWRateLive, 5000);
+                }
+                else
+                {
+                    txtWRateLive.BackColor = Color.White;
+                    errItems.Clear();
+                }
                 txtTeller.Focus();
             }
             catch (Exception ex)
@@ -711,9 +795,18 @@ namespace ROMS
         {
             try
             {
-                txtWRateLive.BackColor = Color.White;
-                btnSave.Focus();
-               // lvVerified1.Visible = false;
+                if (txtTeller.Text == "")
+                {
+                    errItems.SetError(txtTeller, "Please enter valid name");
+                    txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerifier.ShowAlways = true;
+                    tpVerifier.Show("Please enter valid name", txtTeller, 5000);
+                }
+                else
+                {
+                    txtTeller.BackColor = Color.White;
+                    errItems.Clear();
+                }
             }
             catch (Exception ex)
             {

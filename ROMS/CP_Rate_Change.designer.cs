@@ -385,7 +385,6 @@
             this.lblSubGroup.Size = new System.Drawing.Size(47, 20);
             this.lblSubGroup.TabIndex = 1111275;
             this.lblSubGroup.Text = "label17";
-            this.lblSubGroup.Visible = false;
             // 
             // label1
             // 
@@ -527,7 +526,7 @@
             this.lvproduct.HideSelection = false;
             this.lvproduct.Location = new System.Drawing.Point(138, 39);
             this.lvproduct.Name = "lvproduct";
-            this.lvproduct.Size = new System.Drawing.Size(332, 194);
+            this.lvproduct.Size = new System.Drawing.Size(562, 194);
             this.lvproduct.TabIndex = 111111148;
             this.lvproduct.UseCompatibleStateImageBehavior = false;
             this.lvproduct.View = System.Windows.Forms.View.Details;
@@ -589,9 +588,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(809, 249);
+            this.Controls.Add(this.lvproduct);
             this.Controls.Add(this.lvVerified1);
             this.Controls.Add(this.lblProductcode);
-            this.Controls.Add(this.lvproduct);
             this.Controls.Add(this.txtProductName);
             this.Controls.Add(this.lblDProduct);
             this.Controls.Add(this.btnSave);
