@@ -4898,7 +4898,7 @@ namespace ROMS
                 if (conditionSet.Contains("275") == true) //No difference
                 { varNoDiffFlag = 1; }
                  
-                udfnEntryTypeDate();
+                udfnEntryTypeDate(); 
                 if (varNoDiffFlag == 0)
                 {
                     if (Convert.ToInt32(cmbReason.SelectedValue) == 286)
@@ -5219,6 +5219,7 @@ namespace ROMS
                                 dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text, (varRackId), expirydateFlag, Convert.ToInt16(cmbPONo.SelectedValue), varId);
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text));
                                 udfnrowclear();
+                                udfnConditionClear();
                                 txtProductName.Text = "";
                                 lblProductcode.Text = "0";
                                 txtProductName.BackColor = Color.White;
@@ -5350,6 +5351,8 @@ namespace ROMS
                 btnConditions.Enabled = true;
                 txtMismatchQty.Enabled = false;
                 txtMismatchQty.ReadOnly = false;
+                pbConditionIDs = "";
+                pbCondition = "";
                 udfnConditionClear();
             }
             catch (Exception ex)
@@ -7243,17 +7246,17 @@ namespace ROMS
                                     grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightGray;
                                     grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
                                 }
-                                //else
-                                //{
-                                //    grdPurchaseList.Rows[i].ReadOnly = true;
+                                else
+                                {
+                                    grdPurchaseList.Rows[i].ReadOnly = true;
 
-                                //    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightGray;
-                                //    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightGray;
-                                //    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightGray;
-                                //    grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightGray;
-                                //    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightGray;
-                                //    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
-                                //}
+                                    grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmFreeqty"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscAmt"].Style.BackColor = Color.LightGray;
+                                    grdPurchaseList.Rows[i].Cells["clmDiscPer"].Style.BackColor = Color.LightGray;
+                                }
                             }
                             pbConditionIDs = Convert.ToString(grdPurchaseList.Rows[i].Cells["clmGRNProType"].Value);
                             var idSet = new HashSet<string>(pbConditionIDs.Split(',').Select(id => id.Trim()));

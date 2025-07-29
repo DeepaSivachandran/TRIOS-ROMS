@@ -1185,7 +1185,7 @@ namespace ROMS
                         string[] varShelflifeper = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                         string[] varProShelfLife = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelflife"].Value).Split(' ');
                         
-                        if(Convert.ToDecimal(varShelflifeper[0]) < Convert.ToDecimal(MainForm.pbShelflifeLevel2))
+                        if(Convert.ToString(varShelflifeper[0])!="" && Convert.ToDecimal(varShelflifeper[0]) < Convert.ToDecimal(MainForm.pbShelflifeLevel2))
                         {
                             shelfLifeError++;
                         }
@@ -5054,7 +5054,7 @@ namespace ROMS
                 { varLPFlag = 1; }
                 if (conditionSet.Contains("275") == true) //No difference
                 { varNoDiffFlag = 1; }
-                if((expirydateFlag == 1 || txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != "") )  
+                if(expirydateFlag == 1 &&( txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != ""))  
                 {
                     varExpDateValidFlag = 1;
                 }   
@@ -5124,7 +5124,7 @@ namespace ROMS
                     int varflag = 0;
                     string varShelflifevalue = "", varAcutalshelflife = "";
                     lblNoRecordsFound.Visible = false; 
-                    if(varExpDateValidFlag==1)
+                    if(varExpDateValidFlag==1 && (txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != ""))
                     {
                         udfnDatevalidationset();
                     } 
