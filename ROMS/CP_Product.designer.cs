@@ -181,6 +181,7 @@
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbCompleted = new System.Windows.Forms.CheckBox();
             this.grbPurchaseHSN = new System.Windows.Forms.GroupBox();
+            this.lblProductEName = new System.Windows.Forms.Label();
             this.lvPURHSNCode = new System.Windows.Forms.ListView();
             this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -234,7 +235,6 @@
             this.btnSaveHsn = new System.Windows.Forms.Button();
             this.btnHSNClose = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.lblProductEName = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -1411,7 +1411,7 @@
             this.grplocation.Controls.Add(this.txtDGST);
             this.grplocation.Controls.Add(this.txtGST);
             this.grplocation.Controls.Add(this.textBox4);
-            this.grplocation.Location = new System.Drawing.Point(7, 265);
+            this.grplocation.Location = new System.Drawing.Point(7, 267);
             this.grplocation.Name = "grplocation";
             this.grplocation.Size = new System.Drawing.Size(550, 121);
             this.grplocation.TabIndex = 13;
@@ -1995,6 +1995,17 @@
             this.grbPurchaseHSN.TabStop = false;
             this.grbPurchaseHSN.Text = "Purchase HSN";
             // 
+            // lblProductEName
+            // 
+            this.lblProductEName.AutoSize = true;
+            this.lblProductEName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 13F);
+            this.lblProductEName.Location = new System.Drawing.Point(423, 22);
+            this.lblProductEName.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblProductEName.Name = "lblProductEName";
+            this.lblProductEName.Size = new System.Drawing.Size(127, 21);
+            this.lblProductEName.TabIndex = 1111145;
+            this.lblProductEName.Text = "Product Name";
+            // 
             // lvPURHSNCode
             // 
             this.lvPURHSNCode.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -2547,17 +2558,6 @@
             this.pnlProductDetails.Name = "pnlProductDetails";
             this.pnlProductDetails.Size = new System.Drawing.Size(897, 683);
             this.pnlProductDetails.TabIndex = 1111144;
-            // 
-            // lblProductEName
-            // 
-            this.lblProductEName.AutoSize = true;
-            this.lblProductEName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 13F);
-            this.lblProductEName.Location = new System.Drawing.Point(423, 22);
-            this.lblProductEName.MaximumSize = new System.Drawing.Size(500, 0);
-            this.lblProductEName.Name = "lblProductEName";
-            this.lblProductEName.Size = new System.Drawing.Size(127, 21);
-            this.lblProductEName.TabIndex = 1111145;
-            this.lblProductEName.Text = "Product Name";
             // 
             // CP_Product
             // 
