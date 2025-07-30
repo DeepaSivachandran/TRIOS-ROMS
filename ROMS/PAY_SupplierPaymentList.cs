@@ -246,6 +246,7 @@ namespace ROMS
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
                     DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                    DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                     for (int i = 1; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
@@ -253,7 +254,10 @@ namespace ROMS
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -307,6 +311,7 @@ namespace ROMS
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1198,6 +1203,10 @@ namespace ROMS
                     {
                         grdSupllierPaymentList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdSupllierPaymentList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdSupllierPaymentList.Rows[i].Cells["clmDate"] = print;
+                        print.ReadOnly = true;
                     }
                     else if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PAY_STSID"].Value) == "77")
                     {

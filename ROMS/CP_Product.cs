@@ -821,7 +821,9 @@ namespace ROMS
                         lblSaleRackCode.Text = "0";
                     }
 
-                    if (btnSave.Text == "Save" && cbCompleted.Checked == true)
+                    //  if (btnSave.Text == "Save" && cbCompleted.Checked == true)
+                    /* Changed by deepa on 29-07-2025 - Location validation for both save and update mode*/
+                    if (cbCompleted.Checked == true)
                     {
                         /* Check Location Based on Subgroup or not */
                         //if (Convert.ToString(txtPurLocation.Text) != "")

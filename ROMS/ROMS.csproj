@@ -2293,6 +2293,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\timetable.png" />
     <None Include="Resources\view %281%29.png" />
     <None Include="Resources\Unapproved.jpg" />
     <None Include="Resources\Pur_Unapproved.jpg" />

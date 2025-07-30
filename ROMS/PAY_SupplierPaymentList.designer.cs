@@ -63,6 +63,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmDate = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierPaymentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -172,7 +173,8 @@
             this.grdSupllierPaymentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupllierPaymentList.ColumnHeadersVisible = false;
             this.grdSupllierPaymentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmPrint});
+            this.clmPrint,
+            this.clmDate});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -478,6 +480,14 @@
             this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmPrint.Width = 50;
             // 
+            // clmDate
+            // 
+            this.clmDate.HeaderText = "";
+            this.clmDate.Image = global::ROMS.Properties.Resources.timetable;
+            this.clmDate.Name = "clmDate";
+            this.clmDate.ReadOnly = true;
+            this.clmDate.Width = 50;
+            // 
             // PAY_SupplierPaymentList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -540,5 +550,6 @@
         private System.Windows.Forms.Label lblSupplierCode;
         private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
+        private System.Windows.Forms.DataGridViewImageColumn clmDate;
     }
 }
