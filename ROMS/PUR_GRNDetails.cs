@@ -5013,7 +5013,16 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    udfnclose(sender, e);
+                    if (pnlConditions.Visible == true)
+                    { pnlConditions.Visible = false; }
+                    else { udfnclose(sender, e); }
+                }
+                if (e.KeyCode == Keys.F1)
+                {
+                    if (pnlConditions.Visible == true)
+                    {
+                        btnApply_Click(sender, e);
+                    }
                 }
             }
             catch (Exception ex)
@@ -6596,9 +6605,9 @@ namespace ROMS
             try
             {
                 grdGrnlist.Columns["clmMismatchQty"].ReadOnly = true;
-                grdGrnlist.Columns["clmExcessQty"].ReadOnly = true;
+                //grdGrnlist.Columns["clmExcessQty"].ReadOnly = true;
                 grdGrnlist.Columns["clmMismatchQty"].DefaultCellStyle.BackColor = Color.LightGray;
-                grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.BackColor = Color.LightGray;
+                //grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmmrp"].ReadOnly = true;
                 grdGrnlist.Columns["clmmrp"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmInvoiceMRP"].ReadOnly = true;

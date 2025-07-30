@@ -402,7 +402,7 @@ namespace ROMS
                 
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 {
-                    if (Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clminvoiceqty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Value))
+                    if (Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmMismatchQty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Value))
                     {
                         grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
                     }
@@ -976,7 +976,7 @@ namespace ROMS
                     else 
                     {
                         varTotQty = varReturnQty + varFreeQty + varCreditQty;
-                        if (varTotQty > varReceivedQty)
+                        if (varTotQty > varMismatchQty)
                         {
                             varQtyErr++;
                             grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
@@ -984,7 +984,7 @@ namespace ROMS
                             grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
                             varErrorFlag = false;
                         }
-                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clminvoiceqty"].Value))
+                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) > varMismatchQty)
                         {
                             varQtyErr++;
                             grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
@@ -996,7 +996,7 @@ namespace ROMS
                             grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
                             varErrorFlag = false;
                         }
-                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clminvoiceqty"].Value))
+                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) > varMismatchQty)
                         {
                             varQtyErr++;
                             grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;

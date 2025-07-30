@@ -795,8 +795,7 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            {
-                
+            { 
                     if (varClose == 0)
                     {
                         if (varCloseflag == 0)
@@ -2288,7 +2287,25 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    udfnclose();
+                    if (pnlConditions.Visible == true)
+                    {
+                        pnlConditions.Visible = false;
+                    }
+                    else
+                    {
+                        udfnclose();
+                    }
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    BtnSave_Click(sender, e);
+                }
+                if(e.KeyCode==Keys.F1)
+                {
+                    if(pnlConditions.Visible==true)
+                    {
+                        btnApply_Click(sender, e);
+                    }
                 }
             }
             catch (Exception ex)
