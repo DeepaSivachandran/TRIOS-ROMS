@@ -20,6 +20,7 @@ namespace ROMS
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public int varUpDownKey = 0;
+        private ToolTip tpReportType = new ToolTip();
         public REPORT_Suppllier_Ledger()
         {
             InitializeComponent();
@@ -55,6 +56,14 @@ namespace ROMS
         {
             try
             {
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    cmbReportType.Focus();
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
+                }
                 string varSupplierId = "0";
                 if (txtSupplier.Text == "")
                 {
@@ -96,7 +105,7 @@ namespace ROMS
                     }
                 }
                 LV_Supplier.Visible = false;
-                udfnGRNDefect();
+                udfnSupplierLedger();
             }
             catch (Exception ex)
             {
@@ -104,7 +113,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGRNDefect()
+        public void udfnSupplierLedger()
         {
             try
             {
@@ -123,11 +132,15 @@ namespace ROMS
                 RPTViewer.Visible = false;
                 picLoader.BringToFront();
                 Application.DoEvents();
-                int varPrint = 0;
+                int varPrint = 0, varViewType = 0;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 293)
+                {
+                    varViewType = 1;
+                }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(17, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblScheduleCode.Text), 0, 0, "","", 0, 0, 0, "", "", 0, 0, "0", "", "", 0, 0, 0, 0);
+                objDs = objdserv.udfnPaymentReport(varViewType, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblScheduleCode.Text), dpFromDate.Text, dpToDate.Text, 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -139,12 +152,18 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRN_Defect_Product.rpt");
-                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
-                    objBillreport.SetParameterValue("ParaScheduleId", Convert.ToInt32(lblScheduleCode.Text));
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 292)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierLedger_Summary.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierLedger_Details.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraSupplierId", Convert.ToInt32(lblSupplierCode.Text));
+                    objBillreport.SetParameterValue("paraScheduleId", Convert.ToInt32(lblScheduleCode.Text));
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -434,6 +453,10 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,86) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                cmbReportType.SelectedValue = -1;
             }
             catch (Exception ex)
             {
@@ -585,6 +608,62 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpFromDate.Focus();
+                }
+            }
+            catch (Exception ex)
+
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

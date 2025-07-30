@@ -501,8 +501,8 @@ namespace ROMS
 
                 sheet.Columns.AutoFit();
                 sheet.Columns[1].ColumnWidth = 5;
-                sheet.Columns[2].ColumnWidth = 20;
-                sheet.Columns[3].ColumnWidth = 50;
+                sheet.Columns[2].ColumnWidth = 11;
+                sheet.Columns[3].ColumnWidth = 28;
 
                 decimal SafeConvertDecimal(JToken token)
                 {

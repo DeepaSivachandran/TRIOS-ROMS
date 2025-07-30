@@ -387,7 +387,7 @@ namespace ROMS
 
                 // Title
                 sheet.Cells[row, 1] = "Purchase Details Report";
-                var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]];
+                var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
                 titleRange.Merge();
                 titleRange.Font.Bold = true;
                 titleRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
@@ -396,7 +396,7 @@ namespace ROMS
 
                 // Filter Info
                 sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
-                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
                 row++;
 
                 int purchaseIndex = 1;
@@ -464,17 +464,49 @@ namespace ROMS
                     sheet.Cells[row, 11] = "Pur Entry Details";
                     sheet.Cells[row, 12] = "Pur Mismatch App";
                     sheet.Cells[row, 13] = "Pur App Details";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
 
                     row++;
 
                     sheet.Cells[row, 1] = purchaseIndex++;
-                    sheet.Cells[row, 2] = header["Supplier"];
-                    sheet.Cells[row + 1, 2] = header["GSTIN"];
-                    sheet.Cells[row + 2, 2] = $"{header["City"]} GST Type: {header["SupplierType"]} PT : {header["PaymentTerm"]}";
+                    // Merge B+C for Supplier Name + GSTIN + City
+
+                    // Row: GSTIN (row 0)
+                    var supplierRange = sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 3]];
+                    supplierRange.Merge();
+                    supplierRange.Value = $"{header["Supplier"]}";
+                    supplierRange.WrapText = true;
+                    supplierRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+
+                    // Row+1: City
+                    var gstinRange = sheet.Range[sheet.Cells[row + 1, 2], sheet.Cells[row + 1, 3]];
+                    gstinRange.Merge();
+                    gstinRange.Value = $"{header["GSTIN"]}";
+                    gstinRange.WrapText = true;
+                    gstinRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+
+                    // Row+2: Supplier Name
+                    var cityRange = sheet.Range[sheet.Cells[row + 2, 2], sheet.Cells[row + 2, 3]];
+                    cityRange.Merge();
+                    cityRange.Value = $"{header["City"]}";
+                    cityRange.WrapText = true;
+                    cityRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+
+                    // Merge D+E for GST Type
+                    var gstTypeRange = sheet.Range[sheet.Cells[row, 4], sheet.Cells[row, 5]];
+                    gstTypeRange.Merge();
+                    gstTypeRange.Value = $"GST Type: {header["SupplierType"]}";
+                    gstTypeRange.WrapText = true;
+
+                    // Below GST Type cell (D+E), show Payment Type
+                    var payTypeRange = sheet.Range[sheet.Cells[row + 1, 4], sheet.Cells[row + 1, 5]];
+                    payTypeRange.Merge();
+                    payTypeRange.Value = $"PT: {header["PaymentTerm"]}";
+                    payTypeRange.WrapText = true;
+
 
                     var invDate = header["InvDate"]?.ToString();
                     if (!string.IsNullOrEmpty(invDate))
@@ -519,11 +551,11 @@ namespace ROMS
 
                     row += 3;
                     int productStartRow = row;
-                    string[] productHeaders = { "SNo","PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "Invoice MRP", "MRP", "Expiry Date", "Product Shelflife", "Actual Shelflife", "Shelf Life %", "Batch No", "Stock Location", "Rack", "Bill Qty", "Received Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Tax Value", "Nett Amount" };
+                    string[] productHeaders = { "PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "Invoice MRP", "MRP", "Expiry Date", "Product Shelflife", "Actual Shelflife", "Shelf Life %", "Batch No", "Stock Location", "Rack", "Bill Qty", "Received Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Tax Value", "Nett Amount" };
 
                     for (int i = 0; i < productHeaders.Length; i++)
                         sheet.Cells[row, i + 1] = productHeaders[i];
-                    var headerRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]];
+                    var headerRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
                     headerRange.Font.Bold = true;
                     headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                     row++;
@@ -557,12 +589,12 @@ namespace ROMS
                             col++;
                         }
 
-                        sheet.Cells[row, 3].Font.Name = "Uni Ila.Sundaram-03";
-                        sheet.Cells[row, 3].Font.Size = 11.75;
+                        sheet.Cells[row, 2].Font.Name = "Uni Ila.Sundaram-03";
+                        sheet.Cells[row, 2].Font.Size = 11.75;
 
                         decimal invoiceQty = SafeConvertDecimal(prod["Bill Qty"]);
                         if (invoiceQty == 0)
-                            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+                            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
 
                         totalTaxable += SafeConvertDecimal(prod["Taxable Value"]);
                         totalGst += SafeConvertDecimal(prod["Tax Value"]);
@@ -570,34 +602,34 @@ namespace ROMS
                         row++;
 
                         int productEndRow = row - 1;
-                        var productTableRange = sheet.Range[sheet.Cells[productStartRow, 1], sheet.Cells[productEndRow, 26]];
+                        var productTableRange = sheet.Range[sheet.Cells[productStartRow, 1], sheet.Cells[productEndRow, 25]];
                         productTableRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
                     }
 
                     // Aligned Net Total
-                    sheet.Cells[row, 22] = "Net Total:";
-                    sheet.Cells[row, 23] = totalTaxable;
-                    sheet.Cells[row, 24] = totalGst;
-                    sheet.Cells[row, 25] = totalNet;
-                    sheet.Range[sheet.Cells[row, 22], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Cells[row, 21] = "Net Total:";
+                    sheet.Cells[row, 22] = totalTaxable;
+                    sheet.Cells[row, 23] = totalGst;
+                    sheet.Cells[row, 24] = totalNet;
+                    sheet.Range[sheet.Cells[row, 22], sheet.Cells[row, 24]].Font.Bold = true;
                     row++;
 
-                    sheet.Cells[row, 24] = "Grand Total:";
-                    sheet.Cells[row, 25] = footer["GrandTotal"]?.ToString() ?? "0";
-                    sheet.Range[sheet.Cells[row, 24], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Cells[row, 23] = "Grand Total:";
+                    sheet.Cells[row, 24] = footer["GrandTotal"]?.ToString() ?? "0";
+                    sheet.Range[sheet.Cells[row, 23], sheet.Cells[row, 24]].Font.Bold = true;
                     row++;
 
 
                     // Charges
                     sheet.Cells[row, 1] = $"Bill Addition:    Loading Charges: {footer["Unloading"]}    Freight Charges: {footer["Freight"]}    Courier Charges: {footer["Courier"]}    Other Expenses: {footer["OtherExpenses"]}    TCS Amount: {footer["TCS"]}    Unloading GRN: {footer["UnloadingGRN"]}    Freight GRN: {footer["FreightGRN"]}";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
                     row++;
 
                     sheet.Cells[row, 1] = $"Bill Deduction:    Discount: {footer["DiscAmnt"]}    Other Discount: {footer["OtherDisc"]}    Damage Cost: {footer["DamageCost"]}    Round Off: {footer["RoundOff"]}";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
                     row += 2;
                 }
 
@@ -734,9 +766,9 @@ namespace ROMS
 
                     while (dividend > 0)
                     {
-                        modulo = (dividend - 1) % 26;
+                        modulo = (dividend - 1) % 25;
                         columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
-                        dividend = (dividend - modulo) / 26;
+                        dividend = (dividend - modulo) / 25;
                     }
 
                     return columnName;
@@ -745,9 +777,8 @@ namespace ROMS
 
                 sheet.Columns.AutoFit();
 
-                sheet.Columns[1].ColumnWidth = 5;
-                sheet.Columns[2].ColumnWidth = 20;
-                sheet.Columns[3].ColumnWidth = 50;
+                sheet.Columns[1].ColumnWidth = 11;
+                sheet.Columns[2].ColumnWidth = 28;
 
 
                 decimal SafeConvertDecimal(JToken token)

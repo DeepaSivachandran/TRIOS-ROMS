@@ -234,6 +234,7 @@
             this.btnSaveHsn = new System.Windows.Forms.Button();
             this.btnHSNClose = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.txtProductNameEnglish = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -1979,6 +1980,7 @@
             // 
             // grbPurchaseHSN
             // 
+            this.grbPurchaseHSN.Controls.Add(this.txtProductNameEnglish);
             this.grbPurchaseHSN.Controls.Add(this.lvPURHSNCode);
             this.grbPurchaseHSN.Controls.Add(this.grdPurHSN);
             this.grbPurchaseHSN.Controls.Add(this.btnPURHSN);
@@ -2511,11 +2513,11 @@
             this.btnSaveHsn.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSaveHsn.Image = global::ROMS.Properties.Resources.save;
             this.btnSaveHsn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveHsn.Location = new System.Drawing.Point(721, 617);
+            this.btnSaveHsn.Location = new System.Drawing.Point(715, 617);
             this.btnSaveHsn.Name = "btnSaveHsn";
-            this.btnSaveHsn.Size = new System.Drawing.Size(74, 29);
+            this.btnSaveHsn.Size = new System.Drawing.Size(80, 29);
             this.btnSaveHsn.TabIndex = 6;
-            this.btnSaveHsn.Text = "Save";
+            this.btnSaveHsn.Text = "Update";
             this.btnSaveHsn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSaveHsn.UseVisualStyleBackColor = true;
             this.btnSaveHsn.Click += new System.EventHandler(this.BtnSaveHsn_Click);
@@ -2545,6 +2547,18 @@
             this.pnlProductDetails.Name = "pnlProductDetails";
             this.pnlProductDetails.Size = new System.Drawing.Size(897, 683);
             this.pnlProductDetails.TabIndex = 1111144;
+            // 
+            // txtProductNameEnglish
+            // 
+            this.txtProductNameEnglish.BackColor = System.Drawing.SystemColors.Control;
+            this.txtProductNameEnglish.Enabled = false;
+            this.txtProductNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtProductNameEnglish.Location = new System.Drawing.Point(608, 19);
+            this.txtProductNameEnglish.Name = "txtProductNameEnglish";
+            this.txtProductNameEnglish.ReadOnly = true;
+            this.txtProductNameEnglish.Size = new System.Drawing.Size(246, 27);
+            this.txtProductNameEnglish.TabIndex = 1111144;
+            this.txtProductNameEnglish.TabStop = false;
             // 
             // CP_Product
             // 
@@ -2802,5 +2816,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEffectiveTo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNID;
         private System.Windows.Forms.DataGridViewImageColumn clmSalesRemove;
+        private System.Windows.Forms.TextBox txtProductNameEnglish;
     }
 }

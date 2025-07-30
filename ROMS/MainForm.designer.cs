@@ -1080,7 +1080,6 @@ namespace ROMS
             this.supplierLedgerToolStripMenuItem.Name = "supplierLedgerToolStripMenuItem";
             this.supplierLedgerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.supplierLedgerToolStripMenuItem.Text = "Supplier Ledger";
-            this.supplierLedgerToolStripMenuItem.Visible = false;
             this.supplierLedgerToolStripMenuItem.Click += new System.EventHandler(this.SupplierLedgerToolStripMenuItem_Click);
             // 
             // purchaseReportToolStripMenuItem
