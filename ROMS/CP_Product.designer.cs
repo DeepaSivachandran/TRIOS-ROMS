@@ -234,7 +234,7 @@
             this.btnSaveHsn = new System.Windows.Forms.Button();
             this.btnHSNClose = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.txtProductNameEnglish = new System.Windows.Forms.TextBox();
+            this.lblProductEName = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -1980,7 +1980,7 @@
             // 
             // grbPurchaseHSN
             // 
-            this.grbPurchaseHSN.Controls.Add(this.txtProductNameEnglish);
+            this.grbPurchaseHSN.Controls.Add(this.lblProductEName);
             this.grbPurchaseHSN.Controls.Add(this.lvPURHSNCode);
             this.grbPurchaseHSN.Controls.Add(this.grdPurHSN);
             this.grbPurchaseHSN.Controls.Add(this.btnPURHSN);
@@ -2548,17 +2548,16 @@
             this.pnlProductDetails.Size = new System.Drawing.Size(897, 683);
             this.pnlProductDetails.TabIndex = 1111144;
             // 
-            // txtProductNameEnglish
+            // lblProductEName
             // 
-            this.txtProductNameEnglish.BackColor = System.Drawing.SystemColors.Control;
-            this.txtProductNameEnglish.Enabled = false;
-            this.txtProductNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductNameEnglish.Location = new System.Drawing.Point(608, 19);
-            this.txtProductNameEnglish.Name = "txtProductNameEnglish";
-            this.txtProductNameEnglish.ReadOnly = true;
-            this.txtProductNameEnglish.Size = new System.Drawing.Size(246, 27);
-            this.txtProductNameEnglish.TabIndex = 1111144;
-            this.txtProductNameEnglish.TabStop = false;
+            this.lblProductEName.AutoSize = true;
+            this.lblProductEName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 13F);
+            this.lblProductEName.Location = new System.Drawing.Point(423, 22);
+            this.lblProductEName.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblProductEName.Name = "lblProductEName";
+            this.lblProductEName.Size = new System.Drawing.Size(127, 21);
+            this.lblProductEName.TabIndex = 1111145;
+            this.lblProductEName.Text = "Product Name";
             // 
             // CP_Product
             // 
@@ -2816,6 +2815,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEffectiveTo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNID;
         private System.Windows.Forms.DataGridViewImageColumn clmSalesRemove;
-        private System.Windows.Forms.TextBox txtProductNameEnglish;
+        private System.Windows.Forms.Label lblProductEName;
     }
 }
