@@ -783,6 +783,9 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["PAY_STSID"].Visible = false;
                             grdSupllierPaymentList.Columns["PAY_BankID"].Visible = false;
                             grdSupllierPaymentList.Columns["ChequeDate"].Visible = false;
+                            grdSupllierPaymentList.Columns["PAY_SPID"].Visible = false;
+                            grdSupllierPaymentList.Columns["PAY_SPSCID"].Visible = false;
+                            grdSupllierPaymentList.Columns["PAY_Bank_Tx_Date"].Visible = false;
                             grdSupllierPaymentList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["Advance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1221,6 +1224,13 @@ namespace ROMS
                         grdSupllierPaymentList.Rows[i].Cells["clmPrint"] = print;
                         print.ReadOnly = true;
                     }
+                    if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PAY_Bank_Tx_Date"].Value) != "")
+                    {
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdSupllierPaymentList.Rows[i].Cells["clmDate"] = print;
+                        print.ReadOnly = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1312,6 +1322,22 @@ namespace ROMS
                                         MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                                         MainForm.objReportLoad.ShowDialog();
                                     }
+                                }
+                            }
+                            break;
+                        case "clmDate":
+                            if (Convert.ToUInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_BankID"].Value) != 0)
+                            {
+
+                                int varSPID = Convert.ToInt16(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_SPID"].Value);
+                                int varSPSCID = Convert.ToInt16(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_SPSCID"].Value);
+                                string varBankDate = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_Bank_Tx_Date"].Value);
+                                if (varBankDate == "")
+                                {
+                                    MainForm.objPAY_SupplierPayment_BankDate = new PAY_SupplierPayment_BankDate();
+                                    MainForm.objPAY_SupplierPayment_BankDate.varSupplierId = varSPID;
+                                    MainForm.objPAY_SupplierPayment_BankDate.varScheduleId = varSPSCID;
+                                    MainForm.objPAY_SupplierPayment_BankDate.ShowDialog();
                                 }
                             }
                             break;

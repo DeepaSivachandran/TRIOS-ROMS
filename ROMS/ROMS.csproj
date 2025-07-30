@@ -190,6 +190,12 @@
     <Compile Include="CP_Rate_ChangeList.designer.cs">
       <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAY_SupplierPayment_BankDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_SupplierPayment_BankDate.designer.cs">
+      <DependentUpon>PAY_SupplierPayment_BankDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="LabelCount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2332,6 +2338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_ChangeList.resx">
       <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_SupplierPayment_BankDate.resx">
+      <DependentUpon>PAY_SupplierPayment_BankDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LabelCount.resx">
       <DependentUpon>LabelCount.cs</DependentUpon>

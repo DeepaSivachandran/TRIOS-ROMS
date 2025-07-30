@@ -1916,7 +1916,7 @@ namespace ROMS
             , int paraDesignation, string paraDesignationName, double paraCreditLimit, int paraDayid, int paramonthid, int paraweekid, int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile, string paraSalesmanWhatsapp, int paraSaleOrderType, string ParaOrderDays,
               int ParaSupplierOrderid, int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
-              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag, int paraDiscApplicable, int paraDiscDays, int paraDiscPer, int paraScheduleId, int paraReason, string paraTallyName)
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag, int paraDiscApplicable, int paraDiscDays, int paraDiscPer, int paraScheduleId, int paraReason, string paraTallyName, string paraBankDate)
         {
             string result = "";
             try
@@ -1985,6 +1985,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraScheduleId", paraScheduleId);
                 varSqlCommand.Parameters.AddWithValue("@paraReason", paraReason);
                 varSqlCommand.Parameters.AddWithValue("@paraTallyName", paraTallyName);
+                varSqlCommand.Parameters.AddWithValue("@paraBankTransactionDate", paraBankDate);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

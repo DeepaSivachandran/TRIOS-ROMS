@@ -207,6 +207,7 @@ namespace ROMS
         public static PAY_BlockedSupplier objPAY_BlockedSupplier;
         public static PAY_DiscountVoucherList objPAY_DiscountVoucherList;
         public static PAY_DiscountVoucher objPAY_DiscountVoucher;
+        public static PAY_SupplierPayment_BankDate objPAY_SupplierPayment_BankDate;
 
         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;
