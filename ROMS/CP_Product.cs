@@ -6078,6 +6078,7 @@ namespace ROMS
                 if (tbProduct.SelectedIndex == 1)
                 {
                     txtPURHSNName.Focus();
+                    txtProductNameEnglish.Text = txtItemNameEnglish.Text.Trim();
                 }
             }
             catch (Exception ex)
