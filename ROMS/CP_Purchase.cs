@@ -4785,7 +4785,7 @@ namespace ROMS
             {
                 pbDateflag = 0;
                 udfnAddProductsgrid();
-                udfnProductCount();
+                //udfnProductCount();
                 udfnPoDropdownDisable();
                 if (grdSupplierList.Rows.Count != 0)
                 {
@@ -5220,6 +5220,7 @@ namespace ROMS
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text));
                                 udfnrowclear();
                                 udfnConditionClear();
+                                udfnProductCount();
                                 txtProductName.Text = "";
                                 lblProductcode.Text = "0";
                                 txtProductName.BackColor = Color.White;
@@ -5314,6 +5315,18 @@ namespace ROMS
             finally
             {
                 grdSupplierList.Sort(grdSupplierList.Columns[0], ListSortDirection.Descending);
+            }
+        }
+        public void udfnResetAddRoeIds()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnrowclear()
@@ -10885,6 +10898,7 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
                                 string mrp1 = "0", varmrp = "0";
+                                decimal MRP = 0;
                                 DataGridViewRow row = grdSupplierList.Rows[e.RowIndex];
                                 string varPurid = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmPURPRIDDetail"].Value);
                                 string varSno = Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmsno"].Value);
@@ -10909,15 +10923,16 @@ namespace ROMS
                                     }
                                 }
                                 if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmConvertProductFlag"].Value) == "0")
-                                {
+                                { 
+                                    if (varmrp != "") { MRP = Convert.ToDecimal(varmrp); }
                                     if (Convert.ToString(grdSupplierList.Rows[e.RowIndex].Cells["clmid"].Value) == "218") //GRN
                                     {
                                         var varRemoveProuct =
-                                        from r in dtProductDetails.AsEnumerable()
+                                        from r in dtPurchaseAutoComplete.AsEnumerable()
                                         where (r.Field<string>("PRID").Equals(varPrid) &&
                                              r.Field<string>("ExpiryDate").Equals(varExpirydate) &&
                                              r.Field<string>("BatchNo").Equals(varBatchNo) &&
-                                             r.Field<string>("MRP").Equals(mrp1))
+                                             r.Field<decimal>("MRP").Equals(MRP))
                                         group r by r.Field<string>("PRID") into g
                                         select g.Key;
                                         if (varRemoveProuct.Count() != 0)
