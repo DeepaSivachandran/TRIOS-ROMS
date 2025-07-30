@@ -475,25 +475,25 @@ namespace ROMS
                     // Merge B+C for Supplier Name + GSTIN + City
 
                     // Row: GSTIN (row 0)
-                    var gstinRange = sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 3]];
+                    var supplierRange = sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 3]];
+                    supplierRange.Merge();
+                    supplierRange.Value = $"{header["Supplier"]}";
+                    supplierRange.WrapText = true;
+                    supplierRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+
+                    // Row+1: City
+                    var gstinRange = sheet.Range[sheet.Cells[row + 1, 2], sheet.Cells[row + 1, 3]];
                     gstinRange.Merge();
-                    gstinRange.Value = $"{header["Supplier"]}";
+                    gstinRange.Value = $"{header["GSTIN"]}";
                     gstinRange.WrapText = true;
                     gstinRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
 
-                    // Row+1: City
-                    var cityRange = sheet.Range[sheet.Cells[row + 1, 2], sheet.Cells[row + 1, 3]];
+                    // Row+2: Supplier Name
+                    var cityRange = sheet.Range[sheet.Cells[row + 2, 2], sheet.Cells[row + 2, 3]];
                     cityRange.Merge();
-                    cityRange.Value = $"{header["GSTIN"]}";
+                    cityRange.Value = $"{header["City"]}";
                     cityRange.WrapText = true;
                     cityRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-
-                    // Row+2: Supplier Name
-                    var supplierRange = sheet.Range[sheet.Cells[row + 2, 2], sheet.Cells[row + 2, 3]];
-                    supplierRange.Merge();
-                    supplierRange.Value = $"{header["City"]}";
-                    supplierRange.WrapText = true;
-                    supplierRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
 
                     // Merge D+E for GST Type
                     var gstTypeRange = sheet.Range[sheet.Cells[row, 4], sheet.Cells[row, 5]];
