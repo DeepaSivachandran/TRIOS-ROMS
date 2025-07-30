@@ -152,6 +152,11 @@ namespace ROMS
                 //}
                 //LV_Supplier.Visible = false;
                 //udfnUnapprovedPurchaseDetails();
+                if (txtSupplier.Text.Trim() == "")
+                {
+                    lblSupplierCode.Text = "0";
+                    lblschedleCode.Text = "0";
+                }
                 udfnExcel();
             }
             catch (Exception ex)
@@ -279,7 +284,7 @@ namespace ROMS
 
                 // Title
                 sheet.Cells[row, 1] = "Purchase Entry Approval Pending Detail Report";
-                var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]];
+                var titleRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
                 titleRange.Merge();
                 titleRange.Font.Bold = true;
                 titleRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
@@ -288,7 +293,7 @@ namespace ROMS
 
                 // Filter Info
                 sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
-                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
+                sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
                 row++;
 
                 int purchaseIndex = 1;
@@ -346,84 +351,269 @@ namespace ROMS
                     // Get Products safely
                     var products = purchase["Products"] as JArray ?? new JArray();
 
-
-                    row++;
+                    if (purchaseIndex > 1)
+                    {
+                        row += 1;
+                    }
 
                     // Section headers
                     sheet.Cells[row, 1] = "SI";
                     sheet.Cells[row, 2] = "Supplier Details";
                     sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 5]].Merge();
                     sheet.Cells[row, 6] = "Invoice Details";
-                    sheet.Range[sheet.Cells[row, 6], sheet.Cells[row, 8]].Merge();
-                    sheet.Cells[row, 9] = "Po Details";
-                    sheet.Cells[row, 10] = "GRN Details";
-                    sheet.Cells[row, 11] = "Pur Entry Details";
-                    sheet.Cells[row, 12] = "Pur Mismatch App";
-                    sheet.Cells[row, 13] = "Pur App Details";
-                    sheet.Cells[row, 14] = "Status";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    sheet.Range[sheet.Cells[row, 6], sheet.Cells[row, 11]].Merge();
+                    sheet.Cells[row, 12] = "Po Details";
+                    sheet.Range[sheet.Cells[row, 12], sheet.Cells[row, 13]].Merge();
+                    sheet.Cells[row, 14] = "GRN Details";
+                    sheet.Range[sheet.Cells[row, 14], sheet.Cells[row, 15]].Merge();
+                    sheet.Cells[row, 16] = "Pur Entry Details";
+                    sheet.Range[sheet.Cells[row, 16], sheet.Cells[row, 18]].Merge();
+                    sheet.Cells[row, 19] = "Pur Mismatch App";
+                    sheet.Range[sheet.Cells[row, 19], sheet.Cells[row, 21]].Merge();
+                    sheet.Cells[row, 22] = "Pur App Details";
+                    sheet.Range[sheet.Cells[row, 22], sheet.Cells[row, 24]].Merge();
+                    sheet.Cells[row, 25] = "Status";
+
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
 
                     row++;
 
                     sheet.Cells[row, 1] = purchaseIndex++;
-                    sheet.Cells[row, 2] = header["Supplier"];
-                    sheet.Cells[row + 1, 2] = header["GSTIN"];
-                    sheet.Cells[row + 2, 2] = $"{header["City"]} GST Type: {header["SupplierType"]} PT : {header["PaymentTerm"]}";
 
-                    var invDate = header["InvDate"]?.ToString();
-                    if (!string.IsNullOrEmpty(invDate))
+                    //Supplier Details
+                    var supplierRange = sheet.Range[sheet.Cells[row, 2], sheet.Cells[row, 3]];
+                    supplierRange.Merge();
+                    supplierRange.Value = $"{header["Supplier"]}";
+                    supplierRange.WrapText = true;
+                    supplierRange.Font.Bold = true;
+                    supplierRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+
+                    var gstinRange = sheet.Range[sheet.Cells[row + 1, 2], sheet.Cells[row + 1, 3]];
+                    gstinRange.Merge();
+                    gstinRange.Value = $"{header["GSTIN"]}";
+                    gstinRange.WrapText = true;
+                    gstinRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+
+                    var cityRange = sheet.Range[sheet.Cells[row + 2, 2], sheet.Cells[row + 2, 3]];
+                    cityRange.Merge();
+                    cityRange.Value = $"{header["City"]}";
+                    cityRange.WrapText = true;
+                    cityRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+
+                    //Supplier Details Second Data
+                    var gstTypeRange = sheet.Range[sheet.Cells[row, 4], sheet.Cells[row, 5]];
+                    gstTypeRange.Merge();
+                    string gstTypeLabel = "GST Type: ";
+                    string supplierType = header["SupplierType"]?.ToString() ?? "";
+                    gstTypeRange.Value = gstTypeLabel + supplierType;
+                    gstTypeRange.WrapText = true;
+                    gstTypeRange.Characters[gstTypeLabel.Length + 1, supplierType.Length].Font.Bold = true;
+
+                    var payTypeRange = sheet.Range[sheet.Cells[row + 1, 4], sheet.Cells[row + 1, 5]];
+                    payTypeRange.Merge();
+                    string ptLabel = "PT: ";
+                    string paymentTerm = header["PaymentTerm"]?.ToString() ?? "";
+                    payTypeRange.Value = ptLabel + paymentTerm;
+                    payTypeRange.WrapText = true;
+                    payTypeRange.Characters[ptLabel.Length + 1, paymentTerm.Length].Font.Bold = true;
+
+
+                    //Invoice Details
+                    var invDateRange = sheet.Range[sheet.Cells[row, 6], sheet.Cells[row, 7]];
+                    invDateRange.Merge();
+                    string dtLabel = "DT: ";
+                    string invDate = header["InvDate"]?.ToString() ?? "";
+                    invDateRange.WrapText = true;
+                    invDateRange.NumberFormat = "@";
+                    if (!string.IsNullOrWhiteSpace(invDate))
                     {
-                        var cell = sheet.Cells[row, 6];
-                        cell.NumberFormat = "@"; // Force text format
-                        cell.Value = invDate;
+                        invDateRange.Value = dtLabel + invDate;
+                        invDateRange.Characters[dtLabel.Length + 1, invDate.Length].Font.Bold = true;
                     }
                     else
                     {
-                        sheet.Cells[row, 6] = "";
+                        invDateRange.Value = dtLabel;
                     }
-                    sheet.Cells[row + 1, 6] = header["InvNo"];
-                    sheet.Cells[row + 2, 6] = header["InvAmt"];
 
-                    sheet.Cells[row, 7] = $"Entry Type : {header["EntryType"]}";
-                    sheet.Cells[row + 1, 7] = $"Tr Type : {header["TransactionType"]}";
-                    sheet.Cells[row + 2, 7] = $"Broker : {header["Broker"]}";
+                    var invNoRange = sheet.Range[sheet.Cells[row + 1, 6], sheet.Cells[row + 1, 7]];
+                    invNoRange.Merge();
+                    string invNoLabel = "No : ";
+                    string invNo = header["InvNo"]?.ToString() ?? "";
+                    invNoRange.Value = invNoLabel + invNo;
+                    invNoRange.WrapText = true;
+                    invNoRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    invNoRange.Characters[invNoLabel.Length + 1, invNo.Length].Font.Bold = true;
 
-                    sheet.Cells[row, 8] = $"Pur Type: {header["PurchaseType"]}";
-                    sheet.Cells[row + 1, 8] = $"Pay Type : {header["PaymentType"]}";
-                    sheet.Cells[row + 2, 8] = $"E.Inv : {header["EInvoice"]}";
+                    var invAmtRange = sheet.Range[sheet.Cells[row + 2, 6], sheet.Cells[row + 2, 7]];
+                    invAmtRange.Merge();
+                    string invAmtLabel = "Amt : ";
+                    string invAmt = header["InvAmt"]?.ToString() ?? "";
+                    invAmtRange.Value = invAmtLabel + invAmt;
+                    invAmtRange.WrapText = true;
+                    invAmtRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    invAmtRange.Characters[invAmtLabel.Length + 1, invAmt.Length].Font.Bold = true;
 
-                    sheet.Cells[row, 9] = header["PONo"];
-                    sheet.Cells[row + 1, 9] = header["POUser"] ?? "-";
-                    sheet.Cells[row + 2, 9] = header["POHost"] ?? "-";
+                    //Invoice Details Second data
+                    var entryTypeRange = sheet.Range[sheet.Cells[row, 8], sheet.Cells[row, 9]];
+                    entryTypeRange.Merge();
+                    string entryLabel = "Entry Type : ";
+                    string entryVal = header["EntryType"]?.ToString() ?? "";
+                    entryTypeRange.Value = entryLabel + entryVal;
+                    entryTypeRange.WrapText = true;
+                    entryTypeRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    entryTypeRange.Characters[entryLabel.Length + 1, entryVal.Length].Font.Bold = true;
 
-                    sheet.Cells[row, 10] = header["GRNNo"];
-                    sheet.Cells[row + 1, 10] = header["GRNUser"];
-                    sheet.Cells[row + 2, 10] = header["GRNHost"];
+                    var transactionTypeRange = sheet.Range[sheet.Cells[row + 1, 8], sheet.Cells[row + 1, 9]];
+                    transactionTypeRange.Merge();
+                    string trLabel = "Tr Type : ";
+                    string trVal = header["TransactionType"]?.ToString() ?? "";
+                    transactionTypeRange.Value = trLabel + trVal;
+                    transactionTypeRange.WrapText = true;
+                    transactionTypeRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    transactionTypeRange.Characters[trLabel.Length + 1, trVal.Length].Font.Bold = true;
 
-                    sheet.Cells[row, 11] = header["PURNo"];
-                    sheet.Cells[row + 1, 11] = header["PURUser"];
-                    sheet.Cells[row + 2, 11] = header["PURHost"];
+                    var brokerRange = sheet.Range[sheet.Cells[row + 2, 8], sheet.Cells[row + 2, 9]];
+                    brokerRange.Merge();
+                    string brokerLabel = "Broker : ";
+                    string brokerVal = header["Broker"]?.ToString() ?? "";
+                    brokerRange.Value = brokerLabel + brokerVal;
+                    brokerRange.WrapText = true;
+                    brokerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    brokerRange.Characters[brokerLabel.Length + 1, brokerVal.Length].Font.Bold = true;
 
-                    sheet.Cells[row + 1, 12] = header["GRNAUser"] ?? "";
-                    sheet.Cells[row + 2, 12] = header["GRNAHost"] ?? "";
+                    //Invoice Details Third data
+                    var purchaseTypeRange = sheet.Range[sheet.Cells[row, 10], sheet.Cells[row, 11]];
+                    purchaseTypeRange.Merge();
+                    string purTypeLabel = "Pur Type: ";
+                    string purTypeVal = header["PurchaseType"]?.ToString() ?? "";
+                    purchaseTypeRange.Value = purTypeLabel + purTypeVal;
+                    purchaseTypeRange.WrapText = true;
+                    purchaseTypeRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    purchaseTypeRange.Characters[purTypeLabel.Length + 1, purTypeVal.Length].Font.Bold = true;
 
-                    sheet.Cells[row, 13] = header["PUREANo"];
-                    sheet.Cells[row + 1, 13] = header["PUREAUser"];
-                    sheet.Cells[row + 2, 13] = header["PUREAHost"];
+                    var paymentTypeRange = sheet.Range[sheet.Cells[row + 1, 10], sheet.Cells[row + 1, 11]];
+                    paymentTypeRange.Merge();
+                    string payTypeLabel = "Pay Type : ";
+                    string payTypeVal = header["PaymentType"]?.ToString() ?? "";
+                    paymentTypeRange.Value = payTypeLabel + payTypeVal;
+                    paymentTypeRange.WrapText = true;
+                    paymentTypeRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    paymentTypeRange.Characters[payTypeLabel.Length + 1, payTypeVal.Length].Font.Bold = true;
 
-                    sheet.Cells[row + 1, 14] = header["Status"];
+                    var eInvoiceRange = sheet.Range[sheet.Cells[row + 2, 10], sheet.Cells[row + 2, 11]];
+                    eInvoiceRange.Merge();
+                    string einvLabel = "E.Inv : ";
+                    string einvVal = header["EInvoice"]?.ToString() ?? "";
+                    eInvoiceRange.Value = einvLabel + einvVal;
+                    eInvoiceRange.WrapText = true;
+                    eInvoiceRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    eInvoiceRange.Characters[einvLabel.Length + 1, einvVal.Length].Font.Bold = true;
+
+                    //PO Details
+                    var ponoRange = sheet.Range[sheet.Cells[row, 12], sheet.Cells[row, 13]];
+                    ponoRange.Merge();
+                    ponoRange.Value = $"{header["PONo"] ?? "-"}";
+                    ponoRange.WrapText = true;
+                    ponoRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var pouserRange = sheet.Range[sheet.Cells[row + 1, 12], sheet.Cells[row + 1, 13]];
+                    pouserRange.Merge();
+                    pouserRange.Value = $"{header["POUser"] ?? "-"}";
+                    pouserRange.WrapText = true;
+                    pouserRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var pohostRange = sheet.Range[sheet.Cells[row + 2, 12], sheet.Cells[row + 2, 13]];
+                    pohostRange.Merge();
+                    pohostRange.Value = $"{header["POHost"] ?? "-"}";
+                    pohostRange.WrapText = true;
+                    pohostRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    //GRN Details
+                    var grnnoRange = sheet.Range[sheet.Cells[row, 14], sheet.Cells[row, 15]];
+                    grnnoRange.Merge();
+                    grnnoRange.Value = $"{header["GRNNo"] ?? "-"}";
+                    grnnoRange.WrapText = true;
+                    grnnoRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var grnuserRange = sheet.Range[sheet.Cells[row + 1, 14], sheet.Cells[row + 1, 15]];
+                    grnuserRange.Merge();
+                    grnuserRange.Value = $"{header["GRNUser"]}";
+                    grnuserRange.WrapText = true;
+                    grnuserRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var grnhostRange = sheet.Range[sheet.Cells[row + 2, 14], sheet.Cells[row + 2, 15]];
+                    grnhostRange.Merge();
+                    grnhostRange.Value = $"{header["GRNHost"]}";
+                    grnhostRange.WrapText = true;
+                    grnhostRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    //Purchase Entry Details
+                    var purnoRange = sheet.Range[sheet.Cells[row, 16], sheet.Cells[row, 18]];
+                    purnoRange.Merge();
+                    purnoRange.Value = $"{header["PURNo"]}";
+                    purnoRange.WrapText = true;
+                    purnoRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var puruserRange = sheet.Range[sheet.Cells[row + 1, 16], sheet.Cells[row + 1, 18]];
+                    puruserRange.Merge();
+                    puruserRange.Value = $"{header["PURUser"]}";
+                    puruserRange.WrapText = true;
+                    puruserRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var purhostRange = sheet.Range[sheet.Cells[row + 2, 16], sheet.Cells[row + 2, 18]];
+                    purhostRange.Merge();
+                    purhostRange.Value = $"{header["PURHost"]}";
+                    purhostRange.WrapText = true;
+                    purhostRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    //Purchase Mismatch Approval Details
+                    var grnaNoRange = sheet.Range[sheet.Cells[row, 19], sheet.Cells[row, 21]];
+                    grnaNoRange.Merge();
+
+                    var grnauserRange = sheet.Range[sheet.Cells[row + 1, 19], sheet.Cells[row + 1, 21]];
+                    grnauserRange.Merge();
+                    grnauserRange.Value = $"{header["GRNAUser"] ?? "-"}";
+                    grnauserRange.WrapText = true;
+                    grnauserRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var grnahostRange = sheet.Range[sheet.Cells[row + 2, 19], sheet.Cells[row + 2, 21]];
+                    grnahostRange.Merge();
+                    grnahostRange.Value = $"{header["GRNAHost"] ?? ""}";
+                    grnahostRange.WrapText = true;
+                    grnahostRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    //Purchase Entry Approval Details
+                    var pureaRange = sheet.Range[sheet.Cells[row, 22], sheet.Cells[row, 24]];
+                    pureaRange.Merge();
+                    pureaRange.Value = $"{header["PUREANo"] ?? "-"}";
+                    pureaRange.WrapText = true;
+                    pureaRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var pureauserRange = sheet.Range[sheet.Cells[row + 1, 22], sheet.Cells[row + 1, 24]];
+                    pureauserRange.Merge();
+                    pureauserRange.Value = $"{header["PUREAUser"]}";
+                    pureauserRange.WrapText = true;
+                    pureauserRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    var pureahostRange = sheet.Range[sheet.Cells[row + 2, 22], sheet.Cells[row + 2, 24]];
+                    pureahostRange.Merge();
+                    pureahostRange.Value = $"{header["PUREAHost"]}";
+                    pureahostRange.WrapText = true;
+                    pureahostRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    sheet.Cells[row + 1, 25] = header["Status"];
 
                     row += 3;
                     int productStartRow = row;
 
-                    string[] productHeaders = { "SNo","PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "Invoice MRP", "MRP", "Expiry Date", "Product Shelflife", "Actual Shelflife", "Shelf Life %", "Batch No", "Stock Location", "Rack", "Bill Qty", "Received Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Tax Value", "Nett Amount" };
+                    string[] productHeaders = {"PI Code", "Product Name", "Unit", "Condition", "HSN Code", "GST %", "Invoice MRP", "MRP", "Expiry Date", "Product Shelflife", "Actual Shelflife", "Shelf Life %", "Batch No", "Stock Location", "Rack", "Bill Qty", "Received Qty", "Diff Qty", "Free Qty", "Bill Rate", "Dis Amt", "Taxable Value", "Tax Value", "Nett Amount" };
 
                     for (int i = 0; i < productHeaders.Length; i++)
                         sheet.Cells[row, i + 1] = productHeaders[i];
-                    var headerRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]];
+                    var headerRange = sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]];
                     headerRange.Font.Bold = true;
                     headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                     row++;
@@ -456,12 +646,12 @@ namespace ROMS
                             col++;
                         }
 
-                        sheet.Cells[row, 3].Font.Name = "Uni Ila.Sundaram-03";
-                        sheet.Cells[row, 3].Font.Size = 11.75;
+                        sheet.Cells[row, 2].Font.Name = "Uni Ila.Sundaram-03";
+                        sheet.Cells[row, 2].Font.Size = 11.75;
 
                         decimal invoiceQty = SafeConvertDecimal(prod["Bill Qty"]);
                         if (invoiceQty == 0)
-                            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+                            sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
 
                         totalTaxable += SafeConvertDecimal(prod["Taxable Value"]);
                         totalGst += SafeConvertDecimal(prod["Tax Value"]);
@@ -469,40 +659,39 @@ namespace ROMS
                         row++;
 
                         int productEndRow = row - 1;
-                        var productTableRange = sheet.Range[sheet.Cells[productStartRow, 1], sheet.Cells[productEndRow, 26]];
+                        var productTableRange = sheet.Range[sheet.Cells[productStartRow, 1], sheet.Cells[productEndRow, 25]];
                         productTableRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
                     }
 
                     // Aligned Net Total
-                    sheet.Cells[row, 22] = "Net Total:";
-                    sheet.Cells[row, 23] = totalTaxable;
-                    sheet.Cells[row, 24] = totalGst;
-                    sheet.Cells[row, 25] = totalNet;
-                    sheet.Range[sheet.Cells[row, 22], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Cells[row, 21] = "Net Total:";
+                    sheet.Cells[row, 22] = totalTaxable;
+                    sheet.Cells[row, 23] = totalGst;
+                    sheet.Cells[row, 24] = totalNet;
+                    sheet.Range[sheet.Cells[row, 21], sheet.Cells[row, 24]].Font.Bold = true;
                     row++;
 
-                    sheet.Cells[row, 24] = "Grand Total:";
-                    sheet.Cells[row, 25] = footer["GrandTotal"]?.ToString() ?? "0";
-                    sheet.Range[sheet.Cells[row, 24], sheet.Cells[row, 25]].Font.Bold = true;
+                    sheet.Cells[row, 23] = "Grand Total:";
+                    sheet.Cells[row, 24] = footer["GrandTotal"]?.ToString() ?? "0";
+                    sheet.Range[sheet.Cells[row, 23], sheet.Cells[row, 24]].Font.Bold = true;
                     row++;
 
                     // Charges
                     sheet.Cells[row, 1] = $"Bill Addition:    Loading Charges: {footer["Unloading"]}    Freight Charges: {footer["Freight"]}    Courier Charges: {footer["Courier"]}    Other Expenses: {footer["OtherExpenses"]}    TCS Amount: {footer["TCS"]}    Unloading GRN: {footer["UnloadingGRN"]}    Freight GRN: {footer["FreightGRN"]}";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
                     row++;
 
                     sheet.Cells[row, 1] = $"Bill Deduction:    Discount: {footer["DiscAmnt"]}    Other Discount: {footer["OtherDisc"]}    Damage Cost: {footer["DamageCost"]}    Round Off: {footer["RoundOff"]}";
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Merge();
-                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 26]].Font.Bold = true;
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
+                    sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Font.Bold = true;
                     row += 2;
                 }
 
                 sheet.Columns.AutoFit();
-                sheet.Columns[1].ColumnWidth = 5;
-                sheet.Columns[2].ColumnWidth = 11;
-                sheet.Columns[3].ColumnWidth = 28;
+                sheet.Columns[1].ColumnWidth = 11;
+                sheet.Columns[2].ColumnWidth = 28;
 
                 decimal SafeConvertDecimal(JToken token)
                 {
