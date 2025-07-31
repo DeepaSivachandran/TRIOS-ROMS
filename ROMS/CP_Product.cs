@@ -1043,7 +1043,7 @@ namespace ROMS
                     {
                         varbrandid = lblBrand.Text;
                     }
-                    if (varproductcode == 0 || pbCloneFlag == 1)
+                    if ((varproductcode == 0 || pbCloneFlag == 1) && varFlag == 0)
                     {
                         varviewtype = 0;
                         varorignator = "Product Create";
