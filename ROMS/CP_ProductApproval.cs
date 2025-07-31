@@ -4805,11 +4805,11 @@ namespace ROMS
                     SPDataService objspdservice = new SPDataService();
                     string varorignator = "Product approval update";
                     result = objspdservice.udfnProductMaster(14, varproductcode, txtProductEname.Text, txtProductTname.Text, txtpicode.Text.Trim().ToUpper(),
-                    0, Convert.ToInt32(cmbProductCategory.SelectedValue),Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupCode), Convert.ToInt32(varBrand),
+                    0, Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupCode), Convert.ToInt32(varBrand),
                     Convert.ToInt32(cmbUnit.SelectedValue), 0, "", Convert.ToInt32(varPurLocationCode), Convert.ToInt32(varSalesLocationCode)
                     , Convert.ToInt32(varPurRackCode), Convert.ToInt32(varSalesRackCode), 0, Convert.ToInt32(cmbBatchno.SelectedValue), Convert.ToInt32(cmbBatchGen.SelectedValue)
                     , varshelflife, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(varHsnCode), 0, shelflife,
-                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "",0,0,0,0,varMRPflag, dtProductHSN);
+                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "", 0, 0, 0, 0, varMRPflag, dtProductHSN, "", "");
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
