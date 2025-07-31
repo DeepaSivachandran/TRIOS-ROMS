@@ -149,6 +149,7 @@ namespace ROMS
             this.hSNReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHSNCodeWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHSNNameWiseProductReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRateChangeReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,7 +158,8 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRateChangeReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockInward = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -322,7 +324,7 @@ namespace ROMS
             this.tsmfromOtherStockLocation});
             this.tsminward.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsminward.Name = "tsminward";
-            this.tsminward.Size = new System.Drawing.Size(171, 22);
+            this.tsminward.Size = new System.Drawing.Size(180, 22);
             this.tsminward.Text = "Goods Inward";
             this.tsminward.Click += new System.EventHandler(this.Tsminward_Click);
             // 
@@ -343,49 +345,49 @@ namespace ROMS
             // tsmOutward
             // 
             this.tsmOutward.Name = "tsmOutward";
-            this.tsmOutward.Size = new System.Drawing.Size(171, 22);
+            this.tsmOutward.Size = new System.Drawing.Size(180, 22);
             this.tsmOutward.Text = "Goods Outward";
             this.tsmOutward.Click += new System.EventHandler(this.TsmOutward_Click);
             // 
             // tsmStockTransfer
             // 
             this.tsmStockTransfer.Name = "tsmStockTransfer";
-            this.tsmStockTransfer.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockTransfer.Size = new System.Drawing.Size(180, 22);
             this.tsmStockTransfer.Text = "Stock Transfer";
             this.tsmStockTransfer.Click += new System.EventHandler(this.TsmStockTransfer_Click);
             // 
             // tsbStockConversion
             // 
             this.tsbStockConversion.Name = "tsbStockConversion";
-            this.tsbStockConversion.Size = new System.Drawing.Size(171, 22);
+            this.tsbStockConversion.Size = new System.Drawing.Size(180, 22);
             this.tsbStockConversion.Text = "Batch Conversion";
             this.tsbStockConversion.Click += new System.EventHandler(this.TsbStockConversion_Click);
             // 
             // tsmStockHold
             // 
             this.tsmStockHold.Name = "tsmStockHold";
-            this.tsmStockHold.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockHold.Size = new System.Drawing.Size(180, 22);
             this.tsmStockHold.Text = "Stock Hold";
             this.tsmStockHold.Click += new System.EventHandler(this.TsmStockHold_Click);
             // 
             // damageEntryToolStripMenuItem
             // 
             this.damageEntryToolStripMenuItem.Name = "damageEntryToolStripMenuItem";
-            this.damageEntryToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.damageEntryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.damageEntryToolStripMenuItem.Text = "Damage Entry";
             this.damageEntryToolStripMenuItem.Click += new System.EventHandler(this.DamageEntryToolStripMenuItem_Click);
             // 
             // tsmStockReq
             // 
             this.tsmStockReq.Name = "tsmStockReq";
-            this.tsmStockReq.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockReq.Size = new System.Drawing.Size(180, 22);
             this.tsmStockReq.Text = "Shop Stock Request";
             this.tsmStockReq.Click += new System.EventHandler(this.TsmStockRequest_Click);
             // 
             // tsmrackSettings
             // 
             this.tsmrackSettings.Name = "tsmrackSettings";
-            this.tsmrackSettings.Size = new System.Drawing.Size(171, 22);
+            this.tsmrackSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmrackSettings.Text = "Rack Transfer";
             this.tsmrackSettings.Click += new System.EventHandler(this.TsmrackSettings_Click);
             // 
@@ -825,7 +827,8 @@ namespace ROMS
             this.TSMGRNReport,
             this.supplierWiseReportToolStripMenuItem,
             this.purchaseReportToolStripMenuItem,
-            this.tsmRateChangeReport});
+            this.tsmRateChangeReport,
+            this.inventoryToolStripMenuItem1});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -1153,6 +1156,13 @@ namespace ROMS
             this.tsmHSNNameWiseProductReport.Text = "HSN Name Wise Product Report";
             this.tsmHSNNameWiseProductReport.Click += new System.EventHandler(this.TsmHSNNameWiseProductReport_Click);
             // 
+            // tsmRateChangeReport
+            // 
+            this.tsmRateChangeReport.Name = "tsmRateChangeReport";
+            this.tsmRateChangeReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmRateChangeReport.Text = "Rate Change";
+            this.tsmRateChangeReport.Click += new System.EventHandler(this.tsmRateChangeReport_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1224,12 +1234,20 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // tsmRateChangeReport
+            // inventoryToolStripMenuItem1
             // 
-            this.tsmRateChangeReport.Name = "tsmRateChangeReport";
-            this.tsmRateChangeReport.Size = new System.Drawing.Size(191, 22);
-            this.tsmRateChangeReport.Text = "Rate Change";
-            this.tsmRateChangeReport.Click += new System.EventHandler(this.tsmRateChangeReport_Click);
+            this.inventoryToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmStockInward});
+            this.inventoryToolStripMenuItem1.Name = "inventoryToolStripMenuItem1";
+            this.inventoryToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.inventoryToolStripMenuItem1.Text = "Inventory";
+            // 
+            // tsmStockInward
+            // 
+            this.tsmStockInward.Name = "tsmStockInward";
+            this.tsmStockInward.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockInward.Text = "Stock Inward";
+            this.tsmStockInward.Click += new System.EventHandler(this.TsmStockInward_Click);
             // 
             // MainForm
             // 
@@ -1388,5 +1406,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem supplierLedgerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmRateChange;
         private System.Windows.Forms.ToolStripMenuItem tsmRateChangeReport;
+        private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockInward;
     }
 }

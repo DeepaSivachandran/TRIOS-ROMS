@@ -2790,6 +2790,19 @@ namespace ROMS
             }
         }
 
+        private void TsmStockInward_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
