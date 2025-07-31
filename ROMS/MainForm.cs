@@ -251,6 +251,8 @@ namespace ROMS
         public static REPORT_HSN_NameWise_Product_Consolidated objREPORT_HSN_NameWise_Product_Consolidated;
         public static REPORT_CP_RateChange objREPORT_CP_RateChange;
 
+        public static REPORT_Stock_Inward objREPORT_Stock_Inward;
+
 
         public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
@@ -2794,7 +2796,12 @@ namespace ROMS
         {
             try
             {
-
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock_Inward = new REPORT_Stock_Inward();
+                MainForm.objREPORT_Stock_Inward.MdiParent = this;
+                MainForm.objREPORT_Stock_Inward.Show();
+                PbCurrentForm = "7.9.1";
             }
             catch (Exception ex)
             {
