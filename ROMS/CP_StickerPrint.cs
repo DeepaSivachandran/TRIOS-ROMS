@@ -151,15 +151,18 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
                         {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Group_50x60.rpt");
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x60.rpt");
                         }
                         else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
                         {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Group_100x70.rpt");
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_100x70.rpt");
                         }
                     }
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    {
+                        objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
+                    }
                     objBillreport.SetParameterValue("paraLabelCount", Convert.ToInt32(txtLabelCount.Text));
-                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
                     objBillreport.SetParameterValue("ParaProductsCode", varCodes);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
