@@ -6080,7 +6080,9 @@ namespace ROMS
                 if (tbProduct.SelectedIndex == 1)
                 {
                     txtPURHSNName.Focus();
-                    txtProductNameEnglish.Text = txtItemNameEnglish.Text.Trim();
+                    lblProductEName.AutoSize = true;
+                    lblProductEName.MaximumSize = new Size(500, 0);
+                    lblProductEName.Text = txtItemNameTamil.Text.Trim();
                 }
             }
             catch (Exception ex)
