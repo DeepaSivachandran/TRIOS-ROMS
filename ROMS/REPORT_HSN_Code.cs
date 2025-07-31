@@ -369,7 +369,6 @@ namespace ROMS
             try
             {
                 lvHsnName.Visible = false;
-                udfnHsnLoad();
                 udfnGridNull((Control)sender);
                 cmbGST.BackColor = Color.LemonChiffon;
             }
