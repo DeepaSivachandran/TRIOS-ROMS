@@ -674,7 +674,7 @@
             this.grdInwardList.RowTemplate.Height = 25;
             this.grdInwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInwardList.Size = new System.Drawing.Size(1348, 502);
-            this.grdInwardList.TabIndex = 958797;
+            this.grdInwardList.TabIndex = 958797; 
             this.grdInwardList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdInwardList_CellFormatting);
             this.grdInwardList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdInwardList_DataBindingComplete);
             this.grdInwardList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdInwardList_Scroll);

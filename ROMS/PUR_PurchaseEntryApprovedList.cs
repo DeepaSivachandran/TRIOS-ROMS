@@ -260,7 +260,8 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = null;
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["PURID"].Visible = false;
-                DGV_SearchGrid.Columns["clmUnapproved"].Visible = false;
+                //.Columns["clmUnapproved"].Visible = false;
+                DGV_SearchGrid.Columns["PUR_CompleteFlag"].Visible = false;
                 DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;
                 DGV_SearchGrid.Columns["Payment Status"].Visible = false;
                 DGV_SearchGrid.Columns["TallyExportFlag"].Visible = false;

@@ -1185,7 +1185,7 @@ namespace ROMS
                         string[] varShelflifeper = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelfper"].Value).Split(' ');
                         string[] varProShelfLife = Convert.ToString(grdGrnlist.Rows[i].Cells["clmshelflife"].Value).Split(' ');
                         
-                        if(Convert.ToDecimal(varShelflifeper[0]) < Convert.ToDecimal(MainForm.pbShelflifeLevel2))
+                        if(Convert.ToString(varShelflifeper[0])!="" && Convert.ToDecimal(varShelflifeper[0]) < Convert.ToDecimal(MainForm.pbShelflifeLevel2))
                         {
                             shelfLifeError++;
                         }
@@ -5013,7 +5013,16 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    udfnclose(sender, e);
+                    if (pnlConditions.Visible == true)
+                    { pnlConditions.Visible = false; }
+                    else { udfnclose(sender, e); }
+                }
+                if (e.KeyCode == Keys.F1)
+                {
+                    if (pnlConditions.Visible == true)
+                    {
+                        btnApply_Click(sender, e);
+                    }
                 }
             }
             catch (Exception ex)
@@ -5054,7 +5063,7 @@ namespace ROMS
                 { varLPFlag = 1; }
                 if (conditionSet.Contains("275") == true) //No difference
                 { varNoDiffFlag = 1; }
-                if((expirydateFlag == 1 || txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != "") )  
+                if(expirydateFlag == 1 &&( txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != ""))  
                 {
                     varExpDateValidFlag = 1;
                 }   
@@ -5124,7 +5133,7 @@ namespace ROMS
                     int varflag = 0;
                     string varShelflifevalue = "", varAcutalshelflife = "";
                     lblNoRecordsFound.Visible = false; 
-                    if(varExpDateValidFlag==1)
+                    if(varExpDateValidFlag==1 && (txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != ""))
                     {
                         udfnDatevalidationset();
                     } 
@@ -6596,9 +6605,9 @@ namespace ROMS
             try
             {
                 grdGrnlist.Columns["clmMismatchQty"].ReadOnly = true;
-                grdGrnlist.Columns["clmExcessQty"].ReadOnly = true;
+                //grdGrnlist.Columns["clmExcessQty"].ReadOnly = true;
                 grdGrnlist.Columns["clmMismatchQty"].DefaultCellStyle.BackColor = Color.LightGray;
-                grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.BackColor = Color.LightGray;
+                //grdGrnlist.Columns["clmExcessQty"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmmrp"].ReadOnly = true;
                 grdGrnlist.Columns["clmmrp"].DefaultCellStyle.BackColor = Color.LightGray;
                 grdGrnlist.Columns["clmInvoiceMRP"].ReadOnly = true;

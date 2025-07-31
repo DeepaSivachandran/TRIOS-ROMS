@@ -2008,7 +2008,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         private void LV_Supplier_DoubleClick(object sender, EventArgs e)
         {
             try

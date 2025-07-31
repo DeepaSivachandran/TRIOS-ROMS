@@ -695,6 +695,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["GRN_Payment_StsID"].Visible = false;
                             grdPurchaseEntryList.Columns["TallyExportFlag"].Visible = false;
                             grdPurchaseEntryList.Columns["Flag"].Visible = false;
+                            grdPurchaseEntryList.Columns["DeleteFlag"].Visible = false;
                             grdPurchaseEntryList.Columns["Pur Entry Full Status"].Visible = false;
                             grdPurchaseEntryList.Columns["Overall Full Status"].Visible = false;
                             grdPurchaseEntryList.Columns["Tot Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -804,6 +805,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["GRN_Payment_StsID"].Visible = false;
                 DGV_SearchGrid.Columns["Flag"].Visible = false;
                 DGV_SearchGrid.Columns["TallyExportFlag"].Visible = false;
+                DGV_SearchGrid.Columns["DeleteFlag"].Visible = false;
                 //DGV_SearchGrid.Columns["clmEdit"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -1484,7 +1486,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false && grdPurchaseEntryList.SelectedRows.Count == 1)
                 {
-                    if (Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["STSID"].Value) == 50 )
+                    if (Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["DeleteFlag"].Value) == 1 )
                     {
                         tsbDelete.Visible = false;
                         tssEdit.Visible = false;
