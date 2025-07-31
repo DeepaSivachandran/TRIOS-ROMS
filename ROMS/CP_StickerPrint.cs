@@ -642,6 +642,8 @@ namespace ROMS
                     tpLabelCount.Show("Please enter label count", txtLabelCount, 5000);
                     blnErrFlag = true;
                 }
+
+                SPDataService objDataService = new SPDataService();
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                 {
                     List<string> varSelectedGroupCodes = new List<string>();
@@ -662,7 +664,9 @@ namespace ROMS
                     }
                     if (varCount == 0)
                     {
-                        MessageBox.Show("Please select atleast one group.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string varMessage = objDataService.udfnGetMessages(151);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
                         blnErrFlag = true;
                     }
                 }
@@ -686,7 +690,9 @@ namespace ROMS
                     }
                     if (varCount == 0)
                     {
-                        MessageBox.Show("Please select atleast one subgroup.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string varMessage = objDataService.udfnGetMessages(44);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
                         blnErrFlag = true;
                     }
                 }
@@ -710,7 +716,9 @@ namespace ROMS
                     }
                     if (varCount == 0)
                     {
-                        MessageBox.Show("Please select atleast one product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string varMessage = objDataService.udfnGetMessages(80);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
                         blnErrFlag = true;
                     }
                 }
@@ -734,7 +742,9 @@ namespace ROMS
                     }
                     if (varCount == 0)
                     {
-                        MessageBox.Show("Please select atleast one rack.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string varMessage = objDataService.udfnGetMessages(60);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
                         blnErrFlag = true;
                     }
                 }
@@ -1219,7 +1229,10 @@ namespace ROMS
         {
             try
             {
-                (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtProduct.Text + "%'";
+                if (txtProduct.Text.Trim().Length > 0)
+                {
+                    (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtProduct.Text + "%'";
+                }
             }
             catch (Exception ex)
             {
@@ -1232,13 +1245,16 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                if (txtGroup.Text.Trim().Length > 0)
                 {
-                    (grdGroup.DataSource as DataTable).DefaultView.RowFilter = "([Group Name]) LIKE '%" + txtGroup.Text + "%'";
-                }
-                else
-                {
-                    (grdRack.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    {
+                        (grdGroup.DataSource as DataTable).DefaultView.RowFilter = "([Group Name]) LIKE '%" + txtGroup.Text + "%'";
+                    }
+                    else
+                    {
+                        (grdRack.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
+                    }
                 }
             }
             catch (Exception ex)
@@ -1252,7 +1268,10 @@ namespace ROMS
         {
             try
             {
-                (grdSubgroup.DataSource as DataTable).DefaultView.RowFilter = "([Subgroup Name]) LIKE '%" + txtSubgroup.Text + "%'";
+                if (txtSubgroup.Text.Trim().Length > 0)
+                {
+                    (grdSubgroup.DataSource as DataTable).DefaultView.RowFilter = "([Subgroup Name]) LIKE '%" + txtSubgroup.Text + "%'";
+                }
             }
             catch (Exception ex)
             {
@@ -1441,6 +1460,9 @@ namespace ROMS
         {
             try
             {
+                txtGroup.Text = "";
+                txtSubgroup.Text = "";
+                txtProduct.Text = "";
                 cmbProductName.Enabled = true;
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                 {
@@ -1508,6 +1530,7 @@ namespace ROMS
                 grdGroup.DataSource = null;
                 grdSubgroup.DataSource = null;
                 grdProduct.DataSource = null;
+                grdRack.DataSource = null;
                 RPTViewer.ReportSource = null;
             }
             catch (Exception ex)
