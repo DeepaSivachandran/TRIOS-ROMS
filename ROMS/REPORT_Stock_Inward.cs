@@ -77,6 +77,12 @@ namespace ROMS
                     DGV_FilterSupplier.DataSource = null;
                     DGV_FilterSupplier.Visible = false;
                 }
+                if (skipControl != txtLocation)
+                {
+                    varUpDownKeyLocation = 0;
+                    DGV_FilterLocation.DataSource = null;
+                    DGV_FilterLocation.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -88,7 +94,7 @@ namespace ROMS
         {
             try
             {
-                udfnGRNSupplier();
+                udfnStockInwardReport();
             }
             catch (Exception ex)
             {
@@ -96,83 +102,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGRNSupplier()
+        public void udfnStockInwardReport()
         {
             try
             {
-                string varGroupName = "", varSubgroupName = "", varProductName = "", varSupplierName = "", varGRNNo = "";
-                int varGroupId = 0, varSubgroupId = 0, varProductId = 0;
-                if (txtGroup.Text.Trim() == "")
+                string varLocationName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varProductName = "-All-", varSupplierName = "-All-", varPICodeName = "-All-";
+                int varLocationId = 0, varGroupId = 0, varSubgroupId = 0, varProductId = 0, varSupplierId = 0;
+                if (txtLocation.Text.Trim() != "")
                 {
-                    varGroupName = "-All-";
+                    varLocationName = txtLocation.Text;
+                    varLocationId = Convert.ToInt32(lblLocationCode.Text);
                 }
-                else
+                if (txtGroup.Text.Trim() != "")
                 {
                     varGroupName = txtGroup.Text;
                     varGroupId = Convert.ToInt32(lblGroupCode.Text);
                 }
-                if (txtSubGroup.Text.Trim() == "")
-                {
-                    varSubgroupName = "-All-";
-                }
-                else
+                if (txtSubGroup.Text.Trim() != "")
                 {
                     varSubgroupName = txtSubGroup.Text;
                     varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text);
                 }
-                if (txtProductName.Text.Trim() == "")
-                {
-                    varProductName = "-All-";
-                }
-                else
+                if (txtProductName.Text.Trim() != "")
                 {
                     varProductName = txtProductName.Text;
                     varProductId = Convert.ToInt32(lblProductcode.Text);
                 }
-                string varSupplierId = "0";
-                if (txtSupplier.Text == "")
+                if (txtSupplier.Text.Trim() != "")
                 {
-                    lblSupplierCode.Text = "0";
-                    lblschedleCode.Text = "0";
-                    varSupplierName = "-All-";
+                    varSupplierName = txtSupplier.Text;
+                    varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 }
-                else
+                if (txtSearchByPICode.Text.Trim() != "")
                 {
-                    string[] values = new string[0];
-                    MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 31;
-                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedleCode.Text);
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
-                    DataSet objDsSupplierId = new DataSet();
-                    SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-                    objDserv.CloseConnection();
-                    if (objDsSupplierId != null)
-                    {
-                        if (objDsSupplierId.Tables.Count > 0)
-                        {
-                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
-                            {
-                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
-                                values = Convert.ToString(varSupplierId).Split(',');
-                            }
-                        }
-                    }
-                    if (values[0] == "-1")
-                    {
-                        lblSupplierCode.Text = "0";
-                        lblschedleCode.Text = "0";
-                        varSupplierName = "-All-";
-                    }
-                    else
-                    {
-                        lblSupplierCode.Text = values[0];
-                        lblschedleCode.Text = values[1];
-                        txtSupplier.BackColor = Color.White;
-                        varSupplierName = txtSupplier.Text;
-                    }
+                    varPICodeName = txtSearchByPICode.Text;
                 }
-
                 LV_Supplier.Visible = false;
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -200,7 +164,6 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraGroupId", varGroupId);
                     objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId);
                     objBillreport.SetParameterValue("paraProductId", varProductId);
-                    objBillreport.SetParameterValue("paraGRNNo", varGRNNo);
                     objBillreport.SetParameterValue("ParaGRNFromDate", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("ParaGRNToDate", Convert.ToString(dpToDate.Text));
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
@@ -286,6 +249,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpFromDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -325,6 +289,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpToDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -339,7 +304,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtGroup.Focus();
+                    cmbEntryType.Focus();
                 }
             }
             catch (Exception ex)
@@ -762,7 +727,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    txtSupplier.Focus();
+                    txtSearchByPICode.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -835,7 +800,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtSupplier.Focus();
+                        txtSearchByPICode.Focus();
                     }
                 }
             }
@@ -1074,7 +1039,7 @@ namespace ROMS
                     lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 }
-                txtSupplier.Focus();
+                txtSearchByPICode.Focus();
             }
             catch (Exception ex)
             {
@@ -1113,7 +1078,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterSupplier.Visible == false)
                 {
-                    //txtGRNNo.Focus();
+                    txtLocation.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1186,7 +1151,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        //txtGRNNo.Focus();
+                        txtLocation.Focus();
                     }
                 }
             }
@@ -1317,7 +1282,7 @@ namespace ROMS
                     lblschedleCode.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SPSCID"].Value.ToString();
                     txtSupplier.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
-                //txtGRNNo.Focus();
+                txtLocation.Focus();
             }
             catch (Exception ex)
             {
@@ -1770,13 +1735,249 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbReportType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbReportType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbConcern.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+                udfnGridNull((Control)sender);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpFromDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPICode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByPICode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPICode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPICode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByPICode.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEntryType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSupplier.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbEntryType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEntryType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLocation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLocation.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 varUpDownKeyProduct = 1;
                 udfnListviewProduct();
-                txtSupplier.Focus();
+                txtSearchByPICode.Focus();
             }
             catch (Exception ex)
             {
@@ -1846,7 +2047,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtSupplier.Focus();
+                        txtSearchByPICode.Focus();
                     }
                 }
             }
@@ -1863,7 +2064,7 @@ namespace ROMS
             {
                 varUpDownKeySupplier = 1;
                 udfnListViewData();
-                //txtGRNNo.Focus();
+                txtLocation.Focus();
             }
             catch (Exception ex)
             {
@@ -1938,7 +2139,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        //txtGRNNo.Focus();
+                        txtLocation.Focus();
                     }
                 }
             }
