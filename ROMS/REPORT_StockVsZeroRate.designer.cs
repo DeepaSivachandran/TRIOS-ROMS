@@ -76,8 +76,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(126, 22);
-            this.tspHeader.Text = "Stock Vs Zero Rate";
+            this.tspHeader.Size = new System.Drawing.Size(166, 22);
+            this.tspHeader.Text = "Stock Vs Zero Rate Report";
             // 
             // pnlReportStockLocation
             // 
@@ -281,7 +281,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_StockVsZeroRate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Stock Vs Zero Rate";
+            this.Text = "Stock Vs Zero Rate Report";
             this.Load += new System.EventHandler(this.REPORT_GRNSummary_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_GRNSummary_KeyDown);
             this.ReportSupplier.ResumeLayout(false);
