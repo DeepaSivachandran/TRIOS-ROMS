@@ -541,6 +541,18 @@
     <Compile Include="PUR_ReturnDCApprovedList.designer.cs">
       <DependentUpon>PUR_ReturnDCApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_Sticker_Print_Rack_50x25.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Sticker_Print_Rack_50x25.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_Sticker_Print_Rack_50x35.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Sticker_Print_Rack_50x35.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_100x70.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2972,6 +2984,14 @@
       <LastGenOutput>RPT_INV_GoodsOutward.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_Sticker_Print_Rack_50x25.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Sticker_Print_Rack_50x25.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Sticker_Print_Rack_50x35.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Sticker_Print_Rack_50x35.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Sticker_Print_Rack_100x70.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Sticker_Print_Rack_100x70.cs</LastGenOutput>
