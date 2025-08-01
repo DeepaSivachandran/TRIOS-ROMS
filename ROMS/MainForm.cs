@@ -2829,6 +2829,31 @@ namespace ROMS
             }
         }
 
+        private void TsmStockHoldReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TsmStockAging_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TsmGodownValuation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TsmStockValuation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
