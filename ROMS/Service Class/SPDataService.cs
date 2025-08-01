@@ -2949,6 +2949,12 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_StockHold.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraSHID", objTRNG_StockHold.paraSHID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_StockHold.paraCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_StockHold.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_StockHold.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_StockHold.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_StockHold.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRNG_StockHold.paraAlpha);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

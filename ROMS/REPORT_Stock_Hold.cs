@@ -89,7 +89,7 @@ namespace ROMS
         {
             try
             {
-                string varLocationName = "-All-", varProductName = "-All-", varPICodeName = "-All-";
+                string varLocationName = "-All-", varProductName = "-All-", varAlphaName = "-All-";
                 int varLocationId = 0, varProductId = 0;
                 if (txtLocation.Text.Trim() != "")
                 {
@@ -103,7 +103,7 @@ namespace ROMS
                 }
                 if (txtSearchByPICode.Text.Trim() != "")
                 {
-                    varPICodeName = txtSearchByPICode.Text;
+                    varAlphaName = txtSearchByPICode.Text;
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -113,9 +113,18 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(16, 0, 0, 0, 0, "","", 0, 0, 0, "", "", varProductId, 0, "0", "", "", 0, 0, 0, 0);
+                TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
+                objTRNG_StockHold.ViewType = 3;
+                objTRNG_StockHold.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_StockHold.paraFromDate = dpFromDate.Text;
+                objTRNG_StockHold.paraToDate = dpToDate.Text;
+                objTRNG_StockHold.paraSLID = varLocationId;
+                objTRNG_StockHold.paraPRID = varProductId;
+                objTRNG_StockHold.paraAlpha = txtSearchByPICode.Text;
+                objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -127,7 +136,16 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRN_Supplier_Detail.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Hold.rpt");
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraPRID", varProductId);
+                    objBillreport.SetParameterValue("paraProductName", varProductName);
+                    objBillreport.SetParameterValue("paraSLID", varLocationId);
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                    objBillreport.SetParameterValue("paraAlpha", txtSearchByPICode.Text);
+                    objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -905,6 +923,20 @@ namespace ROMS
             try
             {
                 dpToDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
             }
             catch (Exception ex)
             {

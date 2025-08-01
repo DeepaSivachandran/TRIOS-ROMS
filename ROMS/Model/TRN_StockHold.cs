@@ -20,6 +20,9 @@ namespace ROMS.Model
         public string paraExpiryDate { get; set; } = "";
         public string paraBatchNo { get; set; } = "";
         public string paraRemarks { get; set; } = "";
+        public string paraFromDate { get; set; } = "";
+        public string paraToDate { get; set; } = "";
+        public string paraAlpha { get; set; } = "";
         public int paraUTID { get; set; } = 0;
         public decimal paraQty { get; set; } = 0;
         public int paraFlag { get; set; } = 0;
