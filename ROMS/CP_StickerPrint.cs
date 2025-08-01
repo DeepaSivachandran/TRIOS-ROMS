@@ -157,6 +157,14 @@ namespace ROMS
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_100x70.rpt");
                         }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x25.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x35.rpt");
+                        }
                     }
                     if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
                     {
@@ -221,7 +229,7 @@ namespace ROMS
 
                 udfnConcernLoad();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbLabelsize.SelectedValue = -1;
@@ -1532,6 +1540,18 @@ namespace ROMS
                 grdProduct.DataSource = null;
                 grdRack.DataSource = null;
                 RPTViewer.ReportSource = null;
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                cmbLabelsize.SelectedValue = -1;
             }
             catch (Exception ex)
             {
