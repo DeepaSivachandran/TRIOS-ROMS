@@ -252,6 +252,7 @@ namespace ROMS
         public static REPORT_CP_RateChange objREPORT_CP_RateChange;
 
         public static REPORT_Stock_Inward objREPORT_Stock_Inward;
+        public static REPORT_Stock_Outward objREPORT_Stock_Outward;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2802,6 +2803,24 @@ namespace ROMS
                 MainForm.objREPORT_Stock_Inward.MdiParent = this;
                 MainForm.objREPORT_Stock_Inward.Show();
                 PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockOutward_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock_Outward = new REPORT_Stock_Outward();
+                MainForm.objREPORT_Stock_Outward.MdiParent = this;
+                MainForm.objREPORT_Stock_Outward.Show();
+                PbCurrentForm = "7.9.2";
             }
             catch (Exception ex)
             {
