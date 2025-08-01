@@ -71,7 +71,7 @@ namespace ROMS
         {
             try
             {
-                udfnStockHoldReport();
+                udfnGodownValuationReport();
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnStockHoldReport()
+        public void udfnGodownValuationReport()
         {
             try
             {
