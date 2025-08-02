@@ -176,7 +176,7 @@ namespace ROMS
                 objTRN_GoodsInward_Purchase.paraAlpha = txtSearchByPICode.Text.Trim();
                 objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
-                objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
+                objDs = objdserv.udfnOutwardReports(objTRN_GoodsInward_Purchase);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
