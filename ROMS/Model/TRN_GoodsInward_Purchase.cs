@@ -46,5 +46,8 @@ namespace ROMS.Model
         public string ParaExpiryDate { get; set; } = "";
         public int paraEditFlag { get; set; } = 0;
         public DataTable paraTRN_GoodsInward_Purchase_Products { get; set; } = null;
+        public string paraAlpha { get; set; } = "";
+        public int paraGroupId { get; set; } = 0;
+        public int paraSubgroupId { get; set; } = 0;
     }
 }

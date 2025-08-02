@@ -112,7 +112,7 @@ namespace ROMS
         {
             try
             {
-                string varLocationName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varProductName = "-All-", varPICodeName = "-All-";
+                string varLocationName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varProductName = "-All-", varAlphaName = "-All-";
                 int varLocationId = 0, varGroupId = 0, varSubgroupId = 0, varProductId = 0;
                 if (txtLocation.Text.Trim() != "")
                 {
@@ -136,7 +136,24 @@ namespace ROMS
                 }
                 if (txtSearchByPICode.Text.Trim() != "")
                 {
-                    varPICodeName = txtSearchByPICode.Text;
+                    varAlphaName = txtSearchByPICode.Text;
+                }
+                int varViewType = 1;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 304)
+                {
+                    varViewType = 2;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 305)
+                {
+                    varViewType = 3;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 306)
+                {
+                    varViewType = 4;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 307)
+                {
+                    varViewType = 5;
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -146,9 +163,20 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(16, 0, 0, 0, 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, "", "", varProductId, 0, "0", "", "", 0, varGroupId, varSubgroupId, 0);
+                TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
+                objTRN_GoodsInward_Purchase.ViewType = varViewType;
+                objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_GoodsInward_Purchase.ParaFromDate = Convert.ToString(dpFromDate.Text);
+                objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
+                objTRN_GoodsInward_Purchase.paraSLID = varLocationId;
+                objTRN_GoodsInward_Purchase.paraProductId = varProductId;
+                objTRN_GoodsInward_Purchase.paraGroupId = varGroupId;
+                objTRN_GoodsInward_Purchase.paraSubgroupId = varSubgroupId;
+                objTRN_GoodsInward_Purchase.paraAlpha = txtSearchByPICode.Text.Trim();
+                objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -160,7 +188,42 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRN_Supplier_Detail.rpt");
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 303)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Outward_Summary.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 304)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Outward_Details.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 305)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Outward_Consolidated.rpt");
+                        objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 306)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Outward_Batch.rpt");
+                        objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 307)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Outward_ProductWise.rpt");
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                        objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                        objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    }
+                    objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraSLID", varLocationId);
+                    objBillreport.SetParameterValue("paraPRID", varProductId);
+                    objBillreport.SetParameterValue("paraPRGID", varGroupId);
+                    objBillreport.SetParameterValue("paraPRSGID", varSubgroupId);
+                    objBillreport.SetParameterValue("paraAlpha", txtSearchByPICode.Text.Trim());
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
