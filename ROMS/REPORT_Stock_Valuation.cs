@@ -83,7 +83,7 @@ namespace ROMS
         {
             try
             {
-                string varProductName = "-All-", varPICodeName = "-All-";
+                string varProductName = "-All-", varAlphaName = "-All-";
                 int varProductId = 0;
                 if (txtProductName.Text.Trim() != "")
                 {
@@ -92,7 +92,7 @@ namespace ROMS
                 }
                 if (txtSearchByPICode.Text.Trim() != "")
                 {
-                    varPICodeName = txtSearchByPICode.Text;
+                    varAlphaName = txtSearchByPICode.Text;
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -102,10 +102,14 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(16, 0, 0, 0, 0, "", "", 0, 0, 0, "", "", varProductId, 0, "0", "", "", 0, 0, 0, 0);
-                objdserv.CloseConnection();
+                SPDataService objspservice = new SPDataService();
+                TRN_Stock objTRNG_Stock = new TRN_Stock();
+                objTRNG_Stock.ViewType = 2;
+                objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_Stock.paraPRID = varProductId;
+                objTRNG_Stock.paraPICode = txtSearchByPICode.Text.Trim();
+                objDs = objspservice.udfnStock(objTRNG_Stock);
+                objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -116,7 +120,14 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRN_Supplier_Detail.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Valuation.rpt");
+                    objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
+                    objBillreport.SetParameterValue("paraProductName", varProductName);
+                    objBillreport.SetParameterValue("paraPICode", txtSearchByPICode.Text.Trim());
+                    objBillreport.SetParameterValue("paraPRID", varProductId);
+                    objBillreport.SetParameterValue("paraSLID", 0);
+                    objBillreport.SetParameterValue("paraMonth", 0);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
