@@ -294,7 +294,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterLocation.Visible == false)
                 {
-                    txtMonths.Focus();
+                    if (txtMonths.Enabled == true)
+                    {
+                        txtMonths.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -367,7 +374,14 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtMonths.Focus();
+                        if (txtMonths.Enabled == true)
+                        {
+                            txtMonths.Focus();
+                        }
+                        else
+                        {
+                            btnView.Focus();
+                        }
                     }
                 }
             }
@@ -384,7 +398,14 @@ namespace ROMS
             {
                 varUpDownKeyLocation = 1;
                 udfnLvStockLocation();
-                txtMonths.Focus();
+                if (txtMonths.Enabled == true)
+                {
+                    txtMonths.Focus();
+                }
+                else
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -454,7 +475,14 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtMonths.Focus();
+                        if (txtMonths.Enabled == true)
+                        {
+                            txtMonths.Focus();
+                        }
+                        else
+                        {
+                            btnView.Focus();
+                        }
                     }
                 }
             }
