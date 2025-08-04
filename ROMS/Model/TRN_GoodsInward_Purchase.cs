@@ -49,5 +49,6 @@ namespace ROMS.Model
         public string paraAlpha { get; set; } = "";
         public int paraGroupId { get; set; } = 0;
         public int paraSubgroupId { get; set; } = 0;
+        public int paraEntryTypeID { get; set; } = 0;
     }
 }

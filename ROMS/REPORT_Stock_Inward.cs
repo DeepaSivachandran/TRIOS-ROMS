@@ -118,8 +118,8 @@ namespace ROMS
         {
             try
             {
-                string varLocationName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varProductName = "-All-", varSupplierName = "-All-", varPICodeName = "-All-";
-                int varLocationId = 0, varGroupId = 0, varSubgroupId = 0, varProductId = 0, varSupplierId = 0;
+                string varLocationName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varProductName = "-All-", varSupplierName = "-All-", varAlphaName = "-All-";
+                int varLocationId = 0, varGroupId = 0, varSubgroupId = 0, varProductId = 0, varSupplierId = 0, varScheduleId = 0, varViewType = 1;
                 if (txtLocation.Text.Trim() != "")
                 {
                     varLocationName = txtLocation.Text;
@@ -144,10 +144,31 @@ namespace ROMS
                 {
                     varSupplierName = txtSupplier.Text;
                     varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleId = Convert.ToInt32(lblScheduleCode.Text);
                 }
                 if (txtSearchByPICode.Text.Trim() != "")
                 {
-                    varPICodeName = txtSearchByPICode.Text;
+                    varAlphaName = txtSearchByPICode.Text;
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 297)
+                {
+                    varViewType = 2;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 298)
+                {
+                    varViewType = 3;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 299)
+                {
+                    varViewType = 4;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 300)
+                {
+                    varViewType = 5;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 308)
+                {
+                    varViewType = 6;
                 }
                 LV_Supplier.Visible = false;
                 btnView.Enabled = false;
@@ -158,9 +179,23 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(16, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblScheduleCode.Text), 0, 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, "", "", varProductId, 0, "0", "", "", 0, varGroupId, varSubgroupId, 0);
+                TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
+                objTRN_GoodsInward_Purchase.ViewType = varViewType;
+                objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_GoodsInward_Purchase.paraEntryTypeID = Convert.ToInt32(cmbEntryType.SelectedValue);
+                objTRN_GoodsInward_Purchase.ParaFromDate = Convert.ToString(dpFromDate.Text);
+                objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
+                objTRN_GoodsInward_Purchase.paraSLID = varLocationId;
+                objTRN_GoodsInward_Purchase.paraProductId = varProductId;
+                objTRN_GoodsInward_Purchase.paraGroupId = varGroupId;
+                objTRN_GoodsInward_Purchase.paraSubgroupId = varSubgroupId;
+                objTRN_GoodsInward_Purchase.ParaSupplierId = varSupplierId;
+                objTRN_GoodsInward_Purchase.ParaScheduleId = varScheduleId;
+                objTRN_GoodsInward_Purchase.paraAlpha = txtSearchByPICode.Text.Trim();
+                objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnInwardReports(objTRN_GoodsInward_Purchase);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -172,7 +207,52 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRN_Supplier_Detail.rpt");
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 296)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Summary.rpt");
+                        objBillreport.SetParameterValue("paraEntryTypeName", cmbEntryType.Text);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 297)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Details.rpt");
+                        objBillreport.SetParameterValue("paraEntryTypeName", cmbEntryType.Text);
+                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 298)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Consolidated.rpt");
+                        objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 299)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Batch.rpt");
+                        objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 300)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_ProductWise.rpt");
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                        objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                        objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 308)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Stock_Inward.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraSLID", varLocationId);
+                    objBillreport.SetParameterValue("paraPRID", varProductId);
+                    objBillreport.SetParameterValue("paraPRGID", varGroupId);
+                    objBillreport.SetParameterValue("paraPRSGID", varSubgroupId);
+                    objBillreport.SetParameterValue("ParaSupplierId", varSupplierId);
+                    objBillreport.SetParameterValue("ParaScheduleId", varScheduleId);
+                    objBillreport.SetParameterValue("paraEntryTypeID", Convert.ToInt32(cmbEntryType.SelectedValue));
+                    objBillreport.SetParameterValue("paraAlpha", txtSearchByPICode.Text.Trim());
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -230,7 +310,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,88) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,55) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,55,90) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbEntryType.SelectedValue = 0;

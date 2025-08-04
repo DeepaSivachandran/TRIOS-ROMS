@@ -4048,6 +4048,43 @@ namespace ROMS
             }
             return ds;
         }
+        public DataSet udfnInwardReports(TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_GoodsInwardReports]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_GoodsInward_Purchase.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRN_GoodsInward_Purchase.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_GoodsInward_Purchase.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_GoodsInward_Purchase.paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_GoodsInward_Purchase.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_GoodsInward_Purchase.ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraPRGID", objTRN_GoodsInward_Purchase.paraGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", objTRN_GoodsInward_Purchase.paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRN_GoodsInward_Purchase.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraEntryTypeID", objTRN_GoodsInward_Purchase.paraEntryTypeID);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_GoodsInward_Purchase.ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", objTRN_GoodsInward_Purchase.ParaScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }
