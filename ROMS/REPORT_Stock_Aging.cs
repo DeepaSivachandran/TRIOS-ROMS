@@ -106,7 +106,7 @@ namespace ROMS
                     varMonths = Convert.ToInt32(txtMonths.Text);
                     varMonthsName = txtMonths.Text;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 309)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 311)
                 {
                     varViewType = 5;
                 }
@@ -136,11 +136,18 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Aging.rpt");
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 310)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Aging.rpt");
+                        objBillreport.SetParameterValue("paraMonthsName", varMonthsName);
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Expiry.rpt");
+                    }
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraSLID", varLocationId);
                     objBillreport.SetParameterValue("paraMonth", varMonths);
-                    objBillreport.SetParameterValue("paraMonthsName", varMonthsName);
                     objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     objBillreport.SetParameterValue("paraPICode", "");
                     objBillreport.SetParameterValue("paraPRID", 0);
