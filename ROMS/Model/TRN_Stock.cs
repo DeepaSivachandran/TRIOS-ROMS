@@ -11,5 +11,8 @@ namespace ROMS.Model
         public int ViewType { get; set; } = 0;
         public int paraPRID { get; set; } = 0;
         public int paraCOMID { get; set; } = 0;
+        public int paraSLID { get; set; } = 0;
+        public int paraMonth { get; set; } = 0;
+        public string paraPICode { get; set; } = "";
     }
 }

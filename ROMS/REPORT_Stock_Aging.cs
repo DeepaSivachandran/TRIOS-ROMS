@@ -95,7 +95,7 @@ namespace ROMS
             try
             {
                 string varLocationName = "-All-",varMonthsName = "-All-";
-                int varLocationId = 0;
+                int varLocationId = 0, varMonths = 0,varViewType=4;
                 if (txtLocation.Text.Trim() != "")
                 {
                     varLocationName = txtLocation.Text;
@@ -103,7 +103,12 @@ namespace ROMS
                 }
                 if (txtMonths.Text.Trim() != "")
                 {
+                    varMonths = Convert.ToInt32(txtMonths.Text);
                     varMonthsName = txtMonths.Text;
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 309)
+                {
+                    varViewType = 5;
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -113,10 +118,14 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGrnListLoad(16, 0, 0, 0, 0, "","", 0, 0, 0, "", "", 0, 0, "0", "", "", 0, 0, 0, 0);
-                objdserv.CloseConnection();
+                SPDataService objspservice = new SPDataService();
+                TRN_Stock objTRNG_Stock = new TRN_Stock();
+                objTRNG_Stock.ViewType = varViewType;
+                objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRNG_Stock.paraSLID = varLocationId;
+                objTRNG_Stock.paraMonth = varMonths;
+                objDs = objspservice.udfnStock(objTRNG_Stock);
+                objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -127,7 +136,14 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_GRN_Supplier_Detail.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Aging.rpt");
+                    objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraSLID", varLocationId);
+                    objBillreport.SetParameterValue("paraMonth", varMonths);
+                    objBillreport.SetParameterValue("paraMonthsName", varMonthsName);
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                    objBillreport.SetParameterValue("paraPICode", "");
+                    objBillreport.SetParameterValue("paraPRID", 0);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
