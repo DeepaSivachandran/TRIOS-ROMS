@@ -1301,7 +1301,7 @@ namespace ROMS
                                     DGV_FilterLocation.Columns["SL_Default"].Visible = false;
                                     DGV_FilterLocation.Columns["SL_StockApplicable"].Visible = false;
                                     DGV_FilterLocation.Columns["SL_EName"].HeaderText = "Location";
-                                    DGV_FilterLocation.Columns["SL_EName"].Width = 220;
+                                    DGV_FilterLocation.Columns["SL_EName"].Width = 180;
                                     DGV_FilterLocation.Columns["SL_EName"].DisplayIndex = 0;
                                     DGV_FilterLocation.BringToFront();
                                 }

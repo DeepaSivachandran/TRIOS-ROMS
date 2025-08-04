@@ -27,6 +27,7 @@ namespace ROMS
         private ToolTip tpPerLevel1 = new ToolTip();
         private ToolTip tpPerLevel2 = new ToolTip();
         private ToolTip tpVerificationDays = new ToolTip();
+        private ToolTip tpAgingMonths = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
         private ToolTip tpReportText = new ToolTip();
         DataSet objDs = new DataSet();
@@ -117,6 +118,7 @@ namespace ROMS
                             txtPerLevel1.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Level1"]);
                             txtPerLevel2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Level2"]);
                             txtVerificationDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_VerificationDays"]);
+                            txtMonths.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Aging_Months"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -214,7 +216,7 @@ namespace ROMS
                 {
                     varDCCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text));
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text));
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -671,6 +673,25 @@ namespace ROMS
                         txtVerificationDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpVerificationDays.ShowAlways = true;
                         tpVerificationDays.Show("Please enter valid days.", txtVerificationDays, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToString(txtMonths.Text.Trim()) == "")
+                {
+                    epGeneralSettings.SetError(txtMonths, "Please enter months.");
+                    txtMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAgingMonths.ShowAlways = true;
+                    tpAgingMonths.Show("Please enter months.", txtMonths, 5000);
+                    blnErrorFlag = true;
+                }
+                else
+                {
+                    if (Convert.ToInt32(txtMonths.Text) < 1 )
+                    {
+                        epGeneralSettings.SetError(txtMonths, "Please enter valid months.");
+                        txtMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpAgingMonths.ShowAlways = true;
+                        tpAgingMonths.Show("Please enter valid months.", txtMonths, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -1455,8 +1476,66 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
+                    txtMonths.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMonths_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMonths.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMonths_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
                     btnUpdate.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMonths_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMonths_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMonths.BackColor = Color.White;
             }
             catch (Exception ex)
             {
