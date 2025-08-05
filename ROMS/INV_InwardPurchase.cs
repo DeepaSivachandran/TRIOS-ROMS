@@ -1991,7 +1991,7 @@ namespace ROMS
                                     if (varFinalQty != 0)
                                     {
                                         varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
-                                        if (varFinalQty < varTotalQty1)
+                                        if (varFinalQty != varTotalQty1)
                                         {
                                             varQuantityErr++;
                                             grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
