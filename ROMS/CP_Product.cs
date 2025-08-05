@@ -7016,7 +7016,6 @@ namespace ROMS
                             varSALESLID = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION SALES"]);
                             lblSaleLocationCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION SALES"]);
                             txtSaleLocation.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION SALES Name"]);
-                            txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
                             varPURRKID = Convert.ToInt32(objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString());
                             lblPurRackCode.Text = objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString();
                             txtPurRack.Text = objDS.Tables[0].Rows[0]["RACK LOCATION Name"].ToString();
@@ -7025,21 +7024,39 @@ namespace ROMS
                             lblSaleRackCode.Text = objDS.Tables[0].Rows[0]["RACK SALES"].ToString();
                             txtSaleRack.Text = objDS.Tables[0].Rows[0]["RACK SALES Name"].ToString();
                             txtRackDescriptionSales.Text = objDS.Tables[0].Rows[0]["Sales_Rack_Description"].ToString();
-                            txtRackMOQQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RACK MOQ"].ToString().Replace("''", "'"));
+                            if (pbCloneFlag == 0)
+                            {
+                                txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
+                                txtRackMOQQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RACK MOQ"].ToString().Replace("''", "'"));
+                                txtWeight.Text = Convert.ToString(objDS.Tables[0].Rows[0]["NET WEIGHT"].ToString().Replace("''", "'"));
+                                txtGrossWeight.Text = Convert.ToString(objDS.Tables[0].Rows[0]["GROSS WEIGHT"].ToString().Replace("''", "'"));
+                                txtMinStock.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MINSTK"].ToString().Replace("''", "'"));
+                                txtMaxStock.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MAXSTK"].ToString().Replace("''", "'"));
+                                txtReOrderQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["REORDER QTY"].ToString().Replace("''", "'"));
+                                txtRMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RMIN SALES QTY"].ToString().Replace("''", "'"));
+                                txtRetailRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RETAIL RATE"].ToString().Replace("''", "'"));
+                                txtWMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WMINSALE QTY"].ToString().Replace("''", "'"));
+                                txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
+                                txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
+                            }
+                            else {
+                                txtUpp.Text = "";
+                                txtRackMOQQty.Text = "";
+                                txtWeight.Text = "";
+                                txtGrossWeight.Text = "";
+                                txtMinStock.Text = "";
+                                txtMaxStock.Text = "";
+                                txtReOrderQty.Text = "";
+                                txtRMinSaleQty.Text = "";
+                                txtRetailRate.Text = "";
+                                txtWMinSaleQty.Text = "";
+                                txtWSaleRate.Text = "";
+                                txtBarcode.Text = "";
+                            }
                             cmbBatchNoEntry.SelectedValue = objDS.Tables[0].Rows[0]["BATCHNO"].ToString();
                             cmbBatchNoGeneration.SelectedValue = objDS.Tables[0].Rows[0]["BARCODE GENERATION"].ToString();
                             cmbPeriod.SelectedValue = objDS.Tables[0].Rows[0]["SHELF LIFE TYPE"].ToString();
                             txtSelfLife.Text = Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE VALUE"].ToString().Replace("''", "'"));
-                            txtWeight.Text = Convert.ToString(objDS.Tables[0].Rows[0]["NET WEIGHT"].ToString().Replace("''", "'"));
-                            txtGrossWeight.Text = Convert.ToString(objDS.Tables[0].Rows[0]["GROSS WEIGHT"].ToString().Replace("''", "'"));
-                            txtMinStock.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MINSTK"].ToString().Replace("''", "'"));
-                            txtMaxStock.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MAXSTK"].ToString().Replace("''", "'"));
-                            txtReOrderQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["REORDER QTY"].ToString().Replace("''", "'"));
-                            txtRMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RMIN SALES QTY"].ToString().Replace("''", "'"));
-                            txtRetailRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RETAIL RATE"].ToString().Replace("''", "'"));
-                            txtWMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WMINSALE QTY"].ToString().Replace("''", "'"));
-                            txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
-                            txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
                             cmbGst.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["GSTID"]);
                             varHsnId = Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString());
                             lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
@@ -7089,7 +7106,7 @@ namespace ROMS
                             cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
                             cmbConcern.Enabled = false;
-                            txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
+                            //txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
 
                             //objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
                             //objdservice.CloseConnection();
