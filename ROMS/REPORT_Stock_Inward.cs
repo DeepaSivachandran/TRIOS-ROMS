@@ -1264,7 +1264,7 @@ namespace ROMS
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
                         objMR_Supplier.ParaFromDate = dpFromDate.Text;
                         objMR_Supplier.ParaToDate = dpToDate.Text;
-                        objMR_Supplier.paraFlag = 6;
+                        objMR_Supplier.paraFlag = 8;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
                         objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -2043,6 +2043,29 @@ namespace ROMS
             try
             {
                 txtLocation.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 308)
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,55) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,55,90) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
             }
             catch (Exception ex)
             {
