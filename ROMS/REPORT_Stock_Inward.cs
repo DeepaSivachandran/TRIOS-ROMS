@@ -239,7 +239,8 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 308)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Stock_Inward.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_SupplierWise.rpt");
+                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     }
                     objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
