@@ -2122,6 +2122,32 @@ namespace ROMS
                                         }
                                     }
                                 }
+                                if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
+                                {
+                                    if ( varGRNPurchaseFlag == 174)   //From Purchase- Queue
+                                    {
+                                        int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmEntrytypeProID"].Value);
+
+                                        var varSumRequestQty = dtInwardPurchase.AsEnumerable()
+                                                                .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
+                                                                 .Sum(x => x.Field<decimal>("GIPPR_ReceivedQty")).ToString();
+                                        var varSumShopQty = dtInwardPurchase.AsEnumerable()
+                                                                .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
+                                                                 .Sum(x => x.Field<decimal>("GIPPR_ShopQty")).ToString();
+
+                                        varQty1 = Convert.ToDecimal(grdInward.Rows[i].Cells["clmFinalQty"].Value);
+                                        if (varQty1 != 0)
+                                        {
+                                            varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
+
+                                            if (varQty1 != varTotalQty1)
+                                            {
+                                                varQuantityErr++;
+                                                grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                            }
+                                        }
+                                    }
+                                }
                             }
                             if (chkCompleted.Checked==true)
                             {
@@ -3060,14 +3086,14 @@ namespace ROMS
                         int varDecimal = Convert.ToInt32(grdInward.CurrentRow.Cells["clmUTDecimal"].Value);
                         string Qty = objValidation.udfnDecimal(Convert.ToString(grdInward.CurrentRow.Cells["clmReceivedQty"].Value), varDecimal);
                         grdInward.Rows[e.RowIndex].Cells["clmReceivedQty"].Value = Qty;
-                        grdInward.Rows[e.RowIndex].Cells["clmError"].Value = 1;
+                       // grdInward.Rows[e.RowIndex].Cells["clmError"].Value = 1;
                     }
                     if (e.ColumnIndex == grdInward.Columns["clmShopQty"].Index && e.RowIndex >= 0)
                     {
                         int varDecimal = Convert.ToInt32(grdInward.CurrentRow.Cells["clmUTDecimal"].Value);
                         string Qty = objValidation.udfnDecimal(Convert.ToString(grdInward.CurrentRow.Cells["clmShopQty"].Value), varDecimal);
                         grdInward.Rows[e.RowIndex].Cells["clmShopQty"].Value = Qty;
-                        grdInward.Rows[e.RowIndex].Cells["clmError"].Value = 1;
+                        //grdInward.Rows[e.RowIndex].Cells["clmError"].Value = 1;
                     }
 
                     if (grdInward.CurrentCell.OwningColumn.Name == "clmExpiryDate")
@@ -3522,7 +3548,7 @@ namespace ROMS
                                 varShopQty = Convert.ToDecimal(grdInward.CurrentRow.Cells["clmShopQty"].Value);
                             }
                             varTotalQty = varReceivedQty + varShopQty;
-                            if ( varTotalQty <= varStock )
+                            if ( varTotalQty < varStock )
                             {
                                 varErrorQty = 1;
                             }
