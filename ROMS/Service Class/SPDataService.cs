@@ -209,7 +209,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 05/10/2023    Description: General Settings
-        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2,int paraVerificationDays)
+        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2,int paraVerificationDays,int paraAgingMonths)
         {
             string varResult = "";
             try
@@ -237,6 +237,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraLevel1", paraLevel1);
                 varSqlCommand.Parameters.AddWithValue("@paraLevel2", paraLevel2);
                 varSqlCommand.Parameters.AddWithValue("@paraVerificationDays", paraVerificationDays);
+                varSqlCommand.Parameters.AddWithValue("@paraAgingMonths", paraAgingMonths);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -811,6 +812,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_Stock.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_Stock.paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraCOMID", objTRNG_Stock.paraCOMID);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_Stock.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraMonth", objTRNG_Stock.paraMonth);
+                varSqlCommand.Parameters.AddWithValue("@paraPICode", objTRNG_Stock.paraPICode);
                 varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIpAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -1529,7 +1533,7 @@ namespace ROMS
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
              , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator,
-              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId, int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN)
+              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId, int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam)
         {
             string result = "";
             try
@@ -1587,6 +1591,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraNewPRID", paraNewPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraMRPFlag", paraMRPFlag);
                 varSqlCommand.Parameters.AddWithValue("@ParaProduct_HSN", ParaProduct_HSN);
+                varSqlCommand.Parameters.AddWithValue("@paraProductLabelNameEng", paraProductLabelNameEng);
+                varSqlCommand.Parameters.AddWithValue("@paraProductLabelNameTam", paraProductLabelNameTam);
 
                 varSqlCommand.CommandTimeout = 0;
 
@@ -2947,6 +2953,12 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_StockHold.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraSHID", objTRNG_StockHold.paraSHID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRNG_StockHold.paraCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_StockHold.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_StockHold.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_StockHold.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_StockHold.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRNG_StockHold.paraAlpha);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -3987,6 +3999,77 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public DataSet udfnOutwardReports(TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_GoodsOutwardReports]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_GoodsInward_Purchase.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRN_GoodsInward_Purchase.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_GoodsInward_Purchase.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_GoodsInward_Purchase.paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_GoodsInward_Purchase.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_GoodsInward_Purchase.ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraPRGID", objTRN_GoodsInward_Purchase.paraGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", objTRN_GoodsInward_Purchase.paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRN_GoodsInward_Purchase.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public DataSet udfnInwardReports(TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_GoodsInwardReports]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_GoodsInward_Purchase.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTRN_GoodsInward_Purchase.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_GoodsInward_Purchase.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_GoodsInward_Purchase.paraProductId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_GoodsInward_Purchase.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_GoodsInward_Purchase.ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraPRGID", objTRN_GoodsInward_Purchase.paraGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", objTRN_GoodsInward_Purchase.paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRN_GoodsInward_Purchase.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraEntryTypeID", objTRN_GoodsInward_Purchase.paraEntryTypeID);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_GoodsInward_Purchase.ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleId", objTRN_GoodsInward_Purchase.ParaScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

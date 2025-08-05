@@ -39,6 +39,8 @@
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpGeneralsettings = new System.Windows.Forms.GroupBox();
+            this.txtMonths = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtVerificationDays = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -132,6 +134,8 @@
             // 
             // grpGeneralsettings
             // 
+            this.grpGeneralsettings.Controls.Add(this.txtMonths);
+            this.grpGeneralsettings.Controls.Add(this.label15);
             this.grpGeneralsettings.Controls.Add(this.label14);
             this.grpGeneralsettings.Controls.Add(this.txtVerificationDays);
             this.grpGeneralsettings.Controls.Add(this.label13);
@@ -169,6 +173,30 @@
             this.grpGeneralsettings.Size = new System.Drawing.Size(1339, 633);
             this.grpGeneralsettings.TabIndex = 958794;
             this.grpGeneralsettings.TabStop = false;
+            // 
+            // txtMonths
+            // 
+            this.txtMonths.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMonths.Location = new System.Drawing.Point(280, 515);
+            this.txtMonths.MaxLength = 2;
+            this.txtMonths.Name = "txtMonths";
+            this.txtMonths.Size = new System.Drawing.Size(64, 27);
+            this.txtMonths.TabIndex = 16;
+            this.txtMonths.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMonths.Enter += new System.EventHandler(this.TxtMonths_Enter);
+            this.txtMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonths_KeyDown);
+            this.txtMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonths_KeyPress);
+            this.txtMonths.Leave += new System.EventHandler(this.TxtMonths_Leave);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(15, 518);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(84, 20);
+            this.label15.TabIndex = 1111216;
+            this.label15.Text = "Aging Months";
             // 
             // label14
             // 
@@ -217,7 +245,7 @@
             this.grbShelflife.Size = new System.Drawing.Size(139, 100);
             this.grbShelflife.TabIndex = 13;
             this.grbShelflife.TabStop = false;
-            this.grbShelflife.Text = "Shelflife Alert";
+            this.grbShelflife.Text = "Shelf Life Alert";
             // 
             // label12
             // 
@@ -708,7 +736,7 @@
             this.btnClose.Location = new System.Drawing.Point(1247, 586);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 17;
+            this.btnClose.TabIndex = 18;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -725,7 +753,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(1160, 586);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(84, 29);
-            this.btnUpdate.TabIndex = 16;
+            this.btnUpdate.TabIndex = 17;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -841,5 +869,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtVerificationDays;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtMonths;
     }
 }

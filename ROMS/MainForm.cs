@@ -222,7 +222,14 @@ namespace ROMS
         public static REPORT_CP_Rackgroup objREPORT_CP_Rackgroup;
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
         public static REPORT_CP_Product objREPORT_CP_Product;
+
         public static REPORT_Stock objREPORT_Stock;
+        public static REPORT_Stock_Hold objREPORT_Stock_Hold;
+        public static REPORT_Stock_Aging objREPORT_Stock_Aging;
+        public static REPORT_Godown_Valuation objREPORT_Godown_Valuation;
+        public static REPORT_Stock_Valuation objREPORT_Stock_Valuation;
+        public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
+
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
         public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
@@ -250,6 +257,9 @@ namespace ROMS
         public static REPORT_HSN_NameWise_Product objREPORT_HSN_NameWise_Product;
         public static REPORT_HSN_NameWise_Product_Consolidated objREPORT_HSN_NameWise_Product_Consolidated;
         public static REPORT_CP_RateChange objREPORT_CP_RateChange;
+
+        public static REPORT_Stock_Inward objREPORT_Stock_Inward;
+        public static REPORT_Stock_Outward objREPORT_Stock_Outward;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2790,6 +2800,42 @@ namespace ROMS
             }
         }
 
+        private void TsmStockInward_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock_Inward = new REPORT_Stock_Inward();
+                MainForm.objREPORT_Stock_Inward.MdiParent = this;
+                MainForm.objREPORT_Stock_Inward.Show();
+                PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockOutward_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock_Outward = new REPORT_Stock_Outward();
+                MainForm.objREPORT_Stock_Outward.MdiParent = this;
+                MainForm.objREPORT_Stock_Outward.Show();
+                PbCurrentForm = "7.9.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -2800,6 +2846,95 @@ namespace ROMS
                 MainForm.objREPORT_Stock.MdiParent = this;
                 MainForm.objREPORT_Stock.Show();
                 PbCurrentForm = "7.2.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmStockHoldReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock_Hold = new REPORT_Stock_Hold();
+                MainForm.objREPORT_Stock_Hold.MdiParent = this;
+                MainForm.objREPORT_Stock_Hold.Show();
+                PbCurrentForm = "7.2.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockAging_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock_Aging = new REPORT_Stock_Aging();
+                MainForm.objREPORT_Stock_Aging.MdiParent = this;
+                MainForm.objREPORT_Stock_Aging.Show();
+                PbCurrentForm = "7.2.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmGodownValuation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Godown_Valuation = new REPORT_Godown_Valuation();
+                MainForm.objREPORT_Godown_Valuation.MdiParent = this;
+                MainForm.objREPORT_Godown_Valuation.Show();
+                PbCurrentForm = "7.2.4";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockValuation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock_Valuation = new REPORT_Stock_Valuation();
+                MainForm.objREPORT_Stock_Valuation.MdiParent = this;
+                MainForm.objREPORT_Stock_Valuation.Show();
+                PbCurrentForm = "7.2.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_StockVsZeroRate = new REPORT_StockVsZeroRate();
+                MainForm.objREPORT_StockVsZeroRate.MdiParent = this;
+                MainForm.objREPORT_StockVsZeroRate.Show();
+                PbCurrentForm = "7.2.6";
             }
             catch (Exception ex)
             {

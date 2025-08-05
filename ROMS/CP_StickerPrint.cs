@@ -17,14 +17,14 @@ namespace ROMS
         //*************** Object for Service Classes Initialisation  ***********
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public DataTable dtPMGroup, dtSubgroup, dtProduct, dtGroup, dtRawMaterial, dtFinishedGoods;
+        public DataTable dtPMGroup, dtSubgroup, dtProduct, dtGroup, dtRack;
         public static string varFGCode;
         public int varStickerType;
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpType = new ToolTip();
         private ToolTip tpLabelSize = new ToolTip();
         private ToolTip tpLabelCount = new ToolTip();
-        public string varProductCodes, varSubgroupCodes, varGroupCodes = "0";
+        public string varProductCodes, varSubgroupCodes, varGroupCodes, varRackCodes = "0";
         private int varsno;
         List<string> varListSubgroupCodes = new List<string>();
         List<string> varListGroupCodes = new List<string>();
@@ -85,6 +85,11 @@ namespace ROMS
                     viewType = 65;
                     varCodes = varProductCodes;
                 }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                {
+                    viewType = 69;
+                    varCodes = varRackCodes;
+                }
                 picLoader4.Visible = true;
                 errRack.Clear();
                 RPTViewer.ReportSource = null;
@@ -142,8 +147,30 @@ namespace ROMS
                         }
                         objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     }
+                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                    {
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_100x70.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x25.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x35.rpt");
+                        }
+                    }
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    {
+                        objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
+                    }
                     objBillreport.SetParameterValue("paraLabelCount", Convert.ToInt32(txtLabelCount.Text));
-                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
                     objBillreport.SetParameterValue("ParaProductsCode", varCodes);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
@@ -195,9 +222,14 @@ namespace ROMS
                 dtSubgroup.Columns.Add("SubgroupID", typeof(int));
                 dtSubgroup.Columns.Add("GroupID", typeof(int));
 
+                dtRack = new DataTable();
+                dtRack.Columns.Add("", typeof(Boolean));
+                dtRack.Columns.Add("Rack Name", typeof(string));
+                dtRack.Columns.Add("RackID", typeof(int));
+
                 udfnConcernLoad();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbLabelsize.SelectedValue = -1;
@@ -254,6 +286,7 @@ namespace ROMS
                 dtProduct = null;
                 dtGroup = null;
                 dtSubgroup = null;
+                dtRack = null;
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -269,6 +302,10 @@ namespace ROMS
                         if (objDs.Tables[2].Rows.Count != 0)
                         {
                             dtSubgroup = objDs.Tables[2];
+                        }
+                        if (objDs.Tables[3].Rows.Count != 0)
+                        {
+                            dtRack = objDs.Tables[3];
                         }
                     }
                 }
@@ -308,21 +345,43 @@ namespace ROMS
                 grdGroup.DataSource = null;
                 grdSubgroup.DataSource = null;
                 grdProduct.DataSource = null;
+                grdRack.DataSource = null;
                 RPTViewer.ReportSource = null;
 
                 txtProduct.Text = "";
                 txtGroup.Text = "";
                 txtSubgroup.Text = "";
-                if (dtGroup != null)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
                 {
-                    picLoader2.Visible = true;
-                    grdGroup.DataSource = dtGroup.Copy();
-                    grdGroup.Columns[0].HeaderText = "";
-                    grdGroup.Columns[0].Width = 50;
-                    grdGroup.Columns[1].Width = 200;
-                    grdGroup.Columns[1].ReadOnly = true;
-                    grdGroup.Columns[2].Visible = false;
-                    picLoader2.Visible = false;
+                    if (dtGroup != null)
+                    {
+                        picLoader2.Visible = true;
+                        grdGroup.DataSource = dtGroup.Copy();
+                        grdRack.SendToBack();
+                        grdGroup.BringToFront();
+                        grdGroup.Columns[0].HeaderText = "";
+                        grdGroup.Columns[0].Width = 50;
+                        grdGroup.Columns[1].Width = 200;
+                        grdGroup.Columns[1].ReadOnly = true;
+                        grdGroup.Columns[2].Visible = false;
+                        picLoader2.Visible = false;
+                    }
+                }
+                else
+                {
+                    if (dtRack != null)
+                    {
+                        picLoader2.Visible = true;
+                        grdRack.DataSource = dtRack.Copy();
+                        grdGroup.SendToBack();
+                        grdRack.BringToFront();
+                        grdRack.Columns[0].HeaderText = "";
+                        grdRack.Columns[0].Width = 50;
+                        grdRack.Columns[1].Width = 180;
+                        grdRack.Columns[1].ReadOnly = true;
+                        grdRack.Columns[2].Visible = false;
+                        picLoader2.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -591,6 +650,8 @@ namespace ROMS
                     tpLabelCount.Show("Please enter label count", txtLabelCount, 5000);
                     blnErrFlag = true;
                 }
+
+                SPDataService objDataService = new SPDataService();
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                 {
                     List<string> varSelectedGroupCodes = new List<string>();
@@ -611,7 +672,9 @@ namespace ROMS
                     }
                     if (varCount == 0)
                     {
-                        MessageBox.Show("Please select atleast one group.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string varMessage = objDataService.udfnGetMessages(151);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
                         blnErrFlag = true;
                     }
                 }
@@ -635,7 +698,9 @@ namespace ROMS
                     }
                     if (varCount == 0)
                     {
-                        MessageBox.Show("Please select atleast one subgroup.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string varMessage = objDataService.udfnGetMessages(44);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
                         blnErrFlag = true;
                     }
                 }
@@ -659,7 +724,35 @@ namespace ROMS
                     }
                     if (varCount == 0)
                     {
-                        MessageBox.Show("Please select atleast one product.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string varMessage = objDataService.udfnGetMessages(80);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
+                        blnErrFlag = true;
+                    }
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                {
+                    List<string> varSelectedRackCodes = new List<string>();
+                    int varCount = 0;
+                    varRackCodes = "0";
+                    if (grdRack.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < grdRack.Rows.Count; i++)
+                        {
+                            if (Convert.ToBoolean(grdRack.Rows[i].Cells[0].EditedFormattedValue) == true)
+                            {
+                                string varRackCode = grdRack.Rows[i].Cells["RackID"].Value.ToString();
+                                varSelectedRackCodes.Add(varRackCode);
+                                varCount++;
+                            }
+                        }
+                        varRackCodes = string.Join(",", varSelectedRackCodes);
+                    }
+                    if (varCount == 0)
+                    {
+                        string varMessage = objDataService.udfnGetMessages(60);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
                         blnErrFlag = true;
                     }
                 }
@@ -786,14 +879,29 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(grdGroup.Rows.Count) > 0)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
                 {
-                    for (int i = 0; i < grdGroup.Rows.Count; i++)
+                    if (Convert.ToInt32(grdGroup.Rows.Count) > 0)
                     {
-                        grdGroup.Rows[i].Cells[0].Value = true;
+                        for (int i = 0; i < grdGroup.Rows.Count; i++)
+                        {
+                            grdGroup.Rows[i].Cells[0].Value = true;
+                        }
+                        txtSubgroup.Text = "";
+                        txtProduct.Text = "";
                     }
-                    txtSubgroup.Text = "";
-                    txtProduct.Text = "";
+                }
+                else
+                {
+                    if (Convert.ToInt32(grdRack.Rows.Count) > 0)
+                    {
+                        for (int i = 0; i < grdRack.Rows.Count; i++)
+                        {
+                            grdRack.Rows[i].Cells[0].Value = true;
+                        }
+                        txtSubgroup.Text = "";
+                        txtProduct.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -807,14 +915,29 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(grdGroup.Rows.Count) > 0)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
                 {
-                    for (int i = 0; i < grdGroup.Rows.Count; i++)
+                    if (Convert.ToInt32(grdGroup.Rows.Count) > 0)
                     {
-                        grdGroup.Rows[i].Cells[0].Value = false;
+                        for (int i = 0; i < grdGroup.Rows.Count; i++)
+                        {
+                            grdGroup.Rows[i].Cells[0].Value = false;
+                        }
+                        txtSubgroup.Text = "";
+                        txtProduct.Text = "";
                     }
-                    txtSubgroup.Text = "";
-                    txtProduct.Text = "";
+                }
+                else
+                {
+                    if (Convert.ToInt32(grdRack.Rows.Count) > 0)
+                    {
+                        for (int i = 0; i < grdRack.Rows.Count; i++)
+                        {
+                            grdRack.Rows[i].Cells[0].Value = false;
+                        }
+                        txtSubgroup.Text = "";
+                        txtProduct.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -1114,7 +1237,10 @@ namespace ROMS
         {
             try
             {
-                (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtProduct.Text + "%'";
+                if (txtProduct.Text.Trim().Length > 0)
+                {
+                    (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtProduct.Text + "%'";
+                }
             }
             catch (Exception ex)
             {
@@ -1127,7 +1253,17 @@ namespace ROMS
         {
             try
             {
-                (grdGroup.DataSource as DataTable).DefaultView.RowFilter = "([Group Name]) LIKE '%" + txtGroup.Text + "%'";
+                if (txtGroup.Text.Trim().Length > 0)
+                {
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    {
+                        (grdGroup.DataSource as DataTable).DefaultView.RowFilter = "([Group Name]) LIKE '%" + txtGroup.Text + "%'";
+                    }
+                    else
+                    {
+                        (grdRack.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1140,7 +1276,10 @@ namespace ROMS
         {
             try
             {
-                (grdSubgroup.DataSource as DataTable).DefaultView.RowFilter = "([Subgroup Name]) LIKE '%" + txtSubgroup.Text + "%'";
+                if (txtSubgroup.Text.Trim().Length > 0)
+                {
+                    (grdSubgroup.DataSource as DataTable).DefaultView.RowFilter = "([Subgroup Name]) LIKE '%" + txtSubgroup.Text + "%'";
+                }
             }
             catch (Exception ex)
             {
@@ -1329,8 +1468,13 @@ namespace ROMS
         {
             try
             {
+                txtGroup.Text = "";
+                txtSubgroup.Text = "";
+                txtProduct.Text = "";
+                cmbProductName.Enabled = true;
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                 {
+                    lblGroup.Text = "Group";
                     label2.Text = "Group Name";
                     grdSubgroup.Visible = false;
                     txtSubgroup.Visible = false;
@@ -1374,10 +1518,40 @@ namespace ROMS
                     btnProductSelect.Visible = true;
                     btnProductUnSelect.Visible = true;
                 }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                {
+                    label2.Text = "";
+                    lblGroup.Text = "Rack";
+                    cmbProductName.Enabled = false;
+                    grdSubgroup.Visible = false;
+                    txtSubgroup.Visible = false;
+                    lblSubgroup.Visible = false;
+                    btnSubgroupSelect.Visible = false;
+                    btnSubgroupUnSelect.Visible = false;
+
+                    grdProduct.Visible = false;
+                    txtProduct.Visible = false;
+                    lblProduct.Visible = false;
+                    btnProductSelect.Visible = false;
+                    btnProductUnSelect.Visible = false;
+                }
                 grdGroup.DataSource = null;
                 grdSubgroup.DataSource = null;
                 grdProduct.DataSource = null;
+                grdRack.DataSource = null;
                 RPTViewer.ReportSource = null;
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                cmbLabelsize.SelectedValue = -1;
             }
             catch (Exception ex)
             {
@@ -1422,6 +1596,43 @@ namespace ROMS
                 grdSubgroup.Columns[1].ReadOnly = true;
                 grdSubgroup.Columns[2].Visible = false;
                 grdSubgroup.Columns[3].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRack_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdRack.CurrentCell is DataGridViewCheckBoxCell)
+                {
+                    grdRack.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRack_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+                {
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 1 && Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    {
+                        picLoader3.Visible = true;
+                        udfnSubgroupBind();
+                        picLoader3.Visible = false;
+                    }
+                }
             }
             catch (Exception ex)
             {

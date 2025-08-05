@@ -149,6 +149,10 @@ namespace ROMS
             this.hSNReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHSNCodeWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHSNNameWiseProductReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRateChangeReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockInward = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockOutward = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,7 +161,11 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRateChangeReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockHoldReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockAging = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGodownValuation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockValuation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockVsZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -825,7 +833,8 @@ namespace ROMS
             this.TSMGRNReport,
             this.supplierWiseReportToolStripMenuItem,
             this.purchaseReportToolStripMenuItem,
-            this.tsmRateChangeReport});
+            this.tsmRateChangeReport,
+            this.inventoryToolStripMenuItem1});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -946,7 +955,12 @@ namespace ROMS
             // stockReportToolStripMenuItem
             // 
             this.stockReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stockToolStripMenuItem});
+            this.stockToolStripMenuItem,
+            this.tsmStockHoldReport,
+            this.tsmStockAging,
+            this.tsmGodownValuation,
+            this.tsmStockValuation,
+            this.tsmStockVsZeroRate});
             this.stockReportToolStripMenuItem.Name = "stockReportToolStripMenuItem";
             this.stockReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.stockReportToolStripMenuItem.Text = "Stock Report";
@@ -1153,6 +1167,36 @@ namespace ROMS
             this.tsmHSNNameWiseProductReport.Text = "HSN Name Wise Product Report";
             this.tsmHSNNameWiseProductReport.Click += new System.EventHandler(this.TsmHSNNameWiseProductReport_Click);
             // 
+            // tsmRateChangeReport
+            // 
+            this.tsmRateChangeReport.Name = "tsmRateChangeReport";
+            this.tsmRateChangeReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmRateChangeReport.Text = "Rate Change";
+            this.tsmRateChangeReport.Click += new System.EventHandler(this.tsmRateChangeReport_Click);
+            // 
+            // inventoryToolStripMenuItem1
+            // 
+            this.inventoryToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmStockInward,
+            this.tsmStockOutward});
+            this.inventoryToolStripMenuItem1.Name = "inventoryToolStripMenuItem1";
+            this.inventoryToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.inventoryToolStripMenuItem1.Text = "Inventory";
+            // 
+            // tsmStockInward
+            // 
+            this.tsmStockInward.Name = "tsmStockInward";
+            this.tsmStockInward.Size = new System.Drawing.Size(147, 22);
+            this.tsmStockInward.Text = "Stock Inward";
+            this.tsmStockInward.Click += new System.EventHandler(this.TsmStockInward_Click);
+            // 
+            // tsmStockOutward
+            // 
+            this.tsmStockOutward.Name = "tsmStockOutward";
+            this.tsmStockOutward.Size = new System.Drawing.Size(147, 22);
+            this.tsmStockOutward.Text = "Stock Outward";
+            this.tsmStockOutward.Click += new System.EventHandler(this.TsmStockOutward_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1224,12 +1268,40 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // tsmRateChangeReport
+            // tsmStockHoldReport
             // 
-            this.tsmRateChangeReport.Name = "tsmRateChangeReport";
-            this.tsmRateChangeReport.Size = new System.Drawing.Size(191, 22);
-            this.tsmRateChangeReport.Text = "Rate Change";
-            this.tsmRateChangeReport.Click += new System.EventHandler(this.tsmRateChangeReport_Click);
+            this.tsmStockHoldReport.Name = "tsmStockHoldReport";
+            this.tsmStockHoldReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockHoldReport.Text = "Stock Hold";
+            this.tsmStockHoldReport.Click += new System.EventHandler(this.TsmStockHoldReport_Click);
+            // 
+            // tsmStockAging
+            // 
+            this.tsmStockAging.Name = "tsmStockAging";
+            this.tsmStockAging.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockAging.Text = "Stock Aging";
+            this.tsmStockAging.Click += new System.EventHandler(this.TsmStockAging_Click);
+            // 
+            // tsmGodownValuation
+            // 
+            this.tsmGodownValuation.Name = "tsmGodownValuation";
+            this.tsmGodownValuation.Size = new System.Drawing.Size(180, 22);
+            this.tsmGodownValuation.Text = "Godown Valuation";
+            this.tsmGodownValuation.Click += new System.EventHandler(this.TsmGodownValuation_Click);
+            // 
+            // tsmStockValuation
+            // 
+            this.tsmStockValuation.Name = "tsmStockValuation";
+            this.tsmStockValuation.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockValuation.Text = "Stock Valuation";
+            this.tsmStockValuation.Click += new System.EventHandler(this.TsmStockValuation_Click);
+            // 
+            // tsmStockVsZeroRate
+            // 
+            this.tsmStockVsZeroRate.Name = "tsmStockVsZeroRate";
+            this.tsmStockVsZeroRate.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockVsZeroRate.Text = "Stock Vs Zero Rate";
+            this.tsmStockVsZeroRate.Click += new System.EventHandler(this.TsmStockVsZeroRate_Click);
             // 
             // MainForm
             // 
@@ -1388,5 +1460,13 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem supplierLedgerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmRateChange;
         private System.Windows.Forms.ToolStripMenuItem tsmRateChangeReport;
+        private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockInward;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockOutward;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockHoldReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockAging;
+        private System.Windows.Forms.ToolStripMenuItem tsmGodownValuation;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockValuation;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockVsZeroRate;
     }
 }

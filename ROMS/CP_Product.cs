@@ -1043,7 +1043,7 @@ namespace ROMS
                     {
                         varbrandid = lblBrand.Text;
                     }
-                    if (varproductcode == 0 || pbCloneFlag == 1)
+                    if ((varproductcode == 0 || pbCloneFlag == 1) && varFlag == 0)
                     {
                         varviewtype = 0;
                         varorignator = "Product Create";
@@ -1082,7 +1082,7 @@ namespace ROMS
                     , Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN);
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim());
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -1421,7 +1421,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbProductCategory.Focus();
+                    txtLabelNameEnglish.Focus();
                 }
             }
             catch (Exception ex)
@@ -5914,9 +5914,51 @@ namespace ROMS
                                 }
                                 grdPurHSN.Rows.RemoveAt(this.grdPurHSN.CurrentRow.Index);
                                 //udfnSetPurMinDate();
+                                udfnUpdateRemovableFlags();
+                                udfnPurHideRemove();
                             }
                             break;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnUpdateRemovableFlags()
+        {
+            try
+            {
+                foreach (DataGridViewRow row in grdPurHSN.Rows)
+                {
+                    row.Cells["clmPurAddFlag"].Value = "1";
+                }
+                if (grdPurHSN.Rows.Count > 0)
+                {
+                    var lastRow = grdPurHSN.Rows[grdPurHSN.Rows.Count - 1];
+                    lastRow.Cells["clmPurAddFlag"].Value = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnUpdateSalesRemovableFlags()
+        {
+            try
+            {
+                foreach (DataGridViewRow row in grdSalesHSN.Rows)
+                {
+                    row.Cells["clmSalesAddFlag"].Value = "1";
+                }
+                if (grdSalesHSN.Rows.Count > 0)
+                {
+                    var lastRow = grdSalesHSN.Rows[grdSalesHSN.Rows.Count - 1];
+                    lastRow.Cells["clmSalesAddFlag"].Value = "0";
                 }
             }
             catch (Exception ex)
@@ -5947,6 +5989,9 @@ namespace ROMS
                                     dtSalesHSN.Rows.Remove(row);
                                 }
                                 grdSalesHSN.Rows.RemoveAt(this.grdSalesHSN.CurrentRow.Index);
+
+                                udfnUpdateSalesRemovableFlags();
+                                udfnSalesHideRemove();
                                 //udfnSetSalesMinDate();
                             }
                             break;
@@ -6181,7 +6226,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN);
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim());
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -6303,6 +6348,172 @@ namespace ROMS
             }
         }
 
+        private void GrdPurHSN_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                udfnPurHideRemove();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnPurHideRemove()
+        {
+            try
+            {
+                for (int i = 0; i < grdPurHSN.Rows.Count; i++)
+                {
+                    var addFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurAddFlag"].Value);
+                    var editFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurEditFlag"].Value);
+                    var removeCell = grdPurHSN.Rows[i].Cells["clmPurRemove"];
+
+                    if (addFlag == "0" && editFlag == "0")
+                    {
+                        removeCell.Value = global::ROMS.Properties.Resources.remove;
+                        removeCell.ReadOnly = false;
+                    }
+                    else
+                    {
+                        removeCell.Value = new Bitmap(1, 1);
+                        removeCell.ReadOnly = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnSalesHideRemove()
+        {
+            try
+            {
+                for (int i = 0; i < grdSalesHSN.Rows.Count; i++)
+                {
+                    var addFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesAddFlag"].Value);
+                    var editFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesEditFlag"].Value);
+                    var removeCell = grdSalesHSN.Rows[i].Cells["clmSalesRemove"];
+
+                    if (addFlag == "0" && editFlag == "0")
+                    {
+                        removeCell.Value = global::ROMS.Properties.Resources.remove;
+                        removeCell.ReadOnly = false;
+                    }
+                    else
+                    {
+                        removeCell.Value = new Bitmap(1, 1);
+                        removeCell.ReadOnly = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSalesHSN_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                udfnSalesHideRemove();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLabelNameEnglish_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLabelNameEnglish.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLabelNameEnglish_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtLabelNameTamil.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLabelNameEnglish_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLabelNameEnglish.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLabelNameTamil_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLabelNameTamil.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLabelNameTamil_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbProductCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLabelNameTamil_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLabelNameTamil.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DpPurEffectiveFrom_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -6363,9 +6574,15 @@ namespace ROMS
                 errItems.Clear();
                 if (varPurEffectiveFromErr == 0)
                 {
-                    grdPurHSN.Rows.Add(txtPURHSNName.Text.Trim(), varPurHSNCode, varPurGST, dpPurEffectiveFrom.Text, "", varPurHSNID);
+                    foreach (DataGridViewRow row in grdPurHSN.Rows)
+                    {
+                        row.Cells["clmPurAddFlag"].Value = 1;
+                    }
+                    grdPurHSN.Rows.Add(txtPURHSNName.Text.Trim(), varPurHSNCode, varPurGST, dpPurEffectiveFrom.Text, "", varPurHSNID, 0, 0);
                     dtPurHSN.Rows.Add(1, varPurHSNID, dpPurEffectiveFrom.Text, "");
+                    grdPurHSN.Columns["clmPurGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdPurHSN.ClearSelection();
+                    udfnPurHideRemove();
                     //udfnSetPurMinDate();
                     txtPURHSNName.Text = "";
                     varPurHSNCode = "";
@@ -6479,9 +6696,11 @@ namespace ROMS
                 errItems.Clear();
                 if (varSalesEffectiveFromErr == 0)
                 {
-                    grdSalesHSN.Rows.Add(txtSalesHSNName.Text.Trim(), varSalesHSNCode, varSalesGST, dpSalesEffectiveFrom.Text, "", varSalesHSNID);
+                    grdSalesHSN.Rows.Add(txtSalesHSNName.Text.Trim(), varSalesHSNCode, varSalesGST, dpSalesEffectiveFrom.Text, "", varSalesHSNID, 0, 0);
                     dtSalesHSN.Rows.Add(2, varSalesHSNID, dpSalesEffectiveFrom.Text, "");
+                    grdSalesHSN.Columns["clmSalesGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdSalesHSN.ClearSelection();
+                    udfnSalesHideRemove();
                     //udfnSetSalesMinDate();
                     txtSalesHSNName.Text = "";
                     varSalesHSNCode = "";
@@ -6775,6 +6994,8 @@ namespace ROMS
                             txtPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
                             txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
                             txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
+                            txtLabelNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"].ToString().Replace("''", "'"));
+                            txtLabelNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LTNAME"].ToString().Replace("''", "'"));
                             cmbProductCategory.SelectedValue = objDS.Tables[0].Rows[0]["PRODUCTCATEGORY"].ToString();
                             varSubGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["SUBGROUP"].ToString());
                             lblSubGroupCode.Text = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
@@ -6906,23 +7127,34 @@ namespace ROMS
                                     string varEffectiveFrom = dr["PRHSN_EffectiveFrom"]?.ToString().Trim();
                                     string varEffectiveTo = dr["PRHSN_EffectiveTo"]?.ToString().Trim();
                                     int varHSNID = Convert.ToInt32(dr["PRHSN_HSNID"]);
+                                    int varAddFlag = Convert.ToInt32(dr["AddFlag"]);
+                                    int varEditFlag = Convert.ToInt32(dr["EditFlag"]);
 
                                     // Add row to Purchase Grid (Type = 1)
                                     if (varHsnType == 1)
                                     {
-                                        grdPurHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom,varEffectiveTo, varHSNID);
+                                        grdPurHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom,varEffectiveTo, varHSNID, varAddFlag, varEditFlag);
                                         dtPurHSN.Rows.Add(1, varHSNID, varEffectiveFrom, varEffectiveTo);
                                     }
                                     // Add row to Sales Grid (Type = 2)
                                     else if (varHsnType == 2)
                                     {
-                                        grdSalesHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID);
+                                        grdSalesHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID, varAddFlag, varEditFlag);
                                         dtSalesHSN.Rows.Add(2, varHSNID, varEffectiveFrom, varEffectiveTo);
                                     }
                                     dtProductHSN.Rows.Add(varHsnType, varHSNID, varEffectiveFrom, varEffectiveTo);
                                 }
                                 grdPurHSN.ClearSelection();
                                 grdSalesHSN.ClearSelection();
+
+                                grdPurHSN.Columns["clmPurGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSalesHSN.Columns["clmSalesGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                //Reset flag and Hide Remove Icon For Purchase HSN
+                                udfnUpdateRemovableFlags();
+                                udfnPurHideRemove();
+                                //Reset flag and Hide Remove Icon For Sales HSN
+                                udfnUpdateSalesRemovableFlags();
+                                udfnSalesHideRemove();
                                 //udfnSetPurMinDate();
                                 //udfnSetSalesMinDate();
                             }

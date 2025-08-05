@@ -46,6 +46,10 @@
             this.txtDSubGroup = new System.Windows.Forms.TextBox();
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtLabelNameTamil = new System.Windows.Forms.TextBox();
+            this.txtLabelNameEnglish = new System.Windows.Forms.TextBox();
             this.cmbRM = new System.Windows.Forms.ComboBox();
             this.lblSaleRackCode = new System.Windows.Forms.Label();
             this.lblSaleLocationCode = new System.Windows.Forms.Label();
@@ -132,22 +136,6 @@
             this.txtPurRack = new System.Windows.Forms.TextBox();
             this.txtPurLocation = new System.Windows.Forms.TextBox();
             this.txtRackDescription = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
-            this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
-            this.lvSaleLocation = new System.Windows.Forms.ListView();
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtSaleRack = new System.Windows.Forms.TextBox();
-            this.txtSaleLocation = new System.Windows.Forms.TextBox();
-            this.txtRackDescriptionSales = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.txtDSalesGodown = new System.Windows.Forms.TextBox();
-            this.txtDSalesShop = new System.Windows.Forms.TextBox();
             this.grpHsndetail = new System.Windows.Forms.GroupBox();
             this.lvHsnCode = new System.Windows.Forms.ListView();
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -158,6 +146,22 @@
             this.cmbGst = new System.Windows.Forms.ComboBox();
             this.txtHSNCode = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
+            this.lvSaleLocation = new System.Windows.Forms.ListView();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
+            this.txtSaleRack = new System.Windows.Forms.TextBox();
+            this.txtSaleLocation = new System.Windows.Forms.TextBox();
+            this.txtRackDescriptionSales = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtDSalesGodown = new System.Windows.Forms.TextBox();
+            this.txtDSalesShop = new System.Windows.Forms.TextBox();
             this.grbBatchNoDetails = new System.Windows.Forms.GroupBox();
             this.cmbBatchNoGeneration = new System.Windows.Forms.ComboBox();
             this.txtBatchNoGeneration = new System.Windows.Forms.TextBox();
@@ -195,6 +199,8 @@
             this.clmPurEffectiveFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPurEffectiveTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPurHSNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurAddFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPurRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnPURHSN = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -215,6 +221,8 @@
             this.clmSalesEffectiveFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesEffectiveTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesHSNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesAddFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnSalesHSN = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -242,8 +250,8 @@
             this.pnlStatus.SuspendLayout();
             this.grpExpire.SuspendLayout();
             this.grplocation.SuspendLayout();
-            this.grbSalesStockLocation.SuspendLayout();
             this.grpHsndetail.SuspendLayout();
+            this.grbSalesStockLocation.SuspendLayout();
             this.grbBatchNoDetails.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.grbPurchaseHSN.SuspendLayout();
@@ -352,11 +360,11 @@
             this.txtDSubGroup.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSubGroup.Enabled = false;
             this.txtDSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSubGroup.Location = new System.Drawing.Point(21, 158);
+            this.txtDSubGroup.Location = new System.Drawing.Point(21, 215);
             this.txtDSubGroup.Name = "txtDSubGroup";
             this.txtDSubGroup.ReadOnly = true;
             this.txtDSubGroup.Size = new System.Drawing.Size(139, 27);
-            this.txtDSubGroup.TabIndex = 7;
+            this.txtDSubGroup.TabIndex = 789;
             this.txtDSubGroup.TabStop = false;
             this.txtDSubGroup.Text = "Product Subgroup";
             // 
@@ -365,7 +373,7 @@
             this.txtDUnit.BackColor = System.Drawing.SystemColors.Control;
             this.txtDUnit.Enabled = false;
             this.txtDUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDUnit.Location = new System.Drawing.Point(21, 239);
+            this.txtDUnit.Location = new System.Drawing.Point(21, 296);
             this.txtDUnit.Name = "txtDUnit";
             this.txtDUnit.ReadOnly = true;
             this.txtDUnit.Size = new System.Drawing.Size(139, 27);
@@ -375,6 +383,10 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.textBox9);
+            this.grbform.Controls.Add(this.textBox6);
+            this.grbform.Controls.Add(this.txtLabelNameTamil);
+            this.grbform.Controls.Add(this.txtLabelNameEnglish);
             this.grbform.Controls.Add(this.cmbRM);
             this.grbform.Controls.Add(this.lblSaleRackCode);
             this.grbform.Controls.Add(this.lblSaleLocationCode);
@@ -414,19 +426,69 @@
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbform.Location = new System.Drawing.Point(7, -9);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(550, 278);
+            this.grbform.Size = new System.Drawing.Size(550, 337);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox9.Location = new System.Drawing.Point(21, 133);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(139, 27);
+            this.textBox9.TabIndex = 131;
+            this.textBox9.TabStop = false;
+            this.textBox9.Text = "Label Name in English";
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox6.Enabled = false;
+            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox6.Location = new System.Drawing.Point(21, 161);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(139, 27);
+            this.textBox6.TabIndex = 130;
+            this.textBox6.TabStop = false;
+            this.textBox6.Text = "Label Name in Tamil";
+            // 
+            // txtLabelNameTamil
+            // 
+            this.txtLabelNameTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLabelNameTamil.Location = new System.Drawing.Point(160, 161);
+            this.txtLabelNameTamil.MaxLength = 100;
+            this.txtLabelNameTamil.Name = "txtLabelNameTamil";
+            this.txtLabelNameTamil.Size = new System.Drawing.Size(363, 27);
+            this.txtLabelNameTamil.TabIndex = 6;
+            this.txtLabelNameTamil.Enter += new System.EventHandler(this.TxtLabelNameTamil_Enter);
+            this.txtLabelNameTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLabelNameTamil_KeyDown);
+            this.txtLabelNameTamil.Leave += new System.EventHandler(this.TxtLabelNameTamil_Leave);
+            // 
+            // txtLabelNameEnglish
+            // 
+            this.txtLabelNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtLabelNameEnglish.Location = new System.Drawing.Point(160, 133);
+            this.txtLabelNameEnglish.MaxLength = 100;
+            this.txtLabelNameEnglish.Name = "txtLabelNameEnglish";
+            this.txtLabelNameEnglish.Size = new System.Drawing.Size(363, 27);
+            this.txtLabelNameEnglish.TabIndex = 5;
+            this.txtLabelNameEnglish.Enter += new System.EventHandler(this.TxtLabelNameEnglish_Enter);
+            this.txtLabelNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLabelNameEnglish_KeyDown);
+            this.txtLabelNameEnglish.Leave += new System.EventHandler(this.TxtLabelNameEnglish_Leave);
             // 
             // cmbRM
             // 
             this.cmbRM.Enabled = false;
             this.cmbRM.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRM.FormattingEnabled = true;
-            this.cmbRM.Location = new System.Drawing.Point(359, 131);
+            this.cmbRM.Location = new System.Drawing.Point(359, 187);
             this.cmbRM.Name = "cmbRM";
             this.cmbRM.Size = new System.Drawing.Size(164, 27);
-            this.cmbRM.TabIndex = 127;
+            this.cmbRM.TabIndex = 8;
             // 
             // lblSaleRackCode
             // 
@@ -451,7 +513,7 @@
             // lblPurRackCode
             // 
             this.lblPurRackCode.AutoSize = true;
-            this.lblPurRackCode.Location = new System.Drawing.Point(0, 138);
+            this.lblPurRackCode.Location = new System.Drawing.Point(0, 191);
             this.lblPurRackCode.Name = "lblPurRackCode";
             this.lblPurRackCode.Size = new System.Drawing.Size(16, 20);
             this.lblPurRackCode.TabIndex = 124;
@@ -461,7 +523,7 @@
             // lblPurLocationCode
             // 
             this.lblPurLocationCode.AutoSize = true;
-            this.lblPurLocationCode.Location = new System.Drawing.Point(-1, 164);
+            this.lblPurLocationCode.Location = new System.Drawing.Point(-1, 217);
             this.lblPurLocationCode.Name = "lblPurLocationCode";
             this.lblPurLocationCode.Size = new System.Drawing.Size(16, 20);
             this.lblPurLocationCode.TabIndex = 123;
@@ -471,7 +533,7 @@
             // lblGroupCode
             // 
             this.lblGroupCode.AutoSize = true;
-            this.lblGroupCode.Location = new System.Drawing.Point(0, 185);
+            this.lblGroupCode.Location = new System.Drawing.Point(0, 238);
             this.lblGroupCode.Name = "lblGroupCode";
             this.lblGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblGroupCode.TabIndex = 122;
@@ -481,11 +543,11 @@
             // txtGroup
             // 
             this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGroup.Location = new System.Drawing.Point(160, 185);
+            this.txtGroup.Location = new System.Drawing.Point(160, 242);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(337, 27);
-            this.txtGroup.TabIndex = 7;
+            this.txtGroup.TabIndex = 10;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
             this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGroup_KeyDown);
@@ -494,7 +556,7 @@
             // lblSubGroupCode
             // 
             this.lblSubGroupCode.AutoSize = true;
-            this.lblSubGroupCode.Location = new System.Drawing.Point(-1, 212);
+            this.lblSubGroupCode.Location = new System.Drawing.Point(-1, 265);
             this.lblSubGroupCode.Name = "lblSubGroupCode";
             this.lblSubGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblSubGroupCode.TabIndex = 121;
@@ -504,11 +566,11 @@
             // txtSubGroup
             // 
             this.txtSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubGroup.Location = new System.Drawing.Point(160, 158);
+            this.txtSubGroup.Location = new System.Drawing.Point(160, 215);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
             this.txtSubGroup.Size = new System.Drawing.Size(337, 27);
-            this.txtSubGroup.TabIndex = 6;
+            this.txtSubGroup.TabIndex = 9;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
             this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
             this.txtSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSubGroup_KeyDown);
@@ -517,7 +579,7 @@
             // lblBrand
             // 
             this.lblBrand.AutoSize = true;
-            this.lblBrand.Location = new System.Drawing.Point(-1, 243);
+            this.lblBrand.Location = new System.Drawing.Point(-1, 296);
             this.lblBrand.Name = "lblBrand";
             this.lblBrand.Size = new System.Drawing.Size(16, 20);
             this.lblBrand.TabIndex = 120;
@@ -527,11 +589,11 @@
             // txtBrand
             // 
             this.txtBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBrand.Location = new System.Drawing.Point(160, 212);
+            this.txtBrand.Location = new System.Drawing.Point(160, 269);
             this.txtBrand.MaxLength = 100;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(337, 27);
-            this.txtBrand.TabIndex = 8;
+            this.txtBrand.TabIndex = 11;
             this.txtBrand.TextChanged += new System.EventHandler(this.TxtBrand_TextChanged);
             this.txtBrand.Enter += new System.EventHandler(this.TxtBrand_Enter);
             this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBrand_KeyDown);
@@ -555,7 +617,7 @@
             this.txtUPPvalue.BackColor = System.Drawing.SystemColors.Control;
             this.txtUPPvalue.Enabled = false;
             this.txtUPPvalue.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtUPPvalue.Location = new System.Drawing.Point(489, 239);
+            this.txtUPPvalue.Location = new System.Drawing.Point(489, 296);
             this.txtUPPvalue.Name = "txtUPPvalue";
             this.txtUPPvalue.ReadOnly = true;
             this.txtUPPvalue.Size = new System.Drawing.Size(34, 27);
@@ -566,7 +628,7 @@
             // 
             this.btnUnit.Image = global::ROMS.Properties.Resources.New;
             this.btnUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUnit.Location = new System.Drawing.Point(251, 242);
+            this.btnUnit.Location = new System.Drawing.Point(251, 298);
             this.btnUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnUnit.Name = "btnUnit";
             this.btnUnit.Size = new System.Drawing.Size(21, 22);
@@ -578,7 +640,7 @@
             // 
             this.btnBrand.Image = global::ROMS.Properties.Resources.New;
             this.btnBrand.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBrand.Location = new System.Drawing.Point(502, 214);
+            this.btnBrand.Location = new System.Drawing.Point(502, 271);
             this.btnBrand.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnBrand.Name = "btnBrand";
             this.btnBrand.Size = new System.Drawing.Size(21, 22);
@@ -590,7 +652,7 @@
             // 
             this.btnGroup.Image = global::ROMS.Properties.Resources.New;
             this.btnGroup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGroup.Location = new System.Drawing.Point(502, 187);
+            this.btnGroup.Location = new System.Drawing.Point(502, 244);
             this.btnGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnGroup.Name = "btnGroup";
             this.btnGroup.Size = new System.Drawing.Size(21, 22);
@@ -602,7 +664,7 @@
             // 
             this.btnSubgroup.Image = global::ROMS.Properties.Resources.New;
             this.btnSubgroup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSubgroup.Location = new System.Drawing.Point(502, 160);
+            this.btnSubgroup.Location = new System.Drawing.Point(502, 217);
             this.btnSubgroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnSubgroup.Name = "btnSubgroup";
             this.btnSubgroup.Size = new System.Drawing.Size(21, 22);
@@ -614,11 +676,11 @@
             // txtUpp
             // 
             this.txtUpp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtUpp.Location = new System.Drawing.Point(446, 239);
+            this.txtUpp.Location = new System.Drawing.Point(446, 296);
             this.txtUpp.MaxLength = 5;
             this.txtUpp.Name = "txtUpp";
             this.txtUpp.Size = new System.Drawing.Size(43, 27);
-            this.txtUpp.TabIndex = 11;
+            this.txtUpp.TabIndex = 14;
             this.txtUpp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtUpp.Enter += new System.EventHandler(this.TxtUpp_Enter);
             this.txtUpp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUpp_KeyDown);
@@ -630,7 +692,7 @@
             this.txtDUPP.BackColor = System.Drawing.SystemColors.Control;
             this.txtDUPP.Enabled = false;
             this.txtDUPP.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDUPP.Location = new System.Drawing.Point(414, 239);
+            this.txtDUPP.Location = new System.Drawing.Point(414, 296);
             this.txtDUPP.Name = "txtDUPP";
             this.txtDUPP.ReadOnly = true;
             this.txtDUPP.Size = new System.Drawing.Size(32, 27);
@@ -642,10 +704,10 @@
             // 
             this.cmbBulkUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBulkUnit.FormattingEnabled = true;
-            this.cmbBulkUnit.Location = new System.Drawing.Point(330, 239);
+            this.cmbBulkUnit.Location = new System.Drawing.Point(330, 295);
             this.cmbBulkUnit.Name = "cmbBulkUnit";
             this.cmbBulkUnit.Size = new System.Drawing.Size(84, 27);
-            this.cmbBulkUnit.TabIndex = 10;
+            this.cmbBulkUnit.TabIndex = 13;
             this.cmbBulkUnit.SelectedIndexChanged += new System.EventHandler(this.CmbBulkUnit_SelectedIndexChanged);
             this.cmbBulkUnit.Enter += new System.EventHandler(this.CmbBulkUnit_Enter);
             this.cmbBulkUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBulkUnit_KeyDown);
@@ -657,7 +719,7 @@
             this.txtDBulkUnit.BackColor = System.Drawing.SystemColors.Control;
             this.txtDBulkUnit.Enabled = false;
             this.txtDBulkUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBulkUnit.Location = new System.Drawing.Point(275, 239);
+            this.txtDBulkUnit.Location = new System.Drawing.Point(275, 296);
             this.txtDBulkUnit.Name = "txtDBulkUnit";
             this.txtDBulkUnit.ReadOnly = true;
             this.txtDBulkUnit.Size = new System.Drawing.Size(55, 27);
@@ -669,10 +731,10 @@
             // 
             this.cmbProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductCategory.FormattingEnabled = true;
-            this.cmbProductCategory.Location = new System.Drawing.Point(160, 131);
+            this.cmbProductCategory.Location = new System.Drawing.Point(160, 187);
             this.cmbProductCategory.Name = "cmbProductCategory";
             this.cmbProductCategory.Size = new System.Drawing.Size(199, 27);
-            this.cmbProductCategory.TabIndex = 5;
+            this.cmbProductCategory.TabIndex = 7;
             this.cmbProductCategory.SelectedIndexChanged += new System.EventHandler(this.CmbProductCategory_SelectedIndexChanged);
             this.cmbProductCategory.Enter += new System.EventHandler(this.CmbProductCategory_Enter);
             this.cmbProductCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductCategory_KeyDown);
@@ -684,7 +746,7 @@
             this.txtDProductCategory.BackColor = System.Drawing.SystemColors.Control;
             this.txtDProductCategory.Enabled = false;
             this.txtDProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDProductCategory.Location = new System.Drawing.Point(21, 131);
+            this.txtDProductCategory.Location = new System.Drawing.Point(21, 187);
             this.txtDProductCategory.Name = "txtDProductCategory";
             this.txtDProductCategory.ReadOnly = true;
             this.txtDProductCategory.Size = new System.Drawing.Size(139, 27);
@@ -723,10 +785,10 @@
             // 
             this.cmbUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUnit.FormattingEnabled = true;
-            this.cmbUnit.Location = new System.Drawing.Point(160, 239);
+            this.cmbUnit.Location = new System.Drawing.Point(160, 295);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(88, 27);
-            this.cmbUnit.TabIndex = 9;
+            this.cmbUnit.TabIndex = 12;
             this.cmbUnit.SelectedIndexChanged += new System.EventHandler(this.CmbUnit_SelectedIndexChanged);
             this.cmbUnit.Enter += new System.EventHandler(this.CmbUnit_Enter);
             this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
@@ -738,7 +800,7 @@
             this.txtDBrand.BackColor = System.Drawing.SystemColors.Control;
             this.txtDBrand.Enabled = false;
             this.txtDBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBrand.Location = new System.Drawing.Point(21, 212);
+            this.txtDBrand.Location = new System.Drawing.Point(21, 269);
             this.txtDBrand.Name = "txtDBrand";
             this.txtDBrand.ReadOnly = true;
             this.txtDBrand.Size = new System.Drawing.Size(139, 27);
@@ -751,11 +813,11 @@
             this.txtDGroup.BackColor = System.Drawing.SystemColors.Control;
             this.txtDGroup.Enabled = false;
             this.txtDGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDGroup.Location = new System.Drawing.Point(21, 185);
+            this.txtDGroup.Location = new System.Drawing.Point(21, 242);
             this.txtDGroup.Name = "txtDGroup";
             this.txtDGroup.ReadOnly = true;
             this.txtDGroup.Size = new System.Drawing.Size(139, 27);
-            this.txtDGroup.TabIndex = 6;
+            this.txtDGroup.TabIndex = 6456;
             this.txtDGroup.TabStop = false;
             this.txtDGroup.Text = "Product Group";
             // 
@@ -767,7 +829,7 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(167, 203);
+            this.lvGroup.Location = new System.Drawing.Point(167, 261);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(363, 78);
             this.lvGroup.TabIndex = 123;
@@ -802,7 +864,7 @@
             this.columnHeader9});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(166, 175);
+            this.lvSubGroup.Location = new System.Drawing.Point(167, 233);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(363, 78);
             this.lvSubGroup.TabIndex = 122;
@@ -889,20 +951,20 @@
             this.groupBox1.Controls.Add(this.txtWeight);
             this.groupBox1.Controls.Add(this.txtDNettWeight);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(579, 124);
+            this.groupBox1.Location = new System.Drawing.Point(579, 263);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(279, 166);
-            this.groupBox1.TabIndex = 22;
+            this.groupBox1.Size = new System.Drawing.Size(279, 159);
+            this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             // 
             // cmbNetQty
             // 
             this.cmbNetQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNetQty.FormattingEnabled = true;
-            this.cmbNetQty.Location = new System.Drawing.Point(222, 23);
+            this.cmbNetQty.Location = new System.Drawing.Point(222, 17);
             this.cmbNetQty.Name = "cmbNetQty";
             this.cmbNetQty.Size = new System.Drawing.Size(45, 27);
-            this.cmbNetQty.TabIndex = 24;
+            this.cmbNetQty.TabIndex = 27;
             this.cmbNetQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbNetQty_KeyPress);
             // 
             // textBox3
@@ -910,7 +972,7 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox3.Location = new System.Drawing.Point(222, 50);
+            this.textBox3.Location = new System.Drawing.Point(222, 44);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(45, 27);
@@ -920,11 +982,11 @@
             // txtGrossWeight
             // 
             this.txtGrossWeight.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGrossWeight.Location = new System.Drawing.Point(122, 50);
+            this.txtGrossWeight.Location = new System.Drawing.Point(122, 44);
             this.txtGrossWeight.MaxLength = 10;
             this.txtGrossWeight.Name = "txtGrossWeight";
             this.txtGrossWeight.Size = new System.Drawing.Size(100, 27);
-            this.txtGrossWeight.TabIndex = 25;
+            this.txtGrossWeight.TabIndex = 28;
             this.txtGrossWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGrossWeight.Enter += new System.EventHandler(this.TxtGrossWeight_Enter);
             this.txtGrossWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGrossWeight_KeyDown);
@@ -936,7 +998,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox2.Location = new System.Drawing.Point(11, 50);
+            this.textBox2.Location = new System.Drawing.Point(11, 44);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(111, 27);
@@ -947,11 +1009,11 @@
             // txtReOrderQty
             // 
             this.txtReOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtReOrderQty.Location = new System.Drawing.Point(122, 131);
+            this.txtReOrderQty.Location = new System.Drawing.Point(122, 125);
             this.txtReOrderQty.MaxLength = 10;
             this.txtReOrderQty.Name = "txtReOrderQty";
             this.txtReOrderQty.Size = new System.Drawing.Size(145, 27);
-            this.txtReOrderQty.TabIndex = 28;
+            this.txtReOrderQty.TabIndex = 31;
             this.txtReOrderQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtReOrderQty.Enter += new System.EventHandler(this.TxtReOrderQty_Enter);
             this.txtReOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReOrderQty_KeyDown);
@@ -963,7 +1025,7 @@
             this.txtDReOrderQty.BackColor = System.Drawing.SystemColors.Control;
             this.txtDReOrderQty.Enabled = false;
             this.txtDReOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDReOrderQty.Location = new System.Drawing.Point(11, 131);
+            this.txtDReOrderQty.Location = new System.Drawing.Point(11, 125);
             this.txtDReOrderQty.Name = "txtDReOrderQty";
             this.txtDReOrderQty.ReadOnly = true;
             this.txtDReOrderQty.Size = new System.Drawing.Size(111, 27);
@@ -974,11 +1036,11 @@
             // txtMinStock
             // 
             this.txtMinStock.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMinStock.Location = new System.Drawing.Point(122, 77);
+            this.txtMinStock.Location = new System.Drawing.Point(122, 71);
             this.txtMinStock.MaxLength = 10;
             this.txtMinStock.Name = "txtMinStock";
             this.txtMinStock.Size = new System.Drawing.Size(145, 27);
-            this.txtMinStock.TabIndex = 26;
+            this.txtMinStock.TabIndex = 29;
             this.txtMinStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMinStock.Enter += new System.EventHandler(this.TxtMinStock_Enter);
             this.txtMinStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMinStock_KeyDown);
@@ -990,7 +1052,7 @@
             this.txtDMinStock.BackColor = System.Drawing.SystemColors.Control;
             this.txtDMinStock.Enabled = false;
             this.txtDMinStock.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDMinStock.Location = new System.Drawing.Point(11, 77);
+            this.txtDMinStock.Location = new System.Drawing.Point(11, 71);
             this.txtDMinStock.Name = "txtDMinStock";
             this.txtDMinStock.ReadOnly = true;
             this.txtDMinStock.Size = new System.Drawing.Size(111, 27);
@@ -1001,11 +1063,11 @@
             // txtMaxStock
             // 
             this.txtMaxStock.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMaxStock.Location = new System.Drawing.Point(122, 104);
+            this.txtMaxStock.Location = new System.Drawing.Point(122, 98);
             this.txtMaxStock.MaxLength = 10;
             this.txtMaxStock.Name = "txtMaxStock";
             this.txtMaxStock.Size = new System.Drawing.Size(145, 27);
-            this.txtMaxStock.TabIndex = 27;
+            this.txtMaxStock.TabIndex = 30;
             this.txtMaxStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMaxStock.Enter += new System.EventHandler(this.TxtMaxStock_Enter);
             this.txtMaxStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxStock_KeyDown);
@@ -1017,7 +1079,7 @@
             this.txtDMaxStock.BackColor = System.Drawing.SystemColors.Control;
             this.txtDMaxStock.Enabled = false;
             this.txtDMaxStock.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDMaxStock.Location = new System.Drawing.Point(11, 104);
+            this.txtDMaxStock.Location = new System.Drawing.Point(11, 98);
             this.txtDMaxStock.Name = "txtDMaxStock";
             this.txtDMaxStock.ReadOnly = true;
             this.txtDMaxStock.Size = new System.Drawing.Size(111, 27);
@@ -1028,11 +1090,11 @@
             // txtWeight
             // 
             this.txtWeight.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtWeight.Location = new System.Drawing.Point(122, 23);
+            this.txtWeight.Location = new System.Drawing.Point(122, 17);
             this.txtWeight.MaxLength = 10;
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(100, 27);
-            this.txtWeight.TabIndex = 23;
+            this.txtWeight.TabIndex = 26;
             this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWeight.Enter += new System.EventHandler(this.TxtWeight_Enter);
             this.txtWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWeight_KeyDown);
@@ -1044,7 +1106,7 @@
             this.txtDNettWeight.BackColor = System.Drawing.SystemColors.Control;
             this.txtDNettWeight.Enabled = false;
             this.txtDNettWeight.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDNettWeight.Location = new System.Drawing.Point(11, 23);
+            this.txtDNettWeight.Location = new System.Drawing.Point(11, 17);
             this.txtDNettWeight.Name = "txtDNettWeight";
             this.txtDNettWeight.ReadOnly = true;
             this.txtDNettWeight.Size = new System.Drawing.Size(111, 27);
@@ -1059,7 +1121,7 @@
             this.txtRackMOQQty.MaxLength = 8;
             this.txtRackMOQQty.Name = "txtRackMOQQty";
             this.txtRackMOQQty.Size = new System.Drawing.Size(388, 27);
-            this.txtRackMOQQty.TabIndex = 27;
+            this.txtRackMOQQty.TabIndex = 19;
             this.txtRackMOQQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRackMOQQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
             this.txtRackMOQQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
@@ -1086,7 +1148,7 @@
             this.txtRMinSaleQty.MaxLength = 10;
             this.txtRMinSaleQty.Name = "txtRMinSaleQty";
             this.txtRMinSaleQty.Size = new System.Drawing.Size(145, 27);
-            this.txtRMinSaleQty.TabIndex = 29;
+            this.txtRMinSaleQty.TabIndex = 32;
             this.txtRMinSaleQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRMinSaleQty.Enter += new System.EventHandler(this.TxtRMinSaleQty_Enter);
             this.txtRMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRMinSaleQty_KeyDown);
@@ -1109,10 +1171,10 @@
             // cbExpiry
             // 
             this.cbExpiry.AutoSize = true;
-            this.cbExpiry.Location = new System.Drawing.Point(5, 24);
+            this.cbExpiry.Location = new System.Drawing.Point(5, 19);
             this.cbExpiry.Name = "cbExpiry";
             this.cbExpiry.Size = new System.Drawing.Size(77, 24);
-            this.cbExpiry.TabIndex = 19;
+            this.cbExpiry.TabIndex = 22;
             this.cbExpiry.Text = "Shelf Life";
             this.cbExpiry.UseVisualStyleBackColor = true;
             this.cbExpiry.CheckedChanged += new System.EventHandler(this.CbExpiry_CheckedChanged);
@@ -1127,7 +1189,7 @@
             this.txtBarcode.MaxLength = 20;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(145, 27);
-            this.txtBarcode.TabIndex = 33;
+            this.txtBarcode.TabIndex = 36;
             this.txtBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBarcode.Enter += new System.EventHandler(this.TxtBarcode_Enter);
             this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarcode_KeyDown);
@@ -1153,7 +1215,7 @@
             this.txtWSaleRate.MaxLength = 10;
             this.txtWSaleRate.Name = "txtWSaleRate";
             this.txtWSaleRate.Size = new System.Drawing.Size(145, 27);
-            this.txtWSaleRate.TabIndex = 32;
+            this.txtWSaleRate.TabIndex = 35;
             this.txtWSaleRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWSaleRate.Enter += new System.EventHandler(this.TxtWSaleRate_Enter);
             this.txtWSaleRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWSaleRate_KeyDown);
@@ -1193,7 +1255,7 @@
             this.txtRetailRate.MaxLength = 10;
             this.txtRetailRate.Name = "txtRetailRate";
             this.txtRetailRate.Size = new System.Drawing.Size(145, 27);
-            this.txtRetailRate.TabIndex = 30;
+            this.txtRetailRate.TabIndex = 33;
             this.txtRetailRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRetailRate.Enter += new System.EventHandler(this.TxtRetailRate_Enter);
             this.txtRetailRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRetailRate_KeyDown);
@@ -1213,7 +1275,7 @@
             this.groupBox2.Controls.Add(this.txtRMinSaleQty);
             this.groupBox2.Controls.Add(this.txtDRMinSaleQty);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(579, 288);
+            this.groupBox2.Location = new System.Drawing.Point(579, 421);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(279, 163);
             this.groupBox2.TabIndex = 28;
@@ -1226,7 +1288,7 @@
             this.txtWMinSaleQty.MaxLength = 10;
             this.txtWMinSaleQty.Name = "txtWMinSaleQty";
             this.txtWMinSaleQty.Size = new System.Drawing.Size(145, 27);
-            this.txtWMinSaleQty.TabIndex = 31;
+            this.txtWMinSaleQty.TabIndex = 34;
             this.txtWMinSaleQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWMinSaleQty.Enter += new System.EventHandler(this.TxtWMinSaleQty_Enter);
             this.txtWMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWMinSaleQty_KeyDown);
@@ -1282,10 +1344,10 @@
             this.rbInActive.AutoSize = true;
             this.rbInActive.Checked = true;
             this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbInActive.Location = new System.Drawing.Point(76, -2);
+            this.rbInActive.Location = new System.Drawing.Point(76, 0);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(71, 24);
-            this.rbInActive.TabIndex = 36;
+            this.rbInActive.TabIndex = 38;
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "InActive";
             this.rbInActive.UseVisualStyleBackColor = true;
@@ -1297,10 +1359,10 @@
             // 
             this.rbActive.AutoSize = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActive.Location = new System.Drawing.Point(4, -2);
+            this.rbActive.Location = new System.Drawing.Point(4, 0);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 35;
+            this.rbActive.TabIndex = 37;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
@@ -1312,7 +1374,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDStatus.Location = new System.Drawing.Point(589, 583);
+            this.txtDStatus.Location = new System.Drawing.Point(589, 584);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(111, 27);
@@ -1326,10 +1388,10 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Enabled = false;
-            this.pnlStatus.Location = new System.Drawing.Point(700, 583);
+            this.pnlStatus.Location = new System.Drawing.Point(700, 584);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(158, 27);
-            this.pnlStatus.TabIndex = 36;
+            this.pnlStatus.TabIndex = 37;
             this.pnlStatus.TabStop = true;
             // 
             // grpExpire
@@ -1339,19 +1401,19 @@
             this.grpExpire.Controls.Add(this.cmbPeriod);
             this.grpExpire.Controls.Add(this.cbExpiry);
             this.grpExpire.Controls.Add(this.cbRMFromProduction);
-            this.grpExpire.Location = new System.Drawing.Point(287, 559);
+            this.grpExpire.Location = new System.Drawing.Point(578, 194);
             this.grpExpire.Name = "grpExpire";
-            this.grpExpire.Size = new System.Drawing.Size(273, 85);
-            this.grpExpire.TabIndex = 19;
+            this.grpExpire.Size = new System.Drawing.Size(279, 76);
+            this.grpExpire.TabIndex = 22;
             this.grpExpire.TabStop = false;
             // 
             // chkMRP
             // 
             this.chkMRP.AutoSize = true;
-            this.chkMRP.Location = new System.Drawing.Point(5, 54);
+            this.chkMRP.Location = new System.Drawing.Point(5, 47);
             this.chkMRP.Name = "chkMRP";
             this.chkMRP.Size = new System.Drawing.Size(53, 24);
-            this.chkMRP.TabIndex = 22;
+            this.chkMRP.TabIndex = 25;
             this.chkMRP.Text = "MRP";
             this.chkMRP.UseVisualStyleBackColor = true;
             this.chkMRP.Enter += new System.EventHandler(this.ChkMRP_Enter);
@@ -1360,11 +1422,11 @@
             // 
             // txtSelfLife
             // 
-            this.txtSelfLife.Location = new System.Drawing.Point(85, 24);
+            this.txtSelfLife.Location = new System.Drawing.Point(85, 18);
             this.txtSelfLife.MaxLength = 3;
             this.txtSelfLife.Name = "txtSelfLife";
             this.txtSelfLife.Size = new System.Drawing.Size(69, 27);
-            this.txtSelfLife.TabIndex = 20;
+            this.txtSelfLife.TabIndex = 23;
             this.txtSelfLife.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSelfLife.Visible = false;
             this.txtSelfLife.Enter += new System.EventHandler(this.TxtSelfLife_Enter);
@@ -1375,10 +1437,10 @@
             // cmbPeriod
             // 
             this.cmbPeriod.FormattingEnabled = true;
-            this.cmbPeriod.Location = new System.Drawing.Point(154, 24);
+            this.cmbPeriod.Location = new System.Drawing.Point(154, 18);
             this.cmbPeriod.Name = "cmbPeriod";
             this.cmbPeriod.Size = new System.Drawing.Size(103, 27);
-            this.cmbPeriod.TabIndex = 21;
+            this.cmbPeriod.TabIndex = 24;
             this.cmbPeriod.Visible = false;
             this.cmbPeriod.SelectedIndexChanged += new System.EventHandler(this.CmbPeriod_SelectedIndexChanged);
             this.cmbPeriod.Enter += new System.EventHandler(this.CmbPeriod_Enter);
@@ -1389,7 +1451,7 @@
             // cbRMFromProduction
             // 
             this.cbRMFromProduction.AutoSize = true;
-            this.cbRMFromProduction.Location = new System.Drawing.Point(119, 54);
+            this.cbRMFromProduction.Location = new System.Drawing.Point(119, 47);
             this.cbRMFromProduction.Name = "cbRMFromProduction";
             this.cbRMFromProduction.Size = new System.Drawing.Size(126, 24);
             this.cbRMFromProduction.TabIndex = 22;
@@ -1405,16 +1467,17 @@
             this.grplocation.Controls.Add(this.txtPurRack);
             this.grplocation.Controls.Add(this.txtPurLocation);
             this.grplocation.Controls.Add(this.txtRackDescription);
+            this.grplocation.Controls.Add(this.grpHsndetail);
             this.grplocation.Controls.Add(this.textBox1);
             this.grplocation.Controls.Add(this.txtDPurchaseLocation);
             this.grplocation.Controls.Add(this.txtDShop);
             this.grplocation.Controls.Add(this.txtDGST);
             this.grplocation.Controls.Add(this.txtGST);
             this.grplocation.Controls.Add(this.textBox4);
-            this.grplocation.Location = new System.Drawing.Point(7, 267);
+            this.grplocation.Location = new System.Drawing.Point(7, 334);
             this.grplocation.Name = "grplocation";
             this.grplocation.Size = new System.Drawing.Size(550, 121);
-            this.grplocation.TabIndex = 13;
+            this.grplocation.TabIndex = 15;
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Default Stock Location For Purchase";
             // 
@@ -1425,7 +1488,7 @@
             this.txtPurRack.MaxLength = 100;
             this.txtPurRack.Name = "txtPurRack";
             this.txtPurRack.Size = new System.Drawing.Size(388, 27);
-            this.txtPurRack.TabIndex = 14;
+            this.txtPurRack.TabIndex = 16;
             this.txtPurRack.TextChanged += new System.EventHandler(this.TxtPurRack_TextChanged);
             this.txtPurRack.Enter += new System.EventHandler(this.TxtPurRack_Enter);
             this.txtPurRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurRack_KeyDown);
@@ -1438,7 +1501,7 @@
             this.txtPurLocation.MaxLength = 100;
             this.txtPurLocation.Name = "txtPurLocation";
             this.txtPurLocation.Size = new System.Drawing.Size(388, 27);
-            this.txtPurLocation.TabIndex = 13;
+            this.txtPurLocation.TabIndex = 15;
             this.txtPurLocation.TextChanged += new System.EventHandler(this.TxtPurLocation_TextChanged);
             this.txtPurLocation.Enter += new System.EventHandler(this.TxtPurLocation_Enter);
             this.txtPurLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurLocation_KeyDown);
@@ -1457,186 +1520,6 @@
             this.txtRackDescription.TabStop = false;
             this.txtRackDescription.Enter += new System.EventHandler(this.TxtRackDescription_Enter);
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox1.Location = new System.Drawing.Point(4, 86);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(131, 27);
-            this.textBox1.TabIndex = 25;
-            this.textBox1.TabStop = false;
-            this.textBox1.Text = "Rack Description";
-            // 
-            // txtDPurchaseLocation
-            // 
-            this.txtDPurchaseLocation.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDPurchaseLocation.Enabled = false;
-            this.txtDPurchaseLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPurchaseLocation.Location = new System.Drawing.Point(4, 32);
-            this.txtDPurchaseLocation.Name = "txtDPurchaseLocation";
-            this.txtDPurchaseLocation.ReadOnly = true;
-            this.txtDPurchaseLocation.Size = new System.Drawing.Size(131, 27);
-            this.txtDPurchaseLocation.TabIndex = 12;
-            this.txtDPurchaseLocation.TabStop = false;
-            this.txtDPurchaseLocation.Text = "Stock Location";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(476, 5);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(21, 27);
-            this.textBox4.TabIndex = 116;
-            this.textBox4.Text = "%";
-            this.textBox4.Visible = false;
-            // 
-            // grbSalesStockLocation
-            // 
-            this.grbSalesStockLocation.Controls.Add(this.chkSameasPurchase);
-            this.grbSalesStockLocation.Controls.Add(this.lvSaleLocation);
-            this.grbSalesStockLocation.Controls.Add(this.txtSaleRack);
-            this.grbSalesStockLocation.Controls.Add(this.txtSaleLocation);
-            this.grbSalesStockLocation.Controls.Add(this.txtRackDescriptionSales);
-            this.grbSalesStockLocation.Controls.Add(this.textBox7);
-            this.grbSalesStockLocation.Controls.Add(this.txtDSalesGodown);
-            this.grbSalesStockLocation.Controls.Add(this.txtRackMOQQty);
-            this.grbSalesStockLocation.Controls.Add(this.txtDSalesShop);
-            this.grbSalesStockLocation.Controls.Add(this.txtDMaxOrderQty);
-            this.grbSalesStockLocation.Location = new System.Drawing.Point(10, 388);
-            this.grbSalesStockLocation.Name = "grbSalesStockLocation";
-            this.grbSalesStockLocation.Size = new System.Drawing.Size(550, 172);
-            this.grbSalesStockLocation.TabIndex = 15;
-            this.grbSalesStockLocation.TabStop = false;
-            this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
-            // 
-            // chkSameasPurchase
-            // 
-            this.chkSameasPurchase.AutoSize = true;
-            this.chkSameasPurchase.Location = new System.Drawing.Point(7, 24);
-            this.chkSameasPurchase.Name = "chkSameasPurchase";
-            this.chkSameasPurchase.Size = new System.Drawing.Size(125, 24);
-            this.chkSameasPurchase.TabIndex = 93;
-            this.chkSameasPurchase.Text = "Same as Purchase";
-            this.chkSameasPurchase.UseVisualStyleBackColor = true;
-            this.chkSameasPurchase.CheckedChanged += new System.EventHandler(this.ChkSameasPurchase_CheckedChanged);
-            // 
-            // lvSaleLocation
-            // 
-            this.lvSaleLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24,
-            this.columnHeader25});
-            this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSaleLocation.HideSelection = false;
-            this.lvSaleLocation.Location = new System.Drawing.Point(135, 79);
-            this.lvSaleLocation.Name = "lvSaleLocation";
-            this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
-            this.lvSaleLocation.TabIndex = 127;
-            this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
-            this.lvSaleLocation.View = System.Windows.Forms.View.Details;
-            this.lvSaleLocation.Visible = false;
-            this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
-            this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Width = 120;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 130;
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Width = 0;
-            // 
-            // columnHeader25
-            // 
-            this.columnHeader25.Width = 0;
-            // 
-            // txtSaleRack
-            // 
-            this.txtSaleRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSaleRack.Location = new System.Drawing.Point(135, 79);
-            this.txtSaleRack.MaxLength = 100;
-            this.txtSaleRack.Name = "txtSaleRack";
-            this.txtSaleRack.Size = new System.Drawing.Size(388, 27);
-            this.txtSaleRack.TabIndex = 16;
-            this.txtSaleRack.TextChanged += new System.EventHandler(this.TxtSaleRack_TextChanged);
-            this.txtSaleRack.Enter += new System.EventHandler(this.TxtSaleRack_Enter);
-            this.txtSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSaleRack_KeyDown);
-            this.txtSaleRack.Leave += new System.EventHandler(this.TxtSaleRack_Leave);
-            // 
-            // txtSaleLocation
-            // 
-            this.txtSaleLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSaleLocation.Location = new System.Drawing.Point(135, 52);
-            this.txtSaleLocation.MaxLength = 100;
-            this.txtSaleLocation.Name = "txtSaleLocation";
-            this.txtSaleLocation.Size = new System.Drawing.Size(388, 27);
-            this.txtSaleLocation.TabIndex = 15;
-            this.txtSaleLocation.TextChanged += new System.EventHandler(this.TxtSaleLocation_TextChanged);
-            this.txtSaleLocation.Enter += new System.EventHandler(this.TxtSaleLocation_Enter);
-            this.txtSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSaleLocation_KeyDown);
-            this.txtSaleLocation.Leave += new System.EventHandler(this.TxtSaleLocation_Leave);
-            // 
-            // txtRackDescriptionSales
-            // 
-            this.txtRackDescriptionSales.BackColor = System.Drawing.SystemColors.Control;
-            this.txtRackDescriptionSales.Enabled = false;
-            this.txtRackDescriptionSales.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRackDescriptionSales.Location = new System.Drawing.Point(135, 106);
-            this.txtRackDescriptionSales.Name = "txtRackDescriptionSales";
-            this.txtRackDescriptionSales.Size = new System.Drawing.Size(388, 27);
-            this.txtRackDescriptionSales.TabIndex = 92;
-            this.txtRackDescriptionSales.TabStop = false;
-            // 
-            // textBox7
-            // 
-            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox7.Enabled = false;
-            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(4, 106);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(131, 27);
-            this.textBox7.TabIndex = 91;
-            this.textBox7.TabStop = false;
-            this.textBox7.Text = "Rack Description";
-            // 
-            // txtDSalesGodown
-            // 
-            this.txtDSalesGodown.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDSalesGodown.Enabled = false;
-            this.txtDSalesGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSalesGodown.Location = new System.Drawing.Point(4, 52);
-            this.txtDSalesGodown.Name = "txtDSalesGodown";
-            this.txtDSalesGodown.ReadOnly = true;
-            this.txtDSalesGodown.Size = new System.Drawing.Size(131, 27);
-            this.txtDSalesGodown.TabIndex = 12;
-            this.txtDSalesGodown.TabStop = false;
-            this.txtDSalesGodown.Text = "Stock Location";
-            // 
-            // txtDSalesShop
-            // 
-            this.txtDSalesShop.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDSalesShop.Enabled = false;
-            this.txtDSalesShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSalesShop.Location = new System.Drawing.Point(4, 79);
-            this.txtDSalesShop.Name = "txtDSalesShop";
-            this.txtDSalesShop.ReadOnly = true;
-            this.txtDSalesShop.Size = new System.Drawing.Size(131, 27);
-            this.txtDSalesShop.TabIndex = 24;
-            this.txtDSalesShop.TabStop = false;
-            this.txtDSalesShop.Text = "Rack";
-            // 
             // grpHsndetail
             // 
             this.grpHsndetail.Controls.Add(this.lvHsnCode);
@@ -1647,7 +1530,7 @@
             this.grpHsndetail.Controls.Add(this.txtHSNCode);
             this.grpHsndetail.Controls.Add(this.textBox8);
             this.grpHsndetail.Controls.Add(this.txtDHSNNumber);
-            this.grpHsndetail.Location = new System.Drawing.Point(579, 453);
+            this.grpHsndetail.Location = new System.Drawing.Point(529, 32);
             this.grpHsndetail.Name = "grpHsndetail";
             this.grpHsndetail.Size = new System.Drawing.Size(279, 118);
             this.grpHsndetail.TabIndex = 34;
@@ -1687,7 +1570,7 @@
             // lblHsnName
             // 
             this.lblHsnName.AutoSize = true;
-            this.lblHsnName.Location = new System.Drawing.Point(-4, 52);
+            this.lblHsnName.Location = new System.Drawing.Point(-1, 52);
             this.lblHsnName.Name = "lblHsnName";
             this.lblHsnName.Size = new System.Drawing.Size(16, 20);
             this.lblHsnName.TabIndex = 127;
@@ -1749,16 +1632,196 @@
             this.textBox8.TabStop = false;
             this.textBox8.Text = "`";
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox1.Location = new System.Drawing.Point(4, 86);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(131, 27);
+            this.textBox1.TabIndex = 25;
+            this.textBox1.TabStop = false;
+            this.textBox1.Text = "Rack Description";
+            // 
+            // txtDPurchaseLocation
+            // 
+            this.txtDPurchaseLocation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPurchaseLocation.Enabled = false;
+            this.txtDPurchaseLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPurchaseLocation.Location = new System.Drawing.Point(4, 32);
+            this.txtDPurchaseLocation.Name = "txtDPurchaseLocation";
+            this.txtDPurchaseLocation.ReadOnly = true;
+            this.txtDPurchaseLocation.Size = new System.Drawing.Size(131, 27);
+            this.txtDPurchaseLocation.TabIndex = 12;
+            this.txtDPurchaseLocation.TabStop = false;
+            this.txtDPurchaseLocation.Text = "Stock Location";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox4.Location = new System.Drawing.Point(476, 5);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(21, 27);
+            this.textBox4.TabIndex = 116;
+            this.textBox4.Text = "%";
+            this.textBox4.Visible = false;
+            // 
+            // grbSalesStockLocation
+            // 
+            this.grbSalesStockLocation.Controls.Add(this.lvSaleLocation);
+            this.grbSalesStockLocation.Controls.Add(this.chkSameasPurchase);
+            this.grbSalesStockLocation.Controls.Add(this.txtSaleRack);
+            this.grbSalesStockLocation.Controls.Add(this.txtSaleLocation);
+            this.grbSalesStockLocation.Controls.Add(this.txtRackDescriptionSales);
+            this.grbSalesStockLocation.Controls.Add(this.textBox7);
+            this.grbSalesStockLocation.Controls.Add(this.txtDSalesGodown);
+            this.grbSalesStockLocation.Controls.Add(this.txtRackMOQQty);
+            this.grbSalesStockLocation.Controls.Add(this.txtDSalesShop);
+            this.grbSalesStockLocation.Controls.Add(this.txtDMaxOrderQty);
+            this.grbSalesStockLocation.Location = new System.Drawing.Point(10, 455);
+            this.grbSalesStockLocation.Name = "grbSalesStockLocation";
+            this.grbSalesStockLocation.Size = new System.Drawing.Size(550, 172);
+            this.grbSalesStockLocation.TabIndex = 17;
+            this.grbSalesStockLocation.TabStop = false;
+            this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
+            // 
+            // lvSaleLocation
+            // 
+            this.lvSaleLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24,
+            this.columnHeader25});
+            this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSaleLocation.HideSelection = false;
+            this.lvSaleLocation.Location = new System.Drawing.Point(135, 79);
+            this.lvSaleLocation.Name = "lvSaleLocation";
+            this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
+            this.lvSaleLocation.TabIndex = 127;
+            this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
+            this.lvSaleLocation.View = System.Windows.Forms.View.Details;
+            this.lvSaleLocation.Visible = false;
+            this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
+            this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 120;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 130;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Width = 0;
+            // 
+            // chkSameasPurchase
+            // 
+            this.chkSameasPurchase.AutoSize = true;
+            this.chkSameasPurchase.Location = new System.Drawing.Point(7, 24);
+            this.chkSameasPurchase.Name = "chkSameasPurchase";
+            this.chkSameasPurchase.Size = new System.Drawing.Size(125, 24);
+            this.chkSameasPurchase.TabIndex = 93;
+            this.chkSameasPurchase.Text = "Same as Purchase";
+            this.chkSameasPurchase.UseVisualStyleBackColor = true;
+            this.chkSameasPurchase.CheckedChanged += new System.EventHandler(this.ChkSameasPurchase_CheckedChanged);
+            // 
+            // txtSaleRack
+            // 
+            this.txtSaleRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSaleRack.Location = new System.Drawing.Point(135, 79);
+            this.txtSaleRack.MaxLength = 100;
+            this.txtSaleRack.Name = "txtSaleRack";
+            this.txtSaleRack.Size = new System.Drawing.Size(388, 27);
+            this.txtSaleRack.TabIndex = 18;
+            this.txtSaleRack.TextChanged += new System.EventHandler(this.TxtSaleRack_TextChanged);
+            this.txtSaleRack.Enter += new System.EventHandler(this.TxtSaleRack_Enter);
+            this.txtSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSaleRack_KeyDown);
+            this.txtSaleRack.Leave += new System.EventHandler(this.TxtSaleRack_Leave);
+            // 
+            // txtSaleLocation
+            // 
+            this.txtSaleLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSaleLocation.Location = new System.Drawing.Point(135, 52);
+            this.txtSaleLocation.MaxLength = 100;
+            this.txtSaleLocation.Name = "txtSaleLocation";
+            this.txtSaleLocation.Size = new System.Drawing.Size(388, 27);
+            this.txtSaleLocation.TabIndex = 17;
+            this.txtSaleLocation.TextChanged += new System.EventHandler(this.TxtSaleLocation_TextChanged);
+            this.txtSaleLocation.Enter += new System.EventHandler(this.TxtSaleLocation_Enter);
+            this.txtSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSaleLocation_KeyDown);
+            this.txtSaleLocation.Leave += new System.EventHandler(this.TxtSaleLocation_Leave);
+            // 
+            // txtRackDescriptionSales
+            // 
+            this.txtRackDescriptionSales.BackColor = System.Drawing.SystemColors.Control;
+            this.txtRackDescriptionSales.Enabled = false;
+            this.txtRackDescriptionSales.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtRackDescriptionSales.Location = new System.Drawing.Point(135, 106);
+            this.txtRackDescriptionSales.Name = "txtRackDescriptionSales";
+            this.txtRackDescriptionSales.Size = new System.Drawing.Size(388, 27);
+            this.txtRackDescriptionSales.TabIndex = 92;
+            this.txtRackDescriptionSales.TabStop = false;
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox7.Enabled = false;
+            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox7.Location = new System.Drawing.Point(4, 106);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(131, 27);
+            this.textBox7.TabIndex = 91;
+            this.textBox7.TabStop = false;
+            this.textBox7.Text = "Rack Description";
+            // 
+            // txtDSalesGodown
+            // 
+            this.txtDSalesGodown.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDSalesGodown.Enabled = false;
+            this.txtDSalesGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDSalesGodown.Location = new System.Drawing.Point(4, 52);
+            this.txtDSalesGodown.Name = "txtDSalesGodown";
+            this.txtDSalesGodown.ReadOnly = true;
+            this.txtDSalesGodown.Size = new System.Drawing.Size(131, 27);
+            this.txtDSalesGodown.TabIndex = 12;
+            this.txtDSalesGodown.TabStop = false;
+            this.txtDSalesGodown.Text = "Stock Location";
+            // 
+            // txtDSalesShop
+            // 
+            this.txtDSalesShop.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDSalesShop.Enabled = false;
+            this.txtDSalesShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDSalesShop.Location = new System.Drawing.Point(4, 79);
+            this.txtDSalesShop.Name = "txtDSalesShop";
+            this.txtDSalesShop.ReadOnly = true;
+            this.txtDSalesShop.Size = new System.Drawing.Size(131, 27);
+            this.txtDSalesShop.TabIndex = 24;
+            this.txtDSalesShop.TabStop = false;
+            this.txtDSalesShop.Text = "Rack";
+            // 
             // grbBatchNoDetails
             // 
             this.grbBatchNoDetails.Controls.Add(this.cmbBatchNoGeneration);
             this.grbBatchNoDetails.Controls.Add(this.txtBatchNoGeneration);
             this.grbBatchNoDetails.Controls.Add(this.cmbBatchNoEntry);
             this.grbBatchNoDetails.Controls.Add(this.txtDBatchNoEntry);
-            this.grbBatchNoDetails.Location = new System.Drawing.Point(10, 559);
+            this.grbBatchNoDetails.Location = new System.Drawing.Point(579, 109);
             this.grbBatchNoDetails.Name = "grbBatchNoDetails";
-            this.grbBatchNoDetails.Size = new System.Drawing.Size(272, 86);
-            this.grbBatchNoDetails.TabIndex = 17;
+            this.grbBatchNoDetails.Size = new System.Drawing.Size(278, 84);
+            this.grbBatchNoDetails.TabIndex = 20;
             this.grbBatchNoDetails.TabStop = false;
             this.grbBatchNoDetails.Text = "Batch No. Details";
             // 
@@ -1766,10 +1829,10 @@
             // 
             this.cmbBatchNoGeneration.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNoGeneration.FormattingEnabled = true;
-            this.cmbBatchNoGeneration.Location = new System.Drawing.Point(135, 51);
+            this.cmbBatchNoGeneration.Location = new System.Drawing.Point(135, 48);
             this.cmbBatchNoGeneration.Name = "cmbBatchNoGeneration";
             this.cmbBatchNoGeneration.Size = new System.Drawing.Size(127, 27);
-            this.cmbBatchNoGeneration.TabIndex = 18;
+            this.cmbBatchNoGeneration.TabIndex = 21;
             this.cmbBatchNoGeneration.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoGeneration_SelectedIndexChanged);
             this.cmbBatchNoGeneration.Enter += new System.EventHandler(this.CmbBatchNoGeneration_Enter);
             this.cmbBatchNoGeneration.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNoGeneration_KeyDown);
@@ -1781,7 +1844,7 @@
             this.txtBatchNoGeneration.BackColor = System.Drawing.SystemColors.Control;
             this.txtBatchNoGeneration.Enabled = false;
             this.txtBatchNoGeneration.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBatchNoGeneration.Location = new System.Drawing.Point(4, 51);
+            this.txtBatchNoGeneration.Location = new System.Drawing.Point(4, 48);
             this.txtBatchNoGeneration.Name = "txtBatchNoGeneration";
             this.txtBatchNoGeneration.ReadOnly = true;
             this.txtBatchNoGeneration.Size = new System.Drawing.Size(131, 27);
@@ -1793,10 +1856,10 @@
             // 
             this.cmbBatchNoEntry.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNoEntry.FormattingEnabled = true;
-            this.cmbBatchNoEntry.Location = new System.Drawing.Point(135, 24);
+            this.cmbBatchNoEntry.Location = new System.Drawing.Point(135, 21);
             this.cmbBatchNoEntry.Name = "cmbBatchNoEntry";
             this.cmbBatchNoEntry.Size = new System.Drawing.Size(127, 27);
-            this.cmbBatchNoEntry.TabIndex = 17;
+            this.cmbBatchNoEntry.TabIndex = 20;
             this.cmbBatchNoEntry.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoEntry_SelectedIndexChanged);
             this.cmbBatchNoEntry.Enter += new System.EventHandler(this.CmbBatchNoEntry_Enter);
             this.cmbBatchNoEntry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNoEntry_KeyDown);
@@ -1808,7 +1871,7 @@
             this.txtDBatchNoEntry.BackColor = System.Drawing.SystemColors.Control;
             this.txtDBatchNoEntry.Enabled = false;
             this.txtDBatchNoEntry.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBatchNoEntry.Location = new System.Drawing.Point(4, 24);
+            this.txtDBatchNoEntry.Location = new System.Drawing.Point(4, 21);
             this.txtDBatchNoEntry.Name = "txtDBatchNoEntry";
             this.txtDBatchNoEntry.ReadOnly = true;
             this.txtDBatchNoEntry.Size = new System.Drawing.Size(131, 27);
@@ -1824,7 +1887,7 @@
             this.btnSave.Location = new System.Drawing.Point(669, 616);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(113, 29);
-            this.btnSave.TabIndex = 38;
+            this.btnSave.TabIndex = 40;
             this.btnSave.Text = "Save as Draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -1841,7 +1904,7 @@
             this.btnClose.Location = new System.Drawing.Point(784, 616);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
-            this.btnClose.TabIndex = 39;
+            this.btnClose.TabIndex = 41;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1855,7 +1918,7 @@
             this.groupBox3.Controls.Add(this.txtREnglishName);
             this.groupBox3.Controls.Add(this.txtRPICode);
             this.groupBox3.Controls.Add(this.lblDPicode);
-            this.groupBox3.Location = new System.Drawing.Point(579, 6);
+            this.groupBox3.Location = new System.Drawing.Point(579, -4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(278, 114);
             this.groupBox3.TabIndex = 95;
@@ -1907,7 +1970,7 @@
             this.columnHeader17});
             this.lvPurLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurLocation.HideSelection = false;
-            this.lvPurLocation.Location = new System.Drawing.Point(142, 324);
+            this.lvPurLocation.Location = new System.Drawing.Point(142, 393);
             this.lvPurLocation.Name = "lvPurLocation";
             this.lvPurLocation.Size = new System.Drawing.Size(388, 78);
             this.lvPurLocation.TabIndex = 124;
@@ -1941,7 +2004,7 @@
             this.columnHeader19});
             this.lvPurRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurRack.HideSelection = false;
-            this.lvPurRack.Location = new System.Drawing.Point(142, 351);
+            this.lvPurRack.Location = new System.Drawing.Point(142, 420);
             this.lvPurRack.Name = "lvPurRack";
             this.lvPurRack.Size = new System.Drawing.Size(388, 78);
             this.lvPurRack.TabIndex = 125;
@@ -1971,7 +2034,7 @@
             this.cbCompleted.Location = new System.Drawing.Point(578, 618);
             this.cbCompleted.Name = "cbCompleted";
             this.cbCompleted.Size = new System.Drawing.Size(86, 24);
-            this.cbCompleted.TabIndex = 37;
+            this.cbCompleted.TabIndex = 39;
             this.cbCompleted.Text = "Completed";
             this.cbCompleted.UseVisualStyleBackColor = true;
             this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
@@ -2067,6 +2130,8 @@
             this.clmPurEffectiveFrom,
             this.clmPurEffectiveTo,
             this.clmPurHSNID,
+            this.clmPurAddFlag,
+            this.clmPurEditFlag,
             this.clmPurRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -2090,6 +2155,7 @@
             this.grdPurHSN.Size = new System.Drawing.Size(844, 218);
             this.grdPurHSN.TabIndex = 1111142;
             this.grdPurHSN.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurHSN_CellContentClick);
+            this.grdPurHSN.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurHSN_DataBindingComplete);
             // 
             // clmPurHSNName
             // 
@@ -2131,6 +2197,20 @@
             this.clmPurHSNID.Name = "clmPurHSNID";
             this.clmPurHSNID.ReadOnly = true;
             this.clmPurHSNID.Visible = false;
+            // 
+            // clmPurAddFlag
+            // 
+            this.clmPurAddFlag.HeaderText = "Add Flag";
+            this.clmPurAddFlag.Name = "clmPurAddFlag";
+            this.clmPurAddFlag.ReadOnly = true;
+            this.clmPurAddFlag.Visible = false;
+            // 
+            // clmPurEditFlag
+            // 
+            this.clmPurEditFlag.HeaderText = "Edit Flag";
+            this.clmPurEditFlag.Name = "clmPurEditFlag";
+            this.clmPurEditFlag.ReadOnly = true;
+            this.clmPurEditFlag.Visible = false;
             // 
             // clmPurRemove
             // 
@@ -2273,6 +2353,8 @@
             this.clmSalesEffectiveFrom,
             this.clmSalesEffectiveTo,
             this.clmSalesHSNID,
+            this.clmSalesAddFlag,
+            this.clmSalesEditFlag,
             this.clmSalesRemove});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -2296,6 +2378,7 @@
             this.grdSalesHSN.Size = new System.Drawing.Size(844, 219);
             this.grdSalesHSN.TabIndex = 1111142;
             this.grdSalesHSN.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSalesHSN_CellContentClick);
+            this.grdSalesHSN.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSalesHSN_DataBindingComplete);
             // 
             // clmSalesHSNName
             // 
@@ -2337,6 +2420,20 @@
             this.clmSalesHSNID.Name = "clmSalesHSNID";
             this.clmSalesHSNID.ReadOnly = true;
             this.clmSalesHSNID.Visible = false;
+            // 
+            // clmSalesAddFlag
+            // 
+            this.clmSalesAddFlag.HeaderText = "Add Flag";
+            this.clmSalesAddFlag.Name = "clmSalesAddFlag";
+            this.clmSalesAddFlag.ReadOnly = true;
+            this.clmSalesAddFlag.Visible = false;
+            // 
+            // clmSalesEditFlag
+            // 
+            this.clmSalesEditFlag.HeaderText = "Edit Flag";
+            this.clmSalesEditFlag.Name = "clmSalesEditFlag";
+            this.clmSalesEditFlag.ReadOnly = true;
+            this.clmSalesEditFlag.Visible = false;
             // 
             // clmSalesRemove
             // 
@@ -2418,7 +2515,6 @@
             this.tabPage1.Controls.Add(this.lvBrand);
             this.tabPage1.Controls.Add(this.lvSaleRack);
             this.tabPage1.Controls.Add(this.lvGroup);
-            this.tabPage1.Controls.Add(this.grpHsndetail);
             this.tabPage1.Controls.Add(this.cbCompleted);
             this.tabPage1.Controls.Add(this.lvSubGroup);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -2451,7 +2547,7 @@
             this.columnHeader3});
             this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvBrand.HideSelection = false;
-            this.lvBrand.Location = new System.Drawing.Point(167, 228);
+            this.lvBrand.Location = new System.Drawing.Point(167, 286);
             this.lvBrand.Name = "lvBrand";
             this.lvBrand.Size = new System.Drawing.Size(363, 78);
             this.lvBrand.TabIndex = 1111147;
@@ -2481,7 +2577,7 @@
             this.columnHeader21});
             this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSaleRack.HideSelection = false;
-            this.lvSaleRack.Location = new System.Drawing.Point(145, 493);
+            this.lvSaleRack.Location = new System.Drawing.Point(145, 561);
             this.lvSaleRack.Name = "lvSaleRack";
             this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
             this.lvSaleRack.TabIndex = 134;
@@ -2592,10 +2688,10 @@
             this.grpExpire.PerformLayout();
             this.grplocation.ResumeLayout(false);
             this.grplocation.PerformLayout();
-            this.grbSalesStockLocation.ResumeLayout(false);
-            this.grbSalesStockLocation.PerformLayout();
             this.grpHsndetail.ResumeLayout(false);
             this.grpHsndetail.PerformLayout();
+            this.grbSalesStockLocation.ResumeLayout(false);
+            this.grbSalesStockLocation.PerformLayout();
             this.grbBatchNoDetails.ResumeLayout(false);
             this.grbBatchNoDetails.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -2801,12 +2897,15 @@
         private System.Windows.Forms.ColumnHeader columnHeader39;
         private System.Windows.Forms.ColumnHeader columnHeader41;
         private System.Windows.Forms.ColumnHeader columnHeader40;
+        private System.Windows.Forms.Label lblProductEName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEffectiveFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEffectiveTo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurAddFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEditFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmPurRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNCode;
@@ -2814,7 +2913,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEffectiveFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEffectiveTo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesAddFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEditFlag;
         private System.Windows.Forms.DataGridViewImageColumn clmSalesRemove;
-        private System.Windows.Forms.Label lblProductEName;
+        private System.Windows.Forms.TextBox txtLabelNameEnglish;
+        private System.Windows.Forms.TextBox txtLabelNameTamil;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }
