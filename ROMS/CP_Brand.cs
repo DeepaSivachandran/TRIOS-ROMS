@@ -461,11 +461,11 @@ namespace ROMS
                 if (varGroup != "")
                 {
                     //objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, varId, "", 0, 0, 0, 0);
-                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, 0, "", 0, 0, 0, 0);
+                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, 0, "", 0, 0, 0, 0,0);
                 }
                 else if (varmasterBrandtype == 1)
                 {
-                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroupId, 0, 0, "", 0, 0, 0, 0);
+                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroupId, 0, 0, "", 0, 0, 0, 0,0);
                 }
                 objdserv.CloseConnection();
                 // if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }
@@ -539,7 +539,7 @@ namespace ROMS
                             else
                             {
                                 SPDataService objdservs = new SPDataService();
-                                objDs = objdservs.udfnSubGroupList(14, Convert.ToInt32(varSubGroupId), "", 0, 0, "", 0, 0, 0, 0);
+                                objDs = objdservs.udfnSubGroupList(14, Convert.ToInt32(varSubGroupId), "", 0, 0, "", 0, 0, 0, 0,0);
                                 objdservs.CloseConnection();
                                 string varProCount = "0";
                                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varProCount = Convert.ToString(objDs.Tables[0].Rows[0]["Count"]); } } }

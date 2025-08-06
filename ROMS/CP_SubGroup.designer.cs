@@ -34,19 +34,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_SubGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.lvGroupName = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cmbSubgroupType = new System.Windows.Forms.ComboBox();
             this.lblGroupCode = new System.Windows.Forms.Label();
             this.lvLocation = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvGroupName = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtProductGroupName = new System.Windows.Forms.TextBox();
             this.cmbBatchNo = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtSDtockLocation = new System.Windows.Forms.TextBox();
             this.txtEProductSubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.txtESubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Label();
@@ -66,6 +67,7 @@
             this.btnewlocation = new System.Windows.Forms.Label();
             this.lblRack = new System.Windows.Forms.Label();
             this.txtLocation = new System.Windows.Forms.TextBox();
+            this.txtSDtockLocation = new System.Windows.Forms.TextBox();
             this.txtDRack = new System.Windows.Forms.TextBox();
             this.epSubGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblLocation = new System.Windows.Forms.Label();
@@ -78,13 +80,14 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.lvGroupName);
+            this.grbform.Controls.Add(this.textBox2);
+            this.grbform.Controls.Add(this.cmbSubgroupType);
             this.grbform.Controls.Add(this.lblGroupCode);
             this.grbform.Controls.Add(this.lvLocation);
-            this.grbform.Controls.Add(this.lvGroupName);
             this.grbform.Controls.Add(this.txtProductGroupName);
             this.grbform.Controls.Add(this.cmbBatchNo);
             this.grbform.Controls.Add(this.textBox1);
-            this.grbform.Controls.Add(this.txtSDtockLocation);
             this.grbform.Controls.Add(this.txtEProductSubGroupNameTamil);
             this.grbform.Controls.Add(this.txtESubGroupNameTamil);
             this.grbform.Controls.Add(this.btnAdd);
@@ -98,49 +101,9 @@
             this.grbform.Controls.Add(this.grpPurchaseStockLocation);
             this.grbform.Location = new System.Drawing.Point(10, 1);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(453, 421);
+            this.grbform.Size = new System.Drawing.Size(453, 446);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
-            // 
-            // lblGroupCode
-            // 
-            this.lblGroupCode.AutoSize = true;
-            this.lblGroupCode.Location = new System.Drawing.Point(9, 25);
-            this.lblGroupCode.Name = "lblGroupCode";
-            this.lblGroupCode.Size = new System.Drawing.Size(0, 18);
-            this.lblGroupCode.TabIndex = 1111145;
-            this.lblGroupCode.Visible = false;
-            // 
-            // lvLocation
-            // 
-            this.lvLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
-            this.lvLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvLocation.HideSelection = false;
-            this.lvLocation.Location = new System.Drawing.Point(224, 164);
-            this.lvLocation.Name = "lvLocation";
-            this.lvLocation.Size = new System.Drawing.Size(223, 84);
-            this.lvLocation.TabIndex = 1111145;
-            this.lvLocation.UseCompatibleStateImageBehavior = false;
-            this.lvLocation.View = System.Windows.Forms.View.Details;
-            this.lvLocation.Visible = false;
-            this.lvLocation.DoubleClick += new System.EventHandler(this.LvLocation_DoubleClick);
-            this.lvLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvLocation_KeyDown);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 180;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 120;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Width = 0;
             // 
             // lvGroupName
             // 
@@ -151,7 +114,7 @@
             this.lvGroupName.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvGroupName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroupName.HideSelection = false;
-            this.lvGroupName.Location = new System.Drawing.Point(224, 47);
+            this.lvGroupName.Location = new System.Drawing.Point(224, 48);
             this.lvGroupName.Name = "lvGroupName";
             this.lvGroupName.Size = new System.Drawing.Size(223, 90);
             this.lvGroupName.TabIndex = 1111144;
@@ -173,6 +136,71 @@
             // 
             this.columnHeader3.Width = 0;
             // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(24, 101);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(200, 27);
+            this.textBox2.TabIndex = 1111147;
+            this.textBox2.Text = "Product Subgroup Type";
+            // 
+            // cmbSubgroupType
+            // 
+            this.cmbSubgroupType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSubgroupType.FormattingEnabled = true;
+            this.cmbSubgroupType.Location = new System.Drawing.Point(224, 101);
+            this.cmbSubgroupType.Name = "cmbSubgroupType";
+            this.cmbSubgroupType.Size = new System.Drawing.Size(200, 27);
+            this.cmbSubgroupType.TabIndex = 3;
+            this.cmbSubgroupType.Enter += new System.EventHandler(this.CmbSubgroupType_Enter);
+            this.cmbSubgroupType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSubgroupType_KeyDown);
+            this.cmbSubgroupType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSubgroupType_KeyPress);
+            this.cmbSubgroupType.Leave += new System.EventHandler(this.CmbSubgroupType_Leave);
+            // 
+            // lblGroupCode
+            // 
+            this.lblGroupCode.AutoSize = true;
+            this.lblGroupCode.Location = new System.Drawing.Point(9, 25);
+            this.lblGroupCode.Name = "lblGroupCode";
+            this.lblGroupCode.Size = new System.Drawing.Size(0, 18);
+            this.lblGroupCode.TabIndex = 1111145;
+            this.lblGroupCode.Visible = false;
+            // 
+            // lvLocation
+            // 
+            this.lvLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lvLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvLocation.HideSelection = false;
+            this.lvLocation.Location = new System.Drawing.Point(224, 185);
+            this.lvLocation.Name = "lvLocation";
+            this.lvLocation.Size = new System.Drawing.Size(223, 84);
+            this.lvLocation.TabIndex = 1111145;
+            this.lvLocation.UseCompatibleStateImageBehavior = false;
+            this.lvLocation.View = System.Windows.Forms.View.Details;
+            this.lvLocation.Visible = false;
+            this.lvLocation.DoubleClick += new System.EventHandler(this.LvLocation_DoubleClick);
+            this.lvLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvLocation_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 180;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 120;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
+            // 
             // txtProductGroupName
             // 
             this.txtProductGroupName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -190,7 +218,7 @@
             // 
             this.cmbBatchNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNo.FormattingEnabled = true;
-            this.cmbBatchNo.Location = new System.Drawing.Point(224, 101);
+            this.cmbBatchNo.Location = new System.Drawing.Point(224, 128);
             this.cmbBatchNo.Name = "cmbBatchNo";
             this.cmbBatchNo.Size = new System.Drawing.Size(200, 27);
             this.cmbBatchNo.TabIndex = 3;
@@ -206,25 +234,13 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(24, 101);
+            this.textBox1.Location = new System.Drawing.Point(24, 128);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(200, 27);
             this.textBox1.TabIndex = 1111142;
             this.textBox1.Text = "Batch No.";
             this.textBox1.Visible = false;
-            // 
-            // txtSDtockLocation
-            // 
-            this.txtSDtockLocation.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSDtockLocation.Enabled = false;
-            this.txtSDtockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDtockLocation.Location = new System.Drawing.Point(24, 137);
-            this.txtSDtockLocation.Name = "txtSDtockLocation";
-            this.txtSDtockLocation.ReadOnly = true;
-            this.txtSDtockLocation.Size = new System.Drawing.Size(200, 27);
-            this.txtSDtockLocation.TabIndex = 1111136;
-            this.txtSDtockLocation.Text = "Stock Location";
             // 
             // txtEProductSubGroupNameTamil
             // 
@@ -279,7 +295,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(24, 348);
+            this.txtDStatus.Location = new System.Drawing.Point(24, 369);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(200, 27);
@@ -292,7 +308,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(224, 348);
+            this.pnlStatus.Location = new System.Drawing.Point(224, 369);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(200, 27);
             this.pnlStatus.TabIndex = 7;
@@ -344,7 +360,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(345, 381);
+            this.btnClose.Location = new System.Drawing.Point(345, 402);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(79, 29);
             this.btnClose.TabIndex = 9;
@@ -361,7 +377,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(263, 381);
+            this.btnSave.Location = new System.Drawing.Point(263, 402);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(79, 29);
             this.btnSave.TabIndex = 8;
@@ -393,9 +409,10 @@
             this.grpPurchaseStockLocation.Controls.Add(this.btnewlocation);
             this.grpPurchaseStockLocation.Controls.Add(this.lblRack);
             this.grpPurchaseStockLocation.Controls.Add(this.txtLocation);
+            this.grpPurchaseStockLocation.Controls.Add(this.txtSDtockLocation);
             this.grpPurchaseStockLocation.Controls.Add(this.txtDRack);
             this.grpPurchaseStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.grpPurchaseStockLocation.Location = new System.Drawing.Point(7, 107);
+            this.grpPurchaseStockLocation.Location = new System.Drawing.Point(7, 128);
             this.grpPurchaseStockLocation.Name = "grpPurchaseStockLocation";
             this.grpPurchaseStockLocation.Size = new System.Drawing.Size(440, 235);
             this.grpPurchaseStockLocation.TabIndex = 4;
@@ -504,6 +521,18 @@
             this.txtLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLocation_KeyDown);
             this.txtLocation.Leave += new System.EventHandler(this.TxtLocation_Leave);
             // 
+            // txtSDtockLocation
+            // 
+            this.txtSDtockLocation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSDtockLocation.Enabled = false;
+            this.txtSDtockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSDtockLocation.Location = new System.Drawing.Point(17, 30);
+            this.txtSDtockLocation.Name = "txtSDtockLocation";
+            this.txtSDtockLocation.ReadOnly = true;
+            this.txtSDtockLocation.Size = new System.Drawing.Size(200, 27);
+            this.txtSDtockLocation.TabIndex = 1111136;
+            this.txtSDtockLocation.Text = "Stock Location";
+            // 
             // txtDRack
             // 
             this.txtDRack.BackColor = System.Drawing.SystemColors.Control;
@@ -534,7 +563,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(476, 432);
+            this.ClientSize = new System.Drawing.Size(475, 457);
             this.Controls.Add(this.lblLocation);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -601,5 +630,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         public System.Windows.Forms.DataGridView grdRackList;
         private System.Windows.Forms.TextBox txtRack;
+        private System.Windows.Forms.ComboBox cmbSubgroupType;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
