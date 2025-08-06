@@ -3477,17 +3477,18 @@ namespace ROMS
                                     {
                                         grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;
                                     }
-                                }
-                                if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == 0 || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == varZero)
-                                {
-                                    varcount++;
-                                    varcount1++;
-                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
-                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.ForeColor = Color.Black;
-                                }
-                                else
-                                {
-                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+
+                                    if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == 0 || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmInvQty"].Value) == varZero)
+                                    {
+                                        varcount++;
+                                        varcount1++;
+                                        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
+                                        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.ForeColor = Color.Black;
+                                    }
+                                    else
+                                    {
+                                        grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                    }
                                 }
                                 if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) == "" || Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) == 0 || Convert.ToString(grdPurchaseList.Rows[i].Cells["clmRecqty"].Value) == varZero)
                                 {
