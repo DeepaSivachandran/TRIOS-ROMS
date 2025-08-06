@@ -229,6 +229,7 @@ namespace ROMS
                             grdSubGroupList.Columns["Rack"].Width = 100;
                             grdSubGroupList.Columns["Batch No."].Width = 100;
                             grdSubGroupList.Columns["Total Products"].Width = 100;
+                            grdSubGroupList.Columns["Product Subgroup Type"].Width = 150;
                             grdSubGroupList.Columns["Status"].Width = 80;
 
                             grdSubGroupList.Columns["ID"].Visible = false;
