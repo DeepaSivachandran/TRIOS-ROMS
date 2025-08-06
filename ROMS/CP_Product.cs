@@ -823,69 +823,69 @@ namespace ROMS
 
                     //  if (btnSave.Text == "Save" && cbCompleted.Checked == true)
                     /* Changed by deepa on 29-07-2025 - Location validation for both save and update mode*/
-                    if (cbCompleted.Checked == true)
-                    {
-                        /* Check Location Based on Subgroup or not */
-                        //if (Convert.ToString(txtPurLocation.Text) != "")
-                        //{
-                        string varSubLocationId = "0";
-                        DataSet objDsSubGroup = new DataSet();
-                        SPDataService objDServ = new SPDataService();
-                        objDsSubGroup = objDServ.udfnStockLocationList(19, 0, 0, 0, txtPurLocation.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text), 0, 0, "", "", 0);
-                        objDServ.CloseConnection();
-                        if (objDsSubGroup != null)
-                        {
-                            if (objDsSubGroup.Tables.Count > 0)
-                            {
-                                if (objDsSubGroup.Tables[0].Rows.Count > 0)
-                                {
-                                    varSubLocationId = Convert.ToString(objDsSubGroup.Tables[0].Rows[0][0]);
-                                }
-                            }
-                        }
-                        lblPurLocationCode.Text = Convert.ToString(varSubLocationId);
-                        if ((varSubLocationId == "0" || varSubLocationId == "-1"))
-                        {
-                            errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
-                            txtPurLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tppurchaselocation.ShowAlways = true;
-                            tppurchaselocation.Show("Please select valid purchase stock location", txtPurLocation, 5000);
-                            blnErrorFlag = true;
-                        }
-                        //}
-                        /* Check Rack Based on Subgroup or not */
-                        //if (Convert.ToString(txtPurRack.Text) != "" && Convert.ToString(txtPurRack.Text)!="None")
-                        //{
+                    //if (cbCompleted.Checked == true)
+                    //{
+                    //    /* Check Location Based on Subgroup or not */
+                    //    //if (Convert.ToString(txtPurLocation.Text) != "")
+                    //    //{
+                    //    string varSubLocationId = "0";
+                    //    DataSet objDsSubGroup = new DataSet();
+                    //    SPDataService objDServ = new SPDataService();
+                    //    objDsSubGroup = objDServ.udfnStockLocationList(19, 0, 0, 0, txtPurLocation.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text), 0, 0, "", "", 0);
+                    //    objDServ.CloseConnection();
+                    //    if (objDsSubGroup != null)
+                    //    {
+                    //        if (objDsSubGroup.Tables.Count > 0)
+                    //        {
+                    //            if (objDsSubGroup.Tables[0].Rows.Count > 0)
+                    //            {
+                    //                varSubLocationId = Convert.ToString(objDsSubGroup.Tables[0].Rows[0][0]);
+                    //            }
+                    //        }
+                    //    }
+                    //    lblPurLocationCode.Text = Convert.ToString(varSubLocationId);
+                    //    if ((varSubLocationId == "0" || varSubLocationId == "-1"))
+                    //    {
+                    //        errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
+                    //        txtPurLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tppurchaselocation.ShowAlways = true;
+                    //        tppurchaselocation.Show("Please select valid purchase stock location", txtPurLocation, 5000);
+                    //        blnErrorFlag = true;
+                    //    }
+                    //    //}
+                    //    /* Check Rack Based on Subgroup or not */
+                    //    //if (Convert.ToString(txtPurRack.Text) != "" && Convert.ToString(txtPurRack.Text)!="None")
+                    //    //{
 
-                        //Rack Validation No Needed 
-                        /*
-                        string varSubRackId = "0";
-                        DataSet objDsSubGroupRack = new DataSet();
-                        SPDataService objDSRack = new SPDataService();
-                        objDsSubGroupRack = objDSRack.udfnRackList(12, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text), 0);
-                        objDSRack.CloseConnection();
-                        if (objDsSubGroupRack != null)
-                        {
-                            if (objDsSubGroupRack.Tables.Count > 0)
-                            {
-                                if (objDsSubGroupRack.Tables[0].Rows.Count > 0)
-                                {
-                                    varSubRackId = Convert.ToString(objDsSubGroupRack.Tables[0].Rows[0][0]);
-                                }
-                            }
-                        }
-                        lblPurRackCode.Text = Convert.ToString(varSubRackId);
-                        if ((varSubRackId == "0" || varSubRackId == "-1") && txtPurRack.Enabled)
-                        {
-                            errItems.SetError(txtPurRack, "Please select valid purchase rack");
-                            txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tppurchaserack.ShowAlways = true;
-                            tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
-                            blnErrorFlag = true;
-                        }
-                        */
-                        //}
-                    }
+                    //    //Rack Validation No Needed 
+                    //    /*
+                    //    string varSubRackId = "0";
+                    //    DataSet objDsSubGroupRack = new DataSet();
+                    //    SPDataService objDSRack = new SPDataService();
+                    //    objDsSubGroupRack = objDSRack.udfnRackList(12, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text), 0);
+                    //    objDSRack.CloseConnection();
+                    //    if (objDsSubGroupRack != null)
+                    //    {
+                    //        if (objDsSubGroupRack.Tables.Count > 0)
+                    //        {
+                    //            if (objDsSubGroupRack.Tables[0].Rows.Count > 0)
+                    //            {
+                    //                varSubRackId = Convert.ToString(objDsSubGroupRack.Tables[0].Rows[0][0]);
+                    //            }
+                    //        }
+                    //    }
+                    //    lblPurRackCode.Text = Convert.ToString(varSubRackId);
+                    //    if ((varSubRackId == "0" || varSubRackId == "-1") && txtPurRack.Enabled)
+                    //    {
+                    //        errItems.SetError(txtPurRack, "Please select valid purchase rack");
+                    //        txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tppurchaserack.ShowAlways = true;
+                    //        tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
+                    //        blnErrorFlag = true;
+                    //    }
+                    //    */
+                    //    //}
+                    //}
                     if (grdPurHSN.Rows.Count < 1)
                     {
                         SPDataService objDataService = new SPDataService();
