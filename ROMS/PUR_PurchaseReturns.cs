@@ -150,7 +150,7 @@ namespace ROMS
                     }
                     varModifiedFlag = 1;
                 }
-                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 )//|| Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207) //Credit Note Created
+                else if (Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 64 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 314 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 192 || Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 206 )//|| Convert.ToInt32(cmbReasonForClosing.SelectedValue) == 207) //Credit Note Created
                 {
                     txtDAmount.Visible = true;
                     txtAmount.Visible = true;
