@@ -5604,13 +5604,11 @@ namespace ROMS
                 {
                     flagSave = 1;
                 }
-                if (flagSave == 0 && (varCheckCount > 0 || varButtonFlag > 0) || varApprovalStatus == 62)
+                if (flagSave == 0 && (varCheckCount > 0 || varButtonFlag > 0)  )
                 {
-                    if (varCheckCount > 0 || varButtonFlag>0 || varApprovalStatus == 62)
+                    if (varCheckCount > 0 || varButtonFlag>0  )
                     {
-                        int varStatus = 0; string result = "";
-
-
+                        int varStatus = 0; string result = ""; 
                         varStatus = 63;
                         int varBrokerid = 0;
                         if (lblBrokerId.Text != "") { varBrokerid = Convert.ToInt32(lblBrokerId.Text); }

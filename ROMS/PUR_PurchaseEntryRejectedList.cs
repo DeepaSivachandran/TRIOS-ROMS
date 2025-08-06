@@ -186,6 +186,7 @@ namespace ROMS
                             grdPurchaseEntryRejected.Columns["SPSCID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["SPID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["STSID"].Visible = false;
+                            grdPurchaseEntryRejected.Columns["DeleteFlag"].Visible = false;
 
                             //grdPurchaseEntryRejected.Columns["PUR_Approval_STSID"].Visible = false;
                             //grdPurchaseEntryRejected.Columns["Error"].Visible = false;
