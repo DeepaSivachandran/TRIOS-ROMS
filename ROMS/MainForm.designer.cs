@@ -172,6 +172,8 @@ namespace ROMS
             this.tsmPurchaseTallyReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseBatchDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseCostDetails = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseTaxReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseBillWiseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -839,6 +841,7 @@ namespace ROMS
             this.TSMGRNReport,
             this.supplierWiseReportToolStripMenuItem,
             this.purchaseReportToolStripMenuItem,
+            this.tsmPurchaseTaxReports,
             this.tsmRateChangeReport,
             this.inventoryToolStripMenuItem1});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
@@ -1254,14 +1257,14 @@ namespace ROMS
             // tsmStockInward
             // 
             this.tsmStockInward.Name = "tsmStockInward";
-            this.tsmStockInward.Size = new System.Drawing.Size(147, 22);
+            this.tsmStockInward.Size = new System.Drawing.Size(180, 22);
             this.tsmStockInward.Text = "Stock Inward";
             this.tsmStockInward.Click += new System.EventHandler(this.TsmStockInward_Click);
             // 
             // tsmStockOutward
             // 
             this.tsmStockOutward.Name = "tsmStockOutward";
-            this.tsmStockOutward.Size = new System.Drawing.Size(147, 22);
+            this.tsmStockOutward.Size = new System.Drawing.Size(180, 22);
             this.tsmStockOutward.Text = "Stock Outward";
             this.tsmStockOutward.Click += new System.EventHandler(this.TsmStockOutward_Click);
             // 
@@ -1356,6 +1359,21 @@ namespace ROMS
             this.tsmPurchaseCostDetails.Size = new System.Drawing.Size(280, 22);
             this.tsmPurchaseCostDetails.Text = "Purchase Cost Details";
             this.tsmPurchaseCostDetails.Click += new System.EventHandler(this.TsmPurchaseCostDetails_Click);
+            // 
+            // tsmPurchaseTaxReports
+            // 
+            this.tsmPurchaseTaxReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmPurchaseBillWiseTaxReport});
+            this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
+            this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
+            this.tsmPurchaseTaxReports.Text = "Purchase Tax Report";
+            // 
+            // tsmPurchaseBillWiseTaxReport
+            // 
+            this.tsmPurchaseBillWiseTaxReport.Name = "tsmPurchaseBillWiseTaxReport";
+            this.tsmPurchaseBillWiseTaxReport.Size = new System.Drawing.Size(217, 22);
+            this.tsmPurchaseBillWiseTaxReport.Text = "Purchase Bill Wise Tax Report";
+            this.tsmPurchaseBillWiseTaxReport.Click += new System.EventHandler(this.TsmPurchaseBillWiseTaxReport_Click);
             // 
             // MainForm
             // 
@@ -1528,5 +1546,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseTallyReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseBatchDetails;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseCostDetails;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseTaxReports;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseBillWiseTaxReport;
     }
 }
