@@ -106,14 +106,7 @@ namespace ROMS
                         grdInward.Rows[row.Index].Cells["clmStatus"] = new DataGridViewTextBoxCell();
                         grdInward.Rows[row.Index].Cells["clmStatus"].Value = "";
                         grdInward.Rows[row.Index].Cells["clmStatus"].ReadOnly = true;
-                    }
-                    if (Convert.ToString(grdInward.Rows[row.Index].Cells["clmUnReadable"].Value) == "1")
-                    {
-                        grdInward.Rows[row.Index].Cells["clmCheck"].Value = null;
-                        grdInward.Rows[row.Index].Cells["clmCheck"] = new DataGridViewTextBoxCell();
-                        grdInward.Rows[row.Index].Cells["clmCheck"].Value = "";
-                        grdInward.Rows[row.Index].Cells["clmCheck"].ReadOnly = true; 
-                    }
+                    } 
                     if (Convert.ToString(grdInward.Rows[row.Index].Cells["clmRMFlag"].Value) == "1")
                     {
                         grdInward.Rows[row.Index].Cells["clmExpiryDate"].ReadOnly = true;
@@ -429,9 +422,9 @@ namespace ROMS
                                     string varSno = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmSno"].Value);
                                     string varPICode = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmPICode"].Value);
                                     string varPTName = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmProductName"].Value);
-                                    string varMRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
-                                    string varInvMRP = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
-                                    string varExpiryDate = "";//Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
+                                    string varMRP = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
+                                    string varInvMRP = "";
+                                    string varExpiryDate = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
                                     string varInvExpiryDate = "";
                                     string varBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
                                     string varInvBatchNo = "";//  Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceBatchNo"].Value);
@@ -439,7 +432,7 @@ namespace ROMS
                                     string varReceivedQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmReceivedQty"].Value);
                                     string varShopQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShopQty"].Value);
                                     string varUnit = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmUnit"].Value);
-                                    string varRack = ""; Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmRack"].Value);
+                                    string varRack =  Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmRack"].Value);
                                     string varPRID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmPRID"].Value);
                                     string varSLID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmSLID"].Value);
                                     string varRKID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmRKID"].Value);
@@ -490,10 +483,72 @@ namespace ROMS
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"];
                                     cell.Value= new System.Drawing.Bitmap(1, 1);
                                     udfnConvertProductDetails(sender, e);
-                                    //DataGridView dgvStatus = grdGrnlist;
-                                    //DataGridViewCell cellStatus = dgvStatus.Rows[dgvStatus.Rows.Count - 1].Cells["clmStatus"];
-                                    //cellStatus.Value = new System.Drawing.Bitmap(1, 1);
-                                    //MRP
+                                    //if (varclmMRPFlag == "0")
+                                    //{
+                                    //    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"].Style.BackColor = Color.LightGray;
+                                    //    cellProMrp.Style.ForeColor = Color.Black;
+                                    //    cellProMrp.ReadOnly = true; cellProMrp.Value = "0.00";
+                                    //    cellInvMrp.Style.BackColor = Color.LightGray; cellInvMrp.Style.ForeColor = Color.Black;
+                                    //    cellInvMrp.ReadOnly = true; cellInvMrp.Value = "0.00";
+                                    //}
+                                    //else
+                                    //{
+                                    //    cellInvMrp.Style.BackColor = Color.PaleGreen;
+                                    //    cellInvMrp.Style.ForeColor = Color.Black; cellInvMrp.ReadOnly = false;
+                                    //    cellProMrp.Style.BackColor = Color.PaleGreen;
+                                    //    cellProMrp.Style.ForeColor = Color.Black; cellProMrp.ReadOnly = false;
+                                    //}
+                                    //if (varShelflifeFlag == "0")
+                                    //{
+                                    //    cellShelfLife.Value = "";
+                                    //    cellInvExpiryDate.Style.BackColor = Color.LightGray;
+                                    //    cellInvExpiryDate.ReadOnly = true;
+                                    //    cellProExpiryDate.Style.BackColor = Color.LightGray;
+                                    //    cellProExpiryDate.ReadOnly = true;
+                                    //}
+                                    //else
+                                    //{
+                                    //    cellShelfLife.Style.BackColor = Color.PaleGreen; cellShelfLife.Style.ForeColor = Color.Black;
+                                    //    cellInvExpiryDate.Style.BackColor = Color.PaleGreen; cellInvExpiryDate.ReadOnly = false;
+                                    //    cellProExpiryDate.Style.BackColor = Color.PaleGreen; cellProExpiryDate.ReadOnly = false;
+                                    //}
+                                    //if (varBatchNoEnable == "73")
+                                    //{
+                                    //    cellInvBatchNo.Style.BackColor = Color.LightGray;
+                                    //    cellInvBatchNo.Style.ForeColor = Color.Black;
+                                    //    cellInvBatchNo.ReadOnly = true;
+                                    //    cellInvBatchNo.Value = "";
+                                    //    cellProBatchNo.Style.BackColor = Color.LightGray;
+                                    //    cellProBatchNo.Style.ForeColor = Color.Black;
+                                    //    cellProBatchNo.ReadOnly = true;
+                                    //    cellProBatchNo.Value = "";
+                                    //}
+                                    //else if (varBatchNoEnable == "72")
+                                    //{
+                                    //    if (varBatchNoGeneration == "75") //manul
+                                    //    {
+                                    //        cellInvBatchNo.Style.BackColor = Color.PaleGreen; cellInvBatchNo.Style.ForeColor = Color.Black;
+                                    //        cellInvBatchNo.ReadOnly = false; cellInvBatchNo.Value = "";
+                                    //        cellProBatchNo.Style.BackColor = Color.PaleGreen; cellProBatchNo.Style.ForeColor = Color.Black;
+                                    //        cellProBatchNo.ReadOnly = false; cellProBatchNo.Value = "";
+                                    //    }
+                                    //    else if (varBatchNoGeneration == "74")//Auto
+                                    //    {
+                                    //        cellInvBatchNo.Style.BackColor = Color.LightGray; cellInvBatchNo.Style.ForeColor = Color.Black;
+                                    //        cellInvBatchNo.ReadOnly = true;
+                                    //        cellProBatchNo.Style.BackColor = Color.LightGray; cellProBatchNo.Style.ForeColor = Color.Black;
+                                    //        cellProBatchNo.ReadOnly = true;
+                                    //    }
+                                    //}
+                                    //if (varRMProductionFlag == "1")
+                                    //{
+                                    //    cellInvExpiryDate.Style.BackColor = Color.LightGray;
+                                    //    cellInvExpiryDate.Style.ForeColor = Color.Black;
+                                    //    cellInvExpiryDate.ReadOnly = true;
+                                    //    cellProExpiryDate.Style.BackColor = Color.LightGray;
+                                    //    cellProExpiryDate.Style.ForeColor = Color.Black;
+                                    //    cellProExpiryDate.ReadOnly = true;
+                                    //}
                                     if (varEditFlag == 0)
                                     {
                                         DataGridView dataGridView1 = grdInward;
@@ -529,6 +584,7 @@ namespace ROMS
                                         Convert.ToInt32(varShelflifeType), 
                                         Convert.ToInt32(varActualLife),Convert.ToInt32(cellShelfLifeEnable), Convert.ToDecimal(cellShelfLifePer), Convert.ToString(cellInvExpiryDate), Convert.ToString(cellInvBatchNo),
                                         Convert.ToDecimal(cellInvMrp));
+
                                     }
                                     DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                                     GrdGrnlist_DataBindingComplete(grdInward, args2);
@@ -781,6 +837,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
         private void GrdGrnlist_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             try
