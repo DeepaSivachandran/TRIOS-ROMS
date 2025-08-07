@@ -12,14 +12,15 @@ using System.Globalization;
 
 namespace ROMS
 {
-    public partial class REPORT_PUR_BatchDetails : Form
+    public partial class REPORT_PUR_CostDetails : Form
     {
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public int varUpDownKeySupplier = 0;
-        public REPORT_PUR_BatchDetails()
+        private ToolTip tpSupplierType = new ToolTip();
+        public REPORT_PUR_CostDetails()
         {
             InitializeComponent();
         }
@@ -96,7 +97,26 @@ namespace ROMS
         }
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
-            //udfnCity();
+            try
+            {
+                if (Convert.ToInt32(cmbSupplierType.SelectedValue) == -1)
+                {
+                    epReport.SetError(cmbSupplierType, "Please select supplier type.");
+                    cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSupplierType.ShowAlways = true;
+                    tpSupplierType.Show("Please select supplier type.", cmbSupplierType, 5000);
+                    cmbSupplierType.Focus();
+                }
+                else
+                {
+                    //udfnCity();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnCity()
         {
@@ -162,13 +182,13 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,82) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,81) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,96) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbPurchaseType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-                cmbSupplierType.SelectedValue = 0;
+                cmbSupplierType.SelectedValue = -1;
                 cmbConditionType.SelectedValue = 0;
                 cmbPaymentType.SelectedValue = 0;
                 cmbPurchaseType.SelectedValue = 0;

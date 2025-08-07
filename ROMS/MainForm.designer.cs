@@ -171,6 +171,7 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseTallyReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseBatchDetails = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseCostDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1147,6 +1148,7 @@ namespace ROMS
             this.hSNReportToolStripMenuItem,
             this.tsmPurchaseProductWiseReport,
             this.tsmPurchaseCostPrice,
+            this.tsmPurchaseCostDetails,
             this.tsmProductWiseLastPurchase,
             this.tsmPurchaseTallyReport,
             this.tsmPurchaseBatchDetails});
@@ -1348,6 +1350,13 @@ namespace ROMS
             this.tsmPurchaseBatchDetails.Text = "Purchase Batch Details";
             this.tsmPurchaseBatchDetails.Click += new System.EventHandler(this.TsmPurchaseBatchDetails_Click);
             // 
+            // tsmPurchaseCostDetails
+            // 
+            this.tsmPurchaseCostDetails.Name = "tsmPurchaseCostDetails";
+            this.tsmPurchaseCostDetails.Size = new System.Drawing.Size(280, 22);
+            this.tsmPurchaseCostDetails.Text = "Purchase Cost Details";
+            this.tsmPurchaseCostDetails.Click += new System.EventHandler(this.TsmPurchaseCostDetails_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1518,5 +1527,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmProductWiseLastPurchase;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseTallyReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseBatchDetails;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseCostDetails;
     }
 }
