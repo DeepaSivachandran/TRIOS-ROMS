@@ -259,6 +259,7 @@ namespace ROMS
         public static REPORT_PUR_CostDetails objREPORT_PUR_CostDetails;
 
         public static REPORT_PUR_BillWiseTax objREPORT_PUR_BillWiseTax;
+        public static REPORT_PUR_PeriodWiseTax objREPORT_PUR_PeriodWiseTax;
 
         public static REPORT_HSN_Code objREPORT_HSN_Code;
         public static REPORT_HSN_Name objREPORT_HSN_Name;
@@ -3050,6 +3051,24 @@ namespace ROMS
                 MainForm.objREPORT_PUR_BillWiseTax = new REPORT_PUR_BillWiseTax();
                 MainForm.objREPORT_PUR_BillWiseTax.MdiParent = this;
                 MainForm.objREPORT_PUR_BillWiseTax.Show();
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchasePeriodWiseTaxReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_PeriodWiseTax = new REPORT_PUR_PeriodWiseTax();
+                MainForm.objREPORT_PUR_PeriodWiseTax.MdiParent = this;
+                MainForm.objREPORT_PUR_PeriodWiseTax.Show();
                 PbCurrentForm = "7.7.11";
             }
             catch (Exception ex)
