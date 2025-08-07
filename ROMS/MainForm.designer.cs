@@ -155,6 +155,7 @@ namespace ROMS
             this.tsmHSNCodeWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHSNNameWiseProductReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseCostPrice = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRateChangeReport = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockInward = new System.Windows.Forms.ToolStripMenuItem();
@@ -167,7 +168,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPurchaseCostPrice = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProductWiseLastPurchase = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1143,7 +1144,8 @@ namespace ROMS
             this.purchaseDefectToolStripMenuItem,
             this.hSNReportToolStripMenuItem,
             this.tsmPurchaseProductWiseReport,
-            this.tsmPurchaseCostPrice});
+            this.tsmPurchaseCostPrice,
+            this.tsmProductWiseLastPurchase});
             this.purchaseReportToolStripMenuItem.Name = "purchaseReportToolStripMenuItem";
             this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.purchaseReportToolStripMenuItem.Text = "Purchase Report";
@@ -1212,6 +1214,13 @@ namespace ROMS
             this.tsmPurchaseProductWiseReport.Size = new System.Drawing.Size(280, 22);
             this.tsmPurchaseProductWiseReport.Text = "Purchase Product Wise Report";
             this.tsmPurchaseProductWiseReport.Click += new System.EventHandler(this.TsmPurchaseProductWiseReport_Click);
+            // 
+            // tsmPurchaseCostPrice
+            // 
+            this.tsmPurchaseCostPrice.Name = "tsmPurchaseCostPrice";
+            this.tsmPurchaseCostPrice.Size = new System.Drawing.Size(280, 22);
+            this.tsmPurchaseCostPrice.Text = "Purchase Cost Price";
+            this.tsmPurchaseCostPrice.Click += new System.EventHandler(this.TsmPurchaseCostPrice_Click);
             // 
             // tsmRateChangeReport
             // 
@@ -1314,12 +1323,12 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // tsmPurchaseCostPrice
+            // tsmProductWiseLastPurchase
             // 
-            this.tsmPurchaseCostPrice.Name = "tsmPurchaseCostPrice";
-            this.tsmPurchaseCostPrice.Size = new System.Drawing.Size(280, 22);
-            this.tsmPurchaseCostPrice.Text = "Purchase Cost Price";
-            this.tsmPurchaseCostPrice.Click += new System.EventHandler(this.TsmPurchaseCostPrice_Click);
+            this.tsmProductWiseLastPurchase.Name = "tsmProductWiseLastPurchase";
+            this.tsmProductWiseLastPurchase.Size = new System.Drawing.Size(280, 22);
+            this.tsmProductWiseLastPurchase.Text = "Product Wise Last Purchased Report";
+            this.tsmProductWiseLastPurchase.Click += new System.EventHandler(this.TsmProductWiseLastPurchase_Click);
             // 
             // MainForm
             // 
@@ -1488,5 +1497,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockVsZeroRate;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseProductWiseReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseCostPrice;
+        private System.Windows.Forms.ToolStripMenuItem tsmProductWiseLastPurchase;
     }
 }
