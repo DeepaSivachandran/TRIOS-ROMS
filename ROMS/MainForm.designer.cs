@@ -167,6 +167,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseCostPrice = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1141,7 +1142,8 @@ namespace ROMS
             this.unapprovedPurchaseDetailToolStripMenuItem,
             this.purchaseDefectToolStripMenuItem,
             this.hSNReportToolStripMenuItem,
-            this.tsmPurchaseProductWiseReport});
+            this.tsmPurchaseProductWiseReport,
+            this.tsmPurchaseCostPrice});
             this.purchaseReportToolStripMenuItem.Name = "purchaseReportToolStripMenuItem";
             this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.purchaseReportToolStripMenuItem.Text = "Purchase Report";
@@ -1230,14 +1232,14 @@ namespace ROMS
             // tsmStockInward
             // 
             this.tsmStockInward.Name = "tsmStockInward";
-            this.tsmStockInward.Size = new System.Drawing.Size(147, 22);
+            this.tsmStockInward.Size = new System.Drawing.Size(180, 22);
             this.tsmStockInward.Text = "Stock Inward";
             this.tsmStockInward.Click += new System.EventHandler(this.TsmStockInward_Click);
             // 
             // tsmStockOutward
             // 
             this.tsmStockOutward.Name = "tsmStockOutward";
-            this.tsmStockOutward.Size = new System.Drawing.Size(147, 22);
+            this.tsmStockOutward.Size = new System.Drawing.Size(180, 22);
             this.tsmStockOutward.Text = "Stock Outward";
             this.tsmStockOutward.Click += new System.EventHandler(this.TsmStockOutward_Click);
             // 
@@ -1311,6 +1313,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
+            // 
+            // tsmPurchaseCostPrice
+            // 
+            this.tsmPurchaseCostPrice.Name = "tsmPurchaseCostPrice";
+            this.tsmPurchaseCostPrice.Size = new System.Drawing.Size(280, 22);
+            this.tsmPurchaseCostPrice.Text = "Purchase Cost Price";
+            this.tsmPurchaseCostPrice.Click += new System.EventHandler(this.TsmPurchaseCostPrice_Click);
             // 
             // MainForm
             // 
@@ -1478,5 +1487,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockValuation;
         private System.Windows.Forms.ToolStripMenuItem tsmStockVsZeroRate;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseProductWiseReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseCostPrice;
     }
 }

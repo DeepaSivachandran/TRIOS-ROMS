@@ -252,6 +252,7 @@ namespace ROMS
         public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
         public static REPORT_Purchase_Defect_Product objREPORT_Purchase_Defect_Product;
         public static REPORT_PUR_ProductWiseSummaryDetails objREPORT_PUR_ProductWiseSummaryDetails;
+        public static REPORT_PUR_CostPrice objREPORT_PUR_CostPrice;
 
         public static REPORT_HSN_Code objREPORT_HSN_Code;
         public static REPORT_HSN_Name objREPORT_HSN_Name;
@@ -2936,6 +2937,24 @@ namespace ROMS
                 MainForm.objREPORT_PUR_ProductWiseSummaryDetails.MdiParent = this;
                 MainForm.objREPORT_PUR_ProductWiseSummaryDetails.Show();
                 PbCurrentForm = "7.7.7";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseCostPrice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_CostPrice = new REPORT_PUR_CostPrice();
+                MainForm.objREPORT_PUR_CostPrice.MdiParent = this;
+                MainForm.objREPORT_PUR_CostPrice.Show();
+                PbCurrentForm = "7.7.8";
             }
             catch (Exception ex)
             {

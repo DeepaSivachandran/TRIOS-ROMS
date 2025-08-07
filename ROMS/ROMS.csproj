@@ -1562,6 +1562,12 @@
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="REPORT_PUR_CostPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_CostPrice.designer.cs">
+      <DependentUpon>REPORT_PUR_CostPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_PUR_ProductWiseSummaryDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3756,6 +3762,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_CostPrice.resx">
+      <DependentUpon>REPORT_PUR_CostPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_ProductWiseSummaryDetails.resx">
       <DependentUpon>REPORT_PUR_ProductWiseSummaryDetails.cs</DependentUpon>
