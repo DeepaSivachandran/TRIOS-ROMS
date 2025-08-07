@@ -254,6 +254,7 @@ namespace ROMS
         public static REPORT_PUR_ProductWiseSummaryDetails objREPORT_PUR_ProductWiseSummaryDetails;
         public static REPORT_PUR_CostPrice objREPORT_PUR_CostPrice;
         public static REPORT_PUR_ProductWiseLastPurchase objREPORT_PUR_ProductWiseLastPurchase;
+        public static REPORT_PUR_Tally objREPORT_PUR_Tally;
 
         public static REPORT_HSN_Code objREPORT_HSN_Code;
         public static REPORT_HSN_Name objREPORT_HSN_Name;
@@ -2974,6 +2975,42 @@ namespace ROMS
                 MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
                 MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
                 PbCurrentForm = "7.7.9";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseTallyReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_Tally = new REPORT_PUR_Tally();
+                MainForm.objREPORT_PUR_Tally.MdiParent = this;
+                MainForm.objREPORT_PUR_Tally.Show();
+                PbCurrentForm = "7.7.10";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseBatchDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_Tally = new REPORT_PUR_Tally();
+                MainForm.objREPORT_PUR_Tally.MdiParent = this;
+                MainForm.objREPORT_PUR_Tally.Show();
+                PbCurrentForm = "7.7.11";
             }
             catch (Exception ex)
             {

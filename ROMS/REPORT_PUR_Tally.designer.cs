@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class REPORT_PUR_CostPrice
+    partial class REPORT_PUR_Tally
     {
         /// <summary>
         /// Required designer variable.
@@ -34,14 +34,8 @@
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.cmbLPDates = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
-            this.cmbReportType = new System.Windows.Forms.ComboBox();
-            this.lblReportType = new System.Windows.Forms.Label();
-            this.lblProductName = new System.Windows.Forms.Label();
-            this.cmbProductName = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
@@ -74,8 +68,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(173, 22);
-            this.tspHeader.Text = "Purchase Cost Price Report";
+            this.tspHeader.Size = new System.Drawing.Size(89, 22);
+            this.tspHeader.Text = "Tally Report";
             // 
             // pnlReportCity
             // 
@@ -95,11 +89,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(843, 20);
+            this.btnListPrint.Location = new System.Drawing.Point(162, 20);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 4;
+            this.btnListPrint.TabIndex = 1;
             this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
@@ -109,14 +103,8 @@
             // 
             // grpfilter
             // 
-            this.grpfilter.Controls.Add(this.cmbLPDates);
-            this.grpfilter.Controls.Add(this.label2);
             this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.dpFromDate);
-            this.grpfilter.Controls.Add(this.cmbReportType);
-            this.grpfilter.Controls.Add(this.lblReportType);
-            this.grpfilter.Controls.Add(this.lblProductName);
-            this.grpfilter.Controls.Add(this.cmbProductName);
             this.grpfilter.Location = new System.Drawing.Point(3, 0);
             this.grpfilter.Name = "grpfilter";
             this.grpfilter.Size = new System.Drawing.Size(1348, 58);
@@ -124,41 +112,11 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
-            // cmbLPDates
-            // 
-            this.cmbLPDates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLPDates.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbLPDates.FormattingEnabled = true;
-            this.cmbLPDates.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.cmbLPDates.Location = new System.Drawing.Point(786, 20);
-            this.cmbLPDates.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.cmbLPDates.Name = "cmbLPDates";
-            this.cmbLPDates.Size = new System.Drawing.Size(49, 28);
-            this.cmbLPDates.TabIndex = 3;
-            this.cmbLPDates.Enter += new System.EventHandler(this.CmbLPDates_Enter);
-            this.cmbLPDates.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbLPDates_KeyDown);
-            this.cmbLPDates.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbLPDates_KeyPress);
-            this.cmbLPDates.Leave += new System.EventHandler(this.CmbLPDates_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(663, 24);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 20);
-            this.label2.TabIndex = 111111185;
-            this.label2.Text = "Last Purchase Dates";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(300, 24);
+            this.label1.Location = new System.Drawing.Point(6, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 20);
             this.label1.TabIndex = 111111184;
@@ -168,62 +126,13 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(340, 21);
+            this.dpFromDate.Location = new System.Drawing.Point(46, 21);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
-            this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.TabIndex = 0;
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
             this.dpFromDate.Leave += new System.EventHandler(this.DpFromDate_Leave);
-            // 
-            // cmbReportType
-            // 
-            this.cmbReportType.FormattingEnabled = true;
-            this.cmbReportType.Location = new System.Drawing.Point(85, 21);
-            this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(209, 27);
-            this.cmbReportType.TabIndex = 0;
-            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
-            this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
-            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReportType_KeyDown);
-            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReportType_KeyPress);
-            this.cmbReportType.Leave += new System.EventHandler(this.CmbReportType_Leave);
-            // 
-            // lblReportType
-            // 
-            this.lblReportType.AutoSize = true;
-            this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportType.Location = new System.Drawing.Point(6, 24);
-            this.lblReportType.Name = "lblReportType";
-            this.lblReportType.Size = new System.Drawing.Size(73, 20);
-            this.lblReportType.TabIndex = 111111182;
-            this.lblReportType.Text = "Report type";
-            // 
-            // lblProductName
-            // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.Location = new System.Drawing.Point(452, 24);
-            this.lblProductName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(85, 20);
-            this.lblProductName.TabIndex = 111111180;
-            this.lblProductName.Text = "Product Name";
-            // 
-            // cmbProductName
-            // 
-            this.cmbProductName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbProductName.FormattingEnabled = true;
-            this.cmbProductName.Location = new System.Drawing.Point(541, 20);
-            this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.cmbProductName.Name = "cmbProductName";
-            this.cmbProductName.Size = new System.Drawing.Size(118, 28);
-            this.cmbProductName.TabIndex = 2;
-            this.cmbProductName.Enter += new System.EventHandler(this.CmbProductName_Enter);
-            this.cmbProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductName_KeyDown);
-            this.cmbProductName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbProductName_KeyPress);
-            this.cmbProductName.Leave += new System.EventHandler(this.CmbProductName_Leave);
             // 
             // lblNoRecordsFound
             // 
@@ -269,7 +178,7 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // REPORT_PUR_CostPrice
+            // REPORT_PUR_Tally
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -281,7 +190,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_PUR_CostPrice";
+            this.Name = "REPORT_PUR_Tally";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "City Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
@@ -309,14 +218,8 @@
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;
-        public System.Windows.Forms.Label lblProductName;
-        public System.Windows.Forms.ComboBox cmbProductName;
-        private System.Windows.Forms.ComboBox cmbReportType;
-        private System.Windows.Forms.Label lblReportType;
         private System.Windows.Forms.DateTimePicker dpFromDate;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Label label2;
-        public System.Windows.Forms.ComboBox cmbLPDates;
         private System.Windows.Forms.ErrorProvider epReport;
     }
 }
