@@ -175,6 +175,7 @@ namespace ROMS
             this.tsmPurchaseTaxReports = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseBillWiseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchasePeriodWiseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseAdditionalValueReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1365,7 +1366,8 @@ namespace ROMS
             // 
             this.tsmPurchaseTaxReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmPurchaseBillWiseTaxReport,
-            this.tsmPurchasePeriodWiseTaxReport});
+            this.tsmPurchasePeriodWiseTaxReport,
+            this.tsmPurchaseAdditionalValueReport});
             this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
             this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseTaxReports.Text = "Purchase Tax Report";
@@ -1383,6 +1385,13 @@ namespace ROMS
             this.tsmPurchasePeriodWiseTaxReport.Size = new System.Drawing.Size(231, 22);
             this.tsmPurchasePeriodWiseTaxReport.Text = "Purchase Period Wise Tax Report";
             this.tsmPurchasePeriodWiseTaxReport.Click += new System.EventHandler(this.TsmPurchasePeriodWiseTaxReport_Click);
+            // 
+            // tsmPurchaseAdditionalValueReport
+            // 
+            this.tsmPurchaseAdditionalValueReport.Name = "tsmPurchaseAdditionalValueReport";
+            this.tsmPurchaseAdditionalValueReport.Size = new System.Drawing.Size(231, 22);
+            this.tsmPurchaseAdditionalValueReport.Text = "Purchase Addition Value Report";
+            this.tsmPurchaseAdditionalValueReport.Click += new System.EventHandler(this.TsmPurchaseAdditionalValueReport_Click);
             // 
             // MainForm
             // 
@@ -1558,5 +1567,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseTaxReports;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseBillWiseTaxReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchasePeriodWiseTaxReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseAdditionalValueReport;
     }
 }
