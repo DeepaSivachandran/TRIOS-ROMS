@@ -176,6 +176,7 @@ namespace ROMS
             this.tsmPurchaseBillWiseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchasePeriodWiseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseAdditionalValueReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseDiscountValueReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1367,7 +1368,8 @@ namespace ROMS
             this.tsmPurchaseTaxReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmPurchaseBillWiseTaxReport,
             this.tsmPurchasePeriodWiseTaxReport,
-            this.tsmPurchaseAdditionalValueReport});
+            this.tsmPurchaseAdditionalValueReport,
+            this.tsmPurchaseDiscountValueReport});
             this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
             this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseTaxReports.Text = "Purchase Tax Report";
@@ -1392,6 +1394,13 @@ namespace ROMS
             this.tsmPurchaseAdditionalValueReport.Size = new System.Drawing.Size(231, 22);
             this.tsmPurchaseAdditionalValueReport.Text = "Purchase Addition Value Report";
             this.tsmPurchaseAdditionalValueReport.Click += new System.EventHandler(this.TsmPurchaseAdditionalValueReport_Click);
+            // 
+            // tsmPurchaseDiscountValueReport
+            // 
+            this.tsmPurchaseDiscountValueReport.Name = "tsmPurchaseDiscountValueReport";
+            this.tsmPurchaseDiscountValueReport.Size = new System.Drawing.Size(231, 22);
+            this.tsmPurchaseDiscountValueReport.Text = "Purchase Discount Value Report";
+            this.tsmPurchaseDiscountValueReport.Click += new System.EventHandler(this.TsmPurchaseDiscountValueReport_Click);
             // 
             // MainForm
             // 
@@ -1568,5 +1577,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseBillWiseTaxReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchasePeriodWiseTaxReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseAdditionalValueReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseDiscountValueReport;
     }
 }

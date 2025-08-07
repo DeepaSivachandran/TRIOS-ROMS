@@ -12,7 +12,7 @@ using System.Globalization;
 
 namespace ROMS
 {
-    public partial class REPORT_PUR_AdditionalValue : Form
+    public partial class REPORT_PUR_DiscountValue : Form
     {
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
@@ -20,7 +20,7 @@ namespace ROMS
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         private ToolTip tpReportType = new ToolTip();
         public int varUpDownKeySupplier = 0;
-        public REPORT_PUR_AdditionalValue()
+        public REPORT_PUR_DiscountValue()
         {
             InitializeComponent();
         }
@@ -178,7 +178,7 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,99) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,100) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Months", "MONID<>-1", "MON_Name,MONID", cmbMonths, "", "MON_Name", "MONID");
@@ -801,20 +801,20 @@ namespace ROMS
                     cmbInvType.Enabled = true;
                     cmbInvType.SelectedValue = 0;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 332)//Bill Wise Report
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 335)//Bill Wise Report
                 {
                     cmbMonths.SelectedValue = 0;
                     cmbMonths.Enabled = false;
                     cmbInvType.Enabled = true;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)//Day Wise Report
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 336)//Day Wise Report
                 {
                     cmbInvType.SelectedValue = 0;
                     cmbInvType.Enabled = false;
                     cmbMonths.SelectedValue = 0;
                     cmbMonths.Enabled = false;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)//Month Wise Report
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 337)//Month Wise Report
                 {
                     cmbInvType.SelectedValue = 0;
                     cmbInvType.Enabled = false;

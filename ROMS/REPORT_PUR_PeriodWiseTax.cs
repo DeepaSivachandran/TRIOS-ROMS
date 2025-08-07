@@ -163,8 +163,10 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,98) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Months", "MONID<>-1", "MON_Name,MONID", cmbMonths, "", "MON_Name", "MONID");
                 objDataBind = null;
                 cmbSupplierType.SelectedValue = 0;
+                cmbMonths.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
             }
             catch (Exception ex)
@@ -264,9 +266,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtMonths.Enabled == true)
+                    if (cmbMonths.Enabled == true)
                     {
-                        txtMonths.Focus();
+                        cmbMonths.Focus();
                     }
                     else
                     {
@@ -418,14 +420,14 @@ namespace ROMS
                     dpToDate.Value = MainForm.pbCurrentDate;
                     dpFromDate.Enabled = false;
                     dpToDate.Enabled = false;
-                    txtMonths.Enabled = true;
+                    cmbMonths.Enabled = true;
                 }
                 else
                 {
                     dpFromDate.Enabled = true;
                     dpToDate.Enabled = true;
-                    txtMonths.Text = "";
-                    txtMonths.Enabled = false;
+                    cmbMonths.SelectedValue = 0;
+                    cmbMonths.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -435,11 +437,11 @@ namespace ROMS
             }
         }
 
-        private void TxtMonths_Enter(object sender, EventArgs e)
+        private void CmbMonths_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtMonths.BackColor = Color.LemonChiffon;
+                cmbMonths.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -448,7 +450,7 @@ namespace ROMS
             }
         }
 
-        private void TxtMonths_KeyDown(object sender, KeyEventArgs e)
+        private void CmbMonths_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -464,14 +466,11 @@ namespace ROMS
             }
         }
 
-        private void TxtMonths_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbMonths_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
+                e.Handled = true;
             }
             catch (Exception ex)
             {
@@ -480,11 +479,11 @@ namespace ROMS
             }
         }
 
-        private void TxtMonths_Leave(object sender, EventArgs e)
+        private void CmbMonths_Leave(object sender, EventArgs e)
         {
             try
             {
-                txtMonths.BackColor = Color.White;
+                cmbMonths.BackColor = Color.White;
             }
             catch (Exception ex)
             {
