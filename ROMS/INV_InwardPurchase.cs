@@ -481,74 +481,68 @@ namespace ROMS
 
                                     DataGridView dataGridView = grdInward;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"];
+                                    int rowIndex = Convert.ToInt16(dataGridView.RowCount-1);
                                     cell.Value= new System.Drawing.Bitmap(1, 1);
-                                    udfnConvertProductDetails(sender, e);
-                                    //if (varclmMRPFlag == "0")
-                                    //{
-                                    //    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"].Style.BackColor = Color.LightGray;
-                                    //    cellProMrp.Style.ForeColor = Color.Black;
-                                    //    cellProMrp.ReadOnly = true; cellProMrp.Value = "0.00";
-                                    //    cellInvMrp.Style.BackColor = Color.LightGray; cellInvMrp.Style.ForeColor = Color.Black;
-                                    //    cellInvMrp.ReadOnly = true; cellInvMrp.Value = "0.00";
-                                    //}
-                                    //else
-                                    //{
-                                    //    cellInvMrp.Style.BackColor = Color.PaleGreen;
-                                    //    cellInvMrp.Style.ForeColor = Color.Black; cellInvMrp.ReadOnly = false;
-                                    //    cellProMrp.Style.BackColor = Color.PaleGreen;
-                                    //    cellProMrp.Style.ForeColor = Color.Black; cellProMrp.ReadOnly = false;
-                                    //}
-                                    //if (varShelflifeFlag == "0")
-                                    //{
-                                    //    cellShelfLife.Value = "";
-                                    //    cellInvExpiryDate.Style.BackColor = Color.LightGray;
-                                    //    cellInvExpiryDate.ReadOnly = true;
-                                    //    cellProExpiryDate.Style.BackColor = Color.LightGray;
-                                    //    cellProExpiryDate.ReadOnly = true;
-                                    //}
-                                    //else
-                                    //{
-                                    //    cellShelfLife.Style.BackColor = Color.PaleGreen; cellShelfLife.Style.ForeColor = Color.Black;
-                                    //    cellInvExpiryDate.Style.BackColor = Color.PaleGreen; cellInvExpiryDate.ReadOnly = false;
-                                    //    cellProExpiryDate.Style.BackColor = Color.PaleGreen; cellProExpiryDate.ReadOnly = false;
-                                    //}
-                                    //if (varBatchNoEnable == "73")
-                                    //{
-                                    //    cellInvBatchNo.Style.BackColor = Color.LightGray;
-                                    //    cellInvBatchNo.Style.ForeColor = Color.Black;
-                                    //    cellInvBatchNo.ReadOnly = true;
-                                    //    cellInvBatchNo.Value = "";
-                                    //    cellProBatchNo.Style.BackColor = Color.LightGray;
-                                    //    cellProBatchNo.Style.ForeColor = Color.Black;
-                                    //    cellProBatchNo.ReadOnly = true;
-                                    //    cellProBatchNo.Value = "";
-                                    //}
-                                    //else if (varBatchNoEnable == "72")
-                                    //{
-                                    //    if (varBatchNoGeneration == "75") //manul
-                                    //    {
-                                    //        cellInvBatchNo.Style.BackColor = Color.PaleGreen; cellInvBatchNo.Style.ForeColor = Color.Black;
-                                    //        cellInvBatchNo.ReadOnly = false; cellInvBatchNo.Value = "";
-                                    //        cellProBatchNo.Style.BackColor = Color.PaleGreen; cellProBatchNo.Style.ForeColor = Color.Black;
-                                    //        cellProBatchNo.ReadOnly = false; cellProBatchNo.Value = "";
-                                    //    }
-                                    //    else if (varBatchNoGeneration == "74")//Auto
-                                    //    {
-                                    //        cellInvBatchNo.Style.BackColor = Color.LightGray; cellInvBatchNo.Style.ForeColor = Color.Black;
-                                    //        cellInvBatchNo.ReadOnly = true;
-                                    //        cellProBatchNo.Style.BackColor = Color.LightGray; cellProBatchNo.Style.ForeColor = Color.Black;
-                                    //        cellProBatchNo.ReadOnly = true;
-                                    //    }
-                                    //}
-                                    //if (varRMProductionFlag == "1")
-                                    //{
-                                    //    cellInvExpiryDate.Style.BackColor = Color.LightGray;
-                                    //    cellInvExpiryDate.Style.ForeColor = Color.Black;
-                                    //    cellInvExpiryDate.ReadOnly = true;
-                                    //    cellProExpiryDate.Style.BackColor = Color.LightGray;
-                                    //    cellProExpiryDate.Style.ForeColor = Color.Black;
-                                    //    cellProExpiryDate.ReadOnly = true;
-                                    //}
+                                    //udfnConvertProductDetails(sender, e);
+                                    if (varclmMRPFlag == "0")
+                                    {
+                                        dataGridView.Rows[rowIndex].Cells["clmMRP"].Style.BackColor = Color.LightGray; 
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceMRP"].Style.BackColor = Color.LightGray; 
+                                        dataGridView.Rows[rowIndex].Cells["clmMRP"].ReadOnly = true;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceMRP"].ReadOnly = true; 
+                                    }
+                                    else
+                                    {
+                                        dataGridView.Rows[rowIndex].Cells["clmMRP"].Style.BackColor = Color.PaleGreen; 
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceMRP"].Style.BackColor = Color.PaleGreen; 
+                                        dataGridView.Rows[rowIndex].Cells["clmMRP"].ReadOnly = false;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceMRP"].ReadOnly = false;
+                                    }
+                                    if (varclmShelflifeStatus == "0")
+                                    {  
+                                        dataGridView.Rows[rowIndex].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.LightGray;  
+                                        dataGridView.Rows[rowIndex].Cells["clmExpiryDate"].ReadOnly = true;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].ReadOnly = true;
+                                    }
+                                    else
+                                    {
+                                        dataGridView.Rows[rowIndex].Cells["clmExpiryDate"].Style.BackColor = Color.PaleGreen;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.PaleGreen; 
+                                        dataGridView.Rows[rowIndex].Cells["clmExpiryDate"].ReadOnly = false;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].ReadOnly = false;
+                                    }
+                                    if (varclmBatchNoStatus == "73")
+                                    {
+                                        dataGridView.Rows[rowIndex].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.LightGray;
+                                        dataGridView.Rows[rowIndex].Cells["clmBatchNo"].ReadOnly = true;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceBatchNo"].ReadOnly = true;
+                                    }
+                                    else if (varclmBatchNoStatus == "72")
+                                    {
+                                        if (varclmBatchGeneration == "75") //manul
+                                        {
+                                            dataGridView.Rows[rowIndex].Cells["clmBatchNo"].Style.BackColor = Color.PaleGreen;
+                                            dataGridView.Rows[rowIndex].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.PaleGreen;
+                                            dataGridView.Rows[rowIndex].Cells["clmBatchNo"].ReadOnly = false;
+                                            dataGridView.Rows[rowIndex].Cells["clmInvoiceBatchNo"].ReadOnly = false;
+                                        }
+                                        else if (varclmBatchGeneration == "74")//Auto
+                                        {
+                                            dataGridView.Rows[rowIndex].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                            dataGridView.Rows[rowIndex].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.LightGray;
+                                            dataGridView.Rows[rowIndex].Cells["clmBatchNo"].ReadOnly = true;
+                                            dataGridView.Rows[rowIndex].Cells["clmInvoiceBatchNo"].ReadOnly = true;
+                                        }
+                                    }
+                                    if (varclmRMFlag == "1")
+                                    {
+                                        dataGridView.Rows[rowIndex].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].Style.BackColor = Color.LightGray;
+                                        dataGridView.Rows[rowIndex].Cells["clmExpiryDate"].ReadOnly = true;
+                                        dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].ReadOnly = true;
+                                    }
                                     if (varEditFlag == 0)
                                     {
                                         DataGridView dataGridView1 = grdInward;

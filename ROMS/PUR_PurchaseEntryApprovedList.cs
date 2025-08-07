@@ -156,7 +156,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Inv Date"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Inv No."].Width = 100;
                             grdPurchaseEntryApproval.Columns["Remarks"].Width = 150;
-                            grdPurchaseEntryApproval.Columns["Overall Status"].Width = 150;
+                            grdPurchaseEntryApproval.Columns["Overall Status"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Created By"].Width = 200;
                             grdPurchaseEntryApproval.Columns["Approved By1"].Width = 200;
                             grdPurchaseEntryApproval.Columns["Approved By2"].Width = 200;

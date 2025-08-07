@@ -71,7 +71,7 @@ namespace ROMS
         public double varDVA = 0, varCPA = 0; 
         public int pbGSTINCloseFlag = 0, pbPaymentCompletedFlag = 0;
         public string pbConditionIDs = "0", pbCondition = "";
-        public int varLPFlag = 0, varNoDiffFlag = 0, varExpDateValidFlag = 0,MA_ReasonFlag=0;
+        public int varLPFlag = 0, varNoDiffFlag = 0, varExpDateValidFlag = 0,MA_ReasonFlag=0, varProValidation = 0, varReasonFlag = 0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -1175,15 +1175,15 @@ namespace ROMS
                         btnSave.Enabled = true;
                     }
                 }
-                if (varPaymentStatus == 65) // Payment approved
-                {
-                    txtInvoiceNo.Enabled = true;
-                    txtInvoiceNo.ReadOnly = false;
-                    dpInvoiceDate.Enabled = true;
-                    btnSave.Enabled = false;
-                    txtRemarks.Enabled = false;
-                    txtRemarks.ReadOnly = true;
-                }
+                //if (varPaymentStatus == 65) // Payment approved
+                //{
+                //    txtInvoiceNo.Enabled = true;
+                //    txtInvoiceNo.ReadOnly = false;
+                //    dpInvoiceDate.Enabled = true;
+                //    btnSave.Enabled = false;
+                //    txtRemarks.Enabled = false;
+                //    txtRemarks.ReadOnly = true;
+                //}
                 if (Convert.ToString(cmbEntryType.SelectedValue) == "57")
                 { btnConditions.Enabled = false; }
                 if (grdSupplierList.RowCount != 0)
@@ -1195,8 +1195,8 @@ namespace ROMS
                 if (PbSTS == "50")
                 { 
                     udfndisablevalue();
-                    txtInvoiceamt.Enabled = true;txtInvoiceamt.ReadOnly = false;
-                    txtInvoiceNo.Enabled = true;txtInvoiceNo.ReadOnly = false;
+                    txtInvoiceamt.Enabled = false;txtInvoiceamt.ReadOnly = true;
+                    txtInvoiceNo.Enabled = false;txtInvoiceNo.ReadOnly = true;
                 }
                 if(varPaymentStatus==70)
                 {
@@ -1615,8 +1615,8 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"])));
-                                        varMRP1 = string.Format("{0:G29}", decimal.Parse(Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]))); 
+                                        varMRP = Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]);
+                                        varMRP1 = (Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_MRP"]));
                                     }
                                     if (Convert.ToString(objDs.Tables[1].Rows[i]["GRNPR_Expirydate"]) != "")
                                     {
@@ -4897,10 +4897,11 @@ namespace ROMS
             {
                 bool varErrorFlag = false;
                 DGV_FilterProduct.Visible = false;
-                varExpiryDate = ""; varExpiryDateAdd = ""; varPrid = "0";varLPFlag = 0; varNoDiffFlag = 0;
+                varExpiryDate = ""; varExpiryDateAdd = ""; varPrid = "0";varLPFlag = 0; varNoDiffFlag = 0; varProValidation = 0; varReasonFlag = 0; 
                 int varSourceLocationID = 0; String varPurProductType = "";
                 int varProConFlag = 0,varConCheckFlag=0; String varQuantityType = "";
                   
+
                 if(Convert.ToString(cmbPONo.SelectedValue) == "214" || Convert.ToString(cmbPONo.SelectedValue) == "217" || Convert.ToString(cmbPONo.SelectedValue) == "219")
                 {
                     varProConFlag = 1;
@@ -4914,9 +4915,12 @@ namespace ROMS
                 { varLPFlag = 1; }
                 if (conditionSet.Contains("275") == true) //No difference
                 { varNoDiffFlag = 1; }
-                 
+                if (conditionSet.Contains("281") == true || conditionSet.Contains("280") == true || conditionSet.Contains("275") == true)
+                { varReasonFlag = 1; }
+                if (conditionSet.Contains("281") == true || conditionSet.Contains("280") == true || Convert.ToInt16(cmbReason.SelectedValue) == 284)
+                { varProValidation = 1; } //No need to validte product details
                 udfnEntryTypeDate(); 
-                if (varNoDiffFlag == 0)
+                if (varReasonFlag == 0)
                 {
                     if (Convert.ToInt32(cmbReason.SelectedValue) == 286)
                     {
@@ -4948,7 +4952,7 @@ namespace ROMS
                             }
                         }
                         varSourceLocationID = Convert.ToInt32(varId_SourceLocation);
-                        if (varLPFlag==0)
+                        if (varProValidation == 0)
                         {
                             if (varId_SourceLocation == "0" || varId_SourceLocation == "-1")
                             {
@@ -4960,7 +4964,7 @@ namespace ROMS
                             }
                         }
                     } 
-                    if (varPrMRPFlag == "1" && (txtMrp.Text.Trim() == "" || Convert.ToDecimal(txtMrp.Text) == 0) && varConCheckFlag==0)
+                    if (varPrMRPFlag == "1" && (txtMrp.Text.Trim() == "" || Convert.ToDecimal(txtMrp.Text) == 0) && varProValidation==0)
                     {
                         txtMrp.BackColor = ColorTranslator.FromHtml("#fabdbd");
                         errPurchaseentry.SetError(txtMrp, "Please enter MRP.");
@@ -4978,7 +4982,7 @@ namespace ROMS
                     }
                 } 
                 /*check location have a rack or not*/
-                if (varRMFlag != 59 && Convert.ToString(cmbPONo.SelectedValue) != "220" &&   varConCheckFlag==0 || varProConFlag==1)
+                if (varRMFlag != 59 && Convert.ToString(cmbPONo.SelectedValue) != "220" &&   varProValidation==0 || varProConFlag==1)
                 {
                     string varId_PurchaseRack = "0";
                     string varId_PurchaseRackCount = "0";
@@ -5036,7 +5040,7 @@ namespace ROMS
                                     }
                                 }
                             } 
-                            if (varLPFlag==0)
+                            if (varProValidation == 0)
                             {
                                 if (Convert.ToInt32(varId_PurchaseRack) > 0)
                                 {
@@ -5059,7 +5063,7 @@ namespace ROMS
                         }
                     }
                 }
-                if ((varConCheckFlag==0 || varProConFlag==1) && varLPFlag ==0)
+                if ((varConCheckFlag==0 || varProConFlag==1) && varProValidation ==0)
                 {
                     if (varShelflife == 1)
                     {
@@ -5101,9 +5105,9 @@ namespace ROMS
                     int varflag = 0;
                     string varShelflifevalue = "", varAcutalshelflife = "", varProMrp = "", varProExpiry = "", varProBatchNo = "", varCondition = "";
                     lblNoRecordsFound.Visible = false;
-                    if (varLPFlag==0 || varProConFlag==0 || varProConFlag==1)
+                    if (varProValidation == 0 || varProConFlag==0 || varProConFlag==1)
                     {
-                        if (expirydateFlag == 1 && (txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != ""))
+                        if ((expirydateFlag == 1 || varProValidation==0) && (txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != ""))
                         {
                             udfnDatevalidationset();
                         }
@@ -8725,19 +8729,15 @@ namespace ROMS
                 {
                     pbConditionIDs = string.Join(",", result.Select(r => r.ConditionId.ToString()));
                     pbCondition = string.Join(",", result.Select(r => r.ConditionName));
-                    if (pbConditionIDs == "275")
+                    if (pbConditionIDs == "275" || pbConditionIDs == "280" || pbConditionIDs == "281")
                     {
-                        cmbReason.Enabled = false;
-                        if (Convert.ToString(cmbPONo.SelectedValue) != "218")
-                        { cmbReason.SelectedValue = 286; }
+                        cmbReason.Enabled = false; cmbReason.SelectedValue = 286;
                         txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true;
                         txtMismatchQty.Enabled = false; txtMismatchQty.ReadOnly = true;
                     }
                     else
                     {
-                        cmbReason.Enabled = true;
-                        if (Convert.ToString(cmbPONo.SelectedValue) != "218")
-                        { cmbReason.SelectedValue = 286; }
+                        cmbReason.Enabled = true; cmbReason.SelectedValue = 286;
                         txtInvoiceamt.Enabled = true; txtInvoiceamt.ReadOnly = false;
                         txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false;
                     }
@@ -8836,18 +8836,18 @@ namespace ROMS
                 if (dataTable == null) return;
                 bool isChecked = Convert.ToBoolean(gridRow.Cells["clmCheck"].Value);
                 int conditionId = Convert.ToInt32(gridRow.Cells["ConditionID"].Value);
-                if (conditionId == 275)
+                if (conditionId == 275 || conditionId == 280 || conditionId == 281)
                 {
                     if (isChecked)
-                    { 
+                    {
                         foreach (DataGridViewRow row in grdConditions.Rows)
                         {
-                            bool isNoissue = Convert.ToString(row.Cells["ConditionID"].Value) == "275";
+                            bool isNoissue = Convert.ToString(row.Cells["ConditionID"].Value) == Convert.ToString(conditionId);
                             row.ReadOnly = !isNoissue;
                             if (!isNoissue)
                                 row.Cells["clmCheck"].Value = false;
                         }
-                        pbConditionIDs = "275"; txtMismatchQty.Text = "";
+                        pbConditionIDs = Convert.ToString(conditionId);
                     }
                     else
                     {
@@ -8855,7 +8855,7 @@ namespace ROMS
                         {
                             row.ReadOnly = false;
                         }
-                        pbConditionIDs = "";txtMismatchQty.Text = "";
+                        pbConditionIDs = "";
                     }
                 }
 
@@ -12853,9 +12853,7 @@ namespace ROMS
                     txtYear.ReadOnly = true;
                     txtSourceLocation.ReadOnly = true;
                     btnConditions.Enabled = false;
-                    cmbReason.Enabled = false;
-                    
-
+                    cmbReason.Enabled = false; 
                 }
                 else
                 {

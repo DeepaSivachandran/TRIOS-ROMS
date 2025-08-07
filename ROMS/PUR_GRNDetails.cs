@@ -56,7 +56,7 @@ namespace ROMS
         string varLocationID = "0", varRackID = "0" , varLocationName="" , varRack="", varPrid="" , varPoIDs="";
         public string varBlockedSupplier = "0", varBlockedReason = "0";
         public string pbConditionIDs = "0",pbCondition="";
-        public int varLPFlag = 0,varNoDiffFlag=0,varExpDateValidFlag=0;
+        public int varLPFlag = 0,varNoDiffFlag=0,varExpDateValidFlag=0,varProValidation=0,varReasonFlag=0;
         public PUR_GRNDetails()
         {
             InitializeComponent();
@@ -2868,19 +2868,18 @@ namespace ROMS
                 if (dataTable == null) return;
                 bool isChecked = Convert.ToBoolean(gridRow.Cells["clmCheck"].Value);
                 int conditionId = Convert.ToInt32(gridRow.Cells["ConditionID"].Value);
-                if (conditionId == 275)
+                if (conditionId == 275 || conditionId == 280 || conditionId == 281)
                 {
                     if (isChecked)
-                    {
-
+                    { 
                         foreach (DataGridViewRow row in grdConditions.Rows)
                         {
-                            bool isNoissue = Convert.ToString(row.Cells["ConditionID"].Value) == "275";
+                            bool isNoissue = Convert.ToString(row.Cells["ConditionID"].Value) == Convert.ToString(conditionId);
                             row.ReadOnly = !isNoissue;
                             if (!isNoissue)
                                 row.Cells["clmCheck"].Value = false;
                         }
-                        pbConditionIDs = "275";
+                        pbConditionIDs = Convert.ToString(conditionId);
                     } 
                     else
                     {
@@ -3110,7 +3109,7 @@ namespace ROMS
                 {
                     pbConditionIDs = string.Join(",", result.Select(r => r.ConditionId.ToString()));
                     pbCondition = string.Join(",", result.Select(r => r.ConditionName));
-                    if (pbConditionIDs == "275")
+                    if (pbConditionIDs == "275" || pbConditionIDs == "280" || pbConditionIDs == "281")
                     {  
                         cmbReason.Enabled = false; cmbReason.SelectedValue = 286; 
                         txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true; 
@@ -5055,18 +5054,19 @@ namespace ROMS
                 varExpiryDate = ""; varExpiryDateAdd = ""; varPrid = "0";
                 varExcessQuantity = 0; varMismatchQty = 0; varLPFlag = 0; varNoDiffFlag = 0;
                 varPendingQty = 0;
-                varDamageQty = 0; varExpDateValidFlag = 0;
-                decimal varMRP = 0; string mrp = "", mrp1 = ""; var maxSno = 0;
-
+                varDamageQty = 0; varExpDateValidFlag = 0; varProValidation=0; varReasonFlag = 0; 
+                decimal varMRP = 0; string mrp = "", mrp1 = ""; var maxSno = 0; 
                 var conditionSet = new HashSet<string>(pbConditionIDs.Split(',')); 
                 if (conditionSet.Contains("281") == true) //Line item pending
                 { varLPFlag = 1; }
                 if (conditionSet.Contains("275") == true) //No difference
                 { varNoDiffFlag = 1; }
-                if(expirydateFlag == 1 &&( txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != ""))  
-                {
-                    varExpDateValidFlag = 1;
-                }   
+                if(conditionSet.Contains("281") == true || conditionSet.Contains("280") == true || Convert.ToInt16(cmbReason.SelectedValue)==284)
+                { varProValidation = 1; } //No need to validte product details
+                if(expirydateFlag == 1 &&( txtDate.Text != "" || txtMonth.Text != "" || txtYear.Text != "") )  
+                {  varExpDateValidFlag = 1; }
+                if (conditionSet.Contains("281") == true || conditionSet.Contains("280") == true || conditionSet.Contains("275") == true)
+                { varReasonFlag = 1; }  
                 if (txtProductName.Text == "")
                 {
                     errGRNDetails.SetError(txtProductName, "Please enter product");
@@ -5075,7 +5075,7 @@ namespace ROMS
                     tpProduct.Show("Please enter product.", txtProductName, 5000);
                     varErrorFlag = true;
                 } 
-                if (varNoDiffFlag==0)
+                if (varReasonFlag == 0)
                 {
                     if(Convert.ToInt32(cmbReason.SelectedValue)== 286)
                     {
@@ -5086,7 +5086,7 @@ namespace ROMS
                         varErrorFlag = true;
                     }
                 }
-                if (varNoDiffFlag==0 && txtMismatchQty.Text.Trim()=="")
+                if (varReasonFlag == 0 && txtMismatchQty.Text.Trim()=="")
                 {
                     errGRNDetails.SetError(txtMismatchQty, "Please enter quantity");
                     txtMismatchQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -5094,7 +5094,7 @@ namespace ROMS
                     tpInvoiceQty.Show("Please enter quantity", txtMismatchQty, 5000);
                     varErrorFlag = true;
                 }
-                if (varMRPFlag == 1 && (txtmrprate.Text == "" || Convert.ToDecimal(txtmrprate.Text) == 0) && varLPFlag == 0)
+                if (varMRPFlag == 1 && (txtmrprate.Text == "" || Convert.ToDecimal(txtmrprate.Text) == 0) && varProValidation==0)
                 {
                     errGRNDetails.SetError(txtmrprate, "Please enter MRP");
                     txtmrprate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -5102,7 +5102,7 @@ namespace ROMS
                     tprate.Show("Please enter MRP.", txtmrprate, 5000);
                     varErrorFlag = true;
                 }
-                if (expirydateFlag == 1 && varLPFlag==0)
+                if (expirydateFlag == 1 &&  varProValidation==0)
                 {
                     if (txtMonth.Text.Trim() == "")
                     {
@@ -5117,7 +5117,7 @@ namespace ROMS
                         varErrorFlag = true;
                     }
                 }
-                if(varBatchNoGeneration == "75" && varLPFlag ==0)
+                if(varBatchNoGeneration == "75" && varProValidation == 0)
                 {
                     if (txtBatchno.Text.Trim() == "")
                     {
@@ -5139,7 +5139,7 @@ namespace ROMS
                     } 
                     SPDataService objDServ = new SPDataService();
                     DataSet objDS = new DataSet();
-                    if (varExpiryDate != "" || varLPFlag==0)
+                    if (varExpiryDate != "" || varProValidation == 0)
                     {
                         MR_Master objMR_Master = new MR_Master();
                         objMR_Master.ViewType = 7;
@@ -5229,7 +5229,7 @@ namespace ROMS
                                         txtMismatchQty.Text = Qty; 
                                     }
                                 } 
-                                if (varNoDiffFlag==0) //No differece than validate 
+                                if (varReasonFlag==0) //No differece than validate 
                                 {
                                     if (txtMismatchQty.Text.Trim() != "")
                                     { varMismatchQty = Convert.ToDecimal(txtMismatchQty.Text); }

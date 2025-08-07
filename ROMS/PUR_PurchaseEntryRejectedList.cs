@@ -181,7 +181,7 @@ namespace ROMS
                             grdPurchaseEntryRejected.Columns["Tot Pro"].Width = 100;
                             grdPurchaseEntryRejected.Columns["Inv Amt"].Width = 100;
                             grdPurchaseEntryRejected.Columns["Pur Entry Status"].Width = 130;
-                            grdPurchaseEntryRejected.Columns["Overall Status"].Width = 180;
+                            grdPurchaseEntryRejected.Columns["Overall Status"].Width = 100;
                             grdPurchaseEntryRejected.Columns["PURID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["SPSCID"].Visible = false;
                             grdPurchaseEntryRejected.Columns["SPID"].Visible = false;
