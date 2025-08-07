@@ -262,6 +262,7 @@ namespace ROMS
         public static REPORT_PUR_PeriodWiseTax objREPORT_PUR_PeriodWiseTax;
         public static REPORT_PUR_AdditionalValue objREPORT_PUR_AdditionalValue;
         public static REPORT_PUR_DiscountValue objREPORT_PUR_DiscountValue;
+        public static REPORT_PUR_AllTax objREPORT_PUR_AllTax;
 
         public static REPORT_HSN_Code objREPORT_HSN_Code;
         public static REPORT_HSN_Name objREPORT_HSN_Name;
@@ -3107,6 +3108,24 @@ namespace ROMS
                 MainForm.objREPORT_PUR_DiscountValue = new REPORT_PUR_DiscountValue();
                 MainForm.objREPORT_PUR_DiscountValue.MdiParent = this;
                 MainForm.objREPORT_PUR_DiscountValue.Show();
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmAllPurchaseTaxReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_AllTax = new REPORT_PUR_AllTax();
+                MainForm.objREPORT_PUR_AllTax.MdiParent = this;
+                MainForm.objREPORT_PUR_AllTax.Show();
                 PbCurrentForm = "7.7.11";
             }
             catch (Exception ex)
