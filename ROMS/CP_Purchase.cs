@@ -4901,7 +4901,6 @@ namespace ROMS
                 int varSourceLocationID = 0; String varPurProductType = "";
                 int varProConFlag = 0,varConCheckFlag=0; String varQuantityType = "";
                   
-
                 if(Convert.ToString(cmbPONo.SelectedValue) == "214" || Convert.ToString(cmbPONo.SelectedValue) == "217" || Convert.ToString(cmbPONo.SelectedValue) == "219")
                 {
                     varProConFlag = 1;
@@ -4930,6 +4929,14 @@ namespace ROMS
                         tpReason.Show("Please select valid reason.", txtProductName, 5000);
                         varErrorFlag = true;
                     }
+                }
+                if (varNoDiffFlag == 0 && txtMismatchQty.Text.Trim() == "")
+                {
+                    errPurchaseentry.SetError(txtMismatchQty, "Please enter quantity");
+                    txtMismatchQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpInvoiceQty.ShowAlways = true;
+                    tpInvoiceQty.Show("Please enter quantity", txtMismatchQty, 5000);
+                    varErrorFlag = true;
                 }
                 /* Check  source location is valid or not*/
                 if (varConCheckFlag==0 || varProConFlag==1)
@@ -8733,7 +8740,9 @@ namespace ROMS
                     {
                         cmbReason.Enabled = false; cmbReason.SelectedValue = 286;
                         txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true;
-                        txtMismatchQty.Enabled = false; txtMismatchQty.ReadOnly = true;
+                        if (pbConditionIDs == "275")
+                        { txtMismatchQty.Enabled = false; txtMismatchQty.ReadOnly = true; }
+                        else { txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false; }
                     }
                     else
                     {

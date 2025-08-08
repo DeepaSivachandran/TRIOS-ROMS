@@ -3112,8 +3112,15 @@ namespace ROMS
                     if (pbConditionIDs == "275" || pbConditionIDs == "280" || pbConditionIDs == "281")
                     {  
                         cmbReason.Enabled = false; cmbReason.SelectedValue = 286; 
-                        txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true; 
-                        txtMismatchQty.Enabled = false; txtMismatchQty.ReadOnly = true;
+                        txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true;
+                        if (pbConditionIDs == "275")
+                        {
+                            txtMismatchQty.Enabled = false; txtMismatchQty.ReadOnly = true;
+                        }
+                        else
+                        {
+                            txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false;
+                        }
                     }
                     else
                     {   
@@ -5086,7 +5093,7 @@ namespace ROMS
                         varErrorFlag = true;
                     }
                 }
-                if (varReasonFlag == 0 && txtMismatchQty.Text.Trim()=="")
+                if (varNoDiffFlag == 0 && txtMismatchQty.Text.Trim()=="")
                 {
                     errGRNDetails.SetError(txtMismatchQty, "Please enter quantity");
                     txtMismatchQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -5228,12 +5235,10 @@ namespace ROMS
                                     {
                                         txtMismatchQty.Text = Qty; 
                                     }
-                                } 
-                                if (varReasonFlag==0) //No differece than validate 
-                                {
-                                    if (txtMismatchQty.Text.Trim() != "")
-                                    { varMismatchQty = Convert.ToDecimal(txtMismatchQty.Text); }
                                 }  
+                                if (txtMismatchQty.Text.Trim() != "")
+                                { varMismatchQty = Convert.ToDecimal(txtMismatchQty.Text); }
+                    
                                 if (grdGrnlist.Rows.Count > 0)
                                 {
                                     maxSno = (from row in grdGrnlist.Rows.Cast<DataGridViewRow>()
@@ -5252,7 +5257,7 @@ namespace ROMS
                                 }  
                                 grdGrnlist.Columns["clmtam"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                  
-                                grdGrnlist.Rows.Add(maxSno + 1,  (varpono[0]).Trim(), (varPICode).Trim(),  (varEName).Trim(),  (varTName).Trim(),    (var_Symbol).Trim(),
+                                grdGrnlist.Rows.Add(maxSno + 1,  (varpono[0]).Trim(), (varPICode).Trim(),  (varEName).Trim(),  (varTName).Trim(), (var_Symbol).Trim(),
                                     pbCondition,   varMismatchQty,   Convert.ToString(cmbReason.Text),Convert.ToDecimal(mrp),
                                     Convert.ToDecimal(mrp), (varExpiryDate).Trim(), varExpiryDate.Trim() ,  (varexp).Trim(),varAcutalshelflife, 
                                     varShelflifevalue, (txtBatchno.Text).Trim(), (txtBatchno.Text).Trim(),  varLocationName, varRack, (productCode).Trim(), cmbProType.SelectedValue,
