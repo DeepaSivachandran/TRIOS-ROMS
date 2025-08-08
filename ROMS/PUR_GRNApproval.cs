@@ -386,20 +386,52 @@ namespace ROMS
         {
             try
             {
-                decimal varReturnQty = 0, varInvoiceQty = 0, varFreeQty = 0 , varCreditQty=0;
+                decimal varReturnQty = 0, varInvoiceQty = 0, varFreeQty = 0 , varCreditQty=0 ,varMAReceivedQty=0;
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
                 {
                     object Reason = grdGrnApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cellMAReceivedQty = dataGridView.Rows[e.RowIndex].Cells["clmMARecivedQty"];
+                    DataGridViewCell cellDebitQty = dataGridView.Rows[e.RowIndex].Cells["clmCreditQty"];
+                    DataGridViewCell cellFreeQty = dataGridView.Rows[e.RowIndex].Cells["clmFreeQty"];
+                    DataGridViewCell cellReturnQty = dataGridView.Rows[e.RowIndex].Cells["clmreturnqty"];
+                    cellMAReceivedQty.ReadOnly = false; cellMAReceivedQty.Style.BackColor = Color.PaleGreen;
+                    cellDebitQty.ReadOnly = false; cellDebitQty.Style.BackColor = Color.PaleGreen;
+                    cellFreeQty.ReadOnly = false; cellFreeQty.Style.BackColor = Color.PaleGreen;
+                    cellReturnQty.ReadOnly = false; cellReturnQty.Style.BackColor = Color.PaleGreen;
                     //Update the same column value in the DataTable
                     dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
                     
-                    if(Convert.ToString(grdGrnApproval.Rows[e.RowIndex].Cells["clmErrorCount"].Value)!="0" &&Convert.ToString(Reason)!="234")
+                    if(Convert.ToString(grdGrnApproval.Rows[e.RowIndex].Cells["clmErrorCount"].Value)!="0" && Convert.ToString(Reason)!="234")
                     {
                         //this column used to update entry approval status id in purchase 
                         dtApproval.Rows[e.RowIndex]["StatusUpdate"] = 0;
+                    } 
+                    if (Convert.ToString(Reason) == "230") //Informed to supplier
+                    {
+                        cellMAReceivedQty.ReadOnly = true; cellMAReceivedQty.Style.BackColor = Color.LightGray;
+                        cellDebitQty.ReadOnly = true; cellDebitQty.Style.BackColor = Color.LightGray;
+                        cellFreeQty.ReadOnly = true; cellFreeQty.Style.BackColor = Color.LightGray;
+                        cellReturnQty.ReadOnly = true; cellReturnQty.Style.BackColor = Color.LightGray;
                     }
-                }
-                
+                    else if(Convert.ToString(Reason) == "232") //Approved Myself
+                    { 
+                        cellDebitQty.ReadOnly = true; cellDebitQty.Style.BackColor = Color.LightGray;
+                        cellFreeQty.ReadOnly = true; cellFreeQty.Style.BackColor = Color.LightGray;
+                        cellReturnQty.ReadOnly = true; cellReturnQty.Style.BackColor = Color.LightGray;
+                    }
+                    else if (Convert.ToString(Reason) == "233") //Return DC Genereated / Credit Note Created
+                    {
+                        cellMAReceivedQty.ReadOnly = true; cellMAReceivedQty.Style.BackColor = Color.LightGray; 
+                    }
+                    else if (Convert.ToString(Reason) == "340") //Piece to piece
+                    {
+                        cellMAReceivedQty.ReadOnly = false; cellMAReceivedQty.Style.BackColor = Color.PaleGreen;
+                        cellDebitQty.ReadOnly = false; cellDebitQty.Style.BackColor = Color.PaleGreen;
+                        cellFreeQty.ReadOnly = false; cellFreeQty.Style.BackColor = Color.PaleGreen;
+                        cellReturnQty.ReadOnly = false; cellReturnQty.Style.BackColor = Color.PaleGreen;
+                    }
+                } 
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 {
                     if (Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmMismatchQty"].Value) < Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmreturnqty"].Value))
@@ -412,16 +444,7 @@ namespace ROMS
                     }
                 }
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
-                {
-                    //if (Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmReason"].Value) == "233" && varFlag==1)
-                    //{
-                    //    string varRecQty = "";
-                    //    varRecQty = Convert.ToString(grdGrnApproval.CurrentRow.Cells["clmreceivedqty"].Value);
-                    //    grdGrnApproval.CurrentRow.Cells["clmreturnqty"].Value = varRecQty;
-                    //    object Quantity = varRecQty;
-                    //    dtApproval.Rows[i]["GRNAPR_ReturnedQty"] = Quantity;
-                    //    dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = Quantity;
-                    //}
+                { 
                     if (varFlag == 1)
                     {
                         udfnReasonChange(sender, e);
@@ -465,7 +488,15 @@ namespace ROMS
                     dtApproval.Rows[e.RowIndex]["GRNAPR_CreditQty"] = varCreditQty;
                     dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_FreeQty"] = varCreditQty;
                     dtCreditProduct.Rows[e.RowIndex]["CNPR_Qty"] = varCreditQty;
-                }
+                } 
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmMARecivedQty")
+                {
+                    if (Convert.ToString(grdGrnApproval.Rows[e.RowIndex].Cells["clmMARecivedQty"].Value) != "")
+                    {
+                        varMAReceivedQty = Convert.ToDecimal(grdGrnApproval.Rows[e.RowIndex].Cells["clmMARecivedQty"].Value);
+                    }
+                    dtApproval.Rows[e.RowIndex]["GRNAPR_ReceivedQty"] = varMAReceivedQty; 
+                } 
                 //Reason -> Myself than get passkey
                 if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmReason")
                 {
@@ -483,11 +514,7 @@ namespace ROMS
                             dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
                             grdGrnApproval.CurrentRow.Cells["clmReason"].Value = 234;
                         }
-                    }
-                    //else
-                    //{
-                    //    dtApproval.Rows[e.RowIndex]["GRNAPR_RiskAcceptedby"] = 0;
-                    //}
+                    } 
                 }
                 //if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
                 //{
@@ -589,7 +616,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
+        } 
         private void GrdGrnApproval_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -652,6 +679,10 @@ namespace ROMS
                     varWrongReason++;
                 }
                 else if (Convert.ToInt32(grdGrnApproval.Rows[e.RowIndex].Cells["clmReason"].Value) == 234 && Convert.ToInt32(grdGrnApproval.Rows[e.RowIndex].Cells["clmErrorCount"].Value) == 1)
+                {
+                    varWrongReason++;
+                }
+                else if (Convert.ToInt32(grdGrnApproval.Rows[e.RowIndex].Cells["clmReason"].Value) == 340 && Convert.ToInt32(grdGrnApproval.Rows[e.RowIndex].Cells["clmErrorCount"].Value) == 1)
                 {
                     varWrongReason++;
                 }
@@ -739,6 +770,7 @@ namespace ROMS
                 dtApproval.Columns.Add("GRNAPR_CreditQty", typeof(decimal));
                 dtApproval.Columns.Add("StatusUpdate", typeof(decimal));
                 dtApproval.Columns.Add("IssuePro", typeof(int));
+                dtApproval.Columns.Add("GRNAPR_ReceivedQty", typeof(decimal));
 
                 dtPurchaseReturnDC.TableName = "TRN_Purchase_ReturnDC";
                 dtPurchaseReturnDC.Columns.Add("PURREDCPR_PRID", typeof(int));
@@ -947,10 +979,11 @@ namespace ROMS
             {
                 int varQtyErr = 0;
                 bool varErrorFlag = true;
-                decimal varFreeQty = 0, varReceivedQty = 0, varReturnQty = 0, varCreditQty = 0 ,varTotQty=0,varMismatchQty=0;
+                decimal varFreeQty = 0, varReceivedQty = 0, varReturnQty = 0, varCreditQty = 0 ,varTotQty=0,varMismatchQty=0 ,varMAReceivedQty=0;
                 for (int i=0;i<grdGrnApproval.Rows.Count;i++)
                 {
-                    if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)!="")
+                    varFreeQty = 0; varReceivedQty = 0; varReturnQty = 0; varCreditQty = 0; varTotQty = 0; varMismatchQty = 0; varMAReceivedQty = 0;
+                    if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value)!="")
                     { varReceivedQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreceivedqty"].Value);  }
                     if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "")
                     { varReturnQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value);  }
@@ -960,11 +993,13 @@ namespace ROMS
                     { varCreditQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value); }
                     if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmMismatchQty"].Value) != "")
                     { varMismatchQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmMismatchQty"].Value); }
+                    if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmMARecivedQty"].Value) != "")
+                    { varMAReceivedQty = Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmMARecivedQty"].Value); }
 
                     if (varFlag == 2)
                     {
-                        varTotQty = varReturnQty + varFreeQty + varCreditQty;
-                        if (varTotQty > varMismatchQty)
+                        varTotQty = varReturnQty + varMAReceivedQty + varCreditQty;
+                        if (varTotQty != varMismatchQty)
                         {
                             varQtyErr++;
                             grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
@@ -975,32 +1010,35 @@ namespace ROMS
                     }
                     else 
                     {
-                        varTotQty = varReturnQty + varFreeQty + varCreditQty;
-                        if (varTotQty > varMismatchQty)
+                        varTotQty = varReturnQty + varMAReceivedQty + varCreditQty;
+                        if (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "" && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "234" && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "230")
                         {
-                            varQtyErr++;
-                            grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
-                            grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
-                            grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
-                            varErrorFlag = false;
-                        }
-                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) > varMismatchQty)
-                        {
-                            varQtyErr++;
-                            grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
-                            varErrorFlag = false;
-                        }
-                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQtyValue"].Value))
-                        {
-                            varQtyErr++;
-                            grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
-                            varErrorFlag = false;
-                        }
-                        if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) > varMismatchQty)
-                        {
-                            varQtyErr++;
-                            grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
-                            varErrorFlag = false;
+                            if (varTotQty != varMismatchQty)
+                            {
+                                varQtyErr++;
+                                grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
+                                grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                                grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
+                                varErrorFlag = false;
+                            }
+                            if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) > varMismatchQty)
+                            {
+                                varQtyErr++;
+                                grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink;
+                                varErrorFlag = false;
+                            }
+                            if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQty"].Value) > Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmFreeQtyValue"].Value))
+                            {
+                                varQtyErr++;
+                                grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightPink;
+                                varErrorFlag = false;
+                            }
+                            if (Convert.ToDecimal(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) > varMismatchQty)
+                            {
+                                varQtyErr++;
+                                grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink;
+                                varErrorFlag = false;
+                            }
                         }
                     }
                     if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0" || (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "0")) && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value)=="")
@@ -1024,7 +1062,7 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
                     }
-                    if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == "233" && (varReturnQty==0 && varCreditQty==0))
+                    if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == "233" && (varReturnQty==0 && varCreditQty==0 && varMAReceivedQty==0))
                     {
                         varQtyErr++;
                         varErrorFlag = false;
@@ -1113,15 +1151,14 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
         public void udfnEdit()
         {
             try
             {
-                string varShelflifePer = "";
+                string varShelflifePer = "";int ReasonCondition = 0; string ProCondition = "0",Reason="0";
                 if (varID!= 0 || varGRNID!=0 || varInwardID!=0)
                 {
                     Application.DoEvents();
@@ -1141,33 +1178,38 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
-                            if(Convert.ToDecimal(objDs.Tables[0].Rows[i]["Shelflifeper"])==0)
-                            {
-                                varShelflifePer = "";
-                            }
+                            ReasonCondition = 0; ProCondition = "0";
+                            if (Convert.ToString(objDs.Tables[0].Rows[i]["ReturnCondition"])!="")
+                            { ReasonCondition = Convert.ToInt16(objDs.Tables[0].Rows[i]["ReturnCondition"]); }
+                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) != "")
+                            { ProCondition = Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]); }
+                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]) != "")
+                            { Reason = Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]); }
+
+                            if (Convert.ToDecimal(objDs.Tables[0].Rows[i]["Shelflifeper"])==0)
+                            {  varShelflifePer = "";   }
                             else
-                            {
-                                varShelflifePer = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]) + ' ' + '%';
-                            } 
+                            { varShelflifePer = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]) + ' ' + '%';  } 
                             grdGrnApproval.Columns["clmproduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]),
-                                Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),
-                                 Convert.ToString(objDs.Tables[0].Rows[i]["Pro Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]),  Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, 
-                                Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Mismatch Qty"]),
-                                Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Free Qty"]), Convert.ToString(objDs.Tables[0].Rows[i]["Debit Qty"]),
-                                /*Convert.ToString(objDs.Tables[0].Rows[i]["POID"])*/0, Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), 
-                                Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["IssueProCount"]), 
-                                Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Free Qty Value"]),
-                                 Convert.ToString(objDs.Tables[0].Rows[i]["Condition"])); 
-                           dtApproval.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), 
-                            Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]),  Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 
-                            Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]),0/*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), 
-                            Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Free Qty"]), 
-                            Convert.ToInt32(objDs.Tables[0].Rows[i]["Debit Qty"]) ,Convert.ToInt32(objDs.Tables[0].Rows[i]["StatusUpdate"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"])); 
-                            dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),
-                                 Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, 0 /*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
-                            dtCreditProduct.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),
-                                 Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, 0 /*Convert.ToDecimal(objDs.Tables[0].Rows[i]["Returned Qty"])*/, Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
+                            grdGrnApproval.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]),Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["Pro Expiry Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Product Shelflife"]),  Convert.ToString(objDs.Tables[0].Rows[i]["actuallife"]), varShelflifePer, Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["Pro BatchNo"]), Convert.ToString(objDs.Tables[0].Rows[i]["PO Qty"]), 
+                                Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Qty"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["Received Qty"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["Mismatch Qty"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["Free Qty Value"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),
+                                null,
+                                 Convert.ToString(objDs.Tables[0].Rows[i]["Returned Qty"]),
+                               Convert.ToString(objDs.Tables[0].Rows[i]["Free Qty"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["Debit Qty"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["GRNAPR_ReceivedQty"]), 
+                               0,
+                               Convert.ToString(objDs.Tables[0].Rows[i]["Unit Decimal"]), Convert.ToString(objDs.Tables[0].Rows[i]["Full Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToString(objDs.Tables[0].Rows[i]["IssueProCount"]),  Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["ReturnCondition"])); 
+                             
+                            dtApproval.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["actual"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]),  Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]),0 , 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GRNAPR_GRNPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["GIPPRID"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Free Qty"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Debit Qty"]) ,Convert.ToInt32(objDs.Tables[0].Rows[i]["StatusUpdate"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["GRNAPR_ReceivedQty"])); 
+
+                            dtPurchaseReturnDC.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, 0  , Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));dtCreditProduct.Rows.Add(Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["MRP"]), Convert.ToString(objDs.Tables[0].Rows[i]["ExpiryDate"]),Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo"]), 0, 0  , Convert.ToString(objDs.Tables[0].Rows[i]["UTID"]), 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPRID"]));
+
                             grdGrnApproval.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmexpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGrnApproval.Columns["clmShelflifeper"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1175,11 +1217,12 @@ namespace ROMS
                             grdGrnApproval.Columns["clminvoiceqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmreceivedqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGrnApproval.Columns["clmreturnqty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            //grdGrnApproval.Columns["clmReason"].DefaultCellStyle.BackColor = Color.PaleGreen;
+
                             grdGrnApproval.Columns["clmreturnqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             grdGrnApproval.Columns["clmCreditQty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             grdGrnApproval.Columns["clmFreeQty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             grdGrnApproval.Columns["clmPOID"].Visible = false;
+
                             string[] varShelflifeper = Convert.ToString(objDs.Tables[0].Rows[i]["Shelflifeper"]).Split(' ');
                             varInvoiceQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Qty"]);
                             VarReceivedQty = Convert.ToDecimal(objDs.Tables[0].Rows[i]["Received Qty"]);
@@ -1221,36 +1264,26 @@ namespace ROMS
                                     cell.Style.ForeColor = Color.Black;
                                 }
                             }
-                            if(varFlag==1)//from purchase
+
+                            var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmReason"];
+                            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+                            varComboBoxColoumn.ValueMember = "ID";
+                            varComboBoxColoumn.DisplayMember = "Reason";
+                            if (ProCondition == "280" || ProCondition == "281")
                             {
-                                var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmReason"];
-                                DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-                                varComboBoxColoumn.ValueMember = "ID";
-                                varComboBoxColoumn.DisplayMember = "Reason";
-                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) =="284")
-                                {
-                                    varComboBoxColoumn.DataSource = dtReturn ; 
-                                }
-                                else if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "285")
-                                {
-                                    varComboBoxColoumn.DataSource = dtReceived;
-                                } 
+                                varComboBoxColoumn.DataSource = dtReturn;
                             }
-                            else if(varFlag==2)//from grn
+                            else
                             {
-                                var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdGrnApproval.Columns["clmReason"];
-                                DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-                                varComboBoxColoumn.ValueMember = "ID";
-                                varComboBoxColoumn.DisplayMember = "Reason";
-                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "284")
+                                if (ReasonCondition == 284)
                                 {
                                     varComboBoxColoumn.DataSource = dtReturn;
                                 }
-                                else if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "285")
+                                else if (ReasonCondition == 285)
                                 {
                                     varComboBoxColoumn.DataSource = dtReceived;
-                                } 
-                            }
+                                }
+                            } 
                             if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
                                     || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
                                     || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
@@ -1260,15 +1293,15 @@ namespace ROMS
                                 grdGrnApproval.Rows[i].Cells["clmreturnqty"].ReadOnly = true;
                                 grdGrnApproval.Rows[i].Cells["clmFreeQty"].ReadOnly = true;
                             }
-                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]) == "0")
+                            if (Convert.ToString(Reason) == "0")
                             {
                                 grdGrnApproval.Rows[i].Cells["clmReason"].Value = 234;
                             }
                             else
                             {
-                                grdGrnApproval.Rows[i].Cells["clmReason"].Value = Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]);
+                                grdGrnApproval.Rows[i].Cells["clmReason"].Value = Convert.ToInt32(Reason);
                             }
-                            if(Convert.ToInt32(grdGrnApproval.Rows[i].Cells["clmReason"].Value)==230 || Convert.ToInt32(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == 234)
+                            if(Convert.ToInt32(Reason) ==230 || Convert.ToInt32(Reason) == 234 || Convert.ToInt32(Reason) == 340 )
                             {
                                 grdGrnApproval.Rows[i].ReadOnly = false;
                             }
@@ -1278,29 +1311,23 @@ namespace ROMS
                                 grdGrnApproval.Rows[i].ReadOnly = true;
                             }
                             udfnQtyCheck();
-                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]) == 230 && Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 1)
+                            if ((Convert.ToInt32(Reason) == 230 || Convert.ToInt32(Reason) == 340 || Convert.ToInt32(Reason) == 234) && Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 1)
                             {
                                 btnSave.Text = "Update";
                                 btnSave.Image = ROMS.Properties.Resources.save;
                                 varWrongReason++;
-                            }
-                            else if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]) == 234 && Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 1)
-                            {
-                                btnSave.Text = "Update";
-                                btnSave.Image = ROMS.Properties.Resources.save;
-                                varWrongReason++;
-                            }
+                            } 
                             if (Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 0)
                             {
                                 grdGrnApproval.Rows[i].ReadOnly = true;
                                 grdGrnApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
                             }
-                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_EntryApprovalSTSID"]) == 62 && Convert.ToInt32(objDs.Tables[0].Rows[i]["Reason"]) == 230)
+                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_EntryApprovalSTSID"]) == 62 && (Convert.ToInt32(Reason) == 230 || Convert.ToInt32(Reason)==340))
                             {
                                 grdGrnApproval.Rows[i].ReadOnly = true;
                                 grdGrnApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
                             }
-                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "286")
+                            if (ProCondition == "275")
                             { 
                                 // Replace the cell in a specific row
                                 DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
