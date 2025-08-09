@@ -2548,6 +2548,7 @@ namespace ROMS
             {
                 varUpDownKey = 1;
                 udfnListviewProduct();
+                DGV_FilterProduct.Visible = false;
                 btnConditions.Focus();
             }
             catch (Exception ex)
@@ -3045,8 +3046,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void btnConditionClear_Leave(object sender, EventArgs e)
         {
             try
@@ -3150,6 +3150,10 @@ namespace ROMS
                 { txtMismatchQty.Focus(); }
                 else if (cmbReason.Enabled == true)
                 { cmbReason.Focus(); } 
+                else if(txtmrprate.Enabled==true)
+                { txtmrprate.Focus(); }
+                else if(txtDate.Enabled==true)
+                { txtDate.Focus(); }
                 else if (txtBatchno.Enabled == true)
                 { txtBatchno.Focus(); }
                 else
