@@ -8669,47 +8669,7 @@ namespace ROMS
                         txtInvoiceamt.Enabled = true; txtInvoiceamt.ReadOnly = false;
                         txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false;
                     }
-                    if(pbConditionIDs.Contains("281"))
-                    {
-                        txtMrp.ReadOnly = true;   txtMrp.Enabled = false;
-                        txtMonth.Enabled = true; txtMrp.ReadOnly = false;
-                        txtYear.Enabled = true; txtYear.ReadOnly = false;
-                        txtDate.Enabled = true; txtDate.ReadOnly = false;
-                        txtBatchno.Enabled = true; txtBatchno.ReadOnly = false;
-                    }
-                    else
-                    {
-                        if (varPrMRPFlag == "1")
-                        {
-                            txtMrp.ReadOnly = true;
-                            txtMrp.Enabled = false;
-                        }
-                        else
-                        {
-                            txtMrp.ReadOnly = false;
-                            txtMrp.Enabled = true;
-                        }
-                        if (varShelflife == 1)
-                        {
-                            txtMonth.Enabled = true; txtMrp.ReadOnly = false;
-                            txtYear.Enabled = true; txtYear.ReadOnly = false;
-                            txtDate.Enabled = true; txtDate.ReadOnly = false;
-                        }
-                        else
-                        {
-                            txtMonth.Enabled = false; txtMrp.ReadOnly = true;
-                            txtYear.Enabled = false; txtYear.ReadOnly = true;
-                            txtDate.Enabled = false; txtDate.ReadOnly = true;
-                        }
-                        if (varBatchNo == "72")
-                        {
-                             txtBatchno.Enabled = true; txtBatchno.ReadOnly = false;
-                        }
-                        else
-                        {
-                            txtBatchno.Enabled =false; txtBatchno.ReadOnly = true;
-                        }  
-                    }
+                   
                     pnlConditions.Visible = false;
                     txtMismatchQty.Focus();
                 }
@@ -8724,6 +8684,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+       
         private void btnApply_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -12807,8 +12768,8 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbPONo.SelectedValue) == "220" || MA_ReasonFlag==1|| (varGRNProType == "226" || varGRNProType == "264"
-                            || varGRNProType == "265" || varGRNProType == "266" || varGRNProType == "26" || varGRNProType == "264") && varGrnType == "215")
+                if(Convert.ToString(cmbPONo.SelectedValue) == "220" || MA_ReasonFlag==1|| (varGRNProType == "226" || varGRNProType == "264"
+                            || varGRNProType == "265" || varGRNProType == "266" || varGRNProType == "26" || varGRNProType == "264") && varGrnType == "215" || varPrInvFlag == "1")
                 { 
                     txtMrp.Enabled = false;
                     txtDate.Enabled = false;

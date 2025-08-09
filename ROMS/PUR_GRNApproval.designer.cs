@@ -1094,6 +1094,7 @@
             this.clmFreeQty.DefaultCellStyle = dataGridViewCellStyle13;
             this.clmFreeQty.HeaderText = "Return Free Qty";
             this.clmFreeQty.Name = "clmFreeQty";
+            this.clmFreeQty.Width = 120;
             // 
             // clmCreditQty
             // 
