@@ -48,5 +48,8 @@ namespace ROMS.Model
         public string paraCreatedON = "";
         public int paraLabelCount = 0;
         public int paraType = 0;
+        public double ParaMRP = 0;
+        public double ParaRetail = 0;
+        
     }
 }

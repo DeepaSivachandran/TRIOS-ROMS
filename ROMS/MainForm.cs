@@ -112,6 +112,7 @@ namespace ROMS
         public static CP_Rate_ChangeList objCP_Rate_ChangeList;
         public static CP_Rate_Change objCP_Rate_Change;
         public static CP_StickerPrint objCP_StickerPrint;
+        public static CP_DirectLabelPrint objCP_DiectLabelPrint;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -2917,6 +2918,24 @@ namespace ROMS
                 MainForm.objREPORT_Stock_Valuation.MdiParent = this;
                 MainForm.objREPORT_Stock_Valuation.Show();
                 PbCurrentForm = "7.2.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        private void directLabelPrintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_DiectLabelPrint = new CP_DirectLabelPrint();
+                MainForm.objCP_DiectLabelPrint.MdiParent = this;
+                MainForm.objCP_DiectLabelPrint.Show();
             }
             catch (Exception ex)
             {
