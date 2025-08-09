@@ -156,6 +156,7 @@
             this.txtRRateLive.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRRateLive.Enter += new System.EventHandler(this.txtRRateLive_Enter);
             this.txtRRateLive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRRateLive_KeyDown);
+            this.txtRRateLive.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRRateLive_KeyPress);
             this.txtRRateLive.Leave += new System.EventHandler(this.txtRRateLive_Leave);
             // 
             // txtDBarcode
@@ -314,6 +315,7 @@
             this.txtWRateLive.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWRateLive.Enter += new System.EventHandler(this.txtWRateLive_Enter);
             this.txtWRateLive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWRateLive_KeyDown);
+            this.txtWRateLive.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWRateLive_KeyPress);
             this.txtWRateLive.Leave += new System.EventHandler(this.txtWRateLive_Leave);
             // 
             // textBox1
