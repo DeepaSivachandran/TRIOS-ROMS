@@ -8673,10 +8673,9 @@ namespace ROMS
                         cmbReason.Enabled = true; cmbReason.SelectedValue = 286;
                         txtInvoiceamt.Enabled = true; txtInvoiceamt.ReadOnly = false;
                         txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false;
-                    }
-                   
+                    } 
                     pnlConditions.Visible = false;
-                    txtMismatchQty.Focus();
+                    udfnConditionFocus();
                 }
                 else
                 {
@@ -8689,7 +8688,31 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-       
+        public void udfnConditionFocus()
+        {
+            try
+            {
+                if(txtMismatchQty.Enabled==true)
+                { txtMismatchQty.Focus(); }
+                else if(cmbReason.Enabled==true)
+                { cmbReason.Focus(); }
+                else if(txtMrp.Enabled==true)
+                { txtMrp.Focus(); }
+                else if(txtBatchno.Enabled==true)
+                { txtBatchno.Focus(); }
+                else if(txtSourceLocation.Enabled==true)
+                { txtSourceLocation.Focus(); }
+                else if(cmbrack.Enabled==true)
+                { cmbrack.Focus(); }
+                else
+                { btnAdd.Focus(); }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnApply_KeyDown(object sender, KeyEventArgs e)
         {
             try

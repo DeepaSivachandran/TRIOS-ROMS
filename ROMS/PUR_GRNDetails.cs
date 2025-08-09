@@ -3129,7 +3129,7 @@ namespace ROMS
                         txtMismatchQty.Enabled = true; txtMismatchQty.ReadOnly = false;
                     }
                     pnlConditions.Visible = false;
-                    txtMismatchQty.Focus();
+                    udfnConditionFocus();
                 }
                 else
                 {
@@ -3142,7 +3142,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnConditionFocus()
+        {
+            try
+            {
+                if (txtMismatchQty.Enabled == true)
+                { txtMismatchQty.Focus(); }
+                else if (cmbReason.Enabled == true)
+                { cmbReason.Focus(); } 
+                else if (txtBatchno.Enabled == true)
+                { txtBatchno.Focus(); }
+                else
+                { btnAdd.Focus(); }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnConditions_KeyDown(object sender, KeyEventArgs e)
         {
             try
