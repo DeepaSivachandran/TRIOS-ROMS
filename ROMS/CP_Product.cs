@@ -570,7 +570,7 @@ namespace ROMS
                     string varId_SubGroup = "0";
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0, 0);
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -4336,7 +4336,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -7380,7 +7380,7 @@ namespace ROMS
                     string varId_SubGroup = "0";
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0, 0);
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {

@@ -83,6 +83,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID=0 OR STS_ModuleID = 1", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -110,7 +111,7 @@ namespace ROMS
                 int varGroupId = 0;
                 int varLocationId = 0;
                 int varRackId = 0;
-                if (txtProductSubGroup.Text == "")
+                if (txtProductSubGroup.Text.Trim() == "")
                 {
                     varSubGroupId = 0;
                 }
@@ -119,7 +120,7 @@ namespace ROMS
                     string varId_SubGroup = "0";
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim(), 0, 0, 0, 0,0);
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -133,7 +134,7 @@ namespace ROMS
                     }
                     varSubGroupId = Convert.ToInt32(varId_SubGroup);
                 }
-                if (txtProductGroup.Text == "")
+                if (txtProductGroup.Text.Trim() == "")
                 {
                     varGroupId = 0;
                 }
@@ -202,7 +203,7 @@ namespace ROMS
                     }
                     varRackId = Convert.ToInt32(varId_PurRack);
                 }
-                objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "", varGroupId, 0, "", Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(cmbBatchNoEntry.SelectedValue), varLocationId, varRackId);
+                objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "", varGroupId, 0, "", Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(cmbBatchNoEntry.SelectedValue), varLocationId, varRackId, Convert.ToInt32(cmbSubgroupType.SelectedValue));
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -228,6 +229,7 @@ namespace ROMS
                             grdSubGroupList.Columns["Rack"].Width = 100;
                             grdSubGroupList.Columns["Batch No."].Width = 100;
                             grdSubGroupList.Columns["Total Products"].Width = 100;
+                            grdSubGroupList.Columns["Product Subgroup Type"].Width = 150;
                             grdSubGroupList.Columns["Status"].Width = 80;
 
                             grdSubGroupList.Columns["ID"].Visible = false;
@@ -238,6 +240,7 @@ namespace ROMS
                             grdSubGroupList.Columns["Batch No."].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
                             grdSubGroupList.Columns["SL_RKCreation"].Visible = false;
+                            grdSubGroupList.Columns["PRSG_Type"].Visible = false;
                         }
                         else
                         {
@@ -373,7 +376,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID,0);
+                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID, 0, 0);
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -385,7 +388,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objDser = new SPDataService();
-                                    varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID,1);
+                                    varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion", "", varUserID, 1, 0);
                                     objDser.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -440,6 +443,7 @@ namespace ROMS
                     MainForm.objCP_SubGroup.varRackCodes = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
                     MainForm.objCP_SubGroup.varStatus = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Status ID"].Value);
                     MainForm.objCP_SubGroup.VarRackCreation = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["SL_RKCreation"].Value);
+                    MainForm.objCP_SubGroup.varSubgroupType = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["PRSG_Type"].Value);
                     picLoader.Visible = false;
                     picLoader.SendToBack();
                     MainForm.objCP_SubGroup.ShowDialog();
@@ -459,6 +463,10 @@ namespace ROMS
             {
                 btnView.Enabled = false;
                 lblProductgroup.Focus();
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
+                lvStockLocation.Visible = false;
+                lvSaleRack.Visible = false;
                 udfnList();
             }
             catch (Exception ex)
@@ -916,7 +924,7 @@ namespace ROMS
                 }
                 if(e.KeyCode==Keys.Enter)
                 {
-                    txtStockLocation.Focus();
+                    cmbSubgroupType.Focus();
                 }
             }
             catch (Exception ex)
@@ -953,7 +961,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtProductSubGroup.Text, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtProductSubGroup.Text, 0, 0, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1025,7 +1033,7 @@ namespace ROMS
             try
             {
                 udfnSubGroupevent();
-                btnView.Focus();
+                cmbSubgroupType.Focus();
             }
             catch (Exception ex)
             {
@@ -1037,12 +1045,12 @@ namespace ROMS
         {
             try
             {
-                if (txtProductSubGroup.Text != "")
+                if (txtProductSubGroup.Text.Trim() != "")
                 {
                     ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
                     lblSubGroupId.Text = selectedItem.SubItems[1].Text;
                     txtProductSubGroup.Text = selectedItem.SubItems[0].Text;
-                    txtStockLocation.Focus();
+                    cmbSubgroupType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1918,6 +1926,61 @@ namespace ROMS
             try
             {
                 e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSubgroupType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSubgroupType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSubgroupType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtStockLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSubgroupType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSubgroupType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSubgroupType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

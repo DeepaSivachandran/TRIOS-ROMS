@@ -40,10 +40,11 @@ namespace ROMS
         public string varRackName = "";
         public int varId = 0;
         public int varStatus = 0;
-        public int varGroupCode = 0, varmastertype=0,varSubgroupCode=0;
+        public int varGroupCode = 0, varmastertype = 0, varSubgroupCode = 0;
         public int varLocationCode = 0, varRackCode = 0;
         public string varRackCodes = "";
         public int varSortFlag = 0;
+        public int varSubgroupType = 0;
         public string VarRackCreation = "0";
         public CP_SubGroup()
         {
@@ -86,6 +87,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=25 ", "MST_DisplayText,MSTID", cmbBatchNo, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=92 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -131,7 +133,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { //grdRackList.ColumnHeadersVisible = false;
+            finally
+            { //grdRackList.ColumnHeadersVisible = false;
               //  udfnSearchGridHead();
             }
         }
@@ -144,7 +147,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroupName.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtProductGroupName.Text,0);
+                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtProductGroupName.Text, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -201,6 +204,7 @@ namespace ROMS
                 txtESubGroupNameEnglish.Text = varSubGroupNameinEnglish;
                 txtESubGroupNameTamil.Text = varSubGroupNameinTamil;
                 cmbBatchNo.SelectedValue = varBatchId;
+                cmbSubgroupType.SelectedValue = varSubgroupType;
                 txtLocation.Text = varStockLocationName;
                 lblLocation.Text = Convert.ToString(varLocationCode);
                 udfnLoadRackList();
@@ -231,15 +235,15 @@ namespace ROMS
                 grdRackList.Columns["Rack ShortName"].Visible = false;
                 grdRackList.Columns[0].Width = 30;
                 varStatusid = varStatus;
-                if(varStatusid==1)
+                if (varStatusid == 1)
                 {
-                    rbActive.Checked=true;
+                    rbActive.Checked = true;
                 }
                 else
                 {
                     rbInactive.Checked = true;
                 }
-                if(varStatus==2)
+                if (varStatus == 2)
                 {
                     udfnDisable();
                 }
@@ -253,7 +257,7 @@ namespace ROMS
             {
                 lvGroupName.Visible = false;
                 lvLocation.Visible = false;
-               // lvRack.Visible = false;
+                // lvRack.Visible = false;
             }
         }
         public void udfnDisable()
@@ -278,6 +282,7 @@ namespace ROMS
                 txtESubGroupNameEnglish.Text = "";
                 txtESubGroupNameTamil.Text = "";
                 cmbBatchNo.SelectedValue = -1;
+                cmbSubgroupType.SelectedValue = 312;
                 txtLocation.Text = "";
                 grdRackList.DataSource = null;
                 txtProductGroupName.Focus();
@@ -298,7 +303,7 @@ namespace ROMS
                 btnSave.Enabled = false;
                 txtRack.Text = "";
                 string varResult = ""; string varOriginator = "Product Sub Group Creation";
-                int varViewType=0; 
+                int varViewType = 0;
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -310,10 +315,10 @@ namespace ROMS
                 SPDataService objDser = new SPDataService();
                 if (btnSave.Text == "Update")
                 {
-                   varOriginator = "Product Sub Group Updation";
-                   varViewType=1; 
+                    varOriginator = "Product Sub Group Updation";
+                    varViewType = 1;
                 }
-                string varRackId = "", varRackName = "",varRackDescription=""; 
+                string varRackId = "", varRackName = "", varRackDescription = "";
                 int varcheckedcount = 0;
                 for (int i = 0; i < grdRackList.Rows.Count; i++)
                 {
@@ -321,14 +326,14 @@ namespace ROMS
                     {
                         varcheckedcount++;
                         if (varRackId == "") { varRackId = Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
-                        else  {  varRackId = varRackId + ',' + Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
+                        else { varRackId = varRackId + ',' + Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
                         if (varRackName == "") { varRackName = Convert.ToString(grdRackList.Rows[i].Cells["Rack ShortName"].Value); }
                         else { varRackName = varRackName + ',' + Convert.ToString(grdRackList.Rows[i].Cells["Rack ShortName"].Value); }
                         if (varRackDescription == "") { varRackDescription = Convert.ToString(grdRackList.Rows[i].Cells["Rack Description"].Value); }
                         else { varRackDescription = varRackDescription + ',' + Convert.ToString(grdRackList.Rows[i].Cells["Rack Description"].Value); }
                     }
                 }
-                if (grdRackList.Rows.Count>0 && varRackId == "")
+                if (grdRackList.Rows.Count > 0 && varRackId == "")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(60);
@@ -339,7 +344,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId,MainForm.pbUserID,0);
+                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue));
                     objDser.CloseConnection();
                     btnSave.Enabled = true;
                     if (varResult.Split('~')[0] == "3")
@@ -393,7 +398,7 @@ namespace ROMS
                             MainForm.objCP_SubGroupList.udfnList();
                             varCloseFlag = 1;
                             udfnclose();
-                        } 
+                        }
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -431,7 +436,7 @@ namespace ROMS
                     string VarPSGName = "0";
                     DataSet objDsGroup = new DataSet();
                     SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroupName.Text.Trim(),0);
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroupName.Text.Trim(), 0);
                     objDServ1.CloseConnection();
                     if (objDsGroup != null)
                     {
@@ -482,7 +487,7 @@ namespace ROMS
                     string varLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0,"","",0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -544,7 +549,7 @@ namespace ROMS
 
         private void btnSave_KeyDown(object sender, KeyEventArgs e)
         {
-            try 
+            try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
@@ -711,7 +716,7 @@ namespace ROMS
         {
             try
             {
-                if (txtESubGroupNameEnglish.Text.Trim()== "")
+                if (txtESubGroupNameEnglish.Text.Trim() == "")
                 {
                     epSubGroup.SetError(txtESubGroupNameEnglish, "Please enter product sub group name in english");
                     txtESubGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -750,7 +755,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     //cmbBatchNo.Focus();
-                    txtLocation.Focus();
+                    cmbSubgroupType.Focus();
                 }
             }
             catch (Exception ex)
@@ -763,7 +768,7 @@ namespace ROMS
         {
             try
             {
-                if (txtESubGroupNameTamil.Text.Trim()== "")
+                if (txtESubGroupNameTamil.Text.Trim() == "")
                 {
                     epSubGroup.SetError(txtESubGroupNameTamil, "Please enter product sub group name in tamil");
                     txtESubGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -885,7 +890,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -972,7 +976,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroupName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(7,0,0, txtProductGroupName.Text,0);
+                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtProductGroupName.Text, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1110,7 +1114,7 @@ namespace ROMS
                         lvGroupName.Items[0].Selected = true;
                     }
                 }
-                if(e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     txtESubGroupNameEnglish.Focus();
                 }
@@ -1180,7 +1184,7 @@ namespace ROMS
                         lvLocation.Items[0].Selected = true;
                     }
                 }
-                if(e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     if (txtRack.Enabled == true)
                     {
@@ -1227,14 +1231,14 @@ namespace ROMS
                 lvLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if(txtLocation.Text=="")
+                if (txtLocation.Text == "")
                 {
                     this.grdRackList.DataSource = null;
                 }
                 if (txtLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text, 0,0,0,"","",0);
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1244,8 +1248,8 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_RKCreation"].ToString() }; 
-                                     ListViewItem objList = new ListViewItem(row);
+                                    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_RKCreation"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
                                     lvLocation.Columns[1].Width = 0;
                                     lvLocation.Items.Add(objList);
                                 }
@@ -1348,7 +1352,7 @@ namespace ROMS
                 if (txtLocation.Text != "")
                 {
                     SPDataService objService = new SPDataService();
-                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0,0);
+                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0, 0);
                     objService.CloseConnection();
                     dtRackList.Rows.Clear();
                     if (objRackList != null)
@@ -1357,8 +1361,9 @@ namespace ROMS
                         {
                             if (objRackList.Tables[0].Rows.Count > 0)
                             {
-                                for (int i = 0; i < objRackList.Tables[0].Rows.Count; i++) {
-                                    dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Description"]), Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]), Convert.ToString(objRackList.Tables[0].Rows[i]["RK_ShortName"]));
+                                for (int i = 0; i < objRackList.Tables[0].Rows.Count; i++)
+                                {
+                                    dtRackList.Rows.Add(false, Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]), Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Description"]), Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]), Convert.ToString(objRackList.Tables[0].Rows[i]["RK_ShortName"]));
                                 }
                                 grdRackList.DataSource = null;
                                 grdRackList.DataSource = dtRackList;
@@ -1401,7 +1406,7 @@ namespace ROMS
                     grdRackList.DataSource = null;
                     dtRackList.Rows.Clear();
                     udfnLoadRackList();
-                    if(VarRackCreation == "0")
+                    if (VarRackCreation == "0")
                     {
                         txtRack.Enabled = false;
                         btnNewRack.Enabled = false;
@@ -1426,7 +1431,8 @@ namespace ROMS
 
         private void TxtRack_TextChanged(object sender, EventArgs e)
         {
-            try {// (grdRackList.DataSource as BindingSource).Filter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
+            try
+            {// (grdRackList.DataSource as BindingSource).Filter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
                 dtRackList.DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtRack.Text.Trim() + "%'";
             }
             catch (Exception ex)
@@ -1438,7 +1444,7 @@ namespace ROMS
 
         private void TxtRack_Layout(object sender, LayoutEventArgs e)
         {
-           
+
         }
 
         private void TxtRack_KeyDown(object sender, KeyEventArgs e)
@@ -1447,9 +1453,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if(pnlStatus.Enabled==true)
+                    if (pnlStatus.Enabled == true)
                     {
-                        if(rbActive.Checked==true)
+                        if (rbActive.Checked == true)
                         {
                             rbActive.Focus();
                         }
@@ -1547,6 +1553,61 @@ namespace ROMS
             }
         }
 
+        private void CmbSubgroupType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSubgroupType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSubgroupType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSubgroupType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSubgroupType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSubgroupType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         /*added by deepa on 15-09-2023*/
         private void Btnewlocation_Click(object sender, EventArgs e)
         {
@@ -1625,6 +1686,5 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
     }
 }

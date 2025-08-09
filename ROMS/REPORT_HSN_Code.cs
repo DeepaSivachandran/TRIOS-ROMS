@@ -230,34 +230,6 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnHsnLoad()
-        {
-            try
-            {
-                DataSet objDs = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnHsnList(10, 0, 0, 0, "", txtHsnName.Text.Trim());
-                objdserv.CloseConnection();
-                cmbGST.DataSource = null;
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count > 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            cmbGST.ValueMember = "GSTID";
-                            cmbGST.DisplayMember = "GST_Text";
-                            cmbGST.DataSource = objDs.Tables[0];
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void REPORT_CP_HSN_Load(object sender, EventArgs e)
         {
             try
@@ -265,10 +237,11 @@ namespace ROMS
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
-                udfnHsnLoad();
+
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,84) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_GST", "GSTID<>-1", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbSupplierType.SelectedValue = -1;

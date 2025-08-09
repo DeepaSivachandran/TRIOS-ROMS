@@ -1416,7 +1416,7 @@ namespace ROMS
             return ds;
         }
         // Sivabharathi    Create date: 14/08/2023    Description:Sub Group  Sp
-        public string udfnSubGroup(int ViewType, int paraPRSGID, int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId, int paraSG_BatchNo, int paraPRSG_SLID, int paraPRSG_RKID, string paraOriginator, string varRackId, string paraUserID, int paraDeleteFlag)
+        public string udfnSubGroup(int ViewType, int paraPRSGID, int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId, int paraSG_BatchNo, int paraPRSG_SLID, int paraPRSG_RKID, string paraOriginator, string varRackId, string paraUserID, int paraDeleteFlag,int paraSubgroupType)
         {
 
             string varResult = "";
@@ -1437,6 +1437,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRKIds", varRackId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", paraSubgroupType);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
@@ -1455,7 +1456,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 14/08/2023    Description:Sub Group list Sp
-        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID, string paraPRGIDs, int paraPRGID, int paraID, string paraPRSG_EName, int paraStatusID, int paraBatchNo, int paraSLId, int paraRKId)
+        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID, string paraPRGIDs, int paraPRGID, int paraID, string paraPRSG_EName, int paraStatusID, int paraBatchNo, int paraSLId, int paraRKId,int paraSubgroupType)
         {
             DataSet ds = new DataSet();
             try
@@ -1473,6 +1474,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBatchNo", paraBatchNo);
                 varSqlCommand.Parameters.AddWithValue("@paraSLId", paraSLId);
                 varSqlCommand.Parameters.AddWithValue("@paraRKId", paraRKId);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", paraSubgroupType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -1660,6 +1662,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraCreatedON", objMR_Product.paraCreatedON);
                 varSqlCommand.Parameters.AddWithValue("@paraLabelCount", objMR_Product.paraLabelCount);
                 varSqlCommand.Parameters.AddWithValue("@paraType", objMR_Product.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", objMR_Product.paraSubgroupType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

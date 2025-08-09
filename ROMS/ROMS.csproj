@@ -1562,6 +1562,66 @@
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="REPORT_PUR_DiscountValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_DiscountValue.designer.cs">
+      <DependentUpon>REPORT_PUR_DiscountValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_AdditionalValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_AdditionalValue.designer.cs">
+      <DependentUpon>REPORT_PUR_AdditionalValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_AllTax.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_AllTax.designer.cs">
+      <DependentUpon>REPORT_PUR_AllTax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_PeriodWiseTax.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_PeriodWiseTax.designer.cs">
+      <DependentUpon>REPORT_PUR_PeriodWiseTax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_BillWiseTax.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_BillWiseTax.designer.cs">
+      <DependentUpon>REPORT_PUR_BillWiseTax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_CostDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_CostDetails.designer.cs">
+      <DependentUpon>REPORT_PUR_CostDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_BatchDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_BatchDetails.designer.cs">
+      <DependentUpon>REPORT_PUR_BatchDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_Tally.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_Tally.designer.cs">
+      <DependentUpon>REPORT_PUR_Tally.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_CostPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_CostPrice.designer.cs">
+      <DependentUpon>REPORT_PUR_CostPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_ProductWiseSummaryDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_ProductWiseSummaryDetails.designer.cs">
+      <DependentUpon>REPORT_PUR_ProductWiseSummaryDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_Assigned_Products.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1591,6 +1651,12 @@
     </Compile>
     <Compile Include="REPORT_Stock_Aging.designer.cs">
       <DependentUpon>REPORT_Stock_Aging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_PUR_ProductWiseLastPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_ProductWiseLastPurchase.designer.cs">
+      <DependentUpon>REPORT_PUR_ProductWiseLastPurchase.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_Stock_Valuation.cs">
       <SubType>Form</SubType>
@@ -3751,6 +3817,36 @@
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_DiscountValue.resx">
+      <DependentUpon>REPORT_PUR_DiscountValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_AdditionalValue.resx">
+      <DependentUpon>REPORT_PUR_AdditionalValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_AllTax.resx">
+      <DependentUpon>REPORT_PUR_AllTax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_PeriodWiseTax.resx">
+      <DependentUpon>REPORT_PUR_PeriodWiseTax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_BillWiseTax.resx">
+      <DependentUpon>REPORT_PUR_BillWiseTax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_CostDetails.resx">
+      <DependentUpon>REPORT_PUR_CostDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_BatchDetails.resx">
+      <DependentUpon>REPORT_PUR_BatchDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_Tally.resx">
+      <DependentUpon>REPORT_PUR_Tally.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_CostPrice.resx">
+      <DependentUpon>REPORT_PUR_CostPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_ProductWiseSummaryDetails.resx">
+      <DependentUpon>REPORT_PUR_ProductWiseSummaryDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Assigned_Products.resx">
       <DependentUpon>REPORT_Assigned_Products.cs</DependentUpon>
     </EmbeddedResource>
@@ -3765,6 +3861,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Aging.resx">
       <DependentUpon>REPORT_Stock_Aging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_PUR_ProductWiseLastPurchase.resx">
+      <DependentUpon>REPORT_PUR_ProductWiseLastPurchase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Valuation.resx">
       <DependentUpon>REPORT_Stock_Valuation.cs</DependentUpon>
