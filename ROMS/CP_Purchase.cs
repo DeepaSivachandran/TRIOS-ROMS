@@ -7641,13 +7641,13 @@ namespace ROMS
                             {
                                 if (Convert.ToString(varPURPRIDs[i]) == Convert.ToString(grdPurchaseList.Rows[j].Cells["clmPURPRID"].Value))
                                 {
-                                    if (Convert.ToDecimal(varTotReceivedQty[i]) > Convert.ToDecimal(grdPurchaseList.Rows[j].Cells["clmParentRemaingingQty"].Value) || Convert.ToDecimal(varTotReceivedQty[i]) == 0)
+                                    if (Convert.ToDecimal(varTotReceivedQty[i]) != Convert.ToDecimal(grdPurchaseList.Rows[j].Cells["clmParentRemaingingQty"].Value) || Convert.ToDecimal(varTotReceivedQty[i]) == 0)
                                     {
                                         for (int k = 0; k < grdPurchaseList.RowCount; k++)
                                         {
                                             if (Convert.ToString(varPURPRIDs[i]) == Convert.ToString(grdPurchaseList.Rows[k].Cells["clmConvertedProID"].Value))
                                             {
-                                                varQuantityErr++;  
+                                                varQuantityErr++; 
                                                 //Converted product error
                                                 grdPurchaseList.Rows[k].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
                                                 grdPurchaseList.Rows[k].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
