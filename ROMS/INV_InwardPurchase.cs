@@ -1858,49 +1858,52 @@ namespace ROMS
                         for (int i = 0; i < grdInward.Rows.Count; i++)
                         {
                             varProCount = 1;
-                            if (varGRNPurchaseFlag != 174)
+                            if (chkCompleted.Checked == true)
                             {
-                                if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
+                                if (varGRNPurchaseFlag != 174)
                                 {
-                                    int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmEntrytypeProID"].Value);
-                                    var varSumRequestQty = dtInwardPurchase.AsEnumerable()
-                                                            .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
-                                                             .Sum(x => x.Field<decimal>("GIPPR_ReceivedQty")).ToString();
-                                    var varSumShopQty = dtInwardPurchase.AsEnumerable()
-                                                            .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
-                                                             .Sum(x => x.Field<decimal>("GIPPR_ShopQty")).ToString();
+                                    if (Convert.ToString(grdInward.Rows[i].Cells["clmConvertType"].Value) == "1")
+                                    {
+                                        int varIDvalue = Convert.ToInt32(grdInward.Rows[i].Cells["clmEntrytypeProID"].Value);
+                                        var varSumRequestQty = dtInwardPurchase.AsEnumerable()
+                                                                .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
+                                                                 .Sum(x => x.Field<decimal>("GIPPR_ReceivedQty")).ToString();
+                                        var varSumShopQty = dtInwardPurchase.AsEnumerable()
+                                                                .Where(y => y.Field<int>("GIPPR_SNO").Equals(varIDvalue))
+                                                                 .Sum(x => x.Field<decimal>("GIPPR_ShopQty")).ToString();
 
-                                    varQty1 = Convert.ToDecimal(grdInward.Rows[i].Cells["clmQty"].Value);
-                                    varFinalQty = Convert.ToDecimal(grdInward.Rows[i].Cells["clmFinalQty"].Value);
-                                    varStockQty = Convert.ToString(grdInward.Rows[i].Cells["clmStockQty"].Value);
-                                    if (varFinalQty != 0)
-                                    {
-                                        varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
-                                        if (varFinalQty != varTotalQty1)
+                                        varQty1 = Convert.ToDecimal(grdInward.Rows[i].Cells["clmQty"].Value);
+                                        varFinalQty = Convert.ToDecimal(grdInward.Rows[i].Cells["clmFinalQty"].Value);
+                                        varStockQty = Convert.ToString(grdInward.Rows[i].Cells["clmStockQty"].Value);
+                                        if (varFinalQty != 0)
                                         {
-                                            varQuantityErr++;
-                                            grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
-                                        }
-                                    }
-                                    if (varStockQty != "0")
-                                    {
-                                        decimal varReceivedQty = 0, varShopQty = 0;
-                                        if (Convert.ToString(grdInward.Rows[i].Cells["clmReceivedQty"].Value) != "")
-                                        {
-                                            varReceivedQty = Convert.ToDecimal(grdInward.Rows[i].Cells["clmReceivedQty"].Value);
-                                        }
-                                        if (Convert.ToString(grdInward.Rows[i].Cells["clmShopQty"].Value) != "")
-                                        {
-                                            varShopQty = Convert.ToDecimal(grdInward.Rows[i].Cells["clmShopQty"].Value);
-                                        }
-                                        varTotalQty1 = varReceivedQty + varShopQty;
-                                        if (varStockQty != "")
-                                        {
-                                            if (Convert.ToDecimal(varStockQty) > varTotalQty1)
+                                            varTotalQty1 = Convert.ToDecimal(varSumRequestQty) + Convert.ToDecimal(varSumShopQty);
+                                            if (varFinalQty != varTotalQty1)
                                             {
                                                 varQuantityErr++;
-                                                grdInward.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
-                                                //grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                                grdInward.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                                            }
+                                        }
+                                        if (varStockQty != "0")
+                                        {
+                                            decimal varReceivedQty = 0, varShopQty = 0;
+                                            if (Convert.ToString(grdInward.Rows[i].Cells["clmReceivedQty"].Value) != "")
+                                            {
+                                                varReceivedQty = Convert.ToDecimal(grdInward.Rows[i].Cells["clmReceivedQty"].Value);
+                                            }
+                                            if (Convert.ToString(grdInward.Rows[i].Cells["clmShopQty"].Value) != "")
+                                            {
+                                                varShopQty = Convert.ToDecimal(grdInward.Rows[i].Cells["clmShopQty"].Value);
+                                            }
+                                            varTotalQty1 = varReceivedQty + varShopQty;
+                                            if (varStockQty != "")
+                                            {
+                                                if (Convert.ToDecimal(varStockQty) > varTotalQty1)
+                                                {
+                                                    varQuantityErr++;
+                                                    grdInward.Rows[i].Cells["clmReceivedQty"].Style.BackColor = Color.LightPink;
+                                                    //grdGrnlist.Rows[i].Cells["clmShopQty"].Style.BackColor = Color.LightPink;
+                                                }
                                             }
                                         }
                                     }

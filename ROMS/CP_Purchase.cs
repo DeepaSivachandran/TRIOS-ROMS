@@ -1202,6 +1202,11 @@ namespace ROMS
                 {
                     btnSave.Enabled = true;
                 }
+                else if(varPaymentStatus==63)
+                {
+                    btnSave.Enabled = false;
+                }
+
             }
             catch (Exception ex)
             {
