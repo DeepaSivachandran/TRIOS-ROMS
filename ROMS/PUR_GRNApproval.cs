@@ -1049,19 +1049,19 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         varErrorFlag = false;
                     } 
-                    if((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0"  || (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "0"))  
-                        && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "233") //Reason should be amount credit accepted if return quantity entered or Credit note entered
-                    {
-                        if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0"))
-                        {grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink; }
-                        if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "0"))
-                        { grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink; }
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(131);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        varErrorFlag = false;
-                    }
+                    //if((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0"  || (Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "0"))  
+                    //    && Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) != "233") //Reason should be amount credit accepted if return quantity entered or Credit note entered
+                    //{
+                    //    if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmreturnqty"].Value) != "0"))
+                    //    {grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightPink; }
+                    //    if ((Convert.ToString(grdGrnApproval.Rows[i].Cells["clmCreditQty"].Value) != "0"))
+                    //    { grdGrnApproval.Rows[i].Cells["clmCreditQty"].Style.BackColor = Color.LightPink; }
+                    //    SPDataService objDServ = new SPDataService();
+                    //    string varMessage = objDServ.udfnGetMessages(131);
+                    //    objDServ.CloseConnection();
+                    //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    varErrorFlag = false;
+                    //}
                     if(Convert.ToString(grdGrnApproval.Rows[i].Cells["clmReason"].Value) == "233" && (varReturnQty==0 && varCreditQty==0 && varMAReceivedQty==0))
                     {
                         varQtyErr++;
@@ -1284,15 +1284,15 @@ namespace ROMS
                                     varComboBoxColoumn.DataSource = dtReceived;
                                 }
                             } 
-                            if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
-                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
-                                    || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
-                            {
-                                grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightGray;
-                                grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightGray;
-                                grdGrnApproval.Rows[i].Cells["clmreturnqty"].ReadOnly = true;
-                                grdGrnApproval.Rows[i].Cells["clmFreeQty"].ReadOnly = true;
-                            }
+                            //if (Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "226" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "264"
+                            //        || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "265" || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "266"
+                            //        || Convert.ToString(objDs.Tables[0].Rows[i]["Condition"]) == "267")
+                            //{
+                            //    grdGrnApproval.Rows[i].Cells["clmreturnqty"].Style.BackColor = Color.LightGray;
+                            //    grdGrnApproval.Rows[i].Cells["clmFreeQty"].Style.BackColor = Color.LightGray;
+                            //    grdGrnApproval.Rows[i].Cells["clmreturnqty"].ReadOnly = true;
+                            //    grdGrnApproval.Rows[i].Cells["clmFreeQty"].ReadOnly = true;
+                            //}
                             if (Convert.ToString(Reason) == "0")
                             {
                                 grdGrnApproval.Rows[i].Cells["clmReason"].Value = 234;
