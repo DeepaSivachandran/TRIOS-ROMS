@@ -112,6 +112,9 @@ namespace ROMS
         public static CP_Rate_ChangeList objCP_Rate_ChangeList;
         public static CP_Rate_Change objCP_Rate_Change;
         public static CP_StickerPrint objCP_StickerPrint;
+        // added by venkat on 09-08-2025
+        public static CP_DirectLabelPrint objCP_DiectLabelPrint;
+        public static CP_Printer_Setting objCP_PrinterSetting;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -3127,6 +3130,42 @@ namespace ROMS
                 MainForm.objREPORT_PUR_AllTax.MdiParent = this;
                 MainForm.objREPORT_PUR_AllTax.Show();
                 PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        private void directLabelPrintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_DiectLabelPrint = new CP_DirectLabelPrint();
+                MainForm.objCP_DiectLabelPrint.MdiParent = this;
+                MainForm.objCP_DiectLabelPrint.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void printerSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                 
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_PrinterSetting = new CP_Printer_Setting();
+                MainForm.objCP_PrinterSetting.MdiParent = this;
+                MainForm.objCP_PrinterSetting.Show();
             }
             catch (Exception ex)
             {
