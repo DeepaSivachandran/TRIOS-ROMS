@@ -100,6 +100,7 @@ namespace ROMS
             this.tsmRepresentative = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRateChange = new System.Windows.Forms.ToolStripMenuItem();
             this.stickerPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directLabelPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProMapping = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -166,7 +167,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.directLabelPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printerSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -764,13 +765,21 @@ namespace ROMS
             this.stickerPrintToolStripMenuItem.Text = "Sticker Print";
             this.stickerPrintToolStripMenuItem.Click += new System.EventHandler(this.StickerPrintToolStripMenuItem_Click);
             // 
+            // directLabelPrintToolStripMenuItem
+            // 
+            this.directLabelPrintToolStripMenuItem.Name = "directLabelPrintToolStripMenuItem";
+            this.directLabelPrintToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.directLabelPrintToolStripMenuItem.Text = "Direct Label Print";
+            this.directLabelPrintToolStripMenuItem.Click += new System.EventHandler(this.directLabelPrintToolStripMenuItem_Click);
+            // 
             // tsmControlPanel
             // 
             this.tsmControlPanel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmProMapping,
             this.tsmBatchNoConfig,
             this.tsmVoucherSettings,
-            this.tsmGeneralSettings});
+            this.tsmGeneralSettings,
+            this.printerSettingsToolStripMenuItem});
             this.tsmControlPanel.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmControlPanel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmControlPanel.Name = "tsmControlPanel";
@@ -821,7 +830,7 @@ namespace ROMS
             // exportTallyToolStripMenuItem
             // 
             this.exportTallyToolStripMenuItem.Name = "exportTallyToolStripMenuItem";
-            this.exportTallyToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.exportTallyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportTallyToolStripMenuItem.Text = "Export Tally";
             this.exportTallyToolStripMenuItem.Click += new System.EventHandler(this.ExportTallyToolStripMenuItem_Click);
             // 
@@ -1305,12 +1314,12 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // directLabelPrintToolStripMenuItem
+            // printerSettingsToolStripMenuItem
             // 
-            this.directLabelPrintToolStripMenuItem.Name = "directLabelPrintToolStripMenuItem";
-            this.directLabelPrintToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.directLabelPrintToolStripMenuItem.Text = "Direct Label Print";
-            this.directLabelPrintToolStripMenuItem.Click += new System.EventHandler(this.directLabelPrintToolStripMenuItem_Click);
+            this.printerSettingsToolStripMenuItem.Name = "printerSettingsToolStripMenuItem";
+            this.printerSettingsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.printerSettingsToolStripMenuItem.Text = "Printer Settings";
+            this.printerSettingsToolStripMenuItem.Click += new System.EventHandler(this.printerSettingsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1478,5 +1487,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockValuation;
         private System.Windows.Forms.ToolStripMenuItem tsmStockVsZeroRate;
         private System.Windows.Forms.ToolStripMenuItem directLabelPrintToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printerSettingsToolStripMenuItem;
     }
 }

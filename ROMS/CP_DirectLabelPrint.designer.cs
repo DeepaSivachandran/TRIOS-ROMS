@@ -269,12 +269,12 @@
             // lbdname
             // 
             this.lbdname.AutoSize = true;
-            this.lbdname.Font = new System.Drawing.Font("Oswald Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbdname.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbdname.ForeColor = System.Drawing.Color.Green;
-            this.lbdname.Location = new System.Drawing.Point(440, 39);
+            this.lbdname.Location = new System.Drawing.Point(440, 46);
             this.lbdname.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbdname.Name = "lbdname";
-            this.lbdname.Size = new System.Drawing.Size(0, 32);
+            this.lbdname.Size = new System.Drawing.Size(0, 25);
             this.lbdname.TabIndex = 111111159;
             // 
             // btnDirectPrint
@@ -292,6 +292,7 @@
             this.btnDirectPrint.Text = "Direct Print";
             this.btnDirectPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDirectPrint.UseVisualStyleBackColor = true;
+            this.btnDirectPrint.Click += new System.EventHandler(this.btnDirectPrint_Click);
             // 
             // btnPrint
             // 
@@ -308,6 +309,7 @@
             this.btnPrint.Text = "Test Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnReset
             // 
