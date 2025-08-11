@@ -564,7 +564,7 @@ namespace ROMS
         {
             try
             {
-                cmbTemplate.BackColor = Color.LemonChiffon;
+                cmbTemplate.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -593,7 +593,7 @@ namespace ROMS
         {
             try
             {
-                cmbTemplate.BackColor = Color.White;
+                cmbTemplate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1148,6 +1148,7 @@ namespace ROMS
                 btnPrint.Enabled = false;
                 btnDirectPrint.Enabled = false;
                 lblNoRecordsFound.Visible = true;
+                RPTViewer.ReportSource = null;
                 lblNoRecordsFound.BringToFront(); 
             }
             finally

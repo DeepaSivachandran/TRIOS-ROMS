@@ -109,7 +109,6 @@
             // 
             // cmbLabelsize
             // 
-            this.cmbLabelsize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLabelsize.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLabelsize.FormattingEnabled = true;
             this.cmbLabelsize.Location = new System.Drawing.Point(115, 294);
@@ -218,7 +217,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(116, 78);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(115, 78);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -227,7 +226,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(586, 244);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(522, 244);
             this.DGV_FilterProduct.TabIndex = 111111145;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -362,7 +361,6 @@
             // 
             // cmbTemplate
             // 
-            this.cmbTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTemplate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTemplate.FormattingEnabled = true;
             this.cmbTemplate.Location = new System.Drawing.Point(115, 344);
@@ -438,7 +436,6 @@
             // 
             // cmbPrintLanguage
             // 
-            this.cmbPrintLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPrintLanguage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPrintLanguage.FormattingEnabled = true;
             this.cmbPrintLanguage.Location = new System.Drawing.Point(115, 97);
