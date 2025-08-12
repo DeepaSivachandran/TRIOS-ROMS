@@ -52,6 +52,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdItemList = new System.Windows.Forms.DataGridView();
+            this.clmClone = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpFilterby = new System.Windows.Forms.GroupBox();
             this.llClear = new System.Windows.Forms.LinkLabel();
             this.dtCreatedOn = new System.Windows.Forms.DateTimePicker();
@@ -73,6 +74,8 @@
             this.lblProductgroup = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.icode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpronameenglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,9 +92,6 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.clmClone = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsItemList.SuspendLayout();
             this.pnlItemList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemList)).BeginInit();
@@ -318,6 +318,14 @@
             this.grdItemList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdItemList_Scroll);
             this.grdItemList.DoubleClick += new System.EventHandler(this.GrdItemList_DoubleClick);
             this.grdItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdItemList_KeyDown);
+            // 
+            // clmClone
+            // 
+            this.clmClone.Frozen = true;
+            this.clmClone.HeaderText = "Clone";
+            this.clmClone.Image = global::ROMS.Properties.Resources.Convertion;
+            this.clmClone.Name = "clmClone";
+            this.clmClone.ReadOnly = true;
             // 
             // grpFilterby
             // 
@@ -623,6 +631,34 @@
             this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(3, 87);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1348, 552);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(4, 88);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1346, 550);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 958805;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -709,42 +745,6 @@
             this.clmdstatus.HeaderText = "Status";
             this.clmdstatus.Name = "clmdstatus";
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 87);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1348, 552);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 88);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1346, 550);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 958805;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            // 
-            // clmClone
-            // 
-            this.clmClone.Frozen = true;
-            this.clmClone.HeaderText = "Clone";
-            this.clmClone.Image = global::ROMS.Properties.Resources.Convertion;
-            this.clmClone.Name = "clmClone";
-            this.clmClone.ReadOnly = true;
-            // 
             // CP_ProductList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -799,22 +799,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn icode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpronameenglish;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpronametamil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmprosubgroup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmprogroup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDPurchaseUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -837,5 +821,21 @@
         private System.Windows.Forms.DateTimePicker dtCreatedOn;
         private System.Windows.Forms.LinkLabel llClear;
         private System.Windows.Forms.DataGridViewImageColumn clmClone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn icode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpronameenglish;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpronametamil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmprosubgroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmprogroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDPurchaseUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
     }
 }

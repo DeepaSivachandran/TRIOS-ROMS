@@ -2450,7 +2450,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbUnit.Focus();
+                    btnAdd.Focus();
                 }
             }
             catch (Exception ex)
@@ -5513,7 +5513,7 @@ namespace ROMS
                             udfnUnitDropdownload();
                             if (Convert.ToString(varBulkunitvalue) != "-1")
                             {
-                                cmbUnit.SelectedValue = varBulkunitvalue;
+                                //cmbUnit.SelectedValue = varBulkunitvalue;
                             }
                         }
                     }
