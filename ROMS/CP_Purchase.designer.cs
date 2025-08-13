@@ -1152,6 +1152,7 @@
             this.cmbReason.Name = "cmbReason";
             this.cmbReason.Size = new System.Drawing.Size(92, 25);
             this.cmbReason.TabIndex = 24;
+            this.cmbReason.SelectedIndexChanged += new System.EventHandler(this.CmbReason_SelectedIndexChanged);
             this.cmbReason.Enter += new System.EventHandler(this.cmbReason_Enter);
             this.cmbReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReason_KeyDown);
             this.cmbReason.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReason_KeyPress);

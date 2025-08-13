@@ -1616,6 +1616,7 @@ namespace ROMS
                 dtCreatedOn.Format = DateTimePickerFormat.Custom;
                 dtCreatedOn.CustomFormat = " ";
                 dtCreatedOn.Checked = false;
+                udfnList();
             }
             catch (Exception ex)
             {
