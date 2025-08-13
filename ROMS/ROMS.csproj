@@ -569,6 +569,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_ProductWise_PUR_Summary.cs">
+      <DependentUpon>RPT_ProductWise_PUR_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_SupplierWise.cs">
       <DependentUpon>RPT_Stock_Inward_SupplierWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3310,6 +3317,11 @@
     <Content Include="Reports\RPT_Stock_Inward_SupplierWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock_Inward_SupplierWise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_ProductWise_PUR_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_ProductWise_PUR_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_SupplierLedger_Details.rpt">
