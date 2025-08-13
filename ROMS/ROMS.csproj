@@ -555,6 +555,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_CostPrice.cs">
+      <DependentUpon>RPT_PUR_CostPrice.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_StockVsZeroRate.cs">
       <DependentUpon>RPT_StockVsZeroRate.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3251,6 +3258,11 @@
     <Content Include="Reports\RPT_ProductWise_Last_PUR.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_ProductWise_Last_PUR.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_PUR_CostPrice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_CostPrice.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_Sticker_Print_Rack_50x25.rpt">

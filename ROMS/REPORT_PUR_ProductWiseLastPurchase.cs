@@ -95,7 +95,7 @@ namespace ROMS
         {
             try
             {
-                udfnStockInwardReport();
+                udfnLastPurchaseReport();
             }
             catch (Exception ex)
             {
@@ -103,12 +103,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnStockInwardReport()
+        public void udfnLastPurchaseReport()
         {
             try
             {
                 string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varProductName = "-All-", varSupplierName = "-All-", varAlphaName = "-All-";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varProductId = 0, varSupplierId = 0, varScheduleId = 0, varViewType = 1;
+                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varProductId = 0, varSupplierId = 0, varScheduleId = 0;
                 //if (txtLocation.Text.Trim() != "")
                 //{
                 //    varLocationName = txtLocation.Text;
@@ -1100,7 +1100,9 @@ namespace ROMS
                         MR_Supplier objMR_Supplier = new MR_Supplier();
                         objMR_Supplier.ViewType = 26;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
-                        objMR_Supplier.paraFlag = 8;
+                        objMR_Supplier.ParaFromDate = Convert.ToString(MainForm.pbFYStartDate);
+                        objMR_Supplier.ParaToDate = Convert.ToString(MainForm.pbCurrentDate);
+                        objMR_Supplier.paraFlag = 5;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
                         objDs = objspdservice.udfnSupplierList(objMR_Supplier);
