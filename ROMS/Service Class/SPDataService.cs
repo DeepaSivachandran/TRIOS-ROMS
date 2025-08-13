@@ -3888,7 +3888,7 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int paraGroupId, int paraSubgroupId,int paraFlag)
+        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int paraGroupId, int paraSubgroupId,int paraFlag,int paraBrandID,int paraCompanyId,int paraSupplierID,int paraScheduleID,int paraInvioceType,int paraPaymentType,int paraPurchaseType,int paraConditionType,int paraProductNameType,string paraAlpha)
         {
             DataSet ds = new DataSet();
             try
@@ -3905,7 +3905,17 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProductId", paraProductId);
                 varSqlCommand.Parameters.AddWithValue("@paraGroupId", paraGroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupId", paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", paraBrandID);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraInvioceType", paraInvioceType);
+                varSqlCommand.Parameters.AddWithValue("@paraPaymentType", paraPaymentType);
+                varSqlCommand.Parameters.AddWithValue("@paraPurchaseType", paraPurchaseType);
+                varSqlCommand.Parameters.AddWithValue("@paraConditionType", paraConditionType);
+                varSqlCommand.Parameters.AddWithValue("@paraProductNameType", paraProductNameType);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", paraAlpha);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
