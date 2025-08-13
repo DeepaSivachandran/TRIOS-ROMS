@@ -136,7 +136,7 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", " STS_ModuleID=13 OR STSID=0 ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", " (STS_ModuleID=13 OR STSID IN (0)) AND STSID NOT IN (52,90) ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=55 OR MSTID=0", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }

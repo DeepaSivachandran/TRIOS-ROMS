@@ -5284,7 +5284,7 @@ namespace ROMS
                                 if (Convert.ToString(dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConditionID"].Value) == "281" || Convert.ToString(dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmReasonID"].Value) == "284")
                                 {
                                     DataGridViewCell cellInvBatch = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmBatchno"];
-                                    DataGridViewCell cellProBatch = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clminvoiceBatch"];
+                                    DataGridViewCell cellProBatch = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmProductBatchNo"];
                                     DataGridViewCell cellInvExpiry = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmexpirydate"];
                                     DataGridViewCell cellProExpiry = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmProductExpiryDate"];
                                     DataGridViewCell cellInvMRP = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMRP"];
@@ -5300,6 +5300,11 @@ namespace ROMS
                                     CellProductMRP.Style.BackColor = Color.LightGray; CellProductMRP.ReadOnly = true;
                                     CellLocation.Style.BackColor = Color.LightGray; CellLocation.ReadOnly = true;
                                     CellRack.Style.BackColor = Color.LightGray; CellRack.ReadOnly = true;
+                                }
+                                if(varNoDiffFlag==1)
+                                {
+                                    DataGridViewCell cellMismatchQty = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmMismatchQty"];
+                                    cellMismatchQty.Style.BackColor = Color.LightGray; cellMismatchQty.ReadOnly = true;
                                 }
                                 if (varEditFlag == 1 && varEditProAdd == 1)
                                 {
@@ -7463,24 +7468,24 @@ namespace ROMS
                                         grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightPink;
                                         grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.ForeColor = Color.Black;
                                     }
-                                    else
-                                    {  grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;   }
+                                    //else
+                                    //{  grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.PaleGreen;   }
                                     if (varInvqty == 0 || Convert.ToString(varInvqty) == varZero)
                                     {
                                         varcount++;   varcount1++;
                                         grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
                                         grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.ForeColor = Color.Black;
                                     }
-                                    else
-                                    {  grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen; }
-                                    if(varRecqty ==0 || Convert.ToString(varRecqty) == varZero)
-                                    {
-                                        varcount++; varcount1++;
-                                        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
-                                        grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.ForeColor = Color.Black;
-                                    }
-                                    else
-                                    {  grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen; }
+                                    //else
+                                    //{  grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen; }
+                                    //if(varRecqty ==0 || Convert.ToString(varRecqty) == varZero)
+                                    //{
+                                    //    varcount++; varcount1++;
+                                    //    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
+                                    //    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.ForeColor = Color.Black;
+                                    //}
+                                    //else
+                                    //{  grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen; }
                                     if (Convert.ToString(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) != "")
                                     {
                                         if (Convert.ToDecimal(grdPurchaseList.Rows[i].Cells["clmDiscPer"].Value) > 100)
@@ -7493,7 +7498,7 @@ namespace ROMS
                                 } 
                                 if (varProductType==220 && (!idSet.Contains("281")))  //Against DC Product type && not a LP condition
                                 { 
-                                    if ( varRecqty!= 0 &&  varInvqty != 0 && varConvertProductFlag != "0")
+                                    if (  varInvqty != 0 && varConvertProductFlag != "0")
                                     { 
                                         varQty = varInvqty + varDiffQty; 
                                         if (varFlag == 1)
@@ -7521,7 +7526,7 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    if (varRecqty != 0 && varInvqty != 0 && varConvertProductFlag == "0")
+                                    if ( varInvqty != 0 && varConvertProductFlag == "0")
                                     {
                                         varQty = varRecqty + varDiffQty;
                                         if (varFlag == 1)
@@ -7545,11 +7550,11 @@ namespace ROMS
                                     grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.LightPink;
                                     grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.LightPink;
                                 }
-                                else
-                                {
-                                    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
-                                    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
-                                }
+                                //else
+                                //{
+                                //    grdPurchaseList.Rows[i].Cells["clmInvQty"].Style.BackColor = Color.PaleGreen;
+                                //    grdPurchaseList.Rows[i].Cells["clmRecqty"].Style.BackColor = Color.PaleGreen;
+                                //}
                                 if ((varPurchaseRate * varInvqty) < varDiscAmt)
                                 {
                                     varDiscountErr++;
