@@ -387,7 +387,7 @@
             // 
             this.txtSalesRate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSalesRate.Location = new System.Drawing.Point(137, 196);
-            this.txtSalesRate.MaxLength = 5;
+            this.txtSalesRate.MaxLength = 10;
             this.txtSalesRate.Name = "txtSalesRate";
             this.txtSalesRate.Size = new System.Drawing.Size(100, 27);
             this.txtSalesRate.TabIndex = 4;
@@ -412,7 +412,7 @@
             // 
             this.txtMrp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtMrp.Location = new System.Drawing.Point(137, 147);
-            this.txtMrp.MaxLength = 5;
+            this.txtMrp.MaxLength = 10;
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(100, 27);
             this.txtMrp.TabIndex = 3;
