@@ -6787,6 +6787,10 @@ namespace ROMS
                                 int varBrokerid = 0;
                                 decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
                                otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0, total = 0, varGRNFrightCharges = 0; decimal varGRNUnloadingCharges = 0;
+                                //if (Convert.ToInt32(pbPurchaseno)!=0)
+                                //{ varSaveFlag = 0; }
+                                //else
+                                //{ varSaveFlag = 1; }
                                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                                 objTRN_PurchaseEntry.ViewType = varViewType;
                                 objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -7072,6 +7076,7 @@ namespace ROMS
                                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     if (varvalue[0] == "5")
                                     {
+                                        varSaveFlag = 1;
                                         goto l;
                                     }
                                 }

@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
 
         private ToolTip tpcashpurchase = new ToolTip();
+        private ToolTip tpLPRate = new ToolTip();
         private ToolTip tpBillAmount = new ToolTip();
         private ToolTip tpGRNQty = new ToolTip();
         private ToolTip tpReturnAlertDays = new ToolTip();
@@ -119,6 +120,7 @@ namespace ROMS
                             txtPerLevel2.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Level2"]);
                             txtVerificationDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_VerificationDays"]);
                             txtMonths.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Aging_Months"]);
+                            txtLPRate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_LPRatePer"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -216,7 +218,7 @@ namespace ROMS
                 {
                     varDCCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text));
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text));
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -695,6 +697,14 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
+                if (Convert.ToString(txtLPRate.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtLPRate, "Please entry bill rate deviation purchase %.");
+                    txtLPRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLPRate.ShowAlways = true;
+                    tpLPRate.Show("Please entry bill rate deviation purchase %.", txtLPRate, 5000);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     epGeneralSettings.Clear();
@@ -917,6 +927,7 @@ namespace ROMS
                 tpReturnAlertDays.Active = false;
                 tpTransactionType.Active = false;
                 tpReportText.Active = false;
+                tpLPRate.Active = false;
             }
             catch (Exception ex)
             {
@@ -1505,7 +1516,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnUpdate.Focus();
+                    txtLPRate.Focus();
                 }
             }
             catch (Exception ex)
@@ -1541,6 +1552,71 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLPRate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLPRate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLPRate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLPRate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLPRate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtLPRate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }
