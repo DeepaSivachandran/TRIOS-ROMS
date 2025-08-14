@@ -8681,7 +8681,9 @@ namespace ROMS
                 }
                 else
                 {
-                    if(varPrMRPFlag=="1")
+                    txtSourceLocation.Enabled = true; txtSourceLocation.ReadOnly = false;
+                    cmbrack.Enabled = true;  
+                    if (varPrMRPFlag=="1")
                     {
                         txtMrp.Enabled = true; txtMrp.ReadOnly = false;
                     }
