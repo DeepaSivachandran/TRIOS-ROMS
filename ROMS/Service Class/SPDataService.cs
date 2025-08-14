@@ -4094,7 +4094,7 @@ namespace ROMS
         }
 
         //Added by sivabharathi on 14/08/2025 
-        public string udfnBank(int paraViewType, int paraBankId,string paraBankName,string paraShortName,string paraOriginator,int paraDeleteFlag)
+        public string udfnBank(MR_Bank objMR_Bank)
         {
             string varResult = "";
             try
@@ -4102,12 +4102,12 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[MRS_Bank]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraBankId);
-                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraBankName);
-                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraShortName);
-                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraDeleteFlag);  
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Bank.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraBankId", objMR_Bank.paraBankId);
+                varSqlCommand.Parameters.AddWithValue("@paraBankName", objMR_Bank.paraBankName);
+                varSqlCommand.Parameters.AddWithValue("@paraShortName", objMR_Bank.paraShortName);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Bank.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objMR_Bank.paraDeleteFlag);  
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
@@ -4126,7 +4126,7 @@ namespace ROMS
             return varResult;
         }
         //Sivabharathi on 14/08/2025
-        public DataSet udfnBanklist(int paraViewType )
+        public DataSet udfnBanklist(MR_Bank objMR_Bank)
         {
             DataSet ds = new DataSet();
             try
@@ -4134,7 +4134,7 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("MRG_Bank", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType); 
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Bank. paraViewType); 
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);  
                 varSqlCommand.CommandTimeout = 0;

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ROMS.Model;
+
 
 namespace ROMS
 {
@@ -96,7 +98,15 @@ namespace ROMS
                     varoriginator = "Bank Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnBank(varType,varBankId,txtBankName.Text.Trim(), txtShortName.Text.Trim(),varoriginator,0);
+                MR_Bank objMR_Bank = new MR_Bank();
+                objMR_Bank.paraViewType = varType;
+                objMR_Bank.paraBankId = varBankId;
+                objMR_Bank.paraBankName = txtBankName.Text.Trim();
+                objMR_Bank.paraShortName = txtShortName.Text.Trim();
+                objMR_Bank.paraOriginator = varoriginator;
+
+
+                varResult = objspservice.udfnBank(objMR_Bank);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

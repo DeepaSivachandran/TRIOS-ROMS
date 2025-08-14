@@ -27,9 +27,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_City = new CP_City();
-                MainForm.objCP_City.FormBorderStyle = FormBorderStyle.FixedSingle;
-                MainForm.objCP_City.ShowDialog();
+                MainForm.objCP_Bank = new CP_Bank();
+                MainForm.objCP_Bank.FormBorderStyle = FormBorderStyle.FixedSingle;
+                MainForm.objCP_Bank.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -156,18 +156,12 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
 
-              
-                objMR_Bank.paraViewType = 0; 
-                DataSet objDsSupplierId = new DataSet();  
-                objDsSupplierId = objspservice.udfnBank(objMR_Bank);
-                objspservice.CloseConnection();
+               
 
                 MR_Bank objMR_Bank = new MR_Bank();
-                objMR_Bank.paraViewType = 0;  
-                SPDataService objDserv = new SPDataService();
-                objDsSupplierId = objDserv.udfnban(objMR_Bank);
-                objDserv.CloseConnection();
-
+                objMR_Bank.paraViewType = 0;   
+                objDs = objspservice.udfnBanklist(objMR_Bank);
+                objspservice.CloseConnection(); 
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -178,17 +172,8 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdBankList.DataSource = objDs.Tables[0];
-                            grdBankList.Columns["ID"].Visible = false;
-                            grdBankList.Columns["StateId"].Visible = false;
-                            grdBankList.Columns["StatusID"].Visible = false;
-                            grdBankList.Columns["Status"].Visible = false;
-                            grdBankList.Columns["S.No."].Width = 50;
-                            grdBankList.Columns["State Name"].Width = 120;
-                            grdBankList.Columns["City Name"].Width = 200;
-                            grdBankList.Columns["Status"].Width = 80;
-                            grdBankList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdBankList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdBankList.Columns["Total Suppliers"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdBankList.Columns["Bank ID"].Visible = false; 
+                            //grdBankList.Columns["Sno."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
                         }
                         else
                         {
@@ -231,14 +216,8 @@ namespace ROMS
             try
             {
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
-                DGV_SearchGrid.Columns["ID"].Visible = false;
-                DGV_SearchGrid.Columns["StateId"].Visible = false;
-                DGV_SearchGrid.Columns["StatusID"].Visible = false;
-                DGV_SearchGrid.Columns["Status"].Visible = false;
-                DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["State Name"].Width = 120;
-                DGV_SearchGrid.Columns["City Name"].Width = 200;
-                DGV_SearchGrid.Columns["Status"].Width = 80;
+                DGV_SearchGrid.Columns["Bank ID"].Visible = false;  
+               // DGV_SearchGrid.Columns["Sno."].Width = 50; 
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)

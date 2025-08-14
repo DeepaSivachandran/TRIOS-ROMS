@@ -117,6 +117,7 @@ namespace ROMS
         public static CP_Printer_Setting objCP_PrinterSetting;
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;
+        public static CP_Bank  objCP_Bank;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
