@@ -1220,11 +1220,15 @@ namespace ROMS
                 grdProduct.DataSource = filteredProduct;
                 grdProduct.Columns[0].HeaderText = "";
                 grdProduct.Columns[0].Width = 50;
-                grdProduct.Columns[1].Width = 400;
-                grdProduct.Columns[1].ReadOnly = true;
-                grdProduct.Columns[2].Visible = false;
-                grdProduct.Columns[3].Visible = false;
-                grdProduct.Columns[4].Visible = false;
+                grdProduct.Columns["PI Code"].Width = 100;
+                grdProduct.Columns["Product Name"].Width = 300;
+                grdProduct.Columns["Unit"].Width = 80;
+                grdProduct.Columns["PI Code"].ReadOnly = true;
+                grdProduct.Columns["Product Name"].ReadOnly = true;
+                grdProduct.Columns["Unit"].ReadOnly = true;
+                grdProduct.Columns["PRID"].Visible = false;
+                grdProduct.Columns["GroupID"].Visible = false;
+                grdProduct.Columns["SubgroupID"].Visible = false;
             }
             catch (Exception ex)
             {
