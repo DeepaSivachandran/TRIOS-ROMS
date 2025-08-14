@@ -619,6 +619,7 @@
             this.txtGroup.Location = new System.Drawing.Point(160, 269);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
+            this.txtGroup.ReadOnly = true;
             this.txtGroup.Size = new System.Drawing.Size(337, 27);
             this.txtGroup.TabIndex = 12;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
@@ -642,6 +643,7 @@
             this.txtSubGroup.Location = new System.Drawing.Point(160, 242);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
+            this.txtSubGroup.ReadOnly = true;
             this.txtSubGroup.Size = new System.Drawing.Size(337, 27);
             this.txtSubGroup.TabIndex = 11;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
@@ -665,6 +667,7 @@
             this.txtBrand.Location = new System.Drawing.Point(160, 296);
             this.txtBrand.MaxLength = 100;
             this.txtBrand.Name = "txtBrand";
+            this.txtBrand.ReadOnly = true;
             this.txtBrand.Size = new System.Drawing.Size(337, 27);
             this.txtBrand.TabIndex = 13;
             this.txtBrand.TextChanged += new System.EventHandler(this.TxtBrand_TextChanged);
@@ -741,6 +744,7 @@
             this.txtUpp.Location = new System.Drawing.Point(302, 323);
             this.txtUpp.MaxLength = 5;
             this.txtUpp.Name = "txtUpp";
+            this.txtUpp.ReadOnly = true;
             this.txtUpp.Size = new System.Drawing.Size(43, 27);
             this.txtUpp.TabIndex = 15;
             this.txtUpp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;

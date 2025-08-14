@@ -6984,16 +6984,30 @@ namespace ROMS
                     txtBrand.Enabled = true;
                     txtUpp.Enabled = false;
                     cmbChildUnit.Enabled = false;
+
+
+                    txtGroup.ReadOnly = false;
+                    txtSubGroup.ReadOnly = false;
+                    txtBrand.ReadOnly = false;
+                    txtUpp.ReadOnly = true;
+                    txtProductName.ReadOnly = true;
                 }
                 else if (Convert.ToString(cmbProductType.Text) == "Child")
                 {
-                    cmbChildUnit.Enabled = false; 
+                    cmbChildUnit.Enabled = false;
                     txtGroup.Enabled = false;
                     txtSubGroup.Enabled = false;
                     txtBrand.Enabled = false;
                     txtProductName.Enabled = true;
-                    txtUpp.Enabled = true;
-                    cmbChildUnit.Enabled = false;
+                    txtUpp.Enabled = true; 
+
+                     
+                    txtGroup.ReadOnly = true;
+                    txtSubGroup.ReadOnly = true;
+                    txtBrand.ReadOnly = true;
+                    txtProductName.ReadOnly = false;
+                    txtUpp.ReadOnly = false;
+
                 }
                 if (btnSave.Text != "Update")
                 {
