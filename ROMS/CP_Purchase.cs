@@ -3855,7 +3855,7 @@ namespace ROMS
                     varRackName = Convert.ToString(objDs.Tables[0].Rows[0]["Rack"]);
                     varRkcount = Convert.ToString(objDs.Tables[0].Rows[0]["RackCount"]);
                     varBatchNo = Convert.ToString(objDs.Tables[0].Rows[0]["BatchNo"]);
-                    varProBatchNo = Convert.ToString(objDs.Tables[0].Rows[0]["BatchNo"]);
+                    //varProBatchNo = Convert.ToString(objDs.Tables[0].Rows[0]["BatchNo"]);
                     varExpiryDate = Convert.ToString(objDs.Tables[1].Rows[0]["Expiry Date"]);
                     varProExpiryDate = Convert.ToString(objDs.Tables[1].Rows[0]["Expiry Date"]);
 
@@ -8681,7 +8681,9 @@ namespace ROMS
                 }
                 else
                 {
-                    if(varPrMRPFlag=="1")
+                    txtSourceLocation.Enabled = true; txtSourceLocation.ReadOnly = false;
+                    cmbrack.Enabled = true;  
+                    if (varPrMRPFlag=="1")
                     {
                         txtMrp.Enabled = true; txtMrp.ReadOnly = false;
                     }
@@ -11143,6 +11145,7 @@ namespace ROMS
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmInwardDate"].Style.BackColor = Color.PaleGreen;
                                     grdSupplierList.Rows[grdSupplierList.Rows.Count - 1].Cells["clmMismatchQty"].Style.BackColor = Color.LightGray;
                                     udfnConvertProductDetails(sender, e);   
+
                                 }
                             }
                             catch (Exception ex)
