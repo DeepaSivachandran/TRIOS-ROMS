@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using ROMS.Model;
 
 namespace ROMS
 {
@@ -64,7 +65,7 @@ namespace ROMS
         {
             try
             {
-                if (grdCityList.SelectedRows.Count > 0)
+                if (grdBankList.SelectedRows.Count > 0)
                 {
                     string varResult = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -72,7 +73,7 @@ namespace ROMS
                     {
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID,0);
+                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID,0);
                         objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -84,7 +85,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objspservice = new SPDataService();
-                                    varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 1);
+                                    varResult = objspservice.udfnCity(2, Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 1);
                                     objspservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
@@ -116,18 +117,18 @@ namespace ROMS
         {
             try
             {
-                if (grdCityList.SelectedRows.Count > 0)
+                if (grdBankList.SelectedRows.Count > 0)
                 {
                     picLoader.Visible = true;
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objCP_City = new CP_City();
                     MainForm.objCP_City.btnSave.Text = "Update";
-                    MainForm.objCP_City.varCityCode = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_City.PbStateId = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["StateId"].Value);
-                    MainForm.objCP_City.PbStateName = Convert.ToString(grdCityList.SelectedRows[0].Cells["State Name"].Value);
-                    MainForm.objCP_City.PbCityName = Convert.ToString(grdCityList.SelectedRows[0].Cells["City Name"].Value);
-                    MainForm.objCP_City.PbStatus = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["StatusID"].Value);
+                    MainForm.objCP_City.varCityCode = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_City.PbStateId = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["StateId"].Value);
+                    MainForm.objCP_City.PbStateName = Convert.ToString(grdBankList.SelectedRows[0].Cells["State Name"].Value);
+                    MainForm.objCP_City.PbCityName = Convert.ToString(grdBankList.SelectedRows[0].Cells["City Name"].Value);
+                    MainForm.objCP_City.PbStatus = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_City.ShowDialog();
                 }
             }
@@ -143,18 +144,30 @@ namespace ROMS
         public void udfnList()
         {
             try
-            {
+            { 
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdCityList.DataSource = null;
+                grdBankList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnCitylist(0,"",0,0);
+
+              
+                objMR_Bank.paraViewType = 0; 
+                DataSet objDsSupplierId = new DataSet();  
+                objDsSupplierId = objspservice.udfnBank(objMR_Bank);
+                objspservice.CloseConnection();
+
+                MR_Bank objMR_Bank = new MR_Bank();
+                objMR_Bank.paraViewType = 0;  
+                SPDataService objDserv = new SPDataService();
+                objDsSupplierId = objDserv.udfnban(objMR_Bank);
+                objDserv.CloseConnection();
+
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -164,18 +177,18 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdCityList.DataSource = objDs.Tables[0];
-                            grdCityList.Columns["ID"].Visible = false;
-                            grdCityList.Columns["StateId"].Visible = false;
-                            grdCityList.Columns["StatusID"].Visible = false;
-                            grdCityList.Columns["Status"].Visible = false;
-                            grdCityList.Columns["S.No."].Width = 50;
-                            grdCityList.Columns["State Name"].Width = 120;
-                            grdCityList.Columns["City Name"].Width = 200;
-                            grdCityList.Columns["Status"].Width = 80;
-                            grdCityList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdCityList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdCityList.Columns["Total Suppliers"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdBankList.DataSource = objDs.Tables[0];
+                            grdBankList.Columns["ID"].Visible = false;
+                            grdBankList.Columns["StateId"].Visible = false;
+                            grdBankList.Columns["StatusID"].Visible = false;
+                            grdBankList.Columns["Status"].Visible = false;
+                            grdBankList.Columns["S.No."].Width = 50;
+                            grdBankList.Columns["State Name"].Width = 120;
+                            grdBankList.Columns["City Name"].Width = 200;
+                            grdBankList.Columns["Status"].Width = 80;
+                            grdBankList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdBankList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdBankList.Columns["Total Suppliers"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -208,7 +221,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdCityList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdBankList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -240,10 +253,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    udfnGridSearchHeading(grdCityList, DGV_SearchGrid);
+                    udfnGridSearchHeading(grdBankList, DGV_SearchGrid);
                     DGV_SearchGrid.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in grdCityList.Columns)
+                    foreach (DataGridViewColumn col in grdBankList.Columns)
                     {
                         DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                         visibleColumns.Add(col.Index);
@@ -358,19 +371,19 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdCityList.Rows.Count; i++)
+                for (int i = 0; i < grdBankList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdCityList.Rows[i].Cells["StatusID"].Value) == "1")
+                    if (Convert.ToString(grdBankList.Rows[i].Cells["StatusID"].Value) == "1")
                     {
-                        grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdBankList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdBankList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     else
                     {
-                        grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdBankList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdBankList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdCityList.ClearSelection();
+                    grdBankList.ClearSelection();
                 }
             }
             catch (Exception ex)
@@ -386,16 +399,16 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdCityList.HorizontalScrollingOffset;
+                    int offSetValue = grdBankList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdCityList.Width > grdCityList.HorizontalScrollingOffset && grdCityList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdBankList.Width > grdBankList.HorizontalScrollingOffset && grdBankList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_SearchGrid, grdCityList);
+                    udfnscrollVisible(DGV_SearchGrid, grdBankList);
                 }
             }
             catch (Exception ex)
@@ -440,9 +453,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
+                grdBankList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdBankList);
                 objDser.CloseConnection();
-                grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdBankList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -473,10 +486,10 @@ namespace ROMS
         {
             try
             {
-                if (grdCityList.ColumnCount > 0)
+                if (grdBankList.ColumnCount > 0)
                 {
-                    grdCityList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdCityList.HorizontalScrollingOffset;
+                    grdBankList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdBankList.HorizontalScrollingOffset;
                 }
             }
             catch (Exception ex)
@@ -492,10 +505,10 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdCityList.HorizontalScrollingOffset;
+                    int offSetValue = grdBankList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdCityList.Width > grdCityList.HorizontalScrollingOffset && grdCityList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdBankList.Width > grdBankList.HorizontalScrollingOffset && grdBankList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
@@ -526,15 +539,15 @@ namespace ROMS
         {
             if (lblNoRecordsFound.Visible == false)
             {
-                DataGridViewColumn newColumn = grdCityList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdCityList.SortedColumn;
+                DataGridViewColumn newColumn = grdBankList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdBankList.SortedColumn;
                 ListSortDirection direction;
                 // If oldColumn is null, then the DataGridView is not sorted.
                 if (oldColumn != null)
                 {
                     // Sort the same column again, reversing the SortOrder.
                     if (oldColumn == newColumn &&
-                        grdCityList.SortOrder == SortOrder.Ascending)
+                        grdBankList.SortOrder == SortOrder.Ascending)
                     {
                         direction = ListSortDirection.Descending;
                     }
@@ -549,13 +562,13 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdCityList.Sort(newColumn, direction);
+                grdBankList.Sort(newColumn, direction);
                 newColumn.HeaderCell.SortGlyphDirection =
                     direction == ListSortDirection.Ascending ?
                     SortOrder.Ascending : SortOrder.Descending;
                 DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                 DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                DGV_SearchGrid.HorizontalScrollingOffset = grdCityList.HorizontalScrollingOffset;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdBankList.HorizontalScrollingOffset;
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
         }
@@ -575,9 +588,9 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
+                grdBankList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdBankList);
                 objDser.CloseConnection();
-                grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdBankList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex)
@@ -587,7 +600,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdCityList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdBankList.Rows.Count);
             }
         }
     }

@@ -3176,6 +3176,24 @@ namespace ROMS
             }
         }
 
+        private void TsmBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BankList = new CP_BankList();
+                MainForm.objCP_BankList.MdiParent = this;
+                MainForm.objCP_BankList.Show();
+                PbCurrentForm = "7.2.6";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {
             try

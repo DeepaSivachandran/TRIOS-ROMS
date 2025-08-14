@@ -28,6 +28,7 @@ namespace ROMS
         public int varUpdate = 0;
         public int varmastertype = 0;
         public int varflag = 0;
+        public int varBankId = 0;
         public CP_Bank()
         {
             InitializeComponent();
@@ -69,7 +70,7 @@ namespace ROMS
         {
             try
             {
-                txtCityName.Text = PbCityName; 
+                txtShortName.Text = PbCityName; 
             }
             catch (Exception ex)
             {
@@ -95,7 +96,7 @@ namespace ROMS
                     varoriginator = "Bank Updation";
                     varType = 1;
                 }
-//                varResult = objspservice.udfnCity(varType, varCityCode,  , (txtCityName.Text).Trim(), varstatus, varoriginator,MainForm.pbUserID,0);
+                varResult = objspservice.udfnBank(varType,varBankId,txtBankName.Text.Trim(), txtShortName.Text.Trim(),varoriginator,0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -109,7 +110,7 @@ namespace ROMS
                         varUpdate = 1;
                         varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
                         varCityName = Convert.ToString(varResult.Split('~')[2]);
-                        MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
+                        MainForm.objCP_CP_Broker.varCityName = txtShortName.Text;
                         MainForm.objCP_CP_Broker.varCityCode = varCityCode;
                          
                         udfnclose();
@@ -151,9 +152,9 @@ namespace ROMS
         {
             try
             {
-                txtCityName.Text = "";
-                txtCityName.Focus();
-                this.ActiveControl = txtCityName;
+                txtShortName.Text = "";
+                txtShortName.Focus();
+                this.ActiveControl = txtShortName;
             }
             catch (Exception ex)
             {
@@ -166,12 +167,12 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(txtCityName.Text).Trim() == "")
+                if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
-                    epCity.SetError(txtCityName, "Please enter city name");
-                    txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epCity.SetError(txtShortName, "Please enter city name");
+                    txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCityName.ShowAlways = true;
-                    tpCityName.Show("Please enter city name", txtCityName, 5000);
+                    tpCityName.Show("Please enter city name", txtShortName, 5000);
                     blnErrorFlag = true;
                 } 
                 if (blnErrorFlag == false)
@@ -270,7 +271,7 @@ namespace ROMS
         {
             try
             {
-                txtCityName.BackColor = Color.LemonChiffon;
+                txtShortName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -282,18 +283,18 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtCityName.Text).Trim() == "")
+                if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
-                    epCity.SetError(txtCityName, "Please enter city name");
-                    txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epCity.SetError(txtShortName, "Please enter city name");
+                    txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCityName.ShowAlways = true;
-                    tpCityName.Show("Please enter city name", txtCityName, 5000);
+                    tpCityName.Show("Please enter city name", txtShortName, 5000);
                  
                 }
                 else
                 {
                     epCity.Clear();
-                    txtCityName.BackColor = Color.White;
+                    txtShortName.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
