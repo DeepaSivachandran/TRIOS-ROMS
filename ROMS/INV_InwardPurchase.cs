@@ -1613,7 +1613,7 @@ namespace ROMS
                                                             grdInward.Rows[j].Cells["clmRack"].Style.BackColor = Color.PaleGreen;
                                                         }
                                                         else
-                                                        { ;
+                                                        { 
                                                             grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.White;
                                                             grdInward.Rows[j].Cells["clmInvoiceMRP"].Style.BackColor = Color.White;
                                                             grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.White;
@@ -1717,29 +1717,29 @@ namespace ROMS
                                                         }
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    varInvalidQty = 2;
-                                                    varErrorFlag = false;
-                                                    grdInward.Rows[j].Cells["clmError"].Value = 1; 
-                                                    if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) == "1")
-                                                    {
-                                                        //grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
-                                                    }
-                                                    else
-                                                    {
-                                                        if (Convert.ToString(grdInward.Rows[j].Cells["clmBatchNoGeneration"].Value) == "75")
-                                                        {
-                                                            //grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
-                                                            //grdInward.Rows[j].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.LightPink;
-                                                        }
-                                                        else
-                                                        {
-                                                            grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
-                                                            grdInward.Rows[j].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.LightGray;
-                                                        }
-                                                    }
-                                                }
+                                                //else
+                                                //{s
+                                                //    varInvalidQty = 2;
+                                                //    //varErrorFlag = false;
+                                                //    grdInward.Rows[j].Cells["clmError"].Value = 1; 
+                                                //    if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) == "1")
+                                                //    {
+                                                //        //grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
+                                                //    }
+                                                //    else
+                                                //    {
+                                                //        if (Convert.ToString(grdInward.Rows[j].Cells["clmBatchNoGeneration"].Value) == "75")
+                                                //        {
+                                                //            //grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
+                                                //            //grdInward.Rows[j].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.LightPink;
+                                                //        }
+                                                //        else
+                                                //        {
+                                                //            grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                                //            grdInward.Rows[j].Cells["clmInvoiceBatchNo"].Style.BackColor = Color.LightGray;
+                                                //        }
+                                                //    }
+                                                //}
                                             }
                                         } 
                                     } 
@@ -1766,42 +1766,42 @@ namespace ROMS
                                     }
 
                                     //Empty then Cell Highlight
-                                    if ((Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "" || Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "0" || 
-                                        Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "0.00") && Convert.ToString(grdInward.Rows[j].Cells["clmMRPFlag"].Value) == "1")
-                                    {
-                                        if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
-                                        {
-                                            grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightPink;
-                                        }
-                                        else
-                                        {
-                                            grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightGray;
-                                        }
-                                    }
+                                    //if ((Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "" || Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "0" || 
+                                    //    Convert.ToString(grdInward.Rows[j].Cells["clmMRP"].Value) == "0.00") && Convert.ToString(grdInward.Rows[j].Cells["clmMRPFlag"].Value) == "1")
+                                    //{
+                                    //    if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
+                                    //    {
+                                    //        grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightPink;
+                                    //    }
+                                    //    else
+                                    //    {
+                                    //        grdInward.Rows[j].Cells["clmMRP"].Style.BackColor = Color.LightGray;
+                                    //    }
+                                    //}
 
-                                    if ((Convert.ToString(grdInward.Rows[j].Cells["clmExpiryDate"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmShelflifeStatus"].Value) == "1")
-                                    {
-                                        if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
-                                        {
-                                            grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
-                                        }
-                                        else
-                                        {
-                                            grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
-                                        }
-                                    }
+                                    //if ((Convert.ToString(grdInward.Rows[j].Cells["clmExpiryDate"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmShelflifeStatus"].Value) == "1")
+                                    //{
+                                    //    if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
+                                    //    {
+                                    //        grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightPink;
+                                    //    }
+                                    //    else
+                                    //    {
+                                    //        grdInward.Rows[j].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                    //    }
+                                    //}
 
-                                    if ((Convert.ToString(grdInward.Rows[j].Cells["clmBatchNo"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmBatchNoStatus"].Value) == "1")
-                                    {
-                                        if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
-                                        {
-                                            grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
-                                        }
-                                        else
-                                        {
-                                            grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
-                                        }
-                                    }
+                                    //if ((Convert.ToString(grdInward.Rows[j].Cells["clmBatchNo"].Value) == "") && Convert.ToString(grdInward.Rows[j].Cells["clmBatchNoStatus"].Value) == "1")
+                                    //{
+                                    //    if (Convert.ToString(grdInward.Rows[j].Cells["clmConvertType"].Value) != "1")
+                                    //    {
+                                    //        grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightPink;
+                                    //    }
+                                    //    else
+                                    //    {
+                                    //        grdInward.Rows[j].Cells["clmBatchNo"].Style.BackColor = Color.LightGray;
+                                    //    }
+                                    //}
                                     //if (varGRNPurchaseFlag != 3 && varGRNPurchaseFlag != 187) //DC Wise no show Invoice MRP,Expiry,Batch 
                                     //{
                                     //    if ((Convert.ToString(grdInward.Rows[j].Cells["clmInvoiceMRP"].Value) == "" || Convert.ToString(grdInward.Rows[j].Cells["clmInvoiceMRP"].Value) == "0.00") && Convert.ToString(grdInward.Rows[j].Cells["clmMRPFlag"].Value) == "1")

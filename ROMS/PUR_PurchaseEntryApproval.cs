@@ -4448,77 +4448,77 @@ namespace ROMS
                         {
                             switch (grdPurchaseList.Columns[e.ColumnIndex].Name)
                             {
-                                case "clmInvQty":
-                                    if (e.Button == MouseButtons.Right)
-                                    {
-                                        ContextMenuStrip menustrip = new ContextMenuStrip();
-                                        if (grdPurchaseList.CurrentRow.Cells["clmInvoiceError"].Value.ToString() == "0")
-                                        {
-                                            //cm.MenuItems.Add(new MenuItem("Error"));
-                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                            cm.Name = "Error";
-                                            menustrip.Items.Add(cm);
-                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                            cm.Click += new EventHandler(error_Click);
-                                        }
-                                        else
-                                        {
-                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                            cm.Name = "Clear";
-                                            menustrip.Items.Add(cm);
-                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                            cm.Click += new EventHandler(clear_Click);
-                                        }
-                                    }
-                                    break;
+                                //case "clmInvQty":
+                                //    if (e.Button == MouseButtons.Right)
+                                //    {
+                                //        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                //        if (grdPurchaseList.CurrentRow.Cells["clmInvoiceError"].Value.ToString() == "0")
+                                //        {
+                                //            //cm.MenuItems.Add(new MenuItem("Error"));
+                                //            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                //            cm.Name = "Error";
+                                //            menustrip.Items.Add(cm);
+                                //            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                //            cm.Click += new EventHandler(error_Click);
+                                //        }
+                                //        else
+                                //        {
+                                //            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                //            cm.Name = "Clear";
+                                //            menustrip.Items.Add(cm);
+                                //            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                //            cm.Click += new EventHandler(clear_Click);
+                                //        }
+                                //    }
+                                //    break;
 
-                                case "clmRecqty":
-                                    if (e.Button == MouseButtons.Right)
-                                    {
-                                        ContextMenuStrip menustrip = new ContextMenuStrip();
-                                        if (grdPurchaseList.CurrentRow.Cells["clmReceivedErr"].Value.ToString() == "0")
-                                        {
-                                            //cm.MenuItems.Add(new MenuItem("Error"));
-                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                            cm.Name = "Error";
-                                            menustrip.Items.Add(cm);
-                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                            cm.Click += new EventHandler(error_Click);
-                                        }
-                                        else
-                                        {
-                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                            cm.Name = "Clear";
-                                            menustrip.Items.Add(cm);
-                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                            cm.Click += new EventHandler(clear_Click);
-                                        }
-                                    }
-                                    break;
+                                //case "clmRecqty":
+                                //    if (e.Button == MouseButtons.Right)
+                                //    {
+                                //        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                //        if (grdPurchaseList.CurrentRow.Cells["clmReceivedErr"].Value.ToString() == "0")
+                                //        {
+                                //            //cm.MenuItems.Add(new MenuItem("Error"));
+                                //            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                //            cm.Name = "Error";
+                                //            menustrip.Items.Add(cm);
+                                //            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                //            cm.Click += new EventHandler(error_Click);
+                                //        }
+                                //        else
+                                //        {
+                                //            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                //            cm.Name = "Clear";
+                                //            menustrip.Items.Add(cm);
+                                //            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                //            cm.Click += new EventHandler(clear_Click);
+                                //        }
+                                //    }
+                                //    break;
 
-                                case "clmFreeqty":
-                                    if (e.Button == MouseButtons.Right)
-                                    {
-                                        ContextMenuStrip menustrip = new ContextMenuStrip();
-                                        if (grdPurchaseList.CurrentRow.Cells["clmFreeQtyErr"].Value.ToString() == "0")
-                                        {
-                                            //cm.MenuItems.Add(new MenuItem("Error"));
-                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                            cm.Name = "Error";
-                                            menustrip.Items.Add(cm);
-                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                            cm.Click += new EventHandler(error_Click);
-                                        }
-                                        else
-                                        {
-                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                            cm.Name = "Clear";
-                                            menustrip.Items.Add(cm);
-                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                            cm.Click += new EventHandler(clear_Click);
-                                        }
-                                    }
-                                    break;
+                                //case "clmFreeqty":
+                                //    if (e.Button == MouseButtons.Right)
+                                //    {
+                                //        ContextMenuStrip menustrip = new ContextMenuStrip();
+                                //        if (grdPurchaseList.CurrentRow.Cells["clmFreeQtyErr"].Value.ToString() == "0")
+                                //        {
+                                //            //cm.MenuItems.Add(new MenuItem("Error"));
+                                //            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                //            cm.Name = "Error";
+                                //            menustrip.Items.Add(cm);
+                                //            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                //            cm.Click += new EventHandler(error_Click);
+                                //        }
+                                //        else
+                                //        {
+                                //            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                //            cm.Name = "Clear";
+                                //            menustrip.Items.Add(cm);
+                                //            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                //            cm.Click += new EventHandler(clear_Click);
+                                //        }
+                                //    }
+                                //    break;
 
                                 case "clmPurchaseRate":
                                     if (e.Button == MouseButtons.Right)
@@ -5589,10 +5589,10 @@ namespace ROMS
                 {
                     flagSave = 1;
                 }
-                if (flagSave == 0 && (varCheckCount > 0 || varButtonFlag > 0)  )
+                if (flagSave == 0  )
                 {
-                    if (varCheckCount > 0 || varButtonFlag>0  )
-                    {
+                    //if (varCheckCount > 0 || varButtonFlag>0  )
+                    //{
                         int varStatus = 0; string result = ""; 
                         varStatus = 63;
                         int varBrokerid = 0;
@@ -5767,14 +5767,14 @@ namespace ROMS
                         {
                             MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                    }
-                    else
-                    {
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(80);
-                        objDServ.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    SPDataService objDServ = new SPDataService();
+                    //    string varMessage = objDServ.udfnGetMessages(80);
+                    //    objDServ.CloseConnection();
+                    //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //}
                 }
                 if(btnselectall.Visible==true && varCheckButtonFlag==0 && varCheckCount==0 && varButtonFlag==0)
                 {

@@ -178,6 +178,18 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_BankList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BankList.designer.cs">
+      <DependentUpon>CP_BankList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Bank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Bank.designer.cs">
+      <DependentUpon>CP_Bank.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_DirectLabelPrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +214,7 @@
     <Compile Include="CP_Rate_ChangeList.designer.cs">
       <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_Bank.cs" />
     <Compile Include="PAY_SupplierPayment_BankDate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2683,6 +2696,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BankList.resx">
+      <DependentUpon>CP_BankList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Bank.resx">
+      <DependentUpon>CP_Bank.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DirectLabelPrint.resx">
       <DependentUpon>CP_DirectLabelPrint.cs</DependentUpon>

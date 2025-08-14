@@ -5252,6 +5252,8 @@ namespace ROMS
                                 dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text, (varRackId), expirydateFlag, Convert.ToInt16(cmbPONo.SelectedValue), varId);
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text));
                                 udfnrowclear();
+                                
+
                                 udfnConditionClear();
                                 udfnProductCount();
                                 txtProductName.Text = "";
@@ -5368,6 +5370,8 @@ namespace ROMS
                 txtMismatchQty.ReadOnly = false;
                 pbConditionIDs = "";
                 pbCondition = "";
+                //varExpiryDateAdd = ""; varunitid = ""; lblLocationcode.Text = "0"; expirydateFlag = 0; lblProductcode.Text = "0";
+                //varPICode = ""; varTName = ""; var_Symbol = ""; pbCondition = ""; varexp = ""; varBatchNo = ""; varBatchNoGeneration = ""; varId = "0"; varPrInvFlag = "1"; varHSNid = 0; varPrMRPFlag = ""; varGRNProType = ""; varRMProductionFlag = 0; varGrnType = ""; pbConditionIDs = "";
                 udfnConditionClear();
             }
             catch (Exception ex)
