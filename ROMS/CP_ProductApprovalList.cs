@@ -149,7 +149,12 @@ namespace ROMS
                     MainForm.objCP_ProductApproval.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
                     //MainForm.objCP_ProductApproval.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
                     MainForm.objCP_ProductApproval.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
+
+                    if (grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString() != "") 
+                    { 
+                        MainForm.objCP_ProductApproval.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
+                    }
+
                     MainForm.objCP_ProductApproval.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
                     MainForm.objCP_ProductApproval.varComId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_COMID"].Value.ToString());
                     //MainForm.objCP_ProductApproval.varCategoryId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRCTID"].Value.ToString());
