@@ -6787,10 +6787,10 @@ namespace ROMS
                                 int varBrokerid = 0;
                                 decimal loadcharge = 0, unloadcharge = 0, couriercharge = 0, otherexpense = 0, discountper = 0, discountamt = 0, tcsamt = 0, damagecost = 0,
                                otherdiscount = 0, loadinggrn = 0, frightgrn = 0, subtotal = 0, gstamt = 0, roundoff = 0, grandtotal = 0, total = 0, varGRNFrightCharges = 0; decimal varGRNUnloadingCharges = 0;
-                                //if (Convert.ToInt32(pbPurchaseno)!=0)
-                                //{ varSaveFlag = 0; }
-                                //else
-                                //{ varSaveFlag = 1; }
+                                if (Convert.ToInt32(pbPurchaseno) != 0)
+                                { varSaveFlag = 0; }
+                                else
+                                { varSaveFlag = 1; }
                                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                                 objTRN_PurchaseEntry.ViewType = varViewType;
                                 objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -7074,11 +7074,10 @@ namespace ROMS
                                 else
                                 {
                                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    if (varvalue[0] == "5")
-                                    {
-                                        varSaveFlag = 1;
-                                        goto l;
-                                    }
+                                    //if (varvalue[0] == "5")
+                                    //{ 
+                                    //    goto l;
+                                    //}
                                 }
                             } 
                         }
@@ -7505,23 +7504,10 @@ namespace ROMS
                                 { 
                                     if (  varInvqty != 0 && varConvertProductFlag != "0")
                                     { 
-                                        varQty = varInvqty + varDiffQty; 
-                                        if (varFlag == 1)
+                                        varQty = varRecqty;
+                                        if (varDCQty != varQty || varQty!=varInvqty)
                                         {
-                                            if (varDCQty != varQty || varRecqty != varQty || varInvqty != varRecqty)
-                                            {
-                                                varcount++; varQuantityErr++; varerrFlag = 1;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (varProductType == 220) //dc products
-                                            {
-                                                if (varDCQty != varQty || varRecqty != varQty || varRecqty != varDCQty)
-                                                {
-                                                    varcount++; varQuantityErr++; varerrFlag = 1;
-                                                }
-                                            } 
+                                            varcount++; varQuantityErr++; varerrFlag = 1;
                                         }
                                         if (varDiffQty != 0)
                                         {
@@ -7534,19 +7520,9 @@ namespace ROMS
                                     if ( varInvqty != 0 && varConvertProductFlag == "0")
                                     {
                                         varQty = varRecqty + varDiffQty;
-                                        if (varFlag == 1)
-                                        { 
-                                            if (varDCQty != (varRecqty) || varDiffQty != varQty)
-                                            {
-                                                varcount++; varQuantityErr++; varerrFlag = 1;
-                                            }
-                                        }
-                                        else
+                                        if (varInvqty != varQty)
                                         {
-                                            if (varInvqty != varQty)
-                                            {
-                                                varcount++; varQuantityErr++; varerrFlag = 1;
-                                            }
+                                            varcount++; varQuantityErr++; varerrFlag = 1;
                                         }
                                     }
                                 }
