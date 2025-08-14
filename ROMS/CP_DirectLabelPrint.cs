@@ -352,7 +352,10 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Columns["PR_RetailRate"].Visible = false;
-                                     
+                                    DGV_FilterProduct.Columns["Retail Rate"].Visible = true;
+                                    
+
+
                                     if (VarSearchFlag == false)
                                     {
                                         DGV_FilterProduct.Columns["PR_EName"].Visible = true;
@@ -403,6 +406,11 @@ namespace ROMS
             try
             { 
                 udfnDropdownLoad();
+                lblPICode.Text = "";
+                lblProductName.Text = "";
+                lblUnit.Text = "";
+                lblRetail.Text = "";
+                lblWholesale.Text = "";
             }
             catch (Exception ex)
             {
@@ -464,7 +472,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter )
                 {
-                    txtMrp.Focus();
+                    txtLabelProduct.Focus();
                 }
             }
             catch (Exception ex)
@@ -929,7 +937,11 @@ namespace ROMS
                 cmbTemplate.SelectedIndex = 0;
                 lblProduct.Text ="0";   
                 lbdname.Text = "";
-
+                lblPICode.Text = "";
+                lblProductName.Text = "";
+                lblUnit.Text = "";
+                lblRetail.Text = "";
+                lblWholesale.Text = "";
                 RPTViewer.ReportSource = null;
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
@@ -1184,10 +1196,134 @@ namespace ROMS
             }
         }
 
+        private void lblSubGroup_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void txtMrp_TextChanged(object sender, EventArgs e)
         {
             try{
                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLabelProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtMrp.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLabelProduct_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLabelProduct.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLabelProduct_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void txtLabelProduct_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+
+                txtLabelProduct.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lblProduct.Text != "" && lblProduct.Text != "0")
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    string result = "",itemTname="", itemEname="";
+
+                    if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
+                    {
+                        itemEname = txtLabelProduct.Text ;
+                    }
+                    else
+                    {
+                        itemTname = txtLabelProduct.Text ;
+                    }
+
+
+                    result = objspdservice.udfnProductMaster(15, Convert.ToInt32(lblProduct.Text),"", "", "", 0,
+                0,0,0, 0,0,0, "", 0, 0 , 0, 0, 0, 0,0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0,
+                0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "",0, null, 0, "",
+                0, 0, 0, 0, 0,null, itemEname, itemTname, "");
+
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else { 
+                    
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
+                {
+                    txtLabelProduct.Text = lbdname.Text;
+                }
+                else
+                {
+                    txtLabelProduct.Text = lbltname.Text;
+                }
+
             }
             catch (Exception ex)
             {
@@ -1272,10 +1408,19 @@ namespace ROMS
                 if (txtProductName.Text.Trim() != "")
                 {
                     lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-                    txtSalesRate.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_RetailRate"].Value.ToString(); 
-                    lbdname.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
-                    
+                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString(); 
+                    lblProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
+                    lbdname.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                    udfnListviewProduct();
+
+                    if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
+                    { 
+                        txtLabelProduct.Text = lbdname.Text; 
+                    }
+                    else
+                    {
+                        txtLabelProduct.Text = lbltname.Text;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1286,6 +1431,57 @@ namespace ROMS
             finally
             {
                 lvProduct.Visible = false;
+            }
+        }
+
+        public void udfnListviewProduct()
+        {
+            try
+            {
+                if (txtProductName.Text != "")
+                {
+                    if (lblProduct.Text != "" && lblProduct.Text != "0")
+                    {
+
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 1;
+                        objMR_Product.paraGroup = 0;
+                        objMR_Product.paraSubgroup = 0;
+                        objMR_Product.ParaProductCode = Convert.ToInt32(lblProduct.Text);
+                        SPDataService objspdservice = new SPDataService();
+                        DataSet objDs = new DataSet();
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    lblPICode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PICODE"]); 
+                                    lblUnit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]);
+                                    lblRetail.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RetailRate"]); 
+                                    lblWholesale.Text = Convert.ToString(objDs.Tables[0].Rows[0]["WholeSaleRate"]);
+                                    lbdname.Text = Convert.ToString(objDs.Tables[0].Rows[0]["LENAME"]);  
+                                    lbltname.Text = Convert.ToString(objDs.Tables[0].Rows[0]["LTNAME"]);
+
+                                }
+                                else { udfnClear(); }
+                            }
+                            else { udfnClear(); }
+                        }
+                        else { udfnClear(); }
+                    }
+                    else { udfnClear(); }
+                }
+                else { udfnClear(); }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
             }
         }
         public void udfnPreview()
@@ -1344,7 +1540,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtMrp.Text.Trim())   != "")
                 {
-                    if (Convert.ToInt32(txtMrp.Text) <= Convert.ToInt32(txtSalesRate.Text))
+                    if (Convert.ToInt32(txtMrp.Text) < Convert.ToInt32(txtSalesRate.Text))
                     {
                         MessageBox.Show("MRP amount is less then retail sales amount...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
