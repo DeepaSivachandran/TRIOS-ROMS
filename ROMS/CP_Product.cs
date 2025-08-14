@@ -135,6 +135,17 @@ namespace ROMS
                     errItems.SetError(txtBarcode, "Please enter valid barcode");
                     return;
                 }
+
+                if (Convert.ToString(cmbUnit.SelectedValue) != "-1" && cmbUnit.Text != "" && Convert.ToString(cmbChildUnit.SelectedValue) != "-1" && cmbChildUnit.Text != "")
+                {
+                    if (Convert.ToString(cmbUnit.SelectedValue) == Convert.ToString(cmbChildUnit.SelectedValue))
+                    {
+                        MessageBox.Show("Base unit and upp unit cannot be same!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        return;
+                    }
+                }
+               
                 if (varF5Flag == 0)
                 { udfnSave(0); }
                 else
@@ -359,7 +370,7 @@ namespace ROMS
                         tpunit.ShowAlways = true;
                         tpunit.Show("Please select unit", cmbUnit, 5000);
                         blnErrorFlag = true;
-                    }
+                    } 
                     /*
                     // Check product HSN is valid or not
                     string varId_HSN = "0";
@@ -910,6 +921,8 @@ namespace ROMS
                         tbProduct.TabPages[1].Enabled = true;
                         tbProduct.SelectedIndex = 1;
                     }
+
+                  
                 }
                 if (blnErrorFlag == false)
                 {
@@ -1940,6 +1953,10 @@ namespace ROMS
                 else
                 {
                     txtItemNameEnglish.BackColor = Color.White;
+                    if (txtLabelNameEnglish.Text == "")
+                    {
+                        txtLabelNameEnglish.Text = txtItemNameEnglish.Text; 
+                    }
                     errItems.Clear();
                 }
             }
@@ -1962,6 +1979,10 @@ namespace ROMS
                 else
                 {
                     txtItemNameTamil.BackColor = Color.White;
+                    if (txtLabelNameTamil.Text == "")
+                    {
+                        txtLabelNameTamil.Text = txtItemNameTamil.Text;
+                    }
                     errItems.Clear();
                 }
             }
@@ -3615,6 +3636,9 @@ namespace ROMS
                 {
                     tbProduct.TabPages[1].Enabled = true;
                 }
+
+                cmbUnit.Enabled = true;
+                txtUpp.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -6542,8 +6566,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-
-                    txtSubGroup.Focus();
+                    if (txtSubGroup.Enabled == false)
+                    {
+                        cmbUnit.Focus();
+                    }
+                    else { txtSubGroup.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -6950,16 +6977,18 @@ namespace ROMS
             try
             {
                 if (Convert.ToString(cmbProductType.Text) == "Parent") {
-                    cmbChildUnit.Enabled = true; 
-                    txtUpp.Enabled = true;
-                    cmbUnit.Enabled = true;
+                    cmbChildUnit.Enabled = true;  
                     txtProductName.Enabled = false;
+                    txtGroup.Enabled = true;
+                    txtSubGroup.Enabled = true;
+                    txtBrand.Enabled = true;
                 }
                 else if (Convert.ToString(cmbProductType.Text) == "Child")
                 {
-                    cmbChildUnit.Enabled = false;
-                    txtUpp.Enabled = false;
-                    cmbUnit.Enabled = false;
+                    cmbChildUnit.Enabled = false; 
+                    txtGroup.Enabled = false;
+                    txtSubGroup.Enabled = false;
+                    txtBrand.Enabled = false;
                     txtProductName.Enabled = true;
                 }
             }
@@ -7563,19 +7592,17 @@ namespace ROMS
                                 txtProductName.Text = "";
                                 DGV_FilterProduct.Visible = false;
                                 DGV_FilterProduct.DataSource = null; 
-                                cmbChildUnit.SelectedValue = objDS.Tables[0].Rows[0]["CHILD UNIT"].ToString(); 
                             }
                             else
                             {
                                 cmbProductType.Text = "Child";
                                 txtProductName.Text = objDS.Tables[0].Rows[0]["ParentName"].ToString();
                                 DGV_FilterProduct.Visible = false;
-                                DGV_FilterProduct.DataSource = null; 
-                                cmbChildUnit.SelectedIndex = 0;
-                                txtUpp.Text = "0";
+                                DGV_FilterProduct.DataSource = null;  
+                                 
                             }
-
                             cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
+                            cmbChildUnit.SelectedValue = objDS.Tables[0].Rows[0]["CHILD UNIT"].ToString();
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
                             cmbConcern.Enabled = false;
 
@@ -8198,7 +8225,7 @@ namespace ROMS
                     lblBrand.Text = objDS.Tables[0].Rows[0]["BRAND"].ToString();
                     txtBrand.Text = objDS.Tables[0].Rows[0]["BRAND Name"].ToString();
                     varUnitid = Convert.ToInt32(objDS.Tables[0].Rows[0]["CHILD UNIT"].ToString());//
-                    cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["CHILD UNIT"].ToString();
+                    cmbChildUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
                     varPURSLID = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"]);
                     lblPurLocationCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"]);
                     txtPurLocation.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION PURCHASE Name"]);
