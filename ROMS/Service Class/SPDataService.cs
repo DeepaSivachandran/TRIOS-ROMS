@@ -1536,7 +1536,8 @@ namespace ROMS
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
              , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator,
-              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId, int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam)
+              int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
+              int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId)
         {
             string result = "";
             try
@@ -1596,6 +1597,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaProduct_HSN", ParaProduct_HSN);
                 varSqlCommand.Parameters.AddWithValue("@paraProductLabelNameEng", paraProductLabelNameEng);
                 varSqlCommand.Parameters.AddWithValue("@paraProductLabelNameTam", paraProductLabelNameTam);
+                varSqlCommand.Parameters.AddWithValue("@paraParentId", paraParentId);
 
                 varSqlCommand.CommandTimeout = 0;
 
@@ -3975,6 +3977,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTrnRateChange.paraToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objTrnRateChange.paraType); 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
