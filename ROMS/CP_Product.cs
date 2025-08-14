@@ -466,7 +466,7 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
-                    if (cmbProductType.Text == "Parent") {
+                    if (cmbProductType.Text == "child") {
                         if (Convert.ToString(cmbChildUnit.SelectedValue) == "" || Convert.ToString(cmbChildUnit.SelectedValue) == "-1")
                         {
                             errItems.SetError(cmbChildUnit, "Please select upp Unit");
@@ -6982,6 +6982,8 @@ namespace ROMS
                     txtGroup.Enabled = true;
                     txtSubGroup.Enabled = true;
                     txtBrand.Enabled = true;
+                    txtUpp.Enabled = false;
+                    cmbChildUnit.Enabled = false;
                 }
                 else if (Convert.ToString(cmbProductType.Text) == "Child")
                 {
@@ -6990,6 +6992,41 @@ namespace ROMS
                     txtSubGroup.Enabled = false;
                     txtBrand.Enabled = false;
                     txtProductName.Enabled = true;
+                    txtUpp.Enabled = true;
+                    cmbChildUnit.Enabled = false;
+                }
+                if (btnSave.Text != "Update")
+                {
+                    txtProductName.Text = "";
+                    lblParentcode.Text = "0";
+
+                    txtPICode.Text = "";
+                    txtItemNameEnglish.Text = "";
+                    txtItemNameTamil.Text = "";
+                    txtLabelNameEnglish.Text = "";
+                    txtLabelNameTamil.Text = "";
+                    varSubGroupId = 0;
+                    lblSubGroupCode.Text = "";
+                    txtSubGroup.Text = "";
+                    varGroupId = 0;
+                    lblGroupCode.Text = "";
+                    txtGroup.Text = "";
+                    varBrandId = 0;
+                    lblBrand.Text = "";
+                    txtBrand.Text = "";
+                    varUnitid = 0;
+                    cmbChildUnit.SelectedValue = -1;
+                    varPURSLID = 0;
+                    lblPurLocationCode.Text = "";
+                    txtPurLocation.Text = "";
+                    varPURRKID = 0;
+                    lblPurRackCode.Text = "";
+                    txtPurRack.Text = "";
+                    txtRackDescription.Text = "";
+                    txtGroup.BackColor = Color.White;
+                    txtSubGroup.BackColor = Color.White;
+                    txtBrand.BackColor = Color.White;
+                    errItems.Clear();
                 }
             }
             catch (Exception ex)
@@ -7592,6 +7629,8 @@ namespace ROMS
                                 txtProductName.Text = "";
                                 DGV_FilterProduct.Visible = false;
                                 DGV_FilterProduct.DataSource = null; 
+                                txtUpp.Text = "";
+                                cmbChildUnit.SelectedIndex=0;
                             }
                             else
                             {

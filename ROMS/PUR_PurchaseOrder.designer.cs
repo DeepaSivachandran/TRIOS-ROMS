@@ -2278,6 +2278,7 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Visible = false;
             this.Column1.Width = 40;
             // 
             // clmordertotalqty
