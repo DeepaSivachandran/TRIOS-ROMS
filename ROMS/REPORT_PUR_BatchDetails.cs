@@ -143,8 +143,6 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHSNCode", 0);
                     objBillreport.SetParameterValue("paraGST", 0);
                     objBillreport.SetParameterValue("paraCompanyId", 0);
-                    objBillreport.SetParameterValue("paraSupplierID", 0);
-                    objBillreport.SetParameterValue("paraScheduleID", 0);
                     objBillreport.SetParameterValue("paraInvioceType", 0);
                     objBillreport.SetParameterValue("paraPaymentType", Convert.ToInt32(cmbPaymentType.SelectedValue));
                     objBillreport.SetParameterValue("paraPurchaseType", Convert.ToInt32(cmbPurchaseType.SelectedValue));
