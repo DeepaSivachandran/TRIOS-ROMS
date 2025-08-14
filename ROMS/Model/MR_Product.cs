@@ -51,5 +51,6 @@ namespace ROMS.Model
         public double ParaMRP = 0;
         public double ParaRetail = 0;
         
+        public int paraSubgroupType = 0;
     }
 }

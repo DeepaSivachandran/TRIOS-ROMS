@@ -221,6 +221,7 @@
             this.cmbFormat1.Name = "cmbFormat1";
             this.cmbFormat1.Size = new System.Drawing.Size(41, 28);
             this.cmbFormat1.TabIndex = 3;
+            this.cmbFormat1.SelectedIndexChanged += new System.EventHandler(this.CmbFormat1_SelectedIndexChanged);
             this.cmbFormat1.Enter += new System.EventHandler(this.CmbFormat1_Enter);
             this.cmbFormat1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbFormat1_KeyDown);
             this.cmbFormat1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbFormat1_KeyPress);

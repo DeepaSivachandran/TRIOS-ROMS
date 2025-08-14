@@ -19,5 +19,6 @@ namespace ROMS.Model
         public int paraBrandID { get; set; } = 0;
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
+        public int paraType { get; set; } = 0;
     }
 }

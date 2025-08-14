@@ -170,7 +170,7 @@ namespace ROMS
                             grdPurchaseEntryApproval.Columns["Supplier"].Width = 300;
                             grdPurchaseEntryApproval.Columns["Entry Type"].Width = 100;
                             grdPurchaseEntryApproval.Columns["GSTIN"].Width = 120;
-                            grdPurchaseEntryApproval.Columns["Overall Status"].Width = 150;
+                            grdPurchaseEntryApproval.Columns["Overall Status"].Width = 100;
                             grdPurchaseEntryApproval.Columns["Status"].Visible = false;
                             grdPurchaseEntryApproval.Columns["STSID"].Visible = false;
                             grdPurchaseEntryApproval.Columns["PURID"].Visible = false;

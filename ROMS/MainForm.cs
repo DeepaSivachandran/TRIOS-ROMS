@@ -254,6 +254,18 @@ namespace ROMS
         public static REPORT_Unapproved_Purchase_Summary objREPORT_Unapproved_Purchase_Summary;
         public static REPORT_Unapproved_Purchase_Detail objREPORT_Unapproved_Purchase_Detail;
         public static REPORT_Purchase_Defect_Product objREPORT_Purchase_Defect_Product;
+        public static REPORT_PUR_ProductWiseSummaryDetails objREPORT_PUR_ProductWiseSummaryDetails;
+        public static REPORT_PUR_CostPrice objREPORT_PUR_CostPrice;
+        public static REPORT_PUR_ProductWiseLastPurchase objREPORT_PUR_ProductWiseLastPurchase;
+        public static REPORT_PUR_Tally objREPORT_PUR_Tally;
+        public static REPORT_PUR_BatchDetails objREPORT_PUR_BatchDetails;
+        public static REPORT_PUR_CostDetails objREPORT_PUR_CostDetails;
+
+        public static REPORT_PUR_BillWiseTax objREPORT_PUR_BillWiseTax;
+        public static REPORT_PUR_PeriodWiseTax objREPORT_PUR_PeriodWiseTax;
+        public static REPORT_PUR_AdditionalValue objREPORT_PUR_AdditionalValue;
+        public static REPORT_PUR_DiscountValue objREPORT_PUR_DiscountValue;
+        public static REPORT_PUR_AllTax objREPORT_PUR_AllTax;
 
         public static REPORT_HSN_Code objREPORT_HSN_Code;
         public static REPORT_HSN_Name objREPORT_HSN_Name;
@@ -2920,6 +2932,204 @@ namespace ROMS
                 MainForm.objREPORT_Stock_Valuation.MdiParent = this;
                 MainForm.objREPORT_Stock_Valuation.Show();
                 PbCurrentForm = "7.2.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseProductWiseReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_ProductWiseSummaryDetails = new REPORT_PUR_ProductWiseSummaryDetails();
+                MainForm.objREPORT_PUR_ProductWiseSummaryDetails.MdiParent = this;
+                MainForm.objREPORT_PUR_ProductWiseSummaryDetails.Show();
+                PbCurrentForm = "7.7.7";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseCostPrice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_CostPrice = new REPORT_PUR_CostPrice();
+                MainForm.objREPORT_PUR_CostPrice.MdiParent = this;
+                MainForm.objREPORT_PUR_CostPrice.Show();
+                PbCurrentForm = "7.7.8";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmProductWiseLastPurchase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
+                PbCurrentForm = "7.7.9";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseTallyReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_Tally = new REPORT_PUR_Tally();
+                MainForm.objREPORT_PUR_Tally.MdiParent = this;
+                MainForm.objREPORT_PUR_Tally.Show();
+                PbCurrentForm = "7.7.10";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseBatchDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_BatchDetails = new REPORT_PUR_BatchDetails();
+                MainForm.objREPORT_PUR_BatchDetails.MdiParent = this;
+                MainForm.objREPORT_PUR_BatchDetails.Show();
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseCostDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_CostDetails = new REPORT_PUR_CostDetails();
+                MainForm.objREPORT_PUR_CostDetails.MdiParent = this;
+                MainForm.objREPORT_PUR_CostDetails.Show();
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseBillWiseTaxReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_BillWiseTax = new REPORT_PUR_BillWiseTax();
+                MainForm.objREPORT_PUR_BillWiseTax.MdiParent = this;
+                MainForm.objREPORT_PUR_BillWiseTax.Show();
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchasePeriodWiseTaxReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_PeriodWiseTax = new REPORT_PUR_PeriodWiseTax();
+                MainForm.objREPORT_PUR_PeriodWiseTax.MdiParent = this;
+                MainForm.objREPORT_PUR_PeriodWiseTax.Show();
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseAdditionalValueReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_AdditionalValue = new REPORT_PUR_AdditionalValue();
+                MainForm.objREPORT_PUR_AdditionalValue.MdiParent = this;
+                MainForm.objREPORT_PUR_AdditionalValue.Show();
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseDiscountValueReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_DiscountValue = new REPORT_PUR_DiscountValue();
+                MainForm.objREPORT_PUR_DiscountValue.MdiParent = this;
+                MainForm.objREPORT_PUR_DiscountValue.Show();
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmAllPurchaseTaxReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_AllTax = new REPORT_PUR_AllTax();
+                MainForm.objREPORT_PUR_AllTax.MdiParent = this;
+                MainForm.objREPORT_PUR_AllTax.Show();
+                PbCurrentForm = "7.7.11";
             }
             catch (Exception ex)
             {

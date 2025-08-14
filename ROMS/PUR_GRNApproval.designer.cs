@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,6 +43,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -117,22 +119,23 @@
             this.clmProBatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpoqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clminvoiceqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMismatchQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreceivedqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMismatchQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmFreeQtyValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmreturnqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFreeQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCreditQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMARecivedQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnitDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFullStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPURPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmErrorCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGRNPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGIPPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmFreeQtyValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReason = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -794,38 +797,39 @@
             this.clmProBatchNo,
             this.clmpoqty,
             this.clminvoiceqty,
-            this.clmMismatchQty,
             this.clmreceivedqty,
+            this.clmMismatchQty,
+            this.clmFreeQtyValue,
+            this.clmStatus,
+            this.clmReason,
             this.clmreturnqty,
             this.clmFreeQty,
             this.clmCreditQty,
+            this.clmMARecivedQty,
             this.clmPOID,
             this.clmUnitDecimal,
-            this.clmStatus,
             this.clmFullStatus,
             this.clmPURPRID,
             this.clmErrorCount,
             this.clmGRNPRID,
             this.clmGIPPRID,
-            this.clmFreeQtyValue,
-            this.clmCondition,
-            this.clmReason});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle14;
+            this.clmCondition});
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGrnApproval.DefaultCellStyle = dataGridViewCellStyle16;
             this.grdGrnApproval.EnableHeadersVisualStyles = false;
             this.grdGrnApproval.GridColor = System.Drawing.Color.White;
             this.grdGrnApproval.Location = new System.Drawing.Point(6, 135);
             this.grdGrnApproval.Name = "grdGrnApproval";
             this.grdGrnApproval.RowHeadersVisible = false;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGrnApproval.RowsDefaultCellStyle = dataGridViewCellStyle17;
             this.grdGrnApproval.RowTemplate.Height = 25;
             this.grdGrnApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdGrnApproval.Size = new System.Drawing.Size(1335, 434);
@@ -1040,6 +1044,12 @@
             this.clminvoiceqty.Name = "clminvoiceqty";
             this.clminvoiceqty.ReadOnly = true;
             // 
+            // clmreceivedqty
+            // 
+            this.clmreceivedqty.HeaderText = "Received Qty";
+            this.clmreceivedqty.Name = "clmreceivedqty";
+            this.clmreceivedqty.ReadOnly = true;
+            // 
             // clmMismatchQty
             // 
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -1048,32 +1058,59 @@
             this.clmMismatchQty.Name = "clmMismatchQty";
             this.clmMismatchQty.ReadOnly = true;
             // 
-            // clmreceivedqty
+            // clmFreeQtyValue
             // 
-            this.clmreceivedqty.HeaderText = "Received Qty";
-            this.clmreceivedqty.Name = "clmreceivedqty";
-            this.clmreceivedqty.ReadOnly = true;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmFreeQtyValue.DefaultCellStyle = dataGridViewCellStyle11;
+            this.clmFreeQtyValue.HeaderText = "Free Qty";
+            this.clmFreeQtyValue.Name = "clmFreeQtyValue";
+            this.clmFreeQtyValue.ReadOnly = true;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmReason
+            // 
+            this.clmReason.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.clmReason.HeaderText = "Reason";
+            this.clmReason.Name = "clmReason";
+            this.clmReason.Width = 150;
             // 
             // clmreturnqty
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmreturnqty.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmreturnqty.DefaultCellStyle = dataGridViewCellStyle12;
             this.clmreturnqty.HeaderText = "Returned Qty";
             this.clmreturnqty.Name = "clmreturnqty";
             // 
             // clmFreeQty
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmFreeQty.DefaultCellStyle = dataGridViewCellStyle12;
-            this.clmFreeQty.HeaderText = "Free Qty";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmFreeQty.DefaultCellStyle = dataGridViewCellStyle13;
+            this.clmFreeQty.HeaderText = "Return Free Qty";
             this.clmFreeQty.Name = "clmFreeQty";
+            this.clmFreeQty.Width = 120;
             // 
             // clmCreditQty
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmCreditQty.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmCreditQty.DefaultCellStyle = dataGridViewCellStyle14;
             this.clmCreditQty.HeaderText = "Debit Qty";
             this.clmCreditQty.Name = "clmCreditQty";
+            // 
+            // clmMARecivedQty
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmMARecivedQty.DefaultCellStyle = dataGridViewCellStyle15;
+            this.clmMARecivedQty.HeaderText = "MA Received Qty";
+            this.clmMARecivedQty.Name = "clmMARecivedQty";
+            this.clmMARecivedQty.Width = 120;
             // 
             // clmPOID
             // 
@@ -1086,14 +1123,6 @@
             this.clmUnitDecimal.HeaderText = "UnitDecimal";
             this.clmUnitDecimal.Name = "clmUnitDecimal";
             this.clmUnitDecimal.Visible = false;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // clmFullStatus
             // 
@@ -1126,25 +1155,12 @@
             this.clmGIPPRID.Name = "clmGIPPRID";
             this.clmGIPPRID.Visible = false;
             // 
-            // clmFreeQtyValue
-            // 
-            this.clmFreeQtyValue.HeaderText = "Free Qty Value";
-            this.clmFreeQtyValue.Name = "clmFreeQtyValue";
-            this.clmFreeQtyValue.ReadOnly = true;
-            // 
             // clmCondition
             // 
             this.clmCondition.HeaderText = "ProCondition";
             this.clmCondition.Name = "clmCondition";
             this.clmCondition.ReadOnly = true;
             this.clmCondition.Visible = false;
-            // 
-            // clmReason
-            // 
-            this.clmReason.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.clmReason.HeaderText = "Reason";
-            this.clmReason.Name = "clmReason";
-            this.clmReason.Width = 150;
             // 
             // PUR_GRNApproval
             // 
@@ -1259,21 +1275,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProBatchNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpoqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceqty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmMismatchQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreceivedqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMismatchQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmFreeQtyValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreturnqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFreeQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCreditQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMARecivedQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPOID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitDecimal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFullStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPURPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmErrorCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGRNPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGIPPRID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmFreeQtyValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCondition;
-        private System.Windows.Forms.DataGridViewComboBoxColumn clmReason;
     }
 }

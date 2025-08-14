@@ -273,8 +273,7 @@ namespace ROMS
         private void PUR_GRN_Level_Verified_Load(object sender, EventArgs e)
         {
             try
-            {
-                udfnEditload();
+            { 
                 if (Convert.ToString(MainForm.objCP_Purchase.PbSTS) != "50")
                 {
                     cmbFormat1.SelectedIndex = 0;
@@ -299,6 +298,10 @@ namespace ROMS
                         dpVerified2.MinDate = varminDate;
                     }
                     objDServ.CloseConnection();
+                }
+                if (MainForm.objCP_Purchase.pbVerifiedBy1 != 0)
+                {
+                    udfnEditload();
                 }
             }
             catch (Exception ex)
@@ -460,7 +463,7 @@ namespace ROMS
                     mtbTime2.Text = mtbTime1.Text;
                     mtbTime2.Enabled = false;
                     mtbTime2.ReadOnly = true;
-                    cmbFormat2.SelectedValue = cmbFormat1.SelectedValue;
+                    cmbFormat2.SelectedIndex = cmbFormat1.SelectedIndex;
                     cmbFormat2.Enabled = false;
                 }
                 else
@@ -1040,6 +1043,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbFormat1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(txtVerified2.Text!="")
+                {
+                    cmbFormat2.SelectedIndex = cmbFormat1.SelectedIndex;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnVerified2()
         {
             try

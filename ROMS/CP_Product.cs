@@ -63,6 +63,7 @@ namespace ROMS
 
         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "";
+        int varF5Flag = 0;
         
         public CP_Product()
         {
@@ -134,14 +135,22 @@ namespace ROMS
                     errItems.SetError(txtBarcode, "Please enter valid barcode");
                     return;
                 }
-                udfnSave(0);
+                if (varF5Flag == 0)
+                { udfnSave(0); }
+                else
+                {
+                    if(varproductcode==0)
+                    { udfnSave(0); }
+                    else
+                    { udfnSave(1); }
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+            finally { varF5Flag = 0; }
         }
         public void udfnSave(int varFlag)
         {
@@ -566,7 +575,7 @@ namespace ROMS
                     string varId_SubGroup = "0";
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0, 0);
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -4362,7 +4371,7 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -7826,7 +7835,7 @@ namespace ROMS
                     string varId_SubGroup = "0";
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0, 0);
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -8085,6 +8094,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.F5)
                 {
                     btnSave_Click(sender, e);
+                    varF5Flag = 1;
                 }
 
             }

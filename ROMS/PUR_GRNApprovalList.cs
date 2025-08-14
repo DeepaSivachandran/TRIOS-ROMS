@@ -1632,8 +1632,7 @@ namespace ROMS
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
                                 grdGrnApprovalList.DataSource = objDs.Tables[0];
-                                grdGrnApprovalList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                // grdInwardQueueList.Columns["GRN No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdGrnApprovalList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
                                 grdGrnApprovalList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1643,7 +1642,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["GRN Date"].Width = 80;
                                 grdGrnApprovalList.Columns["Vouc Date"].Width = 80;
                                 grdGrnApprovalList.Columns["Status"].Width = 70;
-                                grdGrnApprovalList.Columns["Overall Status"].Width = 150;
+                                grdGrnApprovalList.Columns["Overall Status"].Width = 100;
                                 grdGrnApprovalList.Columns["GRN No."].Width = 70;
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
                                 grdGrnApprovalList.Columns["Tot Issue Pro in Inv"].Width = 150;

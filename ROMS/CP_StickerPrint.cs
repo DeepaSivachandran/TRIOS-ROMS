@@ -1239,7 +1239,10 @@ namespace ROMS
             {
                 if (txtProduct.Text.Trim().Length > 0)
                 {
-                    (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtProduct.Text + "%'";
+                    if (grdProduct?.DataSource != null)
+                    {
+                        (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtProduct.Text + "%'";
+                    }
                 }
             }
             catch (Exception ex)
@@ -1257,11 +1260,17 @@ namespace ROMS
                 {
                     if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
                     {
-                        (grdGroup.DataSource as DataTable).DefaultView.RowFilter = "([Group Name]) LIKE '%" + txtGroup.Text + "%'";
+                        if (grdGroup?.DataSource != null)
+                        {
+                            (grdGroup?.DataSource as DataTable).DefaultView.RowFilter = "([Group Name]) LIKE '%" + txtGroup.Text + "%'";
+                        }
                     }
                     else
                     {
-                        (grdRack.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
+                        if (grdRack?.DataSource != null)
+                        {
+                            (grdRack?.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
+                        }
                     }
                 }
             }
@@ -1278,7 +1287,10 @@ namespace ROMS
             {
                 if (txtSubgroup.Text.Trim().Length > 0)
                 {
-                    (grdSubgroup.DataSource as DataTable).DefaultView.RowFilter = "([Subgroup Name]) LIKE '%" + txtSubgroup.Text + "%'";
+                    if (grdSubgroup?.DataSource != null)
+                    {
+                        (grdSubgroup.DataSource as DataTable).DefaultView.RowFilter = "([Subgroup Name]) LIKE '%" + txtSubgroup.Text + "%'";
+                    }
                 }
             }
             catch (Exception ex)
@@ -1475,7 +1487,7 @@ namespace ROMS
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                 {
                     lblGroup.Text = "Group";
-                    label2.Text = "Group Name";
+                    lblProductName.Text = "Group Name";
                     grdSubgroup.Visible = false;
                     txtSubgroup.Visible = false;
                     lblSubgroup.Visible = false;
@@ -1490,7 +1502,7 @@ namespace ROMS
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
                 {
-                    label2.Text = "Subgroup Name";
+                    lblProductName.Text = "Subgroup Name";
                     grdSubgroup.Visible = true;
                     txtSubgroup.Visible = true;
                     lblSubgroup.Visible = true;
@@ -1505,7 +1517,7 @@ namespace ROMS
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 0 || Convert.ToInt32(cmbType.SelectedIndex) == 3)
                 {
-                    label2.Text = "Product Name";
+                    lblProductName.Text = "Product Name";
                     grdSubgroup.Visible = true;
                     txtSubgroup.Visible = true;
                     lblSubgroup.Visible = true;
@@ -1520,8 +1532,7 @@ namespace ROMS
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
                 {
-                    label2.Text = "";
-                    lblGroup.Text = "Rack";
+                    lblProductName.Text = "";
                     cmbProductName.Enabled = false;
                     grdSubgroup.Visible = false;
                     txtSubgroup.Visible = false;
@@ -1534,6 +1545,14 @@ namespace ROMS
                     lblProduct.Visible = false;
                     btnProductSelect.Visible = false;
                     btnProductUnSelect.Visible = false;
+                }
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                {
+                    lblGroup.Text = "Group";
+                }
+                else
+                {
+                    lblGroup.Text = "Rack";
                 }
                 grdGroup.DataSource = null;
                 grdSubgroup.DataSource = null;

@@ -571,7 +571,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubgroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubgroup.Text.Trim(), 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubgroup.Text.Trim(), 0, 0, 0, 0, 0);
 
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -4449,7 +4449,7 @@ namespace ROMS
                 string varId_SubGroup = "0";
                 DataSet objDssubgroup = new DataSet();
                 SPDataService objDserv = new SPDataService();
-                objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubgroup.Text.Trim(), 0, 0, 0, 0);
+                objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubgroup.Text.Trim(), 0, 0, 0, 0, 0);
                 objDserv.CloseConnection();
                 if (objDssubgroup != null)
                 {
@@ -4474,7 +4474,7 @@ namespace ROMS
                 {
                     // Subgroup Depend Group Load
                     DataSet objDsGroupCode = new DataSet();
-                    objDsGroupCode = objDserv.udfnSubGroupList(16, Convert.ToInt32(varSubgroupCode), "", 0, 0, "", 0, 0, 0, 0);
+                    objDsGroupCode = objDserv.udfnSubGroupList(16, Convert.ToInt32(varSubgroupCode), "", 0, 0, "", 0, 0, 0, 0, 0);
                     objDserv.CloseConnection();
                     if (objDsGroupCode != null)
                     {
