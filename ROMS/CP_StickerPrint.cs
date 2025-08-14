@@ -577,6 +577,7 @@ namespace ROMS
         {
             try
             {
+                txtLabelCount.Text = "";
                 grdProduct.DataSource = null;
                 grdGroup.DataSource = null;
                 grdSubgroup.DataSource = null;
@@ -1484,6 +1485,7 @@ namespace ROMS
         {
             try
             {
+                txtLabelCount.Text = "";
                 txtGroup.Text = "";
                 txtSubgroup.Text = "";
                 txtProduct.Text = "";
