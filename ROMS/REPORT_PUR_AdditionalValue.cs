@@ -130,9 +130,13 @@ namespace ROMS
                     varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     varScheduleId = Convert.ToInt32(lblScheduleCode.Text);
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 2)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)
                 {
                     varViewType = 21;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
+                {
+                    varViewType = 22;
                 }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -154,7 +158,19 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DayWise_AdditionalValue.rpt");
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 2)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DayWise_AdditionalValue.rpt");
+                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DayWise_AdditionalValue.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_MonthWise_AdditionalValue.rpt");
+                    }
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNCode", 0);
                     objBillreport.SetParameterValue("paraGST", 0);
@@ -174,7 +190,6 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraProductId", 0);
                     objBillreport.SetParameterValue("paraSupplierID", varSupplierId);
                     objBillreport.SetParameterValue("paraScheduleID", varScheduleId);
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("paraSupplierTypeName", cmbSupplierType.Text);
 
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
