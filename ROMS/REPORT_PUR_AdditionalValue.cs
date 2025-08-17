@@ -166,11 +166,12 @@ namespace ROMS
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DayWise_AdditionalValue.rpt");
-                        objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_MonthWise_AdditionalValue.rpt");
+                        objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
+                        objBillreport.SetParameterValue("paraMonth", Convert.ToInt32(cmbMonths.SelectedValue));
                     }
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNCode", 0);
