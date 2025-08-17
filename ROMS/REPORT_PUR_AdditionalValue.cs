@@ -147,7 +147,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0,0, 0, 0, "");
+                objDs = objdserv.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", Convert.ToInt32(cmbMonths.SelectedValue));
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -158,14 +158,15 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 2)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 332)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DayWise_AdditionalValue.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_BillWise_AdditionalValue.rpt");
                         objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DayWise_AdditionalValue.rpt");
+                        objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)
                     {

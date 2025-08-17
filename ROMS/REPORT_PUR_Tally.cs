@@ -99,7 +99,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(14, 0, "", 0, dpFromDate.Text, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "");
+                objDs = objdserv.udfnPurHsnReport(14, 0, "", 0, dpFromDate.Text, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "",0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

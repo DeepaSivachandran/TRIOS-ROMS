@@ -3888,7 +3888,7 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int paraGroupId, int paraSubgroupId,int paraFlag,int paraBrandID,int paraCompanyId,int paraSupplierID,int paraScheduleID,int paraInvioceType,int paraPaymentType,int paraPurchaseType,int paraConditionType,int paraProductNameType,string paraAlpha)
+        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int paraGroupId, int paraSubgroupId,int paraFlag,int paraBrandID,int paraCompanyId,int paraSupplierID,int paraScheduleID,int paraInvioceType,int paraPaymentType,int paraPurchaseType,int paraConditionType,int paraProductNameType,string paraAlpha,int paraMonth)
         {
             DataSet ds = new DataSet();
             try
@@ -3916,6 +3916,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraConditionType", paraConditionType);
                 varSqlCommand.Parameters.AddWithValue("@paraProductNameType", paraProductNameType);
                 varSqlCommand.Parameters.AddWithValue("@paraAlpha", paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraMonth", paraMonth);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
