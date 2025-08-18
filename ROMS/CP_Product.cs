@@ -145,16 +145,41 @@ namespace ROMS
                         return;
                     }
                 }
-               
-                if (varF5Flag == 0)
-                { udfnSave(0); }
-                else
+                if (grdPurHSN.Rows.Count < 1 && varproductcode!=0)
                 {
-                    if(varproductcode==0)
-                    { udfnSave(0); }
-                    else
-                    { udfnSave(1); }
+                    SPDataService objDataService = new SPDataService();
+                    string varMessage = objDataService.udfnGetMessages(149);
+                    objDataService.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+                /*
+                if (grdSalesHSN.Rows.Count < 1)
+                {
+                    MessageBox.Show("Please add atleast one sales hsn.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                */ 
+                dtProductHSN.Rows.Clear();
+                foreach (DataRow row in dtPurHSN.Rows)
+                {
+                    dtProductHSN.ImportRow(row);
+                }
+                foreach (DataRow row in dtSalesHSN.Rows)
+                {
+                    dtProductHSN.ImportRow(row);
+                }
+                if (grdPurHSN.Rows.Count > 0 || grdSalesHSN.Rows.Count > 0)
+                {
+                    varPurEffectiveFromErr = 0;
+                    varSalesEffectiveFromErr = 0;
+                    udfnEffectiveDateValidation();
+                }
+                errItems.Clear();
+                if (varPurEffectiveFromErr == 0 && varSalesEffectiveFromErr == 0)
+                {
+                    udfnSave();
+                } 
             }
             catch (Exception ex)
             {
@@ -163,7 +188,7 @@ namespace ROMS
             }
             finally { varF5Flag = 0; }
         }
-        public void udfnSave(int varFlag)
+        public void udfnSave()
         {
             try
             {
@@ -1070,7 +1095,7 @@ namespace ROMS
                     {
                         varbrandid = lblBrand.Text;
                     }
-                    if ((varproductcode == 0 || pbCloneFlag == 1) && varFlag == 0)
+                    if ((varproductcode == 0 || pbCloneFlag == 1) )
                     {
                         varviewtype = 0;
                         varorignator = "Product Create";
@@ -1099,7 +1124,7 @@ namespace ROMS
                     {
                         varMRPflag = 0;
                     }
-                    if (varFlag == 1 && cbCompleted.Checked == false)
+                    if (cbCompleted.Checked == false)
                     {
                         varviewtype = 1;
                     }
@@ -1133,31 +1158,32 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varproductcode != 0 || varFlag == 1)
+                            if (varproductcode != 0 )
                             {
                                 MainForm.objCP_Itemlist.udfnDropdownbind();
                                 MainForm.objCP_Itemlist.udfnList();
                             }
+                            //else
+                            //{ 
+                            //    varproductcode = Convert.ToInt32(varvalue[2]);
+                            //    tbProduct.TabPages[1].Enabled = true;
+                            //    tbProduct.SelectedIndex = 1;
+                            //}
                             //udfnclear();
-                            if (btnSave.Text != "Update")
-                            {
-                                if (varFlag != 1)
-                                {
-                                    varproductcode = Convert.ToInt32(varvalue[2]);
-                                    tbProduct.TabPages[1].Enabled = true;
-                                    tbProduct.SelectedIndex = 1;
-                                }
-                            }
+                            //if (btnSave.Text != "Update")
+                            //{
+                            //    if (varFlag != 1)
+                            //    {
+                            //        varproductcode = Convert.ToInt32(varvalue[2]);
+                            //        tbProduct.TabPages[1].Enabled = true;
+                            //        tbProduct.SelectedIndex = 1;
+                            //    }
+                            //}
                         }
                         if (btnSave.Text == "Update")
                         {
                             this.Close();
-                        }
-                        if(varFlag==1)
-                        {
-                            varupdate = "1";
-                            this.Close();
-                        }
+                        } 
                     }
                     else
                     {
@@ -6272,7 +6298,7 @@ namespace ROMS
                 errItems.Clear();
                 if (varPurEffectiveFromErr == 0 && varSalesEffectiveFromErr == 0)
                 {
-                    udfnSave(1);
+                    udfnSave();
                 }
                 //udfnHSNSave();
             }
@@ -6328,8 +6354,7 @@ namespace ROMS
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnSaveHsn.Enabled = true;
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                     if (varMasterType == "1")
                     {
                         MainForm.objCP_Purchase.lblProductcode.Text = varvalue[2];
@@ -6353,8 +6378,7 @@ namespace ROMS
                 }
                 else
                 {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSaveHsn.Enabled = true;
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
                 }
             }
             catch (Exception ex)
@@ -6362,34 +6386,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void BtnSaveHsn_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnSaveHsn.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnSaveHsn_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnSaveHsn.BackColor = Color.Transparent;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        } 
+         
         private void BtnHSNClose_Click(object sender, EventArgs e)
         {
             try
@@ -6401,34 +6399,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void BtnHSNClose_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnHSNClose.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnHSNClose_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnHSNClose.BackColor = Color.Transparent;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        } 
         private void TxtRackMOQQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

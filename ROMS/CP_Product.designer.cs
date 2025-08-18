@@ -246,8 +246,6 @@
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnSaveHsn = new System.Windows.Forms.Button();
-            this.btnHSNClose = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -964,10 +962,10 @@
             this.txtDShop.BackColor = System.Drawing.SystemColors.Control;
             this.txtDShop.Enabled = false;
             this.txtDShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDShop.Location = new System.Drawing.Point(4, 59);
+            this.txtDShop.Location = new System.Drawing.Point(316, 32);
             this.txtDShop.Name = "txtDShop";
             this.txtDShop.ReadOnly = true;
-            this.txtDShop.Size = new System.Drawing.Size(131, 27);
+            this.txtDShop.Size = new System.Drawing.Size(46, 27);
             this.txtDShop.TabIndex = 24;
             this.txtDShop.TabStop = false;
             this.txtDShop.Text = "Rack";
@@ -1157,10 +1155,10 @@
             // txtRackMOQQty
             // 
             this.txtRackMOQQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRackMOQQty.Location = new System.Drawing.Point(135, 133);
+            this.txtRackMOQQty.Location = new System.Drawing.Point(121, 106);
             this.txtRackMOQQty.MaxLength = 8;
             this.txtRackMOQQty.Name = "txtRackMOQQty";
-            this.txtRackMOQQty.Size = new System.Drawing.Size(388, 27);
+            this.txtRackMOQQty.Size = new System.Drawing.Size(420, 27);
             this.txtRackMOQQty.TabIndex = 19;
             this.txtRackMOQQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRackMOQQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
@@ -1173,7 +1171,7 @@
             this.txtDMaxOrderQty.BackColor = System.Drawing.SystemColors.Control;
             this.txtDMaxOrderQty.Enabled = false;
             this.txtDMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDMaxOrderQty.Location = new System.Drawing.Point(4, 133);
+            this.txtDMaxOrderQty.Location = new System.Drawing.Point(4, 106);
             this.txtDMaxOrderQty.Name = "txtDMaxOrderQty";
             this.txtDMaxOrderQty.ReadOnly = true;
             this.txtDMaxOrderQty.Size = new System.Drawing.Size(131, 27);
@@ -1514,9 +1512,9 @@
             this.grplocation.Controls.Add(this.txtDGST);
             this.grplocation.Controls.Add(this.txtGST);
             this.grplocation.Controls.Add(this.textBox4);
-            this.grplocation.Location = new System.Drawing.Point(7, 350);
+            this.grplocation.Location = new System.Drawing.Point(7, 349);
             this.grplocation.Name = "grplocation";
-            this.grplocation.Size = new System.Drawing.Size(550, 121);
+            this.grplocation.Size = new System.Drawing.Size(550, 95);
             this.grplocation.TabIndex = 15;
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Default Stock Location For Purchase";
@@ -1636,10 +1634,10 @@
             // txtPurRack
             // 
             this.txtPurRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPurRack.Location = new System.Drawing.Point(135, 59);
+            this.txtPurRack.Location = new System.Drawing.Point(362, 32);
             this.txtPurRack.MaxLength = 100;
             this.txtPurRack.Name = "txtPurRack";
-            this.txtPurRack.Size = new System.Drawing.Size(388, 27);
+            this.txtPurRack.Size = new System.Drawing.Size(182, 27);
             this.txtPurRack.TabIndex = 16;
             this.txtPurRack.TextChanged += new System.EventHandler(this.TxtPurRack_TextChanged);
             this.txtPurRack.Enter += new System.EventHandler(this.TxtPurRack_Enter);
@@ -1649,10 +1647,10 @@
             // txtPurLocation
             // 
             this.txtPurLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPurLocation.Location = new System.Drawing.Point(135, 32);
+            this.txtPurLocation.Location = new System.Drawing.Point(120, 32);
             this.txtPurLocation.MaxLength = 100;
             this.txtPurLocation.Name = "txtPurLocation";
-            this.txtPurLocation.Size = new System.Drawing.Size(388, 27);
+            this.txtPurLocation.Size = new System.Drawing.Size(196, 27);
             this.txtPurLocation.TabIndex = 15;
             this.txtPurLocation.TextChanged += new System.EventHandler(this.TxtPurLocation_TextChanged);
             this.txtPurLocation.Enter += new System.EventHandler(this.TxtPurLocation_Enter);
@@ -1664,10 +1662,10 @@
             this.txtRackDescription.BackColor = System.Drawing.SystemColors.Control;
             this.txtRackDescription.Enabled = false;
             this.txtRackDescription.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRackDescription.Location = new System.Drawing.Point(135, 86);
+            this.txtRackDescription.Location = new System.Drawing.Point(120, 59);
             this.txtRackDescription.Name = "txtRackDescription";
             this.txtRackDescription.ReadOnly = true;
-            this.txtRackDescription.Size = new System.Drawing.Size(388, 27);
+            this.txtRackDescription.Size = new System.Drawing.Size(424, 27);
             this.txtRackDescription.TabIndex = 26;
             this.txtRackDescription.TabStop = false;
             this.txtRackDescription.Enter += new System.EventHandler(this.TxtRackDescription_Enter);
@@ -1677,10 +1675,10 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox1.Location = new System.Drawing.Point(4, 86);
+            this.textBox1.Location = new System.Drawing.Point(4, 59);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(131, 27);
+            this.textBox1.Size = new System.Drawing.Size(116, 27);
             this.textBox1.TabIndex = 25;
             this.textBox1.TabStop = false;
             this.textBox1.Text = "Rack Description";
@@ -1693,7 +1691,7 @@
             this.txtDPurchaseLocation.Location = new System.Drawing.Point(4, 32);
             this.txtDPurchaseLocation.Name = "txtDPurchaseLocation";
             this.txtDPurchaseLocation.ReadOnly = true;
-            this.txtDPurchaseLocation.Size = new System.Drawing.Size(131, 27);
+            this.txtDPurchaseLocation.Size = new System.Drawing.Size(116, 27);
             this.txtDPurchaseLocation.TabIndex = 12;
             this.txtDPurchaseLocation.TabStop = false;
             this.txtDPurchaseLocation.Text = "Stock Location";
@@ -1723,9 +1721,9 @@
             this.grbSalesStockLocation.Controls.Add(this.txtRackMOQQty);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesShop);
             this.grbSalesStockLocation.Controls.Add(this.txtDMaxOrderQty);
-            this.grbSalesStockLocation.Location = new System.Drawing.Point(7, 473);
+            this.grbSalesStockLocation.Location = new System.Drawing.Point(7, 445);
             this.grbSalesStockLocation.Name = "grbSalesStockLocation";
-            this.grbSalesStockLocation.Size = new System.Drawing.Size(550, 172);
+            this.grbSalesStockLocation.Size = new System.Drawing.Size(550, 141);
             this.grbSalesStockLocation.TabIndex = 17;
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
@@ -1739,7 +1737,7 @@
             this.columnHeader25});
             this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSaleLocation.HideSelection = false;
-            this.lvSaleLocation.Location = new System.Drawing.Point(135, 79);
+            this.lvSaleLocation.Location = new System.Drawing.Point(119, 80);
             this.lvSaleLocation.Name = "lvSaleLocation";
             this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
             this.lvSaleLocation.TabIndex = 127;
@@ -1779,10 +1777,10 @@
             // txtSaleRack
             // 
             this.txtSaleRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSaleRack.Location = new System.Drawing.Point(135, 79);
+            this.txtSaleRack.Location = new System.Drawing.Point(362, 52);
             this.txtSaleRack.MaxLength = 100;
             this.txtSaleRack.Name = "txtSaleRack";
-            this.txtSaleRack.Size = new System.Drawing.Size(388, 27);
+            this.txtSaleRack.Size = new System.Drawing.Size(180, 27);
             this.txtSaleRack.TabIndex = 18;
             this.txtSaleRack.TextChanged += new System.EventHandler(this.TxtSaleRack_TextChanged);
             this.txtSaleRack.Enter += new System.EventHandler(this.TxtSaleRack_Enter);
@@ -1792,10 +1790,10 @@
             // txtSaleLocation
             // 
             this.txtSaleLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSaleLocation.Location = new System.Drawing.Point(135, 52);
+            this.txtSaleLocation.Location = new System.Drawing.Point(120, 52);
             this.txtSaleLocation.MaxLength = 100;
             this.txtSaleLocation.Name = "txtSaleLocation";
-            this.txtSaleLocation.Size = new System.Drawing.Size(388, 27);
+            this.txtSaleLocation.Size = new System.Drawing.Size(196, 27);
             this.txtSaleLocation.TabIndex = 17;
             this.txtSaleLocation.TextChanged += new System.EventHandler(this.TxtSaleLocation_TextChanged);
             this.txtSaleLocation.Enter += new System.EventHandler(this.TxtSaleLocation_Enter);
@@ -1807,9 +1805,9 @@
             this.txtRackDescriptionSales.BackColor = System.Drawing.SystemColors.Control;
             this.txtRackDescriptionSales.Enabled = false;
             this.txtRackDescriptionSales.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRackDescriptionSales.Location = new System.Drawing.Point(135, 106);
+            this.txtRackDescriptionSales.Location = new System.Drawing.Point(120, 79);
             this.txtRackDescriptionSales.Name = "txtRackDescriptionSales";
-            this.txtRackDescriptionSales.Size = new System.Drawing.Size(388, 27);
+            this.txtRackDescriptionSales.Size = new System.Drawing.Size(422, 27);
             this.txtRackDescriptionSales.TabIndex = 92;
             this.txtRackDescriptionSales.TabStop = false;
             // 
@@ -1818,10 +1816,10 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(4, 106);
+            this.textBox7.Location = new System.Drawing.Point(4, 79);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(131, 27);
+            this.textBox7.Size = new System.Drawing.Size(116, 27);
             this.textBox7.TabIndex = 91;
             this.textBox7.TabStop = false;
             this.textBox7.Text = "Rack Description";
@@ -1834,7 +1832,7 @@
             this.txtDSalesGodown.Location = new System.Drawing.Point(4, 52);
             this.txtDSalesGodown.Name = "txtDSalesGodown";
             this.txtDSalesGodown.ReadOnly = true;
-            this.txtDSalesGodown.Size = new System.Drawing.Size(131, 27);
+            this.txtDSalesGodown.Size = new System.Drawing.Size(116, 27);
             this.txtDSalesGodown.TabIndex = 12;
             this.txtDSalesGodown.TabStop = false;
             this.txtDSalesGodown.Text = "Stock Location";
@@ -1844,10 +1842,10 @@
             this.txtDSalesShop.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSalesShop.Enabled = false;
             this.txtDSalesShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSalesShop.Location = new System.Drawing.Point(4, 79);
+            this.txtDSalesShop.Location = new System.Drawing.Point(316, 52);
             this.txtDSalesShop.Name = "txtDSalesShop";
             this.txtDSalesShop.ReadOnly = true;
-            this.txtDSalesShop.Size = new System.Drawing.Size(131, 27);
+            this.txtDSalesShop.Size = new System.Drawing.Size(46, 27);
             this.txtDSalesShop.TabIndex = 24;
             this.txtDSalesShop.TabStop = false;
             this.txtDSalesShop.Text = "Rack";
@@ -1924,7 +1922,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(669, 616);
+            this.btnSave.Location = new System.Drawing.Point(716, 659);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(113, 29);
             this.btnSave.TabIndex = 40;
@@ -1941,7 +1939,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(784, 616);
+            this.btnClose.Location = new System.Drawing.Point(831, 659);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
             this.btnClose.TabIndex = 41;
@@ -2010,9 +2008,9 @@
             this.columnHeader17});
             this.lvPurLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurLocation.HideSelection = false;
-            this.lvPurLocation.Location = new System.Drawing.Point(142, 409);
+            this.lvPurLocation.Location = new System.Drawing.Point(120, 409);
             this.lvPurLocation.Name = "lvPurLocation";
-            this.lvPurLocation.Size = new System.Drawing.Size(388, 78);
+            this.lvPurLocation.Size = new System.Drawing.Size(312, 78);
             this.lvPurLocation.TabIndex = 124;
             this.lvPurLocation.UseCompatibleStateImageBehavior = false;
             this.lvPurLocation.View = System.Windows.Forms.View.Details;
@@ -2044,9 +2042,9 @@
             this.columnHeader19});
             this.lvPurRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurRack.HideSelection = false;
-            this.lvPurRack.Location = new System.Drawing.Point(142, 436);
+            this.lvPurRack.Location = new System.Drawing.Point(276, 409);
             this.lvPurRack.Name = "lvPurRack";
-            this.lvPurRack.Size = new System.Drawing.Size(388, 78);
+            this.lvPurRack.Size = new System.Drawing.Size(272, 78);
             this.lvPurRack.TabIndex = 125;
             this.lvPurRack.UseCompatibleStateImageBehavior = false;
             this.lvPurRack.View = System.Windows.Forms.View.Details;
@@ -2071,7 +2069,7 @@
             // cbCompleted
             // 
             this.cbCompleted.AutoSize = true;
-            this.cbCompleted.Location = new System.Drawing.Point(578, 618);
+            this.cbCompleted.Location = new System.Drawing.Point(625, 661);
             this.cbCompleted.Name = "cbCompleted";
             this.cbCompleted.Size = new System.Drawing.Size(86, 24);
             this.cbCompleted.TabIndex = 39;
@@ -2546,7 +2544,7 @@
             this.tbProduct.Location = new System.Drawing.Point(5, 2);
             this.tbProduct.Name = "tbProduct";
             this.tbProduct.SelectedIndex = 0;
-            this.tbProduct.Size = new System.Drawing.Size(889, 681);
+            this.tbProduct.Size = new System.Drawing.Size(889, 650);
             this.tbProduct.TabIndex = 1111144;
             this.tbProduct.SelectedIndexChanged += new System.EventHandler(this.TbProduct_SelectedIndexChanged);
             // 
@@ -2556,16 +2554,13 @@
             this.tabPage1.Controls.Add(this.lvBrand);
             this.tabPage1.Controls.Add(this.lvSaleRack);
             this.tabPage1.Controls.Add(this.lvGroup);
-            this.tabPage1.Controls.Add(this.cbCompleted);
             this.tabPage1.Controls.Add(this.lvSubGroup);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.pnlStatus);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.txtDStatus);
             this.tabPage1.Controls.Add(this.lvPurLocation);
-            this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Controls.Add(this.lvPurRack);
-            this.tabPage1.Controls.Add(this.btnClose);
             this.tabPage1.Controls.Add(this.grpExpire);
             this.tabPage1.Controls.Add(this.grbform);
             this.tabPage1.Controls.Add(this.grbSalesStockLocation);
@@ -2575,7 +2570,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(881, 649);
+            this.tabPage1.Size = new System.Drawing.Size(881, 618);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Product Details";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2661,9 +2656,9 @@
             this.columnHeader21});
             this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSaleRack.HideSelection = false;
-            this.lvSaleRack.Location = new System.Drawing.Point(143, 604);
+            this.lvSaleRack.Location = new System.Drawing.Point(160, 524);
             this.lvSaleRack.Name = "lvSaleRack";
-            this.lvSaleRack.Size = new System.Drawing.Size(388, 50);
+            this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
             this.lvSaleRack.TabIndex = 134;
             this.lvSaleRack.UseCompatibleStateImageBehavior = false;
             this.lvSaleRack.View = System.Windows.Forms.View.Details;
@@ -2687,56 +2682,22 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnSaveHsn);
-            this.tabPage2.Controls.Add(this.btnHSNClose);
             this.tabPage2.Controls.Add(this.grbPurchaseHSN);
             this.tabPage2.Controls.Add(this.grbSalesHSN);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(881, 649);
+            this.tabPage2.Size = new System.Drawing.Size(881, 618);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "HSN Details";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btnSaveHsn
-            // 
-            this.btnSaveHsn.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSaveHsn.Image = global::ROMS.Properties.Resources.save;
-            this.btnSaveHsn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveHsn.Location = new System.Drawing.Point(715, 617);
-            this.btnSaveHsn.Name = "btnSaveHsn";
-            this.btnSaveHsn.Size = new System.Drawing.Size(80, 29);
-            this.btnSaveHsn.TabIndex = 6;
-            this.btnSaveHsn.Text = "Update";
-            this.btnSaveHsn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSaveHsn.UseVisualStyleBackColor = true;
-            this.btnSaveHsn.Click += new System.EventHandler(this.BtnSaveHsn_Click);
-            this.btnSaveHsn.Enter += new System.EventHandler(this.BtnSaveHsn_Enter);
-            this.btnSaveHsn.Leave += new System.EventHandler(this.BtnSaveHsn_Leave);
-            // 
-            // btnHSNClose
-            // 
-            this.btnHSNClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnHSNClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnHSNClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHSNClose.Location = new System.Drawing.Point(801, 617);
-            this.btnHSNClose.Name = "btnHSNClose";
-            this.btnHSNClose.Size = new System.Drawing.Size(74, 29);
-            this.btnHSNClose.TabIndex = 7;
-            this.btnHSNClose.Text = "Close";
-            this.btnHSNClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnHSNClose.UseVisualStyleBackColor = true;
-            this.btnHSNClose.Click += new System.EventHandler(this.BtnHSNClose_Click);
-            this.btnHSNClose.Enter += new System.EventHandler(this.BtnHSNClose_Enter);
-            this.btnHSNClose.Leave += new System.EventHandler(this.BtnHSNClose_Leave);
             // 
             // pnlProductDetails
             // 
             this.pnlProductDetails.Controls.Add(this.tbProduct);
             this.pnlProductDetails.Location = new System.Drawing.Point(8, 0);
             this.pnlProductDetails.Name = "pnlProductDetails";
-            this.pnlProductDetails.Size = new System.Drawing.Size(897, 683);
+            this.pnlProductDetails.Size = new System.Drawing.Size(897, 655);
             this.pnlProductDetails.TabIndex = 1111144;
             // 
             // CP_Product
@@ -2744,8 +2705,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(914, 689);
+            this.ClientSize = new System.Drawing.Size(914, 691);
             this.Controls.Add(this.pnlProductDetails);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.cbCompleted);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2793,6 +2757,7 @@
             this.tabPage2.ResumeLayout(false);
             this.pnlProductDetails.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -2957,8 +2922,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel pnlProductDetails;
-        public System.Windows.Forms.Button btnSaveHsn;
-        private System.Windows.Forms.Button btnHSNClose;
         public System.Windows.Forms.ListView lvSaleRack;
         private System.Windows.Forms.ColumnHeader columnHeader20;
         private System.Windows.Forms.ColumnHeader columnHeader27;
