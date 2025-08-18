@@ -178,6 +178,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseTCSValueReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1270,6 +1271,7 @@ namespace ROMS
             this.tsmPurchasePeriodWiseTaxReport,
             this.tsmPurchaseAdditionalValueReport,
             this.tsmPurchaseDiscountValueReport,
+            this.tsmPurchaseTCSValueReport,
             this.tsmAllPurchaseTaxReport});
             this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
             this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
@@ -1410,6 +1412,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
+            // 
+            // tsmPurchaseTCSValueReport
+            // 
+            this.tsmPurchaseTCSValueReport.Name = "tsmPurchaseTCSValueReport";
+            this.tsmPurchaseTCSValueReport.Size = new System.Drawing.Size(236, 22);
+            this.tsmPurchaseTCSValueReport.Text = "Purchase TCS Value Report";
+            this.tsmPurchaseTCSValueReport.Click += new System.EventHandler(this.TsmPurchaseTCSValueReport_Click);
             // 
             // MainForm
             // 
@@ -1588,5 +1597,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseAdditionalValueReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseDiscountValueReport;
         private System.Windows.Forms.ToolStripMenuItem tsmAllPurchaseTaxReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseTCSValueReport;
     }
 }
