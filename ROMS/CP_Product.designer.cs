@@ -155,11 +155,6 @@
             this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
-            this.lvSaleLocation = new System.Windows.Forms.ListView();
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
             this.txtSaleRack = new System.Windows.Forms.TextBox();
             this.txtSaleLocation = new System.Windows.Forms.TextBox();
@@ -247,6 +242,11 @@
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.lvSaleLocation = new System.Windows.Forms.ListView();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -1711,7 +1711,6 @@
             // 
             // grbSalesStockLocation
             // 
-            this.grbSalesStockLocation.Controls.Add(this.lvSaleLocation);
             this.grbSalesStockLocation.Controls.Add(this.chkSameasPurchase);
             this.grbSalesStockLocation.Controls.Add(this.txtSaleRack);
             this.grbSalesStockLocation.Controls.Add(this.txtSaleLocation);
@@ -1727,41 +1726,6 @@
             this.grbSalesStockLocation.TabIndex = 17;
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
-            // 
-            // lvSaleLocation
-            // 
-            this.lvSaleLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24,
-            this.columnHeader25});
-            this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSaleLocation.HideSelection = false;
-            this.lvSaleLocation.Location = new System.Drawing.Point(119, 80);
-            this.lvSaleLocation.Name = "lvSaleLocation";
-            this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
-            this.lvSaleLocation.TabIndex = 127;
-            this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
-            this.lvSaleLocation.View = System.Windows.Forms.View.Details;
-            this.lvSaleLocation.Visible = false;
-            this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
-            this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Width = 120;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 130;
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Width = 0;
-            // 
-            // columnHeader25
-            // 
-            this.columnHeader25.Width = 0;
             // 
             // chkSameasPurchase
             // 
@@ -2008,7 +1972,7 @@
             this.columnHeader17});
             this.lvPurLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurLocation.HideSelection = false;
-            this.lvPurLocation.Location = new System.Drawing.Point(120, 409);
+            this.lvPurLocation.Location = new System.Drawing.Point(127, 409);
             this.lvPurLocation.Name = "lvPurLocation";
             this.lvPurLocation.Size = new System.Drawing.Size(312, 78);
             this.lvPurLocation.TabIndex = 124;
@@ -2042,7 +2006,7 @@
             this.columnHeader19});
             this.lvPurRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurRack.HideSelection = false;
-            this.lvPurRack.Location = new System.Drawing.Point(276, 409);
+            this.lvPurRack.Location = new System.Drawing.Point(278, 409);
             this.lvPurRack.Name = "lvPurRack";
             this.lvPurRack.Size = new System.Drawing.Size(272, 78);
             this.lvPurRack.TabIndex = 125;
@@ -2550,6 +2514,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lvSaleLocation);
             this.tabPage1.Controls.Add(this.DGV_FilterProduct);
             this.tabPage1.Controls.Add(this.lvBrand);
             this.tabPage1.Controls.Add(this.lvSaleRack);
@@ -2699,6 +2664,41 @@
             this.pnlProductDetails.Name = "pnlProductDetails";
             this.pnlProductDetails.Size = new System.Drawing.Size(897, 655);
             this.pnlProductDetails.TabIndex = 1111144;
+            // 
+            // lvSaleLocation
+            // 
+            this.lvSaleLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24,
+            this.columnHeader25});
+            this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSaleLocation.HideSelection = false;
+            this.lvSaleLocation.Location = new System.Drawing.Point(127, 524);
+            this.lvSaleLocation.Name = "lvSaleLocation";
+            this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
+            this.lvSaleLocation.TabIndex = 111111147;
+            this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
+            this.lvSaleLocation.View = System.Windows.Forms.View.Details;
+            this.lvSaleLocation.Visible = false;
+            this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
+            this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 120;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 130;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Width = 0;
             // 
             // CP_Product
             // 
@@ -2876,11 +2876,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader18;
         private System.Windows.Forms.ColumnHeader columnHeader19;
         private System.Windows.Forms.Label lblPurRackCode;
-        public System.Windows.Forms.ListView lvSaleLocation;
-        private System.Windows.Forms.ColumnHeader columnHeader22;
-        private System.Windows.Forms.ColumnHeader columnHeader23;
-        private System.Windows.Forms.ColumnHeader columnHeader24;
-        private System.Windows.Forms.ColumnHeader columnHeader25;
         private System.Windows.Forms.TextBox txtSaleLocation;
         private System.Windows.Forms.TextBox txtSaleRack;
         private System.Windows.Forms.Label lblSaleRackCode;
@@ -2971,5 +2966,10 @@
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
         private System.Windows.Forms.Label lblParentcode;
         public System.Windows.Forms.ComboBox cmbChildUnit;
+        public System.Windows.Forms.ListView lvSaleLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.ColumnHeader columnHeader25;
     }
 }

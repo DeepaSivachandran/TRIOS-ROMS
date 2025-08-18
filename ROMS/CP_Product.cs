@@ -145,7 +145,7 @@ namespace ROMS
                         return;
                     }
                 }
-                if (grdPurHSN.Rows.Count < 1 && varproductcode!=0)
+                if (grdPurHSN.Rows.Count < 1 && cbCompleted.Checked==true)
                 {
                     SPDataService objDataService = new SPDataService();
                     string varMessage = objDataService.udfnGetMessages(149);
@@ -946,8 +946,7 @@ namespace ROMS
                         tbProduct.TabPages[1].Enabled = true;
                         tbProduct.SelectedIndex = 1;
                     }
-
-                  
+                     
                 }
                 if (blnErrorFlag == false)
                 {
@@ -1124,7 +1123,7 @@ namespace ROMS
                     {
                         varMRPflag = 0;
                     }
-                    if (cbCompleted.Checked == false)
+                    if (varproductcode!=0)
                     {
                         varviewtype = 1;
                     }
@@ -1162,13 +1161,14 @@ namespace ROMS
                             {
                                 MainForm.objCP_Itemlist.udfnDropdownbind();
                                 MainForm.objCP_Itemlist.udfnList();
+                                this.Close();
                             }
-                            //else
-                            //{ 
-                            //    varproductcode = Convert.ToInt32(varvalue[2]);
-                            //    tbProduct.TabPages[1].Enabled = true;
-                            //    tbProduct.SelectedIndex = 1;
-                            //}
+                            else
+                            {
+                                varproductcode = Convert.ToInt32(varvalue[2]);
+                                tbProduct.TabPages[1].Enabled = true;
+                                tbProduct.SelectedIndex = 1;
+                            }
                             //udfnclear();
                             //if (btnSave.Text != "Update")
                             //{
@@ -1180,10 +1180,10 @@ namespace ROMS
                             //    }
                             //}
                         }
-                        if (btnSave.Text == "Update")
-                        {
-                            this.Close();
-                        } 
+                        //if (btnSave.Text == "Update")
+                        //{
+                        //    this.Close();
+                        //} 
                     }
                     else
                     {
