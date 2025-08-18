@@ -541,6 +541,13 @@
     <Compile Include="PUR_ReturnDCApprovedList.designer.cs">
       <DependentUpon>PUR_ReturnDCApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_BillWise_Tax_Summary.cs">
+      <DependentUpon>RPT_PUR_BillWise_Tax_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_MonthWise_TCSValue.cs">
       <DependentUpon>RPT_PUR_MonthWise_TCSValue.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3341,6 +3348,11 @@
       <LastGenOutput>RPT_PUR_CostPrice.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_PUR_BillWise_Tax_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_BillWise_Tax_Summary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_MonthWise_TCSValue.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_MonthWise_TCSValue.cs</LastGenOutput>
