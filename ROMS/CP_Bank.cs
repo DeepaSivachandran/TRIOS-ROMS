@@ -16,17 +16,12 @@ namespace ROMS
     public partial class CP_Bank : Form
     {
         DataError objError;
-        private ToolTip tpCityName = new ToolTip();
-        private ToolTip tpState = new ToolTip();
-        public string varbrandcode;
-        public string pbFormStatus;
-        public int varstatus;
-        public string PbCityName="";
-        public int varCityCode= 0;
-        public string varCityName = "";
-        public string PbStateName="";
-        public int PbStateId=0;
-        public int PbStatus=0;
+        private ToolTip tpBankName = new ToolTip();
+        private ToolTip tpBankShortName = new ToolTip(); 
+        public string pbFormStatus; 
+        public string pbBankName = ""; 
+        public string pbBankShortName = ""; 
+        public int PbStateId=0; 
         public int varUpdate = 0;
         public int varmastertype = 0;
         public int varflag = 0;
@@ -39,8 +34,8 @@ namespace ROMS
         {
             try
             {
-                tpCityName.Active = false;
-                tpState.Active = false;
+                tpBankName.Active = false;
+                tpBankShortName.Active = false;
             }
             catch (Exception ex)
             {
@@ -64,15 +59,14 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally {
-            }
+            } 
         }
         private void udfnLoad()
         {
             try
             {
-                txtShortName.Text = PbCityName; 
+                txtShortName.Text = pbBankShortName; 
+                txtBankName.Text = pbBankName; 
             }
             catch (Exception ex)
             {
@@ -83,11 +77,9 @@ namespace ROMS
         public void udfnSave(object sender,EventArgs e)
         {
             try
-            {
- 
+            { 
                 SPDataService objspservice = new SPDataService();
-                string varResult = "",
-                varoriginator = "";int varType = 0;
+                string varResult = "",   varoriginator = "";int varType = 0;
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "Bank Creation";
@@ -103,32 +95,14 @@ namespace ROMS
                 objMR_Bank.paraBankId = varBankId;
                 objMR_Bank.paraBankName = txtBankName.Text.Trim();
                 objMR_Bank.paraShortName = txtShortName.Text.Trim();
-                objMR_Bank.paraOriginator = varoriginator;
-
-
+                objMR_Bank.paraOriginator = varoriginator;  
                 varResult = objspservice.udfnBank(objMR_Bank);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //udfnclear();
-                    //MainForm.objCP_Citylist.udfnList();
-                    if (varmastertype == 1)
-                    {
-                        varmastertype = 0;
-                        varUpdate = 1;
-                        varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        varCityName = Convert.ToString(varResult.Split('~')[2]);
-                        MainForm.objCP_CP_Broker.varCityName = txtShortName.Text;
-                        MainForm.objCP_CP_Broker.varCityCode = varCityCode;
-                         
-                        udfnclose();
-                    }
-                    else
-                    {
-                        MainForm.objCP_Citylist.udfnList();
-                    }
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                    MainForm.objCP_BankList.udfnList(); 
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
@@ -163,8 +137,9 @@ namespace ROMS
             try
             {
                 txtShortName.Text = "";
-                txtShortName.Focus();
-                this.ActiveControl = txtShortName;
+                txtBankName.Text = "";
+                txtBankName.Focus();
+                this.ActiveControl = txtBankName;
             }
             catch (Exception ex)
             {
@@ -177,14 +152,22 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
+                if (Convert.ToString(txtBankName.Text).Trim() == "")
+                {
+                    epBank.SetError(txtBankName, "Please enter bank name");
+                    txtBankName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpBankShortName.ShowAlways = true;
+                    tpBankShortName.Show("Please enter bank name", txtBankName, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
-                    epCity.SetError(txtShortName, "Please enter city name");
+                    epBank.SetError(txtShortName, "Please enter bank short name");
                     txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpCityName.ShowAlways = true;
-                    tpCityName.Show("Please enter city name", txtShortName, 5000);
+                    tpBankShortName.ShowAlways = true;
+                    tpBankShortName.Show("Please enter bank short name", txtShortName, 5000);
                     blnErrorFlag = true;
-                } 
+                }
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -244,7 +227,7 @@ namespace ROMS
                 udfnclose();
                 if (varmastertype == 0)
                 {
-                    MainForm.objCP_Citylist.udfnList();
+                    MainForm.objCP_BankList.udfnList();
                 }
             }
             catch (Exception ex)
@@ -295,15 +278,15 @@ namespace ROMS
             {
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
-                    epCity.SetError(txtShortName, "Please enter city name");
+                    epBank.SetError(txtShortName, "Please enter bank short name");
                     txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpCityName.ShowAlways = true;
-                    tpCityName.Show("Please enter city name", txtShortName, 5000);
+                    tpBankShortName.ShowAlways = true;
+                    tpBankShortName.Show("Please enter bank short name", txtShortName, 5000);
                  
                 }
                 else
                 {
-                    epCity.Clear();
+                    epBank.Clear();
                     txtShortName.BackColor = Color.White;
                 }
             }
@@ -370,6 +353,59 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void TxtBankName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBankName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBankName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtBankName.Text).Trim() == "")
+                {
+                    epBank.SetError(txtBankName, "Please enter bank name");
+                    txtBankName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpBankShortName.ShowAlways = true;
+                    tpBankShortName.Show("Please enter bank name", txtBankName, 5000); 
+                }
+                else
+                {
+                    epBank.Clear();
+                    txtBankName.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBankName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtShortName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

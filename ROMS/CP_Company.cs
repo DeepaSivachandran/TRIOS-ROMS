@@ -188,59 +188,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void TxtBankname_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtBankname.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtBankname_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(txtBankname.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtBankname, "Please enter bank name");
-                    txtBankname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBankName.ShowAlways = true;
-                    tpBankName.Show("Please enter bank name", txtBankname, 5000);
-                }
-                else
-                {
-                    epCompany.Clear();
-                    txtBankname.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtBankname_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtBankShortName.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        }   
 
         private void TxtBankShortName_Enter(object sender, EventArgs e)
         {
@@ -516,12 +464,12 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 int varflag = 0;
                 varDefault = "";
-                if (Convert.ToString(txtBankname.Text).Trim() == "")
+                if (Convert.ToString(cmbBankName.SelectedValue)== "-1" || Convert.ToString(cmbBankName.SelectedValue) == "0" )
                 {
-                    epCompany.SetError(txtBankname, "Please enter bank name");
-                    txtBankname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epCompany.SetError(cmbBankName, "Please select bank name");
+                    cmbBankName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBankName.ShowAlways = true;
-                    tpBankName.Show("Please enter bank name", txtBankname, 5000);
+                    tpBankName.Show("Please select bank name", cmbBankName, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtBankShortName.Text).Trim() == "")
@@ -586,14 +534,14 @@ namespace ROMS
                                 string gridValue2 = row.Cells[3].Value.ToString();//varSlNo
                                 string varUpdateSlNo = row.Cells["clmsno"].Value.ToString();
                                 string varUpdateAccNo = row.Cells["clmaccno"].Value.ToString();
-                                if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim() && gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
-                                {
-                                    varflag = 1;
-                                }
-                                if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim())
-                                {
-                                    varflag = 1;
-                                }
+                                //if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim() && gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                                //{
+                                //    varflag = 1;
+                                //}
+                                //if (varSlNo != varUpdateSlNo && varUpdateAccNo.Trim() == txtAccno.Text.Trim())
+                                //{
+                                //    varflag = 1;
+                                //}
                             }
                         }
                     //}
@@ -619,14 +567,15 @@ namespace ROMS
                         }
                         if (varSlNo == "0")
                         {
-                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid,0, varDefaultBank, varDefault);
+                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1,Convert.ToString(cmbBankName.Text).Trim(), (txtBankShortName.Text).Trim().ToUpper(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid,0, varDefaultBank, varDefault);
                             grdBankDetails.Columns["clmStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             varCompanyModifiedFlag = 1;
                         }
-                        else {
+                        else
+                        { 
                             for (int i = 0; i < grdBankDetails.RowCount; i++) {
                                 if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmsno"].Value) == varSlNo){
-                                    grdBankDetails.Rows[i].Cells["clmbankname"].Value = txtBankname.Text;
+                                  //  grdBankDetails.Rows[i].Cells["clmbankname"].Value = txtBankname.Text;
                                     grdBankDetails.Rows[i].Cells["clmBankShortName"].Value = txtBankShortName.Text.ToUpper();
                                     grdBankDetails.Rows[i].Cells["clmbranch"].Value = txtbranchname.Text;
                                     grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
@@ -654,7 +603,7 @@ namespace ROMS
                         }
                         udfnBankclear();
                         rbBankActive.Checked = true;
-                        txtBankname.Focus();
+                        cmbBankName.Focus();
                         grdBankDetails.ClearSelection();
                         btnAdd.Image = ROMS.Properties.Resources.plus;
                     }
@@ -1853,7 +1802,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBankname.Focus();
+                    cmbBankName.Focus();
                 }
             }
             catch (Exception ex)
@@ -2342,7 +2291,7 @@ namespace ROMS
                 txtESI.BackColor = Color.White;
                 txtEPF.BackColor = Color.White;
                 txtPlno.BackColor = Color.White;
-                txtBankname.BackColor = Color.White;
+                cmbBankName.BackColor = Color.White;
                 txtBankShortName.BackColor = Color.White;
                 txtbranchname.BackColor = Color.White;
                 txtAccno.BackColor = Color.White;
@@ -2393,9 +2342,8 @@ namespace ROMS
             }
         }
         public void udfnBankclear()
-        {
-
-            txtBankname.Text = "";
+        { 
+            cmbBankName.SelectedIndex = -1;
             txtBankShortName.Text = "";
             txtbranchname.Text = "";
             txtAccno.Text = "";
@@ -3740,13 +3688,13 @@ namespace ROMS
                             }
                             break;
                         case "clmEdit":
-                        txtBankname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbankname"].Value);
-                        txtBankShortName.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmBankShortName"].Value);
-                        txtbranchname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbranch"].Value);
-                        txtAccno.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmaccno"].Value);
-                        txtIFScode.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmifscode"].Value);
-                        varSlNo = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmsno"].Value);
-                        varstatusid = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmStatus"].Value);
+                            cmbBankName.SelectedValue = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbankname"].Value);
+                            txtBankShortName.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmBankShortName"].Value);
+                            txtbranchname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbranch"].Value);
+                            txtAccno.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmaccno"].Value);
+                            txtIFScode.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmifscode"].Value);
+                            varSlNo = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmsno"].Value);
+                            varstatusid = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmStatus"].Value);
                             if(Convert.ToUInt32(grdBankDetails.Rows[e.RowIndex].Cells["clmdefaultbnk"].Value)==1)
                             {
                                 chkDefaultBank.Checked = true;
@@ -3766,10 +3714,10 @@ namespace ROMS
                             rbBankInActive.Checked = true;
                         }
                         btnAdd.Image = ROMS.Properties.Resources.save16x16;
-                        txtBankname.BackColor = Color.White;
+                        cmbBankName.BackColor = Color.White;
                         tpBankName.Active = false;
                         epCompany.Clear();
-                        txtBankname.Focus();
+                        cmbBankName.Focus();
                         break;
 
                     }
@@ -4533,19 +4481,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void RbInactive_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RbInactive_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-
+        } 
         private void Grpform2_Leave(object sender, EventArgs e)
         {
             try

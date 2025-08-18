@@ -73,33 +73,37 @@ namespace ROMS
                     {
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID,0);
-                        objspservice.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
-                        {
-                            if (varResult.Split('~')[1] == "1")
-                            {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
-                                {
-                                    objspservice = new SPDataService();
-                                    varResult = objspservice.udfnCity(2, Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 1);
-                                    objspservice.CloseConnection();
+                        //varResult = objspservice.udfnCity(2, Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID,0);
+                        //objspservice.CloseConnection();
+                        //if (varResult.Split('~')[0] == "3")
+                        //{
+                        //    if (varResult.Split('~')[1] == "1")
+                        //    {
+                        //        MainForm.objCP_Verify = new CP_Verify();
+                        //        MainForm.objCP_Verify.ShowDialog();
+                        //        varUserID = MainForm.objCP_Verify.varUserId;
+                        //        if (MainForm.objCP_Verify.flag == 1)
+                        //        {
+
+                                    MR_Bank objMR_Bank = new MR_Bank();
+                                    objMR_Bank.paraViewType = 2;
+                                    objMR_Bank.paraBankId = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["Bank ID"].Value); 
+                                    objMR_Bank.paraOriginator = "Bank Delete";
+                                    varResult = objspservice.udfnBank(objMR_Bank);
+                                    objspservice.CloseConnection(); 
                                     if (varResult.Split('~')[0] == "3")
                                     {
                                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         udfnList();
                                     }
                                     else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                            //    }
+                            //}
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //}
                     }
                 }
             }
@@ -122,14 +126,12 @@ namespace ROMS
                     picLoader.Visible = true;
                     picLoader.BringToFront();
                     Application.DoEvents();
-                    MainForm.objCP_City = new CP_City();
-                    MainForm.objCP_City.btnSave.Text = "Update";
-                    MainForm.objCP_City.varCityCode = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_City.PbStateId = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["StateId"].Value);
-                    MainForm.objCP_City.PbStateName = Convert.ToString(grdBankList.SelectedRows[0].Cells["State Name"].Value);
-                    MainForm.objCP_City.PbCityName = Convert.ToString(grdBankList.SelectedRows[0].Cells["City Name"].Value);
-                    MainForm.objCP_City.PbStatus = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objCP_City.ShowDialog();
+                    MainForm.objCP_Bank = new CP_Bank();
+                    MainForm.objCP_Bank.btnSave.Text = "Update";
+                    MainForm.objCP_Bank.varBankId = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["Bank ID"].Value); 
+                    MainForm.objCP_Bank.pbBankName = Convert.ToString(grdBankList.SelectedRows[0].Cells["Bank Name"].Value);
+                    MainForm.objCP_Bank.pbBankShortName = Convert.ToString(grdBankList.SelectedRows[0].Cells["Short Name"].Value); 
+                    MainForm.objCP_Bank.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -155,9 +157,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-
-               
-
+                 
                 MR_Bank objMR_Bank = new MR_Bank();
                 objMR_Bank.paraViewType = 0;   
                 objDs = objspservice.udfnBanklist(objMR_Bank);
@@ -169,11 +169,15 @@ namespace ROMS
                         lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.Visible = false;  
                             lblNoRecordsFound.SendToBack();
                             grdBankList.DataSource = objDs.Tables[0];
                             grdBankList.Columns["Bank ID"].Visible = false; 
-                            //grdBankList.Columns["Sno."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdBankList.Columns["Sno."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;  
+                            grdBankList.Columns["Created By"].Width = 200;
+                            grdBankList.Columns["Last Updated By"].Width = 200;
+                            grdBankList.Columns["Sno."].Width = 50;
+                            grdBankList.Columns["Bank Name"].Width = 250;
                         }
                         else
                         {
