@@ -1512,8 +1512,30 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtUpp.Focus();
+                { 
+                    if (txtUpp.Enabled == true)
+                    {
+                        txtUpp.Focus();
+                    }
+                    else if (cmbChildUnit.Enabled == true)
+                    {
+                        cmbChildUnit.Focus();
+                    }
+                    else
+                    {
+                        if (txtPurLocation.Enabled == true)
+                        {
+                            txtPurLocation.Focus();
+                        }
+                        else if (txtPurRack.Enabled == true)
+                        {
+                            txtPurRack.Focus();
+                        }
+                        else
+                        {
+                            txtSaleLocation.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
