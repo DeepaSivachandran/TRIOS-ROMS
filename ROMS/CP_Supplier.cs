@@ -65,6 +65,7 @@ namespace ROMS
             varMappedCount = 0, varScheduleStsCount = 0;
         public string pbSupplierid = "0", varstatusid = "0", varsupplierID = "0", varTINNo = "0";
         string varfirstValue = "", varsecValue = "";
+        DataSet objDTBank = new DataSet();
         public CP_Supplier()
         {
             InitializeComponent();
@@ -445,7 +446,7 @@ namespace ROMS
             {
                 btnSave.Enabled = false;
                 varfirstValue = "";
-                varsecValue = "";
+                varsecValue = "";   
                 bool blnErrorFlag = false;
                 if (txtContactNumber.Text.Trim() == "" && txtAContactNumber.Text.Trim() == "" && txtwhatsapp.Text.Trim() == "")
                 {
@@ -832,7 +833,7 @@ namespace ROMS
                    , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
                    Convert.ToInt32(cmbPaymentTerm.SelectedValue), varreturnapplicable, varretuencycle, Convert.ToInt32(cmbfinance.SelectedValue), openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, Convert.ToInt32(cmbDesignation.SelectedValue), txtcontactName.Text, creditlimit, -1, -1, -1, -1, "",
-                   "", "", "", 0, "", 0, 0, "", txtBankname.Text, txtBankShortName.Text.Trim().ToUpper(), txtbranchname.Text, txtAccno.Text, txtIFScode.Text, txtAccName.Text, "", varpaymentmethod, 0, txtSPShortName.Text, 0, 0, 0, Convert.ToInt32(varDiscDays), Convert.ToInt32(varDiscPer), 0, 0, txtTalllyName.Text.Trim(),"");
+                   "", "", "", 0, "", 0, 0, "",  txtbranchname.Text, txtAccno.Text, txtIFScode.Text, txtAccName.Text, "", varpaymentmethod, 0, txtSPShortName.Text, 0, 0, 0, Convert.ToInt32(varDiscDays), Convert.ToInt32(varDiscPer), 0, 0, txtTalllyName.Text.Trim(),"",Convert.ToInt16(cmbBankName.SelectedValue));
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -1025,7 +1026,7 @@ namespace ROMS
                 txtAccName.Text = "";
                 txtAccno.Text = "";
                 txtbranchname.Text = "";
-                txtBankname.Text = "";
+                cmbBankName.SelectedValue = -1;
                 txtBankShortName.Text = "";
                 txtIFScode.Text = "";
                 txtDays.Text = "";
@@ -1149,6 +1150,7 @@ namespace ROMS
                 dtPaymentMode.Columns.Add("MSTID", typeof(int));
 
                 udfnLoadState();
+                udfnBankDropDownLoad();
                 this.ActiveControl = txtName;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
@@ -1168,8 +1170,7 @@ namespace ROMS
                     tcSupplier.TabPages[1].Enabled = false; // Second tab
                     tcSupplier.TabPages[2].Enabled = false; // Third tab
                     tcSupplier.TabPages[3].Enabled = false; // Fourth tab
-                }
-
+                } 
             }
             catch (Exception ex)
             {
@@ -1177,8 +1178,39 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
+            { 
+            }
+        }
+        public void udfnBankDropDownLoad()
+        {
+            try
             {
-
+                objDTBank = null;
+                SPDataService objDserv = new SPDataService();
+                DataSet objDs = new DataSet();
+                MR_Bank objMR_Bank = new MR_Bank();
+                objMR_Bank.paraViewType = 2;
+                objDs = objDserv.udfnBanklist(objMR_Bank);
+                objDserv.CloseConnection();
+                cmbBankName.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbBankName.ValueMember = "BNKID";
+                            cmbBankName.DisplayMember = "Bank";
+                            cmbBankName.DataSource = objDs.Tables[0];
+                            objDTBank = objDs;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnSuppliertypeLoad()
@@ -1313,11 +1345,11 @@ namespace ROMS
                             txtgstin.Text = objDS.Tables[0].Rows[0]["GSTIN"].ToString();
                             txtcreditlimit.Text = objDS.Tables[0].Rows[0]["CREDIT"].ToString().Replace("''", "'");
                             txtopening.Text = objDS.Tables[0].Rows[0]["OPBALANCE"].ToString().Replace("''", "'");
-                            txtBankname.Text = objDS.Tables[0].Rows[0]["SP_BankName"].ToString().Replace("''", "'");
+                            cmbBankName.SelectedValue = objDS.Tables[0].Rows[0]["SP_BNKID"].ToString().Replace("''", "'");
                             txtbranchname.Text = objDS.Tables[0].Rows[0]["SP_BranchName"].ToString().Replace("''", "'");
                             txtAccName.Text = objDS.Tables[0].Rows[0]["SP_AccountName"].ToString().Replace("''", "'");
                             txtAccno.Text = objDS.Tables[0].Rows[0]["SP_AccNo"].ToString().Replace("''", "'");
-                            txtBankShortName.Text = objDS.Tables[0].Rows[0]["SP_BankShortName"].ToString().Replace("''", "'");
+                            txtBankShortName.Text = objDS.Tables[0].Rows[0]["BankShortName"].ToString().Replace("''", "'");
                             txtIFScode.Text = objDS.Tables[0].Rows[0]["SP_IFSC"].ToString().Replace("''", "'");
                             txtOtherBrands.Text = objDS.Tables[0].Rows[0]["SP_Brand"].ToString().Replace("''", "'");
                             varTINNo = objDS.Tables[0].Rows[0]["ST_TIN"].ToString().Replace("''", "'");
@@ -5152,7 +5184,7 @@ namespace ROMS
                             {
 
                                 SPDataService objspdservice = new SPDataService();
-                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","");
+                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","",0);
                                 string[] varvalue = result.Split('~');
                                 if (varvalue[0] == "3")
                                 {
@@ -5189,7 +5221,7 @@ namespace ROMS
                                     //    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     //}
                                     SPDataService objspdservice1 = new SPDataService();
-                                    result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","");
+                                    result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "",   "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "", "",0);
                                     objspdservice1.CloseConnection();
                                     string[] varvalue1 = result.Split('~');
                                     if (varvalue1[0] == "3")
@@ -5201,7 +5233,7 @@ namespace ROMS
                                             varUserID = MainForm.objCP_Verify.varUserId;
                                             if (MainForm.objCP_Verify.flag == 1)
                                             {
-                                                result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 1, "", 0, 0, 0, 0, 0, 0, 0, "","");
+                                                result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "",   "", "", 1, "", 0, 0, 0, 0, 0, 0, 0, "","",0);
                                                 objspdservice1.CloseConnection();
                                                 if (result.Split('~')[0] == "3")
                                                 {
@@ -5377,7 +5409,7 @@ namespace ROMS
                 {
                     if (btnSaveOrderType.Text == "Update")
                     {
-                        result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","");
+                        result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "",   "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","",0);
                     }
 
                     string[] varvalue = result.Split('~');
@@ -5877,7 +5909,7 @@ namespace ROMS
                                 Vartype = 8;
                             }
                             result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                                0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId, "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","");
+                                   0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId, "", "",   "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "", "",0);
                             string[] varvalue = result.Split('~');
                             if (varvalue[0] == "3")
                             {
@@ -6479,7 +6511,7 @@ namespace ROMS
                             result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
                                 Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, Convert.ToString(varScheduleStatusid), MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
                                 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text.Trim(), txtsalesmanmobile.Text,
-                                txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "", 0, "", Convert.ToInt32(cmbTat.SelectedValue), 0, 0, 0, 0, 0, 0, "","");
+                                txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "",   "", 0, "", Convert.ToInt32(cmbTat.SelectedValue), 0, 0, 0, 0, 0, 0, "","",0);
                             objspdservice.CloseConnection();
                             string[] varvalue = result.Split('~');
                             if (varvalue[0] == "3")
@@ -6666,33 +6698,7 @@ namespace ROMS
             {
                 lvCity.Visible = false;
             }
-        }
-
-        private void TxtBankname_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtBankname.BackColor = Color.White;
-                //    if (Convert.ToString(txtBankname.Text).Trim() == "")
-                //    {
-                //        errCompany.SetError(txtBankname, "Please enter bank name");
-                //        txtBankname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //        tpBankName.ShowAlways = true;
-                //        tpBankName.Show("Please enter bank name", txtBankname, 5000);
-                //    }
-                //    else
-                //    {
-                //        errCompany.Clear();
-                //        txtBankname.BackColor = Color.White;
-                //    }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        } 
         private void TxtBankname_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -6745,22 +6751,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void TxtBankname_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtBankname.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-
+        } 
         private void TxtBankShortName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -6867,7 +6858,7 @@ namespace ROMS
                 }
                 if (btnSaveOrderType.Text == "Update")
                 {
-                    result = objspdservice.udfnSupplierMaster(9, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier dealt brand", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", txtOtherBrands.Text, "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","");
+                    result = objspdservice.udfnSupplierMaster(9, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier dealt brand", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", 0, 0, "", "", "",  "", "", txtOtherBrands.Text, "", 0, "", 0, 0, 0, 0, 0, 0, 0, "", "",0);
                 }
 
                 string[] varvalue = result.Split('~');
@@ -8897,7 +8888,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBankname.Focus();
+                    cmbBankName.Focus();
                 }
             }
             catch (Exception ex)
@@ -9080,6 +9071,82 @@ namespace ROMS
                     errCompany.Clear();
                     txtTalllyName.BackColor = Color.White;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBankName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBankName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBankName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtbranchname.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBankName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBankName_Leave(object sender, EventArgs e)
+        {
+            try
+            { 
+                cmbBankName.BackColor = Color.White; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBankName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string result = "";
+                result = objDTBank.Tables[0].AsEnumerable()
+                           .Where(r => r.Field<int?>("BNKID") == Convert.ToInt16(cmbBankName.SelectedValue)) // handle nulls
+                           .Select(r => r.Field<string>("ShortName"))
+                           .FirstOrDefault() ?? string.Empty;
+
+                // Assign to TextBox (result will be empty string if nothing found)
+                txtBankShortName.Text = result ?? string.Empty;
             }
             catch (Exception ex)
             {

@@ -85,7 +85,6 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.txtAccno = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
-            this.txtBankname = new System.Windows.Forms.TextBox();
             this.lblcityid = new System.Windows.Forms.Label();
             this.lblcity = new System.Windows.Forms.Label();
             this.grbEnvelopeDetails = new System.Windows.Forms.GroupBox();
@@ -113,6 +112,8 @@
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.txtTalllyName = new System.Windows.Forms.TextBox();
             this.txtSPShortName = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.lvCity = new System.Windows.Forms.ListView();
@@ -281,8 +282,7 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtTalllyName = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.cmbBankName = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -521,6 +521,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.cmbBankName);
             this.groupBox5.Controls.Add(this.textBox13);
             this.groupBox5.Controls.Add(this.txtAccName);
             this.groupBox5.Controls.Add(this.textBox2);
@@ -532,7 +533,6 @@
             this.groupBox5.Controls.Add(this.textBox7);
             this.groupBox5.Controls.Add(this.txtAccno);
             this.groupBox5.Controls.Add(this.textBox19);
-            this.groupBox5.Controls.Add(this.txtBankname);
             this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(587, 26);
             this.groupBox5.Name = "groupBox5";
@@ -580,10 +580,12 @@
             // txtBankShortName
             // 
             this.txtBankShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBankShortName.Enabled = false;
             this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtBankShortName.Location = new System.Drawing.Point(106, 50);
             this.txtBankShortName.MaxLength = 20;
             this.txtBankShortName.Name = "txtBankShortName";
+            this.txtBankShortName.ReadOnly = true;
             this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
             this.txtBankShortName.TabIndex = 26;
             this.txtBankShortName.Enter += new System.EventHandler(this.TxtBankShortName_Enter);
@@ -675,18 +677,6 @@
             this.textBox19.Size = new System.Drawing.Size(100, 27);
             this.textBox19.TabIndex = 200000;
             this.textBox19.Text = "Bank Name";
-            // 
-            // txtBankname
-            // 
-            this.txtBankname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBankname.Location = new System.Drawing.Point(106, 23);
-            this.txtBankname.MaxLength = 50;
-            this.txtBankname.Name = "txtBankname";
-            this.txtBankname.Size = new System.Drawing.Size(165, 27);
-            this.txtBankname.TabIndex = 25;
-            this.txtBankname.Enter += new System.EventHandler(this.TxtBankname_Enter);
-            this.txtBankname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankname_KeyDown);
-            this.txtBankname.Leave += new System.EventHandler(this.TxtBankname_Leave);
             // 
             // lblcityid
             // 
@@ -1106,6 +1096,30 @@
             this.grbform.TabStop = false;
             this.grbform.Text = "Concern Details";
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
+            // 
+            // textBox14
+            // 
+            this.textBox14.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox14.Enabled = false;
+            this.textBox14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox14.Location = new System.Drawing.Point(10, 53);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.ReadOnly = true;
+            this.textBox14.Size = new System.Drawing.Size(111, 27);
+            this.textBox14.TabIndex = 80;
+            this.textBox14.Text = "Tally Name";
+            // 
+            // txtTalllyName
+            // 
+            this.txtTalllyName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtTalllyName.Location = new System.Drawing.Point(121, 53);
+            this.txtTalllyName.MaxLength = 150;
+            this.txtTalllyName.Name = "txtTalllyName";
+            this.txtTalllyName.Size = new System.Drawing.Size(397, 27);
+            this.txtTalllyName.TabIndex = 1;
+            this.txtTalllyName.Enter += new System.EventHandler(this.TxtTalllyName_Enter);
+            this.txtTalllyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTalllyName_KeyDown);
+            this.txtTalllyName.Leave += new System.EventHandler(this.TxtTalllyName_Leave);
             // 
             // txtSPShortName
             // 
@@ -3406,29 +3420,19 @@
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
             // 
-            // txtTalllyName
+            // cmbBankName
             // 
-            this.txtTalllyName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtTalllyName.Location = new System.Drawing.Point(121, 53);
-            this.txtTalllyName.MaxLength = 150;
-            this.txtTalllyName.Name = "txtTalllyName";
-            this.txtTalllyName.Size = new System.Drawing.Size(397, 27);
-            this.txtTalllyName.TabIndex = 1;
-            this.txtTalllyName.Enter += new System.EventHandler(this.TxtTalllyName_Enter);
-            this.txtTalllyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTalllyName_KeyDown);
-            this.txtTalllyName.Leave += new System.EventHandler(this.TxtTalllyName_Leave);
-            // 
-            // textBox14
-            // 
-            this.textBox14.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox14.Enabled = false;
-            this.textBox14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox14.Location = new System.Drawing.Point(10, 53);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(111, 27);
-            this.textBox14.TabIndex = 80;
-            this.textBox14.Text = "Tally Name";
+            this.cmbBankName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBankName.FormattingEnabled = true;
+            this.cmbBankName.Location = new System.Drawing.Point(106, 23);
+            this.cmbBankName.Name = "cmbBankName";
+            this.cmbBankName.Size = new System.Drawing.Size(165, 27);
+            this.cmbBankName.TabIndex = 25;
+            this.cmbBankName.SelectedIndexChanged += new System.EventHandler(this.CmbBankName_SelectedIndexChanged);
+            this.cmbBankName.Enter += new System.EventHandler(this.CmbBankName_Enter);
+            this.cmbBankName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBankName_KeyDown);
+            this.cmbBankName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBankName_KeyPress);
+            this.cmbBankName.Leave += new System.EventHandler(this.CmbBankName_Leave);
             // 
             // CP_Supplier
             // 
@@ -3660,7 +3664,6 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox txtAccno;
         private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox txtBankname;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtOtherBrands;
@@ -3736,5 +3739,6 @@
         private System.Windows.Forms.TextBox textBox30;
         private System.Windows.Forms.TextBox txtTalllyName;
         private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.ComboBox cmbBankName;
     }
 }
