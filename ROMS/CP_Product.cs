@@ -135,6 +135,12 @@ namespace ROMS
                     errItems.SetError(txtBarcode, "Please enter valid barcode");
                     return;
                 }
+                if (Convert.ToInt16(cmbProductType.SelectedValue) == 342 && Convert.ToInt16(lblParentcode.Text) == 0)
+                {
+                    txtProductName.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtProductName, "Please enter valid parent product");
+                    return;
+                }
 
                 if (Convert.ToString(cmbUnit.SelectedValue) != "-1" && cmbUnit.Text != "" && Convert.ToString(cmbChildUnit.SelectedValue) != "-1" && cmbChildUnit.Text != "")
                 {
@@ -1313,6 +1319,7 @@ namespace ROMS
                 txtGST.BackColor = Color.White;
                 txtUpp.BackColor = Color.White;
                 txtSelfLife.BackColor = Color.White;
+                txtProductName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -3676,14 +3683,14 @@ namespace ROMS
                     pbFormStatus = 71;
                     this.ActiveControl = txtPICode;
                 }
-                if (btnSave.Text != "Update")
-                {
-                    tbProduct.TabPages[1].Enabled = false;
-                }
-                else
-                {
-                    tbProduct.TabPages[1].Enabled = true;
-                }
+                //if (btnSave.Text != "Update")
+                //{
+                //    tbProduct.TabPages[1].Enabled = false;
+                //}
+                //else
+                //{
+                //    tbProduct.TabPages[1].Enabled = true;
+                //}
 
                 cmbUnit.Enabled = true;
                 txtUpp.Enabled = true;
@@ -7043,6 +7050,20 @@ namespace ROMS
             }
         }
 
+        private void cmbProductType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DpSalesEffectiveFrom_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -7746,13 +7767,13 @@ namespace ROMS
                     txtPurRack.Enabled = true;
                     txtPurLocation.Enabled = true;
                 }
-                if (pbFormStatus == 1)
-                {
-                    cmbProductCategory.Enabled = false;
-                    cmbProductType.Enabled = false;
-                    txtProductName.Enabled = false;
-                    cmbChildUnit.Enabled = false; 
-                }
+                //if (pbFormStatus == 1)
+                //{
+                //    cmbProductCategory.Enabled = false;
+                //    cmbProductType.Enabled = false;
+                //    txtProductName.Enabled = false;
+                //    cmbChildUnit.Enabled = false; 
+                //}
             }
             catch (Exception ex)
             {
