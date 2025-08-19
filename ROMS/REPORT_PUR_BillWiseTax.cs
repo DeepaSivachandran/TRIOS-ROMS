@@ -156,11 +156,11 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 328)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_BillWise_Tax_Summary.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_Summary_BillWise.rpt");
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 329)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_BillWise_Tax_Details.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_Details_BillWise.rpt");
                     }
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNCode", 0);

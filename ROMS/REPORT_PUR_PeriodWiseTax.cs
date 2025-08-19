@@ -90,6 +90,10 @@ namespace ROMS
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     cmbReportType.Focus();
                 }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {

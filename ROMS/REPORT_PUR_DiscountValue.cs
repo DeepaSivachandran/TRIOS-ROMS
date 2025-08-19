@@ -162,6 +162,7 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DiscountValue_BillWise.rpt");
                         objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                        objBillreport.SetParameterValue("paraInvoiceTypeName", Convert.ToString(cmbInvType.Text));
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 336)
                     {
