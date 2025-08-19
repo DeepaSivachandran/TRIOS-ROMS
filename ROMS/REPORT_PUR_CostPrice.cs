@@ -102,6 +102,11 @@ namespace ROMS
         {
             try
             {
+                int varViewType = 15;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 325)
+                {
+                    varViewType = 32;
+                }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -111,7 +116,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(15, 0, "", 0, dpFromDate.Text, "", 0, 0, 0, Convert.ToInt32(cmbLPDates.Text), 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, Convert.ToInt32(cmbProductName.SelectedValue), "", 0);
+                objDs = objdserv.udfnPurHsnReport(varViewType, 0, "", 0, dpFromDate.Text, "01/01/2050", 0, 0, 0, Convert.ToInt32(cmbLPDates.Text), 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, Convert.ToInt32(cmbProductName.SelectedValue), "", 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -123,7 +128,14 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_CostPrice.rpt");
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 324)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_CostPrice.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_CostPrice_Details.rpt");
+                    }
                     objBillreport.SetParameterValue("paraSupplierType", 0);
                     objBillreport.SetParameterValue("paraHSNCode", 0);
                     objBillreport.SetParameterValue("paraGST", 0);
@@ -142,7 +154,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraBrandID", 0);
                     objBillreport.SetParameterValue("paraAlpha", "");
                     objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
-                    objBillreport.SetParameterValue("paraToDate", "");
+                    objBillreport.SetParameterValue("paraToDate", "01/01/2050");
                     objBillreport.SetParameterValue("paraFlag", cmbLPDates.Text);
                     objBillreport.SetParameterValue("paraProductNameType", Convert.ToInt32(cmbProductName.SelectedValue));
 
@@ -177,7 +189,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,94) AND MSTID NOT IN(0,320,321,325)", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,94) AND MSTID NOT IN(0,320,321)", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbProductName.SelectedValue = 271;
