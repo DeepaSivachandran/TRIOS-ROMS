@@ -1605,7 +1605,7 @@ namespace ROMS
                     udfnSchedulecolorchange();
                     result = objspdservice.udfnSupplierMaster(11, Convert.ToInt32(lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", "", 0,
                     0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, txtSalesManName.Text,
-                    "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","");
+                    "", txtSalesManMobile.Text, txtSalesManwhatsapp.Text, 0, "", Convert.ToInt32(lblschedule.Text), 0, "", "", "", "",  "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","",0);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -3009,7 +3009,7 @@ namespace ROMS
                     //{
                     //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     //} 
-                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","");
+                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "",   "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","",0);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")

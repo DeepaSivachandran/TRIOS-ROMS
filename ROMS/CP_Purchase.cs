@@ -5370,8 +5370,8 @@ namespace ROMS
                 txtMismatchQty.ReadOnly = false;
                 pbConditionIDs = "";
                 pbCondition = "";
-                //varExpiryDateAdd = ""; varunitid = ""; lblLocationcode.Text = "0"; expirydateFlag = 0; lblProductcode.Text = "0";
-                //varPICode = ""; varTName = ""; var_Symbol = ""; pbCondition = ""; varexp = ""; varBatchNo = ""; varBatchNoGeneration = ""; varId = "0"; varPrInvFlag = "1"; varHSNid = 0; varPrMRPFlag = ""; varGRNProType = ""; varRMProductionFlag = 0; varGrnType = ""; pbConditionIDs = "";
+                varExpiryDateAdd = ""; varunitid = ""; lblLocationcode.Text = "0"; expirydateFlag = 0; lblProductcode.Text = "0";
+                varPICode = ""; varTName = ""; var_Symbol = ""; pbCondition = ""; varexp = ""; varBatchNo = ""; varBatchNoGeneration = ""; varId = "0"; varPrInvFlag = "1"; varHSNid = 0; varPrMRPFlag = ""; varGRNProType = ""; varRMProductionFlag = 0; varGrnType = ""; pbConditionIDs = "";
                 udfnConditionClear();
             }
             catch (Exception ex)

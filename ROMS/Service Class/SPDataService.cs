@@ -1930,8 +1930,8 @@ namespace ROMS
                int paraopeningType, double paraOpeningBal, int paraSupplierType, int parastateid, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
             , int paraDesignation, string paraDesignationName, double paraCreditLimit, int paraDayid, int paramonthid, int paraweekid, int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile, string paraSalesmanWhatsapp, int paraSaleOrderType, string ParaOrderDays,
-              int ParaSupplierOrderid, int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
-              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag, int paraDiscApplicable, int paraDiscDays, int paraDiscPer, int paraScheduleId, int paraReason, string paraTallyName, string paraBankDate)
+              int ParaSupplierOrderid, int paraordertype, string ParaProductId,  string paraBranchName,
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag, int paraDiscApplicable, int paraDiscDays, int paraDiscPer, int paraScheduleId, int paraReason, string paraTallyName, string paraBankDate,int paraBankID)
         {
             string result = "";
             try
@@ -1983,9 +1983,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDiscApplicable", paraDiscApplicable);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscDays", paraDiscDays);
                 varSqlCommand.Parameters.AddWithValue("@paraDiscPer", paraDiscPer);
-
-                varSqlCommand.Parameters.AddWithValue("@parabankname", parabankname);
-                varSqlCommand.Parameters.AddWithValue("@paraBankShortName", paraBankShortName);
+                 
                 varSqlCommand.Parameters.AddWithValue("@paraBranchName", paraBranchName);
                 varSqlCommand.Parameters.AddWithValue("@paraAccNo", paraAccNo);
                 varSqlCommand.Parameters.AddWithValue("@paraIFSC", paraIFSC);
@@ -2001,6 +1999,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraReason", paraReason);
                 varSqlCommand.Parameters.AddWithValue("@paraTallyName", paraTallyName);
                 varSqlCommand.Parameters.AddWithValue("@paraBankTransactionDate", paraBankDate);
+                varSqlCommand.Parameters.AddWithValue("@paraBankID", paraBankID);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -4097,24 +4096,23 @@ namespace ROMS
         }
 
         //Added by sivabharathi on 14/08/2025 
-        public string udfnBank(int paraviewType, int paraCityId, string paraStateId, string paraCityName, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag)
+        public string udfnBank(MR_Bank objMR_Bank)
         {
             string varResult = "";
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRS_City]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Bank]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
-                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
-                varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
-                varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Bank.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraBankId", objMR_Bank.paraBankId);
+                varSqlCommand.Parameters.AddWithValue("@paraBankName", objMR_Bank.paraBankName);
+                varSqlCommand.Parameters.AddWithValue("@paraShortName", objMR_Bank.paraShortName);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Bank.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objMR_Bank.paraDeleteFlag);  
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -4128,6 +4126,33 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return varResult;
+        }
+        //Sivabharathi on 14/08/2025
+        public DataSet udfnBanklist(MR_Bank objMR_Bank)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Bank", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Bank. paraViewType); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);  
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
     }
 

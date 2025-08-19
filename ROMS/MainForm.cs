@@ -117,6 +117,7 @@ namespace ROMS
         public static CP_Printer_Setting objCP_PrinterSetting;
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;
+        public static CP_Bank  objCP_Bank;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -3168,6 +3169,24 @@ namespace ROMS
                 MainForm.objCP_PrinterSetting = new CP_Printer_Setting();
                 MainForm.objCP_PrinterSetting.MdiParent = this;
                 MainForm.objCP_PrinterSetting.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BankList = new CP_BankList();
+                MainForm.objCP_BankList.MdiParent = this;
+                MainForm.objCP_BankList.Show();
+                PbCurrentForm = "7.2.6";
             }
             catch (Exception ex)
             {

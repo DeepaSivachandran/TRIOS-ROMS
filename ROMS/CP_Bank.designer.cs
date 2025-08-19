@@ -34,12 +34,12 @@
             this.txtDStateName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
             this.txtBankName = new System.Windows.Forms.TextBox();
-            this.txtCityName = new System.Windows.Forms.TextBox();
+            this.txtShortName = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.epCity = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epBank = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epBank)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDCityName
@@ -71,7 +71,7 @@
             // grbform
             // 
             this.grbform.Controls.Add(this.txtBankName);
-            this.grbform.Controls.Add(this.txtCityName);
+            this.grbform.Controls.Add(this.txtShortName);
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
             this.grbform.Controls.Add(this.txtDCityName);
@@ -92,19 +92,22 @@
             this.txtBankName.MaxLength = 50;
             this.txtBankName.Name = "txtBankName";
             this.txtBankName.Size = new System.Drawing.Size(240, 28);
-            this.txtBankName.TabIndex = 8;
+            this.txtBankName.TabIndex = 0;
+            this.txtBankName.Enter += new System.EventHandler(this.TxtBankName_Enter);
+            this.txtBankName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankName_KeyDown);
+            this.txtBankName.Leave += new System.EventHandler(this.TxtBankName_Leave);
             // 
-            // txtCityName
+            // txtShortName
             // 
-            this.txtCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCityName.Location = new System.Drawing.Point(159, 74);
-            this.txtCityName.MaxLength = 20;
-            this.txtCityName.Name = "txtCityName";
-            this.txtCityName.Size = new System.Drawing.Size(240, 28);
-            this.txtCityName.TabIndex = 1;
-            this.txtCityName.Enter += new System.EventHandler(this.TxtCityName_Enter);
-            this.txtCityName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCityName_KeyDown);
-            this.txtCityName.Leave += new System.EventHandler(this.TxtCityName_Leave);
+            this.txtShortName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtShortName.Location = new System.Drawing.Point(159, 74);
+            this.txtShortName.MaxLength = 20;
+            this.txtShortName.Name = "txtShortName";
+            this.txtShortName.Size = new System.Drawing.Size(240, 28);
+            this.txtShortName.TabIndex = 1;
+            this.txtShortName.Enter += new System.EventHandler(this.TxtCityName_Enter);
+            this.txtShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCityName_KeyDown);
+            this.txtShortName.Leave += new System.EventHandler(this.TxtCityName_Leave);
             // 
             // btnClose
             // 
@@ -115,7 +118,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -132,7 +135,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -140,9 +143,9 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // epCity
+            // epBank
             // 
-            this.epCity.ContainerControl = this;
+            this.epBank.ContainerControl = this;
             // 
             // CP_Bank
             // 
@@ -167,7 +170,7 @@
             this.Leave += new System.EventHandler(this.CP_City_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epBank)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -178,9 +181,9 @@
         private System.Windows.Forms.TextBox txtDStateName;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.ErrorProvider epCity;
+        private System.Windows.Forms.ErrorProvider epBank;
         public System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtCityName;
+        private System.Windows.Forms.TextBox txtShortName;
         private System.Windows.Forms.TextBox txtBankName;
     }
 }

@@ -8,7 +8,7 @@ namespace ROMS.Model
 {
     class MR_Bank
     {
-        public int ViewType { get; set; } = 0;
+        public int paraViewType { get; set; } = 0;
         public int paraUserID { get; set; } = 0;
         public string paraIPAddress { get; set; } = "";
         public string paraBankName { get; set; } = "";

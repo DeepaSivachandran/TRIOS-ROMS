@@ -62,6 +62,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbBankName = new System.Windows.Forms.ComboBox();
             this.chkDefaultBank = new System.Windows.Forms.CheckBox();
             this.pnlBStatus = new System.Windows.Forms.Panel();
             this.rbBankInActive = new System.Windows.Forms.RadioButton();
@@ -82,7 +83,6 @@
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.txtAccno = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
-            this.txtBankname = new System.Windows.Forms.TextBox();
             this.grbGovtRegisterationIds = new System.Windows.Forms.GroupBox();
             this.txtDPlno = new System.Windows.Forms.TextBox();
             this.txtPlno = new System.Windows.Forms.TextBox();
@@ -173,6 +173,7 @@
             this.clmdefaultbnk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDefault = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBankID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBNKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
@@ -529,6 +530,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmbBankName);
             this.groupBox2.Controls.Add(this.chkDefaultBank);
             this.groupBox2.Controls.Add(this.pnlBStatus);
             this.groupBox2.Controls.Add(this.txtDStatus);
@@ -544,7 +546,6 @@
             this.groupBox2.Controls.Add(this.textBox17);
             this.groupBox2.Controls.Add(this.txtAccno);
             this.groupBox2.Controls.Add(this.textBox19);
-            this.groupBox2.Controls.Add(this.txtBankname);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(8, 328);
             this.groupBox2.Name = "groupBox2";
@@ -552,6 +553,20 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bank Details";
+            // 
+            // cmbBankName
+            // 
+            this.cmbBankName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBankName.FormattingEnabled = true;
+            this.cmbBankName.Location = new System.Drawing.Point(106, 27);
+            this.cmbBankName.Name = "cmbBankName";
+            this.cmbBankName.Size = new System.Drawing.Size(165, 27);
+            this.cmbBankName.TabIndex = 64;
+            this.cmbBankName.SelectedIndexChanged += new System.EventHandler(this.CmbBankName_SelectedIndexChanged);
+            this.cmbBankName.Enter += new System.EventHandler(this.CmbBankName_Enter);
+            this.cmbBankName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBankName_KeyDown);
+            this.cmbBankName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBankName_KeyPress);
+            this.cmbBankName.Leave += new System.EventHandler(this.CmbBankName_Leave);
             // 
             // chkDefaultBank
             // 
@@ -674,6 +689,7 @@
             // txtBankShortName
             // 
             this.txtBankShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBankShortName.Enabled = false;
             this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtBankShortName.Location = new System.Drawing.Point(106, 54);
             this.txtBankShortName.MaxLength = 20;
@@ -738,6 +754,7 @@
             this.clmdefaultbnk,
             this.clmDefault,
             this.clmBankID,
+            this.clmBNKID,
             this.clmEdit,
             this.clmremovebank});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -825,18 +842,6 @@
             this.textBox19.Size = new System.Drawing.Size(100, 27);
             this.textBox19.TabIndex = 200000;
             this.textBox19.Text = "Bank Name";
-            // 
-            // txtBankname
-            // 
-            this.txtBankname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBankname.Location = new System.Drawing.Point(106, 27);
-            this.txtBankname.MaxLength = 50;
-            this.txtBankname.Name = "txtBankname";
-            this.txtBankname.Size = new System.Drawing.Size(165, 27);
-            this.txtBankname.TabIndex = 20;
-            this.txtBankname.Enter += new System.EventHandler(this.TxtBankname_Enter);
-            this.txtBankname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankname_KeyDown);
-            this.txtBankname.Leave += new System.EventHandler(this.TxtBankname_Leave);
             // 
             // grbGovtRegisterationIds
             // 
@@ -1063,6 +1068,7 @@
             this.txtAddressLine2.Name = "txtAddressLine2";
             this.txtAddressLine2.Size = new System.Drawing.Size(397, 27);
             this.txtAddressLine2.TabIndex = 3;
+            this.txtAddressLine2.TextChanged += new System.EventHandler(this.TxtAddressLine2_TextChanged);
             this.txtAddressLine2.Enter += new System.EventHandler(this.TxtAddressLine2_Enter);
             this.txtAddressLine2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAddressLine2_KeyDown);
             this.txtAddressLine2.Leave += new System.EventHandler(this.TxtAddressLine2_Leave);
@@ -1841,9 +1847,16 @@
             // 
             // clmBankID
             // 
-            this.clmBankID.HeaderText = "Bank ID";
+            this.clmBankID.HeaderText = "Com Bank ID";
             this.clmBankID.Name = "clmBankID";
             this.clmBankID.Visible = false;
+            // 
+            // clmBNKID
+            // 
+            this.clmBNKID.HeaderText = "Bank ID";
+            this.clmBNKID.Name = "clmBNKID";
+            this.clmBNKID.ReadOnly = true;
+            this.clmBNKID.Visible = false;
             // 
             // clmEdit
             // 
@@ -1937,7 +1950,6 @@
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.TextBox txtAccno;
         private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox txtBankname;
         private System.Windows.Forms.GroupBox grbGovtRegisterationIds;
         private System.Windows.Forms.TextBox txtDPlno;
         private System.Windows.Forms.TextBox txtPlno;
@@ -2039,6 +2051,7 @@
         private System.Windows.Forms.DataGridViewImageColumn clmCMEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.CheckBox chkDefaultBank;
+        private System.Windows.Forms.ComboBox cmbBankName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;
@@ -2050,6 +2063,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdefaultbnk;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDefault;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBankID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBNKID;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
         private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
     }
