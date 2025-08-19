@@ -555,8 +555,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise.cs">
-      <DependentUpon>RPT_PUR_Tax_AllPurchase_MonthWise.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_DayWise.cs">
+      <DependentUpon>RPT_PUR_Tax_AllPurchase_DayWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -569,8 +569,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_DayWise.cs">
-      <DependentUpon>RPT_PUR_Tax_AllPurchase_DayWise.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise.cs">
+      <DependentUpon>RPT_PUR_Tax_AllPurchase_MonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -3407,9 +3407,9 @@
       <LastGenOutput>RPT_PUR_Tax_AdditionalValue_BillWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise.rpt">
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_AllPurchase_DayWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_Tax_AllPurchase_MonthWise.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_Tax_AllPurchase_DayWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_Tax_DiscountValue_BillWise.rpt">
@@ -3417,9 +3417,9 @@
       <LastGenOutput>RPT_PUR_Tax_DiscountValue_BillWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_PUR_Tax_AllPurchase_DayWise.rpt">
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_Tax_AllPurchase_DayWise.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_Tax_AllPurchase_MonthWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxDetails_MonthWise.rpt">
