@@ -306,7 +306,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraCityName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraInvoiceTypeName {
             get {
                 return this.DataDefinition.ParameterFields[24];
             }

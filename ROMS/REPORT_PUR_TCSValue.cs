@@ -162,7 +162,8 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_TCSValue_BillWise.rpt");
                         objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                        objBillreport.SetParameterValue("paraCityName", "");
+                        objBillreport.SetParameterValue("paraInvoiceTypeName", Convert.ToString(cmbInvType.Text));
+                        objBillreport.SetParameterValue("paraCityID",0);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 344)
                     {
