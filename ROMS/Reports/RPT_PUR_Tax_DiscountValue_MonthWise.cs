@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_DiscountValue_MonthWise : ReportClass {
+    public class RPT_PUR_Tax_DiscountValue_MonthWise : ReportClass {
         
-        public RPT_PUR_DiscountValue_MonthWise() {
+        public RPT_PUR_Tax_DiscountValue_MonthWise() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_DiscountValue_MonthWise.rpt";
+                return "RPT_PUR_Tax_DiscountValue_MonthWise.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_DiscountValue_MonthWise.rpt";
+                return "ROMS.Reports.RPT_PUR_Tax_DiscountValue_MonthWise.rpt";
             }
             set {
                 // Do nothing
@@ -306,9 +306,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_DiscountValue_MonthWise : Component, ICachedReport {
+    public class CachedRPT_PUR_Tax_DiscountValue_MonthWise : Component, ICachedReport {
         
-        public CachedRPT_PUR_DiscountValue_MonthWise() {
+        public CachedRPT_PUR_Tax_DiscountValue_MonthWise() {
         }
         
         [Browsable(false)]
@@ -345,7 +345,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_DiscountValue_MonthWise rpt = new RPT_PUR_DiscountValue_MonthWise();
+            RPT_PUR_Tax_DiscountValue_MonthWise rpt = new RPT_PUR_Tax_DiscountValue_MonthWise();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -92,7 +92,7 @@ namespace ROMS
                 }
                 else
                 {
-
+                    udfnPurchaseReport();
                 }
             }
             catch (Exception ex)
@@ -101,10 +101,15 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnCity()
+        public void udfnPurchaseReport()
         {
             try
             {
+                int varViewType = 18;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 331)
+                {
+                    varViewType = 19;
+                }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -113,9 +118,9 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnCitylist(3, "", 0, 0);
-                objspservice.CloseConnection();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(cmbMonths.SelectedValue));
+                objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -125,9 +130,37 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_City.rpt");
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 330)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_DayWise.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 331)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_MonthWise.rpt");
+                        objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
+                        objBillreport.SetParameterValue("paraMonth", Convert.ToInt32(cmbMonths.SelectedValue));
+                    }
+                    objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
+                    objBillreport.SetParameterValue("paraHSNCode", 0);
+                    objBillreport.SetParameterValue("paraGST", 0);
+                    objBillreport.SetParameterValue("paraCompanyId", 0);
+                    objBillreport.SetParameterValue("paraInvioceType", 0);
+                    objBillreport.SetParameterValue("paraPaymentType", 0);
+                    objBillreport.SetParameterValue("paraPurchaseType", 0);
+                    objBillreport.SetParameterValue("paraConditionType", 0);
+                    objBillreport.SetParameterValue("paraBrandID", 0);
+                    objBillreport.SetParameterValue("paraAlpha", "");
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraFlag", 0);
+                    objBillreport.SetParameterValue("paraProductNameType", 0);
+                    objBillreport.SetParameterValue("paraGroupId", 0);
+                    objBillreport.SetParameterValue("paraSubgroupId", 0);
+                    objBillreport.SetParameterValue("paraProductId", 0);
+                    objBillreport.SetParameterValue("paraSupplierID", 0);
+                    objBillreport.SetParameterValue("paraScheduleID", 0);
+                    objBillreport.SetParameterValue("paraSupplierTypeName", cmbSupplierType.Text);
+
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
