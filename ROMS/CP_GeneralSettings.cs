@@ -121,6 +121,7 @@ namespace ROMS
                             txtVerificationDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_VerificationDays"]);
                             txtMonths.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Aging_Months"]);
                             txtLPRate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_LPRatePer"]);
+                            txtRTGSMinLimit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -180,6 +181,7 @@ namespace ROMS
                 epGeneralSettings.Clear();
                 string varResult = "";
                 int Varflagstock = 0;
+                decimal varRTGSMinLimit = 0;
                 btnUpdate.Enabled = false; lblReportname.Focus();
                  SPDataService objDser = new SPDataService();
                 string varOriginator = "GeneralSettings Updation";
@@ -218,7 +220,11 @@ namespace ROMS
                 {
                     varDCCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text));
+                if(txtRTGSMinLimit.Text.Trim()!="")
+                {
+                    varRTGSMinLimit =Convert.ToDecimal(txtRTGSMinLimit.Text);
+                }
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit);
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -1587,7 +1593,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnUpdate.Focus();
+                    txtRTGSMinLimit.Focus();
                 }
             }
             catch (Exception ex)
@@ -1617,6 +1623,68 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void TxtRTGSMinLimit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRTGSMinLimit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRTGSMinLimit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRTGSMinLimit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                } 
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex); 
+            }
+        } 
+        private void TxtRTGSMinLimit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRTGSMinLimit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

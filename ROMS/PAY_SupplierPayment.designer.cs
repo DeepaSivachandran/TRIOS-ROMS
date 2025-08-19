@@ -29,23 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle323 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle324 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle325 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle326 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle335 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle336 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle327 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle328 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle329 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle330 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle331 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle332 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle333 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle334 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsSupplierPayment = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblAmount = new System.Windows.Forms.Label();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.txtBank = new System.Windows.Forms.TextBox();
@@ -57,30 +64,19 @@
             this.label33 = new System.Windows.Forms.Label();
             this.btnAdvance = new System.Windows.Forms.Button();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
-            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReturnAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmREDDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblRupee = new System.Windows.Forms.Label();
             this.l = new System.Windows.Forms.Label();
-            this.LV_Supplier = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblBIFSCode = new System.Windows.Forms.Label();
             this.lblBAccNo = new System.Windows.Forms.Label();
             this.lblBAccName = new System.Windows.Forms.Label();
             this.lblBranchName = new System.Windows.Forms.Label();
             this.lblBankName = new System.Windows.Forms.Label();
-            this.cmbPaymentType = new System.Windows.Forms.ComboBox();
-            this.txtDPaymentType = new System.Windows.Forms.TextBox();
             this.lblGrandTotal = new System.Windows.Forms.Label();
             this.cmbPaymentmode = new System.Windows.Forms.ComboBox();
             this.txtDPaymentMode = new System.Windows.Forms.TextBox();
             this.txtChequeNo = new System.Windows.Forms.TextBox();
-            this.dtChequeDate = new System.Windows.Forms.DateTimePicker();
+            this.dpChequeDate = new System.Windows.Forms.DateTimePicker();
             this.txtChequeDate = new System.Windows.Forms.TextBox();
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
             this.grdSupplierPayment = new System.Windows.Forms.DataGridView();
@@ -133,8 +129,10 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epSupplier = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReturnAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmREDDCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -187,13 +185,11 @@
             this.pnlinward.Controls.Add(this.lblRupee);
             this.pnlinward.Controls.Add(this.l);
             this.pnlinward.Controls.Add(this.groupBox1);
-            this.pnlinward.Controls.Add(this.cmbPaymentType);
-            this.pnlinward.Controls.Add(this.txtDPaymentType);
             this.pnlinward.Controls.Add(this.lblGrandTotal);
             this.pnlinward.Controls.Add(this.cmbPaymentmode);
             this.pnlinward.Controls.Add(this.txtDPaymentMode);
             this.pnlinward.Controls.Add(this.txtChequeNo);
-            this.pnlinward.Controls.Add(this.dtChequeDate);
+            this.pnlinward.Controls.Add(this.dpChequeDate);
             this.pnlinward.Controls.Add(this.txtChequeDate);
             this.pnlinward.Controls.Add(this.txtDChequeNo);
             this.pnlinward.Controls.Add(this.grdSupplierPayment);
@@ -208,10 +204,62 @@
             this.pnlinward.Size = new System.Drawing.Size(1354, 643);
             this.pnlinward.TabIndex = 36;
             // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader1});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(351, 65);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(366, 164);
+            this.LV_Supplier.TabIndex = 1111210;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(422, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.TabIndex = 111111150;
+            this.label1.Text = "Search";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(422, 94);
+            this.txtSearch.MaxLength = 50;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(305, 27);
+            this.txtSearch.TabIndex = 4;
+            this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
+            this.txtSearch.Enter += new System.EventHandler(this.TxtSearch_Enter);
+            this.txtSearch.Leave += new System.EventHandler(this.TxtSearch_Leave);
+            // 
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(825, 618);
+            this.lblAmount.Location = new System.Drawing.Point(1113, 614);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(41, 20);
             this.lblAmount.TabIndex = 111111148;
@@ -221,7 +269,7 @@
             // cmbBank
             // 
             this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(490, 613);
+            this.cmbBank.Location = new System.Drawing.Point(490, 534);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(150, 27);
             this.cmbBank.TabIndex = 10;
@@ -235,7 +283,7 @@
             this.txtBank.BackColor = System.Drawing.SystemColors.Control;
             this.txtBank.Enabled = false;
             this.txtBank.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBank.Location = new System.Drawing.Point(351, 613);
+            this.txtBank.Location = new System.Drawing.Point(351, 534);
             this.txtBank.Name = "txtBank";
             this.txtBank.ReadOnly = true;
             this.txtBank.Size = new System.Drawing.Size(139, 27);
@@ -332,14 +380,14 @@
             this.grdReurnDC.AllowUserToResizeRows = false;
             this.grdReurnDC.BackgroundColor = System.Drawing.Color.White;
             this.grdReurnDC.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle323.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle323.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle323.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle323.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle323.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle323.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle323.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdReurnDC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle323;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdReurnDC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.grdReurnDC.ColumnHeadersHeight = 30;
             this.grdReurnDC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdReurnDC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -347,54 +395,27 @@
             this.DCDate,
             this.clmReturnAmnt,
             this.clmREDDCID});
-            dataGridViewCellStyle324.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle324.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle324.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle324.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle324.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle324.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle324.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdReurnDC.DefaultCellStyle = dataGridViewCellStyle324;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReurnDC.DefaultCellStyle = dataGridViewCellStyle16;
             this.grdReurnDC.EnableHeadersVisualStyles = false;
             this.grdReurnDC.GridColor = System.Drawing.Color.White;
-            this.grdReurnDC.Location = new System.Drawing.Point(661, 507);
+            this.grdReurnDC.Location = new System.Drawing.Point(1041, 12);
             this.grdReurnDC.Name = "grdReurnDC";
             this.grdReurnDC.ReadOnly = true;
             this.grdReurnDC.RowHeadersVisible = false;
-            dataGridViewCellStyle325.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            this.grdReurnDC.RowsDefaultCellStyle = dataGridViewCellStyle325;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            this.grdReurnDC.RowsDefaultCellStyle = dataGridViewCellStyle17;
             this.grdReurnDC.RowTemplate.Height = 25;
             this.grdReurnDC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdReurnDC.Size = new System.Drawing.Size(355, 108);
+            this.grdReurnDC.Size = new System.Drawing.Size(304, 108);
             this.grdReurnDC.TabIndex = 111111138;
             this.grdReurnDC.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReurnDC_CellContentDoubleClick);
-            // 
-            // InvoiceNo
-            // 
-            this.InvoiceNo.HeaderText = "Trans No.";
-            this.InvoiceNo.Name = "InvoiceNo";
-            this.InvoiceNo.ReadOnly = true;
-            this.InvoiceNo.Width = 102;
-            // 
-            // DCDate
-            // 
-            this.DCDate.HeaderText = "Trans Date";
-            this.DCDate.Name = "DCDate";
-            this.DCDate.ReadOnly = true;
-            // 
-            // clmReturnAmnt
-            // 
-            this.clmReturnAmnt.HeaderText = "Amount";
-            this.clmReturnAmnt.Name = "clmReturnAmnt";
-            this.clmReturnAmnt.ReadOnly = true;
-            this.clmReturnAmnt.Width = 150;
-            // 
-            // clmREDDCID
-            // 
-            this.clmREDDCID.HeaderText = "ID";
-            this.clmREDDCID.Name = "clmREDDCID";
-            this.clmREDDCID.ReadOnly = true;
-            this.clmREDDCID.Visible = false;
             // 
             // lblRupee
             // 
@@ -415,37 +436,6 @@
             this.l.TabIndex = 1111211;
             this.l.Text = "Grand Total :";
             // 
-            // LV_Supplier
-            // 
-            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader1});
-            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(351, 65);
-            this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(366, 164);
-            this.LV_Supplier.TabIndex = 1111210;
-            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
-            this.LV_Supplier.View = System.Windows.Forms.View.Details;
-            this.LV_Supplier.Visible = false;
-            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
-            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 180;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Width = 120;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Width = 0;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblBIFSCode);
@@ -454,7 +444,7 @@
             this.groupBox1.Controls.Add(this.lblBranchName);
             this.groupBox1.Controls.Add(this.lblBankName);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.groupBox1.Location = new System.Drawing.Point(1055, 2);
+            this.groupBox1.Location = new System.Drawing.Point(657, 507);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(287, 119);
             this.groupBox1.TabIndex = 1111177;
@@ -511,34 +501,6 @@
             this.lblBankName.TabIndex = 0;
             this.lblBankName.Text = "Tamilnadu Merchantile Bank";
             // 
-            // cmbPaymentType
-            // 
-            this.cmbPaymentType.FormattingEnabled = true;
-            this.cmbPaymentType.Location = new System.Drawing.Point(490, 534);
-            this.cmbPaymentType.Name = "cmbPaymentType";
-            this.cmbPaymentType.Size = new System.Drawing.Size(150, 27);
-            this.cmbPaymentType.TabIndex = 7;
-            this.cmbPaymentType.Visible = false;
-            this.cmbPaymentType.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentType_SelectedIndexChanged);
-            this.cmbPaymentType.Enter += new System.EventHandler(this.CmbPaymentType_Enter);
-            this.cmbPaymentType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentType_KeyDown);
-            this.cmbPaymentType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPaymentType_KeyPress);
-            this.cmbPaymentType.Leave += new System.EventHandler(this.CmbPaymentType_Leave);
-            // 
-            // txtDPaymentType
-            // 
-            this.txtDPaymentType.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDPaymentType.Enabled = false;
-            this.txtDPaymentType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPaymentType.Location = new System.Drawing.Point(351, 534);
-            this.txtDPaymentType.Name = "txtDPaymentType";
-            this.txtDPaymentType.ReadOnly = true;
-            this.txtDPaymentType.Size = new System.Drawing.Size(139, 27);
-            this.txtDPaymentType.TabIndex = 1111175;
-            this.txtDPaymentType.TabStop = false;
-            this.txtDPaymentType.Text = "Payment Type";
-            this.txtDPaymentType.Visible = false;
-            // 
             // lblGrandTotal
             // 
             this.lblGrandTotal.AutoSize = true;
@@ -589,18 +551,18 @@
             this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown);
             this.txtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
-            // dtChequeDate
+            // dpChequeDate
             // 
-            this.dtChequeDate.CustomFormat = "dd/MM/yyyy";
-            this.dtChequeDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtChequeDate.Location = new System.Drawing.Point(490, 561);
-            this.dtChequeDate.Name = "dtChequeDate";
-            this.dtChequeDate.Size = new System.Drawing.Size(150, 27);
-            this.dtChequeDate.TabIndex = 8;
-            this.dtChequeDate.Visible = false;
-            this.dtChequeDate.Enter += new System.EventHandler(this.DtChequeDate_Enter);
-            this.dtChequeDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtChequeDate_KeyDown);
-            this.dtChequeDate.Leave += new System.EventHandler(this.DtChequeDate_Leave);
+            this.dpChequeDate.CustomFormat = "dd/MM/yyyy";
+            this.dpChequeDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpChequeDate.Location = new System.Drawing.Point(490, 561);
+            this.dpChequeDate.Name = "dpChequeDate";
+            this.dpChequeDate.Size = new System.Drawing.Size(150, 27);
+            this.dpChequeDate.TabIndex = 8;
+            this.dpChequeDate.Visible = false;
+            this.dpChequeDate.Enter += new System.EventHandler(this.DtChequeDate_Enter);
+            this.dpChequeDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtChequeDate_KeyDown);
+            this.dpChequeDate.Leave += new System.EventHandler(this.DtChequeDate_Leave);
             // 
             // txtChequeDate
             // 
@@ -637,14 +599,14 @@
             this.grdSupplierPayment.AllowUserToResizeRows = false;
             this.grdSupplierPayment.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierPayment.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle326.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle326.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle326.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle326.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle326.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle326.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle326.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierPayment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle326;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupplierPayment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.grdSupplierPayment.ColumnHeadersHeight = 30;
             this.grdSupplierPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupplierPayment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -672,22 +634,22 @@
             this.clmApprovedBy,
             this.clmCreditID,
             this.clmFlag});
-            dataGridViewCellStyle335.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle335.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle335.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle335.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle335.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle335.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle335.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSupplierPayment.DefaultCellStyle = dataGridViewCellStyle335;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSupplierPayment.DefaultCellStyle = dataGridViewCellStyle27;
             this.grdSupplierPayment.EnableHeadersVisualStyles = false;
             this.grdSupplierPayment.GridColor = System.Drawing.Color.White;
             this.grdSupplierPayment.Location = new System.Drawing.Point(10, 128);
             this.grdSupplierPayment.Name = "grdSupplierPayment";
             this.grdSupplierPayment.RowHeadersVisible = false;
-            dataGridViewCellStyle336.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle336.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSupplierPayment.RowsDefaultCellStyle = dataGridViewCellStyle336;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSupplierPayment.RowsDefaultCellStyle = dataGridViewCellStyle28;
             this.grdSupplierPayment.RowTemplate.Height = 25;
             this.grdSupplierPayment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSupplierPayment.ShowRowErrors = false;
@@ -696,10 +658,8 @@
             this.grdSupplierPayment.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellClick_1);
             this.grdSupplierPayment.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellContentClick);
             this.grdSupplierPayment.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellEndEdit);
-            this.grdSupplierPayment.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellLeave);
             this.grdSupplierPayment.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierPayment_CellValueChanged);
             this.grdSupplierPayment.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdSupplierPayment_CurrentCellDirtyStateChanged);
-            this.grdSupplierPayment.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdSupplierPayment_EditingControlShowing);
             this.grdSupplierPayment.SelectionChanged += new System.EventHandler(this.GrdSupplierPayment_SelectionChanged);
             // 
             // clmcheck
@@ -712,8 +672,8 @@
             // 
             // clmdsno
             // 
-            dataGridViewCellStyle327.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmdsno.DefaultCellStyle = dataGridViewCellStyle327;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmdsno.DefaultCellStyle = dataGridViewCellStyle19;
             this.clmdsno.Frozen = true;
             this.clmdsno.HeaderText = "S.No.";
             this.clmdsno.Name = "clmdsno";
@@ -722,8 +682,8 @@
             // 
             // clmVoucherDate
             // 
-            dataGridViewCellStyle328.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmVoucherDate.DefaultCellStyle = dataGridViewCellStyle328;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmVoucherDate.DefaultCellStyle = dataGridViewCellStyle20;
             this.clmVoucherDate.Frozen = true;
             this.clmVoucherDate.HeaderText = "Voucher Date";
             this.clmVoucherDate.Name = "clmVoucherDate";
@@ -732,8 +692,8 @@
             // 
             // clmvoucherno
             // 
-            dataGridViewCellStyle329.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmvoucherno.DefaultCellStyle = dataGridViewCellStyle329;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmvoucherno.DefaultCellStyle = dataGridViewCellStyle21;
             this.clmvoucherno.Frozen = true;
             this.clmvoucherno.HeaderText = "Voucher No.";
             this.clmvoucherno.Name = "clmvoucherno";
@@ -741,8 +701,8 @@
             // 
             // clmInvoiceDate
             // 
-            dataGridViewCellStyle330.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle330;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle22;
             this.clmInvoiceDate.Frozen = true;
             this.clmInvoiceDate.HeaderText = "Invoice Date";
             this.clmInvoiceDate.Name = "clmInvoiceDate";
@@ -750,8 +710,8 @@
             // 
             // clmInvoiceNo
             // 
-            dataGridViewCellStyle331.BackColor = System.Drawing.Color.AliceBlue;
-            this.clmInvoiceNo.DefaultCellStyle = dataGridViewCellStyle331;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.AliceBlue;
+            this.clmInvoiceNo.DefaultCellStyle = dataGridViewCellStyle23;
             this.clmInvoiceNo.Frozen = true;
             this.clmInvoiceNo.HeaderText = "Invoice No";
             this.clmInvoiceNo.Name = "clmInvoiceNo";
@@ -778,8 +738,8 @@
             // 
             // clmDiscAmount
             // 
-            dataGridViewCellStyle332.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmDiscAmount.DefaultCellStyle = dataGridViewCellStyle332;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmDiscAmount.DefaultCellStyle = dataGridViewCellStyle24;
             this.clmDiscAmount.HeaderText = "Discount Amount";
             this.clmDiscAmount.Name = "clmDiscAmount";
             this.clmDiscAmount.ReadOnly = true;
@@ -794,8 +754,8 @@
             // 
             // clmAdvanceAmnt
             // 
-            dataGridViewCellStyle333.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmAdvanceAmnt.DefaultCellStyle = dataGridViewCellStyle333;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmAdvanceAmnt.DefaultCellStyle = dataGridViewCellStyle25;
             this.clmAdvanceAmnt.HeaderText = "Advance Amount";
             this.clmAdvanceAmnt.Name = "clmAdvanceAmnt";
             this.clmAdvanceAmnt.ReadOnly = true;
@@ -803,10 +763,10 @@
             // 
             // clmPayAmount
             // 
-            dataGridViewCellStyle334.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle334.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle334.ForeColor = System.Drawing.Color.Black;
-            this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle334;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black;
+            this.clmPayAmount.DefaultCellStyle = dataGridViewCellStyle26;
             this.clmPayAmount.HeaderText = "Pay Amount";
             this.clmPayAmount.Name = "clmPayAmount";
             this.clmPayAmount.ReadOnly = true;
@@ -1172,26 +1132,30 @@
             // 
             this.epSupplier.ContainerControl = this;
             // 
-            // txtSearch
+            // InvoiceNo
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(422, 94);
-            this.txtSearch.MaxLength = 50;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(305, 27);
-            this.txtSearch.TabIndex = 4;
-            this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
-            this.txtSearch.Enter += new System.EventHandler(this.TxtSearch_Enter);
-            this.txtSearch.Leave += new System.EventHandler(this.TxtSearch_Leave);
+            this.InvoiceNo.HeaderText = "Trans No.";
+            this.InvoiceNo.Name = "InvoiceNo";
+            this.InvoiceNo.ReadOnly = true;
             // 
-            // label1
+            // DCDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(422, 73);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
-            this.label1.TabIndex = 111111150;
-            this.label1.Text = "Search";
+            this.DCDate.HeaderText = "Trans Date";
+            this.DCDate.Name = "DCDate";
+            this.DCDate.ReadOnly = true;
+            // 
+            // clmReturnAmnt
+            // 
+            this.clmReturnAmnt.HeaderText = "Amount";
+            this.clmReturnAmnt.Name = "clmReturnAmnt";
+            this.clmReturnAmnt.ReadOnly = true;
+            // 
+            // clmREDDCID
+            // 
+            this.clmREDDCID.HeaderText = "ID";
+            this.clmREDDCID.Name = "clmREDDCID";
+            this.clmREDDCID.ReadOnly = true;
+            this.clmREDDCID.Visible = false;
             // 
             // PAY_SupplierPayment
             // 
@@ -1251,11 +1215,9 @@
         private System.Windows.Forms.ComboBox cmbPaymentmode;
         private System.Windows.Forms.TextBox txtDPaymentMode;
         private System.Windows.Forms.TextBox txtChequeNo;
-        private System.Windows.Forms.DateTimePicker dtChequeDate;
+        private System.Windows.Forms.DateTimePicker dpChequeDate;
         private System.Windows.Forms.TextBox txtChequeDate;
         private System.Windows.Forms.TextBox txtDChequeNo;
-        private System.Windows.Forms.ComboBox cmbPaymentType;
-        private System.Windows.Forms.TextBox txtDPaymentType;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblBIFSCode;
         private System.Windows.Forms.Label lblBAccNo;
@@ -1292,10 +1254,6 @@
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.TextBox txtBank;
         private System.Windows.Forms.Label lblAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnAmnt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmREDDCID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmVoucherDate;
@@ -1322,5 +1280,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFlag;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DCDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnAmnt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmREDDCID;
     }
 }

@@ -43,7 +43,7 @@ namespace ROMS
         public static bool isFormClosed = false;
         public static bool isClose = false;
         public static bool isFormClosedMenu = false;
-        public static DateTime pbCurrentDate, pbFYStartDate, pbFYEndDate;
+        public static DateTime pbCurrentDate, pbFYStartDate, pbFYEndDate; 
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart;
@@ -118,6 +118,7 @@ namespace ROMS
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;
         public static CP_Bank  objCP_Bank;
+        public static PAY_Cheque objPAY_Cheque;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -391,7 +392,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             pbShelflifeLevel1 = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_Level1"]);
-                            pbShelflifeLevel2 = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_Level2"]);
+                            pbShelflifeLevel2 = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_Level2"]); 
                         }
                     }
                 }
@@ -3186,6 +3187,24 @@ namespace ROMS
                 MainForm.objCP_BankList = new CP_BankList();
                 MainForm.objCP_BankList.MdiParent = this;
                 MainForm.objCP_BankList.Show();
+                PbCurrentForm = "7.2.6";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmCheque_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_Cheque = new PAY_Cheque();
+                MainForm.objPAY_Cheque.MdiParent = this;
+                MainForm.objPAY_Cheque.Show();
                 PbCurrentForm = "7.2.6";
             }
             catch (Exception ex)

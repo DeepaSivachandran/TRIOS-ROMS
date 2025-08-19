@@ -64,6 +64,7 @@ namespace ROMS
             this.advanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbCreditNote = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCheque = new System.Windows.Forms.ToolStripMenuItem();
             this.gSTRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +72,7 @@ namespace ROMS
             this.lblTime = new System.Windows.Forms.ToolStripMenuItem();
             this.mastersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCity = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBank = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCompany = new System.Windows.Forms.ToolStripMenuItem();
             this.tsnHSN = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGroup = new System.Windows.Forms.ToolStripMenuItem();
@@ -180,7 +182,6 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBank = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -421,6 +422,7 @@ namespace ROMS
             this.advanceToolStripMenuItem,
             this.tsbCreditNote,
             this.supplierPaymentToolStripMenuItem,
+            this.tsmCheque,
             this.gSTRToolStripMenuItem});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
@@ -470,6 +472,13 @@ namespace ROMS
             this.supplierPaymentToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.supplierPaymentToolStripMenuItem.Text = "Supplier Payment";
             this.supplierPaymentToolStripMenuItem.Click += new System.EventHandler(this.SupplierPaymentToolStripMenuItem_Click);
+            // 
+            // tsmCheque
+            // 
+            this.tsmCheque.Name = "tsmCheque";
+            this.tsmCheque.Size = new System.Drawing.Size(183, 22);
+            this.tsmCheque.Text = "Cheque Print";
+            this.tsmCheque.Click += new System.EventHandler(this.TsmCheque_Click);
             // 
             // gSTRToolStripMenuItem
             // 
@@ -565,6 +574,13 @@ namespace ROMS
             this.tsmCity.Size = new System.Drawing.Size(225, 22);
             this.tsmCity.Text = "City";
             this.tsmCity.Click += new System.EventHandler(this.StateToolStripMenuItem_Click);
+            // 
+            // tsmBank
+            // 
+            this.tsmBank.Name = "tsmBank";
+            this.tsmBank.Size = new System.Drawing.Size(225, 22);
+            this.tsmBank.Text = "Bank";
+            this.tsmBank.Click += new System.EventHandler(this.TsmBank_Click);
             // 
             // tsmCompany
             // 
@@ -1431,13 +1447,6 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // tsmBank
-            // 
-            this.tsmBank.Name = "tsmBank";
-            this.tsmBank.Size = new System.Drawing.Size(225, 22);
-            this.tsmBank.Text = "Bank";
-            this.tsmBank.Click += new System.EventHandler(this.TsmBank_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1618,5 +1627,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem directLabelPrintToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printerSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmBank;
+        private System.Windows.Forms.ToolStripMenuItem tsmCheque;
     }
 }

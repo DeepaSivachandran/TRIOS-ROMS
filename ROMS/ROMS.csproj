@@ -215,6 +215,12 @@
       <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\MR_Bank.cs" />
+    <Compile Include="PAY_ChequeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_ChequeList.designer.cs">
+      <DependentUpon>PAY_ChequeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_SupplierPayment_BankDate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2721,6 +2727,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_ChangeList.resx">
       <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_ChequeList.resx">
+      <DependentUpon>PAY_ChequeList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment_BankDate.resx">
       <DependentUpon>PAY_SupplierPayment_BankDate.cs</DependentUpon>
