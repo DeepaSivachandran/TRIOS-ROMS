@@ -148,8 +148,6 @@ namespace ROMS
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AllPurchase_MonthWise.rpt");
-                        objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
-                        objBillreport.SetParameterValue("paraMonth", Convert.ToInt32(cmbMonths.SelectedValue));
                     }
                     objBillreport.SetParameterValue("paraSupplierType",0);
                     objBillreport.SetParameterValue("paraHSNCode", 0);
@@ -403,21 +401,21 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
-                {
-                    dpFromDate.Value = MainForm.pbCurrentDate;
-                    dpToDate.Value = MainForm.pbCurrentDate;
-                    dpFromDate.Enabled = false;
-                    dpToDate.Enabled = false;
-                    cmbMonths.Enabled = true;
-                }
-                else
-                {
-                    dpFromDate.Enabled = true;
-                    dpToDate.Enabled = true;
-                    cmbMonths.SelectedValue = 0;
-                    cmbMonths.Enabled = false;
-                }
+                //if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
+                //{
+                //    dpFromDate.Value = MainForm.pbCurrentDate;
+                //    dpToDate.Value = MainForm.pbCurrentDate;
+                //    dpFromDate.Enabled = false;
+                //    dpToDate.Enabled = false;
+                //    cmbMonths.Enabled = true;
+                //}
+                //else
+                //{
+                //    dpFromDate.Enabled = true;
+                //    dpToDate.Enabled = true;
+                //    cmbMonths.SelectedValue = 0;
+                //    cmbMonths.Enabled = false;
+                //}
             }
             catch (Exception ex)
             {
