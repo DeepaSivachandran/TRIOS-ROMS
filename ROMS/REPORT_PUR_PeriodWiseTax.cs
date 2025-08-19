@@ -110,6 +110,10 @@ namespace ROMS
                 {
                     varViewType = 19;
                 }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 351)
+                {
+                    varViewType = 31;
+                }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -139,6 +143,10 @@ namespace ROMS
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_MonthWise.rpt");
                         objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
                         objBillreport.SetParameterValue("paraMonth", Convert.ToInt32(cmbMonths.SelectedValue));
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 351)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_DayWise_Summary.rpt");
                     }
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNCode", 0);

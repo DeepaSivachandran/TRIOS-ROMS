@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         private ToolTip tpReportType = new ToolTip();
+        private ToolTip tpGST = new ToolTip();
         public int varUpDownKeySupplier = 0;
         public REPORT_PUR_AllTax()
         {
@@ -90,6 +91,21 @@ namespace ROMS
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     cmbReportType.Focus();
                 }
+                else
+                {
+                    if (Convert.ToInt32(cmbGST.SelectedValue) == -1)
+                    {
+                        epReport.SetError(cmbGST, "Please select gst.");
+                        cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpGST.ShowAlways = true;
+                        tpGST.Show("Please select gst.", cmbGST, 5000);
+                        cmbGST.Focus();
+                    }
+                    else
+                    {
+                        udfnAllPurchaseTaxReport();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -97,7 +113,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnCity()
+        public void udfnAllPurchaseTaxReport()
         {
             try
             {
@@ -127,11 +143,11 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 338)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_DayWise.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AllPurchase_DayWise.rpt");
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_MonthWise.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AllPurchase_MonthWise.rpt");
                         objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
                         objBillreport.SetParameterValue("paraMonth", Convert.ToInt32(cmbMonths.SelectedValue));
                     }
