@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_BillWise_Tax_Summary : ReportClass {
+    public class RPT_PUR_TCSValue_MonthWise : ReportClass {
         
-        public RPT_PUR_BillWise_Tax_Summary() {
+        public RPT_PUR_TCSValue_MonthWise() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_BillWise_Tax_Summary.rpt";
+                return "RPT_PUR_TCSValue_MonthWise.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_BillWise_Tax_Summary.rpt";
+                return "ROMS.Reports.RPT_PUR_TCSValue_MonthWise.rpt";
             }
             set {
                 // Do nothing
@@ -290,7 +290,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraMonthName {
             get {
                 return this.DataDefinition.ParameterFields[22];
             }
@@ -298,7 +298,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraInvoiceTypeName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraMonth {
             get {
                 return this.DataDefinition.ParameterFields[23];
             }
@@ -306,9 +306,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_BillWise_Tax_Summary : Component, ICachedReport {
+    public class CachedRPT_PUR_TCSValue_MonthWise : Component, ICachedReport {
         
-        public CachedRPT_PUR_BillWise_Tax_Summary() {
+        public CachedRPT_PUR_TCSValue_MonthWise() {
         }
         
         [Browsable(false)]
@@ -345,7 +345,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_BillWise_Tax_Summary rpt = new RPT_PUR_BillWise_Tax_Summary();
+            RPT_PUR_TCSValue_MonthWise rpt = new RPT_PUR_TCSValue_MonthWise();
             rpt.Site = this.Site;
             return rpt;
         }

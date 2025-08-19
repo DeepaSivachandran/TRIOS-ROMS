@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_MonthWise_AdditionalValue : ReportClass {
+    public class RPT_PUR_Tax_Details_DayWise : ReportClass {
         
-        public RPT_PUR_MonthWise_AdditionalValue() {
+        public RPT_PUR_Tax_Details_DayWise() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_MonthWise_AdditionalValue.rpt";
+                return "RPT_PUR_Tax_Details_DayWise.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_MonthWise_AdditionalValue.rpt";
+                return "ROMS.Reports.RPT_PUR_Tax_Details_DayWise.rpt";
             }
             set {
                 // Do nothing
@@ -74,7 +74,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section PageHeaderSection3 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -90,7 +90,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -290,7 +290,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraMonthName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraPayType {
             get {
                 return this.DataDefinition.ParameterFields[22];
             }
@@ -298,7 +298,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraMonth {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraConType {
             get {
                 return this.DataDefinition.ParameterFields[23];
             }
@@ -306,9 +306,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_MonthWise_AdditionalValue : Component, ICachedReport {
+    public class CachedRPT_PUR_Tax_Details_DayWise : Component, ICachedReport {
         
-        public CachedRPT_PUR_MonthWise_AdditionalValue() {
+        public CachedRPT_PUR_Tax_Details_DayWise() {
         }
         
         [Browsable(false)]
@@ -345,7 +345,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_MonthWise_AdditionalValue rpt = new RPT_PUR_MonthWise_AdditionalValue();
+            RPT_PUR_Tax_Details_DayWise rpt = new RPT_PUR_Tax_Details_DayWise();
             rpt.Site = this.Site;
             return rpt;
         }

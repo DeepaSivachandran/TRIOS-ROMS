@@ -160,17 +160,17 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 343)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_BillWise_TCSValue.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_TCSValue_BillWise.rpt");
                         objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                         objBillreport.SetParameterValue("paraInvoiceTypeName", Convert.ToString(cmbInvType.Text));
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 344)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DayWise_TCSValue.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_TCSValue_DayWise.rpt");
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 345)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_MonthWise_TCSValue.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_TCSValue_MonthWise.rpt");
                         objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
                         objBillreport.SetParameterValue("paraMonth", Convert.ToInt32(cmbMonths.SelectedValue));
                     }

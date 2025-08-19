@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_DayWise_TCSValue : ReportClass {
+    public class RPT_PUR_DiscountValue_MonthWise : ReportClass {
         
-        public RPT_PUR_DayWise_TCSValue() {
+        public RPT_PUR_DiscountValue_MonthWise() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_DayWise_TCSValue.rpt";
+                return "RPT_PUR_DiscountValue_MonthWise.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_DayWise_TCSValue.rpt";
+                return "ROMS.Reports.RPT_PUR_DiscountValue_MonthWise.rpt";
             }
             set {
                 // Do nothing
@@ -287,12 +287,28 @@ namespace ROMS.Reports {
                 return this.DataDefinition.ParameterFields[21];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraMonthName {
+            get {
+                return this.DataDefinition.ParameterFields[22];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraMonth {
+            get {
+                return this.DataDefinition.ParameterFields[23];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_DayWise_TCSValue : Component, ICachedReport {
+    public class CachedRPT_PUR_DiscountValue_MonthWise : Component, ICachedReport {
         
-        public CachedRPT_PUR_DayWise_TCSValue() {
+        public CachedRPT_PUR_DiscountValue_MonthWise() {
         }
         
         [Browsable(false)]
@@ -329,7 +345,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_DayWise_TCSValue rpt = new RPT_PUR_DayWise_TCSValue();
+            RPT_PUR_DiscountValue_MonthWise rpt = new RPT_PUR_DiscountValue_MonthWise();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_DayWise_Tax_Details : ReportClass {
+    public class RPT_PUR_TCSValue_DayWise : ReportClass {
         
-        public RPT_PUR_DayWise_Tax_Details() {
+        public RPT_PUR_TCSValue_DayWise() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_DayWise_Tax_Details.rpt";
+                return "RPT_PUR_TCSValue_DayWise.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_DayWise_Tax_Details.rpt";
+                return "ROMS.Reports.RPT_PUR_TCSValue_DayWise.rpt";
             }
             set {
                 // Do nothing
@@ -74,7 +74,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section PageHeaderSection3 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -90,7 +90,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -287,28 +287,12 @@ namespace ROMS.Reports {
                 return this.DataDefinition.ParameterFields[21];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraPayType {
-            get {
-                return this.DataDefinition.ParameterFields[22];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraConType {
-            get {
-                return this.DataDefinition.ParameterFields[23];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_DayWise_Tax_Details : Component, ICachedReport {
+    public class CachedRPT_PUR_TCSValue_DayWise : Component, ICachedReport {
         
-        public CachedRPT_PUR_DayWise_Tax_Details() {
+        public CachedRPT_PUR_TCSValue_DayWise() {
         }
         
         [Browsable(false)]
@@ -345,7 +329,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_DayWise_Tax_Details rpt = new RPT_PUR_DayWise_Tax_Details();
+            RPT_PUR_TCSValue_DayWise rpt = new RPT_PUR_TCSValue_DayWise();
             rpt.Site = this.Site;
             return rpt;
         }

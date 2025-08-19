@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_PUR_BillWise_TCSValue : ReportClass {
+    public class RPT_PUR_AdditionalValue_DayWise : ReportClass {
         
-        public RPT_PUR_BillWise_TCSValue() {
+        public RPT_PUR_AdditionalValue_DayWise() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_PUR_BillWise_TCSValue.rpt";
+                return "RPT_PUR_AdditionalValue_DayWise.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_PUR_BillWise_TCSValue.rpt";
+                return "ROMS.Reports.RPT_PUR_AdditionalValue_DayWise.rpt";
             }
             set {
                 // Do nothing
@@ -287,28 +287,12 @@ namespace ROMS.Reports {
                 return this.DataDefinition.ParameterFields[21];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierName {
-            get {
-                return this.DataDefinition.ParameterFields[22];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraInvoiceTypeName {
-            get {
-                return this.DataDefinition.ParameterFields[23];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_PUR_BillWise_TCSValue : Component, ICachedReport {
+    public class CachedRPT_PUR_AdditionalValue_DayWise : Component, ICachedReport {
         
-        public CachedRPT_PUR_BillWise_TCSValue() {
+        public CachedRPT_PUR_AdditionalValue_DayWise() {
         }
         
         [Browsable(false)]
@@ -345,7 +329,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_PUR_BillWise_TCSValue rpt = new RPT_PUR_BillWise_TCSValue();
+            RPT_PUR_AdditionalValue_DayWise rpt = new RPT_PUR_AdditionalValue_DayWise();
             rpt.Site = this.Site;
             return rpt;
         }
