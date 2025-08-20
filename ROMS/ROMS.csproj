@@ -583,6 +583,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_BillWise.cs">
+      <DependentUpon>RPT_PUR_Tax_TaxDetails_BillWise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_MonthWise.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_MonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3432,6 +3439,11 @@
     <EmbeddedResource Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_Tax_AllPurchase_MonthWise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxDetails_BillWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_Tax_TaxDetails_BillWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxDetails_MonthWise.rpt">
