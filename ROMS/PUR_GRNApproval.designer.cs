@@ -1102,6 +1102,7 @@
             this.clmCreditQty.DefaultCellStyle = dataGridViewCellStyle14;
             this.clmCreditQty.HeaderText = "Debit Qty";
             this.clmCreditQty.Name = "clmCreditQty";
+            this.clmCreditQty.Visible = false;
             // 
             // clmMARecivedQty
             // 
