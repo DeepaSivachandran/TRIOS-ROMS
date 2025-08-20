@@ -232,7 +232,7 @@ namespace ROMS
                     objTRN_Supplier_Payment.paraPaymode = Convert.ToInt32(cmbPaymentmode.SelectedValue); 
                     if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 346)
                     { 
-                        //objTRN_Supplier_Payment.paraBankID = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                        objTRN_Supplier_Payment.paraBankID = Convert.ToInt32(varSPBankID);
                         objTRN_Supplier_Payment.paraComBank = Convert.ToInt32(cmbBank.SelectedValue);
                     }
                     varResult = objspservice.udfnSetPayment(objTRN_Supplier_Payment);
@@ -2152,7 +2152,7 @@ namespace ROMS
                             lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPID"]);
                             lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPSCID"]);
                             udfnBankDropDown();
-                            cmbBank.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_BankID"]);
+                            cmbBank.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_CMBNK_ID"]);
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {

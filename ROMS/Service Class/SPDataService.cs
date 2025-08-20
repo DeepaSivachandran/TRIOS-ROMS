@@ -4155,6 +4155,73 @@ namespace ROMS
             }
             return ds;
         }
+        public DataSet udfnPayment_ChequeTransactionlist(TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNG_Payment_ChequeTransactionList", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure; 
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_Payment_ChequeTransaction.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID); 
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierId", objTRN_Payment_ChequeTransaction.paraSupplierId); 
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_Payment_ChequeTransaction.paraScheduleId); 
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_Payment_ChequeTransaction.paraCompanyId); 
+                varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_Payment_ChequeTransaction.paraID); 
+                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objTRN_Payment_ChequeTransaction.ParaFromDate); 
+                varSqlCommand.Parameters.AddWithValue("@ParaToDate", objTRN_Payment_ChequeTransaction.ParaToDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraPYID", objTRN_Payment_ChequeTransaction.paraPYID); 
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public string udfnPayment_ChequeTransaction(TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Payment_ChequeTransactionList]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_Payment_ChequeTransaction.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_Payment_ChequeTransaction.paraID); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Payment_ChequeTransaction.paraOriginator); 
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID); 
+                varSqlCommand.Parameters.AddWithValue("@paraPAYID", objTRN_Payment_ChequeTransaction.paraPAYID);
+                varSqlCommand.Parameters.AddWithValue("@paraChequeDate", objTRN_Payment_ChequeTransaction.paraChequeDate);
+                varSqlCommand.Parameters.AddWithValue("@paraChequeNo", objTRN_Payment_ChequeTransaction.paraChequeNo);
+                varSqlCommand.Parameters.AddWithValue("@paraAmount", objTRN_Payment_ChequeTransaction.paraAmount);
+                varSqlCommand.Parameters.AddWithValue("@paraPAYNo", objTRN_Payment_ChequeTransaction.paraPAYNo);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_Payment_ChequeTransaction.paraSupplierID); 
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
     }
 
 }

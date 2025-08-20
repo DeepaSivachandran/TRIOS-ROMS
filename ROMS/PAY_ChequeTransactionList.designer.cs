@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PAY_Cheque
+    partial class PAY_ChequeTransactionList
     {
         /// <summary>
         /// Required designer variable.
@@ -36,14 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierPaymentList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
-            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.tssNew = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.grdSupllierPaymentList = new System.Windows.Forms.DataGridView();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmDate = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlbrand = new System.Windows.Forms.Panel();
@@ -54,7 +47,6 @@
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
-            this.btnExport = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.dpTodate = new System.Windows.Forms.DateTimePicker();
             this.txtSupplier = new System.Windows.Forms.TextBox();
@@ -64,6 +56,8 @@
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmCancel = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierPaymentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -78,15 +72,10 @@
             this.tsSupplierPaymentList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsSupplierPaymentList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsSupplierPaymentList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
-            this.tsbDelete,
-            this.tssEdit,
-            this.tsbEdit,
-            this.tssNew,
-            this.tsbNew});
+            this.tspHeader});
             this.tsSupplierPaymentList.Location = new System.Drawing.Point(0, 0);
             this.tsSupplierPaymentList.Name = "tsSupplierPaymentList";
-            this.tsSupplierPaymentList.Size = new System.Drawing.Size(1354, 27);
+            this.tsSupplierPaymentList.Size = new System.Drawing.Size(1354, 25);
             this.tsSupplierPaymentList.TabIndex = 35;
             this.tsSupplierPaymentList.Text = "Brand";
             // 
@@ -97,61 +86,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(66, 24);
-            this.tspHeader.Text = "Cheque";
-            // 
-            // tsbDelete
-            // 
-            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
-            this.tsbDelete.Text = "Delete";
-            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
-            // 
-            // tssEdit
-            // 
-            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.tssEdit.Name = "tssEdit";
-            this.tssEdit.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
-            this.tsbEdit.Text = "&Edit";
-            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
-            // 
-            // tssNew
-            // 
-            this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.tssNew.Name = "tssNew";
-            this.tssNew.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tsbNew
-            // 
-            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
-            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbNew.Name = "tsbNew";
-            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbNew.Size = new System.Drawing.Size(52, 24);
-            this.tsbNew.Text = "&New";
-            this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
+            this.tspHeader.Size = new System.Drawing.Size(132, 22);
+            this.tspHeader.Text = "Cheque Transaction";
             // 
             // grdSupllierPaymentList
             // 
@@ -173,8 +109,8 @@
             this.grdSupllierPaymentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupllierPaymentList.ColumnHeadersVisible = false;
             this.grdSupllierPaymentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmPrint,
-            this.clmDate});
+            this.clmCancel,
+            this.clmView});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -201,24 +137,6 @@
             this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll);
             this.grdSupllierPaymentList.DoubleClick += new System.EventHandler(this.GrdSupllierPaymentList_DoubleClick);
             this.grdSupllierPaymentList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSupllierPaymentList_KeyDown);
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmPrint.Width = 50;
-            // 
-            // clmDate
-            // 
-            this.clmDate.HeaderText = "";
-            this.clmDate.Image = global::ROMS.Properties.Resources.timetable;
-            this.clmDate.Name = "clmDate";
-            this.clmDate.ReadOnly = true;
-            this.clmDate.Width = 50;
             // 
             // lblNoRecordsFound
             // 
@@ -348,7 +266,6 @@
             // 
             // grbFilterBy
             // 
-            this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.cmbConcern);
             this.grbFilterBy.Controls.Add(this.dpTodate);
             this.grbFilterBy.Controls.Add(this.txtSupplier);
@@ -365,21 +282,6 @@
             this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
-            // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(930, 22);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(79, 29);
-            this.btnExport.TabIndex = 5;
-            this.btnExport.Text = "Export";
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
-            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
-            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
             // cmbConcern
             // 
@@ -488,7 +390,25 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // PAY_Cheque
+            // clmCancel
+            // 
+            this.clmCancel.HeaderText = "";
+            this.clmCancel.Image = global::ROMS.Properties.Resources.newcancelBill;
+            this.clmCancel.Name = "clmCancel";
+            this.clmCancel.ReadOnly = true;
+            this.clmCancel.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCancel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmCancel.Width = 50;
+            // 
+            // clmView
+            // 
+            this.clmView.HeaderText = "";
+            this.clmView.Image = global::ROMS.Properties.Resources.view__1_;
+            this.clmView.Name = "clmView";
+            this.clmView.ReadOnly = true;
+            this.clmView.Width = 50;
+            // 
+            // PAY_ChequeTransactionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -500,7 +420,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "PAY_Cheque";
+            this.Name = "PAY_ChequeTransactionList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
             this.Load += new System.EventHandler(this.PAY_SupplierPaymentList_Load);
@@ -525,11 +445,6 @@
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.DataGridView grdSupllierPaymentList;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.ToolStripButton tsbDelete;
-        public System.Windows.Forms.ToolStripSeparator tssEdit;
-        public System.Windows.Forms.ToolStripButton tsbEdit;
-        public System.Windows.Forms.ToolStripSeparator tssNew;
-        public System.Windows.Forms.ToolStripButton tsbNew;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Panel pnlbrand;
         private System.Windows.Forms.GroupBox grbFilterBy;
@@ -541,7 +456,6 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.DateTimePicker dpTodate;
         private System.Windows.Forms.ComboBox cmbConcern;
-        private System.Windows.Forms.Button btnExport;
         public System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.ColumnHeader columnHeader21;
         private System.Windows.Forms.ColumnHeader columnHeader22;
@@ -549,7 +463,7 @@
         private System.Windows.Forms.Label lblSchedule;
         private System.Windows.Forms.Label lblSupplierCode;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
-        private System.Windows.Forms.DataGridViewImageColumn clmDate;
+        private System.Windows.Forms.DataGridViewImageColumn clmCancel;
+        private System.Windows.Forms.DataGridViewImageColumn clmView;
     }
 }

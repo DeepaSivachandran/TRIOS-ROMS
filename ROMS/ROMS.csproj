@@ -202,6 +202,14 @@
     <Compile Include="CP_Printer_Setting.Designer.cs">
       <DependentUpon>CP_Printer_Setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="PAY_ChequeTransaction.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="PAY_ChequeTransaction.designer.cs">
+      <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="CP_Rate_Change.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,11 +223,12 @@
       <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\MR_Bank.cs" />
-    <Compile Include="PAY_ChequeList.cs">
+    <Compile Include="Model\TRN_Payment_ChequeTransaction.cs" />
+    <Compile Include="PAY_ChequeTransactionList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PAY_ChequeList.designer.cs">
-      <DependentUpon>PAY_ChequeList.cs</DependentUpon>
+    <Compile Include="PAY_ChequeTransactionList.designer.cs">
+      <DependentUpon>PAY_ChequeTransactionList.cs</DependentUpon>
     </Compile>
     <Compile Include="PAY_SupplierPayment_BankDate.cs">
       <SubType>Form</SubType>
@@ -2722,14 +2731,18 @@
     <EmbeddedResource Include="CP_Printer_Setting.resx">
       <DependentUpon>CP_Printer_Setting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PAY_ChequeTransaction.resx">
+      <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_Change.resx">
       <DependentUpon>CP_Rate_Change.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_ChangeList.resx">
       <DependentUpon>CP_Rate_ChangeList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PAY_ChequeList.resx">
-      <DependentUpon>PAY_ChequeList.cs</DependentUpon>
+    <EmbeddedResource Include="PAY_ChequeTransactionList.resx">
+      <DependentUpon>PAY_ChequeTransactionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment_BankDate.resx">
       <DependentUpon>PAY_SupplierPayment_BankDate.cs</DependentUpon>

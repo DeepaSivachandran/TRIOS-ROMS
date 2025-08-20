@@ -118,7 +118,8 @@ namespace ROMS
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;
         public static CP_Bank  objCP_Bank;
-        public static PAY_Cheque objPAY_Cheque;
+        public static PAY_ChequeTransactionList objPAY_ChequeTransactionList;
+        public static PAY_ChequeTransaction objPAY_ChequeTransaction;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -3194,17 +3195,16 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void TsmCheque_Click(object sender, EventArgs e)
+        } 
+        private void TsmChequeTransaction_Click(object sender, EventArgs e)
         {
             try
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objPAY_Cheque = new PAY_Cheque();
-                MainForm.objPAY_Cheque.MdiParent = this;
-                MainForm.objPAY_Cheque.Show();
+                MainForm.objPAY_ChequeTransactionList = new PAY_ChequeTransactionList();
+                MainForm.objPAY_ChequeTransactionList.MdiParent = this;
+                MainForm.objPAY_ChequeTransactionList.Show();
                 PbCurrentForm = "7.2.6";
             }
             catch (Exception ex)
@@ -3212,8 +3212,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {
             try
