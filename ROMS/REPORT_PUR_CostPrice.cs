@@ -190,7 +190,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,94) AND MSTID NOT IN(0,320,321)", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,94) AND MSTID NOT IN(0,320,321)", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbProductName.SelectedValue = 271;
@@ -397,7 +397,19 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(cmbReportType.SelectedValue)== 325)
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue)== 325)
                 {
                     cmbLPDates.Enabled = false;
                     cmbLPDates.SelectedIndex = 0;
