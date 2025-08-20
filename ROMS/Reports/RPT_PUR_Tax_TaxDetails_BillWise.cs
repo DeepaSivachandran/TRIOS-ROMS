@@ -290,7 +290,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraPayType {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierName {
             get {
                 return this.DataDefinition.ParameterFields[22];
             }
@@ -298,7 +298,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraConType {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraInvoiceTypeName {
             get {
                 return this.DataDefinition.ParameterFields[23];
             }

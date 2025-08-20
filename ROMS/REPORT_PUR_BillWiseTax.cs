@@ -761,7 +761,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 329)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbInvType.SelectedValue = 0;
                     cmbInvType.Enabled = false;
