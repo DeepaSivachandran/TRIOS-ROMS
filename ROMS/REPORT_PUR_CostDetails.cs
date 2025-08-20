@@ -194,6 +194,7 @@ namespace ROMS
                 cmbPaymentType.SelectedValue = 0;
                 cmbPurchaseType.SelectedValue = 0;
                 cmbProductName.SelectedValue = 271;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {

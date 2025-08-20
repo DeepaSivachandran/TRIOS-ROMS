@@ -207,6 +207,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,96) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbPurchaseType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbSupplierType.SelectedValue = 0;
                 cmbConditionType.SelectedValue = 0;
                 cmbPaymentType.SelectedValue = 0;

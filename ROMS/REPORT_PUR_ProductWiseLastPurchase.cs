@@ -250,6 +250,7 @@ namespace ROMS
                 objDataBind = null;
                 cmbProductName.SelectedValue = 271;
                 cmbLPDates.SelectedIndex = 0;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {

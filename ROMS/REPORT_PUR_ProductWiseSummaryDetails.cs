@@ -111,6 +111,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 string varGroupName = "", varSubgroupName = "", varProductName = "", varBrandName = "";
                 int varGroupId = 0, varSubgroupId = 0, varProductId = 0, varBrandId = 0;
                 if(txtGroup.Text.Trim()=="")
@@ -266,6 +267,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,94) AND MSTID NOT IN(0,324,325)", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbProductName.SelectedValue = 271;
                 cmbReportType.SelectedValue = -1;
             }

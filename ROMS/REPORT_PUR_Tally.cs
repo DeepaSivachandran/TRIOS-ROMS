@@ -167,6 +167,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
             }
             catch (Exception ex)
             {

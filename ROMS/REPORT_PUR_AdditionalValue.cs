@@ -122,6 +122,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 string varSupplierName = "-All-";
                 int varSupplierId = 0, varViewType = 20, varScheduleId = 0;
                 if (txtSupplier.Text.Trim() != "")

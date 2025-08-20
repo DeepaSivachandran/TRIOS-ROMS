@@ -117,6 +117,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 int varViewType = 29;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
                 {

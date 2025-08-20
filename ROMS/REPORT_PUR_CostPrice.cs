@@ -102,6 +102,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 int varViewType = 15;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 325)
                 {
@@ -116,7 +117,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(varViewType, 0, "", 0, dpFromDate.Text, "01/01/2050", 0, 0, 0, Convert.ToInt32(cmbLPDates.Text), 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, Convert.ToInt32(cmbProductName.SelectedValue), "", 0);
+                objDs = objdserv.udfnPurHsnReport(varViewType, 0, "", 0, dpFromDate.Text, dpFromDate.Text, 0, 0, 0, Convert.ToInt32(cmbLPDates.Text), 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, Convert.ToInt32(cmbProductName.SelectedValue), "", 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -154,7 +155,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraBrandID", 0);
                     objBillreport.SetParameterValue("paraAlpha", "");
                     objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
-                    objBillreport.SetParameterValue("paraToDate", "01/01/2050");
+                    objBillreport.SetParameterValue("paraToDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("paraFlag", cmbLPDates.Text);
                     objBillreport.SetParameterValue("paraProductNameType", Convert.ToInt32(cmbProductName.SelectedValue));
 
@@ -195,6 +196,7 @@ namespace ROMS
                 cmbProductName.SelectedValue = 271;
                 cmbReportType.SelectedValue = -1;
                 cmbLPDates.SelectedIndex = 0;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
