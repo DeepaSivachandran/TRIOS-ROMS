@@ -771,9 +771,11 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["S.No."].Width = 50;
                             grdSupllierPaymentList.Columns["Cheque Date"].Width = 100;
                             grdSupllierPaymentList.Columns["Cheque No."].Width = 110;
-                            grdSupllierPaymentList.Columns["Supplier"].Width = 250;
-                            grdSupllierPaymentList.Columns["Status"].Width = 150;
+                            grdSupllierPaymentList.Columns["Supplier"].Width = 220;
+                            grdSupllierPaymentList.Columns["Status"].Width = 120;
                             grdSupllierPaymentList.Columns["Transaction Date"].Width = 110;
+                            grdSupllierPaymentList.Columns["Created By"].Width = 200;
+                            grdSupllierPaymentList.Columns["Cancelled By"].Width = 200;
                             grdSupllierPaymentList.Columns["ID"].Visible = false; 
                             grdSupllierPaymentList.Columns["ViewFlag"].Visible = false; 
                             grdSupllierPaymentList.Columns["CancelFlag"].Visible = false; 

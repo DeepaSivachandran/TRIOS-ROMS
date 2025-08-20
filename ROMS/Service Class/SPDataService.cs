@@ -4194,7 +4194,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Payment_ChequeTransactionList]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Payment_ChequeTransaction]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_Payment_ChequeTransaction.paraViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_Payment_ChequeTransaction.paraID); 

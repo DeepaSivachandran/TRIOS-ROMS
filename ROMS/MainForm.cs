@@ -120,6 +120,7 @@ namespace ROMS
         public static CP_Bank  objCP_Bank;
         public static PAY_ChequeTransactionList objPAY_ChequeTransactionList;
         public static PAY_ChequeTransaction objPAY_ChequeTransaction;
+        public static CP_ChequePrint_Setting objCP_ChequePrint_Setting;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -3212,7 +3213,26 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void TsmChequePrintSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_ChequePrint_Setting = new CP_ChequePrint_Setting();
+                MainForm.objCP_ChequePrint_Setting.MdiParent = this;
+                MainForm.objCP_ChequePrint_Setting.Show();
+                PbCurrentForm = "7.2.6";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {
             try

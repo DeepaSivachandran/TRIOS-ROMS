@@ -127,7 +127,7 @@
             this.grbform.Controls.Add(this.txtDAmount);
             this.grbform.Location = new System.Drawing.Point(12, 12);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(349, 224);
+            this.grbform.Size = new System.Drawing.Size(349, 211);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -138,7 +138,10 @@
             this.dpChequeDate.Location = new System.Drawing.Point(124, 131);
             this.dpChequeDate.Name = "dpChequeDate";
             this.dpChequeDate.Size = new System.Drawing.Size(200, 27);
-            this.dpChequeDate.TabIndex = 60;
+            this.dpChequeDate.TabIndex = 1;
+            this.dpChequeDate.Enter += new System.EventHandler(this.DpChequeDate_Enter);
+            this.dpChequeDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpChequeDate_KeyDown);
+            this.dpChequeDate.Leave += new System.EventHandler(this.DpChequeDate_Leave);
             // 
             // textBox5
             // 
@@ -159,7 +162,10 @@
             this.txtChequeNo.MaxLength = 10;
             this.txtChequeNo.Name = "txtChequeNo";
             this.txtChequeNo.Size = new System.Drawing.Size(200, 27);
-            this.txtChequeNo.TabIndex = 58;
+            this.txtChequeNo.TabIndex = 0;
+            this.txtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
+            this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown);
+            this.txtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
             // txtAmount
             // 
@@ -171,6 +177,7 @@
             this.txtAmount.ReadOnly = true;
             this.txtAmount.Size = new System.Drawing.Size(200, 27);
             this.txtAmount.TabIndex = 57;
+            this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox4
             // 
@@ -192,12 +199,13 @@
             this.btnUpdate.Location = new System.Drawing.Point(160, 170);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(84, 29);
-            this.btnUpdate.TabIndex = 5;
+            this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.BtnSave_Click);
             this.btnUpdate.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnUpdate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnUpdate_KeyDown);
             this.btnUpdate.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // btnClose
@@ -208,7 +216,7 @@
             this.btnClose.Location = new System.Drawing.Point(249, 170);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 6;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -225,7 +233,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(375, 248);
+            this.ClientSize = new System.Drawing.Size(375, 239);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

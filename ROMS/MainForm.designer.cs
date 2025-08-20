@@ -182,6 +182,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmChequePrintSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -809,7 +810,8 @@ namespace ROMS
             this.tsmBatchNoConfig,
             this.tsmVoucherSettings,
             this.tsmGeneralSettings,
-            this.printerSettingsToolStripMenuItem});
+            this.printerSettingsToolStripMenuItem,
+            this.tsmChequePrintSettings});
             this.tsmControlPanel.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmControlPanel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmControlPanel.Name = "tsmControlPanel";
@@ -1447,6 +1449,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // tsmChequePrintSettings
+            // 
+            this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmChequePrintSettings.Text = "Cheque Print Settings";
+            this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1628,5 +1637,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem printerSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmBank;
         private System.Windows.Forms.ToolStripMenuItem tsmChequeTransaction;
+        private System.Windows.Forms.ToolStripMenuItem tsmChequePrintSettings;
     }
 }

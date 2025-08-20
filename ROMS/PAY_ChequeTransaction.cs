@@ -246,7 +246,8 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objPAY_ChequeTransactionList.udfnList();
-                    this.Close();
+                    varCloseFlag = 1;
+                    udfnclose();
                 } 
                 else if (varResult.Split('~')[0] == "4")
                 {
@@ -294,6 +295,106 @@ namespace ROMS
                 btnUpdate.Focus();
             }
         }
+
+        private void TxtChequeNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtChequeNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtChequeNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpChequeDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        } 
+        private void DpChequeDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                dpChequeDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpChequeDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpChequeDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUpdate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpChequeDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CP_ProductHSN_KeyDown(object sender, KeyEventArgs e)
         {
             try

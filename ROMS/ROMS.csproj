@@ -202,6 +202,12 @@
     <Compile Include="CP_Printer_Setting.Designer.cs">
       <DependentUpon>CP_Printer_Setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_ChequePrint_Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ChequePrint_Setting.designer.cs">
+      <DependentUpon>CP_ChequePrint_Setting.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_ChequeTransaction.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -2730,6 +2736,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Printer_Setting.resx">
       <DependentUpon>CP_Printer_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ChequePrint_Setting.resx">
+      <DependentUpon>CP_ChequePrint_Setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
