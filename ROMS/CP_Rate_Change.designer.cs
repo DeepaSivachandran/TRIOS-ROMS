@@ -852,9 +852,9 @@
             this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvVerified1.HideSelection = false;
-            this.lvVerified1.Location = new System.Drawing.Point(557, 261);
+            this.lvVerified1.Location = new System.Drawing.Point(557, 259);
             this.lvVerified1.Name = "lvVerified1";
-            this.lvVerified1.Size = new System.Drawing.Size(222, 68);
+            this.lvVerified1.Size = new System.Drawing.Size(222, 164);
             this.lvVerified1.TabIndex = 111111135;
             this.lvVerified1.UseCompatibleStateImageBehavior = false;
             this.lvVerified1.View = System.Windows.Forms.View.Details;
