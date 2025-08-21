@@ -17,6 +17,7 @@ namespace ROMS
         DataError objError;
         DataSet objDs = new DataSet();
         DataTable dtPayment = new DataTable();
+        DataTable dtChequeTemplateDetails = new DataTable();
         public DataTable dtCheckAdv = new DataTable();
         public DataTable dtAdvance = new DataTable();
         private ToolTip tpcompanyname = new ToolTip();
@@ -35,8 +36,9 @@ namespace ROMS
         public string varAdvance = "", varPayAmnt = "", varCompanyID = "0";
         public decimal varSubtotal = 0;
         public int clearClick = 0, varApplyFlag = 0, varPaymentStatus = 0, varCreatemodeFlag = 0, varUncheckFlag = 0 , varSPBankID=-1,varDefaultBank=0;
-        public decimal varRTGSMinLimit = 0;
-        public DataTable dtBankDetails;
+        public decimal varRTGSMinLimit = 0; 
+        DataTable dtBankDetails = new DataTable();
+        DataTable dtChequeText = new DataTable(); 
         public PAY_SupplierPayment()
         {
             InitializeComponent();
@@ -249,34 +251,67 @@ namespace ROMS
                             result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (result1 == DialogResult.Yes)
                             {
-                                if (Convert.ToInt32(cmbBank.SelectedValue) == 224)
-                                {
-                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TMB.rpt");
-                                    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
-                                    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                                    objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
-                                    objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
-                                    objValidation.CrySqlConnection(objBillreport);
-                                    MainForm.objReportLoad = new ReportLoad();
-                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                    MainForm.objReportLoad.ShowDialog();
-                                }
-                                else if (Convert.ToInt32(cmbBank.SelectedValue) == 225)
-                                {
-                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_HDFC.rpt");
-                                    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
-                                    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                                    objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
-                                    objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
-                                    objValidation.CrySqlConnection(objBillreport);
-                                    MainForm.objReportLoad = new ReportLoad();
-                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                    MainForm.objReportLoad.ShowDialog();
-                                }
+                                string varRPTName = "",varChequeText= "";
+                                int varBankID =0; 
+                                 
+                                var BankID= dtBankDetails.AsEnumerable() 
+                                .Where(b => b.Field<int>("CMBNK_ID") == Convert.ToInt32(cmbBank.SelectedValue))
+                                 .Select(b => b.Field<int>("BNKID"))
+                                .ToList();
+                                varBankID = BankID[0];
+
+                                var RPTName = dtChequeTemplateDetails.AsEnumerable()
+                                .Where(b => b.Field<int>("BankID") == varBankID)
+                                 .Select(b => b.Field<string>("RPTName"))
+                                 .Where(rpt => !string.IsNullOrEmpty(rpt))
+                                 .ToList(); 
+                                var chequeText = dtChequeText.AsEnumerable()
+                               .Where(b => b.Field<int>("MST_Eq_STSID") == Convert.ToInt32(cmbPaymentmode.SelectedValue))
+                                .Select(b => b.Field<string>("MST_DisplayText"))
+                                .Where(rpt => !string.IsNullOrEmpty(rpt))
+                                .ToList();
+
+                                varRPTName = RPTName[0];
+                                varChequeText = chequeText[0];  
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
+                                objBillreport.SetParameterValue("paraSupplierName", (varChequeText + txtsuppliername.Text));
+                                objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                                objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
+                                objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
+                                objValidation.CrySqlConnection(objBillreport);
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.ShowDialog();
+                                //if (Convert.ToInt32(cmbBank.SelectedValue) == 224)
+                                //{
+                                //    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                //    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                //    objBillreport.Load(Application.StartupPath + "\\Reports\\"+ varRPTName);
+                                //    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
+                                //    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                                //    objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
+                                //    objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
+                                //    objValidation.CrySqlConnection(objBillreport);
+                                //    MainForm.objReportLoad = new ReportLoad();
+                                //    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                //    MainForm.objReportLoad.ShowDialog();
+                                //}
+                                //else if (Convert.ToInt32(cmbBank.SelectedValue) == 225)
+                                //{
+                                //    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                //    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_HDFC.rpt");
+                                //    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
+                                //    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                                //    objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
+                                //    objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
+                                //    objValidation.CrySqlConnection(objBillreport);
+                                //    MainForm.objReportLoad = new ReportLoad();
+                                //    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                //    MainForm.objReportLoad.ShowDialog();
+                                //}
                             }
                         }
                         this.ActiveControl = txtsuppliername;
@@ -327,7 +362,7 @@ namespace ROMS
                 if (txtsuppliername.Text.Length > 0)
                 {
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 39;
+                    objMR_Supplier.ViewType = 43;
                     objMR_Supplier.paraSupplierName = txtsuppliername.Text;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
@@ -379,6 +414,36 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
+        public void udfnChequeTemplateDetails()
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                Model.TRN_Supplier_Payment objTRN_Supplier_Payment = new Model.TRN_Supplier_Payment();
+                objTRN_Supplier_Payment.ViewType = 3; 
+                objDs = objspdservice.udfnGetSupplierPayment(objTRN_Supplier_Payment);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count > 0)
+                    {
+                        dtChequeTemplateDetails = objDs.Tables[0];
+                    }
+                    if(objDs.Tables.Count>1)
+                    {
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            dtChequeText = objDs.Tables[1];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnPaymentDropDown()
         {
             try
@@ -386,13 +451,13 @@ namespace ROMS
                 if (Convert.ToDecimal(lblGrandTotal.Text) > varRTGSMinLimit)
                 {
                     DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND MSTID NOT IN (349)  ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND MSTID NOT IN (348)  ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
                 else
                 {
                     DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104  ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND MSTID NOT IN (349)  ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
             }
@@ -510,6 +575,7 @@ namespace ROMS
                 {
                     btnApply.Enabled = true;
                 }
+                udfnChequeTemplateDetails();
             }
             catch (Exception ex)
             {

@@ -208,6 +208,7 @@
     <Compile Include="CP_ChequePrint_Setting.designer.cs">
       <DependentUpon>CP_ChequePrint_Setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_ChequeTransactionSettings.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -17,18 +17,10 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        Boolean BlnSearchImageYN = false;
-        public string varconcernvalue="-1",varValues="-1";
-        public int varsno = 0,varEditFlag=0;
-        public string varSampleTransation = ""; int varId = 0;
-        //tool tip
+        public DataTable dtTemplateDetails;
+        DataTable dtChequePrintSetting = new DataTable();
         private ToolTip tpBank = new ToolTip();
-        private ToolTip tpTransactionType = new ToolTip();
-        private ToolTip tpPrefix = new ToolTip();
-        private ToolTip tpSuffix = new ToolTip();
-        private ToolTip tpStartingNo = new ToolTip();
-        private ToolTip tpResetOn = new ToolTip();
-        private ToolTip tpNoofdigits = new ToolTip();
+        public string varImageName = "", varBankID="0";
         public CP_ChequePrint_Setting()
         {
             InitializeComponent();
@@ -46,13 +38,7 @@ namespace ROMS
             }
         }
         public void udfnToolTip()
-        {
-            tpBank.Active = false;
-            tpTransactionType.Active = false;
-            tpPrefix.Active = false;
-            tpSuffix.Active = false;
-            tpStartingNo.Active = false;
-            tpResetOn.Active = false;
+        { 
             cmbBank.BackColor = Color.White;
             cmbTemplate.BackColor = Color.White; 
         }
@@ -89,16 +75,51 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-       
-        public void udfnCmbLoad()
+        public void udfnBankDropDownLoad()
         {
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Bank", "BNK_STSID=1   ORDER BY BNKID, BNK_ShortName", "BNKID,BNK_ShortName", cmbBank, "", "BNK_ShortName", "BNKID"); 
-                objDataBind.BindComboBoxListSelected("DEF_Cheque_Templates", "CQT_STSID=1  ORDER BY CQT_ImageName ", "CQTID,CQT_ImageName", cmbTemplate, "", "CQT_ImageName", "CQTID");
+                objDataBind.BindComboBoxListSelected("MR_Bank", "BNK_STSID=1  AND BNKID NOT IN (" + varBankID + ") ORDER BY BNKID , BNK_ShortName", "BNKID,BNK_ShortName", cmbBank, "", "BNK_ShortName", "BNKID");
+                objDataBind = null;
+                cmbBank.SelectedValue = -1; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDropDownLoad()
+        {
+            try
+            {
+                udfnBankDropDownLoad();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Bank", "BNK_STSID=1  AND BNKID NOT IN ("+ varBankID + ") ORDER BY BNKID , BNK_ShortName", "BNKID,BNK_ShortName", cmbBank, "", "BNK_ShortName", "BNKID");
                 objDataBind = null;
                 cmbBank.SelectedValue = -1;
+
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
+                Model.MR_ChequeTransactionSettings objMR_ChequeTransactionSettings = new Model.MR_ChequeTransactionSettings();
+                objMR_ChequeTransactionSettings.paraViewType = 0;
+                objDs = objspservice.udfnChequePrintSettingsList(objMR_ChequeTransactionSettings);
+                objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbTemplate.ValueMember = "CQTID";
+                            cmbTemplate.DisplayMember = "TemplateName";
+                            cmbTemplate.DataSource = objDs.Tables[0];
+                            dtTemplateDetails = objDs.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -110,7 +131,34 @@ namespace ROMS
         {
             try
             {
-                  
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
+                Model.MR_ChequeTransactionSettings objMR_ChequeTransactionSettings = new Model.MR_ChequeTransactionSettings();
+                objMR_ChequeTransactionSettings.paraViewType = 1;
+                objDs = objspservice.udfnChequePrintSettingsList(objMR_ChequeTransactionSettings);
+                objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                        {
+                            grdChequePrint.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Bank"]), Convert.ToString(objDs.Tables[0].Rows[i]["TemplateName"]), Convert.ToString(objDs.Tables[0].Rows[i]["ImageName"]), Convert.ToString(objDs.Tables[0].Rows[i]["BankID"]),
+                                Convert.ToString(objDs.Tables[0].Rows[i]["TemplateID"] )  , Convert.ToString(objDs.Tables[0].Rows[i]["ID"])    );
+                            if (varBankID == "0")
+                            {
+                                varBankID = Convert.ToString(objDs.Tables[0].Rows[i]["BankID"]);
+                            }
+                            else
+                            {
+                                varBankID = varBankID + "," + Convert.ToString(objDs.Tables[0].Rows[i]["BankID"]);
+                            }
+                        }
+                    }
+                    udfnBankDropDownLoad();
+                }
+
             }
             catch (Exception ex)
             {
@@ -126,8 +174,11 @@ namespace ROMS
         {
             try
             {
-                udfnCmbLoad();
-                cmbBank.SelectedValue = MainForm.pbDefaultComId; 
+                udfnDropDownLoad(); 
+                cmbBank.SelectedValue = MainForm.pbDefaultComId;
+                dtChequePrintSetting.TableName = "MR_ChequePrintSettings";
+                dtChequePrintSetting.Columns.Add("CQS_CQTID", typeof(int));
+                dtChequePrintSetting.Columns.Add("CQS_BNKID", typeof(int)); 
                 udfnList();
             }
             catch (Exception ex)
@@ -323,60 +374,32 @@ namespace ROMS
         public void udfnSave()
         {
             try
-            { 
-                int varFlag = 0; int varConcern = 0; int varTransactionType = 0; string varStartingNum = ""; int varConcernId = 0;
-                string result = "", varOriginator = "";
-                int viewType = 0;
-                SPDataService objspdservice = new SPDataService();
-                varConcern = Convert.ToInt32(cmbBank.SelectedValue);
-                varTransactionType = Convert.ToInt32(cmbTemplate.SelectedValue);
-                if (btnSave.Text=="Save")
+            {
+                string varResult = "";   
+                for(int i=0;i<grdChequePrint.RowCount;i++)
                 {
-                    varOriginator = "VoucherSettings Save";
-                    viewType = 0; varId = 0;
-                    for (int i = 0; i < grdChequePrint.Rows.Count; i++)
-                    {
-                        if (varConcern == Convert.ToInt32(grdChequePrint.Rows[i].Cells["Concern ID"].Value) && varTransactionType == Convert.ToInt32(grdChequePrint.Rows[i].Cells["Transaction TypeID"].Value))
-                        {
-                            varFlag = 1;
-                        }
-                    }
+                    dtChequePrintSetting.Rows.Add(Convert.ToInt16(grdChequePrint.Rows[i].Cells["clmTemplateID"].Value), Convert.ToInt16(grdChequePrint.Rows[i].Cells["clmBankId"].Value));
+                }
+                SPDataService objspservice = new SPDataService();
+                Model.MR_ChequeTransactionSettings objMR_ChequeTransactionSettings = new Model.MR_ChequeTransactionSettings();
+                objMR_ChequeTransactionSettings.paraViewType = 0; 
+                objMR_ChequeTransactionSettings.paraOriginator = "Cheque print settings save"; 
+                objMR_ChequeTransactionSettings.paraMR_ChequePrintSettings = dtChequePrintSetting; 
+                varResult = objspservice.udfnChequePrintSettings(objMR_ChequeTransactionSettings);
+                objspservice.CloseConnection();
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
                 }
                 else
                 {
-                    varOriginator = "VoucherSettings Updation";
-                    viewType = 1;
-                }
-                if (varFlag == 0)
-                { 
-                    btnSave.Enabled = true;
-                    string[] varvalue = result.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                        udfnToolTip();
-                        epSettings.Clear();
-                        udfnList();
-                        btnSave.Text = "Save";
-                        if(varEditFlag==1)
-                        { cmbBank.SelectedValue = MainForm.pbDefaultComId; }
-                        varEditFlag = 0;
-                        this.ActiveControl = cmbTemplate;
-                        cmbTemplate.Focus();
-                        BeginInvoke(new Action(() => cmbTemplate.Select(int.MaxValue, 0))); 
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(63);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } 
             }
             catch (Exception ex)
             {
@@ -394,6 +417,14 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false; 
+                if(grdChequePrint.Rows.Count==0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(156);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     udfnSave();
@@ -447,14 +478,12 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void BtnPreview_Click(object sender, EventArgs e)
         {
             try
             {
-                string varImageName = "";
-                varImageName = cmbTemplate.Text;
+                udfnGetImageName();
                 if (varImageName != "")
                 {
                     pbChequePreview.Image = Image.FromFile(Application.StartupPath + "\\ChequeTemplates\\" + varImageName);
@@ -524,7 +553,51 @@ namespace ROMS
         {
             try
             {
-                grdChequePrint.Rows.Add(grdChequePrint.Rows.Count+1,Convert.ToString(cmbBank.Text), Convert.ToString(cmbTemplate.Text), Convert.ToString(cmbBank.SelectedValue), Convert.ToString(cmbTemplate.SelectedValue));
+                udfnGetImageName();
+                int count = grdChequePrint.Rows.Cast<DataGridViewRow>()
+                .Count(r => !r.IsNewRow
+                     && Convert.ToInt32(r.Cells["clmBankId"].Value) == Convert.ToInt32(cmbBank.SelectedValue)
+                  && Convert.ToInt32(r.Cells["clmTemplateID"].Value) == Convert.ToInt32(cmbTemplate.SelectedValue));
+
+                if (count == 0)
+                {
+                    grdChequePrint.Rows.Add(grdChequePrint.Rows.Count + 1, Convert.ToString(cmbBank.Text), Convert.ToString(cmbTemplate.Text), varImageName, Convert.ToString(cmbBank.SelectedValue), Convert.ToString(cmbTemplate.SelectedValue));
+                    varImageName = ""; 
+                    if (varBankID == "0")
+                    {
+                        varBankID = Convert.ToString(cmbTemplate.SelectedValue);
+                    }
+                    else
+                    {
+                        varBankID = varBankID + "," + Convert.ToString(cmbTemplate.SelectedValue);  
+                    }
+                    udfnBankDropDownLoad();
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(97);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGetImageName()
+        {
+            try
+            {
+                varImageName = "";
+                var result = dtTemplateDetails.AsEnumerable()
+                .Where(b => b.Field<int>("CQTID") == Convert.ToInt32(cmbTemplate.SelectedValue))
+                .Select(b => b.Field<string>("ImageName"))
+                .Where(img => !string.IsNullOrEmpty(img))
+                .ToList();
+                varImageName = result[0];
             }
             catch (Exception ex)
             {
@@ -558,6 +631,57 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+         
+        private void GrdChequePrint_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            { 
+                if (e.RowIndex != -1)
+                {
+                    switch (grdChequePrint.Columns[e.ColumnIndex].Name)
+                    { 
+                        case "clmPreview":
+                            string ImageName = "";
+                            ImageName = Convert.ToString(grdChequePrint.Rows[e.RowIndex].Cells["clmImageName"].Value);
+                            if (varImageName != "")
+                            {
+                                pbChequePreview.Image = Image.FromFile(Application.StartupPath + "\\ChequeTemplates\\" + clmImageName);
+                            }
+                            else
+                            {
+                                pbChequePreview.Image = null;
+                            }
+                            break;
+                        case "clmRemove":
+                            DialogResult response = MessageBox.Show("Do you want to remove?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                            int varBankId = 0;
+                            varBankId = Convert.ToInt16(grdChequePrint.Rows[e.RowIndex].Cells["clmBankId"].Value);
+                            var ids = varBankID.Split(',')  .Select(id => int.Parse(id.Trim()))  .ToList();
+
+                            if (ids.Contains(varBankId))
+                            {
+                                ids.Remove(varBankId);
+                                varBankID = string.Join(",", ids);
+                            }
+                            if (varBankID == "") { varBankID = "0"; }
+                            if ((response == DialogResult.Yes))
+                            {
+                                grdChequePrint.Rows.RemoveAt(e.RowIndex); 
+                            }
+                            udfnBankDropDownLoad();
+                            break;
+                    }
+                }
+
+
+            }
+
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

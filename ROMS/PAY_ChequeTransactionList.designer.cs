@@ -134,9 +134,7 @@
             this.grdSupllierPaymentList.TabIndex = 1;
             this.grdSupllierPaymentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupllierPaymentList_CellContentClick);
             this.grdSupllierPaymentList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupllierPaymentList_DataBindingComplete);
-            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll);
-            this.grdSupllierPaymentList.DoubleClick += new System.EventHandler(this.GrdSupllierPaymentList_DoubleClick);
-            this.grdSupllierPaymentList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSupllierPaymentList_KeyDown);
+            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll); 
             // 
             // lblNoRecordsFound
             // 

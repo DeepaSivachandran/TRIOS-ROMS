@@ -1031,12 +1031,12 @@ namespace ROMS
                 if (txtSupplier.Text.Length > 0)
                 {
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 26;
+                    objMR_Supplier.ViewType = 43;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.ParaFromDate = dpFromdate.Text;
                     objMR_Supplier.ParaToDate = dpTodate.Text;
-                    objMR_Supplier.paraFlag = 10;
+                    objMR_Supplier.paraFlag = 1;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);

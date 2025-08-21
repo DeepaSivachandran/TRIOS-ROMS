@@ -25,147 +25,7 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
-        private void tsbNew_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
-                MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
-                MainForm.objPAY_SupplierPayment.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
-            }
-        }
-        private void tsbEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEditLoad();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnEditLoad()
-        {
-            try
-            {
-                
-                if (grdSupllierPaymentList.SelectedRows.Count > 0)
-                {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
-                    MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
-                    MainForm.objPAY_SupplierPayment.btnSave.Text = "Update";
-                    MainForm.objPAY_SupplierPayment.varSupplierPaymentID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
-                    MainForm.objPAY_SupplierPayment.varPaymentStatus = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
-                    MainForm.objPAY_SupplierPayment.Show();
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-            }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfndelete()
-        {
-            try
-            {
-                int Viewtype = 0;
-                DataTable dtPayment = new DataTable();
-                dtPayment.TableName = "TRN_Supplier_Payment";
-                dtPayment.Columns.Add("PY_PURID", typeof(int));
-                dtPayment.Columns.Add("PY_Amount", typeof(float));
-                dtPayment.Columns.Add("PY_STSID", typeof(int));
-                if (grdSupllierPaymentList.SelectedRows.Count > 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        Viewtype = 2;
-                        String varoriginator = "Supplier payment Delete";
-                        DataTable objGrnPO = new DataTable();
-                        TRN_Supplier_Payment objTRN_Supplier_Payment = new TRN_Supplier_Payment();
-                        objTRN_Supplier_Payment.ViewType = Viewtype;
-                        objTRN_Supplier_Payment.paraPYID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
-                        objTRN_Supplier_Payment.paraSTSID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
-                        objTRN_Supplier_Payment.paraDeleteFlag = 0;
-                        objTRN_Supplier_Payment.paraUserID = varUserID;
-                        objTRN_Supplier_Payment.paraIPAddress = MainForm.pbIpAddress;
-                        objTRN_Supplier_Payment.paraOriginator = varoriginator;
-                        SPDataService objspdservice = new SPDataService();
-                        string result = objspdservice.udfnSetPayment(objTRN_Supplier_Payment);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (result.Split('~')[0] == "3")
-                        {
-                            if (result.Split('~')[1] == "1")
-                            {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                if (MainForm.objCP_Verify.flag == 1)
-                                {
-                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                    objTRN_Supplier_Payment.ViewType = Viewtype;
-                                    objTRN_Supplier_Payment.paraPYID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
-                                    objTRN_Supplier_Payment.paraSTSID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
-                                    objTRN_Supplier_Payment.paraDeleteFlag = 1;
-                                    objTRN_Supplier_Payment.paraUserID = varUserID;
-                                    objTRN_Supplier_Payment.paraIPAddress = MainForm.pbIpAddress;
-                                    objTRN_Supplier_Payment.paraOriginator = varoriginator;
-                                    result = objspdservice.udfnSetPayment(objTRN_Supplier_Payment);
-                                    objspdservice.CloseConnection();
-                                    if (result.Split('~')[0] == "3")
-                                    {
-                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        Viewtype = 0;
-                                        udfnList();
-                                    }
-                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                                }
-                            }
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+          
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -424,30 +284,14 @@ namespace ROMS
         private void PAY_SupplierPaymentList_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
-                {
-                    tsbDelete_Click(sender, e);
-                }
+            { 
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
-                }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -884,12 +728,12 @@ namespace ROMS
                 if (txtSupplier.Text.Length > 0)
                 {
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 26;
+                    objMR_Supplier.ViewType = 43;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.ParaFromDate = dpFromdate.Text;
                     objMR_Supplier.ParaToDate = dpTodate.Text;
-                    objMR_Supplier.paraFlag = 10;
+                    objMR_Supplier.paraFlag = 1;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -1076,37 +920,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void GrdSupllierPaymentList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnEditLoad();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdSupllierPaymentList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                tsbEdit_Click(sender, e);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        } 
         private void GrdSupllierPaymentList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try

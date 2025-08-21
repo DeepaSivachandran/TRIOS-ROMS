@@ -51,9 +51,11 @@
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTemplate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmImageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBankId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTemplateID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmPreview = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPreview = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.pnlSettings.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -119,9 +121,11 @@
             this.clmSno,
             this.clmBank,
             this.clmTemplate,
+            this.clmImageName,
             this.clmBankId,
             this.clmTemplateID,
-            this.cmPreview,
+            this.clmID,
+            this.clmPreview,
             this.clmRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -143,7 +147,8 @@
             this.grdChequePrint.RowTemplate.Height = 25;
             this.grdChequePrint.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdChequePrint.Size = new System.Drawing.Size(558, 304);
-            this.grdChequePrint.TabIndex = 958790;
+            this.grdChequePrint.TabIndex = 53432;
+            this.grdChequePrint.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdChequePrint_CellContentClick);
             // 
             // btnSave
             // 
@@ -236,7 +241,7 @@
             this.cmbTemplate.Location = new System.Drawing.Point(208, 28);
             this.cmbTemplate.Name = "cmbTemplate";
             this.cmbTemplate.Size = new System.Drawing.Size(178, 27);
-            this.cmbTemplate.TabIndex = 1;
+            this.cmbTemplate.TabIndex = 1; 
             this.cmbTemplate.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
             this.cmbTemplate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
             this.cmbTemplate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
@@ -327,6 +332,13 @@
             this.clmTemplate.ReadOnly = true;
             this.clmTemplate.Width = 200;
             // 
+            // clmImageName
+            // 
+            this.clmImageName.HeaderText = "Image Name";
+            this.clmImageName.Name = "clmImageName";
+            this.clmImageName.ReadOnly = true;
+            this.clmImageName.Visible = false;
+            // 
             // clmBankId
             // 
             this.clmBankId.HeaderText = "Bank ID";
@@ -341,15 +353,22 @@
             this.clmTemplateID.ReadOnly = true;
             this.clmTemplateID.Visible = false;
             // 
-            // cmPreview
+            // clmID
             // 
-            this.cmPreview.HeaderText = "Preview";
-            this.cmPreview.Image = global::ROMS.Properties.Resources.Edit;
-            this.cmPreview.Name = "cmPreview";
-            this.cmPreview.ReadOnly = true;
-            this.cmPreview.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cmPreview.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cmPreview.Width = 60;
+            this.clmID.HeaderText = "ID";
+            this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
+            this.clmID.Visible = false;
+            // 
+            // clmPreview
+            // 
+            this.clmPreview.HeaderText = "Preview";
+            this.clmPreview.Image = global::ROMS.Properties.Resources.print;
+            this.clmPreview.Name = "clmPreview";
+            this.clmPreview.ReadOnly = true;
+            this.clmPreview.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPreview.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmPreview.Width = 60;
             // 
             // clmRemove
             // 
@@ -412,9 +431,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBank;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTemplate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmImageName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBankId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTemplateID;
-        private System.Windows.Forms.DataGridViewImageColumn cmPreview;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
+        private System.Windows.Forms.DataGridViewImageColumn clmPreview;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }
