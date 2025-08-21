@@ -1531,7 +1531,9 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+         
+
         private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
             try
