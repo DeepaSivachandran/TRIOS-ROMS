@@ -131,11 +131,11 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 324)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_CostPrice.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DET_CostPrice.rpt");
                     }
                     else
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_CostPrice_Details.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DET_CostPrice_Details.rpt");
                     }
                     objBillreport.SetParameterValue("paraSupplierType", 0);
                     objBillreport.SetParameterValue("paraHSNCode", 0);

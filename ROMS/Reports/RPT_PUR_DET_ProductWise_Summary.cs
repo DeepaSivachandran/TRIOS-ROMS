@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_ProductWise_PUR_Summary : ReportClass {
+    public class RPT_PUR_DET_ProductWise_Summary : ReportClass {
         
-        public RPT_ProductWise_PUR_Summary() {
+        public RPT_PUR_DET_ProductWise_Summary() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_ProductWise_PUR_Summary.rpt";
+                return "RPT_PUR_DET_ProductWise_Summary.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_ProductWise_PUR_Summary.rpt";
+                return "ROMS.Reports.RPT_PUR_DET_ProductWise_Summary.rpt";
             }
             set {
                 // Do nothing
@@ -386,9 +386,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_ProductWise_PUR_Summary : Component, ICachedReport {
+    public class CachedRPT_PUR_DET_ProductWise_Summary : Component, ICachedReport {
         
-        public CachedRPT_ProductWise_PUR_Summary() {
+        public CachedRPT_PUR_DET_ProductWise_Summary() {
         }
         
         [Browsable(false)]
@@ -425,7 +425,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_ProductWise_PUR_Summary rpt = new RPT_ProductWise_PUR_Summary();
+            RPT_PUR_DET_ProductWise_Summary rpt = new RPT_PUR_DET_ProductWise_Summary();
             rpt.Site = this.Site;
             return rpt;
         }

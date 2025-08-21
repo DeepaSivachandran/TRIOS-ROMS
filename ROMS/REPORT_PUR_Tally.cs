@@ -110,7 +110,7 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tally.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DET_Tally.rpt");
                     objBillreport.SetParameterValue("paraSupplierType",0);
                     objBillreport.SetParameterValue("paraHSNCode", 0);
                     objBillreport.SetParameterValue("paraGST", 0);

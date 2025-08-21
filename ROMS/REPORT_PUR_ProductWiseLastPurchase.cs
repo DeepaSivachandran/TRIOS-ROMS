@@ -167,7 +167,7 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_ProductWise_Last_PUR.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DET_ProductWise_Last_Purchased.rpt");
                     objBillreport.SetParameterValue("paraSupplierType", 0);
                     objBillreport.SetParameterValue("paraHSNCode", 0);
                     objBillreport.SetParameterValue("paraGST", 0);
