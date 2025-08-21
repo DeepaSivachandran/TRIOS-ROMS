@@ -180,6 +180,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseTCSValueReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBank = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
@@ -1290,6 +1291,7 @@ namespace ROMS
             this.tsmPurchasePeriodWiseTaxReport,
             this.tsmPurchaseAdditionalValueReport,
             this.tsmPurchaseDiscountValueReport,
+            this.tsmPurchaseTCSValueReport,
             this.tsmAllPurchaseTaxReport});
             this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
             this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
@@ -1298,35 +1300,35 @@ namespace ROMS
             // tsmPurchaseBillWiseTaxReport
             // 
             this.tsmPurchaseBillWiseTaxReport.Name = "tsmPurchaseBillWiseTaxReport";
-            this.tsmPurchaseBillWiseTaxReport.Size = new System.Drawing.Size(231, 22);
+            this.tsmPurchaseBillWiseTaxReport.Size = new System.Drawing.Size(236, 22);
             this.tsmPurchaseBillWiseTaxReport.Text = "Purchase Bill Wise Tax Report";
             this.tsmPurchaseBillWiseTaxReport.Click += new System.EventHandler(this.TsmPurchaseBillWiseTaxReport_Click);
             // 
             // tsmPurchasePeriodWiseTaxReport
             // 
             this.tsmPurchasePeriodWiseTaxReport.Name = "tsmPurchasePeriodWiseTaxReport";
-            this.tsmPurchasePeriodWiseTaxReport.Size = new System.Drawing.Size(231, 22);
+            this.tsmPurchasePeriodWiseTaxReport.Size = new System.Drawing.Size(236, 22);
             this.tsmPurchasePeriodWiseTaxReport.Text = "Purchase Period Wise Tax Report";
             this.tsmPurchasePeriodWiseTaxReport.Click += new System.EventHandler(this.TsmPurchasePeriodWiseTaxReport_Click);
             // 
             // tsmPurchaseAdditionalValueReport
             // 
             this.tsmPurchaseAdditionalValueReport.Name = "tsmPurchaseAdditionalValueReport";
-            this.tsmPurchaseAdditionalValueReport.Size = new System.Drawing.Size(231, 22);
-            this.tsmPurchaseAdditionalValueReport.Text = "Purchase Addition Value Report";
+            this.tsmPurchaseAdditionalValueReport.Size = new System.Drawing.Size(236, 22);
+            this.tsmPurchaseAdditionalValueReport.Text = "Purchase Additional Value Report";
             this.tsmPurchaseAdditionalValueReport.Click += new System.EventHandler(this.TsmPurchaseAdditionalValueReport_Click);
             // 
             // tsmPurchaseDiscountValueReport
             // 
             this.tsmPurchaseDiscountValueReport.Name = "tsmPurchaseDiscountValueReport";
-            this.tsmPurchaseDiscountValueReport.Size = new System.Drawing.Size(231, 22);
+            this.tsmPurchaseDiscountValueReport.Size = new System.Drawing.Size(236, 22);
             this.tsmPurchaseDiscountValueReport.Text = "Purchase Discount Value Report";
             this.tsmPurchaseDiscountValueReport.Click += new System.EventHandler(this.TsmPurchaseDiscountValueReport_Click);
             // 
             // tsmAllPurchaseTaxReport
             // 
             this.tsmAllPurchaseTaxReport.Name = "tsmAllPurchaseTaxReport";
-            this.tsmAllPurchaseTaxReport.Size = new System.Drawing.Size(231, 22);
+            this.tsmAllPurchaseTaxReport.Size = new System.Drawing.Size(236, 22);
             this.tsmAllPurchaseTaxReport.Text = "All Purchase Tax Report";
             this.tsmAllPurchaseTaxReport.Click += new System.EventHandler(this.TsmAllPurchaseTaxReport_Click);
             // 
@@ -1431,7 +1433,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // tsmPurchaseTCSValueReport
             // tsmBank
+            // 
+            this.tsmPurchaseTCSValueReport.Name = "tsmPurchaseTCSValueReport";
+            this.tsmPurchaseTCSValueReport.Size = new System.Drawing.Size(236, 22);
+            this.tsmPurchaseTCSValueReport.Text = "Purchase TCS Value Report";
+            this.tsmPurchaseTCSValueReport.Click += new System.EventHandler(this.TsmPurchaseTCSValueReport_Click);
             // 
             this.tsmBank.Name = "tsmBank";
             this.tsmBank.Size = new System.Drawing.Size(225, 22);
@@ -1615,6 +1623,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseAdditionalValueReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseDiscountValueReport;
         private System.Windows.Forms.ToolStripMenuItem tsmAllPurchaseTaxReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseTCSValueReport;
         private System.Windows.Forms.ToolStripMenuItem directLabelPrintToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printerSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmBank;

@@ -16,6 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+        private ToolTip tpReportType = new ToolTip();
         public REPORT_PUR_CostPrice()
         {
             InitializeComponent();
@@ -76,12 +77,37 @@ namespace ROMS
         }
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
+                    cmbReportType.Focus();
+                }
+                else
+                {
+                    udfnCostPriceReport();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-        public void udfnCity()
+        public void udfnCostPriceReport()
         {
             try
             {
+                epReport.Clear();
+                int varViewType = 15;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 325)
+                {
+                    varViewType = 32;
+                }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -90,9 +116,9 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnCitylist(3, "", 0, 0);
-                objspservice.CloseConnection();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPurHsnReport(varViewType, 0, "", 0, dpFromDate.Text, dpFromDate.Text, 0, 0, 0, Convert.ToInt32(cmbLPDates.Text), 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, Convert.ToInt32(cmbProductName.SelectedValue), "", 0);
+                objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -101,10 +127,38 @@ namespace ROMS
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_City.rpt");
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 324)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_CostPrice.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_CostPrice_Details.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraSupplierType", 0);
+                    objBillreport.SetParameterValue("paraHSNCode", 0);
+                    objBillreport.SetParameterValue("paraGST", 0);
+                    objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraSupplierID", 0);
+                    objBillreport.SetParameterValue("paraScheduleID", 0);
+                    objBillreport.SetParameterValue("paraInvioceType", 0);
+                    objBillreport.SetParameterValue("paraPaymentType", 0);
+                    objBillreport.SetParameterValue("paraPurchaseType", 0);
+                    objBillreport.SetParameterValue("paraConditionType", 0);
+                    objBillreport.SetParameterValue("paraGroupId", 0);
+                    objBillreport.SetParameterValue("paraSubgroupId", 0);
+                    objBillreport.SetParameterValue("paraProductId", 0);
+                    objBillreport.SetParameterValue("paraSupplierID", 0);
+                    objBillreport.SetParameterValue("paraScheduleID", 0);
+                    objBillreport.SetParameterValue("paraBrandID", 0);
+                    objBillreport.SetParameterValue("paraAlpha", "");
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraFlag", cmbLPDates.Text);
+                    objBillreport.SetParameterValue("paraProductNameType", Convert.ToInt32(cmbProductName.SelectedValue));
+
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -135,12 +189,14 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,94) AND MSTID NOT IN(0,320,321)", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,94) AND MSTID NOT IN(0,320,321)", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbProductName.SelectedValue = 271;
                 cmbReportType.SelectedValue = -1;
                 cmbLPDates.SelectedIndex = 0;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -191,7 +247,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromDate.Focus();
+                    cmbConcern.Focus();
                 }
             }
             catch (Exception ex)
@@ -341,7 +397,19 @@ namespace ROMS
         {
             try
             {
-                if(Convert.ToInt32(cmbReportType.SelectedValue)== 325)
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue)== 325)
                 {
                     cmbLPDates.Enabled = false;
                     cmbLPDates.SelectedIndex = 0;
@@ -390,6 +458,61 @@ namespace ROMS
             try
             {
                 dpFromDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpFromDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.White;
             }
             catch (Exception ex)
             {

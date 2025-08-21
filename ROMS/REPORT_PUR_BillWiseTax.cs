@@ -107,6 +107,10 @@ namespace ROMS
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     cmbReportType.Focus();
                 }
+                else
+                {
+                    udfnPurchaseBillWiseReport();
+                }
             }
             catch (Exception ex)
             {
@@ -114,10 +118,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnCity()
+        public void udfnPurchaseBillWiseReport()
         {
             try
             {
+                epReport.Clear();
+                string varSupplierName = "-All-";
+                int varSupplierId = 0, varViewType = 16, varScheduleId = 0;
+                if (txtSupplier.Text.Trim() != "")
+                {
+                    varSupplierName = txtSupplier.Text;
+                    varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleId = Convert.ToInt32(lblScheduleCode.Text);
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 329)
+                {
+                    varViewType = 17;
+                }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -126,9 +143,9 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnCitylist(3, "", 0, 0);
-                objspservice.CloseConnection();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", 0);
+                objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -138,9 +155,37 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_City.rpt");
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 328)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxSummary_BillWise.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 329)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_BillWise.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
+                    objBillreport.SetParameterValue("paraHSNCode", 0);
+                    objBillreport.SetParameterValue("paraGST", 0);
+                    objBillreport.SetParameterValue("paraCompanyId", 0);
+                    objBillreport.SetParameterValue("paraInvioceType", Convert.ToInt32(cmbInvType.SelectedValue));
+                    objBillreport.SetParameterValue("paraPaymentType", 0);
+                    objBillreport.SetParameterValue("paraPurchaseType", 0);
+                    objBillreport.SetParameterValue("paraConditionType", 0);
+                    objBillreport.SetParameterValue("paraBrandID", 0);
+                    objBillreport.SetParameterValue("paraAlpha", "");
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
+                    objBillreport.SetParameterValue("paraFlag", 0);
+                    objBillreport.SetParameterValue("paraProductNameType", 0);
+                    objBillreport.SetParameterValue("paraGroupId", 0);
+                    objBillreport.SetParameterValue("paraSubgroupId", 0);
+                    objBillreport.SetParameterValue("paraProductId", 0);
+                    objBillreport.SetParameterValue("paraSupplierID", varSupplierId);
+                    objBillreport.SetParameterValue("paraScheduleID", varScheduleId);
+                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    objBillreport.SetParameterValue("paraSupplierTypeName", cmbSupplierType.Text);
+                    objBillreport.SetParameterValue("paraInvoiceTypeName", cmbInvType.Text);
+
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -178,7 +223,7 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,97) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,97) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -716,7 +761,19 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 329)
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     cmbInvType.SelectedValue = 0;
                     cmbInvType.Enabled = false;
