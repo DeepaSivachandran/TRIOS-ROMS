@@ -566,15 +566,15 @@
     <Compile Include="PUR_ReturnDCApprovedList.designer.cs">
       <DependentUpon>PUR_ReturnDCApprovedList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_Cost_Details.cs">
-      <DependentUpon>RPT_PUR_Cost_Details.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_DET_Cost_Details.cs">
+      <DependentUpon>RPT_PUR_DET_Cost_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_CostPrice_Details.cs">
-      <DependentUpon>RPT_PUR_CostPrice_Details.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_DET_CostPrice_Details.cs">
+      <DependentUpon>RPT_PUR_DET_CostPrice_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -692,29 +692,29 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_Batch_Details.cs">
-      <DependentUpon>RPT_PUR_Batch_Details.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_DET_Batch_Details.cs">
+      <DependentUpon>RPT_PUR_DET_Batch_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_ProductWise_PUR_Details.cs">
-      <DependentUpon>RPT_ProductWise_PUR_Details.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_DET_ProductWise_Details.cs">
+      <DependentUpon>RPT_PUR_DET_ProductWise_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_ProductWise_Last_PUR.cs">
-      <DependentUpon>RPT_ProductWise_Last_PUR.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_DET_ProductWise_Last_Purchased.cs">
+      <DependentUpon>RPT_PUR_DET_ProductWise_Last_Purchased.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_CostPrice.cs">
-      <DependentUpon>RPT_PUR_CostPrice.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_DET_CostPrice.cs">
+      <DependentUpon>RPT_PUR_DET_CostPrice.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -818,8 +818,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_Tally.cs">
-      <DependentUpon>RPT_PUR_Tally.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_DET_Tally.cs">
+      <DependentUpon>RPT_PUR_DET_Tally.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -846,8 +846,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_ProductWise_PUR_Summary.cs">
-      <DependentUpon>RPT_ProductWise_PUR_Summary.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_PUR_DET_ProductWise_Summary.cs">
+      <DependentUpon>RPT_PUR_DET_ProductWise_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -3524,29 +3524,29 @@
       <LastGenOutput>RPT_Stock_Valuation.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_ProductWise_PUR_Details.rpt">
+    <Content Include="Reports\RPT_PUR_DET_ProductWise_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_ProductWise_PUR_Details.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_DET_ProductWise_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_ProductWise_Last_PUR.rpt">
+    <Content Include="Reports\RPT_PUR_DET_ProductWise_Last_Purchased.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_ProductWise_Last_PUR.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_DET_ProductWise_Last_Purchased.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_PUR_CostPrice.rpt">
+    <Content Include="Reports\RPT_PUR_DET_CostPrice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_CostPrice.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_DET_CostPrice.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_PUR_CostPrice_Details.rpt">
+    <Content Include="Reports\RPT_PUR_DET_CostPrice_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_CostPrice_Details.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_DET_CostPrice_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Reports\RPT_PUR_Cost_Details.rpt">
+    <EmbeddedResource Include="Reports\RPT_PUR_DET_Cost_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_Cost_Details.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_DET_Cost_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_Tax_AdditionalValue_BillWise.rpt">
@@ -3629,9 +3629,9 @@
       <LastGenOutput>RPT_PUR_Tax_TaxDetails_DayWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_PUR_Batch_Details.rpt">
+    <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_Batch_Details.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_DET_Batch_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_100x70.rpt">
@@ -3789,14 +3789,14 @@
       <LastGenOutput>RPT_Stock_Inward_SupplierWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_ProductWise_PUR_Summary.rpt">
+    <Content Include="Reports\RPT_PUR_DET_ProductWise_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_ProductWise_PUR_Summary.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_DET_ProductWise_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_PUR_Tally.rpt">
+    <Content Include="Reports\RPT_PUR_DET_Tally.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_Tally.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_DET_Tally.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_SupplierLedger_Details.rpt">
