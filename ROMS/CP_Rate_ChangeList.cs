@@ -2036,9 +2036,16 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            if (col.Name == "P.I Code" || col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                            if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+
+                                Excel.Range rateRange = ExcelSheet.Range[
+                                    ExcelSheet.Cells[3, cIndex],
+                                    ExcelSheet.Cells[grdItemList.Rows.Count + 2, cIndex]
+                                ];
+                                rateRange.NumberFormat = "0.00"; 
+                                rateRange.HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             if (col.Name == "Teller" || col.Name == "Last Updated By")
                             {
@@ -2059,10 +2066,10 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            }
+                            //if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                            //{
+                            //    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            //}
 
                             foreach (DataGridViewRow rowa in grdItemList.Rows)
                             {
@@ -2117,53 +2124,49 @@ namespace ROMS
                     titleRange.Font.Size = 12;
                     titleRange.Font.Bold = true;
 
-                    int excelRow = 3; // start from row 3 for grouped data
+                    int excelRow = 3;
+
+                    int cIndexHeader = 0;
+                    foreach (DataGridViewColumn col in grdItemList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndexHeader++;
+                            ExcelSheet.Cells[excelRow, cIndexHeader].Value = col.HeaderText;
+                            ExcelSheet.Cells[excelRow, cIndexHeader].Font.Bold = true;
+                            ExcelSheet.Cells[excelRow, cIndexHeader].Interior.Color = Color.LightSlateGray;
+                            ExcelSheet.Cells[excelRow, cIndexHeader].Font.Color = Color.White;
+                        }
+                    }
+                    excelRow++;
 
                     var groupedData = grdItemList.Rows
                         .Cast<DataGridViewRow>()
                         .Where(r => !r.IsNewRow)
                         .GroupBy(r => new
                         {
-                            GroupId = r.Cells["Group Id"].Value,
-                            SubGroupId = r.Cells["Subgroup Id"].Value,
-                            BrandId = r.Cells["Brand Id"].Value,
                             GroupName = r.Cells["Group Name"].Value?.ToString(),
                             SubGroupName = r.Cells["Subgroup Name"].Value?.ToString(),
                             BrandName = r.Cells["Brand Name"].Value?.ToString()
                         });
-
+                    int serialNo = 1;
                     foreach (var grp in groupedData)
                     {
-                        // Insert Group Header
                         ExcelSheet.Cells[excelRow, 1].Value = $"Group : {grp.Key.GroupName}";
                         ExcelSheet.Cells[excelRow, 3].Value = $"SubGroup : {grp.Key.SubGroupName}";
                         ExcelSheet.Cells[excelRow, 6].Value = $"Brand : {grp.Key.BrandName}";
 
-                        Excel.Range headerRange = ExcelSheet.Range[ExcelSheet.Cells[excelRow, 1], ExcelSheet.Cells[excelRow, colCount]];
-                        headerRange.Font.Bold = true;
-                        headerRange.Interior.Color = Color.LightGray;
-
+                        Excel.Range groupHeaderRange = ExcelSheet.Range[ExcelSheet.Cells[excelRow, 1], ExcelSheet.Cells[excelRow, colCount]];
+                        groupHeaderRange.Font.Bold = true;
+                        groupHeaderRange.Font.Size = 11; 
+                        groupHeaderRange.Font.Name = "Calibri";
                         excelRow++;
 
-                        // Column Headers
-                        int cIndexHeader = 0;
-                        foreach (DataGridViewColumn col in grdItemList.Columns)
-                        {
-                            if (col.Visible)
-                            {
-                                cIndexHeader++;
-                                ExcelSheet.Cells[excelRow, cIndexHeader].Value = col.HeaderText;
-                                //ExcelSheet.Cells[excelRow, cIndexHeader].Font.Bold = true;
-                                //ExcelSheet.Cells[excelRow, cIndexHeader].Interior.Color = Color.LightSlateGray;
-                                ExcelSheet.Cells[excelRow, cIndexHeader].Font.Color = Color.White;
-                            }
-                        }
-                        excelRow++;
-
-                        // Products under this group
                         foreach (var row in grp)
                         {
-                            int cIndex = 0;
+                            ExcelSheet.Cells[excelRow, 1].Value = serialNo; 
+                            serialNo++;
+                            int cIndex = 1;
                             foreach (DataGridViewColumn col in grdItemList.Columns)
                             {
                                 if (col.Visible)
@@ -2176,24 +2179,26 @@ namespace ROMS
                                         ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                                         ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                                     }
-                                    else if (col.Name == "P.I Code" || col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                                    object cellValue = row.Cells[col.Index].Value;
+                                    if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
                                     {
-                                        ExcelSheet.Columns[cIndex].ColumnWidth = 15;
-                                        ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                        ExcelSheet.Cells[excelRow, cIndex].Value = cellValue != null && double.TryParse(cellValue.ToString(), out double num) ? num : 0;
+                                        ExcelSheet.Cells[excelRow, cIndex].NumberFormat = "0.00";
                                     }
-                                    else if (col.Name == "Teller" || col.Name == "Last Updated By")
+                                    else
+                                    {
+                                        ExcelSheet.Cells[excelRow, cIndex].Value = cellValue;
+                                    }
+                                    if (col.Name == "Teller" || col.Name == "Last Updated By")
                                     {
                                         ExcelSheet.Columns[cIndex].ColumnWidth = 35;
                                     }
                                     else if (col.Name == "Product")
                                     {
                                         ExcelSheet.Columns[cIndex].ColumnWidth = 40;
-                                        Excel.Range productRange = ExcelSheet.Range[
-                                            ExcelSheet.Cells[3, cIndex],
-                                            ExcelSheet.Cells[grdItemList.Rows.Count + 2, cIndex]
-                                        ];
-                                        productRange.Font.Name = "Uni Ila.Sundaram-03";
-                                        productRange.Font.Size = 11.75;
+                                        Excel.Range productCell = ExcelSheet.Cells[excelRow, cIndex];
+                                        productCell.Font.Name = "Uni Ila.Sundaram-03";
+                                        productCell.Font.Size = 11.75;
                                     }
                                     else if (col.Name == "Unit")
                                     {
@@ -2206,7 +2211,8 @@ namespace ROMS
 
                         excelRow++; 
                     }
-                    ExcelSheet.Columns.AutoFit();
+
+                    //ExcelSheet.Columns.AutoFit();
                 }
                 else
                 {
